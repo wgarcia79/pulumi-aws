@@ -43,7 +43,7 @@ let lambda = new aws.lambda.Function("mylambda", {
 // This wrapper would set up the routes and add invoke permission from API Gateway to the Lambda
 let restApi = new RestApiWrapper("my-api", lambda, stageName,
     routes: [ 
-        { "ANY", "/" }
+        { "ANY", "/" },
         { "ANY", "{proxy+}" }
     ]
 );
