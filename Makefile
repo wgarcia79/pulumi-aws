@@ -27,6 +27,7 @@ build::
 	done
 	cd ${PACKDIR}/nodejs/ && \
 		yarn install && \
+		$(LINK_PACKAGES_CMD) && \
 		yarn run tsc && \
 		cp ../../README.md ../../LICENSE package.json yarn.lock ./bin/ && \
 		sed -i.bak "s/\$${VERSION}/$(VERSION)/g" ./bin/package.json
@@ -55,7 +56,8 @@ install::
 	cd "$(PULUMI_NODE_MODULES)/$(NODE_MODULE_NAME)" && \
 		yarn install --offline --production && \
 		(yarn unlink > /dev/null 2>&1 || true) && \
-		yarn link
+		yarn link && \
+		$(LINK_PACKAGES_CMD)
 	cd ${PACKDIR}/python/bin && $(PIP) install --user -e .
 
 test_all::

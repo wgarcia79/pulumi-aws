@@ -95,6 +95,15 @@ SHELL       := /bin/bash
 
 STEP_MESSAGE = @echo -e "\033[0;32m$(shell echo '$@' | tr a-z A-Z | tr '_' ' '):\033[0m"
 
+# LINK_PACKAGES_CMD may be used in a recepie to link all dependent @pulumi packages in a package.json. This only
+# happens when `PULUMI_LINK_PACKAGES` is set (the value does not matter). This is useful when working across
+# repositores locally.
+define LINK_PACKAGES_CMD =
+if [ ! -z "$${PULUMI_LINK_PACKAGES:-}" ]; then \
+	(jq -r '.dependencies | keys[]' < package.json) | grep ^@pulumi | xargs -L1 yarn link; \
+fi
+endef
+
 # Our install targets place items item into $PULUMI_ROOT, if it's
 # unset, default to /opt/pulumi.
 ifeq ($(PULUMI_ROOT),)
@@ -206,6 +215,7 @@ install::
 	cd "$(PULUMI_NODE_MODULES)/$(NODE_MODULE_NAME)" && \
 	yarn install --offline --production && \
 	(yarn unlink > /dev/null 2>&1 || true) && \
+	$(LINK_PACKAGES_CMD)
 	yarn link
 endif
 
