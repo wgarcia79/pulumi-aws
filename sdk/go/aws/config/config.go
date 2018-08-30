@@ -58,7 +58,10 @@ func GetProfile(ctx *pulumi.Context) string {
 
 // The region where AWS operations will take place. Examples are us-east-1, us-west-2, etc.
 func GetRegion(ctx *pulumi.Context) string {
-	return config.Require(ctx, "aws:region")
+	if v := config.Get(ctx, "aws:region"); v != "" {
+		return config.Get(ctx, "aws:region")
+	}
+	return getEnvOrDefault("", nil, "AWS_REGION", "AWS_DEFAULT_REGION")
 }
 
 // Set this to true to force the request to use path-style addressing, i.e., http://s3.amazonaws.com/BUCKET/KEY. By
