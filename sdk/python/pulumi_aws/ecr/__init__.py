@@ -6,5 +6,4 @@
 from .lifecycle_policy import *
 from .repository import *
 from .repository_policy import *
-from .get_credentials import *
 from .get_repository import *

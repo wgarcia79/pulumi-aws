@@ -4,7 +4,7 @@
 
 import pulumi
 import pulumi.runtime
-from .. import utilities
+from .. import utilities, tables
 
 class SecurityGroup(pulumi.CustomResource):
     """
@@ -16,6 +16,8 @@ class SecurityGroup(pulumi.CustomResource):
     defined in-line. At this time you cannot use a Security Group with in-line rules
     in conjunction with any Security Group Rule resources. Doing so will cause
     a conflict of rule settings and will overwrite rules.
+    
+    ~> **NOTE:** Referencing Security Groups across VPC peering has certain restrictions. More information is available in the [VPC Peering User Guide](https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-security-groups.html).
     """
     def __init__(__self__, __name__, __opts__=None, description=None, egress=None, ingress=None, name=None, name_prefix=None, revoke_rules_on_delete=None, tags=None, vpc_id=None):
         """Create a SecurityGroup resource with the given unique name, props, and options."""
@@ -37,13 +39,13 @@ class SecurityGroup(pulumi.CustomResource):
 
         __props__['name'] = name
 
-        __props__['namePrefix'] = name_prefix
+        __props__['name_prefix'] = name_prefix
 
-        __props__['revokeRulesOnDelete'] = revoke_rules_on_delete
+        __props__['revoke_rules_on_delete'] = revoke_rules_on_delete
 
         __props__['tags'] = tags
 
-        __props__['vpcId'] = vpc_id
+        __props__['vpc_id'] = vpc_id
 
         __props__['arn'] = None
         __props__['owner_id'] = None
@@ -53,4 +55,11 @@ class SecurityGroup(pulumi.CustomResource):
             __name__,
             __props__,
             __opts__)
+
+
+    def translate_output_property(self, prop):
+        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+    def translate_input_property(self, prop):
+        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

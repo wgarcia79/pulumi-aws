@@ -4,7 +4,7 @@
 
 import pulumi
 import pulumi.runtime
-from .. import utilities
+from .. import utilities, tables
 
 class GetBrokerResult(object):
     """
@@ -63,7 +63,7 @@ class GetBrokerResult(object):
         id is the provider-assigned unique ID for this managed resource.
         """
 
-def get_broker(broker_id=None, broker_name=None):
+def get_broker(broker_id=None, broker_name=None, logs=None):
     """
     Provides information about a MQ Broker.
     """
@@ -71,6 +71,7 @@ def get_broker(broker_id=None, broker_name=None):
 
     __args__['brokerId'] = broker_id
     __args__['brokerName'] = broker_name
+    __args__['logs'] = logs
     __ret__ = pulumi.runtime.invoke('aws:mq/getBroker:getBroker', __args__)
 
     return GetBrokerResult(

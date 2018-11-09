@@ -4,12 +4,12 @@
 
 import pulumi
 import pulumi.runtime
-from .. import utilities
+from .. import utilities, tables
 
 class FlowLog(pulumi.CustomResource):
     """
     Provides a VPC/Subnet/ENI Flow Log to capture IP traffic for a specific network
-    interface, subnet, or VPC. Logs are sent to a CloudWatch Log Group.
+    interface, subnet, or VPC. Logs are sent to a CloudWatch Log Group or a S3 Bucket.
     """
     def __init__(__self__, __name__, __opts__=None, eni_id=None, iam_role_arn=None, log_destination=None, log_destination_type=None, log_group_name=None, subnet_id=None, traffic_type=None, vpc_id=None):
         """Create a FlowLog resource with the given unique name, props, and options."""
@@ -22,27 +22,34 @@ class FlowLog(pulumi.CustomResource):
 
         __props__ = dict()
 
-        __props__['eniId'] = eni_id
+        __props__['eni_id'] = eni_id
 
-        __props__['iamRoleArn'] = iam_role_arn
+        __props__['iam_role_arn'] = iam_role_arn
 
-        __props__['logDestination'] = log_destination
+        __props__['log_destination'] = log_destination
 
-        __props__['logDestinationType'] = log_destination_type
+        __props__['log_destination_type'] = log_destination_type
 
-        __props__['logGroupName'] = log_group_name
+        __props__['log_group_name'] = log_group_name
 
-        __props__['subnetId'] = subnet_id
+        __props__['subnet_id'] = subnet_id
 
         if not traffic_type:
             raise TypeError('Missing required property traffic_type')
-        __props__['trafficType'] = traffic_type
+        __props__['traffic_type'] = traffic_type
 
-        __props__['vpcId'] = vpc_id
+        __props__['vpc_id'] = vpc_id
 
         super(FlowLog, __self__).__init__(
             'aws:ec2/flowLog:FlowLog',
             __name__,
             __props__,
             __opts__)
+
+
+    def translate_output_property(self, prop):
+        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+    def translate_input_property(self, prop):
+        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 
