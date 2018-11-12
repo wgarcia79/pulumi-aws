@@ -10,3 +10,4 @@ export * from "./getService";
 export * from "./getTaskDefinition";
 export * from "./service";
 export * from "./taskDefinition";
+export * from "./x";

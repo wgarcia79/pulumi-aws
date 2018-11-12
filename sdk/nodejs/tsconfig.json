@@ -294,6 +294,7 @@
         "ecs/index.ts",
         "ecs/service.ts",
         "ecs/taskDefinition.ts",
+        "ecs/x.ts",
         "efs/fileSystem.ts",
         "efs/getFileSystem.ts",
         "efs/getMountTarget.ts",
