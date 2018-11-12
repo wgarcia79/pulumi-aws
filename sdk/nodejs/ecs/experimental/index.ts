@@ -14,21 +14,7 @@
 
 // These APIs are currently experimental and may change.
 
-// import * as fs from "fs";
-// import * as mime from "mime";
-// import * as fspath from "path";
-
-// import * as aws from "../..";
-// import * as lambda from "../../lambda";
-// import * as pulumi from "@pulumi/pulumi";
-// import * as autoscaling from "../../autoscaling";
-// import * as ec2 from "../../ec2";
-// import * as iam from "../../iam";
-
-// import { sha1hash, Overwrite } from "../../utils";
-
 export * from "./cluster";
-export * from "./clusterAutoScalingGroup";
 export * from "./fargate";
-export * from "./taskDefinition";
+export * from "./service";
 export * from "./vpc";
