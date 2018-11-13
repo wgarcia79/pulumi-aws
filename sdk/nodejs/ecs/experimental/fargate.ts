@@ -19,29 +19,31 @@ import * as pulumi from "@pulumi/pulumi";
 import { sha1hash, Overwrite } from "../../utils";
 
 import { Cluster } from "./cluster";
-import { Service, ServiceArgs, TaskDefinition } from "./service"
+import { Service, ServiceArgs, TaskDefinitionArgs, TaskDefinition } from "./service";
+import { Subnet } from "./vpc";
+import { ec2 } from "../..";
 
-export type FargateTaskDefinition = Overwrite<TaskDefinition, {
+export interface FargateTaskDefinitionArgs extends TaskDefinitionArgs {
     // Tasks that use the Fargate launch type do not support all of the task definition parameters
     // that are available. Some parameters are not supported at all, and others behave differently
     // for Fargate tasks.
     //
     // The following task definition parameters are not valid in Fargate tasks: 
-    disableNetworking: never;
-    dnsSearchDomains: never;
-    dnsServers: never;
-    dockerSecurityOptions: never;
-    extraHosts: never;
-    links: never;
-    host: never;
-    sourcePath: never;
-    linuxParameters: never;
-    placementConstraints: never;
-    privileged: never;
+    disableNetworking?: never;
+    dnsSearchDomains?: never;
+    dnsServers?: never;
+    dockerSecurityOptions?: never;
+    extraHosts?: never;
+    links?: never;
+    host?: never;
+    sourcePath?: never;
+    linuxParametvers?: never;
+    placementConstraints?: never;
+    privileged?: never;
 
     // Fargate task definitions require that the network mode is set to awsvpc. The awsvpc network
     // mode provides each task with its own elastic network interface
-    networkMode: "awsvpc";
+    networkMode: never;
 
     /**
      * Number of cpu units used by the task.  See
@@ -64,13 +66,14 @@ export type FargateTaskDefinition = Overwrite<TaskDefinition, {
      * Defaults to "512" if unspecified.
      */
     memory?: string;
-}>;
+};
 
-export interface FargateServiceArgs extends ServiceArgs {
-    cluster: Cluster;
-  
-    taskDefinition: FargateTaskDefinition;
-  
+export interface FargateServiceArgs extends ServiceArgs {  
+    taskDefinition: FargateTaskDefinitionArgs;
+
+    launchType: never;
+    networkConfiguration: never;
+
     /**
      * Whether or not awsvpc's networking configuration's [assignPublicIp] is set to "ENABLED" or
      * not.  See https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html for
@@ -78,22 +81,76 @@ export interface FargateServiceArgs extends ServiceArgs {
      *
      * Defaults to false if unspecified.
      */
-    assignPublicIp?: boolean;
+    assignPublicIp?: pulumi.Input<boolean>;
   
     /**
      * The security group to configure the awsvpc network with.
      */
-    subnets?: pulumi.Input<string[]>;
+    securityGroup?: ec2.SecurityGroup;
   
     /**
      * The subnets to configure the awsvpc network with.
      */
-    securityGroup?: pulumi.Input<string>;
+    subnets?: pulumi.Input<pulumi.Input<Subnet>[]>;
 }
 
-class FargateService extends Service {
+export class FargateService extends Service {
     public constructor(name: string, args: FargateServiceArgs, opts?: pulumi.ComponentResourceOptions) {
-        super("aws:ecs:x:FargateService", name, args, opts);
+        const serviceArgs = {
+            ...args,
+            // TS infers 'string' type for string literal.  We want to infer the actual 'FARGATE'
+            // literal type to satisfy the type system.  So we place an explicit redundant cast for
+            // this.
+            launchType: <"FARGATE">"FARGATE",
+            networkConfiguration: getNetworkConfiguration(args),
+            taskDefinition: convertTaskDefinition(args.taskDefinition),
+        };
 
+        delete serviceArgs.assignPublicIp;
+        delete serviceArgs.securityGroup;
+        delete serviceArgs.subnets;
+
+        super("aws:ecs:x:FargateService", name, serviceArgs, opts);
+
+        return;
     }
+}
+
+function convertTaskDefinition(args: FargateTaskDefinitionArgs): TaskDefinitionArgs {
+    const copy = <TaskDefinitionArgs>{
+        ...args,
+        network: "awsvpc",
+        cpu: args.cpu !== undefined ? args.cpu : 256,
+        memory: args.memory !== undefined ? args.memory : 512,
+    };
+
+    return copy;
+}
+
+function getNetworkConfiguration(name: string, args: FargateServiceArgs, opts?: pulumi.ComponentResourceOptions): ServiceArgs["networkConfiguration"] {
+    let securityGroup = args.securityGroup;
+    if (!securityGroup) {
+        securityGroup = new ec2.SecurityGroup(name, {
+            vpcId: args.cluster.vpc.arn,
+        }, opts);
+    }
+
+    const copy = {
+        assignPublicIp: args.assignPublicIp, 
+        subnets: args.subnets,
+    };
+
+    const result = pulumi.output(copy).apply(({ assignPublicIp, subnets }) => {
+        if (!subnets) {
+            subnets = assignPublicIp ? args.cluster.vpc.publicSubnets : args.cluster.vpc.privateSubnets;
+        }
+
+        return {
+            assignPublicIp: assignPublicIp,
+            subnets: subnets.map(sn => sn.subnetId),
+            securityGroups: [securityGroup.arn],
+        };
+    });
+
+    return result;
 }

@@ -103,11 +103,16 @@ export interface AutoScalingGroupArgs {
 }
 
 export class Cluster extends pulumi.ComponentResource {
-    public readonly cluster: aws.ecs.Cluster;
+    public readonly resource: aws.ecs.Cluster;
+    public readonly vpc: Vpc;
 
     public constructor(name: string, args: ClusterArgs, opts?: pulumi.ComponentResourceOptions) {
         super("aws:ecs:x:Cluster", name, args, opts);
-        this.cluster = new aws.ecs.Cluster(name, {}, { parent: this });
+        this.resource = new aws.ecs.Cluster(name, {}, { parent: this });
+
+        this.registerOutputs({
+            resource: this.resource,
+        })
     }
 
     public createDefaultAutoScalingGroup(name: string, args: DefaultAutoScalingGroupArgs): ClusterAutoScalingGroup {

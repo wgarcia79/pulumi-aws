@@ -16,23 +16,23 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as iam from "../../iam";
+import * as ecs from "..";
 
 import { sha1hash, Overwrite } from "../../utils";
+
+import { Cluster } from "./cluster";
 
 /**
  * Parameteres to control a task definition.  See
  * https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html
  * for more details.
  */
-export interface TaskDefinition {
+export type TaskDefinitionArgs = Overwrite<ecs.TaskDefinitionArgs, {
     /**
-     * When you register a task definition, you give it a family, which is similar to a name for
-     * multiple versions of the task definition, specified with a revision number. The first task
-     * definition that is registered into a particular family is given a revision of 1, and any task
-     * definitions registered after that are given a sequential revision number. 
+     * Not used.  Provide [executionRole] instead.
      */
-    family?: string;
-    
+    executionRoleArn?: never;
+
     /**
      * When you register a task definition, you can provide a task execution role that allows the
      * containers in the task to pull container images and publish container logs to CloudWatch on
@@ -41,6 +41,11 @@ export interface TaskDefinition {
      */
     executionRole?: iam.Role;
     
+    /**
+     * Not used.  Provide [taskRole] instead.
+     */
+    taskRoleArn?: never;
+
     /**
      * When you register a task definition, you can provide a task role for an IAM role that allows
      * the containers in the task permission to call the AWS APIs that are specified in its
@@ -90,6 +95,8 @@ export interface TaskDefinition {
      */
     networkMode?: "none" | "bridge" | "awsvpc" | "host";
 
+    // todo: add support for this.
+    volumes?: never;
     /*
     disableNetworking
     dnsSearchDomains
@@ -102,14 +109,118 @@ export interface TaskDefinition {
     placementConstraints
     privileged
     */
-}
 
-export class Service extends pulumi.ComponentResource {
-    public constructor(type: string, name: string, props: Record<string, any>, opts: pulumi.ComponentResourceOptions) {
-        super(type, name, props, opts);
+   // requiresCompatibilities: 
+}>;
+
+export type ServiceArgs = Overwrite<ecs.ServiceArgs, {
+    cluster: Cluster;
+
+    /**
+     * 
+     */
+    taskDefinition: TaskDefinitionArgs;
+
+    // loadBalancers?: pulumi.Input<pulumi.Input<ServiceLoadBalancer>[]>;
+    // serviceRegistries?: pulumi.Input<pulumi.Input<ServiceRegistry>[]>;
+
+    /**
+     * The launch type on which to run your service.
+     */
+    launchType: pulumi.Input<"EC2" | "FARGATE">,
+
+    /**
+     * The upper limit (as a percentage of the service's desiredCount) of the number of running
+     * tasks that can be running in a service during a deployment. Not valid when using the `DAEMON`
+     * scheduling strategy.
+     * 
+     * Defaults to 200 if not specified.
+     */
+    deploymentMaximumPercent?: pulumi.Input<number>;
+
+    /**
+     * The lower limit (as a percentage of the service's desiredCount) of the number of running
+     * tasks that must remain running and healthy in a service during a deployment.
+     * 
+     * Default to 50 if not specified.
+     */
+    deploymentMinimumHealthyPercent?: pulumi.Input<number>;
+}>;
+
+const executionAndTaskRolePolicy = {
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": "sts:AssumeRole",
+            "Principal": {
+                "Service": "ecs-tasks.amazonaws.com",
+            },
+            "Effect": "Allow",
+            "Sid": "",
+        },
+    ],
+};
+
+export class TaskDefinition extends pulumi.ComponentResource {
+    public readonly executionRole: iam.Role;
+    public readonly taskRole: iam.Role;
+    public readonly resource: ecs.TaskDefinition;
+
+    public constructor(name: string, args: TaskDefinitionArgs, opts?: pulumi.ComponentResourceOptions) {
+        super("aws.ec2.x.TaskDefinition", name, args, opts);
+
+        this.executionRole = args.executionRole || new iam.Role(name, {
+                assumeRolePolicy: JSON.stringify(executionAndTaskRolePolicy),
+            }, { parent: this });
+
+        this.taskRole = args.taskRole || new iam.Role(name, {
+            assumeRolePolicy: JSON.stringify(executionAndTaskRolePolicy),
+        }, { parent: this });
+
+        const argsCopy = {
+            ...args,
+            containerDefinitions: convertContainerDefinitions(),
+            executionRoleArn: this.executionRole.arn,
+            taskRoleArn: this.taskRole.arn,
+            cpu: "" + args.cpu,
+            memory: "" + args.memory,
+        };
+
+        delete argsCopy.executionRole;
+        delete argsCopy.taskRoleArn;
+
+        this.resource = new ecs.TaskDefinition(name, argsCopy, { parent: this });
+
+        this.registerOutputs({
+            executionRole: this.executionRole,
+            taskRole: this.taskRole,
+            resource: this.resource,
+        });
     }
 }
 
-export interface ServiceArgs {
+export class Service extends pulumi.ComponentResource {
+    public readonly taskDefinition: TaskDefinition;
+    public readonly resource: ecs.Service;
 
+    public constructor(type: string, name: string, args: ServiceArgs, opts?: pulumi.ComponentResourceOptions) {
+        super(type, name, args, opts);
+
+        this.taskDefinition = new TaskDefinition(name, args.taskDefinition, { parent: this });
+
+        const argsCopy = {
+            ...args,
+            cluster: args.cluster.resource.arn,
+            taskDefinition: this.taskDefinition.resource.arn,
+            deploymentMaximumPercent: args.deploymentMaximumPercent !== undefined ? args.deploymentMaximumPercent : 200,
+            deploymentMinimumHealthyPercent: args.deploymentMinimumHealthyPercent !== undefined ? args.deploymentMinimumHealthyPercent : 50,
+        };
+
+        this.resource = new ecs.Service(name, argsCopy, { parent: this });
+
+        this.registerOutputs({
+            taskDefinition: this.taskDefinition,
+            resource: this.resource,
+        })
+    }
 }

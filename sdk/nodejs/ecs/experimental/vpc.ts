@@ -14,6 +14,15 @@
 
 // These APIs are currently experimental and may change.
 
-export interface Vpc {
+import * as pulumi from "@pulumi/pulumi";
 
+export interface Vpc {
+    arn: pulumi.Output<string>;
+    publicSubnets: Subnet[];
+    privateSubnets: Subnet[];
+}
+
+export interface Subnet {
+    availabilityZone: string;
+    subnetId: string;
 }

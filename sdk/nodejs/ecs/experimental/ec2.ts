@@ -14,8 +14,24 @@
 
 // These APIs are currently experimental and may change.
 
-export * from "./cluster";
-export * from "./fargate";
-export * from "./ec2";
-export * from "./service";
-export * from "./vpc";
+import * as pulumi from "@pulumi/pulumi";
+
+import { sha1hash, Overwrite } from "../../utils";
+
+import { Cluster } from "./cluster";
+import { Service, ServiceArgs, TaskDefinitionArgs, TaskDefinition } from "./service"
+
+export type EC2TaskDefinitionArgs = Overwrite<TaskDefinitionArgs, {
+
+}>;
+
+export type EC2ServiceArgs = Overwrite<ServiceArgs, {
+    launchType: never;
+}>;
+
+export class EC2Service extends Service {
+    public constructor(name: string, args: EC2ServiceArgs, opts?: pulumi.ComponentResourceOptions) {
+        super("aws.ecs.x.EC2Service", name, args, opts);
+        throw new Error("NYI");
+    }
+}
