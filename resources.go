@@ -2091,7 +2091,8 @@ func Provider() tfbridge.ProviderInfo {
 					},
 					"ecs": {
 						DestFiles: []string{
-							"container.ts", // Container definition JSON schema
+							"container.ts", // Container definition JSON schema,
+							"x.ts",
 						},
 					},
 					"iam": {
