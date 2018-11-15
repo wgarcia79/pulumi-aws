@@ -26,3 +26,13 @@ export interface Subnet {
     availabilityZone: string;
     subnetId: string;
 }
+
+export interface VpcArgs {
+
+}
+
+export class Vpc extends pulumi.ComponentResource {
+    constructor(name: string, args: VpcArgs, opts?: pulumi.ComponentResourceOptions) {
+        super("aws.ecs.x.Vpc", name, args, opts);
+    }
+}

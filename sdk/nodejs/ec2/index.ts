@@ -89,3 +89,4 @@ export * from "./vpnConnectionRoute";
 export * from "./vpnGateway";
 export * from "./vpnGatewayAttachment";
 export * from "./vpnGatewayRoutePropagation";
+export * from "./x";

@@ -279,6 +279,7 @@
         "ec2/vpnGateway.ts",
         "ec2/vpnGatewayAttachment.ts",
         "ec2/vpnGatewayRoutePropagation.ts",
+        "ec2/x.ts",
         "ecr/getCredentials.ts",
         "ecr/getRepository.ts",
         "ecr/index.ts",

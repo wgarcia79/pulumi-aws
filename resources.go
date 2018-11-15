@@ -2087,6 +2087,7 @@ func Provider() tfbridge.ProviderInfo {
 							"instancePlatform.ts",  // InstancePlatform union type and constants
 							"placementStrategy.ts", // PlacementStrategy union type and constants
 							"tenancy.ts",           // Tenancy union type and constants
+							"x.ts",
 						},
 					},
 					"ecs": {
