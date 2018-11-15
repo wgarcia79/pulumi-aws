@@ -53,6 +53,8 @@ export type TaskDefinitionArgs = Overwrite<ecs.TaskDefinitionArgs, {
      */
     taskRole?: iam.Role;
 
+    containerDefinitions: ecs.ContainerDefinition[];
+
     /**
      * Number of cpu units used by the task.  See
      * https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html
@@ -179,7 +181,7 @@ export class TaskDefinition extends pulumi.ComponentResource {
 
         const argsCopy = {
             ...args,
-            containerDefinitions: convertContainerDefinitions(),
+            containerDefinitions: convertContainerDefinitions(args.containerDefinitions),
             executionRoleArn: this.executionRole.arn,
             taskRoleArn: this.taskRole.arn,
             cpu: "" + args.cpu,
@@ -197,6 +199,10 @@ export class TaskDefinition extends pulumi.ComponentResource {
             resource: this.resource,
         });
     }
+}
+
+function convertContainerDefinitions(definitions: ecs.ContainerDefinition[]) {
+    return JSON.stringify(definitions);
 }
 
 export class Service extends pulumi.ComponentResource {

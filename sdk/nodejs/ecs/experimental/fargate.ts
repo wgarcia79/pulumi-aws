@@ -40,6 +40,7 @@ export interface FargateTaskDefinitionArgs extends TaskDefinitionArgs {
     linuxParametvers?: never;
     placementConstraints?: never;
     privileged?: never;
+    requiresCompatibilities?: never;
 
     // Fargate task definitions require that the network mode is set to awsvpc. The awsvpc network
     // mode provides each task with its own elastic network interface
@@ -102,7 +103,7 @@ export class FargateService extends Service {
             // literal type to satisfy the type system.  So we place an explicit redundant cast for
             // this.
             launchType: <"FARGATE">"FARGATE",
-            networkConfiguration: getNetworkConfiguration(args),
+            networkConfiguration: getNetworkConfiguration(name, args, opts),
             taskDefinition: convertTaskDefinition(args.taskDefinition),
         };
 
@@ -122,6 +123,7 @@ function convertTaskDefinition(args: FargateTaskDefinitionArgs): TaskDefinitionA
         network: "awsvpc",
         cpu: args.cpu !== undefined ? args.cpu : 256,
         memory: args.memory !== undefined ? args.memory : 512,
+        requiresCompatibilities: ["FARGATE"],
     };
 
     return copy;
