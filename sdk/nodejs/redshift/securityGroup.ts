@@ -4,23 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Creates a new Amazon Redshift security group. You use security groups to control access to non-VPC clusters
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_redshift_security_group_default = new aws.redshift.SecurityGroup("default", {
- *     ingress: [{
- *         cidr: "10.0.0.0/24",
- *     }],
- *     name: "redshift-sg",
- * });
- * ```
- */
 export class SecurityGroup extends pulumi.CustomResource {
     /**
      * Get an existing SecurityGroup resource's state with the given name, ID, and optional extra
@@ -34,17 +17,8 @@ export class SecurityGroup extends pulumi.CustomResource {
         return new SecurityGroup(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The description of the Redshift security group. Defaults to "Managed by Terraform".
-     */
     public readonly description: pulumi.Output<string>;
-    /**
-     * A list of ingress rules.
-     */
     public readonly ingress: pulumi.Output<{ cidr?: string, securityGroupName: string, securityGroupOwnerId: string }[]>;
-    /**
-     * The name of the Redshift security group.
-     */
     public readonly name: pulumi.Output<string>;
 
     /**
@@ -79,17 +53,8 @@ export class SecurityGroup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SecurityGroup resources.
  */
 export interface SecurityGroupState {
-    /**
-     * The description of the Redshift security group. Defaults to "Managed by Terraform".
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * A list of ingress rules.
-     */
     readonly ingress?: pulumi.Input<pulumi.Input<{ cidr?: pulumi.Input<string>, securityGroupName?: pulumi.Input<string>, securityGroupOwnerId?: pulumi.Input<string> }>[]>;
-    /**
-     * The name of the Redshift security group.
-     */
     readonly name?: pulumi.Input<string>;
 }
 
@@ -97,16 +62,7 @@ export interface SecurityGroupState {
  * The set of arguments for constructing a SecurityGroup resource.
  */
 export interface SecurityGroupArgs {
-    /**
-     * The description of the Redshift security group. Defaults to "Managed by Terraform".
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * A list of ingress rules.
-     */
     readonly ingress: pulumi.Input<pulumi.Input<{ cidr?: pulumi.Input<string>, securityGroupName?: pulumi.Input<string>, securityGroupOwnerId?: pulumi.Input<string> }>[]>;
-    /**
-     * The name of the Redshift security group.
-     */
     readonly name?: pulumi.Input<string>;
 }

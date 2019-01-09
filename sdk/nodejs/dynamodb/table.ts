@@ -4,67 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a DynamoDB table resource
- * 
- * > **Note:** It is recommended to use `lifecycle` [`ignore_changes`](https://www.terraform.io/docs/configuration/resources.html#ignore_changes) for `read_capacity` and/or `write_capacity` if there's [autoscaling policy](https://www.terraform.io/docs/providers/aws/r/appautoscaling_policy.html) attached to the table.
- * 
- * ## Example Usage
- * 
- * The following dynamodb table description models the table and GSI shown
- * in the [AWS SDK example documentation](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html)
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_dynamodb_table_basic_dynamodb_table = new aws.dynamodb.Table("basic-dynamodb-table", {
- *     attributes: [
- *         {
- *             name: "UserId",
- *             type: "S",
- *         },
- *         {
- *             name: "GameTitle",
- *             type: "S",
- *         },
- *         {
- *             name: "TopScore",
- *             type: "N",
- *         },
- *     ],
- *     billingMode: "PROVISIONED",
- *     globalSecondaryIndexes: [{
- *         hashKey: "GameTitle",
- *         name: "GameTitleIndex",
- *         nonKeyAttributes: ["UserId"],
- *         projectionType: "INCLUDE",
- *         rangeKey: "TopScore",
- *         readCapacity: 10,
- *         writeCapacity: 10,
- *     }],
- *     hashKey: "UserId",
- *     name: "GameScores",
- *     rangeKey: "GameTitle",
- *     readCapacity: 20,
- *     tags: {
- *         Environment: "production",
- *         Name: "dynamodb-table-1",
- *     },
- *     ttl: {
- *         attributeName: "TimeToExist",
- *         enabled: false,
- *     },
- *     writeCapacity: 20,
- * });
- * ```
- * Notes: `attribute` can be lists
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * 
- * ```
- */
 export class Table extends pulumi.CustomResource {
     /**
      * Get an existing Table resource's state with the given name, ID, and optional extra
@@ -78,85 +17,23 @@ export class Table extends pulumi.CustomResource {
         return new Table(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The arn of the table
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * List of nested attribute definitions. Only required for `hash_key` and `range_key` attributes. Each attribute has two properties:
-     */
     public readonly attributes: pulumi.Output<{ name: string, type: string }[]>;
-    /**
-     * Controls how you are charged for read and write throughput and how you manage capacity. The valid values are `PROVISIONED` and `PAY_PER_REQUEST`. Defaults to `PROVISIONED`.
-     */
     public readonly billingMode: pulumi.Output<string | undefined>;
-    /**
-     * Describe a GSO for the table;
-     * subject to the normal limits on the number of GSIs, projected
-     * attributes, etc.
-     */
     public readonly globalSecondaryIndexes: pulumi.Output<{ hashKey: string, name: string, nonKeyAttributes?: string[], projectionType: string, rangeKey?: string, readCapacity?: number, writeCapacity?: number }[] | undefined>;
-    /**
-     * The name of the hash key in the index; must be
-     * defined as an attribute in the resource.
-     */
     public readonly hashKey: pulumi.Output<string>;
-    /**
-     * Describe an LSI on the table;
-     * these can only be allocated *at creation* so you cannot change this
-     * definition after you have created the resource.
-     */
     public readonly localSecondaryIndexes: pulumi.Output<{ name: string, nonKeyAttributes?: string[], projectionType: string, rangeKey: string }[] | undefined>;
-    /**
-     * The name of the index
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * Point-in-time recovery options.
-     */
     public readonly pointInTimeRecovery: pulumi.Output<{ enabled: boolean }>;
-    /**
-     * The name of the range key; must be defined
-     */
     public readonly rangeKey: pulumi.Output<string | undefined>;
-    /**
-     * The number of read units for this index. Must be set if billing_mode is set to PROVISIONED.
-     */
     public readonly readCapacity: pulumi.Output<number | undefined>;
-    /**
-     * Encrypt at rest options.
-     */
     public readonly serverSideEncryption: pulumi.Output<{ enabled: boolean }>;
-    /**
-     * The ARN of the Table Stream. Only available when `stream_enabled = true`
-     */
     public /*out*/ readonly streamArn: pulumi.Output<string>;
-    /**
-     * Indicates whether Streams are to be enabled (true) or disabled (false).
-     */
     public readonly streamEnabled: pulumi.Output<boolean | undefined>;
-    /**
-     * A timestamp, in ISO 8601 format, for this stream. Note that this timestamp is not
-     * a unique identifier for the stream on its own. However, the combination of AWS customer ID,
-     * table name and this field is guaranteed to be unique.
-     * It can be used for creating CloudWatch Alarms. Only available when `stream_enabled = true`
-     */
     public /*out*/ readonly streamLabel: pulumi.Output<string>;
-    /**
-     * When an item in the table is modified, StreamViewType determines what information is written to the table's stream. Valid values are `KEYS_ONLY`, `NEW_IMAGE`, `OLD_IMAGE`, `NEW_AND_OLD_IMAGES`.
-     */
     public readonly streamViewType: pulumi.Output<string>;
-    /**
-     * A map of tags to populate on the created table.
-     */
     public readonly tags: pulumi.Output<{[key: string]: any} | undefined>;
-    /**
-     * Defines ttl, has two properties, and can only be specified once:
-     */
     public readonly ttl: pulumi.Output<{ attributeName: string, enabled: boolean } | undefined>;
-    /**
-     * The number of write units for this index. Must be set if billing_mode is set to PROVISIONED.
-     */
     public readonly writeCapacity: pulumi.Output<number | undefined>;
 
     /**
@@ -224,85 +101,23 @@ export class Table extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Table resources.
  */
 export interface TableState {
-    /**
-     * The arn of the table
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * List of nested attribute definitions. Only required for `hash_key` and `range_key` attributes. Each attribute has two properties:
-     */
     readonly attributes?: pulumi.Input<pulumi.Input<{ name: pulumi.Input<string>, type: pulumi.Input<string> }>[]>;
-    /**
-     * Controls how you are charged for read and write throughput and how you manage capacity. The valid values are `PROVISIONED` and `PAY_PER_REQUEST`. Defaults to `PROVISIONED`.
-     */
     readonly billingMode?: pulumi.Input<string>;
-    /**
-     * Describe a GSO for the table;
-     * subject to the normal limits on the number of GSIs, projected
-     * attributes, etc.
-     */
     readonly globalSecondaryIndexes?: pulumi.Input<pulumi.Input<{ hashKey: pulumi.Input<string>, name: pulumi.Input<string>, nonKeyAttributes?: pulumi.Input<pulumi.Input<string>[]>, projectionType: pulumi.Input<string>, rangeKey?: pulumi.Input<string>, readCapacity?: pulumi.Input<number>, writeCapacity?: pulumi.Input<number> }>[]>;
-    /**
-     * The name of the hash key in the index; must be
-     * defined as an attribute in the resource.
-     */
     readonly hashKey?: pulumi.Input<string>;
-    /**
-     * Describe an LSI on the table;
-     * these can only be allocated *at creation* so you cannot change this
-     * definition after you have created the resource.
-     */
     readonly localSecondaryIndexes?: pulumi.Input<pulumi.Input<{ name: pulumi.Input<string>, nonKeyAttributes?: pulumi.Input<pulumi.Input<string>[]>, projectionType: pulumi.Input<string>, rangeKey: pulumi.Input<string> }>[]>;
-    /**
-     * The name of the index
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Point-in-time recovery options.
-     */
     readonly pointInTimeRecovery?: pulumi.Input<{ enabled: pulumi.Input<boolean> }>;
-    /**
-     * The name of the range key; must be defined
-     */
     readonly rangeKey?: pulumi.Input<string>;
-    /**
-     * The number of read units for this index. Must be set if billing_mode is set to PROVISIONED.
-     */
     readonly readCapacity?: pulumi.Input<number>;
-    /**
-     * Encrypt at rest options.
-     */
     readonly serverSideEncryption?: pulumi.Input<{ enabled: pulumi.Input<boolean> }>;
-    /**
-     * The ARN of the Table Stream. Only available when `stream_enabled = true`
-     */
     readonly streamArn?: pulumi.Input<string>;
-    /**
-     * Indicates whether Streams are to be enabled (true) or disabled (false).
-     */
     readonly streamEnabled?: pulumi.Input<boolean>;
-    /**
-     * A timestamp, in ISO 8601 format, for this stream. Note that this timestamp is not
-     * a unique identifier for the stream on its own. However, the combination of AWS customer ID,
-     * table name and this field is guaranteed to be unique.
-     * It can be used for creating CloudWatch Alarms. Only available when `stream_enabled = true`
-     */
     readonly streamLabel?: pulumi.Input<string>;
-    /**
-     * When an item in the table is modified, StreamViewType determines what information is written to the table's stream. Valid values are `KEYS_ONLY`, `NEW_IMAGE`, `OLD_IMAGE`, `NEW_AND_OLD_IMAGES`.
-     */
     readonly streamViewType?: pulumi.Input<string>;
-    /**
-     * A map of tags to populate on the created table.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * Defines ttl, has two properties, and can only be specified once:
-     */
     readonly ttl?: pulumi.Input<{ attributeName: pulumi.Input<string>, enabled: pulumi.Input<boolean> }>;
-    /**
-     * The number of write units for this index. Must be set if billing_mode is set to PROVISIONED.
-     */
     readonly writeCapacity?: pulumi.Input<number>;
 }
 
@@ -310,69 +125,19 @@ export interface TableState {
  * The set of arguments for constructing a Table resource.
  */
 export interface TableArgs {
-    /**
-     * List of nested attribute definitions. Only required for `hash_key` and `range_key` attributes. Each attribute has two properties:
-     */
     readonly attributes: pulumi.Input<pulumi.Input<{ name: pulumi.Input<string>, type: pulumi.Input<string> }>[]>;
-    /**
-     * Controls how you are charged for read and write throughput and how you manage capacity. The valid values are `PROVISIONED` and `PAY_PER_REQUEST`. Defaults to `PROVISIONED`.
-     */
     readonly billingMode?: pulumi.Input<string>;
-    /**
-     * Describe a GSO for the table;
-     * subject to the normal limits on the number of GSIs, projected
-     * attributes, etc.
-     */
     readonly globalSecondaryIndexes?: pulumi.Input<pulumi.Input<{ hashKey: pulumi.Input<string>, name: pulumi.Input<string>, nonKeyAttributes?: pulumi.Input<pulumi.Input<string>[]>, projectionType: pulumi.Input<string>, rangeKey?: pulumi.Input<string>, readCapacity?: pulumi.Input<number>, writeCapacity?: pulumi.Input<number> }>[]>;
-    /**
-     * The name of the hash key in the index; must be
-     * defined as an attribute in the resource.
-     */
     readonly hashKey: pulumi.Input<string>;
-    /**
-     * Describe an LSI on the table;
-     * these can only be allocated *at creation* so you cannot change this
-     * definition after you have created the resource.
-     */
     readonly localSecondaryIndexes?: pulumi.Input<pulumi.Input<{ name: pulumi.Input<string>, nonKeyAttributes?: pulumi.Input<pulumi.Input<string>[]>, projectionType: pulumi.Input<string>, rangeKey: pulumi.Input<string> }>[]>;
-    /**
-     * The name of the index
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Point-in-time recovery options.
-     */
     readonly pointInTimeRecovery?: pulumi.Input<{ enabled: pulumi.Input<boolean> }>;
-    /**
-     * The name of the range key; must be defined
-     */
     readonly rangeKey?: pulumi.Input<string>;
-    /**
-     * The number of read units for this index. Must be set if billing_mode is set to PROVISIONED.
-     */
     readonly readCapacity?: pulumi.Input<number>;
-    /**
-     * Encrypt at rest options.
-     */
     readonly serverSideEncryption?: pulumi.Input<{ enabled: pulumi.Input<boolean> }>;
-    /**
-     * Indicates whether Streams are to be enabled (true) or disabled (false).
-     */
     readonly streamEnabled?: pulumi.Input<boolean>;
-    /**
-     * When an item in the table is modified, StreamViewType determines what information is written to the table's stream. Valid values are `KEYS_ONLY`, `NEW_IMAGE`, `OLD_IMAGE`, `NEW_AND_OLD_IMAGES`.
-     */
     readonly streamViewType?: pulumi.Input<string>;
-    /**
-     * A map of tags to populate on the created table.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * Defines ttl, has two properties, and can only be specified once:
-     */
     readonly ttl?: pulumi.Input<{ attributeName: pulumi.Input<string>, enabled: pulumi.Input<boolean> }>;
-    /**
-     * The number of write units for this index. Must be set if billing_mode is set to PROVISIONED.
-     */
     readonly writeCapacity?: pulumi.Input<number>;
 }

@@ -39,7 +39,8 @@ class OptionGroup(pulumi.CustomResource):
 
         __props__['options'] = options
 
-        option_group_description = 'Managed by Pulumi'
+        if not option_group_description:
+            option_group_description = 'Managed by Pulumi'
         __props__['option_group_description'] = option_group_description
 
         __props__['tags'] = tags

@@ -4,15 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a resource to allow a principal to discover a VPC endpoint service.
- * 
- * > **NOTE on VPC Endpoint Services and VPC Endpoint Service Allowed Principals:** Terraform provides
- * both a standalone VPC Endpoint Service Allowed Principal resource
- * and a VPC Endpoint Service resource with an `allowed_principals` attribute. Do not use the same principal ARN in both
- * a VPC Endpoint Service resource and a VPC Endpoint Service Allowed Principal resource. Doing so will cause a conflict
- * and will overwrite the association.
- */
 export class VpcEndpointServiceAllowedPrinciple extends pulumi.CustomResource {
     /**
      * Get an existing VpcEndpointServiceAllowedPrinciple resource's state with the given name, ID, and optional extra
@@ -26,13 +17,7 @@ export class VpcEndpointServiceAllowedPrinciple extends pulumi.CustomResource {
         return new VpcEndpointServiceAllowedPrinciple(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ARN of the principal to allow permissions.
-     */
     public readonly principalArn: pulumi.Output<string>;
-    /**
-     * The ID of the VPC endpoint service to allow permission.
-     */
     public readonly vpcEndpointServiceId: pulumi.Output<string>;
 
     /**
@@ -68,13 +53,7 @@ export class VpcEndpointServiceAllowedPrinciple extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpcEndpointServiceAllowedPrinciple resources.
  */
 export interface VpcEndpointServiceAllowedPrincipleState {
-    /**
-     * The ARN of the principal to allow permissions.
-     */
     readonly principalArn?: pulumi.Input<string>;
-    /**
-     * The ID of the VPC endpoint service to allow permission.
-     */
     readonly vpcEndpointServiceId?: pulumi.Input<string>;
 }
 
@@ -82,12 +61,6 @@ export interface VpcEndpointServiceAllowedPrincipleState {
  * The set of arguments for constructing a VpcEndpointServiceAllowedPrinciple resource.
  */
 export interface VpcEndpointServiceAllowedPrincipleArgs {
-    /**
-     * The ARN of the principal to allow permissions.
-     */
     readonly principalArn: pulumi.Input<string>;
-    /**
-     * The ID of the VPC endpoint service to allow permission.
-     */
     readonly vpcEndpointServiceId: pulumi.Input<string>;
 }

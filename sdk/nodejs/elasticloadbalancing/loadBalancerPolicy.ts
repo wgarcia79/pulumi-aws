@@ -4,11 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a load balancer policy, which can be attached to an ELB listener or backend server.
- * This example shows how to enable backend authentication for an ELB as well as customize the TLS settings.
- * 
- */
 export class LoadBalancerPolicy extends pulumi.CustomResource {
     /**
      * Get an existing LoadBalancerPolicy resource's state with the given name, ID, and optional extra
@@ -22,21 +17,9 @@ export class LoadBalancerPolicy extends pulumi.CustomResource {
         return new LoadBalancerPolicy(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The load balancer on which the policy is defined.
-     */
     public readonly loadBalancerName: pulumi.Output<string>;
-    /**
-     * Policy attribute to apply to the policy.
-     */
     public readonly policyAttributes: pulumi.Output<{ name?: string, value?: string }[] | undefined>;
-    /**
-     * The name of the load balancer policy.
-     */
     public readonly policyName: pulumi.Output<string>;
-    /**
-     * The policy type.
-     */
     public readonly policyTypeName: pulumi.Output<string>;
 
     /**
@@ -79,21 +62,9 @@ export class LoadBalancerPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LoadBalancerPolicy resources.
  */
 export interface LoadBalancerPolicyState {
-    /**
-     * The load balancer on which the policy is defined.
-     */
     readonly loadBalancerName?: pulumi.Input<string>;
-    /**
-     * Policy attribute to apply to the policy.
-     */
     readonly policyAttributes?: pulumi.Input<pulumi.Input<{ name?: pulumi.Input<string>, value?: pulumi.Input<string> }>[]>;
-    /**
-     * The name of the load balancer policy.
-     */
     readonly policyName?: pulumi.Input<string>;
-    /**
-     * The policy type.
-     */
     readonly policyTypeName?: pulumi.Input<string>;
 }
 
@@ -101,20 +72,8 @@ export interface LoadBalancerPolicyState {
  * The set of arguments for constructing a LoadBalancerPolicy resource.
  */
 export interface LoadBalancerPolicyArgs {
-    /**
-     * The load balancer on which the policy is defined.
-     */
     readonly loadBalancerName: pulumi.Input<string>;
-    /**
-     * Policy attribute to apply to the policy.
-     */
     readonly policyAttributes?: pulumi.Input<pulumi.Input<{ name?: pulumi.Input<string>, value?: pulumi.Input<string> }>[]>;
-    /**
-     * The name of the load balancer policy.
-     */
     readonly policyName: pulumi.Input<string>;
-    /**
-     * The policy type.
-     */
     readonly policyTypeName: pulumi.Input<string>;
 }

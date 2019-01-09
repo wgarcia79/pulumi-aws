@@ -4,62 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Manages status (recording / stopped) of an AWS Config Configuration Recorder.
- * 
- * > **Note:** Starting Configuration Recorder requires a [Delivery Channel](https://www.terraform.io/docs/providers/aws/r/config_delivery_channel.html) to be present. Use of `depends_on` (as shown below) is recommended to avoid race conditions.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_iam_role_r = new aws.iam.Role("r", {
- *     assumeRolePolicy: "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Action\": \"sts:AssumeRole\",\n      \"Principal\": {\n        \"Service\": \"config.amazonaws.com\"\n      },\n      \"Effect\": \"Allow\",\n      \"Sid\": \"\"\n    }\n  ]\n}\n",
- *     name: "example-awsconfig",
- * });
- * const aws_s3_bucket_b = new aws.s3.Bucket("b", {
- *     bucket: "awsconfig-example",
- * });
- * const aws_config_configuration_recorder_foo = new aws.cfg.Recorder("foo", {
- *     name: "example",
- *     roleArn: aws_iam_role_r.arn,
- * });
- * const aws_config_delivery_channel_foo = new aws.cfg.DeliveryChannel("foo", {
- *     name: "example",
- *     s3BucketName: aws_s3_bucket_b.bucket,
- * });
- * const aws_config_configuration_recorder_status_foo = new aws.cfg.RecorderStatus("foo", {
- *     isEnabled: true,
- *     name: aws_config_configuration_recorder_foo.name,
- * }, {dependsOn: [aws_config_delivery_channel_foo]});
- * const aws_iam_role_policy_p = new aws.iam.RolePolicy("p", {
- *     name: "awsconfig-example",
- *     policy: pulumi.all([aws_s3_bucket_b.arn, aws_s3_bucket_b.arn]).apply(([__arg0, __arg1]) => `{
- *   "Version": "2012-10-17",
- *   "Statement": [
- *     {
- *       "Action": [
- *         "s3:*"
- *       ],
- *       "Effect": "Allow",
- *       "Resource": [
- *         "${__arg0}",
- *         "${__arg1}/*"
- *       ]
- *     }
- *   ]
- * }
- * `),
- *     role: aws_iam_role_r.id,
- * });
- * const aws_iam_role_policy_attachment_a = new aws.iam.RolePolicyAttachment("a", {
- *     policyArn: "arn:aws:iam::aws:policy/service-role/AWSConfigRole",
- *     role: aws_iam_role_r.name,
- * });
- * ```
- */
 export class RecorderStatus extends pulumi.CustomResource {
     /**
      * Get an existing RecorderStatus resource's state with the given name, ID, and optional extra
@@ -73,13 +17,7 @@ export class RecorderStatus extends pulumi.CustomResource {
         return new RecorderStatus(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * Whether the configuration recorder should be enabled or disabled.
-     */
     public readonly isEnabled: pulumi.Output<boolean>;
-    /**
-     * The name of the recorder
-     */
     public readonly name: pulumi.Output<string>;
 
     /**
@@ -112,13 +50,7 @@ export class RecorderStatus extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RecorderStatus resources.
  */
 export interface RecorderStatusState {
-    /**
-     * Whether the configuration recorder should be enabled or disabled.
-     */
     readonly isEnabled?: pulumi.Input<boolean>;
-    /**
-     * The name of the recorder
-     */
     readonly name?: pulumi.Input<string>;
 }
 
@@ -126,12 +58,6 @@ export interface RecorderStatusState {
  * The set of arguments for constructing a RecorderStatus resource.
  */
 export interface RecorderStatusArgs {
-    /**
-     * Whether the configuration recorder should be enabled or disabled.
-     */
     readonly isEnabled: pulumi.Input<boolean>;
-    /**
-     * The name of the recorder
-     */
     readonly name?: pulumi.Input<string>;
 }

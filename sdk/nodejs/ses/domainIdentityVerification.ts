@@ -4,15 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Represents a successful verification of an SES domain identity.
- * 
- * Most commonly, this resource is used together with `aws_route53_record` and
- * `aws_ses_domain_identity` to request an SES domain identity,
- * deploy the required DNS verification records, and wait for verification to complete.
- * 
- * > **WARNING:** This resource implements a part of the verification workflow. It does not represent a real-world entity in AWS, therefore changing or deleting this resource on its own has no immediate effect.
- */
 export class DomainIdentityVerification extends pulumi.CustomResource {
     /**
      * Get an existing DomainIdentityVerification resource's state with the given name, ID, and optional extra
@@ -26,13 +17,7 @@ export class DomainIdentityVerification extends pulumi.CustomResource {
         return new DomainIdentityVerification(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ARN of the domain identity.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * The domain name of the SES domain identity to verify.
-     */
     public readonly domain: pulumi.Output<string>;
 
     /**
@@ -65,13 +50,7 @@ export class DomainIdentityVerification extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DomainIdentityVerification resources.
  */
 export interface DomainIdentityVerificationState {
-    /**
-     * The ARN of the domain identity.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * The domain name of the SES domain identity to verify.
-     */
     readonly domain?: pulumi.Input<string>;
 }
 
@@ -79,8 +58,5 @@ export interface DomainIdentityVerificationState {
  * The set of arguments for constructing a DomainIdentityVerification resource.
  */
 export interface DomainIdentityVerificationArgs {
-    /**
-     * The domain name of the SES domain identity to verify.
-     */
     readonly domain: pulumi.Input<string>;
 }

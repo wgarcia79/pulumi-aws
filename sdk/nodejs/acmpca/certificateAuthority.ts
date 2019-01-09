@@ -4,79 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a resource to manage AWS Certificate Manager Private Certificate Authorities (ACM PCA Certificate Authorities).
- * 
- * > **NOTE:** Creating this resource will leave the certificate authority in a `PENDING_CERTIFICATE` status, which means it cannot yet issue certificates. To complete this setup, you must fully sign the certificate authority CSR available in the `certificate_signing_request` attribute and import the signed certificate outside of Terraform. Terraform can support another resource to manage that workflow automatically in the future.
- * 
- * ## Example Usage
- * 
- * ### Basic
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_acmpca_certificate_authority_example = new aws.acmpca.CertificateAuthority("example", {
- *     certificateAuthorityConfiguration: {
- *         keyAlgorithm: "RSA_4096",
- *         signingAlgorithm: "SHA512WITHRSA",
- *         subject: {
- *             commonName: "example.com",
- *         },
- *     },
- * });
- * ```
- * ### Enable Certificate Revocation List
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_s3_bucket_example = new aws.s3.Bucket("example", {
- *     bucket: "example",
- * });
- * const aws_iam_policy_document_acmpca_bucket_access = pulumi.output(aws.iam.getPolicyDocument({
- *     statements: [{
- *         actions: [
- *             "s3:GetBucketAcl",
- *             "s3:GetBucketLocation",
- *             "s3:PutObject",
- *             "s3:PutObjectAcl",
- *         ],
- *         principals: [{
- *             identifiers: ["acm-pca.amazonaws.com"],
- *             type: "Service",
- *         }],
- *         resources: [
- *             aws_s3_bucket_example.arn,
- *             aws_s3_bucket_example.arn.apply(__arg0 => `${__arg0}/*`),
- *         ],
- *     }],
- * }));
- * const aws_s3_bucket_policy_example = new aws.s3.BucketPolicy("example", {
- *     bucket: aws_s3_bucket_example.id,
- *     policy: aws_iam_policy_document_acmpca_bucket_access.apply(__arg0 => __arg0.json),
- * });
- * const aws_acmpca_certificate_authority_example = new aws.acmpca.CertificateAuthority("example", {
- *     certificateAuthorityConfiguration: {
- *         keyAlgorithm: "RSA_4096",
- *         signingAlgorithm: "SHA512WITHRSA",
- *         subject: {
- *             commonName: "example.com",
- *         },
- *     },
- *     revocationConfiguration: {
- *         crlConfiguration: {
- *             customCname: "crl.example.com",
- *             enabled: true,
- *             expirationInDays: 7,
- *             s3BucketName: aws_s3_bucket_example.id,
- *         },
- *     },
- * }, {dependsOn: [aws_s3_bucket_policy_example]});
- * ```
- */
 export class CertificateAuthority extends pulumi.CustomResource {
     /**
      * Get an existing CertificateAuthority resource's state with the given name, ID, and optional extra
@@ -90,57 +17,18 @@ export class CertificateAuthority extends pulumi.CustomResource {
         return new CertificateAuthority(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * Amazon Resource Name (ARN) of the certificate authority.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * Base64-encoded certificate authority (CA) certificate. Only available after the certificate authority certificate has been imported.
-     */
     public /*out*/ readonly certificate: pulumi.Output<string>;
-    /**
-     * Nested argument containing algorithms and certificate subject information. Defined below.
-     */
     public readonly certificateAuthorityConfiguration: pulumi.Output<{ keyAlgorithm: string, signingAlgorithm: string, subject: { commonName?: string, country?: string, distinguishedNameQualifier?: string, generationQualifier?: string, givenName?: string, initials?: string, locality?: string, organization?: string, organizationalUnit?: string, pseudonym?: string, state?: string, surname?: string, title?: string } }>;
-    /**
-     * Base64-encoded certificate chain that includes any intermediate certificates and chains up to root on-premises certificate that you used to sign your private CA certificate. The chain does not include your private CA certificate. Only available after the certificate authority certificate has been imported.
-     */
     public /*out*/ readonly certificateChain: pulumi.Output<string>;
-    /**
-     * The base64 PEM-encoded certificate signing request (CSR) for your private CA certificate.
-     */
     public /*out*/ readonly certificateSigningRequest: pulumi.Output<string>;
-    /**
-     * Boolean value that specifies whether certificate revocation lists (CRLs) are enabled. Defaults to `false`.
-     */
     public readonly enabled: pulumi.Output<boolean | undefined>;
-    /**
-     * Date and time after which the certificate authority is not valid. Only available after the certificate authority certificate has been imported.
-     */
     public /*out*/ readonly notAfter: pulumi.Output<string>;
-    /**
-     * Date and time before which the certificate authority is not valid. Only available after the certificate authority certificate has been imported.
-     */
     public /*out*/ readonly notBefore: pulumi.Output<string>;
-    /**
-     * Nested argument containing revocation configuration. Defined below.
-     */
     public readonly revocationConfiguration: pulumi.Output<{ crlConfiguration?: { customCname?: string, enabled?: boolean, expirationInDays: number, s3BucketName?: string } } | undefined>;
-    /**
-     * Serial number of the certificate authority. Only available after the certificate authority certificate has been imported.
-     */
     public /*out*/ readonly serial: pulumi.Output<string>;
-    /**
-     * Status of the certificate authority.
-     */
     public /*out*/ readonly status: pulumi.Output<string>;
-    /**
-     * Specifies a key-value map of user-defined tags that are attached to the certificate authority.
-     */
     public readonly tags: pulumi.Output<{[key: string]: any} | undefined>;
-    /**
-     * The type of the certificate authority. Currently, this must be `SUBORDINATE`.
-     */
     public readonly type: pulumi.Output<string | undefined>;
 
     /**
@@ -195,57 +83,18 @@ export class CertificateAuthority extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CertificateAuthority resources.
  */
 export interface CertificateAuthorityState {
-    /**
-     * Amazon Resource Name (ARN) of the certificate authority.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * Base64-encoded certificate authority (CA) certificate. Only available after the certificate authority certificate has been imported.
-     */
     readonly certificate?: pulumi.Input<string>;
-    /**
-     * Nested argument containing algorithms and certificate subject information. Defined below.
-     */
     readonly certificateAuthorityConfiguration?: pulumi.Input<{ keyAlgorithm: pulumi.Input<string>, signingAlgorithm: pulumi.Input<string>, subject: pulumi.Input<{ commonName?: pulumi.Input<string>, country?: pulumi.Input<string>, distinguishedNameQualifier?: pulumi.Input<string>, generationQualifier?: pulumi.Input<string>, givenName?: pulumi.Input<string>, initials?: pulumi.Input<string>, locality?: pulumi.Input<string>, organization?: pulumi.Input<string>, organizationalUnit?: pulumi.Input<string>, pseudonym?: pulumi.Input<string>, state?: pulumi.Input<string>, surname?: pulumi.Input<string>, title?: pulumi.Input<string> }> }>;
-    /**
-     * Base64-encoded certificate chain that includes any intermediate certificates and chains up to root on-premises certificate that you used to sign your private CA certificate. The chain does not include your private CA certificate. Only available after the certificate authority certificate has been imported.
-     */
     readonly certificateChain?: pulumi.Input<string>;
-    /**
-     * The base64 PEM-encoded certificate signing request (CSR) for your private CA certificate.
-     */
     readonly certificateSigningRequest?: pulumi.Input<string>;
-    /**
-     * Boolean value that specifies whether certificate revocation lists (CRLs) are enabled. Defaults to `false`.
-     */
     readonly enabled?: pulumi.Input<boolean>;
-    /**
-     * Date and time after which the certificate authority is not valid. Only available after the certificate authority certificate has been imported.
-     */
     readonly notAfter?: pulumi.Input<string>;
-    /**
-     * Date and time before which the certificate authority is not valid. Only available after the certificate authority certificate has been imported.
-     */
     readonly notBefore?: pulumi.Input<string>;
-    /**
-     * Nested argument containing revocation configuration. Defined below.
-     */
     readonly revocationConfiguration?: pulumi.Input<{ crlConfiguration?: pulumi.Input<{ customCname?: pulumi.Input<string>, enabled?: pulumi.Input<boolean>, expirationInDays: pulumi.Input<number>, s3BucketName?: pulumi.Input<string> }> }>;
-    /**
-     * Serial number of the certificate authority. Only available after the certificate authority certificate has been imported.
-     */
     readonly serial?: pulumi.Input<string>;
-    /**
-     * Status of the certificate authority.
-     */
     readonly status?: pulumi.Input<string>;
-    /**
-     * Specifies a key-value map of user-defined tags that are attached to the certificate authority.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The type of the certificate authority. Currently, this must be `SUBORDINATE`.
-     */
     readonly type?: pulumi.Input<string>;
 }
 
@@ -253,24 +102,9 @@ export interface CertificateAuthorityState {
  * The set of arguments for constructing a CertificateAuthority resource.
  */
 export interface CertificateAuthorityArgs {
-    /**
-     * Nested argument containing algorithms and certificate subject information. Defined below.
-     */
     readonly certificateAuthorityConfiguration: pulumi.Input<{ keyAlgorithm: pulumi.Input<string>, signingAlgorithm: pulumi.Input<string>, subject: pulumi.Input<{ commonName?: pulumi.Input<string>, country?: pulumi.Input<string>, distinguishedNameQualifier?: pulumi.Input<string>, generationQualifier?: pulumi.Input<string>, givenName?: pulumi.Input<string>, initials?: pulumi.Input<string>, locality?: pulumi.Input<string>, organization?: pulumi.Input<string>, organizationalUnit?: pulumi.Input<string>, pseudonym?: pulumi.Input<string>, state?: pulumi.Input<string>, surname?: pulumi.Input<string>, title?: pulumi.Input<string> }> }>;
-    /**
-     * Boolean value that specifies whether certificate revocation lists (CRLs) are enabled. Defaults to `false`.
-     */
     readonly enabled?: pulumi.Input<boolean>;
-    /**
-     * Nested argument containing revocation configuration. Defined below.
-     */
     readonly revocationConfiguration?: pulumi.Input<{ crlConfiguration?: pulumi.Input<{ customCname?: pulumi.Input<string>, enabled?: pulumi.Input<boolean>, expirationInDays: pulumi.Input<number>, s3BucketName?: pulumi.Input<string> }> }>;
-    /**
-     * Specifies a key-value map of user-defined tags that are attached to the certificate authority.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The type of the certificate authority. Currently, this must be `SUBORDINATE`.
-     */
     readonly type?: pulumi.Input<string>;
 }

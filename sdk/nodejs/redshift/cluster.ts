@@ -4,28 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a Redshift Cluster Resource.
- * 
- * > **Note:** All arguments including the username and password will be stored in the raw state as plain-text.
- * [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_redshift_cluster_default = new aws.redshift.Cluster("default", {
- *     clusterIdentifier: "tf-redshift-cluster",
- *     clusterType: "single-node",
- *     databaseName: "mydb",
- *     masterPassword: "Mustbe8characters",
- *     masterUsername: "foo",
- *     nodeType: "dc1.large",
- * });
- * ```
- */
 export class Cluster extends pulumi.CustomResource {
     /**
      * Get an existing Cluster resource's state with the given name, ID, and optional extra
@@ -39,162 +17,43 @@ export class Cluster extends pulumi.CustomResource {
         return new Cluster(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * If true , major version upgrades can be applied during the maintenance window to the Amazon Redshift engine that is running on the cluster. Default is true
-     */
     public readonly allowVersionUpgrade: pulumi.Output<boolean | undefined>;
-    /**
-     * The number of days that automated snapshots are retained. If the value is 0, automated snapshots are disabled. Even if automated snapshots are disabled, you can still create manual snapshots when you want with create-cluster-snapshot. Default is 1.
-     */
     public readonly automatedSnapshotRetentionPeriod: pulumi.Output<number | undefined>;
-    /**
-     * The EC2 Availability Zone (AZ) in which you want Amazon Redshift to provision the cluster. For example, if you have several EC2 instances running in a specific Availability Zone, then you might want the cluster to be provisioned in the same zone in order to decrease network latency.
-     */
     public readonly availabilityZone: pulumi.Output<string>;
-    /**
-     * The name of an existing S3 bucket where the log files are to be stored. Must be in the same region as the cluster and the cluster must have read bucket and put object permissions.
-     * For more information on the permissions required for the bucket, please read the AWS [documentation](http://docs.aws.amazon.com/redshift/latest/mgmt/db-auditing.html#db-auditing-enable-logging)
-     */
     public readonly bucketName: pulumi.Output<string>;
-    /**
-     * The Cluster Identifier. Must be a lower case
-     * string.
-     */
     public readonly clusterIdentifier: pulumi.Output<string>;
-    /**
-     * The name of the parameter group to be associated with this cluster.
-     */
     public readonly clusterParameterGroupName: pulumi.Output<string>;
-    /**
-     * The public key for the cluster
-     */
     public readonly clusterPublicKey: pulumi.Output<string>;
-    /**
-     * The specific revision number of the database in the cluster
-     */
     public readonly clusterRevisionNumber: pulumi.Output<string>;
-    /**
-     * A list of security groups to be associated with this cluster.
-     */
     public readonly clusterSecurityGroups: pulumi.Output<string[]>;
-    /**
-     * The name of a cluster subnet group to be associated with this cluster. If this parameter is not provided the resulting cluster will be deployed outside virtual private cloud (VPC).
-     */
     public readonly clusterSubnetGroupName: pulumi.Output<string>;
-    /**
-     * The cluster type to use. Either `single-node` or `multi-node`.
-     */
     public readonly clusterType: pulumi.Output<string>;
-    /**
-     * The version of the Amazon Redshift engine software that you want to deploy on the cluster.
-     * The version selected runs on all the nodes in the cluster.
-     */
     public readonly clusterVersion: pulumi.Output<string | undefined>;
-    /**
-     * The name of the first database to be created when the cluster is created.
-     * If you do not provide a name, Amazon Redshift will create a default database called `dev`.
-     */
     public readonly databaseName: pulumi.Output<string>;
-    /**
-     * The DNS name of the cluster
-     */
     public /*out*/ readonly dnsName: pulumi.Output<string>;
-    /**
-     * The Elastic IP (EIP) address for the cluster.
-     */
     public readonly elasticIp: pulumi.Output<string | undefined>;
     public readonly enableLogging: pulumi.Output<boolean>;
-    /**
-     * If true , the data in the cluster is encrypted at rest.
-     */
     public readonly encrypted: pulumi.Output<boolean | undefined>;
-    /**
-     * The connection endpoint
-     */
     public readonly endpoint: pulumi.Output<string>;
-    /**
-     * If true , enhanced VPC routing is enabled.
-     */
     public readonly enhancedVpcRouting: pulumi.Output<boolean>;
-    /**
-     * The identifier of the final snapshot that is to be created immediately before deleting the cluster. If this parameter is provided, `skip_final_snapshot` must be false.
-     */
     public readonly finalSnapshotIdentifier: pulumi.Output<string | undefined>;
-    /**
-     * A list of IAM Role ARNs to associate with the cluster. A Maximum of 10 can be associated to the cluster at any time.
-     */
     public readonly iamRoles: pulumi.Output<string[]>;
-    /**
-     * The ARN for the KMS encryption key. When specifying `kms_key_id`, `encrypted` needs to be set to true.
-     */
     public readonly kmsKeyId: pulumi.Output<string>;
-    /**
-     * Logging, documented below.
-     */
     public readonly logging: pulumi.Output<{ bucketName: string, enable: boolean, s3KeyPrefix: string } | undefined>;
-    /**
-     * Password for the master DB user.
-     * Note that this may show up in logs, and it will be stored in the state file. Password must contain at least 8 chars and
-     * contain at least one uppercase letter, one lowercase letter, and one number.
-     */
     public readonly masterPassword: pulumi.Output<string | undefined>;
-    /**
-     * Username for the master DB user.
-     */
     public readonly masterUsername: pulumi.Output<string | undefined>;
-    /**
-     * The node type to be provisioned for the cluster.
-     */
     public readonly nodeType: pulumi.Output<string>;
-    /**
-     * The number of compute nodes in the cluster. This parameter is required when the ClusterType parameter is specified as multi-node. Default is 1.
-     */
     public readonly numberOfNodes: pulumi.Output<number | undefined>;
-    /**
-     * The AWS customer account used to create or copy the snapshot. Required if you are restoring a snapshot you do not own, optional if you own the snapshot.
-     */
     public readonly ownerAccount: pulumi.Output<string | undefined>;
-    /**
-     * The port number on which the cluster accepts incoming connections.
-     * The cluster is accessible only via the JDBC and ODBC connection strings. Part of the connection string requires the port on which the cluster will listen for incoming connections. Default port is 5439.
-     */
     public readonly port: pulumi.Output<number | undefined>;
-    /**
-     * The weekly time range (in UTC) during which automated cluster maintenance can occur.
-     * Format: ddd:hh24:mi-ddd:hh24:mi
-     */
     public readonly preferredMaintenanceWindow: pulumi.Output<string>;
-    /**
-     * If true, the cluster can be accessed from a public network. Default is `true`.
-     */
     public readonly publiclyAccessible: pulumi.Output<boolean | undefined>;
-    /**
-     * The prefix applied to the log file names.
-     */
     public readonly s3KeyPrefix: pulumi.Output<string>;
-    /**
-     * Determines whether a final snapshot of the cluster is created before Amazon Redshift deletes the cluster. If true , a final cluster snapshot is not created. If false , a final cluster snapshot is created before the cluster is deleted. Default is false.
-     */
     public readonly skipFinalSnapshot: pulumi.Output<boolean | undefined>;
-    /**
-     * The name of the cluster the source snapshot was created from.
-     */
     public readonly snapshotClusterIdentifier: pulumi.Output<string | undefined>;
-    /**
-     * Configuration of automatic copy of snapshots from one region to another. Documented below.
-     */
     public readonly snapshotCopy: pulumi.Output<{ destinationRegion: string, grantName?: string, retentionPeriod?: number } | undefined>;
-    /**
-     * The name of the snapshot from which to create the new cluster.
-     */
     public readonly snapshotIdentifier: pulumi.Output<string | undefined>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     public readonly tags: pulumi.Output<{[key: string]: any} | undefined>;
-    /**
-     * A list of Virtual Private Cloud (VPC) security groups to be associated with the cluster.
-     */
     public readonly vpcSecurityGroupIds: pulumi.Output<string[]>;
 
     /**
@@ -302,162 +161,43 @@ export class Cluster extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Cluster resources.
  */
 export interface ClusterState {
-    /**
-     * If true , major version upgrades can be applied during the maintenance window to the Amazon Redshift engine that is running on the cluster. Default is true
-     */
     readonly allowVersionUpgrade?: pulumi.Input<boolean>;
-    /**
-     * The number of days that automated snapshots are retained. If the value is 0, automated snapshots are disabled. Even if automated snapshots are disabled, you can still create manual snapshots when you want with create-cluster-snapshot. Default is 1.
-     */
     readonly automatedSnapshotRetentionPeriod?: pulumi.Input<number>;
-    /**
-     * The EC2 Availability Zone (AZ) in which you want Amazon Redshift to provision the cluster. For example, if you have several EC2 instances running in a specific Availability Zone, then you might want the cluster to be provisioned in the same zone in order to decrease network latency.
-     */
     readonly availabilityZone?: pulumi.Input<string>;
-    /**
-     * The name of an existing S3 bucket where the log files are to be stored. Must be in the same region as the cluster and the cluster must have read bucket and put object permissions.
-     * For more information on the permissions required for the bucket, please read the AWS [documentation](http://docs.aws.amazon.com/redshift/latest/mgmt/db-auditing.html#db-auditing-enable-logging)
-     */
     readonly bucketName?: pulumi.Input<string>;
-    /**
-     * The Cluster Identifier. Must be a lower case
-     * string.
-     */
     readonly clusterIdentifier?: pulumi.Input<string>;
-    /**
-     * The name of the parameter group to be associated with this cluster.
-     */
     readonly clusterParameterGroupName?: pulumi.Input<string>;
-    /**
-     * The public key for the cluster
-     */
     readonly clusterPublicKey?: pulumi.Input<string>;
-    /**
-     * The specific revision number of the database in the cluster
-     */
     readonly clusterRevisionNumber?: pulumi.Input<string>;
-    /**
-     * A list of security groups to be associated with this cluster.
-     */
     readonly clusterSecurityGroups?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The name of a cluster subnet group to be associated with this cluster. If this parameter is not provided the resulting cluster will be deployed outside virtual private cloud (VPC).
-     */
     readonly clusterSubnetGroupName?: pulumi.Input<string>;
-    /**
-     * The cluster type to use. Either `single-node` or `multi-node`.
-     */
     readonly clusterType?: pulumi.Input<string>;
-    /**
-     * The version of the Amazon Redshift engine software that you want to deploy on the cluster.
-     * The version selected runs on all the nodes in the cluster.
-     */
     readonly clusterVersion?: pulumi.Input<string>;
-    /**
-     * The name of the first database to be created when the cluster is created.
-     * If you do not provide a name, Amazon Redshift will create a default database called `dev`.
-     */
     readonly databaseName?: pulumi.Input<string>;
-    /**
-     * The DNS name of the cluster
-     */
     readonly dnsName?: pulumi.Input<string>;
-    /**
-     * The Elastic IP (EIP) address for the cluster.
-     */
     readonly elasticIp?: pulumi.Input<string>;
     readonly enableLogging?: pulumi.Input<boolean>;
-    /**
-     * If true , the data in the cluster is encrypted at rest.
-     */
     readonly encrypted?: pulumi.Input<boolean>;
-    /**
-     * The connection endpoint
-     */
     readonly endpoint?: pulumi.Input<string>;
-    /**
-     * If true , enhanced VPC routing is enabled.
-     */
     readonly enhancedVpcRouting?: pulumi.Input<boolean>;
-    /**
-     * The identifier of the final snapshot that is to be created immediately before deleting the cluster. If this parameter is provided, `skip_final_snapshot` must be false.
-     */
     readonly finalSnapshotIdentifier?: pulumi.Input<string>;
-    /**
-     * A list of IAM Role ARNs to associate with the cluster. A Maximum of 10 can be associated to the cluster at any time.
-     */
     readonly iamRoles?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The ARN for the KMS encryption key. When specifying `kms_key_id`, `encrypted` needs to be set to true.
-     */
     readonly kmsKeyId?: pulumi.Input<string>;
-    /**
-     * Logging, documented below.
-     */
     readonly logging?: pulumi.Input<{ bucketName?: pulumi.Input<string>, enable: pulumi.Input<boolean>, s3KeyPrefix?: pulumi.Input<string> }>;
-    /**
-     * Password for the master DB user.
-     * Note that this may show up in logs, and it will be stored in the state file. Password must contain at least 8 chars and
-     * contain at least one uppercase letter, one lowercase letter, and one number.
-     */
     readonly masterPassword?: pulumi.Input<string>;
-    /**
-     * Username for the master DB user.
-     */
     readonly masterUsername?: pulumi.Input<string>;
-    /**
-     * The node type to be provisioned for the cluster.
-     */
     readonly nodeType?: pulumi.Input<string>;
-    /**
-     * The number of compute nodes in the cluster. This parameter is required when the ClusterType parameter is specified as multi-node. Default is 1.
-     */
     readonly numberOfNodes?: pulumi.Input<number>;
-    /**
-     * The AWS customer account used to create or copy the snapshot. Required if you are restoring a snapshot you do not own, optional if you own the snapshot.
-     */
     readonly ownerAccount?: pulumi.Input<string>;
-    /**
-     * The port number on which the cluster accepts incoming connections.
-     * The cluster is accessible only via the JDBC and ODBC connection strings. Part of the connection string requires the port on which the cluster will listen for incoming connections. Default port is 5439.
-     */
     readonly port?: pulumi.Input<number>;
-    /**
-     * The weekly time range (in UTC) during which automated cluster maintenance can occur.
-     * Format: ddd:hh24:mi-ddd:hh24:mi
-     */
     readonly preferredMaintenanceWindow?: pulumi.Input<string>;
-    /**
-     * If true, the cluster can be accessed from a public network. Default is `true`.
-     */
     readonly publiclyAccessible?: pulumi.Input<boolean>;
-    /**
-     * The prefix applied to the log file names.
-     */
     readonly s3KeyPrefix?: pulumi.Input<string>;
-    /**
-     * Determines whether a final snapshot of the cluster is created before Amazon Redshift deletes the cluster. If true , a final cluster snapshot is not created. If false , a final cluster snapshot is created before the cluster is deleted. Default is false.
-     */
     readonly skipFinalSnapshot?: pulumi.Input<boolean>;
-    /**
-     * The name of the cluster the source snapshot was created from.
-     */
     readonly snapshotClusterIdentifier?: pulumi.Input<string>;
-    /**
-     * Configuration of automatic copy of snapshots from one region to another. Documented below.
-     */
     readonly snapshotCopy?: pulumi.Input<{ destinationRegion: pulumi.Input<string>, grantName?: pulumi.Input<string>, retentionPeriod?: pulumi.Input<number> }>;
-    /**
-     * The name of the snapshot from which to create the new cluster.
-     */
     readonly snapshotIdentifier?: pulumi.Input<string>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * A list of Virtual Private Cloud (VPC) security groups to be associated with the cluster.
-     */
     readonly vpcSecurityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
@@ -465,157 +205,41 @@ export interface ClusterState {
  * The set of arguments for constructing a Cluster resource.
  */
 export interface ClusterArgs {
-    /**
-     * If true , major version upgrades can be applied during the maintenance window to the Amazon Redshift engine that is running on the cluster. Default is true
-     */
     readonly allowVersionUpgrade?: pulumi.Input<boolean>;
-    /**
-     * The number of days that automated snapshots are retained. If the value is 0, automated snapshots are disabled. Even if automated snapshots are disabled, you can still create manual snapshots when you want with create-cluster-snapshot. Default is 1.
-     */
     readonly automatedSnapshotRetentionPeriod?: pulumi.Input<number>;
-    /**
-     * The EC2 Availability Zone (AZ) in which you want Amazon Redshift to provision the cluster. For example, if you have several EC2 instances running in a specific Availability Zone, then you might want the cluster to be provisioned in the same zone in order to decrease network latency.
-     */
     readonly availabilityZone?: pulumi.Input<string>;
-    /**
-     * The name of an existing S3 bucket where the log files are to be stored. Must be in the same region as the cluster and the cluster must have read bucket and put object permissions.
-     * For more information on the permissions required for the bucket, please read the AWS [documentation](http://docs.aws.amazon.com/redshift/latest/mgmt/db-auditing.html#db-auditing-enable-logging)
-     */
     readonly bucketName?: pulumi.Input<string>;
-    /**
-     * The Cluster Identifier. Must be a lower case
-     * string.
-     */
     readonly clusterIdentifier: pulumi.Input<string>;
-    /**
-     * The name of the parameter group to be associated with this cluster.
-     */
     readonly clusterParameterGroupName?: pulumi.Input<string>;
-    /**
-     * The public key for the cluster
-     */
     readonly clusterPublicKey?: pulumi.Input<string>;
-    /**
-     * The specific revision number of the database in the cluster
-     */
     readonly clusterRevisionNumber?: pulumi.Input<string>;
-    /**
-     * A list of security groups to be associated with this cluster.
-     */
     readonly clusterSecurityGroups?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The name of a cluster subnet group to be associated with this cluster. If this parameter is not provided the resulting cluster will be deployed outside virtual private cloud (VPC).
-     */
     readonly clusterSubnetGroupName?: pulumi.Input<string>;
-    /**
-     * The cluster type to use. Either `single-node` or `multi-node`.
-     */
     readonly clusterType?: pulumi.Input<string>;
-    /**
-     * The version of the Amazon Redshift engine software that you want to deploy on the cluster.
-     * The version selected runs on all the nodes in the cluster.
-     */
     readonly clusterVersion?: pulumi.Input<string>;
-    /**
-     * The name of the first database to be created when the cluster is created.
-     * If you do not provide a name, Amazon Redshift will create a default database called `dev`.
-     */
     readonly databaseName?: pulumi.Input<string>;
-    /**
-     * The Elastic IP (EIP) address for the cluster.
-     */
     readonly elasticIp?: pulumi.Input<string>;
     readonly enableLogging?: pulumi.Input<boolean>;
-    /**
-     * If true , the data in the cluster is encrypted at rest.
-     */
     readonly encrypted?: pulumi.Input<boolean>;
-    /**
-     * The connection endpoint
-     */
     readonly endpoint?: pulumi.Input<string>;
-    /**
-     * If true , enhanced VPC routing is enabled.
-     */
     readonly enhancedVpcRouting?: pulumi.Input<boolean>;
-    /**
-     * The identifier of the final snapshot that is to be created immediately before deleting the cluster. If this parameter is provided, `skip_final_snapshot` must be false.
-     */
     readonly finalSnapshotIdentifier?: pulumi.Input<string>;
-    /**
-     * A list of IAM Role ARNs to associate with the cluster. A Maximum of 10 can be associated to the cluster at any time.
-     */
     readonly iamRoles?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The ARN for the KMS encryption key. When specifying `kms_key_id`, `encrypted` needs to be set to true.
-     */
     readonly kmsKeyId?: pulumi.Input<string>;
-    /**
-     * Logging, documented below.
-     */
     readonly logging?: pulumi.Input<{ bucketName?: pulumi.Input<string>, enable: pulumi.Input<boolean>, s3KeyPrefix?: pulumi.Input<string> }>;
-    /**
-     * Password for the master DB user.
-     * Note that this may show up in logs, and it will be stored in the state file. Password must contain at least 8 chars and
-     * contain at least one uppercase letter, one lowercase letter, and one number.
-     */
     readonly masterPassword?: pulumi.Input<string>;
-    /**
-     * Username for the master DB user.
-     */
     readonly masterUsername?: pulumi.Input<string>;
-    /**
-     * The node type to be provisioned for the cluster.
-     */
     readonly nodeType: pulumi.Input<string>;
-    /**
-     * The number of compute nodes in the cluster. This parameter is required when the ClusterType parameter is specified as multi-node. Default is 1.
-     */
     readonly numberOfNodes?: pulumi.Input<number>;
-    /**
-     * The AWS customer account used to create or copy the snapshot. Required if you are restoring a snapshot you do not own, optional if you own the snapshot.
-     */
     readonly ownerAccount?: pulumi.Input<string>;
-    /**
-     * The port number on which the cluster accepts incoming connections.
-     * The cluster is accessible only via the JDBC and ODBC connection strings. Part of the connection string requires the port on which the cluster will listen for incoming connections. Default port is 5439.
-     */
     readonly port?: pulumi.Input<number>;
-    /**
-     * The weekly time range (in UTC) during which automated cluster maintenance can occur.
-     * Format: ddd:hh24:mi-ddd:hh24:mi
-     */
     readonly preferredMaintenanceWindow?: pulumi.Input<string>;
-    /**
-     * If true, the cluster can be accessed from a public network. Default is `true`.
-     */
     readonly publiclyAccessible?: pulumi.Input<boolean>;
-    /**
-     * The prefix applied to the log file names.
-     */
     readonly s3KeyPrefix?: pulumi.Input<string>;
-    /**
-     * Determines whether a final snapshot of the cluster is created before Amazon Redshift deletes the cluster. If true , a final cluster snapshot is not created. If false , a final cluster snapshot is created before the cluster is deleted. Default is false.
-     */
     readonly skipFinalSnapshot?: pulumi.Input<boolean>;
-    /**
-     * The name of the cluster the source snapshot was created from.
-     */
     readonly snapshotClusterIdentifier?: pulumi.Input<string>;
-    /**
-     * Configuration of automatic copy of snapshots from one region to another. Documented below.
-     */
     readonly snapshotCopy?: pulumi.Input<{ destinationRegion: pulumi.Input<string>, grantName?: pulumi.Input<string>, retentionPeriod?: pulumi.Input<number> }>;
-    /**
-     * The name of the snapshot from which to create the new cluster.
-     */
     readonly snapshotIdentifier?: pulumi.Input<string>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * A list of Virtual Private Cloud (VPC) security groups to be associated with the cluster.
-     */
     readonly vpcSecurityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
 }

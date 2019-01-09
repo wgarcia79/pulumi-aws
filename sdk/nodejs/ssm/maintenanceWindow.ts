@@ -4,23 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an SSM Maintenance Window resource
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_ssm_maintenance_window_production = new aws.ssm.MaintenanceWindow("production", {
- *     cutoff: 1,
- *     duration: 3,
- *     name: "maintenance-window-application",
- *     schedule: "cron(0 16 ? * TUE *)",
- * });
- * ```
- */
 export class MaintenanceWindow extends pulumi.CustomResource {
     /**
      * Get an existing MaintenanceWindow resource's state with the given name, ID, and optional extra
@@ -34,26 +17,11 @@ export class MaintenanceWindow extends pulumi.CustomResource {
         return new MaintenanceWindow(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * Whether targets must be registered with the Maintenance Window before tasks can be defined for those targets.
-     */
     public readonly allowUnassociatedTargets: pulumi.Output<boolean | undefined>;
-    /**
-     * The number of hours before the end of the Maintenance Window that Systems Manager stops scheduling new tasks for execution.
-     */
     public readonly cutoff: pulumi.Output<number>;
-    /**
-     * The duration of the Maintenance Window in hours.
-     */
     public readonly duration: pulumi.Output<number>;
     public readonly enabled: pulumi.Output<boolean | undefined>;
-    /**
-     * The name of the maintenance window.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * The schedule of the Maintenance Window in the form of a [cron](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-maintenance-cron.html) or rate expression.
-     */
     public readonly schedule: pulumi.Output<string>;
 
     /**
@@ -100,26 +68,11 @@ export class MaintenanceWindow extends pulumi.CustomResource {
  * Input properties used for looking up and filtering MaintenanceWindow resources.
  */
 export interface MaintenanceWindowState {
-    /**
-     * Whether targets must be registered with the Maintenance Window before tasks can be defined for those targets.
-     */
     readonly allowUnassociatedTargets?: pulumi.Input<boolean>;
-    /**
-     * The number of hours before the end of the Maintenance Window that Systems Manager stops scheduling new tasks for execution.
-     */
     readonly cutoff?: pulumi.Input<number>;
-    /**
-     * The duration of the Maintenance Window in hours.
-     */
     readonly duration?: pulumi.Input<number>;
     readonly enabled?: pulumi.Input<boolean>;
-    /**
-     * The name of the maintenance window.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The schedule of the Maintenance Window in the form of a [cron](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-maintenance-cron.html) or rate expression.
-     */
     readonly schedule?: pulumi.Input<string>;
 }
 
@@ -127,25 +80,10 @@ export interface MaintenanceWindowState {
  * The set of arguments for constructing a MaintenanceWindow resource.
  */
 export interface MaintenanceWindowArgs {
-    /**
-     * Whether targets must be registered with the Maintenance Window before tasks can be defined for those targets.
-     */
     readonly allowUnassociatedTargets?: pulumi.Input<boolean>;
-    /**
-     * The number of hours before the end of the Maintenance Window that Systems Manager stops scheduling new tasks for execution.
-     */
     readonly cutoff: pulumi.Input<number>;
-    /**
-     * The duration of the Maintenance Window in hours.
-     */
     readonly duration: pulumi.Input<number>;
     readonly enabled?: pulumi.Input<boolean>;
-    /**
-     * The name of the maintenance window.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The schedule of the Maintenance Window in the form of a [cron](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-maintenance-cron.html) or rate expression.
-     */
     readonly schedule: pulumi.Input<string>;
 }

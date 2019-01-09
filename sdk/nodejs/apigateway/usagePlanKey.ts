@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an API Gateway Usage Plan Key.
- */
 export class UsagePlanKey extends pulumi.CustomResource {
     /**
      * Get an existing UsagePlanKey resource's state with the given name, ID, and optional extra
@@ -20,25 +17,10 @@ export class UsagePlanKey extends pulumi.CustomResource {
         return new UsagePlanKey(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The identifier of the API key resource.
-     */
     public readonly keyId: pulumi.Output<string>;
-    /**
-     * The type of the API key resource. Currently, the valid key type is API_KEY.
-     */
     public readonly keyType: pulumi.Output<string>;
-    /**
-     * The name of a usage plan key.
-     */
     public /*out*/ readonly name: pulumi.Output<string>;
-    /**
-     * The Id of the usage plan resource representing to associate the key to.
-     */
     public readonly usagePlanId: pulumi.Output<string>;
-    /**
-     * The value of a usage plan key.
-     */
     public /*out*/ readonly value: pulumi.Output<string>;
 
     /**
@@ -83,25 +65,10 @@ export class UsagePlanKey extends pulumi.CustomResource {
  * Input properties used for looking up and filtering UsagePlanKey resources.
  */
 export interface UsagePlanKeyState {
-    /**
-     * The identifier of the API key resource.
-     */
     readonly keyId?: pulumi.Input<string>;
-    /**
-     * The type of the API key resource. Currently, the valid key type is API_KEY.
-     */
     readonly keyType?: pulumi.Input<string>;
-    /**
-     * The name of a usage plan key.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The Id of the usage plan resource representing to associate the key to.
-     */
     readonly usagePlanId?: pulumi.Input<string>;
-    /**
-     * The value of a usage plan key.
-     */
     readonly value?: pulumi.Input<string>;
 }
 
@@ -109,16 +76,7 @@ export interface UsagePlanKeyState {
  * The set of arguments for constructing a UsagePlanKey resource.
  */
 export interface UsagePlanKeyArgs {
-    /**
-     * The identifier of the API key resource.
-     */
     readonly keyId: pulumi.Input<string>;
-    /**
-     * The type of the API key resource. Currently, the valid key type is API_KEY.
-     */
     readonly keyType: pulumi.Input<string>;
-    /**
-     * The Id of the usage plan resource representing to associate the key to.
-     */
     readonly usagePlanId: pulumi.Input<string>;
 }

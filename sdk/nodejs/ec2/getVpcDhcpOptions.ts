@@ -4,41 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Retrieve information about an EC2 DHCP Options configuration.
- * 
- * ## Example Usage
- * 
- * ### Lookup by DHCP Options ID
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_vpc_dhcp_options_example = pulumi.output(aws.ec2.getVpcDhcpOptions({
- *     dhcpOptionsId: "dopts-12345678",
- * }));
- * ```
- * ### Lookup by Filter
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_vpc_dhcp_options_example = pulumi.output(aws.ec2.getVpcDhcpOptions({
- *     filters: [
- *         {
- *             name: "key",
- *             values: ["domain-name"],
- *         },
- *         {
- *             name: "value",
- *             values: ["example.com"],
- *         },
- *     ],
- * }));
- * ```
- */
 export function getVpcDhcpOptions(args?: GetVpcDhcpOptionsArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcDhcpOptionsResult> {
     args = args || {};
     return pulumi.runtime.invoke("aws:ec2/getVpcDhcpOptions:getVpcDhcpOptions", {
@@ -52,13 +17,7 @@ export function getVpcDhcpOptions(args?: GetVpcDhcpOptionsArgs, opts?: pulumi.In
  * A collection of arguments for invoking getVpcDhcpOptions.
  */
 export interface GetVpcDhcpOptionsArgs {
-    /**
-     * The EC2 DHCP Options ID.
-     */
     readonly dhcpOptionsId?: string;
-    /**
-     * List of custom filters as described below.
-     */
     readonly filters?: { name: string, values: string[] }[];
     readonly tags?: {[key: string]: any};
 }
@@ -67,37 +26,13 @@ export interface GetVpcDhcpOptionsArgs {
  * A collection of values returned by getVpcDhcpOptions.
  */
 export interface GetVpcDhcpOptionsResult {
-    /**
-     * EC2 DHCP Options ID
-     */
     readonly dhcpOptionsId: string;
-    /**
-     * The suffix domain name to used when resolving non Fully Qualified Domain Names. e.g. the `search` value in the `/etc/resolv.conf` file.
-     */
     readonly domainName: string;
-    /**
-     * List of name servers.
-     */
     readonly domainNameServers: string[];
-    /**
-     * List of NETBIOS name servers.
-     */
     readonly netbiosNameServers: string[];
-    /**
-     * The NetBIOS node type (1, 2, 4, or 8). For more information about these node types, see [RFC 2132](http://www.ietf.org/rfc/rfc2132.txt).
-     */
     readonly netbiosNodeType: string;
-    /**
-     * List of NTP servers.
-     */
     readonly ntpServers: string[];
-    /**
-     * The ID of the AWS account that owns the DHCP options set.
-     */
     readonly ownerId: string;
-    /**
-     * A mapping of tags assigned to the resource.
-     */
     readonly tags: {[key: string]: any};
     /**
      * id is the provider-assigned unique ID for this managed resource.

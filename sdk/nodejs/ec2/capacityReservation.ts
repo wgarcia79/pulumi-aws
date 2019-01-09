@@ -8,23 +8,6 @@ import {InstancePlatform} from "./instancePlatform";
 import {InstanceType} from "./instanceType";
 import {Tenancy} from "./tenancy";
 
-/**
- * Provides an EC2 Capacity Reservation. This allows you to reserve capacity for your Amazon EC2 instances in a specific Availability Zone for any duration.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_ec2_capacity_reservation_default = new aws.ec2.CapacityReservation("default", {
- *     availabilityZone: "eu-west-1a",
- *     instanceCount: 1,
- *     instancePlatform: "Linux/UNIX",
- *     instanceType: "t2.micro",
- * });
- * ```
- */
 export class CapacityReservation extends pulumi.CustomResource {
     /**
      * Get an existing CapacityReservation resource's state with the given name, ID, and optional extra
@@ -38,49 +21,16 @@ export class CapacityReservation extends pulumi.CustomResource {
         return new CapacityReservation(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The Availability Zone in which to create the Capacity Reservation.
-     */
     public readonly availabilityZone: pulumi.Output<string>;
-    /**
-     * Indicates whether the Capacity Reservation supports EBS-optimized instances.
-     */
     public readonly ebsOptimized: pulumi.Output<boolean | undefined>;
-    /**
-     * The date and time at which the Capacity Reservation expires. When a Capacity Reservation expires, the reserved capacity is released and you can no longer launch instances into it. Valid values: [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`)
-     */
     public readonly endDate: pulumi.Output<string | undefined>;
-    /**
-     * Indicates the way in which the Capacity Reservation ends. Specify either `unlimited` or `limited`.
-     */
     public readonly endDateType: pulumi.Output<string | undefined>;
-    /**
-     * Indicates whether the Capacity Reservation supports instances with temporary, block-level storage.
-     */
     public readonly ephemeralStorage: pulumi.Output<boolean | undefined>;
-    /**
-     * The number of instances for which to reserve capacity.
-     */
     public readonly instanceCount: pulumi.Output<number>;
-    /**
-     * Indicates the type of instance launches that the Capacity Reservation accepts. Specify either `open` or `targeted`.
-     */
     public readonly instanceMatchCriteria: pulumi.Output<string | undefined>;
-    /**
-     * The type of operating system for which to reserve capacity. Valid options are `Linux/UNIX`, `Red Hat Enterprise Linux`, `SUSE Linux`, `Windows`, `Windows with SQL Server`, `Windows with SQL Server Enterprise`, `Windows with SQL Server Standard` or `Windows with SQL Server Web`.
-     */
     public readonly instancePlatform: pulumi.Output<InstancePlatform>;
-    /**
-     * The instance type for which to reserve capacity.
-     */
     public readonly instanceType: pulumi.Output<InstanceType>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     public readonly tags: pulumi.Output<{[key: string]: any} | undefined>;
-    /**
-     * Indicates the tenancy of the Capacity Reservation. Specify either `default` or `dedicated`.
-     */
     public readonly tenancy: pulumi.Output<Tenancy | undefined>;
 
     /**
@@ -140,49 +90,16 @@ export class CapacityReservation extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CapacityReservation resources.
  */
 export interface CapacityReservationState {
-    /**
-     * The Availability Zone in which to create the Capacity Reservation.
-     */
     readonly availabilityZone?: pulumi.Input<string>;
-    /**
-     * Indicates whether the Capacity Reservation supports EBS-optimized instances.
-     */
     readonly ebsOptimized?: pulumi.Input<boolean>;
-    /**
-     * The date and time at which the Capacity Reservation expires. When a Capacity Reservation expires, the reserved capacity is released and you can no longer launch instances into it. Valid values: [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`)
-     */
     readonly endDate?: pulumi.Input<string>;
-    /**
-     * Indicates the way in which the Capacity Reservation ends. Specify either `unlimited` or `limited`.
-     */
     readonly endDateType?: pulumi.Input<string>;
-    /**
-     * Indicates whether the Capacity Reservation supports instances with temporary, block-level storage.
-     */
     readonly ephemeralStorage?: pulumi.Input<boolean>;
-    /**
-     * The number of instances for which to reserve capacity.
-     */
     readonly instanceCount?: pulumi.Input<number>;
-    /**
-     * Indicates the type of instance launches that the Capacity Reservation accepts. Specify either `open` or `targeted`.
-     */
     readonly instanceMatchCriteria?: pulumi.Input<string>;
-    /**
-     * The type of operating system for which to reserve capacity. Valid options are `Linux/UNIX`, `Red Hat Enterprise Linux`, `SUSE Linux`, `Windows`, `Windows with SQL Server`, `Windows with SQL Server Enterprise`, `Windows with SQL Server Standard` or `Windows with SQL Server Web`.
-     */
     readonly instancePlatform?: pulumi.Input<InstancePlatform>;
-    /**
-     * The instance type for which to reserve capacity.
-     */
     readonly instanceType?: pulumi.Input<InstanceType>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * Indicates the tenancy of the Capacity Reservation. Specify either `default` or `dedicated`.
-     */
     readonly tenancy?: pulumi.Input<Tenancy>;
 }
 
@@ -190,48 +107,15 @@ export interface CapacityReservationState {
  * The set of arguments for constructing a CapacityReservation resource.
  */
 export interface CapacityReservationArgs {
-    /**
-     * The Availability Zone in which to create the Capacity Reservation.
-     */
     readonly availabilityZone: pulumi.Input<string>;
-    /**
-     * Indicates whether the Capacity Reservation supports EBS-optimized instances.
-     */
     readonly ebsOptimized?: pulumi.Input<boolean>;
-    /**
-     * The date and time at which the Capacity Reservation expires. When a Capacity Reservation expires, the reserved capacity is released and you can no longer launch instances into it. Valid values: [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`)
-     */
     readonly endDate?: pulumi.Input<string>;
-    /**
-     * Indicates the way in which the Capacity Reservation ends. Specify either `unlimited` or `limited`.
-     */
     readonly endDateType?: pulumi.Input<string>;
-    /**
-     * Indicates whether the Capacity Reservation supports instances with temporary, block-level storage.
-     */
     readonly ephemeralStorage?: pulumi.Input<boolean>;
-    /**
-     * The number of instances for which to reserve capacity.
-     */
     readonly instanceCount: pulumi.Input<number>;
-    /**
-     * Indicates the type of instance launches that the Capacity Reservation accepts. Specify either `open` or `targeted`.
-     */
     readonly instanceMatchCriteria?: pulumi.Input<string>;
-    /**
-     * The type of operating system for which to reserve capacity. Valid options are `Linux/UNIX`, `Red Hat Enterprise Linux`, `SUSE Linux`, `Windows`, `Windows with SQL Server`, `Windows with SQL Server Enterprise`, `Windows with SQL Server Standard` or `Windows with SQL Server Web`.
-     */
     readonly instancePlatform: pulumi.Input<InstancePlatform>;
-    /**
-     * The instance type for which to reserve capacity.
-     */
     readonly instanceType: pulumi.Input<InstanceType>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * Indicates the tenancy of the Capacity Reservation. Specify either `default` or `dedicated`.
-     */
     readonly tenancy?: pulumi.Input<Tenancy>;
 }

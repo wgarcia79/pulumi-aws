@@ -4,28 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Registers a custom domain name for use with AWS API Gateway.
- * 
- * This resource just establishes ownership of and the TLS settings for
- * a particular domain name. An API can be attached to a particular path
- * under the registered domain name using
- * the `aws_api_gateway_base_path_mapping` resource.
- * 
- * API Gateway domains can be defined as either 'edge-optimized' or 'regional'.  In an edge-optimized configuration,
- * API Gateway internally creates and manages a CloudFront distribution to route requests on the given hostname. In
- * addition to this resource it's necessary to create a DNS record corresponding to the given domain name which is an alias
- * (either Route53 alias or traditional CNAME) to the Cloudfront domain name exported in the `cloudfront_domain_name`
- * attribute.
- * 
- * In a regional configuration, API Gateway does not create a CloudFront distribution to route requests to the API, though
- * a distribution can be created if needed. In either case, it is necessary to create a DNS record corresponding to the
- * given domain name which is an alias (either Route53 alias or traditional CNAME) to the regional domain name exported in
- * the `regional_domain_name` attribute.
- * 
- * > **Note:** All arguments including the private key will be stored in the raw state as plain-text.
- * [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
- */
 export class DomainName extends pulumi.CustomResource {
     /**
      * Get an existing DomainName resource's state with the given name, ID, and optional extra
@@ -39,72 +17,19 @@ export class DomainName extends pulumi.CustomResource {
         return new DomainName(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ARN for an AWS-managed certificate. AWS Certificate Manager is the only supported source. Used when an edge-optimized domain name is desired. Conflicts with `certificate_name`, `certificate_body`, `certificate_chain`, `certificate_private_key`, `regional_certificate_arn`, and `regional_certificate_name`.
-     */
     public readonly certificateArn: pulumi.Output<string | undefined>;
-    /**
-     * The certificate issued for the domain name
-     * being registered, in PEM format. Only valid for `EDGE` endpoint configuration type. Conflicts with `certificate_arn`, `regional_certificate_arn`, and
-     * `regional_certificate_name`.
-     */
     public readonly certificateBody: pulumi.Output<string | undefined>;
-    /**
-     * The certificate for the CA that issued the
-     * certificate, along with any intermediate CA certificates required to
-     * create an unbroken chain to a certificate trusted by the intended API clients. Only valid for `EDGE` endpoint configuration type. Conflicts with `certificate_arn`,
-     * `regional_certificate_arn`, and `regional_certificate_name`.
-     */
     public readonly certificateChain: pulumi.Output<string | undefined>;
-    /**
-     * The unique name to use when registering this
-     * certificate as an IAM server certificate. Conflicts with `certificate_arn`, `regional_certificate_arn`, and
-     * `regional_certificate_name`. Required if `certificate_arn` is not set.
-     */
     public readonly certificateName: pulumi.Output<string | undefined>;
-    /**
-     * The private key associated with the
-     * domain certificate given in `certificate_body`. Only valid for `EDGE` endpoint configuration type. Conflicts with `certificate_arn`, `regional_certificate_arn`, and `regional_certificate_name`.
-     */
     public readonly certificatePrivateKey: pulumi.Output<string | undefined>;
-    /**
-     * The upload date associated with the domain certificate.
-     */
     public /*out*/ readonly certificateUploadDate: pulumi.Output<string>;
-    /**
-     * The hostname created by Cloudfront to represent
-     * the distribution that implements this domain name mapping.
-     */
     public /*out*/ readonly cloudfrontDomainName: pulumi.Output<string>;
-    /**
-     * For convenience, the hosted zone ID (`Z2FDTNDATAQYW2`)
-     * that can be used to create a Route53 alias record for the distribution.
-     */
     public /*out*/ readonly cloudfrontZoneId: pulumi.Output<string>;
-    /**
-     * The fully-qualified domain name to register
-     */
     public readonly domainName: pulumi.Output<string>;
-    /**
-     * Configuration block defining API endpoint information including type. Defined below.
-     */
     public readonly endpointConfiguration: pulumi.Output<{ types: string }>;
-    /**
-     * The ARN for an AWS-managed certificate. AWS Certificate Manager is the only supported source. Used when a regional domain name is desired. Conflicts with `certificate_arn`, `certificate_name`, `certificate_body`, `certificate_chain`, and `certificate_private_key`.
-     */
     public readonly regionalCertificateArn: pulumi.Output<string | undefined>;
-    /**
-     * The user-friendly name of the certificate that will be used by regional endpoint for this domain name. Conflicts with `certificate_arn`, `certificate_name`, `certificate_body`, `certificate_chain`, and
-     * `certificate_private_key`.
-     */
     public readonly regionalCertificateName: pulumi.Output<string | undefined>;
-    /**
-     * The hostname for the custom domain's regional endpoint.
-     */
     public /*out*/ readonly regionalDomainName: pulumi.Output<string>;
-    /**
-     * The hosted zone ID that can be used to create a Route53 alias record for the regional endpoint.
-     */
     public /*out*/ readonly regionalZoneId: pulumi.Output<string>;
 
     /**
@@ -161,72 +86,19 @@ export class DomainName extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DomainName resources.
  */
 export interface DomainNameState {
-    /**
-     * The ARN for an AWS-managed certificate. AWS Certificate Manager is the only supported source. Used when an edge-optimized domain name is desired. Conflicts with `certificate_name`, `certificate_body`, `certificate_chain`, `certificate_private_key`, `regional_certificate_arn`, and `regional_certificate_name`.
-     */
     readonly certificateArn?: pulumi.Input<string>;
-    /**
-     * The certificate issued for the domain name
-     * being registered, in PEM format. Only valid for `EDGE` endpoint configuration type. Conflicts with `certificate_arn`, `regional_certificate_arn`, and
-     * `regional_certificate_name`.
-     */
     readonly certificateBody?: pulumi.Input<string>;
-    /**
-     * The certificate for the CA that issued the
-     * certificate, along with any intermediate CA certificates required to
-     * create an unbroken chain to a certificate trusted by the intended API clients. Only valid for `EDGE` endpoint configuration type. Conflicts with `certificate_arn`,
-     * `regional_certificate_arn`, and `regional_certificate_name`.
-     */
     readonly certificateChain?: pulumi.Input<string>;
-    /**
-     * The unique name to use when registering this
-     * certificate as an IAM server certificate. Conflicts with `certificate_arn`, `regional_certificate_arn`, and
-     * `regional_certificate_name`. Required if `certificate_arn` is not set.
-     */
     readonly certificateName?: pulumi.Input<string>;
-    /**
-     * The private key associated with the
-     * domain certificate given in `certificate_body`. Only valid for `EDGE` endpoint configuration type. Conflicts with `certificate_arn`, `regional_certificate_arn`, and `regional_certificate_name`.
-     */
     readonly certificatePrivateKey?: pulumi.Input<string>;
-    /**
-     * The upload date associated with the domain certificate.
-     */
     readonly certificateUploadDate?: pulumi.Input<string>;
-    /**
-     * The hostname created by Cloudfront to represent
-     * the distribution that implements this domain name mapping.
-     */
     readonly cloudfrontDomainName?: pulumi.Input<string>;
-    /**
-     * For convenience, the hosted zone ID (`Z2FDTNDATAQYW2`)
-     * that can be used to create a Route53 alias record for the distribution.
-     */
     readonly cloudfrontZoneId?: pulumi.Input<string>;
-    /**
-     * The fully-qualified domain name to register
-     */
     readonly domainName?: pulumi.Input<string>;
-    /**
-     * Configuration block defining API endpoint information including type. Defined below.
-     */
     readonly endpointConfiguration?: pulumi.Input<{ types: pulumi.Input<string> }>;
-    /**
-     * The ARN for an AWS-managed certificate. AWS Certificate Manager is the only supported source. Used when a regional domain name is desired. Conflicts with `certificate_arn`, `certificate_name`, `certificate_body`, `certificate_chain`, and `certificate_private_key`.
-     */
     readonly regionalCertificateArn?: pulumi.Input<string>;
-    /**
-     * The user-friendly name of the certificate that will be used by regional endpoint for this domain name. Conflicts with `certificate_arn`, `certificate_name`, `certificate_body`, `certificate_chain`, and
-     * `certificate_private_key`.
-     */
     readonly regionalCertificateName?: pulumi.Input<string>;
-    /**
-     * The hostname for the custom domain's regional endpoint.
-     */
     readonly regionalDomainName?: pulumi.Input<string>;
-    /**
-     * The hosted zone ID that can be used to create a Route53 alias record for the regional endpoint.
-     */
     readonly regionalZoneId?: pulumi.Input<string>;
 }
 
@@ -234,49 +106,13 @@ export interface DomainNameState {
  * The set of arguments for constructing a DomainName resource.
  */
 export interface DomainNameArgs {
-    /**
-     * The ARN for an AWS-managed certificate. AWS Certificate Manager is the only supported source. Used when an edge-optimized domain name is desired. Conflicts with `certificate_name`, `certificate_body`, `certificate_chain`, `certificate_private_key`, `regional_certificate_arn`, and `regional_certificate_name`.
-     */
     readonly certificateArn?: pulumi.Input<string>;
-    /**
-     * The certificate issued for the domain name
-     * being registered, in PEM format. Only valid for `EDGE` endpoint configuration type. Conflicts with `certificate_arn`, `regional_certificate_arn`, and
-     * `regional_certificate_name`.
-     */
     readonly certificateBody?: pulumi.Input<string>;
-    /**
-     * The certificate for the CA that issued the
-     * certificate, along with any intermediate CA certificates required to
-     * create an unbroken chain to a certificate trusted by the intended API clients. Only valid for `EDGE` endpoint configuration type. Conflicts with `certificate_arn`,
-     * `regional_certificate_arn`, and `regional_certificate_name`.
-     */
     readonly certificateChain?: pulumi.Input<string>;
-    /**
-     * The unique name to use when registering this
-     * certificate as an IAM server certificate. Conflicts with `certificate_arn`, `regional_certificate_arn`, and
-     * `regional_certificate_name`. Required if `certificate_arn` is not set.
-     */
     readonly certificateName?: pulumi.Input<string>;
-    /**
-     * The private key associated with the
-     * domain certificate given in `certificate_body`. Only valid for `EDGE` endpoint configuration type. Conflicts with `certificate_arn`, `regional_certificate_arn`, and `regional_certificate_name`.
-     */
     readonly certificatePrivateKey?: pulumi.Input<string>;
-    /**
-     * The fully-qualified domain name to register
-     */
     readonly domainName: pulumi.Input<string>;
-    /**
-     * Configuration block defining API endpoint information including type. Defined below.
-     */
     readonly endpointConfiguration?: pulumi.Input<{ types: pulumi.Input<string> }>;
-    /**
-     * The ARN for an AWS-managed certificate. AWS Certificate Manager is the only supported source. Used when a regional domain name is desired. Conflicts with `certificate_arn`, `certificate_name`, `certificate_body`, `certificate_chain`, and `certificate_private_key`.
-     */
     readonly regionalCertificateArn?: pulumi.Input<string>;
-    /**
-     * The user-friendly name of the certificate that will be used by regional endpoint for this domain name. Conflicts with `certificate_arn`, `certificate_name`, `certificate_body`, `certificate_chain`, and
-     * `certificate_private_key`.
-     */
     readonly regionalCertificateName?: pulumi.Input<string>;
 }

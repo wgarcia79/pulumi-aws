@@ -4,16 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an network ACL resource. You might set up network ACLs with rules similar
- * to your security groups in order to add an additional layer of security to your VPC.
- * 
- * > **NOTE on Network ACLs and Network ACL Rules:** Terraform currently
- * provides both a standalone Network ACL Rule resource and a Network ACL resource with rules
- * defined in-line. At this time you cannot use a Network ACL with in-line rules
- * in conjunction with any Network ACL Rule resources. Doing so will cause
- * a conflict of rule settings and will overwrite rules.
- */
 export class NetworkAcl extends pulumi.CustomResource {
     /**
      * Get an existing NetworkAcl resource's state with the given name, ID, and optional extra
@@ -27,34 +17,12 @@ export class NetworkAcl extends pulumi.CustomResource {
         return new NetworkAcl(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * Specifies an egress rule. Parameters defined below.
-     */
     public readonly egress: pulumi.Output<{ action: string, cidrBlock?: string, fromPort: number, icmpCode?: number, icmpType?: number, ipv6CidrBlock?: string, protocol: string, ruleNo: number, toPort: number }[]>;
-    /**
-     * Specifies an ingress rule. Parameters defined below.
-     */
     public readonly ingress: pulumi.Output<{ action: string, cidrBlock?: string, fromPort: number, icmpCode?: number, icmpType?: number, ipv6CidrBlock?: string, protocol: string, ruleNo: number, toPort: number }[]>;
-    /**
-     * The ID of the AWS account that owns the network ACL.
-     */
     public /*out*/ readonly ownerId: pulumi.Output<string>;
-    /**
-     * The ID of the associated Subnet. This
-     * attribute is deprecated, please use the `subnet_ids` attribute instead
-     */
     public readonly subnetId: pulumi.Output<string | undefined>;
-    /**
-     * A list of Subnet IDs to apply the ACL to
-     */
     public readonly subnetIds: pulumi.Output<string[]>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     public readonly tags: pulumi.Output<{[key: string]: any} | undefined>;
-    /**
-     * The ID of the associated VPC.
-     */
     public readonly vpcId: pulumi.Output<string>;
 
     /**
@@ -97,34 +65,12 @@ export class NetworkAcl extends pulumi.CustomResource {
  * Input properties used for looking up and filtering NetworkAcl resources.
  */
 export interface NetworkAclState {
-    /**
-     * Specifies an egress rule. Parameters defined below.
-     */
     readonly egress?: pulumi.Input<pulumi.Input<{ action: pulumi.Input<string>, cidrBlock?: pulumi.Input<string>, fromPort: pulumi.Input<number>, icmpCode?: pulumi.Input<number>, icmpType?: pulumi.Input<number>, ipv6CidrBlock?: pulumi.Input<string>, protocol: pulumi.Input<string>, ruleNo: pulumi.Input<number>, toPort: pulumi.Input<number> }>[]>;
-    /**
-     * Specifies an ingress rule. Parameters defined below.
-     */
     readonly ingress?: pulumi.Input<pulumi.Input<{ action: pulumi.Input<string>, cidrBlock?: pulumi.Input<string>, fromPort: pulumi.Input<number>, icmpCode?: pulumi.Input<number>, icmpType?: pulumi.Input<number>, ipv6CidrBlock?: pulumi.Input<string>, protocol: pulumi.Input<string>, ruleNo: pulumi.Input<number>, toPort: pulumi.Input<number> }>[]>;
-    /**
-     * The ID of the AWS account that owns the network ACL.
-     */
     readonly ownerId?: pulumi.Input<string>;
-    /**
-     * The ID of the associated Subnet. This
-     * attribute is deprecated, please use the `subnet_ids` attribute instead
-     */
     readonly subnetId?: pulumi.Input<string>;
-    /**
-     * A list of Subnet IDs to apply the ACL to
-     */
     readonly subnetIds?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The ID of the associated VPC.
-     */
     readonly vpcId?: pulumi.Input<string>;
 }
 
@@ -132,29 +78,10 @@ export interface NetworkAclState {
  * The set of arguments for constructing a NetworkAcl resource.
  */
 export interface NetworkAclArgs {
-    /**
-     * Specifies an egress rule. Parameters defined below.
-     */
     readonly egress?: pulumi.Input<pulumi.Input<{ action: pulumi.Input<string>, cidrBlock?: pulumi.Input<string>, fromPort: pulumi.Input<number>, icmpCode?: pulumi.Input<number>, icmpType?: pulumi.Input<number>, ipv6CidrBlock?: pulumi.Input<string>, protocol: pulumi.Input<string>, ruleNo: pulumi.Input<number>, toPort: pulumi.Input<number> }>[]>;
-    /**
-     * Specifies an ingress rule. Parameters defined below.
-     */
     readonly ingress?: pulumi.Input<pulumi.Input<{ action: pulumi.Input<string>, cidrBlock?: pulumi.Input<string>, fromPort: pulumi.Input<number>, icmpCode?: pulumi.Input<number>, icmpType?: pulumi.Input<number>, ipv6CidrBlock?: pulumi.Input<string>, protocol: pulumi.Input<string>, ruleNo: pulumi.Input<number>, toPort: pulumi.Input<number> }>[]>;
-    /**
-     * The ID of the associated Subnet. This
-     * attribute is deprecated, please use the `subnet_ids` attribute instead
-     */
     readonly subnetId?: pulumi.Input<string>;
-    /**
-     * A list of Subnet IDs to apply the ACL to
-     */
     readonly subnetIds?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The ID of the associated VPC.
-     */
     readonly vpcId: pulumi.Input<string>;
 }

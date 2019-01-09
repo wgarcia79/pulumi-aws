@@ -4,14 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an Elastic Beanstalk Application Resource. Elastic Beanstalk allows
- * you to deploy and manage applications in the AWS cloud without worrying about
- * the infrastructure that runs those applications.
- * 
- * This resource creates an application that has one configuration template named
- * `default`, and no application versions
- */
 export class Application extends pulumi.CustomResource {
     /**
      * Get an existing Application resource's state with the given name, ID, and optional extra
@@ -26,13 +18,7 @@ export class Application extends pulumi.CustomResource {
     }
 
     public readonly appversionLifecycle: pulumi.Output<{ deleteSourceFromS3?: boolean, maxAgeInDays?: number, maxCount?: number, serviceRole: string } | undefined>;
-    /**
-     * Short description of the application
-     */
     public readonly description: pulumi.Output<string | undefined>;
-    /**
-     * The name of the application, must be unique within your account
-     */
     public readonly name: pulumi.Output<string>;
 
     /**
@@ -65,13 +51,7 @@ export class Application extends pulumi.CustomResource {
  */
 export interface ApplicationState {
     readonly appversionLifecycle?: pulumi.Input<{ deleteSourceFromS3?: pulumi.Input<boolean>, maxAgeInDays?: pulumi.Input<number>, maxCount?: pulumi.Input<number>, serviceRole: pulumi.Input<string> }>;
-    /**
-     * Short description of the application
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The name of the application, must be unique within your account
-     */
     readonly name?: pulumi.Input<string>;
 }
 
@@ -80,12 +60,6 @@ export interface ApplicationState {
  */
 export interface ApplicationArgs {
     readonly appversionLifecycle?: pulumi.Input<{ deleteSourceFromS3?: pulumi.Input<boolean>, maxAgeInDays?: pulumi.Input<number>, maxCount?: pulumi.Input<number>, serviceRole: pulumi.Input<string> }>;
-    /**
-     * Short description of the application
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The name of the application, must be unique within your account
-     */
     readonly name?: pulumi.Input<string>;
 }

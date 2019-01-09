@@ -4,11 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an SNS topic policy resource
- * 
- * > **NOTE:** If a Principal is specified as just an AWS account ID rather than an ARN, AWS silently converts it to the ARN for the root user, causing future terraform plans to differ. To avoid this problem, just specify the full ARN, e.g. `arn:aws:iam::123456789012:root`
- */
 export class TopicPolicy extends pulumi.CustomResource {
     /**
      * Get an existing TopicPolicy resource's state with the given name, ID, and optional extra
@@ -22,13 +17,7 @@ export class TopicPolicy extends pulumi.CustomResource {
         return new TopicPolicy(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ARN of the SNS topic
-     */
     public readonly arn: pulumi.Output<string>;
-    /**
-     * The fully-formed AWS policy as JSON. For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](https://www.terraform.io/docs/providers/aws/guides/iam-policy-documents.html).
-     */
     public readonly policy: pulumi.Output<string>;
 
     /**
@@ -64,13 +53,7 @@ export class TopicPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering TopicPolicy resources.
  */
 export interface TopicPolicyState {
-    /**
-     * The ARN of the SNS topic
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * The fully-formed AWS policy as JSON. For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](https://www.terraform.io/docs/providers/aws/guides/iam-policy-documents.html).
-     */
     readonly policy?: pulumi.Input<string>;
 }
 
@@ -78,12 +61,6 @@ export interface TopicPolicyState {
  * The set of arguments for constructing a TopicPolicy resource.
  */
 export interface TopicPolicyArgs {
-    /**
-     * The ARN of the SNS topic
-     */
     readonly arn: pulumi.Input<string>;
-    /**
-     * The fully-formed AWS policy as JSON. For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](https://www.terraform.io/docs/providers/aws/guides/iam-policy-documents.html).
-     */
     readonly policy: pulumi.Input<string>;
 }

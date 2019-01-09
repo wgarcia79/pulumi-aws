@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * The ACM certificate resource allows requesting and management of certificates
- * from the Amazon Certificate Manager.
- * 
- * It deals with requesting certificates and managing their attributes and life-cycle.
- * This resource does not deal with validation of a certificate but can provide inputs
- * for other resources implementing the validation. It does not wait for a certificate to be issued.
- * Use a `aws_acm_certificate_validation` resource for this.
- * 
- * Most commonly, this resource is used to together with `aws_route53_record` and
- * `aws_acm_certificate_validation` to request a DNS validated certificate,
- * deploy the required validation records and wait for validation to complete.
- * 
- * Domain validation through E-Mail is also supported but should be avoided as it requires a manual step outside
- * of Terraform.
- * 
- * It's recommended to specify `create_before_destroy = true` in a [lifecycle][1] block to replace a certificate
- * which is currently in use (eg, by `aws_lb_listener`).
- */
 export class Certificate extends pulumi.CustomResource {
     /**
      * Get an existing Certificate resource's state with the given name, ID, and optional extra
@@ -36,46 +17,15 @@ export class Certificate extends pulumi.CustomResource {
         return new Certificate(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ARN of the certificate
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * The certificate's PEM-formatted public key
-     */
     public readonly certificateBody: pulumi.Output<string | undefined>;
-    /**
-     * The certificate's PEM-formatted chain
-     */
     public readonly certificateChain: pulumi.Output<string | undefined>;
-    /**
-     * A domain name for which the certificate should be issued
-     */
     public readonly domainName: pulumi.Output<string>;
-    /**
-     * A list of attributes to feed into other resources to complete certificate validation. Can have more than one element, e.g. if SANs are defined. Only set if `DNS`-validation was used.
-     */
     public /*out*/ readonly domainValidationOptions: pulumi.Output<{ domainName: string, resourceRecordName: string, resourceRecordType: string, resourceRecordValue: string }[]>;
-    /**
-     * The certificate's PEM-formatted private key
-     */
     public readonly privateKey: pulumi.Output<string | undefined>;
-    /**
-     * A list of domains that should be SANs in the issued certificate
-     */
     public readonly subjectAlternativeNames: pulumi.Output<string[]>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     public readonly tags: pulumi.Output<{[key: string]: any} | undefined>;
-    /**
-     * A list of addresses that received a validation E-Mail. Only set if `EMAIL`-validation was used.
-     */
     public /*out*/ readonly validationEmails: pulumi.Output<string[]>;
-    /**
-     * Which method to use for validation. `DNS` or `EMAIL` are valid, `NONE` can be used for certificates that were imported into ACM and then into Terraform.
-     * * Importing an existing certificate
-     */
     public readonly validationMethod: pulumi.Output<string>;
 
     /**
@@ -121,46 +71,15 @@ export class Certificate extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Certificate resources.
  */
 export interface CertificateState {
-    /**
-     * The ARN of the certificate
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * The certificate's PEM-formatted public key
-     */
     readonly certificateBody?: pulumi.Input<string>;
-    /**
-     * The certificate's PEM-formatted chain
-     */
     readonly certificateChain?: pulumi.Input<string>;
-    /**
-     * A domain name for which the certificate should be issued
-     */
     readonly domainName?: pulumi.Input<string>;
-    /**
-     * A list of attributes to feed into other resources to complete certificate validation. Can have more than one element, e.g. if SANs are defined. Only set if `DNS`-validation was used.
-     */
     readonly domainValidationOptions?: pulumi.Input<pulumi.Input<{ domainName?: pulumi.Input<string>, resourceRecordName?: pulumi.Input<string>, resourceRecordType?: pulumi.Input<string>, resourceRecordValue?: pulumi.Input<string> }>[]>;
-    /**
-     * The certificate's PEM-formatted private key
-     */
     readonly privateKey?: pulumi.Input<string>;
-    /**
-     * A list of domains that should be SANs in the issued certificate
-     */
     readonly subjectAlternativeNames?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * A list of addresses that received a validation E-Mail. Only set if `EMAIL`-validation was used.
-     */
     readonly validationEmails?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Which method to use for validation. `DNS` or `EMAIL` are valid, `NONE` can be used for certificates that were imported into ACM and then into Terraform.
-     * * Importing an existing certificate
-     */
     readonly validationMethod?: pulumi.Input<string>;
 }
 
@@ -168,33 +87,11 @@ export interface CertificateState {
  * The set of arguments for constructing a Certificate resource.
  */
 export interface CertificateArgs {
-    /**
-     * The certificate's PEM-formatted public key
-     */
     readonly certificateBody?: pulumi.Input<string>;
-    /**
-     * The certificate's PEM-formatted chain
-     */
     readonly certificateChain?: pulumi.Input<string>;
-    /**
-     * A domain name for which the certificate should be issued
-     */
     readonly domainName?: pulumi.Input<string>;
-    /**
-     * The certificate's PEM-formatted private key
-     */
     readonly privateKey?: pulumi.Input<string>;
-    /**
-     * A list of domains that should be SANs in the issued certificate
-     */
     readonly subjectAlternativeNames?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * Which method to use for validation. `DNS` or `EMAIL` are valid, `NONE` can be used for certificates that were imported into ACM and then into Terraform.
-     * * Importing an existing certificate
-     */
     readonly validationMethod?: pulumi.Input<string>;
 }

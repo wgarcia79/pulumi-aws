@@ -19,8 +19,8 @@
 [[projects]]
   name = "github.com/Sirupsen/logrus"
   packages = ["."]
-  revision = "bcd833dfe83d3cebad139e4a29ed79cb2318bf95"
-  version = "v1.2.0"
+  revision = "e1e72e9de974bd926e5c56f83753fba2df402ce5"
+  version = "v1.3.0"
 
 [[projects]]
   name = "github.com/agext/levenshtein"
@@ -229,8 +229,8 @@
 [[projects]]
   name = "github.com/djherbis/times"
   packages = ["."]
-  revision = "faa5b9ca02e9fe5d12023adddc0afa603d489fa8"
-  version = "v1.1.0"
+  revision = "847c5208d8924cea0acea3376ff62aede93afe39"
+  version = "v1.2.0"
 
 [[projects]]
   name = "github.com/docker/docker"
@@ -578,8 +578,8 @@
 [[projects]]
   name = "github.com/pkg/errors"
   packages = ["."]
-  revision = "645ef00459ed84a119197bfb8d8205042c6df63d"
-  version = "v0.8.0"
+  revision = "ba968bfe8b2f7e042a574c888954fccecfa385b4"
+  version = "v0.8.1"
 
 [[projects]]
   name = "github.com/pmezard/go-difflib"
@@ -644,7 +644,7 @@
     "sdk/go/pulumi/config",
     "sdk/proto/go"
   ]
-  revision = "3045236decf6c59a4d7c11c29357e0ef84d5c912"
+  revision = "8b52e480edac268f35b4a1787efdacac25263668"
 
 [[projects]]
   branch = "master"
@@ -653,7 +653,7 @@
     "pkg/tfbridge",
     "pkg/tfgen"
   ]
-  revision = "7a44de90bda793310b6ff4ef4100136b26e69e95"
+  revision = "e9e4b96a3c194daca80aaeebdf5b6355b3491f8a"
 
 [[projects]]
   branch = "master"
@@ -705,8 +705,8 @@
 [[projects]]
   name = "github.com/stretchr/testify"
   packages = ["assert"]
-  revision = "f35b8ab0b5a2cef36673838d662e249dd9c94686"
-  version = "v1.2.2"
+  revision = "ffdc059bfe9ce6a4e144ba849dbedead332c6053"
+  version = "v1.3.0"
 
 [[projects]]
   branch = "pulumi-master"

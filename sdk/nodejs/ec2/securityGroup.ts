@@ -4,38 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a security group resource.
- * 
- * > **NOTE on Security Groups and Security Group Rules:** Terraform currently
- * provides both a standalone Security Group Rule resource (a single `ingress` or
- * `egress` rule), and a Security Group resource with `ingress` and `egress` rules
- * defined in-line. At this time you cannot use a Security Group with in-line rules
- * in conjunction with any Security Group Rule resources. Doing so will cause
- * a conflict of rule settings and will overwrite rules.
- * 
- * > **NOTE:** Referencing Security Groups across VPC peering has certain restrictions. More information is available in the [VPC Peering User Guide](https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-security-groups.html).
- * Basic usage with tags:
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_security_group_allow_all = new aws.ec2.SecurityGroup("allow_all", {
- *     description: "Allow all inbound traffic",
- *     ingress: [{
- *         cidrBlocks: ["0.0.0.0/0"],
- *         fromPort: 0,
- *         protocol: "tcp",
- *         toPort: 65535,
- *     }],
- *     name: "allow_all",
- *     tags: {
- *         Name: "allow_all",
- *     },
- * });
- * ```
- */
 export class SecurityGroup extends pulumi.CustomResource {
     /**
      * Get an existing SecurityGroup resource's state with the given name, ID, and optional extra
@@ -49,58 +17,15 @@ export class SecurityGroup extends pulumi.CustomResource {
         return new SecurityGroup(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ARN of the security group
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * The security group description. Defaults to
-     * "Managed by Terraform". Cannot be "". __NOTE__: This field maps to the AWS
-     * `GroupDescription` attribute, for which there is no Update API. If you'd like
-     * to classify your security groups in a way that can be updated, use `tags`.
-     */
     public readonly description: pulumi.Output<string>;
-    /**
-     * Can be specified multiple times for each
-     * egress rule. Each egress block supports fields documented below.
-     */
     public readonly egress: pulumi.Output<{ cidrBlocks?: string[], description?: string, fromPort: number, ipv6CidrBlocks?: string[], prefixListIds?: string[], protocol: string, securityGroups?: string[], self?: boolean, toPort: number }[]>;
-    /**
-     * Can be specified multiple times for each
-     * ingress rule. Each ingress block supports fields documented below.
-     */
     public readonly ingress: pulumi.Output<{ cidrBlocks?: string[], description?: string, fromPort: number, ipv6CidrBlocks?: string[], prefixListIds?: string[], protocol: string, securityGroups?: string[], self?: boolean, toPort: number }[]>;
-    /**
-     * The name of the security group. If omitted, Terraform will
-     * assign a random, unique name
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * Creates a unique name beginning with the specified
-     * prefix. Conflicts with `name`.
-     */
     public readonly namePrefix: pulumi.Output<string | undefined>;
-    /**
-     * The owner ID.
-     */
     public /*out*/ readonly ownerId: pulumi.Output<string>;
-    /**
-     * Instruct Terraform to revoke all of the
-     * Security Groups attached ingress and egress rules before deleting the rule
-     * itself. This is normally not needed, however certain AWS services such as
-     * Elastic Map Reduce may automatically add required rules to security groups used
-     * with the service, and those rules may contain a cyclic dependency that prevent
-     * the security groups from being destroyed without removing the dependency first.
-     * Default `false`
-     */
     public readonly revokeRulesOnDelete: pulumi.Output<boolean | undefined>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     public readonly tags: pulumi.Output<{[key: string]: any} | undefined>;
-    /**
-     * The VPC ID.
-     */
     public readonly vpcId: pulumi.Output<string>;
 
     /**
@@ -146,58 +71,15 @@ export class SecurityGroup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SecurityGroup resources.
  */
 export interface SecurityGroupState {
-    /**
-     * The ARN of the security group
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * The security group description. Defaults to
-     * "Managed by Terraform". Cannot be "". __NOTE__: This field maps to the AWS
-     * `GroupDescription` attribute, for which there is no Update API. If you'd like
-     * to classify your security groups in a way that can be updated, use `tags`.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * Can be specified multiple times for each
-     * egress rule. Each egress block supports fields documented below.
-     */
     readonly egress?: pulumi.Input<pulumi.Input<{ cidrBlocks?: pulumi.Input<pulumi.Input<string>[]>, description?: pulumi.Input<string>, fromPort: pulumi.Input<number>, ipv6CidrBlocks?: pulumi.Input<pulumi.Input<string>[]>, prefixListIds?: pulumi.Input<pulumi.Input<string>[]>, protocol: pulumi.Input<string>, securityGroups?: pulumi.Input<pulumi.Input<string>[]>, self?: pulumi.Input<boolean>, toPort: pulumi.Input<number> }>[]>;
-    /**
-     * Can be specified multiple times for each
-     * ingress rule. Each ingress block supports fields documented below.
-     */
     readonly ingress?: pulumi.Input<pulumi.Input<{ cidrBlocks?: pulumi.Input<pulumi.Input<string>[]>, description?: pulumi.Input<string>, fromPort: pulumi.Input<number>, ipv6CidrBlocks?: pulumi.Input<pulumi.Input<string>[]>, prefixListIds?: pulumi.Input<pulumi.Input<string>[]>, protocol: pulumi.Input<string>, securityGroups?: pulumi.Input<pulumi.Input<string>[]>, self?: pulumi.Input<boolean>, toPort: pulumi.Input<number> }>[]>;
-    /**
-     * The name of the security group. If omitted, Terraform will
-     * assign a random, unique name
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Creates a unique name beginning with the specified
-     * prefix. Conflicts with `name`.
-     */
     readonly namePrefix?: pulumi.Input<string>;
-    /**
-     * The owner ID.
-     */
     readonly ownerId?: pulumi.Input<string>;
-    /**
-     * Instruct Terraform to revoke all of the
-     * Security Groups attached ingress and egress rules before deleting the rule
-     * itself. This is normally not needed, however certain AWS services such as
-     * Elastic Map Reduce may automatically add required rules to security groups used
-     * with the service, and those rules may contain a cyclic dependency that prevent
-     * the security groups from being destroyed without removing the dependency first.
-     * Default `false`
-     */
     readonly revokeRulesOnDelete?: pulumi.Input<boolean>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The VPC ID.
-     */
     readonly vpcId?: pulumi.Input<string>;
 }
 
@@ -205,49 +87,12 @@ export interface SecurityGroupState {
  * The set of arguments for constructing a SecurityGroup resource.
  */
 export interface SecurityGroupArgs {
-    /**
-     * The security group description. Defaults to
-     * "Managed by Terraform". Cannot be "". __NOTE__: This field maps to the AWS
-     * `GroupDescription` attribute, for which there is no Update API. If you'd like
-     * to classify your security groups in a way that can be updated, use `tags`.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * Can be specified multiple times for each
-     * egress rule. Each egress block supports fields documented below.
-     */
     readonly egress?: pulumi.Input<pulumi.Input<{ cidrBlocks?: pulumi.Input<pulumi.Input<string>[]>, description?: pulumi.Input<string>, fromPort: pulumi.Input<number>, ipv6CidrBlocks?: pulumi.Input<pulumi.Input<string>[]>, prefixListIds?: pulumi.Input<pulumi.Input<string>[]>, protocol: pulumi.Input<string>, securityGroups?: pulumi.Input<pulumi.Input<string>[]>, self?: pulumi.Input<boolean>, toPort: pulumi.Input<number> }>[]>;
-    /**
-     * Can be specified multiple times for each
-     * ingress rule. Each ingress block supports fields documented below.
-     */
     readonly ingress?: pulumi.Input<pulumi.Input<{ cidrBlocks?: pulumi.Input<pulumi.Input<string>[]>, description?: pulumi.Input<string>, fromPort: pulumi.Input<number>, ipv6CidrBlocks?: pulumi.Input<pulumi.Input<string>[]>, prefixListIds?: pulumi.Input<pulumi.Input<string>[]>, protocol: pulumi.Input<string>, securityGroups?: pulumi.Input<pulumi.Input<string>[]>, self?: pulumi.Input<boolean>, toPort: pulumi.Input<number> }>[]>;
-    /**
-     * The name of the security group. If omitted, Terraform will
-     * assign a random, unique name
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Creates a unique name beginning with the specified
-     * prefix. Conflicts with `name`.
-     */
     readonly namePrefix?: pulumi.Input<string>;
-    /**
-     * Instruct Terraform to revoke all of the
-     * Security Groups attached ingress and egress rules before deleting the rule
-     * itself. This is normally not needed, however certain AWS services such as
-     * Elastic Map Reduce may automatically add required rules to security groups used
-     * with the service, and those rules may contain a cyclic dependency that prevent
-     * the security groups from being destroyed without removing the dependency first.
-     * Default `false`
-     */
     readonly revokeRulesOnDelete?: pulumi.Input<boolean>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The VPC ID.
-     */
     readonly vpcId?: pulumi.Input<string>;
 }

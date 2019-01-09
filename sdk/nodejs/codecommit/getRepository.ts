@@ -4,20 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * The CodeCommit Repository data source allows the ARN, Repository ID, Repository URL for HTTP and Repository URL for SSH to be retrieved for an CodeCommit repository.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_codecommit_repository_test = pulumi.output(aws.codecommit.getRepository({
- *     repositoryName: "MyTestRepository",
- * }));
- * ```
- */
 export function getRepository(args: GetRepositoryArgs, opts?: pulumi.InvokeOptions): Promise<GetRepositoryResult> {
     return pulumi.runtime.invoke("aws:codecommit/getRepository:getRepository", {
         "repositoryName": args.repositoryName,
@@ -28,9 +14,6 @@ export function getRepository(args: GetRepositoryArgs, opts?: pulumi.InvokeOptio
  * A collection of arguments for invoking getRepository.
  */
 export interface GetRepositoryArgs {
-    /**
-     * The name for the repository. This needs to be less than 100 characters.
-     */
     readonly repositoryName: string;
 }
 
@@ -38,21 +21,9 @@ export interface GetRepositoryArgs {
  * A collection of values returned by getRepository.
  */
 export interface GetRepositoryResult {
-    /**
-     * The ARN of the repository
-     */
     readonly arn: string;
-    /**
-     * The URL to use for cloning the repository over HTTPS.
-     */
     readonly cloneUrlHttp: string;
-    /**
-     * The URL to use for cloning the repository over SSH.
-     */
     readonly cloneUrlSsh: string;
-    /**
-     * The ID of the repository
-     */
     readonly repositoryId: string;
     /**
      * id is the provider-assigned unique ID for this managed resource.

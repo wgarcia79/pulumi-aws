@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a Gamelift Fleet resource.
- */
 export class Fleet extends pulumi.CustomResource {
     /**
      * Get an existing Fleet resource's state with the given name, ID, and optional extra
@@ -20,50 +17,17 @@ export class Fleet extends pulumi.CustomResource {
         return new Fleet(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * Fleet ARN.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * ID of the Gamelift Build to be deployed on the fleet.
-     */
     public readonly buildId: pulumi.Output<string>;
-    /**
-     * Human-readable description of the fleet.
-     */
     public readonly description: pulumi.Output<string | undefined>;
-    /**
-     * Range of IP addresses and port settings that permit inbound traffic to access server processes running on the fleet. See below.
-     */
     public readonly ec2InboundPermissions: pulumi.Output<{ fromPort: number, ipRange: string, protocol: string, toPort: number }[] | undefined>;
-    /**
-     * Name of an EC2 instance type. e.g. `t2.micro`
-     */
     public readonly ec2InstanceType: pulumi.Output<string>;
     public /*out*/ readonly logPaths: pulumi.Output<string[]>;
-    /**
-     * List of names of metric groups to add this fleet to. A metric group tracks metrics across all fleets in the group. Defaults to `default`.
-     */
     public readonly metricGroups: pulumi.Output<string[]>;
-    /**
-     * The name of the fleet.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * Game session protection policy to apply to all instances in this fleet. e.g. `FullProtection`. Defaults to `NoProtection`.
-     */
     public readonly newGameSessionProtectionPolicy: pulumi.Output<string | undefined>;
-    /**
-     * Operating system of the fleet's computing resources.
-     */
     public /*out*/ readonly operatingSystem: pulumi.Output<string>;
-    /**
-     * Policy that limits the number of game sessions an individual player can create over a span of time for this fleet. See below.
-     */
     public readonly resourceCreationLimitPolicy: pulumi.Output<{ newGameSessionsPerCreator?: number, policyPeriodInMinutes?: number } | undefined>;
-    /**
-     * Instructions for launching server processes on each instance in the fleet. See below.
-     */
     public readonly runtimeConfiguration: pulumi.Output<{ gameSessionActivationTimeoutSeconds?: number, maxConcurrentGameSessionActivations?: number, serverProcesses?: { concurrentExecutions: number, launchPath: string, parameters?: string }[] } | undefined>;
 
     /**
@@ -119,50 +83,17 @@ export class Fleet extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Fleet resources.
  */
 export interface FleetState {
-    /**
-     * Fleet ARN.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * ID of the Gamelift Build to be deployed on the fleet.
-     */
     readonly buildId?: pulumi.Input<string>;
-    /**
-     * Human-readable description of the fleet.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * Range of IP addresses and port settings that permit inbound traffic to access server processes running on the fleet. See below.
-     */
     readonly ec2InboundPermissions?: pulumi.Input<pulumi.Input<{ fromPort: pulumi.Input<number>, ipRange: pulumi.Input<string>, protocol: pulumi.Input<string>, toPort: pulumi.Input<number> }>[]>;
-    /**
-     * Name of an EC2 instance type. e.g. `t2.micro`
-     */
     readonly ec2InstanceType?: pulumi.Input<string>;
     readonly logPaths?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * List of names of metric groups to add this fleet to. A metric group tracks metrics across all fleets in the group. Defaults to `default`.
-     */
     readonly metricGroups?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The name of the fleet.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Game session protection policy to apply to all instances in this fleet. e.g. `FullProtection`. Defaults to `NoProtection`.
-     */
     readonly newGameSessionProtectionPolicy?: pulumi.Input<string>;
-    /**
-     * Operating system of the fleet's computing resources.
-     */
     readonly operatingSystem?: pulumi.Input<string>;
-    /**
-     * Policy that limits the number of game sessions an individual player can create over a span of time for this fleet. See below.
-     */
     readonly resourceCreationLimitPolicy?: pulumi.Input<{ newGameSessionsPerCreator?: pulumi.Input<number>, policyPeriodInMinutes?: pulumi.Input<number> }>;
-    /**
-     * Instructions for launching server processes on each instance in the fleet. See below.
-     */
     readonly runtimeConfiguration?: pulumi.Input<{ gameSessionActivationTimeoutSeconds?: pulumi.Input<number>, maxConcurrentGameSessionActivations?: pulumi.Input<number>, serverProcesses?: pulumi.Input<pulumi.Input<{ concurrentExecutions: pulumi.Input<number>, launchPath: pulumi.Input<string>, parameters?: pulumi.Input<string> }>[]> }>;
 }
 
@@ -170,40 +101,13 @@ export interface FleetState {
  * The set of arguments for constructing a Fleet resource.
  */
 export interface FleetArgs {
-    /**
-     * ID of the Gamelift Build to be deployed on the fleet.
-     */
     readonly buildId: pulumi.Input<string>;
-    /**
-     * Human-readable description of the fleet.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * Range of IP addresses and port settings that permit inbound traffic to access server processes running on the fleet. See below.
-     */
     readonly ec2InboundPermissions?: pulumi.Input<pulumi.Input<{ fromPort: pulumi.Input<number>, ipRange: pulumi.Input<string>, protocol: pulumi.Input<string>, toPort: pulumi.Input<number> }>[]>;
-    /**
-     * Name of an EC2 instance type. e.g. `t2.micro`
-     */
     readonly ec2InstanceType: pulumi.Input<string>;
-    /**
-     * List of names of metric groups to add this fleet to. A metric group tracks metrics across all fleets in the group. Defaults to `default`.
-     */
     readonly metricGroups?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The name of the fleet.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Game session protection policy to apply to all instances in this fleet. e.g. `FullProtection`. Defaults to `NoProtection`.
-     */
     readonly newGameSessionProtectionPolicy?: pulumi.Input<string>;
-    /**
-     * Policy that limits the number of game sessions an individual player can create over a span of time for this fleet. See below.
-     */
     readonly resourceCreationLimitPolicy?: pulumi.Input<{ newGameSessionsPerCreator?: pulumi.Input<number>, policyPeriodInMinutes?: pulumi.Input<number> }>;
-    /**
-     * Instructions for launching server processes on each instance in the fleet. See below.
-     */
     readonly runtimeConfiguration?: pulumi.Input<{ gameSessionActivationTimeoutSeconds?: pulumi.Input<number>, maxConcurrentGameSessionActivations?: pulumi.Input<number>, serverProcesses?: pulumi.Input<pulumi.Input<{ concurrentExecutions: pulumi.Input<number>, launchPath: pulumi.Input<string>, parameters?: pulumi.Input<string> }>[]> }>;
 }

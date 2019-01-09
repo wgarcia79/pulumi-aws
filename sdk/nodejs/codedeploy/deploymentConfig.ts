@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a CodeDeploy deployment config for an application
- */
 export class DeploymentConfig extends pulumi.CustomResource {
     /**
      * Get an existing DeploymentConfig resource's state with the given name, ID, and optional extra
@@ -20,25 +17,10 @@ export class DeploymentConfig extends pulumi.CustomResource {
         return new DeploymentConfig(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The compute platform can be `Server`, `Lambda`, or `ECS`. Default is `Server`.
-     */
     public readonly computePlatform: pulumi.Output<string | undefined>;
-    /**
-     * The AWS Assigned deployment config id
-     */
     public /*out*/ readonly deploymentConfigId: pulumi.Output<string>;
-    /**
-     * The name of the deployment config.
-     */
     public readonly deploymentConfigName: pulumi.Output<string>;
-    /**
-     * A minimum_healthy_hosts block. Minimum Healthy Hosts are documented below.
-     */
     public readonly minimumHealthyHosts: pulumi.Output<{ type?: string, value?: number } | undefined>;
-    /**
-     * A traffic_routing_config block. Traffic Routing Config is documented below.
-     */
     public readonly trafficRoutingConfig: pulumi.Output<{ timeBasedCanary?: { interval?: number, percentage?: number }, timeBasedLinear?: { interval?: number, percentage?: number }, type?: string } | undefined>;
 
     /**
@@ -77,25 +59,10 @@ export class DeploymentConfig extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DeploymentConfig resources.
  */
 export interface DeploymentConfigState {
-    /**
-     * The compute platform can be `Server`, `Lambda`, or `ECS`. Default is `Server`.
-     */
     readonly computePlatform?: pulumi.Input<string>;
-    /**
-     * The AWS Assigned deployment config id
-     */
     readonly deploymentConfigId?: pulumi.Input<string>;
-    /**
-     * The name of the deployment config.
-     */
     readonly deploymentConfigName?: pulumi.Input<string>;
-    /**
-     * A minimum_healthy_hosts block. Minimum Healthy Hosts are documented below.
-     */
     readonly minimumHealthyHosts?: pulumi.Input<{ type?: pulumi.Input<string>, value?: pulumi.Input<number> }>;
-    /**
-     * A traffic_routing_config block. Traffic Routing Config is documented below.
-     */
     readonly trafficRoutingConfig?: pulumi.Input<{ timeBasedCanary?: pulumi.Input<{ interval?: pulumi.Input<number>, percentage?: pulumi.Input<number> }>, timeBasedLinear?: pulumi.Input<{ interval?: pulumi.Input<number>, percentage?: pulumi.Input<number> }>, type?: pulumi.Input<string> }>;
 }
 
@@ -103,20 +70,8 @@ export interface DeploymentConfigState {
  * The set of arguments for constructing a DeploymentConfig resource.
  */
 export interface DeploymentConfigArgs {
-    /**
-     * The compute platform can be `Server`, `Lambda`, or `ECS`. Default is `Server`.
-     */
     readonly computePlatform?: pulumi.Input<string>;
-    /**
-     * The name of the deployment config.
-     */
     readonly deploymentConfigName: pulumi.Input<string>;
-    /**
-     * A minimum_healthy_hosts block. Minimum Healthy Hosts are documented below.
-     */
     readonly minimumHealthyHosts?: pulumi.Input<{ type?: pulumi.Input<string>, value?: pulumi.Input<number> }>;
-    /**
-     * A traffic_routing_config block. Traffic Routing Config is documented below.
-     */
     readonly trafficRoutingConfig?: pulumi.Input<{ timeBasedCanary?: pulumi.Input<{ interval?: pulumi.Input<number>, percentage?: pulumi.Input<number> }>, timeBasedLinear?: pulumi.Input<{ interval?: pulumi.Input<number>, percentage?: pulumi.Input<number> }>, type?: pulumi.Input<string> }>;
 }

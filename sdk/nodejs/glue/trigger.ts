@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Manages a Glue Trigger resource.
- */
 export class Trigger extends pulumi.CustomResource {
     /**
      * Get an existing Trigger resource's state with the given name, ID, and optional extra
@@ -20,33 +17,12 @@ export class Trigger extends pulumi.CustomResource {
         return new Trigger(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * List of actions initiated by this trigger when it fires. Defined below.
-     */
     public readonly actions: pulumi.Output<{ arguments?: {[key: string]: any}, jobName: string, timeout?: number }[]>;
-    /**
-     * A description of the new trigger.
-     */
     public readonly description: pulumi.Output<string | undefined>;
-    /**
-     * Start the trigger. Defaults to `true`. Not valid to disable for `ON_DEMAND` type.
-     */
     public readonly enabled: pulumi.Output<boolean | undefined>;
-    /**
-     * The name of the trigger.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * A predicate to specify when the new trigger should fire. Required when trigger type is `CONDITIONAL`. Defined below.
-     */
     public readonly predicate: pulumi.Output<{ conditions: { jobName: string, logicalOperator?: string, state: string }[], logical?: string } | undefined>;
-    /**
-     * A cron expression used to specify the schedule. [Time-Based Schedules for Jobs and Crawlers](https://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html)
-     */
     public readonly schedule: pulumi.Output<string | undefined>;
-    /**
-     * The type of trigger. Valid values are `CONDITIONAL`, `ON_DEMAND`, and `SCHEDULED`.
-     */
     public readonly type: pulumi.Output<string>;
 
     /**
@@ -92,33 +68,12 @@ export class Trigger extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Trigger resources.
  */
 export interface TriggerState {
-    /**
-     * List of actions initiated by this trigger when it fires. Defined below.
-     */
     readonly actions?: pulumi.Input<pulumi.Input<{ arguments?: pulumi.Input<{[key: string]: any}>, jobName: pulumi.Input<string>, timeout?: pulumi.Input<number> }>[]>;
-    /**
-     * A description of the new trigger.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * Start the trigger. Defaults to `true`. Not valid to disable for `ON_DEMAND` type.
-     */
     readonly enabled?: pulumi.Input<boolean>;
-    /**
-     * The name of the trigger.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * A predicate to specify when the new trigger should fire. Required when trigger type is `CONDITIONAL`. Defined below.
-     */
     readonly predicate?: pulumi.Input<{ conditions: pulumi.Input<pulumi.Input<{ jobName: pulumi.Input<string>, logicalOperator?: pulumi.Input<string>, state: pulumi.Input<string> }>[]>, logical?: pulumi.Input<string> }>;
-    /**
-     * A cron expression used to specify the schedule. [Time-Based Schedules for Jobs and Crawlers](https://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html)
-     */
     readonly schedule?: pulumi.Input<string>;
-    /**
-     * The type of trigger. Valid values are `CONDITIONAL`, `ON_DEMAND`, and `SCHEDULED`.
-     */
     readonly type?: pulumi.Input<string>;
 }
 
@@ -126,32 +81,11 @@ export interface TriggerState {
  * The set of arguments for constructing a Trigger resource.
  */
 export interface TriggerArgs {
-    /**
-     * List of actions initiated by this trigger when it fires. Defined below.
-     */
     readonly actions: pulumi.Input<pulumi.Input<{ arguments?: pulumi.Input<{[key: string]: any}>, jobName: pulumi.Input<string>, timeout?: pulumi.Input<number> }>[]>;
-    /**
-     * A description of the new trigger.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * Start the trigger. Defaults to `true`. Not valid to disable for `ON_DEMAND` type.
-     */
     readonly enabled?: pulumi.Input<boolean>;
-    /**
-     * The name of the trigger.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * A predicate to specify when the new trigger should fire. Required when trigger type is `CONDITIONAL`. Defined below.
-     */
     readonly predicate?: pulumi.Input<{ conditions: pulumi.Input<pulumi.Input<{ jobName: pulumi.Input<string>, logicalOperator?: pulumi.Input<string>, state: pulumi.Input<string> }>[]>, logical?: pulumi.Input<string> }>;
-    /**
-     * A cron expression used to specify the schedule. [Time-Based Schedules for Jobs and Crawlers](https://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html)
-     */
     readonly schedule?: pulumi.Input<string>;
-    /**
-     * The type of trigger. Valid values are `CONDITIONAL`, `ON_DEMAND`, and `SCHEDULED`.
-     */
     readonly type: pulumi.Input<string>;
 }

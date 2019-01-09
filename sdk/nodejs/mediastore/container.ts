@@ -4,20 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a MediaStore Container.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_media_store_container_example = new aws.mediastore.Container("example", {
- *     name: "example",
- * });
- * ```
- */
 export class Container extends pulumi.CustomResource {
     /**
      * Get an existing Container resource's state with the given name, ID, and optional extra
@@ -31,17 +17,8 @@ export class Container extends pulumi.CustomResource {
         return new Container(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ARN of the container.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * The DNS endpoint of the container.
-     */
     public /*out*/ readonly endpoint: pulumi.Output<string>;
-    /**
-     * The name of the container. Must contain alphanumeric characters or underscores.
-     */
     public readonly name: pulumi.Output<string>;
 
     /**
@@ -73,17 +50,8 @@ export class Container extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Container resources.
  */
 export interface ContainerState {
-    /**
-     * The ARN of the container.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * The DNS endpoint of the container.
-     */
     readonly endpoint?: pulumi.Input<string>;
-    /**
-     * The name of the container. Must contain alphanumeric characters or underscores.
-     */
     readonly name?: pulumi.Input<string>;
 }
 
@@ -91,8 +59,5 @@ export interface ContainerState {
  * The set of arguments for constructing a Container resource.
  */
 export interface ContainerArgs {
-    /**
-     * The name of the container. Must contain alphanumeric characters or underscores.
-     */
     readonly name?: pulumi.Input<string>;
 }

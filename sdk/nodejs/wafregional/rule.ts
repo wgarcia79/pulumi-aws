@@ -4,33 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an WAF Regional Rule Resource for use with Application Load Balancer.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_wafregional_ipset_ipset = new aws.wafregional.IpSet("ipset", {
- *     ipSetDescriptors: [{
- *         type: "IPV4",
- *         value: "192.0.7.0/24",
- *     }],
- *     name: "tfIPSet",
- * });
- * const aws_wafregional_rule_wafrule = new aws.wafregional.Rule("wafrule", {
- *     metricName: "tfWAFRule",
- *     name: "tfWAFRule",
- *     predicates: [{
- *         dataId: aws_wafregional_ipset_ipset.id,
- *         negated: false,
- *         type: "IPMatch",
- *     }],
- * });
- * ```
- */
 export class Rule extends pulumi.CustomResource {
     /**
      * Get an existing Rule resource's state with the given name, ID, and optional extra
@@ -44,17 +17,8 @@ export class Rule extends pulumi.CustomResource {
         return new Rule(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The name or description for the Amazon CloudWatch metric of this rule.
-     */
     public readonly metricName: pulumi.Output<string>;
-    /**
-     * The name or description of the rule.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * The objects to include in a rule.
-     */
     public readonly predicates: pulumi.Output<{ dataId: string, negated: boolean, type: string }[] | undefined>;
 
     /**
@@ -89,17 +53,8 @@ export class Rule extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Rule resources.
  */
 export interface RuleState {
-    /**
-     * The name or description for the Amazon CloudWatch metric of this rule.
-     */
     readonly metricName?: pulumi.Input<string>;
-    /**
-     * The name or description of the rule.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The objects to include in a rule.
-     */
     readonly predicates?: pulumi.Input<pulumi.Input<{ dataId: pulumi.Input<string>, negated: pulumi.Input<boolean>, type: pulumi.Input<string> }>[]>;
 }
 
@@ -107,16 +62,7 @@ export interface RuleState {
  * The set of arguments for constructing a Rule resource.
  */
 export interface RuleArgs {
-    /**
-     * The name or description for the Amazon CloudWatch metric of this rule.
-     */
     readonly metricName: pulumi.Input<string>;
-    /**
-     * The name or description of the rule.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The objects to include in a rule.
-     */
     readonly predicates?: pulumi.Input<pulumi.Input<{ dataId: pulumi.Input<string>, negated: pulumi.Input<boolean>, type: pulumi.Input<string> }>[]>;
 }

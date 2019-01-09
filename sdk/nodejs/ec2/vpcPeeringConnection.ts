@@ -4,21 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a resource to manage a VPC peering connection.
- * 
- * > **NOTE on VPC Peering Connections and VPC Peering Connection Options:** Terraform provides
- * both a standalone VPC Peering Connection Options and a VPC Peering Connection
- * resource with `accepter` and `requester` attributes. Do not manage options for the same VPC peering
- * connection in both a VPC Peering Connection resource and a VPC Peering Connection Options resource.
- * Doing so will cause a conflict of options and will overwrite the options.
- * Using a VPC Peering Connection Options resource decouples management of the connection options from
- * management of the VPC Peering Connection and allows options to be set correctly in cross-account scenarios.
- * 
- * -> **Note:** For cross-account (requester's AWS account differs from the accepter's AWS account) or inter-region
- * VPC Peering Connections use the `aws_vpc_peering_connection` resource to manage the requester's side of the
- * connection and use the `aws_vpc_peering_connection_accepter` resource to manage the accepter's side of the connection.
- */
 export class VpcPeeringConnection extends pulumi.CustomResource {
     /**
      * Get an existing VpcPeeringConnection resource's state with the given name, ID, and optional extra
@@ -32,47 +17,14 @@ export class VpcPeeringConnection extends pulumi.CustomResource {
         return new VpcPeeringConnection(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The status of the VPC Peering Connection request.
-     */
     public /*out*/ readonly acceptStatus: pulumi.Output<string>;
-    /**
-     * An optional configuration block that allows for [VPC Peering Connection]
-     * (http://docs.aws.amazon.com/AmazonVPC/latest/PeeringGuide) options to be set for the VPC that accepts
-     * the peering connection (a maximum of one).
-     */
     public readonly accepter: pulumi.Output<{ allowClassicLinkToRemoteVpc?: boolean, allowRemoteVpcDnsResolution?: boolean, allowVpcToRemoteClassicLink?: boolean }>;
-    /**
-     * Accept the peering (both VPCs need to be in the same AWS account).
-     */
     public readonly autoAccept: pulumi.Output<boolean | undefined>;
-    /**
-     * The AWS account ID of the owner of the peer VPC.
-     * Defaults to the account ID the [AWS provider][1] is currently connected to.
-     */
     public readonly peerOwnerId: pulumi.Output<string>;
-    /**
-     * The region of the accepter VPC of the [VPC Peering Connection]. `auto_accept` must be `false`,
-     * and use the `aws_vpc_peering_connection_accepter` to manage the accepter side.
-     */
     public readonly peerRegion: pulumi.Output<string>;
-    /**
-     * The ID of the VPC with which you are creating the VPC Peering Connection.
-     */
     public readonly peerVpcId: pulumi.Output<string>;
-    /**
-     * A optional configuration block that allows for [VPC Peering Connection]
-     * (http://docs.aws.amazon.com/AmazonVPC/latest/PeeringGuide) options to be set for the VPC that requests
-     * the peering connection (a maximum of one).
-     */
     public readonly requester: pulumi.Output<{ allowClassicLinkToRemoteVpc?: boolean, allowRemoteVpcDnsResolution?: boolean, allowVpcToRemoteClassicLink?: boolean }>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     public readonly tags: pulumi.Output<{[key: string]: any} | undefined>;
-    /**
-     * The ID of the requester VPC.
-     */
     public readonly vpcId: pulumi.Output<string>;
 
     /**
@@ -122,47 +74,14 @@ export class VpcPeeringConnection extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpcPeeringConnection resources.
  */
 export interface VpcPeeringConnectionState {
-    /**
-     * The status of the VPC Peering Connection request.
-     */
     readonly acceptStatus?: pulumi.Input<string>;
-    /**
-     * An optional configuration block that allows for [VPC Peering Connection]
-     * (http://docs.aws.amazon.com/AmazonVPC/latest/PeeringGuide) options to be set for the VPC that accepts
-     * the peering connection (a maximum of one).
-     */
     readonly accepter?: pulumi.Input<{ allowClassicLinkToRemoteVpc?: pulumi.Input<boolean>, allowRemoteVpcDnsResolution?: pulumi.Input<boolean>, allowVpcToRemoteClassicLink?: pulumi.Input<boolean> }>;
-    /**
-     * Accept the peering (both VPCs need to be in the same AWS account).
-     */
     readonly autoAccept?: pulumi.Input<boolean>;
-    /**
-     * The AWS account ID of the owner of the peer VPC.
-     * Defaults to the account ID the [AWS provider][1] is currently connected to.
-     */
     readonly peerOwnerId?: pulumi.Input<string>;
-    /**
-     * The region of the accepter VPC of the [VPC Peering Connection]. `auto_accept` must be `false`,
-     * and use the `aws_vpc_peering_connection_accepter` to manage the accepter side.
-     */
     readonly peerRegion?: pulumi.Input<string>;
-    /**
-     * The ID of the VPC with which you are creating the VPC Peering Connection.
-     */
     readonly peerVpcId?: pulumi.Input<string>;
-    /**
-     * A optional configuration block that allows for [VPC Peering Connection]
-     * (http://docs.aws.amazon.com/AmazonVPC/latest/PeeringGuide) options to be set for the VPC that requests
-     * the peering connection (a maximum of one).
-     */
     readonly requester?: pulumi.Input<{ allowClassicLinkToRemoteVpc?: pulumi.Input<boolean>, allowRemoteVpcDnsResolution?: pulumi.Input<boolean>, allowVpcToRemoteClassicLink?: pulumi.Input<boolean> }>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The ID of the requester VPC.
-     */
     readonly vpcId?: pulumi.Input<string>;
 }
 
@@ -170,42 +89,12 @@ export interface VpcPeeringConnectionState {
  * The set of arguments for constructing a VpcPeeringConnection resource.
  */
 export interface VpcPeeringConnectionArgs {
-    /**
-     * An optional configuration block that allows for [VPC Peering Connection]
-     * (http://docs.aws.amazon.com/AmazonVPC/latest/PeeringGuide) options to be set for the VPC that accepts
-     * the peering connection (a maximum of one).
-     */
     readonly accepter?: pulumi.Input<{ allowClassicLinkToRemoteVpc?: pulumi.Input<boolean>, allowRemoteVpcDnsResolution?: pulumi.Input<boolean>, allowVpcToRemoteClassicLink?: pulumi.Input<boolean> }>;
-    /**
-     * Accept the peering (both VPCs need to be in the same AWS account).
-     */
     readonly autoAccept?: pulumi.Input<boolean>;
-    /**
-     * The AWS account ID of the owner of the peer VPC.
-     * Defaults to the account ID the [AWS provider][1] is currently connected to.
-     */
     readonly peerOwnerId?: pulumi.Input<string>;
-    /**
-     * The region of the accepter VPC of the [VPC Peering Connection]. `auto_accept` must be `false`,
-     * and use the `aws_vpc_peering_connection_accepter` to manage the accepter side.
-     */
     readonly peerRegion?: pulumi.Input<string>;
-    /**
-     * The ID of the VPC with which you are creating the VPC Peering Connection.
-     */
     readonly peerVpcId: pulumi.Input<string>;
-    /**
-     * A optional configuration block that allows for [VPC Peering Connection]
-     * (http://docs.aws.amazon.com/AmazonVPC/latest/PeeringGuide) options to be set for the VPC that requests
-     * the peering connection (a maximum of one).
-     */
     readonly requester?: pulumi.Input<{ allowClassicLinkToRemoteVpc?: pulumi.Input<boolean>, allowRemoteVpcDnsResolution?: pulumi.Input<boolean>, allowVpcToRemoteClassicLink?: pulumi.Input<boolean> }>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The ID of the requester VPC.
-     */
     readonly vpcId: pulumi.Input<string>;
 }

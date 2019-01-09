@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a DAX Subnet Group resource.
- */
 export class SubnetGroup extends pulumi.CustomResource {
     /**
      * Get an existing SubnetGroup resource's state with the given name, ID, and optional extra
@@ -20,21 +17,9 @@ export class SubnetGroup extends pulumi.CustomResource {
         return new SubnetGroup(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * A description of the subnet group.
-     */
     public readonly description: pulumi.Output<string | undefined>;
-    /**
-     * The name of the subnet group.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * A list of VPC subnet IDs for the subnet group.
-     */
     public readonly subnetIds: pulumi.Output<string[]>;
-    /**
-     * VPC ID of the subnet group.
-     */
     public /*out*/ readonly vpcId: pulumi.Output<string>;
 
     /**
@@ -71,21 +56,9 @@ export class SubnetGroup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SubnetGroup resources.
  */
 export interface SubnetGroupState {
-    /**
-     * A description of the subnet group.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The name of the subnet group.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * A list of VPC subnet IDs for the subnet group.
-     */
     readonly subnetIds?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * VPC ID of the subnet group.
-     */
     readonly vpcId?: pulumi.Input<string>;
 }
 
@@ -93,16 +66,7 @@ export interface SubnetGroupState {
  * The set of arguments for constructing a SubnetGroup resource.
  */
 export interface SubnetGroupArgs {
-    /**
-     * A description of the subnet group.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The name of the subnet group.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * A list of VPC subnet IDs for the subnet group.
-     */
     readonly subnetIds: pulumi.Input<pulumi.Input<string>[]>;
 }

@@ -4,23 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a resource to create a SES template.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_ses_template_MyTemplate = new aws.ses.Template("MyTemplate", {
- *     html: "<h1>Hello {{name}},</h1><p>Your favorite animal is {{favoriteanimal}}.</p>",
- *     name: "MyTemplate",
- *     subject: "Greetings, {{name}}!",
- *     text: "Hello {{name}},\r\nYour favorite animal is {{favoriteanimal}}.",
- * });
- * ```
- */
 export class Template extends pulumi.CustomResource {
     /**
      * Get an existing Template resource's state with the given name, ID, and optional extra
@@ -34,21 +17,9 @@ export class Template extends pulumi.CustomResource {
         return new Template(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The HTML body of the email. Must be less than 500KB in size, including both the text and HTML parts.
-     */
     public readonly html: pulumi.Output<string | undefined>;
-    /**
-     * The name of the template. Cannot exceed 64 characters. You will refer to this name when you send email.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * The subject line of the email.
-     */
     public readonly subject: pulumi.Output<string | undefined>;
-    /**
-     * The email body that will be visible to recipients whose email clients do not display HTML. Must be less than 500KB in size, including both the text and HTML parts.
-     */
     public readonly text: pulumi.Output<string | undefined>;
 
     /**
@@ -82,21 +53,9 @@ export class Template extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Template resources.
  */
 export interface TemplateState {
-    /**
-     * The HTML body of the email. Must be less than 500KB in size, including both the text and HTML parts.
-     */
     readonly html?: pulumi.Input<string>;
-    /**
-     * The name of the template. Cannot exceed 64 characters. You will refer to this name when you send email.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The subject line of the email.
-     */
     readonly subject?: pulumi.Input<string>;
-    /**
-     * The email body that will be visible to recipients whose email clients do not display HTML. Must be less than 500KB in size, including both the text and HTML parts.
-     */
     readonly text?: pulumi.Input<string>;
 }
 
@@ -104,20 +63,8 @@ export interface TemplateState {
  * The set of arguments for constructing a Template resource.
  */
 export interface TemplateArgs {
-    /**
-     * The HTML body of the email. Must be less than 500KB in size, including both the text and HTML parts.
-     */
     readonly html?: pulumi.Input<string>;
-    /**
-     * The name of the template. Cannot exceed 64 characters. You will refer to this name when you send email.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The subject line of the email.
-     */
     readonly subject?: pulumi.Input<string>;
-    /**
-     * The email body that will be visible to recipients whose email clients do not display HTML. Must be less than 500KB in size, including both the text and HTML parts.
-     */
     readonly text?: pulumi.Input<string>;
 }

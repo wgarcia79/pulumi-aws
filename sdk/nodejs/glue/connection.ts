@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a Glue Connection resource.
- */
 export class Connection extends pulumi.CustomResource {
     /**
      * Get an existing Connection resource's state with the given name, ID, and optional extra
@@ -20,33 +17,12 @@ export class Connection extends pulumi.CustomResource {
         return new Connection(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ID of the Data Catalog in which to create the connection. If none is supplied, the AWS account ID is used by default.
-     */
     public readonly catalogId: pulumi.Output<string>;
-    /**
-     * A map of key-value pairs used as parameters for this connection.
-     */
     public readonly connectionProperties: pulumi.Output<{[key: string]: any}>;
-    /**
-     * The type of the connection. Defaults to `JBDC`.
-     */
     public readonly connectionType: pulumi.Output<string | undefined>;
-    /**
-     * Description of the connection.
-     */
     public readonly description: pulumi.Output<string | undefined>;
-    /**
-     * A list of criteria that can be used in selecting this connection.
-     */
     public readonly matchCriterias: pulumi.Output<string[] | undefined>;
-    /**
-     * The name of the connection.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * A map of physical connection requirements, such as VPC and SecurityGroup. Defined below.
-     */
     public readonly physicalConnectionRequirements: pulumi.Output<{ availabilityZone?: string, securityGroupIdLists?: string[], subnetId?: string } | undefined>;
 
     /**
@@ -89,33 +65,12 @@ export class Connection extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Connection resources.
  */
 export interface ConnectionState {
-    /**
-     * The ID of the Data Catalog in which to create the connection. If none is supplied, the AWS account ID is used by default.
-     */
     readonly catalogId?: pulumi.Input<string>;
-    /**
-     * A map of key-value pairs used as parameters for this connection.
-     */
     readonly connectionProperties?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The type of the connection. Defaults to `JBDC`.
-     */
     readonly connectionType?: pulumi.Input<string>;
-    /**
-     * Description of the connection.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * A list of criteria that can be used in selecting this connection.
-     */
     readonly matchCriterias?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The name of the connection.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * A map of physical connection requirements, such as VPC and SecurityGroup. Defined below.
-     */
     readonly physicalConnectionRequirements?: pulumi.Input<{ availabilityZone?: pulumi.Input<string>, securityGroupIdLists?: pulumi.Input<pulumi.Input<string>[]>, subnetId?: pulumi.Input<string> }>;
 }
 
@@ -123,32 +78,11 @@ export interface ConnectionState {
  * The set of arguments for constructing a Connection resource.
  */
 export interface ConnectionArgs {
-    /**
-     * The ID of the Data Catalog in which to create the connection. If none is supplied, the AWS account ID is used by default.
-     */
     readonly catalogId?: pulumi.Input<string>;
-    /**
-     * A map of key-value pairs used as parameters for this connection.
-     */
     readonly connectionProperties: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The type of the connection. Defaults to `JBDC`.
-     */
     readonly connectionType?: pulumi.Input<string>;
-    /**
-     * Description of the connection.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * A list of criteria that can be used in selecting this connection.
-     */
     readonly matchCriterias?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The name of the connection.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * A map of physical connection requirements, such as VPC and SecurityGroup. Defined below.
-     */
     readonly physicalConnectionRequirements?: pulumi.Input<{ availabilityZone?: pulumi.Input<string>, securityGroupIdLists?: pulumi.Input<pulumi.Input<string>[]>, subnetId?: pulumi.Input<string> }>;
 }

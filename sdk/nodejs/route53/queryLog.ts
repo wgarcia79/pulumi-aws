@@ -4,15 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a Route53 query logging configuration resource.
- * 
- * > **NOTE:** There are restrictions on the configuration of query logging. Notably,
- * the CloudWatch log group must be in the `us-east-1` region,
- * a permissive CloudWatch log resource policy must be in place, and
- * the Route53 hosted zone must be public.
- * See [Configuring Logging for DNS Queries](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/query-logs.html?console_help=true#query-logs-configuring) for additional details.
- */
 export class QueryLog extends pulumi.CustomResource {
     /**
      * Get an existing QueryLog resource's state with the given name, ID, and optional extra
@@ -26,13 +17,7 @@ export class QueryLog extends pulumi.CustomResource {
         return new QueryLog(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * CloudWatch log group ARN to send query logs.
-     */
     public readonly cloudwatchLogGroupArn: pulumi.Output<string>;
-    /**
-     * Route53 hosted zone ID to enable query logs.
-     */
     public readonly zoneId: pulumi.Output<string>;
 
     /**
@@ -68,13 +53,7 @@ export class QueryLog extends pulumi.CustomResource {
  * Input properties used for looking up and filtering QueryLog resources.
  */
 export interface QueryLogState {
-    /**
-     * CloudWatch log group ARN to send query logs.
-     */
     readonly cloudwatchLogGroupArn?: pulumi.Input<string>;
-    /**
-     * Route53 hosted zone ID to enable query logs.
-     */
     readonly zoneId?: pulumi.Input<string>;
 }
 
@@ -82,12 +61,6 @@ export interface QueryLogState {
  * The set of arguments for constructing a QueryLog resource.
  */
 export interface QueryLogArgs {
-    /**
-     * CloudWatch log group ARN to send query logs.
-     */
     readonly cloudwatchLogGroupArn: pulumi.Input<string>;
-    /**
-     * Route53 hosted zone ID to enable query logs.
-     */
     readonly zoneId: pulumi.Input<string>;
 }

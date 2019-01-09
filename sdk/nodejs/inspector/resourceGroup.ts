@@ -4,23 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a Inspector resource group
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_inspector_resource_group_bar = new aws.inspector.ResourceGroup("bar", {
- *     tags: {
- *         Env: "bar",
- *         Name: "foo",
- *     },
- * });
- * ```
- */
 export class ResourceGroup extends pulumi.CustomResource {
     /**
      * Get an existing ResourceGroup resource's state with the given name, ID, and optional extra
@@ -34,13 +17,7 @@ export class ResourceGroup extends pulumi.CustomResource {
         return new ResourceGroup(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The resource group ARN.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * The tags on your EC2 Instance.
-     */
     public readonly tags: pulumi.Output<{[key: string]: any}>;
 
     /**
@@ -73,13 +50,7 @@ export class ResourceGroup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ResourceGroup resources.
  */
 export interface ResourceGroupState {
-    /**
-     * The resource group ARN.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * The tags on your EC2 Instance.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
 }
 
@@ -87,8 +58,5 @@ export interface ResourceGroupState {
  * The set of arguments for constructing a ResourceGroup resource.
  */
 export interface ResourceGroupArgs {
-    /**
-     * The tags on your EC2 Instance.
-     */
     readonly tags: pulumi.Input<{[key: string]: any}>;
 }

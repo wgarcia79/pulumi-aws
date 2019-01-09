@@ -4,32 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Associates a Direct Connect Connection with a LAG.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_dx_connection_example = new aws.directconnect.Connection("example", {
- *     bandwidth: "1Gbps",
- *     location: "EqSe2",
- *     name: "example",
- * });
- * const aws_dx_lag_example = new aws.directconnect.LinkAggregationGroup("example", {
- *     connectionsBandwidth: "1Gbps",
- *     location: "EqSe2",
- *     name: "example",
- *     numberOfConnections: 1,
- * });
- * const aws_dx_connection_association_example = new aws.directconnect.ConnectionAssociation("example", {
- *     connectionId: aws_dx_connection_example.id,
- *     lagId: aws_dx_lag_example.id,
- * });
- * ```
- */
 export class ConnectionAssociation extends pulumi.CustomResource {
     /**
      * Get an existing ConnectionAssociation resource's state with the given name, ID, and optional extra
@@ -43,13 +17,7 @@ export class ConnectionAssociation extends pulumi.CustomResource {
         return new ConnectionAssociation(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ID of the connection.
-     */
     public readonly connectionId: pulumi.Output<string>;
-    /**
-     * The ID of the LAG with which to associate the connection.
-     */
     public readonly lagId: pulumi.Output<string>;
 
     /**
@@ -85,13 +53,7 @@ export class ConnectionAssociation extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ConnectionAssociation resources.
  */
 export interface ConnectionAssociationState {
-    /**
-     * The ID of the connection.
-     */
     readonly connectionId?: pulumi.Input<string>;
-    /**
-     * The ID of the LAG with which to associate the connection.
-     */
     readonly lagId?: pulumi.Input<string>;
 }
 
@@ -99,12 +61,6 @@ export interface ConnectionAssociationState {
  * The set of arguments for constructing a ConnectionAssociation resource.
  */
 export interface ConnectionAssociationArgs {
-    /**
-     * The ID of the connection.
-     */
     readonly connectionId: pulumi.Input<string>;
-    /**
-     * The ID of the LAG with which to associate the connection.
-     */
     readonly lagId: pulumi.Input<string>;
 }

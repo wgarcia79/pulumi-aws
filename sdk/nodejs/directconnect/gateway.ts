@@ -4,21 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a Direct Connect Gateway.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_dx_gateway_example = new aws.directconnect.Gateway("example", {
- *     amazonSideAsn: "64512",
- *     name: "tf-dxg-example",
- * });
- * ```
- */
 export class Gateway extends pulumi.CustomResource {
     /**
      * Get an existing Gateway resource's state with the given name, ID, and optional extra
@@ -32,13 +17,7 @@ export class Gateway extends pulumi.CustomResource {
         return new Gateway(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ASN to be configured on the Amazon side of the connection. The ASN must be in the private range of 64,512 to 65,534 or 4,200,000,000 to 4,294,967,294.
-     */
     public readonly amazonSideAsn: pulumi.Output<string>;
-    /**
-     * The name of the connection.
-     */
     public readonly name: pulumi.Output<string>;
 
     /**
@@ -71,13 +50,7 @@ export class Gateway extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Gateway resources.
  */
 export interface GatewayState {
-    /**
-     * The ASN to be configured on the Amazon side of the connection. The ASN must be in the private range of 64,512 to 65,534 or 4,200,000,000 to 4,294,967,294.
-     */
     readonly amazonSideAsn?: pulumi.Input<string>;
-    /**
-     * The name of the connection.
-     */
     readonly name?: pulumi.Input<string>;
 }
 
@@ -85,12 +58,6 @@ export interface GatewayState {
  * The set of arguments for constructing a Gateway resource.
  */
 export interface GatewayArgs {
-    /**
-     * The ASN to be configured on the Amazon side of the connection. The ASN must be in the private range of 64,512 to 65,534 or 4,200,000,000 to 4,294,967,294.
-     */
     readonly amazonSideAsn: pulumi.Input<string>;
-    /**
-     * The name of the connection.
-     */
     readonly name?: pulumi.Input<string>;
 }

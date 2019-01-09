@@ -4,31 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Use this data source to lookup information about IAM Server Certificates.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_iam_server_certificate_my_domain = pulumi.output(aws.iam.getServerCertificate({
- *     latest: true,
- *     namePrefix: "my-domain.org",
- * }));
- * const aws_elb_elb = new aws.elasticloadbalancing.LoadBalancer("elb", {
- *     listeners: [{
- *         instancePort: 8000,
- *         instanceProtocol: "https",
- *         lbPort: 443,
- *         lbProtocol: "https",
- *         sslCertificateId: aws_iam_server_certificate_my_domain.apply(__arg0 => __arg0.arn),
- *     }],
- *     name: "my-domain-elb",
- * });
- * ```
- */
 export function getServerCertificate(args?: GetServerCertificateArgs, opts?: pulumi.InvokeOptions): Promise<GetServerCertificateResult> {
     args = args || {};
     return pulumi.runtime.invoke("aws:iam/getServerCertificate:getServerCertificate", {
@@ -43,21 +18,9 @@ export function getServerCertificate(args?: GetServerCertificateArgs, opts?: pul
  * A collection of arguments for invoking getServerCertificate.
  */
 export interface GetServerCertificateArgs {
-    /**
-     * sort results by expiration date. returns the certificate with expiration date in furthest in the future.
-     */
     readonly latest?: boolean;
-    /**
-     * exact name of the cert to lookup
-     */
     readonly name?: string;
-    /**
-     * prefix of cert to filter by
-     */
     readonly namePrefix?: string;
-    /**
-     * prefix of path to filter by
-     */
     readonly pathPrefix?: string;
 }
 

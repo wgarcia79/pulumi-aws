@@ -4,60 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Manages an EC2 VPN connection. These objects can be connected to customer gateways, and allow you to establish tunnels between your network and Amazon.
- * 
- * > **Note:** All arguments including `tunnel1_preshared_key` and `tunnel2_preshared_key` will be stored in the raw state as plain-text.
- * [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
- * 
- * > **Note:** The CIDR blocks in the arguments `tunnel1_inside_cidr` and `tunnel2_inside_cidr` must have a prefix of /30 and be a part of a specific range.
- * [Read more about this in the AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_VpnTunnelOptionsSpecification.html).
- * 
- * ## Example Usage
- * 
- * ### EC2 Transit Gateway
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_customer_gateway_example = new aws.ec2.CustomerGateway("example", {
- *     bgpAsn: 65000,
- *     ipAddress: "172.0.0.1",
- *     type: "ipsec.1",
- * });
- * const aws_ec2_transit_gateway_example = new aws.ec2transitgateway.TransitGateway("example", {});
- * const aws_vpn_connection_example = new aws.ec2.VpnConnection("example", {
- *     customerGatewayId: aws_customer_gateway_example.id,
- *     transitGatewayId: aws_ec2_transit_gateway_example.id,
- *     type: aws_customer_gateway_example.type,
- * });
- * ```
- * ### Virtual Private Gateway
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_customer_gateway_customer_gateway = new aws.ec2.CustomerGateway("customer_gateway", {
- *     bgpAsn: 65000,
- *     ipAddress: "172.0.0.1",
- *     type: "ipsec.1",
- * });
- * const aws_vpc_vpc = new aws.ec2.Vpc("vpc", {
- *     cidrBlock: "10.0.0.0/16",
- * });
- * const aws_vpn_gateway_vpn_gateway = new aws.ec2.VpnGateway("vpn_gateway", {
- *     vpcId: aws_vpc_vpc.id,
- * });
- * const aws_vpn_connection_main = new aws.ec2.VpnConnection("main", {
- *     customerGatewayId: aws_customer_gateway_customer_gateway.id,
- *     staticRoutesOnly: true,
- *     type: "ipsec.1",
- *     vpnGatewayId: aws_vpn_gateway_vpn_gateway.id,
- * });
- * ```
- */
 export class VpnConnection extends pulumi.CustomResource {
     /**
      * Get an existing VpnConnection resource's state with the given name, ID, and optional extra
@@ -71,91 +17,28 @@ export class VpnConnection extends pulumi.CustomResource {
         return new VpnConnection(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The configuration information for the VPN connection's customer gateway (in the native XML format).
-     */
     public readonly customerGatewayConfiguration: pulumi.Output<string>;
-    /**
-     * The ID of the customer gateway.
-     */
     public readonly customerGatewayId: pulumi.Output<string>;
     public readonly routes: pulumi.Output<{ destinationCidrBlock: string, source: string, state: string }[]>;
-    /**
-     * Whether the VPN connection uses static routes exclusively. Static routes must be used for devices that don't support BGP.
-     */
     public readonly staticRoutesOnly: pulumi.Output<boolean>;
-    /**
-     * Tags to apply to the connection.
-     */
     public readonly tags: pulumi.Output<{[key: string]: any} | undefined>;
-    /**
-     * The ID of the EC2 Transit Gateway.
-     */
     public readonly transitGatewayId: pulumi.Output<string | undefined>;
-    /**
-     * The public IP address of the first VPN tunnel.
-     */
     public /*out*/ readonly tunnel1Address: pulumi.Output<string>;
-    /**
-     * The bgp asn number of the first VPN tunnel.
-     */
     public /*out*/ readonly tunnel1BgpAsn: pulumi.Output<string>;
-    /**
-     * The bgp holdtime of the first VPN tunnel.
-     */
     public /*out*/ readonly tunnel1BgpHoldtime: pulumi.Output<number>;
-    /**
-     * The RFC 6890 link-local address of the first VPN tunnel (Customer Gateway Side).
-     */
     public /*out*/ readonly tunnel1CgwInsideAddress: pulumi.Output<string>;
-    /**
-     * The CIDR block of the inside IP addresses for the first VPN tunnel.
-     */
     public readonly tunnel1InsideCidr: pulumi.Output<string>;
-    /**
-     * The preshared key of the first VPN tunnel.
-     */
     public readonly tunnel1PresharedKey: pulumi.Output<string>;
-    /**
-     * The RFC 6890 link-local address of the first VPN tunnel (VPN Gateway Side).
-     */
     public /*out*/ readonly tunnel1VgwInsideAddress: pulumi.Output<string>;
-    /**
-     * The public IP address of the second VPN tunnel.
-     */
     public /*out*/ readonly tunnel2Address: pulumi.Output<string>;
-    /**
-     * The bgp asn number of the second VPN tunnel.
-     */
     public /*out*/ readonly tunnel2BgpAsn: pulumi.Output<string>;
-    /**
-     * The bgp holdtime of the second VPN tunnel.
-     */
     public /*out*/ readonly tunnel2BgpHoldtime: pulumi.Output<number>;
-    /**
-     * The RFC 6890 link-local address of the second VPN tunnel (Customer Gateway Side).
-     */
     public /*out*/ readonly tunnel2CgwInsideAddress: pulumi.Output<string>;
-    /**
-     * The CIDR block of the second IP addresses for the first VPN tunnel.
-     */
     public readonly tunnel2InsideCidr: pulumi.Output<string>;
-    /**
-     * The preshared key of the second VPN tunnel.
-     */
     public readonly tunnel2PresharedKey: pulumi.Output<string>;
-    /**
-     * The RFC 6890 link-local address of the second VPN tunnel (VPN Gateway Side).
-     */
     public /*out*/ readonly tunnel2VgwInsideAddress: pulumi.Output<string>;
-    /**
-     * The type of VPN connection. The only type AWS supports at this time is "ipsec.1".
-     */
     public readonly type: pulumi.Output<string>;
     public readonly vgwTelemetries: pulumi.Output<{ acceptedRouteCount: number, lastStatusChange: string, outsideIpAddress: string, status: string, statusMessage: string }[]>;
-    /**
-     * The ID of the Virtual Private Gateway.
-     */
     public readonly vpnGatewayId: pulumi.Output<string | undefined>;
 
     /**
@@ -233,91 +116,28 @@ export class VpnConnection extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpnConnection resources.
  */
 export interface VpnConnectionState {
-    /**
-     * The configuration information for the VPN connection's customer gateway (in the native XML format).
-     */
     readonly customerGatewayConfiguration?: pulumi.Input<string>;
-    /**
-     * The ID of the customer gateway.
-     */
     readonly customerGatewayId?: pulumi.Input<string>;
     readonly routes?: pulumi.Input<pulumi.Input<{ destinationCidrBlock?: pulumi.Input<string>, source?: pulumi.Input<string>, state?: pulumi.Input<string> }>[]>;
-    /**
-     * Whether the VPN connection uses static routes exclusively. Static routes must be used for devices that don't support BGP.
-     */
     readonly staticRoutesOnly?: pulumi.Input<boolean>;
-    /**
-     * Tags to apply to the connection.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The ID of the EC2 Transit Gateway.
-     */
     readonly transitGatewayId?: pulumi.Input<string>;
-    /**
-     * The public IP address of the first VPN tunnel.
-     */
     readonly tunnel1Address?: pulumi.Input<string>;
-    /**
-     * The bgp asn number of the first VPN tunnel.
-     */
     readonly tunnel1BgpAsn?: pulumi.Input<string>;
-    /**
-     * The bgp holdtime of the first VPN tunnel.
-     */
     readonly tunnel1BgpHoldtime?: pulumi.Input<number>;
-    /**
-     * The RFC 6890 link-local address of the first VPN tunnel (Customer Gateway Side).
-     */
     readonly tunnel1CgwInsideAddress?: pulumi.Input<string>;
-    /**
-     * The CIDR block of the inside IP addresses for the first VPN tunnel.
-     */
     readonly tunnel1InsideCidr?: pulumi.Input<string>;
-    /**
-     * The preshared key of the first VPN tunnel.
-     */
     readonly tunnel1PresharedKey?: pulumi.Input<string>;
-    /**
-     * The RFC 6890 link-local address of the first VPN tunnel (VPN Gateway Side).
-     */
     readonly tunnel1VgwInsideAddress?: pulumi.Input<string>;
-    /**
-     * The public IP address of the second VPN tunnel.
-     */
     readonly tunnel2Address?: pulumi.Input<string>;
-    /**
-     * The bgp asn number of the second VPN tunnel.
-     */
     readonly tunnel2BgpAsn?: pulumi.Input<string>;
-    /**
-     * The bgp holdtime of the second VPN tunnel.
-     */
     readonly tunnel2BgpHoldtime?: pulumi.Input<number>;
-    /**
-     * The RFC 6890 link-local address of the second VPN tunnel (Customer Gateway Side).
-     */
     readonly tunnel2CgwInsideAddress?: pulumi.Input<string>;
-    /**
-     * The CIDR block of the second IP addresses for the first VPN tunnel.
-     */
     readonly tunnel2InsideCidr?: pulumi.Input<string>;
-    /**
-     * The preshared key of the second VPN tunnel.
-     */
     readonly tunnel2PresharedKey?: pulumi.Input<string>;
-    /**
-     * The RFC 6890 link-local address of the second VPN tunnel (VPN Gateway Side).
-     */
     readonly tunnel2VgwInsideAddress?: pulumi.Input<string>;
-    /**
-     * The type of VPN connection. The only type AWS supports at this time is "ipsec.1".
-     */
     readonly type?: pulumi.Input<string>;
     readonly vgwTelemetries?: pulumi.Input<pulumi.Input<{ acceptedRouteCount?: pulumi.Input<number>, lastStatusChange?: pulumi.Input<string>, outsideIpAddress?: pulumi.Input<string>, status?: pulumi.Input<string>, statusMessage?: pulumi.Input<string> }>[]>;
-    /**
-     * The ID of the Virtual Private Gateway.
-     */
     readonly vpnGatewayId?: pulumi.Input<string>;
 }
 
@@ -325,50 +145,17 @@ export interface VpnConnectionState {
  * The set of arguments for constructing a VpnConnection resource.
  */
 export interface VpnConnectionArgs {
-    /**
-     * The configuration information for the VPN connection's customer gateway (in the native XML format).
-     */
     readonly customerGatewayConfiguration?: pulumi.Input<string>;
-    /**
-     * The ID of the customer gateway.
-     */
     readonly customerGatewayId: pulumi.Input<string>;
     readonly routes?: pulumi.Input<pulumi.Input<{ destinationCidrBlock?: pulumi.Input<string>, source?: pulumi.Input<string>, state?: pulumi.Input<string> }>[]>;
-    /**
-     * Whether the VPN connection uses static routes exclusively. Static routes must be used for devices that don't support BGP.
-     */
     readonly staticRoutesOnly?: pulumi.Input<boolean>;
-    /**
-     * Tags to apply to the connection.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The ID of the EC2 Transit Gateway.
-     */
     readonly transitGatewayId?: pulumi.Input<string>;
-    /**
-     * The CIDR block of the inside IP addresses for the first VPN tunnel.
-     */
     readonly tunnel1InsideCidr?: pulumi.Input<string>;
-    /**
-     * The preshared key of the first VPN tunnel.
-     */
     readonly tunnel1PresharedKey?: pulumi.Input<string>;
-    /**
-     * The CIDR block of the second IP addresses for the first VPN tunnel.
-     */
     readonly tunnel2InsideCidr?: pulumi.Input<string>;
-    /**
-     * The preshared key of the second VPN tunnel.
-     */
     readonly tunnel2PresharedKey?: pulumi.Input<string>;
-    /**
-     * The type of VPN connection. The only type AWS supports at this time is "ipsec.1".
-     */
     readonly type: pulumi.Input<string>;
     readonly vgwTelemetries?: pulumi.Input<pulumi.Input<{ acceptedRouteCount?: pulumi.Input<number>, lastStatusChange?: pulumi.Input<string>, outsideIpAddress?: pulumi.Input<string>, status?: pulumi.Input<string>, statusMessage?: pulumi.Input<string> }>[]>;
-    /**
-     * The ID of the Virtual Private Gateway.
-     */
     readonly vpnGatewayId?: pulumi.Input<string>;
 }

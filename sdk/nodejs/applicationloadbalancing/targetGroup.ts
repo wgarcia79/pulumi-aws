@@ -4,58 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a Target Group resource for use with Load Balancer resources.
- * 
- * > **Note:** `aws_alb_target_group` is known as `aws_lb_target_group`. The functionality is identical.
- * 
- * ## Example Usage
- * 
- * ### Instance Target Group
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_vpc_main = new aws.ec2.Vpc("main", {
- *     cidrBlock: "10.0.0.0/16",
- * });
- * const aws_lb_target_group_test = new aws.elasticloadbalancingv2.TargetGroup("test", {
- *     name: "tf-example-lb-tg",
- *     port: 80,
- *     protocol: "HTTP",
- *     vpcId: aws_vpc_main.id,
- * });
- * ```
- * ### IP Target Group
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_vpc_main = new aws.ec2.Vpc("main", {
- *     cidrBlock: "10.0.0.0/16",
- * });
- * const aws_lb_target_group_ip_example = new aws.elasticloadbalancingv2.TargetGroup("ip-example", {
- *     name: "tf-example-lb-tg",
- *     port: 80,
- *     protocol: "HTTP",
- *     targetType: "ip",
- *     vpcId: aws_vpc_main.id,
- * });
- * ```
- * ### Lambda Target Group
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_lb_target_group_lambda_example = new aws.elasticloadbalancingv2.TargetGroup("lambda-example", {
- *     name: "tf-example-lb-tg",
- *     targetType: "lambda",
- * });
- * ```
- */
 export class TargetGroup extends pulumi.CustomResource {
     /**
      * Get an existing TargetGroup resource's state with the given name, ID, and optional extra
@@ -69,66 +17,19 @@ export class TargetGroup extends pulumi.CustomResource {
         return new TargetGroup(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ARN of the Target Group (matches `id`)
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * The ARN suffix for use with CloudWatch Metrics.
-     */
     public /*out*/ readonly arnSuffix: pulumi.Output<string>;
-    /**
-     * The amount time for Elastic Load Balancing to wait before changing the state of a deregistering target from draining to unused. The range is 0-3600 seconds. The default value is 300 seconds.
-     */
     public readonly deregistrationDelay: pulumi.Output<number | undefined>;
-    /**
-     * A Health Check block. Health Check blocks are documented below.
-     */
     public readonly healthCheck: pulumi.Output<{ healthyThreshold?: number, interval?: number, matcher: string, path: string, port?: string, protocol?: string, timeout: number, unhealthyThreshold?: number }>;
-    /**
-     * The name of the target group. If omitted, Terraform will assign a random, unique name.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * Creates a unique name beginning with the specified prefix. Conflicts with `name`. Cannot be longer than 6 characters.
-     */
     public readonly namePrefix: pulumi.Output<string | undefined>;
-    /**
-     * The port to use to connect with the target. Valid values are either ports 1-65536, or `traffic-port`. Defaults to `traffic-port`.
-     */
     public readonly port: pulumi.Output<number | undefined>;
-    /**
-     * The protocol to use to connect with the target. Defaults to `HTTP`. Not applicable when `target_type` is `lambda`.
-     */
     public readonly protocol: pulumi.Output<string | undefined>;
-    /**
-     * Boolean to enable / disable support for proxy protocol v2 on Network Load Balancers. See [doc](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-target-groups.html#proxy-protocol) for more information.
-     */
     public readonly proxyProtocolV2: pulumi.Output<boolean | undefined>;
-    /**
-     * The amount time for targets to warm up before the load balancer sends them a full share of requests. The range is 30-900 seconds or 0 to disable. The default value is 0 seconds.
-     */
     public readonly slowStart: pulumi.Output<number | undefined>;
-    /**
-     * A Stickiness block. Stickiness blocks are documented below. `stickiness` is only valid if used with Load Balancers of type `Application`
-     */
     public readonly stickiness: pulumi.Output<{ cookieDuration?: number, enabled?: boolean, type: string }>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     public readonly tags: pulumi.Output<{[key: string]: any} | undefined>;
-    /**
-     * The type of target that you must specify when registering targets with this target group.
-     * The possible values are `instance` (targets are specified by instance ID) or `ip` (targets are specified by IP address) or `lambda` (targets are specified by lambda arn).
-     * The default is `instance`. Note that you can't specify targets for a target group using both instance IDs and IP addresses.
-     * If the target type is `ip`, specify IP addresses from the subnets of the virtual private cloud (VPC) for the target group,
-     * the RFC 1918 range (10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16), and the RFC 6598 range (100.64.0.0/10).
-     * You can't specify publicly routable IP addresses.
-     */
     public readonly targetType: pulumi.Output<string | undefined>;
-    /**
-     * The identifier of the VPC in which to create the target group. Required when `target_type` is `instance` or `ip`. Does not apply when `target_type` is `lambda`.
-     */
     public readonly vpcId: pulumi.Output<string | undefined>;
 
     /**
@@ -182,66 +83,19 @@ export class TargetGroup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering TargetGroup resources.
  */
 export interface TargetGroupState {
-    /**
-     * The ARN of the Target Group (matches `id`)
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * The ARN suffix for use with CloudWatch Metrics.
-     */
     readonly arnSuffix?: pulumi.Input<string>;
-    /**
-     * The amount time for Elastic Load Balancing to wait before changing the state of a deregistering target from draining to unused. The range is 0-3600 seconds. The default value is 300 seconds.
-     */
     readonly deregistrationDelay?: pulumi.Input<number>;
-    /**
-     * A Health Check block. Health Check blocks are documented below.
-     */
     readonly healthCheck?: pulumi.Input<{ healthyThreshold?: pulumi.Input<number>, interval?: pulumi.Input<number>, matcher?: pulumi.Input<string>, path?: pulumi.Input<string>, port?: pulumi.Input<string>, protocol?: pulumi.Input<string>, timeout?: pulumi.Input<number>, unhealthyThreshold?: pulumi.Input<number> }>;
-    /**
-     * The name of the target group. If omitted, Terraform will assign a random, unique name.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Creates a unique name beginning with the specified prefix. Conflicts with `name`. Cannot be longer than 6 characters.
-     */
     readonly namePrefix?: pulumi.Input<string>;
-    /**
-     * The port to use to connect with the target. Valid values are either ports 1-65536, or `traffic-port`. Defaults to `traffic-port`.
-     */
     readonly port?: pulumi.Input<number>;
-    /**
-     * The protocol to use to connect with the target. Defaults to `HTTP`. Not applicable when `target_type` is `lambda`.
-     */
     readonly protocol?: pulumi.Input<string>;
-    /**
-     * Boolean to enable / disable support for proxy protocol v2 on Network Load Balancers. See [doc](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-target-groups.html#proxy-protocol) for more information.
-     */
     readonly proxyProtocolV2?: pulumi.Input<boolean>;
-    /**
-     * The amount time for targets to warm up before the load balancer sends them a full share of requests. The range is 30-900 seconds or 0 to disable. The default value is 0 seconds.
-     */
     readonly slowStart?: pulumi.Input<number>;
-    /**
-     * A Stickiness block. Stickiness blocks are documented below. `stickiness` is only valid if used with Load Balancers of type `Application`
-     */
     readonly stickiness?: pulumi.Input<{ cookieDuration?: pulumi.Input<number>, enabled?: pulumi.Input<boolean>, type: pulumi.Input<string> }>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The type of target that you must specify when registering targets with this target group.
-     * The possible values are `instance` (targets are specified by instance ID) or `ip` (targets are specified by IP address) or `lambda` (targets are specified by lambda arn).
-     * The default is `instance`. Note that you can't specify targets for a target group using both instance IDs and IP addresses.
-     * If the target type is `ip`, specify IP addresses from the subnets of the virtual private cloud (VPC) for the target group,
-     * the RFC 1918 range (10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16), and the RFC 6598 range (100.64.0.0/10).
-     * You can't specify publicly routable IP addresses.
-     */
     readonly targetType?: pulumi.Input<string>;
-    /**
-     * The identifier of the VPC in which to create the target group. Required when `target_type` is `instance` or `ip`. Does not apply when `target_type` is `lambda`.
-     */
     readonly vpcId?: pulumi.Input<string>;
 }
 
@@ -249,57 +103,16 @@ export interface TargetGroupState {
  * The set of arguments for constructing a TargetGroup resource.
  */
 export interface TargetGroupArgs {
-    /**
-     * The amount time for Elastic Load Balancing to wait before changing the state of a deregistering target from draining to unused. The range is 0-3600 seconds. The default value is 300 seconds.
-     */
     readonly deregistrationDelay?: pulumi.Input<number>;
-    /**
-     * A Health Check block. Health Check blocks are documented below.
-     */
     readonly healthCheck?: pulumi.Input<{ healthyThreshold?: pulumi.Input<number>, interval?: pulumi.Input<number>, matcher?: pulumi.Input<string>, path?: pulumi.Input<string>, port?: pulumi.Input<string>, protocol?: pulumi.Input<string>, timeout?: pulumi.Input<number>, unhealthyThreshold?: pulumi.Input<number> }>;
-    /**
-     * The name of the target group. If omitted, Terraform will assign a random, unique name.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Creates a unique name beginning with the specified prefix. Conflicts with `name`. Cannot be longer than 6 characters.
-     */
     readonly namePrefix?: pulumi.Input<string>;
-    /**
-     * The port to use to connect with the target. Valid values are either ports 1-65536, or `traffic-port`. Defaults to `traffic-port`.
-     */
     readonly port?: pulumi.Input<number>;
-    /**
-     * The protocol to use to connect with the target. Defaults to `HTTP`. Not applicable when `target_type` is `lambda`.
-     */
     readonly protocol?: pulumi.Input<string>;
-    /**
-     * Boolean to enable / disable support for proxy protocol v2 on Network Load Balancers. See [doc](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-target-groups.html#proxy-protocol) for more information.
-     */
     readonly proxyProtocolV2?: pulumi.Input<boolean>;
-    /**
-     * The amount time for targets to warm up before the load balancer sends them a full share of requests. The range is 30-900 seconds or 0 to disable. The default value is 0 seconds.
-     */
     readonly slowStart?: pulumi.Input<number>;
-    /**
-     * A Stickiness block. Stickiness blocks are documented below. `stickiness` is only valid if used with Load Balancers of type `Application`
-     */
     readonly stickiness?: pulumi.Input<{ cookieDuration?: pulumi.Input<number>, enabled?: pulumi.Input<boolean>, type: pulumi.Input<string> }>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The type of target that you must specify when registering targets with this target group.
-     * The possible values are `instance` (targets are specified by instance ID) or `ip` (targets are specified by IP address) or `lambda` (targets are specified by lambda arn).
-     * The default is `instance`. Note that you can't specify targets for a target group using both instance IDs and IP addresses.
-     * If the target type is `ip`, specify IP addresses from the subnets of the virtual private cloud (VPC) for the target group,
-     * the RFC 1918 range (10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16), and the RFC 6598 range (100.64.0.0/10).
-     * You can't specify publicly routable IP addresses.
-     */
     readonly targetType?: pulumi.Input<string>;
-    /**
-     * The identifier of the VPC in which to create the target group. Required when `target_type` is `instance` or `ip`. Does not apply when `target_type` is `lambda`.
-     */
     readonly vpcId?: pulumi.Input<string>;
 }

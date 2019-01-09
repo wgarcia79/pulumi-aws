@@ -4,23 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Manages an AWS DataSync Agent deployed on premises.
- * 
- * > **NOTE:** One of `activation_key` or `ip_address` must be provided for resource creation (agent activation). Neither is required for resource import. If using `ip_address`, Terraform must be able to make an HTTP (port 80) GET request to the specified IP address from where it is running. The agent will turn off that HTTP server after activation.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_datasync_agent_example = new aws.datasync.Agent("example", {
- *     ipAddress: "1.2.3.4",
- *     name: "example",
- * });
- * ```
- */
 export class Agent extends pulumi.CustomResource {
     /**
      * Get an existing Agent resource's state with the given name, ID, and optional extra
@@ -34,25 +17,10 @@ export class Agent extends pulumi.CustomResource {
         return new Agent(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * DataSync Agent activation key during resource creation. Conflicts with `ip_address`. If an `ip_address` is provided instead, Terraform will retrieve the `activation_key` as part of the resource creation.
-     */
     public readonly activationKey: pulumi.Output<string>;
-    /**
-     * Amazon Resource Name (ARN) of the DataSync Agent.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * DataSync Agent IP address to retrieve activation key during resource creation. Conflicts with `activation_key`. DataSync Agent must be accessible on port 80 from where Terraform is running.
-     */
     public readonly ipAddress: pulumi.Output<string>;
-    /**
-     * Name of the DataSync Agent.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * Key-value pairs of resource tags to assign to the DataSync Agent.
-     */
     public readonly tags: pulumi.Output<{[key: string]: string} | undefined>;
 
     /**
@@ -88,25 +56,10 @@ export class Agent extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Agent resources.
  */
 export interface AgentState {
-    /**
-     * DataSync Agent activation key during resource creation. Conflicts with `ip_address`. If an `ip_address` is provided instead, Terraform will retrieve the `activation_key` as part of the resource creation.
-     */
     readonly activationKey?: pulumi.Input<string>;
-    /**
-     * Amazon Resource Name (ARN) of the DataSync Agent.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * DataSync Agent IP address to retrieve activation key during resource creation. Conflicts with `activation_key`. DataSync Agent must be accessible on port 80 from where Terraform is running.
-     */
     readonly ipAddress?: pulumi.Input<string>;
-    /**
-     * Name of the DataSync Agent.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Key-value pairs of resource tags to assign to the DataSync Agent.
-     */
     readonly tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
@@ -114,20 +67,8 @@ export interface AgentState {
  * The set of arguments for constructing a Agent resource.
  */
 export interface AgentArgs {
-    /**
-     * DataSync Agent activation key during resource creation. Conflicts with `ip_address`. If an `ip_address` is provided instead, Terraform will retrieve the `activation_key` as part of the resource creation.
-     */
     readonly activationKey?: pulumi.Input<string>;
-    /**
-     * DataSync Agent IP address to retrieve activation key during resource creation. Conflicts with `activation_key`. DataSync Agent must be accessible on port 80 from where Terraform is running.
-     */
     readonly ipAddress?: pulumi.Input<string>;
-    /**
-     * Name of the DataSync Agent.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Key-value pairs of resource tags to assign to the DataSync Agent.
-     */
     readonly tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }

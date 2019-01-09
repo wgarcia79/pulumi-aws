@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Manages an EKS Cluster.
- */
 export class Cluster extends pulumi.CustomResource {
     /**
      * Get an existing Cluster resource's state with the given name, ID, and optional extra
@@ -20,38 +17,14 @@ export class Cluster extends pulumi.CustomResource {
         return new Cluster(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The Amazon Resource Name (ARN) of the cluster.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * Nested attribute containing `certificate-authority-data` for your cluster.
-     */
     public /*out*/ readonly certificateAuthority: pulumi.Output<{ data: string }>;
     public /*out*/ readonly createdAt: pulumi.Output<string>;
-    /**
-     * The endpoint for your Kubernetes API server.
-     */
     public /*out*/ readonly endpoint: pulumi.Output<string>;
-    /**
-     * Name of the cluster.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * The platform version for the cluster.
-     */
     public /*out*/ readonly platformVersion: pulumi.Output<string>;
-    /**
-     * The Amazon Resource Name (ARN) of the IAM role that provides permissions for the Kubernetes control plane to make calls to AWS API operations on your behalf.
-     */
     public readonly roleArn: pulumi.Output<string>;
-    /**
-     * Desired Kubernetes master version. If you do not specify a value, the latest available version is used.
-     */
     public readonly version: pulumi.Output<string>;
-    /**
-     * Nested argument for the VPC associated with your cluster. Amazon EKS VPC resources have specific requirements to work properly with Kubernetes. For more information, see [Cluster VPC Considerations](https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html) and [Cluster Security Group Considerations](https://docs.aws.amazon.com/eks/latest/userguide/sec-group-reqs.html) in the Amazon EKS User Guide. Configuration detailed below.
-     */
     public readonly vpcConfig: pulumi.Output<{ securityGroupIds?: string[], subnetIds: string[], vpcId: string }>;
 
     /**
@@ -101,38 +74,14 @@ export class Cluster extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Cluster resources.
  */
 export interface ClusterState {
-    /**
-     * The Amazon Resource Name (ARN) of the cluster.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * Nested attribute containing `certificate-authority-data` for your cluster.
-     */
     readonly certificateAuthority?: pulumi.Input<{ data?: pulumi.Input<string> }>;
     readonly createdAt?: pulumi.Input<string>;
-    /**
-     * The endpoint for your Kubernetes API server.
-     */
     readonly endpoint?: pulumi.Input<string>;
-    /**
-     * Name of the cluster.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The platform version for the cluster.
-     */
     readonly platformVersion?: pulumi.Input<string>;
-    /**
-     * The Amazon Resource Name (ARN) of the IAM role that provides permissions for the Kubernetes control plane to make calls to AWS API operations on your behalf.
-     */
     readonly roleArn?: pulumi.Input<string>;
-    /**
-     * Desired Kubernetes master version. If you do not specify a value, the latest available version is used.
-     */
     readonly version?: pulumi.Input<string>;
-    /**
-     * Nested argument for the VPC associated with your cluster. Amazon EKS VPC resources have specific requirements to work properly with Kubernetes. For more information, see [Cluster VPC Considerations](https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html) and [Cluster Security Group Considerations](https://docs.aws.amazon.com/eks/latest/userguide/sec-group-reqs.html) in the Amazon EKS User Guide. Configuration detailed below.
-     */
     readonly vpcConfig?: pulumi.Input<{ securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>, subnetIds: pulumi.Input<pulumi.Input<string>[]>, vpcId?: pulumi.Input<string> }>;
 }
 
@@ -140,20 +89,8 @@ export interface ClusterState {
  * The set of arguments for constructing a Cluster resource.
  */
 export interface ClusterArgs {
-    /**
-     * Name of the cluster.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The Amazon Resource Name (ARN) of the IAM role that provides permissions for the Kubernetes control plane to make calls to AWS API operations on your behalf.
-     */
     readonly roleArn: pulumi.Input<string>;
-    /**
-     * Desired Kubernetes master version. If you do not specify a value, the latest available version is used.
-     */
     readonly version?: pulumi.Input<string>;
-    /**
-     * Nested argument for the VPC associated with your cluster. Amazon EKS VPC resources have specific requirements to work properly with Kubernetes. For more information, see [Cluster VPC Considerations](https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html) and [Cluster Security Group Considerations](https://docs.aws.amazon.com/eks/latest/userguide/sec-group-reqs.html) in the Amazon EKS User Guide. Configuration detailed below.
-     */
     readonly vpcConfig: pulumi.Input<{ securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>, subnetIds: pulumi.Input<pulumi.Input<string>[]>, vpcId?: pulumi.Input<string> }>;
 }

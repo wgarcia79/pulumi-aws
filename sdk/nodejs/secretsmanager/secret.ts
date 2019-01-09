@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a resource to manage AWS Secrets Manager secret metadata. To manage a secret value, see the [`aws_secretsmanager_secret_version` resource](https://www.terraform.io/docs/providers/aws/r/secretsmanager_secret_version.html).
- */
 export class Secret extends pulumi.CustomResource {
     /**
      * Get an existing Secret resource's state with the given name, ID, and optional extra
@@ -20,49 +17,16 @@ export class Secret extends pulumi.CustomResource {
         return new Secret(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * Amazon Resource Name (ARN) of the secret.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * A description of the secret.
-     */
     public readonly description: pulumi.Output<string | undefined>;
-    /**
-     * Specifies the ARN or alias of the AWS KMS customer master key (CMK) to be used to encrypt the secret values in the versions stored in this secret. If you don't specify this value, then Secrets Manager defaults to using the AWS account's default CMK (the one named `aws/secretsmanager`). If the default KMS CMK with that name doesn't yet exist, then AWS Secrets Manager creates it for you automatically the first time.
-     */
     public readonly kmsKeyId: pulumi.Output<string | undefined>;
-    /**
-     * Specifies the friendly name of the new secret. The secret name can consist of uppercase letters, lowercase letters, digits, and any of the following characters: `/_+=.@-` Conflicts with `name_prefix`.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-     */
     public readonly namePrefix: pulumi.Output<string>;
-    /**
-     * A valid JSON document representing a [resource policy](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-based-policies.html). For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](https://www.terraform.io/docs/providers/aws/guides/iam-policy-documents.html).
-     */
     public readonly policy: pulumi.Output<string | undefined>;
-    /**
-     * Specifies the number of days that AWS Secrets Manager waits before it can delete the secret. This value can be `0` to force deletion without recovery or range from `7` to `30` days. The default value is `30`.
-     */
     public readonly recoveryWindowInDays: pulumi.Output<number | undefined>;
-    /**
-     * Specifies whether automatic rotation is enabled for this secret.
-     */
     public /*out*/ readonly rotationEnabled: pulumi.Output<boolean>;
-    /**
-     * Specifies the ARN of the Lambda function that can rotate the secret.
-     */
     public readonly rotationLambdaArn: pulumi.Output<string | undefined>;
-    /**
-     * A structure that defines the rotation configuration for this secret. Defined below.
-     */
     public readonly rotationRules: pulumi.Output<{ automaticallyAfterDays: number } | undefined>;
-    /**
-     * Specifies a key-value map of user-defined tags that are attached to the secret.
-     */
     public readonly tags: pulumi.Output<{[key: string]: any} | undefined>;
 
     /**
@@ -110,49 +74,16 @@ export class Secret extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Secret resources.
  */
 export interface SecretState {
-    /**
-     * Amazon Resource Name (ARN) of the secret.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * A description of the secret.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * Specifies the ARN or alias of the AWS KMS customer master key (CMK) to be used to encrypt the secret values in the versions stored in this secret. If you don't specify this value, then Secrets Manager defaults to using the AWS account's default CMK (the one named `aws/secretsmanager`). If the default KMS CMK with that name doesn't yet exist, then AWS Secrets Manager creates it for you automatically the first time.
-     */
     readonly kmsKeyId?: pulumi.Input<string>;
-    /**
-     * Specifies the friendly name of the new secret. The secret name can consist of uppercase letters, lowercase letters, digits, and any of the following characters: `/_+=.@-` Conflicts with `name_prefix`.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-     */
     readonly namePrefix?: pulumi.Input<string>;
-    /**
-     * A valid JSON document representing a [resource policy](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-based-policies.html). For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](https://www.terraform.io/docs/providers/aws/guides/iam-policy-documents.html).
-     */
     readonly policy?: pulumi.Input<string>;
-    /**
-     * Specifies the number of days that AWS Secrets Manager waits before it can delete the secret. This value can be `0` to force deletion without recovery or range from `7` to `30` days. The default value is `30`.
-     */
     readonly recoveryWindowInDays?: pulumi.Input<number>;
-    /**
-     * Specifies whether automatic rotation is enabled for this secret.
-     */
     readonly rotationEnabled?: pulumi.Input<boolean>;
-    /**
-     * Specifies the ARN of the Lambda function that can rotate the secret.
-     */
     readonly rotationLambdaArn?: pulumi.Input<string>;
-    /**
-     * A structure that defines the rotation configuration for this secret. Defined below.
-     */
     readonly rotationRules?: pulumi.Input<{ automaticallyAfterDays: pulumi.Input<number> }>;
-    /**
-     * Specifies a key-value map of user-defined tags that are attached to the secret.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
 }
 
@@ -160,40 +91,13 @@ export interface SecretState {
  * The set of arguments for constructing a Secret resource.
  */
 export interface SecretArgs {
-    /**
-     * A description of the secret.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * Specifies the ARN or alias of the AWS KMS customer master key (CMK) to be used to encrypt the secret values in the versions stored in this secret. If you don't specify this value, then Secrets Manager defaults to using the AWS account's default CMK (the one named `aws/secretsmanager`). If the default KMS CMK with that name doesn't yet exist, then AWS Secrets Manager creates it for you automatically the first time.
-     */
     readonly kmsKeyId?: pulumi.Input<string>;
-    /**
-     * Specifies the friendly name of the new secret. The secret name can consist of uppercase letters, lowercase letters, digits, and any of the following characters: `/_+=.@-` Conflicts with `name_prefix`.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-     */
     readonly namePrefix?: pulumi.Input<string>;
-    /**
-     * A valid JSON document representing a [resource policy](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-based-policies.html). For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](https://www.terraform.io/docs/providers/aws/guides/iam-policy-documents.html).
-     */
     readonly policy?: pulumi.Input<string>;
-    /**
-     * Specifies the number of days that AWS Secrets Manager waits before it can delete the secret. This value can be `0` to force deletion without recovery or range from `7` to `30` days. The default value is `30`.
-     */
     readonly recoveryWindowInDays?: pulumi.Input<number>;
-    /**
-     * Specifies the ARN of the Lambda function that can rotate the secret.
-     */
     readonly rotationLambdaArn?: pulumi.Input<string>;
-    /**
-     * A structure that defines the rotation configuration for this secret. Defined below.
-     */
     readonly rotationRules?: pulumi.Input<{ automaticallyAfterDays: pulumi.Input<number> }>;
-    /**
-     * Specifies a key-value map of user-defined tags that are attached to the secret.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
 }

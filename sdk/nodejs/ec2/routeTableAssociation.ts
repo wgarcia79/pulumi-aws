@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a resource to create an association between a subnet and routing table.
- */
 export class RouteTableAssociation extends pulumi.CustomResource {
     /**
      * Get an existing RouteTableAssociation resource's state with the given name, ID, and optional extra
@@ -20,13 +17,7 @@ export class RouteTableAssociation extends pulumi.CustomResource {
         return new RouteTableAssociation(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ID of the routing table to associate with.
-     */
     public readonly routeTableId: pulumi.Output<string>;
-    /**
-     * The subnet ID to create an association.
-     */
     public readonly subnetId: pulumi.Output<string>;
 
     /**
@@ -62,13 +53,7 @@ export class RouteTableAssociation extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RouteTableAssociation resources.
  */
 export interface RouteTableAssociationState {
-    /**
-     * The ID of the routing table to associate with.
-     */
     readonly routeTableId?: pulumi.Input<string>;
-    /**
-     * The subnet ID to create an association.
-     */
     readonly subnetId?: pulumi.Input<string>;
 }
 
@@ -76,12 +61,6 @@ export interface RouteTableAssociationState {
  * The set of arguments for constructing a RouteTableAssociation resource.
  */
 export interface RouteTableAssociationArgs {
-    /**
-     * The ID of the routing table to associate with.
-     */
     readonly routeTableId: pulumi.Input<string>;
-    /**
-     * The subnet ID to create an association.
-     */
     readonly subnetId: pulumi.Input<string>;
 }

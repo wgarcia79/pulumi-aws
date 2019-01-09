@@ -4,13 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Manages a RDS Global Cluster, which is an Aurora global database spread across multiple regions. The global database contains a single primary cluster with read-write capability, and a read-only secondary cluster that receives data from the primary cluster through high-speed replication performed by the Aurora storage subsystem.
- * 
- * More information about Aurora global databases can be found in the [Aurora User Guide](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html#aurora-global-database-creating).
- * 
- * > **NOTE:** RDS only supports the `aurora` engine (MySQL 5.6 compatible) for Global Clusters at this time.
- */
 export class GlobalCluster extends pulumi.CustomResource {
     /**
      * Get an existing GlobalCluster resource's state with the given name, ID, and optional extra
@@ -24,34 +17,13 @@ export class GlobalCluster extends pulumi.CustomResource {
         return new GlobalCluster(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * RDS Global Cluster Amazon Resource Name (ARN)
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * Name for an automatically created database on cluster creation.
-     */
     public readonly databaseName: pulumi.Output<string | undefined>;
-    /**
-     * If the Global Cluster should have deletion protection enabled. The database can't be deleted when this value is set to `true`. The default is `false`.
-     */
     public readonly deletionProtection: pulumi.Output<boolean | undefined>;
-    /**
-     * Name of the database engine to be used for this DB cluster. Valid values: `aurora`. Defaults to `aurora`.
-     */
     public readonly engine: pulumi.Output<string | undefined>;
-    /**
-     * Engine version of the Aurora global database.
-     */
     public readonly engineVersion: pulumi.Output<string>;
     public readonly globalClusterIdentifier: pulumi.Output<string>;
-    /**
-     * AWS Region-unique, immutable identifier for the global database cluster. This identifier is found in AWS CloudTrail log entries whenever the AWS KMS key for the DB cluster is accessed
-     */
     public /*out*/ readonly globalClusterResourceId: pulumi.Output<string>;
-    /**
-     * Specifies whether the DB cluster is encrypted. The default is `false`.
-     */
     public readonly storageEncrypted: pulumi.Output<boolean | undefined>;
 
     /**
@@ -96,34 +68,13 @@ export class GlobalCluster extends pulumi.CustomResource {
  * Input properties used for looking up and filtering GlobalCluster resources.
  */
 export interface GlobalClusterState {
-    /**
-     * RDS Global Cluster Amazon Resource Name (ARN)
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * Name for an automatically created database on cluster creation.
-     */
     readonly databaseName?: pulumi.Input<string>;
-    /**
-     * If the Global Cluster should have deletion protection enabled. The database can't be deleted when this value is set to `true`. The default is `false`.
-     */
     readonly deletionProtection?: pulumi.Input<boolean>;
-    /**
-     * Name of the database engine to be used for this DB cluster. Valid values: `aurora`. Defaults to `aurora`.
-     */
     readonly engine?: pulumi.Input<string>;
-    /**
-     * Engine version of the Aurora global database.
-     */
     readonly engineVersion?: pulumi.Input<string>;
     readonly globalClusterIdentifier?: pulumi.Input<string>;
-    /**
-     * AWS Region-unique, immutable identifier for the global database cluster. This identifier is found in AWS CloudTrail log entries whenever the AWS KMS key for the DB cluster is accessed
-     */
     readonly globalClusterResourceId?: pulumi.Input<string>;
-    /**
-     * Specifies whether the DB cluster is encrypted. The default is `false`.
-     */
     readonly storageEncrypted?: pulumi.Input<boolean>;
 }
 
@@ -131,25 +82,10 @@ export interface GlobalClusterState {
  * The set of arguments for constructing a GlobalCluster resource.
  */
 export interface GlobalClusterArgs {
-    /**
-     * Name for an automatically created database on cluster creation.
-     */
     readonly databaseName?: pulumi.Input<string>;
-    /**
-     * If the Global Cluster should have deletion protection enabled. The database can't be deleted when this value is set to `true`. The default is `false`.
-     */
     readonly deletionProtection?: pulumi.Input<boolean>;
-    /**
-     * Name of the database engine to be used for this DB cluster. Valid values: `aurora`. Defaults to `aurora`.
-     */
     readonly engine?: pulumi.Input<string>;
-    /**
-     * Engine version of the Aurora global database.
-     */
     readonly engineVersion?: pulumi.Input<string>;
     readonly globalClusterIdentifier: pulumi.Input<string>;
-    /**
-     * Specifies whether the DB cluster is encrypted. The default is `false`.
-     */
     readonly storageEncrypted?: pulumi.Input<boolean>;
 }

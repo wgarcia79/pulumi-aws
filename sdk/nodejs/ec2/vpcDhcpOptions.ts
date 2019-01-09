@@ -4,49 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a VPC DHCP Options resource.
- * 
- * ## Example Usage
- * 
- * Basic usage:
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_vpc_dhcp_options_dns_resolver = new aws.ec2.VpcDhcpOptions("dns_resolver", {
- *     domainNameServers: [
- *         "8.8.8.8",
- *         "8.8.4.4",
- *     ],
- * });
- * ```
- * Full usage:
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_vpc_dhcp_options_foo = new aws.ec2.VpcDhcpOptions("foo", {
- *     domainName: "service.consul",
- *     domainNameServers: [
- *         "127.0.0.1",
- *         "10.0.0.2",
- *     ],
- *     netbiosNameServers: ["127.0.0.1"],
- *     netbiosNodeType: "2",
- *     ntpServers: ["127.0.0.1"],
- *     tags: {
- *         Name: "foo-name",
- *     },
- * });
- * ```
- * * `domain_name_servers`, `netbios_name_servers`, `ntp_servers` are limited by AWS to maximum four servers only.
- * * To actually use the DHCP Options Set you need to associate it to a VPC using [`aws_vpc_dhcp_options_association`](https://www.terraform.io/docs/providers/aws/r/vpc_dhcp_options_association.html).
- * * If you delete a DHCP Options Set, all VPCs using it will be associated to AWS's `default` DHCP Option Set.
- * * In most cases unless you're configuring your own DNS you'll want to set `domain_name_servers` to `AmazonProvidedDNS`.
- */
 export class VpcDhcpOptions extends pulumi.CustomResource {
     /**
      * Get an existing VpcDhcpOptions resource's state with the given name, ID, and optional extra
@@ -60,33 +17,12 @@ export class VpcDhcpOptions extends pulumi.CustomResource {
         return new VpcDhcpOptions(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * the suffix domain name to use by default when resolving non Fully Qualified Domain Names. In other words, this is what ends up being the `search` value in the `/etc/resolv.conf` file.
-     */
     public readonly domainName: pulumi.Output<string | undefined>;
-    /**
-     * List of name servers to configure in `/etc/resolv.conf`. If you want to use the default AWS nameservers you should set this to `AmazonProvidedDNS`.
-     */
     public readonly domainNameServers: pulumi.Output<string[] | undefined>;
-    /**
-     * List of NETBIOS name servers.
-     */
     public readonly netbiosNameServers: pulumi.Output<string[] | undefined>;
-    /**
-     * The NetBIOS node type (1, 2, 4, or 8). AWS recommends to specify 2 since broadcast and multicast are not supported in their network. For more information about these node types, see [RFC 2132](http://www.ietf.org/rfc/rfc2132.txt).
-     */
     public readonly netbiosNodeType: pulumi.Output<string | undefined>;
-    /**
-     * List of NTP servers to configure.
-     */
     public readonly ntpServers: pulumi.Output<string[] | undefined>;
-    /**
-     * The ID of the AWS account that owns the DHCP options set.
-     */
     public /*out*/ readonly ownerId: pulumi.Output<string>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     public readonly tags: pulumi.Output<{[key: string]: any} | undefined>;
 
     /**
@@ -126,33 +62,12 @@ export class VpcDhcpOptions extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpcDhcpOptions resources.
  */
 export interface VpcDhcpOptionsState {
-    /**
-     * the suffix domain name to use by default when resolving non Fully Qualified Domain Names. In other words, this is what ends up being the `search` value in the `/etc/resolv.conf` file.
-     */
     readonly domainName?: pulumi.Input<string>;
-    /**
-     * List of name servers to configure in `/etc/resolv.conf`. If you want to use the default AWS nameservers you should set this to `AmazonProvidedDNS`.
-     */
     readonly domainNameServers?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * List of NETBIOS name servers.
-     */
     readonly netbiosNameServers?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The NetBIOS node type (1, 2, 4, or 8). AWS recommends to specify 2 since broadcast and multicast are not supported in their network. For more information about these node types, see [RFC 2132](http://www.ietf.org/rfc/rfc2132.txt).
-     */
     readonly netbiosNodeType?: pulumi.Input<string>;
-    /**
-     * List of NTP servers to configure.
-     */
     readonly ntpServers?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The ID of the AWS account that owns the DHCP options set.
-     */
     readonly ownerId?: pulumi.Input<string>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
 }
 
@@ -160,28 +75,10 @@ export interface VpcDhcpOptionsState {
  * The set of arguments for constructing a VpcDhcpOptions resource.
  */
 export interface VpcDhcpOptionsArgs {
-    /**
-     * the suffix domain name to use by default when resolving non Fully Qualified Domain Names. In other words, this is what ends up being the `search` value in the `/etc/resolv.conf` file.
-     */
     readonly domainName?: pulumi.Input<string>;
-    /**
-     * List of name servers to configure in `/etc/resolv.conf`. If you want to use the default AWS nameservers you should set this to `AmazonProvidedDNS`.
-     */
     readonly domainNameServers?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * List of NETBIOS name servers.
-     */
     readonly netbiosNameServers?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The NetBIOS node type (1, 2, 4, or 8). AWS recommends to specify 2 since broadcast and multicast are not supported in their network. For more information about these node types, see [RFC 2132](http://www.ietf.org/rfc/rfc2132.txt).
-     */
     readonly netbiosNodeType?: pulumi.Input<string>;
-    /**
-     * List of NTP servers to configure.
-     */
     readonly ntpServers?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
 }

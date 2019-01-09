@@ -4,27 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an AWS Config Configuration Recorder. Please note that this resource **does not start** the created recorder automatically.
- * 
- * > **Note:** _Starting_ the Configuration Recorder requires a [delivery channel](https://www.terraform.io/docs/providers/aws/r/config_delivery_channel.html) (while delivery channel creation requires Configuration Recorder). This is why [`aws_config_configuration_recorder_status`](https://www.terraform.io/docs/providers/aws/r/config_configuration_recorder_status.html) is a separate resource.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_iam_role_r = new aws.iam.Role("r", {
- *     assumeRolePolicy: "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Action\": \"sts:AssumeRole\",\n      \"Principal\": {\n        \"Service\": \"config.amazonaws.com\"\n      },\n      \"Effect\": \"Allow\",\n      \"Sid\": \"\"\n    }\n  ]\n}\n",
- *     name: "awsconfig-example",
- * });
- * const aws_config_configuration_recorder_foo = new aws.cfg.Recorder("foo", {
- *     name: "example",
- *     roleArn: aws_iam_role_r.arn,
- * });
- * ```
- */
 export class Recorder extends pulumi.CustomResource {
     /**
      * Get an existing Recorder resource's state with the given name, ID, and optional extra
@@ -38,19 +17,8 @@ export class Recorder extends pulumi.CustomResource {
         return new Recorder(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The name of the recorder. Defaults to `default`. Changing it recreates the resource.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * Recording group - see below.
-     */
     public readonly recordingGroup: pulumi.Output<{ allSupported?: boolean, includeGlobalResourceTypes?: boolean, resourceTypes?: string[] }>;
-    /**
-     * Amazon Resource Name (ARN) of the IAM role.
-     * used to make read or write requests to the delivery channel and to describe the AWS resources associated with the account.
-     * See [AWS Docs](http://docs.aws.amazon.com/config/latest/developerguide/iamrole-permissions.html) for more details.
-     */
     public readonly roleArn: pulumi.Output<string>;
 
     /**
@@ -85,19 +53,8 @@ export class Recorder extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Recorder resources.
  */
 export interface RecorderState {
-    /**
-     * The name of the recorder. Defaults to `default`. Changing it recreates the resource.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Recording group - see below.
-     */
     readonly recordingGroup?: pulumi.Input<{ allSupported?: pulumi.Input<boolean>, includeGlobalResourceTypes?: pulumi.Input<boolean>, resourceTypes?: pulumi.Input<pulumi.Input<string>[]> }>;
-    /**
-     * Amazon Resource Name (ARN) of the IAM role.
-     * used to make read or write requests to the delivery channel and to describe the AWS resources associated with the account.
-     * See [AWS Docs](http://docs.aws.amazon.com/config/latest/developerguide/iamrole-permissions.html) for more details.
-     */
     readonly roleArn?: pulumi.Input<string>;
 }
 
@@ -105,18 +62,7 @@ export interface RecorderState {
  * The set of arguments for constructing a Recorder resource.
  */
 export interface RecorderArgs {
-    /**
-     * The name of the recorder. Defaults to `default`. Changing it recreates the resource.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Recording group - see below.
-     */
     readonly recordingGroup?: pulumi.Input<{ allSupported?: pulumi.Input<boolean>, includeGlobalResourceTypes?: pulumi.Input<boolean>, resourceTypes?: pulumi.Input<pulumi.Input<string>[]> }>;
-    /**
-     * Amazon Resource Name (ARN) of the IAM role.
-     * used to make read or write requests to the delivery channel and to describe the AWS resources associated with the account.
-     * See [AWS Docs](http://docs.aws.amazon.com/config/latest/developerguide/iamrole-permissions.html) for more details.
-     */
     readonly roleArn: pulumi.Input<string>;
 }

@@ -4,13 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Manages an AWS Storage Gateway cached iSCSI volume.
- * 
- * > **NOTE:** The gateway must have cache added (e.g. via the [`aws_storagegateway_cache`](https://www.terraform.io/docs/providers/aws/r/storagegateway_cache.html) resource) before creating volumes otherwise the Storage Gateway API will return an error.
- * 
- * > **NOTE:** The gateway must have an upload buffer added (e.g. via the [`aws_storagegateway_upload_buffer`](https://www.terraform.io/docs/providers/aws/r/storagegateway_upload_buffer.html) resource) before the volume is operational to clients, however the Storage Gateway API will allow volume creation without error in that case and return volume status as `UPLOAD BUFFER NOT CONFIGURED`.
- */
 export class CachesIscsiVolume extends pulumi.CustomResource {
     /**
      * Get an existing CachesIscsiVolume resource's state with the given name, ID, and optional extra
@@ -24,57 +17,18 @@ export class CachesIscsiVolume extends pulumi.CustomResource {
         return new CachesIscsiVolume(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * Volume Amazon Resource Name (ARN), e.g. `arn:aws:storagegateway:us-east-1:123456789012:gateway/sgw-12345678/volume/vol-12345678`.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * Whether mutual CHAP is enabled for the iSCSI target.
-     */
     public /*out*/ readonly chapEnabled: pulumi.Output<boolean>;
-    /**
-     * The Amazon Resource Name (ARN) of the gateway.
-     */
     public readonly gatewayArn: pulumi.Output<string>;
-    /**
-     * Logical disk number.
-     */
     public /*out*/ readonly lunNumber: pulumi.Output<number>;
-    /**
-     * The network interface of the gateway on which to expose the iSCSI target. Only IPv4 addresses are accepted.
-     */
     public readonly networkInterfaceId: pulumi.Output<string>;
-    /**
-     * The port used to communicate with iSCSI targets.
-     */
     public /*out*/ readonly networkInterfacePort: pulumi.Output<number>;
-    /**
-     * The snapshot ID of the snapshot to restore as the new cached volume. e.g. `snap-1122aabb`.
-     */
     public readonly snapshotId: pulumi.Output<string | undefined>;
-    /**
-     * The ARN for an existing volume. Specifying this ARN makes the new volume into an exact copy of the specified existing volume's latest recovery point. The `volume_size_in_bytes` value for this new volume must be equal to or larger than the size of the existing volume, in bytes.
-     */
     public readonly sourceVolumeArn: pulumi.Output<string | undefined>;
-    /**
-     * Target Amazon Resource Name (ARN), e.g. `arn:aws:storagegateway:us-east-1:123456789012:gateway/sgw-12345678/target/iqn.1997-05.com.amazon:TargetName`.
-     */
     public /*out*/ readonly targetArn: pulumi.Output<string>;
-    /**
-     * The name of the iSCSI target used by initiators to connect to the target and as a suffix for the target ARN. The target name must be unique across all volumes of a gateway.
-     */
     public readonly targetName: pulumi.Output<string>;
-    /**
-     * Volume Amazon Resource Name (ARN), e.g. `arn:aws:storagegateway:us-east-1:123456789012:gateway/sgw-12345678/volume/vol-12345678`.
-     */
     public /*out*/ readonly volumeArn: pulumi.Output<string>;
-    /**
-     * Volume ID, e.g. `vol-12345678`.
-     */
     public /*out*/ readonly volumeId: pulumi.Output<string>;
-    /**
-     * The size of the volume in bytes.
-     */
     public readonly volumeSizeInBytes: pulumi.Output<number>;
 
     /**
@@ -138,57 +92,18 @@ export class CachesIscsiVolume extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CachesIscsiVolume resources.
  */
 export interface CachesIscsiVolumeState {
-    /**
-     * Volume Amazon Resource Name (ARN), e.g. `arn:aws:storagegateway:us-east-1:123456789012:gateway/sgw-12345678/volume/vol-12345678`.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * Whether mutual CHAP is enabled for the iSCSI target.
-     */
     readonly chapEnabled?: pulumi.Input<boolean>;
-    /**
-     * The Amazon Resource Name (ARN) of the gateway.
-     */
     readonly gatewayArn?: pulumi.Input<string>;
-    /**
-     * Logical disk number.
-     */
     readonly lunNumber?: pulumi.Input<number>;
-    /**
-     * The network interface of the gateway on which to expose the iSCSI target. Only IPv4 addresses are accepted.
-     */
     readonly networkInterfaceId?: pulumi.Input<string>;
-    /**
-     * The port used to communicate with iSCSI targets.
-     */
     readonly networkInterfacePort?: pulumi.Input<number>;
-    /**
-     * The snapshot ID of the snapshot to restore as the new cached volume. e.g. `snap-1122aabb`.
-     */
     readonly snapshotId?: pulumi.Input<string>;
-    /**
-     * The ARN for an existing volume. Specifying this ARN makes the new volume into an exact copy of the specified existing volume's latest recovery point. The `volume_size_in_bytes` value for this new volume must be equal to or larger than the size of the existing volume, in bytes.
-     */
     readonly sourceVolumeArn?: pulumi.Input<string>;
-    /**
-     * Target Amazon Resource Name (ARN), e.g. `arn:aws:storagegateway:us-east-1:123456789012:gateway/sgw-12345678/target/iqn.1997-05.com.amazon:TargetName`.
-     */
     readonly targetArn?: pulumi.Input<string>;
-    /**
-     * The name of the iSCSI target used by initiators to connect to the target and as a suffix for the target ARN. The target name must be unique across all volumes of a gateway.
-     */
     readonly targetName?: pulumi.Input<string>;
-    /**
-     * Volume Amazon Resource Name (ARN), e.g. `arn:aws:storagegateway:us-east-1:123456789012:gateway/sgw-12345678/volume/vol-12345678`.
-     */
     readonly volumeArn?: pulumi.Input<string>;
-    /**
-     * Volume ID, e.g. `vol-12345678`.
-     */
     readonly volumeId?: pulumi.Input<string>;
-    /**
-     * The size of the volume in bytes.
-     */
     readonly volumeSizeInBytes?: pulumi.Input<number>;
 }
 
@@ -196,28 +111,10 @@ export interface CachesIscsiVolumeState {
  * The set of arguments for constructing a CachesIscsiVolume resource.
  */
 export interface CachesIscsiVolumeArgs {
-    /**
-     * The Amazon Resource Name (ARN) of the gateway.
-     */
     readonly gatewayArn: pulumi.Input<string>;
-    /**
-     * The network interface of the gateway on which to expose the iSCSI target. Only IPv4 addresses are accepted.
-     */
     readonly networkInterfaceId: pulumi.Input<string>;
-    /**
-     * The snapshot ID of the snapshot to restore as the new cached volume. e.g. `snap-1122aabb`.
-     */
     readonly snapshotId?: pulumi.Input<string>;
-    /**
-     * The ARN for an existing volume. Specifying this ARN makes the new volume into an exact copy of the specified existing volume's latest recovery point. The `volume_size_in_bytes` value for this new volume must be equal to or larger than the size of the existing volume, in bytes.
-     */
     readonly sourceVolumeArn?: pulumi.Input<string>;
-    /**
-     * The name of the iSCSI target used by initiators to connect to the target and as a suffix for the target ARN. The target name must be unique across all volumes of a gateway.
-     */
     readonly targetName: pulumi.Input<string>;
-    /**
-     * The size of the volume in bytes.
-     */
     readonly volumeSizeInBytes: pulumi.Input<number>;
 }

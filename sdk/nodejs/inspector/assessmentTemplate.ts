@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a Inspector assessment template
- */
 export class AssessmentTemplate extends pulumi.CustomResource {
     /**
      * Get an existing AssessmentTemplate resource's state with the given name, ID, and optional extra
@@ -20,25 +17,10 @@ export class AssessmentTemplate extends pulumi.CustomResource {
         return new AssessmentTemplate(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The template assessment ARN.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * The duration of the inspector run.
-     */
     public readonly duration: pulumi.Output<number>;
-    /**
-     * The name of the assessment template.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * The rules to be used during the run.
-     */
     public readonly rulesPackageArns: pulumi.Output<string[]>;
-    /**
-     * The assessment target ARN to attach the template to.
-     */
     public readonly targetArn: pulumi.Output<string>;
 
     /**
@@ -83,25 +65,10 @@ export class AssessmentTemplate extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AssessmentTemplate resources.
  */
 export interface AssessmentTemplateState {
-    /**
-     * The template assessment ARN.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * The duration of the inspector run.
-     */
     readonly duration?: pulumi.Input<number>;
-    /**
-     * The name of the assessment template.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The rules to be used during the run.
-     */
     readonly rulesPackageArns?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The assessment target ARN to attach the template to.
-     */
     readonly targetArn?: pulumi.Input<string>;
 }
 
@@ -109,20 +76,8 @@ export interface AssessmentTemplateState {
  * The set of arguments for constructing a AssessmentTemplate resource.
  */
 export interface AssessmentTemplateArgs {
-    /**
-     * The duration of the inspector run.
-     */
     readonly duration: pulumi.Input<number>;
-    /**
-     * The name of the assessment template.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The rules to be used during the run.
-     */
     readonly rulesPackageArns: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The assessment target ARN to attach the template to.
-     */
     readonly targetArn: pulumi.Input<string>;
 }

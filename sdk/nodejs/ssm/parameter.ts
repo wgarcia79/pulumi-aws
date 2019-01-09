@@ -4,12 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an SSM Parameter resource.
- * > **Note:** The unencrypted value of a SecureString will be stored in the raw state as plain-text.
- * [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
- * 
- */
 export class Parameter extends pulumi.CustomResource {
     /**
      * Get an existing Parameter resource's state with the given name, ID, and optional extra
@@ -23,41 +17,14 @@ export class Parameter extends pulumi.CustomResource {
         return new Parameter(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * A regular expression used to validate the parameter value.
-     */
     public readonly allowedPattern: pulumi.Output<string | undefined>;
-    /**
-     * The ARN of the parameter.
-     */
     public readonly arn: pulumi.Output<string>;
-    /**
-     * The description of the parameter.
-     */
     public readonly description: pulumi.Output<string | undefined>;
-    /**
-     * The KMS key id or arn for encrypting a SecureString.
-     */
     public readonly keyId: pulumi.Output<string>;
-    /**
-     * The name of the parameter.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * Overwrite an existing parameter. If not specified, will default to `false` if the resource has not been created by terraform to avoid overwrite of existing resource and will default to `true` otherwise (terraform lifecycle rules should then be used to manage the update behavior).
-     */
     public readonly overwrite: pulumi.Output<boolean | undefined>;
-    /**
-     * A mapping of tags to assign to the object.
-     */
     public readonly tags: pulumi.Output<{[key: string]: any} | undefined>;
-    /**
-     * The type of the parameter. Valid types are `String`, `StringList` and `SecureString`.
-     */
     public readonly type: pulumi.Output<string>;
-    /**
-     * The value of the parameter.
-     */
     public readonly value: pulumi.Output<string>;
 
     /**
@@ -107,41 +74,14 @@ export class Parameter extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Parameter resources.
  */
 export interface ParameterState {
-    /**
-     * A regular expression used to validate the parameter value.
-     */
     readonly allowedPattern?: pulumi.Input<string>;
-    /**
-     * The ARN of the parameter.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * The description of the parameter.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The KMS key id or arn for encrypting a SecureString.
-     */
     readonly keyId?: pulumi.Input<string>;
-    /**
-     * The name of the parameter.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Overwrite an existing parameter. If not specified, will default to `false` if the resource has not been created by terraform to avoid overwrite of existing resource and will default to `true` otherwise (terraform lifecycle rules should then be used to manage the update behavior).
-     */
     readonly overwrite?: pulumi.Input<boolean>;
-    /**
-     * A mapping of tags to assign to the object.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The type of the parameter. Valid types are `String`, `StringList` and `SecureString`.
-     */
     readonly type?: pulumi.Input<string>;
-    /**
-     * The value of the parameter.
-     */
     readonly value?: pulumi.Input<string>;
 }
 
@@ -149,40 +89,13 @@ export interface ParameterState {
  * The set of arguments for constructing a Parameter resource.
  */
 export interface ParameterArgs {
-    /**
-     * A regular expression used to validate the parameter value.
-     */
     readonly allowedPattern?: pulumi.Input<string>;
-    /**
-     * The ARN of the parameter.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * The description of the parameter.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The KMS key id or arn for encrypting a SecureString.
-     */
     readonly keyId?: pulumi.Input<string>;
-    /**
-     * The name of the parameter.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Overwrite an existing parameter. If not specified, will default to `false` if the resource has not been created by terraform to avoid overwrite of existing resource and will default to `true` otherwise (terraform lifecycle rules should then be used to manage the update behavior).
-     */
     readonly overwrite?: pulumi.Input<boolean>;
-    /**
-     * A mapping of tags to assign to the object.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The type of the parameter. Valid types are `String`, `StringList` and `SecureString`.
-     */
     readonly type: pulumi.Input<string>;
-    /**
-     * The value of the parameter.
-     */
     readonly value: pulumi.Input<string>;
 }

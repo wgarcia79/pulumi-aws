@@ -4,22 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * This data source can be used to fetch information about a specific
- * IAM role. By using this data source, you can reference IAM role
- * properties without having to hard code ARNs as input.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_iam_role_example = pulumi.output(aws.iam.getRole({
- *     name: "an_example_role_name",
- * }));
- * ```
- */
 export function getRole(args?: GetRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetRoleResult> {
     args = args || {};
     return pulumi.runtime.invoke("aws:iam/getRole:getRole", {
@@ -32,9 +16,6 @@ export function getRole(args?: GetRoleArgs, opts?: pulumi.InvokeOptions): Promis
  * A collection of arguments for invoking getRole.
  */
 export interface GetRoleArgs {
-    /**
-     * The friendly IAM role name to match.
-     */
     readonly name?: string;
     readonly roleName?: string;
 }
@@ -43,30 +24,15 @@ export interface GetRoleArgs {
  * A collection of values returned by getRole.
  */
 export interface GetRoleResult {
-    /**
-     * The Amazon Resource Name (ARN) specifying the role.
-     */
     readonly arn: string;
-    /**
-     * The policy document associated with the role.
-     */
     readonly assumeRolePolicy: string;
     readonly assumeRolePolicyDocument: string;
     readonly createDate: string;
     readonly description: string;
     readonly maxSessionDuration: number;
-    /**
-     * The path to the role.
-     */
     readonly path: string;
-    /**
-     * The ARN of the policy that is used to set the permissions boundary for the role.
-     */
     readonly permissionsBoundary: string;
     readonly roleId: string;
-    /**
-     * The stable and unique string identifying the role.
-     */
     readonly uniqueId: string;
     /**
      * id is the provider-assigned unique ID for this managed resource.

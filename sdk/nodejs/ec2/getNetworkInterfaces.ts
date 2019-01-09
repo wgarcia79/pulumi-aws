@@ -16,14 +16,7 @@ export function getNetworkInterfaces(args?: GetNetworkInterfacesArgs, opts?: pul
  * A collection of arguments for invoking getNetworkInterfaces.
  */
 export interface GetNetworkInterfacesArgs {
-    /**
-     * Custom filter block as described below.
-     */
     readonly filters?: { name: string, values: string[] }[];
-    /**
-     * A mapping of tags, each pair of which must exactly match
-     * a pair on the desired network interfaces.
-     */
     readonly tags?: {[key: string]: any};
 }
 
@@ -31,9 +24,6 @@ export interface GetNetworkInterfacesArgs {
  * A collection of values returned by getNetworkInterfaces.
  */
 export interface GetNetworkInterfacesResult {
-    /**
-     * A list of all the network interface ids found. This data source will fail if none are found.
-     */
     readonly ids: string[];
     readonly tags: {[key: string]: any};
     /**

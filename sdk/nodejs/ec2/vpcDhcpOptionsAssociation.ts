@@ -4,10 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a VPC DHCP Options Association resource.
- * * Removing the DHCP Options Association automatically sets AWS's `default` DHCP Options Set to the VPC.
- */
 export class VpcDhcpOptionsAssociation extends pulumi.CustomResource {
     /**
      * Get an existing VpcDhcpOptionsAssociation resource's state with the given name, ID, and optional extra
@@ -21,13 +17,7 @@ export class VpcDhcpOptionsAssociation extends pulumi.CustomResource {
         return new VpcDhcpOptionsAssociation(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ID of the DHCP Options Set to associate to the VPC.
-     */
     public readonly dhcpOptionsId: pulumi.Output<string>;
-    /**
-     * The ID of the VPC to which we would like to associate a DHCP Options Set.
-     */
     public readonly vpcId: pulumi.Output<string>;
 
     /**
@@ -63,13 +53,7 @@ export class VpcDhcpOptionsAssociation extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpcDhcpOptionsAssociation resources.
  */
 export interface VpcDhcpOptionsAssociationState {
-    /**
-     * The ID of the DHCP Options Set to associate to the VPC.
-     */
     readonly dhcpOptionsId?: pulumi.Input<string>;
-    /**
-     * The ID of the VPC to which we would like to associate a DHCP Options Set.
-     */
     readonly vpcId?: pulumi.Input<string>;
 }
 
@@ -77,12 +61,6 @@ export interface VpcDhcpOptionsAssociationState {
  * The set of arguments for constructing a VpcDhcpOptionsAssociation resource.
  */
 export interface VpcDhcpOptionsAssociationArgs {
-    /**
-     * The ID of the DHCP Options Set to associate to the VPC.
-     */
     readonly dhcpOptionsId: pulumi.Input<string>;
-    /**
-     * The ID of the VPC to which we would like to associate a DHCP Options Set.
-     */
     readonly vpcId: pulumi.Input<string>;
 }

@@ -4,39 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an AWS Config Rule.
- * 
- * > **Note:** Config Rule requires an existing [Configuration Recorder](https://www.terraform.io/docs/providers/aws/r/config_configuration_recorder.html) to be present. Use of `depends_on` is recommended (as shown below) to avoid race conditions.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_iam_role_r = new aws.iam.Role("r", {
- *     assumeRolePolicy: "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Action\": \"sts:AssumeRole\",\n      \"Principal\": {\n        \"Service\": \"config.amazonaws.com\"\n      },\n      \"Effect\": \"Allow\",\n      \"Sid\": \"\"\n    }\n  ]\n}\n",
- *     name: "my-awsconfig-role",
- * });
- * const aws_config_configuration_recorder_foo = new aws.cfg.Recorder("foo", {
- *     name: "example",
- *     roleArn: aws_iam_role_r.arn,
- * });
- * const aws_config_config_rule_r = new aws.cfg.Rule("r", {
- *     name: "example",
- *     source: {
- *         owner: "AWS",
- *         sourceIdentifier: "S3_BUCKET_VERSIONING_ENABLED",
- *     },
- * }, {dependsOn: [aws_config_configuration_recorder_foo]});
- * const aws_iam_role_policy_p = new aws.iam.RolePolicy("p", {
- *     name: "my-awsconfig-policy",
- *     policy: "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n  \t{\n  \t\t\"Action\": \"config:Put*\",\n  \t\t\"Effect\": \"Allow\",\n  \t\t\"Resource\": \"*\"\n\n  \t}\n  ]\n}\n",
- *     role: aws_iam_role_r.id,
- * });
- * ```
- */
 export class Rule extends pulumi.CustomResource {
     /**
      * Get an existing Rule resource's state with the given name, ID, and optional extra
@@ -50,39 +17,13 @@ export class Rule extends pulumi.CustomResource {
         return new Rule(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ARN of the config rule
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * Description of the rule
-     */
     public readonly description: pulumi.Output<string | undefined>;
-    /**
-     * A string in JSON format that is passed to the AWS Config rule Lambda function.
-     */
     public readonly inputParameters: pulumi.Output<string | undefined>;
-    /**
-     * The frequency that you want AWS Config to run evaluations for a rule that
-     * is triggered periodically. If specified, requires `message_type` to be `ScheduledNotification`.
-     */
     public readonly maximumExecutionFrequency: pulumi.Output<string | undefined>;
-    /**
-     * The name of the rule
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * The ID of the config rule
-     */
     public /*out*/ readonly ruleId: pulumi.Output<string>;
-    /**
-     * Scope defines which resources can trigger an evaluation for the rule as documented below.
-     */
     public readonly scope: pulumi.Output<{ complianceResourceId?: string, complianceResourceTypes?: string[], tagKey?: string, tagValue?: string } | undefined>;
-    /**
-     * Source specifies the rule owner, the rule identifier, and the notifications that cause
-     * the function to evaluate your AWS resources as documented below.
-     */
     public readonly source: pulumi.Output<{ owner: string, sourceDetails?: { eventSource?: string, maximumExecutionFrequency?: string, messageType?: string }[], sourceIdentifier: string }>;
 
     /**
@@ -127,39 +68,13 @@ export class Rule extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Rule resources.
  */
 export interface RuleState {
-    /**
-     * The ARN of the config rule
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * Description of the rule
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * A string in JSON format that is passed to the AWS Config rule Lambda function.
-     */
     readonly inputParameters?: pulumi.Input<string>;
-    /**
-     * The frequency that you want AWS Config to run evaluations for a rule that
-     * is triggered periodically. If specified, requires `message_type` to be `ScheduledNotification`.
-     */
     readonly maximumExecutionFrequency?: pulumi.Input<string>;
-    /**
-     * The name of the rule
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The ID of the config rule
-     */
     readonly ruleId?: pulumi.Input<string>;
-    /**
-     * Scope defines which resources can trigger an evaluation for the rule as documented below.
-     */
     readonly scope?: pulumi.Input<{ complianceResourceId?: pulumi.Input<string>, complianceResourceTypes?: pulumi.Input<pulumi.Input<string>[]>, tagKey?: pulumi.Input<string>, tagValue?: pulumi.Input<string> }>;
-    /**
-     * Source specifies the rule owner, the rule identifier, and the notifications that cause
-     * the function to evaluate your AWS resources as documented below.
-     */
     readonly source?: pulumi.Input<{ owner: pulumi.Input<string>, sourceDetails?: pulumi.Input<pulumi.Input<{ eventSource?: pulumi.Input<string>, maximumExecutionFrequency?: pulumi.Input<string>, messageType?: pulumi.Input<string> }>[]>, sourceIdentifier: pulumi.Input<string> }>;
 }
 
@@ -167,30 +82,10 @@ export interface RuleState {
  * The set of arguments for constructing a Rule resource.
  */
 export interface RuleArgs {
-    /**
-     * Description of the rule
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * A string in JSON format that is passed to the AWS Config rule Lambda function.
-     */
     readonly inputParameters?: pulumi.Input<string>;
-    /**
-     * The frequency that you want AWS Config to run evaluations for a rule that
-     * is triggered periodically. If specified, requires `message_type` to be `ScheduledNotification`.
-     */
     readonly maximumExecutionFrequency?: pulumi.Input<string>;
-    /**
-     * The name of the rule
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Scope defines which resources can trigger an evaluation for the rule as documented below.
-     */
     readonly scope?: pulumi.Input<{ complianceResourceId?: pulumi.Input<string>, complianceResourceTypes?: pulumi.Input<pulumi.Input<string>[]>, tagKey?: pulumi.Input<string>, tagValue?: pulumi.Input<string> }>;
-    /**
-     * Source specifies the rule owner, the rule identifier, and the notifications that cause
-     * the function to evaluate your AWS resources as documented below.
-     */
     readonly source: pulumi.Input<{ owner: pulumi.Input<string>, sourceDetails?: pulumi.Input<pulumi.Input<{ eventSource?: pulumi.Input<string>, maximumExecutionFrequency?: pulumi.Input<string>, messageType?: pulumi.Input<string> }>[]>, sourceIdentifier: pulumi.Input<string> }>;
 }

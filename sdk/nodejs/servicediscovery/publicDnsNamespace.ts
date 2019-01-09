@@ -4,21 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a Service Discovery Public DNS Namespace resource.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_service_discovery_public_dns_namespace_example = new aws.servicediscovery.PublicDnsNamespace("example", {
- *     description: "example",
- *     name: "hoge.example.com",
- * });
- * ```
- */
 export class PublicDnsNamespace extends pulumi.CustomResource {
     /**
      * Get an existing PublicDnsNamespace resource's state with the given name, ID, and optional extra
@@ -32,21 +17,9 @@ export class PublicDnsNamespace extends pulumi.CustomResource {
         return new PublicDnsNamespace(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ARN that Amazon Route 53 assigns to the namespace when you create it.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * The description that you specify for the namespace when you create it.
-     */
     public readonly description: pulumi.Output<string | undefined>;
-    /**
-     * The ID for the hosted zone that Amazon Route 53 creates when you create a namespace.
-     */
     public /*out*/ readonly hostedZone: pulumi.Output<string>;
-    /**
-     * The name of the namespace.
-     */
     public readonly name: pulumi.Output<string>;
 
     /**
@@ -80,21 +53,9 @@ export class PublicDnsNamespace extends pulumi.CustomResource {
  * Input properties used for looking up and filtering PublicDnsNamespace resources.
  */
 export interface PublicDnsNamespaceState {
-    /**
-     * The ARN that Amazon Route 53 assigns to the namespace when you create it.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * The description that you specify for the namespace when you create it.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The ID for the hosted zone that Amazon Route 53 creates when you create a namespace.
-     */
     readonly hostedZone?: pulumi.Input<string>;
-    /**
-     * The name of the namespace.
-     */
     readonly name?: pulumi.Input<string>;
 }
 
@@ -102,12 +63,6 @@ export interface PublicDnsNamespaceState {
  * The set of arguments for constructing a PublicDnsNamespace resource.
  */
 export interface PublicDnsNamespaceArgs {
-    /**
-     * The description that you specify for the namespace when you create it.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The name of the namespace.
-     */
     readonly name?: pulumi.Input<string>;
 }

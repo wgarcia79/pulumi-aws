@@ -4,18 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Creates an Amazon CloudHSM v2 cluster.
- * 
- * For information about CloudHSM v2, see the
- * [AWS CloudHSM User Guide][1] and the [Amazon
- * CloudHSM API Reference][2].
- * 
- * > **NOTE:** CloudHSM can take up to several minutes to be set up.
- * Practically no single attribute can be updated except TAGS.
- * If you need to delete a cluster, you have to remove its HSM modules first.
- * To initialize cluster you have to sign CSR and upload it.
- */
 export class Cluster extends pulumi.CustomResource {
     /**
      * Get an existing Cluster resource's state with the given name, ID, and optional extra
@@ -29,43 +17,14 @@ export class Cluster extends pulumi.CustomResource {
         return new Cluster(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The list of cluster certificates.
-     * * `cluster_certificates.0.cluster_certificate` - The cluster certificate issued (signed) by the issuing certificate authority (CA) of the cluster's owner.
-     * * `cluster_certificates.0.cluster_csr` - The certificate signing request (CSR). Available only in UNINITIALIZED state.
-     * * `cluster_certificates.0.aws_hardware_certificate` - The HSM hardware certificate issued (signed) by AWS CloudHSM.
-     * * `cluster_certificates.0.hsm_certificate` - The HSM certificate issued (signed) by the HSM hardware.
-     * * `cluster_certificates.0.manufacturer_hardware_certificate` - The HSM hardware certificate issued (signed) by the hardware manufacturer.
-     */
     public /*out*/ readonly clusterCertificates: pulumi.Output<{ awsHardwareCertificate: string, clusterCertificate: string, clusterCsr: string, hsmCertificate: string, manufacturerHardwareCertificate: string }>;
-    /**
-     * The id of the CloudHSM cluster.
-     */
     public /*out*/ readonly clusterId: pulumi.Output<string>;
-    /**
-     * The state of the cluster.
-     */
     public /*out*/ readonly clusterState: pulumi.Output<string>;
-    /**
-     * The type of HSM module in the cluster. Currently, only hsm1.medium is supported.
-     */
     public readonly hsmType: pulumi.Output<string>;
-    /**
-     * The ID of the security group associated with the CloudHSM cluster.
-     */
     public /*out*/ readonly securityGroupId: pulumi.Output<string>;
-    /**
-     * The id of Cloud HSM v2 cluster backup to be restored.
-     */
     public readonly sourceBackupIdentifier: pulumi.Output<string | undefined>;
-    /**
-     * The IDs of subnets in which cluster will operate.
-     */
     public readonly subnetIds: pulumi.Output<string[]>;
     public readonly tags: pulumi.Output<{[key: string]: any} | undefined>;
-    /**
-     * The id of the VPC that the CloudHSM cluster resides in.
-     */
     public /*out*/ readonly vpcId: pulumi.Output<string>;
 
     /**
@@ -115,43 +74,14 @@ export class Cluster extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Cluster resources.
  */
 export interface ClusterState {
-    /**
-     * The list of cluster certificates.
-     * * `cluster_certificates.0.cluster_certificate` - The cluster certificate issued (signed) by the issuing certificate authority (CA) of the cluster's owner.
-     * * `cluster_certificates.0.cluster_csr` - The certificate signing request (CSR). Available only in UNINITIALIZED state.
-     * * `cluster_certificates.0.aws_hardware_certificate` - The HSM hardware certificate issued (signed) by AWS CloudHSM.
-     * * `cluster_certificates.0.hsm_certificate` - The HSM certificate issued (signed) by the HSM hardware.
-     * * `cluster_certificates.0.manufacturer_hardware_certificate` - The HSM hardware certificate issued (signed) by the hardware manufacturer.
-     */
     readonly clusterCertificates?: pulumi.Input<{ awsHardwareCertificate?: pulumi.Input<string>, clusterCertificate?: pulumi.Input<string>, clusterCsr?: pulumi.Input<string>, hsmCertificate?: pulumi.Input<string>, manufacturerHardwareCertificate?: pulumi.Input<string> }>;
-    /**
-     * The id of the CloudHSM cluster.
-     */
     readonly clusterId?: pulumi.Input<string>;
-    /**
-     * The state of the cluster.
-     */
     readonly clusterState?: pulumi.Input<string>;
-    /**
-     * The type of HSM module in the cluster. Currently, only hsm1.medium is supported.
-     */
     readonly hsmType?: pulumi.Input<string>;
-    /**
-     * The ID of the security group associated with the CloudHSM cluster.
-     */
     readonly securityGroupId?: pulumi.Input<string>;
-    /**
-     * The id of Cloud HSM v2 cluster backup to be restored.
-     */
     readonly sourceBackupIdentifier?: pulumi.Input<string>;
-    /**
-     * The IDs of subnets in which cluster will operate.
-     */
     readonly subnetIds?: pulumi.Input<pulumi.Input<string>[]>;
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The id of the VPC that the CloudHSM cluster resides in.
-     */
     readonly vpcId?: pulumi.Input<string>;
 }
 
@@ -159,17 +89,8 @@ export interface ClusterState {
  * The set of arguments for constructing a Cluster resource.
  */
 export interface ClusterArgs {
-    /**
-     * The type of HSM module in the cluster. Currently, only hsm1.medium is supported.
-     */
     readonly hsmType: pulumi.Input<string>;
-    /**
-     * The id of Cloud HSM v2 cluster backup to be restored.
-     */
     readonly sourceBackupIdentifier?: pulumi.Input<string>;
-    /**
-     * The IDs of subnets in which cluster will operate.
-     */
     readonly subnetIds: pulumi.Input<pulumi.Input<string>[]>;
     readonly tags?: pulumi.Input<{[key: string]: any}>;
 }

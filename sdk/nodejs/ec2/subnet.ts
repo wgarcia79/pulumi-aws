@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an VPC subnet resource.
- */
 export class Subnet extends pulumi.CustomResource {
     /**
      * Get an existing Subnet resource's state with the given name, ID, and optional extra
@@ -20,54 +17,16 @@ export class Subnet extends pulumi.CustomResource {
         return new Subnet(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ARN of the subnet.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * Specify true to indicate
-     * that network interfaces created in the specified subnet should be
-     * assigned an IPv6 address. Default is `false`
-     */
     public readonly assignIpv6AddressOnCreation: pulumi.Output<boolean | undefined>;
-    /**
-     * The AZ for the subnet.
-     */
     public readonly availabilityZone: pulumi.Output<string>;
-    /**
-     * The AZ ID of the subnet.
-     */
     public readonly availabilityZoneId: pulumi.Output<string>;
-    /**
-     * The CIDR block for the subnet.
-     */
     public readonly cidrBlock: pulumi.Output<string>;
-    /**
-     * The IPv6 network range for the subnet,
-     * in CIDR notation. The subnet size must use a /64 prefix length.
-     */
     public readonly ipv6CidrBlock: pulumi.Output<string>;
-    /**
-     * The association ID for the IPv6 CIDR block.
-     */
     public /*out*/ readonly ipv6CidrBlockAssociationId: pulumi.Output<string>;
-    /**
-     * Specify true to indicate
-     * that instances launched into the subnet should be assigned
-     * a public IP address. Default is `false`.
-     */
     public readonly mapPublicIpOnLaunch: pulumi.Output<boolean | undefined>;
-    /**
-     * The ID of the AWS account that owns the subnet.
-     */
     public /*out*/ readonly ownerId: pulumi.Output<string>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     public readonly tags: pulumi.Output<{[key: string]: any} | undefined>;
-    /**
-     * The VPC ID.
-     */
     public readonly vpcId: pulumi.Output<string>;
 
     /**
@@ -121,54 +80,16 @@ export class Subnet extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Subnet resources.
  */
 export interface SubnetState {
-    /**
-     * The ARN of the subnet.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * Specify true to indicate
-     * that network interfaces created in the specified subnet should be
-     * assigned an IPv6 address. Default is `false`
-     */
     readonly assignIpv6AddressOnCreation?: pulumi.Input<boolean>;
-    /**
-     * The AZ for the subnet.
-     */
     readonly availabilityZone?: pulumi.Input<string>;
-    /**
-     * The AZ ID of the subnet.
-     */
     readonly availabilityZoneId?: pulumi.Input<string>;
-    /**
-     * The CIDR block for the subnet.
-     */
     readonly cidrBlock?: pulumi.Input<string>;
-    /**
-     * The IPv6 network range for the subnet,
-     * in CIDR notation. The subnet size must use a /64 prefix length.
-     */
     readonly ipv6CidrBlock?: pulumi.Input<string>;
-    /**
-     * The association ID for the IPv6 CIDR block.
-     */
     readonly ipv6CidrBlockAssociationId?: pulumi.Input<string>;
-    /**
-     * Specify true to indicate
-     * that instances launched into the subnet should be assigned
-     * a public IP address. Default is `false`.
-     */
     readonly mapPublicIpOnLaunch?: pulumi.Input<boolean>;
-    /**
-     * The ID of the AWS account that owns the subnet.
-     */
     readonly ownerId?: pulumi.Input<string>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The VPC ID.
-     */
     readonly vpcId?: pulumi.Input<string>;
 }
 
@@ -176,41 +97,12 @@ export interface SubnetState {
  * The set of arguments for constructing a Subnet resource.
  */
 export interface SubnetArgs {
-    /**
-     * Specify true to indicate
-     * that network interfaces created in the specified subnet should be
-     * assigned an IPv6 address. Default is `false`
-     */
     readonly assignIpv6AddressOnCreation?: pulumi.Input<boolean>;
-    /**
-     * The AZ for the subnet.
-     */
     readonly availabilityZone?: pulumi.Input<string>;
-    /**
-     * The AZ ID of the subnet.
-     */
     readonly availabilityZoneId?: pulumi.Input<string>;
-    /**
-     * The CIDR block for the subnet.
-     */
     readonly cidrBlock: pulumi.Input<string>;
-    /**
-     * The IPv6 network range for the subnet,
-     * in CIDR notation. The subnet size must use a /64 prefix length.
-     */
     readonly ipv6CidrBlock?: pulumi.Input<string>;
-    /**
-     * Specify true to indicate
-     * that instances launched into the subnet should be assigned
-     * a public IP address. Default is `false`.
-     */
     readonly mapPublicIpOnLaunch?: pulumi.Input<boolean>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The VPC ID.
-     */
     readonly vpcId: pulumi.Input<string>;
 }

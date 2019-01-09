@@ -4,15 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * `aws_prefix_list` provides details about a specific prefix list (PL)
- * in the current region.
- * 
- * This can be used both to validate a prefix list given in a variable
- * and to obtain the CIDR blocks (IP address ranges) for the associated
- * AWS service. The latter may be useful e.g. for adding network ACL
- * rules.
- */
 export function getPrefixList(args?: GetPrefixListArgs, opts?: pulumi.InvokeOptions): Promise<GetPrefixListResult> {
     args = args || {};
     return pulumi.runtime.invoke("aws:index/getPrefixList:getPrefixList", {
@@ -25,13 +16,7 @@ export function getPrefixList(args?: GetPrefixListArgs, opts?: pulumi.InvokeOpti
  * A collection of arguments for invoking getPrefixList.
  */
 export interface GetPrefixListArgs {
-    /**
-     * The name of the prefix list to select.
-     */
     readonly name?: string;
-    /**
-     * The ID of the prefix list to select.
-     */
     readonly prefixListId?: string;
 }
 
@@ -39,14 +24,7 @@ export interface GetPrefixListArgs {
  * A collection of values returned by getPrefixList.
  */
 export interface GetPrefixListResult {
-    /**
-     * The list of CIDR blocks for the AWS service associated
-     * with the prefix list.
-     */
     readonly cidrBlocks: string[];
-    /**
-     * The name of the selected prefix list.
-     */
     readonly name: string;
     /**
      * id is the provider-assigned unique ID for this managed resource.

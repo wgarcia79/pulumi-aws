@@ -4,26 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Associates an S3 resource with Amazon Macie for monitoring and data classification.
- * 
- * > **NOTE:** Before using Amazon Macie for the first time it must be enabled manually. Instructions are [here](https://docs.aws.amazon.com/macie/latest/userguide/macie-setting-up.html#macie-setting-up-enable).
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_macie_s3_bucket_association_example = new aws.macie.S3BucketAssociation("example", {
- *     bucketName: "tf-macie-example",
- *     classificationType: {
- *         oneTime: "FULL",
- *     },
- *     prefix: "data",
- * });
- * ```
- */
 export class S3BucketAssociation extends pulumi.CustomResource {
     /**
      * Get an existing S3BucketAssociation resource's state with the given name, ID, and optional extra
@@ -37,21 +17,9 @@ export class S3BucketAssociation extends pulumi.CustomResource {
         return new S3BucketAssociation(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The name of the S3 bucket that you want to associate with Amazon Macie.
-     */
     public readonly bucketName: pulumi.Output<string>;
-    /**
-     * The configuration of how Amazon Macie classifies the S3 objects.
-     */
     public readonly classificationType: pulumi.Output<{ continuous?: string, oneTime?: string }>;
-    /**
-     * The ID of the Amazon Macie member account whose S3 resources you want to associate with Macie. If `member_account_id` isn't specified, the action associates specified S3 resources with Macie for the current master account.
-     */
     public readonly memberAccountId: pulumi.Output<string | undefined>;
-    /**
-     * Object key prefix identifying one or more S3 objects to which the association applies.
-     */
     public readonly prefix: pulumi.Output<string | undefined>;
 
     /**
@@ -88,21 +56,9 @@ export class S3BucketAssociation extends pulumi.CustomResource {
  * Input properties used for looking up and filtering S3BucketAssociation resources.
  */
 export interface S3BucketAssociationState {
-    /**
-     * The name of the S3 bucket that you want to associate with Amazon Macie.
-     */
     readonly bucketName?: pulumi.Input<string>;
-    /**
-     * The configuration of how Amazon Macie classifies the S3 objects.
-     */
     readonly classificationType?: pulumi.Input<{ continuous?: pulumi.Input<string>, oneTime?: pulumi.Input<string> }>;
-    /**
-     * The ID of the Amazon Macie member account whose S3 resources you want to associate with Macie. If `member_account_id` isn't specified, the action associates specified S3 resources with Macie for the current master account.
-     */
     readonly memberAccountId?: pulumi.Input<string>;
-    /**
-     * Object key prefix identifying one or more S3 objects to which the association applies.
-     */
     readonly prefix?: pulumi.Input<string>;
 }
 
@@ -110,20 +66,8 @@ export interface S3BucketAssociationState {
  * The set of arguments for constructing a S3BucketAssociation resource.
  */
 export interface S3BucketAssociationArgs {
-    /**
-     * The name of the S3 bucket that you want to associate with Amazon Macie.
-     */
     readonly bucketName: pulumi.Input<string>;
-    /**
-     * The configuration of how Amazon Macie classifies the S3 objects.
-     */
     readonly classificationType?: pulumi.Input<{ continuous?: pulumi.Input<string>, oneTime?: pulumi.Input<string> }>;
-    /**
-     * The ID of the Amazon Macie member account whose S3 resources you want to associate with Macie. If `member_account_id` isn't specified, the action associates specified S3 resources with Macie for the current master account.
-     */
     readonly memberAccountId?: pulumi.Input<string>;
-    /**
-     * Object key prefix identifying one or more S3 objects to which the association applies.
-     */
     readonly prefix?: pulumi.Input<string>;
 }

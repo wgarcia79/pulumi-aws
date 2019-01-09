@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an Application AutoScaling ScalableTarget resource. To manage policies which get attached to the target, see the [`aws_appautoscaling_policy` resource](https://www.terraform.io/docs/providers/aws/r/appautoscaling_policy.html).
- */
 export class Target extends pulumi.CustomResource {
     /**
      * Get an existing Target resource's state with the given name, ID, and optional extra
@@ -20,30 +17,11 @@ export class Target extends pulumi.CustomResource {
         return new Target(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The max capacity of the scalable target.
-     */
     public readonly maxCapacity: pulumi.Output<number>;
-    /**
-     * The min capacity of the scalable target.
-     */
     public readonly minCapacity: pulumi.Output<number>;
-    /**
-     * The resource type and unique identifier string for the resource associated with the scaling policy. Documentation can be found in the `ResourceId` parameter at: [AWS Application Auto Scaling API Reference](https://docs.aws.amazon.com/autoscaling/application/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
-     */
     public readonly resourceId: pulumi.Output<string>;
-    /**
-     * The ARN of the IAM role that allows Application
-     * AutoScaling to modify your scalable target on your behalf.
-     */
     public readonly roleArn: pulumi.Output<string>;
-    /**
-     * The scalable dimension of the scalable target. Documentation can be found in the `ScalableDimension` parameter at: [AWS Application Auto Scaling API Reference](https://docs.aws.amazon.com/autoscaling/application/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
-     */
     public readonly scalableDimension: pulumi.Output<string>;
-    /**
-     * The AWS service namespace of the scalable target. Documentation can be found in the `ServiceNamespace` parameter at: [AWS Application Auto Scaling API Reference](https://docs.aws.amazon.com/autoscaling/application/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
-     */
     public readonly serviceNamespace: pulumi.Output<string>;
 
     /**
@@ -96,30 +74,11 @@ export class Target extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Target resources.
  */
 export interface TargetState {
-    /**
-     * The max capacity of the scalable target.
-     */
     readonly maxCapacity?: pulumi.Input<number>;
-    /**
-     * The min capacity of the scalable target.
-     */
     readonly minCapacity?: pulumi.Input<number>;
-    /**
-     * The resource type and unique identifier string for the resource associated with the scaling policy. Documentation can be found in the `ResourceId` parameter at: [AWS Application Auto Scaling API Reference](https://docs.aws.amazon.com/autoscaling/application/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
-     */
     readonly resourceId?: pulumi.Input<string>;
-    /**
-     * The ARN of the IAM role that allows Application
-     * AutoScaling to modify your scalable target on your behalf.
-     */
     readonly roleArn?: pulumi.Input<string>;
-    /**
-     * The scalable dimension of the scalable target. Documentation can be found in the `ScalableDimension` parameter at: [AWS Application Auto Scaling API Reference](https://docs.aws.amazon.com/autoscaling/application/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
-     */
     readonly scalableDimension?: pulumi.Input<string>;
-    /**
-     * The AWS service namespace of the scalable target. Documentation can be found in the `ServiceNamespace` parameter at: [AWS Application Auto Scaling API Reference](https://docs.aws.amazon.com/autoscaling/application/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
-     */
     readonly serviceNamespace?: pulumi.Input<string>;
 }
 
@@ -127,29 +86,10 @@ export interface TargetState {
  * The set of arguments for constructing a Target resource.
  */
 export interface TargetArgs {
-    /**
-     * The max capacity of the scalable target.
-     */
     readonly maxCapacity: pulumi.Input<number>;
-    /**
-     * The min capacity of the scalable target.
-     */
     readonly minCapacity: pulumi.Input<number>;
-    /**
-     * The resource type and unique identifier string for the resource associated with the scaling policy. Documentation can be found in the `ResourceId` parameter at: [AWS Application Auto Scaling API Reference](https://docs.aws.amazon.com/autoscaling/application/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
-     */
     readonly resourceId: pulumi.Input<string>;
-    /**
-     * The ARN of the IAM role that allows Application
-     * AutoScaling to modify your scalable target on your behalf.
-     */
     readonly roleArn?: pulumi.Input<string>;
-    /**
-     * The scalable dimension of the scalable target. Documentation can be found in the `ScalableDimension` parameter at: [AWS Application Auto Scaling API Reference](https://docs.aws.amazon.com/autoscaling/application/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
-     */
     readonly scalableDimension: pulumi.Input<string>;
-    /**
-     * The AWS service namespace of the scalable target. Documentation can be found in the `ServiceNamespace` parameter at: [AWS Application Auto Scaling API Reference](https://docs.aws.amazon.com/autoscaling/application/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
-     */
     readonly serviceNamespace: pulumi.Input<string>;
 }

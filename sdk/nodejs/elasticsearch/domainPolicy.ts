@@ -4,39 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Allows setting policy to an Elasticsearch domain while referencing domain attributes (e.g. ARN)
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_elasticsearch_domain_example = new aws.elasticsearch.Domain("example", {
- *     domainName: "tf-test",
- *     elasticsearchVersion: "2.3",
- * });
- * const aws_elasticsearch_domain_policy_main = new aws.elasticsearch.DomainPolicy("main", {
- *     accessPolicies: aws_elasticsearch_domain_example.arn.apply(__arg0 => `{
- *     "Version": "2012-10-17",
- *     "Statement": [
- *         {
- *             "Action": "es:*",
- *             "Principal": "*",
- *             "Effect": "Allow",
- *             "Condition": {
- *                 "IpAddress": {"aws:SourceIp": "127.0.0.1/32"}
- *             },
- *             "Resource": "${__arg0}/*"
- *         }
- *     ]
- * }
- * `),
- *     domainName: aws_elasticsearch_domain_example.domainName,
- * });
- * ```
- */
 export class DomainPolicy extends pulumi.CustomResource {
     /**
      * Get an existing DomainPolicy resource's state with the given name, ID, and optional extra
@@ -50,13 +17,7 @@ export class DomainPolicy extends pulumi.CustomResource {
         return new DomainPolicy(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * IAM policy document specifying the access policies for the domain
-     */
     public readonly accessPolicies: pulumi.Output<string>;
-    /**
-     * Name of the domain.
-     */
     public readonly domainName: pulumi.Output<string>;
 
     /**
@@ -92,13 +53,7 @@ export class DomainPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DomainPolicy resources.
  */
 export interface DomainPolicyState {
-    /**
-     * IAM policy document specifying the access policies for the domain
-     */
     readonly accessPolicies?: pulumi.Input<string>;
-    /**
-     * Name of the domain.
-     */
     readonly domainName?: pulumi.Input<string>;
 }
 
@@ -106,12 +61,6 @@ export interface DomainPolicyState {
  * The set of arguments for constructing a DomainPolicy resource.
  */
 export interface DomainPolicyArgs {
-    /**
-     * IAM policy document specifying the access policies for the domain
-     */
     readonly accessPolicies: pulumi.Input<string>;
-    /**
-     * Name of the domain.
-     */
     readonly domainName: pulumi.Input<string>;
 }

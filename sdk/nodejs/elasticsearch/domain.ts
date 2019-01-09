@@ -4,84 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Manages an AWS Elasticsearch Domain.
- * 
- * ## Example Usage
- * 
- * ### Basic Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_elasticsearch_domain_example = new aws.elasticsearch.Domain("example", {
- *     clusterConfig: {
- *         instanceType: "r4.large.elasticsearch",
- *     },
- *     domainName: "example",
- *     elasticsearchVersion: "1.5",
- *     snapshotOptions: {
- *         automatedSnapshotStartHour: 23,
- *     },
- *     tags: {
- *         Domain: "TestDomain",
- *     },
- * });
- * ```
- * ### Access Policy
- * 
- * -> See also: [`aws_elasticsearch_domain_policy` resource](https://www.terraform.io/docs/providers/aws/r/elasticsearch_domain_policy.html)
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const config = new pulumi.Config();
- * const var_domain = config.get("domain") || "tf-test";
- * 
- * const aws_caller_identity_current = pulumi.output(aws.getCallerIdentity({}));
- * const aws_region_current = pulumi.output(aws.getRegion({}));
- * const aws_elasticsearch_domain_example = new aws.elasticsearch.Domain("example", {
- *     accessPolicies: pulumi.all([aws_region_current, aws_caller_identity_current]).apply(([__arg0, __arg1]) => `{
- *   "Version": "2012-10-17",
- *   "Statement": [
- *     {
- *       "Action": "es:*",
- *       "Principal": "*",
- *       "Effect": "Allow",
- *       "Resource": "arn:aws:es:${__arg0.name}:${__arg1.accountId}:domain/${var_domain}/*",
- *       "Condition": {
- *         "IpAddress": {"aws:SourceIp": ["66.193.100.22/32"]}
- *       }
- *     }
- *   ]
- * }
- * `),
- *     domainName: var_domain,
- * });
- * ```
- * ### Log Publishing to CloudWatch Logs
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_cloudwatch_log_group_example = new aws.cloudwatch.LogGroup("example", {
- *     name: "example",
- * });
- * const aws_cloudwatch_log_resource_policy_example = new aws.cloudwatch.LogResourcePolicy("example", {
- *     policyDocument: "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Effect\": \"Allow\",\n      \"Principal\": {\n        \"Service\": \"es.amazonaws.com\"\n      },\n      \"Action\": [\n        \"logs:PutLogEvents\",\n        \"logs:PutLogEventsBatch\",\n        \"logs:CreateLogStream\"\n      ],\n      \"Resource\": \"arn:aws:logs:*\"\n    }\n  ]\n}\n",
- *     policyName: "example",
- * });
- * const aws_elasticsearch_domain_example = new aws.elasticsearch.Domain("example", {
- *     logPublishingOptions: [{
- *         cloudwatchLogGroupArn: aws_cloudwatch_log_group_example.arn,
- *         logType: "INDEX_SLOW_LOGS",
- *     }],
- * });
- * ```
- */
 export class Domain extends pulumi.CustomResource {
     /**
      * Get an existing Domain resource's state with the given name, ID, and optional extra
@@ -95,75 +17,22 @@ export class Domain extends pulumi.CustomResource {
         return new Domain(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * IAM policy document specifying the access policies for the domain
-     */
     public readonly accessPolicies: pulumi.Output<string>;
-    /**
-     * Key-value string pairs to specify advanced configuration options.
-     * Note that the values for these configuration options must be strings (wrapped in quotes) or they
-     * may be wrong and cause a perpetual diff, causing Terraform to want to recreate your Elasticsearch
-     * domain on every apply.
-     */
     public readonly advancedOptions: pulumi.Output<{[key: string]: any}>;
-    /**
-     * Amazon Resource Name (ARN) of the domain.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * Cluster configuration of the domain, see below.
-     */
     public readonly clusterConfig: pulumi.Output<{ dedicatedMasterCount?: number, dedicatedMasterEnabled?: boolean, dedicatedMasterType?: string, instanceCount?: number, instanceType?: string, zoneAwarenessEnabled?: boolean }>;
     public readonly cognitoOptions: pulumi.Output<{ enabled?: boolean, identityPoolId: string, roleArn: string, userPoolId: string } | undefined>;
-    /**
-     * Unique identifier for the domain.
-     */
     public /*out*/ readonly domainId: pulumi.Output<string>;
-    /**
-     * Name of the domain.
-     */
     public readonly domainName: pulumi.Output<string>;
-    /**
-     * EBS related options, may be required based on chosen [instance size](https://aws.amazon.com/elasticsearch-service/pricing/). See below.
-     */
     public readonly ebsOptions: pulumi.Output<{ ebsEnabled: boolean, iops?: number, volumeSize?: number, volumeType: string }>;
-    /**
-     * The version of Elasticsearch to deploy. Defaults to `1.5`
-     */
     public readonly elasticsearchVersion: pulumi.Output<string | undefined>;
-    /**
-     * Encrypt at rest options. Only available for [certain instance types](http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/aes-supported-instance-types.html). See below.
-     */
     public readonly encryptAtRest: pulumi.Output<{ enabled: boolean, kmsKeyId: string }>;
-    /**
-     * Domain-specific endpoint used to submit index, search, and data upload requests.
-     */
     public /*out*/ readonly endpoint: pulumi.Output<string>;
-    /**
-     * Domain-specific endpoint for kibana without https scheme.
-     * * `vpc_options.0.availability_zones` - If the domain was created inside a VPC, the names of the availability zones the configured `subnet_ids` were created inside.
-     * * `vpc_options.0.vpc_id` - If the domain was created inside a VPC, the ID of the VPC.
-     */
     public /*out*/ readonly kibanaEndpoint: pulumi.Output<string>;
-    /**
-     * Options for publishing slow logs to CloudWatch Logs.
-     */
     public readonly logPublishingOptions: pulumi.Output<{ cloudwatchLogGroupArn: string, enabled?: boolean, logType: string }[] | undefined>;
-    /**
-     * Node-to-node encryption options. See below.
-     */
     public readonly nodeToNodeEncryption: pulumi.Output<{ enabled: boolean }>;
-    /**
-     * Snapshot related options, see below.
-     */
     public readonly snapshotOptions: pulumi.Output<{ automatedSnapshotStartHour: number } | undefined>;
-    /**
-     * A mapping of tags to assign to the resource
-     */
     public readonly tags: pulumi.Output<{[key: string]: any} | undefined>;
-    /**
-     * VPC related options, see below. Adding or removing this configuration forces a new resource ([documentation](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-vpc.html#es-vpc-limitations)).
-     */
     public readonly vpcOptions: pulumi.Output<{ availabilityZones: string[], securityGroupIds?: string[], subnetIds?: string[], vpcId: string } | undefined>;
 
     /**
@@ -223,75 +92,22 @@ export class Domain extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Domain resources.
  */
 export interface DomainState {
-    /**
-     * IAM policy document specifying the access policies for the domain
-     */
     readonly accessPolicies?: pulumi.Input<string>;
-    /**
-     * Key-value string pairs to specify advanced configuration options.
-     * Note that the values for these configuration options must be strings (wrapped in quotes) or they
-     * may be wrong and cause a perpetual diff, causing Terraform to want to recreate your Elasticsearch
-     * domain on every apply.
-     */
     readonly advancedOptions?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * Amazon Resource Name (ARN) of the domain.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * Cluster configuration of the domain, see below.
-     */
     readonly clusterConfig?: pulumi.Input<{ dedicatedMasterCount?: pulumi.Input<number>, dedicatedMasterEnabled?: pulumi.Input<boolean>, dedicatedMasterType?: pulumi.Input<string>, instanceCount?: pulumi.Input<number>, instanceType?: pulumi.Input<string>, zoneAwarenessEnabled?: pulumi.Input<boolean> }>;
     readonly cognitoOptions?: pulumi.Input<{ enabled?: pulumi.Input<boolean>, identityPoolId: pulumi.Input<string>, roleArn: pulumi.Input<string>, userPoolId: pulumi.Input<string> }>;
-    /**
-     * Unique identifier for the domain.
-     */
     readonly domainId?: pulumi.Input<string>;
-    /**
-     * Name of the domain.
-     */
     readonly domainName?: pulumi.Input<string>;
-    /**
-     * EBS related options, may be required based on chosen [instance size](https://aws.amazon.com/elasticsearch-service/pricing/). See below.
-     */
     readonly ebsOptions?: pulumi.Input<{ ebsEnabled: pulumi.Input<boolean>, iops?: pulumi.Input<number>, volumeSize?: pulumi.Input<number>, volumeType?: pulumi.Input<string> }>;
-    /**
-     * The version of Elasticsearch to deploy. Defaults to `1.5`
-     */
     readonly elasticsearchVersion?: pulumi.Input<string>;
-    /**
-     * Encrypt at rest options. Only available for [certain instance types](http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/aes-supported-instance-types.html). See below.
-     */
     readonly encryptAtRest?: pulumi.Input<{ enabled: pulumi.Input<boolean>, kmsKeyId?: pulumi.Input<string> }>;
-    /**
-     * Domain-specific endpoint used to submit index, search, and data upload requests.
-     */
     readonly endpoint?: pulumi.Input<string>;
-    /**
-     * Domain-specific endpoint for kibana without https scheme.
-     * * `vpc_options.0.availability_zones` - If the domain was created inside a VPC, the names of the availability zones the configured `subnet_ids` were created inside.
-     * * `vpc_options.0.vpc_id` - If the domain was created inside a VPC, the ID of the VPC.
-     */
     readonly kibanaEndpoint?: pulumi.Input<string>;
-    /**
-     * Options for publishing slow logs to CloudWatch Logs.
-     */
     readonly logPublishingOptions?: pulumi.Input<pulumi.Input<{ cloudwatchLogGroupArn: pulumi.Input<string>, enabled?: pulumi.Input<boolean>, logType: pulumi.Input<string> }>[]>;
-    /**
-     * Node-to-node encryption options. See below.
-     */
     readonly nodeToNodeEncryption?: pulumi.Input<{ enabled: pulumi.Input<boolean> }>;
-    /**
-     * Snapshot related options, see below.
-     */
     readonly snapshotOptions?: pulumi.Input<{ automatedSnapshotStartHour: pulumi.Input<number> }>;
-    /**
-     * A mapping of tags to assign to the resource
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * VPC related options, see below. Adding or removing this configuration forces a new resource ([documentation](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-vpc.html#es-vpc-limitations)).
-     */
     readonly vpcOptions?: pulumi.Input<{ availabilityZones?: pulumi.Input<pulumi.Input<string>[]>, securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>, subnetIds?: pulumi.Input<pulumi.Input<string>[]>, vpcId?: pulumi.Input<string> }>;
 }
 
@@ -299,56 +115,17 @@ export interface DomainState {
  * The set of arguments for constructing a Domain resource.
  */
 export interface DomainArgs {
-    /**
-     * IAM policy document specifying the access policies for the domain
-     */
     readonly accessPolicies?: pulumi.Input<string>;
-    /**
-     * Key-value string pairs to specify advanced configuration options.
-     * Note that the values for these configuration options must be strings (wrapped in quotes) or they
-     * may be wrong and cause a perpetual diff, causing Terraform to want to recreate your Elasticsearch
-     * domain on every apply.
-     */
     readonly advancedOptions?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * Cluster configuration of the domain, see below.
-     */
     readonly clusterConfig?: pulumi.Input<{ dedicatedMasterCount?: pulumi.Input<number>, dedicatedMasterEnabled?: pulumi.Input<boolean>, dedicatedMasterType?: pulumi.Input<string>, instanceCount?: pulumi.Input<number>, instanceType?: pulumi.Input<string>, zoneAwarenessEnabled?: pulumi.Input<boolean> }>;
     readonly cognitoOptions?: pulumi.Input<{ enabled?: pulumi.Input<boolean>, identityPoolId: pulumi.Input<string>, roleArn: pulumi.Input<string>, userPoolId: pulumi.Input<string> }>;
-    /**
-     * Name of the domain.
-     */
     readonly domainName?: pulumi.Input<string>;
-    /**
-     * EBS related options, may be required based on chosen [instance size](https://aws.amazon.com/elasticsearch-service/pricing/). See below.
-     */
     readonly ebsOptions?: pulumi.Input<{ ebsEnabled: pulumi.Input<boolean>, iops?: pulumi.Input<number>, volumeSize?: pulumi.Input<number>, volumeType?: pulumi.Input<string> }>;
-    /**
-     * The version of Elasticsearch to deploy. Defaults to `1.5`
-     */
     readonly elasticsearchVersion?: pulumi.Input<string>;
-    /**
-     * Encrypt at rest options. Only available for [certain instance types](http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/aes-supported-instance-types.html). See below.
-     */
     readonly encryptAtRest?: pulumi.Input<{ enabled: pulumi.Input<boolean>, kmsKeyId?: pulumi.Input<string> }>;
-    /**
-     * Options for publishing slow logs to CloudWatch Logs.
-     */
     readonly logPublishingOptions?: pulumi.Input<pulumi.Input<{ cloudwatchLogGroupArn: pulumi.Input<string>, enabled?: pulumi.Input<boolean>, logType: pulumi.Input<string> }>[]>;
-    /**
-     * Node-to-node encryption options. See below.
-     */
     readonly nodeToNodeEncryption?: pulumi.Input<{ enabled: pulumi.Input<boolean> }>;
-    /**
-     * Snapshot related options, see below.
-     */
     readonly snapshotOptions?: pulumi.Input<{ automatedSnapshotStartHour: pulumi.Input<number> }>;
-    /**
-     * A mapping of tags to assign to the resource
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * VPC related options, see below. Adding or removing this configuration forces a new resource ([documentation](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-vpc.html#es-vpc-limitations)).
-     */
     readonly vpcOptions?: pulumi.Input<{ availabilityZones?: pulumi.Input<pulumi.Input<string>[]>, securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>, subnetIds?: pulumi.Input<pulumi.Input<string>[]>, vpcId?: pulumi.Input<string> }>;
 }

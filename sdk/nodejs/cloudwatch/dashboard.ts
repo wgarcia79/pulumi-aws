@@ -4,21 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a CloudWatch Dashboard resource.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_cloudwatch_dashboard_main = new aws.cloudwatch.Dashboard("main", {
- *     dashboardBody: " {\n   \"widgets\": [\n       {\n          \"type\":\"metric\",\n          \"x\":0,\n          \"y\":0,\n          \"width\":12,\n          \"height\":6,\n          \"properties\":{\n             \"metrics\":[\n                [\n                   \"AWS/EC2\",\n                   \"CPUUtilization\",\n                   \"InstanceId\",\n                   \"i-012345\"\n                ]\n             ],\n             \"period\":300,\n             \"stat\":\"Average\",\n             \"region\":\"us-east-1\",\n             \"title\":\"EC2 Instance CPU\"\n          }\n       },\n       {\n          \"type\":\"text\",\n          \"x\":0,\n          \"y\":7,\n          \"width\":3,\n          \"height\":3,\n          \"properties\":{\n             \"markdown\":\"Hello world\"\n          }\n       }\n   ]\n }\n ",
- *     dashboardName: "my-dashboard",
- * });
- * ```
- */
 export class Dashboard extends pulumi.CustomResource {
     /**
      * Get an existing Dashboard resource's state with the given name, ID, and optional extra
@@ -32,17 +17,8 @@ export class Dashboard extends pulumi.CustomResource {
         return new Dashboard(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The Amazon Resource Name (ARN) of the dashboard.
-     */
     public /*out*/ readonly dashboardArn: pulumi.Output<string>;
-    /**
-     * The detailed information about the dashboard, including what widgets are included and their location on the dashboard. You can read more about the body structure in the [documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/CloudWatch-Dashboard-Body-Structure.html).
-     */
     public readonly dashboardBody: pulumi.Output<string>;
-    /**
-     * The name of the dashboard.
-     */
     public readonly dashboardName: pulumi.Output<string>;
 
     /**
@@ -80,17 +56,8 @@ export class Dashboard extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Dashboard resources.
  */
 export interface DashboardState {
-    /**
-     * The Amazon Resource Name (ARN) of the dashboard.
-     */
     readonly dashboardArn?: pulumi.Input<string>;
-    /**
-     * The detailed information about the dashboard, including what widgets are included and their location on the dashboard. You can read more about the body structure in the [documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/CloudWatch-Dashboard-Body-Structure.html).
-     */
     readonly dashboardBody?: pulumi.Input<string>;
-    /**
-     * The name of the dashboard.
-     */
     readonly dashboardName?: pulumi.Input<string>;
 }
 
@@ -98,12 +65,6 @@ export interface DashboardState {
  * The set of arguments for constructing a Dashboard resource.
  */
 export interface DashboardArgs {
-    /**
-     * The detailed information about the dashboard, including what widgets are included and their location on the dashboard. You can read more about the body structure in the [documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/CloudWatch-Dashboard-Body-Structure.html).
-     */
     readonly dashboardBody: pulumi.Input<string>;
-    /**
-     * The name of the dashboard.
-     */
     readonly dashboardName: pulumi.Input<string>;
 }

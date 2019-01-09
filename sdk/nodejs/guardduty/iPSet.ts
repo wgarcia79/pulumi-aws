@@ -4,38 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a resource to manage a GuardDuty IPSet.
- * 
- * > **Note:** Currently in GuardDuty, users from member accounts cannot upload and further manage IPSets. IPSets that are uploaded by the master account are imposed on GuardDuty functionality in its member accounts. See the [GuardDuty API Documentation](https://docs.aws.amazon.com/guardduty/latest/ug/create-ip-set.html)
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_guardduty_detector_master = new aws.guardduty.Detector("master", {
- *     enable: true,
- * });
- * const aws_s3_bucket_bucket = new aws.s3.Bucket("bucket", {
- *     acl: "private",
- * });
- * const aws_s3_bucket_object_MyIPSet = new aws.s3.BucketObject("MyIPSet", {
- *     acl: "public-read",
- *     bucket: aws_s3_bucket_bucket.id,
- *     content: "10.0.0.0/8\n",
- *     key: "MyIPSet",
- * });
- * const aws_guardduty_ipset_MyIPSet = new aws.guardduty.IPSet("MyIPSet", {
- *     activate: true,
- *     detectorId: aws_guardduty_detector_master.id,
- *     format: "TXT",
- *     location: pulumi.all([aws_s3_bucket_object_MyIPSet.bucket, aws_s3_bucket_object_MyIPSet.key]).apply(([__arg0, __arg1]) => `https://s3.amazonaws.com/${__arg0}/${__arg1}`),
- *     name: "MyIPSet",
- * });
- * ```
- */
 export class IPSet extends pulumi.CustomResource {
     /**
      * Get an existing IPSet resource's state with the given name, ID, and optional extra
@@ -49,25 +17,10 @@ export class IPSet extends pulumi.CustomResource {
         return new IPSet(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * Specifies whether GuardDuty is to start using the uploaded IPSet.
-     */
     public readonly activate: pulumi.Output<boolean>;
-    /**
-     * The detector ID of the GuardDuty.
-     */
     public readonly detectorId: pulumi.Output<string>;
-    /**
-     * The format of the file that contains the IPSet. Valid values: `TXT` | `STIX` | `OTX_CSV` | `ALIEN_VAULT` | `PROOF_POINT` | `FIRE_EYE`
-     */
     public readonly format: pulumi.Output<string>;
-    /**
-     * The URI of the file that contains the IPSet.
-     */
     public readonly location: pulumi.Output<string>;
-    /**
-     * The friendly name to identify the IPSet.
-     */
     public readonly name: pulumi.Output<string>;
 
     /**
@@ -115,25 +68,10 @@ export class IPSet extends pulumi.CustomResource {
  * Input properties used for looking up and filtering IPSet resources.
  */
 export interface IPSetState {
-    /**
-     * Specifies whether GuardDuty is to start using the uploaded IPSet.
-     */
     readonly activate?: pulumi.Input<boolean>;
-    /**
-     * The detector ID of the GuardDuty.
-     */
     readonly detectorId?: pulumi.Input<string>;
-    /**
-     * The format of the file that contains the IPSet. Valid values: `TXT` | `STIX` | `OTX_CSV` | `ALIEN_VAULT` | `PROOF_POINT` | `FIRE_EYE`
-     */
     readonly format?: pulumi.Input<string>;
-    /**
-     * The URI of the file that contains the IPSet.
-     */
     readonly location?: pulumi.Input<string>;
-    /**
-     * The friendly name to identify the IPSet.
-     */
     readonly name?: pulumi.Input<string>;
 }
 
@@ -141,24 +79,9 @@ export interface IPSetState {
  * The set of arguments for constructing a IPSet resource.
  */
 export interface IPSetArgs {
-    /**
-     * Specifies whether GuardDuty is to start using the uploaded IPSet.
-     */
     readonly activate: pulumi.Input<boolean>;
-    /**
-     * The detector ID of the GuardDuty.
-     */
     readonly detectorId: pulumi.Input<string>;
-    /**
-     * The format of the file that contains the IPSet. Valid values: `TXT` | `STIX` | `OTX_CSV` | `ALIEN_VAULT` | `PROOF_POINT` | `FIRE_EYE`
-     */
     readonly format: pulumi.Input<string>;
-    /**
-     * The URI of the file that contains the IPSet.
-     */
     readonly location: pulumi.Input<string>;
-    /**
-     * The friendly name to identify the IPSet.
-     */
     readonly name?: pulumi.Input<string>;
 }

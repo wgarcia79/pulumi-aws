@@ -23,7 +23,8 @@ class ApiKey(pulumi.CustomResource):
 
         __props__ = dict()
 
-        description = 'Managed by Pulumi'
+        if not description:
+            description = 'Managed by Pulumi'
         __props__['description'] = description
 
         __props__['enabled'] = enabled

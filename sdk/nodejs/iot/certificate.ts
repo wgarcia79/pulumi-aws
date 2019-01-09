@@ -4,22 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Creates and manages an AWS IoT certificate.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * import * as fs from "fs";
- * 
- * const aws_iot_certificate_cert = new aws.iot.Certificate("cert", {
- *     active: true,
- *     csr: fs.readFileSync("/my/csr.pem", "utf-8"),
- * });
- * ```
- */
 export class Certificate extends pulumi.CustomResource {
     /**
      * Get an existing Certificate resource's state with the given name, ID, and optional extra
@@ -33,19 +17,8 @@ export class Certificate extends pulumi.CustomResource {
         return new Certificate(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * Boolean flag to indicate if the certificate should be active
-     */
     public readonly active: pulumi.Output<boolean>;
-    /**
-     * The ARN of the created AWS IoT certificate
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * The certificate signing request. Review the
-     * [IoT API Reference Guide] (http://docs.aws.amazon.com/iot/latest/apireference/API_CreateCertificateFromCsr.html)
-     * for more information on creating a certificate from a certificate signing request (CSR).
-     */
     public readonly csr: pulumi.Output<string>;
 
     /**
@@ -83,19 +56,8 @@ export class Certificate extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Certificate resources.
  */
 export interface CertificateState {
-    /**
-     * Boolean flag to indicate if the certificate should be active
-     */
     readonly active?: pulumi.Input<boolean>;
-    /**
-     * The ARN of the created AWS IoT certificate
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * The certificate signing request. Review the
-     * [IoT API Reference Guide] (http://docs.aws.amazon.com/iot/latest/apireference/API_CreateCertificateFromCsr.html)
-     * for more information on creating a certificate from a certificate signing request (CSR).
-     */
     readonly csr?: pulumi.Input<string>;
 }
 
@@ -103,14 +65,6 @@ export interface CertificateState {
  * The set of arguments for constructing a Certificate resource.
  */
 export interface CertificateArgs {
-    /**
-     * Boolean flag to indicate if the certificate should be active
-     */
     readonly active: pulumi.Input<boolean>;
-    /**
-     * The certificate signing request. Review the
-     * [IoT API Reference Guide] (http://docs.aws.amazon.com/iot/latest/apireference/API_CreateCertificateFromCsr.html)
-     * for more information on creating a certificate from a certificate signing request (CSR).
-     */
     readonly csr: pulumi.Input<string>;
 }

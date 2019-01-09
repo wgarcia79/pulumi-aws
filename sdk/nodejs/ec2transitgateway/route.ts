@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Manages an EC2 Transit Gateway Route.
- */
 export class Route extends pulumi.CustomResource {
     /**
      * Get an existing Route resource's state with the given name, ID, and optional extra
@@ -20,17 +17,8 @@ export class Route extends pulumi.CustomResource {
         return new Route(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * IPv4 CIDR range used for destination matches. Routing decisions are based on the most specific match.
-     */
     public readonly destinationCidrBlock: pulumi.Output<string>;
-    /**
-     * Identifier of EC2 Transit Gateway Attachment.
-     */
     public readonly transitGatewayAttachmentId: pulumi.Output<string>;
-    /**
-     * Identifier of EC2 Transit Gateway Route Table.
-     */
     public readonly transitGatewayRouteTableId: pulumi.Output<string>;
 
     /**
@@ -71,17 +59,8 @@ export class Route extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Route resources.
  */
 export interface RouteState {
-    /**
-     * IPv4 CIDR range used for destination matches. Routing decisions are based on the most specific match.
-     */
     readonly destinationCidrBlock?: pulumi.Input<string>;
-    /**
-     * Identifier of EC2 Transit Gateway Attachment.
-     */
     readonly transitGatewayAttachmentId?: pulumi.Input<string>;
-    /**
-     * Identifier of EC2 Transit Gateway Route Table.
-     */
     readonly transitGatewayRouteTableId?: pulumi.Input<string>;
 }
 
@@ -89,16 +68,7 @@ export interface RouteState {
  * The set of arguments for constructing a Route resource.
  */
 export interface RouteArgs {
-    /**
-     * IPv4 CIDR range used for destination matches. Routing decisions are based on the most specific match.
-     */
     readonly destinationCidrBlock: pulumi.Input<string>;
-    /**
-     * Identifier of EC2 Transit Gateway Attachment.
-     */
     readonly transitGatewayAttachmentId: pulumi.Input<string>;
-    /**
-     * Identifier of EC2 Transit Gateway Route Table.
-     */
     readonly transitGatewayRouteTableId: pulumi.Input<string>;
 }

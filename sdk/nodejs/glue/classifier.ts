@@ -4,55 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a Glue Classifier resource.
- * 
- * > **NOTE:** It is only valid to create one type of classifier (grok, JSON, or XML). Changing classifier types will recreate the classifier.
- * 
- * ## Example Usage
- * 
- * ### Grok Classifier
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_glue_classifier_example = new aws.glue.Classifier("example", {
- *     grokClassifier: {
- *         classification: "example",
- *         grokPattern: "example",
- *     },
- *     name: "example",
- * });
- * ```
- * ### JSON Classifier
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_glue_classifier_example = new aws.glue.Classifier("example", {
- *     jsonClassifier: {
- *         jsonPath: "example",
- *     },
- *     name: "example",
- * });
- * ```
- * ### XML Classifier
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_glue_classifier_example = new aws.glue.Classifier("example", {
- *     name: "example",
- *     xmlClassifier: {
- *         classification: "example",
- *         rowTag: "example",
- *     },
- * });
- * ```
- */
 export class Classifier extends pulumi.CustomResource {
     /**
      * Get an existing Classifier resource's state with the given name, ID, and optional extra
@@ -66,21 +17,9 @@ export class Classifier extends pulumi.CustomResource {
         return new Classifier(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * A classifier that uses grok patterns. Defined below.
-     */
     public readonly grokClassifier: pulumi.Output<{ classification: string, customPatterns?: string, grokPattern: string } | undefined>;
-    /**
-     * A classifier for JSON content. Defined below.
-     */
     public readonly jsonClassifier: pulumi.Output<{ jsonPath: string } | undefined>;
-    /**
-     * The name of the classifier.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * A classifier for XML content. Defined below.
-     */
     public readonly xmlClassifier: pulumi.Output<{ classification: string, rowTag: string } | undefined>;
 
     /**
@@ -114,21 +53,9 @@ export class Classifier extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Classifier resources.
  */
 export interface ClassifierState {
-    /**
-     * A classifier that uses grok patterns. Defined below.
-     */
     readonly grokClassifier?: pulumi.Input<{ classification: pulumi.Input<string>, customPatterns?: pulumi.Input<string>, grokPattern: pulumi.Input<string> }>;
-    /**
-     * A classifier for JSON content. Defined below.
-     */
     readonly jsonClassifier?: pulumi.Input<{ jsonPath: pulumi.Input<string> }>;
-    /**
-     * The name of the classifier.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * A classifier for XML content. Defined below.
-     */
     readonly xmlClassifier?: pulumi.Input<{ classification: pulumi.Input<string>, rowTag: pulumi.Input<string> }>;
 }
 
@@ -136,20 +63,8 @@ export interface ClassifierState {
  * The set of arguments for constructing a Classifier resource.
  */
 export interface ClassifierArgs {
-    /**
-     * A classifier that uses grok patterns. Defined below.
-     */
     readonly grokClassifier?: pulumi.Input<{ classification: pulumi.Input<string>, customPatterns?: pulumi.Input<string>, grokPattern: pulumi.Input<string> }>;
-    /**
-     * A classifier for JSON content. Defined below.
-     */
     readonly jsonClassifier?: pulumi.Input<{ jsonPath: pulumi.Input<string> }>;
-    /**
-     * The name of the classifier.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * A classifier for XML content. Defined below.
-     */
     readonly xmlClassifier?: pulumi.Input<{ classification: pulumi.Input<string>, rowTag: pulumi.Input<string> }>;
 }

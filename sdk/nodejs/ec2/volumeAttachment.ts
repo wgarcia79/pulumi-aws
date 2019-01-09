@@ -4,37 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an AWS EBS Volume Attachment as a top level resource, to attach and
- * detach volumes from AWS Instances.
- * 
- * > **NOTE on EBS block devices:** If you use `ebs_block_device` on an `aws_instance`, Terraform will assume management over the full set of non-root EBS block devices for the instance, and treats additional block devices as drift. For this reason, `ebs_block_device` cannot be mixed with external `aws_ebs_volume` + `aws_ebs_volume_attachment` resources for a given instance.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_ebs_volume_example = new aws.ebs.Volume("example", {
- *     availabilityZone: "us-west-2a",
- *     size: 1,
- * });
- * const aws_instance_web = new aws.ec2.Instance("web", {
- *     ami: "ami-21f78e11",
- *     availabilityZone: "us-west-2a",
- *     instanceType: "t1.micro",
- *     tags: {
- *         Name: "HelloWorld",
- *     },
- * });
- * const aws_volume_attachment_ebs_att = new aws.ec2.VolumeAttachment("ebs_att", {
- *     deviceName: "/dev/sdh",
- *     instanceId: aws_instance_web.id,
- *     volumeId: aws_ebs_volume_example.id,
- * });
- * ```
- */
 export class VolumeAttachment extends pulumi.CustomResource {
     /**
      * Get an existing VolumeAttachment resource's state with the given name, ID, and optional extra
@@ -48,33 +17,10 @@ export class VolumeAttachment extends pulumi.CustomResource {
         return new VolumeAttachment(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The device name to expose to the instance (for
-     * example, `/dev/sdh` or `xvdh`)
-     */
     public readonly deviceName: pulumi.Output<string>;
-    /**
-     * Set to `true` if you want to force the
-     * volume to detach. Useful if previous attempts failed, but use this option only
-     * as a last resort, as this can result in **data loss**. See
-     * [Detaching an Amazon EBS Volume from an Instance][1] for more information.
-     */
     public readonly forceDetach: pulumi.Output<boolean | undefined>;
-    /**
-     * ID of the Instance to attach to
-     */
     public readonly instanceId: pulumi.Output<string>;
-    /**
-     * Set this to true if you do not wish
-     * to detach the volume from the instance to which it is attached at destroy
-     * time, and instead just remove the attachment from Terraform state. This is
-     * useful when destroying an instance which has volumes created by some other
-     * means attached.
-     */
     public readonly skipDestroy: pulumi.Output<boolean | undefined>;
-    /**
-     * ID of the Volume to be attached
-     */
     public readonly volumeId: pulumi.Output<string>;
 
     /**
@@ -119,33 +65,10 @@ export class VolumeAttachment extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VolumeAttachment resources.
  */
 export interface VolumeAttachmentState {
-    /**
-     * The device name to expose to the instance (for
-     * example, `/dev/sdh` or `xvdh`)
-     */
     readonly deviceName?: pulumi.Input<string>;
-    /**
-     * Set to `true` if you want to force the
-     * volume to detach. Useful if previous attempts failed, but use this option only
-     * as a last resort, as this can result in **data loss**. See
-     * [Detaching an Amazon EBS Volume from an Instance][1] for more information.
-     */
     readonly forceDetach?: pulumi.Input<boolean>;
-    /**
-     * ID of the Instance to attach to
-     */
     readonly instanceId?: pulumi.Input<string>;
-    /**
-     * Set this to true if you do not wish
-     * to detach the volume from the instance to which it is attached at destroy
-     * time, and instead just remove the attachment from Terraform state. This is
-     * useful when destroying an instance which has volumes created by some other
-     * means attached.
-     */
     readonly skipDestroy?: pulumi.Input<boolean>;
-    /**
-     * ID of the Volume to be attached
-     */
     readonly volumeId?: pulumi.Input<string>;
 }
 
@@ -153,32 +76,9 @@ export interface VolumeAttachmentState {
  * The set of arguments for constructing a VolumeAttachment resource.
  */
 export interface VolumeAttachmentArgs {
-    /**
-     * The device name to expose to the instance (for
-     * example, `/dev/sdh` or `xvdh`)
-     */
     readonly deviceName: pulumi.Input<string>;
-    /**
-     * Set to `true` if you want to force the
-     * volume to detach. Useful if previous attempts failed, but use this option only
-     * as a last resort, as this can result in **data loss**. See
-     * [Detaching an Amazon EBS Volume from an Instance][1] for more information.
-     */
     readonly forceDetach?: pulumi.Input<boolean>;
-    /**
-     * ID of the Instance to attach to
-     */
     readonly instanceId: pulumi.Input<string>;
-    /**
-     * Set this to true if you do not wish
-     * to detach the volume from the instance to which it is attached at destroy
-     * time, and instead just remove the attachment from Terraform state. This is
-     * useful when destroying an instance which has volumes created by some other
-     * means attached.
-     */
     readonly skipDestroy?: pulumi.Input<boolean>;
-    /**
-     * ID of the Volume to be attached
-     */
     readonly volumeId: pulumi.Input<string>;
 }

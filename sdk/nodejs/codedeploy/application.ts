@@ -4,45 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a CodeDeploy application to be used as a basis for deployments
- * 
- * ## Example Usage
- * 
- * ### ECS Application
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_codedeploy_app_example = new aws.codedeploy.Application("example", {
- *     computePlatform: "ECS",
- *     name: "example",
- * });
- * ```
- * ### Lambda Application
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_codedeploy_app_example = new aws.codedeploy.Application("example", {
- *     computePlatform: "Lambda",
- *     name: "example",
- * });
- * ```
- * ### Server Application
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_codedeploy_app_example = new aws.codedeploy.Application("example", {
- *     computePlatform: "Server",
- *     name: "example",
- * });
- * ```
- */
 export class Application extends pulumi.CustomResource {
     /**
      * Get an existing Application resource's state with the given name, ID, and optional extra
@@ -56,13 +17,7 @@ export class Application extends pulumi.CustomResource {
         return new Application(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The compute platform can either be `ECS`, `Lambda`, or `Server`. Default is `Server`.
-     */
     public readonly computePlatform: pulumi.Output<string | undefined>;
-    /**
-     * The name of the application.
-     */
     public readonly name: pulumi.Output<string>;
     public readonly uniqueId: pulumi.Output<string>;
 
@@ -95,13 +50,7 @@ export class Application extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Application resources.
  */
 export interface ApplicationState {
-    /**
-     * The compute platform can either be `ECS`, `Lambda`, or `Server`. Default is `Server`.
-     */
     readonly computePlatform?: pulumi.Input<string>;
-    /**
-     * The name of the application.
-     */
     readonly name?: pulumi.Input<string>;
     readonly uniqueId?: pulumi.Input<string>;
 }
@@ -110,13 +59,7 @@ export interface ApplicationState {
  * The set of arguments for constructing a Application resource.
  */
 export interface ApplicationArgs {
-    /**
-     * The compute platform can either be `ECS`, `Lambda`, or `Server`. Default is `Server`.
-     */
     readonly computePlatform?: pulumi.Input<string>;
-    /**
-     * The name of the application.
-     */
     readonly name?: pulumi.Input<string>;
     readonly uniqueId?: pulumi.Input<string>;
 }

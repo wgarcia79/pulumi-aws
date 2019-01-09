@@ -4,31 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Registers an on-premises server or virtual machine with Amazon EC2 so that it can be managed using Run Command.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_iam_role_test_role = new aws.iam.Role("test_role", {
- *     assumeRolePolicy: "  {\n    \"Version\": \"2012-10-17\",\n    \"Statement\": {\n      \"Effect\": \"Allow\",\n      \"Principal\": {\"Service\": \"ssm.amazonaws.com\"},\n      \"Action\": \"sts:AssumeRole\"\n    }\n  }\n",
- *     name: "test_role",
- * });
- * const aws_iam_role_policy_attachment_test_attach = new aws.iam.RolePolicyAttachment("test_attach", {
- *     policyArn: "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM",
- *     role: aws_iam_role_test_role.name,
- * });
- * const aws_ssm_activation_foo = new aws.ssm.Activation("foo", {
- *     description: "Test",
- *     iamRole: aws_iam_role_test_role.id,
- *     name: "test_ssm_activation",
- *     registrationLimit: Number.parseFloat("5"),
- * }, {dependsOn: [aws_iam_role_policy_attachment_test_attach]});
- * ```
- */
 export class Activation extends pulumi.CustomResource {
     /**
      * Get an existing Activation resource's state with the given name, ID, and optional extra
@@ -42,37 +17,13 @@ export class Activation extends pulumi.CustomResource {
         return new Activation(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The code the system generates when it processes the activation.
-     */
     public /*out*/ readonly activationCode: pulumi.Output<string>;
-    /**
-     * The description of the resource that you want to register.
-     */
     public readonly description: pulumi.Output<string | undefined>;
-    /**
-     * A timestamp in [RFC3339 format](https://tools.ietf.org/html/rfc3339#section-5.8) by which this activation request should expire. The default value is 24 hours from resource creation time.
-     */
     public readonly expirationDate: pulumi.Output<string | undefined>;
-    /**
-     * If the current activation has expired.
-     */
     public /*out*/ readonly expired: pulumi.Output<string>;
-    /**
-     * The IAM Role to attach to the managed instance.
-     */
     public readonly iamRole: pulumi.Output<string>;
-    /**
-     * The default name of the registered managed instance.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * The number of managed instances that are currently registered using this activation.
-     */
     public /*out*/ readonly registrationCount: pulumi.Output<number>;
-    /**
-     * The maximum number of managed instances you want to register. The default value is 1 instance.
-     */
     public readonly registrationLimit: pulumi.Output<number | undefined>;
 
     /**
@@ -117,37 +68,13 @@ export class Activation extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Activation resources.
  */
 export interface ActivationState {
-    /**
-     * The code the system generates when it processes the activation.
-     */
     readonly activationCode?: pulumi.Input<string>;
-    /**
-     * The description of the resource that you want to register.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * A timestamp in [RFC3339 format](https://tools.ietf.org/html/rfc3339#section-5.8) by which this activation request should expire. The default value is 24 hours from resource creation time.
-     */
     readonly expirationDate?: pulumi.Input<string>;
-    /**
-     * If the current activation has expired.
-     */
     readonly expired?: pulumi.Input<string>;
-    /**
-     * The IAM Role to attach to the managed instance.
-     */
     readonly iamRole?: pulumi.Input<string>;
-    /**
-     * The default name of the registered managed instance.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The number of managed instances that are currently registered using this activation.
-     */
     readonly registrationCount?: pulumi.Input<number>;
-    /**
-     * The maximum number of managed instances you want to register. The default value is 1 instance.
-     */
     readonly registrationLimit?: pulumi.Input<number>;
 }
 
@@ -155,24 +82,9 @@ export interface ActivationState {
  * The set of arguments for constructing a Activation resource.
  */
 export interface ActivationArgs {
-    /**
-     * The description of the resource that you want to register.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * A timestamp in [RFC3339 format](https://tools.ietf.org/html/rfc3339#section-5.8) by which this activation request should expire. The default value is 24 hours from resource creation time.
-     */
     readonly expirationDate?: pulumi.Input<string>;
-    /**
-     * The IAM Role to attach to the managed instance.
-     */
     readonly iamRole: pulumi.Input<string>;
-    /**
-     * The default name of the registered managed instance.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The maximum number of managed instances you want to register. The default value is 1 instance.
-     */
     readonly registrationLimit?: pulumi.Input<number>;
 }

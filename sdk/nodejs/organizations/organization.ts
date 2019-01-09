@@ -4,24 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a resource to create an organization.
- * 
- * ## Example Usage:
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_organizations_organization_org = new aws.organizations.Organization("org", {
- *     awsServiceAccessPrincipals: [
- *         "cloudtrail.amazonaws.com",
- *         "config.amazonaws.com",
- *     ],
- *     featureSet: "ALL",
- * });
- * ```
- */
 export class Organization extends pulumi.CustomResource {
     /**
      * Get an existing Organization resource's state with the given name, ID, and optional extra
@@ -35,29 +17,11 @@ export class Organization extends pulumi.CustomResource {
         return new Organization(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * ARN of the organization
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * List of AWS service principal names for which you want to enable integration with your organization. This is typically in the form of a URL, such as service-abbreviation.amazonaws.com. Organization must have `feature_set` set to `ALL`. For additional information, see the [AWS Organizations User Guide](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html).
-     */
     public readonly awsServiceAccessPrincipals: pulumi.Output<string[] | undefined>;
-    /**
-     * Specify "ALL" (default) or "CONSOLIDATED_BILLING".
-     */
     public readonly featureSet: pulumi.Output<string | undefined>;
-    /**
-     * ARN of the master account
-     */
     public /*out*/ readonly masterAccountArn: pulumi.Output<string>;
-    /**
-     * Email address of the master account
-     */
     public /*out*/ readonly masterAccountEmail: pulumi.Output<string>;
-    /**
-     * Identifier of the master account
-     */
     public /*out*/ readonly masterAccountId: pulumi.Output<string>;
 
     /**
@@ -95,29 +59,11 @@ export class Organization extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Organization resources.
  */
 export interface OrganizationState {
-    /**
-     * ARN of the organization
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * List of AWS service principal names for which you want to enable integration with your organization. This is typically in the form of a URL, such as service-abbreviation.amazonaws.com. Organization must have `feature_set` set to `ALL`. For additional information, see the [AWS Organizations User Guide](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html).
-     */
     readonly awsServiceAccessPrincipals?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Specify "ALL" (default) or "CONSOLIDATED_BILLING".
-     */
     readonly featureSet?: pulumi.Input<string>;
-    /**
-     * ARN of the master account
-     */
     readonly masterAccountArn?: pulumi.Input<string>;
-    /**
-     * Email address of the master account
-     */
     readonly masterAccountEmail?: pulumi.Input<string>;
-    /**
-     * Identifier of the master account
-     */
     readonly masterAccountId?: pulumi.Input<string>;
 }
 
@@ -125,12 +71,6 @@ export interface OrganizationState {
  * The set of arguments for constructing a Organization resource.
  */
 export interface OrganizationArgs {
-    /**
-     * List of AWS service principal names for which you want to enable integration with your organization. This is typically in the form of a URL, such as service-abbreviation.amazonaws.com. Organization must have `feature_set` set to `ALL`. For additional information, see the [AWS Organizations User Guide](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html).
-     */
     readonly awsServiceAccessPrincipals?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Specify "ALL" (default) or "CONSOLIDATED_BILLING".
-     */
     readonly featureSet?: pulumi.Input<string>;
 }

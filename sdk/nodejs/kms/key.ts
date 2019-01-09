@@ -4,21 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a KMS customer master key.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_kms_key_a = new aws.kms.Key("a", {
- *     deletionWindowInDays: 10,
- *     description: "KMS key 1",
- * });
- * ```
- */
 export class Key extends pulumi.CustomResource {
     /**
      * Get an existing Key resource's state with the given name, ID, and optional extra
@@ -32,44 +17,14 @@ export class Key extends pulumi.CustomResource {
         return new Key(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The Amazon Resource Name (ARN) of the key.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * Duration in days after which the key is deleted
-     * after destruction of the resource, must be between 7 and 30 days. Defaults to 30 days.
-     */
     public readonly deletionWindowInDays: pulumi.Output<number | undefined>;
-    /**
-     * The description of the key as viewed in AWS console.
-     */
     public readonly description: pulumi.Output<string>;
-    /**
-     * Specifies whether [key rotation](http://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html)
-     * is enabled. Defaults to false.
-     */
     public readonly enableKeyRotation: pulumi.Output<boolean | undefined>;
-    /**
-     * Specifies whether the key is enabled. Defaults to true.
-     */
     public readonly isEnabled: pulumi.Output<boolean | undefined>;
-    /**
-     * The globally unique identifier for the key.
-     */
     public /*out*/ readonly keyId: pulumi.Output<string>;
-    /**
-     * Specifies the intended use of the key.
-     * Defaults to ENCRYPT_DECRYPT, and only symmetric encryption and decryption are supported.
-     */
     public readonly keyUsage: pulumi.Output<string>;
-    /**
-     * A valid policy JSON document. For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](https://www.terraform.io/docs/providers/aws/guides/iam-policy-documents.html).
-     */
     public readonly policy: pulumi.Output<string>;
-    /**
-     * A mapping of tags to assign to the object.
-     */
     public readonly tags: pulumi.Output<{[key: string]: any} | undefined>;
 
     /**
@@ -113,44 +68,14 @@ export class Key extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Key resources.
  */
 export interface KeyState {
-    /**
-     * The Amazon Resource Name (ARN) of the key.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * Duration in days after which the key is deleted
-     * after destruction of the resource, must be between 7 and 30 days. Defaults to 30 days.
-     */
     readonly deletionWindowInDays?: pulumi.Input<number>;
-    /**
-     * The description of the key as viewed in AWS console.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * Specifies whether [key rotation](http://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html)
-     * is enabled. Defaults to false.
-     */
     readonly enableKeyRotation?: pulumi.Input<boolean>;
-    /**
-     * Specifies whether the key is enabled. Defaults to true.
-     */
     readonly isEnabled?: pulumi.Input<boolean>;
-    /**
-     * The globally unique identifier for the key.
-     */
     readonly keyId?: pulumi.Input<string>;
-    /**
-     * Specifies the intended use of the key.
-     * Defaults to ENCRYPT_DECRYPT, and only symmetric encryption and decryption are supported.
-     */
     readonly keyUsage?: pulumi.Input<string>;
-    /**
-     * A valid policy JSON document. For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](https://www.terraform.io/docs/providers/aws/guides/iam-policy-documents.html).
-     */
     readonly policy?: pulumi.Input<string>;
-    /**
-     * A mapping of tags to assign to the object.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
 }
 
@@ -158,35 +83,11 @@ export interface KeyState {
  * The set of arguments for constructing a Key resource.
  */
 export interface KeyArgs {
-    /**
-     * Duration in days after which the key is deleted
-     * after destruction of the resource, must be between 7 and 30 days. Defaults to 30 days.
-     */
     readonly deletionWindowInDays?: pulumi.Input<number>;
-    /**
-     * The description of the key as viewed in AWS console.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * Specifies whether [key rotation](http://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html)
-     * is enabled. Defaults to false.
-     */
     readonly enableKeyRotation?: pulumi.Input<boolean>;
-    /**
-     * Specifies whether the key is enabled. Defaults to true.
-     */
     readonly isEnabled?: pulumi.Input<boolean>;
-    /**
-     * Specifies the intended use of the key.
-     * Defaults to ENCRYPT_DECRYPT, and only symmetric encryption and decryption are supported.
-     */
     readonly keyUsage?: pulumi.Input<string>;
-    /**
-     * A valid policy JSON document. For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](https://www.terraform.io/docs/providers/aws/guides/iam-policy-documents.html).
-     */
     readonly policy?: pulumi.Input<string>;
-    /**
-     * A mapping of tags to assign to the object.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
 }

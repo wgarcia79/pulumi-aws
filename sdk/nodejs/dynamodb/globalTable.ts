@@ -4,11 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a resource to manage a DynamoDB Global Table. These are layered on top of existing DynamoDB Tables.
- * 
- * > Note: There are many restrictions before you can properly create DynamoDB Global Tables in multiple regions. See the [AWS DynamoDB Global Table Requirements](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables_reqs_bestpractices.html) for more information.
- */
 export class GlobalTable extends pulumi.CustomResource {
     /**
      * Get an existing GlobalTable resource's state with the given name, ID, and optional extra
@@ -22,17 +17,8 @@ export class GlobalTable extends pulumi.CustomResource {
         return new GlobalTable(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ARN of the DynamoDB Global Table
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * The name of the global table. Must match underlying DynamoDB Table names in all regions.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * Underlying DynamoDB Table. At least 1 replica must be defined. See below.
-     */
     public readonly replicas: pulumi.Output<{ regionName: string }[]>;
 
     /**
@@ -67,17 +53,8 @@ export class GlobalTable extends pulumi.CustomResource {
  * Input properties used for looking up and filtering GlobalTable resources.
  */
 export interface GlobalTableState {
-    /**
-     * The ARN of the DynamoDB Global Table
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * The name of the global table. Must match underlying DynamoDB Table names in all regions.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Underlying DynamoDB Table. At least 1 replica must be defined. See below.
-     */
     readonly replicas?: pulumi.Input<pulumi.Input<{ regionName: pulumi.Input<string> }>[]>;
 }
 
@@ -85,12 +62,6 @@ export interface GlobalTableState {
  * The set of arguments for constructing a GlobalTable resource.
  */
 export interface GlobalTableArgs {
-    /**
-     * The name of the global table. Must match underlying DynamoDB Table names in all regions.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Underlying DynamoDB Table. At least 1 replica must be defined. See below.
-     */
     readonly replicas: pulumi.Input<pulumi.Input<{ regionName: pulumi.Input<string> }>[]>;
 }

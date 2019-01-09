@@ -4,23 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a resource to manage a GuardDuty detector.
- * 
- * > **NOTE:** Deleting this resource is equivalent to "disabling" GuardDuty for an AWS region, which removes all existing findings. You can set the `enable` attribute to `false` to instead "suspend" monitoring and feedback reporting while keeping existing data. See the [Suspending or Disabling Amazon GuardDuty documentation](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_suspend-disable.html) for more information.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_guardduty_detector_MyDetector = new aws.guardduty.Detector("MyDetector", {
- *     enable: true,
- *     findingPublishingFrequency: "SIX_HOURS",
- * });
- * ```
- */
 export class Detector extends pulumi.CustomResource {
     /**
      * Get an existing Detector resource's state with the given name, ID, and optional extra
@@ -34,17 +17,8 @@ export class Detector extends pulumi.CustomResource {
         return new Detector(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The AWS account ID of the GuardDuty detector
-     */
     public /*out*/ readonly accountId: pulumi.Output<string>;
-    /**
-     * Enable monitoring and feedback reporting. Setting to `false` is equivalent to "suspending" GuardDuty. Defaults to `true`.
-     */
     public readonly enable: pulumi.Output<boolean | undefined>;
-    /**
-     * Specifies the frequency of notifications sent for subsequent finding occurrences. Valid values: `FIFTEEN_MINUTES, ONE_HOUR, SIX_HOURS`. Default: `SIX_HOURS`. See [AWS Documentation](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings_cloudwatch.html#guardduty_findings_cloudwatch_notification_frequency) for more information.
-     */
     public readonly findingPublishingFrequency: pulumi.Output<string | undefined>;
 
     /**
@@ -76,17 +50,8 @@ export class Detector extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Detector resources.
  */
 export interface DetectorState {
-    /**
-     * The AWS account ID of the GuardDuty detector
-     */
     readonly accountId?: pulumi.Input<string>;
-    /**
-     * Enable monitoring and feedback reporting. Setting to `false` is equivalent to "suspending" GuardDuty. Defaults to `true`.
-     */
     readonly enable?: pulumi.Input<boolean>;
-    /**
-     * Specifies the frequency of notifications sent for subsequent finding occurrences. Valid values: `FIFTEEN_MINUTES, ONE_HOUR, SIX_HOURS`. Default: `SIX_HOURS`. See [AWS Documentation](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings_cloudwatch.html#guardduty_findings_cloudwatch_notification_frequency) for more information.
-     */
     readonly findingPublishingFrequency?: pulumi.Input<string>;
 }
 
@@ -94,12 +59,6 @@ export interface DetectorState {
  * The set of arguments for constructing a Detector resource.
  */
 export interface DetectorArgs {
-    /**
-     * Enable monitoring and feedback reporting. Setting to `false` is equivalent to "suspending" GuardDuty. Defaults to `true`.
-     */
     readonly enable?: pulumi.Input<boolean>;
-    /**
-     * Specifies the frequency of notifications sent for subsequent finding occurrences. Valid values: `FIFTEEN_MINUTES, ONE_HOUR, SIX_HOURS`. Default: `SIX_HOURS`. See [AWS Documentation](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings_cloudwatch.html#guardduty_findings_cloudwatch_notification_frequency) for more information.
-     */
     readonly findingPublishingFrequency?: pulumi.Input<string>;
 }

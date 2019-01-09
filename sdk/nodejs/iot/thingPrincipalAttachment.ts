@@ -6,9 +6,6 @@ import * as utilities from "../utilities";
 
 import {ARN} from "../index";
 
-/**
- * Attaches Principal to AWS IoT Thing.
- */
 export class ThingPrincipalAttachment extends pulumi.CustomResource {
     /**
      * Get an existing ThingPrincipalAttachment resource's state with the given name, ID, and optional extra
@@ -22,13 +19,7 @@ export class ThingPrincipalAttachment extends pulumi.CustomResource {
         return new ThingPrincipalAttachment(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The AWS IoT Certificate ARN or Amazon Cognito Identity ID.
-     */
     public readonly principal: pulumi.Output<ARN>;
-    /**
-     * The name of the thing.
-     */
     public readonly thing: pulumi.Output<string>;
 
     /**
@@ -64,13 +55,7 @@ export class ThingPrincipalAttachment extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ThingPrincipalAttachment resources.
  */
 export interface ThingPrincipalAttachmentState {
-    /**
-     * The AWS IoT Certificate ARN or Amazon Cognito Identity ID.
-     */
     readonly principal?: pulumi.Input<ARN>;
-    /**
-     * The name of the thing.
-     */
     readonly thing?: pulumi.Input<string>;
 }
 
@@ -78,12 +63,6 @@ export interface ThingPrincipalAttachmentState {
  * The set of arguments for constructing a ThingPrincipalAttachment resource.
  */
 export interface ThingPrincipalAttachmentArgs {
-    /**
-     * The AWS IoT Certificate ARN or Amazon Cognito Identity ID.
-     */
     readonly principal: pulumi.Input<ARN>;
-    /**
-     * The name of the thing.
-     */
     readonly thing: pulumi.Input<string>;
 }

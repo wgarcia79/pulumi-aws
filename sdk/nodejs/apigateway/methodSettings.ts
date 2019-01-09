@@ -6,59 +6,6 @@ import * as utilities from "../utilities";
 
 import {RestApi} from "./restApi";
 
-/**
- * Provides an API Gateway Method Settings, e.g. logging or monitoring.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_api_gateway_rest_api_test = new aws.apigateway.RestApi("test", {
- *     description: "This is my API for demonstration purposes",
- *     name: "MyDemoAPI",
- * });
- * const aws_api_gateway_resource_test = new aws.apigateway.Resource("test", {
- *     parentId: aws_api_gateway_rest_api_test.rootResourceId,
- *     pathPart: "mytestresource",
- *     restApi: aws_api_gateway_rest_api_test.id,
- * });
- * const aws_api_gateway_method_test = new aws.apigateway.Method("test", {
- *     authorization: "NONE",
- *     httpMethod: "GET",
- *     resourceId: aws_api_gateway_resource_test.id,
- *     restApi: aws_api_gateway_rest_api_test.id,
- * });
- * const aws_api_gateway_integration_test = new aws.apigateway.Integration("test", {
- *     httpMethod: aws_api_gateway_method_test.httpMethod,
- *     requestTemplates: {
- *         application/xml: "{\n   \"body\" : $input.json('$')\n}\n",
- *     },
- *     resourceId: aws_api_gateway_resource_test.id,
- *     restApi: aws_api_gateway_rest_api_test.id,
- *     type: "MOCK",
- * });
- * const aws_api_gateway_deployment_test = new aws.apigateway.Deployment("test", {
- *     restApi: aws_api_gateway_rest_api_test.id,
- *     stageName: "dev",
- * }, {dependsOn: [aws_api_gateway_integration_test]});
- * const aws_api_gateway_stage_test = new aws.apigateway.Stage("test", {
- *     deployment: aws_api_gateway_deployment_test.id,
- *     restApi: aws_api_gateway_rest_api_test.id,
- *     stageName: "prod",
- * });
- * const aws_api_gateway_method_settings_s = new aws.apigateway.MethodSettings("s", {
- *     methodPath: pulumi.all([aws_api_gateway_resource_test.pathPart, aws_api_gateway_method_test.httpMethod]).apply(([__arg0, __arg1]) => `${__arg0}/${__arg1}`),
- *     restApi: aws_api_gateway_rest_api_test.id,
- *     settings: {
- *         loggingLevel: "INFO",
- *         metricsEnabled: true,
- *     },
- *     stageName: aws_api_gateway_stage_test.stageName,
- * });
- * ```
- */
 export class MethodSettings extends pulumi.CustomResource {
     /**
      * Get an existing MethodSettings resource's state with the given name, ID, and optional extra
@@ -72,21 +19,9 @@ export class MethodSettings extends pulumi.CustomResource {
         return new MethodSettings(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * Method path defined as `{resource_path}/{http_method}` for an individual method override, or `*&#47;*` for overriding all methods in the stage.
-     */
     public readonly methodPath: pulumi.Output<string>;
-    /**
-     * The ID of the REST API
-     */
     public readonly restApi: pulumi.Output<RestApi>;
-    /**
-     * The settings block, see below.
-     */
     public readonly settings: pulumi.Output<{ cacheDataEncrypted?: boolean, cacheTtlInSeconds?: number, cachingEnabled?: boolean, dataTraceEnabled?: boolean, loggingLevel?: string, metricsEnabled?: boolean, requireAuthorizationForCacheControl?: boolean, throttlingBurstLimit?: number, throttlingRateLimit?: number, unauthorizedCacheControlHeaderStrategy?: string }>;
-    /**
-     * The name of the stage
-     */
     public readonly stageName: pulumi.Output<string>;
 
     /**
@@ -132,21 +67,9 @@ export class MethodSettings extends pulumi.CustomResource {
  * Input properties used for looking up and filtering MethodSettings resources.
  */
 export interface MethodSettingsState {
-    /**
-     * Method path defined as `{resource_path}/{http_method}` for an individual method override, or `*&#47;*` for overriding all methods in the stage.
-     */
     readonly methodPath?: pulumi.Input<string>;
-    /**
-     * The ID of the REST API
-     */
     readonly restApi?: pulumi.Input<RestApi>;
-    /**
-     * The settings block, see below.
-     */
     readonly settings?: pulumi.Input<{ cacheDataEncrypted?: pulumi.Input<boolean>, cacheTtlInSeconds?: pulumi.Input<number>, cachingEnabled?: pulumi.Input<boolean>, dataTraceEnabled?: pulumi.Input<boolean>, loggingLevel?: pulumi.Input<string>, metricsEnabled?: pulumi.Input<boolean>, requireAuthorizationForCacheControl?: pulumi.Input<boolean>, throttlingBurstLimit?: pulumi.Input<number>, throttlingRateLimit?: pulumi.Input<number>, unauthorizedCacheControlHeaderStrategy?: pulumi.Input<string> }>;
-    /**
-     * The name of the stage
-     */
     readonly stageName?: pulumi.Input<string>;
 }
 
@@ -154,20 +77,8 @@ export interface MethodSettingsState {
  * The set of arguments for constructing a MethodSettings resource.
  */
 export interface MethodSettingsArgs {
-    /**
-     * Method path defined as `{resource_path}/{http_method}` for an individual method override, or `*&#47;*` for overriding all methods in the stage.
-     */
     readonly methodPath: pulumi.Input<string>;
-    /**
-     * The ID of the REST API
-     */
     readonly restApi: pulumi.Input<RestApi>;
-    /**
-     * The settings block, see below.
-     */
     readonly settings: pulumi.Input<{ cacheDataEncrypted?: pulumi.Input<boolean>, cacheTtlInSeconds?: pulumi.Input<number>, cachingEnabled?: pulumi.Input<boolean>, dataTraceEnabled?: pulumi.Input<boolean>, loggingLevel?: pulumi.Input<string>, metricsEnabled?: pulumi.Input<boolean>, requireAuthorizationForCacheControl?: pulumi.Input<boolean>, throttlingBurstLimit?: pulumi.Input<number>, throttlingRateLimit?: pulumi.Input<number>, unauthorizedCacheControlHeaderStrategy?: pulumi.Input<string> }>;
-    /**
-     * The name of the stage
-     */
     readonly stageName: pulumi.Input<string>;
 }

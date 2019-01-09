@@ -4,33 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a resource to manage the [default AWS VPC](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/default-vpc.html)
- * in the current region.
- * 
- * For AWS accounts created after 2013-12-04, each region comes with a Default VPC.
- * **This is an advanced resource**, and has special caveats to be aware of when
- * using it. Please read this document in its entirety before using this resource.
- * 
- * The `aws_default_vpc` behaves differently from normal resources, in that
- * Terraform does not _create_ this resource, but instead "adopts" it
- * into management.
- * 
- * ## Example Usage
- * 
- * Basic usage with tags:
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_default_vpc_default = new aws.ec2.DefaultVpc("default", {
- *     tags: {
- *         Name: "Default VPC",
- *     },
- * });
- * ```
- */
 export class DefaultVpc extends pulumi.CustomResource {
     /**
      * Get an existing DefaultVpc resource's state with the given name, ID, and optional extra
@@ -44,72 +17,22 @@ export class DefaultVpc extends pulumi.CustomResource {
         return new DefaultVpc(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * Amazon Resource Name (ARN) of VPC
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * Whether or not an Amazon-provided IPv6 CIDR
-     * block with a /56 prefix length for the VPC was assigned
-     */
     public /*out*/ readonly assignGeneratedIpv6CidrBlock: pulumi.Output<boolean>;
-    /**
-     * The CIDR block of the VPC
-     */
     public /*out*/ readonly cidrBlock: pulumi.Output<string>;
-    /**
-     * The ID of the network ACL created by default on VPC creation
-     */
     public /*out*/ readonly defaultNetworkAclId: pulumi.Output<string>;
-    /**
-     * The ID of the route table created by default on VPC creation
-     */
     public /*out*/ readonly defaultRouteTableId: pulumi.Output<string>;
-    /**
-     * The ID of the security group created by default on VPC creation
-     */
     public /*out*/ readonly defaultSecurityGroupId: pulumi.Output<string>;
     public /*out*/ readonly dhcpOptionsId: pulumi.Output<string>;
-    /**
-     * A boolean flag to enable/disable ClassicLink
-     * for the VPC. Only valid in regions and accounts that support EC2 Classic.
-     * See the [ClassicLink documentation][1] for more information. Defaults false.
-     */
     public readonly enableClassiclink: pulumi.Output<boolean>;
     public readonly enableClassiclinkDnsSupport: pulumi.Output<boolean>;
-    /**
-     * A boolean flag to enable/disable DNS hostnames in the VPC. Defaults false.
-     */
     public readonly enableDnsHostnames: pulumi.Output<boolean>;
-    /**
-     * A boolean flag to enable/disable DNS support in the VPC. Defaults true.
-     */
     public readonly enableDnsSupport: pulumi.Output<boolean | undefined>;
-    /**
-     * Tenancy of instances spin up within VPC.
-     */
     public /*out*/ readonly instanceTenancy: pulumi.Output<string>;
-    /**
-     * The association ID for the IPv6 CIDR block of the VPC
-     */
     public /*out*/ readonly ipv6AssociationId: pulumi.Output<string>;
-    /**
-     * The IPv6 CIDR block of the VPC
-     */
     public /*out*/ readonly ipv6CidrBlock: pulumi.Output<string>;
-    /**
-     * The ID of the main route table associated with
-     * this VPC. Note that you can change a VPC's main route table by using an
-     * [`aws_main_route_table_association`](https://www.terraform.io/docs/providers/aws/r/main_route_table_assoc.html)
-     */
     public /*out*/ readonly mainRouteTableId: pulumi.Output<string>;
-    /**
-     * The ID of the AWS account that owns the VPC.
-     */
     public /*out*/ readonly ownerId: pulumi.Output<string>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     public readonly tags: pulumi.Output<{[key: string]: any} | undefined>;
 
     /**
@@ -169,72 +92,22 @@ export class DefaultVpc extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DefaultVpc resources.
  */
 export interface DefaultVpcState {
-    /**
-     * Amazon Resource Name (ARN) of VPC
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * Whether or not an Amazon-provided IPv6 CIDR
-     * block with a /56 prefix length for the VPC was assigned
-     */
     readonly assignGeneratedIpv6CidrBlock?: pulumi.Input<boolean>;
-    /**
-     * The CIDR block of the VPC
-     */
     readonly cidrBlock?: pulumi.Input<string>;
-    /**
-     * The ID of the network ACL created by default on VPC creation
-     */
     readonly defaultNetworkAclId?: pulumi.Input<string>;
-    /**
-     * The ID of the route table created by default on VPC creation
-     */
     readonly defaultRouteTableId?: pulumi.Input<string>;
-    /**
-     * The ID of the security group created by default on VPC creation
-     */
     readonly defaultSecurityGroupId?: pulumi.Input<string>;
     readonly dhcpOptionsId?: pulumi.Input<string>;
-    /**
-     * A boolean flag to enable/disable ClassicLink
-     * for the VPC. Only valid in regions and accounts that support EC2 Classic.
-     * See the [ClassicLink documentation][1] for more information. Defaults false.
-     */
     readonly enableClassiclink?: pulumi.Input<boolean>;
     readonly enableClassiclinkDnsSupport?: pulumi.Input<boolean>;
-    /**
-     * A boolean flag to enable/disable DNS hostnames in the VPC. Defaults false.
-     */
     readonly enableDnsHostnames?: pulumi.Input<boolean>;
-    /**
-     * A boolean flag to enable/disable DNS support in the VPC. Defaults true.
-     */
     readonly enableDnsSupport?: pulumi.Input<boolean>;
-    /**
-     * Tenancy of instances spin up within VPC.
-     */
     readonly instanceTenancy?: pulumi.Input<string>;
-    /**
-     * The association ID for the IPv6 CIDR block of the VPC
-     */
     readonly ipv6AssociationId?: pulumi.Input<string>;
-    /**
-     * The IPv6 CIDR block of the VPC
-     */
     readonly ipv6CidrBlock?: pulumi.Input<string>;
-    /**
-     * The ID of the main route table associated with
-     * this VPC. Note that you can change a VPC's main route table by using an
-     * [`aws_main_route_table_association`](https://www.terraform.io/docs/providers/aws/r/main_route_table_assoc.html)
-     */
     readonly mainRouteTableId?: pulumi.Input<string>;
-    /**
-     * The ID of the AWS account that owns the VPC.
-     */
     readonly ownerId?: pulumi.Input<string>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
 }
 
@@ -242,23 +115,9 @@ export interface DefaultVpcState {
  * The set of arguments for constructing a DefaultVpc resource.
  */
 export interface DefaultVpcArgs {
-    /**
-     * A boolean flag to enable/disable ClassicLink
-     * for the VPC. Only valid in regions and accounts that support EC2 Classic.
-     * See the [ClassicLink documentation][1] for more information. Defaults false.
-     */
     readonly enableClassiclink?: pulumi.Input<boolean>;
     readonly enableClassiclinkDnsSupport?: pulumi.Input<boolean>;
-    /**
-     * A boolean flag to enable/disable DNS hostnames in the VPC. Defaults false.
-     */
     readonly enableDnsHostnames?: pulumi.Input<boolean>;
-    /**
-     * A boolean flag to enable/disable DNS support in the VPC. Defaults true.
-     */
     readonly enableDnsSupport?: pulumi.Input<boolean>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
 }

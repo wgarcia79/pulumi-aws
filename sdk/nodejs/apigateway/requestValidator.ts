@@ -6,9 +6,6 @@ import * as utilities from "../utilities";
 
 import {RestApi} from "./restApi";
 
-/**
- * Manages an API Gateway Request Validator.
- */
 export class RequestValidator extends pulumi.CustomResource {
     /**
      * Get an existing RequestValidator resource's state with the given name, ID, and optional extra
@@ -22,21 +19,9 @@ export class RequestValidator extends pulumi.CustomResource {
         return new RequestValidator(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The name of the request validator
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * The ID of the associated Rest API
-     */
     public readonly restApi: pulumi.Output<RestApi>;
-    /**
-     * Boolean whether to validate request body. Defaults to `false`.
-     */
     public readonly validateRequestBody: pulumi.Output<boolean | undefined>;
-    /**
-     * Boolean whether to validate request parameters. Defaults to `false`.
-     */
     public readonly validateRequestParameters: pulumi.Output<boolean | undefined>;
 
     /**
@@ -73,21 +58,9 @@ export class RequestValidator extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RequestValidator resources.
  */
 export interface RequestValidatorState {
-    /**
-     * The name of the request validator
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The ID of the associated Rest API
-     */
     readonly restApi?: pulumi.Input<RestApi>;
-    /**
-     * Boolean whether to validate request body. Defaults to `false`.
-     */
     readonly validateRequestBody?: pulumi.Input<boolean>;
-    /**
-     * Boolean whether to validate request parameters. Defaults to `false`.
-     */
     readonly validateRequestParameters?: pulumi.Input<boolean>;
 }
 
@@ -95,20 +68,8 @@ export interface RequestValidatorState {
  * The set of arguments for constructing a RequestValidator resource.
  */
 export interface RequestValidatorArgs {
-    /**
-     * The name of the request validator
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The ID of the associated Rest API
-     */
     readonly restApi: pulumi.Input<RestApi>;
-    /**
-     * Boolean whether to validate request body. Defaults to `false`.
-     */
     readonly validateRequestBody?: pulumi.Input<boolean>;
-    /**
-     * Boolean whether to validate request parameters. Defaults to `false`.
-     */
     readonly validateRequestParameters?: pulumi.Input<boolean>;
 }

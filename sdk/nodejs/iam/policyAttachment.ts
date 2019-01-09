@@ -9,42 +9,6 @@ import {Group} from "./group";
 import {Role} from "./role";
 import {User} from "./user";
 
-/**
- * Attaches a Managed IAM Policy to user(s), role(s), and/or group(s)
- * 
- * !> **WARNING:** The aws_iam_policy_attachment resource creates **exclusive** attachments of IAM policies. Across the entire AWS account, all of the users/roles/groups to which a single policy is attached must be declared by a single aws_iam_policy_attachment resource. This means that even any users/roles/groups that have the attached policy via any other mechanism (including other Terraform resources) will have that attached policy revoked by this resource. Consider `aws_iam_role_policy_attachment`, `aws_iam_user_policy_attachment`, or `aws_iam_group_policy_attachment` instead. These resources do not enforce exclusive attachment of an IAM policy.
- * 
- * > **NOTE:** The usage of this resource conflicts with the `aws_iam_group_policy_attachment`, `aws_iam_role_policy_attachment`, and `aws_iam_user_policy_attachment` resources and will permanently show a difference if both are defined.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_iam_group_group = new aws.iam.Group("group", {
- *     name: "test-group",
- * });
- * const aws_iam_policy_policy = new aws.iam.Policy("policy", {
- *     description: "A test policy",
- *     name: "test-policy",
- *     policy: "",
- * });
- * const aws_iam_role_role = new aws.iam.Role("role", {
- *     name: "test-role",
- * });
- * const aws_iam_user_user = new aws.iam.User("user", {
- *     name: "test-user",
- * });
- * const aws_iam_policy_attachment_test_attach = new aws.iam.PolicyAttachment("test-attach", {
- *     groups: [aws_iam_group_group.name],
- *     name: "test-attachment",
- *     policyArn: aws_iam_policy_policy.arn,
- *     roles: [aws_iam_role_role.name],
- *     users: [aws_iam_user_user.name],
- * });
- * ```
- */
 export class PolicyAttachment extends pulumi.CustomResource {
     /**
      * Get an existing PolicyAttachment resource's state with the given name, ID, and optional extra
@@ -58,25 +22,10 @@ export class PolicyAttachment extends pulumi.CustomResource {
         return new PolicyAttachment(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The group(s) the policy should be applied to
-     */
     public readonly groups: pulumi.Output<Group[] | undefined>;
-    /**
-     * The name of the attachment. This cannot be an empty string.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * The ARN of the policy you want to apply
-     */
     public readonly policyArn: pulumi.Output<ARN>;
-    /**
-     * The role(s) the policy should be applied to
-     */
     public readonly roles: pulumi.Output<Role[] | undefined>;
-    /**
-     * The user(s) the policy should be applied to
-     */
     public readonly users: pulumi.Output<User[] | undefined>;
 
     /**
@@ -115,25 +64,10 @@ export class PolicyAttachment extends pulumi.CustomResource {
  * Input properties used for looking up and filtering PolicyAttachment resources.
  */
 export interface PolicyAttachmentState {
-    /**
-     * The group(s) the policy should be applied to
-     */
     readonly groups?: pulumi.Input<pulumi.Input<Group>[]>;
-    /**
-     * The name of the attachment. This cannot be an empty string.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The ARN of the policy you want to apply
-     */
     readonly policyArn?: pulumi.Input<ARN>;
-    /**
-     * The role(s) the policy should be applied to
-     */
     readonly roles?: pulumi.Input<pulumi.Input<Role>[]>;
-    /**
-     * The user(s) the policy should be applied to
-     */
     readonly users?: pulumi.Input<pulumi.Input<User>[]>;
 }
 
@@ -141,24 +75,9 @@ export interface PolicyAttachmentState {
  * The set of arguments for constructing a PolicyAttachment resource.
  */
 export interface PolicyAttachmentArgs {
-    /**
-     * The group(s) the policy should be applied to
-     */
     readonly groups?: pulumi.Input<pulumi.Input<Group>[]>;
-    /**
-     * The name of the attachment. This cannot be an empty string.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The ARN of the policy you want to apply
-     */
     readonly policyArn: pulumi.Input<ARN>;
-    /**
-     * The role(s) the policy should be applied to
-     */
     readonly roles?: pulumi.Input<pulumi.Input<Role>[]>;
-    /**
-     * The user(s) the policy should be applied to
-     */
     readonly users?: pulumi.Input<pulumi.Input<User>[]>;
 }

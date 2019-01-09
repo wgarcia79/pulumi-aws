@@ -4,24 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an EC2 Container Registry Repository.
- * 
- * > **NOTE on ECR Availability**: The EC2 Container Registry is not yet rolled out
- * in all regions - available regions are listed
- * [the AWS Docs](https://docs.aws.amazon.com/general/latest/gr/rande.html#ecr_region).
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_ecr_repository_foo = new aws.ecr.Repository("foo", {
- *     name: "bar",
- * });
- * ```
- */
 export class Repository extends pulumi.CustomResource {
     /**
      * Get an existing Repository resource's state with the given name, ID, and optional extra
@@ -35,25 +17,10 @@ export class Repository extends pulumi.CustomResource {
         return new Repository(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * Full ARN of the repository.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * Name of the repository.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * The registry ID where the repository was created.
-     */
     public /*out*/ readonly registryId: pulumi.Output<string>;
-    /**
-     * The URL of the repository (in the form `aws_account_id.dkr.ecr.region.amazonaws.com/repositoryName`
-     */
     public /*out*/ readonly repositoryUrl: pulumi.Output<string>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     public readonly tags: pulumi.Output<{[key: string]: any} | undefined>;
 
     /**
@@ -89,25 +56,10 @@ export class Repository extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Repository resources.
  */
 export interface RepositoryState {
-    /**
-     * Full ARN of the repository.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * Name of the repository.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The registry ID where the repository was created.
-     */
     readonly registryId?: pulumi.Input<string>;
-    /**
-     * The URL of the repository (in the form `aws_account_id.dkr.ecr.region.amazonaws.com/repositoryName`
-     */
     readonly repositoryUrl?: pulumi.Input<string>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
 }
 
@@ -115,12 +67,6 @@ export interface RepositoryState {
  * The set of arguments for constructing a Repository resource.
  */
 export interface RepositoryArgs {
-    /**
-     * Name of the repository.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
 }

@@ -4,21 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a Glue Catalog Table Resource. You can refer to the [Glue Developer Guide](http://docs.aws.amazon.com/glue/latest/dg/populate-data-catalog.html) for a full explanation of the Glue Data Catalog functionality.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_glue_catalog_table_aws_glue_catalog_table = new aws.glue.CatalogTable("aws_glue_catalog_table", {
- *     databaseName: "MyCatalogDatabase",
- *     name: "MyCatalogTable",
- * });
- * ```
- */
 export class CatalogTable extends pulumi.CustomResource {
     /**
      * Get an existing CatalogTable resource's state with the given name, ID, and optional extra
@@ -32,53 +17,17 @@ export class CatalogTable extends pulumi.CustomResource {
         return new CatalogTable(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * ID of the Glue Catalog and database to create the table in. If omitted, this defaults to the AWS Account ID plus the database name.
-     */
     public readonly catalogId: pulumi.Output<string>;
-    /**
-     * Name of the metadata database where the table metadata resides. For Hive compatibility, this must be all lowercase.
-     */
     public readonly databaseName: pulumi.Output<string>;
-    /**
-     * Description of the table.
-     */
     public readonly description: pulumi.Output<string | undefined>;
-    /**
-     * Name of the SerDe.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * Owner of the table.
-     */
     public readonly owner: pulumi.Output<string | undefined>;
-    /**
-     * A map of initialization parameters for the SerDe, in key-value form.
-     */
     public readonly parameters: pulumi.Output<{[key: string]: string} | undefined>;
-    /**
-     * A list of columns by which the table is partitioned. Only primitive types are supported as partition keys.
-     */
     public readonly partitionKeys: pulumi.Output<{ comment?: string, name: string, type?: string }[] | undefined>;
-    /**
-     * Retention time for this table.
-     */
     public readonly retention: pulumi.Output<number | undefined>;
-    /**
-     * A storage descriptor object containing information about the physical storage of this table. You can refer to the [Glue Developer Guide](https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-catalog-tables.html#aws-glue-api-catalog-tables-StorageDescriptor) for a full explanation of this object.
-     */
     public readonly storageDescriptor: pulumi.Output<{ bucketColumns?: string[], columns?: { comment?: string, name: string, type?: string }[], compressed?: boolean, inputFormat?: string, location?: string, numberOfBuckets?: number, outputFormat?: string, parameters?: {[key: string]: string}, serDeInfo?: { name?: string, parameters?: {[key: string]: string}, serializationLibrary?: string }, skewedInfo?: { skewedColumnNames?: string[], skewedColumnValueLocationMaps?: {[key: string]: string}, skewedColumnValues?: string[] }, sortColumns?: { column: string, sortOrder: number }[], storedAsSubDirectories?: boolean } | undefined>;
-    /**
-     * The type of this table (EXTERNAL_TABLE, VIRTUAL_VIEW, etc.).
-     */
     public readonly tableType: pulumi.Output<string | undefined>;
-    /**
-     * If the table is a view, the expanded text of the view; otherwise null.
-     */
     public readonly viewExpandedText: pulumi.Output<string | undefined>;
-    /**
-     * If the table is a view, the original text of the view; otherwise null.
-     */
     public readonly viewOriginalText: pulumi.Output<string | undefined>;
 
     /**
@@ -131,53 +80,17 @@ export class CatalogTable extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CatalogTable resources.
  */
 export interface CatalogTableState {
-    /**
-     * ID of the Glue Catalog and database to create the table in. If omitted, this defaults to the AWS Account ID plus the database name.
-     */
     readonly catalogId?: pulumi.Input<string>;
-    /**
-     * Name of the metadata database where the table metadata resides. For Hive compatibility, this must be all lowercase.
-     */
     readonly databaseName?: pulumi.Input<string>;
-    /**
-     * Description of the table.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * Name of the SerDe.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Owner of the table.
-     */
     readonly owner?: pulumi.Input<string>;
-    /**
-     * A map of initialization parameters for the SerDe, in key-value form.
-     */
     readonly parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    /**
-     * A list of columns by which the table is partitioned. Only primitive types are supported as partition keys.
-     */
     readonly partitionKeys?: pulumi.Input<pulumi.Input<{ comment?: pulumi.Input<string>, name: pulumi.Input<string>, type?: pulumi.Input<string> }>[]>;
-    /**
-     * Retention time for this table.
-     */
     readonly retention?: pulumi.Input<number>;
-    /**
-     * A storage descriptor object containing information about the physical storage of this table. You can refer to the [Glue Developer Guide](https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-catalog-tables.html#aws-glue-api-catalog-tables-StorageDescriptor) for a full explanation of this object.
-     */
     readonly storageDescriptor?: pulumi.Input<{ bucketColumns?: pulumi.Input<pulumi.Input<string>[]>, columns?: pulumi.Input<pulumi.Input<{ comment?: pulumi.Input<string>, name: pulumi.Input<string>, type?: pulumi.Input<string> }>[]>, compressed?: pulumi.Input<boolean>, inputFormat?: pulumi.Input<string>, location?: pulumi.Input<string>, numberOfBuckets?: pulumi.Input<number>, outputFormat?: pulumi.Input<string>, parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>, serDeInfo?: pulumi.Input<{ name?: pulumi.Input<string>, parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>, serializationLibrary?: pulumi.Input<string> }>, skewedInfo?: pulumi.Input<{ skewedColumnNames?: pulumi.Input<pulumi.Input<string>[]>, skewedColumnValueLocationMaps?: pulumi.Input<{[key: string]: pulumi.Input<string>}>, skewedColumnValues?: pulumi.Input<pulumi.Input<string>[]> }>, sortColumns?: pulumi.Input<pulumi.Input<{ column: pulumi.Input<string>, sortOrder: pulumi.Input<number> }>[]>, storedAsSubDirectories?: pulumi.Input<boolean> }>;
-    /**
-     * The type of this table (EXTERNAL_TABLE, VIRTUAL_VIEW, etc.).
-     */
     readonly tableType?: pulumi.Input<string>;
-    /**
-     * If the table is a view, the expanded text of the view; otherwise null.
-     */
     readonly viewExpandedText?: pulumi.Input<string>;
-    /**
-     * If the table is a view, the original text of the view; otherwise null.
-     */
     readonly viewOriginalText?: pulumi.Input<string>;
 }
 
@@ -185,52 +98,16 @@ export interface CatalogTableState {
  * The set of arguments for constructing a CatalogTable resource.
  */
 export interface CatalogTableArgs {
-    /**
-     * ID of the Glue Catalog and database to create the table in. If omitted, this defaults to the AWS Account ID plus the database name.
-     */
     readonly catalogId?: pulumi.Input<string>;
-    /**
-     * Name of the metadata database where the table metadata resides. For Hive compatibility, this must be all lowercase.
-     */
     readonly databaseName: pulumi.Input<string>;
-    /**
-     * Description of the table.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * Name of the SerDe.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Owner of the table.
-     */
     readonly owner?: pulumi.Input<string>;
-    /**
-     * A map of initialization parameters for the SerDe, in key-value form.
-     */
     readonly parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    /**
-     * A list of columns by which the table is partitioned. Only primitive types are supported as partition keys.
-     */
     readonly partitionKeys?: pulumi.Input<pulumi.Input<{ comment?: pulumi.Input<string>, name: pulumi.Input<string>, type?: pulumi.Input<string> }>[]>;
-    /**
-     * Retention time for this table.
-     */
     readonly retention?: pulumi.Input<number>;
-    /**
-     * A storage descriptor object containing information about the physical storage of this table. You can refer to the [Glue Developer Guide](https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-catalog-tables.html#aws-glue-api-catalog-tables-StorageDescriptor) for a full explanation of this object.
-     */
     readonly storageDescriptor?: pulumi.Input<{ bucketColumns?: pulumi.Input<pulumi.Input<string>[]>, columns?: pulumi.Input<pulumi.Input<{ comment?: pulumi.Input<string>, name: pulumi.Input<string>, type?: pulumi.Input<string> }>[]>, compressed?: pulumi.Input<boolean>, inputFormat?: pulumi.Input<string>, location?: pulumi.Input<string>, numberOfBuckets?: pulumi.Input<number>, outputFormat?: pulumi.Input<string>, parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>, serDeInfo?: pulumi.Input<{ name?: pulumi.Input<string>, parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>, serializationLibrary?: pulumi.Input<string> }>, skewedInfo?: pulumi.Input<{ skewedColumnNames?: pulumi.Input<pulumi.Input<string>[]>, skewedColumnValueLocationMaps?: pulumi.Input<{[key: string]: pulumi.Input<string>}>, skewedColumnValues?: pulumi.Input<pulumi.Input<string>[]> }>, sortColumns?: pulumi.Input<pulumi.Input<{ column: pulumi.Input<string>, sortOrder: pulumi.Input<number> }>[]>, storedAsSubDirectories?: pulumi.Input<boolean> }>;
-    /**
-     * The type of this table (EXTERNAL_TABLE, VIRTUAL_VIEW, etc.).
-     */
     readonly tableType?: pulumi.Input<string>;
-    /**
-     * If the table is a view, the expanded text of the view; otherwise null.
-     */
     readonly viewExpandedText?: pulumi.Input<string>;
-    /**
-     * If the table is a view, the original text of the view; otherwise null.
-     */
     readonly viewOriginalText?: pulumi.Input<string>;
 }

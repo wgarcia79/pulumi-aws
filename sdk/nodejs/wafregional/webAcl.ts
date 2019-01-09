@@ -4,48 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a WAF Regional Web ACL Resource for use with Application Load Balancer.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_wafregional_ipset_ipset = new aws.wafregional.IpSet("ipset", {
- *     ipSetDescriptors: [{
- *         type: "IPV4",
- *         value: "192.0.7.0/24",
- *     }],
- *     name: "tfIPSet",
- * });
- * const aws_wafregional_rule_wafrule = new aws.wafregional.Rule("wafrule", {
- *     metricName: "tfWAFRule",
- *     name: "tfWAFRule",
- *     predicates: [{
- *         dataId: aws_wafregional_ipset_ipset.id,
- *         negated: false,
- *         type: "IPMatch",
- *     }],
- * });
- * const aws_wafregional_web_acl_wafacl = new aws.wafregional.WebAcl("wafacl", {
- *     defaultAction: {
- *         type: "ALLOW",
- *     },
- *     metricName: "tfWebACL",
- *     name: "tfWebACL",
- *     rules: [{
- *         action: {
- *             type: "BLOCK",
- *         },
- *         priority: 1,
- *         ruleId: aws_wafregional_rule_wafrule.id,
- *         type: "REGULAR",
- *     }],
- * });
- * ```
- */
 export class WebAcl extends pulumi.CustomResource {
     /**
      * Get an existing WebAcl resource's state with the given name, ID, and optional extra
@@ -59,21 +17,9 @@ export class WebAcl extends pulumi.CustomResource {
         return new WebAcl(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The action that you want AWS WAF Regional to take when a request doesn't match the criteria in any of the rules that are associated with the web ACL.
-     */
     public readonly defaultAction: pulumi.Output<{ type: string }>;
-    /**
-     * The name or description for the Amazon CloudWatch metric of this web ACL.
-     */
     public readonly metricName: pulumi.Output<string>;
-    /**
-     * The name or description of the web ACL.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * The rules to associate with the web ACL and the settings for each rule.
-     */
     public readonly rules: pulumi.Output<{ action?: { type: string }, overrideAction?: { type: string }, priority: number, ruleId: string, type?: string }[] | undefined>;
 
     /**
@@ -113,21 +59,9 @@ export class WebAcl extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WebAcl resources.
  */
 export interface WebAclState {
-    /**
-     * The action that you want AWS WAF Regional to take when a request doesn't match the criteria in any of the rules that are associated with the web ACL.
-     */
     readonly defaultAction?: pulumi.Input<{ type: pulumi.Input<string> }>;
-    /**
-     * The name or description for the Amazon CloudWatch metric of this web ACL.
-     */
     readonly metricName?: pulumi.Input<string>;
-    /**
-     * The name or description of the web ACL.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The rules to associate with the web ACL and the settings for each rule.
-     */
     readonly rules?: pulumi.Input<pulumi.Input<{ action?: pulumi.Input<{ type: pulumi.Input<string> }>, overrideAction?: pulumi.Input<{ type: pulumi.Input<string> }>, priority: pulumi.Input<number>, ruleId: pulumi.Input<string>, type?: pulumi.Input<string> }>[]>;
 }
 
@@ -135,20 +69,8 @@ export interface WebAclState {
  * The set of arguments for constructing a WebAcl resource.
  */
 export interface WebAclArgs {
-    /**
-     * The action that you want AWS WAF Regional to take when a request doesn't match the criteria in any of the rules that are associated with the web ACL.
-     */
     readonly defaultAction: pulumi.Input<{ type: pulumi.Input<string> }>;
-    /**
-     * The name or description for the Amazon CloudWatch metric of this web ACL.
-     */
     readonly metricName: pulumi.Input<string>;
-    /**
-     * The name or description of the web ACL.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The rules to associate with the web ACL and the settings for each rule.
-     */
     readonly rules?: pulumi.Input<pulumi.Input<{ action?: pulumi.Input<{ type: pulumi.Input<string> }>, overrideAction?: pulumi.Input<{ type: pulumi.Input<string> }>, priority: pulumi.Input<number>, ruleId: pulumi.Input<string>, type?: pulumi.Input<string> }>[]>;
 }

@@ -4,21 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Manages an AWS Config Aggregate Authorization
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_config_aggregate_authorization_example = new aws.cfg.AggregateAuthorization("example", {
- *     accountId: "123456789012",
- *     region: "eu-west-2",
- * });
- * ```
- */
 export class AggregateAuthorization extends pulumi.CustomResource {
     /**
      * Get an existing AggregateAuthorization resource's state with the given name, ID, and optional extra
@@ -32,17 +17,8 @@ export class AggregateAuthorization extends pulumi.CustomResource {
         return new AggregateAuthorization(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * Account ID
-     */
     public readonly accountId: pulumi.Output<string>;
-    /**
-     * The ARN of the authorization
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * Region
-     */
     public readonly region: pulumi.Output<string>;
 
     /**
@@ -80,17 +56,8 @@ export class AggregateAuthorization extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AggregateAuthorization resources.
  */
 export interface AggregateAuthorizationState {
-    /**
-     * Account ID
-     */
     readonly accountId?: pulumi.Input<string>;
-    /**
-     * The ARN of the authorization
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * Region
-     */
     readonly region?: pulumi.Input<string>;
 }
 
@@ -98,12 +65,6 @@ export interface AggregateAuthorizationState {
  * The set of arguments for constructing a AggregateAuthorization resource.
  */
 export interface AggregateAuthorizationArgs {
-    /**
-     * Account ID
-     */
     readonly accountId: pulumi.Input<string>;
-    /**
-     * Region
-     */
     readonly region: pulumi.Input<string>;
 }

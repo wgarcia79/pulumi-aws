@@ -4,14 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an Elastic MapReduce Cluster Instance Group configuration.
- * See [Amazon Elastic MapReduce Documentation](https://aws.amazon.com/documentation/emr/) for more information.
- * 
- * > **NOTE:** At this time, Instance Groups cannot be destroyed through the API nor
- * web interface. Instance Groups are destroyed when the EMR Cluster is destroyed.
- * Terraform will resize any Instance Group to zero when destroying the resource.
- */
 export class InstanceGroup extends pulumi.CustomResource {
     /**
      * Get an existing InstanceGroup resource's state with the given name, ID, and optional extra
@@ -25,29 +17,11 @@ export class InstanceGroup extends pulumi.CustomResource {
         return new InstanceGroup(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * ID of the EMR Cluster to attach to. Changing this forces a new resource to be created.
-     */
     public readonly clusterId: pulumi.Output<string>;
-    /**
-     * One or more `ebs_config` blocks as defined below. Changing this forces a new resource to be created.
-     */
     public readonly ebsConfigs: pulumi.Output<{ iops?: number, size: number, type: string, volumesPerInstance?: number }[] | undefined>;
-    /**
-     * Indicates whether an Amazon EBS volume is EBS-optimized. Changing this forces a new resource to be created.
-     */
     public readonly ebsOptimized: pulumi.Output<boolean | undefined>;
-    /**
-     * Target number of instances for the instance group. Defaults to 0.
-     */
     public readonly instanceCount: pulumi.Output<number | undefined>;
-    /**
-     * The EC2 instance type for all instances in the instance group. Changing this forces a new resource to be created.
-     */
     public readonly instanceType: pulumi.Output<string>;
-    /**
-     * Human friendly name given to the instance group. Changing this forces a new resource to be created.
-     */
     public readonly name: pulumi.Output<string>;
     public /*out*/ readonly runningInstanceCount: pulumi.Output<number>;
     public /*out*/ readonly status: pulumi.Output<string>;
@@ -97,29 +71,11 @@ export class InstanceGroup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering InstanceGroup resources.
  */
 export interface InstanceGroupState {
-    /**
-     * ID of the EMR Cluster to attach to. Changing this forces a new resource to be created.
-     */
     readonly clusterId?: pulumi.Input<string>;
-    /**
-     * One or more `ebs_config` blocks as defined below. Changing this forces a new resource to be created.
-     */
     readonly ebsConfigs?: pulumi.Input<pulumi.Input<{ iops?: pulumi.Input<number>, size: pulumi.Input<number>, type: pulumi.Input<string>, volumesPerInstance?: pulumi.Input<number> }>[]>;
-    /**
-     * Indicates whether an Amazon EBS volume is EBS-optimized. Changing this forces a new resource to be created.
-     */
     readonly ebsOptimized?: pulumi.Input<boolean>;
-    /**
-     * Target number of instances for the instance group. Defaults to 0.
-     */
     readonly instanceCount?: pulumi.Input<number>;
-    /**
-     * The EC2 instance type for all instances in the instance group. Changing this forces a new resource to be created.
-     */
     readonly instanceType?: pulumi.Input<string>;
-    /**
-     * Human friendly name given to the instance group. Changing this forces a new resource to be created.
-     */
     readonly name?: pulumi.Input<string>;
     readonly runningInstanceCount?: pulumi.Input<number>;
     readonly status?: pulumi.Input<string>;
@@ -129,28 +85,10 @@ export interface InstanceGroupState {
  * The set of arguments for constructing a InstanceGroup resource.
  */
 export interface InstanceGroupArgs {
-    /**
-     * ID of the EMR Cluster to attach to. Changing this forces a new resource to be created.
-     */
     readonly clusterId: pulumi.Input<string>;
-    /**
-     * One or more `ebs_config` blocks as defined below. Changing this forces a new resource to be created.
-     */
     readonly ebsConfigs?: pulumi.Input<pulumi.Input<{ iops?: pulumi.Input<number>, size: pulumi.Input<number>, type: pulumi.Input<string>, volumesPerInstance?: pulumi.Input<number> }>[]>;
-    /**
-     * Indicates whether an Amazon EBS volume is EBS-optimized. Changing this forces a new resource to be created.
-     */
     readonly ebsOptimized?: pulumi.Input<boolean>;
-    /**
-     * Target number of instances for the instance group. Defaults to 0.
-     */
     readonly instanceCount?: pulumi.Input<number>;
-    /**
-     * The EC2 instance type for all instances in the instance group. Changing this forces a new resource to be created.
-     */
     readonly instanceType: pulumi.Input<string>;
-    /**
-     * Human friendly name given to the instance group. Changing this forces a new resource to be created.
-     */
     readonly name?: pulumi.Input<string>;
 }

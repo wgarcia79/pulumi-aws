@@ -4,34 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a WAF Regional XSS Match Set Resource for use with Application Load Balancer.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_wafregional_xss_match_set_xss_match_set = new aws.wafregional.XssMatchSet("xss_match_set", {
- *     name: "xss_match_set",
- *     xssMatchTuples: [
- *         {
- *             fieldToMatch: {
- *                 type: "URI",
- *             },
- *             textTransformation: "NONE",
- *         },
- *         {
- *             fieldToMatch: {
- *                 type: "QUERY_STRING",
- *             },
- *             textTransformation: "NONE",
- *         },
- *     ],
- * });
- * ```
- */
 export class XssMatchSet extends pulumi.CustomResource {
     /**
      * Get an existing XssMatchSet resource's state with the given name, ID, and optional extra
@@ -45,13 +17,7 @@ export class XssMatchSet extends pulumi.CustomResource {
         return new XssMatchSet(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The name of the set
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * The parts of web requests that you want to inspect for cross-site scripting attacks.
-     */
     public readonly xssMatchTuples: pulumi.Output<{ fieldToMatch: { data?: string, type: string }, textTransformation: string }[] | undefined>;
 
     /**
@@ -81,13 +47,7 @@ export class XssMatchSet extends pulumi.CustomResource {
  * Input properties used for looking up and filtering XssMatchSet resources.
  */
 export interface XssMatchSetState {
-    /**
-     * The name of the set
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The parts of web requests that you want to inspect for cross-site scripting attacks.
-     */
     readonly xssMatchTuples?: pulumi.Input<pulumi.Input<{ fieldToMatch: pulumi.Input<{ data?: pulumi.Input<string>, type: pulumi.Input<string> }>, textTransformation: pulumi.Input<string> }>[]>;
 }
 
@@ -95,12 +55,6 @@ export interface XssMatchSetState {
  * The set of arguments for constructing a XssMatchSet resource.
  */
 export interface XssMatchSetArgs {
-    /**
-     * The name of the set
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The parts of web requests that you want to inspect for cross-site scripting attacks.
-     */
     readonly xssMatchTuples?: pulumi.Input<pulumi.Input<{ fieldToMatch: pulumi.Input<{ data?: pulumi.Input<string>, type: pulumi.Input<string> }>, textTransformation: pulumi.Input<string> }>[]>;
 }

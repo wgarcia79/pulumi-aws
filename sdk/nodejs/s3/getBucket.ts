@@ -4,53 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides details about a specific S3 bucket.
- * 
- * This resource may prove useful when setting up a Route53 record, or an origin for a CloudFront
- * Distribution.
- * 
- * ## Example Usage
- * 
- * ### Route53 Record
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_route53_zone_test_zone = pulumi.output(aws.route53.getZone({
- *     name: "test.com.",
- * }));
- * const aws_s3_bucket_selected = pulumi.output(aws.s3.getBucket({
- *     bucket: "bucket.test.com",
- * }));
- * const aws_route53_record_example = new aws.route53.Record("example", {
- *     aliases: [{
- *         name: aws_s3_bucket_selected.apply(__arg0 => __arg0.websiteDomain),
- *         zoneId: aws_s3_bucket_selected.apply(__arg0 => __arg0.hostedZoneId),
- *     }],
- *     name: "bucket",
- *     type: "A",
- *     zoneId: aws_route53_zone_test_zone.apply(__arg0 => __arg0.id),
- * });
- * ```
- * ### CloudFront Origin
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_s3_bucket_selected = pulumi.output(aws.s3.getBucket({
- *     bucket: "a-test-bucket",
- * }));
- * const aws_cloudfront_distribution_test = new aws.cloudfront.Distribution("test", {
- *     origins: [{
- *         domainName: aws_s3_bucket_selected.apply(__arg0 => __arg0.bucketDomainName),
- *         originId: "s3-selected-bucket",
- *     }],
- * });
- * ```
- */
 export function getBucket(args: GetBucketArgs, opts?: pulumi.InvokeOptions): Promise<GetBucketResult> {
     return pulumi.runtime.invoke("aws:s3/getBucket:getBucket", {
         "bucket": args.bucket,
@@ -61,9 +14,6 @@ export function getBucket(args: GetBucketArgs, opts?: pulumi.InvokeOptions): Pro
  * A collection of arguments for invoking getBucket.
  */
 export interface GetBucketArgs {
-    /**
-     * The name of the bucket
-     */
     readonly bucket: string;
 }
 
@@ -71,29 +21,11 @@ export interface GetBucketArgs {
  * A collection of values returned by getBucket.
  */
 export interface GetBucketResult {
-    /**
-     * The ARN of the bucket. Will be of format `arn:aws:s3:::bucketname`.
-     */
     readonly arn: string;
-    /**
-     * The bucket domain name. Will be of format `bucketname.s3.amazonaws.com`.
-     */
     readonly bucketDomainName: string;
-    /**
-     * The [Route 53 Hosted Zone ID](https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_website_region_endpoints) for this bucket's region.
-     */
     readonly hostedZoneId: string;
-    /**
-     * The AWS region this bucket resides in.
-     */
     readonly region: string;
-    /**
-     * The domain of the website endpoint, if the bucket is configured with a website. If not, this will be an empty string. This is used to create Route 53 alias records.
-     */
     readonly websiteDomain: string;
-    /**
-     * The website endpoint, if the bucket is configured with a website. If not, this will be an empty string.
-     */
     readonly websiteEndpoint: string;
     /**
      * id is the provider-assigned unique ID for this managed resource.

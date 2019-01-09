@@ -6,36 +6,6 @@ import * as utilities from "../utilities";
 
 import {ARN} from "../index";
 
-/**
- * Provides a Lambda Function resource. Lambda allows you to trigger execution of code in response to events in AWS. The Lambda Function itself includes source code and runtime configuration.
- * 
- * For information about Lambda and how to use it, see [What is AWS Lambda?][1]
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * import * as fs from "fs";
- * 
- * const aws_iam_role_iam_for_lambda = new aws.iam.Role("iam_for_lambda", {
- *     assumeRolePolicy: "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Action\": \"sts:AssumeRole\",\n      \"Principal\": {\n        \"Service\": \"lambda.amazonaws.com\"\n      },\n      \"Effect\": \"Allow\",\n      \"Sid\": \"\"\n    }\n  ]\n}\n",
- *     name: "iam_for_lambda",
- * });
- * const aws_lambda_function_test_lambda = new aws.lambda.Function("test_lambda", {
- *     environment: {
- *         variables: {
- *             foo: "bar",
- *         },
- *     },
- *     code: new pulumi.asset.FileArchive("lambda_function_payload.zip"),
- *     name: "lambda_function_name",
- *     handler: "exports.test",
- *     role: aws_iam_role_iam_for_lambda.arn,
- *     runtime: "nodejs8.10",
- * });
- * ```
- */
 export class Function extends pulumi.CustomResource {
     /**
      * Get an existing Function resource's state with the given name, ID, and optional extra
@@ -49,107 +19,31 @@ export class Function extends pulumi.CustomResource {
         return new Function(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The Amazon Resource Name (ARN) identifying your Lambda Function.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * Nested block to configure the function's *dead letter queue*. See details below.
-     */
     public readonly deadLetterConfig: pulumi.Output<{ targetArn: string } | undefined>;
-    /**
-     * Description of what your Lambda Function does.
-     */
     public readonly description: pulumi.Output<string | undefined>;
-    /**
-     * The Lambda environment's configuration settings. Fields documented below.
-     */
     public readonly environment: pulumi.Output<{ variables?: {[key: string]: string} } | undefined>;
-    /**
-     * The path to the function's deployment package within the local filesystem. If defined, The `s3_`-prefixed options cannot be used.
-     */
     public readonly code: pulumi.Output<pulumi.asset.Archive | undefined>;
-    /**
-     * A unique name for your Lambda Function.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * The function [entrypoint][3] in your code.
-     */
     public readonly handler: pulumi.Output<string>;
-    /**
-     * The ARN to be used for invoking Lambda Function from API Gateway - to be used in [`aws_api_gateway_integration`](https://www.terraform.io/docs/providers/aws/r/api_gateway_integration.html)'s `uri`
-     */
     public /*out*/ readonly invokeArn: pulumi.Output<string>;
-    /**
-     * The ARN for the KMS encryption key.
-     */
     public readonly kmsKeyArn: pulumi.Output<string | undefined>;
-    /**
-     * The date this resource was last modified.
-     */
     public /*out*/ readonly lastModified: pulumi.Output<string>;
-    /**
-     * Amount of memory in MB your Lambda Function can use at runtime. Defaults to `128`. See [Limits][5]
-     */
     public readonly memorySize: pulumi.Output<number | undefined>;
-    /**
-     * Whether to publish creation/change as new Lambda Function Version. Defaults to `false`.
-     */
     public readonly publish: pulumi.Output<boolean | undefined>;
-    /**
-     * The Amazon Resource Name (ARN) identifying your Lambda Function Version
-     * (if versioning is enabled via `publish = true`).
-     */
     public /*out*/ readonly qualifiedArn: pulumi.Output<string>;
-    /**
-     * The amount of reserved concurrent executions for this lambda function. Defaults to Unreserved Concurrency Limits. See [Managing Concurrency][9]
-     */
     public readonly reservedConcurrentExecutions: pulumi.Output<number | undefined>;
-    /**
-     * IAM role attached to the Lambda Function. This governs both who / what can invoke your Lambda Function, as well as what resources our Lambda Function has access to. See [Lambda Permission Model][4] for more details.
-     */
     public readonly role: pulumi.Output<ARN>;
-    /**
-     * See [Runtimes][6] for valid values.
-     */
     public readonly runtime: pulumi.Output<string>;
-    /**
-     * The S3 bucket location containing the function's deployment package. Conflicts with `filename`. This bucket must reside in the same AWS region where you are creating the Lambda function.
-     */
     public readonly s3Bucket: pulumi.Output<string | undefined>;
-    /**
-     * The S3 key of an object containing the function's deployment package. Conflicts with `filename`.
-     */
     public readonly s3Key: pulumi.Output<string | undefined>;
-    /**
-     * The object version containing the function's deployment package. Conflicts with `filename`.
-     */
     public readonly s3ObjectVersion: pulumi.Output<string | undefined>;
-    /**
-     * Used to trigger updates. Must be set to a base64-encoded SHA256 hash of the package file specified with either `filename` or `s3_key`. The usual way to set this is `${base64sha256(file("file.zip"))}`, where "file.zip" is the local filename of the lambda function source archive.
-     */
     public readonly sourceCodeHash: pulumi.Output<string>;
-    /**
-     * The size in bytes of the function .zip file.
-     */
     public /*out*/ readonly sourceCodeSize: pulumi.Output<number>;
-    /**
-     * A mapping of tags to assign to the object.
-     */
     public readonly tags: pulumi.Output<{[key: string]: any} | undefined>;
-    /**
-     * The amount of time your Lambda Function has to run in seconds. Defaults to `3`. See [Limits][5]
-     */
     public readonly timeout: pulumi.Output<number | undefined>;
     public readonly tracingConfig: pulumi.Output<{ mode: string }>;
-    /**
-     * Latest published version of your Lambda Function.
-     */
     public /*out*/ readonly version: pulumi.Output<string>;
-    /**
-     * Provide this to allow your function to access your VPC. Fields documented below. See [Lambda in VPC][7]
-     */
     public readonly vpcConfig: pulumi.Output<{ securityGroupIds: string[], subnetIds: string[], vpcId: string } | undefined>;
 
     /**
@@ -236,107 +130,31 @@ export class Function extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Function resources.
  */
 export interface FunctionState {
-    /**
-     * The Amazon Resource Name (ARN) identifying your Lambda Function.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * Nested block to configure the function's *dead letter queue*. See details below.
-     */
     readonly deadLetterConfig?: pulumi.Input<{ targetArn: pulumi.Input<string> }>;
-    /**
-     * Description of what your Lambda Function does.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The Lambda environment's configuration settings. Fields documented below.
-     */
     readonly environment?: pulumi.Input<{ variables?: pulumi.Input<{[key: string]: pulumi.Input<string>}> }>;
-    /**
-     * The path to the function's deployment package within the local filesystem. If defined, The `s3_`-prefixed options cannot be used.
-     */
     readonly code?: pulumi.Input<pulumi.asset.Archive>;
-    /**
-     * A unique name for your Lambda Function.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The function [entrypoint][3] in your code.
-     */
     readonly handler?: pulumi.Input<string>;
-    /**
-     * The ARN to be used for invoking Lambda Function from API Gateway - to be used in [`aws_api_gateway_integration`](https://www.terraform.io/docs/providers/aws/r/api_gateway_integration.html)'s `uri`
-     */
     readonly invokeArn?: pulumi.Input<string>;
-    /**
-     * The ARN for the KMS encryption key.
-     */
     readonly kmsKeyArn?: pulumi.Input<string>;
-    /**
-     * The date this resource was last modified.
-     */
     readonly lastModified?: pulumi.Input<string>;
-    /**
-     * Amount of memory in MB your Lambda Function can use at runtime. Defaults to `128`. See [Limits][5]
-     */
     readonly memorySize?: pulumi.Input<number>;
-    /**
-     * Whether to publish creation/change as new Lambda Function Version. Defaults to `false`.
-     */
     readonly publish?: pulumi.Input<boolean>;
-    /**
-     * The Amazon Resource Name (ARN) identifying your Lambda Function Version
-     * (if versioning is enabled via `publish = true`).
-     */
     readonly qualifiedArn?: pulumi.Input<string>;
-    /**
-     * The amount of reserved concurrent executions for this lambda function. Defaults to Unreserved Concurrency Limits. See [Managing Concurrency][9]
-     */
     readonly reservedConcurrentExecutions?: pulumi.Input<number>;
-    /**
-     * IAM role attached to the Lambda Function. This governs both who / what can invoke your Lambda Function, as well as what resources our Lambda Function has access to. See [Lambda Permission Model][4] for more details.
-     */
     readonly role?: pulumi.Input<ARN>;
-    /**
-     * See [Runtimes][6] for valid values.
-     */
     readonly runtime?: pulumi.Input<string>;
-    /**
-     * The S3 bucket location containing the function's deployment package. Conflicts with `filename`. This bucket must reside in the same AWS region where you are creating the Lambda function.
-     */
     readonly s3Bucket?: pulumi.Input<string>;
-    /**
-     * The S3 key of an object containing the function's deployment package. Conflicts with `filename`.
-     */
     readonly s3Key?: pulumi.Input<string>;
-    /**
-     * The object version containing the function's deployment package. Conflicts with `filename`.
-     */
     readonly s3ObjectVersion?: pulumi.Input<string>;
-    /**
-     * Used to trigger updates. Must be set to a base64-encoded SHA256 hash of the package file specified with either `filename` or `s3_key`. The usual way to set this is `${base64sha256(file("file.zip"))}`, where "file.zip" is the local filename of the lambda function source archive.
-     */
     readonly sourceCodeHash?: pulumi.Input<string>;
-    /**
-     * The size in bytes of the function .zip file.
-     */
     readonly sourceCodeSize?: pulumi.Input<number>;
-    /**
-     * A mapping of tags to assign to the object.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The amount of time your Lambda Function has to run in seconds. Defaults to `3`. See [Limits][5]
-     */
     readonly timeout?: pulumi.Input<number>;
     readonly tracingConfig?: pulumi.Input<{ mode: pulumi.Input<string> }>;
-    /**
-     * Latest published version of your Lambda Function.
-     */
     readonly version?: pulumi.Input<string>;
-    /**
-     * Provide this to allow your function to access your VPC. Fields documented below. See [Lambda in VPC][7]
-     */
     readonly vpcConfig?: pulumi.Input<{ securityGroupIds: pulumi.Input<pulumi.Input<string>[]>, subnetIds: pulumi.Input<pulumi.Input<string>[]>, vpcId?: pulumi.Input<string> }>;
 }
 
@@ -344,81 +162,24 @@ export interface FunctionState {
  * The set of arguments for constructing a Function resource.
  */
 export interface FunctionArgs {
-    /**
-     * Nested block to configure the function's *dead letter queue*. See details below.
-     */
     readonly deadLetterConfig?: pulumi.Input<{ targetArn: pulumi.Input<string> }>;
-    /**
-     * Description of what your Lambda Function does.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The Lambda environment's configuration settings. Fields documented below.
-     */
     readonly environment?: pulumi.Input<{ variables?: pulumi.Input<{[key: string]: pulumi.Input<string>}> }>;
-    /**
-     * The path to the function's deployment package within the local filesystem. If defined, The `s3_`-prefixed options cannot be used.
-     */
     readonly code?: pulumi.Input<pulumi.asset.Archive>;
-    /**
-     * A unique name for your Lambda Function.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The function [entrypoint][3] in your code.
-     */
     readonly handler: pulumi.Input<string>;
-    /**
-     * The ARN for the KMS encryption key.
-     */
     readonly kmsKeyArn?: pulumi.Input<string>;
-    /**
-     * Amount of memory in MB your Lambda Function can use at runtime. Defaults to `128`. See [Limits][5]
-     */
     readonly memorySize?: pulumi.Input<number>;
-    /**
-     * Whether to publish creation/change as new Lambda Function Version. Defaults to `false`.
-     */
     readonly publish?: pulumi.Input<boolean>;
-    /**
-     * The amount of reserved concurrent executions for this lambda function. Defaults to Unreserved Concurrency Limits. See [Managing Concurrency][9]
-     */
     readonly reservedConcurrentExecutions?: pulumi.Input<number>;
-    /**
-     * IAM role attached to the Lambda Function. This governs both who / what can invoke your Lambda Function, as well as what resources our Lambda Function has access to. See [Lambda Permission Model][4] for more details.
-     */
     readonly role: pulumi.Input<ARN>;
-    /**
-     * See [Runtimes][6] for valid values.
-     */
     readonly runtime: pulumi.Input<string>;
-    /**
-     * The S3 bucket location containing the function's deployment package. Conflicts with `filename`. This bucket must reside in the same AWS region where you are creating the Lambda function.
-     */
     readonly s3Bucket?: pulumi.Input<string>;
-    /**
-     * The S3 key of an object containing the function's deployment package. Conflicts with `filename`.
-     */
     readonly s3Key?: pulumi.Input<string>;
-    /**
-     * The object version containing the function's deployment package. Conflicts with `filename`.
-     */
     readonly s3ObjectVersion?: pulumi.Input<string>;
-    /**
-     * Used to trigger updates. Must be set to a base64-encoded SHA256 hash of the package file specified with either `filename` or `s3_key`. The usual way to set this is `${base64sha256(file("file.zip"))}`, where "file.zip" is the local filename of the lambda function source archive.
-     */
     readonly sourceCodeHash?: pulumi.Input<string>;
-    /**
-     * A mapping of tags to assign to the object.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The amount of time your Lambda Function has to run in seconds. Defaults to `3`. See [Limits][5]
-     */
     readonly timeout?: pulumi.Input<number>;
     readonly tracingConfig?: pulumi.Input<{ mode: pulumi.Input<string> }>;
-    /**
-     * Provide this to allow your function to access your VPC. Fields documented below. See [Lambda in VPC][7]
-     */
     readonly vpcConfig?: pulumi.Input<{ securityGroupIds: pulumi.Input<pulumi.Input<string>[]>, subnetIds: pulumi.Input<pulumi.Input<string>[]>, vpcId?: pulumi.Input<string> }>;
 }

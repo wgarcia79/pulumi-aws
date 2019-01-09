@@ -4,75 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a resource to manage the default AWS Network ACL. VPC Only.
- * 
- * Each VPC created in AWS comes with a Default Network ACL that can be managed, but not
- * destroyed. **This is an advanced resource**, and has special caveats to be aware
- * of when using it. Please read this document in its entirety before using this
- * resource.
- * 
- * The `aws_default_network_acl` behaves differently from normal resources, in that
- * Terraform does not _create_ this resource, but instead attempts to "adopt" it
- * into management. We can do this because each VPC created has a Default Network
- * ACL that cannot be destroyed, and is created with a known set of default rules.
- * 
- * When Terraform first adopts the Default Network ACL, it **immediately removes all
- * rules in the ACL**. It then proceeds to create any rules specified in the
- * configuration. This step is required so that only the rules specified in the
- * configuration are created.
- * 
- * This resource treats its inline rules as absolute; only the rules defined
- * inline are created, and any additions/removals external to this resource will
- * result in diffs being shown. For these reasons, this resource is incompatible with the
- * `aws_network_acl_rule` resource.
- * 
- * For more information about Network ACLs, see the AWS Documentation on
- * [Network ACLs][aws-network-acls].
- * 
- * ## Example config to deny all Egress traffic, allowing Ingress
- * 
- * The following denies all Egress traffic by omitting any `egress` rules, while
- * including the default `ingress` rule to allow all traffic.
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_vpc_mainvpc = new aws.ec2.Vpc("mainvpc", {
- *     cidrBlock: "10.1.0.0/16",
- * });
- * const aws_default_network_acl_default = new aws.ec2.DefaultNetworkAcl("default", {
- *     defaultNetworkAclId: aws_vpc_mainvpc.defaultNetworkAclId,
- *     ingress: [{
- *         action: "allow",
- *         cidrBlock: "0.0.0.0/0",
- *         fromPort: 0,
- *         protocol: "-1",
- *         ruleNo: 100,
- *         toPort: 0,
- *     }],
- * });
- * ```
- * 
- * ## Example config to deny all traffic to any Subnet in the Default Network ACL:
- * 
- * This config denies all traffic in the Default ACL. This can be useful if you
- * want a locked down default to force all resources in the VPC to assign a
- * non-default ACL.
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_vpc_mainvpc = new aws.ec2.Vpc("mainvpc", {
- *     cidrBlock: "10.1.0.0/16",
- * });
- * const aws_default_network_acl_default = new aws.ec2.DefaultNetworkAcl("default", {
- *     defaultNetworkAclId: aws_vpc_mainvpc.defaultNetworkAclId,
- * });
- * ```
- */
 export class DefaultNetworkAcl extends pulumi.CustomResource {
     /**
      * Get an existing DefaultNetworkAcl resource's state with the given name, ID, and optional extra
@@ -86,35 +17,12 @@ export class DefaultNetworkAcl extends pulumi.CustomResource {
         return new DefaultNetworkAcl(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The Network ACL ID to manage. This
-     * attribute is exported from `aws_vpc`, or manually found via the AWS Console.
-     */
     public readonly defaultNetworkAclId: pulumi.Output<string>;
-    /**
-     * Specifies an egress rule. Parameters defined below.
-     */
     public readonly egress: pulumi.Output<{ action: string, cidrBlock?: string, fromPort: number, icmpCode?: number, icmpType?: number, ipv6CidrBlock?: string, protocol: string, ruleNo: number, toPort: number }[] | undefined>;
-    /**
-     * Specifies an ingress rule. Parameters defined below.
-     */
     public readonly ingress: pulumi.Output<{ action: string, cidrBlock?: string, fromPort: number, icmpCode?: number, icmpType?: number, ipv6CidrBlock?: string, protocol: string, ruleNo: number, toPort: number }[] | undefined>;
-    /**
-     * The ID of the AWS account that owns the Default Network ACL
-     */
     public /*out*/ readonly ownerId: pulumi.Output<string>;
-    /**
-     * A list of Subnet IDs to apply the ACL to. See the
-     * notes below on managing Subnets in the Default Network ACL
-     */
     public readonly subnetIds: pulumi.Output<string[] | undefined>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     public readonly tags: pulumi.Output<{[key: string]: any} | undefined>;
-    /**
-     * The ID of the associated VPC
-     */
     public /*out*/ readonly vpcId: pulumi.Output<string>;
 
     /**
@@ -157,35 +65,12 @@ export class DefaultNetworkAcl extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DefaultNetworkAcl resources.
  */
 export interface DefaultNetworkAclState {
-    /**
-     * The Network ACL ID to manage. This
-     * attribute is exported from `aws_vpc`, or manually found via the AWS Console.
-     */
     readonly defaultNetworkAclId?: pulumi.Input<string>;
-    /**
-     * Specifies an egress rule. Parameters defined below.
-     */
     readonly egress?: pulumi.Input<pulumi.Input<{ action: pulumi.Input<string>, cidrBlock?: pulumi.Input<string>, fromPort: pulumi.Input<number>, icmpCode?: pulumi.Input<number>, icmpType?: pulumi.Input<number>, ipv6CidrBlock?: pulumi.Input<string>, protocol: pulumi.Input<string>, ruleNo: pulumi.Input<number>, toPort: pulumi.Input<number> }>[]>;
-    /**
-     * Specifies an ingress rule. Parameters defined below.
-     */
     readonly ingress?: pulumi.Input<pulumi.Input<{ action: pulumi.Input<string>, cidrBlock?: pulumi.Input<string>, fromPort: pulumi.Input<number>, icmpCode?: pulumi.Input<number>, icmpType?: pulumi.Input<number>, ipv6CidrBlock?: pulumi.Input<string>, protocol: pulumi.Input<string>, ruleNo: pulumi.Input<number>, toPort: pulumi.Input<number> }>[]>;
-    /**
-     * The ID of the AWS account that owns the Default Network ACL
-     */
     readonly ownerId?: pulumi.Input<string>;
-    /**
-     * A list of Subnet IDs to apply the ACL to. See the
-     * notes below on managing Subnets in the Default Network ACL
-     */
     readonly subnetIds?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The ID of the associated VPC
-     */
     readonly vpcId?: pulumi.Input<string>;
 }
 
@@ -193,26 +78,9 @@ export interface DefaultNetworkAclState {
  * The set of arguments for constructing a DefaultNetworkAcl resource.
  */
 export interface DefaultNetworkAclArgs {
-    /**
-     * The Network ACL ID to manage. This
-     * attribute is exported from `aws_vpc`, or manually found via the AWS Console.
-     */
     readonly defaultNetworkAclId: pulumi.Input<string>;
-    /**
-     * Specifies an egress rule. Parameters defined below.
-     */
     readonly egress?: pulumi.Input<pulumi.Input<{ action: pulumi.Input<string>, cidrBlock?: pulumi.Input<string>, fromPort: pulumi.Input<number>, icmpCode?: pulumi.Input<number>, icmpType?: pulumi.Input<number>, ipv6CidrBlock?: pulumi.Input<string>, protocol: pulumi.Input<string>, ruleNo: pulumi.Input<number>, toPort: pulumi.Input<number> }>[]>;
-    /**
-     * Specifies an ingress rule. Parameters defined below.
-     */
     readonly ingress?: pulumi.Input<pulumi.Input<{ action: pulumi.Input<string>, cidrBlock?: pulumi.Input<string>, fromPort: pulumi.Input<number>, icmpCode?: pulumi.Input<number>, icmpType?: pulumi.Input<number>, ipv6CidrBlock?: pulumi.Input<string>, protocol: pulumi.Input<string>, ruleNo: pulumi.Input<number>, toPort: pulumi.Input<number> }>[]>;
-    /**
-     * A list of Subnet IDs to apply the ACL to. See the
-     * notes below on managing Subnets in the Default Network ACL
-     */
     readonly subnetIds?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
 }

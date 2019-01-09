@@ -4,70 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a S3 bucket [inventory configuration](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-inventory.html) resource.
- * 
- * ## Example Usage
- * 
- * ### Add inventory configuration
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_s3_bucket_inventory = new aws.s3.Bucket("inventory", {
- *     bucket: "my-tf-inventory-bucket",
- * });
- * const aws_s3_bucket_test = new aws.s3.Bucket("test", {
- *     bucket: "my-tf-test-bucket",
- * });
- * const aws_s3_bucket_inventory_test = new aws.s3.Inventory("test", {
- *     bucket: aws_s3_bucket_test.id,
- *     destination: {
- *         bucket: {
- *             bucketArn: aws_s3_bucket_inventory.arn,
- *             format: "ORC",
- *         },
- *     },
- *     includedObjectVersions: "All",
- *     name: "EntireBucketDaily",
- *     schedule: {
- *         frequency: "Daily",
- *     },
- * });
- * ```
- * ### Add inventory configuration with S3 bucket object prefix
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_s3_bucket_inventory = new aws.s3.Bucket("inventory", {
- *     bucket: "my-tf-inventory-bucket",
- * });
- * const aws_s3_bucket_test = new aws.s3.Bucket("test", {
- *     bucket: "my-tf-test-bucket",
- * });
- * const aws_s3_bucket_inventory_test_prefix = new aws.s3.Inventory("test-prefix", {
- *     bucket: aws_s3_bucket_test.id,
- *     destination: {
- *         bucket: {
- *             bucketArn: aws_s3_bucket_inventory.arn,
- *             format: "ORC",
- *             prefix: "inventory",
- *         },
- *     },
- *     filter: {
- *         prefix: "documents/",
- *     },
- *     includedObjectVersions: "All",
- *     name: "DocumentsWeekly",
- *     schedule: {
- *         frequency: "Daily",
- *     },
- * });
- * ```
- */
 export class Inventory extends pulumi.CustomResource {
     /**
      * Get an existing Inventory resource's state with the given name, ID, and optional extra
@@ -81,37 +17,13 @@ export class Inventory extends pulumi.CustomResource {
         return new Inventory(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The S3 bucket configuration where inventory results are published (documented below).
-     */
     public readonly bucket: pulumi.Output<string>;
-    /**
-     * Destination bucket where inventory list files are written (documented below).
-     */
     public readonly destination: pulumi.Output<{ bucket: { accountId?: string, bucketArn: string, encryption?: { sseKms?: { keyId: string }, sseS3?: {  } }, format: string, prefix?: string } }>;
-    /**
-     * Specifies whether the inventory is enabled or disabled.
-     */
     public readonly enabled: pulumi.Output<boolean | undefined>;
-    /**
-     * Object filtering that accepts a prefix (documented below).
-     */
     public readonly filter: pulumi.Output<{ prefix?: string } | undefined>;
-    /**
-     * Object filtering that accepts a prefix (documented below). Can be `All` or `Current`.
-     */
     public readonly includedObjectVersions: pulumi.Output<string>;
-    /**
-     * Unique identifier of the inventory configuration for the bucket.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * Contains the optional fields that are included in the inventory results.
-     */
     public readonly optionalFields: pulumi.Output<string[] | undefined>;
-    /**
-     * Contains the frequency for generating inventory results (documented below).
-     */
     public readonly schedule: pulumi.Output<{ frequency: string }>;
 
     /**
@@ -165,37 +77,13 @@ export class Inventory extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Inventory resources.
  */
 export interface InventoryState {
-    /**
-     * The S3 bucket configuration where inventory results are published (documented below).
-     */
     readonly bucket?: pulumi.Input<string>;
-    /**
-     * Destination bucket where inventory list files are written (documented below).
-     */
     readonly destination?: pulumi.Input<{ bucket: pulumi.Input<{ accountId?: pulumi.Input<string>, bucketArn: pulumi.Input<string>, encryption?: pulumi.Input<{ sseKms?: pulumi.Input<{ keyId: pulumi.Input<string> }>, sseS3?: pulumi.Input<{  }> }>, format: pulumi.Input<string>, prefix?: pulumi.Input<string> }> }>;
-    /**
-     * Specifies whether the inventory is enabled or disabled.
-     */
     readonly enabled?: pulumi.Input<boolean>;
-    /**
-     * Object filtering that accepts a prefix (documented below).
-     */
     readonly filter?: pulumi.Input<{ prefix?: pulumi.Input<string> }>;
-    /**
-     * Object filtering that accepts a prefix (documented below). Can be `All` or `Current`.
-     */
     readonly includedObjectVersions?: pulumi.Input<string>;
-    /**
-     * Unique identifier of the inventory configuration for the bucket.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Contains the optional fields that are included in the inventory results.
-     */
     readonly optionalFields?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Contains the frequency for generating inventory results (documented below).
-     */
     readonly schedule?: pulumi.Input<{ frequency: pulumi.Input<string> }>;
 }
 
@@ -203,36 +91,12 @@ export interface InventoryState {
  * The set of arguments for constructing a Inventory resource.
  */
 export interface InventoryArgs {
-    /**
-     * The S3 bucket configuration where inventory results are published (documented below).
-     */
     readonly bucket: pulumi.Input<string>;
-    /**
-     * Destination bucket where inventory list files are written (documented below).
-     */
     readonly destination: pulumi.Input<{ bucket: pulumi.Input<{ accountId?: pulumi.Input<string>, bucketArn: pulumi.Input<string>, encryption?: pulumi.Input<{ sseKms?: pulumi.Input<{ keyId: pulumi.Input<string> }>, sseS3?: pulumi.Input<{  }> }>, format: pulumi.Input<string>, prefix?: pulumi.Input<string> }> }>;
-    /**
-     * Specifies whether the inventory is enabled or disabled.
-     */
     readonly enabled?: pulumi.Input<boolean>;
-    /**
-     * Object filtering that accepts a prefix (documented below).
-     */
     readonly filter?: pulumi.Input<{ prefix?: pulumi.Input<string> }>;
-    /**
-     * Object filtering that accepts a prefix (documented below). Can be `All` or `Current`.
-     */
     readonly includedObjectVersions: pulumi.Input<string>;
-    /**
-     * Unique identifier of the inventory configuration for the bucket.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Contains the optional fields that are included in the inventory results.
-     */
     readonly optionalFields?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Contains the frequency for generating inventory results (documented below).
-     */
     readonly schedule: pulumi.Input<{ frequency: pulumi.Input<string> }>;
 }

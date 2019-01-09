@@ -4,28 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a Load Balancer Listener Certificate resource.
- * 
- * This resource is for additional certificates and does not replace the default certificate on the listener.
- * 
- * > **Note:** `aws_alb_listener_certificate` is known as `aws_lb_listener_certificate`. The functionality is identical.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_acm_certificate_example = new aws.acm.Certificate("example", {});
- * const aws_lb_front_end = new aws.elasticloadbalancingv2.LoadBalancer("front_end", {});
- * const aws_lb_listener_front_end = new aws.elasticloadbalancingv2.Listener("front_end", {});
- * const aws_lb_listener_certificate_example = new aws.elasticloadbalancingv2.ListenerCertificate("example", {
- *     certificateArn: aws_acm_certificate_example.arn,
- *     listenerArn: aws_lb_listener_front_end.arn,
- * });
- * ```
- */
 export class ListenerCertificate extends pulumi.CustomResource {
     /**
      * Get an existing ListenerCertificate resource's state with the given name, ID, and optional extra
@@ -39,13 +17,7 @@ export class ListenerCertificate extends pulumi.CustomResource {
         return new ListenerCertificate(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ARN of the certificate to attach to the listener.
-     */
     public readonly certificateArn: pulumi.Output<string>;
-    /**
-     * The ARN of the listener to which to attach the certificate.
-     */
     public readonly listenerArn: pulumi.Output<string>;
 
     /**
@@ -81,13 +53,7 @@ export class ListenerCertificate extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ListenerCertificate resources.
  */
 export interface ListenerCertificateState {
-    /**
-     * The ARN of the certificate to attach to the listener.
-     */
     readonly certificateArn?: pulumi.Input<string>;
-    /**
-     * The ARN of the listener to which to attach the certificate.
-     */
     readonly listenerArn?: pulumi.Input<string>;
 }
 
@@ -95,12 +61,6 @@ export interface ListenerCertificateState {
  * The set of arguments for constructing a ListenerCertificate resource.
  */
 export interface ListenerCertificateArgs {
-    /**
-     * The ARN of the certificate to attach to the listener.
-     */
     readonly certificateArn: pulumi.Input<string>;
-    /**
-     * The ARN of the listener to which to attach the certificate.
-     */
     readonly listenerArn: pulumi.Input<string>;
 }

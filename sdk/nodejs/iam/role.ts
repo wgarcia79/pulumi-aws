@@ -6,46 +6,6 @@ import * as utilities from "../utilities";
 
 import {PolicyDocument} from "./documents";
 
-/**
- * Provides an IAM role.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_iam_role_test_role = new aws.iam.Role("test_role", {
- *     assumeRolePolicy: "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Action\": \"sts:AssumeRole\",\n      \"Principal\": {\n        \"Service\": \"ec2.amazonaws.com\"\n      },\n      \"Effect\": \"Allow\",\n      \"Sid\": \"\"\n    }\n  ]\n}\n",
- *     name: "test_role",
- *     tags: {
- *         tag-key: "tag-value",
- *     },
- * });
- * ```
- * 
- * ## Example of Using Data Source for Assume Role Policy
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_iam_policy_document_instance_assume_role_policy = pulumi.output(aws.iam.getPolicyDocument({
- *     statements: [{
- *         actions: ["sts:AssumeRole"],
- *         principals: [{
- *             identifiers: ["ec2.amazonaws.com"],
- *             type: "Service",
- *         }],
- *     }],
- * }));
- * const aws_iam_role_instance = new aws.iam.Role("instance", {
- *     assumeRolePolicy: aws_iam_policy_document_instance_assume_role_policy.apply(__arg0 => __arg0.json),
- *     name: "instance_role",
- *     path: "/system/",
- * });
- * ```
- */
 export class Role extends pulumi.CustomResource {
     /**
      * Get an existing Role resource's state with the given name, ID, and optional extra
@@ -59,54 +19,17 @@ export class Role extends pulumi.CustomResource {
         return new Role(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The Amazon Resource Name (ARN) specifying the role.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * The policy that grants an entity permission to assume the role.
-     */
     public readonly assumeRolePolicy: pulumi.Output<string>;
-    /**
-     * The creation date of the IAM role.
-     */
     public /*out*/ readonly createDate: pulumi.Output<string>;
-    /**
-     * The description of the role.
-     */
     public readonly description: pulumi.Output<string | undefined>;
-    /**
-     * Specifies to force detaching any policies the role has before destroying it. Defaults to `false`.
-     */
     public readonly forceDetachPolicies: pulumi.Output<boolean | undefined>;
-    /**
-     * The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours.
-     */
     public readonly maxSessionDuration: pulumi.Output<number | undefined>;
-    /**
-     * The name of the role. If omitted, Terraform will assign a random, unique name.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-     */
     public readonly namePrefix: pulumi.Output<string | undefined>;
-    /**
-     * The path to the role.
-     * See [IAM Identifiers](https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html) for more information.
-     */
     public readonly path: pulumi.Output<string | undefined>;
-    /**
-     * The ARN of the policy that is used to set the permissions boundary for the role.
-     */
     public readonly permissionsBoundary: pulumi.Output<string | undefined>;
-    /**
-     * Key-value mapping of tags for the IAM role
-     */
     public readonly tags: pulumi.Output<{[key: string]: any} | undefined>;
-    /**
-     * The stable and unique string identifying the role.
-     */
     public /*out*/ readonly uniqueId: pulumi.Output<string>;
 
     /**
@@ -159,54 +82,17 @@ export class Role extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Role resources.
  */
 export interface RoleState {
-    /**
-     * The Amazon Resource Name (ARN) specifying the role.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * The policy that grants an entity permission to assume the role.
-     */
     readonly assumeRolePolicy?: pulumi.Input<string | PolicyDocument>;
-    /**
-     * The creation date of the IAM role.
-     */
     readonly createDate?: pulumi.Input<string>;
-    /**
-     * The description of the role.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * Specifies to force detaching any policies the role has before destroying it. Defaults to `false`.
-     */
     readonly forceDetachPolicies?: pulumi.Input<boolean>;
-    /**
-     * The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours.
-     */
     readonly maxSessionDuration?: pulumi.Input<number>;
-    /**
-     * The name of the role. If omitted, Terraform will assign a random, unique name.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-     */
     readonly namePrefix?: pulumi.Input<string>;
-    /**
-     * The path to the role.
-     * See [IAM Identifiers](https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html) for more information.
-     */
     readonly path?: pulumi.Input<string>;
-    /**
-     * The ARN of the policy that is used to set the permissions boundary for the role.
-     */
     readonly permissionsBoundary?: pulumi.Input<string>;
-    /**
-     * Key-value mapping of tags for the IAM role
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The stable and unique string identifying the role.
-     */
     readonly uniqueId?: pulumi.Input<string>;
 }
 
@@ -214,41 +100,13 @@ export interface RoleState {
  * The set of arguments for constructing a Role resource.
  */
 export interface RoleArgs {
-    /**
-     * The policy that grants an entity permission to assume the role.
-     */
     readonly assumeRolePolicy: pulumi.Input<string | PolicyDocument>;
-    /**
-     * The description of the role.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * Specifies to force detaching any policies the role has before destroying it. Defaults to `false`.
-     */
     readonly forceDetachPolicies?: pulumi.Input<boolean>;
-    /**
-     * The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours.
-     */
     readonly maxSessionDuration?: pulumi.Input<number>;
-    /**
-     * The name of the role. If omitted, Terraform will assign a random, unique name.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-     */
     readonly namePrefix?: pulumi.Input<string>;
-    /**
-     * The path to the role.
-     * See [IAM Identifiers](https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html) for more information.
-     */
     readonly path?: pulumi.Input<string>;
-    /**
-     * The ARN of the policy that is used to set the permissions boundary for the role.
-     */
     readonly permissionsBoundary?: pulumi.Input<string>;
-    /**
-     * Key-value mapping of tags for the IAM role
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
 }

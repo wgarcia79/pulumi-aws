@@ -4,40 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * The VPC Endpoint Service data source details about a specific service that
- * can be specified when creating a VPC endpoint within the region configured in the provider.
- * 
- * ## Example Usage
- * 
- * AWS service usage:
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_vpc_foo = new aws.ec2.Vpc("foo", {
- *     cidrBlock: "10.0.0.0/16",
- * });
- * const aws_vpc_endpoint_service_s3 = pulumi.output(aws.ec2.getVpcEndpointService({
- *     service: "s3",
- * }));
- * const aws_vpc_endpoint_ep = new aws.ec2.VpcEndpoint("ep", {
- *     serviceName: aws_vpc_endpoint_service_s3.apply(__arg0 => __arg0.serviceName),
- *     vpcId: aws_vpc_foo.id,
- * });
- * ```
- * Non-AWS service usage:
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_vpc_endpoint_service_custome = pulumi.output(aws.ec2.getVpcEndpointService({
- *     serviceName: "com.amazonaws.vpce.us-west-2.vpce-svc-0e87519c997c63cd8",
- * }));
- * ```
- */
 export function getVpcEndpointService(args?: GetVpcEndpointServiceArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcEndpointServiceResult> {
     args = args || {};
     return pulumi.runtime.invoke("aws:ec2/getVpcEndpointService:getVpcEndpointService", {
@@ -50,13 +16,7 @@ export function getVpcEndpointService(args?: GetVpcEndpointServiceArgs, opts?: p
  * A collection of arguments for invoking getVpcEndpointService.
  */
 export interface GetVpcEndpointServiceArgs {
-    /**
-     * The common name of an AWS service (e.g. `s3`).
-     */
     readonly service?: string;
-    /**
-     * The service name that can be specified when creating a VPC endpoint.
-     */
     readonly serviceName?: string;
 }
 
@@ -64,34 +24,13 @@ export interface GetVpcEndpointServiceArgs {
  * A collection of values returned by getVpcEndpointService.
  */
 export interface GetVpcEndpointServiceResult {
-    /**
-     * Whether or not VPC endpoint connection requests to the service must be accepted by the service owner - `true` or `false`.
-     */
     readonly acceptanceRequired: boolean;
-    /**
-     * The Availability Zones in which the service is available.
-     */
     readonly availabilityZones: string[];
-    /**
-     * The DNS names for the service.
-     */
     readonly baseEndpointDnsNames: string[];
-    /**
-     * The AWS account ID of the service owner or `amazon`.
-     */
     readonly owner: string;
-    /**
-     * The private DNS name for the service.
-     */
     readonly privateDnsName: string;
     readonly serviceName: string;
-    /**
-     * The service type, `Gateway` or `Interface`.
-     */
     readonly serviceType: string;
-    /**
-     * Whether or not the service supports endpoint policies - `true` or `false`.
-     */
     readonly vpcEndpointPolicySupported: boolean;
     /**
      * id is the provider-assigned unique ID for this managed resource.

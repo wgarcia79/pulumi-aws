@@ -4,37 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Creates a Snapshot of a snapshot.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_ebs_volume_example = new aws.ebs.Volume("example", {
- *     availabilityZone: "us-west-2a",
- *     size: 40,
- *     tags: {
- *         Name: "HelloWorld",
- *     },
- * });
- * const aws_ebs_snapshot_example_snapshot = new aws.ebs.Snapshot("example_snapshot", {
- *     tags: {
- *         Name: "HelloWorld_snap",
- *     },
- *     volumeId: aws_ebs_volume_example.id,
- * });
- * const aws_ebs_snapshot_copy_example_copy = new aws.ebs.SnapshotCopy("example_copy", {
- *     sourceRegion: "us-west-2",
- *     sourceSnapshotId: aws_ebs_snapshot_example_snapshot.id,
- *     tags: {
- *         Name: "HelloWorld_copy_snap",
- *     },
- * });
- * ```
- */
 export class SnapshotCopy extends pulumi.CustomResource {
     /**
      * Get an existing SnapshotCopy resource's state with the given name, ID, and optional extra
@@ -48,44 +17,16 @@ export class SnapshotCopy extends pulumi.CustomResource {
         return new SnapshotCopy(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The data encryption key identifier for the snapshot.
-     * * `source_snapshot_id` The ARN of the copied snapshot.
-     * * `source_region` The region of the source snapshot.
-     */
     public /*out*/ readonly dataEncryptionKeyId: pulumi.Output<string>;
-    /**
-     * A description of what the snapshot is.
-     */
     public readonly description: pulumi.Output<string | undefined>;
-    /**
-     * Whether the snapshot is encrypted.
-     */
     public readonly encrypted: pulumi.Output<boolean | undefined>;
-    /**
-     * The ARN for the KMS encryption key.
-     * * `source_snapshot_id` The ARN for the snapshot to be copied.
-     * * `source_region` The region of the source snapshot.
-     */
     public readonly kmsKeyId: pulumi.Output<string | undefined>;
-    /**
-     * Value from an Amazon-maintained list (`amazon`, `aws-marketplace`, `microsoft`) of snapshot owners.
-     */
     public /*out*/ readonly ownerAlias: pulumi.Output<string>;
-    /**
-     * The AWS account ID of the snapshot owner.
-     */
     public /*out*/ readonly ownerId: pulumi.Output<string>;
     public readonly sourceRegion: pulumi.Output<string>;
     public readonly sourceSnapshotId: pulumi.Output<string>;
-    /**
-     * A mapping of tags for the snapshot.
-     */
     public readonly tags: pulumi.Output<{[key: string]: any} | undefined>;
     public /*out*/ readonly volumeId: pulumi.Output<string>;
-    /**
-     * The size of the drive in GiBs.
-     */
     public /*out*/ readonly volumeSize: pulumi.Output<number>;
 
     /**
@@ -139,44 +80,16 @@ export class SnapshotCopy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SnapshotCopy resources.
  */
 export interface SnapshotCopyState {
-    /**
-     * The data encryption key identifier for the snapshot.
-     * * `source_snapshot_id` The ARN of the copied snapshot.
-     * * `source_region` The region of the source snapshot.
-     */
     readonly dataEncryptionKeyId?: pulumi.Input<string>;
-    /**
-     * A description of what the snapshot is.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * Whether the snapshot is encrypted.
-     */
     readonly encrypted?: pulumi.Input<boolean>;
-    /**
-     * The ARN for the KMS encryption key.
-     * * `source_snapshot_id` The ARN for the snapshot to be copied.
-     * * `source_region` The region of the source snapshot.
-     */
     readonly kmsKeyId?: pulumi.Input<string>;
-    /**
-     * Value from an Amazon-maintained list (`amazon`, `aws-marketplace`, `microsoft`) of snapshot owners.
-     */
     readonly ownerAlias?: pulumi.Input<string>;
-    /**
-     * The AWS account ID of the snapshot owner.
-     */
     readonly ownerId?: pulumi.Input<string>;
     readonly sourceRegion?: pulumi.Input<string>;
     readonly sourceSnapshotId?: pulumi.Input<string>;
-    /**
-     * A mapping of tags for the snapshot.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
     readonly volumeId?: pulumi.Input<string>;
-    /**
-     * The size of the drive in GiBs.
-     */
     readonly volumeSize?: pulumi.Input<number>;
 }
 
@@ -184,24 +97,10 @@ export interface SnapshotCopyState {
  * The set of arguments for constructing a SnapshotCopy resource.
  */
 export interface SnapshotCopyArgs {
-    /**
-     * A description of what the snapshot is.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * Whether the snapshot is encrypted.
-     */
     readonly encrypted?: pulumi.Input<boolean>;
-    /**
-     * The ARN for the KMS encryption key.
-     * * `source_snapshot_id` The ARN for the snapshot to be copied.
-     * * `source_region` The region of the source snapshot.
-     */
     readonly kmsKeyId?: pulumi.Input<string>;
     readonly sourceRegion: pulumi.Input<string>;
     readonly sourceSnapshotId: pulumi.Input<string>;
-    /**
-     * A mapping of tags for the snapshot.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
 }

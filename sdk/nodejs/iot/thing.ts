@@ -4,23 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Creates and manages an AWS IoT Thing.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_iot_thing_example = new aws.iot.Thing("example", {
- *     attributes: {
- *         First: "examplevalue",
- *     },
- *     name: "example",
- * });
- * ```
- */
 export class Thing extends pulumi.CustomResource {
     /**
      * Get an existing Thing resource's state with the given name, ID, and optional extra
@@ -34,29 +17,11 @@ export class Thing extends pulumi.CustomResource {
         return new Thing(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ARN of the thing.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * Map of attributes of the thing.
-     */
     public readonly attributes: pulumi.Output<{[key: string]: any} | undefined>;
-    /**
-     * The default client ID.
-     */
     public /*out*/ readonly defaultClientId: pulumi.Output<string>;
-    /**
-     * The name of the thing.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * The thing type name.
-     */
     public readonly thingTypeName: pulumi.Output<string | undefined>;
-    /**
-     * The current version of the thing record in the registry.
-     */
     public /*out*/ readonly version: pulumi.Output<number>;
 
     /**
@@ -94,29 +59,11 @@ export class Thing extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Thing resources.
  */
 export interface ThingState {
-    /**
-     * The ARN of the thing.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * Map of attributes of the thing.
-     */
     readonly attributes?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The default client ID.
-     */
     readonly defaultClientId?: pulumi.Input<string>;
-    /**
-     * The name of the thing.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The thing type name.
-     */
     readonly thingTypeName?: pulumi.Input<string>;
-    /**
-     * The current version of the thing record in the registry.
-     */
     readonly version?: pulumi.Input<number>;
 }
 
@@ -124,16 +71,7 @@ export interface ThingState {
  * The set of arguments for constructing a Thing resource.
  */
 export interface ThingArgs {
-    /**
-     * Map of attributes of the thing.
-     */
     readonly attributes?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The name of the thing.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The thing type name.
-     */
     readonly thingTypeName?: pulumi.Input<string>;
 }

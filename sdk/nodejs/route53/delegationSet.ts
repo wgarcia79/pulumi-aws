@@ -4,28 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a [Route53 Delegation Set](https://docs.aws.amazon.com/Route53/latest/APIReference/actions-on-reusable-delegation-sets.html) resource.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_route53_delegation_set_main = new aws.route53.DelegationSet("main", {
- *     referenceName: "DynDNS",
- * });
- * const aws_route53_zone_primary = new aws.route53.Zone("primary", {
- *     delegationSetId: aws_route53_delegation_set_main.id,
- *     name: "hashicorp.com",
- * });
- * const aws_route53_zone_secondary = new aws.route53.Zone("secondary", {
- *     delegationSetId: aws_route53_delegation_set_main.id,
- *     name: "terraform.io",
- * });
- * ```
- */
 export class DelegationSet extends pulumi.CustomResource {
     /**
      * Get an existing DelegationSet resource's state with the given name, ID, and optional extra
@@ -39,15 +17,7 @@ export class DelegationSet extends pulumi.CustomResource {
         return new DelegationSet(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * A list of authoritative name servers for the hosted zone
-     * (effectively a list of NS records).
-     */
     public /*out*/ readonly nameServers: pulumi.Output<string[]>;
-    /**
-     * This is a reference name used in Caller Reference
-     * (helpful for identifying single delegation set amongst others)
-     */
     public readonly referenceName: pulumi.Output<string | undefined>;
 
     /**
@@ -77,15 +47,7 @@ export class DelegationSet extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DelegationSet resources.
  */
 export interface DelegationSetState {
-    /**
-     * A list of authoritative name servers for the hosted zone
-     * (effectively a list of NS records).
-     */
     readonly nameServers?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * This is a reference name used in Caller Reference
-     * (helpful for identifying single delegation set amongst others)
-     */
     readonly referenceName?: pulumi.Input<string>;
 }
 
@@ -93,9 +55,5 @@ export interface DelegationSetState {
  * The set of arguments for constructing a DelegationSet resource.
  */
 export interface DelegationSetArgs {
-    /**
-     * This is a reference name used in Caller Reference
-     * (helpful for identifying single delegation set amongst others)
-     */
     readonly referenceName?: pulumi.Input<string>;
 }

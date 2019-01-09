@@ -6,48 +6,6 @@ import * as utilities from "../utilities";
 
 import {RestApi} from "./restApi";
 
-/**
- * Provides an API Gateway Deployment.
- * 
- * -> **Note:** Depends on having `aws_api_gateway_integration` inside your rest api (which in turn depends on `aws_api_gateway_method`). To avoid race conditions
- * you might need to add an explicit `depends_on = ["aws_api_gateway_integration.name"]`.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_api_gateway_rest_api_MyDemoAPI = new aws.apigateway.RestApi("MyDemoAPI", {
- *     description: "This is my API for demonstration purposes",
- *     name: "MyDemoAPI",
- * });
- * const aws_api_gateway_resource_MyDemoResource = new aws.apigateway.Resource("MyDemoResource", {
- *     parentId: aws_api_gateway_rest_api_MyDemoAPI.rootResourceId,
- *     pathPart: "test",
- *     restApi: aws_api_gateway_rest_api_MyDemoAPI.id,
- * });
- * const aws_api_gateway_method_MyDemoMethod = new aws.apigateway.Method("MyDemoMethod", {
- *     authorization: "NONE",
- *     httpMethod: "GET",
- *     resourceId: aws_api_gateway_resource_MyDemoResource.id,
- *     restApi: aws_api_gateway_rest_api_MyDemoAPI.id,
- * });
- * const aws_api_gateway_integration_MyDemoIntegration = new aws.apigateway.Integration("MyDemoIntegration", {
- *     httpMethod: aws_api_gateway_method_MyDemoMethod.httpMethod,
- *     resourceId: aws_api_gateway_resource_MyDemoResource.id,
- *     restApi: aws_api_gateway_rest_api_MyDemoAPI.id,
- *     type: "MOCK",
- * });
- * const aws_api_gateway_deployment_MyDemoDeployment = new aws.apigateway.Deployment("MyDemoDeployment", {
- *     restApi: aws_api_gateway_rest_api_MyDemoAPI.id,
- *     stageName: "test",
- *     variables: {
- *         answer: "42",
- *     },
- * }, {dependsOn: [aws_api_gateway_integration_MyDemoIntegration]});
- * ```
- */
 export class Deployment extends pulumi.CustomResource {
     /**
      * Get an existing Deployment resource's state with the given name, ID, and optional extra
@@ -61,40 +19,13 @@ export class Deployment extends pulumi.CustomResource {
         return new Deployment(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The creation date of the deployment
-     */
     public /*out*/ readonly createdDate: pulumi.Output<string>;
-    /**
-     * The description of the deployment
-     */
     public readonly description: pulumi.Output<string | undefined>;
-    /**
-     * The execution ARN to be used in [`lambda_permission`](https://www.terraform.io/docs/providers/aws/r/lambda_permission.html)'s `source_arn`
-     * when allowing API Gateway to invoke a Lambda function,
-     * e.g. `arn:aws:execute-api:eu-west-2:123456789012:z4675bid1j/prod`
-     */
     public /*out*/ readonly executionArn: pulumi.Output<string>;
-    /**
-     * The URL to invoke the API pointing to the stage,
-     * e.g. `https://z4675bid1j.execute-api.eu-west-2.amazonaws.com/prod`
-     */
     public /*out*/ readonly invokeUrl: pulumi.Output<string>;
-    /**
-     * The ID of the associated REST API
-     */
     public readonly restApi: pulumi.Output<RestApi>;
-    /**
-     * The description of the stage
-     */
     public readonly stageDescription: pulumi.Output<string | undefined>;
-    /**
-     * The name of the stage. If the specified stage already exists, it will be updated to point to the new deployment. If the stage does not exist, a new one will be created and point to this deployment. Use `""` to point at the default stage.
-     */
     public readonly stageName: pulumi.Output<string>;
-    /**
-     * A map that defines variables for the stage
-     */
     public readonly variables: pulumi.Output<{[key: string]: string} | undefined>;
 
     /**
@@ -142,40 +73,13 @@ export class Deployment extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Deployment resources.
  */
 export interface DeploymentState {
-    /**
-     * The creation date of the deployment
-     */
     readonly createdDate?: pulumi.Input<string>;
-    /**
-     * The description of the deployment
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The execution ARN to be used in [`lambda_permission`](https://www.terraform.io/docs/providers/aws/r/lambda_permission.html)'s `source_arn`
-     * when allowing API Gateway to invoke a Lambda function,
-     * e.g. `arn:aws:execute-api:eu-west-2:123456789012:z4675bid1j/prod`
-     */
     readonly executionArn?: pulumi.Input<string>;
-    /**
-     * The URL to invoke the API pointing to the stage,
-     * e.g. `https://z4675bid1j.execute-api.eu-west-2.amazonaws.com/prod`
-     */
     readonly invokeUrl?: pulumi.Input<string>;
-    /**
-     * The ID of the associated REST API
-     */
     readonly restApi?: pulumi.Input<RestApi>;
-    /**
-     * The description of the stage
-     */
     readonly stageDescription?: pulumi.Input<string>;
-    /**
-     * The name of the stage. If the specified stage already exists, it will be updated to point to the new deployment. If the stage does not exist, a new one will be created and point to this deployment. Use `""` to point at the default stage.
-     */
     readonly stageName?: pulumi.Input<string>;
-    /**
-     * A map that defines variables for the stage
-     */
     readonly variables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
@@ -183,24 +87,9 @@ export interface DeploymentState {
  * The set of arguments for constructing a Deployment resource.
  */
 export interface DeploymentArgs {
-    /**
-     * The description of the deployment
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The ID of the associated REST API
-     */
     readonly restApi: pulumi.Input<RestApi>;
-    /**
-     * The description of the stage
-     */
     readonly stageDescription?: pulumi.Input<string>;
-    /**
-     * The name of the stage. If the specified stage already exists, it will be updated to point to the new deployment. If the stage does not exist, a new one will be created and point to this deployment. Use `""` to point at the default stage.
-     */
     readonly stageName: pulumi.Input<string>;
-    /**
-     * A map that defines variables for the stage
-     */
     readonly variables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }

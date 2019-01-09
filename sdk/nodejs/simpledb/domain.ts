@@ -4,20 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a SimpleDB domain resource
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_simpledb_domain_users = new aws.simpledb.Domain("users", {
- *     name: "users",
- * });
- * ```
- */
 export class Domain extends pulumi.CustomResource {
     /**
      * Get an existing Domain resource's state with the given name, ID, and optional extra
@@ -31,9 +17,6 @@ export class Domain extends pulumi.CustomResource {
         return new Domain(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The name of the SimpleDB domain
-     */
     public readonly name: pulumi.Output<string>;
 
     /**
@@ -61,9 +44,6 @@ export class Domain extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Domain resources.
  */
 export interface DomainState {
-    /**
-     * The name of the SimpleDB domain
-     */
     readonly name?: pulumi.Input<string>;
 }
 
@@ -71,8 +51,5 @@ export interface DomainState {
  * The set of arguments for constructing a Domain resource.
  */
 export interface DomainArgs {
-    /**
-     * The name of the SimpleDB domain
-     */
     readonly name?: pulumi.Input<string>;
 }

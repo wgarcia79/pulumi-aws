@@ -4,21 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Subscribes to a Security Hub standard.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_securityhub_account_example = new aws.securityhub.Account("example", {});
- * const aws_securityhub_standards_subscription_example = new aws.securityhub.StandardsSubscription("example", {
- *     standardsArn: "arn:aws:securityhub:::ruleset/cis-aws-foundations-benchmark/v/1.2.0",
- * }, {dependsOn: [aws_securityhub_account_example]});
- * ```
- */
 export class StandardsSubscription extends pulumi.CustomResource {
     /**
      * Get an existing StandardsSubscription resource's state with the given name, ID, and optional extra
@@ -32,9 +17,6 @@ export class StandardsSubscription extends pulumi.CustomResource {
         return new StandardsSubscription(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ARN of a standard - see below.
-     */
     public readonly standardsArn: pulumi.Output<string>;
 
     /**
@@ -65,9 +47,6 @@ export class StandardsSubscription extends pulumi.CustomResource {
  * Input properties used for looking up and filtering StandardsSubscription resources.
  */
 export interface StandardsSubscriptionState {
-    /**
-     * The ARN of a standard - see below.
-     */
     readonly standardsArn?: pulumi.Input<string>;
 }
 
@@ -75,8 +54,5 @@ export interface StandardsSubscriptionState {
  * The set of arguments for constructing a StandardsSubscription resource.
  */
 export interface StandardsSubscriptionArgs {
-    /**
-     * The ARN of a standard - see below.
-     */
     readonly standardsArn: pulumi.Input<string>;
 }

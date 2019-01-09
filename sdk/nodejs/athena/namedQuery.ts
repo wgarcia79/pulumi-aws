@@ -4,29 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an Athena Named Query resource.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_s3_bucket_hoge = new aws.s3.Bucket("hoge", {
- *     bucket: "tf-test",
- * });
- * const aws_athena_database_hoge = new aws.athena.Database("hoge", {
- *     bucket: aws_s3_bucket_hoge.bucket,
- *     name: "users",
- * });
- * const aws_athena_named_query_foo = new aws.athena.NamedQuery("foo", {
- *     database: aws_athena_database_hoge.name,
- *     name: "bar",
- *     query: aws_athena_database_hoge.name.apply(__arg0 => `SELECT * FROM ${__arg0} limit 10;`),
- * });
- * ```
- */
 export class NamedQuery extends pulumi.CustomResource {
     /**
      * Get an existing NamedQuery resource's state with the given name, ID, and optional extra
@@ -40,21 +17,9 @@ export class NamedQuery extends pulumi.CustomResource {
         return new NamedQuery(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The database to which the query belongs.
-     */
     public readonly database: pulumi.Output<string>;
-    /**
-     * A brief explanation of the query. Maximum length of 1024.
-     */
     public readonly description: pulumi.Output<string | undefined>;
-    /**
-     * The plain language name for the query. Maximum length of 128.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * The text of the query itself. In other words, all query statements. Maximum length of 262144.
-     */
     public readonly query: pulumi.Output<string>;
 
     /**
@@ -94,21 +59,9 @@ export class NamedQuery extends pulumi.CustomResource {
  * Input properties used for looking up and filtering NamedQuery resources.
  */
 export interface NamedQueryState {
-    /**
-     * The database to which the query belongs.
-     */
     readonly database?: pulumi.Input<string>;
-    /**
-     * A brief explanation of the query. Maximum length of 1024.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The plain language name for the query. Maximum length of 128.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The text of the query itself. In other words, all query statements. Maximum length of 262144.
-     */
     readonly query?: pulumi.Input<string>;
 }
 
@@ -116,20 +69,8 @@ export interface NamedQueryState {
  * The set of arguments for constructing a NamedQuery resource.
  */
 export interface NamedQueryArgs {
-    /**
-     * The database to which the query belongs.
-     */
     readonly database: pulumi.Input<string>;
-    /**
-     * A brief explanation of the query. Maximum length of 1024.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The plain language name for the query. Maximum length of 128.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The text of the query itself. In other words, all query statements. Maximum length of 262144.
-     */
     readonly query: pulumi.Input<string>;
 }

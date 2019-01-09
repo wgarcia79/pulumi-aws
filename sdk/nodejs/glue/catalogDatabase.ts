@@ -4,20 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a Glue Catalog Database Resource. You can refer to the [Glue Developer Guide](http://docs.aws.amazon.com/glue/latest/dg/populate-data-catalog.html) for a full explanation of the Glue Data Catalog functionality
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_glue_catalog_database_aws_glue_catalog_database = new aws.glue.CatalogDatabase("aws_glue_catalog_database", {
- *     name: "MyCatalogDatabase",
- * });
- * ```
- */
 export class CatalogDatabase extends pulumi.CustomResource {
     /**
      * Get an existing CatalogDatabase resource's state with the given name, ID, and optional extra
@@ -31,25 +17,10 @@ export class CatalogDatabase extends pulumi.CustomResource {
         return new CatalogDatabase(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * ID of the Glue Catalog to create the database in. If omitted, this defaults to the AWS Account ID.
-     */
     public readonly catalogId: pulumi.Output<string>;
-    /**
-     * Description of the database.
-     */
     public readonly description: pulumi.Output<string | undefined>;
-    /**
-     * The location of the database (for example, an HDFS path).
-     */
     public readonly locationUri: pulumi.Output<string | undefined>;
-    /**
-     * The name of the database.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * A list of key-value pairs that define parameters and properties of the database.
-     */
     public readonly parameters: pulumi.Output<{[key: string]: string} | undefined>;
 
     /**
@@ -85,25 +56,10 @@ export class CatalogDatabase extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CatalogDatabase resources.
  */
 export interface CatalogDatabaseState {
-    /**
-     * ID of the Glue Catalog to create the database in. If omitted, this defaults to the AWS Account ID.
-     */
     readonly catalogId?: pulumi.Input<string>;
-    /**
-     * Description of the database.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The location of the database (for example, an HDFS path).
-     */
     readonly locationUri?: pulumi.Input<string>;
-    /**
-     * The name of the database.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * A list of key-value pairs that define parameters and properties of the database.
-     */
     readonly parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
@@ -111,24 +67,9 @@ export interface CatalogDatabaseState {
  * The set of arguments for constructing a CatalogDatabase resource.
  */
 export interface CatalogDatabaseArgs {
-    /**
-     * ID of the Glue Catalog to create the database in. If omitted, this defaults to the AWS Account ID.
-     */
     readonly catalogId?: pulumi.Input<string>;
-    /**
-     * Description of the database.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The location of the database (for example, an HDFS path).
-     */
     readonly locationUri?: pulumi.Input<string>;
-    /**
-     * The name of the database.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * A list of key-value pairs that define parameters and properties of the database.
-     */
     readonly parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }

@@ -4,20 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an AWS App Mesh service mesh resource.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_appmesh_mesh_simple = new aws.appmesh.Mesh("simple", {
- *     name: "simpleapp",
- * });
- * ```
- */
 export class Mesh extends pulumi.CustomResource {
     /**
      * Get an existing Mesh resource's state with the given name, ID, and optional extra
@@ -31,21 +17,9 @@ export class Mesh extends pulumi.CustomResource {
         return new Mesh(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ARN of the service mesh.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * The creation date of the service mesh.
-     */
     public /*out*/ readonly createdDate: pulumi.Output<string>;
-    /**
-     * The last update date of the service mesh.
-     */
     public /*out*/ readonly lastUpdatedDate: pulumi.Output<string>;
-    /**
-     * The name to use for the service mesh.
-     */
     public readonly name: pulumi.Output<string>;
 
     /**
@@ -79,21 +53,9 @@ export class Mesh extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Mesh resources.
  */
 export interface MeshState {
-    /**
-     * The ARN of the service mesh.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * The creation date of the service mesh.
-     */
     readonly createdDate?: pulumi.Input<string>;
-    /**
-     * The last update date of the service mesh.
-     */
     readonly lastUpdatedDate?: pulumi.Input<string>;
-    /**
-     * The name to use for the service mesh.
-     */
     readonly name?: pulumi.Input<string>;
 }
 
@@ -101,8 +63,5 @@ export interface MeshState {
  * The set of arguments for constructing a Mesh resource.
  */
 export interface MeshArgs {
-    /**
-     * The name to use for the service mesh.
-     */
     readonly name?: pulumi.Input<string>;
 }

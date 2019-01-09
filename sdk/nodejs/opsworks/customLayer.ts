@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an OpsWorks custom layer resource.
- */
 export class CustomLayer extends pulumi.CustomResource {
     /**
      * Get an existing CustomLayer resource's state with the given name, ID, and optional extra
@@ -20,74 +17,26 @@ export class CustomLayer extends pulumi.CustomResource {
         return new CustomLayer(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * Whether to automatically assign an elastic IP address to the layer's instances.
-     */
     public readonly autoAssignElasticIps: pulumi.Output<boolean | undefined>;
-    /**
-     * For stacks belonging to a VPC, whether to automatically assign a public IP address to each of the layer's instances.
-     */
     public readonly autoAssignPublicIps: pulumi.Output<boolean | undefined>;
-    /**
-     * Whether to enable auto-healing for the layer.
-     */
     public readonly autoHealing: pulumi.Output<boolean | undefined>;
     public readonly customConfigureRecipes: pulumi.Output<string[] | undefined>;
     public readonly customDeployRecipes: pulumi.Output<string[] | undefined>;
-    /**
-     * The ARN of an IAM profile that will be used for the layer's instances.
-     */
     public readonly customInstanceProfileArn: pulumi.Output<string | undefined>;
-    /**
-     * Custom JSON attributes to apply to the layer.
-     */
     public readonly customJson: pulumi.Output<string | undefined>;
-    /**
-     * Ids for a set of security groups to apply to the layer's instances.
-     */
     public readonly customSecurityGroupIds: pulumi.Output<string[] | undefined>;
     public readonly customSetupRecipes: pulumi.Output<string[] | undefined>;
     public readonly customShutdownRecipes: pulumi.Output<string[] | undefined>;
     public readonly customUndeployRecipes: pulumi.Output<string[] | undefined>;
-    /**
-     * Whether to enable Elastic Load Balancing connection draining.
-     */
     public readonly drainElbOnShutdown: pulumi.Output<boolean | undefined>;
-    /**
-     * `ebs_volume` blocks, as described below, will each create an EBS volume and connect it to the layer's instances.
-     */
     public readonly ebsVolumes: pulumi.Output<{ iops?: number, mountPoint: string, numberOfDisks: number, raidLevel?: string, size: number, type?: string }[] | undefined>;
-    /**
-     * Name of an Elastic Load Balancer to attach to this layer
-     */
     public readonly elasticLoadBalancer: pulumi.Output<string | undefined>;
-    /**
-     * Whether to install OS and package updates on each instance when it boots.
-     */
     public readonly installUpdatesOnBoot: pulumi.Output<boolean | undefined>;
-    /**
-     * The time, in seconds, that OpsWorks will wait for Chef to complete after triggering the Shutdown event.
-     */
     public readonly instanceShutdownTimeout: pulumi.Output<number | undefined>;
-    /**
-     * A human-readable name for the layer.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * A short, machine-readable name for the layer, which will be used to identify it in the Chef node JSON.
-     */
     public readonly shortName: pulumi.Output<string>;
-    /**
-     * The id of the stack the layer will belong to.
-     */
     public readonly stackId: pulumi.Output<string>;
-    /**
-     * Names of a set of system packages to install on the layer's instances.
-     */
     public readonly systemPackages: pulumi.Output<string[] | undefined>;
-    /**
-     * Whether to use EBS-optimized instances.
-     */
     public readonly useEbsOptimizedInstances: pulumi.Output<boolean | undefined>;
 
     /**
@@ -161,74 +110,26 @@ export class CustomLayer extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CustomLayer resources.
  */
 export interface CustomLayerState {
-    /**
-     * Whether to automatically assign an elastic IP address to the layer's instances.
-     */
     readonly autoAssignElasticIps?: pulumi.Input<boolean>;
-    /**
-     * For stacks belonging to a VPC, whether to automatically assign a public IP address to each of the layer's instances.
-     */
     readonly autoAssignPublicIps?: pulumi.Input<boolean>;
-    /**
-     * Whether to enable auto-healing for the layer.
-     */
     readonly autoHealing?: pulumi.Input<boolean>;
     readonly customConfigureRecipes?: pulumi.Input<pulumi.Input<string>[]>;
     readonly customDeployRecipes?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The ARN of an IAM profile that will be used for the layer's instances.
-     */
     readonly customInstanceProfileArn?: pulumi.Input<string>;
-    /**
-     * Custom JSON attributes to apply to the layer.
-     */
     readonly customJson?: pulumi.Input<string>;
-    /**
-     * Ids for a set of security groups to apply to the layer's instances.
-     */
     readonly customSecurityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
     readonly customSetupRecipes?: pulumi.Input<pulumi.Input<string>[]>;
     readonly customShutdownRecipes?: pulumi.Input<pulumi.Input<string>[]>;
     readonly customUndeployRecipes?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Whether to enable Elastic Load Balancing connection draining.
-     */
     readonly drainElbOnShutdown?: pulumi.Input<boolean>;
-    /**
-     * `ebs_volume` blocks, as described below, will each create an EBS volume and connect it to the layer's instances.
-     */
     readonly ebsVolumes?: pulumi.Input<pulumi.Input<{ iops?: pulumi.Input<number>, mountPoint: pulumi.Input<string>, numberOfDisks: pulumi.Input<number>, raidLevel?: pulumi.Input<string>, size: pulumi.Input<number>, type?: pulumi.Input<string> }>[]>;
-    /**
-     * Name of an Elastic Load Balancer to attach to this layer
-     */
     readonly elasticLoadBalancer?: pulumi.Input<string>;
-    /**
-     * Whether to install OS and package updates on each instance when it boots.
-     */
     readonly installUpdatesOnBoot?: pulumi.Input<boolean>;
-    /**
-     * The time, in seconds, that OpsWorks will wait for Chef to complete after triggering the Shutdown event.
-     */
     readonly instanceShutdownTimeout?: pulumi.Input<number>;
-    /**
-     * A human-readable name for the layer.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * A short, machine-readable name for the layer, which will be used to identify it in the Chef node JSON.
-     */
     readonly shortName?: pulumi.Input<string>;
-    /**
-     * The id of the stack the layer will belong to.
-     */
     readonly stackId?: pulumi.Input<string>;
-    /**
-     * Names of a set of system packages to install on the layer's instances.
-     */
     readonly systemPackages?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Whether to use EBS-optimized instances.
-     */
     readonly useEbsOptimizedInstances?: pulumi.Input<boolean>;
 }
 
@@ -236,73 +137,25 @@ export interface CustomLayerState {
  * The set of arguments for constructing a CustomLayer resource.
  */
 export interface CustomLayerArgs {
-    /**
-     * Whether to automatically assign an elastic IP address to the layer's instances.
-     */
     readonly autoAssignElasticIps?: pulumi.Input<boolean>;
-    /**
-     * For stacks belonging to a VPC, whether to automatically assign a public IP address to each of the layer's instances.
-     */
     readonly autoAssignPublicIps?: pulumi.Input<boolean>;
-    /**
-     * Whether to enable auto-healing for the layer.
-     */
     readonly autoHealing?: pulumi.Input<boolean>;
     readonly customConfigureRecipes?: pulumi.Input<pulumi.Input<string>[]>;
     readonly customDeployRecipes?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The ARN of an IAM profile that will be used for the layer's instances.
-     */
     readonly customInstanceProfileArn?: pulumi.Input<string>;
-    /**
-     * Custom JSON attributes to apply to the layer.
-     */
     readonly customJson?: pulumi.Input<string>;
-    /**
-     * Ids for a set of security groups to apply to the layer's instances.
-     */
     readonly customSecurityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
     readonly customSetupRecipes?: pulumi.Input<pulumi.Input<string>[]>;
     readonly customShutdownRecipes?: pulumi.Input<pulumi.Input<string>[]>;
     readonly customUndeployRecipes?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Whether to enable Elastic Load Balancing connection draining.
-     */
     readonly drainElbOnShutdown?: pulumi.Input<boolean>;
-    /**
-     * `ebs_volume` blocks, as described below, will each create an EBS volume and connect it to the layer's instances.
-     */
     readonly ebsVolumes?: pulumi.Input<pulumi.Input<{ iops?: pulumi.Input<number>, mountPoint: pulumi.Input<string>, numberOfDisks: pulumi.Input<number>, raidLevel?: pulumi.Input<string>, size: pulumi.Input<number>, type?: pulumi.Input<string> }>[]>;
-    /**
-     * Name of an Elastic Load Balancer to attach to this layer
-     */
     readonly elasticLoadBalancer?: pulumi.Input<string>;
-    /**
-     * Whether to install OS and package updates on each instance when it boots.
-     */
     readonly installUpdatesOnBoot?: pulumi.Input<boolean>;
-    /**
-     * The time, in seconds, that OpsWorks will wait for Chef to complete after triggering the Shutdown event.
-     */
     readonly instanceShutdownTimeout?: pulumi.Input<number>;
-    /**
-     * A human-readable name for the layer.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * A short, machine-readable name for the layer, which will be used to identify it in the Chef node JSON.
-     */
     readonly shortName: pulumi.Input<string>;
-    /**
-     * The id of the stack the layer will belong to.
-     */
     readonly stackId: pulumi.Input<string>;
-    /**
-     * Names of a set of system packages to install on the layer's instances.
-     */
     readonly systemPackages?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Whether to use EBS-optimized instances.
-     */
     readonly useEbsOptimizedInstances?: pulumi.Input<boolean>;
 }

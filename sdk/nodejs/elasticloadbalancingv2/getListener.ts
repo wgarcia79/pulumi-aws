@@ -4,36 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * > **Note:** `aws_alb_listener` is known as `aws_lb_listener`. The functionality is identical.
- * 
- * Provides information about a Load Balancer Listener.
- * 
- * This data source can prove useful when a module accepts an LB Listener as an
- * input variable and needs to know the LB it is attached to, or other
- * information specific to the listener in question.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const config = new pulumi.Config();
- * const var_listener_arn = config.require("listenerArn");
- * 
- * const aws_lb_selected = pulumi.output(aws.elasticloadbalancingv2.getLoadBalancer({
- *     name: "default-public",
- * }));
- * const aws_lb_listener_listener = pulumi.output(aws.elasticloadbalancingv2.getListener({
- *     arn: var_listener_arn,
- * }));
- * const aws_lb_listener_selected443 = pulumi.output(aws.elasticloadbalancingv2.getListener({
- *     loadBalancerArn: aws_lb_selected.apply(__arg0 => __arg0.arn),
- *     port: 443,
- * }));
- * ```
- */
 export function getListener(args?: GetListenerArgs, opts?: pulumi.InvokeOptions): Promise<GetListenerResult> {
     args = args || {};
     return pulumi.runtime.invoke("aws:elasticloadbalancingv2/getListener:getListener", {
@@ -47,17 +17,8 @@ export function getListener(args?: GetListenerArgs, opts?: pulumi.InvokeOptions)
  * A collection of arguments for invoking getListener.
  */
 export interface GetListenerArgs {
-    /**
-     * The arn of the listener. Required if `load_balancer_arn` and `port` is not set.
-     */
     readonly arn?: string;
-    /**
-     * The arn of the load balander. Required if `arn` is not set.
-     */
     readonly loadBalancerArn?: string;
-    /**
-     * The port of the listener. Required if `arn` is not set.
-     */
     readonly port?: number;
 }
 

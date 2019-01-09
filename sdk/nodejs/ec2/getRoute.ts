@@ -4,13 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * `aws_route` provides details about a specific Route.
- * 
- * This resource can prove useful when finding the resource
- * associated with a CIDR. For example, finding the peering
- * connection associated with a CIDR value.
- */
 export function getRoute(args: GetRouteArgs, opts?: pulumi.InvokeOptions): Promise<GetRouteResult> {
     return pulumi.runtime.invoke("aws:ec2/getRoute:getRoute", {
         "destinationCidrBlock": args.destinationCidrBlock,
@@ -30,45 +23,15 @@ export function getRoute(args: GetRouteArgs, opts?: pulumi.InvokeOptions): Promi
  * A collection of arguments for invoking getRoute.
  */
 export interface GetRouteArgs {
-    /**
-     * The CIDR block of the Route belonging to the Route Table.
-     */
     readonly destinationCidrBlock?: string;
-    /**
-     * The IPv6 CIDR block of the Route belonging to the Route Table.
-     */
     readonly destinationIpv6CidrBlock?: string;
-    /**
-     * The Egress Only Gateway ID of the Route belonging to the Route Table.
-     */
     readonly egressOnlyGatewayId?: string;
-    /**
-     * The Gateway ID of the Route belonging to the Route Table.
-     */
     readonly gatewayId?: string;
-    /**
-     * The Instance ID of the Route belonging to the Route Table.
-     */
     readonly instanceId?: string;
-    /**
-     * The NAT Gateway ID of the Route belonging to the Route Table.
-     */
     readonly natGatewayId?: string;
-    /**
-     * The Network Interface ID of the Route belonging to the Route Table.
-     */
     readonly networkInterfaceId?: string;
-    /**
-     * The id of the specific Route Table containing the Route entry.
-     */
     readonly routeTableId: string;
-    /**
-     * The EC2 Transit Gateway ID of the Route belonging to the Route Table.
-     */
     readonly transitGatewayId?: string;
-    /**
-     * The VPC Peering Connection ID of the Route belonging to the Route Table.
-     */
     readonly vpcPeeringConnectionId?: string;
 }
 

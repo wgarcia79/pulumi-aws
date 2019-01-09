@@ -4,21 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Adds launch permission to Amazon Machine Image (AMI) from another AWS account.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_ami_launch_permission_example = new aws.ec2.AmiLaunchPermission("example", {
- *     accountId: "123456789012",
- *     imageId: "ami-12345678",
- * });
- * ```
- */
 export class AmiLaunchPermission extends pulumi.CustomResource {
     /**
      * Get an existing AmiLaunchPermission resource's state with the given name, ID, and optional extra
@@ -32,13 +17,7 @@ export class AmiLaunchPermission extends pulumi.CustomResource {
         return new AmiLaunchPermission(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * An AWS Account ID to add launch permissions.
-     */
     public readonly accountId: pulumi.Output<string>;
-    /**
-     * A region-unique name for the AMI.
-     */
     public readonly imageId: pulumi.Output<string>;
 
     /**
@@ -74,13 +53,7 @@ export class AmiLaunchPermission extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AmiLaunchPermission resources.
  */
 export interface AmiLaunchPermissionState {
-    /**
-     * An AWS Account ID to add launch permissions.
-     */
     readonly accountId?: pulumi.Input<string>;
-    /**
-     * A region-unique name for the AMI.
-     */
     readonly imageId?: pulumi.Input<string>;
 }
 
@@ -88,12 +61,6 @@ export interface AmiLaunchPermissionState {
  * The set of arguments for constructing a AmiLaunchPermission resource.
  */
 export interface AmiLaunchPermissionArgs {
-    /**
-     * An AWS Account ID to add launch permissions.
-     */
     readonly accountId: pulumi.Input<string>;
-    /**
-     * A region-unique name for the AMI.
-     */
     readonly imageId: pulumi.Input<string>;
 }

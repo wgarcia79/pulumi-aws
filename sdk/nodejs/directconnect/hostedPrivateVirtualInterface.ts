@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a Direct Connect hosted private virtual interface resource. This resource represents the allocator's side of the hosted virtual interface.
- * A hosted virtual interface is a virtual interface that is owned by another AWS account.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_dx_hosted_private_virtual_interface_foo = new aws.directconnect.HostedPrivateVirtualInterface("foo", {
- *     addressFamily: "ipv4",
- *     bgpAsn: 65352,
- *     connectionId: "dxcon-zzzzzzzz",
- *     name: "vif-foo",
- *     vlan: 4094,
- * });
- * ```
- */
 export class HostedPrivateVirtualInterface extends pulumi.CustomResource {
     /**
      * Get an existing HostedPrivateVirtualInterface resource's state with the given name, ID, and optional extra
@@ -36,53 +17,17 @@ export class HostedPrivateVirtualInterface extends pulumi.CustomResource {
         return new HostedPrivateVirtualInterface(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The address family for the BGP peer. `ipv4 ` or `ipv6`.
-     */
     public readonly addressFamily: pulumi.Output<string>;
-    /**
-     * The IPv4 CIDR address to use to send traffic to Amazon. Required for IPv4 BGP peers.
-     */
     public readonly amazonAddress: pulumi.Output<string>;
-    /**
-     * The ARN of the virtual interface.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
-     */
     public readonly bgpAsn: pulumi.Output<number>;
-    /**
-     * The authentication key for BGP configuration.
-     */
     public readonly bgpAuthKey: pulumi.Output<string>;
-    /**
-     * The ID of the Direct Connect connection (or LAG) on which to create the virtual interface.
-     */
     public readonly connectionId: pulumi.Output<string>;
-    /**
-     * The IPv4 CIDR destination address to which Amazon should send traffic. Required for IPv4 BGP peers.
-     */
     public readonly customerAddress: pulumi.Output<string>;
-    /**
-     * Indicates whether jumbo frames (9001 MTU) are supported.
-     */
     public /*out*/ readonly jumboFrameCapable: pulumi.Output<boolean>;
-    /**
-     * The maximum transmission unit (MTU) is the size, in bytes, of the largest permissible packet that can be passed over the connection. The MTU of a virtual private interface can be either `1500` or `9001` (jumbo frames). Default is `1500`.
-     */
     public readonly mtu: pulumi.Output<number | undefined>;
-    /**
-     * The name for the virtual interface.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * The AWS account that will own the new virtual interface.
-     */
     public readonly ownerAccountId: pulumi.Output<string>;
-    /**
-     * The VLAN ID.
-     */
     public readonly vlan: pulumi.Output<number>;
 
     /**
@@ -147,53 +92,17 @@ export class HostedPrivateVirtualInterface extends pulumi.CustomResource {
  * Input properties used for looking up and filtering HostedPrivateVirtualInterface resources.
  */
 export interface HostedPrivateVirtualInterfaceState {
-    /**
-     * The address family for the BGP peer. `ipv4 ` or `ipv6`.
-     */
     readonly addressFamily?: pulumi.Input<string>;
-    /**
-     * The IPv4 CIDR address to use to send traffic to Amazon. Required for IPv4 BGP peers.
-     */
     readonly amazonAddress?: pulumi.Input<string>;
-    /**
-     * The ARN of the virtual interface.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
-     */
     readonly bgpAsn?: pulumi.Input<number>;
-    /**
-     * The authentication key for BGP configuration.
-     */
     readonly bgpAuthKey?: pulumi.Input<string>;
-    /**
-     * The ID of the Direct Connect connection (or LAG) on which to create the virtual interface.
-     */
     readonly connectionId?: pulumi.Input<string>;
-    /**
-     * The IPv4 CIDR destination address to which Amazon should send traffic. Required for IPv4 BGP peers.
-     */
     readonly customerAddress?: pulumi.Input<string>;
-    /**
-     * Indicates whether jumbo frames (9001 MTU) are supported.
-     */
     readonly jumboFrameCapable?: pulumi.Input<boolean>;
-    /**
-     * The maximum transmission unit (MTU) is the size, in bytes, of the largest permissible packet that can be passed over the connection. The MTU of a virtual private interface can be either `1500` or `9001` (jumbo frames). Default is `1500`.
-     */
     readonly mtu?: pulumi.Input<number>;
-    /**
-     * The name for the virtual interface.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The AWS account that will own the new virtual interface.
-     */
     readonly ownerAccountId?: pulumi.Input<string>;
-    /**
-     * The VLAN ID.
-     */
     readonly vlan?: pulumi.Input<number>;
 }
 
@@ -201,44 +110,14 @@ export interface HostedPrivateVirtualInterfaceState {
  * The set of arguments for constructing a HostedPrivateVirtualInterface resource.
  */
 export interface HostedPrivateVirtualInterfaceArgs {
-    /**
-     * The address family for the BGP peer. `ipv4 ` or `ipv6`.
-     */
     readonly addressFamily: pulumi.Input<string>;
-    /**
-     * The IPv4 CIDR address to use to send traffic to Amazon. Required for IPv4 BGP peers.
-     */
     readonly amazonAddress?: pulumi.Input<string>;
-    /**
-     * The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
-     */
     readonly bgpAsn: pulumi.Input<number>;
-    /**
-     * The authentication key for BGP configuration.
-     */
     readonly bgpAuthKey?: pulumi.Input<string>;
-    /**
-     * The ID of the Direct Connect connection (or LAG) on which to create the virtual interface.
-     */
     readonly connectionId: pulumi.Input<string>;
-    /**
-     * The IPv4 CIDR destination address to which Amazon should send traffic. Required for IPv4 BGP peers.
-     */
     readonly customerAddress?: pulumi.Input<string>;
-    /**
-     * The maximum transmission unit (MTU) is the size, in bytes, of the largest permissible packet that can be passed over the connection. The MTU of a virtual private interface can be either `1500` or `9001` (jumbo frames). Default is `1500`.
-     */
     readonly mtu?: pulumi.Input<number>;
-    /**
-     * The name for the virtual interface.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The AWS account that will own the new virtual interface.
-     */
     readonly ownerAccountId: pulumi.Input<string>;
-    /**
-     * The VLAN ID.
-     */
     readonly vlan: pulumi.Input<number>;
 }

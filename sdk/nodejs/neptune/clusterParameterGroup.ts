@@ -4,26 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Manages a Neptune Cluster Parameter Group
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_neptune_cluster_parameter_group_example = new aws.neptune.ClusterParameterGroup("example", {
- *     description: "neptune cluster parameter group",
- *     family: "neptune1",
- *     name: "example",
- *     parameters: [{
- *         name: "neptune_enable_audit_log",
- *         value: "1",
- *     }],
- * });
- * ```
- */
 export class ClusterParameterGroup extends pulumi.CustomResource {
     /**
      * Get an existing ClusterParameterGroup resource's state with the given name, ID, and optional extra
@@ -37,33 +17,12 @@ export class ClusterParameterGroup extends pulumi.CustomResource {
         return new ClusterParameterGroup(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ARN of the neptune cluster parameter group.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * The description of the neptune cluster parameter group. Defaults to "Managed by Terraform".
-     */
     public readonly description: pulumi.Output<string | undefined>;
-    /**
-     * The family of the neptune cluster parameter group.
-     */
     public readonly family: pulumi.Output<string>;
-    /**
-     * The name of the neptune parameter.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-     */
     public readonly namePrefix: pulumi.Output<string>;
-    /**
-     * A list of neptune parameters to apply.
-     */
     public readonly parameters: pulumi.Output<{ applyMethod?: string, name: string, value: string }[] | undefined>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     public readonly tags: pulumi.Output<{[key: string]: any} | undefined>;
 
     /**
@@ -106,33 +65,12 @@ export class ClusterParameterGroup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ClusterParameterGroup resources.
  */
 export interface ClusterParameterGroupState {
-    /**
-     * The ARN of the neptune cluster parameter group.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * The description of the neptune cluster parameter group. Defaults to "Managed by Terraform".
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The family of the neptune cluster parameter group.
-     */
     readonly family?: pulumi.Input<string>;
-    /**
-     * The name of the neptune parameter.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-     */
     readonly namePrefix?: pulumi.Input<string>;
-    /**
-     * A list of neptune parameters to apply.
-     */
     readonly parameters?: pulumi.Input<pulumi.Input<{ applyMethod?: pulumi.Input<string>, name: pulumi.Input<string>, value: pulumi.Input<string> }>[]>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
 }
 
@@ -140,28 +78,10 @@ export interface ClusterParameterGroupState {
  * The set of arguments for constructing a ClusterParameterGroup resource.
  */
 export interface ClusterParameterGroupArgs {
-    /**
-     * The description of the neptune cluster parameter group. Defaults to "Managed by Terraform".
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The family of the neptune cluster parameter group.
-     */
     readonly family: pulumi.Input<string>;
-    /**
-     * The name of the neptune parameter.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-     */
     readonly namePrefix?: pulumi.Input<string>;
-    /**
-     * A list of neptune parameters to apply.
-     */
     readonly parameters?: pulumi.Input<pulumi.Input<{ applyMethod?: pulumi.Input<string>, name: pulumi.Input<string>, value: pulumi.Input<string> }>[]>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
 }

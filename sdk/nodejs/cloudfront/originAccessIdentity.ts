@@ -4,27 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Creates an Amazon CloudFront origin access identity.
- * 
- * For information about CloudFront distributions, see the
- * [Amazon CloudFront Developer Guide][1]. For more information on generating
- * origin access identities, see
- * [Using an Origin Access Identity to Restrict Access to Your Amazon S3 Content][2].
- * 
- * ## Example Usage
- * 
- * The following example below creates a CloudFront origin access identity.
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_cloudfront_origin_access_identity_origin_access_identity = new aws.cloudfront.OriginAccessIdentity("origin_access_identity", {
- *     comment: "Some comment",
- * });
- * ```
- */
 export class OriginAccessIdentity extends pulumi.CustomResource {
     /**
      * Get an existing OriginAccessIdentity resource's state with the given name, ID, and optional extra
@@ -38,36 +17,11 @@ export class OriginAccessIdentity extends pulumi.CustomResource {
         return new OriginAccessIdentity(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * Internal value used by CloudFront to allow future
-     * updates to the origin access identity.
-     */
     public /*out*/ readonly callerReference: pulumi.Output<string>;
-    /**
-     * A shortcut to the full path for the
-     * origin access identity to use in CloudFront, see below.
-     */
     public /*out*/ readonly cloudfrontAccessIdentityPath: pulumi.Output<string>;
-    /**
-     * An optional comment for the origin access identity.
-     */
     public readonly comment: pulumi.Output<string | undefined>;
-    /**
-     * The current version of the origin access identity's information.
-     * For example: `E2QWRUHAPOMQZL`.
-     */
     public /*out*/ readonly etag: pulumi.Output<string>;
-    /**
-     * A pre-generated ARN for use in S3 bucket policies (see below).
-     * Example: `arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity
-     * E2QWRUHAPOMQZL`.
-     */
     public /*out*/ readonly iamArn: pulumi.Output<string>;
-    /**
-     * The Amazon S3 canonical user ID for the origin
-     * access identity, which you use when giving the origin access identity read
-     * permission to an object in Amazon S3.
-     */
     public /*out*/ readonly s3CanonicalUserId: pulumi.Output<string>;
 
     /**
@@ -105,36 +59,11 @@ export class OriginAccessIdentity extends pulumi.CustomResource {
  * Input properties used for looking up and filtering OriginAccessIdentity resources.
  */
 export interface OriginAccessIdentityState {
-    /**
-     * Internal value used by CloudFront to allow future
-     * updates to the origin access identity.
-     */
     readonly callerReference?: pulumi.Input<string>;
-    /**
-     * A shortcut to the full path for the
-     * origin access identity to use in CloudFront, see below.
-     */
     readonly cloudfrontAccessIdentityPath?: pulumi.Input<string>;
-    /**
-     * An optional comment for the origin access identity.
-     */
     readonly comment?: pulumi.Input<string>;
-    /**
-     * The current version of the origin access identity's information.
-     * For example: `E2QWRUHAPOMQZL`.
-     */
     readonly etag?: pulumi.Input<string>;
-    /**
-     * A pre-generated ARN for use in S3 bucket policies (see below).
-     * Example: `arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity
-     * E2QWRUHAPOMQZL`.
-     */
     readonly iamArn?: pulumi.Input<string>;
-    /**
-     * The Amazon S3 canonical user ID for the origin
-     * access identity, which you use when giving the origin access identity read
-     * permission to an object in Amazon S3.
-     */
     readonly s3CanonicalUserId?: pulumi.Input<string>;
 }
 
@@ -142,8 +71,5 @@ export interface OriginAccessIdentityState {
  * The set of arguments for constructing a OriginAccessIdentity resource.
  */
 export interface OriginAccessIdentityArgs {
-    /**
-     * An optional comment for the origin access identity.
-     */
     readonly comment?: pulumi.Input<string>;
 }

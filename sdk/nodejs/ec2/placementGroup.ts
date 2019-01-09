@@ -6,22 +6,6 @@ import * as utilities from "../utilities";
 
 import {PlacementStrategy} from "./placementStrategy";
 
-/**
- * Provides an EC2 placement group. Read more about placement groups
- * in [AWS Docs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html).
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_placement_group_web = new aws.ec2.PlacementGroup("web", {
- *     name: "hunky-dory-pg",
- *     strategy: "cluster",
- * });
- * ```
- */
 export class PlacementGroup extends pulumi.CustomResource {
     /**
      * Get an existing PlacementGroup resource's state with the given name, ID, and optional extra
@@ -35,13 +19,7 @@ export class PlacementGroup extends pulumi.CustomResource {
         return new PlacementGroup(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The name of the placement group.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * The placement strategy.
-     */
     public readonly strategy: pulumi.Output<PlacementStrategy>;
 
     /**
@@ -74,13 +52,7 @@ export class PlacementGroup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering PlacementGroup resources.
  */
 export interface PlacementGroupState {
-    /**
-     * The name of the placement group.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The placement strategy.
-     */
     readonly strategy?: pulumi.Input<PlacementStrategy>;
 }
 
@@ -88,12 +60,6 @@ export interface PlacementGroupState {
  * The set of arguments for constructing a PlacementGroup resource.
  */
 export interface PlacementGroupArgs {
-    /**
-     * The name of the placement group.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The placement strategy.
-     */
     readonly strategy: pulumi.Input<PlacementStrategy>;
 }

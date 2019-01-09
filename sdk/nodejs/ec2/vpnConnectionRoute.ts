@@ -4,38 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a static route between a VPN connection and a customer gateway.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_customer_gateway_customer_gateway = new aws.ec2.CustomerGateway("customer_gateway", {
- *     bgpAsn: 65000,
- *     ipAddress: "172.0.0.1",
- *     type: "ipsec.1",
- * });
- * const aws_vpc_vpc = new aws.ec2.Vpc("vpc", {
- *     cidrBlock: "10.0.0.0/16",
- * });
- * const aws_vpn_gateway_vpn_gateway = new aws.ec2.VpnGateway("vpn_gateway", {
- *     vpcId: aws_vpc_vpc.id,
- * });
- * const aws_vpn_connection_main = new aws.ec2.VpnConnection("main", {
- *     customerGatewayId: aws_customer_gateway_customer_gateway.id,
- *     staticRoutesOnly: true,
- *     type: "ipsec.1",
- *     vpnGatewayId: aws_vpn_gateway_vpn_gateway.id,
- * });
- * const aws_vpn_connection_route_office = new aws.ec2.VpnConnectionRoute("office", {
- *     destinationCidrBlock: "192.168.10.0/24",
- *     vpnConnectionId: aws_vpn_connection_main.id,
- * });
- * ```
- */
 export class VpnConnectionRoute extends pulumi.CustomResource {
     /**
      * Get an existing VpnConnectionRoute resource's state with the given name, ID, and optional extra
@@ -49,13 +17,7 @@ export class VpnConnectionRoute extends pulumi.CustomResource {
         return new VpnConnectionRoute(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The CIDR block associated with the local subnet of the customer network.
-     */
     public readonly destinationCidrBlock: pulumi.Output<string>;
-    /**
-     * The ID of the VPN connection.
-     */
     public readonly vpnConnectionId: pulumi.Output<string>;
 
     /**
@@ -91,13 +53,7 @@ export class VpnConnectionRoute extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpnConnectionRoute resources.
  */
 export interface VpnConnectionRouteState {
-    /**
-     * The CIDR block associated with the local subnet of the customer network.
-     */
     readonly destinationCidrBlock?: pulumi.Input<string>;
-    /**
-     * The ID of the VPN connection.
-     */
     readonly vpnConnectionId?: pulumi.Input<string>;
 }
 
@@ -105,12 +61,6 @@ export interface VpnConnectionRouteState {
  * The set of arguments for constructing a VpnConnectionRoute resource.
  */
 export interface VpnConnectionRouteArgs {
-    /**
-     * The CIDR block associated with the local subnet of the customer network.
-     */
     readonly destinationCidrBlock: pulumi.Input<string>;
-    /**
-     * The ID of the VPN connection.
-     */
     readonly vpnConnectionId: pulumi.Input<string>;
 }

@@ -4,24 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a DMS (Data Migration Service) certificate resource. DMS certificates can be created, deleted, and imported.
- * 
- * > **Note:** All arguments including the PEM encoded certificate will be stored in the raw state as plain-text.
- * [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_dms_certificate_test = new aws.dms.Certificate("test", {
- *     certificateId: "test-dms-certificate-tf",
- *     certificatePem: "...",
- * });
- * ```
- */
 export class Certificate extends pulumi.CustomResource {
     /**
      * Get an existing Certificate resource's state with the given name, ID, and optional extra
@@ -35,21 +17,9 @@ export class Certificate extends pulumi.CustomResource {
         return new Certificate(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The Amazon Resource Name (ARN) for the certificate.
-     */
     public /*out*/ readonly certificateArn: pulumi.Output<string>;
-    /**
-     * The certificate identifier.
-     */
     public readonly certificateId: pulumi.Output<string>;
-    /**
-     * The contents of the .pem X.509 certificate file for the certificate. Either `certificate_pem` or `certificate_wallet` must be set.
-     */
     public readonly certificatePem: pulumi.Output<string | undefined>;
-    /**
-     * The contents of the Oracle Wallet certificate for use with SSL. Either `certificate_pem` or `certificate_wallet` must be set.
-     */
     public readonly certificateWallet: pulumi.Output<string | undefined>;
 
     /**
@@ -86,21 +56,9 @@ export class Certificate extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Certificate resources.
  */
 export interface CertificateState {
-    /**
-     * The Amazon Resource Name (ARN) for the certificate.
-     */
     readonly certificateArn?: pulumi.Input<string>;
-    /**
-     * The certificate identifier.
-     */
     readonly certificateId?: pulumi.Input<string>;
-    /**
-     * The contents of the .pem X.509 certificate file for the certificate. Either `certificate_pem` or `certificate_wallet` must be set.
-     */
     readonly certificatePem?: pulumi.Input<string>;
-    /**
-     * The contents of the Oracle Wallet certificate for use with SSL. Either `certificate_pem` or `certificate_wallet` must be set.
-     */
     readonly certificateWallet?: pulumi.Input<string>;
 }
 
@@ -108,16 +66,7 @@ export interface CertificateState {
  * The set of arguments for constructing a Certificate resource.
  */
 export interface CertificateArgs {
-    /**
-     * The certificate identifier.
-     */
     readonly certificateId: pulumi.Input<string>;
-    /**
-     * The contents of the .pem X.509 certificate file for the certificate. Either `certificate_pem` or `certificate_wallet` must be set.
-     */
     readonly certificatePem?: pulumi.Input<string>;
-    /**
-     * The contents of the Oracle Wallet certificate for use with SSL. Either `certificate_pem` or `certificate_wallet` must be set.
-     */
     readonly certificateWallet?: pulumi.Input<string>;
 }

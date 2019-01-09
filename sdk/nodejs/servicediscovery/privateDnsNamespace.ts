@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a Service Discovery Private DNS Namespace resource.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_vpc_example = new aws.ec2.Vpc("example", {
- *     cidrBlock: "10.0.0.0/16",
- * });
- * const aws_service_discovery_private_dns_namespace_example = new aws.servicediscovery.PrivateDnsNamespace("example", {
- *     description: "example",
- *     name: "hoge.example.local",
- *     vpc: aws_vpc_example.id,
- * });
- * ```
- */
 export class PrivateDnsNamespace extends pulumi.CustomResource {
     /**
      * Get an existing PrivateDnsNamespace resource's state with the given name, ID, and optional extra
@@ -36,25 +17,10 @@ export class PrivateDnsNamespace extends pulumi.CustomResource {
         return new PrivateDnsNamespace(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ARN that Amazon Route 53 assigns to the namespace when you create it.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * The description that you specify for the namespace when you create it.
-     */
     public readonly description: pulumi.Output<string | undefined>;
-    /**
-     * The ID for the hosted zone that Amazon Route 53 creates when you create a namespace.
-     */
     public /*out*/ readonly hostedZone: pulumi.Output<string>;
-    /**
-     * The name of the namespace.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * The ID of VPC that you want to associate the namespace with.
-     */
     public readonly vpc: pulumi.Output<string>;
 
     /**
@@ -93,25 +59,10 @@ export class PrivateDnsNamespace extends pulumi.CustomResource {
  * Input properties used for looking up and filtering PrivateDnsNamespace resources.
  */
 export interface PrivateDnsNamespaceState {
-    /**
-     * The ARN that Amazon Route 53 assigns to the namespace when you create it.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * The description that you specify for the namespace when you create it.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The ID for the hosted zone that Amazon Route 53 creates when you create a namespace.
-     */
     readonly hostedZone?: pulumi.Input<string>;
-    /**
-     * The name of the namespace.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The ID of VPC that you want to associate the namespace with.
-     */
     readonly vpc?: pulumi.Input<string>;
 }
 
@@ -119,16 +70,7 @@ export interface PrivateDnsNamespaceState {
  * The set of arguments for constructing a PrivateDnsNamespace resource.
  */
 export interface PrivateDnsNamespaceArgs {
-    /**
-     * The description that you specify for the namespace when you create it.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The name of the namespace.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The ID of VPC that you want to associate the namespace with.
-     */
     readonly vpc: pulumi.Input<string>;
 }

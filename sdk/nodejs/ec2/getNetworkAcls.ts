@@ -17,18 +17,8 @@ export function getNetworkAcls(args?: GetNetworkAclsArgs, opts?: pulumi.InvokeOp
  * A collection of arguments for invoking getNetworkAcls.
  */
 export interface GetNetworkAclsArgs {
-    /**
-     * Custom filter block as described below.
-     */
     readonly filters?: { name: string, values: string[] }[];
-    /**
-     * A mapping of tags, each pair of which must exactly match
-     * a pair on the desired network ACLs.
-     */
     readonly tags?: {[key: string]: any};
-    /**
-     * The VPC ID that you want to filter from.
-     */
     readonly vpcId?: string;
 }
 
@@ -36,9 +26,6 @@ export interface GetNetworkAclsArgs {
  * A collection of values returned by getNetworkAcls.
  */
 export interface GetNetworkAclsResult {
-    /**
-     * A list of all the network ACL ids found. This data source will fail if none are found.
-     */
     readonly ids: string[];
     readonly tags: {[key: string]: any};
     /**

@@ -4,38 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * The ECS task definition data source allows access to details of
- * a specific AWS ECS task definition.
- * 
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_ecs_cluster_foo = new aws.ecs.Cluster("foo", {
- *     name: "foo",
- * });
- * const aws_ecs_task_definition_mongo = new aws.ecs.TaskDefinition("mongo", {
- *     containerDefinitions: "[\n  {\n    \"cpu\": 128,\n    \"environment\": [{\n      \"name\": \"SECRET\",\n      \"value\": \"KEY\"\n    }],\n    \"essential\": true,\n    \"image\": \"mongo:latest\",\n    \"memory\": 128,\n    \"memoryReservation\": 64,\n    \"name\": \"mongodb\"\n  }\n]\n",
- *     family: "mongodb",
- * });
- * const aws_ecs_task_definition_mongo = pulumi.output(aws.ecs.getTaskDefinition({
- *     taskDefinition: aws_ecs_task_definition_mongo.family,
- * }));
- * const aws_ecs_service_mongo = new aws.ecs.Service("mongo", {
- *     cluster: aws_ecs_cluster_foo.id,
- *     desiredCount: 2,
- *     name: "mongo",
- *     taskDefinition: pulumi.all([aws_ecs_task_definition_mongo.family, aws_ecs_task_definition_mongo.revision, aws_ecs_task_definition_mongo]).apply(([__arg0, __arg1, __arg2]) => `${__arg0}:${(() => {
- *         throw "tf2pulumi error: NYI: call to max";
- *         return (() => { throw "NYI: call to max"; })();
- *     })()}`),
- * });
- * ```
- */
 export function getTaskDefinition(args: GetTaskDefinitionArgs, opts?: pulumi.InvokeOptions): Promise<GetTaskDefinitionResult> {
     return pulumi.runtime.invoke("aws:ecs/getTaskDefinition:getTaskDefinition", {
         "taskDefinition": args.taskDefinition,
@@ -46,9 +14,6 @@ export function getTaskDefinition(args: GetTaskDefinitionArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getTaskDefinition.
  */
 export interface GetTaskDefinitionArgs {
-    /**
-     * The family for the latest ACTIVE revision, family and revision (family:revision) for a specific revision in the family, the ARN of the task definition to access to.
-     */
     readonly taskDefinition: string;
 }
 
@@ -56,25 +21,10 @@ export interface GetTaskDefinitionArgs {
  * A collection of values returned by getTaskDefinition.
  */
 export interface GetTaskDefinitionResult {
-    /**
-     * The family of this task definition
-     */
     readonly family: string;
-    /**
-     * The Docker networking mode to use for the containers in this task.
-     */
     readonly networkMode: string;
-    /**
-     * The revision of this task definition
-     */
     readonly revision: number;
-    /**
-     * The status of this task definition
-     */
     readonly status: string;
-    /**
-     * The ARN of the IAM role that containers in this task can assume
-     */
     readonly taskRoleArn: string;
     /**
      * id is the provider-assigned unique ID for this managed resource.

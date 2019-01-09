@@ -4,31 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an API Gateway Gateway Response for a REST API Gateway.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_api_gateway_rest_api_main = new aws.apigateway.RestApi("main", {
- *     name: "MyDemoAPI",
- * });
- * const aws_api_gateway_gateway_response_test = new aws.apigateway.Response("test", {
- *     responseParameters: {
- *         gatewayresponse.header.Authorization: "'Basic'",
- *     },
- *     responseTemplates: {
- *         application/json: "{'message':$context.error.messageString}",
- *     },
- *     responseType: "UNAUTHORIZED",
- *     restApiId: aws_api_gateway_rest_api_main.id,
- *     statusCode: "401",
- * });
- * ```
- */
 export class Response extends pulumi.CustomResource {
     /**
      * Get an existing Response resource's state with the given name, ID, and optional extra
@@ -42,25 +17,10 @@ export class Response extends pulumi.CustomResource {
         return new Response(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * A map specifying the templates used to transform the response body.
-     */
     public readonly responseParameters: pulumi.Output<{[key: string]: string} | undefined>;
-    /**
-     * A map specifying the parameters (paths, query strings and headers) of the Gateway Response.
-     */
     public readonly responseTemplates: pulumi.Output<{[key: string]: string} | undefined>;
-    /**
-     * The response type of the associated GatewayResponse.
-     */
     public readonly responseType: pulumi.Output<string>;
-    /**
-     * The string identifier of the associated REST API.
-     */
     public readonly restApiId: pulumi.Output<string>;
-    /**
-     * The HTTP status code of the Gateway Response.
-     */
     public readonly statusCode: pulumi.Output<string | undefined>;
 
     /**
@@ -102,25 +62,10 @@ export class Response extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Response resources.
  */
 export interface ResponseState {
-    /**
-     * A map specifying the templates used to transform the response body.
-     */
     readonly responseParameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    /**
-     * A map specifying the parameters (paths, query strings and headers) of the Gateway Response.
-     */
     readonly responseTemplates?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    /**
-     * The response type of the associated GatewayResponse.
-     */
     readonly responseType?: pulumi.Input<string>;
-    /**
-     * The string identifier of the associated REST API.
-     */
     readonly restApiId?: pulumi.Input<string>;
-    /**
-     * The HTTP status code of the Gateway Response.
-     */
     readonly statusCode?: pulumi.Input<string>;
 }
 
@@ -128,24 +73,9 @@ export interface ResponseState {
  * The set of arguments for constructing a Response resource.
  */
 export interface ResponseArgs {
-    /**
-     * A map specifying the templates used to transform the response body.
-     */
     readonly responseParameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    /**
-     * A map specifying the parameters (paths, query strings and headers) of the Gateway Response.
-     */
     readonly responseTemplates?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    /**
-     * The response type of the associated GatewayResponse.
-     */
     readonly responseType: pulumi.Input<string>;
-    /**
-     * The string identifier of the associated REST API.
-     */
     readonly restApiId: pulumi.Input<string>;
-    /**
-     * The HTTP status code of the Gateway Response.
-     */
     readonly statusCode?: pulumi.Input<string>;
 }

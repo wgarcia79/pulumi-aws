@@ -4,30 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides one-time creation of a IAM user login profile, and uses PGP to
- * encrypt the password for safe transport to the user. PGP keys can be
- * obtained from Keybase.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_iam_user_u = new aws.iam.User("u", {
- *     forceDestroy: true,
- *     name: "auser",
- *     path: "/",
- * });
- * const aws_iam_user_login_profile_u = new aws.iam.UserLoginProfile("u", {
- *     pgpKey: "keybase:some_person_that_exists",
- *     user: aws_iam_user_u.name,
- * });
- * 
- * export const password = aws_iam_user_login_profile_u.encryptedPassword;
- * ```
- */
 export class UserLoginProfile extends pulumi.CustomResource {
     /**
      * Get an existing UserLoginProfile resource's state with the given name, ID, and optional extra
@@ -41,33 +17,11 @@ export class UserLoginProfile extends pulumi.CustomResource {
         return new UserLoginProfile(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The encrypted password, base64 encoded.
-     */
     public /*out*/ readonly encryptedPassword: pulumi.Output<string>;
-    /**
-     * The fingerprint of the PGP key used to encrypt
-     * the password
-     */
     public /*out*/ readonly keyFingerprint: pulumi.Output<string>;
-    /**
-     * The length of the generated
-     * password.
-     */
     public readonly passwordLength: pulumi.Output<number | undefined>;
-    /**
-     * Whether the
-     * user should be forced to reset the generated password on first login.
-     */
     public readonly passwordResetRequired: pulumi.Output<boolean | undefined>;
-    /**
-     * Either a base-64 encoded PGP public key, or a
-     * keybase username in the form `keybase:username`.
-     */
     public readonly pgpKey: pulumi.Output<string>;
-    /**
-     * The IAM user's name.
-     */
     public readonly user: pulumi.Output<string>;
 
     /**
@@ -111,33 +65,11 @@ export class UserLoginProfile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering UserLoginProfile resources.
  */
 export interface UserLoginProfileState {
-    /**
-     * The encrypted password, base64 encoded.
-     */
     readonly encryptedPassword?: pulumi.Input<string>;
-    /**
-     * The fingerprint of the PGP key used to encrypt
-     * the password
-     */
     readonly keyFingerprint?: pulumi.Input<string>;
-    /**
-     * The length of the generated
-     * password.
-     */
     readonly passwordLength?: pulumi.Input<number>;
-    /**
-     * Whether the
-     * user should be forced to reset the generated password on first login.
-     */
     readonly passwordResetRequired?: pulumi.Input<boolean>;
-    /**
-     * Either a base-64 encoded PGP public key, or a
-     * keybase username in the form `keybase:username`.
-     */
     readonly pgpKey?: pulumi.Input<string>;
-    /**
-     * The IAM user's name.
-     */
     readonly user?: pulumi.Input<string>;
 }
 
@@ -145,23 +77,8 @@ export interface UserLoginProfileState {
  * The set of arguments for constructing a UserLoginProfile resource.
  */
 export interface UserLoginProfileArgs {
-    /**
-     * The length of the generated
-     * password.
-     */
     readonly passwordLength?: pulumi.Input<number>;
-    /**
-     * Whether the
-     * user should be forced to reset the generated password on first login.
-     */
     readonly passwordResetRequired?: pulumi.Input<boolean>;
-    /**
-     * Either a base-64 encoded PGP public key, or a
-     * keybase username in the form `keybase:username`.
-     */
     readonly pgpKey: pulumi.Input<string>;
-    /**
-     * The IAM user's name.
-     */
     readonly user: pulumi.Input<string>;
 }

@@ -4,13 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a CodeCommit Trigger Resource.
- * 
- * > **NOTE on CodeCommit**: The CodeCommit is not yet rolled out
- * in all regions - available regions are listed
- * [the AWS Docs](https://docs.aws.amazon.com/general/latest/gr/rande.html#codecommit_region).
- */
 export class Trigger extends pulumi.CustomResource {
     /**
      * Get an existing Trigger resource's state with the given name, ID, and optional extra
@@ -25,9 +18,6 @@ export class Trigger extends pulumi.CustomResource {
     }
 
     public /*out*/ readonly configurationId: pulumi.Output<string>;
-    /**
-     * The name for the repository. This needs to be less than 100 characters.
-     */
     public readonly repositoryName: pulumi.Output<string>;
     public readonly triggers: pulumi.Output<{ branches?: string[], customData?: string, destinationArn: string, events: string[], name: string }[]>;
 
@@ -67,9 +57,6 @@ export class Trigger extends pulumi.CustomResource {
  */
 export interface TriggerState {
     readonly configurationId?: pulumi.Input<string>;
-    /**
-     * The name for the repository. This needs to be less than 100 characters.
-     */
     readonly repositoryName?: pulumi.Input<string>;
     readonly triggers?: pulumi.Input<pulumi.Input<{ branches?: pulumi.Input<pulumi.Input<string>[]>, customData?: pulumi.Input<string>, destinationArn: pulumi.Input<string>, events: pulumi.Input<pulumi.Input<string>[]>, name: pulumi.Input<string> }>[]>;
 }
@@ -78,9 +65,6 @@ export interface TriggerState {
  * The set of arguments for constructing a Trigger resource.
  */
 export interface TriggerArgs {
-    /**
-     * The name for the repository. This needs to be less than 100 characters.
-     */
     readonly repositoryName: pulumi.Input<string>;
     readonly triggers: pulumi.Input<pulumi.Input<{ branches?: pulumi.Input<pulumi.Input<string>[]>, customData?: pulumi.Input<string>, destinationArn: pulumi.Input<string>, events: pulumi.Input<pulumi.Input<string>[]>, name: pulumi.Input<string> }>[]>;
 }

@@ -4,30 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a License Manager license configuration resource.
- * 
- * > **Note:** Removing the `license_count` attribute is not supported by the License Manager API - use `terraform taint aws_licensemanager_license_configuration.<id>` to recreate the resource instead.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_licensemanager_license_configuration_example = new aws.licensemanager.LicenseConfiguration("example", {
- *     description: "Example",
- *     licenseCount: 10,
- *     licenseCountHardLimit: true,
- *     licenseCountingType: "Socket",
- *     licenseRules: ["#minimumSockets=2"],
- *     name: "Example",
- *     tags: {
- *         foo: "barr",
- *     },
- * });
- * ```
- */
 export class LicenseConfiguration extends pulumi.CustomResource {
     /**
      * Get an existing LicenseConfiguration resource's state with the given name, ID, and optional extra
@@ -41,33 +17,12 @@ export class LicenseConfiguration extends pulumi.CustomResource {
         return new LicenseConfiguration(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * Description of the license configuration.
-     */
     public readonly description: pulumi.Output<string | undefined>;
-    /**
-     * Number of licenses managed by the license configuration.
-     */
     public readonly licenseCount: pulumi.Output<number | undefined>;
-    /**
-     * Sets the number of available licenses as a hard limit.
-     */
     public readonly licenseCountHardLimit: pulumi.Output<boolean | undefined>;
-    /**
-     * Dimension to use to track license inventory. Specify either `vCPU`, `Instance`, `Core` or `Socket`.
-     */
     public readonly licenseCountingType: pulumi.Output<string>;
-    /**
-     * Array of configured License Manager rules.
-     */
     public readonly licenseRules: pulumi.Output<string[] | undefined>;
-    /**
-     * Name of the license configuration.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     public readonly tags: pulumi.Output<{[key: string]: any} | undefined>;
 
     /**
@@ -110,33 +65,12 @@ export class LicenseConfiguration extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LicenseConfiguration resources.
  */
 export interface LicenseConfigurationState {
-    /**
-     * Description of the license configuration.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * Number of licenses managed by the license configuration.
-     */
     readonly licenseCount?: pulumi.Input<number>;
-    /**
-     * Sets the number of available licenses as a hard limit.
-     */
     readonly licenseCountHardLimit?: pulumi.Input<boolean>;
-    /**
-     * Dimension to use to track license inventory. Specify either `vCPU`, `Instance`, `Core` or `Socket`.
-     */
     readonly licenseCountingType?: pulumi.Input<string>;
-    /**
-     * Array of configured License Manager rules.
-     */
     readonly licenseRules?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Name of the license configuration.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
 }
 
@@ -144,32 +78,11 @@ export interface LicenseConfigurationState {
  * The set of arguments for constructing a LicenseConfiguration resource.
  */
 export interface LicenseConfigurationArgs {
-    /**
-     * Description of the license configuration.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * Number of licenses managed by the license configuration.
-     */
     readonly licenseCount?: pulumi.Input<number>;
-    /**
-     * Sets the number of available licenses as a hard limit.
-     */
     readonly licenseCountHardLimit?: pulumi.Input<boolean>;
-    /**
-     * Dimension to use to track license inventory. Specify either `vCPU`, `Instance`, `Core` or `Socket`.
-     */
     readonly licenseCountingType: pulumi.Input<string>;
-    /**
-     * Array of configured License Manager rules.
-     */
     readonly licenseRules?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Name of the license configuration.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
 }

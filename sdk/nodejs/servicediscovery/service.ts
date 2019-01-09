@@ -4,63 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a Service Discovery Service resource.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_vpc_example = new aws.ec2.Vpc("example", {
- *     cidrBlock: "10.0.0.0/16",
- * });
- * const aws_service_discovery_private_dns_namespace_example = new aws.servicediscovery.PrivateDnsNamespace("example", {
- *     description: "example",
- *     name: "example.terraform.local",
- *     vpc: aws_vpc_example.id,
- * });
- * const aws_service_discovery_service_example = new aws.servicediscovery.Service("example", {
- *     dnsConfig: {
- *         dnsRecords: [{
- *             ttl: 10,
- *             type: "A",
- *         }],
- *         namespaceId: aws_service_discovery_private_dns_namespace_example.id,
- *         routingPolicy: "MULTIVALUE",
- *     },
- *     healthCheckCustomConfig: {
- *         failureThreshold: 1,
- *     },
- *     name: "example",
- * });
- * ```
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_service_discovery_public_dns_namespace_example = new aws.servicediscovery.PublicDnsNamespace("example", {
- *     description: "example",
- *     name: "example.terraform.com",
- * });
- * const aws_service_discovery_service_example = new aws.servicediscovery.Service("example", {
- *     dnsConfig: {
- *         dnsRecords: [{
- *             ttl: 10,
- *             type: "A",
- *         }],
- *         namespaceId: aws_service_discovery_public_dns_namespace_example.id,
- *     },
- *     healthCheckConfig: {
- *         failureThreshold: 10,
- *         resourcePath: "path",
- *         type: "HTTP",
- *     },
- *     name: "example",
- * });
- * ```
- */
 export class Service extends pulumi.CustomResource {
     /**
      * Get an existing Service resource's state with the given name, ID, and optional extra
@@ -74,29 +17,11 @@ export class Service extends pulumi.CustomResource {
         return new Service(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ARN of the service.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * The description of the service.
-     */
     public readonly description: pulumi.Output<string | undefined>;
-    /**
-     * A complex type that contains information about the resource record sets that you want Amazon Route 53 to create when you register an instance.
-     */
     public readonly dnsConfig: pulumi.Output<{ dnsRecords: { ttl: number, type: string }[], namespaceId: string, routingPolicy?: string }>;
-    /**
-     * A complex type that contains settings for an optional health check. Only for Public DNS namespaces.
-     */
     public readonly healthCheckConfig: pulumi.Output<{ failureThreshold?: number, resourcePath?: string, type?: string } | undefined>;
-    /**
-     * A complex type that contains settings for ECS managed health checks.
-     */
     public readonly healthCheckCustomConfig: pulumi.Output<{ failureThreshold?: number } | undefined>;
-    /**
-     * The name of the service.
-     */
     public readonly name: pulumi.Output<string>;
 
     /**
@@ -137,29 +62,11 @@ export class Service extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Service resources.
  */
 export interface ServiceState {
-    /**
-     * The ARN of the service.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * The description of the service.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * A complex type that contains information about the resource record sets that you want Amazon Route 53 to create when you register an instance.
-     */
     readonly dnsConfig?: pulumi.Input<{ dnsRecords: pulumi.Input<pulumi.Input<{ ttl: pulumi.Input<number>, type: pulumi.Input<string> }>[]>, namespaceId: pulumi.Input<string>, routingPolicy?: pulumi.Input<string> }>;
-    /**
-     * A complex type that contains settings for an optional health check. Only for Public DNS namespaces.
-     */
     readonly healthCheckConfig?: pulumi.Input<{ failureThreshold?: pulumi.Input<number>, resourcePath?: pulumi.Input<string>, type?: pulumi.Input<string> }>;
-    /**
-     * A complex type that contains settings for ECS managed health checks.
-     */
     readonly healthCheckCustomConfig?: pulumi.Input<{ failureThreshold?: pulumi.Input<number> }>;
-    /**
-     * The name of the service.
-     */
     readonly name?: pulumi.Input<string>;
 }
 
@@ -167,24 +74,9 @@ export interface ServiceState {
  * The set of arguments for constructing a Service resource.
  */
 export interface ServiceArgs {
-    /**
-     * The description of the service.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * A complex type that contains information about the resource record sets that you want Amazon Route 53 to create when you register an instance.
-     */
     readonly dnsConfig: pulumi.Input<{ dnsRecords: pulumi.Input<pulumi.Input<{ ttl: pulumi.Input<number>, type: pulumi.Input<string> }>[]>, namespaceId: pulumi.Input<string>, routingPolicy?: pulumi.Input<string> }>;
-    /**
-     * A complex type that contains settings for an optional health check. Only for Public DNS namespaces.
-     */
     readonly healthCheckConfig?: pulumi.Input<{ failureThreshold?: pulumi.Input<number>, resourcePath?: pulumi.Input<string>, type?: pulumi.Input<string> }>;
-    /**
-     * A complex type that contains settings for ECS managed health checks.
-     */
     readonly healthCheckCustomConfig?: pulumi.Input<{ failureThreshold?: pulumi.Input<number> }>;
-    /**
-     * The name of the service.
-     */
     readonly name?: pulumi.Input<string>;
 }

@@ -4,46 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a Cognito Resource Server.
- * 
- * ## Example Usage
- * 
- * ### Create a basic resource server
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_cognito_user_pool_pool = new aws.cognito.UserPool("pool", {
- *     name: "pool",
- * });
- * const aws_cognito_resource_server_resource = new aws.cognito.ResourceServer("resource", {
- *     identifier: "https://example.com",
- *     name: "example",
- *     userPoolId: aws_cognito_user_pool_pool.id,
- * });
- * ```
- * ### Create a resource server with sample-scope
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_cognito_user_pool_pool = new aws.cognito.UserPool("pool", {
- *     name: "pool",
- * });
- * const aws_cognito_resource_server_resource = new aws.cognito.ResourceServer("resource", {
- *     identifier: "https://example.com",
- *     name: "example",
- *     scopes: [{
- *         scopeDescription: "a Sample Scope Description",
- *         scopeName: "sample-scope",
- *     }],
- *     userPoolId: aws_cognito_user_pool_pool.id,
- * });
- * ```
- */
 export class ResourceServer extends pulumi.CustomResource {
     /**
      * Get an existing ResourceServer resource's state with the given name, ID, and optional extra
@@ -57,21 +17,9 @@ export class ResourceServer extends pulumi.CustomResource {
         return new ResourceServer(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * An identifier for the resource server.
-     */
     public readonly identifier: pulumi.Output<string>;
-    /**
-     * A name for the resource server.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * A list of Authorization Scope.
-     */
     public readonly scopes: pulumi.Output<{ scopeDescription: string, scopeName: string }[] | undefined>;
-    /**
-     * A list of all scopes configured for this resource server in the format identifier/scope_name.
-     */
     public /*out*/ readonly scopeIdentifiers: pulumi.Output<string[]>;
     public readonly userPoolId: pulumi.Output<string>;
 
@@ -114,21 +62,9 @@ export class ResourceServer extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ResourceServer resources.
  */
 export interface ResourceServerState {
-    /**
-     * An identifier for the resource server.
-     */
     readonly identifier?: pulumi.Input<string>;
-    /**
-     * A name for the resource server.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * A list of Authorization Scope.
-     */
     readonly scopes?: pulumi.Input<pulumi.Input<{ scopeDescription: pulumi.Input<string>, scopeName: pulumi.Input<string> }>[]>;
-    /**
-     * A list of all scopes configured for this resource server in the format identifier/scope_name.
-     */
     readonly scopeIdentifiers?: pulumi.Input<pulumi.Input<string>[]>;
     readonly userPoolId?: pulumi.Input<string>;
 }
@@ -137,17 +73,8 @@ export interface ResourceServerState {
  * The set of arguments for constructing a ResourceServer resource.
  */
 export interface ResourceServerArgs {
-    /**
-     * An identifier for the resource server.
-     */
     readonly identifier: pulumi.Input<string>;
-    /**
-     * A name for the resource server.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * A list of Authorization Scope.
-     */
     readonly scopes?: pulumi.Input<pulumi.Input<{ scopeDescription: pulumi.Input<string>, scopeName: pulumi.Input<string> }>[]>;
     readonly userPoolId: pulumi.Input<string>;
 }

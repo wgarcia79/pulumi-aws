@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a resource to create a VPC NAT Gateway.
- */
 export class NatGateway extends pulumi.CustomResource {
     /**
      * Get an existing NatGateway resource's state with the given name, ID, and optional extra
@@ -20,29 +17,11 @@ export class NatGateway extends pulumi.CustomResource {
         return new NatGateway(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The Allocation ID of the Elastic IP address for the gateway.
-     */
     public readonly allocationId: pulumi.Output<string>;
-    /**
-     * The ENI ID of the network interface created by the NAT gateway.
-     */
     public /*out*/ readonly networkInterfaceId: pulumi.Output<string>;
-    /**
-     * The private IP address of the NAT Gateway.
-     */
     public /*out*/ readonly privateIp: pulumi.Output<string>;
-    /**
-     * The public IP address of the NAT Gateway.
-     */
     public /*out*/ readonly publicIp: pulumi.Output<string>;
-    /**
-     * The Subnet ID of the subnet in which to place the gateway.
-     */
     public readonly subnetId: pulumi.Output<string>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     public readonly tags: pulumi.Output<{[key: string]: any} | undefined>;
 
     /**
@@ -86,29 +65,11 @@ export class NatGateway extends pulumi.CustomResource {
  * Input properties used for looking up and filtering NatGateway resources.
  */
 export interface NatGatewayState {
-    /**
-     * The Allocation ID of the Elastic IP address for the gateway.
-     */
     readonly allocationId?: pulumi.Input<string>;
-    /**
-     * The ENI ID of the network interface created by the NAT gateway.
-     */
     readonly networkInterfaceId?: pulumi.Input<string>;
-    /**
-     * The private IP address of the NAT Gateway.
-     */
     readonly privateIp?: pulumi.Input<string>;
-    /**
-     * The public IP address of the NAT Gateway.
-     */
     readonly publicIp?: pulumi.Input<string>;
-    /**
-     * The Subnet ID of the subnet in which to place the gateway.
-     */
     readonly subnetId?: pulumi.Input<string>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
 }
 
@@ -116,16 +77,7 @@ export interface NatGatewayState {
  * The set of arguments for constructing a NatGateway resource.
  */
 export interface NatGatewayArgs {
-    /**
-     * The Allocation ID of the Elastic IP address for the gateway.
-     */
     readonly allocationId: pulumi.Input<string>;
-    /**
-     * The Subnet ID of the subnet in which to place the gateway.
-     */
     readonly subnetId: pulumi.Input<string>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
 }

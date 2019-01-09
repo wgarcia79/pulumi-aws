@@ -4,20 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an SES configuration set resource
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_ses_configuration_set_test = new aws.ses.ConfgurationSet("test", {
- *     name: "some-configuration-set-test",
- * });
- * ```
- */
 export class ConfgurationSet extends pulumi.CustomResource {
     /**
      * Get an existing ConfgurationSet resource's state with the given name, ID, and optional extra
@@ -31,9 +17,6 @@ export class ConfgurationSet extends pulumi.CustomResource {
         return new ConfgurationSet(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The name of the configuration set
-     */
     public readonly name: pulumi.Output<string>;
 
     /**
@@ -61,9 +44,6 @@ export class ConfgurationSet extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ConfgurationSet resources.
  */
 export interface ConfgurationSetState {
-    /**
-     * The name of the configuration set
-     */
     readonly name?: pulumi.Input<string>;
 }
 
@@ -71,8 +51,5 @@ export interface ConfgurationSetState {
  * The set of arguments for constructing a ConfgurationSet resource.
  */
 export interface ConfgurationSetArgs {
-    /**
-     * The name of the configuration set
-     */
     readonly name?: pulumi.Input<string>;
 }

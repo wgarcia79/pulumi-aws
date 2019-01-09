@@ -6,9 +6,6 @@ import * as utilities from "../utilities";
 
 import {LogGroup} from "./logGroup";
 
-/**
- * Provides a CloudWatch Logs subscription filter resource.
- */
 export class LogSubscriptionFilter extends pulumi.CustomResource {
     /**
      * Get an existing LogSubscriptionFilter resource's state with the given name, ID, and optional extra
@@ -22,29 +19,11 @@ export class LogSubscriptionFilter extends pulumi.CustomResource {
         return new LogSubscriptionFilter(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ARN of the destination to deliver matching log events to. Kinesis stream or Lambda function ARN.
-     */
     public readonly destinationArn: pulumi.Output<string>;
-    /**
-     * The method used to distribute log data to the destination. By default log data is grouped by log stream, but the grouping can be set to random for a more even distribution. This property is only applicable when the destination is an Amazon Kinesis stream. Valid values are "Random" and "ByLogStream".
-     */
     public readonly distribution: pulumi.Output<string | undefined>;
-    /**
-     * A valid CloudWatch Logs filter pattern for subscribing to a filtered stream of log events.
-     */
     public readonly filterPattern: pulumi.Output<string>;
-    /**
-     * The name of the log group to associate the subscription filter with
-     */
     public readonly logGroup: pulumi.Output<LogGroup>;
-    /**
-     * A name for the subscription filter
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * The ARN of an IAM role that grants Amazon CloudWatch Logs permissions to deliver ingested log events to the destination. If you use Lambda as a destination, you should skip this argument and use `aws_lambda_permission` resource for granting access from CloudWatch logs to the destination Lambda function. 
-     */
     public readonly roleArn: pulumi.Output<string>;
 
     /**
@@ -91,29 +70,11 @@ export class LogSubscriptionFilter extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogSubscriptionFilter resources.
  */
 export interface LogSubscriptionFilterState {
-    /**
-     * The ARN of the destination to deliver matching log events to. Kinesis stream or Lambda function ARN.
-     */
     readonly destinationArn?: pulumi.Input<string>;
-    /**
-     * The method used to distribute log data to the destination. By default log data is grouped by log stream, but the grouping can be set to random for a more even distribution. This property is only applicable when the destination is an Amazon Kinesis stream. Valid values are "Random" and "ByLogStream".
-     */
     readonly distribution?: pulumi.Input<string>;
-    /**
-     * A valid CloudWatch Logs filter pattern for subscribing to a filtered stream of log events.
-     */
     readonly filterPattern?: pulumi.Input<string>;
-    /**
-     * The name of the log group to associate the subscription filter with
-     */
     readonly logGroup?: pulumi.Input<LogGroup>;
-    /**
-     * A name for the subscription filter
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The ARN of an IAM role that grants Amazon CloudWatch Logs permissions to deliver ingested log events to the destination. If you use Lambda as a destination, you should skip this argument and use `aws_lambda_permission` resource for granting access from CloudWatch logs to the destination Lambda function. 
-     */
     readonly roleArn?: pulumi.Input<string>;
 }
 
@@ -121,28 +82,10 @@ export interface LogSubscriptionFilterState {
  * The set of arguments for constructing a LogSubscriptionFilter resource.
  */
 export interface LogSubscriptionFilterArgs {
-    /**
-     * The ARN of the destination to deliver matching log events to. Kinesis stream or Lambda function ARN.
-     */
     readonly destinationArn: pulumi.Input<string>;
-    /**
-     * The method used to distribute log data to the destination. By default log data is grouped by log stream, but the grouping can be set to random for a more even distribution. This property is only applicable when the destination is an Amazon Kinesis stream. Valid values are "Random" and "ByLogStream".
-     */
     readonly distribution?: pulumi.Input<string>;
-    /**
-     * A valid CloudWatch Logs filter pattern for subscribing to a filtered stream of log events.
-     */
     readonly filterPattern: pulumi.Input<string>;
-    /**
-     * The name of the log group to associate the subscription filter with
-     */
     readonly logGroup: pulumi.Input<LogGroup>;
-    /**
-     * A name for the subscription filter
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The ARN of an IAM role that grants Amazon CloudWatch Logs permissions to deliver ingested log events to the destination. If you use Lambda as a destination, you should skip this argument and use `aws_lambda_permission` resource for granting access from CloudWatch logs to the destination Lambda function. 
-     */
     readonly roleArn?: pulumi.Input<string>;
 }

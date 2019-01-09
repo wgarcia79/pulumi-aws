@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an OpsWorks User Profile resource.
- */
 export class UserProfile extends pulumi.CustomResource {
     /**
      * Get an existing UserProfile resource's state with the given name, ID, and optional extra
@@ -20,21 +17,9 @@ export class UserProfile extends pulumi.CustomResource {
         return new UserProfile(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * Whether users can specify their own SSH public key through the My Settings page
-     */
     public readonly allowSelfManagement: pulumi.Output<boolean | undefined>;
-    /**
-     * The users public key
-     */
     public readonly sshPublicKey: pulumi.Output<string | undefined>;
-    /**
-     * The ssh username, with witch this user wants to log in
-     */
     public readonly sshUsername: pulumi.Output<string>;
-    /**
-     * The user's IAM ARN
-     */
     public readonly userArn: pulumi.Output<string>;
 
     /**
@@ -74,21 +59,9 @@ export class UserProfile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering UserProfile resources.
  */
 export interface UserProfileState {
-    /**
-     * Whether users can specify their own SSH public key through the My Settings page
-     */
     readonly allowSelfManagement?: pulumi.Input<boolean>;
-    /**
-     * The users public key
-     */
     readonly sshPublicKey?: pulumi.Input<string>;
-    /**
-     * The ssh username, with witch this user wants to log in
-     */
     readonly sshUsername?: pulumi.Input<string>;
-    /**
-     * The user's IAM ARN
-     */
     readonly userArn?: pulumi.Input<string>;
 }
 
@@ -96,20 +69,8 @@ export interface UserProfileState {
  * The set of arguments for constructing a UserProfile resource.
  */
 export interface UserProfileArgs {
-    /**
-     * Whether users can specify their own SSH public key through the My Settings page
-     */
     readonly allowSelfManagement?: pulumi.Input<boolean>;
-    /**
-     * The users public key
-     */
     readonly sshPublicKey?: pulumi.Input<string>;
-    /**
-     * The ssh username, with witch this user wants to log in
-     */
     readonly sshUsername: pulumi.Input<string>;
-    /**
-     * The user's IAM ARN
-     */
     readonly userArn: pulumi.Input<string>;
 }

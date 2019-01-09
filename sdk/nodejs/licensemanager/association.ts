@@ -4,44 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a License Manager association.
- * 
- * > **Note:** License configurations can also be associated with launch templates by specifying the `license_specifications` block for an `aws_launch_template`.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_licensemanager_license_configuration_example = new aws.licensemanager.LicenseConfiguration("example", {
- *     licenseCountingType: "Instance",
- *     name: "Example",
- * });
- * const aws_ami_example = pulumi.output(aws.getAmi({
- *     filters: [
- *         {
- *             name: "owner-alias",
- *             values: ["amazon"],
- *         },
- *         {
- *             name: "name",
- *             values: ["amzn-ami-vpc-nat*"],
- *         },
- *     ],
- *     mostRecent: true,
- * }));
- * const aws_instance_example = new aws.ec2.Instance("example", {
- *     ami: aws_ami_example.apply(__arg0 => __arg0.id),
- *     instanceType: "t2.micro",
- * });
- * const aws_licensemanager_association_example = new aws.licensemanager.Association("example", {
- *     licenseConfigurationArn: aws_licensemanager_license_configuration_example.arn,
- *     resourceArn: aws_instance_example.arn,
- * });
- * ```
- */
 export class Association extends pulumi.CustomResource {
     /**
      * Get an existing Association resource's state with the given name, ID, and optional extra
@@ -55,13 +17,7 @@ export class Association extends pulumi.CustomResource {
         return new Association(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * ARN of the license configuration.
-     */
     public readonly licenseConfigurationArn: pulumi.Output<string>;
-    /**
-     * ARN of the resource associated with the license configuration.
-     */
     public readonly resourceArn: pulumi.Output<string>;
 
     /**
@@ -97,13 +53,7 @@ export class Association extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Association resources.
  */
 export interface AssociationState {
-    /**
-     * ARN of the license configuration.
-     */
     readonly licenseConfigurationArn?: pulumi.Input<string>;
-    /**
-     * ARN of the resource associated with the license configuration.
-     */
     readonly resourceArn?: pulumi.Input<string>;
 }
 
@@ -111,12 +61,6 @@ export interface AssociationState {
  * The set of arguments for constructing a Association resource.
  */
 export interface AssociationArgs {
-    /**
-     * ARN of the license configuration.
-     */
     readonly licenseConfigurationArn: pulumi.Input<string>;
-    /**
-     * ARN of the resource associated with the license configuration.
-     */
     readonly resourceArn: pulumi.Input<string>;
 }

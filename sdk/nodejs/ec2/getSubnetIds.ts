@@ -4,11 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * `aws_subnet_ids` provides a list of ids for a vpc_id
- * 
- * This resource can be useful for getting back a list of subnet ids for a vpc.
- */
 export function getSubnetIds(args: GetSubnetIdsArgs, opts?: pulumi.InvokeOptions): Promise<GetSubnetIdsResult> {
     return pulumi.runtime.invoke("aws:ec2/getSubnetIds:getSubnetIds", {
         "filters": args.filters,
@@ -22,14 +17,7 @@ export function getSubnetIds(args: GetSubnetIdsArgs, opts?: pulumi.InvokeOptions
  */
 export interface GetSubnetIdsArgs {
     readonly filters?: { name: string, values: string[] }[];
-    /**
-     * A mapping of tags, each pair of which must exactly match
-     * a pair on the desired subnets.
-     */
     readonly tags?: {[key: string]: any};
-    /**
-     * The VPC ID that you want to filter from.
-     */
     readonly vpcId: string;
 }
 
@@ -37,9 +25,6 @@ export interface GetSubnetIdsArgs {
  * A collection of values returned by getSubnetIds.
  */
 export interface GetSubnetIdsResult {
-    /**
-     * A list of all the subnet ids found. This data source will fail if none are found.
-     */
     readonly ids: string[];
     readonly tags: {[key: string]: any};
     /**

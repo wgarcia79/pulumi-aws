@@ -4,24 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an alias for a KMS customer master key. AWS Console enforces 1-to-1 mapping between aliases & keys,
- * but API (hence Terraform too) allows you to create as many aliases as
- * the [account limits](http://docs.aws.amazon.com/kms/latest/developerguide/limits.html) allow you.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_kms_key_a = new aws.kms.Key("a", {});
- * const aws_kms_alias_a = new aws.kms.Alias("a", {
- *     name: "alias/my-key-alias",
- *     targetKeyId: aws_kms_key_a.keyId,
- * });
- * ```
- */
 export class Alias extends pulumi.CustomResource {
     /**
      * Get an existing Alias resource's state with the given name, ID, and optional extra
@@ -35,26 +17,10 @@ export class Alias extends pulumi.CustomResource {
         return new Alias(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The Amazon Resource Name (ARN) of the key alias.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * The display name of the alias. The name must start with the word "alias" followed by a forward slash (alias/)
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * Creates an unique alias beginning with the specified prefix.
-     * The name must start with the word "alias" followed by a forward slash (alias/).  Conflicts with `name`.
-     */
     public readonly namePrefix: pulumi.Output<string | undefined>;
-    /**
-     * The Amazon Resource Name (ARN) of the target key identifier.
-     */
     public /*out*/ readonly targetKeyArn: pulumi.Output<string>;
-    /**
-     * Identifier for the key for which the alias is for, can be either an ARN or key_id.
-     */
     public readonly targetKeyId: pulumi.Output<string>;
 
     /**
@@ -93,26 +59,10 @@ export class Alias extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Alias resources.
  */
 export interface AliasState {
-    /**
-     * The Amazon Resource Name (ARN) of the key alias.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * The display name of the alias. The name must start with the word "alias" followed by a forward slash (alias/)
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Creates an unique alias beginning with the specified prefix.
-     * The name must start with the word "alias" followed by a forward slash (alias/).  Conflicts with `name`.
-     */
     readonly namePrefix?: pulumi.Input<string>;
-    /**
-     * The Amazon Resource Name (ARN) of the target key identifier.
-     */
     readonly targetKeyArn?: pulumi.Input<string>;
-    /**
-     * Identifier for the key for which the alias is for, can be either an ARN or key_id.
-     */
     readonly targetKeyId?: pulumi.Input<string>;
 }
 
@@ -120,17 +70,7 @@ export interface AliasState {
  * The set of arguments for constructing a Alias resource.
  */
 export interface AliasArgs {
-    /**
-     * The display name of the alias. The name must start with the word "alias" followed by a forward slash (alias/)
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Creates an unique alias beginning with the specified prefix.
-     * The name must start with the word "alias" followed by a forward slash (alias/).  Conflicts with `name`.
-     */
     readonly namePrefix?: pulumi.Input<string>;
-    /**
-     * Identifier for the key for which the alias is for, can be either an ARN or key_id.
-     */
     readonly targetKeyId: pulumi.Input<string>;
 }

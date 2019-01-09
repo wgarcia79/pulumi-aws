@@ -4,25 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a CodeCommit Repository Resource.
- * 
- * > **NOTE on CodeCommit Availability**: The CodeCommit is not yet rolled out
- * in all regions - available regions are listed
- * [the AWS Docs](https://docs.aws.amazon.com/general/latest/gr/rande.html#codecommit_region).
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_codecommit_repository_test = new aws.codecommit.Repository("test", {
- *     description: "This is the Sample App Repository",
- *     repositoryName: "MyTestRepository",
- * });
- * ```
- */
 export class Repository extends pulumi.CustomResource {
     /**
      * Get an existing Repository resource's state with the given name, ID, and optional extra
@@ -36,33 +17,12 @@ export class Repository extends pulumi.CustomResource {
         return new Repository(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ARN of the repository
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * The URL to use for cloning the repository over HTTPS.
-     */
     public /*out*/ readonly cloneUrlHttp: pulumi.Output<string>;
-    /**
-     * The URL to use for cloning the repository over SSH.
-     */
     public /*out*/ readonly cloneUrlSsh: pulumi.Output<string>;
-    /**
-     * The default branch of the repository. The branch specified here needs to exist.
-     */
     public readonly defaultBranch: pulumi.Output<string | undefined>;
-    /**
-     * The description of the repository. This needs to be less than 1000 characters
-     */
     public readonly description: pulumi.Output<string | undefined>;
-    /**
-     * The ID of the repository
-     */
     public /*out*/ readonly repositoryId: pulumi.Output<string>;
-    /**
-     * The name for the repository. This needs to be less than 100 characters.
-     */
     public readonly repositoryName: pulumi.Output<string>;
 
     /**
@@ -105,33 +65,12 @@ export class Repository extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Repository resources.
  */
 export interface RepositoryState {
-    /**
-     * The ARN of the repository
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * The URL to use for cloning the repository over HTTPS.
-     */
     readonly cloneUrlHttp?: pulumi.Input<string>;
-    /**
-     * The URL to use for cloning the repository over SSH.
-     */
     readonly cloneUrlSsh?: pulumi.Input<string>;
-    /**
-     * The default branch of the repository. The branch specified here needs to exist.
-     */
     readonly defaultBranch?: pulumi.Input<string>;
-    /**
-     * The description of the repository. This needs to be less than 1000 characters
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The ID of the repository
-     */
     readonly repositoryId?: pulumi.Input<string>;
-    /**
-     * The name for the repository. This needs to be less than 100 characters.
-     */
     readonly repositoryName?: pulumi.Input<string>;
 }
 
@@ -139,16 +78,7 @@ export interface RepositoryState {
  * The set of arguments for constructing a Repository resource.
  */
 export interface RepositoryArgs {
-    /**
-     * The default branch of the repository. The branch specified here needs to exist.
-     */
     readonly defaultBranch?: pulumi.Input<string>;
-    /**
-     * The description of the repository. This needs to be less than 1000 characters
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The name for the repository. This needs to be less than 100 characters.
-     */
     readonly repositoryName: pulumi.Input<string>;
 }

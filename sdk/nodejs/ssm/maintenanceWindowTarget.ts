@@ -4,31 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an SSM Maintenance Window Target resource
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_ssm_maintenance_window_window = new aws.ssm.MaintenanceWindow("window", {
- *     cutoff: 1,
- *     duration: 3,
- *     name: "maintenance-window-webapp",
- *     schedule: "cron(0 16 ? * TUE *)",
- * });
- * const aws_ssm_maintenance_window_target_target1 = new aws.ssm.MaintenanceWindowTarget("target1", {
- *     resourceType: "INSTANCE",
- *     targets: [{
- *         key: "tag:Name",
- *         values: ["acceptance_test"],
- *     }],
- *     windowId: aws_ssm_maintenance_window_window.id,
- * });
- * ```
- */
 export class MaintenanceWindowTarget extends pulumi.CustomResource {
     /**
      * Get an existing MaintenanceWindowTarget resource's state with the given name, ID, and optional extra
@@ -42,21 +17,9 @@ export class MaintenanceWindowTarget extends pulumi.CustomResource {
         return new MaintenanceWindowTarget(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * User-provided value that will be included in any CloudWatch events raised while running tasks for these targets in this Maintenance Window.
-     */
     public readonly ownerInformation: pulumi.Output<string | undefined>;
-    /**
-     * The type of target being registered with the Maintenance Window. Possible values `INSTANCE`.
-     */
     public readonly resourceType: pulumi.Output<string>;
-    /**
-     * The targets (either instances or tags). Instances are specified using Key=instanceids,Values=instanceid1,instanceid2. Tags are specified using Key=tag name,Values=tag value.
-     */
     public readonly targets: pulumi.Output<{ key: string, values: string[] }[]>;
-    /**
-     * The Id of the maintenance window to register the target with.
-     */
     public readonly windowId: pulumi.Output<string>;
 
     /**
@@ -99,21 +62,9 @@ export class MaintenanceWindowTarget extends pulumi.CustomResource {
  * Input properties used for looking up and filtering MaintenanceWindowTarget resources.
  */
 export interface MaintenanceWindowTargetState {
-    /**
-     * User-provided value that will be included in any CloudWatch events raised while running tasks for these targets in this Maintenance Window.
-     */
     readonly ownerInformation?: pulumi.Input<string>;
-    /**
-     * The type of target being registered with the Maintenance Window. Possible values `INSTANCE`.
-     */
     readonly resourceType?: pulumi.Input<string>;
-    /**
-     * The targets (either instances or tags). Instances are specified using Key=instanceids,Values=instanceid1,instanceid2. Tags are specified using Key=tag name,Values=tag value.
-     */
     readonly targets?: pulumi.Input<pulumi.Input<{ key: pulumi.Input<string>, values: pulumi.Input<pulumi.Input<string>[]> }>[]>;
-    /**
-     * The Id of the maintenance window to register the target with.
-     */
     readonly windowId?: pulumi.Input<string>;
 }
 
@@ -121,20 +72,8 @@ export interface MaintenanceWindowTargetState {
  * The set of arguments for constructing a MaintenanceWindowTarget resource.
  */
 export interface MaintenanceWindowTargetArgs {
-    /**
-     * User-provided value that will be included in any CloudWatch events raised while running tasks for these targets in this Maintenance Window.
-     */
     readonly ownerInformation?: pulumi.Input<string>;
-    /**
-     * The type of target being registered with the Maintenance Window. Possible values `INSTANCE`.
-     */
     readonly resourceType: pulumi.Input<string>;
-    /**
-     * The targets (either instances or tags). Instances are specified using Key=instanceids,Values=instanceid1,instanceid2. Tags are specified using Key=tag name,Values=tag value.
-     */
     readonly targets: pulumi.Input<pulumi.Input<{ key: pulumi.Input<string>, values: pulumi.Input<pulumi.Input<string>[]> }>[]>;
-    /**
-     * The Id of the maintenance window to register the target with.
-     */
     readonly windowId: pulumi.Input<string>;
 }

@@ -4,31 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Use this data source to get a list of EBS Snapshot IDs matching the specified
- * criteria.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_ebs_snapshot_ids_ebs_volumes = pulumi.output(aws.ebs.getSnapshotIds({
- *     filters: [
- *         {
- *             name: "volume-size",
- *             values: ["40"],
- *         },
- *         {
- *             name: "tag:Name",
- *             values: ["Example"],
- *         },
- *     ],
- *     owners: ["self"],
- * }));
- * ```
- */
 export function getSnapshotIds(args?: GetSnapshotIdsArgs, opts?: pulumi.InvokeOptions): Promise<GetSnapshotIdsResult> {
     args = args || {};
     return pulumi.runtime.invoke("aws:ebs/getSnapshotIds:getSnapshotIds", {
@@ -42,19 +17,8 @@ export function getSnapshotIds(args?: GetSnapshotIdsArgs, opts?: pulumi.InvokeOp
  * A collection of arguments for invoking getSnapshotIds.
  */
 export interface GetSnapshotIdsArgs {
-    /**
-     * One or more name/value pairs to filter off of. There are
-     * several valid keys, for a full reference, check out
-     * [describe-volumes in the AWS CLI reference][1].
-     */
     readonly filters?: { name: string, values: string[] }[];
-    /**
-     * Returns the snapshots owned by the specified owner id. Multiple owners can be specified.
-     */
     readonly owners?: string[];
-    /**
-     * One or more AWS accounts IDs that can create volumes from the snapshot.
-     */
     readonly restorableByUserIds?: string[];
 }
 

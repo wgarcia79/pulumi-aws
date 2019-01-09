@@ -4,31 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a settings of an API Gateway Account. Settings is applied region-wide per `provider` block.
- * 
- * -> **Note:** As there is no API method for deleting account settings or resetting it to defaults, destroying this resource will keep your account settings intact
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_iam_role_cloudwatch = new aws.iam.Role("cloudwatch", {
- *     assumeRolePolicy: "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"\",\n      \"Effect\": \"Allow\",\n      \"Principal\": {\n        \"Service\": \"apigateway.amazonaws.com\"\n      },\n      \"Action\": \"sts:AssumeRole\"\n    }\n  ]\n}\n",
- *     name: "api_gateway_cloudwatch_global",
- * });
- * const aws_api_gateway_account_demo = new aws.apigateway.Account("demo", {
- *     cloudwatchRoleArn: aws_iam_role_cloudwatch.arn,
- * });
- * const aws_iam_role_policy_cloudwatch = new aws.iam.RolePolicy("cloudwatch", {
- *     name: "default",
- *     policy: "{\n    \"Version\": \"2012-10-17\",\n    \"Statement\": [\n        {\n            \"Effect\": \"Allow\",\n            \"Action\": [\n                \"logs:CreateLogGroup\",\n                \"logs:CreateLogStream\",\n                \"logs:DescribeLogGroups\",\n                \"logs:DescribeLogStreams\",\n                \"logs:PutLogEvents\",\n                \"logs:GetLogEvents\",\n                \"logs:FilterLogEvents\"\n            ],\n            \"Resource\": \"*\"\n        }\n    ]\n}\n",
- *     role: aws_iam_role_cloudwatch.id,
- * });
- * ```
- */
 export class Account extends pulumi.CustomResource {
     /**
      * Get an existing Account resource's state with the given name, ID, and optional extra
@@ -42,15 +17,7 @@ export class Account extends pulumi.CustomResource {
         return new Account(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ARN of an IAM role for CloudWatch (to allow logging & monitoring).
-     * See more [in AWS Docs](https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-stage-settings.html#how-to-stage-settings-console).
-     * Logging & monitoring can be enabled/disabled and otherwise tuned on the API Gateway Stage level.
-     */
     public readonly cloudwatchRoleArn: pulumi.Output<string | undefined>;
-    /**
-     * Account-Level throttle settings. See exported fields below.
-     */
     public /*out*/ readonly throttleSettings: pulumi.Output<{ burstLimit: number, rateLimit: number }>;
 
     /**
@@ -80,15 +47,7 @@ export class Account extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Account resources.
  */
 export interface AccountState {
-    /**
-     * The ARN of an IAM role for CloudWatch (to allow logging & monitoring).
-     * See more [in AWS Docs](https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-stage-settings.html#how-to-stage-settings-console).
-     * Logging & monitoring can be enabled/disabled and otherwise tuned on the API Gateway Stage level.
-     */
     readonly cloudwatchRoleArn?: pulumi.Input<string>;
-    /**
-     * Account-Level throttle settings. See exported fields below.
-     */
     readonly throttleSettings?: pulumi.Input<{ burstLimit?: pulumi.Input<number>, rateLimit?: pulumi.Input<number> }>;
 }
 
@@ -96,10 +55,5 @@ export interface AccountState {
  * The set of arguments for constructing a Account resource.
  */
 export interface AccountArgs {
-    /**
-     * The ARN of an IAM role for CloudWatch (to allow logging & monitoring).
-     * See more [in AWS Docs](https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-stage-settings.html#how-to-stage-settings-console).
-     * Logging & monitoring can be enabled/disabled and otherwise tuned on the API Gateway Stage level.
-     */
     readonly cloudwatchRoleArn?: pulumi.Input<string>;
 }

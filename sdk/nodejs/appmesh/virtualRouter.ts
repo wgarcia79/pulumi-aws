@@ -4,24 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an AWS App Mesh virtual router resource.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_appmesh_virtual_router_serviceb = new aws.appmesh.VirtualRouter("serviceb", {
- *     meshName: "simpleapp",
- *     name: "serviceB",
- *     spec: {
- *         serviceNames: ["serviceb.simpleapp.local"],
- *     },
- * });
- * ```
- */
 export class VirtualRouter extends pulumi.CustomResource {
     /**
      * Get an existing VirtualRouter resource's state with the given name, ID, and optional extra
@@ -35,29 +17,11 @@ export class VirtualRouter extends pulumi.CustomResource {
         return new VirtualRouter(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ARN of the virtual router.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * The creation date of the virtual router.
-     */
     public /*out*/ readonly createdDate: pulumi.Output<string>;
-    /**
-     * The last update date of the virtual router.
-     */
     public /*out*/ readonly lastUpdatedDate: pulumi.Output<string>;
-    /**
-     * The name of the service mesh in which to create the virtual router.
-     */
     public readonly meshName: pulumi.Output<string>;
-    /**
-     * The name to use for the virtual router.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * The virtual router specification to apply.
-     */
     public readonly spec: pulumi.Output<{ serviceNames: string[] }>;
 
     /**
@@ -101,29 +65,11 @@ export class VirtualRouter extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VirtualRouter resources.
  */
 export interface VirtualRouterState {
-    /**
-     * The ARN of the virtual router.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * The creation date of the virtual router.
-     */
     readonly createdDate?: pulumi.Input<string>;
-    /**
-     * The last update date of the virtual router.
-     */
     readonly lastUpdatedDate?: pulumi.Input<string>;
-    /**
-     * The name of the service mesh in which to create the virtual router.
-     */
     readonly meshName?: pulumi.Input<string>;
-    /**
-     * The name to use for the virtual router.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The virtual router specification to apply.
-     */
     readonly spec?: pulumi.Input<{ serviceNames: pulumi.Input<pulumi.Input<string>[]> }>;
 }
 
@@ -131,16 +77,7 @@ export interface VirtualRouterState {
  * The set of arguments for constructing a VirtualRouter resource.
  */
 export interface VirtualRouterArgs {
-    /**
-     * The name of the service mesh in which to create the virtual router.
-     */
     readonly meshName: pulumi.Input<string>;
-    /**
-     * The name to use for the virtual router.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The virtual router specification to apply.
-     */
     readonly spec: pulumi.Input<{ serviceNames: pulumi.Input<pulumi.Input<string>[]> }>;
 }

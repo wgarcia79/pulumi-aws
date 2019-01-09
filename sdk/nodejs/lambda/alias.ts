@@ -4,12 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Creates a Lambda function alias. Creates an alias that points to the specified Lambda function version.
- * 
- * For information about Lambda and how to use it, see [What is AWS Lambda?][1]
- * For information about function aliases, see [CreateAlias][2] and [AliasRoutingConfiguration][3] in the API docs.
- */
 export class Alias extends pulumi.CustomResource {
     /**
      * Get an existing Alias resource's state with the given name, ID, and optional extra
@@ -23,33 +17,12 @@ export class Alias extends pulumi.CustomResource {
         return new Alias(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The Amazon Resource Name (ARN) identifying your Lambda function alias.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * Description of the alias.
-     */
     public readonly description: pulumi.Output<string | undefined>;
-    /**
-     * The function ARN of the Lambda function for which you want to create an alias.
-     */
     public readonly functionName: pulumi.Output<string>;
-    /**
-     * Lambda function version for which you are creating the alias. Pattern: `(\$LATEST|[0-9]+)`.
-     */
     public readonly functionVersion: pulumi.Output<string>;
-    /**
-     * The ARN to be used for invoking Lambda Function from API Gateway - to be used in [`aws_api_gateway_integration`](https://www.terraform.io/docs/providers/aws/r/api_gateway_integration.html)'s `uri`
-     */
     public /*out*/ readonly invokeArn: pulumi.Output<string>;
-    /**
-     * Name for the alias you are creating. Pattern: `(?!^[0-9]+$)([a-zA-Z0-9-_]+)`
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * The Lambda alias' route configuration settings. Fields documented below
-     */
     public readonly routingConfig: pulumi.Output<{ additionalVersionWeights?: {[key: string]: number} } | undefined>;
 
     /**
@@ -95,33 +68,12 @@ export class Alias extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Alias resources.
  */
 export interface AliasState {
-    /**
-     * The Amazon Resource Name (ARN) identifying your Lambda function alias.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * Description of the alias.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The function ARN of the Lambda function for which you want to create an alias.
-     */
     readonly functionName?: pulumi.Input<string>;
-    /**
-     * Lambda function version for which you are creating the alias. Pattern: `(\$LATEST|[0-9]+)`.
-     */
     readonly functionVersion?: pulumi.Input<string>;
-    /**
-     * The ARN to be used for invoking Lambda Function from API Gateway - to be used in [`aws_api_gateway_integration`](https://www.terraform.io/docs/providers/aws/r/api_gateway_integration.html)'s `uri`
-     */
     readonly invokeArn?: pulumi.Input<string>;
-    /**
-     * Name for the alias you are creating. Pattern: `(?!^[0-9]+$)([a-zA-Z0-9-_]+)`
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The Lambda alias' route configuration settings. Fields documented below
-     */
     readonly routingConfig?: pulumi.Input<{ additionalVersionWeights?: pulumi.Input<{[key: string]: pulumi.Input<number>}> }>;
 }
 
@@ -129,24 +81,9 @@ export interface AliasState {
  * The set of arguments for constructing a Alias resource.
  */
 export interface AliasArgs {
-    /**
-     * Description of the alias.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The function ARN of the Lambda function for which you want to create an alias.
-     */
     readonly functionName: pulumi.Input<string>;
-    /**
-     * Lambda function version for which you are creating the alias. Pattern: `(\$LATEST|[0-9]+)`.
-     */
     readonly functionVersion: pulumi.Input<string>;
-    /**
-     * Name for the alias you are creating. Pattern: `(?!^[0-9]+$)([a-zA-Z0-9-_]+)`
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The Lambda alias' route configuration settings. Fields documented below
-     */
     readonly routingConfig?: pulumi.Input<{ additionalVersionWeights?: pulumi.Input<{[key: string]: pulumi.Input<number>}> }>;
 }

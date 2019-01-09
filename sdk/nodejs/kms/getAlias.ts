@@ -4,22 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Use this data source to get the ARN of a KMS key alias.
- * By using this data source, you can reference key alias
- * without having to hard code the ARN as input.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_kms_alias_s3 = pulumi.output(aws.kms.getAlias({
- *     name: "alias/aws/s3",
- * }));
- * ```
- */
 export function getAlias(args: GetAliasArgs, opts?: pulumi.InvokeOptions): Promise<GetAliasResult> {
     return pulumi.runtime.invoke("aws:kms/getAlias:getAlias", {
         "name": args.name,
@@ -30,9 +14,6 @@ export function getAlias(args: GetAliasArgs, opts?: pulumi.InvokeOptions): Promi
  * A collection of arguments for invoking getAlias.
  */
 export interface GetAliasArgs {
-    /**
-     * The display name of the alias. The name must start with the word "alias" followed by a forward slash (alias/)
-     */
     readonly name: string;
 }
 
@@ -40,17 +21,8 @@ export interface GetAliasArgs {
  * A collection of values returned by getAlias.
  */
 export interface GetAliasResult {
-    /**
-     * The Amazon Resource Name(ARN) of the key alias.
-     */
     readonly arn: string;
-    /**
-     * ARN pointed to by the alias.
-     */
     readonly targetKeyArn: string;
-    /**
-     * Key identifier pointed to by the alias.
-     */
     readonly targetKeyId: string;
     /**
      * id is the provider-assigned unique ID for this managed resource.

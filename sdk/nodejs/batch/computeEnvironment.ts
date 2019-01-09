@@ -4,67 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Creates a AWS Batch compute environment. Compute environments contain the Amazon ECS container instances that are used to run containerized batch jobs.
- * 
- * For information about AWS Batch, see [What is AWS Batch?][1] .
- * For information about compute environment, see [Compute Environments][2] .
- * 
- * > **Note:** To prevent a race condition during environment deletion, make sure to set `depends_on` to the related `aws_iam_role_policy_attachment`;
- *    otherwise, the policy may be destroyed too soon and the compute environment will then get stuck in the `DELETING` state, see [Troubleshooting AWS Batch][3] .
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_iam_role_aws_batch_service_role = new aws.iam.Role("aws_batch_service_role", {
- *     assumeRolePolicy: "{\n    \"Version\": \"2012-10-17\",\n    \"Statement\": [\n\t{\n\t    \"Action\": \"sts:AssumeRole\",\n\t    \"Effect\": \"Allow\",\n\t    \"Principal\": {\n\t\t\"Service\": \"batch.amazonaws.com\"\n\t    }\n\t}\n    ]\n}\n",
- *     name: "aws_batch_service_role",
- * });
- * const aws_iam_role_ecs_instance_role = new aws.iam.Role("ecs_instance_role", {
- *     assumeRolePolicy: "{\n    \"Version\": \"2012-10-17\",\n    \"Statement\": [\n\t{\n\t    \"Action\": \"sts:AssumeRole\",\n\t    \"Effect\": \"Allow\",\n\t    \"Principal\": {\n\t\t\"Service\": \"ec2.amazonaws.com\"\n\t    }\n\t}\n    ]\n}\n",
- *     name: "ecs_instance_role",
- * });
- * const aws_security_group_sample = new aws.ec2.SecurityGroup("sample", {
- *     name: "aws_batch_compute_environment_security_group",
- * });
- * const aws_vpc_sample = new aws.ec2.Vpc("sample", {
- *     cidrBlock: "10.1.0.0/16",
- * });
- * const aws_iam_instance_profile_ecs_instance_role = new aws.iam.InstanceProfile("ecs_instance_role", {
- *     name: "ecs_instance_role",
- *     role: aws_iam_role_ecs_instance_role.name,
- * });
- * const aws_iam_role_policy_attachment_aws_batch_service_role = new aws.iam.RolePolicyAttachment("aws_batch_service_role", {
- *     policyArn: "arn:aws:iam::aws:policy/service-role/AWSBatchServiceRole",
- *     role: aws_iam_role_aws_batch_service_role.name,
- * });
- * const aws_subnet_sample = new aws.ec2.Subnet("sample", {
- *     cidrBlock: "10.1.1.0/24",
- *     vpcId: aws_vpc_sample.id,
- * });
- * const aws_batch_compute_environment_sample = new aws.batch.ComputeEnvironment("sample", {
- *     computeEnvironmentName: "sample",
- *     computeResources: {
- *         instanceRole: aws_iam_instance_profile_ecs_instance_role.arn,
- *         instanceTypes: ["c4.large"],
- *         maxVcpus: 16,
- *         minVcpus: 0,
- *         securityGroupIds: [aws_security_group_sample.id],
- *         subnets: [aws_subnet_sample.id],
- *         type: "EC2",
- *     },
- *     serviceRole: aws_iam_role_aws_batch_service_role.arn,
- *     type: "MANAGED",
- * }, {dependsOn: [aws_iam_role_policy_attachment_aws_batch_service_role]});
- * const aws_iam_role_policy_attachment_ecs_instance_role = new aws.iam.RolePolicyAttachment("ecs_instance_role", {
- *     policyArn: "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role",
- *     role: aws_iam_role_ecs_instance_role.name,
- * });
- * ```
- */
 export class ComputeEnvironment extends pulumi.CustomResource {
     /**
      * Get an existing ComputeEnvironment resource's state with the given name, ID, and optional extra
@@ -78,42 +17,15 @@ export class ComputeEnvironment extends pulumi.CustomResource {
         return new ComputeEnvironment(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The Amazon Resource Name (ARN) of the compute environment.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * The name for your compute environment. Up to 128 letters (uppercase and lowercase), numbers, and underscores are allowed.
-     */
     public readonly computeEnvironmentName: pulumi.Output<string>;
-    /**
-     * Details of the compute resources managed by the compute environment. This parameter is required for managed compute environments. See details below.
-     */
     public readonly computeResources: pulumi.Output<{ bidPercentage?: number, desiredVcpus?: number, ec2KeyPair?: string, imageId?: string, instanceRole: string, instanceTypes: string[], maxVcpus: number, minVcpus: number, securityGroupIds: string[], spotIamFleetRole?: string, subnets: string[], tags?: {[key: string]: any}, type: string } | undefined>;
     public /*out*/ readonly eccClusterArn: pulumi.Output<string>;
-    /**
-     * The Amazon Resource Name (ARN) of the underlying Amazon ECS cluster used by the compute environment.
-     */
     public /*out*/ readonly ecsClusterArn: pulumi.Output<string>;
-    /**
-     * The full Amazon Resource Name (ARN) of the IAM role that allows AWS Batch to make calls to other AWS services on your behalf.
-     */
     public readonly serviceRole: pulumi.Output<string>;
-    /**
-     * The state of the compute environment. If the state is `ENABLED`, then the compute environment accepts jobs from a queue and can scale out automatically based on queues. Valid items are `ENABLED` or `DISABLED`. Defaults to `ENABLED`.
-     */
     public readonly state: pulumi.Output<string | undefined>;
-    /**
-     * The current status of the compute environment (for example, CREATING or VALID).
-     */
     public /*out*/ readonly status: pulumi.Output<string>;
-    /**
-     * A short, human-readable string to provide additional details about the current status of the compute environment.
-     */
     public /*out*/ readonly statusReason: pulumi.Output<string>;
-    /**
-     * The type of compute environment. Valid items are `EC2` or `SPOT`.
-     */
     public readonly type: pulumi.Output<string>;
 
     /**
@@ -168,42 +80,15 @@ export class ComputeEnvironment extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ComputeEnvironment resources.
  */
 export interface ComputeEnvironmentState {
-    /**
-     * The Amazon Resource Name (ARN) of the compute environment.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * The name for your compute environment. Up to 128 letters (uppercase and lowercase), numbers, and underscores are allowed.
-     */
     readonly computeEnvironmentName?: pulumi.Input<string>;
-    /**
-     * Details of the compute resources managed by the compute environment. This parameter is required for managed compute environments. See details below.
-     */
     readonly computeResources?: pulumi.Input<{ bidPercentage?: pulumi.Input<number>, desiredVcpus?: pulumi.Input<number>, ec2KeyPair?: pulumi.Input<string>, imageId?: pulumi.Input<string>, instanceRole: pulumi.Input<string>, instanceTypes: pulumi.Input<pulumi.Input<string>[]>, maxVcpus: pulumi.Input<number>, minVcpus: pulumi.Input<number>, securityGroupIds: pulumi.Input<pulumi.Input<string>[]>, spotIamFleetRole?: pulumi.Input<string>, subnets: pulumi.Input<pulumi.Input<string>[]>, tags?: pulumi.Input<{[key: string]: any}>, type: pulumi.Input<string> }>;
     readonly eccClusterArn?: pulumi.Input<string>;
-    /**
-     * The Amazon Resource Name (ARN) of the underlying Amazon ECS cluster used by the compute environment.
-     */
     readonly ecsClusterArn?: pulumi.Input<string>;
-    /**
-     * The full Amazon Resource Name (ARN) of the IAM role that allows AWS Batch to make calls to other AWS services on your behalf.
-     */
     readonly serviceRole?: pulumi.Input<string>;
-    /**
-     * The state of the compute environment. If the state is `ENABLED`, then the compute environment accepts jobs from a queue and can scale out automatically based on queues. Valid items are `ENABLED` or `DISABLED`. Defaults to `ENABLED`.
-     */
     readonly state?: pulumi.Input<string>;
-    /**
-     * The current status of the compute environment (for example, CREATING or VALID).
-     */
     readonly status?: pulumi.Input<string>;
-    /**
-     * A short, human-readable string to provide additional details about the current status of the compute environment.
-     */
     readonly statusReason?: pulumi.Input<string>;
-    /**
-     * The type of compute environment. Valid items are `EC2` or `SPOT`.
-     */
     readonly type?: pulumi.Input<string>;
 }
 
@@ -211,24 +96,9 @@ export interface ComputeEnvironmentState {
  * The set of arguments for constructing a ComputeEnvironment resource.
  */
 export interface ComputeEnvironmentArgs {
-    /**
-     * The name for your compute environment. Up to 128 letters (uppercase and lowercase), numbers, and underscores are allowed.
-     */
     readonly computeEnvironmentName: pulumi.Input<string>;
-    /**
-     * Details of the compute resources managed by the compute environment. This parameter is required for managed compute environments. See details below.
-     */
     readonly computeResources?: pulumi.Input<{ bidPercentage?: pulumi.Input<number>, desiredVcpus?: pulumi.Input<number>, ec2KeyPair?: pulumi.Input<string>, imageId?: pulumi.Input<string>, instanceRole: pulumi.Input<string>, instanceTypes: pulumi.Input<pulumi.Input<string>[]>, maxVcpus: pulumi.Input<number>, minVcpus: pulumi.Input<number>, securityGroupIds: pulumi.Input<pulumi.Input<string>[]>, spotIamFleetRole?: pulumi.Input<string>, subnets: pulumi.Input<pulumi.Input<string>[]>, tags?: pulumi.Input<{[key: string]: any}>, type: pulumi.Input<string> }>;
-    /**
-     * The full Amazon Resource Name (ARN) of the IAM role that allows AWS Batch to make calls to other AWS services on your behalf.
-     */
     readonly serviceRole: pulumi.Input<string>;
-    /**
-     * The state of the compute environment. If the state is `ENABLED`, then the compute environment accepts jobs from a queue and can scale out automatically based on queues. Valid items are `ENABLED` or `DISABLED`. Defaults to `ENABLED`.
-     */
     readonly state?: pulumi.Input<string>;
-    /**
-     * The type of compute environment. Valid items are `EC2` or `SPOT`.
-     */
     readonly type: pulumi.Input<string>;
 }

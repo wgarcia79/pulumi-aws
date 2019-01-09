@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a resource for managing the main routing table of a VPC.
- */
 export class MainRouteTableAssociation extends pulumi.CustomResource {
     /**
      * Get an existing MainRouteTableAssociation resource's state with the given name, ID, and optional extra
@@ -20,18 +17,8 @@ export class MainRouteTableAssociation extends pulumi.CustomResource {
         return new MainRouteTableAssociation(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * Used internally, see __Notes__ below
-     */
     public /*out*/ readonly originalRouteTableId: pulumi.Output<string>;
-    /**
-     * The ID of the Route Table to set as the new
-     * main route table for the target VPC
-     */
     public readonly routeTableId: pulumi.Output<string>;
-    /**
-     * The ID of the VPC whose main route table should be set
-     */
     public readonly vpcId: pulumi.Output<string>;
 
     /**
@@ -69,18 +56,8 @@ export class MainRouteTableAssociation extends pulumi.CustomResource {
  * Input properties used for looking up and filtering MainRouteTableAssociation resources.
  */
 export interface MainRouteTableAssociationState {
-    /**
-     * Used internally, see __Notes__ below
-     */
     readonly originalRouteTableId?: pulumi.Input<string>;
-    /**
-     * The ID of the Route Table to set as the new
-     * main route table for the target VPC
-     */
     readonly routeTableId?: pulumi.Input<string>;
-    /**
-     * The ID of the VPC whose main route table should be set
-     */
     readonly vpcId?: pulumi.Input<string>;
 }
 
@@ -88,13 +65,6 @@ export interface MainRouteTableAssociationState {
  * The set of arguments for constructing a MainRouteTableAssociation resource.
  */
 export interface MainRouteTableAssociationArgs {
-    /**
-     * The ID of the Route Table to set as the new
-     * main route table for the target VPC
-     */
     readonly routeTableId: pulumi.Input<string>;
-    /**
-     * The ID of the VPC whose main route table should be set
-     */
     readonly vpcId: pulumi.Input<string>;
 }

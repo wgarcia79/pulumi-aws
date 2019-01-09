@@ -6,32 +6,6 @@ import * as utilities from "../utilities";
 
 import {RestApi} from "./restApi";
 
-/**
- * Provides a HTTP Method for an API Gateway Resource.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_api_gateway_rest_api_MyDemoAPI = new aws.apigateway.RestApi("MyDemoAPI", {
- *     description: "This is my API for demonstration purposes",
- *     name: "MyDemoAPI",
- * });
- * const aws_api_gateway_resource_MyDemoResource = new aws.apigateway.Resource("MyDemoResource", {
- *     parentId: aws_api_gateway_rest_api_MyDemoAPI.rootResourceId,
- *     pathPart: "mydemoresource",
- *     restApi: aws_api_gateway_rest_api_MyDemoAPI.id,
- * });
- * const aws_api_gateway_method_MyDemoMethod = new aws.apigateway.Method("MyDemoMethod", {
- *     authorization: "NONE",
- *     httpMethod: "GET",
- *     resourceId: aws_api_gateway_resource_MyDemoResource.id,
- *     restApi: aws_api_gateway_rest_api_MyDemoAPI.id,
- * });
- * ```
- */
 export class Method extends pulumi.CustomResource {
     /**
      * Get an existing Method resource's state with the given name, ID, and optional extra
@@ -45,59 +19,16 @@ export class Method extends pulumi.CustomResource {
         return new Method(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * Specify if the method requires an API key
-     */
     public readonly apiKeyRequired: pulumi.Output<boolean | undefined>;
-    /**
-     * The type of authorization used for the method (`NONE`, `CUSTOM`, `AWS_IAM`, `COGNITO_USER_POOLS`)
-     */
     public readonly authorization: pulumi.Output<string>;
-    /**
-     * The authorization scopes used when the authorization is `COGNITO_USER_POOLS`
-     */
     public readonly authorizationScopes: pulumi.Output<string[] | undefined>;
-    /**
-     * The authorizer id to be used when the authorization is `CUSTOM` or `COGNITO_USER_POOLS`
-     */
     public readonly authorizerId: pulumi.Output<string | undefined>;
-    /**
-     * The HTTP Method (`GET`, `POST`, `PUT`, `DELETE`, `HEAD`, `OPTIONS`, `ANY`)
-     */
     public readonly httpMethod: pulumi.Output<string>;
-    /**
-     * A map of the API models used for the request's content type
-     * where key is the content type (e.g. `application/json`)
-     * and value is either `Error`, `Empty` (built-in models) or `aws_api_gateway_model`'s `name`.
-     */
     public readonly requestModels: pulumi.Output<{[key: string]: string} | undefined>;
-    /**
-     * A map of request query string parameters and headers that should be passed to the integration.
-     * For example:
-     * ```hcl
-     * request_parameters = {
-     * "method.request.header.X-Some-Header"         = true
-     * "method.request.querystring.some-query-param" = true
-     * }
-     * ```
-     * would define that the header `X-Some-Header` and the query string `some-query-param` must be provided on the request, or
-     */
     public readonly requestParameters: pulumi.Output<{[key: string]: boolean} | undefined>;
-    /**
-     * **Deprecated**, use `request_parameters` instead.
-     */
     public readonly requestParametersInJson: pulumi.Output<string | undefined>;
-    /**
-     * The ID of a `aws_api_gateway_request_validator`
-     */
     public readonly requestValidatorId: pulumi.Output<string | undefined>;
-    /**
-     * The API resource ID
-     */
     public readonly resourceId: pulumi.Output<string>;
-    /**
-     * The ID of the associated REST API
-     */
     public readonly restApi: pulumi.Output<RestApi>;
 
     /**
@@ -157,59 +88,16 @@ export class Method extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Method resources.
  */
 export interface MethodState {
-    /**
-     * Specify if the method requires an API key
-     */
     readonly apiKeyRequired?: pulumi.Input<boolean>;
-    /**
-     * The type of authorization used for the method (`NONE`, `CUSTOM`, `AWS_IAM`, `COGNITO_USER_POOLS`)
-     */
     readonly authorization?: pulumi.Input<string>;
-    /**
-     * The authorization scopes used when the authorization is `COGNITO_USER_POOLS`
-     */
     readonly authorizationScopes?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The authorizer id to be used when the authorization is `CUSTOM` or `COGNITO_USER_POOLS`
-     */
     readonly authorizerId?: pulumi.Input<string>;
-    /**
-     * The HTTP Method (`GET`, `POST`, `PUT`, `DELETE`, `HEAD`, `OPTIONS`, `ANY`)
-     */
     readonly httpMethod?: pulumi.Input<string>;
-    /**
-     * A map of the API models used for the request's content type
-     * where key is the content type (e.g. `application/json`)
-     * and value is either `Error`, `Empty` (built-in models) or `aws_api_gateway_model`'s `name`.
-     */
     readonly requestModels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    /**
-     * A map of request query string parameters and headers that should be passed to the integration.
-     * For example:
-     * ```hcl
-     * request_parameters = {
-     * "method.request.header.X-Some-Header"         = true
-     * "method.request.querystring.some-query-param" = true
-     * }
-     * ```
-     * would define that the header `X-Some-Header` and the query string `some-query-param` must be provided on the request, or
-     */
     readonly requestParameters?: pulumi.Input<{[key: string]: pulumi.Input<boolean>}>;
-    /**
-     * **Deprecated**, use `request_parameters` instead.
-     */
     readonly requestParametersInJson?: pulumi.Input<string>;
-    /**
-     * The ID of a `aws_api_gateway_request_validator`
-     */
     readonly requestValidatorId?: pulumi.Input<string>;
-    /**
-     * The API resource ID
-     */
     readonly resourceId?: pulumi.Input<string>;
-    /**
-     * The ID of the associated REST API
-     */
     readonly restApi?: pulumi.Input<RestApi>;
 }
 
@@ -217,58 +105,15 @@ export interface MethodState {
  * The set of arguments for constructing a Method resource.
  */
 export interface MethodArgs {
-    /**
-     * Specify if the method requires an API key
-     */
     readonly apiKeyRequired?: pulumi.Input<boolean>;
-    /**
-     * The type of authorization used for the method (`NONE`, `CUSTOM`, `AWS_IAM`, `COGNITO_USER_POOLS`)
-     */
     readonly authorization: pulumi.Input<string>;
-    /**
-     * The authorization scopes used when the authorization is `COGNITO_USER_POOLS`
-     */
     readonly authorizationScopes?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The authorizer id to be used when the authorization is `CUSTOM` or `COGNITO_USER_POOLS`
-     */
     readonly authorizerId?: pulumi.Input<string>;
-    /**
-     * The HTTP Method (`GET`, `POST`, `PUT`, `DELETE`, `HEAD`, `OPTIONS`, `ANY`)
-     */
     readonly httpMethod: pulumi.Input<string>;
-    /**
-     * A map of the API models used for the request's content type
-     * where key is the content type (e.g. `application/json`)
-     * and value is either `Error`, `Empty` (built-in models) or `aws_api_gateway_model`'s `name`.
-     */
     readonly requestModels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    /**
-     * A map of request query string parameters and headers that should be passed to the integration.
-     * For example:
-     * ```hcl
-     * request_parameters = {
-     * "method.request.header.X-Some-Header"         = true
-     * "method.request.querystring.some-query-param" = true
-     * }
-     * ```
-     * would define that the header `X-Some-Header` and the query string `some-query-param` must be provided on the request, or
-     */
     readonly requestParameters?: pulumi.Input<{[key: string]: pulumi.Input<boolean>}>;
-    /**
-     * **Deprecated**, use `request_parameters` instead.
-     */
     readonly requestParametersInJson?: pulumi.Input<string>;
-    /**
-     * The ID of a `aws_api_gateway_request_validator`
-     */
     readonly requestValidatorId?: pulumi.Input<string>;
-    /**
-     * The API resource ID
-     */
     readonly resourceId: pulumi.Input<string>;
-    /**
-     * The ID of the associated REST API
-     */
     readonly restApi: pulumi.Input<RestApi>;
 }

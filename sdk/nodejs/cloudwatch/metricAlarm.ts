@@ -6,32 +6,6 @@ import * as utilities from "../utilities";
 
 import {Topic} from "../sns/topic";
 
-/**
- * Provides a CloudWatch Metric Alarm resource.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_cloudwatch_metric_alarm_foobar = new aws.cloudwatch.MetricAlarm("foobar", {
- *     alarmDescription: "This metric monitors ec2 cpu utilization",
- *     name: "terraform-test-foobar5",
- *     comparisonOperator: "GreaterThanOrEqualToThreshold",
- *     evaluationPeriods: Number.parseFloat("2"),
- *     insufficientDataActions: [],
- *     metricName: "CPUUtilization",
- *     namespace: "AWS/EC2",
- *     period: Number.parseFloat("120"),
- *     statistic: "Average",
- *     threshold: Number.parseFloat("80"),
- * });
- * ```
- * > **NOTE:**  You cannot create a metric alarm consisting of both `statistic` and `extended_statistic` parameters.
- * You must choose one or the other
- * 
- */
 export class MetricAlarm extends pulumi.CustomResource {
     /**
      * Get an existing MetricAlarm resource's state with the given name, ID, and optional extra
@@ -45,93 +19,25 @@ export class MetricAlarm extends pulumi.CustomResource {
         return new MetricAlarm(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * Indicates whether or not actions should be executed during any changes to the alarm's state. Defaults to `true`.
-     */
     public readonly actionsEnabled: pulumi.Output<boolean | undefined>;
-    /**
-     * The list of actions to execute when this alarm transitions into an ALARM state from any other state. Each action is specified as an Amazon Resource Number (ARN).
-     */
     public readonly alarmActions: pulumi.Output<string[] | undefined>;
-    /**
-     * The description for the alarm.
-     */
     public readonly alarmDescription: pulumi.Output<string | undefined>;
-    /**
-     * The descriptive name for the alarm. This name must be unique within the user's AWS account
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * The ARN of the cloudwatch metric alarm.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * The arithmetic operation to use when comparing the specified Statistic and Threshold. The specified Statistic value is used as the first operand. Either of the following is supported: `GreaterThanOrEqualToThreshold`, `GreaterThanThreshold`, `LessThanThreshold`, `LessThanOrEqualToThreshold`.
-     */
     public readonly comparisonOperator: pulumi.Output<string>;
-    /**
-     * The number of datapoints that must be breaching to trigger the alarm.
-     */
     public readonly datapointsToAlarm: pulumi.Output<number | undefined>;
-    /**
-     * The dimensions for the alarm's associated metric.  For the list of available dimensions see the AWS documentation [here](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
-     */
     public readonly dimensions: pulumi.Output<{[key: string]: any} | undefined>;
-    /**
-     * Used only for alarms
-     * based on percentiles. If you specify `ignore`, the alarm state will not
-     * change during periods with too few data points to be statistically significant.
-     * If you specify `evaluate` or omit this parameter, the alarm will always be
-     * evaluated and possibly change state no matter how many data points are available.
-     * The following values are supported: `ignore`, and `evaluate`.
-     */
     public readonly evaluateLowSampleCountPercentiles: pulumi.Output<string>;
-    /**
-     * The number of periods over which data is compared to the specified threshold.
-     */
     public readonly evaluationPeriods: pulumi.Output<number>;
-    /**
-     * The percentile statistic for the metric associated with the alarm. Specify a value between p0.0 and p100.
-     */
     public readonly extendedStatistic: pulumi.Output<string | undefined>;
-    /**
-     * The list of actions to execute when this alarm transitions into an INSUFFICIENT_DATA state from any other state. Each action is specified as an Amazon Resource Number (ARN).
-     */
     public readonly insufficientDataActions: pulumi.Output<string[] | undefined>;
-    /**
-     * The name for the alarm's associated metric.
-     * See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
-     */
     public readonly metricName: pulumi.Output<string>;
-    /**
-     * The namespace for the alarm's associated metric. See docs for the [list of namespaces](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/aws-namespaces.html).
-     * See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
-     */
     public readonly namespace: pulumi.Output<string>;
-    /**
-     * The list of actions to execute when this alarm transitions into an OK state from any other state. Each action is specified as an Amazon Resource Number (ARN).
-     */
     public readonly okActions: pulumi.Output<string[] | undefined>;
-    /**
-     * The period in seconds over which the specified `statistic` is applied.
-     */
     public readonly period: pulumi.Output<number>;
-    /**
-     * The statistic to apply to the alarm's associated metric.
-     * Either of the following is supported: `SampleCount`, `Average`, `Sum`, `Minimum`, `Maximum`
-     */
     public readonly statistic: pulumi.Output<string | undefined>;
-    /**
-     * The value against which the specified statistic is compared.
-     */
     public readonly threshold: pulumi.Output<number>;
-    /**
-     * Sets how this alarm is to handle missing data points. The following values are supported: `missing`, `ignore`, `breaching` and `notBreaching`. Defaults to `missing`.
-     */
     public readonly treatMissingData: pulumi.Output<string | undefined>;
-    /**
-     * The unit for the alarm's associated metric.
-     */
     public readonly unit: pulumi.Output<string | undefined>;
 
     /**
@@ -215,93 +121,25 @@ export class MetricAlarm extends pulumi.CustomResource {
  * Input properties used for looking up and filtering MetricAlarm resources.
  */
 export interface MetricAlarmState {
-    /**
-     * Indicates whether or not actions should be executed during any changes to the alarm's state. Defaults to `true`.
-     */
     readonly actionsEnabled?: pulumi.Input<boolean>;
-    /**
-     * The list of actions to execute when this alarm transitions into an ALARM state from any other state. Each action is specified as an Amazon Resource Number (ARN).
-     */
     readonly alarmActions?: pulumi.Input<pulumi.Input<string | Topic>[]>;
-    /**
-     * The description for the alarm.
-     */
     readonly alarmDescription?: pulumi.Input<string>;
-    /**
-     * The descriptive name for the alarm. This name must be unique within the user's AWS account
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The ARN of the cloudwatch metric alarm.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * The arithmetic operation to use when comparing the specified Statistic and Threshold. The specified Statistic value is used as the first operand. Either of the following is supported: `GreaterThanOrEqualToThreshold`, `GreaterThanThreshold`, `LessThanThreshold`, `LessThanOrEqualToThreshold`.
-     */
     readonly comparisonOperator?: pulumi.Input<string>;
-    /**
-     * The number of datapoints that must be breaching to trigger the alarm.
-     */
     readonly datapointsToAlarm?: pulumi.Input<number>;
-    /**
-     * The dimensions for the alarm's associated metric.  For the list of available dimensions see the AWS documentation [here](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
-     */
     readonly dimensions?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * Used only for alarms
-     * based on percentiles. If you specify `ignore`, the alarm state will not
-     * change during periods with too few data points to be statistically significant.
-     * If you specify `evaluate` or omit this parameter, the alarm will always be
-     * evaluated and possibly change state no matter how many data points are available.
-     * The following values are supported: `ignore`, and `evaluate`.
-     */
     readonly evaluateLowSampleCountPercentiles?: pulumi.Input<string>;
-    /**
-     * The number of periods over which data is compared to the specified threshold.
-     */
     readonly evaluationPeriods?: pulumi.Input<number>;
-    /**
-     * The percentile statistic for the metric associated with the alarm. Specify a value between p0.0 and p100.
-     */
     readonly extendedStatistic?: pulumi.Input<string>;
-    /**
-     * The list of actions to execute when this alarm transitions into an INSUFFICIENT_DATA state from any other state. Each action is specified as an Amazon Resource Number (ARN).
-     */
     readonly insufficientDataActions?: pulumi.Input<pulumi.Input<string | Topic>[]>;
-    /**
-     * The name for the alarm's associated metric.
-     * See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
-     */
     readonly metricName?: pulumi.Input<string>;
-    /**
-     * The namespace for the alarm's associated metric. See docs for the [list of namespaces](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/aws-namespaces.html).
-     * See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
-     */
     readonly namespace?: pulumi.Input<string>;
-    /**
-     * The list of actions to execute when this alarm transitions into an OK state from any other state. Each action is specified as an Amazon Resource Number (ARN).
-     */
     readonly okActions?: pulumi.Input<pulumi.Input<string | Topic>[]>;
-    /**
-     * The period in seconds over which the specified `statistic` is applied.
-     */
     readonly period?: pulumi.Input<number>;
-    /**
-     * The statistic to apply to the alarm's associated metric.
-     * Either of the following is supported: `SampleCount`, `Average`, `Sum`, `Minimum`, `Maximum`
-     */
     readonly statistic?: pulumi.Input<string>;
-    /**
-     * The value against which the specified statistic is compared.
-     */
     readonly threshold?: pulumi.Input<number>;
-    /**
-     * Sets how this alarm is to handle missing data points. The following values are supported: `missing`, `ignore`, `breaching` and `notBreaching`. Defaults to `missing`.
-     */
     readonly treatMissingData?: pulumi.Input<string>;
-    /**
-     * The unit for the alarm's associated metric.
-     */
     readonly unit?: pulumi.Input<string>;
 }
 
@@ -309,88 +147,23 @@ export interface MetricAlarmState {
  * The set of arguments for constructing a MetricAlarm resource.
  */
 export interface MetricAlarmArgs {
-    /**
-     * Indicates whether or not actions should be executed during any changes to the alarm's state. Defaults to `true`.
-     */
     readonly actionsEnabled?: pulumi.Input<boolean>;
-    /**
-     * The list of actions to execute when this alarm transitions into an ALARM state from any other state. Each action is specified as an Amazon Resource Number (ARN).
-     */
     readonly alarmActions?: pulumi.Input<pulumi.Input<string | Topic>[]>;
-    /**
-     * The description for the alarm.
-     */
     readonly alarmDescription?: pulumi.Input<string>;
-    /**
-     * The descriptive name for the alarm. This name must be unique within the user's AWS account
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The arithmetic operation to use when comparing the specified Statistic and Threshold. The specified Statistic value is used as the first operand. Either of the following is supported: `GreaterThanOrEqualToThreshold`, `GreaterThanThreshold`, `LessThanThreshold`, `LessThanOrEqualToThreshold`.
-     */
     readonly comparisonOperator: pulumi.Input<string>;
-    /**
-     * The number of datapoints that must be breaching to trigger the alarm.
-     */
     readonly datapointsToAlarm?: pulumi.Input<number>;
-    /**
-     * The dimensions for the alarm's associated metric.  For the list of available dimensions see the AWS documentation [here](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
-     */
     readonly dimensions?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * Used only for alarms
-     * based on percentiles. If you specify `ignore`, the alarm state will not
-     * change during periods with too few data points to be statistically significant.
-     * If you specify `evaluate` or omit this parameter, the alarm will always be
-     * evaluated and possibly change state no matter how many data points are available.
-     * The following values are supported: `ignore`, and `evaluate`.
-     */
     readonly evaluateLowSampleCountPercentiles?: pulumi.Input<string>;
-    /**
-     * The number of periods over which data is compared to the specified threshold.
-     */
     readonly evaluationPeriods: pulumi.Input<number>;
-    /**
-     * The percentile statistic for the metric associated with the alarm. Specify a value between p0.0 and p100.
-     */
     readonly extendedStatistic?: pulumi.Input<string>;
-    /**
-     * The list of actions to execute when this alarm transitions into an INSUFFICIENT_DATA state from any other state. Each action is specified as an Amazon Resource Number (ARN).
-     */
     readonly insufficientDataActions?: pulumi.Input<pulumi.Input<string | Topic>[]>;
-    /**
-     * The name for the alarm's associated metric.
-     * See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
-     */
     readonly metricName: pulumi.Input<string>;
-    /**
-     * The namespace for the alarm's associated metric. See docs for the [list of namespaces](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/aws-namespaces.html).
-     * See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
-     */
     readonly namespace: pulumi.Input<string>;
-    /**
-     * The list of actions to execute when this alarm transitions into an OK state from any other state. Each action is specified as an Amazon Resource Number (ARN).
-     */
     readonly okActions?: pulumi.Input<pulumi.Input<string | Topic>[]>;
-    /**
-     * The period in seconds over which the specified `statistic` is applied.
-     */
     readonly period: pulumi.Input<number>;
-    /**
-     * The statistic to apply to the alarm's associated metric.
-     * Either of the following is supported: `SampleCount`, `Average`, `Sum`, `Minimum`, `Maximum`
-     */
     readonly statistic?: pulumi.Input<string>;
-    /**
-     * The value against which the specified statistic is compared.
-     */
     readonly threshold: pulumi.Input<number>;
-    /**
-     * Sets how this alarm is to handle missing data points. The following values are supported: `missing`, `ignore`, `breaching` and `notBreaching`. Defaults to `missing`.
-     */
     readonly treatMissingData?: pulumi.Input<string>;
-    /**
-     * The unit for the alarm's associated metric.
-     */
     readonly unit?: pulumi.Input<string>;
 }

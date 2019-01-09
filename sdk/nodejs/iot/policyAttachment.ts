@@ -7,30 +7,6 @@ import * as utilities from "../utilities";
 import {Policy} from ".";
 import {ARN} from "../index";
 
-/**
- * Provides an IoT policy attachment.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * import * as fs from "fs";
- * 
- * const aws_iot_certificate_cert = new aws.iot.Certificate("cert", {
- *     active: true,
- *     csr: fs.readFileSync("csr.pem", "utf-8"),
- * });
- * const aws_iot_policy_pubsub = new aws.iot.Policy("pubsub", {
- *     name: "PubSubToAnyTopic",
- *     policy: "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Action\": [\n        \"iot:*\"\n      ],\n      \"Effect\": \"Allow\",\n      \"Resource\": \"*\"\n    }\n  ]\n}\n",
- * });
- * const aws_iot_policy_attachment_att = new aws.iot.PolicyAttachment("att", {
- *     policy: aws_iot_policy_pubsub.name,
- *     target: aws_iot_certificate_cert.arn,
- * });
- * ```
- */
 export class PolicyAttachment extends pulumi.CustomResource {
     /**
      * Get an existing PolicyAttachment resource's state with the given name, ID, and optional extra
@@ -44,13 +20,7 @@ export class PolicyAttachment extends pulumi.CustomResource {
         return new PolicyAttachment(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The name of the policy to attach.
-     */
     public readonly policy: pulumi.Output<string>;
-    /**
-     * The identity to which the policy is attached.
-     */
     public readonly target: pulumi.Output<ARN>;
 
     /**
@@ -86,13 +56,7 @@ export class PolicyAttachment extends pulumi.CustomResource {
  * Input properties used for looking up and filtering PolicyAttachment resources.
  */
 export interface PolicyAttachmentState {
-    /**
-     * The name of the policy to attach.
-     */
     readonly policy?: pulumi.Input<string | Policy>;
-    /**
-     * The identity to which the policy is attached.
-     */
     readonly target?: pulumi.Input<ARN>;
 }
 
@@ -100,12 +64,6 @@ export interface PolicyAttachmentState {
  * The set of arguments for constructing a PolicyAttachment resource.
  */
 export interface PolicyAttachmentArgs {
-    /**
-     * The name of the policy to attach.
-     */
     readonly policy: pulumi.Input<string | Policy>;
-    /**
-     * The identity to which the policy is attached.
-     */
     readonly target: pulumi.Input<ARN>;
 }

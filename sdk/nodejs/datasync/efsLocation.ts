@@ -6,11 +6,6 @@ import * as utilities from "../utilities";
 
 import {ARN} from "../index";
 
-/**
- * Manages an AWS DataSync EFS Location.
- * 
- * > **NOTE:** The EFS File System must have a mounted EFS Mount Target before creating this resource.
- */
 export class EfsLocation extends pulumi.CustomResource {
     /**
      * Get an existing EfsLocation resource's state with the given name, ID, and optional extra
@@ -24,25 +19,10 @@ export class EfsLocation extends pulumi.CustomResource {
         return new EfsLocation(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * Amazon Resource Name (ARN) of the DataSync Location.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * Configuration block containing EC2 configurations for connecting to the EFS File System.
-     */
     public readonly ec2Config: pulumi.Output<{ securityGroupArns: string[], subnetArn: string }>;
-    /**
-     * Amazon Resource Name (ARN) of EFS File System.
-     */
     public readonly efsFileSystemArn: pulumi.Output<ARN>;
-    /**
-     * Subdirectory to perform actions as source or destination. Default `/`.
-     */
     public readonly subdirectory: pulumi.Output<string | undefined>;
-    /**
-     * Key-value pairs of resource tags to assign to the DataSync Location.
-     */
     public readonly tags: pulumi.Output<{[key: string]: string} | undefined>;
     public /*out*/ readonly uri: pulumi.Output<string>;
 
@@ -87,25 +67,10 @@ export class EfsLocation extends pulumi.CustomResource {
  * Input properties used for looking up and filtering EfsLocation resources.
  */
 export interface EfsLocationState {
-    /**
-     * Amazon Resource Name (ARN) of the DataSync Location.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * Configuration block containing EC2 configurations for connecting to the EFS File System.
-     */
     readonly ec2Config?: pulumi.Input<{ securityGroupArns: pulumi.Input<pulumi.Input<string>[]>, subnetArn: pulumi.Input<string> }>;
-    /**
-     * Amazon Resource Name (ARN) of EFS File System.
-     */
     readonly efsFileSystemArn?: pulumi.Input<ARN>;
-    /**
-     * Subdirectory to perform actions as source or destination. Default `/`.
-     */
     readonly subdirectory?: pulumi.Input<string>;
-    /**
-     * Key-value pairs of resource tags to assign to the DataSync Location.
-     */
     readonly tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     readonly uri?: pulumi.Input<string>;
 }
@@ -114,20 +79,8 @@ export interface EfsLocationState {
  * The set of arguments for constructing a EfsLocation resource.
  */
 export interface EfsLocationArgs {
-    /**
-     * Configuration block containing EC2 configurations for connecting to the EFS File System.
-     */
     readonly ec2Config: pulumi.Input<{ securityGroupArns: pulumi.Input<pulumi.Input<string>[]>, subnetArn: pulumi.Input<string> }>;
-    /**
-     * Amazon Resource Name (ARN) of EFS File System.
-     */
     readonly efsFileSystemArn: pulumi.Input<ARN>;
-    /**
-     * Subdirectory to perform actions as source or destination. Default `/`.
-     */
     readonly subdirectory?: pulumi.Input<string>;
-    /**
-     * Key-value pairs of resource tags to assign to the DataSync Location.
-     */
     readonly tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }

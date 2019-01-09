@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a Step Function State Machine resource
- */
 export class StateMachine extends pulumi.CustomResource {
     /**
      * Get an existing StateMachine resource's state with the given name, ID, and optional extra
@@ -20,25 +17,10 @@ export class StateMachine extends pulumi.CustomResource {
         return new StateMachine(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The date the state machine was created.
-     */
     public /*out*/ readonly creationDate: pulumi.Output<string>;
-    /**
-     * The Amazon States Language definition of the state machine.
-     */
     public readonly definition: pulumi.Output<string>;
-    /**
-     * The name of the state machine.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * The Amazon Resource Name (ARN) of the IAM role to use for this state machine.
-     */
     public readonly roleArn: pulumi.Output<string>;
-    /**
-     * The current status of the state machine. Either "ACTIVE" or "DELETING".
-     */
     public /*out*/ readonly status: pulumi.Output<string>;
 
     /**
@@ -80,25 +62,10 @@ export class StateMachine extends pulumi.CustomResource {
  * Input properties used for looking up and filtering StateMachine resources.
  */
 export interface StateMachineState {
-    /**
-     * The date the state machine was created.
-     */
     readonly creationDate?: pulumi.Input<string>;
-    /**
-     * The Amazon States Language definition of the state machine.
-     */
     readonly definition?: pulumi.Input<string>;
-    /**
-     * The name of the state machine.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The Amazon Resource Name (ARN) of the IAM role to use for this state machine.
-     */
     readonly roleArn?: pulumi.Input<string>;
-    /**
-     * The current status of the state machine. Either "ACTIVE" or "DELETING".
-     */
     readonly status?: pulumi.Input<string>;
 }
 
@@ -106,16 +73,7 @@ export interface StateMachineState {
  * The set of arguments for constructing a StateMachine resource.
  */
 export interface StateMachineArgs {
-    /**
-     * The Amazon States Language definition of the state machine.
-     */
     readonly definition: pulumi.Input<string>;
-    /**
-     * The name of the state machine.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The Amazon Resource Name (ARN) of the IAM role to use for this state machine.
-     */
     readonly roleArn: pulumi.Input<string>;
 }

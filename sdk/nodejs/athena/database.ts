@@ -4,24 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an Athena database.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_s3_bucket_hoge = new aws.s3.Bucket("hoge", {
- *     bucket: "hoge",
- * });
- * const aws_athena_database_hoge = new aws.athena.Database("hoge", {
- *     bucket: aws_s3_bucket_hoge.bucket,
- *     name: "database_name",
- * });
- * ```
- */
 export class Database extends pulumi.CustomResource {
     /**
      * Get an existing Database resource's state with the given name, ID, and optional extra
@@ -35,21 +17,9 @@ export class Database extends pulumi.CustomResource {
         return new Database(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * Name of s3 bucket to save the results of the query execution.
-     */
     public readonly bucket: pulumi.Output<string>;
-    /**
-     * The encryption key block AWS Athena uses to decrypt the data in S3, such as an AWS Key Management Service (AWS KMS) key. An `encryption_configuration` block is documented below.
-     */
     public readonly encryptionConfiguration: pulumi.Output<{ encryptionOption: string, kmsKey?: string } | undefined>;
-    /**
-     * A boolean that indicates all tables should be deleted from the database so that the database can be destroyed without error. The tables are *not* recoverable.
-     */
     public readonly forceDestroy: pulumi.Output<boolean | undefined>;
-    /**
-     * Name of the database to create.
-     */
     public readonly name: pulumi.Output<string>;
 
     /**
@@ -86,21 +56,9 @@ export class Database extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Database resources.
  */
 export interface DatabaseState {
-    /**
-     * Name of s3 bucket to save the results of the query execution.
-     */
     readonly bucket?: pulumi.Input<string>;
-    /**
-     * The encryption key block AWS Athena uses to decrypt the data in S3, such as an AWS Key Management Service (AWS KMS) key. An `encryption_configuration` block is documented below.
-     */
     readonly encryptionConfiguration?: pulumi.Input<{ encryptionOption: pulumi.Input<string>, kmsKey?: pulumi.Input<string> }>;
-    /**
-     * A boolean that indicates all tables should be deleted from the database so that the database can be destroyed without error. The tables are *not* recoverable.
-     */
     readonly forceDestroy?: pulumi.Input<boolean>;
-    /**
-     * Name of the database to create.
-     */
     readonly name?: pulumi.Input<string>;
 }
 
@@ -108,20 +66,8 @@ export interface DatabaseState {
  * The set of arguments for constructing a Database resource.
  */
 export interface DatabaseArgs {
-    /**
-     * Name of s3 bucket to save the results of the query execution.
-     */
     readonly bucket: pulumi.Input<string>;
-    /**
-     * The encryption key block AWS Athena uses to decrypt the data in S3, such as an AWS Key Management Service (AWS KMS) key. An `encryption_configuration` block is documented below.
-     */
     readonly encryptionConfiguration?: pulumi.Input<{ encryptionOption: pulumi.Input<string>, kmsKey?: pulumi.Input<string> }>;
-    /**
-     * A boolean that indicates all tables should be deleted from the database so that the database can be destroyed without error. The tables are *not* recoverable.
-     */
     readonly forceDestroy?: pulumi.Input<boolean>;
-    /**
-     * Name of the database to create.
-     */
     readonly name?: pulumi.Input<string>;
 }

@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Associates a Direct Connect Gateway with a VGW.
- */
 export class GatewayAssociation extends pulumi.CustomResource {
     /**
      * Get an existing GatewayAssociation resource's state with the given name, ID, and optional extra
@@ -20,13 +17,7 @@ export class GatewayAssociation extends pulumi.CustomResource {
         return new GatewayAssociation(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ID of the Direct Connect Gateway.
-     */
     public readonly dxGatewayId: pulumi.Output<string>;
-    /**
-     * The ID of the VGW with which to associate the gateway.
-     */
     public readonly vpnGatewayId: pulumi.Output<string>;
 
     /**
@@ -62,13 +53,7 @@ export class GatewayAssociation extends pulumi.CustomResource {
  * Input properties used for looking up and filtering GatewayAssociation resources.
  */
 export interface GatewayAssociationState {
-    /**
-     * The ID of the Direct Connect Gateway.
-     */
     readonly dxGatewayId?: pulumi.Input<string>;
-    /**
-     * The ID of the VGW with which to associate the gateway.
-     */
     readonly vpnGatewayId?: pulumi.Input<string>;
 }
 
@@ -76,12 +61,6 @@ export interface GatewayAssociationState {
  * The set of arguments for constructing a GatewayAssociation resource.
  */
 export interface GatewayAssociationArgs {
-    /**
-     * The ID of the Direct Connect Gateway.
-     */
     readonly dxGatewayId: pulumi.Input<string>;
-    /**
-     * The ID of the VGW with which to associate the gateway.
-     */
     readonly vpnGatewayId: pulumi.Input<string>;
 }

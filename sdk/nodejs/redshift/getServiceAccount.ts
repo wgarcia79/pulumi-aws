@@ -4,47 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Use this data source to get the Account ID of the [AWS Redshift Service Account](http://docs.aws.amazon.com/redshift/latest/mgmt/db-auditing.html#db-auditing-enable-logging)
- * in a given region for the purpose of allowing Redshift to store audit data in S3.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_redshift_service_account_main = pulumi.output(aws.redshift.getServiceAccount({}));
- * const aws_s3_bucket_bucket = new aws.s3.Bucket("bucket", {
- *     bucket: "tf-redshift-logging-test-bucket",
- *     forceDestroy: true,
- *     policy: pulumi.all([aws_redshift_service_account_main, aws_redshift_service_account_main]).apply(([__arg0, __arg1]) => `{
- * 	"Version": "2008-10-17",
- * 	"Statement": [
- * 		{
- *         			"Sid": "Put bucket policy needed for audit logging",
- *         			"Effect": "Allow",
- *         			"Principal": {
- * 						"AWS": "${__arg0.arn}"
- *         			},
- *         			"Action": "s3:PutObject",
- *         			"Resource": "arn:aws:s3:::tf-redshift-logging-test-bucket/*"
- *         		},
- *         		{
- *         			"Sid": "Get bucket policy needed for audit logging ",
- *         			"Effect": "Allow",
- *         			"Principal": {
- * 						"AWS": "${__arg1.arn}"
- *         			},
- *         			"Action": "s3:GetBucketAcl",
- *         			"Resource": "arn:aws:s3:::tf-redshift-logging-test-bucket"
- *         		}
- * 	]
- * }
- * `),
- * });
- * ```
- */
 export function getServiceAccount(args?: GetServiceAccountArgs, opts?: pulumi.InvokeOptions): Promise<GetServiceAccountResult> {
     args = args || {};
     return pulumi.runtime.invoke("aws:redshift/getServiceAccount:getServiceAccount", {
@@ -56,10 +15,6 @@ export function getServiceAccount(args?: GetServiceAccountArgs, opts?: pulumi.In
  * A collection of arguments for invoking getServiceAccount.
  */
 export interface GetServiceAccountArgs {
-    /**
-     * Name of the region whose AWS Redshift account ID is desired.
-     * Defaults to the region from the AWS provider configuration.
-     */
     readonly region?: string;
 }
 
@@ -67,9 +22,6 @@ export interface GetServiceAccountArgs {
  * A collection of values returned by getServiceAccount.
  */
 export interface GetServiceAccountResult {
-    /**
-     * The ARN of the AWS Redshift service account in the selected region.
-     */
     readonly arn: string;
     /**
      * id is the provider-assigned unique ID for this managed resource.

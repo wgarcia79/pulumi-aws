@@ -4,28 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a WAF Regional Size Constraint Set Resource for use with Application Load Balancer.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_wafregional_size_constraint_set_size_constraint_set = new aws.wafregional.SizeConstraintSet("size_constraint_set", {
- *     name: "tfsize_constraints",
- *     sizeConstraints: [{
- *         comparisonOperator: "EQ",
- *         fieldToMatch: {
- *             type: "BODY",
- *         },
- *         size: Number.parseFloat("4096"),
- *         textTransformation: "NONE",
- *     }],
- * });
- * ```
- */
 export class SizeConstraintSet extends pulumi.CustomResource {
     /**
      * Get an existing SizeConstraintSet resource's state with the given name, ID, and optional extra
@@ -39,13 +17,7 @@ export class SizeConstraintSet extends pulumi.CustomResource {
         return new SizeConstraintSet(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The name or description of the Size Constraint Set.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * Specifies the parts of web requests that you want to inspect the size of.
-     */
     public readonly sizeConstraints: pulumi.Output<{ comparisonOperator: string, fieldToMatch: { data?: string, type: string }, size: number, textTransformation: string }[] | undefined>;
 
     /**
@@ -75,13 +47,7 @@ export class SizeConstraintSet extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SizeConstraintSet resources.
  */
 export interface SizeConstraintSetState {
-    /**
-     * The name or description of the Size Constraint Set.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Specifies the parts of web requests that you want to inspect the size of.
-     */
     readonly sizeConstraints?: pulumi.Input<pulumi.Input<{ comparisonOperator: pulumi.Input<string>, fieldToMatch: pulumi.Input<{ data?: pulumi.Input<string>, type: pulumi.Input<string> }>, size: pulumi.Input<number>, textTransformation: pulumi.Input<string> }>[]>;
 }
 
@@ -89,12 +55,6 @@ export interface SizeConstraintSetState {
  * The set of arguments for constructing a SizeConstraintSet resource.
  */
 export interface SizeConstraintSetArgs {
-    /**
-     * The name or description of the Size Constraint Set.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Specifies the parts of web requests that you want to inspect the size of.
-     */
     readonly sizeConstraints?: pulumi.Input<pulumi.Input<{ comparisonOperator: pulumi.Input<string>, fieldToMatch: pulumi.Input<{ data?: pulumi.Input<string>, type: pulumi.Input<string> }>, size: pulumi.Input<number>, textTransformation: pulumi.Input<string> }>[]>;
 }

@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Manages an EC2 Transit Gateway Route Table propagation.
- */
 export class RouteTablePropagation extends pulumi.CustomResource {
     /**
      * Get an existing RouteTablePropagation resource's state with the given name, ID, and optional extra
@@ -20,21 +17,9 @@ export class RouteTablePropagation extends pulumi.CustomResource {
         return new RouteTablePropagation(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * Identifier of the resource
-     */
     public /*out*/ readonly resourceId: pulumi.Output<string>;
-    /**
-     * Type of the resource
-     */
     public /*out*/ readonly resourceType: pulumi.Output<string>;
-    /**
-     * Identifier of EC2 Transit Gateway Attachment.
-     */
     public readonly transitGatewayAttachmentId: pulumi.Output<string>;
-    /**
-     * Identifier of EC2 Transit Gateway Route Table.
-     */
     public readonly transitGatewayRouteTableId: pulumi.Output<string>;
 
     /**
@@ -74,21 +59,9 @@ export class RouteTablePropagation extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RouteTablePropagation resources.
  */
 export interface RouteTablePropagationState {
-    /**
-     * Identifier of the resource
-     */
     readonly resourceId?: pulumi.Input<string>;
-    /**
-     * Type of the resource
-     */
     readonly resourceType?: pulumi.Input<string>;
-    /**
-     * Identifier of EC2 Transit Gateway Attachment.
-     */
     readonly transitGatewayAttachmentId?: pulumi.Input<string>;
-    /**
-     * Identifier of EC2 Transit Gateway Route Table.
-     */
     readonly transitGatewayRouteTableId?: pulumi.Input<string>;
 }
 
@@ -96,12 +69,6 @@ export interface RouteTablePropagationState {
  * The set of arguments for constructing a RouteTablePropagation resource.
  */
 export interface RouteTablePropagationArgs {
-    /**
-     * Identifier of EC2 Transit Gateway Attachment.
-     */
     readonly transitGatewayAttachmentId: pulumi.Input<string>;
-    /**
-     * Identifier of EC2 Transit Gateway Route Table.
-     */
     readonly transitGatewayRouteTableId: pulumi.Input<string>;
 }

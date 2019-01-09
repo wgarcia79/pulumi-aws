@@ -4,10 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a VPC/Subnet/ENI Flow Log to capture IP traffic for a specific network
- * interface, subnet, or VPC. Logs are sent to a CloudWatch Log Group or a S3 Bucket.
- */
 export class FlowLog extends pulumi.CustomResource {
     /**
      * Get an existing FlowLog resource's state with the given name, ID, and optional extra
@@ -21,37 +17,13 @@ export class FlowLog extends pulumi.CustomResource {
         return new FlowLog(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * Elastic Network Interface ID to attach to
-     */
     public readonly eniId: pulumi.Output<string | undefined>;
-    /**
-     * The ARN for the IAM role that's used to post flow logs to a CloudWatch Logs log group
-     */
     public readonly iamRoleArn: pulumi.Output<string | undefined>;
-    /**
-     * The ARN of the logging destination.
-     */
     public readonly logDestination: pulumi.Output<string>;
-    /**
-     * The type of the logging destination. Valid values: `cloud-watch-logs`, `s3`. Default: `cloud-watch-logs`.
-     */
     public readonly logDestinationType: pulumi.Output<string | undefined>;
-    /**
-     * *Deprecated:* Use `log_destination` instead. The name of the CloudWatch log group.
-     */
     public readonly logGroupName: pulumi.Output<string>;
-    /**
-     * Subnet ID to attach to
-     */
     public readonly subnetId: pulumi.Output<string | undefined>;
-    /**
-     * The type of traffic to capture. Valid values: `ACCEPT`,`REJECT`, `ALL`.
-     */
     public readonly trafficType: pulumi.Output<string>;
-    /**
-     * VPC ID to attach to
-     */
     public readonly vpcId: pulumi.Output<string | undefined>;
 
     /**
@@ -96,37 +68,13 @@ export class FlowLog extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FlowLog resources.
  */
 export interface FlowLogState {
-    /**
-     * Elastic Network Interface ID to attach to
-     */
     readonly eniId?: pulumi.Input<string>;
-    /**
-     * The ARN for the IAM role that's used to post flow logs to a CloudWatch Logs log group
-     */
     readonly iamRoleArn?: pulumi.Input<string>;
-    /**
-     * The ARN of the logging destination.
-     */
     readonly logDestination?: pulumi.Input<string>;
-    /**
-     * The type of the logging destination. Valid values: `cloud-watch-logs`, `s3`. Default: `cloud-watch-logs`.
-     */
     readonly logDestinationType?: pulumi.Input<string>;
-    /**
-     * *Deprecated:* Use `log_destination` instead. The name of the CloudWatch log group.
-     */
     readonly logGroupName?: pulumi.Input<string>;
-    /**
-     * Subnet ID to attach to
-     */
     readonly subnetId?: pulumi.Input<string>;
-    /**
-     * The type of traffic to capture. Valid values: `ACCEPT`,`REJECT`, `ALL`.
-     */
     readonly trafficType?: pulumi.Input<string>;
-    /**
-     * VPC ID to attach to
-     */
     readonly vpcId?: pulumi.Input<string>;
 }
 
@@ -134,36 +82,12 @@ export interface FlowLogState {
  * The set of arguments for constructing a FlowLog resource.
  */
 export interface FlowLogArgs {
-    /**
-     * Elastic Network Interface ID to attach to
-     */
     readonly eniId?: pulumi.Input<string>;
-    /**
-     * The ARN for the IAM role that's used to post flow logs to a CloudWatch Logs log group
-     */
     readonly iamRoleArn?: pulumi.Input<string>;
-    /**
-     * The ARN of the logging destination.
-     */
     readonly logDestination?: pulumi.Input<string>;
-    /**
-     * The type of the logging destination. Valid values: `cloud-watch-logs`, `s3`. Default: `cloud-watch-logs`.
-     */
     readonly logDestinationType?: pulumi.Input<string>;
-    /**
-     * *Deprecated:* Use `log_destination` instead. The name of the CloudWatch log group.
-     */
     readonly logGroupName?: pulumi.Input<string>;
-    /**
-     * Subnet ID to attach to
-     */
     readonly subnetId?: pulumi.Input<string>;
-    /**
-     * The type of traffic to capture. Valid values: `ACCEPT`,`REJECT`, `ALL`.
-     */
     readonly trafficType: pulumi.Input<string>;
-    /**
-     * VPC ID to attach to
-     */
     readonly vpcId?: pulumi.Input<string>;
 }

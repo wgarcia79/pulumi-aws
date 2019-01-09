@@ -21,7 +21,8 @@ class Zone(pulumi.CustomResource):
 
         __props__ = dict()
 
-        comment = 'Managed by Pulumi'
+        if not comment:
+            comment = 'Managed by Pulumi'
         __props__['comment'] = comment
 
         __props__['delegation_set_id'] = delegation_set_id

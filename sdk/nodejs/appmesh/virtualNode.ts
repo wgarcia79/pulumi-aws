@@ -4,35 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an AWS App Mesh virtual node resource.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_appmesh_virtual_node_serviceb1 = new aws.appmesh.VirtualNode("serviceb1", {
- *     meshName: "simpleapp",
- *     name: "serviceBv1",
- *     spec: {
- *         backends: ["servicea.simpleapp.local"],
- *         listener: {
- *             portMapping: {
- *                 port: 8080,
- *                 protocol: "http",
- *             },
- *         },
- *         serviceDiscovery: {
- *             dns: {
- *                 serviceName: "serviceb.simpleapp.local",
- *             },
- *         },
- *     },
- * });
- * ```
- */
 export class VirtualNode extends pulumi.CustomResource {
     /**
      * Get an existing VirtualNode resource's state with the given name, ID, and optional extra
@@ -46,29 +17,11 @@ export class VirtualNode extends pulumi.CustomResource {
         return new VirtualNode(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ARN of the virtual node.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * The creation date of the virtual node.
-     */
     public /*out*/ readonly createdDate: pulumi.Output<string>;
-    /**
-     * The last update date of the virtual node.
-     */
     public /*out*/ readonly lastUpdatedDate: pulumi.Output<string>;
-    /**
-     * The name of the service mesh in which to create the virtual node.
-     */
     public readonly meshName: pulumi.Output<string>;
-    /**
-     * The name to use for the virtual node.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * The virtual node specification to apply.
-     */
     public readonly spec: pulumi.Output<{ backends?: string[], listener?: { portMapping: { port: number, protocol: string } }, serviceDiscovery?: { dns: { serviceName: string } } }>;
 
     /**
@@ -112,29 +65,11 @@ export class VirtualNode extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VirtualNode resources.
  */
 export interface VirtualNodeState {
-    /**
-     * The ARN of the virtual node.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * The creation date of the virtual node.
-     */
     readonly createdDate?: pulumi.Input<string>;
-    /**
-     * The last update date of the virtual node.
-     */
     readonly lastUpdatedDate?: pulumi.Input<string>;
-    /**
-     * The name of the service mesh in which to create the virtual node.
-     */
     readonly meshName?: pulumi.Input<string>;
-    /**
-     * The name to use for the virtual node.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The virtual node specification to apply.
-     */
     readonly spec?: pulumi.Input<{ backends?: pulumi.Input<pulumi.Input<string>[]>, listener?: pulumi.Input<{ portMapping: pulumi.Input<{ port: pulumi.Input<number>, protocol: pulumi.Input<string> }> }>, serviceDiscovery?: pulumi.Input<{ dns: pulumi.Input<{ serviceName: pulumi.Input<string> }> }> }>;
 }
 
@@ -142,16 +77,7 @@ export interface VirtualNodeState {
  * The set of arguments for constructing a VirtualNode resource.
  */
 export interface VirtualNodeArgs {
-    /**
-     * The name of the service mesh in which to create the virtual node.
-     */
     readonly meshName: pulumi.Input<string>;
-    /**
-     * The name to use for the virtual node.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The virtual node specification to apply.
-     */
     readonly spec: pulumi.Input<{ backends?: pulumi.Input<pulumi.Input<string>[]>, listener?: pulumi.Input<{ portMapping: pulumi.Input<{ port: pulumi.Input<number>, protocol: pulumi.Input<string> }> }>, serviceDiscovery?: pulumi.Input<{ dns: pulumi.Input<{ serviceName: pulumi.Input<string> }> }> }>;
 }

@@ -4,11 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a Load Balancer Listener Rule resource.
- * 
- * > **Note:** `aws_alb_listener_rule` is known as `aws_lb_listener_rule`. The functionality is identical.
- */
 export class ListenerRule extends pulumi.CustomResource {
     /**
      * Get an existing ListenerRule resource's state with the given name, ID, and optional extra
@@ -22,25 +17,10 @@ export class ListenerRule extends pulumi.CustomResource {
         return new ListenerRule(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * An Action block. Action blocks are documented below.
-     */
     public readonly actions: pulumi.Output<{ authenticateCognito?: { authenticationRequestExtraParams?: {[key: string]: any}, onUnauthenticatedRequest: string, scope: string, sessionCookieName: string, sessionTimeout: number, userPoolArn: string, userPoolClientId: string, userPoolDomain: string }, authenticateOidc?: { authenticationRequestExtraParams?: {[key: string]: any}, authorizationEndpoint: string, clientId: string, clientSecret: string, issuer: string, onUnauthenticatedRequest: string, scope: string, sessionCookieName: string, sessionTimeout: number, tokenEndpoint: string, userInfoEndpoint: string }, fixedResponse?: { contentType: string, messageBody?: string, statusCode: string }, order: number, redirect?: { host?: string, path?: string, port?: string, protocol?: string, query?: string, statusCode: string }, targetGroupArn?: string, type: string }[]>;
-    /**
-     * The ARN of the rule (matches `id`)
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * A Condition block. Condition blocks are documented below.
-     */
     public readonly conditions: pulumi.Output<{ field?: string, values?: string }[]>;
-    /**
-     * The ARN of the listener to which to attach the rule.
-     */
     public readonly listenerArn: pulumi.Output<string>;
-    /**
-     * The priority for the rule between `1` and `50000`. Leaving it unset will automatically set the rule with next available priority after currently existing highest rule. A listener can't have multiple rules with the same priority.
-     */
     public readonly priority: pulumi.Output<number>;
 
     /**
@@ -85,25 +65,10 @@ export class ListenerRule extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ListenerRule resources.
  */
 export interface ListenerRuleState {
-    /**
-     * An Action block. Action blocks are documented below.
-     */
     readonly actions?: pulumi.Input<pulumi.Input<{ authenticateCognito?: pulumi.Input<{ authenticationRequestExtraParams?: pulumi.Input<{[key: string]: any}>, onUnauthenticatedRequest?: pulumi.Input<string>, scope?: pulumi.Input<string>, sessionCookieName?: pulumi.Input<string>, sessionTimeout?: pulumi.Input<number>, userPoolArn: pulumi.Input<string>, userPoolClientId: pulumi.Input<string>, userPoolDomain: pulumi.Input<string> }>, authenticateOidc?: pulumi.Input<{ authenticationRequestExtraParams?: pulumi.Input<{[key: string]: any}>, authorizationEndpoint: pulumi.Input<string>, clientId: pulumi.Input<string>, clientSecret: pulumi.Input<string>, issuer: pulumi.Input<string>, onUnauthenticatedRequest?: pulumi.Input<string>, scope?: pulumi.Input<string>, sessionCookieName?: pulumi.Input<string>, sessionTimeout?: pulumi.Input<number>, tokenEndpoint: pulumi.Input<string>, userInfoEndpoint: pulumi.Input<string> }>, fixedResponse?: pulumi.Input<{ contentType: pulumi.Input<string>, messageBody?: pulumi.Input<string>, statusCode?: pulumi.Input<string> }>, order?: pulumi.Input<number>, redirect?: pulumi.Input<{ host?: pulumi.Input<string>, path?: pulumi.Input<string>, port?: pulumi.Input<string>, protocol?: pulumi.Input<string>, query?: pulumi.Input<string>, statusCode: pulumi.Input<string> }>, targetGroupArn?: pulumi.Input<string>, type: pulumi.Input<string> }>[]>;
-    /**
-     * The ARN of the rule (matches `id`)
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * A Condition block. Condition blocks are documented below.
-     */
     readonly conditions?: pulumi.Input<pulumi.Input<{ field?: pulumi.Input<string>, values?: pulumi.Input<string> }>[]>;
-    /**
-     * The ARN of the listener to which to attach the rule.
-     */
     readonly listenerArn?: pulumi.Input<string>;
-    /**
-     * The priority for the rule between `1` and `50000`. Leaving it unset will automatically set the rule with next available priority after currently existing highest rule. A listener can't have multiple rules with the same priority.
-     */
     readonly priority?: pulumi.Input<number>;
 }
 
@@ -111,20 +76,8 @@ export interface ListenerRuleState {
  * The set of arguments for constructing a ListenerRule resource.
  */
 export interface ListenerRuleArgs {
-    /**
-     * An Action block. Action blocks are documented below.
-     */
     readonly actions: pulumi.Input<pulumi.Input<{ authenticateCognito?: pulumi.Input<{ authenticationRequestExtraParams?: pulumi.Input<{[key: string]: any}>, onUnauthenticatedRequest?: pulumi.Input<string>, scope?: pulumi.Input<string>, sessionCookieName?: pulumi.Input<string>, sessionTimeout?: pulumi.Input<number>, userPoolArn: pulumi.Input<string>, userPoolClientId: pulumi.Input<string>, userPoolDomain: pulumi.Input<string> }>, authenticateOidc?: pulumi.Input<{ authenticationRequestExtraParams?: pulumi.Input<{[key: string]: any}>, authorizationEndpoint: pulumi.Input<string>, clientId: pulumi.Input<string>, clientSecret: pulumi.Input<string>, issuer: pulumi.Input<string>, onUnauthenticatedRequest?: pulumi.Input<string>, scope?: pulumi.Input<string>, sessionCookieName?: pulumi.Input<string>, sessionTimeout?: pulumi.Input<number>, tokenEndpoint: pulumi.Input<string>, userInfoEndpoint: pulumi.Input<string> }>, fixedResponse?: pulumi.Input<{ contentType: pulumi.Input<string>, messageBody?: pulumi.Input<string>, statusCode?: pulumi.Input<string> }>, order?: pulumi.Input<number>, redirect?: pulumi.Input<{ host?: pulumi.Input<string>, path?: pulumi.Input<string>, port?: pulumi.Input<string>, protocol?: pulumi.Input<string>, query?: pulumi.Input<string>, statusCode: pulumi.Input<string> }>, targetGroupArn?: pulumi.Input<string>, type: pulumi.Input<string> }>[]>;
-    /**
-     * A Condition block. Condition blocks are documented below.
-     */
     readonly conditions: pulumi.Input<pulumi.Input<{ field?: pulumi.Input<string>, values?: pulumi.Input<string> }>[]>;
-    /**
-     * The ARN of the listener to which to attach the rule.
-     */
     readonly listenerArn: pulumi.Input<string>;
-    /**
-     * The priority for the rule between `1` and `50000`. Leaving it unset will automatically set the rule with next available priority after currently existing highest rule. A listener can't have multiple rules with the same priority.
-     */
     readonly priority?: pulumi.Input<number>;
 }

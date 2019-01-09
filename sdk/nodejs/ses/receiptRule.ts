@@ -4,31 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an SES receipt rule resource
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_ses_receipt_rule_store = new aws.ses.ReceiptRule("store", {
- *     addHeaderActions: [{
- *         headerName: "Custom-Header",
- *         headerValue: "Added by SES",
- *     }],
- *     enabled: true,
- *     name: "store",
- *     recipients: ["karen@example.com"],
- *     ruleSetName: "default-rule-set",
- *     s3Actions: [{
- *         bucketName: "emails",
- *     }],
- *     scanEnabled: true,
- * });
- * ```
- */
 export class ReceiptRule extends pulumi.CustomResource {
     /**
      * Get an existing ReceiptRule resource's state with the given name, ID, and optional extra
@@ -42,61 +17,19 @@ export class ReceiptRule extends pulumi.CustomResource {
         return new ReceiptRule(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * A list of Add Header Action blocks. Documented below.
-     */
     public readonly addHeaderActions: pulumi.Output<{ headerName: string, headerValue: string, position: number }[] | undefined>;
-    /**
-     * The name of the rule to place this rule after
-     */
     public readonly after: pulumi.Output<string | undefined>;
-    /**
-     * A list of Bounce Action blocks. Documented below.
-     */
     public readonly bounceActions: pulumi.Output<{ message: string, position: number, sender: string, smtpReplyCode: string, statusCode?: string, topicArn?: string }[] | undefined>;
-    /**
-     * If true, the rule will be enabled
-     */
     public readonly enabled: pulumi.Output<boolean>;
-    /**
-     * A list of Lambda Action blocks. Documented below.
-     */
     public readonly lambdaActions: pulumi.Output<{ functionArn: string, invocationType: string, position: number, topicArn?: string }[] | undefined>;
-    /**
-     * The name of the rule
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * A list of email addresses
-     */
     public readonly recipients: pulumi.Output<string[] | undefined>;
-    /**
-     * The name of the rule set
-     */
     public readonly ruleSetName: pulumi.Output<string>;
-    /**
-     * A list of S3 Action blocks. Documented below.
-     */
     public readonly s3Actions: pulumi.Output<{ bucketName: string, kmsKeyArn?: string, objectKeyPrefix?: string, position: number, topicArn?: string }[] | undefined>;
-    /**
-     * If true, incoming emails will be scanned for spam and viruses
-     */
     public readonly scanEnabled: pulumi.Output<boolean>;
-    /**
-     * A list of SNS Action blocks. Documented below.
-     */
     public readonly snsActions: pulumi.Output<{ position: number, topicArn: string }[] | undefined>;
-    /**
-     * A list of Stop Action blocks. Documented below.
-     */
     public readonly stopActions: pulumi.Output<{ position: number, scope: string, topicArn?: string }[] | undefined>;
-    /**
-     * Require or Optional
-     */
     public readonly tlsPolicy: pulumi.Output<string>;
-    /**
-     * A list of WorkMail Action blocks. Documented below.
-     */
     public readonly workmailActions: pulumi.Output<{ organizationArn: string, position: number, topicArn?: string }[] | undefined>;
 
     /**
@@ -153,61 +86,19 @@ export class ReceiptRule extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ReceiptRule resources.
  */
 export interface ReceiptRuleState {
-    /**
-     * A list of Add Header Action blocks. Documented below.
-     */
     readonly addHeaderActions?: pulumi.Input<pulumi.Input<{ headerName: pulumi.Input<string>, headerValue: pulumi.Input<string>, position: pulumi.Input<number> }>[]>;
-    /**
-     * The name of the rule to place this rule after
-     */
     readonly after?: pulumi.Input<string>;
-    /**
-     * A list of Bounce Action blocks. Documented below.
-     */
     readonly bounceActions?: pulumi.Input<pulumi.Input<{ message: pulumi.Input<string>, position: pulumi.Input<number>, sender: pulumi.Input<string>, smtpReplyCode: pulumi.Input<string>, statusCode?: pulumi.Input<string>, topicArn?: pulumi.Input<string> }>[]>;
-    /**
-     * If true, the rule will be enabled
-     */
     readonly enabled?: pulumi.Input<boolean>;
-    /**
-     * A list of Lambda Action blocks. Documented below.
-     */
     readonly lambdaActions?: pulumi.Input<pulumi.Input<{ functionArn: pulumi.Input<string>, invocationType?: pulumi.Input<string>, position: pulumi.Input<number>, topicArn?: pulumi.Input<string> }>[]>;
-    /**
-     * The name of the rule
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * A list of email addresses
-     */
     readonly recipients?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The name of the rule set
-     */
     readonly ruleSetName?: pulumi.Input<string>;
-    /**
-     * A list of S3 Action blocks. Documented below.
-     */
     readonly s3Actions?: pulumi.Input<pulumi.Input<{ bucketName: pulumi.Input<string>, kmsKeyArn?: pulumi.Input<string>, objectKeyPrefix?: pulumi.Input<string>, position: pulumi.Input<number>, topicArn?: pulumi.Input<string> }>[]>;
-    /**
-     * If true, incoming emails will be scanned for spam and viruses
-     */
     readonly scanEnabled?: pulumi.Input<boolean>;
-    /**
-     * A list of SNS Action blocks. Documented below.
-     */
     readonly snsActions?: pulumi.Input<pulumi.Input<{ position: pulumi.Input<number>, topicArn: pulumi.Input<string> }>[]>;
-    /**
-     * A list of Stop Action blocks. Documented below.
-     */
     readonly stopActions?: pulumi.Input<pulumi.Input<{ position: pulumi.Input<number>, scope: pulumi.Input<string>, topicArn?: pulumi.Input<string> }>[]>;
-    /**
-     * Require or Optional
-     */
     readonly tlsPolicy?: pulumi.Input<string>;
-    /**
-     * A list of WorkMail Action blocks. Documented below.
-     */
     readonly workmailActions?: pulumi.Input<pulumi.Input<{ organizationArn: pulumi.Input<string>, position: pulumi.Input<number>, topicArn?: pulumi.Input<string> }>[]>;
 }
 
@@ -215,60 +106,18 @@ export interface ReceiptRuleState {
  * The set of arguments for constructing a ReceiptRule resource.
  */
 export interface ReceiptRuleArgs {
-    /**
-     * A list of Add Header Action blocks. Documented below.
-     */
     readonly addHeaderActions?: pulumi.Input<pulumi.Input<{ headerName: pulumi.Input<string>, headerValue: pulumi.Input<string>, position: pulumi.Input<number> }>[]>;
-    /**
-     * The name of the rule to place this rule after
-     */
     readonly after?: pulumi.Input<string>;
-    /**
-     * A list of Bounce Action blocks. Documented below.
-     */
     readonly bounceActions?: pulumi.Input<pulumi.Input<{ message: pulumi.Input<string>, position: pulumi.Input<number>, sender: pulumi.Input<string>, smtpReplyCode: pulumi.Input<string>, statusCode?: pulumi.Input<string>, topicArn?: pulumi.Input<string> }>[]>;
-    /**
-     * If true, the rule will be enabled
-     */
     readonly enabled?: pulumi.Input<boolean>;
-    /**
-     * A list of Lambda Action blocks. Documented below.
-     */
     readonly lambdaActions?: pulumi.Input<pulumi.Input<{ functionArn: pulumi.Input<string>, invocationType?: pulumi.Input<string>, position: pulumi.Input<number>, topicArn?: pulumi.Input<string> }>[]>;
-    /**
-     * The name of the rule
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * A list of email addresses
-     */
     readonly recipients?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The name of the rule set
-     */
     readonly ruleSetName: pulumi.Input<string>;
-    /**
-     * A list of S3 Action blocks. Documented below.
-     */
     readonly s3Actions?: pulumi.Input<pulumi.Input<{ bucketName: pulumi.Input<string>, kmsKeyArn?: pulumi.Input<string>, objectKeyPrefix?: pulumi.Input<string>, position: pulumi.Input<number>, topicArn?: pulumi.Input<string> }>[]>;
-    /**
-     * If true, incoming emails will be scanned for spam and viruses
-     */
     readonly scanEnabled?: pulumi.Input<boolean>;
-    /**
-     * A list of SNS Action blocks. Documented below.
-     */
     readonly snsActions?: pulumi.Input<pulumi.Input<{ position: pulumi.Input<number>, topicArn: pulumi.Input<string> }>[]>;
-    /**
-     * A list of Stop Action blocks. Documented below.
-     */
     readonly stopActions?: pulumi.Input<pulumi.Input<{ position: pulumi.Input<number>, scope: pulumi.Input<string>, topicArn?: pulumi.Input<string> }>[]>;
-    /**
-     * Require or Optional
-     */
     readonly tlsPolicy?: pulumi.Input<string>;
-    /**
-     * A list of WorkMail Action blocks. Documented below.
-     */
     readonly workmailActions?: pulumi.Input<pulumi.Input<{ organizationArn: pulumi.Input<string>, position: pulumi.Input<number>, topicArn?: pulumi.Input<string> }>[]>;
 }

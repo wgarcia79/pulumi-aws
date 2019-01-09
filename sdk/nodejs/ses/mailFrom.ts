@@ -4,11 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an SES domain MAIL FROM resource.
- * 
- * > **NOTE:** For the MAIL FROM domain to be fully usable, this resource should be paired with the [aws_ses_domain_identity resource](https://www.terraform.io/docs/providers/aws/r/ses_domain_identity.html). To validate the MAIL FROM domain, a DNS MX record is required. To pass SPF checks, a DNS TXT record may also be required. See the [Amazon SES MAIL FROM documentation](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from-set.html) for more information.
- */
 export class MailFrom extends pulumi.CustomResource {
     /**
      * Get an existing MailFrom resource's state with the given name, ID, and optional extra
@@ -22,17 +17,8 @@ export class MailFrom extends pulumi.CustomResource {
         return new MailFrom(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The action that you want Amazon SES to take if it cannot successfully read the required MX record when you send an email. Defaults to `UseDefaultValue`. See the [SES API documentation](https://docs.aws.amazon.com/ses/latest/APIReference/API_SetIdentityMailFromDomain.html) for more information.
-     */
     public readonly behaviorOnMxFailure: pulumi.Output<string | undefined>;
-    /**
-     * Verified domain name to generate DKIM tokens for.
-     */
     public readonly domain: pulumi.Output<string>;
-    /**
-     * Subdomain (of above domain) which is to be used as MAIL FROM address (Required for DMARC validation)
-     */
     public readonly mailFromDomain: pulumi.Output<string>;
 
     /**
@@ -70,17 +56,8 @@ export class MailFrom extends pulumi.CustomResource {
  * Input properties used for looking up and filtering MailFrom resources.
  */
 export interface MailFromState {
-    /**
-     * The action that you want Amazon SES to take if it cannot successfully read the required MX record when you send an email. Defaults to `UseDefaultValue`. See the [SES API documentation](https://docs.aws.amazon.com/ses/latest/APIReference/API_SetIdentityMailFromDomain.html) for more information.
-     */
     readonly behaviorOnMxFailure?: pulumi.Input<string>;
-    /**
-     * Verified domain name to generate DKIM tokens for.
-     */
     readonly domain?: pulumi.Input<string>;
-    /**
-     * Subdomain (of above domain) which is to be used as MAIL FROM address (Required for DMARC validation)
-     */
     readonly mailFromDomain?: pulumi.Input<string>;
 }
 
@@ -88,16 +65,7 @@ export interface MailFromState {
  * The set of arguments for constructing a MailFrom resource.
  */
 export interface MailFromArgs {
-    /**
-     * The action that you want Amazon SES to take if it cannot successfully read the required MX record when you send an email. Defaults to `UseDefaultValue`. See the [SES API documentation](https://docs.aws.amazon.com/ses/latest/APIReference/API_SetIdentityMailFromDomain.html) for more information.
-     */
     readonly behaviorOnMxFailure?: pulumi.Input<string>;
-    /**
-     * Verified domain name to generate DKIM tokens for.
-     */
     readonly domain: pulumi.Input<string>;
-    /**
-     * Subdomain (of above domain) which is to be used as MAIL FROM address (Required for DMARC validation)
-     */
     readonly mailFromDomain: pulumi.Input<string>;
 }

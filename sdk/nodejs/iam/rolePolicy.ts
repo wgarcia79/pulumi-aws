@@ -7,26 +7,6 @@ import * as utilities from "../utilities";
 import {PolicyDocument} from "./documents";
 import {Role} from "./role";
 
-/**
- * Provides an IAM role policy.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_iam_role_test_role = new aws.iam.Role("test_role", {
- *     assumeRolePolicy: "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Action\": \"sts:AssumeRole\",\n      \"Principal\": {\n        \"Service\": \"ec2.amazonaws.com\"\n      },\n      \"Effect\": \"Allow\",\n      \"Sid\": \"\"\n    }\n  ]\n}\n",
- *     name: "test_role",
- * });
- * const aws_iam_role_policy_test_policy = new aws.iam.RolePolicy("test_policy", {
- *     name: "test_policy",
- *     policy: "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Action\": [\n        \"ec2:Describe*\"\n      ],\n      \"Effect\": \"Allow\",\n      \"Resource\": \"*\"\n    }\n  ]\n}\n",
- *     role: aws_iam_role_test_role.id,
- * });
- * ```
- */
 export class RolePolicy extends pulumi.CustomResource {
     /**
      * Get an existing RolePolicy resource's state with the given name, ID, and optional extra
@@ -40,23 +20,9 @@ export class RolePolicy extends pulumi.CustomResource {
         return new RolePolicy(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The name of the role policy. If omitted, Terraform will
-     * assign a random, unique name.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * Creates a unique name beginning with the specified
-     * prefix. Conflicts with `name`.
-     */
     public readonly namePrefix: pulumi.Output<string | undefined>;
-    /**
-     * The policy document. This is a JSON formatted string. For more information about building IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](https://www.terraform.io/docs/providers/aws/guides/iam-policy-documents.html)
-     */
     public readonly policy: pulumi.Output<string>;
-    /**
-     * The IAM role to attach to the policy.
-     */
     public readonly role: pulumi.Output<string>;
 
     /**
@@ -96,23 +62,9 @@ export class RolePolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RolePolicy resources.
  */
 export interface RolePolicyState {
-    /**
-     * The name of the role policy. If omitted, Terraform will
-     * assign a random, unique name.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Creates a unique name beginning with the specified
-     * prefix. Conflicts with `name`.
-     */
     readonly namePrefix?: pulumi.Input<string>;
-    /**
-     * The policy document. This is a JSON formatted string. For more information about building IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](https://www.terraform.io/docs/providers/aws/guides/iam-policy-documents.html)
-     */
     readonly policy?: pulumi.Input<string | PolicyDocument>;
-    /**
-     * The IAM role to attach to the policy.
-     */
     readonly role?: pulumi.Input<string | Role>;
 }
 
@@ -120,22 +72,8 @@ export interface RolePolicyState {
  * The set of arguments for constructing a RolePolicy resource.
  */
 export interface RolePolicyArgs {
-    /**
-     * The name of the role policy. If omitted, Terraform will
-     * assign a random, unique name.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Creates a unique name beginning with the specified
-     * prefix. Conflicts with `name`.
-     */
     readonly namePrefix?: pulumi.Input<string>;
-    /**
-     * The policy document. This is a JSON formatted string. For more information about building IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](https://www.terraform.io/docs/providers/aws/guides/iam-policy-documents.html)
-     */
     readonly policy: pulumi.Input<string | PolicyDocument>;
-    /**
-     * The IAM role to attach to the policy.
-     */
     readonly role: pulumi.Input<string | Role>;
 }

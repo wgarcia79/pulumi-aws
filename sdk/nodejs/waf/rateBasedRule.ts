@@ -4,35 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a WAF Rate Based Rule Resource
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_waf_ipset_ipset = new aws.waf.IpSet("ipset", {
- *     ipSetDescriptors: [{
- *         type: "IPV4",
- *         value: "192.0.7.0/24",
- *     }],
- *     name: "tfIPSet",
- * });
- * const aws_waf_rate_based_rule_wafrule = new aws.waf.RateBasedRule("wafrule", {
- *     metricName: "tfWAFRule",
- *     name: "tfWAFRule",
- *     predicates: [{
- *         dataId: aws_waf_ipset_ipset.id,
- *         negated: false,
- *         type: "IPMatch",
- *     }],
- *     rateKey: "IP",
- *     rateLimit: 2000,
- * }, {dependsOn: [aws_waf_ipset_ipset]});
- * ```
- */
 export class RateBasedRule extends pulumi.CustomResource {
     /**
      * Get an existing RateBasedRule resource's state with the given name, ID, and optional extra
@@ -46,25 +17,10 @@ export class RateBasedRule extends pulumi.CustomResource {
         return new RateBasedRule(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The name or description for the Amazon CloudWatch metric of this rule.
-     */
     public readonly metricName: pulumi.Output<string>;
-    /**
-     * The name or description of the rule.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * One of ByteMatchSet, IPSet, SizeConstraintSet, SqlInjectionMatchSet, or XssMatchSet objects to include in a rule.
-     */
     public readonly predicates: pulumi.Output<{ dataId: string, negated: boolean, type: string }[] | undefined>;
-    /**
-     * Valid value is IP.
-     */
     public readonly rateKey: pulumi.Output<string>;
-    /**
-     * The maximum number of requests, which have an identical value in the field specified by the RateKey, allowed in a five-minute period. Minimum value is 2000.
-     */
     public readonly rateLimit: pulumi.Output<number>;
 
     /**
@@ -109,25 +65,10 @@ export class RateBasedRule extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RateBasedRule resources.
  */
 export interface RateBasedRuleState {
-    /**
-     * The name or description for the Amazon CloudWatch metric of this rule.
-     */
     readonly metricName?: pulumi.Input<string>;
-    /**
-     * The name or description of the rule.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * One of ByteMatchSet, IPSet, SizeConstraintSet, SqlInjectionMatchSet, or XssMatchSet objects to include in a rule.
-     */
     readonly predicates?: pulumi.Input<pulumi.Input<{ dataId: pulumi.Input<string>, negated: pulumi.Input<boolean>, type: pulumi.Input<string> }>[]>;
-    /**
-     * Valid value is IP.
-     */
     readonly rateKey?: pulumi.Input<string>;
-    /**
-     * The maximum number of requests, which have an identical value in the field specified by the RateKey, allowed in a five-minute period. Minimum value is 2000.
-     */
     readonly rateLimit?: pulumi.Input<number>;
 }
 
@@ -135,24 +76,9 @@ export interface RateBasedRuleState {
  * The set of arguments for constructing a RateBasedRule resource.
  */
 export interface RateBasedRuleArgs {
-    /**
-     * The name or description for the Amazon CloudWatch metric of this rule.
-     */
     readonly metricName: pulumi.Input<string>;
-    /**
-     * The name or description of the rule.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * One of ByteMatchSet, IPSet, SizeConstraintSet, SqlInjectionMatchSet, or XssMatchSet objects to include in a rule.
-     */
     readonly predicates?: pulumi.Input<pulumi.Input<{ dataId: pulumi.Input<string>, negated: pulumi.Input<boolean>, type: pulumi.Input<string> }>[]>;
-    /**
-     * Valid value is IP.
-     */
     readonly rateKey: pulumi.Input<string>;
-    /**
-     * The maximum number of requests, which have an identical value in the field specified by the RateKey, allowed in a five-minute period. Minimum value is 2000.
-     */
     readonly rateLimit: pulumi.Input<number>;
 }

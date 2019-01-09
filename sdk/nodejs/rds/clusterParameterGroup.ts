@@ -4,34 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an RDS DB cluster parameter group resource. Documentation of the available parameters for various Aurora engines can be found at:
- * * [Aurora MySQL Parameters](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/AuroraMySQL.Reference.html)
- * * [Aurora PostgreSQL Parameters](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/AuroraPostgreSQL.Reference.html)
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_rds_cluster_parameter_group_default = new aws.rds.ClusterParameterGroup("default", {
- *     description: "RDS default cluster parameter group",
- *     family: "aurora5.6",
- *     name: "rds-cluster-pg",
- *     parameters: [
- *         {
- *             name: "character_set_server",
- *             value: "utf8",
- *         },
- *         {
- *             name: "character_set_client",
- *             value: "utf8",
- *         },
- *     ],
- * });
- * ```
- */
 export class ClusterParameterGroup extends pulumi.CustomResource {
     /**
      * Get an existing ClusterParameterGroup resource's state with the given name, ID, and optional extra
@@ -45,33 +17,12 @@ export class ClusterParameterGroup extends pulumi.CustomResource {
         return new ClusterParameterGroup(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ARN of the db cluster parameter group.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * The description of the DB cluster parameter group. Defaults to "Managed by Terraform".
-     */
     public readonly description: pulumi.Output<string>;
-    /**
-     * The family of the DB cluster parameter group.
-     */
     public readonly family: pulumi.Output<string>;
-    /**
-     * The name of the DB parameter.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-     */
     public readonly namePrefix: pulumi.Output<string>;
-    /**
-     * A list of DB parameters to apply. Note that parameters may differ from a family to an other. Full list of all parameters can be discovered via [`aws rds describe-db-cluster-parameters`](https://docs.aws.amazon.com/cli/latest/reference/rds/describe-db-cluster-parameters.html) after initial creation of the group.
-     */
     public readonly parameters: pulumi.Output<{ applyMethod?: string, name: string, value: string }[] | undefined>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     public readonly tags: pulumi.Output<{[key: string]: any} | undefined>;
 
     /**
@@ -114,33 +65,12 @@ export class ClusterParameterGroup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ClusterParameterGroup resources.
  */
 export interface ClusterParameterGroupState {
-    /**
-     * The ARN of the db cluster parameter group.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * The description of the DB cluster parameter group. Defaults to "Managed by Terraform".
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The family of the DB cluster parameter group.
-     */
     readonly family?: pulumi.Input<string>;
-    /**
-     * The name of the DB parameter.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-     */
     readonly namePrefix?: pulumi.Input<string>;
-    /**
-     * A list of DB parameters to apply. Note that parameters may differ from a family to an other. Full list of all parameters can be discovered via [`aws rds describe-db-cluster-parameters`](https://docs.aws.amazon.com/cli/latest/reference/rds/describe-db-cluster-parameters.html) after initial creation of the group.
-     */
     readonly parameters?: pulumi.Input<pulumi.Input<{ applyMethod?: pulumi.Input<string>, name: pulumi.Input<string>, value: pulumi.Input<string> }>[]>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
 }
 
@@ -148,28 +78,10 @@ export interface ClusterParameterGroupState {
  * The set of arguments for constructing a ClusterParameterGroup resource.
  */
 export interface ClusterParameterGroupArgs {
-    /**
-     * The description of the DB cluster parameter group. Defaults to "Managed by Terraform".
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The family of the DB cluster parameter group.
-     */
     readonly family: pulumi.Input<string>;
-    /**
-     * The name of the DB parameter.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-     */
     readonly namePrefix?: pulumi.Input<string>;
-    /**
-     * A list of DB parameters to apply. Note that parameters may differ from a family to an other. Full list of all parameters can be discovered via [`aws rds describe-db-cluster-parameters`](https://docs.aws.amazon.com/cli/latest/reference/rds/describe-db-cluster-parameters.html) after initial creation of the group.
-     */
     readonly parameters?: pulumi.Input<pulumi.Input<{ applyMethod?: pulumi.Input<string>, name: pulumi.Input<string>, value: pulumi.Input<string> }>[]>;
-    /**
-     * A mapping of tags to assign to the resource.
-     */
     readonly tags?: pulumi.Input<{[key: string]: any}>;
 }

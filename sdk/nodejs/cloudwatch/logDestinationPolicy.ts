@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a CloudWatch Logs destination policy resource.
- */
 export class LogDestinationPolicy extends pulumi.CustomResource {
     /**
      * Get an existing LogDestinationPolicy resource's state with the given name, ID, and optional extra
@@ -20,13 +17,7 @@ export class LogDestinationPolicy extends pulumi.CustomResource {
         return new LogDestinationPolicy(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The policy document. This is a JSON formatted string.
-     */
     public readonly accessPolicy: pulumi.Output<string>;
-    /**
-     * A name for the subscription filter
-     */
     public readonly destinationName: pulumi.Output<string>;
 
     /**
@@ -62,13 +53,7 @@ export class LogDestinationPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogDestinationPolicy resources.
  */
 export interface LogDestinationPolicyState {
-    /**
-     * The policy document. This is a JSON formatted string.
-     */
     readonly accessPolicy?: pulumi.Input<string>;
-    /**
-     * A name for the subscription filter
-     */
     readonly destinationName?: pulumi.Input<string>;
 }
 
@@ -76,12 +61,6 @@ export interface LogDestinationPolicyState {
  * The set of arguments for constructing a LogDestinationPolicy resource.
  */
 export interface LogDestinationPolicyArgs {
-    /**
-     * The policy document. This is a JSON formatted string.
-     */
     readonly accessPolicy: pulumi.Input<string>;
-    /**
-     * A name for the subscription filter
-     */
     readonly destinationName: pulumi.Input<string>;
 }

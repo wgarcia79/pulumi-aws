@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Manages a CodeBuild webhook, which is an endpoint accepted by the CodeBuild service to trigger builds from source code repositories. Depending on the source type of the CodeBuild project, the CodeBuild service may also automatically create and delete the actual repository webhook as well.
- */
 export class Webhook extends pulumi.CustomResource {
     /**
      * Get an existing Webhook resource's state with the given name, ID, and optional extra
@@ -20,25 +17,10 @@ export class Webhook extends pulumi.CustomResource {
         return new Webhook(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * A regular expression used to determine which branches get built. Default is all branches are built.
-     */
     public readonly branchFilter: pulumi.Output<string | undefined>;
-    /**
-     * The CodeBuild endpoint where webhook events are sent.
-     */
     public /*out*/ readonly payloadUrl: pulumi.Output<string>;
-    /**
-     * The name of the build project.
-     */
     public readonly projectName: pulumi.Output<string>;
-    /**
-     * The secret token of the associated repository. Not returned by the CodeBuild API for all source types.
-     */
     public /*out*/ readonly secret: pulumi.Output<string>;
-    /**
-     * The URL to the webhook.
-     */
     public /*out*/ readonly url: pulumi.Output<string>;
 
     /**
@@ -77,25 +59,10 @@ export class Webhook extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Webhook resources.
  */
 export interface WebhookState {
-    /**
-     * A regular expression used to determine which branches get built. Default is all branches are built.
-     */
     readonly branchFilter?: pulumi.Input<string>;
-    /**
-     * The CodeBuild endpoint where webhook events are sent.
-     */
     readonly payloadUrl?: pulumi.Input<string>;
-    /**
-     * The name of the build project.
-     */
     readonly projectName?: pulumi.Input<string>;
-    /**
-     * The secret token of the associated repository. Not returned by the CodeBuild API for all source types.
-     */
     readonly secret?: pulumi.Input<string>;
-    /**
-     * The URL to the webhook.
-     */
     readonly url?: pulumi.Input<string>;
 }
 
@@ -103,12 +70,6 @@ export interface WebhookState {
  * The set of arguments for constructing a Webhook resource.
  */
 export interface WebhookArgs {
-    /**
-     * A regular expression used to determine which branches get built. Default is all branches are built.
-     */
     readonly branchFilter?: pulumi.Input<string>;
-    /**
-     * The name of the build project.
-     */
     readonly projectName: pulumi.Input<string>;
 }

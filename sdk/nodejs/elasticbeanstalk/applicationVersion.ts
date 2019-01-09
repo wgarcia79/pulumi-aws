@@ -7,51 +7,6 @@ import * as utilities from "../utilities";
 import {Bucket} from "../s3/bucket";
 import {Application} from "./application";
 
-/**
- * Provides an Elastic Beanstalk Application Version Resource. Elastic Beanstalk allows
- * you to deploy and manage applications in the AWS cloud without worrying about
- * the infrastructure that runs those applications.
- * 
- * This resource creates a Beanstalk Application Version that can be deployed to a Beanstalk
- * Environment.
- * 
- * > **NOTE on Application Version Resource:**  When using the Application Version resource with multiple 
- * Elastic Beanstalk Environments it is possible that an error may be returned
- * when attempting to delete an Application Version while it is still in use by a different environment.
- * To work around this you can:
- * <ol>
- * <li>Create each environment in a separate AWS account</li>
- * <li>Create your `aws_elastic_beanstalk_application_version` resources with a unique names in your 
- * Elastic Beanstalk Application. For example &lt;revision&gt;-&lt;environment&gt;.</li>
- * </ol>
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_elastic_beanstalk_application_default = new aws.elasticbeanstalk.Application("default", {
- *     description: "tf-test-desc",
- *     name: "tf-test-name",
- * });
- * const aws_s3_bucket_default = new aws.s3.Bucket("default", {
- *     bucket: "tftest.applicationversion.bucket",
- * });
- * const aws_s3_bucket_object_default = new aws.s3.BucketObject("default", {
- *     bucket: aws_s3_bucket_default.id,
- *     key: "beanstalk/go-v1.zip",
- *     source: new pulumi.asset.FileAsset("go-v1.zip"),
- * });
- * const aws_elastic_beanstalk_application_version_default = new aws.elasticbeanstalk.ApplicationVersion("default", {
- *     application: "tf-test-name",
- *     bucket: aws_s3_bucket_default.id,
- *     description: "application version created by terraform",
- *     key: aws_s3_bucket_object_default.id,
- *     name: "tf-test-version-label",
- * });
- * ```
- */
 export class ApplicationVersion extends pulumi.CustomResource {
     /**
      * Get an existing ApplicationVersion resource's state with the given name, ID, and optional extra
@@ -65,30 +20,11 @@ export class ApplicationVersion extends pulumi.CustomResource {
         return new ApplicationVersion(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * Name of the Beanstalk Application the version is associated with.
-     */
     public readonly application: pulumi.Output<Application>;
-    /**
-     * S3 bucket that contains the Application Version source bundle.
-     */
     public readonly bucket: pulumi.Output<string>;
-    /**
-     * Short description of the Application Version.
-     */
     public readonly description: pulumi.Output<string | undefined>;
-    /**
-     * On delete, force an Application Version to be deleted when it may be in use
-     * by multiple Elastic Beanstalk Environments.
-     */
     public readonly forceDelete: pulumi.Output<boolean | undefined>;
-    /**
-     * S3 object that is the Application Version source bundle.
-     */
     public readonly key: pulumi.Output<string>;
-    /**
-     * A unique name for the this Application Version.
-     */
     public readonly name: pulumi.Output<string>;
 
     /**
@@ -135,30 +71,11 @@ export class ApplicationVersion extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ApplicationVersion resources.
  */
 export interface ApplicationVersionState {
-    /**
-     * Name of the Beanstalk Application the version is associated with.
-     */
     readonly application?: pulumi.Input<Application>;
-    /**
-     * S3 bucket that contains the Application Version source bundle.
-     */
     readonly bucket?: pulumi.Input<string | Bucket>;
-    /**
-     * Short description of the Application Version.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * On delete, force an Application Version to be deleted when it may be in use
-     * by multiple Elastic Beanstalk Environments.
-     */
     readonly forceDelete?: pulumi.Input<boolean>;
-    /**
-     * S3 object that is the Application Version source bundle.
-     */
     readonly key?: pulumi.Input<string>;
-    /**
-     * A unique name for the this Application Version.
-     */
     readonly name?: pulumi.Input<string>;
 }
 
@@ -166,29 +83,10 @@ export interface ApplicationVersionState {
  * The set of arguments for constructing a ApplicationVersion resource.
  */
 export interface ApplicationVersionArgs {
-    /**
-     * Name of the Beanstalk Application the version is associated with.
-     */
     readonly application: pulumi.Input<Application>;
-    /**
-     * S3 bucket that contains the Application Version source bundle.
-     */
     readonly bucket: pulumi.Input<string | Bucket>;
-    /**
-     * Short description of the Application Version.
-     */
     readonly description?: pulumi.Input<string>;
-    /**
-     * On delete, force an Application Version to be deleted when it may be in use
-     * by multiple Elastic Beanstalk Environments.
-     */
     readonly forceDelete?: pulumi.Input<boolean>;
-    /**
-     * S3 object that is the Application Version source bundle.
-     */
     readonly key: pulumi.Input<string>;
-    /**
-     * A unique name for the this Application Version.
-     */
     readonly name?: pulumi.Input<string>;
 }

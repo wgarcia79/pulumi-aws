@@ -6,9 +6,6 @@ import * as utilities from "../utilities";
 
 import {ARN} from "../index";
 
-/**
- * Manages an S3 Location within AWS DataSync.
- */
 export class S3Location extends pulumi.CustomResource {
     /**
      * Get an existing S3Location resource's state with the given name, ID, and optional extra
@@ -22,25 +19,10 @@ export class S3Location extends pulumi.CustomResource {
         return new S3Location(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * Amazon Resource Name (ARN) of the DataSync Location.
-     */
     public /*out*/ readonly arn: pulumi.Output<string>;
-    /**
-     * Amazon Resource Name (ARN) of the S3 Bucket.
-     */
     public readonly s3BucketArn: pulumi.Output<ARN>;
-    /**
-     * Configuration block containing information for connecting to S3.
-     */
     public readonly s3Config: pulumi.Output<{ bucketAccessRoleArn: string }>;
-    /**
-     * Prefix to perform actions as source or destination.
-     */
     public readonly subdirectory: pulumi.Output<string>;
-    /**
-     * Key-value pairs of resource tags to assign to the DataSync Location.
-     */
     public readonly tags: pulumi.Output<{[key: string]: string} | undefined>;
     public /*out*/ readonly uri: pulumi.Output<string>;
 
@@ -88,25 +70,10 @@ export class S3Location extends pulumi.CustomResource {
  * Input properties used for looking up and filtering S3Location resources.
  */
 export interface S3LocationState {
-    /**
-     * Amazon Resource Name (ARN) of the DataSync Location.
-     */
     readonly arn?: pulumi.Input<string>;
-    /**
-     * Amazon Resource Name (ARN) of the S3 Bucket.
-     */
     readonly s3BucketArn?: pulumi.Input<ARN>;
-    /**
-     * Configuration block containing information for connecting to S3.
-     */
     readonly s3Config?: pulumi.Input<{ bucketAccessRoleArn: pulumi.Input<string> }>;
-    /**
-     * Prefix to perform actions as source or destination.
-     */
     readonly subdirectory?: pulumi.Input<string>;
-    /**
-     * Key-value pairs of resource tags to assign to the DataSync Location.
-     */
     readonly tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     readonly uri?: pulumi.Input<string>;
 }
@@ -115,20 +82,8 @@ export interface S3LocationState {
  * The set of arguments for constructing a S3Location resource.
  */
 export interface S3LocationArgs {
-    /**
-     * Amazon Resource Name (ARN) of the S3 Bucket.
-     */
     readonly s3BucketArn: pulumi.Input<ARN>;
-    /**
-     * Configuration block containing information for connecting to S3.
-     */
     readonly s3Config: pulumi.Input<{ bucketAccessRoleArn: pulumi.Input<string> }>;
-    /**
-     * Prefix to perform actions as source or destination.
-     */
     readonly subdirectory: pulumi.Input<string>;
-    /**
-     * Key-value pairs of resource tags to assign to the DataSync Location.
-     */
     readonly tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }

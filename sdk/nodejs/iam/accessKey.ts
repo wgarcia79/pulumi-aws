@@ -4,32 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an IAM access key. This is a set of credentials that allow API requests to be made as an IAM user.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_iam_user_lb = new aws.iam.User("lb", {
- *     name: "loadbalancer",
- *     path: "/system/",
- * });
- * const aws_iam_access_key_lb = new aws.iam.AccessKey("lb", {
- *     pgpKey: "keybase:some_person_that_exists",
- *     user: aws_iam_user_lb.name,
- * });
- * const aws_iam_user_policy_lb_ro = new aws.iam.UserPolicy("lb_ro", {
- *     name: "test",
- *     policy: "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Action\": [\n        \"ec2:Describe*\"\n      ],\n      \"Effect\": \"Allow\",\n      \"Resource\": \"*\"\n    }\n  ]\n}\n",
- *     user: aws_iam_user_lb.name,
- * });
- * 
- * export const secret = aws_iam_access_key_lb.encryptedSecret;
- * ```
- */
 export class AccessKey extends pulumi.CustomResource {
     /**
      * Get an existing AccessKey resource's state with the given name, ID, and optional extra
@@ -43,42 +17,12 @@ export class AccessKey extends pulumi.CustomResource {
         return new AccessKey(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The encrypted secret, base64 encoded.
-     * > **NOTE:** The encrypted secret may be decrypted using the command line,
-     * for example: `terraform output encrypted_secret | base64 --decode | keybase pgp decrypt`.
-     */
     public /*out*/ readonly encryptedSecret: pulumi.Output<string>;
-    /**
-     * The fingerprint of the PGP key used to encrypt
-     * the secret
-     */
     public /*out*/ readonly keyFingerprint: pulumi.Output<string>;
-    /**
-     * Either a base-64 encoded PGP public key, or a
-     * keybase username in the form `keybase:some_person_that_exists`.
-     */
     public readonly pgpKey: pulumi.Output<string | undefined>;
-    /**
-     * The secret access key. Note that this will be written
-     * to the state file. Please supply a `pgp_key` instead, which will prevent the
-     * secret from being stored in plain text
-     */
     public /*out*/ readonly secret: pulumi.Output<string>;
-    /**
-     * The secret access key converted into an SES SMTP
-     * password by applying [AWS's documented conversion
-     * algorithm](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/smtp-credentials.html#smtp-credentials-convert).
-     */
     public /*out*/ readonly sesSmtpPassword: pulumi.Output<string>;
-    /**
-     * "Active" or "Inactive". Keys are initially active, but can be made
-     * inactive by other means.
-     */
     public /*out*/ readonly status: pulumi.Output<string>;
-    /**
-     * The IAM user to associate with this access key.
-     */
     public readonly user: pulumi.Output<string>;
 
     /**
@@ -121,42 +65,12 @@ export class AccessKey extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AccessKey resources.
  */
 export interface AccessKeyState {
-    /**
-     * The encrypted secret, base64 encoded.
-     * > **NOTE:** The encrypted secret may be decrypted using the command line,
-     * for example: `terraform output encrypted_secret | base64 --decode | keybase pgp decrypt`.
-     */
     readonly encryptedSecret?: pulumi.Input<string>;
-    /**
-     * The fingerprint of the PGP key used to encrypt
-     * the secret
-     */
     readonly keyFingerprint?: pulumi.Input<string>;
-    /**
-     * Either a base-64 encoded PGP public key, or a
-     * keybase username in the form `keybase:some_person_that_exists`.
-     */
     readonly pgpKey?: pulumi.Input<string>;
-    /**
-     * The secret access key. Note that this will be written
-     * to the state file. Please supply a `pgp_key` instead, which will prevent the
-     * secret from being stored in plain text
-     */
     readonly secret?: pulumi.Input<string>;
-    /**
-     * The secret access key converted into an SES SMTP
-     * password by applying [AWS's documented conversion
-     * algorithm](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/smtp-credentials.html#smtp-credentials-convert).
-     */
     readonly sesSmtpPassword?: pulumi.Input<string>;
-    /**
-     * "Active" or "Inactive". Keys are initially active, but can be made
-     * inactive by other means.
-     */
     readonly status?: pulumi.Input<string>;
-    /**
-     * The IAM user to associate with this access key.
-     */
     readonly user?: pulumi.Input<string>;
 }
 
@@ -164,13 +78,6 @@ export interface AccessKeyState {
  * The set of arguments for constructing a AccessKey resource.
  */
 export interface AccessKeyArgs {
-    /**
-     * Either a base-64 encoded PGP public key, or a
-     * keybase username in the form `keybase:some_person_that_exists`.
-     */
     readonly pgpKey?: pulumi.Input<string>;
-    /**
-     * The IAM user to associate with this access key.
-     */
     readonly user: pulumi.Input<string>;
 }

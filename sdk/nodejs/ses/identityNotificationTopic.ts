@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Resource for managing SES Identity Notification Topics
- */
 export class IdentityNotificationTopic extends pulumi.CustomResource {
     /**
      * Get an existing IdentityNotificationTopic resource's state with the given name, ID, and optional extra
@@ -20,17 +17,8 @@ export class IdentityNotificationTopic extends pulumi.CustomResource {
         return new IdentityNotificationTopic(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The identity for which the Amazon SNS topic will be set. You can specify an identity by using its name or by using its Amazon Resource Name (ARN).
-     */
     public readonly identity: pulumi.Output<string>;
-    /**
-     * The type of notifications that will be published to the specified Amazon SNS topic. Valid Values: *Bounce*, *Complaint* or *Delivery*.
-     */
     public readonly notificationType: pulumi.Output<string>;
-    /**
-     * The Amazon Resource Name (ARN) of the Amazon SNS topic. Can be set to "" (an empty string) to disable publishing.
-     */
     public readonly topicArn: pulumi.Output<string | undefined>;
 
     /**
@@ -68,17 +56,8 @@ export class IdentityNotificationTopic extends pulumi.CustomResource {
  * Input properties used for looking up and filtering IdentityNotificationTopic resources.
  */
 export interface IdentityNotificationTopicState {
-    /**
-     * The identity for which the Amazon SNS topic will be set. You can specify an identity by using its name or by using its Amazon Resource Name (ARN).
-     */
     readonly identity?: pulumi.Input<string>;
-    /**
-     * The type of notifications that will be published to the specified Amazon SNS topic. Valid Values: *Bounce*, *Complaint* or *Delivery*.
-     */
     readonly notificationType?: pulumi.Input<string>;
-    /**
-     * The Amazon Resource Name (ARN) of the Amazon SNS topic. Can be set to "" (an empty string) to disable publishing.
-     */
     readonly topicArn?: pulumi.Input<string>;
 }
 
@@ -86,16 +65,7 @@ export interface IdentityNotificationTopicState {
  * The set of arguments for constructing a IdentityNotificationTopic resource.
  */
 export interface IdentityNotificationTopicArgs {
-    /**
-     * The identity for which the Amazon SNS topic will be set. You can specify an identity by using its name or by using its Amazon Resource Name (ARN).
-     */
     readonly identity: pulumi.Input<string>;
-    /**
-     * The type of notifications that will be published to the specified Amazon SNS topic. Valid Values: *Bounce*, *Complaint* or *Delivery*.
-     */
     readonly notificationType: pulumi.Input<string>;
-    /**
-     * The Amazon Resource Name (ARN) of the Amazon SNS topic. Can be set to "" (an empty string) to disable publishing.
-     */
     readonly topicArn?: pulumi.Input<string>;
 }

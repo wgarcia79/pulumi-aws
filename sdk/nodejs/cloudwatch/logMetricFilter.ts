@@ -4,30 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a CloudWatch Log Metric Filter resource.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_cloudwatch_log_group_dada = new aws.cloudwatch.LogGroup("dada", {
- *     name: "MyApp/access.log",
- * });
- * const aws_cloudwatch_log_metric_filter_yada = new aws.cloudwatch.LogMetricFilter("yada", {
- *     logGroupName: aws_cloudwatch_log_group_dada.name,
- *     metricTransformation: {
- *         name: "EventCount",
- *         namespace: "YourNamespace",
- *         value: "1",
- *     },
- *     name: "MyAppAccessCount",
- *     pattern: "",
- * });
- * ```
- */
 export class LogMetricFilter extends pulumi.CustomResource {
     /**
      * Get an existing LogMetricFilter resource's state with the given name, ID, and optional extra
@@ -41,23 +17,9 @@ export class LogMetricFilter extends pulumi.CustomResource {
         return new LogMetricFilter(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The name of the log group to associate the metric filter with.
-     */
     public readonly logGroupName: pulumi.Output<string>;
-    /**
-     * A block defining collection of information
-     * needed to define how metric data gets emitted. See below.
-     */
     public readonly metricTransformation: pulumi.Output<{ defaultValue?: string, name: string, namespace: string, value: string }>;
-    /**
-     * A name for the metric filter.
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * A valid [CloudWatch Logs filter pattern](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/FilterAndPatternSyntax.html)
-     * for extracting metric data out of ingested log events.
-     */
     public readonly pattern: pulumi.Output<string>;
 
     /**
@@ -100,23 +62,9 @@ export class LogMetricFilter extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogMetricFilter resources.
  */
 export interface LogMetricFilterState {
-    /**
-     * The name of the log group to associate the metric filter with.
-     */
     readonly logGroupName?: pulumi.Input<string>;
-    /**
-     * A block defining collection of information
-     * needed to define how metric data gets emitted. See below.
-     */
     readonly metricTransformation?: pulumi.Input<{ defaultValue?: pulumi.Input<string>, name: pulumi.Input<string>, namespace: pulumi.Input<string>, value: pulumi.Input<string> }>;
-    /**
-     * A name for the metric filter.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * A valid [CloudWatch Logs filter pattern](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/FilterAndPatternSyntax.html)
-     * for extracting metric data out of ingested log events.
-     */
     readonly pattern?: pulumi.Input<string>;
 }
 
@@ -124,22 +72,8 @@ export interface LogMetricFilterState {
  * The set of arguments for constructing a LogMetricFilter resource.
  */
 export interface LogMetricFilterArgs {
-    /**
-     * The name of the log group to associate the metric filter with.
-     */
     readonly logGroupName: pulumi.Input<string>;
-    /**
-     * A block defining collection of information
-     * needed to define how metric data gets emitted. See below.
-     */
     readonly metricTransformation: pulumi.Input<{ defaultValue?: pulumi.Input<string>, name: pulumi.Input<string>, namespace: pulumi.Input<string>, value: pulumi.Input<string> }>;
-    /**
-     * A name for the metric filter.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * A valid [CloudWatch Logs filter pattern](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/FilterAndPatternSyntax.html)
-     * for extracting metric data out of ingested log events.
-     */
     readonly pattern: pulumi.Input<string>;
 }

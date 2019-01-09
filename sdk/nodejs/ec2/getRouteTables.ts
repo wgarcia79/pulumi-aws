@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * This resource can be useful for getting back a list of route table ids to be referenced elsewhere.
- */
 export function getRouteTables(args?: GetRouteTablesArgs, opts?: pulumi.InvokeOptions): Promise<GetRouteTablesResult> {
     args = args || {};
     return pulumi.runtime.invoke("aws:ec2/getRouteTables:getRouteTables", {
@@ -20,18 +17,8 @@ export function getRouteTables(args?: GetRouteTablesArgs, opts?: pulumi.InvokeOp
  * A collection of arguments for invoking getRouteTables.
  */
 export interface GetRouteTablesArgs {
-    /**
-     * Custom filter block as described below.
-     */
     readonly filters?: { name: string, values: string[] }[];
-    /**
-     * A mapping of tags, each pair of which must exactly match
-     * a pair on the desired route tables.
-     */
     readonly tags?: {[key: string]: any};
-    /**
-     * The VPC ID that you want to filter from.
-     */
     readonly vpcId?: string;
 }
 
@@ -39,9 +26,6 @@ export interface GetRouteTablesArgs {
  * A collection of values returned by getRouteTables.
  */
 export interface GetRouteTablesResult {
-    /**
-     * A list of all the route table ids found. This data source will fail if none are found.
-     */
     readonly ids: string[];
     readonly tags: {[key: string]: any};
     /**

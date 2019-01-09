@@ -4,15 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides a resource to create an association between a VPC endpoint and a subnet.
- * 
- * > **NOTE on VPC Endpoints and VPC Endpoint Subnet Associations:** Terraform provides
- * both a standalone VPC Endpoint Subnet Association (an association between a VPC endpoint
- * and a single `subnet_id`) and a VPC Endpoint resource with a `subnet_ids`
- * attribute. Do not use the same subnet ID in both a VPC Endpoint resource and a VPC Endpoint Subnet
- * Association resource. Doing so will cause a conflict of associations and will overwrite the association.
- */
 export class VpcEndpointSubnetAssociation extends pulumi.CustomResource {
     /**
      * Get an existing VpcEndpointSubnetAssociation resource's state with the given name, ID, and optional extra
@@ -26,13 +17,7 @@ export class VpcEndpointSubnetAssociation extends pulumi.CustomResource {
         return new VpcEndpointSubnetAssociation(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ID of the subnet to be associated with the VPC endpoint.
-     */
     public readonly subnetId: pulumi.Output<string>;
-    /**
-     * The ID of the VPC endpoint with which the subnet will be associated.
-     */
     public readonly vpcEndpointId: pulumi.Output<string>;
 
     /**
@@ -68,13 +53,7 @@ export class VpcEndpointSubnetAssociation extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpcEndpointSubnetAssociation resources.
  */
 export interface VpcEndpointSubnetAssociationState {
-    /**
-     * The ID of the subnet to be associated with the VPC endpoint.
-     */
     readonly subnetId?: pulumi.Input<string>;
-    /**
-     * The ID of the VPC endpoint with which the subnet will be associated.
-     */
     readonly vpcEndpointId?: pulumi.Input<string>;
 }
 
@@ -82,12 +61,6 @@ export interface VpcEndpointSubnetAssociationState {
  * The set of arguments for constructing a VpcEndpointSubnetAssociation resource.
  */
 export interface VpcEndpointSubnetAssociationArgs {
-    /**
-     * The ID of the subnet to be associated with the VPC endpoint.
-     */
     readonly subnetId: pulumi.Input<string>;
-    /**
-     * The ID of the VPC endpoint with which the subnet will be associated.
-     */
     readonly vpcEndpointId: pulumi.Input<string>;
 }

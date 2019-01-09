@@ -4,41 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * > **WARNING:** Multiple aws_iam_group_membership resources with the same group name will produce inconsistent behavior!
- * 
- * Provides a top level resource to manage IAM Group membership for IAM Users. For
- * more information on managing IAM Groups or IAM Users, see [IAM Groups][1] or
- * [IAM Users][2]
- * 
- * > **Note:** `aws_iam_group_membership` will conflict with itself if used more than once with the same group. To non-exclusively manage the users in a group, see the
- * [`aws_iam_user_group_membership` resource][3].
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * 
- * const aws_iam_group_group = new aws.iam.Group("group", {
- *     name: "test-group",
- * });
- * const aws_iam_user_user_one = new aws.iam.User("user_one", {
- *     name: "test-user",
- * });
- * const aws_iam_user_user_two = new aws.iam.User("user_two", {
- *     name: "test-user-two",
- * });
- * const aws_iam_group_membership_team = new aws.iam.GroupMembership("team", {
- *     group: aws_iam_group_group.name,
- *     name: "tf-testing-group-membership",
- *     users: [
- *         aws_iam_user_user_one.name,
- *         aws_iam_user_user_two.name,
- *     ],
- * });
- * ```
- */
 export class GroupMembership extends pulumi.CustomResource {
     /**
      * Get an existing GroupMembership resource's state with the given name, ID, and optional extra
@@ -52,17 +17,8 @@ export class GroupMembership extends pulumi.CustomResource {
         return new GroupMembership(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The IAM Group name to attach the list of `users` to
-     */
     public readonly group: pulumi.Output<string>;
-    /**
-     * The name to identify the Group Membership
-     */
     public readonly name: pulumi.Output<string>;
-    /**
-     * A list of IAM User names to associate with the Group
-     */
     public readonly users: pulumi.Output<string[]>;
 
     /**
@@ -100,17 +56,8 @@ export class GroupMembership extends pulumi.CustomResource {
  * Input properties used for looking up and filtering GroupMembership resources.
  */
 export interface GroupMembershipState {
-    /**
-     * The IAM Group name to attach the list of `users` to
-     */
     readonly group?: pulumi.Input<string>;
-    /**
-     * The name to identify the Group Membership
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * A list of IAM User names to associate with the Group
-     */
     readonly users?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
@@ -118,16 +65,7 @@ export interface GroupMembershipState {
  * The set of arguments for constructing a GroupMembership resource.
  */
 export interface GroupMembershipArgs {
-    /**
-     * The IAM Group name to attach the list of `users` to
-     */
     readonly group: pulumi.Input<string>;
-    /**
-     * The name to identify the Group Membership
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * A list of IAM User names to associate with the Group
-     */
     readonly users: pulumi.Input<pulumi.Input<string>[]>;
 }

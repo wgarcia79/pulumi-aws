@@ -4,16 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Provides an AutoScaling Attachment resource.
- * 
- * > **NOTE on AutoScaling Groups and ASG Attachments:** Terraform currently provides
- * both a standalone ASG Attachment resource (describing an ASG attached to
- * an ELB), and an AutoScaling Group resource with
- * `load_balancers` defined in-line. At this time you cannot use an ASG with in-line
- * load balancers in conjunction with an ASG Attachment resource. Doing so will cause a
- * conflict and will overwrite attachments.
- */
 export class Attachment extends pulumi.CustomResource {
     /**
      * Get an existing Attachment resource's state with the given name, ID, and optional extra
@@ -27,17 +17,8 @@ export class Attachment extends pulumi.CustomResource {
         return new Attachment(name, <any>state, { ...opts, id: id });
     }
 
-    /**
-     * The ARN of an ALB Target Group.
-     */
     public readonly albTargetGroupArn: pulumi.Output<string | undefined>;
-    /**
-     * Name of ASG to associate with the ELB.
-     */
     public readonly autoscalingGroupName: pulumi.Output<string>;
-    /**
-     * The name of the ELB.
-     */
     public readonly elb: pulumi.Output<string | undefined>;
 
     /**
@@ -72,17 +53,8 @@ export class Attachment extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Attachment resources.
  */
 export interface AttachmentState {
-    /**
-     * The ARN of an ALB Target Group.
-     */
     readonly albTargetGroupArn?: pulumi.Input<string>;
-    /**
-     * Name of ASG to associate with the ELB.
-     */
     readonly autoscalingGroupName?: pulumi.Input<string>;
-    /**
-     * The name of the ELB.
-     */
     readonly elb?: pulumi.Input<string>;
 }
 
@@ -90,16 +62,7 @@ export interface AttachmentState {
  * The set of arguments for constructing a Attachment resource.
  */
 export interface AttachmentArgs {
-    /**
-     * The ARN of an ALB Target Group.
-     */
     readonly albTargetGroupArn?: pulumi.Input<string>;
-    /**
-     * Name of ASG to associate with the ELB.
-     */
     readonly autoscalingGroupName: pulumi.Input<string>;
-    /**
-     * The name of the ELB.
-     */
     readonly elb?: pulumi.Input<string>;
 }
