@@ -107,3 +107,17 @@ export interface UserPolicyAttachmentArgs {
      */
     readonly user: pulumi.Input<User>;
 }
+
+/**
+ * The live UserPolicyAttachment resource.
+ */
+export interface UserPolicyAttachmentResult {
+    /**
+     * The ARN of the policy you want to apply
+     */
+    readonly policyArn: ARN;
+    /**
+     * The user the policy should be applied to
+     */
+    readonly user: User;
+}
