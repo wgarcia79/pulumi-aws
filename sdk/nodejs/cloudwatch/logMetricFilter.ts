@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a CloudWatch Log Metric Filter resource.
@@ -36,6 +38,10 @@ export class LogMetricFilter extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: LogMetricFilterState, opts?: pulumi.CustomResourceOptions): LogMetricFilter {
         return new LogMetricFilter(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<LogMetricFilterResult> {
+        return ctx.list({...args, type: 'aws:cloudwatch/logMetricFilter:LogMetricFilter'});
     }
 
     /**

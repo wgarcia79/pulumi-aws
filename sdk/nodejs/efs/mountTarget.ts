@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides an Elastic File System (EFS) mount target.
@@ -38,6 +40,10 @@ export class MountTarget extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: MountTargetState, opts?: pulumi.CustomResourceOptions): MountTarget {
         return new MountTarget(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<MountTargetResult> {
+        return ctx.list({...args, type: 'aws:efs/mountTarget:MountTarget'});
     }
 
     /**

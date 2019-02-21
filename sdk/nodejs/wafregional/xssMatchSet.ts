@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a WAF Regional XSS Match Set Resource for use with Application Load Balancer.
@@ -42,6 +44,10 @@ export class XssMatchSet extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: XssMatchSetState, opts?: pulumi.CustomResourceOptions): XssMatchSet {
         return new XssMatchSet(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<XssMatchSetResult> {
+        return ctx.list({...args, type: 'aws:wafregional/xssMatchSet:XssMatchSet'});
     }
 
     /**

@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 import {PlacementStrategy} from "./placementStrategy";
 
@@ -32,6 +34,10 @@ export class PlacementGroup extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: PlacementGroupState, opts?: pulumi.CustomResourceOptions): PlacementGroup {
         return new PlacementGroup(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<PlacementGroupResult> {
+        return ctx.list({...args, type: 'aws:ec2/placementGroup:PlacementGroup'});
     }
 
     /**

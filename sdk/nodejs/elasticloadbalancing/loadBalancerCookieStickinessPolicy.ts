@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a load balancer cookie stickiness policy, which allows an ELB to control the sticky session lifetime of the browser.
@@ -40,6 +42,10 @@ export class LoadBalancerCookieStickinessPolicy extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: LoadBalancerCookieStickinessPolicyState, opts?: pulumi.CustomResourceOptions): LoadBalancerCookieStickinessPolicy {
         return new LoadBalancerCookieStickinessPolicy(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<LoadBalancerCookieStickinessPolicyResult> {
+        return ctx.list({...args, type: 'aws:elasticloadbalancing/loadBalancerCookieStickinessPolicy:LoadBalancerCookieStickinessPolicy'});
     }
 
     /**

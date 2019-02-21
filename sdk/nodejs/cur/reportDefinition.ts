@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Manages Cost and Usage Report Definitions.
@@ -43,6 +45,10 @@ export class ReportDefinition extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ReportDefinitionState, opts?: pulumi.CustomResourceOptions): ReportDefinition {
         return new ReportDefinition(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<ReportDefinitionResult> {
+        return ctx.list({...args, type: 'aws:cur/reportDefinition:ReportDefinition'});
     }
 
     /**
@@ -222,4 +228,46 @@ export interface ReportDefinitionArgs {
      * The frequency on which report data are measured and displayed.  Valid values are: HOURLY, DAILY.
      */
     readonly timeUnit: pulumi.Input<string>;
+}
+
+/**
+ * The live ReportDefinition resource.
+ */
+export interface ReportDefinitionResult {
+    /**
+     * A list of additional artifacts. Valid values are: REDSHIFT, QUICKSIGHT.
+     */
+    readonly additionalArtifacts?: string[];
+    /**
+     * A list of schema elements. Valid values are: RESOURCES.
+     */
+    readonly additionalSchemaElements: string[];
+    /**
+     * Compression format for report. Valid values are: GZIP, ZIP.
+     */
+    readonly compression: string;
+    /**
+     * Format for report. Valid values are: textORcsv.
+     */
+    readonly format: string;
+    /**
+     * Unique name for the report. Must start with a number/letter and is case sensitive. Limited to 256 characters.
+     */
+    readonly reportName: string;
+    /**
+     * Name of the existing S3 bucket to hold generated reports.
+     */
+    readonly s3Bucket: string;
+    /**
+     * Report path prefix. Limited to 256 characters.
+     */
+    readonly s3Prefix?: string;
+    /**
+     * Region of the existing S3 bucket to hold generated reports.
+     */
+    readonly s3Region: string;
+    /**
+     * The frequency on which report data are measured and displayed.  Valid values are: HOURLY, DAILY.
+     */
+    readonly timeUnit: string;
 }

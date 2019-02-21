@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides an Neptune Cluster Resource. A Cluster Resource defines attributes that are
@@ -46,6 +48,10 @@ export class Cluster extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ClusterState, opts?: pulumi.CustomResourceOptions): Cluster {
         return new Cluster(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<ClusterResult> {
+        return ctx.list({...args, type: 'aws:neptune/cluster:Cluster'});
     }
 
     /**

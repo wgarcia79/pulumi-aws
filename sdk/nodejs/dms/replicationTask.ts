@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a DMS (Data Migration Service) replication task resource. DMS replication tasks can be created, updated, deleted, and imported.
@@ -40,6 +42,10 @@ export class ReplicationTask extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ReplicationTaskState, opts?: pulumi.CustomResourceOptions): ReplicationTask {
         return new ReplicationTask(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<ReplicationTaskResult> {
+        return ctx.list({...args, type: 'aws:dms/replicationTask:ReplicationTask'});
     }
 
     /**

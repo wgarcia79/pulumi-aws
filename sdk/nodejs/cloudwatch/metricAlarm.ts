@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 import {Topic} from "../sns/topic";
 
@@ -119,6 +121,10 @@ export class MetricAlarm extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: MetricAlarmState, opts?: pulumi.CustomResourceOptions): MetricAlarm {
         return new MetricAlarm(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<MetricAlarmResult> {
+        return ctx.list({...args, type: 'aws:cloudwatch/metricAlarm:MetricAlarm'});
     }
 
     /**
@@ -509,7 +515,7 @@ export interface MetricAlarmResult {
      */
     readonly datapointsToAlarm?: number;
     /**
-     * The dimensions for the alarm's associated metric.  For the list of available dimensions see the AWS documentation [here](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
+     * The dimensions for this metric.  For the list of available dimensions see the AWS documentation [here](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
      */
     readonly dimensions?: {[key: string]: any};
     /**
@@ -534,23 +540,27 @@ export interface MetricAlarmResult {
      */
     readonly insufficientDataActions?: string[];
     /**
-     * The name for the alarm's associated metric.
+     * The name for this metric.
      * See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
      */
-    readonly metricName: string;
+    readonly metricName?: string;
     /**
-     * The namespace for the alarm's associated metric. See docs for the [list of namespaces](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/aws-namespaces.html).
+     * Enables you to create an alarm based on a metric math expression. You may specify at most 20.
+     */
+    readonly metricQueries?: { expression?: string, id: string, label?: string, metric?: { dimensions?: {[key: string]: any}, metricName: string, namespace?: string, period: number, stat: string, unit?: string }, returnData?: boolean }[];
+    /**
+     * The namespace for this metric. See docs for the [list of namespaces](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/aws-namespaces.html).
      * See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
      */
-    readonly namespace: string;
+    readonly namespace?: string;
     /**
      * The list of actions to execute when this alarm transitions into an OK state from any other state. Each action is specified as an Amazon Resource Number (ARN).
      */
     readonly okActions?: string[];
     /**
-     * The period in seconds over which the specified `statistic` is applied.
+     * The period in seconds over which the specified `stat` is applied.
      */
-    readonly period: number;
+    readonly period?: number;
     /**
      * The statistic to apply to the alarm's associated metric.
      * Either of the following is supported: `SampleCount`, `Average`, `Sum`, `Minimum`, `Maximum`
@@ -565,7 +575,7 @@ export interface MetricAlarmResult {
      */
     readonly treatMissingData?: string;
     /**
-     * The unit for the alarm's associated metric.
+     * The unit for this metric.
      */
     readonly unit?: string;
 }

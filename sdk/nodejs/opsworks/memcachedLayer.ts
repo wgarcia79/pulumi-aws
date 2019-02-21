@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides an OpsWorks memcached layer resource.
@@ -29,6 +31,10 @@ export class MemcachedLayer extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: MemcachedLayerState, opts?: pulumi.CustomResourceOptions): MemcachedLayer {
         return new MemcachedLayer(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<MemcachedLayerResult> {
+        return ctx.list({...args, type: 'aws:opsworks/memcachedLayer:MemcachedLayer'});
     }
 
     /**

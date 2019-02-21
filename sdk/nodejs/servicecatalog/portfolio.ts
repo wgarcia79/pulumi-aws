@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a resource to create a Service Catalog Portfolio.
@@ -30,6 +32,10 @@ export class Portfolio extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: PortfolioState, opts?: pulumi.CustomResourceOptions): Portfolio {
         return new Portfolio(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<PortfolioResult> {
+        return ctx.list({...args, type: 'aws:servicecatalog/portfolio:Portfolio'});
     }
 
     public /*out*/ readonly arn: pulumi.Output<string>;

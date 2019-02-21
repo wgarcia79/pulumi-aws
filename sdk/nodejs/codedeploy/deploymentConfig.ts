@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a CodeDeploy deployment config for an application
@@ -92,6 +94,10 @@ export class DeploymentConfig extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DeploymentConfigState, opts?: pulumi.CustomResourceOptions): DeploymentConfig {
         return new DeploymentConfig(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<DeploymentConfigResult> {
+        return ctx.list({...args, type: 'aws:codedeploy/deploymentConfig:DeploymentConfig'});
     }
 
     /**

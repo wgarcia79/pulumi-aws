@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a settings of an API Gateway Documentation Part.
@@ -36,6 +38,10 @@ export class DocumentationPart extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DocumentationPartState, opts?: pulumi.CustomResourceOptions): DocumentationPart {
         return new DocumentationPart(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<DocumentationPartResult> {
+        return ctx.list({...args, type: 'aws:apigateway/documentationPart:DocumentationPart'});
     }
 
     /**

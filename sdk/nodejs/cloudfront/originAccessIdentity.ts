@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Creates an Amazon CloudFront origin access identity.
@@ -90,6 +92,10 @@ export class OriginAccessIdentity extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: OriginAccessIdentityState, opts?: pulumi.CustomResourceOptions): OriginAccessIdentity {
         return new OriginAccessIdentity(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<OriginAccessIdentityResult> {
+        return ctx.list({...args, type: 'aws:cloudfront/originAccessIdentity:OriginAccessIdentity'});
     }
 
     /**

@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Manages an ECR repository lifecycle policy.
@@ -84,6 +86,10 @@ export class LifecyclePolicy extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: LifecyclePolicyState, opts?: pulumi.CustomResourceOptions): LifecyclePolicy {
         return new LifecyclePolicy(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<LifecyclePolicyResult> {
+        return ctx.list({...args, type: 'aws:ecr/lifecyclePolicy:LifecyclePolicy'});
     }
 
     /**

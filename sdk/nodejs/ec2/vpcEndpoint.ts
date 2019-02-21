@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a VPC Endpoint resource.
@@ -83,6 +85,10 @@ export class VpcEndpoint extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: VpcEndpointState, opts?: pulumi.CustomResourceOptions): VpcEndpoint {
         return new VpcEndpoint(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<VpcEndpointResult> {
+        return ctx.list({...args, type: 'aws:ec2/vpcEndpoint:VpcEndpoint'});
     }
 
     /**

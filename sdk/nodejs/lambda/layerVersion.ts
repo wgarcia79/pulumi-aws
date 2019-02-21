@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a Lambda Layer Version resource. Lambda Layers allow you to reuse shared bits of code across multiple lambda functions.
@@ -50,6 +52,10 @@ export class LayerVersion extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: LayerVersionState, opts?: pulumi.CustomResourceOptions): LayerVersion {
         return new LayerVersion(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<LayerVersionResult> {
+        return ctx.list({...args, type: 'aws:lambda/layerVersion:LayerVersion'});
     }
 
     /**

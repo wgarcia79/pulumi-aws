@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a Cloud9 EC2 Development Environment.
@@ -29,6 +31,10 @@ export class EnvironmentEC2 extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: EnvironmentEC2State, opts?: pulumi.CustomResourceOptions): EnvironmentEC2 {
         return new EnvironmentEC2(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<EnvironmentEC2Result> {
+        return ctx.list({...args, type: 'aws:cloud9/environmentEC2:EnvironmentEC2'});
     }
 
     /**

@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides an RDS DB option group resource. Documentation of the available options for various RDS engines can be found at:
@@ -56,6 +58,10 @@ export class OptionGroup extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: OptionGroupState, opts?: pulumi.CustomResourceOptions): OptionGroup {
         return new OptionGroup(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<OptionGroupResult> {
+        return ctx.list({...args, type: 'aws:rds/optionGroup:OptionGroup'});
     }
 
     /**

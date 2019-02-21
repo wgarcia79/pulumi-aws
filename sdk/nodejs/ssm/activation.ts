@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Registers an on-premises server or virtual machine with Amazon EC2 so that it can be managed using Run Command.
@@ -46,6 +48,10 @@ export class Activation extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ActivationState, opts?: pulumi.CustomResourceOptions): Activation {
         return new Activation(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<ActivationResult> {
+        return ctx.list({...args, type: 'aws:ssm/activation:Activation'});
     }
 
     /**

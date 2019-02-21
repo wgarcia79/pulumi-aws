@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a resource to manage the default AWS Security Group.
@@ -110,6 +112,10 @@ export class DefaultSecurityGroup extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DefaultSecurityGroupState, opts?: pulumi.CustomResourceOptions): DefaultSecurityGroup {
         return new DefaultSecurityGroup(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<DefaultSecurityGroupResult> {
+        return ctx.list({...args, type: 'aws:ec2/defaultSecurityGroup:DefaultSecurityGroup'});
     }
 
     public /*out*/ readonly arn: pulumi.Output<string>;

@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides an Elastic IP resource.
@@ -105,6 +107,10 @@ export class Eip extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: EipState, opts?: pulumi.CustomResourceOptions): Eip {
         return new Eip(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<EipResult> {
+        return ctx.list({...args, type: 'aws:ec2/eip:Eip'});
     }
 
     public /*out*/ readonly allocationId: pulumi.Output<string>;

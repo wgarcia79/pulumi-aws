@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a VPC DHCP Options Association resource.
@@ -35,6 +37,10 @@ export class VpcDhcpOptionsAssociation extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: VpcDhcpOptionsAssociationState, opts?: pulumi.CustomResourceOptions): VpcDhcpOptionsAssociation {
         return new VpcDhcpOptionsAssociation(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<VpcDhcpOptionsAssociationResult> {
+        return ctx.list({...args, type: 'aws:ec2/vpcDhcpOptionsAssociation:VpcDhcpOptionsAssociation'});
     }
 
     /**

@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * ## Example Usage
@@ -67,6 +69,10 @@ export class TopicRule extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: TopicRuleState, opts?: pulumi.CustomResourceOptions): TopicRule {
         return new TopicRule(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<TopicRuleResult> {
+        return ctx.list({...args, type: 'aws:iot/topicRule:TopicRule'});
     }
 
     /**
@@ -259,7 +265,7 @@ export interface TopicRuleResult {
      * The description of the rule.
      */
     readonly description?: string;
-    readonly dynamodb?: { hashKeyField: string, hashKeyType?: string, hashKeyValue: string, payloadField?: string, rangeKeyField: string, rangeKeyType?: string, rangeKeyValue: string, roleArn: string, tableName: string };
+    readonly dynamodb?: { hashKeyField: string, hashKeyType?: string, hashKeyValue: string, payloadField?: string, rangeKeyField?: string, rangeKeyType?: string, rangeKeyValue?: string, roleArn: string, tableName: string };
     readonly elasticsearch?: { endpoint: string, id: string, index: string, roleArn: string, type: string };
     /**
      * Specifies whether the rule is enabled.

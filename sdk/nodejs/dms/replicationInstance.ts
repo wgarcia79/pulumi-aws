@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a DMS (Data Migration Service) replication instance resource. DMS replication instances can be created, updated, deleted, and imported.
@@ -45,6 +47,10 @@ export class ReplicationInstance extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ReplicationInstanceState, opts?: pulumi.CustomResourceOptions): ReplicationInstance {
         return new ReplicationInstance(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<ReplicationInstanceResult> {
+        return ctx.list({...args, type: 'aws:dms/replicationInstance:ReplicationInstance'});
     }
 
     /**

@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * This resource attaches a security group to an Elastic Network Interface (ENI).
@@ -94,6 +96,10 @@ export class NetworkInterfaceSecurityGroupAttachment extends pulumi.CustomResour
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: NetworkInterfaceSecurityGroupAttachmentState, opts?: pulumi.CustomResourceOptions): NetworkInterfaceSecurityGroupAttachment {
         return new NetworkInterfaceSecurityGroupAttachment(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<NetworkInterfaceSecurityGroupAttachmentResult> {
+        return ctx.list({...args, type: 'aws:ec2/networkInterfaceSecurityGroupAttachment:NetworkInterfaceSecurityGroupAttachment'});
     }
 
     /**

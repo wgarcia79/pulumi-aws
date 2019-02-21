@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a resource to create an association between a VPC endpoint and a subnet.
@@ -38,6 +40,10 @@ export class VpcEndpointSubnetAssociation extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: VpcEndpointSubnetAssociationState, opts?: pulumi.CustomResourceOptions): VpcEndpointSubnetAssociation {
         return new VpcEndpointSubnetAssociation(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<VpcEndpointSubnetAssociationResult> {
+        return ctx.list({...args, type: 'aws:ec2/vpcEndpointSubnetAssociation:VpcEndpointSubnetAssociation'});
     }
 
     /**

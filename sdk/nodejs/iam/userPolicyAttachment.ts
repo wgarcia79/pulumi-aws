@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 import {ARN} from "../index";
 import {User} from "./user";
@@ -40,6 +42,10 @@ export class UserPolicyAttachment extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: UserPolicyAttachmentState, opts?: pulumi.CustomResourceOptions): UserPolicyAttachment {
         return new UserPolicyAttachment(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<UserPolicyAttachmentResult> {
+        return ctx.list({...args, type: 'aws:iam/userPolicyAttachment:UserPolicyAttachment'});
     }
 
     /**

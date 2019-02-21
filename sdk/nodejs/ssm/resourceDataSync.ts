@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a SSM resource data sync.
@@ -77,6 +79,10 @@ export class ResourceDataSync extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ResourceDataSyncState, opts?: pulumi.CustomResourceOptions): ResourceDataSync {
         return new ResourceDataSync(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<ResourceDataSyncResult> {
+        return ctx.list({...args, type: 'aws:ssm/resourceDataSync:ResourceDataSync'});
     }
 
     /**

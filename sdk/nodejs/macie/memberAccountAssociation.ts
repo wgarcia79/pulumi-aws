@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Associates an AWS account with Amazon Macie as a member account.
@@ -31,6 +33,10 @@ export class MemberAccountAssociation extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: MemberAccountAssociationState, opts?: pulumi.CustomResourceOptions): MemberAccountAssociation {
         return new MemberAccountAssociation(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<MemberAccountAssociationResult> {
+        return ctx.list({...args, type: 'aws:macie/memberAccountAssociation:MemberAccountAssociation'});
     }
 
     /**

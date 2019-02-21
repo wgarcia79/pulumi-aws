@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Creates an HSM module in Amazon CloudHSM v2 cluster.
@@ -35,6 +37,10 @@ export class Hsm extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: HsmState, opts?: pulumi.CustomResourceOptions): Hsm {
         return new Hsm(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<HsmResult> {
+        return ctx.list({...args, type: 'aws:cloudhsmv2/hsm:Hsm'});
     }
 
     /**

@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a resource to manage the accepter's side of a VPC Peering Connection.
@@ -25,6 +27,10 @@ export class VpcPeeringConnectionAccepter extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: VpcPeeringConnectionAccepterState, opts?: pulumi.CustomResourceOptions): VpcPeeringConnectionAccepter {
         return new VpcPeeringConnectionAccepter(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<VpcPeeringConnectionAccepterResult> {
+        return ctx.list({...args, type: 'aws:ec2/vpcPeeringConnectionAccepter:VpcPeeringConnectionAccepter'});
     }
 
     /**

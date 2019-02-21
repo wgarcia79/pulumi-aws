@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Manages S3 account-level Public Access Block configuration. For more information about these settings, see the [AWS S3 Block Public Access documentation](https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
@@ -34,6 +36,10 @@ export class AccountPublicAccessBlock extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AccountPublicAccessBlockState, opts?: pulumi.CustomResourceOptions): AccountPublicAccessBlock {
         return new AccountPublicAccessBlock(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<AccountPublicAccessBlockResult> {
+        return ctx.list({...args, type: 'aws:s3/accountPublicAccessBlock:AccountPublicAccessBlock'});
     }
 
     /**

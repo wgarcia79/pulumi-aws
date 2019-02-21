@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides an Elastic MapReduce Cluster Instance Group configuration.
@@ -36,6 +38,10 @@ export class InstanceGroup extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: InstanceGroupState, opts?: pulumi.CustomResourceOptions): InstanceGroup {
         return new InstanceGroup(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<InstanceGroupResult> {
+        return ctx.list({...args, type: 'aws:emr/instanceGroup:InstanceGroup'});
     }
 
     /**

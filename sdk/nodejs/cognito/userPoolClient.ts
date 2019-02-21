@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a Cognito User Pool Client resource.
@@ -45,6 +47,10 @@ export class UserPoolClient extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: UserPoolClientState, opts?: pulumi.CustomResourceOptions): UserPoolClient {
         return new UserPoolClient(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<UserPoolClientResult> {
+        return ctx.list({...args, type: 'aws:cognito/userPoolClient:UserPoolClient'});
     }
 
     /**
@@ -321,7 +327,7 @@ export interface UserPoolClientResult {
      */
     readonly explicitAuthFlows?: string[];
     /**
-     * Should an application secret be generated. AWS JavaScript SDK requires this to be false.
+     * Should an application secret be generated.
      */
     readonly generateSecret?: boolean;
     /**

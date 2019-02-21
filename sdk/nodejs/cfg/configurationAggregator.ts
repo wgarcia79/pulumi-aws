@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Manages an AWS Config Configuration Aggregator
@@ -68,6 +70,10 @@ export class ConfigurationAggregator extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ConfigurationAggregatorState, opts?: pulumi.CustomResourceOptions): ConfigurationAggregator {
         return new ConfigurationAggregator(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<ConfigurationAggregatorResult> {
+        return ctx.list({...args, type: 'aws:cfg/configurationAggregator:ConfigurationAggregator'});
     }
 
     /**

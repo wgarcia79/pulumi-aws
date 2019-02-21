@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Creates a new Amazon Redshift security group. You use security groups to control access to non-VPC clusters
@@ -31,6 +33,10 @@ export class SecurityGroup extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: SecurityGroupState, opts?: pulumi.CustomResourceOptions): SecurityGroup {
         return new SecurityGroup(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<SecurityGroupResult> {
+        return ctx.list({...args, type: 'aws:redshift/securityGroup:SecurityGroup'});
     }
 
     /**

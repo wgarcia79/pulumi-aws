@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides network associations for AWS Client VPN endpoints. For more information on usage, please see the 
@@ -31,6 +33,10 @@ export class NetworkAssociation extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: NetworkAssociationState, opts?: pulumi.CustomResourceOptions): NetworkAssociation {
         return new NetworkAssociation(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<NetworkAssociationResult> {
+        return ctx.list({...args, type: 'aws:ec2clientvpn/networkAssociation:NetworkAssociation'});
     }
 
     /**

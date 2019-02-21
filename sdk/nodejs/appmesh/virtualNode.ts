@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides an AWS App Mesh virtual node resource.
@@ -78,6 +80,10 @@ export class VirtualNode extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: VirtualNodeState, opts?: pulumi.CustomResourceOptions): VirtualNode {
         return new VirtualNode(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<VirtualNodeResult> {
+        return ctx.list({...args, type: 'aws:appmesh/virtualNode:VirtualNode'});
     }
 
     /**
@@ -217,5 +223,5 @@ export interface VirtualNodeResult {
     /**
      * The virtual node specification to apply.
      */
-    readonly spec: { backends?: string[], listener?: { portMapping: { port: number, protocol: string } }, serviceDiscovery?: { dns: { serviceName: string } } };
+    readonly spec: { backends?: string[], listener?: { healthCheck?: { healthyThreshold: number, intervalMillis: number, path?: string, port: number, protocol: string, timeoutMillis: number, unhealthyThreshold: number }, portMapping: { port: number, protocol: string } }, serviceDiscovery?: { dns: { serviceName: string } } };
 }

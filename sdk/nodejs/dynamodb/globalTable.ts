@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a resource to manage a DynamoDB Global Table. These are layered on top of existing DynamoDB Tables.
@@ -20,6 +22,10 @@ export class GlobalTable extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: GlobalTableState, opts?: pulumi.CustomResourceOptions): GlobalTable {
         return new GlobalTable(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<GlobalTableResult> {
+        return ctx.list({...args, type: 'aws:dynamodb/globalTable:GlobalTable'});
     }
 
     /**

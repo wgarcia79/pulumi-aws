@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides an AWS EIP Association as a top level resource, to associate and
@@ -47,6 +49,10 @@ export class EipAssociation extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: EipAssociationState, opts?: pulumi.CustomResourceOptions): EipAssociation {
         return new EipAssociation(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<EipAssociationResult> {
+        return ctx.list({...args, type: 'aws:ec2/eipAssociation:EipAssociation'});
     }
 
     /**

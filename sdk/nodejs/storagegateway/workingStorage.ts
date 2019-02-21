@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Manages an AWS Storage Gateway working storage.
@@ -32,6 +34,10 @@ export class WorkingStorage extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: WorkingStorageState, opts?: pulumi.CustomResourceOptions): WorkingStorage {
         return new WorkingStorage(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<WorkingStorageResult> {
+        return ctx.list({...args, type: 'aws:storagegateway/workingStorage:WorkingStorage'});
     }
 
     /**

@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 import {RestApi} from "./restApi";
 
@@ -54,6 +56,10 @@ export class MethodResponse extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: MethodResponseState, opts?: pulumi.CustomResourceOptions): MethodResponse {
         return new MethodResponse(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<MethodResponseResult> {
+        return ctx.list({...args, type: 'aws:apigateway/methodResponse:MethodResponse'});
     }
 
     /**

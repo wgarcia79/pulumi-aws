@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a VPC Endpoint connection notification resource.
@@ -53,6 +55,10 @@ export class VpcEndpointConnectionNotification extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: VpcEndpointConnectionNotificationState, opts?: pulumi.CustomResourceOptions): VpcEndpointConnectionNotification {
         return new VpcEndpointConnectionNotification(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<VpcEndpointConnectionNotificationResult> {
+        return ctx.list({...args, type: 'aws:ec2/vpcEndpointConnectionNotification:VpcEndpointConnectionNotification'});
     }
 
     /**

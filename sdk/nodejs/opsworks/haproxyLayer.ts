@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides an OpsWorks haproxy layer resource.
@@ -30,6 +32,10 @@ export class HaproxyLayer extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: HaproxyLayerState, opts?: pulumi.CustomResourceOptions): HaproxyLayer {
         return new HaproxyLayer(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<HaproxyLayerResult> {
+        return ctx.list({...args, type: 'aws:opsworks/haproxyLayer:HaproxyLayer'});
     }
 
     /**

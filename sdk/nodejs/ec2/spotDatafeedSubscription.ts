@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * > **Note:** There is only a single subscription allowed per account.
@@ -34,6 +36,10 @@ export class SpotDatafeedSubscription extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: SpotDatafeedSubscriptionState, opts?: pulumi.CustomResourceOptions): SpotDatafeedSubscription {
         return new SpotDatafeedSubscription(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<SpotDatafeedSubscriptionResult> {
+        return ctx.list({...args, type: 'aws:ec2/spotDatafeedSubscription:SpotDatafeedSubscription'});
     }
 
     /**

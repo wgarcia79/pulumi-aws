@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Attach an Elastic network interface (ENI) resource with EC2 instance.
@@ -31,6 +33,10 @@ export class NetworkInterfaceAttachment extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: NetworkInterfaceAttachmentState, opts?: pulumi.CustomResourceOptions): NetworkInterfaceAttachment {
         return new NetworkInterfaceAttachment(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<NetworkInterfaceAttachmentResult> {
+        return ctx.list({...args, type: 'aws:ec2/networkInterfaceAttachment:NetworkInterfaceAttachment'});
     }
 
     /**

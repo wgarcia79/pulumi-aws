@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides an EC2 Spot Fleet Request resource. This allows a fleet of Spot
@@ -19,6 +21,10 @@ export class SpotFleetRequest extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: SpotFleetRequestState, opts?: pulumi.CustomResourceOptions): SpotFleetRequest {
         return new SpotFleetRequest(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<SpotFleetRequestResult> {
+        return ctx.list({...args, type: 'aws:ec2/spotFleetRequest:SpotFleetRequest'});
     }
 
     /**

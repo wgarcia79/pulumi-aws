@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Manages a RDS database cluster snapshot for Aurora clusters. For managing RDS database instance snapshots, see the [`aws_db_snapshot` resource](https://www.terraform.io/docs/providers/aws/r/db_snapshot.html).
@@ -30,6 +32,10 @@ export class ClusterSnapshot extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ClusterSnapshotState, opts?: pulumi.CustomResourceOptions): ClusterSnapshot {
         return new ClusterSnapshot(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<ClusterSnapshotResult> {
+        return ctx.list({...args, type: 'aws:rds/clusterSnapshot:ClusterSnapshot'});
     }
 
     /**

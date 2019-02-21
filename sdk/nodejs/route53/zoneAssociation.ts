@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Manages a Route53 Hosted Zone VPC association. VPC associations can only be made on private zones.
@@ -54,6 +56,10 @@ export class ZoneAssociation extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ZoneAssociationState, opts?: pulumi.CustomResourceOptions): ZoneAssociation {
         return new ZoneAssociation(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<ZoneAssociationResult> {
+        return ctx.list({...args, type: 'aws:route53/zoneAssociation:ZoneAssociation'});
     }
 
     /**

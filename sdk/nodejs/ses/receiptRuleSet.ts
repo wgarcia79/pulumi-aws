@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides an SES receipt rule set resource
@@ -29,6 +31,10 @@ export class ReceiptRuleSet extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ReceiptRuleSetState, opts?: pulumi.CustomResourceOptions): ReceiptRuleSet {
         return new ReceiptRuleSet(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<ReceiptRuleSetResult> {
+        return ctx.list({...args, type: 'aws:ses/receiptRuleSet:ReceiptRuleSet'});
     }
 
     /**

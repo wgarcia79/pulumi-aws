@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides an IoT role alias.
@@ -43,6 +45,10 @@ export class RoleAlias extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RoleAliasState, opts?: pulumi.CustomResourceOptions): RoleAlias {
         return new RoleAlias(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<RoleAliasResult> {
+        return ctx.list({...args, type: 'aws:iot/roleAlias:RoleAlias'});
     }
 
     /**
@@ -123,4 +129,22 @@ export interface RoleAliasArgs {
      * The identity of the role to which the alias refers.
      */
     readonly roleArn: pulumi.Input<string>;
+}
+
+/**
+ * The live RoleAlias resource.
+ */
+export interface RoleAliasResult {
+    /**
+     * The name of the role alias.
+     */
+    readonly alias: string;
+    /**
+     * The duration of the credential, in seconds. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 900 seconds (15 minutes) to 3600 seconds (60 minutes).
+     */
+    readonly credentialDuration?: number;
+    /**
+     * The identity of the role to which the alias refers.
+     */
+    readonly roleArn: string;
 }

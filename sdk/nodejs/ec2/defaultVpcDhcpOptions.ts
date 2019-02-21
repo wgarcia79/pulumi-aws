@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a resource to manage the [default AWS DHCP Options Set](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html#AmazonDNS)
@@ -42,6 +44,10 @@ export class DefaultVpcDhcpOptions extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DefaultVpcDhcpOptionsState, opts?: pulumi.CustomResourceOptions): DefaultVpcDhcpOptions {
         return new DefaultVpcDhcpOptions(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<DefaultVpcDhcpOptionsResult> {
+        return ctx.list({...args, type: 'aws:ec2/defaultVpcDhcpOptions:DefaultVpcDhcpOptions'});
     }
 
     public /*out*/ readonly domainName: pulumi.Output<string>;

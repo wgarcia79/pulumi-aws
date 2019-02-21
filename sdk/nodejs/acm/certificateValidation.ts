@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * This resource represents a successful validation of an ACM certificate in concert
@@ -129,6 +131,10 @@ export class CertificateValidation extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: CertificateValidationState, opts?: pulumi.CustomResourceOptions): CertificateValidation {
         return new CertificateValidation(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<CertificateValidationResult> {
+        return ctx.list({...args, type: 'aws:acm/certificateValidation:CertificateValidation'});
     }
 
     /**

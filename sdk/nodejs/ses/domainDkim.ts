@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides an SES domain DKIM generation resource.
@@ -43,6 +45,10 @@ export class DomainDkim extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DomainDkimState, opts?: pulumi.CustomResourceOptions): DomainDkim {
         return new DomainDkim(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<DomainDkimResult> {
+        return ctx.list({...args, type: 'aws:ses/domainDkim:DomainDkim'});
     }
 
     /**

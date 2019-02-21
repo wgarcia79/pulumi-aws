@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Creates and manages an AWS IoT Thing Type.
@@ -27,6 +29,10 @@ export class ThingType extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ThingTypeState, opts?: pulumi.CustomResourceOptions): ThingType {
         return new ThingType(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<ThingTypeResult> {
+        return ctx.list({...args, type: 'aws:iot/thingType:ThingType'});
     }
 
     /**

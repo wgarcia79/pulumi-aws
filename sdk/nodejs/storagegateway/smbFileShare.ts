@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Manages an AWS Storage Gateway SMB File Share.
@@ -52,6 +54,10 @@ export class SmbFileShare extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: SmbFileShareState, opts?: pulumi.CustomResourceOptions): SmbFileShare {
         return new SmbFileShare(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<SmbFileShareResult> {
+        return ctx.list({...args, type: 'aws:storagegateway/smbFileShare:SmbFileShare'});
     }
 
     /**

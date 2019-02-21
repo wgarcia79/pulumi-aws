@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Manages a Resource Access Manager (RAM) Resource Association.
@@ -32,6 +34,10 @@ export class ResourceAssociation extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ResourceAssociationState, opts?: pulumi.CustomResourceOptions): ResourceAssociation {
         return new ResourceAssociation(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<ResourceAssociationResult> {
+        return ctx.list({...args, type: 'aws:ram/resourceAssociation:ResourceAssociation'});
     }
 
     /**
@@ -98,4 +104,18 @@ export interface ResourceAssociationArgs {
      * Amazon Resource Name (ARN) of the RAM Resource Share.
      */
     readonly resourceShareArn: pulumi.Input<string>;
+}
+
+/**
+ * The live ResourceAssociation resource.
+ */
+export interface ResourceAssociationResult {
+    /**
+     * Amazon Resource Name (ARN) of the resource to associate with the RAM Resource Share.
+     */
+    readonly resourceArn: string;
+    /**
+     * Amazon Resource Name (ARN) of the RAM Resource Share.
+     */
+    readonly resourceShareArn: string;
 }

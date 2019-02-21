@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Resource for managing SES Identity Notification Topics
@@ -31,6 +33,10 @@ export class IdentityNotificationTopic extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IdentityNotificationTopicState, opts?: pulumi.CustomResourceOptions): IdentityNotificationTopic {
         return new IdentityNotificationTopic(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<IdentityNotificationTopicResult> {
+        return ctx.list({...args, type: 'aws:ses/identityNotificationTopic:IdentityNotificationTopic'});
     }
 
     /**

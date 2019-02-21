@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Represents a successful verification of an SES domain identity.
@@ -44,6 +46,10 @@ export class DomainIdentityVerification extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DomainIdentityVerificationState, opts?: pulumi.CustomResourceOptions): DomainIdentityVerification {
         return new DomainIdentityVerification(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<DomainIdentityVerificationResult> {
+        return ctx.list({...args, type: 'aws:ses/domainIdentityVerification:DomainIdentityVerification'});
     }
 
     /**

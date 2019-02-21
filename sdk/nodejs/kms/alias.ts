@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides an alias for a KMS customer master key. AWS Console enforces 1-to-1 mapping between aliases & keys,
@@ -32,6 +34,10 @@ export class Alias extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AliasState, opts?: pulumi.CustomResourceOptions): Alias {
         return new Alias(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<AliasResult> {
+        return ctx.list({...args, type: 'aws:kms/alias:Alias'});
     }
 
     /**

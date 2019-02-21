@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Manages a Resource Access Manager (RAM) Resource Share. To association principals with the share, see the [`aws_ram_principal_association` resource](https://www.terraform.io/docs/providers/aws/r/ram_principal_association.html). To associate resources with the share, see the [`aws_ram_resource_association` resource](https://www.terraform.io/docs/providers/aws/r/ram_resource_association.html).
@@ -32,6 +34,10 @@ export class ResourceShare extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ResourceShareState, opts?: pulumi.CustomResourceOptions): ResourceShare {
         return new ResourceShare(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<ResourceShareResult> {
+        return ctx.list({...args, type: 'aws:ram/resourceShare:ResourceShare'});
     }
 
     /**

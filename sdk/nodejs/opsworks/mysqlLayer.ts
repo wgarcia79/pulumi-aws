@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides an OpsWorks MySQL layer resource.
@@ -32,6 +34,10 @@ export class MysqlLayer extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: MysqlLayerState, opts?: pulumi.CustomResourceOptions): MysqlLayer {
         return new MysqlLayer(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<MysqlLayerResult> {
+        return ctx.list({...args, type: 'aws:opsworks/mysqlLayer:MysqlLayer'});
     }
 
     /**

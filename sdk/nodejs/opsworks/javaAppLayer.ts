@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides an OpsWorks Java application layer resource.
@@ -29,6 +31,10 @@ export class JavaAppLayer extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: JavaAppLayerState, opts?: pulumi.CustomResourceOptions): JavaAppLayer {
         return new JavaAppLayer(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<JavaAppLayerResult> {
+        return ctx.list({...args, type: 'aws:opsworks/javaAppLayer:JavaAppLayer'});
     }
 
     /**

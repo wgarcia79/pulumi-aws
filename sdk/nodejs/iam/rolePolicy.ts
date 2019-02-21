@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 import {PolicyDocument} from "./documents";
 import {Role} from "./role";
@@ -61,6 +63,10 @@ export class RolePolicy extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RolePolicyState, opts?: pulumi.CustomResourceOptions): RolePolicy {
         return new RolePolicy(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<RolePolicyResult> {
+        return ctx.list({...args, type: 'aws:iam/rolePolicy:RolePolicy'});
     }
 
     /**

@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides an AutoScaling Lifecycle Hook resource.
@@ -60,6 +62,10 @@ export class LifecycleHook extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: LifecycleHookState, opts?: pulumi.CustomResourceOptions): LifecycleHook {
         return new LifecycleHook(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<LifecycleHookResult> {
+        return ctx.list({...args, type: 'aws:autoscaling/lifecycleHook:LifecycleHook'});
     }
 
     /**

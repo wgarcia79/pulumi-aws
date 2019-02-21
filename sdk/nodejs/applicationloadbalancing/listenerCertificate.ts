@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a Load Balancer Listener Certificate resource.
@@ -37,6 +39,10 @@ export class ListenerCertificate extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ListenerCertificateState, opts?: pulumi.CustomResourceOptions): ListenerCertificate {
         return new ListenerCertificate(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<ListenerCertificateResult> {
+        return ctx.list({...args, type: 'aws:applicationloadbalancing/listenerCertificate:ListenerCertificate'});
     }
 
     /**

@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a Lightsail Key Pair, for use with Lightsail Instances. These key pairs
@@ -55,6 +57,10 @@ export class KeyPair extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: KeyPairState, opts?: pulumi.CustomResourceOptions): KeyPair {
         return new KeyPair(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<KeyPairResult> {
+        return ctx.list({...args, type: 'aws:lightsail/keyPair:KeyPair'});
     }
 
     /**

@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a WAF Regional Web ACL Resource for use with Application Load Balancer.
@@ -104,6 +106,10 @@ export class WebAcl extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: WebAclState, opts?: pulumi.CustomResourceOptions): WebAcl {
         return new WebAcl(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<WebAclResult> {
+        return ctx.list({...args, type: 'aws:wafregional/webAcl:WebAcl'});
     }
 
     /**
@@ -229,9 +235,17 @@ export interface WebAclArgs {
  */
 export interface WebAclResult {
     /**
+     * Amazon Resource Name (ARN) of the WAF Regional WebACL.
+     */
+    readonly arn: string;
+    /**
      * The action that you want AWS WAF Regional to take when a request doesn't match the criteria in any of the rules that are associated with the web ACL.
      */
     readonly defaultAction: { type: string };
+    /**
+     * Configuration block to enable WAF logging. Detailed below.
+     */
+    readonly loggingConfiguration?: { logDestination: string, redactedFields?: { fieldToMatches: { data?: string, type: string }[] } };
     /**
      * The name or description for the Amazon CloudWatch metric of this web ACL.
      */
@@ -241,7 +255,7 @@ export interface WebAclResult {
      */
     readonly name: string;
     /**
-     * The rules to associate with the web ACL and the settings for each rule.
+     * Set of configuration blocks containing rules for the web ACL. Detailed below.
      */
     readonly rules?: { action?: { type: string }, overrideAction?: { type: string }, priority: number, ruleId: string, type?: string }[];
 }

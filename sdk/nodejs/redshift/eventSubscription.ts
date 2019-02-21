@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a Redshift event subscription resource.
@@ -53,6 +55,10 @@ export class EventSubscription extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: EventSubscriptionState, opts?: pulumi.CustomResourceOptions): EventSubscription {
         return new EventSubscription(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<EventSubscriptionResult> {
+        return ctx.list({...args, type: 'aws:redshift/eventSubscription:EventSubscription'});
     }
 
     public /*out*/ readonly customerAwsId: pulumi.Output<string>;

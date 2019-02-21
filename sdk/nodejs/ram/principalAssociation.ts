@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a Resource Access Manager (RAM) principal association.
@@ -50,6 +52,10 @@ export class PrincipalAssociation extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: PrincipalAssociationState, opts?: pulumi.CustomResourceOptions): PrincipalAssociation {
         return new PrincipalAssociation(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<PrincipalAssociationResult> {
+        return ctx.list({...args, type: 'aws:ram/principalAssociation:PrincipalAssociation'});
     }
 
     /**
@@ -116,4 +122,18 @@ export interface PrincipalAssociationArgs {
      * The Amazon Resource Name (ARN) of the resource share.
      */
     readonly resourceShareArn: pulumi.Input<string>;
+}
+
+/**
+ * The live PrincipalAssociation resource.
+ */
+export interface PrincipalAssociationResult {
+    /**
+     * The principal to associate with the resource share. Possible values are an AWS account ID, an AWS Organizations Organization ID, or an AWS Organizations Organization Unit ID.
+     */
+    readonly principal: string;
+    /**
+     * The Amazon Resource Name (ARN) of the resource share.
+     */
+    readonly resourceShareArn: string;
 }

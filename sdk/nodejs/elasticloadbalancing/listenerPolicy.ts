@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Attaches a load balancer policy to an ELB Listener.
@@ -62,6 +64,10 @@ export class ListenerPolicy extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ListenerPolicyState, opts?: pulumi.CustomResourceOptions): ListenerPolicy {
         return new ListenerPolicy(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<ListenerPolicyResult> {
+        return ctx.list({...args, type: 'aws:elasticloadbalancing/listenerPolicy:ListenerPolicy'});
     }
 
     /**

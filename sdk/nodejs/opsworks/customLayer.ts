@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides an OpsWorks custom layer resource.
@@ -30,6 +32,10 @@ export class CustomLayer extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: CustomLayerState, opts?: pulumi.CustomResourceOptions): CustomLayer {
         return new CustomLayer(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<CustomLayerResult> {
+        return ctx.list({...args, type: 'aws:opsworks/customLayer:CustomLayer'});
     }
 
     /**

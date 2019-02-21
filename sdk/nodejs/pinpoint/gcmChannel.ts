@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a Pinpoint GCM Channel resource.
@@ -34,6 +36,10 @@ export class GcmChannel extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: GcmChannelState, opts?: pulumi.CustomResourceOptions): GcmChannel {
         return new GcmChannel(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<GcmChannelResult> {
+        return ctx.list({...args, type: 'aws:pinpoint/gcmChannel:GcmChannel'});
     }
 
     /**

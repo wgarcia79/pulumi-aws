@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a Lambda event source mapping. This allows Lambda functions to get events from Kinesis, DynamoDB and SQS
@@ -61,6 +63,10 @@ export class EventSourceMapping extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: EventSourceMappingState, opts?: pulumi.CustomResourceOptions): EventSourceMapping {
         return new EventSourceMapping(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<EventSourceMappingResult> {
+        return ctx.list({...args, type: 'aws:lambda/eventSourceMapping:EventSourceMapping'});
     }
 
     /**

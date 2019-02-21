@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a DynamoDB table resource
@@ -75,6 +77,10 @@ export class Table extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: TableState, opts?: pulumi.CustomResourceOptions): Table {
         return new Table(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<TableResult> {
+        return ctx.list({...args, type: 'aws:dynamodb/table:Table'});
     }
 
     /**
@@ -393,7 +399,7 @@ export interface TableResult {
      */
     readonly billingMode?: string;
     /**
-     * Describe a GSO for the table;
+     * Describe a GSI for the table;
      * subject to the normal limits on the number of GSIs, projected
      * attributes, etc.
      */
@@ -426,7 +432,7 @@ export interface TableResult {
      */
     readonly readCapacity?: number;
     /**
-     * Encrypt at rest options.
+     * Encryption at rest options. AWS DynamoDB tables are automatically encrypted at rest with an AWS owned Customer Master Key if this argument isn't specified.
      */
     readonly serverSideEncryption: { enabled: boolean };
     /**

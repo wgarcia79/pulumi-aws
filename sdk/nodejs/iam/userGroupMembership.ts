@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a resource for adding an [IAM User][2] to [IAM Groups][1]. This
@@ -46,6 +48,10 @@ export class UserGroupMembership extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: UserGroupMembershipState, opts?: pulumi.CustomResourceOptions): UserGroupMembership {
         return new UserGroupMembership(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<UserGroupMembershipResult> {
+        return ctx.list({...args, type: 'aws:iam/userGroupMembership:UserGroupMembership'});
     }
 
     /**

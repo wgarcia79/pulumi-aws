@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Manages a RDS Aurora Cluster Endpoint.
@@ -77,6 +79,10 @@ export class ClusterEndpoint extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ClusterEndpointState, opts?: pulumi.CustomResourceOptions): ClusterEndpoint {
         return new ClusterEndpoint(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<ClusterEndpointResult> {
+        return ctx.list({...args, type: 'aws:rds/clusterEndpoint:ClusterEndpoint'});
     }
 
     /**

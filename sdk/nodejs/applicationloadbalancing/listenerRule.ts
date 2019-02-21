@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a Load Balancer Listener Rule resource.
@@ -124,6 +126,10 @@ export class ListenerRule extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ListenerRuleState, opts?: pulumi.CustomResourceOptions): ListenerRule {
         return new ListenerRule(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<ListenerRuleResult> {
+        return ctx.list({...args, type: 'aws:applicationloadbalancing/listenerRule:ListenerRule'});
     }
 
     /**

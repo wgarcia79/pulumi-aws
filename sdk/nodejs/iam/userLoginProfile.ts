@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides one-time creation of a IAM user login profile, and uses PGP to
@@ -38,6 +40,10 @@ export class UserLoginProfile extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: UserLoginProfileState, opts?: pulumi.CustomResourceOptions): UserLoginProfile {
         return new UserLoginProfile(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<UserLoginProfileResult> {
+        return ctx.list({...args, type: 'aws:iam/userLoginProfile:UserLoginProfile'});
     }
 
     /**

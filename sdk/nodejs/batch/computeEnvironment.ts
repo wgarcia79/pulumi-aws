@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Creates a AWS Batch compute environment. Compute environments contain the Amazon ECS container instances that are used to run containerized batch jobs.
@@ -95,6 +97,10 @@ export class ComputeEnvironment extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ComputeEnvironmentState, opts?: pulumi.CustomResourceOptions): ComputeEnvironment {
         return new ComputeEnvironment(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<ComputeEnvironmentResult> {
+        return ctx.list({...args, type: 'aws:batch/computeEnvironment:ComputeEnvironment'});
     }
 
     /**

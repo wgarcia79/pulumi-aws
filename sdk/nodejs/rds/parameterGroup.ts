@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides an RDS DB parameter group resource .Documentation of the available parameters for various RDS engines can be found at:
@@ -44,6 +46,10 @@ export class ParameterGroup extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ParameterGroupState, opts?: pulumi.CustomResourceOptions): ParameterGroup {
         return new ParameterGroup(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<ParameterGroupResult> {
+        return ctx.list({...args, type: 'aws:rds/parameterGroup:ParameterGroup'});
     }
 
     /**

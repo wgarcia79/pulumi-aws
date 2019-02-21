@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a MediaStore Container Policy.
@@ -46,6 +48,10 @@ export class ContainerPolicy extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ContainerPolicyState, opts?: pulumi.CustomResourceOptions): ContainerPolicy {
         return new ContainerPolicy(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<ContainerPolicyResult> {
+        return ctx.list({...args, type: 'aws:mediastore/containerPolicy:ContainerPolicy'});
     }
 
     /**

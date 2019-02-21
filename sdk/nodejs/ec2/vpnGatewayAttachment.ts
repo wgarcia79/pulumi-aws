@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a Virtual Private Gateway attachment resource, allowing for an existing
@@ -47,6 +49,10 @@ export class VpnGatewayAttachment extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: VpnGatewayAttachmentState, opts?: pulumi.CustomResourceOptions): VpnGatewayAttachment {
         return new VpnGatewayAttachment(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<VpnGatewayAttachmentResult> {
+        return ctx.list({...args, type: 'aws:ec2/vpnGatewayAttachment:VpnGatewayAttachment'});
     }
 
     /**

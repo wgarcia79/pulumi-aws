@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a Direct Connect hosted private virtual interface resource. This resource represents the allocator's side of the hosted virtual interface.
@@ -33,6 +35,10 @@ export class HostedPrivateVirtualInterface extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: HostedPrivateVirtualInterfaceState, opts?: pulumi.CustomResourceOptions): HostedPrivateVirtualInterface {
         return new HostedPrivateVirtualInterface(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<HostedPrivateVirtualInterfaceResult> {
+        return ctx.list({...args, type: 'aws:directconnect/hostedPrivateVirtualInterface:HostedPrivateVirtualInterface'});
     }
 
     /**

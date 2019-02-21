@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a WAF Regex Pattern Set Resource
@@ -32,6 +34,10 @@ export class RegexPatternSet extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RegexPatternSetState, opts?: pulumi.CustomResourceOptions): RegexPatternSet {
         return new RegexPatternSet(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<RegexPatternSetResult> {
+        return ctx.list({...args, type: 'aws:waf/regexPatternSet:RegexPatternSet'});
     }
 
     /**

@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a Pinpoint APNs VoIP Channel resource.
@@ -36,6 +38,10 @@ export class ApnsVoipChannel extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ApnsVoipChannelState, opts?: pulumi.CustomResourceOptions): ApnsVoipChannel {
         return new ApnsVoipChannel(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<ApnsVoipChannelResult> {
+        return ctx.list({...args, type: 'aws:pinpoint/apnsVoipChannel:ApnsVoipChannel'});
     }
 
     /**

@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a Glue Classifier resource.
@@ -63,6 +65,10 @@ export class Classifier extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ClassifierState, opts?: pulumi.CustomResourceOptions): Classifier {
         return new Classifier(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<ClassifierResult> {
+        return ctx.list({...args, type: 'aws:glue/classifier:Classifier'});
     }
 
     /**

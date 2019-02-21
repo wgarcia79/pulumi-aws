@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a resource for managing the main routing table of a VPC.
@@ -39,6 +41,10 @@ export class MainRouteTableAssociation extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: MainRouteTableAssociationState, opts?: pulumi.CustomResourceOptions): MainRouteTableAssociation {
         return new MainRouteTableAssociation(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<MainRouteTableAssociationResult> {
+        return ctx.list({...args, type: 'aws:ec2/mainRouteTableAssociation:MainRouteTableAssociation'});
     }
 
     /**

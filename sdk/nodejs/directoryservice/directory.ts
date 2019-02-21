@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a Simple or Managed Microsoft directory in AWS Directory Service.
@@ -129,6 +131,10 @@ export class Directory extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DirectoryState, opts?: pulumi.CustomResourceOptions): Directory {
         return new Directory(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<DirectoryResult> {
+        return ctx.list({...args, type: 'aws:directoryservice/directory:Directory'});
     }
 
     /**
@@ -405,7 +411,7 @@ export interface DirectoryResult {
      */
     readonly password: string;
     /**
-     * The ID of the security group created by the directory (`SimpleAD` or `MicrosoftAD` only).
+     * The ID of the security group created by the directory.
      */
     readonly securityGroupId: string;
     /**

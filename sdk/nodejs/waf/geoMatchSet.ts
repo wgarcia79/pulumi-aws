@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a WAF Geo Match Set Resource
@@ -38,6 +40,10 @@ export class GeoMatchSet extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: GeoMatchSetState, opts?: pulumi.CustomResourceOptions): GeoMatchSet {
         return new GeoMatchSet(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<GeoMatchSetResult> {
+        return ctx.list({...args, type: 'aws:waf/geoMatchSet:GeoMatchSet'});
     }
 
     /**

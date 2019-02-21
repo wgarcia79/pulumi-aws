@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a resource to designate the active SES receipt rule set
@@ -29,6 +31,10 @@ export class ActiveReceiptRuleSet extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ActiveReceiptRuleSetState, opts?: pulumi.CustomResourceOptions): ActiveReceiptRuleSet {
         return new ActiveReceiptRuleSet(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<ActiveReceiptRuleSetResult> {
+        return ctx.list({...args, type: 'aws:ses/activeReceiptRuleSet:ActiveReceiptRuleSet'});
     }
 
     /**

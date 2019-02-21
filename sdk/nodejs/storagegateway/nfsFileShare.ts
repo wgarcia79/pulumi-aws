@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Manages an AWS Storage Gateway NFS File Share.
@@ -32,6 +34,10 @@ export class NfsFileShare extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: NfsFileShareState, opts?: pulumi.CustomResourceOptions): NfsFileShare {
         return new NfsFileShare(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<NfsFileShareResult> {
+        return ctx.list({...args, type: 'aws:storagegateway/nfsFileShare:NfsFileShare'});
     }
 
     /**

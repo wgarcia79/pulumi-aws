@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a CloudWatch Logs destination policy resource.
@@ -45,6 +47,10 @@ export class LogDestinationPolicy extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: LogDestinationPolicyState, opts?: pulumi.CustomResourceOptions): LogDestinationPolicy {
         return new LogDestinationPolicy(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<LogDestinationPolicyResult> {
+        return ctx.list({...args, type: 'aws:cloudwatch/logDestinationPolicy:LogDestinationPolicy'});
     }
 
     /**

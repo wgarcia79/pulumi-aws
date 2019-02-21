@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a conditional forwarder for managed Microsoft AD in AWS Directory Service.
@@ -34,6 +36,10 @@ export class ConditionalForwader extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ConditionalForwaderState, opts?: pulumi.CustomResourceOptions): ConditionalForwader {
         return new ConditionalForwader(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<ConditionalForwaderResult> {
+        return ctx.list({...args, type: 'aws:directoryservice/conditionalForwader:ConditionalForwader'});
     }
 
     /**

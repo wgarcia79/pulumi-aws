@@ -3,6 +3,8 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
+import * as rxjs from "rxjs";
+import * as operators from "rxjs/operators";
 
 /**
  * Provides a Cognito User Pool resource.
@@ -29,6 +31,10 @@ export class UserPool extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: UserPoolState, opts?: pulumi.CustomResourceOptions): UserPool {
         return new UserPool(name, <any>state, { ...opts, id: id });
+    }
+
+    public static list(ctx: pulumi.query.ListContext, args?: pulumi.query.ListArgs): rxjs.Observable<UserPoolResult> {
+        return ctx.list({...args, type: 'aws:cognito/userPool:UserPool'});
     }
 
     /**
@@ -453,6 +459,10 @@ export interface UserPoolResult {
      * A mapping of tags to assign to the User Pool.
      */
     readonly tags?: {[key: string]: any};
+    /**
+     * Configuration block for user pool add-ons to enable user pool advanced security mode features.
+     */
+    readonly userPoolAddOns?: { advancedSecurityMode: string };
     /**
      * Specifies whether email addresses or phone numbers can be specified as usernames when a user signs up. Conflicts with `alias_attributes`.
      */
