@@ -38,7 +38,7 @@ func TestExamples(t *testing.T) {
 		},
 	})
 
-	shortTests := []integration.ProgramTestOptions{
+	tests := []integration.ProgramTestOptions{
 		baseJS.With(integration.ProgramTestOptions{Dir: path.Join(cwd, "minimal")}),
 		baseJS.With(integration.ProgramTestOptions{Dir: path.Join(cwd, "express")}),
 		// TODO[pulumi/pulumi#1900]: This should be the default value, every test we have causes some sort of
