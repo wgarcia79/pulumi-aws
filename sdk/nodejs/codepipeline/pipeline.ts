@@ -39,7 +39,7 @@ import * as utilities from "../utilities";
  * const fooPipeline = new aws.codepipeline.Pipeline("foo", {
  *     artifactStore: {
  *         encryptionKey: {
- *             id: s3kmskey.apply(s3kmskey => s3kmskey.arn),
+ *             id: s3kmskey.arn,
  *             type: "KMS",
  *         },
  *         location: fooBucket.bucket,
@@ -80,7 +80,7 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * const codepipelinePolicy = new aws.iam.RolePolicy("codepipeline_policy", {
- *     policy: pulumi.all([fooBucket.arn, fooBucket.arn]).apply(([fooBucketArn, fooBucketArn1]) => `{
+ *     policy: pulmi.interpolate`{
  *   "Version": "2012-10-17",
  *   "Statement": [
  *     {
@@ -91,8 +91,8 @@ import * as utilities from "../utilities";
  *         "s3:GetBucketVersioning"
  *       ],
  *       "Resource": [
- *         "${fooBucketArn}",
- *         "${fooBucketArn1}/*"
+ *         "${fooBucket.arn}",
+ *         "${fooBucket.arn}/*"
  *       ]
  *     },
  *     {
@@ -105,7 +105,7 @@ import * as utilities from "../utilities";
  *     }
  *   ]
  * }
- * `),
+ * `,
  *     role: aws_iam_role_codepipeline_role.id,
  * });
  * ```

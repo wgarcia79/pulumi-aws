@@ -159,12 +159,12 @@ import * as utilities from "../utilities";
  * const esSecurityGroup = new aws.ec2.SecurityGroup("es", {
  *     description: "Managed by Terraform",
  *     ingress: [{
- *         cidrBlocks: [selectedVpc.apply(selectedVpc => selectedVpc.cidrBlocks)],
+ *         cidrBlocks: [selectedVpc.cidrBlocks],
  *         fromPort: 443,
  *         protocol: "tcp",
  *         toPort: 443,
  *     }],
- *     vpcId: selectedVpc.apply(selectedVpc => selectedVpc.id),
+ *     vpcId: selectedVpc.id,
  * });
  * ```
  */

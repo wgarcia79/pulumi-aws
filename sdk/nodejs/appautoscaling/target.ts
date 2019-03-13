@@ -18,8 +18,8 @@ import * as utilities from "../utilities";
  * const dynamodbTableReadTarget = new aws.appautoscaling.Target("dynamodb_table_read_target", {
  *     maxCapacity: 100,
  *     minCapacity: 5,
- *     resourceId: aws_dynamodb_table_example.name.apply(name => `table/${name}`),
- *     roleArn: aws_iam_role_DynamoDBAutoscaleRole.arn.apply(arn => arn),
+ *     resourceId: pulmi.interpolate`table/${aws_dynamodb_table_example.name}`,
+ *     roleArn: aws_iam_role_DynamoDBAutoscaleRole.arn,
  *     scalableDimension: "dynamodb:table:ReadCapacityUnits",
  *     serviceNamespace: "dynamodb",
  * });
@@ -35,7 +35,7 @@ import * as utilities from "../utilities";
  *     maxCapacity: 100,
  *     minCapacity: 5,
  *     resourceId: aws_dynamodb_table_example.name.apply(name => `table/${name}/index/${var_index_name}`),
- *     roleArn: aws_iam_role_DynamoDBAutoscaleRole.arn.apply(arn => arn),
+ *     roleArn: aws_iam_role_DynamoDBAutoscaleRole.arn,
  *     scalableDimension: "dynamodb:index:ReadCapacityUnits",
  *     serviceNamespace: "dynamodb",
  * });
@@ -50,7 +50,7 @@ import * as utilities from "../utilities";
  * const ecsTarget = new aws.appautoscaling.Target("ecs_target", {
  *     maxCapacity: 4,
  *     minCapacity: 1,
- *     resourceId: pulumi.all([aws_ecs_cluster_example.name, aws_ecs_service_example.name]).apply(([aws_ecs_cluster_exampleName, aws_ecs_service_exampleName]) => `service/${aws_ecs_cluster_exampleName}/${aws_ecs_service_exampleName}`),
+ *     resourceId: pulmi.interpolate`service/${aws_ecs_cluster_example.name}/${aws_ecs_service_example.name}`,
  *     roleArn: var_ecs_iam_role,
  *     scalableDimension: "ecs:service:DesiredCount",
  *     serviceNamespace: "ecs",
@@ -66,7 +66,7 @@ import * as utilities from "../utilities";
  * const replicas = new aws.appautoscaling.Target("replicas", {
  *     maxCapacity: 15,
  *     minCapacity: 1,
- *     resourceId: aws_rds_cluster_example.id.apply(id => `cluster:${id}`),
+ *     resourceId: pulmi.interpolate`cluster:${aws_rds_cluster_example.id}`,
  *     scalableDimension: "rds:cluster:ReadReplicaCount",
  *     serviceNamespace: "rds",
  * });

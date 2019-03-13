@@ -61,17 +61,17 @@ import {RestApi} from "./restApi";
  *     restApi: demoRestApi.id,
  * });
  * const invocationPolicy = new aws.iam.RolePolicy("invocation_policy", {
- *     policy: authorizer.arn.apply(arn => `{
+ *     policy: pulmi.interpolate`{
  *   "Version": "2012-10-17",
  *   "Statement": [
  *     {
  *       "Action": "lambda:InvokeFunction",
  *       "Effect": "Allow",
- *       "Resource": "${arn}"
+ *       "Resource": "${authorizer.arn}"
  *     }
  *   ]
  * }
- * `),
+ * `,
  *     role: invocationRole.id,
  * });
  * ```
