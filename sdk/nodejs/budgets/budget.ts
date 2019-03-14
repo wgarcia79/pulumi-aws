@@ -73,6 +73,12 @@ export class Budget extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:budgets/budget:Budget'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:budgets/budget:Budget',
+        });
+    }
     /**
      * The ID of the target account for budget. Will use current user's account_id by default if omitted.
      */

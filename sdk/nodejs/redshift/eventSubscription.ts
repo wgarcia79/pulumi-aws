@@ -61,6 +61,12 @@ export class EventSubscription extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:redshift/eventSubscription:EventSubscription'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:redshift/eventSubscription:EventSubscription',
+        });
+    }
     public /*out*/ readonly customerAwsId: pulumi.Output<string>;
     /**
      * A boolean flag to enable/disable the subscription. Defaults to true.

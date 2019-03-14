@@ -40,6 +40,12 @@ export class Domain extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:swf/domain:Domain'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:swf/domain:Domain',
+        });
+    }
     /**
      * The domain description.
      */

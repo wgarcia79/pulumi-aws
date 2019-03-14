@@ -101,6 +101,12 @@ export class IdentityPoolRoleAttachment extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:cognito/identityPoolRoleAttachment:IdentityPoolRoleAttachment'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:cognito/identityPoolRoleAttachment:IdentityPoolRoleAttachment',
+        });
+    }
     /**
      * An identity pool ID in the format REGION:GUID.
      */

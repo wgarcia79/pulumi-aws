@@ -113,6 +113,12 @@ export class Eip extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/eip:Eip'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/eip:Eip',
+        });
+    }
     public /*out*/ readonly allocationId: pulumi.Output<string>;
     /**
      * A user specified primary or secondary private IP address to

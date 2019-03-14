@@ -37,6 +37,12 @@ export class JavaAppLayer extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:opsworks/javaAppLayer:JavaAppLayer'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:opsworks/javaAppLayer:JavaAppLayer',
+        });
+    }
     /**
      * Keyword for the application container to use. Defaults to "tomcat".
      */

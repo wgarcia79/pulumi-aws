@@ -47,6 +47,12 @@ export class MaintenanceWindowTarget extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ssm/maintenanceWindowTarget:MaintenanceWindowTarget'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ssm/maintenanceWindowTarget:MaintenanceWindowTarget',
+        });
+    }
     /**
      * User-provided value that will be included in any CloudWatch events raised while running tasks for these targets in this Maintenance Window.
      */

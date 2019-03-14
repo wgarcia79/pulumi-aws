@@ -73,6 +73,12 @@ export class Server extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:transfer/server:Server'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:transfer/server:Server',
+        });
+    }
     /**
      * Amazon Resource Name (ARN) of Transfer Server
      */

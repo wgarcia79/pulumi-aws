@@ -44,6 +44,12 @@ export class AssessmentTemplate extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:inspector/assessmentTemplate:AssessmentTemplate'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:inspector/assessmentTemplate:AssessmentTemplate',
+        });
+    }
     /**
      * The template assessment ARN.
      */

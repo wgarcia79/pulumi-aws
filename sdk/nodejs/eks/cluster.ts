@@ -46,6 +46,12 @@ export class Cluster extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:eks/cluster:Cluster'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:eks/cluster:Cluster',
+        });
+    }
     /**
      * The Amazon Resource Name (ARN) of the cluster.
      */

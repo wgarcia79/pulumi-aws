@@ -38,6 +38,12 @@ export class LogStream extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:cloudwatch/logStream:LogStream'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:cloudwatch/logStream:LogStream',
+        });
+    }
     /**
      * The Amazon Resource Name (ARN) specifying the log stream.
      */

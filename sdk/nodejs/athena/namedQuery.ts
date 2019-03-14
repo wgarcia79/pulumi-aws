@@ -43,6 +43,12 @@ export class NamedQuery extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:athena/namedQuery:NamedQuery'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:athena/namedQuery:NamedQuery',
+        });
+    }
     /**
      * The database to which the query belongs.
      */

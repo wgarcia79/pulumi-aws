@@ -51,6 +51,12 @@ export class RoleAlias extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:iot/roleAlias:RoleAlias'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:iot/roleAlias:RoleAlias',
+        });
+    }
     /**
      * The name of the role alias.
      */

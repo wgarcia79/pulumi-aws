@@ -134,6 +134,12 @@ export class Function extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:lambda/function:Function'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:lambda/function:Function',
+        });
+    }
     /**
      * The Amazon Resource Name (ARN) identifying your Lambda Function.
      */

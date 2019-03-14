@@ -44,6 +44,12 @@ export class VpcIpv4CidrBlockAssociation extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/vpcIpv4CidrBlockAssociation:VpcIpv4CidrBlockAssociation'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/vpcIpv4CidrBlockAssociation:VpcIpv4CidrBlockAssociation',
+        });
+    }
     /**
      * The additional IPv4 CIDR block to associate with the VPC.
      */

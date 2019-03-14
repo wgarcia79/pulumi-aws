@@ -65,6 +65,12 @@ export class TargetGroupAttachment extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:applicationloadbalancing/targetGroupAttachment:TargetGroupAttachment'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:applicationloadbalancing/targetGroupAttachment:TargetGroupAttachment',
+        });
+    }
     /**
      * The Availability Zone where the IP address of the target is to be registered.
      */

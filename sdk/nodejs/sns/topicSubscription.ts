@@ -39,6 +39,12 @@ export class TopicSubscription extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:sns/topicSubscription:TopicSubscription'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:sns/topicSubscription:TopicSubscription',
+        });
+    }
     /**
      * The ARN of the subscription stored as a more user-friendly property
      */

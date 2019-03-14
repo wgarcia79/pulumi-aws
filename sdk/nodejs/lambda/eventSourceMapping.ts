@@ -69,6 +69,12 @@ export class EventSourceMapping extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:lambda/eventSourceMapping:EventSourceMapping'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:lambda/eventSourceMapping:EventSourceMapping',
+        });
+    }
     /**
      * The largest number of records that Lambda will retrieve from your event source at the time of invocation. Defaults to `100` for DynamoDB and Kinesis, `10` for SQS.
      */

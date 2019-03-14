@@ -33,6 +33,12 @@ export class VpcPeeringConnectionAccepter extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/vpcPeeringConnectionAccepter:VpcPeeringConnectionAccepter'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/vpcPeeringConnectionAccepter:VpcPeeringConnectionAccepter',
+        });
+    }
     /**
      * The status of the VPC Peering Connection request.
      */

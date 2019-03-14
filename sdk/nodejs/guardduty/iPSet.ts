@@ -54,6 +54,12 @@ export class IPSet extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:guardduty/iPSet:IPSet'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:guardduty/iPSet:IPSet',
+        });
+    }
     /**
      * Specifies whether GuardDuty is to start using the uploaded IPSet.
      */

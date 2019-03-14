@@ -43,6 +43,12 @@ export class VpcDhcpOptionsAssociation extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/vpcDhcpOptionsAssociation:VpcDhcpOptionsAssociation'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/vpcDhcpOptionsAssociation:VpcDhcpOptionsAssociation',
+        });
+    }
     /**
      * The ID of the DHCP Options Set to associate to the VPC.
      */

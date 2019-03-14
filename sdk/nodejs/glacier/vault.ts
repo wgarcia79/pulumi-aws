@@ -65,6 +65,12 @@ export class Vault extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:glacier/vault:Vault'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:glacier/vault:Vault',
+        });
+    }
     /**
      * The policy document. This is a JSON formatted string.
      * The heredoc syntax or `file` function is helpful here. Use the [Glacier Developer Guide](https://docs.aws.amazon.com/amazonglacier/latest/dev/vault-access-policy.html) for more information on Glacier Vault Policy

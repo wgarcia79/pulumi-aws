@@ -47,6 +47,12 @@ export class Snapshot extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ebs/snapshot:Snapshot'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ebs/snapshot:Snapshot',
+        });
+    }
     /**
      * The data encryption key identifier for the snapshot.
      */

@@ -39,6 +39,12 @@ export class FileSystem extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:efs/fileSystem:FileSystem'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:efs/fileSystem:FileSystem',
+        });
+    }
     /**
      * Amazon Resource Name of the file system.
      */

@@ -43,6 +43,12 @@ export class S3Location extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:datasync/s3Location:S3Location'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:datasync/s3Location:S3Location',
+        });
+    }
     /**
      * Amazon Resource Name (ARN) of the DataSync Location.
      */

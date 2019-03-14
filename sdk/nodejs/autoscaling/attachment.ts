@@ -57,6 +57,12 @@ export class Attachment extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:autoscaling/attachment:Attachment'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:autoscaling/attachment:Attachment',
+        });
+    }
     /**
      * The ARN of an ALB Target Group.
      */

@@ -37,6 +37,12 @@ export class MemcachedLayer extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:opsworks/memcachedLayer:MemcachedLayer'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:opsworks/memcachedLayer:MemcachedLayer',
+        });
+    }
     /**
      * Amount of memory to allocate for the cache on each instance, in megabytes. Defaults to 512MB.
      */

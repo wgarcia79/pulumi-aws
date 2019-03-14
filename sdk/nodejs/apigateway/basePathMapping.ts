@@ -56,6 +56,12 @@ export class BasePathMapping extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:apigateway/basePathMapping:BasePathMapping'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:apigateway/basePathMapping:BasePathMapping',
+        });
+    }
     /**
      * The id of the API to connect.
      */

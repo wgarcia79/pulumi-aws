@@ -51,6 +51,12 @@ export class ReportDefinition extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:cur/reportDefinition:ReportDefinition'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:cur/reportDefinition:ReportDefinition',
+        });
+    }
     /**
      * A list of additional artifacts. Valid values are: REDSHIFT, QUICKSIGHT.
      */

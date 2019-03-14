@@ -43,6 +43,12 @@ export class SubnetGroup extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:rds/subnetGroup:SubnetGroup'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:rds/subnetGroup:SubnetGroup',
+        });
+    }
     /**
      * The ARN of the db subnet group.
      */

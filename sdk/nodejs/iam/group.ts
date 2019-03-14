@@ -37,6 +37,12 @@ export class Group extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:iam/group:Group'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:iam/group:Group',
+        });
+    }
     /**
      * The ARN assigned by AWS for this group.
      */

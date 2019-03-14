@@ -40,6 +40,12 @@ export class Alias extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:kms/alias:Alias'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:kms/alias:Alias',
+        });
+    }
     /**
      * The Amazon Resource Name (ARN) of the key alias.
      */

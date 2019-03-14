@@ -40,6 +40,12 @@ export class WorkingStorage extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:storagegateway/workingStorage:WorkingStorage'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:storagegateway/workingStorage:WorkingStorage',
+        });
+    }
     /**
      * Local disk identifier. For example, `pci-0000:03:00.0-scsi-0:0:0:0`.
      */

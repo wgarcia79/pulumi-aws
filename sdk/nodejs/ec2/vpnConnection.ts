@@ -78,6 +78,12 @@ export class VpnConnection extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/vpnConnection:VpnConnection'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/vpnConnection:VpnConnection',
+        });
+    }
     /**
      * The configuration information for the VPN connection's customer gateway (in the native XML format).
      */

@@ -58,6 +58,12 @@ export class InstanceProfile extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:iam/instanceProfile:InstanceProfile'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:iam/instanceProfile:InstanceProfile',
+        });
+    }
     /**
      * The ARN assigned by AWS to the instance profile.
      */

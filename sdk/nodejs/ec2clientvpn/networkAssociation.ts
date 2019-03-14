@@ -39,6 +39,12 @@ export class NetworkAssociation extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2clientvpn/networkAssociation:NetworkAssociation'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2clientvpn/networkAssociation:NetworkAssociation',
+        });
+    }
     /**
      * The ID of the Client VPN endpoint.
      */

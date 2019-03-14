@@ -59,6 +59,12 @@ export class User extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:iam/user:User'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:iam/user:User',
+        });
+    }
     /**
      * The ARN assigned by AWS for this user.
      */

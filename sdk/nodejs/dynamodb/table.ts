@@ -83,6 +83,12 @@ export class Table extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:dynamodb/table:Table'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:dynamodb/table:Table',
+        });
+    }
     /**
      * The arn of the table
      */

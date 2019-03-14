@@ -40,6 +40,12 @@ export class VirtualRouter extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:appmesh/virtualRouter:VirtualRouter'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:appmesh/virtualRouter:VirtualRouter',
+        });
+    }
     /**
      * The ARN of the virtual router.
      */

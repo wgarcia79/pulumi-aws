@@ -35,6 +35,12 @@ export class Mesh extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:appmesh/mesh:Mesh'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:appmesh/mesh:Mesh',
+        });
+    }
     /**
      * The ARN of the service mesh.
      */

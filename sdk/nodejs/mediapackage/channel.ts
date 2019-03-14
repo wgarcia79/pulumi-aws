@@ -38,6 +38,12 @@ export class Channel extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:mediapackage/channel:Channel'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:mediapackage/channel:Channel',
+        });
+    }
     /**
      * The ARN of the channel
      */

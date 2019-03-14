@@ -54,6 +54,12 @@ export class ThreatIntelSet extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:guardduty/threatIntelSet:ThreatIntelSet'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:guardduty/threatIntelSet:ThreatIntelSet',
+        });
+    }
     /**
      * Specifies whether GuardDuty is to start using the uploaded ThreatIntelSet.
      */

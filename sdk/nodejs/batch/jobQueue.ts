@@ -42,6 +42,12 @@ export class JobQueue extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:batch/jobQueue:JobQueue'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:batch/jobQueue:JobQueue',
+        });
+    }
     /**
      * The Amazon Resource Name of the job queue.
      */

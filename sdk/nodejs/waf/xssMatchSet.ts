@@ -50,6 +50,12 @@ export class XssMatchSet extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:waf/xssMatchSet:XssMatchSet'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:waf/xssMatchSet:XssMatchSet',
+        });
+    }
     /**
      * The name or description of the SizeConstraintSet.
      */

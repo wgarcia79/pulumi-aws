@@ -190,6 +190,12 @@ export class Integration extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:apigateway/integration:Integration'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:apigateway/integration:Integration',
+        });
+    }
     /**
      * A list of cache key parameters for the integration.
      */

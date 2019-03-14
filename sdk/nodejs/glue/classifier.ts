@@ -71,6 +71,12 @@ export class Classifier extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:glue/classifier:Classifier'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:glue/classifier:Classifier',
+        });
+    }
     /**
      * A classifier that uses grok patterns. Defined below.
      */

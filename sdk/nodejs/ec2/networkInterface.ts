@@ -43,6 +43,12 @@ export class NetworkInterface extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/networkInterface:NetworkInterface'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/networkInterface:NetworkInterface',
+        });
+    }
     /**
      * Block to define the attachment of the ENI. Documented below.
      */

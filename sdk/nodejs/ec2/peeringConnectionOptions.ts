@@ -65,6 +65,12 @@ export class PeeringConnectionOptions extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/peeringConnectionOptions:PeeringConnectionOptions'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/peeringConnectionOptions:PeeringConnectionOptions',
+        });
+    }
     /**
      * An optional configuration block that allows for [VPC Peering Connection]
      * (http://docs.aws.amazon.com/AmazonVPC/latest/PeeringGuide) options to be set for the VPC that accepts

@@ -60,6 +60,12 @@ export class Association extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:licensemanager/association:Association'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:licensemanager/association:Association',
+        });
+    }
     /**
      * ARN of the license configuration.
      */

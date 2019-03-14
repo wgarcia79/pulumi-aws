@@ -37,6 +37,12 @@ export class NodejsAppLayer extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:opsworks/nodejsAppLayer:NodejsAppLayer'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:opsworks/nodejsAppLayer:NodejsAppLayer',
+        });
+    }
     /**
      * Whether to automatically assign an elastic IP address to the layer's instances.
      */

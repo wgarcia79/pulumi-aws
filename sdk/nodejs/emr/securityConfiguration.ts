@@ -52,6 +52,12 @@ export class SecurityConfiguration extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:emr/securityConfiguration:SecurityConfiguration'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:emr/securityConfiguration:SecurityConfiguration',
+        });
+    }
     /**
      * A JSON formatted Security Configuration
      */

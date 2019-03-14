@@ -71,6 +71,12 @@ export class Cluster extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:cloudhsmv2/cluster:Cluster'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:cloudhsmv2/cluster:Cluster',
+        });
+    }
     /**
      * The list of cluster certificates.
      * * `cluster_certificates.0.cluster_certificate` - The cluster certificate issued (signed) by the issuing certificate authority (CA) of the cluster's owner.

@@ -75,6 +75,12 @@ export class Stage extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:apigateway/stage:Stage'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:apigateway/stage:Stage',
+        });
+    }
     /**
      * Enables access logs for the API stage. Detailed below.
      */

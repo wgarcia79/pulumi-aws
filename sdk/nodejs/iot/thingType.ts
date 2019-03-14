@@ -35,6 +35,12 @@ export class ThingType extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:iot/thingType:ThingType'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:iot/thingType:ThingType',
+        });
+    }
     /**
      * The ARN of the created AWS IoT Thing Type.
      */

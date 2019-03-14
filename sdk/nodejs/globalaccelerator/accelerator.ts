@@ -43,6 +43,12 @@ export class Accelerator extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:globalaccelerator/accelerator:Accelerator'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:globalaccelerator/accelerator:Accelerator',
+        });
+    }
     /**
      * The attributes of the accelerator. Fields documented below.
      */

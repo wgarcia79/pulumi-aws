@@ -137,6 +137,12 @@ export class Directory extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:directoryservice/directory:Directory'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:directoryservice/directory:Directory',
+        });
+    }
     /**
      * The access URL for the directory, such as `http://alias.awsapps.com`.
      */

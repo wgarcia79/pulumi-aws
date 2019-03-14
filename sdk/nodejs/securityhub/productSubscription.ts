@@ -39,6 +39,12 @@ export class ProductSubscription extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:securityhub/productSubscription:ProductSubscription'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:securityhub/productSubscription:ProductSubscription',
+        });
+    }
     /**
      * The ARN of a resource that represents your subscription to the product that generates the findings that you want to import into Security Hub.
      */

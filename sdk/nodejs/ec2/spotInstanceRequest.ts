@@ -65,6 +65,12 @@ export class SpotInstanceRequest extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/spotInstanceRequest:SpotInstanceRequest'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/spotInstanceRequest:SpotInstanceRequest',
+        });
+    }
     /**
      * The AMI to use for the instance.
      */

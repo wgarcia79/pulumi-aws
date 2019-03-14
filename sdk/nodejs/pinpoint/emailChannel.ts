@@ -77,6 +77,12 @@ export class EmailChannel extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:pinpoint/emailChannel:EmailChannel'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:pinpoint/emailChannel:EmailChannel',
+        });
+    }
     /**
      * The application ID.
      */

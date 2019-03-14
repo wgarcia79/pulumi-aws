@@ -42,6 +42,12 @@ export class ClusterParameterGroup extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:docdb/clusterParameterGroup:ClusterParameterGroup'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:docdb/clusterParameterGroup:ClusterParameterGroup',
+        });
+    }
     /**
      * The ARN of the documentDB cluster parameter group.
      */

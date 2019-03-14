@@ -51,6 +51,12 @@ export class IdentityProvider extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:cognito/identityProvider:IdentityProvider'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:cognito/identityProvider:IdentityProvider',
+        });
+    }
     /**
      * The map of attribute mapping of user pool attributes. [AttributeMapping in AWS API documentation](https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateIdentityProvider.html#CognitoUserPools-CreateIdentityProvider-request-AttributeMapping)
      */

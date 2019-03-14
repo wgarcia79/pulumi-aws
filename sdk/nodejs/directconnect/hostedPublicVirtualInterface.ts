@@ -47,6 +47,12 @@ export class HostedPublicVirtualInterface extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:directconnect/hostedPublicVirtualInterface:HostedPublicVirtualInterface'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:directconnect/hostedPublicVirtualInterface:HostedPublicVirtualInterface',
+        });
+    }
     /**
      * The address family for the BGP peer. `ipv4 ` or `ipv6`.
      */

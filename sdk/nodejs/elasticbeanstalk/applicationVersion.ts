@@ -67,6 +67,12 @@ export class ApplicationVersion extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:elasticbeanstalk/applicationVersion:ApplicationVersion'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:elasticbeanstalk/applicationVersion:ApplicationVersion',
+        });
+    }
     /**
      * Name of the Beanstalk Application the version is associated with.
      */

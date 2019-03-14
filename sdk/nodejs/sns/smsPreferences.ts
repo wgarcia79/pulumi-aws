@@ -35,6 +35,12 @@ export class SmsPreferences extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:sns/smsPreferences:SmsPreferences'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:sns/smsPreferences:SmsPreferences',
+        });
+    }
     /**
      * A string, such as your business brand, that is displayed as the sender on the receiving device.
      */

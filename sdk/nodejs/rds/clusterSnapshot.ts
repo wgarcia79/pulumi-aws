@@ -38,6 +38,12 @@ export class ClusterSnapshot extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:rds/clusterSnapshot:ClusterSnapshot'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:rds/clusterSnapshot:ClusterSnapshot',
+        });
+    }
     /**
      * Specifies the allocated storage size in gigabytes (GB).
      */

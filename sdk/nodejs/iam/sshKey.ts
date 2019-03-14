@@ -42,6 +42,12 @@ export class SshKey extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:iam/sshKey:SshKey'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:iam/sshKey:SshKey',
+        });
+    }
     /**
      * Specifies the public key encoding format to use in the response. To retrieve the public key in ssh-rsa format, use `SSH`. To retrieve the public key in PEM format, use `PEM`.
      */

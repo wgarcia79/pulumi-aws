@@ -48,6 +48,12 @@ export class SecurityConfiguration extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:glue/securityConfiguration:SecurityConfiguration'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:glue/securityConfiguration:SecurityConfiguration',
+        });
+    }
     /**
      * Configuration block containing encryption configuration. Detailed below.
      */

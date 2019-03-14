@@ -27,6 +27,12 @@ export class HostedPrivateVirtualInterfaceAccepter extends pulumi.CustomResource
         return ctx.list({...args, type: 'aws:directconnect/hostedPrivateVirtualInterfaceAccepter:HostedPrivateVirtualInterfaceAccepter'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:directconnect/hostedPrivateVirtualInterfaceAccepter:HostedPrivateVirtualInterfaceAccepter',
+        });
+    }
     /**
      * The ARN of the virtual interface.
      */

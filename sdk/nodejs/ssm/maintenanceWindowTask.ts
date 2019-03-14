@@ -61,6 +61,12 @@ export class MaintenanceWindowTask extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ssm/maintenanceWindowTask:MaintenanceWindowTask'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ssm/maintenanceWindowTask:MaintenanceWindowTask',
+        });
+    }
     /**
      * The description of the maintenance window task.
      */

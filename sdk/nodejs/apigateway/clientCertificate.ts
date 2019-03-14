@@ -37,6 +37,12 @@ export class ClientCertificate extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:apigateway/clientCertificate:ClientCertificate'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:apigateway/clientCertificate:ClientCertificate',
+        });
+    }
     /**
      * The date when the client certificate was created.
      */

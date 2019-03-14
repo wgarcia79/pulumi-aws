@@ -59,6 +59,12 @@ export class AccessKey extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:iam/accessKey:AccessKey'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:iam/accessKey:AccessKey',
+        });
+    }
     /**
      * The encrypted secret, base64 encoded.
      * > **NOTE:** The encrypted secret may be decrypted using the command line,

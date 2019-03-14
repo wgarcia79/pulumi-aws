@@ -46,6 +46,12 @@ export class GeoMatchSet extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:waf/geoMatchSet:GeoMatchSet'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:waf/geoMatchSet:GeoMatchSet',
+        });
+    }
     /**
      * The GeoMatchConstraint objects which contain the country that you want AWS WAF to search for.
      */

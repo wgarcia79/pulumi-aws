@@ -187,6 +187,12 @@ export class Domain extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:elasticsearch/domain:Domain'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:elasticsearch/domain:Domain',
+        });
+    }
     /**
      * IAM policy document specifying the access policies for the domain
      */

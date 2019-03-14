@@ -43,6 +43,12 @@ export class DelegationSet extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:route53/delegationSet:DelegationSet'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:route53/delegationSet:DelegationSet',
+        });
+    }
     /**
      * A list of authoritative name servers for the hosted zone
      * (effectively a list of NS records).

@@ -212,6 +212,12 @@ export class Bucket extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:s3/bucket:Bucket'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:s3/bucket:Bucket',
+        });
+    }
     /**
      * Sets the accelerate configuration of an existing bucket. Can be `Enabled` or `Suspended`.
      */

@@ -58,6 +58,12 @@ export class ResourceServer extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:cognito/resourceServer:ResourceServer'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:cognito/resourceServer:ResourceServer',
+        });
+    }
     /**
      * An identifier for the resource server.
      */

@@ -47,6 +47,12 @@ export class ConnectionAssociation extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:directconnect/connectionAssociation:ConnectionAssociation'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:directconnect/connectionAssociation:ConnectionAssociation',
+        });
+    }
     /**
      * The ID of the connection.
      */

@@ -40,6 +40,12 @@ export class MysqlLayer extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:opsworks/mysqlLayer:MysqlLayer'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:opsworks/mysqlLayer:MysqlLayer',
+        });
+    }
     /**
      * Whether to automatically assign an elastic IP address to the layer's instances.
      */

@@ -71,6 +71,12 @@ export class RepositoryPolicy extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ecr/repositoryPolicy:RepositoryPolicy'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ecr/repositoryPolicy:RepositoryPolicy',
+        });
+    }
     /**
      * The policy document. This is a JSON formatted string. For more information about building IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](https://www.terraform.io/docs/providers/aws/guides/iam-policy-documents.html)
      */

@@ -75,6 +75,12 @@ export class TopicRule extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:iot/topicRule:TopicRule'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:iot/topicRule:TopicRule',
+        });
+    }
     /**
      * The ARN of the topic rule
      */

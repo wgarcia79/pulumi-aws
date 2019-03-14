@@ -46,6 +46,12 @@ export class Attachment extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:elasticloadbalancing/attachment:Attachment'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:elasticloadbalancing/attachment:Attachment',
+        });
+    }
     /**
      * The name of the ELB.
      */

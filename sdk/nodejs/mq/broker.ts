@@ -64,6 +64,12 @@ export class Broker extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:mq/broker:Broker'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:mq/broker:Broker',
+        });
+    }
     /**
      * Specifies whether any broker modifications
      * are applied immediately, or during the next maintenance window. Default is `false`.

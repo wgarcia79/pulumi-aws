@@ -58,6 +58,12 @@ export class LicenseConfiguration extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:licensemanager/licenseConfiguration:LicenseConfiguration'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:licensemanager/licenseConfiguration:LicenseConfiguration',
+        });
+    }
     /**
      * Description of the license configuration.
      */

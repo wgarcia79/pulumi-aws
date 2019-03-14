@@ -66,6 +66,12 @@ export class Queue extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:sqs/queue:Queue'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:sqs/queue:Queue',
+        });
+    }
     /**
      * The ARN of the SQS queue
      */

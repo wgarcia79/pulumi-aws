@@ -50,6 +50,12 @@ export class RateBasedRule extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:waf/rateBasedRule:RateBasedRule'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:waf/rateBasedRule:RateBasedRule',
+        });
+    }
     /**
      * The name or description for the Amazon CloudWatch metric of this rule.
      */

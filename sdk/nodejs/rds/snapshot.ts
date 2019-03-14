@@ -50,6 +50,12 @@ export class Snapshot extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:rds/snapshot:Snapshot'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:rds/snapshot:Snapshot',
+        });
+    }
     /**
      * Specifies the allocated storage size in gigabytes (GB).
      */

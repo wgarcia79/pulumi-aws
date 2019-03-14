@@ -80,6 +80,12 @@ export class IntegrationResponse extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:apigateway/integrationResponse:IntegrationResponse'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:apigateway/integrationResponse:IntegrationResponse',
+        });
+    }
     /**
      * Specifies how to handle request payload content type conversions. Supported values are `CONVERT_TO_BINARY` and `CONVERT_TO_TEXT`. If this property is not defined, the response payload will be passed through from the integration response to the method response without modification.
      */

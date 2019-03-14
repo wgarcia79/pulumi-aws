@@ -49,6 +49,12 @@ export class ParameterGroup extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:elasticache/parameterGroup:ParameterGroup'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:elasticache/parameterGroup:ParameterGroup',
+        });
+    }
     /**
      * The description of the ElastiCache parameter group. Defaults to "Managed by Terraform".
      */

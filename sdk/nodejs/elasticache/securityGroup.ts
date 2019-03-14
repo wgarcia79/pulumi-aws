@@ -43,6 +43,12 @@ export class SecurityGroup extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:elasticache/securityGroup:SecurityGroup'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:elasticache/securityGroup:SecurityGroup',
+        });
+    }
     /**
      * description for the cache security group. Defaults to "Managed by Terraform".
      */

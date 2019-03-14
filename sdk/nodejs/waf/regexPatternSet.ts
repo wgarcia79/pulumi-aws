@@ -40,6 +40,12 @@ export class RegexPatternSet extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:waf/regexPatternSet:RegexPatternSet'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:waf/regexPatternSet:RegexPatternSet',
+        });
+    }
     /**
      * The name or description of the Regex Pattern Set.
      */

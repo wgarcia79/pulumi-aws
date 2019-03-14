@@ -69,6 +69,12 @@ export class RouteTable extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/routeTable:RouteTable'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/routeTable:RouteTable',
+        });
+    }
     /**
      * The ID of the AWS account that owns the route table
      */

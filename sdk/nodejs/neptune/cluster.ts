@@ -54,6 +54,12 @@ export class Cluster extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:neptune/cluster:Cluster'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:neptune/cluster:Cluster',
+        });
+    }
     /**
      * Specifies whether any cluster modifications are applied immediately, or during the next maintenance window. Default is `false`.
      */

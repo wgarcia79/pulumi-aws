@@ -80,6 +80,12 @@ export class SecurityGroupRule extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/securityGroupRule:SecurityGroupRule'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/securityGroupRule:SecurityGroupRule',
+        });
+    }
     /**
      * List of CIDR blocks. Cannot be specified with `source_security_group_id`.
      */

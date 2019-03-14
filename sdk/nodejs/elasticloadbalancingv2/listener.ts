@@ -165,6 +165,12 @@ export class Listener extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:elasticloadbalancingv2/listener:Listener'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:elasticloadbalancingv2/listener:Listener',
+        });
+    }
     /**
      * The ARN of the listener (matches `id`)
      */

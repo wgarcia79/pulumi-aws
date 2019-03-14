@@ -69,6 +69,12 @@ export class RolePolicy extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:iam/rolePolicy:RolePolicy'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:iam/rolePolicy:RolePolicy',
+        });
+    }
     /**
      * The name of the role policy. If omitted, Terraform will
      * assign a random, unique name.

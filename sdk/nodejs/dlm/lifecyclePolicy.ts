@@ -102,6 +102,12 @@ export class LifecyclePolicy extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:dlm/lifecyclePolicy:LifecyclePolicy'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:dlm/lifecyclePolicy:LifecyclePolicy',
+        });
+    }
     /**
      * A description for the DLM lifecycle policy.
      */

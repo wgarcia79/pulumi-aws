@@ -43,6 +43,12 @@ export class LogSubscriptionFilter extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:cloudwatch/logSubscriptionFilter:LogSubscriptionFilter'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:cloudwatch/logSubscriptionFilter:LogSubscriptionFilter',
+        });
+    }
     /**
      * The ARN of the destination to deliver matching log events to. Kinesis stream or Lambda function ARN.
      */

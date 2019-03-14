@@ -80,6 +80,12 @@ export class Topic extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:sns/topic:Topic'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:sns/topic:Topic',
+        });
+    }
     /**
      * IAM role for failure feedback
      */

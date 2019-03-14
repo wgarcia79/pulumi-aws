@@ -83,6 +83,12 @@ export class Zone extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:route53/zone:Zone'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:route53/zone:Zone',
+        });
+    }
     /**
      * A comment for the hosted zone. Defaults to 'Managed by Terraform'.
      */

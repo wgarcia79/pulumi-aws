@@ -38,6 +38,12 @@ export class ClusterSnapshot extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:docdb/clusterSnapshot:ClusterSnapshot'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:docdb/clusterSnapshot:ClusterSnapshot',
+        });
+    }
     /**
      * List of EC2 Availability Zones that instances in the DocDB cluster snapshot can be restored in.
      */

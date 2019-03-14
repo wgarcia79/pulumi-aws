@@ -45,6 +45,12 @@ export class Webhook extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:codebuild/webhook:Webhook'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:codebuild/webhook:Webhook',
+        });
+    }
     /**
      * A regular expression used to determine which branches get built. Default is all branches are built.
      */

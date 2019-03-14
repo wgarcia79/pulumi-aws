@@ -132,6 +132,12 @@ export class ListenerRule extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:applicationloadbalancing/listenerRule:ListenerRule'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:applicationloadbalancing/listenerRule:ListenerRule',
+        });
+    }
     /**
      * An Action block. Action blocks are documented below.
      */

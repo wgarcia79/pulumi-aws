@@ -30,6 +30,12 @@ export class GlobalCluster extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:rds/globalCluster:GlobalCluster'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:rds/globalCluster:GlobalCluster',
+        });
+    }
     /**
      * RDS Global Cluster Amazon Resource Name (ARN)
      */

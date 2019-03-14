@@ -38,6 +38,12 @@ export class Key extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:kms/key:Key'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:kms/key:Key',
+        });
+    }
     /**
      * The Amazon Resource Name (ARN) of the key.
      */

@@ -45,6 +45,12 @@ export class ByteMatchSet extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:waf/byteMatchSet:ByteMatchSet'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:waf/byteMatchSet:ByteMatchSet',
+        });
+    }
     /**
      * Specifies the bytes (typically a string that corresponds
      * with ASCII characters) that you want to search for in web requests,

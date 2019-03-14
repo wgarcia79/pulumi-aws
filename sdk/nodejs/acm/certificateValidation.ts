@@ -137,6 +137,12 @@ export class CertificateValidation extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:acm/certificateValidation:CertificateValidation'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:acm/certificateValidation:CertificateValidation',
+        });
+    }
     /**
      * The ARN of the certificate that is being validated.
      */

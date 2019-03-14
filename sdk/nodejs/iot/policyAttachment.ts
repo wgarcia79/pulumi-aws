@@ -61,6 +61,12 @@ export class PolicyAttachment extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:iot/policyAttachment:PolicyAttachment'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:iot/policyAttachment:PolicyAttachment',
+        });
+    }
     /**
      * The name of the policy to attach.
      */

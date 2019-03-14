@@ -58,6 +58,12 @@ export class MailFrom extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ses/mailFrom:MailFrom'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ses/mailFrom:MailFrom',
+        });
+    }
     /**
      * The action that you want Amazon SES to take if it cannot successfully read the required MX record when you send an email. Defaults to `UseDefaultValue`. See the [SES API documentation](https://docs.aws.amazon.com/ses/latest/APIReference/API_SetIdentityMailFromDomain.html) for more information.
      */

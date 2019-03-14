@@ -44,6 +44,12 @@ export class InstanceGroup extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:emr/instanceGroup:InstanceGroup'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:emr/instanceGroup:InstanceGroup',
+        });
+    }
     /**
      * ID of the EMR Cluster to attach to. Changing this forces a new resource to be created.
      */

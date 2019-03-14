@@ -49,6 +49,12 @@ export class StateMachine extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:sfn/stateMachine:StateMachine'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:sfn/stateMachine:StateMachine',
+        });
+    }
     /**
      * The date the state machine was created.
      */

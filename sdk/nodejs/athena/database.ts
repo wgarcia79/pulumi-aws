@@ -39,6 +39,12 @@ export class Database extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:athena/database:Database'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:athena/database:Database',
+        });
+    }
     /**
      * Name of s3 bucket to save the results of the query execution.
      */

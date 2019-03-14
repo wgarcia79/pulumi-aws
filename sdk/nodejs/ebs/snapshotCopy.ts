@@ -54,6 +54,12 @@ export class SnapshotCopy extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ebs/snapshotCopy:SnapshotCopy'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ebs/snapshotCopy:SnapshotCopy',
+        });
+    }
     /**
      * The data encryption key identifier for the snapshot.
      * * `source_snapshot_id` The ARN of the copied snapshot.

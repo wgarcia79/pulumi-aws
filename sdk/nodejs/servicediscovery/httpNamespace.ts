@@ -35,6 +35,12 @@ export class HttpNamespace extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:servicediscovery/httpNamespace:HttpNamespace'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:servicediscovery/httpNamespace:HttpNamespace',
+        });
+    }
     /**
      * The ARN that Amazon Route 53 assigns to the namespace when you create it.
      */

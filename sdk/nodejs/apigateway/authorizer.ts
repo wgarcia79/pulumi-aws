@@ -95,6 +95,12 @@ export class Authorizer extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:apigateway/authorizer:Authorizer'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:apigateway/authorizer:Authorizer',
+        });
+    }
     /**
      * The credentials required for the authorizer.
      * To specify an IAM Role for API Gateway to assume, use the IAM Role ARN.

@@ -40,6 +40,12 @@ export class BucketPublicAccessBlock extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:s3/bucketPublicAccessBlock:BucketPublicAccessBlock'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:s3/bucketPublicAccessBlock:BucketPublicAccessBlock',
+        });
+    }
     /**
      * Whether Amazon S3 should block public ACLs for this bucket. Defaults to `false`. Enabling this setting does not affect existing policies or ACLs. When set to `true` causes the following behavior:
      * * PUT Bucket acl and PUT Object acl calls will fail if the specified ACL allows public access.

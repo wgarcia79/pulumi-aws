@@ -55,6 +55,12 @@ export class Recorder extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:cfg/recorder:Recorder'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:cfg/recorder:Recorder',
+        });
+    }
     /**
      * The name of the recorder. Defaults to `default`. Changing it recreates the resource.
      */

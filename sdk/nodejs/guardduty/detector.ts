@@ -40,6 +40,12 @@ export class Detector extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:guardduty/detector:Detector'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:guardduty/detector:Detector',
+        });
+    }
     /**
      * The AWS account ID of the GuardDuty detector
      */

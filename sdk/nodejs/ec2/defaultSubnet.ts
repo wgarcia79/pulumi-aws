@@ -47,6 +47,12 @@ export class DefaultSubnet extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/defaultSubnet:DefaultSubnet'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/defaultSubnet:DefaultSubnet',
+        });
+    }
     public /*out*/ readonly arn: pulumi.Output<string>;
     public /*out*/ readonly assignIpv6AddressOnCreation: pulumi.Output<boolean>;
     public readonly availabilityZone: pulumi.Output<string>;

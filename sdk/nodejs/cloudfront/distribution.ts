@@ -173,6 +173,12 @@ export class Distribution extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:cloudfront/distribution:Distribution'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:cloudfront/distribution:Distribution',
+        });
+    }
     /**
      * The key pair IDs that CloudFront is aware of for
      * each trusted signer, if the distribution is set up to serve private content

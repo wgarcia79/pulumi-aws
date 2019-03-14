@@ -35,6 +35,12 @@ export class CatalogDatabase extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:glue/catalogDatabase:CatalogDatabase'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:glue/catalogDatabase:CatalogDatabase',
+        });
+    }
     /**
      * ID of the Glue Catalog to create the database in. If omitted, this defaults to the AWS Account ID.
      */

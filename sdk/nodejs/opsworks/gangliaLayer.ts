@@ -38,6 +38,12 @@ export class GangliaLayer extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:opsworks/gangliaLayer:GangliaLayer'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:opsworks/gangliaLayer:GangliaLayer',
+        });
+    }
     /**
      * Whether to automatically assign an elastic IP address to the layer's instances.
      */

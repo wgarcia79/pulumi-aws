@@ -98,6 +98,12 @@ export class OriginAccessIdentity extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:cloudfront/originAccessIdentity:OriginAccessIdentity'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:cloudfront/originAccessIdentity:OriginAccessIdentity',
+        });
+    }
     /**
      * Internal value used by CloudFront to allow future
      * updates to the origin access identity.

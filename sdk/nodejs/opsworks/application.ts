@@ -63,6 +63,12 @@ export class Application extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:opsworks/application:Application'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:opsworks/application:Application',
+        });
+    }
     /**
      * SCM configuration of the app as described below.
      */

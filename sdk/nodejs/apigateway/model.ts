@@ -48,6 +48,12 @@ export class Model extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:apigateway/model:Model'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:apigateway/model:Model',
+        });
+    }
     /**
      * The content type of the model
      */

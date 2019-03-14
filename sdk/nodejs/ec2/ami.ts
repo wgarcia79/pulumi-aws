@@ -53,6 +53,12 @@ export class Ami extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/ami:Ami'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/ami:Ami',
+        });
+    }
     /**
      * Machine architecture for created instances. Defaults to "x86_64".
      */

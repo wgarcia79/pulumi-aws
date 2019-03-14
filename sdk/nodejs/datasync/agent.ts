@@ -39,6 +39,12 @@ export class Agent extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:datasync/agent:Agent'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:datasync/agent:Agent',
+        });
+    }
     /**
      * DataSync Agent activation key during resource creation. Conflicts with `ip_address`. If an `ip_address` is provided instead, Terraform will retrieve the `activation_key` as part of the resource creation.
      */

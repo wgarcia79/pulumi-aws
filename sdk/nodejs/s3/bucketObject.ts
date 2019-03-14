@@ -103,6 +103,12 @@ export class BucketObject extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:s3/bucketObject:BucketObject'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:s3/bucketObject:BucketObject',
+        });
+    }
     /**
      * The [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl) to apply. Defaults to "private".
      */

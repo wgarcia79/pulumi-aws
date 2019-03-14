@@ -37,6 +37,12 @@ export class UserPool extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:cognito/userPool:UserPool'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:cognito/userPool:UserPool',
+        });
+    }
     /**
      * The configuration for AdminCreateUser requests.
      */

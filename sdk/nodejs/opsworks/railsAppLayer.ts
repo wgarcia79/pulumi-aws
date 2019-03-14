@@ -37,6 +37,12 @@ export class RailsAppLayer extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:opsworks/railsAppLayer:RailsAppLayer'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:opsworks/railsAppLayer:RailsAppLayer',
+        });
+    }
     /**
      * Keyword for the app server to use. Defaults to "apache_passenger".
      */

@@ -47,6 +47,12 @@ export class Alias extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:lambda/alias:Alias'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:lambda/alias:Alias',
+        });
+    }
     /**
      * The Amazon Resource Name (ARN) identifying your Lambda function alias.
      */

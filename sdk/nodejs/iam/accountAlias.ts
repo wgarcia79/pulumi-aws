@@ -39,6 +39,12 @@ export class AccountAlias extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:iam/accountAlias:AccountAlias'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:iam/accountAlias:AccountAlias',
+        });
+    }
     /**
      * The account alias
      */

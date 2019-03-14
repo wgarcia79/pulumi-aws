@@ -48,6 +48,12 @@ export class LoadBalancerCookieStickinessPolicy extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:elasticloadbalancing/loadBalancerCookieStickinessPolicy:LoadBalancerCookieStickinessPolicy'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:elasticloadbalancing/loadBalancerCookieStickinessPolicy:LoadBalancerCookieStickinessPolicy',
+        });
+    }
     /**
      * The time period after which
      * the session cookie should be considered stale, expressed in seconds.

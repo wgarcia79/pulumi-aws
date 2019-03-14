@@ -40,6 +40,12 @@ export class Cluster extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:dax/cluster:Cluster'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:dax/cluster:Cluster',
+        });
+    }
     /**
      * The ARN of the DAX cluster
      */

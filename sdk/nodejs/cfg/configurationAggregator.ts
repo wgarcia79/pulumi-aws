@@ -76,6 +76,12 @@ export class ConfigurationAggregator extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:cfg/configurationAggregator:ConfigurationAggregator'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:cfg/configurationAggregator:ConfigurationAggregator',
+        });
+    }
     /**
      * The account(s) to aggregate config data from as documented below.
      */

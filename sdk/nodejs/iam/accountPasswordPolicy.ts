@@ -46,6 +46,12 @@ export class AccountPasswordPolicy extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:iam/accountPasswordPolicy:AccountPasswordPolicy'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:iam/accountPasswordPolicy:AccountPasswordPolicy',
+        });
+    }
     /**
      * Whether to allow users to change their own password
      */

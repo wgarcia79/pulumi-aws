@@ -38,6 +38,12 @@ export class SamlProvider extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:iam/samlProvider:SamlProvider'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:iam/samlProvider:SamlProvider',
+        });
+    }
     /**
      * The ARN assigned by AWS for this provider.
      */

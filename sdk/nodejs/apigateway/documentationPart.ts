@@ -44,6 +44,12 @@ export class DocumentationPart extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:apigateway/documentationPart:DocumentationPart'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:apigateway/documentationPart:DocumentationPart',
+        });
+    }
     /**
      * The location of the targeted API entity of the to-be-created documentation part. See below.
      */

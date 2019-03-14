@@ -43,6 +43,12 @@ export class AssessmentTarget extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:inspector/assessmentTarget:AssessmentTarget'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:inspector/assessmentTarget:AssessmentTarget',
+        });
+    }
     /**
      * The target assessment ARN.
      */

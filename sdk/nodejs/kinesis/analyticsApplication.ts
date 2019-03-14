@@ -69,6 +69,12 @@ export class AnalyticsApplication extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:kinesis/analyticsApplication:AnalyticsApplication'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:kinesis/analyticsApplication:AnalyticsApplication',
+        });
+    }
     /**
      * The ARN of the Kinesis Analytics Appliation.
      */

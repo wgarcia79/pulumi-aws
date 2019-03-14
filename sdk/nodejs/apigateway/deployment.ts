@@ -66,6 +66,12 @@ export class Deployment extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:apigateway/deployment:Deployment'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:apigateway/deployment:Deployment',
+        });
+    }
     /**
      * The creation date of the deployment
      */

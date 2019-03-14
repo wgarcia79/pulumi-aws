@@ -79,6 +79,12 @@ export class Service extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:servicediscovery/service:Service'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:servicediscovery/service:Service',
+        });
+    }
     /**
      * The ARN of the service.
      */

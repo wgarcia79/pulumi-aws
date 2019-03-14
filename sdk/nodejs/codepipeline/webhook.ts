@@ -26,6 +26,12 @@ export class Webhook extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:codepipeline/webhook:Webhook'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:codepipeline/webhook:Webhook',
+        });
+    }
     /**
      * The type of authentication  to use. One of `IP`, `GITHUB_HMAC`, or `UNAUTHENTICATED`.
      */

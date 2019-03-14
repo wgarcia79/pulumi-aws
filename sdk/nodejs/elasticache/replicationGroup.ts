@@ -113,6 +113,12 @@ export class ReplicationGroup extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:elasticache/replicationGroup:ReplicationGroup'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:elasticache/replicationGroup:ReplicationGroup',
+        });
+    }
     /**
      * Specifies whether any modifications are applied immediately, or during the next maintenance window. Default is `false`.
      */

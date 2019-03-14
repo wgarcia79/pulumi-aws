@@ -58,6 +58,12 @@ export class PrincipalAssociation extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ram/principalAssociation:PrincipalAssociation'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ram/principalAssociation:PrincipalAssociation',
+        });
+    }
     /**
      * The principal to associate with the resource share. Possible values are an AWS account ID, an AWS Organizations Organization ID, or an AWS Organizations Organization Unit ID.
      */

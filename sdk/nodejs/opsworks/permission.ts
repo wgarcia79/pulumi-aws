@@ -41,6 +41,12 @@ export class Permission extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:opsworks/permission:Permission'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:opsworks/permission:Permission',
+        });
+    }
     /**
      * Whether the user is allowed to use SSH to communicate with the instance
      */

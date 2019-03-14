@@ -62,6 +62,12 @@ export class ZoneAssociation extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:route53/zoneAssociation:ZoneAssociation'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:route53/zoneAssociation:ZoneAssociation',
+        });
+    }
     /**
      * The VPC to associate with the private hosted zone.
      */

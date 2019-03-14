@@ -45,6 +45,12 @@ export class ByteMatchSet extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:wafregional/byteMatchSet:ByteMatchSet'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:wafregional/byteMatchSet:ByteMatchSet',
+        });
+    }
     /**
      * **Deprecated**, use `byte_match_tuples` instead.
      */

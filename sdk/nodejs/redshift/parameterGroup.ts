@@ -51,6 +51,12 @@ export class ParameterGroup extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:redshift/parameterGroup:ParameterGroup'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:redshift/parameterGroup:ParameterGroup',
+        });
+    }
     /**
      * The description of the Redshift parameter group. Defaults to "Managed by Terraform".
      */

@@ -88,6 +88,12 @@ export class Environment extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:elasticbeanstalk/environment:Environment'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:elasticbeanstalk/environment:Environment',
+        });
+    }
     /**
      * List of all option settings configured in the Environment. These
      * are a combination of default settings and their overrides from `setting` in

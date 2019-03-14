@@ -44,6 +44,12 @@ export class BaiduChannel extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:pinpoint/baiduChannel:BaiduChannel'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:pinpoint/baiduChannel:BaiduChannel',
+        });
+    }
     /**
      * Platform credential API key from Baidu.
      */

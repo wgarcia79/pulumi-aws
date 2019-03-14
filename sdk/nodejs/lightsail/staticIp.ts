@@ -37,6 +37,12 @@ export class StaticIp extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:lightsail/staticIp:StaticIp'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:lightsail/staticIp:StaticIp',
+        });
+    }
     /**
      * The ARN of the Lightsail static IP
      */

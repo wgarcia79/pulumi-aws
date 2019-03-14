@@ -79,6 +79,12 @@ export class LogResourcePolicy extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:cloudwatch/logResourcePolicy:LogResourcePolicy'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:cloudwatch/logResourcePolicy:LogResourcePolicy',
+        });
+    }
     /**
      * Details of the resource policy, including the identity of the principal that is enabled to put logs to this account. This is formatted as a JSON string. Maximum length of 5120 characters.
      */

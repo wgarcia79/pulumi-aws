@@ -37,6 +37,12 @@ export class EnvironmentEC2 extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:cloud9/environmentEC2:EnvironmentEC2'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:cloud9/environmentEC2:EnvironmentEC2',
+        });
+    }
     /**
      * The ARN of the environment.
      */

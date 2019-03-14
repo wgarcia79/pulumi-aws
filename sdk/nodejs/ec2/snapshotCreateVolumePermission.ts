@@ -45,6 +45,12 @@ export class SnapshotCreateVolumePermission extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/snapshotCreateVolumePermission:SnapshotCreateVolumePermission'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/snapshotCreateVolumePermission:SnapshotCreateVolumePermission',
+        });
+    }
     /**
      * An AWS Account ID to add create volume permissions
      */

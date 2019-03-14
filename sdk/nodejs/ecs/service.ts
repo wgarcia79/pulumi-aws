@@ -118,6 +118,12 @@ export class Service extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ecs/service:Service'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ecs/service:Service',
+        });
+    }
     /**
      * ARN of an ECS cluster
      */

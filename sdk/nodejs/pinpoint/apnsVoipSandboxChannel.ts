@@ -44,6 +44,12 @@ export class ApnsVoipSandboxChannel extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:pinpoint/apnsVoipSandboxChannel:ApnsVoipSandboxChannel'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:pinpoint/apnsVoipSandboxChannel:ApnsVoipSandboxChannel',
+        });
+    }
     /**
      * The application ID.
      */

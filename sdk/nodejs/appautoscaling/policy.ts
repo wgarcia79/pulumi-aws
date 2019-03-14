@@ -153,6 +153,12 @@ export class Policy extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:appautoscaling/policy:Policy'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:appautoscaling/policy:Policy',
+        });
+    }
     /**
      * The scaling policy's adjustment type.
      */

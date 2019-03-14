@@ -60,6 +60,12 @@ export class Stack extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:cloudformation/stack:Stack'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:cloudformation/stack:Stack',
+        });
+    }
     /**
      * A list of capabilities.
      * Valid values: `CAPABILITY_IAM` or `CAPABILITY_NAMED_IAM`

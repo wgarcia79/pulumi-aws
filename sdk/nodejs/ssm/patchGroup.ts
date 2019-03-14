@@ -41,6 +41,12 @@ export class PatchGroup extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ssm/patchGroup:PatchGroup'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ssm/patchGroup:PatchGroup',
+        });
+    }
     /**
      * The ID of the patch baseline to register the patch group with.
      */

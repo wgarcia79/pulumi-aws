@@ -37,6 +37,12 @@ export class ReceiptRuleSet extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ses/receiptRuleSet:ReceiptRuleSet'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ses/receiptRuleSet:ReceiptRuleSet',
+        });
+    }
     /**
      * The name of the rule set
      */

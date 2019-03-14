@@ -80,6 +80,12 @@ export class DeliveryChannel extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:cfg/deliveryChannel:DeliveryChannel'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:cfg/deliveryChannel:DeliveryChannel',
+        });
+    }
     /**
      * The name of the delivery channel. Defaults to `default`. Changing it recreates the resource.
      */

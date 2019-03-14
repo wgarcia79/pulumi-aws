@@ -41,6 +41,12 @@ export class Project extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:devicefarm/project:Project'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:devicefarm/project:Project',
+        });
+    }
     /**
      * The Amazon Resource Name of this project
      */

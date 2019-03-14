@@ -39,6 +39,12 @@ export class MaintenanceWindow extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ssm/maintenanceWindow:MaintenanceWindow'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ssm/maintenanceWindow:MaintenanceWindow',
+        });
+    }
     /**
      * Whether targets must be registered with the Maintenance Window before tasks can be defined for those targets.
      */

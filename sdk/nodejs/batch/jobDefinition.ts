@@ -81,6 +81,12 @@ export class JobDefinition extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:batch/jobDefinition:JobDefinition'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:batch/jobDefinition:JobDefinition',
+        });
+    }
     /**
      * The Amazon Resource Name of the job definition.
      */

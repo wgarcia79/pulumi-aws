@@ -38,6 +38,12 @@ export class HaproxyLayer extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:opsworks/haproxyLayer:HaproxyLayer'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:opsworks/haproxyLayer:HaproxyLayer',
+        });
+    }
     /**
      * Whether to automatically assign an elastic IP address to the layer's instances.
      */

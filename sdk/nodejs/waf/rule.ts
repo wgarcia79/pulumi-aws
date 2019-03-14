@@ -48,6 +48,12 @@ export class Rule extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:waf/rule:Rule'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:waf/rule:Rule',
+        });
+    }
     /**
      * The name or description for the Amazon CloudWatch metric of this rule. The name can contain only alphanumeric characters (A-Z, a-z, 0-9); the name can't contain whitespace.
      */

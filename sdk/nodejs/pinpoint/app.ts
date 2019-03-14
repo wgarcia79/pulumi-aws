@@ -43,6 +43,12 @@ export class App extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:pinpoint/app:App'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:pinpoint/app:App',
+        });
+    }
     /**
      * The Application ID of the Pinpoint App.
      */

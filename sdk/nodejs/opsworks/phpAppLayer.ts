@@ -37,6 +37,12 @@ export class PhpAppLayer extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:opsworks/phpAppLayer:PhpAppLayer'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:opsworks/phpAppLayer:PhpAppLayer',
+        });
+    }
     /**
      * Whether to automatically assign an elastic IP address to the layer's instances.
      */

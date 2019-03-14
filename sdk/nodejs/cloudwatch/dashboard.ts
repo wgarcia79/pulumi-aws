@@ -73,6 +73,12 @@ export class Dashboard extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:cloudwatch/dashboard:Dashboard'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:cloudwatch/dashboard:Dashboard',
+        });
+    }
     /**
      * The Amazon Resource Name (ARN) of the dashboard.
      */

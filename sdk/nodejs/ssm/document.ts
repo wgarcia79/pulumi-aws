@@ -70,6 +70,12 @@ export class Document extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ssm/document:Document'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ssm/document:Document',
+        });
+    }
     public /*out*/ readonly arn: pulumi.Output<string>;
     /**
      * The JSON or YAML content of the document.

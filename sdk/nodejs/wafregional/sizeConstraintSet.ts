@@ -44,6 +44,12 @@ export class SizeConstraintSet extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:wafregional/sizeConstraintSet:SizeConstraintSet'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:wafregional/sizeConstraintSet:SizeConstraintSet',
+        });
+    }
     /**
      * The name or description of the Size Constraint Set.
      */

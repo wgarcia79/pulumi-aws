@@ -54,6 +54,12 @@ export class Activation extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ssm/activation:Activation'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ssm/activation:Activation',
+        });
+    }
     /**
      * The code the system generates when it processes the activation.
      */

@@ -61,6 +61,12 @@ export class VpcEndpointConnectionNotification extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/vpcEndpointConnectionNotification:VpcEndpointConnectionNotification'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/vpcEndpointConnectionNotification:VpcEndpointConnectionNotification',
+        });
+    }
     /**
      * One or more endpoint [events](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVpcEndpointConnectionNotification.html#API_CreateVpcEndpointConnectionNotification_RequestParameters) for which to receive notifications.
      */

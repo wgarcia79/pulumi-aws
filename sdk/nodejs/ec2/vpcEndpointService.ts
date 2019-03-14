@@ -47,6 +47,12 @@ export class VpcEndpointService extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/vpcEndpointService:VpcEndpointService'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/vpcEndpointService:VpcEndpointService',
+        });
+    }
     /**
      * Whether or not VPC endpoint connection requests to the service must be accepted by the service owner - `true` or `false`.
      */

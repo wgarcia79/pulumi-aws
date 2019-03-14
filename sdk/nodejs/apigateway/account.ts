@@ -77,6 +77,12 @@ export class Account extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:apigateway/account:Account'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:apigateway/account:Account',
+        });
+    }
     /**
      * The ARN of an IAM role for CloudWatch (to allow logging & monitoring).
      * See more [in AWS Docs](https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-stage-settings.html#how-to-stage-settings-console).

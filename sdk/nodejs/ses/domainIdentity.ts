@@ -43,6 +43,12 @@ export class DomainIdentity extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ses/domainIdentity:DomainIdentity'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ses/domainIdentity:DomainIdentity',
+        });
+    }
     /**
      * The ARN of the domain identity.
      */

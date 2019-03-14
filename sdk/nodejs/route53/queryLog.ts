@@ -32,6 +32,12 @@ export class QueryLog extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:route53/queryLog:QueryLog'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:route53/queryLog:QueryLog',
+        });
+    }
     /**
      * CloudWatch log group ARN to send query logs.
      */

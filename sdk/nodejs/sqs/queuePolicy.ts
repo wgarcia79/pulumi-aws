@@ -58,6 +58,12 @@ export class QueuePolicy extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:sqs/queuePolicy:QueuePolicy'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:sqs/queuePolicy:QueuePolicy',
+        });
+    }
     /**
      * The JSON policy for the SQS queue. For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](https://www.terraform.io/docs/providers/aws/guides/iam-policy-documents.html).
      */

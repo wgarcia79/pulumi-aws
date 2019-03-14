@@ -46,6 +46,12 @@ export class Pipeline extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:elastictranscoder/pipeline:Pipeline'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:elastictranscoder/pipeline:Pipeline',
+        });
+    }
     public /*out*/ readonly arn: pulumi.Output<string>;
     /**
      * The AWS Key Management Service (AWS KMS) key that you want to use with this pipeline.

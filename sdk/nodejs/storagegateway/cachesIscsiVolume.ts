@@ -78,6 +78,12 @@ export class CachesIscsiVolume extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:storagegateway/cachesIscsiVolume:CachesIscsiVolume'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:storagegateway/cachesIscsiVolume:CachesIscsiVolume',
+        });
+    }
     /**
      * Volume Amazon Resource Name (ARN), e.g. `arn:aws:storagegateway:us-east-1:123456789012:gateway/sgw-12345678/volume/vol-12345678`.
      */

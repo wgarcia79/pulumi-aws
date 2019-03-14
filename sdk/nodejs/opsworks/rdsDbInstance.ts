@@ -43,6 +43,12 @@ export class RdsDbInstance extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:opsworks/rdsDbInstance:RdsDbInstance'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:opsworks/rdsDbInstance:RdsDbInstance',
+        });
+    }
     /**
      * A db password
      */

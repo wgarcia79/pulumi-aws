@@ -71,6 +71,12 @@ export class VpcDhcpOptions extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/vpcDhcpOptions:VpcDhcpOptions'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/vpcDhcpOptions:VpcDhcpOptions',
+        });
+    }
     /**
      * the suffix domain name to use by default when resolving non Fully Qualified Domain Names. In other words, this is what ends up being the `search` value in the `/etc/resolv.conf` file.
      */

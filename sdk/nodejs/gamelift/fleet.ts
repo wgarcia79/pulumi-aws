@@ -44,6 +44,12 @@ export class Fleet extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:gamelift/fleet:Fleet'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:gamelift/fleet:Fleet',
+        });
+    }
     /**
      * Fleet ARN.
      */

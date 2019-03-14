@@ -39,6 +39,12 @@ export class MemberAccountAssociation extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:macie/memberAccountAssociation:MemberAccountAssociation'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:macie/memberAccountAssociation:MemberAccountAssociation',
+        });
+    }
     /**
      * The ID of the AWS account that you want to associate with Amazon Macie as a member account.
      */

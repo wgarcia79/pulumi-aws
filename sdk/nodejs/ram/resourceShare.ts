@@ -40,6 +40,12 @@ export class ResourceShare extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ram/resourceShare:ResourceShare'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ram/resourceShare:ResourceShare',
+        });
+    }
     /**
      * Indicates whether principals outside your organization can be associated with a resource share.
      */

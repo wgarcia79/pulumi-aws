@@ -53,6 +53,12 @@ export class NatGateway extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/natGateway:NatGateway'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/natGateway:NatGateway',
+        });
+    }
     /**
      * The Allocation ID of the Elastic IP address for the gateway.
      */

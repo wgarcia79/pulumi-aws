@@ -42,6 +42,12 @@ export class Repository extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:codecommit/repository:Repository'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:codecommit/repository:Repository',
+        });
+    }
     /**
      * The ARN of the repository
      */

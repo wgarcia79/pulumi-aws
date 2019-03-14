@@ -37,6 +37,12 @@ export class Account extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:securityhub/account:Account'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:securityhub/account:Account',
+        });
+    }
 
     /**
      * Create a Account resource with the given unique name, arguments, and options.

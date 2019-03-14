@@ -37,6 +37,12 @@ export class ServiceLinkedRole extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:iam/serviceLinkedRole:ServiceLinkedRole'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:iam/serviceLinkedRole:ServiceLinkedRole',
+        });
+    }
     /**
      * The Amazon Resource Name (ARN) specifying the role.
      */

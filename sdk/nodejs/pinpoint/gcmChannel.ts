@@ -42,6 +42,12 @@ export class GcmChannel extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:pinpoint/gcmChannel:GcmChannel'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:pinpoint/gcmChannel:GcmChannel',
+        });
+    }
     /**
      * Platform credential API key from Google.
      */

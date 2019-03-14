@@ -40,6 +40,12 @@ export class NfsFileShare extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:storagegateway/nfsFileShare:NfsFileShare'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:storagegateway/nfsFileShare:NfsFileShare',
+        });
+    }
     /**
      * Amazon Resource Name (ARN) of the NFS File Share.
      */

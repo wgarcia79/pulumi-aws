@@ -48,6 +48,12 @@ export class UserPolicyAttachment extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:iam/userPolicyAttachment:UserPolicyAttachment'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:iam/userPolicyAttachment:UserPolicyAttachment',
+        });
+    }
     /**
      * The ARN of the policy you want to apply
      */

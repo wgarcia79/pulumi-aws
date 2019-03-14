@@ -76,6 +76,12 @@ export class EventStream extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:pinpoint/eventStream:EventStream'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:pinpoint/eventStream:EventStream',
+        });
+    }
     /**
      * The application ID.
      */

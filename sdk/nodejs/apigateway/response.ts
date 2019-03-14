@@ -46,6 +46,12 @@ export class Response extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:apigateway/response:Response'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:apigateway/response:Response',
+        });
+    }
     /**
      * A map specifying the templates used to transform the response body.
      */

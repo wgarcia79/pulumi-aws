@@ -38,6 +38,12 @@ export class Connection extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:directconnect/connection:Connection'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:directconnect/connection:Connection',
+        });
+    }
     /**
      * The ARN of the connection.
      */

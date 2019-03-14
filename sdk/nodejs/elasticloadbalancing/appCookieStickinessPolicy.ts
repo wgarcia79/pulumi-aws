@@ -48,6 +48,12 @@ export class AppCookieStickinessPolicy extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:elasticloadbalancing/appCookieStickinessPolicy:AppCookieStickinessPolicy'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:elasticloadbalancing/appCookieStickinessPolicy:AppCookieStickinessPolicy',
+        });
+    }
     /**
      * The application cookie whose lifetime the ELB's cookie should follow.
      */

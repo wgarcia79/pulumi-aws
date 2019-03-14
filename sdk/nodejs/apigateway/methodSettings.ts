@@ -80,6 +80,12 @@ export class MethodSettings extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:apigateway/methodSettings:MethodSettings'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:apigateway/methodSettings:MethodSettings',
+        });
+    }
     /**
      * Method path defined as `{resource_path}/{http_method}` for an individual method override, or `*&#47;*` for overriding all methods in the stage.
      */

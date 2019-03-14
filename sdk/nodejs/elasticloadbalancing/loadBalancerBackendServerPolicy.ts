@@ -80,6 +80,12 @@ export class LoadBalancerBackendServerPolicy extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:elasticloadbalancing/loadBalancerBackendServerPolicy:LoadBalancerBackendServerPolicy'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:elasticloadbalancing/loadBalancerBackendServerPolicy:LoadBalancerBackendServerPolicy',
+        });
+    }
     /**
      * The instance port to apply the policy to.
      */

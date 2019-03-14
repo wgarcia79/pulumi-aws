@@ -76,6 +76,12 @@ export class Rule extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:cfg/rule:Rule'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:cfg/rule:Rule',
+        });
+    }
     /**
      * The ARN of the config rule
      */

@@ -45,6 +45,12 @@ export class Cluster extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:redshift/cluster:Cluster'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:redshift/cluster:Cluster',
+        });
+    }
     /**
      * If true , major version upgrades can be applied during the maintenance window to the Amazon Redshift engine that is running on the cluster. Default is true
      */

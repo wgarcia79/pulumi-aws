@@ -41,6 +41,12 @@ export class Alias extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:gamelift/alias:Alias'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:gamelift/alias:Alias',
+        });
+    }
     /**
      * Alias ARN.
      */

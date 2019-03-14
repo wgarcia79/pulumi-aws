@@ -46,6 +46,12 @@ export class IpSet extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:waf/ipSet:IpSet'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:waf/ipSet:IpSet',
+        });
+    }
     /**
      * The ARN of the WAF IPSet.
      */

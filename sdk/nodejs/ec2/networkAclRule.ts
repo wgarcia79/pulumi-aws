@@ -56,6 +56,12 @@ export class NetworkAclRule extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/networkAclRule:NetworkAclRule'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/networkAclRule:NetworkAclRule',
+        });
+    }
     /**
      * The network range to allow or deny, in CIDR notation (for example 172.16.0.0/24 ).
      */

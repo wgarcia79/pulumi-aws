@@ -47,6 +47,12 @@ export class DocumentationVersion extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:apigateway/documentationVersion:DocumentationVersion'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:apigateway/documentationVersion:DocumentationVersion',
+        });
+    }
     /**
      * The description of the API documentation version.
      */

@@ -38,6 +38,12 @@ export class Portfolio extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:servicecatalog/portfolio:Portfolio'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:servicecatalog/portfolio:Portfolio',
+        });
+    }
     public /*out*/ readonly arn: pulumi.Output<string>;
     public /*out*/ readonly createdTime: pulumi.Output<string>;
     /**

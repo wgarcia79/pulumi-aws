@@ -55,6 +55,12 @@ export class Policy extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:autoscaling/policy:Policy'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:autoscaling/policy:Policy',
+        });
+    }
     /**
      * Specifies whether the adjustment is an absolute number or a percentage of the current capacity. Valid values are `ChangeInCapacity`, `ExactCapacity`, and `PercentChangeInCapacity`.
      */

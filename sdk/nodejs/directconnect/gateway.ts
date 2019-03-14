@@ -37,6 +37,12 @@ export class Gateway extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:directconnect/gateway:Gateway'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:directconnect/gateway:Gateway',
+        });
+    }
     /**
      * The ASN to be configured on the Amazon side of the connection. The ASN must be in the private range of 64,512 to 65,534 or 4,200,000,000 to 4,294,967,294.
      */

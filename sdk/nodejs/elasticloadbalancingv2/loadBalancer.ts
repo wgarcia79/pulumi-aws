@@ -91,6 +91,12 @@ export class LoadBalancer extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:elasticloadbalancingv2/loadBalancer:LoadBalancer'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:elasticloadbalancingv2/loadBalancer:LoadBalancer',
+        });
+    }
     /**
      * An Access Logs block. Access Logs documented below. Only valid for Load Balancers of type `application`.
      */

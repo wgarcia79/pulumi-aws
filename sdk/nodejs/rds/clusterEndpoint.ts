@@ -85,6 +85,12 @@ export class ClusterEndpoint extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:rds/clusterEndpoint:ClusterEndpoint'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:rds/clusterEndpoint:ClusterEndpoint',
+        });
+    }
     /**
      * Amazon Resource Name (ARN) of cluster
      */

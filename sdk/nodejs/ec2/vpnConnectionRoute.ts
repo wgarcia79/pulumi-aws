@@ -55,6 +55,12 @@ export class VpnConnectionRoute extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/vpnConnectionRoute:VpnConnectionRoute'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/vpnConnectionRoute:VpnConnectionRoute',
+        });
+    }
     /**
      * The CIDR block associated with the local subnet of the customer network.
      */

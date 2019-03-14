@@ -58,6 +58,12 @@ export class TableItem extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:dynamodb/tableItem:TableItem'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:dynamodb/tableItem:TableItem',
+        });
+    }
     /**
      * Hash key to use for lookups and identification of the item
      */

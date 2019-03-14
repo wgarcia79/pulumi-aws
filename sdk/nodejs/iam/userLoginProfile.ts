@@ -46,6 +46,12 @@ export class UserLoginProfile extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:iam/userLoginProfile:UserLoginProfile'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:iam/userLoginProfile:UserLoginProfile',
+        });
+    }
     /**
      * The encrypted password, base64 encoded.
      */

@@ -52,6 +52,12 @@ export class RestApi extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:apigateway/restApi:RestApi'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:apigateway/restApi:RestApi',
+        });
+    }
     /**
      * The source of the API key for requests. Valid values are HEADER (default) and AUTHORIZER.
      */

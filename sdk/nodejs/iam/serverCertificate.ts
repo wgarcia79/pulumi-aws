@@ -103,6 +103,12 @@ export class ServerCertificate extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:iam/serverCertificate:ServerCertificate'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:iam/serverCertificate:ServerCertificate',
+        });
+    }
     /**
      * The Amazon Resource Name (ARN) specifying the server certificate.
      */

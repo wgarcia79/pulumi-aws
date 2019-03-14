@@ -65,6 +65,12 @@ export class Grant extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:kms/grant:Grant'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:kms/grant:Grant',
+        });
+    }
     /**
      * A structure that you can use to allow certain operations in the grant only when the desired encryption context is present. For more information about encryption context, see [Encryption Context](http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html).
      */

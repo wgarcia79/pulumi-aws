@@ -40,6 +40,12 @@ export class Template extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ses/template:Template'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ses/template:Template',
+        });
+    }
     /**
      * The HTML body of the email. Must be less than 500KB in size, including both the text and HTML parts.
      */

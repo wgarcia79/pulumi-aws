@@ -30,6 +30,12 @@ export class Trigger extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:codecommit/trigger:Trigger'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:codecommit/trigger:Trigger',
+        });
+    }
     public /*out*/ readonly configurationId: pulumi.Output<string>;
     /**
      * The name for the repository. This needs to be less than 100 characters.

@@ -52,6 +52,12 @@ export class ParameterGroup extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:rds/parameterGroup:ParameterGroup'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:rds/parameterGroup:ParameterGroup',
+        });
+    }
     /**
      * The ARN of the db parameter group.
      */

@@ -53,6 +53,12 @@ export class ReplicationInstance extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:dms/replicationInstance:ReplicationInstance'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:dms/replicationInstance:ReplicationInstance',
+        });
+    }
     /**
      * The amount of storage (in gigabytes) to be initially allocated for the replication instance.
      */

@@ -47,6 +47,12 @@ export class StaticIpAttachment extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:lightsail/staticIpAttachment:StaticIpAttachment'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:lightsail/staticIpAttachment:StaticIpAttachment',
+        });
+    }
     /**
      * The name of the Lightsail instance to attach the IP to
      */

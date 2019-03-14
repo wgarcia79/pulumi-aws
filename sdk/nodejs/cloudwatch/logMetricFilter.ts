@@ -44,6 +44,12 @@ export class LogMetricFilter extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:cloudwatch/logMetricFilter:LogMetricFilter'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:cloudwatch/logMetricFilter:LogMetricFilter',
+        });
+    }
     /**
      * The name of the log group to associate the metric filter with.
      */

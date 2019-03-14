@@ -39,6 +39,12 @@ export class TransitGateway extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2transitgateway/transitGateway:TransitGateway'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2transitgateway/transitGateway:TransitGateway',
+        });
+    }
     /**
      * Private Autonomous System Number (ASN) for the Amazon side of a BGP session. The range is `64512` to `65534` for 16-bit ASNs and `4200000000` to `4294967294` for 32-bit ASNs. Default value: `64512`.
      */

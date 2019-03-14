@@ -58,6 +58,12 @@ export class LayerVersion extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:lambda/layerVersion:LayerVersion'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:lambda/layerVersion:LayerVersion',
+        });
+    }
     /**
      * The Amazon Resource Name (ARN) identifying your Lambda Layer.
      */

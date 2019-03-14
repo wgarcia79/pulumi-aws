@@ -61,6 +61,12 @@ export class Application extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:codedeploy/application:Application'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:codedeploy/application:Application',
+        });
+    }
     /**
      * The compute platform can either be `ECS`, `Lambda`, or `Server`. Default is `Server`.
      */

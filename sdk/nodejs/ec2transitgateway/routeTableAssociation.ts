@@ -38,6 +38,12 @@ export class RouteTableAssociation extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2transitgateway/routeTableAssociation:RouteTableAssociation'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2transitgateway/routeTableAssociation:RouteTableAssociation',
+        });
+    }
     /**
      * Identifier of the resource
      */

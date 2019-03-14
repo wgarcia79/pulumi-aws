@@ -38,6 +38,12 @@ export class UserProfile extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:opsworks/userProfile:UserProfile'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:opsworks/userProfile:UserProfile',
+        });
+    }
     /**
      * Whether users can specify their own SSH public key through the My Settings page
      */

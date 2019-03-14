@@ -77,6 +77,12 @@ export class Trigger extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:glue/trigger:Trigger'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:glue/trigger:Trigger',
+        });
+    }
     /**
      * List of actions initiated by this trigger when it fires. Defined below.
      */

@@ -80,6 +80,12 @@ export class ScheduledAction extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:appautoscaling/scheduledAction:ScheduledAction'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:appautoscaling/scheduledAction:ScheduledAction',
+        });
+    }
     /**
      * The Amazon Resource Name (ARN) of the scheduled action.
      */

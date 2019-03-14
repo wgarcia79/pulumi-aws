@@ -100,6 +100,12 @@ export class DeploymentConfig extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:codedeploy/deploymentConfig:DeploymentConfig'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:codedeploy/deploymentConfig:DeploymentConfig',
+        });
+    }
     /**
      * The compute platform can be `Server`, `Lambda`, or `ECS`. Default is `Server`.
      */

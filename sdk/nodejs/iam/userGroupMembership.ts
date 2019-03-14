@@ -54,6 +54,12 @@ export class UserGroupMembership extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:iam/userGroupMembership:UserGroupMembership'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:iam/userGroupMembership:UserGroupMembership',
+        });
+    }
     /**
      * A list of [IAM Groups][1] to add the user to
      */

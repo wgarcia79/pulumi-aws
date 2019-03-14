@@ -104,6 +104,12 @@ export class HealthCheck extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:route53/healthCheck:HealthCheck'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:route53/healthCheck:HealthCheck',
+        });
+    }
     /**
      * The minimum number of child health checks that must be healthy for Route 53 to consider the parent health check to be healthy. Valid values are integers between 0 and 256, inclusive
      */

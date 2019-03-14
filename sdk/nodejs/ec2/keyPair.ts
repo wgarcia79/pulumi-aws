@@ -45,6 +45,12 @@ export class KeyPair extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/keyPair:KeyPair'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/keyPair:KeyPair',
+        });
+    }
     /**
      * The MD5 public key fingerprint as specified in section 4 of RFC 4716.
      */

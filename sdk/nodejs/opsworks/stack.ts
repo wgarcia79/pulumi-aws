@@ -48,6 +48,12 @@ export class Stack extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:opsworks/stack:Stack'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:opsworks/stack:Stack',
+        });
+    }
     /**
      * If set to `"LATEST"`, OpsWorks will automatically install the latest version.
      */

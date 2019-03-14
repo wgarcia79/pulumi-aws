@@ -40,6 +40,12 @@ export class PrivateVirtualInterface extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:directconnect/privateVirtualInterface:PrivateVirtualInterface'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:directconnect/privateVirtualInterface:PrivateVirtualInterface',
+        });
+    }
     /**
      * The address family for the BGP peer. `ipv4 ` or `ipv6`.
      */

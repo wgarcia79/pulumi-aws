@@ -118,6 +118,12 @@ export class DefaultSecurityGroup extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/defaultSecurityGroup:DefaultSecurityGroup'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/defaultSecurityGroup:DefaultSecurityGroup',
+        });
+    }
     public /*out*/ readonly arn: pulumi.Output<string>;
     /**
      * Can be specified multiple times for each

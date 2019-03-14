@@ -41,6 +41,12 @@ export class RequestValidator extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:apigateway/requestValidator:RequestValidator'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:apigateway/requestValidator:RequestValidator',
+        });
+    }
     /**
      * The name of the request validator
      */

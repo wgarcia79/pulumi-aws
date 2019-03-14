@@ -225,6 +225,12 @@ export class EventTarget extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:cloudwatch/eventTarget:EventTarget'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:cloudwatch/eventTarget:EventTarget',
+        });
+    }
     /**
      * The Amazon Resource Name (ARN) associated of the target.
      */

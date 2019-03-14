@@ -108,6 +108,12 @@ export class PatchBaseline extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ssm/patchBaseline:PatchBaseline'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ssm/patchBaseline:PatchBaseline',
+        });
+    }
     /**
      * A set of rules used to include patches in the baseline. up to 10 approval rules can be specified. Each approval_rule block requires the fields documented below.
      */

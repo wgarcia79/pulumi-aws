@@ -57,6 +57,12 @@ export class Secret extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:secretsmanager/secret:Secret'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:secretsmanager/secret:Secret',
+        });
+    }
     /**
      * Amazon Resource Name (ARN) of the secret.
      */

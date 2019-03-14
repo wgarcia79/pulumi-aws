@@ -35,6 +35,12 @@ export class Activity extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:sfn/activity:Activity'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:sfn/activity:Activity',
+        });
+    }
     /**
      * The date the activity was created.
      */

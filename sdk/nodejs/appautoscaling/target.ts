@@ -91,6 +91,12 @@ export class Target extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:appautoscaling/target:Target'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:appautoscaling/target:Target',
+        });
+    }
     /**
      * The max capacity of the scalable target.
      */

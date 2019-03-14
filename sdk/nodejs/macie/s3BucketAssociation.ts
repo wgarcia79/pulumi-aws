@@ -43,6 +43,12 @@ export class S3BucketAssociation extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:macie/s3BucketAssociation:S3BucketAssociation'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:macie/s3BucketAssociation:S3BucketAssociation',
+        });
+    }
     /**
      * The name of the S3 bucket that you want to associate with Amazon Macie.
      */

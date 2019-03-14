@@ -62,6 +62,12 @@ export class SubnetGroup extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:redshift/subnetGroup:SubnetGroup'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:redshift/subnetGroup:SubnetGroup',
+        });
+    }
     /**
      * The description of the Redshift Subnet group. Defaults to "Managed by Terraform".
      */

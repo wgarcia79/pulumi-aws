@@ -127,6 +127,12 @@ export class MetricAlarm extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:cloudwatch/metricAlarm:MetricAlarm'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:cloudwatch/metricAlarm:MetricAlarm',
+        });
+    }
     /**
      * Indicates whether or not actions should be executed during any changes to the alarm's state. Defaults to `true`.
      */

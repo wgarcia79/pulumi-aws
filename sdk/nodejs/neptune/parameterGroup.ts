@@ -41,6 +41,12 @@ export class ParameterGroup extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:neptune/parameterGroup:ParameterGroup'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:neptune/parameterGroup:ParameterGroup',
+        });
+    }
     /**
      * The Neptune parameter group Amazon Resource Name (ARN).
      */

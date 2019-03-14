@@ -78,6 +78,12 @@ export class SslNegotiationPolicy extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:elasticloadbalancing/sslNegotiationPolicy:SslNegotiationPolicy'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:elasticloadbalancing/sslNegotiationPolicy:SslNegotiationPolicy',
+        });
+    }
     /**
      * An SSL Negotiation policy attribute. Each has two properties:
      */

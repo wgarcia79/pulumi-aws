@@ -64,6 +64,12 @@ export class OptionGroup extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:rds/optionGroup:OptionGroup'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:rds/optionGroup:OptionGroup',
+        });
+    }
     /**
      * The ARN of the db option group.
      */

@@ -40,6 +40,12 @@ export class UploadBuffer extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:storagegateway/uploadBuffer:UploadBuffer'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:storagegateway/uploadBuffer:UploadBuffer',
+        });
+    }
     /**
      * Local disk identifier. For example, `pci-0000:03:00.0-scsi-0:0:0:0`.
      */

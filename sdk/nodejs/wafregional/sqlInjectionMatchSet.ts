@@ -42,6 +42,12 @@ export class SqlInjectionMatchSet extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:wafregional/sqlInjectionMatchSet:SqlInjectionMatchSet'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:wafregional/sqlInjectionMatchSet:SqlInjectionMatchSet',
+        });
+    }
     /**
      * The name or description of the SizeConstraintSet.
      */

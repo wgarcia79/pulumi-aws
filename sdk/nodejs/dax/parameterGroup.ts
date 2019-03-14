@@ -53,6 +53,12 @@ export class ParameterGroup extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:dax/parameterGroup:ParameterGroup'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:dax/parameterGroup:ParameterGroup',
+        });
+    }
     /**
      * A description of the parameter group.
      */

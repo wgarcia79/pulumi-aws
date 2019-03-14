@@ -59,6 +59,12 @@ export class BucketPolicy extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:s3/bucketPolicy:BucketPolicy'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:s3/bucketPolicy:BucketPolicy',
+        });
+    }
     /**
      * The name of the bucket to which to apply the policy.
      */

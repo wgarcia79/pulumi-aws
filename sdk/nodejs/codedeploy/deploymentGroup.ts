@@ -178,6 +178,12 @@ export class DeploymentGroup extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:codedeploy/deploymentGroup:DeploymentGroup'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:codedeploy/deploymentGroup:DeploymentGroup',
+        });
+    }
     /**
      * Configuration block of alarms associated with the deployment group (documented below).
      */

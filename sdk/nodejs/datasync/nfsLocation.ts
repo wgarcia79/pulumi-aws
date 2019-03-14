@@ -43,6 +43,12 @@ export class NfsLocation extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:datasync/nfsLocation:NfsLocation'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:datasync/nfsLocation:NfsLocation',
+        });
+    }
     /**
      * Amazon Resource Name (ARN) of the DataSync Location.
      */

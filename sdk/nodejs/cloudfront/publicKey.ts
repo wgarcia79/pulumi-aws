@@ -39,6 +39,12 @@ export class PublicKey extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:cloudfront/publicKey:PublicKey'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:cloudfront/publicKey:PublicKey',
+        });
+    }
     /**
      * Internal value used by CloudFront to allow future updates to the public key configuration.
      */

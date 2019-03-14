@@ -65,6 +65,12 @@ export class Connection extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:glue/connection:Connection'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:glue/connection:Connection',
+        });
+    }
     /**
      * The ID of the Data Catalog in which to create the connection. If none is supplied, the AWS account ID is used by default.
      */

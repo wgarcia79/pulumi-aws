@@ -55,6 +55,12 @@ export class Notification extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:autoscaling/notification:Notification'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:autoscaling/notification:Notification',
+        });
+    }
     /**
      * A list of AutoScaling Group Names
      */

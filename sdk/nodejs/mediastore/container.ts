@@ -35,6 +35,12 @@ export class Container extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:mediastore/container:Container'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:mediastore/container:Container',
+        });
+    }
     /**
      * The ARN of the container.
      */

@@ -44,6 +44,12 @@ export class ApnsVoipChannel extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:pinpoint/apnsVoipChannel:ApnsVoipChannel'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:pinpoint/apnsVoipChannel:ApnsVoipChannel',
+        });
+    }
     /**
      * The application ID.
      */

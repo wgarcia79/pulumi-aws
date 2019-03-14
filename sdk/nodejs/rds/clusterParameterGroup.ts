@@ -50,6 +50,12 @@ export class ClusterParameterGroup extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:rds/clusterParameterGroup:ClusterParameterGroup'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:rds/clusterParameterGroup:ClusterParameterGroup',
+        });
+    }
     /**
      * The ARN of the db cluster parameter group.
      */

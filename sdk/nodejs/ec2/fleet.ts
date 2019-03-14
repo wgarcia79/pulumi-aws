@@ -46,6 +46,12 @@ export class Fleet extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/fleet:Fleet'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/fleet:Fleet',
+        });
+    }
     /**
      * Whether running instances should be terminated if the total target capacity of the EC2 Fleet is decreased below the current size of the EC2. Valid values: `no-termination`, `termination`. Defaults to `termination`.
      */

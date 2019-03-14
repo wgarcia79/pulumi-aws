@@ -55,6 +55,12 @@ export class GroupPolicy extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:iam/groupPolicy:GroupPolicy'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:iam/groupPolicy:GroupPolicy',
+        });
+    }
     /**
      * The IAM group to attach to the policy.
      */

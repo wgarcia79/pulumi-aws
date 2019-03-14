@@ -88,6 +88,12 @@ export class Preset extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:elastictranscoder/preset:Preset'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:elastictranscoder/preset:Preset',
+        });
+    }
     public /*out*/ readonly arn: pulumi.Output<string>;
     /**
      * Audio parameters object (documented below).

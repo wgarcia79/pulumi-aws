@@ -88,6 +88,12 @@ export class Gateway extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:storagegateway/gateway:Gateway'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:storagegateway/gateway:Gateway',
+        });
+    }
     /**
      * Gateway activation key during resource creation. Conflicts with `gateway_ip_address`. Additional information is available in the [Storage Gateway User Guide](https://docs.aws.amazon.com/storagegateway/latest/userguide/get-activation-key.html).
      */

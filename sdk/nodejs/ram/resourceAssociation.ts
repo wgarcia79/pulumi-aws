@@ -40,6 +40,12 @@ export class ResourceAssociation extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ram/resourceAssociation:ResourceAssociation'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ram/resourceAssociation:ResourceAssociation',
+        });
+    }
     /**
      * Amazon Resource Name (ARN) of the resource to associate with the RAM Resource Share.
      */

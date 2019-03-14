@@ -389,6 +389,12 @@ export class Cluster extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:emr/cluster:Cluster'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:emr/cluster:Cluster',
+        });
+    }
     /**
      * A JSON string for selecting additional features such as adding proxy information. Note: Currently there is no API to retrieve the value of this argument after EMR cluster creation from provider, therefore Terraform cannot detect drift from the actual EMR cluster if its value is changed outside Terraform.
      */

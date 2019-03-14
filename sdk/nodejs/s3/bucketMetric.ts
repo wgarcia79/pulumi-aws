@@ -59,6 +59,12 @@ export class BucketMetric extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:s3/bucketMetric:BucketMetric'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:s3/bucketMetric:BucketMetric',
+        });
+    }
     /**
      * The name of the bucket to put metric configuration.
      */

@@ -102,6 +102,12 @@ export class NetworkInterfaceSecurityGroupAttachment extends pulumi.CustomResour
         return ctx.list({...args, type: 'aws:ec2/networkInterfaceSecurityGroupAttachment:NetworkInterfaceSecurityGroupAttachment'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/networkInterfaceSecurityGroupAttachment:NetworkInterfaceSecurityGroupAttachment',
+        });
+    }
     /**
      * The ID of the network interface to attach to.
      */

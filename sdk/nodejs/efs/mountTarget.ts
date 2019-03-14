@@ -46,6 +46,12 @@ export class MountTarget extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:efs/mountTarget:MountTarget'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:efs/mountTarget:MountTarget',
+        });
+    }
     /**
      * The DNS name for the given subnet/AZ per [documented convention](http://docs.aws.amazon.com/efs/latest/ug/mounting-fs-mount-cmd-dns-name.html).
      */

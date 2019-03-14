@@ -126,6 +126,12 @@ export class DefaultNetworkAcl extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/defaultNetworkAcl:DefaultNetworkAcl'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/defaultNetworkAcl:DefaultNetworkAcl',
+        });
+    }
     /**
      * The Network ACL ID to manage. This
      * attribute is exported from `aws_vpc`, or manually found via the AWS Console.

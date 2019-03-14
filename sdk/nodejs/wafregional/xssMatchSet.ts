@@ -50,6 +50,12 @@ export class XssMatchSet extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:wafregional/xssMatchSet:XssMatchSet'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:wafregional/xssMatchSet:XssMatchSet',
+        });
+    }
     /**
      * The name of the set
      */

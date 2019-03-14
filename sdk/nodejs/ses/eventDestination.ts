@@ -88,6 +88,12 @@ export class EventDestination extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ses/eventDestination:EventDestination'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ses/eventDestination:EventDestination',
+        });
+    }
     /**
      * CloudWatch destination for the events
      */

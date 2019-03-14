@@ -39,6 +39,12 @@ export class Route extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2transitgateway/route:Route'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2transitgateway/route:Route',
+        });
+    }
     /**
      * IPv4 CIDR range used for destination matches. Routing decisions are based on the most specific match.
      */

@@ -38,6 +38,12 @@ export class StandardsSubscription extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:securityhub/standardsSubscription:StandardsSubscription'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:securityhub/standardsSubscription:StandardsSubscription',
+        });
+    }
     /**
      * The ARN of a standard - see below.
      */

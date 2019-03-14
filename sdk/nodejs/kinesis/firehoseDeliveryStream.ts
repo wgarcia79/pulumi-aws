@@ -234,6 +234,12 @@ export class FirehoseDeliveryStream extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:kinesis/firehoseDeliveryStream:FirehoseDeliveryStream'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:kinesis/firehoseDeliveryStream:FirehoseDeliveryStream',
+        });
+    }
     /**
      * The Amazon Resource Name (ARN) specifying the Stream
      */

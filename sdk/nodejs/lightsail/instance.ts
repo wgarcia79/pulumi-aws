@@ -128,6 +128,12 @@ export class Instance extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:lightsail/instance:Instance'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:lightsail/instance:Instance',
+        });
+    }
     /**
      * The ARN of the Lightsail instance (matches `id`).
      * * `availability_zone`

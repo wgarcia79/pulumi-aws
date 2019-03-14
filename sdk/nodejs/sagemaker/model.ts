@@ -54,6 +54,12 @@ export class Model extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:sagemaker/model:Model'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:sagemaker/model:Model',
+        });
+    }
     /**
      * The Amazon Resource Name (ARN) assigned by AWS to this model.
      */

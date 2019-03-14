@@ -43,6 +43,12 @@ export class NotebookInstance extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:sagemaker/notebookInstance:NotebookInstance'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:sagemaker/notebookInstance:NotebookInstance',
+        });
+    }
     /**
      * The Amazon Resource Name (ARN) assigned by AWS to this notebook instance.
      */

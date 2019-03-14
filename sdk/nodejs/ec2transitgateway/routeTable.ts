@@ -37,6 +37,12 @@ export class RouteTable extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2transitgateway/routeTable:RouteTable'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2transitgateway/routeTable:RouteTable',
+        });
+    }
     /**
      * Boolean whether this is the default association route table for the EC2 Transit Gateway.
      */

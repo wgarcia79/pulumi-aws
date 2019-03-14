@@ -47,6 +47,12 @@ export class RuleGroup extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:wafregional/ruleGroup:RuleGroup'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:wafregional/ruleGroup:RuleGroup',
+        });
+    }
     /**
      * A list of activated rules, see below
      */

@@ -54,6 +54,12 @@ export class VolumeAttachment extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/volumeAttachment:VolumeAttachment'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/volumeAttachment:VolumeAttachment',
+        });
+    }
     /**
      * The device name to expose to the instance (for
      * example, `/dev/sdh` or `xvdh`)

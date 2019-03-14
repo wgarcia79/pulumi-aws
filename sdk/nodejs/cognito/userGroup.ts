@@ -65,6 +65,12 @@ export class UserGroup extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:cognito/userGroup:UserGroup'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:cognito/userGroup:UserGroup',
+        });
+    }
     /**
      * The description of the user group.
      */

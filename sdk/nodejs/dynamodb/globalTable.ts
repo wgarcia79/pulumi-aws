@@ -28,6 +28,12 @@ export class GlobalTable extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:dynamodb/globalTable:GlobalTable'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:dynamodb/globalTable:GlobalTable',
+        });
+    }
     /**
      * The ARN of the DynamoDB Global Table
      */

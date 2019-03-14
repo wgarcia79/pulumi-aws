@@ -52,6 +52,12 @@ export class AmiCopy extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/amiCopy:AmiCopy'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/amiCopy:AmiCopy',
+        });
+    }
     /**
      * Machine architecture for created instances. Defaults to "x86_64".
      */

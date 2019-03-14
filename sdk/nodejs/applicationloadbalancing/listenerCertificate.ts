@@ -45,6 +45,12 @@ export class ListenerCertificate extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:applicationloadbalancing/listenerCertificate:ListenerCertificate'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:applicationloadbalancing/listenerCertificate:ListenerCertificate',
+        });
+    }
     /**
      * The ARN of the certificate to attach to the listener.
      */

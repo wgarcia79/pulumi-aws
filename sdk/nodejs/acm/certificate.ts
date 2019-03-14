@@ -59,6 +59,12 @@ export class Certificate extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:acm/certificate:Certificate'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:acm/certificate:Certificate',
+        });
+    }
     /**
      * The ARN of the certificate
      */

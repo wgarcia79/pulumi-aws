@@ -48,6 +48,12 @@ export class Stream extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:kinesis/stream:Stream'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:kinesis/stream:Stream',
+        });
+    }
     /**
      * The Amazon Resource Name (ARN) specifying the Stream (same as `id`)
      */

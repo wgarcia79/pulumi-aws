@@ -74,6 +74,12 @@ export class TargetGroup extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:applicationloadbalancing/targetGroup:TargetGroup'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:applicationloadbalancing/targetGroup:TargetGroup',
+        });
+    }
     /**
      * The ARN of the Target Group (matches `id`)
      */

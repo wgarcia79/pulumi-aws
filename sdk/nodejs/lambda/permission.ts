@@ -130,6 +130,12 @@ export class Permission extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:lambda/permission:Permission'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:lambda/permission:Permission',
+        });
+    }
     /**
      * The AWS Lambda action you want to allow in this statement. (e.g. `lambda:InvokeFunction`)
      */

@@ -142,6 +142,12 @@ export class Project extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:codebuild/project:Project'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:codebuild/project:Project',
+        });
+    }
     /**
      * The ARN of the CodeBuild project.
      */

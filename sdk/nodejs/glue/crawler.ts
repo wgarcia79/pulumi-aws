@@ -74,6 +74,12 @@ export class Crawler extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:glue/crawler:Crawler'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:glue/crawler:Crawler',
+        });
+    }
     /**
      * List of custom classifiers. By default, all AWS classifiers are included in a crawl, but these custom classifiers always override the default classifiers for a given classification.
      */

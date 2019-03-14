@@ -47,6 +47,12 @@ export class Application extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:elasticbeanstalk/application:Application'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:elasticbeanstalk/application:Application',
+        });
+    }
     public readonly appversionLifecycle: pulumi.Output<{ deleteSourceFromS3?: boolean, maxAgeInDays?: number, maxCount?: number, serviceRole: string } | undefined>;
     /**
      * Short description of the application

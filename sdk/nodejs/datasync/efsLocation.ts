@@ -47,6 +47,12 @@ export class EfsLocation extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:datasync/efsLocation:EfsLocation'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:datasync/efsLocation:EfsLocation',
+        });
+    }
     /**
      * Amazon Resource Name (ARN) of the DataSync Location.
      */

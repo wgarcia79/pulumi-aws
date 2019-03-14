@@ -37,6 +37,12 @@ export class ActiveReceiptRuleSet extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ses/activeReceiptRuleSet:ActiveReceiptRuleSet'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ses/activeReceiptRuleSet:ActiveReceiptRuleSet',
+        });
+    }
     /**
      * The name of the rule set
      */

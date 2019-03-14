@@ -95,6 +95,12 @@ export class Instance extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:opsworks/instance:Instance'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:opsworks/instance:Instance',
+        });
+    }
     /**
      * The AWS OpsWorks agent to install.  Defaults to `"INHERIT"`.
      */

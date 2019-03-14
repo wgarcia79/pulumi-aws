@@ -46,6 +46,12 @@ export class VpcEndpointSubnetAssociation extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/vpcEndpointSubnetAssociation:VpcEndpointSubnetAssociation'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/vpcEndpointSubnetAssociation:VpcEndpointSubnetAssociation',
+        });
+    }
     /**
      * The ID of the subnet to be associated with the VPC endpoint.
      */

@@ -76,6 +76,12 @@ export class User extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:transfer/user:User'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:transfer/user:User',
+        });
+    }
     /**
      * Amazon Resource Name (ARN) of Transfer User
      */

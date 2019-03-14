@@ -39,6 +39,12 @@ export class IdentityNotificationTopic extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ses/identityNotificationTopic:IdentityNotificationTopic'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ses/identityNotificationTopic:IdentityNotificationTopic',
+        });
+    }
     /**
      * The identity for which the Amazon SNS topic will be set. You can specify an identity by using its name or by using its Amazon Resource Name (ARN).
      */

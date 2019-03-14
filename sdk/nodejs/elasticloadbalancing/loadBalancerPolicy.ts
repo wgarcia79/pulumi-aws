@@ -99,6 +99,12 @@ export class LoadBalancerPolicy extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:elasticloadbalancing/loadBalancerPolicy:LoadBalancerPolicy'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:elasticloadbalancing/loadBalancerPolicy:LoadBalancerPolicy',
+        });
+    }
     /**
      * The load balancer on which the policy is defined.
      */

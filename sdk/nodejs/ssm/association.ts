@@ -40,6 +40,12 @@ export class Association extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ssm/association:Association'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ssm/association:Association',
+        });
+    }
     public /*out*/ readonly associationId: pulumi.Output<string>;
     /**
      * The descriptive name for the association.

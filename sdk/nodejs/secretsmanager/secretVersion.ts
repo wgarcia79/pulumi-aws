@@ -67,6 +67,12 @@ export class SecretVersion extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:secretsmanager/secretVersion:SecretVersion'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:secretsmanager/secretVersion:SecretVersion',
+        });
+    }
     /**
      * The ARN of the secret.
      */

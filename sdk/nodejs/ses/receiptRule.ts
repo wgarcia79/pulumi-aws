@@ -50,6 +50,12 @@ export class ReceiptRule extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ses/receiptRule:ReceiptRule'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ses/receiptRule:ReceiptRule',
+        });
+    }
     /**
      * A list of Add Header Action blocks. Documented below.
      */

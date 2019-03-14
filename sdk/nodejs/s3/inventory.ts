@@ -78,6 +78,12 @@ export class Inventory extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:s3/inventory:Inventory'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:s3/inventory:Inventory',
+        });
+    }
     /**
      * The S3 bucket configuration where inventory results are published (documented below).
      */

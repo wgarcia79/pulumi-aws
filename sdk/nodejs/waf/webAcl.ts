@@ -89,6 +89,12 @@ export class WebAcl extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:waf/webAcl:WebAcl'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:waf/webAcl:WebAcl',
+        });
+    }
     public /*out*/ readonly arn: pulumi.Output<string>;
     /**
      * Configuration block with action that you want AWS WAF to take when a request doesn't match the criteria in any of the rules that are associated with the web ACL. Detailed below.

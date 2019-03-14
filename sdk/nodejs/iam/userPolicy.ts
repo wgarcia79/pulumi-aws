@@ -58,6 +58,12 @@ export class UserPolicy extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:iam/userPolicy:UserPolicy'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:iam/userPolicy:UserPolicy',
+        });
+    }
     /**
      * The name of the policy. If omitted, Terraform will assign a random, unique name.
      */

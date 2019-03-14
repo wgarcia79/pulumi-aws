@@ -46,6 +46,12 @@ export class ThingPrincipalAttachment extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:iot/thingPrincipalAttachment:ThingPrincipalAttachment'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:iot/thingPrincipalAttachment:ThingPrincipalAttachment',
+        });
+    }
     /**
      * The AWS IoT Certificate ARN or Amazon Cognito Identity ID.
      */

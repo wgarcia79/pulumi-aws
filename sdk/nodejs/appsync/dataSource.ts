@@ -87,6 +87,12 @@ export class DataSource extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:appsync/dataSource:DataSource'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:appsync/dataSource:DataSource',
+        });
+    }
     /**
      * The API ID for the GraphQL API for the DataSource.
      */

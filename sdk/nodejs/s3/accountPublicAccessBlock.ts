@@ -42,6 +42,12 @@ export class AccountPublicAccessBlock extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:s3/accountPublicAccessBlock:AccountPublicAccessBlock'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:s3/accountPublicAccessBlock:AccountPublicAccessBlock',
+        });
+    }
     /**
      * AWS account ID to configure. Defaults to automatically determined account ID of the Terraform AWS provider.
      */

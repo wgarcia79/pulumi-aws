@@ -50,6 +50,12 @@ export class RegexMatchSet extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:waf/regexMatchSet:RegexMatchSet'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:waf/regexMatchSet:RegexMatchSet',
+        });
+    }
     /**
      * The name or description of the Regex Match Set.
      */

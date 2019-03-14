@@ -35,6 +35,12 @@ export class ConfgurationSet extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ses/confgurationSet:ConfgurationSet'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ses/confgurationSet:ConfgurationSet',
+        });
+    }
     /**
      * The name of the configuration set
      */

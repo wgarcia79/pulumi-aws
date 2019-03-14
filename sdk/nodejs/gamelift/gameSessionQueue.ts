@@ -50,6 +50,12 @@ export class GameSessionQueue extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:gamelift/gameSessionQueue:GameSessionQueue'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:gamelift/gameSessionQueue:GameSessionQueue',
+        });
+    }
     /**
      * Game Session Queue ARN.
      */

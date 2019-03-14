@@ -38,6 +38,12 @@ export class ReceiptFilter extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ses/receiptFilter:ReceiptFilter'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ses/receiptFilter:ReceiptFilter',
+        });
+    }
     /**
      * The IP address or address range to filter, in CIDR notation
      */

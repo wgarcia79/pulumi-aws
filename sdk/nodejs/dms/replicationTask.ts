@@ -48,6 +48,12 @@ export class ReplicationTask extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:dms/replicationTask:ReplicationTask'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:dms/replicationTask:ReplicationTask',
+        });
+    }
     /**
      * The Unix timestamp integer for the start of the Change Data Capture (CDC) operation.
      */

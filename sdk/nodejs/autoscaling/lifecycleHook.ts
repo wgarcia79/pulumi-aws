@@ -68,6 +68,12 @@ export class LifecycleHook extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:autoscaling/lifecycleHook:LifecycleHook'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:autoscaling/lifecycleHook:LifecycleHook',
+        });
+    }
     /**
      * The name of the Auto Scaling group to which you want to assign the lifecycle hook
      */

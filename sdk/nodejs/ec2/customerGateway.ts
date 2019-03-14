@@ -42,6 +42,12 @@ export class CustomerGateway extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/customerGateway:CustomerGateway'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/customerGateway:CustomerGateway',
+        });
+    }
     /**
      * The gateway's Border Gateway Protocol (BGP) Autonomous System Number (ASN).
      */

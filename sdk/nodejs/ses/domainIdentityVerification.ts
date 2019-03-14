@@ -52,6 +52,12 @@ export class DomainIdentityVerification extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ses/domainIdentityVerification:DomainIdentityVerification'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ses/domainIdentityVerification:DomainIdentityVerification',
+        });
+    }
     /**
      * The ARN of the domain identity.
      */

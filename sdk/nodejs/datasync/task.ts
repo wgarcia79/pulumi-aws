@@ -43,6 +43,12 @@ export class Task extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:datasync/task:Task'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:datasync/task:Task',
+        });
+    }
     /**
      * Amazon Resource Name (ARN) of the DataSync Task.
      */

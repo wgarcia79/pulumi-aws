@@ -52,6 +52,12 @@ export class UserPoolDomain extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:cognito/userPoolDomain:UserPoolDomain'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:cognito/userPoolDomain:UserPoolDomain',
+        });
+    }
     /**
      * The AWS account ID for the user pool owner.
      */

@@ -143,6 +143,12 @@ export class Trail extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:cloudtrail/trail:Trail'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:cloudtrail/trail:Trail',
+        });
+    }
     /**
      * The Amazon Resource Name of the trail.
      */

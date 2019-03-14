@@ -57,6 +57,12 @@ export class EventPermission extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:cloudwatch/eventPermission:EventPermission'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:cloudwatch/eventPermission:EventPermission',
+        });
+    }
     /**
      * The action that you are enabling the other account to perform. Defaults to `events:PutEvents`.
      */

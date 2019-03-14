@@ -84,6 +84,12 @@ export class SshKey extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:transfer/sshKey:SshKey'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:transfer/sshKey:SshKey',
+        });
+    }
     /**
      * The public key portion of an SSH key pair.
      */

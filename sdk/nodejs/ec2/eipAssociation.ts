@@ -55,6 +55,12 @@ export class EipAssociation extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/eipAssociation:EipAssociation'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/eipAssociation:EipAssociation',
+        });
+    }
     /**
      * The allocation ID. This is required for EC2-VPC.
      */

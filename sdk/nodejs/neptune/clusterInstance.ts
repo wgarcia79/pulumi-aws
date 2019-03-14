@@ -58,6 +58,12 @@ export class ClusterInstance extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:neptune/clusterInstance:ClusterInstance'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:neptune/clusterInstance:ClusterInstance',
+        });
+    }
     /**
      * The hostname of the instance. See also `endpoint` and `port`.
      */

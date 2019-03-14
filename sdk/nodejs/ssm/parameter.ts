@@ -71,6 +71,12 @@ export class Parameter extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ssm/parameter:Parameter'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ssm/parameter:Parameter',
+        });
+    }
     /**
      * A regular expression used to validate the parameter value.
      */

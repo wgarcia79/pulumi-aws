@@ -69,6 +69,12 @@ export class TopicPolicy extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:sns/topicPolicy:TopicPolicy'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:sns/topicPolicy:TopicPolicy',
+        });
+    }
     /**
      * The ARN of the SNS topic
      */

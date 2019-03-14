@@ -40,6 +40,12 @@ export class SubnetGroup extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:dax/subnetGroup:SubnetGroup'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:dax/subnetGroup:SubnetGroup',
+        });
+    }
     /**
      * A description of the subnet group.
      */

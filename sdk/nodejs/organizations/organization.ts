@@ -41,6 +41,12 @@ export class Organization extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:organizations/organization:Organization'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:organizations/organization:Organization',
+        });
+    }
     /**
      * ARN of the organization
      */

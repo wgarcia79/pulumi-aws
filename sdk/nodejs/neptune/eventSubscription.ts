@@ -78,6 +78,12 @@ export class EventSubscription extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:neptune/eventSubscription:EventSubscription'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:neptune/eventSubscription:EventSubscription',
+        });
+    }
     public /*out*/ readonly arn: pulumi.Output<string>;
     public /*out*/ readonly customerAwsId: pulumi.Output<string>;
     /**

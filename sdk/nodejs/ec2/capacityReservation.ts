@@ -44,6 +44,12 @@ export class CapacityReservation extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2/capacityReservation:CapacityReservation'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2/capacityReservation:CapacityReservation',
+        });
+    }
     /**
      * The Availability Zone in which to create the Capacity Reservation.
      */

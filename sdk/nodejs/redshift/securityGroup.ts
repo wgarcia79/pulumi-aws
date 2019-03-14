@@ -39,6 +39,12 @@ export class SecurityGroup extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:redshift/securityGroup:SecurityGroup'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:redshift/securityGroup:SecurityGroup',
+        });
+    }
     /**
      * The description of the Redshift security group. Defaults to "Managed by Terraform".
      */

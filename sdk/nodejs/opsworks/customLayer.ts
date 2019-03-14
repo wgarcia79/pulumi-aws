@@ -38,6 +38,12 @@ export class CustomLayer extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:opsworks/customLayer:CustomLayer'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:opsworks/customLayer:CustomLayer',
+        });
+    }
     /**
      * Whether to automatically assign an elastic IP address to the layer's instances.
      */

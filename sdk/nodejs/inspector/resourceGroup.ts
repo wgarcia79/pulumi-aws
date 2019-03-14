@@ -40,6 +40,12 @@ export class ResourceGroup extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:inspector/resourceGroup:ResourceGroup'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:inspector/resourceGroup:ResourceGroup',
+        });
+    }
     /**
      * The resource group ARN.
      */

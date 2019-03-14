@@ -49,6 +49,12 @@ export class Endpoint extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:ec2clientvpn/endpoint:Endpoint'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:ec2clientvpn/endpoint:Endpoint',
+        });
+    }
     /**
      * Information about the authentication method to be used to authenticate clients.
      */

@@ -45,6 +45,12 @@ export class Policy extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:organizations/policy:Policy'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:organizations/policy:Policy',
+        });
+    }
     /**
      * Amazon Resource Name (ARN) of the policy.
      */

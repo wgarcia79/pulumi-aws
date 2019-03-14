@@ -40,6 +40,12 @@ export class LinkAggregationGroup extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:directconnect/linkAggregationGroup:LinkAggregationGroup'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:directconnect/linkAggregationGroup:LinkAggregationGroup',
+        });
+    }
     /**
      * The ARN of the LAG.
      */

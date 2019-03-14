@@ -53,6 +53,12 @@ export class LogDestinationPolicy extends pulumi.CustomResource {
         return ctx.list({...args, type: 'aws:cloudwatch/logDestinationPolicy:LogDestinationPolicy'});
     }
 
+    public static addAdmissionPolicy(policy: pulumi.policy.AdmissionPolicy): void {
+        pulumi.runtime.addAdmissionPolicy({
+            ...policy,
+            pulumiType: 'aws:cloudwatch/logDestinationPolicy:LogDestinationPolicy',
+        });
+    }
     /**
      * The policy document. This is a JSON formatted string.
      */
