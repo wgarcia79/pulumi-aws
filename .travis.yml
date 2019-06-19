@@ -3,6 +3,11 @@ if: branch = master OR branch =~ ^features/ OR branch =~ ^release/ OR tag IS pre
 language: go
 go: 1.12.1
 sudo: true # give us 7.5GB and >2 bursted cores.
+env:
+    global:
+        - AWS_ACCESS_KEY_ID=AKIA5AWJ2ICQ7W7QKIMJ
+        - secure: "caSkU0gcXH2CS76rxMx9OOuvoe6Phedwv/K6zMH+YO1QJsO1/1p6tDuoYD4D/AOU9GQXbB0g/OI4a0Nih762o65BApcOJklmJStX5qJOQvFapFkvSjvgHL82fqnIKw9d+8PuxLE+EKXPwNt6Md+5PG2YT5aALwrDCku2pzT6q+6wyEBO2E1puAhzSO1ATSrjtZaEjIAqJ6oW3vntHlInTB/pIu5OKUx3mtVeZw1d9hLfcSVYuJDRN0c0P/jgl97yIvFymc+KglgMRm6D+cZCH7M3VcmRzQdBxoehQTarMhmx845C/EMaq9mwyWdHINPZGD32Zizb38tH7mpRx18SNTnoUVguyY7zKk2IS6gqNQAF3GZ9xDc9fFp3STDrkk2AsBNx6Q6iLr7Zv4yTumM0GPEc28+W19QOeuHOMuAjIAItHo6lzj47/XOJoTjk1XvZcL/WYaYXC3tJpr/o2i294lMQEsBpJBZZiPqxeqO2TJ+LSrupqC1cyT7Gvr/pgdLmDBqJu0Wt5894RhUhBTFD2FJGKMeHqawdZGPgXP9ndyaXBjQNiMIGPN0lkV8vVn8S5B1sw/R1yruo4IVgD9YVRxBs+H0HxHZhJGMp4quKeZqhXY1N+jujfQr162mAdQZI1iK+O4lHvu/vrrmFUQv77f56Ya+3XiHr9CvYwSBZyOI="
+
 git:
   depth: false
 before_install:
@@ -16,7 +21,7 @@ install:
 before_script:
     - ${PULUMI_SCRIPTS}/ci/ensure-dependencies
 script:
-    - make travis_${TRAVIS_EVENT_TYPE}
+    - aws sts get-caller-identity
 after_failure:
     - ${PULUMI_SCRIPTS}/ci/upload-failed-tests
 notifications:
