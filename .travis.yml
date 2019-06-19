@@ -21,7 +21,7 @@ install:
 before_script:
     - ${PULUMI_SCRIPTS}/ci/ensure-dependencies
 script:
-    - aws sts get-caller-identity
+    - make travis_${TRAVIS_EVENT_TYPE}
 after_failure:
     - ${PULUMI_SCRIPTS}/ci/upload-failed-tests
 notifications:
