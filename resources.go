@@ -16,6 +16,7 @@ package aws
 
 import (
 	"errors"
+	"os"
 	"strings"
 	"unicode"
 
@@ -177,6 +178,10 @@ func stringValue(vars resource.PropertyMap, prop resource.PropertyKey) string {
 // configuration subset of `github.com/terraform-providers/terraform-provider-aws/aws.providerConfigure`.  We do this
 // before passing control to the TF provider to ensure we can report actionable errors.
 func preConfigureCallback(vars resource.PropertyMap, c *terraform.ResourceConfig) error {
+	if os.Getenv("PULUMI_DISABLE_AWS_PRECONFIGURE_CALLBACK") != "" {
+		return nil
+	}
+
 	config := &awsbase.Config{
 		AccessKey: stringValue(vars, "accessKey"),
 		SecretKey: stringValue(vars, "secretKey"),
