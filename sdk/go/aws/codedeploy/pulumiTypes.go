@@ -2863,6 +2863,48 @@ func (i DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRouteArgs) 
 	return pulumi.ToOutputWithContext(ctx, i).(DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRouteOutput)
 }
 
+func (i DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRouteArgs) ToDeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutput() DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutput {
+	return i.ToDeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRouteArgs) ToDeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutputWithContext(ctx context.Context) DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRouteOutput).ToDeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutputWithContext(ctx)
+}
+
+// DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrInput is an input type that accepts DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRouteArgs, DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtr and DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutput values.
+// You can construct a concrete instance of `DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrInput` via:
+//
+// 		 DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRouteArgs{...}
+//
+//  or:
+//
+// 		 nil
+//
+type DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrInput interface {
+	pulumi.Input
+
+	ToDeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutput() DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutput
+	ToDeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutputWithContext(context.Context) DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutput
+}
+
+type deploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrType DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRouteArgs
+
+func DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtr(v *DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRouteArgs) DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrInput {
+	return (*deploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrType)(v)
+}
+
+func (*deploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoute)(nil)).Elem()
+}
+
+func (i *deploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrType) ToDeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutput() DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutput {
+	return i.ToDeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrType) ToDeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutputWithContext(ctx context.Context) DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutput)
+}
+
 type DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRouteOutput struct{ *pulumi.OutputState }
 
 func (DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRouteOutput) ElementType() reflect.Type {
@@ -2877,10 +2919,50 @@ func (o DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRouteOutput
 	return o
 }
 
+func (o DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRouteOutput) ToDeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutput() DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutput {
+	return o.ToDeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRouteOutput) ToDeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutputWithContext(ctx context.Context) DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutput {
+	return o.ApplyT(func(v DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoute) *DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoute {
+		return &v
+	}).(DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutput)
+}
+
 // List of Amazon Resource Names (ARNs) of the load balancer listeners.
 func (o DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRouteOutput) ListenerArns() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoute) []string {
 		return v.ListenerArns
+	}).(pulumi.StringArrayOutput)
+}
+
+type DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoute)(nil)).Elem()
+}
+
+func (o DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutput) ToDeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutput() DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutput {
+	return o
+}
+
+func (o DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutput) ToDeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutputWithContext(ctx context.Context) DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutput {
+	return o
+}
+
+func (o DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutput) Elem() DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRouteOutput {
+	return o.ApplyT(func(v *DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoute) DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoute {
+		return *v
+	}).(DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRouteOutput)
+}
+
+// List of Amazon Resource Names (ARNs) of the load balancer listeners.
+func (o DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutput) ListenerArns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoute) []string {
+		if v == nil {
+			return nil
+		}
+		return &v.ListenerArns
 	}).(pulumi.StringArrayOutput)
 }
 
@@ -3394,6 +3476,7 @@ func init() {
 	pulumi.RegisterOutputType(DeploymentGroupLoadBalancerInfoTargetGroupPairInfoOutput{})
 	pulumi.RegisterOutputType(DeploymentGroupLoadBalancerInfoTargetGroupPairInfoPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRouteOutput{})
+	pulumi.RegisterOutputType(DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOutput{})
 	pulumi.RegisterOutputType(DeploymentGroupLoadBalancerInfoTargetGroupPairInfoTargetGroupOutput{})
 	pulumi.RegisterOutputType(DeploymentGroupLoadBalancerInfoTargetGroupPairInfoTargetGroupArrayOutput{})
 	pulumi.RegisterOutputType(DeploymentGroupLoadBalancerInfoTargetGroupPairInfoTestTrafficRouteOutput{})

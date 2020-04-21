@@ -643,6 +643,48 @@ func (i RouteSpecHttpRouteActionArgs) ToRouteSpecHttpRouteActionOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(RouteSpecHttpRouteActionOutput)
 }
 
+func (i RouteSpecHttpRouteActionArgs) ToRouteSpecHttpRouteActionPtrOutput() RouteSpecHttpRouteActionPtrOutput {
+	return i.ToRouteSpecHttpRouteActionPtrOutputWithContext(context.Background())
+}
+
+func (i RouteSpecHttpRouteActionArgs) ToRouteSpecHttpRouteActionPtrOutputWithContext(ctx context.Context) RouteSpecHttpRouteActionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteSpecHttpRouteActionOutput).ToRouteSpecHttpRouteActionPtrOutputWithContext(ctx)
+}
+
+// RouteSpecHttpRouteActionPtrInput is an input type that accepts RouteSpecHttpRouteActionArgs, RouteSpecHttpRouteActionPtr and RouteSpecHttpRouteActionPtrOutput values.
+// You can construct a concrete instance of `RouteSpecHttpRouteActionPtrInput` via:
+//
+// 		 RouteSpecHttpRouteActionArgs{...}
+//
+//  or:
+//
+// 		 nil
+//
+type RouteSpecHttpRouteActionPtrInput interface {
+	pulumi.Input
+
+	ToRouteSpecHttpRouteActionPtrOutput() RouteSpecHttpRouteActionPtrOutput
+	ToRouteSpecHttpRouteActionPtrOutputWithContext(context.Context) RouteSpecHttpRouteActionPtrOutput
+}
+
+type routeSpecHttpRouteActionPtrType RouteSpecHttpRouteActionArgs
+
+func RouteSpecHttpRouteActionPtr(v *RouteSpecHttpRouteActionArgs) RouteSpecHttpRouteActionPtrInput {
+	return (*routeSpecHttpRouteActionPtrType)(v)
+}
+
+func (*routeSpecHttpRouteActionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RouteSpecHttpRouteAction)(nil)).Elem()
+}
+
+func (i *routeSpecHttpRouteActionPtrType) ToRouteSpecHttpRouteActionPtrOutput() RouteSpecHttpRouteActionPtrOutput {
+	return i.ToRouteSpecHttpRouteActionPtrOutputWithContext(context.Background())
+}
+
+func (i *routeSpecHttpRouteActionPtrType) ToRouteSpecHttpRouteActionPtrOutputWithContext(ctx context.Context) RouteSpecHttpRouteActionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteSpecHttpRouteActionPtrOutput)
+}
+
 type RouteSpecHttpRouteActionOutput struct{ *pulumi.OutputState }
 
 func (RouteSpecHttpRouteActionOutput) ElementType() reflect.Type {
@@ -657,10 +699,49 @@ func (o RouteSpecHttpRouteActionOutput) ToRouteSpecHttpRouteActionOutputWithCont
 	return o
 }
 
+func (o RouteSpecHttpRouteActionOutput) ToRouteSpecHttpRouteActionPtrOutput() RouteSpecHttpRouteActionPtrOutput {
+	return o.ToRouteSpecHttpRouteActionPtrOutputWithContext(context.Background())
+}
+
+func (o RouteSpecHttpRouteActionOutput) ToRouteSpecHttpRouteActionPtrOutputWithContext(ctx context.Context) RouteSpecHttpRouteActionPtrOutput {
+	return o.ApplyT(func(v RouteSpecHttpRouteAction) *RouteSpecHttpRouteAction {
+		return &v
+	}).(RouteSpecHttpRouteActionPtrOutput)
+}
+
 // The targets that traffic is routed to when a request matches the route.
 // You can specify one or more targets and their relative weights with which to distribute traffic.
 func (o RouteSpecHttpRouteActionOutput) WeightedTargets() RouteSpecHttpRouteActionWeightedTargetArrayOutput {
 	return o.ApplyT(func(v RouteSpecHttpRouteAction) []RouteSpecHttpRouteActionWeightedTarget { return v.WeightedTargets }).(RouteSpecHttpRouteActionWeightedTargetArrayOutput)
+}
+
+type RouteSpecHttpRouteActionPtrOutput struct{ *pulumi.OutputState }
+
+func (RouteSpecHttpRouteActionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RouteSpecHttpRouteAction)(nil)).Elem()
+}
+
+func (o RouteSpecHttpRouteActionPtrOutput) ToRouteSpecHttpRouteActionPtrOutput() RouteSpecHttpRouteActionPtrOutput {
+	return o
+}
+
+func (o RouteSpecHttpRouteActionPtrOutput) ToRouteSpecHttpRouteActionPtrOutputWithContext(ctx context.Context) RouteSpecHttpRouteActionPtrOutput {
+	return o
+}
+
+func (o RouteSpecHttpRouteActionPtrOutput) Elem() RouteSpecHttpRouteActionOutput {
+	return o.ApplyT(func(v *RouteSpecHttpRouteAction) RouteSpecHttpRouteAction { return *v }).(RouteSpecHttpRouteActionOutput)
+}
+
+// The targets that traffic is routed to when a request matches the route.
+// You can specify one or more targets and their relative weights with which to distribute traffic.
+func (o RouteSpecHttpRouteActionPtrOutput) WeightedTargets() RouteSpecHttpRouteActionWeightedTargetArrayOutput {
+	return o.ApplyT(func(v *RouteSpecHttpRouteAction) []RouteSpecHttpRouteActionWeightedTarget {
+		if v == nil {
+			return nil
+		}
+		return &v.WeightedTargets
+	}).(RouteSpecHttpRouteActionWeightedTargetArrayOutput)
 }
 
 type RouteSpecHttpRouteActionWeightedTarget struct {
@@ -819,6 +900,48 @@ func (i RouteSpecHttpRouteMatchArgs) ToRouteSpecHttpRouteMatchOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(RouteSpecHttpRouteMatchOutput)
 }
 
+func (i RouteSpecHttpRouteMatchArgs) ToRouteSpecHttpRouteMatchPtrOutput() RouteSpecHttpRouteMatchPtrOutput {
+	return i.ToRouteSpecHttpRouteMatchPtrOutputWithContext(context.Background())
+}
+
+func (i RouteSpecHttpRouteMatchArgs) ToRouteSpecHttpRouteMatchPtrOutputWithContext(ctx context.Context) RouteSpecHttpRouteMatchPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteSpecHttpRouteMatchOutput).ToRouteSpecHttpRouteMatchPtrOutputWithContext(ctx)
+}
+
+// RouteSpecHttpRouteMatchPtrInput is an input type that accepts RouteSpecHttpRouteMatchArgs, RouteSpecHttpRouteMatchPtr and RouteSpecHttpRouteMatchPtrOutput values.
+// You can construct a concrete instance of `RouteSpecHttpRouteMatchPtrInput` via:
+//
+// 		 RouteSpecHttpRouteMatchArgs{...}
+//
+//  or:
+//
+// 		 nil
+//
+type RouteSpecHttpRouteMatchPtrInput interface {
+	pulumi.Input
+
+	ToRouteSpecHttpRouteMatchPtrOutput() RouteSpecHttpRouteMatchPtrOutput
+	ToRouteSpecHttpRouteMatchPtrOutputWithContext(context.Context) RouteSpecHttpRouteMatchPtrOutput
+}
+
+type routeSpecHttpRouteMatchPtrType RouteSpecHttpRouteMatchArgs
+
+func RouteSpecHttpRouteMatchPtr(v *RouteSpecHttpRouteMatchArgs) RouteSpecHttpRouteMatchPtrInput {
+	return (*routeSpecHttpRouteMatchPtrType)(v)
+}
+
+func (*routeSpecHttpRouteMatchPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RouteSpecHttpRouteMatch)(nil)).Elem()
+}
+
+func (i *routeSpecHttpRouteMatchPtrType) ToRouteSpecHttpRouteMatchPtrOutput() RouteSpecHttpRouteMatchPtrOutput {
+	return i.ToRouteSpecHttpRouteMatchPtrOutputWithContext(context.Background())
+}
+
+func (i *routeSpecHttpRouteMatchPtrType) ToRouteSpecHttpRouteMatchPtrOutputWithContext(ctx context.Context) RouteSpecHttpRouteMatchPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteSpecHttpRouteMatchPtrOutput)
+}
+
 type RouteSpecHttpRouteMatchOutput struct{ *pulumi.OutputState }
 
 func (RouteSpecHttpRouteMatchOutput) ElementType() reflect.Type {
@@ -831,6 +954,16 @@ func (o RouteSpecHttpRouteMatchOutput) ToRouteSpecHttpRouteMatchOutput() RouteSp
 
 func (o RouteSpecHttpRouteMatchOutput) ToRouteSpecHttpRouteMatchOutputWithContext(ctx context.Context) RouteSpecHttpRouteMatchOutput {
 	return o
+}
+
+func (o RouteSpecHttpRouteMatchOutput) ToRouteSpecHttpRouteMatchPtrOutput() RouteSpecHttpRouteMatchPtrOutput {
+	return o.ToRouteSpecHttpRouteMatchPtrOutputWithContext(context.Background())
+}
+
+func (o RouteSpecHttpRouteMatchOutput) ToRouteSpecHttpRouteMatchPtrOutputWithContext(ctx context.Context) RouteSpecHttpRouteMatchPtrOutput {
+	return o.ApplyT(func(v RouteSpecHttpRouteMatch) *RouteSpecHttpRouteMatch {
+		return &v
+	}).(RouteSpecHttpRouteMatchPtrOutput)
 }
 
 // The client request headers to match on.
@@ -852,6 +985,65 @@ func (o RouteSpecHttpRouteMatchOutput) Prefix() pulumi.StringOutput {
 // The client request header scheme to match on. Valid values: `http`, `https`.
 func (o RouteSpecHttpRouteMatchOutput) Scheme() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RouteSpecHttpRouteMatch) *string { return v.Scheme }).(pulumi.StringPtrOutput)
+}
+
+type RouteSpecHttpRouteMatchPtrOutput struct{ *pulumi.OutputState }
+
+func (RouteSpecHttpRouteMatchPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RouteSpecHttpRouteMatch)(nil)).Elem()
+}
+
+func (o RouteSpecHttpRouteMatchPtrOutput) ToRouteSpecHttpRouteMatchPtrOutput() RouteSpecHttpRouteMatchPtrOutput {
+	return o
+}
+
+func (o RouteSpecHttpRouteMatchPtrOutput) ToRouteSpecHttpRouteMatchPtrOutputWithContext(ctx context.Context) RouteSpecHttpRouteMatchPtrOutput {
+	return o
+}
+
+func (o RouteSpecHttpRouteMatchPtrOutput) Elem() RouteSpecHttpRouteMatchOutput {
+	return o.ApplyT(func(v *RouteSpecHttpRouteMatch) RouteSpecHttpRouteMatch { return *v }).(RouteSpecHttpRouteMatchOutput)
+}
+
+// The client request headers to match on.
+func (o RouteSpecHttpRouteMatchPtrOutput) Headers() RouteSpecHttpRouteMatchHeaderArrayOutput {
+	return o.ApplyT(func(v *RouteSpecHttpRouteMatch) []RouteSpecHttpRouteMatchHeader {
+		if v == nil {
+			return nil
+		}
+		return v.Headers
+	}).(RouteSpecHttpRouteMatchHeaderArrayOutput)
+}
+
+// The client request header method to match on. Valid values: `GET`, `HEAD`, `POST`, `PUT`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`, `PATCH`.
+func (o RouteSpecHttpRouteMatchPtrOutput) Method() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouteSpecHttpRouteMatch) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Method
+	}).(pulumi.StringPtrOutput)
+}
+
+// Specifies the path with which to match requests.
+// This parameter must always start with /, which by itself matches all requests to the virtual router service name.
+func (o RouteSpecHttpRouteMatchPtrOutput) Prefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouteSpecHttpRouteMatch) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Prefix
+	}).(pulumi.StringPtrOutput)
+}
+
+// The client request header scheme to match on. Valid values: `http`, `https`.
+func (o RouteSpecHttpRouteMatchPtrOutput) Scheme() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouteSpecHttpRouteMatch) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Scheme
+	}).(pulumi.StringPtrOutput)
 }
 
 type RouteSpecHttpRouteMatchHeader struct {
@@ -1505,6 +1697,48 @@ func (i RouteSpecTcpRouteActionArgs) ToRouteSpecTcpRouteActionOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(RouteSpecTcpRouteActionOutput)
 }
 
+func (i RouteSpecTcpRouteActionArgs) ToRouteSpecTcpRouteActionPtrOutput() RouteSpecTcpRouteActionPtrOutput {
+	return i.ToRouteSpecTcpRouteActionPtrOutputWithContext(context.Background())
+}
+
+func (i RouteSpecTcpRouteActionArgs) ToRouteSpecTcpRouteActionPtrOutputWithContext(ctx context.Context) RouteSpecTcpRouteActionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteSpecTcpRouteActionOutput).ToRouteSpecTcpRouteActionPtrOutputWithContext(ctx)
+}
+
+// RouteSpecTcpRouteActionPtrInput is an input type that accepts RouteSpecTcpRouteActionArgs, RouteSpecTcpRouteActionPtr and RouteSpecTcpRouteActionPtrOutput values.
+// You can construct a concrete instance of `RouteSpecTcpRouteActionPtrInput` via:
+//
+// 		 RouteSpecTcpRouteActionArgs{...}
+//
+//  or:
+//
+// 		 nil
+//
+type RouteSpecTcpRouteActionPtrInput interface {
+	pulumi.Input
+
+	ToRouteSpecTcpRouteActionPtrOutput() RouteSpecTcpRouteActionPtrOutput
+	ToRouteSpecTcpRouteActionPtrOutputWithContext(context.Context) RouteSpecTcpRouteActionPtrOutput
+}
+
+type routeSpecTcpRouteActionPtrType RouteSpecTcpRouteActionArgs
+
+func RouteSpecTcpRouteActionPtr(v *RouteSpecTcpRouteActionArgs) RouteSpecTcpRouteActionPtrInput {
+	return (*routeSpecTcpRouteActionPtrType)(v)
+}
+
+func (*routeSpecTcpRouteActionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RouteSpecTcpRouteAction)(nil)).Elem()
+}
+
+func (i *routeSpecTcpRouteActionPtrType) ToRouteSpecTcpRouteActionPtrOutput() RouteSpecTcpRouteActionPtrOutput {
+	return i.ToRouteSpecTcpRouteActionPtrOutputWithContext(context.Background())
+}
+
+func (i *routeSpecTcpRouteActionPtrType) ToRouteSpecTcpRouteActionPtrOutputWithContext(ctx context.Context) RouteSpecTcpRouteActionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteSpecTcpRouteActionPtrOutput)
+}
+
 type RouteSpecTcpRouteActionOutput struct{ *pulumi.OutputState }
 
 func (RouteSpecTcpRouteActionOutput) ElementType() reflect.Type {
@@ -1519,10 +1753,49 @@ func (o RouteSpecTcpRouteActionOutput) ToRouteSpecTcpRouteActionOutputWithContex
 	return o
 }
 
+func (o RouteSpecTcpRouteActionOutput) ToRouteSpecTcpRouteActionPtrOutput() RouteSpecTcpRouteActionPtrOutput {
+	return o.ToRouteSpecTcpRouteActionPtrOutputWithContext(context.Background())
+}
+
+func (o RouteSpecTcpRouteActionOutput) ToRouteSpecTcpRouteActionPtrOutputWithContext(ctx context.Context) RouteSpecTcpRouteActionPtrOutput {
+	return o.ApplyT(func(v RouteSpecTcpRouteAction) *RouteSpecTcpRouteAction {
+		return &v
+	}).(RouteSpecTcpRouteActionPtrOutput)
+}
+
 // The targets that traffic is routed to when a request matches the route.
 // You can specify one or more targets and their relative weights with which to distribute traffic.
 func (o RouteSpecTcpRouteActionOutput) WeightedTargets() RouteSpecTcpRouteActionWeightedTargetArrayOutput {
 	return o.ApplyT(func(v RouteSpecTcpRouteAction) []RouteSpecTcpRouteActionWeightedTarget { return v.WeightedTargets }).(RouteSpecTcpRouteActionWeightedTargetArrayOutput)
+}
+
+type RouteSpecTcpRouteActionPtrOutput struct{ *pulumi.OutputState }
+
+func (RouteSpecTcpRouteActionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RouteSpecTcpRouteAction)(nil)).Elem()
+}
+
+func (o RouteSpecTcpRouteActionPtrOutput) ToRouteSpecTcpRouteActionPtrOutput() RouteSpecTcpRouteActionPtrOutput {
+	return o
+}
+
+func (o RouteSpecTcpRouteActionPtrOutput) ToRouteSpecTcpRouteActionPtrOutputWithContext(ctx context.Context) RouteSpecTcpRouteActionPtrOutput {
+	return o
+}
+
+func (o RouteSpecTcpRouteActionPtrOutput) Elem() RouteSpecTcpRouteActionOutput {
+	return o.ApplyT(func(v *RouteSpecTcpRouteAction) RouteSpecTcpRouteAction { return *v }).(RouteSpecTcpRouteActionOutput)
+}
+
+// The targets that traffic is routed to when a request matches the route.
+// You can specify one or more targets and their relative weights with which to distribute traffic.
+func (o RouteSpecTcpRouteActionPtrOutput) WeightedTargets() RouteSpecTcpRouteActionWeightedTargetArrayOutput {
+	return o.ApplyT(func(v *RouteSpecTcpRouteAction) []RouteSpecTcpRouteActionWeightedTarget {
+		if v == nil {
+			return nil
+		}
+		return &v.WeightedTargets
+	}).(RouteSpecTcpRouteActionWeightedTargetArrayOutput)
 }
 
 type RouteSpecTcpRouteActionWeightedTarget struct {
@@ -2492,6 +2765,48 @@ func (i VirtualNodeSpecListenerPortMappingArgs) ToVirtualNodeSpecListenerPortMap
 	return pulumi.ToOutputWithContext(ctx, i).(VirtualNodeSpecListenerPortMappingOutput)
 }
 
+func (i VirtualNodeSpecListenerPortMappingArgs) ToVirtualNodeSpecListenerPortMappingPtrOutput() VirtualNodeSpecListenerPortMappingPtrOutput {
+	return i.ToVirtualNodeSpecListenerPortMappingPtrOutputWithContext(context.Background())
+}
+
+func (i VirtualNodeSpecListenerPortMappingArgs) ToVirtualNodeSpecListenerPortMappingPtrOutputWithContext(ctx context.Context) VirtualNodeSpecListenerPortMappingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VirtualNodeSpecListenerPortMappingOutput).ToVirtualNodeSpecListenerPortMappingPtrOutputWithContext(ctx)
+}
+
+// VirtualNodeSpecListenerPortMappingPtrInput is an input type that accepts VirtualNodeSpecListenerPortMappingArgs, VirtualNodeSpecListenerPortMappingPtr and VirtualNodeSpecListenerPortMappingPtrOutput values.
+// You can construct a concrete instance of `VirtualNodeSpecListenerPortMappingPtrInput` via:
+//
+// 		 VirtualNodeSpecListenerPortMappingArgs{...}
+//
+//  or:
+//
+// 		 nil
+//
+type VirtualNodeSpecListenerPortMappingPtrInput interface {
+	pulumi.Input
+
+	ToVirtualNodeSpecListenerPortMappingPtrOutput() VirtualNodeSpecListenerPortMappingPtrOutput
+	ToVirtualNodeSpecListenerPortMappingPtrOutputWithContext(context.Context) VirtualNodeSpecListenerPortMappingPtrOutput
+}
+
+type virtualNodeSpecListenerPortMappingPtrType VirtualNodeSpecListenerPortMappingArgs
+
+func VirtualNodeSpecListenerPortMappingPtr(v *VirtualNodeSpecListenerPortMappingArgs) VirtualNodeSpecListenerPortMappingPtrInput {
+	return (*virtualNodeSpecListenerPortMappingPtrType)(v)
+}
+
+func (*virtualNodeSpecListenerPortMappingPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**VirtualNodeSpecListenerPortMapping)(nil)).Elem()
+}
+
+func (i *virtualNodeSpecListenerPortMappingPtrType) ToVirtualNodeSpecListenerPortMappingPtrOutput() VirtualNodeSpecListenerPortMappingPtrOutput {
+	return i.ToVirtualNodeSpecListenerPortMappingPtrOutputWithContext(context.Background())
+}
+
+func (i *virtualNodeSpecListenerPortMappingPtrType) ToVirtualNodeSpecListenerPortMappingPtrOutputWithContext(ctx context.Context) VirtualNodeSpecListenerPortMappingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VirtualNodeSpecListenerPortMappingPtrOutput)
+}
+
 type VirtualNodeSpecListenerPortMappingOutput struct{ *pulumi.OutputState }
 
 func (VirtualNodeSpecListenerPortMappingOutput) ElementType() reflect.Type {
@@ -2506,6 +2821,16 @@ func (o VirtualNodeSpecListenerPortMappingOutput) ToVirtualNodeSpecListenerPortM
 	return o
 }
 
+func (o VirtualNodeSpecListenerPortMappingOutput) ToVirtualNodeSpecListenerPortMappingPtrOutput() VirtualNodeSpecListenerPortMappingPtrOutput {
+	return o.ToVirtualNodeSpecListenerPortMappingPtrOutputWithContext(context.Background())
+}
+
+func (o VirtualNodeSpecListenerPortMappingOutput) ToVirtualNodeSpecListenerPortMappingPtrOutputWithContext(ctx context.Context) VirtualNodeSpecListenerPortMappingPtrOutput {
+	return o.ApplyT(func(v VirtualNodeSpecListenerPortMapping) *VirtualNodeSpecListenerPortMapping {
+		return &v
+	}).(VirtualNodeSpecListenerPortMappingPtrOutput)
+}
+
 // The port used for the port mapping.
 func (o VirtualNodeSpecListenerPortMappingOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v VirtualNodeSpecListenerPortMapping) int { return v.Port }).(pulumi.IntOutput)
@@ -2514,6 +2839,44 @@ func (o VirtualNodeSpecListenerPortMappingOutput) Port() pulumi.IntOutput {
 // The protocol used for the port mapping. Valid values are `http` and `tcp`.
 func (o VirtualNodeSpecListenerPortMappingOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v VirtualNodeSpecListenerPortMapping) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+type VirtualNodeSpecListenerPortMappingPtrOutput struct{ *pulumi.OutputState }
+
+func (VirtualNodeSpecListenerPortMappingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**VirtualNodeSpecListenerPortMapping)(nil)).Elem()
+}
+
+func (o VirtualNodeSpecListenerPortMappingPtrOutput) ToVirtualNodeSpecListenerPortMappingPtrOutput() VirtualNodeSpecListenerPortMappingPtrOutput {
+	return o
+}
+
+func (o VirtualNodeSpecListenerPortMappingPtrOutput) ToVirtualNodeSpecListenerPortMappingPtrOutputWithContext(ctx context.Context) VirtualNodeSpecListenerPortMappingPtrOutput {
+	return o
+}
+
+func (o VirtualNodeSpecListenerPortMappingPtrOutput) Elem() VirtualNodeSpecListenerPortMappingOutput {
+	return o.ApplyT(func(v *VirtualNodeSpecListenerPortMapping) VirtualNodeSpecListenerPortMapping { return *v }).(VirtualNodeSpecListenerPortMappingOutput)
+}
+
+// The port used for the port mapping.
+func (o VirtualNodeSpecListenerPortMappingPtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VirtualNodeSpecListenerPortMapping) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Port
+	}).(pulumi.IntPtrOutput)
+}
+
+// The protocol used for the port mapping. Valid values are `http` and `tcp`.
+func (o VirtualNodeSpecListenerPortMappingPtrOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VirtualNodeSpecListenerPortMapping) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Protocol
+	}).(pulumi.StringPtrOutput)
 }
 
 type VirtualNodeSpecLogging struct {
@@ -4192,9 +4555,11 @@ func init() {
 	pulumi.RegisterOutputType(RouteSpecHttpRouteOutput{})
 	pulumi.RegisterOutputType(RouteSpecHttpRoutePtrOutput{})
 	pulumi.RegisterOutputType(RouteSpecHttpRouteActionOutput{})
+	pulumi.RegisterOutputType(RouteSpecHttpRouteActionPtrOutput{})
 	pulumi.RegisterOutputType(RouteSpecHttpRouteActionWeightedTargetOutput{})
 	pulumi.RegisterOutputType(RouteSpecHttpRouteActionWeightedTargetArrayOutput{})
 	pulumi.RegisterOutputType(RouteSpecHttpRouteMatchOutput{})
+	pulumi.RegisterOutputType(RouteSpecHttpRouteMatchPtrOutput{})
 	pulumi.RegisterOutputType(RouteSpecHttpRouteMatchHeaderOutput{})
 	pulumi.RegisterOutputType(RouteSpecHttpRouteMatchHeaderArrayOutput{})
 	pulumi.RegisterOutputType(RouteSpecHttpRouteMatchHeaderMatchOutput{})
@@ -4204,6 +4569,7 @@ func init() {
 	pulumi.RegisterOutputType(RouteSpecTcpRouteOutput{})
 	pulumi.RegisterOutputType(RouteSpecTcpRoutePtrOutput{})
 	pulumi.RegisterOutputType(RouteSpecTcpRouteActionOutput{})
+	pulumi.RegisterOutputType(RouteSpecTcpRouteActionPtrOutput{})
 	pulumi.RegisterOutputType(RouteSpecTcpRouteActionWeightedTargetOutput{})
 	pulumi.RegisterOutputType(RouteSpecTcpRouteActionWeightedTargetArrayOutput{})
 	pulumi.RegisterOutputType(VirtualNodeSpecOutput{})
@@ -4217,6 +4583,7 @@ func init() {
 	pulumi.RegisterOutputType(VirtualNodeSpecListenerHealthCheckOutput{})
 	pulumi.RegisterOutputType(VirtualNodeSpecListenerHealthCheckPtrOutput{})
 	pulumi.RegisterOutputType(VirtualNodeSpecListenerPortMappingOutput{})
+	pulumi.RegisterOutputType(VirtualNodeSpecListenerPortMappingPtrOutput{})
 	pulumi.RegisterOutputType(VirtualNodeSpecLoggingOutput{})
 	pulumi.RegisterOutputType(VirtualNodeSpecLoggingPtrOutput{})
 	pulumi.RegisterOutputType(VirtualNodeSpecLoggingAccessLogOutput{})
