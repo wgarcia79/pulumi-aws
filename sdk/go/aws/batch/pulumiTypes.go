@@ -327,7 +327,7 @@ func (o ComputeEnvironmentComputeResourcesPtrOutput) InstanceTypes() pulumi.Stri
 		if v == nil {
 			return nil
 		}
-		return &v.InstanceTypes
+		return v.InstanceTypes
 	}).(pulumi.StringArrayOutput)
 }
 
@@ -367,7 +367,7 @@ func (o ComputeEnvironmentComputeResourcesPtrOutput) SecurityGroupIds() pulumi.S
 		if v == nil {
 			return nil
 		}
-		return &v.SecurityGroupIds
+		return v.SecurityGroupIds
 	}).(pulumi.StringArrayOutput)
 }
 
@@ -387,7 +387,7 @@ func (o ComputeEnvironmentComputeResourcesPtrOutput) Subnets() pulumi.StringArra
 		if v == nil {
 			return nil
 		}
-		return &v.Subnets
+		return v.Subnets
 	}).(pulumi.StringArrayOutput)
 }
 

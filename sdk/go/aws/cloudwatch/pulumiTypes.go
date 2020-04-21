@@ -766,7 +766,7 @@ func (o EventTargetEcsTargetNetworkConfigurationPtrOutput) Subnets() pulumi.Stri
 		if v == nil {
 			return nil
 		}
-		return &v.Subnets
+		return v.Subnets
 	}).(pulumi.StringArrayOutput)
 }
 

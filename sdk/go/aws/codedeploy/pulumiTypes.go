@@ -2815,7 +2815,7 @@ func (o DeploymentGroupLoadBalancerInfoTargetGroupPairInfoPtrOutput) TargetGroup
 		if v == nil {
 			return nil
 		}
-		return &v.TargetGroups
+		return v.TargetGroups
 	}).(DeploymentGroupLoadBalancerInfoTargetGroupPairInfoTargetGroupArrayOutput)
 }
 
@@ -2962,7 +2962,7 @@ func (o DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoutePtrOut
 		if v == nil {
 			return nil
 		}
-		return &v.ListenerArns
+		return v.ListenerArns
 	}).(pulumi.StringArrayOutput)
 }
 
@@ -3198,7 +3198,7 @@ func (o DeploymentGroupLoadBalancerInfoTargetGroupPairInfoTestTrafficRoutePtrOut
 		if v == nil {
 			return nil
 		}
-		return &v.ListenerArns
+		return v.ListenerArns
 	}).(pulumi.StringArrayOutput)
 }
 

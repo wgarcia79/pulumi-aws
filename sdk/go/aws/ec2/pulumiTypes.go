@@ -1880,6 +1880,48 @@ func (i FleetLaunchTemplateConfigLaunchTemplateSpecificationArgs) ToFleetLaunchT
 	return pulumi.ToOutputWithContext(ctx, i).(FleetLaunchTemplateConfigLaunchTemplateSpecificationOutput)
 }
 
+func (i FleetLaunchTemplateConfigLaunchTemplateSpecificationArgs) ToFleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutput() FleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutput {
+	return i.ToFleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutputWithContext(context.Background())
+}
+
+func (i FleetLaunchTemplateConfigLaunchTemplateSpecificationArgs) ToFleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutputWithContext(ctx context.Context) FleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FleetLaunchTemplateConfigLaunchTemplateSpecificationOutput).ToFleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutputWithContext(ctx)
+}
+
+// FleetLaunchTemplateConfigLaunchTemplateSpecificationPtrInput is an input type that accepts FleetLaunchTemplateConfigLaunchTemplateSpecificationArgs, FleetLaunchTemplateConfigLaunchTemplateSpecificationPtr and FleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutput values.
+// You can construct a concrete instance of `FleetLaunchTemplateConfigLaunchTemplateSpecificationPtrInput` via:
+//
+// 		 FleetLaunchTemplateConfigLaunchTemplateSpecificationArgs{...}
+//
+//  or:
+//
+// 		 nil
+//
+type FleetLaunchTemplateConfigLaunchTemplateSpecificationPtrInput interface {
+	pulumi.Input
+
+	ToFleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutput() FleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutput
+	ToFleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutputWithContext(context.Context) FleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutput
+}
+
+type fleetLaunchTemplateConfigLaunchTemplateSpecificationPtrType FleetLaunchTemplateConfigLaunchTemplateSpecificationArgs
+
+func FleetLaunchTemplateConfigLaunchTemplateSpecificationPtr(v *FleetLaunchTemplateConfigLaunchTemplateSpecificationArgs) FleetLaunchTemplateConfigLaunchTemplateSpecificationPtrInput {
+	return (*fleetLaunchTemplateConfigLaunchTemplateSpecificationPtrType)(v)
+}
+
+func (*fleetLaunchTemplateConfigLaunchTemplateSpecificationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**FleetLaunchTemplateConfigLaunchTemplateSpecification)(nil)).Elem()
+}
+
+func (i *fleetLaunchTemplateConfigLaunchTemplateSpecificationPtrType) ToFleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutput() FleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutput {
+	return i.ToFleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutputWithContext(context.Background())
+}
+
+func (i *fleetLaunchTemplateConfigLaunchTemplateSpecificationPtrType) ToFleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutputWithContext(ctx context.Context) FleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutput)
+}
+
 type FleetLaunchTemplateConfigLaunchTemplateSpecificationOutput struct{ *pulumi.OutputState }
 
 func (FleetLaunchTemplateConfigLaunchTemplateSpecificationOutput) ElementType() reflect.Type {
@@ -1892,6 +1934,16 @@ func (o FleetLaunchTemplateConfigLaunchTemplateSpecificationOutput) ToFleetLaunc
 
 func (o FleetLaunchTemplateConfigLaunchTemplateSpecificationOutput) ToFleetLaunchTemplateConfigLaunchTemplateSpecificationOutputWithContext(ctx context.Context) FleetLaunchTemplateConfigLaunchTemplateSpecificationOutput {
 	return o
+}
+
+func (o FleetLaunchTemplateConfigLaunchTemplateSpecificationOutput) ToFleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutput() FleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutput {
+	return o.ToFleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutputWithContext(context.Background())
+}
+
+func (o FleetLaunchTemplateConfigLaunchTemplateSpecificationOutput) ToFleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutputWithContext(ctx context.Context) FleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutput {
+	return o.ApplyT(func(v FleetLaunchTemplateConfigLaunchTemplateSpecification) *FleetLaunchTemplateConfigLaunchTemplateSpecification {
+		return &v
+	}).(FleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutput)
 }
 
 // ID of the launch template.
@@ -1907,6 +1959,56 @@ func (o FleetLaunchTemplateConfigLaunchTemplateSpecificationOutput) LaunchTempla
 // Version number of the launch template.
 func (o FleetLaunchTemplateConfigLaunchTemplateSpecificationOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v FleetLaunchTemplateConfigLaunchTemplateSpecification) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type FleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutput struct{ *pulumi.OutputState }
+
+func (FleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**FleetLaunchTemplateConfigLaunchTemplateSpecification)(nil)).Elem()
+}
+
+func (o FleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutput) ToFleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutput() FleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutput {
+	return o
+}
+
+func (o FleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutput) ToFleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutputWithContext(ctx context.Context) FleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutput {
+	return o
+}
+
+func (o FleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutput) Elem() FleetLaunchTemplateConfigLaunchTemplateSpecificationOutput {
+	return o.ApplyT(func(v *FleetLaunchTemplateConfigLaunchTemplateSpecification) FleetLaunchTemplateConfigLaunchTemplateSpecification {
+		return *v
+	}).(FleetLaunchTemplateConfigLaunchTemplateSpecificationOutput)
+}
+
+// ID of the launch template.
+func (o FleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutput) LaunchTemplateId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FleetLaunchTemplateConfigLaunchTemplateSpecification) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LaunchTemplateId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Name of the launch template.
+func (o FleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutput) LaunchTemplateName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FleetLaunchTemplateConfigLaunchTemplateSpecification) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LaunchTemplateName
+	}).(pulumi.StringPtrOutput)
+}
+
+// Version number of the launch template.
+func (o FleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FleetLaunchTemplateConfigLaunchTemplateSpecification) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Version
+	}).(pulumi.StringPtrOutput)
 }
 
 type FleetLaunchTemplateConfigOverride struct {
@@ -17211,6 +17313,7 @@ func init() {
 	pulumi.RegisterOutputType(FleetLaunchTemplateConfigOutput{})
 	pulumi.RegisterOutputType(FleetLaunchTemplateConfigPtrOutput{})
 	pulumi.RegisterOutputType(FleetLaunchTemplateConfigLaunchTemplateSpecificationOutput{})
+	pulumi.RegisterOutputType(FleetLaunchTemplateConfigLaunchTemplateSpecificationPtrOutput{})
 	pulumi.RegisterOutputType(FleetLaunchTemplateConfigOverrideOutput{})
 	pulumi.RegisterOutputType(FleetLaunchTemplateConfigOverrideArrayOutput{})
 	pulumi.RegisterOutputType(FleetOnDemandOptionsOutput{})

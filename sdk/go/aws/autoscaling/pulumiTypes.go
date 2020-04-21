@@ -740,6 +740,48 @@ func (i GroupMixedInstancesPolicyLaunchTemplateArgs) ToGroupMixedInstancesPolicy
 	return pulumi.ToOutputWithContext(ctx, i).(GroupMixedInstancesPolicyLaunchTemplateOutput)
 }
 
+func (i GroupMixedInstancesPolicyLaunchTemplateArgs) ToGroupMixedInstancesPolicyLaunchTemplatePtrOutput() GroupMixedInstancesPolicyLaunchTemplatePtrOutput {
+	return i.ToGroupMixedInstancesPolicyLaunchTemplatePtrOutputWithContext(context.Background())
+}
+
+func (i GroupMixedInstancesPolicyLaunchTemplateArgs) ToGroupMixedInstancesPolicyLaunchTemplatePtrOutputWithContext(ctx context.Context) GroupMixedInstancesPolicyLaunchTemplatePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupMixedInstancesPolicyLaunchTemplateOutput).ToGroupMixedInstancesPolicyLaunchTemplatePtrOutputWithContext(ctx)
+}
+
+// GroupMixedInstancesPolicyLaunchTemplatePtrInput is an input type that accepts GroupMixedInstancesPolicyLaunchTemplateArgs, GroupMixedInstancesPolicyLaunchTemplatePtr and GroupMixedInstancesPolicyLaunchTemplatePtrOutput values.
+// You can construct a concrete instance of `GroupMixedInstancesPolicyLaunchTemplatePtrInput` via:
+//
+// 		 GroupMixedInstancesPolicyLaunchTemplateArgs{...}
+//
+//  or:
+//
+// 		 nil
+//
+type GroupMixedInstancesPolicyLaunchTemplatePtrInput interface {
+	pulumi.Input
+
+	ToGroupMixedInstancesPolicyLaunchTemplatePtrOutput() GroupMixedInstancesPolicyLaunchTemplatePtrOutput
+	ToGroupMixedInstancesPolicyLaunchTemplatePtrOutputWithContext(context.Context) GroupMixedInstancesPolicyLaunchTemplatePtrOutput
+}
+
+type groupMixedInstancesPolicyLaunchTemplatePtrType GroupMixedInstancesPolicyLaunchTemplateArgs
+
+func GroupMixedInstancesPolicyLaunchTemplatePtr(v *GroupMixedInstancesPolicyLaunchTemplateArgs) GroupMixedInstancesPolicyLaunchTemplatePtrInput {
+	return (*groupMixedInstancesPolicyLaunchTemplatePtrType)(v)
+}
+
+func (*groupMixedInstancesPolicyLaunchTemplatePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GroupMixedInstancesPolicyLaunchTemplate)(nil)).Elem()
+}
+
+func (i *groupMixedInstancesPolicyLaunchTemplatePtrType) ToGroupMixedInstancesPolicyLaunchTemplatePtrOutput() GroupMixedInstancesPolicyLaunchTemplatePtrOutput {
+	return i.ToGroupMixedInstancesPolicyLaunchTemplatePtrOutputWithContext(context.Background())
+}
+
+func (i *groupMixedInstancesPolicyLaunchTemplatePtrType) ToGroupMixedInstancesPolicyLaunchTemplatePtrOutputWithContext(ctx context.Context) GroupMixedInstancesPolicyLaunchTemplatePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupMixedInstancesPolicyLaunchTemplatePtrOutput)
+}
+
 type GroupMixedInstancesPolicyLaunchTemplateOutput struct{ *pulumi.OutputState }
 
 func (GroupMixedInstancesPolicyLaunchTemplateOutput) ElementType() reflect.Type {
@@ -754,6 +796,16 @@ func (o GroupMixedInstancesPolicyLaunchTemplateOutput) ToGroupMixedInstancesPoli
 	return o
 }
 
+func (o GroupMixedInstancesPolicyLaunchTemplateOutput) ToGroupMixedInstancesPolicyLaunchTemplatePtrOutput() GroupMixedInstancesPolicyLaunchTemplatePtrOutput {
+	return o.ToGroupMixedInstancesPolicyLaunchTemplatePtrOutputWithContext(context.Background())
+}
+
+func (o GroupMixedInstancesPolicyLaunchTemplateOutput) ToGroupMixedInstancesPolicyLaunchTemplatePtrOutputWithContext(ctx context.Context) GroupMixedInstancesPolicyLaunchTemplatePtrOutput {
+	return o.ApplyT(func(v GroupMixedInstancesPolicyLaunchTemplate) *GroupMixedInstancesPolicyLaunchTemplate {
+		return &v
+	}).(GroupMixedInstancesPolicyLaunchTemplatePtrOutput)
+}
+
 // Nested argument defines the Launch Template. Defined below.
 func (o GroupMixedInstancesPolicyLaunchTemplateOutput) LaunchTemplateSpecification() GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationOutput {
 	return o.ApplyT(func(v GroupMixedInstancesPolicyLaunchTemplate) GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecification {
@@ -764,6 +816,44 @@ func (o GroupMixedInstancesPolicyLaunchTemplateOutput) LaunchTemplateSpecificati
 // List of nested arguments provides the ability to specify multiple instance types. This will override the same parameter in the launch template. For on-demand instances, Auto Scaling considers the order of preference of instance types to launch based on the order specified in the overrides list. Defined below.
 func (o GroupMixedInstancesPolicyLaunchTemplateOutput) Overrides() GroupMixedInstancesPolicyLaunchTemplateOverrideArrayOutput {
 	return o.ApplyT(func(v GroupMixedInstancesPolicyLaunchTemplate) []GroupMixedInstancesPolicyLaunchTemplateOverride {
+		return v.Overrides
+	}).(GroupMixedInstancesPolicyLaunchTemplateOverrideArrayOutput)
+}
+
+type GroupMixedInstancesPolicyLaunchTemplatePtrOutput struct{ *pulumi.OutputState }
+
+func (GroupMixedInstancesPolicyLaunchTemplatePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GroupMixedInstancesPolicyLaunchTemplate)(nil)).Elem()
+}
+
+func (o GroupMixedInstancesPolicyLaunchTemplatePtrOutput) ToGroupMixedInstancesPolicyLaunchTemplatePtrOutput() GroupMixedInstancesPolicyLaunchTemplatePtrOutput {
+	return o
+}
+
+func (o GroupMixedInstancesPolicyLaunchTemplatePtrOutput) ToGroupMixedInstancesPolicyLaunchTemplatePtrOutputWithContext(ctx context.Context) GroupMixedInstancesPolicyLaunchTemplatePtrOutput {
+	return o
+}
+
+func (o GroupMixedInstancesPolicyLaunchTemplatePtrOutput) Elem() GroupMixedInstancesPolicyLaunchTemplateOutput {
+	return o.ApplyT(func(v *GroupMixedInstancesPolicyLaunchTemplate) GroupMixedInstancesPolicyLaunchTemplate { return *v }).(GroupMixedInstancesPolicyLaunchTemplateOutput)
+}
+
+// Nested argument defines the Launch Template. Defined below.
+func (o GroupMixedInstancesPolicyLaunchTemplatePtrOutput) LaunchTemplateSpecification() GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput {
+	return o.ApplyT(func(v *GroupMixedInstancesPolicyLaunchTemplate) *GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecification {
+		if v == nil {
+			return nil
+		}
+		return &v.LaunchTemplateSpecification
+	}).(GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput)
+}
+
+// List of nested arguments provides the ability to specify multiple instance types. This will override the same parameter in the launch template. For on-demand instances, Auto Scaling considers the order of preference of instance types to launch based on the order specified in the overrides list. Defined below.
+func (o GroupMixedInstancesPolicyLaunchTemplatePtrOutput) Overrides() GroupMixedInstancesPolicyLaunchTemplateOverrideArrayOutput {
+	return o.ApplyT(func(v *GroupMixedInstancesPolicyLaunchTemplate) []GroupMixedInstancesPolicyLaunchTemplateOverride {
+		if v == nil {
+			return nil
+		}
 		return v.Overrides
 	}).(GroupMixedInstancesPolicyLaunchTemplateOverrideArrayOutput)
 }
@@ -810,6 +900,48 @@ func (i GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationArgs) 
 	return pulumi.ToOutputWithContext(ctx, i).(GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationOutput)
 }
 
+func (i GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationArgs) ToGroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput() GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput {
+	return i.ToGroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutputWithContext(context.Background())
+}
+
+func (i GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationArgs) ToGroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutputWithContext(ctx context.Context) GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationOutput).ToGroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutputWithContext(ctx)
+}
+
+// GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrInput is an input type that accepts GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationArgs, GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtr and GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput values.
+// You can construct a concrete instance of `GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrInput` via:
+//
+// 		 GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationArgs{...}
+//
+//  or:
+//
+// 		 nil
+//
+type GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrInput interface {
+	pulumi.Input
+
+	ToGroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput() GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput
+	ToGroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutputWithContext(context.Context) GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput
+}
+
+type groupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrType GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationArgs
+
+func GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtr(v *GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationArgs) GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrInput {
+	return (*groupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrType)(v)
+}
+
+func (*groupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecification)(nil)).Elem()
+}
+
+func (i *groupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrType) ToGroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput() GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput {
+	return i.ToGroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutputWithContext(context.Background())
+}
+
+func (i *groupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrType) ToGroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutputWithContext(ctx context.Context) GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput)
+}
+
 type GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationOutput struct{ *pulumi.OutputState }
 
 func (GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationOutput) ElementType() reflect.Type {
@@ -822,6 +954,16 @@ func (o GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationOutput
 
 func (o GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationOutput) ToGroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationOutputWithContext(ctx context.Context) GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationOutput {
 	return o
+}
+
+func (o GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationOutput) ToGroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput() GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput {
+	return o.ToGroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutputWithContext(context.Background())
+}
+
+func (o GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationOutput) ToGroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutputWithContext(ctx context.Context) GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput {
+	return o.ApplyT(func(v GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecification) *GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecification {
+		return &v
+	}).(GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput)
 }
 
 // The ID of the launch template. Conflicts with `launchTemplateName`.
@@ -841,6 +983,56 @@ func (o GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationOutput
 // Template version. Can be version number, `$Latest`, or `$Default`. (Default: `$Default`).
 func (o GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationOutput) Version() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecification) *string { return v.Version }).(pulumi.StringPtrOutput)
+}
+
+type GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput struct{ *pulumi.OutputState }
+
+func (GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecification)(nil)).Elem()
+}
+
+func (o GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput) ToGroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput() GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput {
+	return o
+}
+
+func (o GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput) ToGroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutputWithContext(ctx context.Context) GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput {
+	return o
+}
+
+func (o GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput) Elem() GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationOutput {
+	return o.ApplyT(func(v *GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecification) GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecification {
+		return *v
+	}).(GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationOutput)
+}
+
+// The ID of the launch template. Conflicts with `launchTemplateName`.
+func (o GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput) LaunchTemplateId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecification) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LaunchTemplateId
+	}).(pulumi.StringPtrOutput)
+}
+
+// The name of the launch template. Conflicts with `launchTemplateId`.
+func (o GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput) LaunchTemplateName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecification) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LaunchTemplateName
+	}).(pulumi.StringPtrOutput)
+}
+
+// Template version. Can be version number, `$Latest`, or `$Default`. (Default: `$Default`).
+func (o GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecification) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Version
+	}).(pulumi.StringPtrOutput)
 }
 
 type GroupMixedInstancesPolicyLaunchTemplateOverride struct {
@@ -1896,7 +2088,9 @@ func init() {
 	pulumi.RegisterOutputType(GroupMixedInstancesPolicyInstancesDistributionOutput{})
 	pulumi.RegisterOutputType(GroupMixedInstancesPolicyInstancesDistributionPtrOutput{})
 	pulumi.RegisterOutputType(GroupMixedInstancesPolicyLaunchTemplateOutput{})
+	pulumi.RegisterOutputType(GroupMixedInstancesPolicyLaunchTemplatePtrOutput{})
 	pulumi.RegisterOutputType(GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationOutput{})
+	pulumi.RegisterOutputType(GroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecificationPtrOutput{})
 	pulumi.RegisterOutputType(GroupMixedInstancesPolicyLaunchTemplateOverrideOutput{})
 	pulumi.RegisterOutputType(GroupMixedInstancesPolicyLaunchTemplateOverrideArrayOutput{})
 	pulumi.RegisterOutputType(GroupTagOutput{})

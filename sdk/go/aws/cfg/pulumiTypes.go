@@ -159,7 +159,7 @@ func (o ConfigurationAggregatorAccountAggregationSourcePtrOutput) AccountIds() p
 		if v == nil {
 			return nil
 		}
-		return &v.AccountIds
+		return v.AccountIds
 	}).(pulumi.StringArrayOutput)
 }
 

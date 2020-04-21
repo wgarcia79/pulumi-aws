@@ -166,7 +166,7 @@ func (o DirectoryConnectSettingsPtrOutput) CustomerDnsIps() pulumi.StringArrayOu
 		if v == nil {
 			return nil
 		}
-		return &v.CustomerDnsIps
+		return v.CustomerDnsIps
 	}).(pulumi.StringArrayOutput)
 }
 
@@ -186,7 +186,7 @@ func (o DirectoryConnectSettingsPtrOutput) SubnetIds() pulumi.StringArrayOutput 
 		if v == nil {
 			return nil
 		}
-		return &v.SubnetIds
+		return v.SubnetIds
 	}).(pulumi.StringArrayOutput)
 }
 
@@ -338,7 +338,7 @@ func (o DirectoryVpcSettingsPtrOutput) SubnetIds() pulumi.StringArrayOutput {
 		if v == nil {
 			return nil
 		}
-		return &v.SubnetIds
+		return v.SubnetIds
 	}).(pulumi.StringArrayOutput)
 }
 

@@ -157,7 +157,7 @@ func (o LifecyclePolicyPolicyDetailsPtrOutput) ResourceTypes() pulumi.StringArra
 		if v == nil {
 			return nil
 		}
-		return &v.ResourceTypes
+		return v.ResourceTypes
 	}).(pulumi.StringArrayOutput)
 }
 
@@ -167,7 +167,7 @@ func (o LifecyclePolicyPolicyDetailsPtrOutput) Schedules() LifecyclePolicyPolicy
 		if v == nil {
 			return nil
 		}
-		return &v.Schedules
+		return v.Schedules
 	}).(LifecyclePolicyPolicyDetailsScheduleArrayOutput)
 }
 
@@ -177,7 +177,7 @@ func (o LifecyclePolicyPolicyDetailsPtrOutput) TargetTags() pulumi.MapOutput {
 		if v == nil {
 			return nil
 		}
-		return &v.TargetTags
+		return v.TargetTags
 	}).(pulumi.MapOutput)
 }
 

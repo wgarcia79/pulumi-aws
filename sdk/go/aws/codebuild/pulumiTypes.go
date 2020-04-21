@@ -2736,7 +2736,7 @@ func (o ProjectVpcConfigPtrOutput) SecurityGroupIds() pulumi.StringArrayOutput {
 		if v == nil {
 			return nil
 		}
-		return &v.SecurityGroupIds
+		return v.SecurityGroupIds
 	}).(pulumi.StringArrayOutput)
 }
 
@@ -2746,7 +2746,7 @@ func (o ProjectVpcConfigPtrOutput) Subnets() pulumi.StringArrayOutput {
 		if v == nil {
 			return nil
 		}
-		return &v.Subnets
+		return v.Subnets
 	}).(pulumi.StringArrayOutput)
 }
 

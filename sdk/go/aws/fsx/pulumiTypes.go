@@ -188,7 +188,7 @@ func (o WindowsFileSystemSelfManagedActiveDirectoryPtrOutput) DnsIps() pulumi.St
 		if v == nil {
 			return nil
 		}
-		return &v.DnsIps
+		return v.DnsIps
 	}).(pulumi.StringArrayOutput)
 }
 

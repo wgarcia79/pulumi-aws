@@ -148,7 +148,7 @@ func (o EfsLocationEc2ConfigPtrOutput) SecurityGroupArns() pulumi.StringArrayOut
 		if v == nil {
 			return nil
 		}
-		return &v.SecurityGroupArns
+		return v.SecurityGroupArns
 	}).(pulumi.StringArrayOutput)
 }
 
@@ -424,7 +424,7 @@ func (o NfsLocationOnPremConfigPtrOutput) AgentArns() pulumi.StringArrayOutput {
 		if v == nil {
 			return nil
 		}
-		return &v.AgentArns
+		return v.AgentArns
 	}).(pulumi.StringArrayOutput)
 }
 

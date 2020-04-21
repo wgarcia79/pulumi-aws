@@ -157,7 +157,7 @@ func (o ServiceDnsConfigPtrOutput) DnsRecords() ServiceDnsConfigDnsRecordArrayOu
 		if v == nil {
 			return nil
 		}
-		return &v.DnsRecords
+		return v.DnsRecords
 	}).(ServiceDnsConfigDnsRecordArrayOutput)
 }
 

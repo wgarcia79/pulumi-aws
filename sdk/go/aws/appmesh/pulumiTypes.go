@@ -740,7 +740,7 @@ func (o RouteSpecHttpRouteActionPtrOutput) WeightedTargets() RouteSpecHttpRouteA
 		if v == nil {
 			return nil
 		}
-		return &v.WeightedTargets
+		return v.WeightedTargets
 	}).(RouteSpecHttpRouteActionWeightedTargetArrayOutput)
 }
 
@@ -1794,7 +1794,7 @@ func (o RouteSpecTcpRouteActionPtrOutput) WeightedTargets() RouteSpecTcpRouteAct
 		if v == nil {
 			return nil
 		}
-		return &v.WeightedTargets
+		return v.WeightedTargets
 	}).(RouteSpecTcpRouteActionWeightedTargetArrayOutput)
 }
 
@@ -3913,6 +3913,48 @@ func (i VirtualRouterSpecListenerArgs) ToVirtualRouterSpecListenerOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(VirtualRouterSpecListenerOutput)
 }
 
+func (i VirtualRouterSpecListenerArgs) ToVirtualRouterSpecListenerPtrOutput() VirtualRouterSpecListenerPtrOutput {
+	return i.ToVirtualRouterSpecListenerPtrOutputWithContext(context.Background())
+}
+
+func (i VirtualRouterSpecListenerArgs) ToVirtualRouterSpecListenerPtrOutputWithContext(ctx context.Context) VirtualRouterSpecListenerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VirtualRouterSpecListenerOutput).ToVirtualRouterSpecListenerPtrOutputWithContext(ctx)
+}
+
+// VirtualRouterSpecListenerPtrInput is an input type that accepts VirtualRouterSpecListenerArgs, VirtualRouterSpecListenerPtr and VirtualRouterSpecListenerPtrOutput values.
+// You can construct a concrete instance of `VirtualRouterSpecListenerPtrInput` via:
+//
+// 		 VirtualRouterSpecListenerArgs{...}
+//
+//  or:
+//
+// 		 nil
+//
+type VirtualRouterSpecListenerPtrInput interface {
+	pulumi.Input
+
+	ToVirtualRouterSpecListenerPtrOutput() VirtualRouterSpecListenerPtrOutput
+	ToVirtualRouterSpecListenerPtrOutputWithContext(context.Context) VirtualRouterSpecListenerPtrOutput
+}
+
+type virtualRouterSpecListenerPtrType VirtualRouterSpecListenerArgs
+
+func VirtualRouterSpecListenerPtr(v *VirtualRouterSpecListenerArgs) VirtualRouterSpecListenerPtrInput {
+	return (*virtualRouterSpecListenerPtrType)(v)
+}
+
+func (*virtualRouterSpecListenerPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**VirtualRouterSpecListener)(nil)).Elem()
+}
+
+func (i *virtualRouterSpecListenerPtrType) ToVirtualRouterSpecListenerPtrOutput() VirtualRouterSpecListenerPtrOutput {
+	return i.ToVirtualRouterSpecListenerPtrOutputWithContext(context.Background())
+}
+
+func (i *virtualRouterSpecListenerPtrType) ToVirtualRouterSpecListenerPtrOutputWithContext(ctx context.Context) VirtualRouterSpecListenerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VirtualRouterSpecListenerPtrOutput)
+}
+
 type VirtualRouterSpecListenerOutput struct{ *pulumi.OutputState }
 
 func (VirtualRouterSpecListenerOutput) ElementType() reflect.Type {
@@ -3927,9 +3969,47 @@ func (o VirtualRouterSpecListenerOutput) ToVirtualRouterSpecListenerOutputWithCo
 	return o
 }
 
+func (o VirtualRouterSpecListenerOutput) ToVirtualRouterSpecListenerPtrOutput() VirtualRouterSpecListenerPtrOutput {
+	return o.ToVirtualRouterSpecListenerPtrOutputWithContext(context.Background())
+}
+
+func (o VirtualRouterSpecListenerOutput) ToVirtualRouterSpecListenerPtrOutputWithContext(ctx context.Context) VirtualRouterSpecListenerPtrOutput {
+	return o.ApplyT(func(v VirtualRouterSpecListener) *VirtualRouterSpecListener {
+		return &v
+	}).(VirtualRouterSpecListenerPtrOutput)
+}
+
 // The port mapping information for the listener.
 func (o VirtualRouterSpecListenerOutput) PortMapping() VirtualRouterSpecListenerPortMappingOutput {
 	return o.ApplyT(func(v VirtualRouterSpecListener) VirtualRouterSpecListenerPortMapping { return v.PortMapping }).(VirtualRouterSpecListenerPortMappingOutput)
+}
+
+type VirtualRouterSpecListenerPtrOutput struct{ *pulumi.OutputState }
+
+func (VirtualRouterSpecListenerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**VirtualRouterSpecListener)(nil)).Elem()
+}
+
+func (o VirtualRouterSpecListenerPtrOutput) ToVirtualRouterSpecListenerPtrOutput() VirtualRouterSpecListenerPtrOutput {
+	return o
+}
+
+func (o VirtualRouterSpecListenerPtrOutput) ToVirtualRouterSpecListenerPtrOutputWithContext(ctx context.Context) VirtualRouterSpecListenerPtrOutput {
+	return o
+}
+
+func (o VirtualRouterSpecListenerPtrOutput) Elem() VirtualRouterSpecListenerOutput {
+	return o.ApplyT(func(v *VirtualRouterSpecListener) VirtualRouterSpecListener { return *v }).(VirtualRouterSpecListenerOutput)
+}
+
+// The port mapping information for the listener.
+func (o VirtualRouterSpecListenerPtrOutput) PortMapping() VirtualRouterSpecListenerPortMappingPtrOutput {
+	return o.ApplyT(func(v *VirtualRouterSpecListener) *VirtualRouterSpecListenerPortMapping {
+		if v == nil {
+			return nil
+		}
+		return &v.PortMapping
+	}).(VirtualRouterSpecListenerPortMappingPtrOutput)
 }
 
 type VirtualRouterSpecListenerPortMapping struct {
@@ -3970,6 +4050,48 @@ func (i VirtualRouterSpecListenerPortMappingArgs) ToVirtualRouterSpecListenerPor
 	return pulumi.ToOutputWithContext(ctx, i).(VirtualRouterSpecListenerPortMappingOutput)
 }
 
+func (i VirtualRouterSpecListenerPortMappingArgs) ToVirtualRouterSpecListenerPortMappingPtrOutput() VirtualRouterSpecListenerPortMappingPtrOutput {
+	return i.ToVirtualRouterSpecListenerPortMappingPtrOutputWithContext(context.Background())
+}
+
+func (i VirtualRouterSpecListenerPortMappingArgs) ToVirtualRouterSpecListenerPortMappingPtrOutputWithContext(ctx context.Context) VirtualRouterSpecListenerPortMappingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VirtualRouterSpecListenerPortMappingOutput).ToVirtualRouterSpecListenerPortMappingPtrOutputWithContext(ctx)
+}
+
+// VirtualRouterSpecListenerPortMappingPtrInput is an input type that accepts VirtualRouterSpecListenerPortMappingArgs, VirtualRouterSpecListenerPortMappingPtr and VirtualRouterSpecListenerPortMappingPtrOutput values.
+// You can construct a concrete instance of `VirtualRouterSpecListenerPortMappingPtrInput` via:
+//
+// 		 VirtualRouterSpecListenerPortMappingArgs{...}
+//
+//  or:
+//
+// 		 nil
+//
+type VirtualRouterSpecListenerPortMappingPtrInput interface {
+	pulumi.Input
+
+	ToVirtualRouterSpecListenerPortMappingPtrOutput() VirtualRouterSpecListenerPortMappingPtrOutput
+	ToVirtualRouterSpecListenerPortMappingPtrOutputWithContext(context.Context) VirtualRouterSpecListenerPortMappingPtrOutput
+}
+
+type virtualRouterSpecListenerPortMappingPtrType VirtualRouterSpecListenerPortMappingArgs
+
+func VirtualRouterSpecListenerPortMappingPtr(v *VirtualRouterSpecListenerPortMappingArgs) VirtualRouterSpecListenerPortMappingPtrInput {
+	return (*virtualRouterSpecListenerPortMappingPtrType)(v)
+}
+
+func (*virtualRouterSpecListenerPortMappingPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**VirtualRouterSpecListenerPortMapping)(nil)).Elem()
+}
+
+func (i *virtualRouterSpecListenerPortMappingPtrType) ToVirtualRouterSpecListenerPortMappingPtrOutput() VirtualRouterSpecListenerPortMappingPtrOutput {
+	return i.ToVirtualRouterSpecListenerPortMappingPtrOutputWithContext(context.Background())
+}
+
+func (i *virtualRouterSpecListenerPortMappingPtrType) ToVirtualRouterSpecListenerPortMappingPtrOutputWithContext(ctx context.Context) VirtualRouterSpecListenerPortMappingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VirtualRouterSpecListenerPortMappingPtrOutput)
+}
+
 type VirtualRouterSpecListenerPortMappingOutput struct{ *pulumi.OutputState }
 
 func (VirtualRouterSpecListenerPortMappingOutput) ElementType() reflect.Type {
@@ -3984,6 +4106,16 @@ func (o VirtualRouterSpecListenerPortMappingOutput) ToVirtualRouterSpecListenerP
 	return o
 }
 
+func (o VirtualRouterSpecListenerPortMappingOutput) ToVirtualRouterSpecListenerPortMappingPtrOutput() VirtualRouterSpecListenerPortMappingPtrOutput {
+	return o.ToVirtualRouterSpecListenerPortMappingPtrOutputWithContext(context.Background())
+}
+
+func (o VirtualRouterSpecListenerPortMappingOutput) ToVirtualRouterSpecListenerPortMappingPtrOutputWithContext(ctx context.Context) VirtualRouterSpecListenerPortMappingPtrOutput {
+	return o.ApplyT(func(v VirtualRouterSpecListenerPortMapping) *VirtualRouterSpecListenerPortMapping {
+		return &v
+	}).(VirtualRouterSpecListenerPortMappingPtrOutput)
+}
+
 // The port used for the port mapping.
 func (o VirtualRouterSpecListenerPortMappingOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v VirtualRouterSpecListenerPortMapping) int { return v.Port }).(pulumi.IntOutput)
@@ -3992,6 +4124,44 @@ func (o VirtualRouterSpecListenerPortMappingOutput) Port() pulumi.IntOutput {
 // The protocol used for the port mapping. Valid values are `http` and `tcp`.
 func (o VirtualRouterSpecListenerPortMappingOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v VirtualRouterSpecListenerPortMapping) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+type VirtualRouterSpecListenerPortMappingPtrOutput struct{ *pulumi.OutputState }
+
+func (VirtualRouterSpecListenerPortMappingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**VirtualRouterSpecListenerPortMapping)(nil)).Elem()
+}
+
+func (o VirtualRouterSpecListenerPortMappingPtrOutput) ToVirtualRouterSpecListenerPortMappingPtrOutput() VirtualRouterSpecListenerPortMappingPtrOutput {
+	return o
+}
+
+func (o VirtualRouterSpecListenerPortMappingPtrOutput) ToVirtualRouterSpecListenerPortMappingPtrOutputWithContext(ctx context.Context) VirtualRouterSpecListenerPortMappingPtrOutput {
+	return o
+}
+
+func (o VirtualRouterSpecListenerPortMappingPtrOutput) Elem() VirtualRouterSpecListenerPortMappingOutput {
+	return o.ApplyT(func(v *VirtualRouterSpecListenerPortMapping) VirtualRouterSpecListenerPortMapping { return *v }).(VirtualRouterSpecListenerPortMappingOutput)
+}
+
+// The port used for the port mapping.
+func (o VirtualRouterSpecListenerPortMappingPtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VirtualRouterSpecListenerPortMapping) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Port
+	}).(pulumi.IntPtrOutput)
+}
+
+// The protocol used for the port mapping. Valid values are `http` and `tcp`.
+func (o VirtualRouterSpecListenerPortMappingPtrOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VirtualRouterSpecListenerPortMapping) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Protocol
+	}).(pulumi.StringPtrOutput)
 }
 
 type VirtualServiceSpec struct {
@@ -4599,7 +4769,9 @@ func init() {
 	pulumi.RegisterOutputType(VirtualRouterSpecOutput{})
 	pulumi.RegisterOutputType(VirtualRouterSpecPtrOutput{})
 	pulumi.RegisterOutputType(VirtualRouterSpecListenerOutput{})
+	pulumi.RegisterOutputType(VirtualRouterSpecListenerPtrOutput{})
 	pulumi.RegisterOutputType(VirtualRouterSpecListenerPortMappingOutput{})
+	pulumi.RegisterOutputType(VirtualRouterSpecListenerPortMappingPtrOutput{})
 	pulumi.RegisterOutputType(VirtualServiceSpecOutput{})
 	pulumi.RegisterOutputType(VirtualServiceSpecPtrOutput{})
 	pulumi.RegisterOutputType(VirtualServiceSpecProviderOutput{})

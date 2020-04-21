@@ -1258,6 +1258,48 @@ func (i AnalyticsApplicationInputsSchemaArgs) ToAnalyticsApplicationInputsSchema
 	return pulumi.ToOutputWithContext(ctx, i).(AnalyticsApplicationInputsSchemaOutput)
 }
 
+func (i AnalyticsApplicationInputsSchemaArgs) ToAnalyticsApplicationInputsSchemaPtrOutput() AnalyticsApplicationInputsSchemaPtrOutput {
+	return i.ToAnalyticsApplicationInputsSchemaPtrOutputWithContext(context.Background())
+}
+
+func (i AnalyticsApplicationInputsSchemaArgs) ToAnalyticsApplicationInputsSchemaPtrOutputWithContext(ctx context.Context) AnalyticsApplicationInputsSchemaPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AnalyticsApplicationInputsSchemaOutput).ToAnalyticsApplicationInputsSchemaPtrOutputWithContext(ctx)
+}
+
+// AnalyticsApplicationInputsSchemaPtrInput is an input type that accepts AnalyticsApplicationInputsSchemaArgs, AnalyticsApplicationInputsSchemaPtr and AnalyticsApplicationInputsSchemaPtrOutput values.
+// You can construct a concrete instance of `AnalyticsApplicationInputsSchemaPtrInput` via:
+//
+// 		 AnalyticsApplicationInputsSchemaArgs{...}
+//
+//  or:
+//
+// 		 nil
+//
+type AnalyticsApplicationInputsSchemaPtrInput interface {
+	pulumi.Input
+
+	ToAnalyticsApplicationInputsSchemaPtrOutput() AnalyticsApplicationInputsSchemaPtrOutput
+	ToAnalyticsApplicationInputsSchemaPtrOutputWithContext(context.Context) AnalyticsApplicationInputsSchemaPtrOutput
+}
+
+type analyticsApplicationInputsSchemaPtrType AnalyticsApplicationInputsSchemaArgs
+
+func AnalyticsApplicationInputsSchemaPtr(v *AnalyticsApplicationInputsSchemaArgs) AnalyticsApplicationInputsSchemaPtrInput {
+	return (*analyticsApplicationInputsSchemaPtrType)(v)
+}
+
+func (*analyticsApplicationInputsSchemaPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AnalyticsApplicationInputsSchema)(nil)).Elem()
+}
+
+func (i *analyticsApplicationInputsSchemaPtrType) ToAnalyticsApplicationInputsSchemaPtrOutput() AnalyticsApplicationInputsSchemaPtrOutput {
+	return i.ToAnalyticsApplicationInputsSchemaPtrOutputWithContext(context.Background())
+}
+
+func (i *analyticsApplicationInputsSchemaPtrType) ToAnalyticsApplicationInputsSchemaPtrOutputWithContext(ctx context.Context) AnalyticsApplicationInputsSchemaPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AnalyticsApplicationInputsSchemaPtrOutput)
+}
+
 type AnalyticsApplicationInputsSchemaOutput struct{ *pulumi.OutputState }
 
 func (AnalyticsApplicationInputsSchemaOutput) ElementType() reflect.Type {
@@ -1270,6 +1312,16 @@ func (o AnalyticsApplicationInputsSchemaOutput) ToAnalyticsApplicationInputsSche
 
 func (o AnalyticsApplicationInputsSchemaOutput) ToAnalyticsApplicationInputsSchemaOutputWithContext(ctx context.Context) AnalyticsApplicationInputsSchemaOutput {
 	return o
+}
+
+func (o AnalyticsApplicationInputsSchemaOutput) ToAnalyticsApplicationInputsSchemaPtrOutput() AnalyticsApplicationInputsSchemaPtrOutput {
+	return o.ToAnalyticsApplicationInputsSchemaPtrOutputWithContext(context.Background())
+}
+
+func (o AnalyticsApplicationInputsSchemaOutput) ToAnalyticsApplicationInputsSchemaPtrOutputWithContext(ctx context.Context) AnalyticsApplicationInputsSchemaPtrOutput {
+	return o.ApplyT(func(v AnalyticsApplicationInputsSchema) *AnalyticsApplicationInputsSchema {
+		return &v
+	}).(AnalyticsApplicationInputsSchemaPtrOutput)
 }
 
 // The Record Column mapping for the streaming source data element.
@@ -1291,6 +1343,56 @@ func (o AnalyticsApplicationInputsSchemaOutput) RecordFormat() AnalyticsApplicat
 	return o.ApplyT(func(v AnalyticsApplicationInputsSchema) AnalyticsApplicationInputsSchemaRecordFormat {
 		return v.RecordFormat
 	}).(AnalyticsApplicationInputsSchemaRecordFormatOutput)
+}
+
+type AnalyticsApplicationInputsSchemaPtrOutput struct{ *pulumi.OutputState }
+
+func (AnalyticsApplicationInputsSchemaPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AnalyticsApplicationInputsSchema)(nil)).Elem()
+}
+
+func (o AnalyticsApplicationInputsSchemaPtrOutput) ToAnalyticsApplicationInputsSchemaPtrOutput() AnalyticsApplicationInputsSchemaPtrOutput {
+	return o
+}
+
+func (o AnalyticsApplicationInputsSchemaPtrOutput) ToAnalyticsApplicationInputsSchemaPtrOutputWithContext(ctx context.Context) AnalyticsApplicationInputsSchemaPtrOutput {
+	return o
+}
+
+func (o AnalyticsApplicationInputsSchemaPtrOutput) Elem() AnalyticsApplicationInputsSchemaOutput {
+	return o.ApplyT(func(v *AnalyticsApplicationInputsSchema) AnalyticsApplicationInputsSchema { return *v }).(AnalyticsApplicationInputsSchemaOutput)
+}
+
+// The Record Column mapping for the streaming source data element.
+// See Record Columns below for more details.
+func (o AnalyticsApplicationInputsSchemaPtrOutput) RecordColumns() AnalyticsApplicationInputsSchemaRecordColumnArrayOutput {
+	return o.ApplyT(func(v *AnalyticsApplicationInputsSchema) []AnalyticsApplicationInputsSchemaRecordColumn {
+		if v == nil {
+			return nil
+		}
+		return v.RecordColumns
+	}).(AnalyticsApplicationInputsSchemaRecordColumnArrayOutput)
+}
+
+// The Encoding of the record in the streaming source.
+func (o AnalyticsApplicationInputsSchemaPtrOutput) RecordEncoding() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsApplicationInputsSchema) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RecordEncoding
+	}).(pulumi.StringPtrOutput)
+}
+
+// The Record Format and mapping information to schematize a record.
+// See Record Format below for more details.
+func (o AnalyticsApplicationInputsSchemaPtrOutput) RecordFormat() AnalyticsApplicationInputsSchemaRecordFormatPtrOutput {
+	return o.ApplyT(func(v *AnalyticsApplicationInputsSchema) *AnalyticsApplicationInputsSchemaRecordFormat {
+		if v == nil {
+			return nil
+		}
+		return &v.RecordFormat
+	}).(AnalyticsApplicationInputsSchemaRecordFormatPtrOutput)
 }
 
 type AnalyticsApplicationInputsSchemaRecordColumn struct {
@@ -1450,6 +1552,48 @@ func (i AnalyticsApplicationInputsSchemaRecordFormatArgs) ToAnalyticsApplication
 	return pulumi.ToOutputWithContext(ctx, i).(AnalyticsApplicationInputsSchemaRecordFormatOutput)
 }
 
+func (i AnalyticsApplicationInputsSchemaRecordFormatArgs) ToAnalyticsApplicationInputsSchemaRecordFormatPtrOutput() AnalyticsApplicationInputsSchemaRecordFormatPtrOutput {
+	return i.ToAnalyticsApplicationInputsSchemaRecordFormatPtrOutputWithContext(context.Background())
+}
+
+func (i AnalyticsApplicationInputsSchemaRecordFormatArgs) ToAnalyticsApplicationInputsSchemaRecordFormatPtrOutputWithContext(ctx context.Context) AnalyticsApplicationInputsSchemaRecordFormatPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AnalyticsApplicationInputsSchemaRecordFormatOutput).ToAnalyticsApplicationInputsSchemaRecordFormatPtrOutputWithContext(ctx)
+}
+
+// AnalyticsApplicationInputsSchemaRecordFormatPtrInput is an input type that accepts AnalyticsApplicationInputsSchemaRecordFormatArgs, AnalyticsApplicationInputsSchemaRecordFormatPtr and AnalyticsApplicationInputsSchemaRecordFormatPtrOutput values.
+// You can construct a concrete instance of `AnalyticsApplicationInputsSchemaRecordFormatPtrInput` via:
+//
+// 		 AnalyticsApplicationInputsSchemaRecordFormatArgs{...}
+//
+//  or:
+//
+// 		 nil
+//
+type AnalyticsApplicationInputsSchemaRecordFormatPtrInput interface {
+	pulumi.Input
+
+	ToAnalyticsApplicationInputsSchemaRecordFormatPtrOutput() AnalyticsApplicationInputsSchemaRecordFormatPtrOutput
+	ToAnalyticsApplicationInputsSchemaRecordFormatPtrOutputWithContext(context.Context) AnalyticsApplicationInputsSchemaRecordFormatPtrOutput
+}
+
+type analyticsApplicationInputsSchemaRecordFormatPtrType AnalyticsApplicationInputsSchemaRecordFormatArgs
+
+func AnalyticsApplicationInputsSchemaRecordFormatPtr(v *AnalyticsApplicationInputsSchemaRecordFormatArgs) AnalyticsApplicationInputsSchemaRecordFormatPtrInput {
+	return (*analyticsApplicationInputsSchemaRecordFormatPtrType)(v)
+}
+
+func (*analyticsApplicationInputsSchemaRecordFormatPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AnalyticsApplicationInputsSchemaRecordFormat)(nil)).Elem()
+}
+
+func (i *analyticsApplicationInputsSchemaRecordFormatPtrType) ToAnalyticsApplicationInputsSchemaRecordFormatPtrOutput() AnalyticsApplicationInputsSchemaRecordFormatPtrOutput {
+	return i.ToAnalyticsApplicationInputsSchemaRecordFormatPtrOutputWithContext(context.Background())
+}
+
+func (i *analyticsApplicationInputsSchemaRecordFormatPtrType) ToAnalyticsApplicationInputsSchemaRecordFormatPtrOutputWithContext(ctx context.Context) AnalyticsApplicationInputsSchemaRecordFormatPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AnalyticsApplicationInputsSchemaRecordFormatPtrOutput)
+}
+
 type AnalyticsApplicationInputsSchemaRecordFormatOutput struct{ *pulumi.OutputState }
 
 func (AnalyticsApplicationInputsSchemaRecordFormatOutput) ElementType() reflect.Type {
@@ -1464,6 +1608,16 @@ func (o AnalyticsApplicationInputsSchemaRecordFormatOutput) ToAnalyticsApplicati
 	return o
 }
 
+func (o AnalyticsApplicationInputsSchemaRecordFormatOutput) ToAnalyticsApplicationInputsSchemaRecordFormatPtrOutput() AnalyticsApplicationInputsSchemaRecordFormatPtrOutput {
+	return o.ToAnalyticsApplicationInputsSchemaRecordFormatPtrOutputWithContext(context.Background())
+}
+
+func (o AnalyticsApplicationInputsSchemaRecordFormatOutput) ToAnalyticsApplicationInputsSchemaRecordFormatPtrOutputWithContext(ctx context.Context) AnalyticsApplicationInputsSchemaRecordFormatPtrOutput {
+	return o.ApplyT(func(v AnalyticsApplicationInputsSchemaRecordFormat) *AnalyticsApplicationInputsSchemaRecordFormat {
+		return &v
+	}).(AnalyticsApplicationInputsSchemaRecordFormatPtrOutput)
+}
+
 // The Mapping Information for the record format.
 // See Mapping Parameters below for more details.
 func (o AnalyticsApplicationInputsSchemaRecordFormatOutput) MappingParameters() AnalyticsApplicationInputsSchemaRecordFormatMappingParametersPtrOutput {
@@ -1475,6 +1629,47 @@ func (o AnalyticsApplicationInputsSchemaRecordFormatOutput) MappingParameters() 
 // The type of Record Format. Can be `CSV` or `JSON`.
 func (o AnalyticsApplicationInputsSchemaRecordFormatOutput) RecordFormatType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AnalyticsApplicationInputsSchemaRecordFormat) *string { return v.RecordFormatType }).(pulumi.StringPtrOutput)
+}
+
+type AnalyticsApplicationInputsSchemaRecordFormatPtrOutput struct{ *pulumi.OutputState }
+
+func (AnalyticsApplicationInputsSchemaRecordFormatPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AnalyticsApplicationInputsSchemaRecordFormat)(nil)).Elem()
+}
+
+func (o AnalyticsApplicationInputsSchemaRecordFormatPtrOutput) ToAnalyticsApplicationInputsSchemaRecordFormatPtrOutput() AnalyticsApplicationInputsSchemaRecordFormatPtrOutput {
+	return o
+}
+
+func (o AnalyticsApplicationInputsSchemaRecordFormatPtrOutput) ToAnalyticsApplicationInputsSchemaRecordFormatPtrOutputWithContext(ctx context.Context) AnalyticsApplicationInputsSchemaRecordFormatPtrOutput {
+	return o
+}
+
+func (o AnalyticsApplicationInputsSchemaRecordFormatPtrOutput) Elem() AnalyticsApplicationInputsSchemaRecordFormatOutput {
+	return o.ApplyT(func(v *AnalyticsApplicationInputsSchemaRecordFormat) AnalyticsApplicationInputsSchemaRecordFormat {
+		return *v
+	}).(AnalyticsApplicationInputsSchemaRecordFormatOutput)
+}
+
+// The Mapping Information for the record format.
+// See Mapping Parameters below for more details.
+func (o AnalyticsApplicationInputsSchemaRecordFormatPtrOutput) MappingParameters() AnalyticsApplicationInputsSchemaRecordFormatMappingParametersPtrOutput {
+	return o.ApplyT(func(v *AnalyticsApplicationInputsSchemaRecordFormat) *AnalyticsApplicationInputsSchemaRecordFormatMappingParameters {
+		if v == nil {
+			return nil
+		}
+		return v.MappingParameters
+	}).(AnalyticsApplicationInputsSchemaRecordFormatMappingParametersPtrOutput)
+}
+
+// The type of Record Format. Can be `CSV` or `JSON`.
+func (o AnalyticsApplicationInputsSchemaRecordFormatPtrOutput) RecordFormatType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsApplicationInputsSchemaRecordFormat) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RecordFormatType
+	}).(pulumi.StringPtrOutput)
 }
 
 type AnalyticsApplicationInputsSchemaRecordFormatMappingParameters struct {
@@ -2933,6 +3128,48 @@ func (i AnalyticsApplicationReferenceDataSourcesS3Args) ToAnalyticsApplicationRe
 	return pulumi.ToOutputWithContext(ctx, i).(AnalyticsApplicationReferenceDataSourcesS3Output)
 }
 
+func (i AnalyticsApplicationReferenceDataSourcesS3Args) ToAnalyticsApplicationReferenceDataSourcesS3PtrOutput() AnalyticsApplicationReferenceDataSourcesS3PtrOutput {
+	return i.ToAnalyticsApplicationReferenceDataSourcesS3PtrOutputWithContext(context.Background())
+}
+
+func (i AnalyticsApplicationReferenceDataSourcesS3Args) ToAnalyticsApplicationReferenceDataSourcesS3PtrOutputWithContext(ctx context.Context) AnalyticsApplicationReferenceDataSourcesS3PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AnalyticsApplicationReferenceDataSourcesS3Output).ToAnalyticsApplicationReferenceDataSourcesS3PtrOutputWithContext(ctx)
+}
+
+// AnalyticsApplicationReferenceDataSourcesS3PtrInput is an input type that accepts AnalyticsApplicationReferenceDataSourcesS3Args, AnalyticsApplicationReferenceDataSourcesS3Ptr and AnalyticsApplicationReferenceDataSourcesS3PtrOutput values.
+// You can construct a concrete instance of `AnalyticsApplicationReferenceDataSourcesS3PtrInput` via:
+//
+// 		 AnalyticsApplicationReferenceDataSourcesS3Args{...}
+//
+//  or:
+//
+// 		 nil
+//
+type AnalyticsApplicationReferenceDataSourcesS3PtrInput interface {
+	pulumi.Input
+
+	ToAnalyticsApplicationReferenceDataSourcesS3PtrOutput() AnalyticsApplicationReferenceDataSourcesS3PtrOutput
+	ToAnalyticsApplicationReferenceDataSourcesS3PtrOutputWithContext(context.Context) AnalyticsApplicationReferenceDataSourcesS3PtrOutput
+}
+
+type analyticsApplicationReferenceDataSourcesS3PtrType AnalyticsApplicationReferenceDataSourcesS3Args
+
+func AnalyticsApplicationReferenceDataSourcesS3Ptr(v *AnalyticsApplicationReferenceDataSourcesS3Args) AnalyticsApplicationReferenceDataSourcesS3PtrInput {
+	return (*analyticsApplicationReferenceDataSourcesS3PtrType)(v)
+}
+
+func (*analyticsApplicationReferenceDataSourcesS3PtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AnalyticsApplicationReferenceDataSourcesS3)(nil)).Elem()
+}
+
+func (i *analyticsApplicationReferenceDataSourcesS3PtrType) ToAnalyticsApplicationReferenceDataSourcesS3PtrOutput() AnalyticsApplicationReferenceDataSourcesS3PtrOutput {
+	return i.ToAnalyticsApplicationReferenceDataSourcesS3PtrOutputWithContext(context.Background())
+}
+
+func (i *analyticsApplicationReferenceDataSourcesS3PtrType) ToAnalyticsApplicationReferenceDataSourcesS3PtrOutputWithContext(ctx context.Context) AnalyticsApplicationReferenceDataSourcesS3PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AnalyticsApplicationReferenceDataSourcesS3PtrOutput)
+}
+
 type AnalyticsApplicationReferenceDataSourcesS3Output struct{ *pulumi.OutputState }
 
 func (AnalyticsApplicationReferenceDataSourcesS3Output) ElementType() reflect.Type {
@@ -2945,6 +3182,16 @@ func (o AnalyticsApplicationReferenceDataSourcesS3Output) ToAnalyticsApplication
 
 func (o AnalyticsApplicationReferenceDataSourcesS3Output) ToAnalyticsApplicationReferenceDataSourcesS3OutputWithContext(ctx context.Context) AnalyticsApplicationReferenceDataSourcesS3Output {
 	return o
+}
+
+func (o AnalyticsApplicationReferenceDataSourcesS3Output) ToAnalyticsApplicationReferenceDataSourcesS3PtrOutput() AnalyticsApplicationReferenceDataSourcesS3PtrOutput {
+	return o.ToAnalyticsApplicationReferenceDataSourcesS3PtrOutputWithContext(context.Background())
+}
+
+func (o AnalyticsApplicationReferenceDataSourcesS3Output) ToAnalyticsApplicationReferenceDataSourcesS3PtrOutputWithContext(ctx context.Context) AnalyticsApplicationReferenceDataSourcesS3PtrOutput {
+	return o.ApplyT(func(v AnalyticsApplicationReferenceDataSourcesS3) *AnalyticsApplicationReferenceDataSourcesS3 {
+		return &v
+	}).(AnalyticsApplicationReferenceDataSourcesS3PtrOutput)
 }
 
 // The S3 Bucket ARN.
@@ -2960,6 +3207,56 @@ func (o AnalyticsApplicationReferenceDataSourcesS3Output) FileKey() pulumi.Strin
 // The ARN of the IAM Role used to send application messages.
 func (o AnalyticsApplicationReferenceDataSourcesS3Output) RoleArn() pulumi.StringOutput {
 	return o.ApplyT(func(v AnalyticsApplicationReferenceDataSourcesS3) string { return v.RoleArn }).(pulumi.StringOutput)
+}
+
+type AnalyticsApplicationReferenceDataSourcesS3PtrOutput struct{ *pulumi.OutputState }
+
+func (AnalyticsApplicationReferenceDataSourcesS3PtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AnalyticsApplicationReferenceDataSourcesS3)(nil)).Elem()
+}
+
+func (o AnalyticsApplicationReferenceDataSourcesS3PtrOutput) ToAnalyticsApplicationReferenceDataSourcesS3PtrOutput() AnalyticsApplicationReferenceDataSourcesS3PtrOutput {
+	return o
+}
+
+func (o AnalyticsApplicationReferenceDataSourcesS3PtrOutput) ToAnalyticsApplicationReferenceDataSourcesS3PtrOutputWithContext(ctx context.Context) AnalyticsApplicationReferenceDataSourcesS3PtrOutput {
+	return o
+}
+
+func (o AnalyticsApplicationReferenceDataSourcesS3PtrOutput) Elem() AnalyticsApplicationReferenceDataSourcesS3Output {
+	return o.ApplyT(func(v *AnalyticsApplicationReferenceDataSourcesS3) AnalyticsApplicationReferenceDataSourcesS3 {
+		return *v
+	}).(AnalyticsApplicationReferenceDataSourcesS3Output)
+}
+
+// The S3 Bucket ARN.
+func (o AnalyticsApplicationReferenceDataSourcesS3PtrOutput) BucketArn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsApplicationReferenceDataSourcesS3) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.BucketArn
+	}).(pulumi.StringPtrOutput)
+}
+
+// The File Key name containing reference data.
+func (o AnalyticsApplicationReferenceDataSourcesS3PtrOutput) FileKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsApplicationReferenceDataSourcesS3) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.FileKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ARN of the IAM Role used to send application messages.
+func (o AnalyticsApplicationReferenceDataSourcesS3PtrOutput) RoleArn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsApplicationReferenceDataSourcesS3) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RoleArn
+	}).(pulumi.StringPtrOutput)
 }
 
 type AnalyticsApplicationReferenceDataSourcesSchema struct {
@@ -3008,6 +3305,48 @@ func (i AnalyticsApplicationReferenceDataSourcesSchemaArgs) ToAnalyticsApplicati
 	return pulumi.ToOutputWithContext(ctx, i).(AnalyticsApplicationReferenceDataSourcesSchemaOutput)
 }
 
+func (i AnalyticsApplicationReferenceDataSourcesSchemaArgs) ToAnalyticsApplicationReferenceDataSourcesSchemaPtrOutput() AnalyticsApplicationReferenceDataSourcesSchemaPtrOutput {
+	return i.ToAnalyticsApplicationReferenceDataSourcesSchemaPtrOutputWithContext(context.Background())
+}
+
+func (i AnalyticsApplicationReferenceDataSourcesSchemaArgs) ToAnalyticsApplicationReferenceDataSourcesSchemaPtrOutputWithContext(ctx context.Context) AnalyticsApplicationReferenceDataSourcesSchemaPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AnalyticsApplicationReferenceDataSourcesSchemaOutput).ToAnalyticsApplicationReferenceDataSourcesSchemaPtrOutputWithContext(ctx)
+}
+
+// AnalyticsApplicationReferenceDataSourcesSchemaPtrInput is an input type that accepts AnalyticsApplicationReferenceDataSourcesSchemaArgs, AnalyticsApplicationReferenceDataSourcesSchemaPtr and AnalyticsApplicationReferenceDataSourcesSchemaPtrOutput values.
+// You can construct a concrete instance of `AnalyticsApplicationReferenceDataSourcesSchemaPtrInput` via:
+//
+// 		 AnalyticsApplicationReferenceDataSourcesSchemaArgs{...}
+//
+//  or:
+//
+// 		 nil
+//
+type AnalyticsApplicationReferenceDataSourcesSchemaPtrInput interface {
+	pulumi.Input
+
+	ToAnalyticsApplicationReferenceDataSourcesSchemaPtrOutput() AnalyticsApplicationReferenceDataSourcesSchemaPtrOutput
+	ToAnalyticsApplicationReferenceDataSourcesSchemaPtrOutputWithContext(context.Context) AnalyticsApplicationReferenceDataSourcesSchemaPtrOutput
+}
+
+type analyticsApplicationReferenceDataSourcesSchemaPtrType AnalyticsApplicationReferenceDataSourcesSchemaArgs
+
+func AnalyticsApplicationReferenceDataSourcesSchemaPtr(v *AnalyticsApplicationReferenceDataSourcesSchemaArgs) AnalyticsApplicationReferenceDataSourcesSchemaPtrInput {
+	return (*analyticsApplicationReferenceDataSourcesSchemaPtrType)(v)
+}
+
+func (*analyticsApplicationReferenceDataSourcesSchemaPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AnalyticsApplicationReferenceDataSourcesSchema)(nil)).Elem()
+}
+
+func (i *analyticsApplicationReferenceDataSourcesSchemaPtrType) ToAnalyticsApplicationReferenceDataSourcesSchemaPtrOutput() AnalyticsApplicationReferenceDataSourcesSchemaPtrOutput {
+	return i.ToAnalyticsApplicationReferenceDataSourcesSchemaPtrOutputWithContext(context.Background())
+}
+
+func (i *analyticsApplicationReferenceDataSourcesSchemaPtrType) ToAnalyticsApplicationReferenceDataSourcesSchemaPtrOutputWithContext(ctx context.Context) AnalyticsApplicationReferenceDataSourcesSchemaPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AnalyticsApplicationReferenceDataSourcesSchemaPtrOutput)
+}
+
 type AnalyticsApplicationReferenceDataSourcesSchemaOutput struct{ *pulumi.OutputState }
 
 func (AnalyticsApplicationReferenceDataSourcesSchemaOutput) ElementType() reflect.Type {
@@ -3020,6 +3359,16 @@ func (o AnalyticsApplicationReferenceDataSourcesSchemaOutput) ToAnalyticsApplica
 
 func (o AnalyticsApplicationReferenceDataSourcesSchemaOutput) ToAnalyticsApplicationReferenceDataSourcesSchemaOutputWithContext(ctx context.Context) AnalyticsApplicationReferenceDataSourcesSchemaOutput {
 	return o
+}
+
+func (o AnalyticsApplicationReferenceDataSourcesSchemaOutput) ToAnalyticsApplicationReferenceDataSourcesSchemaPtrOutput() AnalyticsApplicationReferenceDataSourcesSchemaPtrOutput {
+	return o.ToAnalyticsApplicationReferenceDataSourcesSchemaPtrOutputWithContext(context.Background())
+}
+
+func (o AnalyticsApplicationReferenceDataSourcesSchemaOutput) ToAnalyticsApplicationReferenceDataSourcesSchemaPtrOutputWithContext(ctx context.Context) AnalyticsApplicationReferenceDataSourcesSchemaPtrOutput {
+	return o.ApplyT(func(v AnalyticsApplicationReferenceDataSourcesSchema) *AnalyticsApplicationReferenceDataSourcesSchema {
+		return &v
+	}).(AnalyticsApplicationReferenceDataSourcesSchemaPtrOutput)
 }
 
 // The Record Column mapping for the streaming source data element.
@@ -3041,6 +3390,58 @@ func (o AnalyticsApplicationReferenceDataSourcesSchemaOutput) RecordFormat() Ana
 	return o.ApplyT(func(v AnalyticsApplicationReferenceDataSourcesSchema) AnalyticsApplicationReferenceDataSourcesSchemaRecordFormat {
 		return v.RecordFormat
 	}).(AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatOutput)
+}
+
+type AnalyticsApplicationReferenceDataSourcesSchemaPtrOutput struct{ *pulumi.OutputState }
+
+func (AnalyticsApplicationReferenceDataSourcesSchemaPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AnalyticsApplicationReferenceDataSourcesSchema)(nil)).Elem()
+}
+
+func (o AnalyticsApplicationReferenceDataSourcesSchemaPtrOutput) ToAnalyticsApplicationReferenceDataSourcesSchemaPtrOutput() AnalyticsApplicationReferenceDataSourcesSchemaPtrOutput {
+	return o
+}
+
+func (o AnalyticsApplicationReferenceDataSourcesSchemaPtrOutput) ToAnalyticsApplicationReferenceDataSourcesSchemaPtrOutputWithContext(ctx context.Context) AnalyticsApplicationReferenceDataSourcesSchemaPtrOutput {
+	return o
+}
+
+func (o AnalyticsApplicationReferenceDataSourcesSchemaPtrOutput) Elem() AnalyticsApplicationReferenceDataSourcesSchemaOutput {
+	return o.ApplyT(func(v *AnalyticsApplicationReferenceDataSourcesSchema) AnalyticsApplicationReferenceDataSourcesSchema {
+		return *v
+	}).(AnalyticsApplicationReferenceDataSourcesSchemaOutput)
+}
+
+// The Record Column mapping for the streaming source data element.
+// See Record Columns below for more details.
+func (o AnalyticsApplicationReferenceDataSourcesSchemaPtrOutput) RecordColumns() AnalyticsApplicationReferenceDataSourcesSchemaRecordColumnArrayOutput {
+	return o.ApplyT(func(v *AnalyticsApplicationReferenceDataSourcesSchema) []AnalyticsApplicationReferenceDataSourcesSchemaRecordColumn {
+		if v == nil {
+			return nil
+		}
+		return v.RecordColumns
+	}).(AnalyticsApplicationReferenceDataSourcesSchemaRecordColumnArrayOutput)
+}
+
+// The Encoding of the record in the streaming source.
+func (o AnalyticsApplicationReferenceDataSourcesSchemaPtrOutput) RecordEncoding() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsApplicationReferenceDataSourcesSchema) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RecordEncoding
+	}).(pulumi.StringPtrOutput)
+}
+
+// The Record Format and mapping information to schematize a record.
+// See Record Format below for more details.
+func (o AnalyticsApplicationReferenceDataSourcesSchemaPtrOutput) RecordFormat() AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput {
+	return o.ApplyT(func(v *AnalyticsApplicationReferenceDataSourcesSchema) *AnalyticsApplicationReferenceDataSourcesSchemaRecordFormat {
+		if v == nil {
+			return nil
+		}
+		return &v.RecordFormat
+	}).(AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput)
 }
 
 type AnalyticsApplicationReferenceDataSourcesSchemaRecordColumn struct {
@@ -3200,6 +3601,48 @@ func (i AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatArgs) ToAnalyt
 	return pulumi.ToOutputWithContext(ctx, i).(AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatOutput)
 }
 
+func (i AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatArgs) ToAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput() AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput {
+	return i.ToAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutputWithContext(context.Background())
+}
+
+func (i AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatArgs) ToAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutputWithContext(ctx context.Context) AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatOutput).ToAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutputWithContext(ctx)
+}
+
+// AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrInput is an input type that accepts AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatArgs, AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtr and AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput values.
+// You can construct a concrete instance of `AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrInput` via:
+//
+// 		 AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatArgs{...}
+//
+//  or:
+//
+// 		 nil
+//
+type AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrInput interface {
+	pulumi.Input
+
+	ToAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput() AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput
+	ToAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutputWithContext(context.Context) AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput
+}
+
+type analyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrType AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatArgs
+
+func AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtr(v *AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatArgs) AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrInput {
+	return (*analyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrType)(v)
+}
+
+func (*analyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AnalyticsApplicationReferenceDataSourcesSchemaRecordFormat)(nil)).Elem()
+}
+
+func (i *analyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrType) ToAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput() AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput {
+	return i.ToAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutputWithContext(context.Background())
+}
+
+func (i *analyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrType) ToAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutputWithContext(ctx context.Context) AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput)
+}
+
 type AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatOutput struct{ *pulumi.OutputState }
 
 func (AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatOutput) ElementType() reflect.Type {
@@ -3214,6 +3657,16 @@ func (o AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatOutput) ToAnal
 	return o
 }
 
+func (o AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatOutput) ToAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput() AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput {
+	return o.ToAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutputWithContext(context.Background())
+}
+
+func (o AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatOutput) ToAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutputWithContext(ctx context.Context) AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput {
+	return o.ApplyT(func(v AnalyticsApplicationReferenceDataSourcesSchemaRecordFormat) *AnalyticsApplicationReferenceDataSourcesSchemaRecordFormat {
+		return &v
+	}).(AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput)
+}
+
 // The Mapping Information for the record format.
 // See Mapping Parameters below for more details.
 func (o AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatOutput) MappingParameters() AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersPtrOutput {
@@ -3225,6 +3678,47 @@ func (o AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatOutput) Mappin
 // The type of Record Format. Can be `CSV` or `JSON`.
 func (o AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatOutput) RecordFormatType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AnalyticsApplicationReferenceDataSourcesSchemaRecordFormat) *string { return v.RecordFormatType }).(pulumi.StringPtrOutput)
+}
+
+type AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput struct{ *pulumi.OutputState }
+
+func (AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AnalyticsApplicationReferenceDataSourcesSchemaRecordFormat)(nil)).Elem()
+}
+
+func (o AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput) ToAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput() AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput {
+	return o
+}
+
+func (o AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput) ToAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutputWithContext(ctx context.Context) AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput {
+	return o
+}
+
+func (o AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput) Elem() AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatOutput {
+	return o.ApplyT(func(v *AnalyticsApplicationReferenceDataSourcesSchemaRecordFormat) AnalyticsApplicationReferenceDataSourcesSchemaRecordFormat {
+		return *v
+	}).(AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatOutput)
+}
+
+// The Mapping Information for the record format.
+// See Mapping Parameters below for more details.
+func (o AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput) MappingParameters() AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersPtrOutput {
+	return o.ApplyT(func(v *AnalyticsApplicationReferenceDataSourcesSchemaRecordFormat) *AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParameters {
+		if v == nil {
+			return nil
+		}
+		return v.MappingParameters
+	}).(AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersPtrOutput)
+}
+
+// The type of Record Format. Can be `CSV` or `JSON`.
+func (o AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput) RecordFormatType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsApplicationReferenceDataSourcesSchemaRecordFormat) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RecordFormatType
+	}).(pulumi.StringPtrOutput)
 }
 
 type AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParameters struct {
@@ -10844,9 +11338,11 @@ func init() {
 	pulumi.RegisterOutputType(AnalyticsApplicationInputsProcessingConfigurationLambdaOutput{})
 	pulumi.RegisterOutputType(AnalyticsApplicationInputsProcessingConfigurationLambdaPtrOutput{})
 	pulumi.RegisterOutputType(AnalyticsApplicationInputsSchemaOutput{})
+	pulumi.RegisterOutputType(AnalyticsApplicationInputsSchemaPtrOutput{})
 	pulumi.RegisterOutputType(AnalyticsApplicationInputsSchemaRecordColumnOutput{})
 	pulumi.RegisterOutputType(AnalyticsApplicationInputsSchemaRecordColumnArrayOutput{})
 	pulumi.RegisterOutputType(AnalyticsApplicationInputsSchemaRecordFormatOutput{})
+	pulumi.RegisterOutputType(AnalyticsApplicationInputsSchemaRecordFormatPtrOutput{})
 	pulumi.RegisterOutputType(AnalyticsApplicationInputsSchemaRecordFormatMappingParametersOutput{})
 	pulumi.RegisterOutputType(AnalyticsApplicationInputsSchemaRecordFormatMappingParametersPtrOutput{})
 	pulumi.RegisterOutputType(AnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsvOutput{})
@@ -10867,10 +11363,13 @@ func init() {
 	pulumi.RegisterOutputType(AnalyticsApplicationReferenceDataSourcesOutput{})
 	pulumi.RegisterOutputType(AnalyticsApplicationReferenceDataSourcesPtrOutput{})
 	pulumi.RegisterOutputType(AnalyticsApplicationReferenceDataSourcesS3Output{})
+	pulumi.RegisterOutputType(AnalyticsApplicationReferenceDataSourcesS3PtrOutput{})
 	pulumi.RegisterOutputType(AnalyticsApplicationReferenceDataSourcesSchemaOutput{})
+	pulumi.RegisterOutputType(AnalyticsApplicationReferenceDataSourcesSchemaPtrOutput{})
 	pulumi.RegisterOutputType(AnalyticsApplicationReferenceDataSourcesSchemaRecordColumnOutput{})
 	pulumi.RegisterOutputType(AnalyticsApplicationReferenceDataSourcesSchemaRecordColumnArrayOutput{})
 	pulumi.RegisterOutputType(AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatOutput{})
+	pulumi.RegisterOutputType(AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatPtrOutput{})
 	pulumi.RegisterOutputType(AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersOutput{})
 	pulumi.RegisterOutputType(AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersPtrOutput{})
 	pulumi.RegisterOutputType(AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsvOutput{})

@@ -1871,7 +1871,7 @@ func (o WebAclLoggingConfigurationRedactedFieldsPtrOutput) FieldToMatches() WebA
 		if v == nil {
 			return nil
 		}
-		return &v.FieldToMatches
+		return v.FieldToMatches
 	}).(WebAclLoggingConfigurationRedactedFieldsFieldToMatchArrayOutput)
 }
 

@@ -309,7 +309,7 @@ func (o FleetNetworkPtrOutput) SecurityGroupIds() pulumi.StringArrayOutput {
 		if v == nil {
 			return nil
 		}
-		return &v.SecurityGroupIds
+		return v.SecurityGroupIds
 	}).(pulumi.StringArrayOutput)
 }
 
@@ -319,7 +319,7 @@ func (o FleetNetworkPtrOutput) SubnetIds() pulumi.StringArrayOutput {
 		if v == nil {
 			return nil
 		}
-		return &v.SubnetIds
+		return v.SubnetIds
 	}).(pulumi.StringArrayOutput)
 }
 

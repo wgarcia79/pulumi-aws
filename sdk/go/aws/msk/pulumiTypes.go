@@ -185,7 +185,7 @@ func (o ClusterBrokerNodeGroupInfoPtrOutput) ClientSubnets() pulumi.StringArrayO
 		if v == nil {
 			return nil
 		}
-		return &v.ClientSubnets
+		return v.ClientSubnets
 	}).(pulumi.StringArrayOutput)
 }
 
@@ -215,7 +215,7 @@ func (o ClusterBrokerNodeGroupInfoPtrOutput) SecurityGroups() pulumi.StringArray
 		if v == nil {
 			return nil
 		}
-		return &v.SecurityGroups
+		return v.SecurityGroups
 	}).(pulumi.StringArrayOutput)
 }
 
@@ -1110,6 +1110,48 @@ func (i ClusterLoggingInfoBrokerLogsArgs) ToClusterLoggingInfoBrokerLogsOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(ClusterLoggingInfoBrokerLogsOutput)
 }
 
+func (i ClusterLoggingInfoBrokerLogsArgs) ToClusterLoggingInfoBrokerLogsPtrOutput() ClusterLoggingInfoBrokerLogsPtrOutput {
+	return i.ToClusterLoggingInfoBrokerLogsPtrOutputWithContext(context.Background())
+}
+
+func (i ClusterLoggingInfoBrokerLogsArgs) ToClusterLoggingInfoBrokerLogsPtrOutputWithContext(ctx context.Context) ClusterLoggingInfoBrokerLogsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterLoggingInfoBrokerLogsOutput).ToClusterLoggingInfoBrokerLogsPtrOutputWithContext(ctx)
+}
+
+// ClusterLoggingInfoBrokerLogsPtrInput is an input type that accepts ClusterLoggingInfoBrokerLogsArgs, ClusterLoggingInfoBrokerLogsPtr and ClusterLoggingInfoBrokerLogsPtrOutput values.
+// You can construct a concrete instance of `ClusterLoggingInfoBrokerLogsPtrInput` via:
+//
+// 		 ClusterLoggingInfoBrokerLogsArgs{...}
+//
+//  or:
+//
+// 		 nil
+//
+type ClusterLoggingInfoBrokerLogsPtrInput interface {
+	pulumi.Input
+
+	ToClusterLoggingInfoBrokerLogsPtrOutput() ClusterLoggingInfoBrokerLogsPtrOutput
+	ToClusterLoggingInfoBrokerLogsPtrOutputWithContext(context.Context) ClusterLoggingInfoBrokerLogsPtrOutput
+}
+
+type clusterLoggingInfoBrokerLogsPtrType ClusterLoggingInfoBrokerLogsArgs
+
+func ClusterLoggingInfoBrokerLogsPtr(v *ClusterLoggingInfoBrokerLogsArgs) ClusterLoggingInfoBrokerLogsPtrInput {
+	return (*clusterLoggingInfoBrokerLogsPtrType)(v)
+}
+
+func (*clusterLoggingInfoBrokerLogsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClusterLoggingInfoBrokerLogs)(nil)).Elem()
+}
+
+func (i *clusterLoggingInfoBrokerLogsPtrType) ToClusterLoggingInfoBrokerLogsPtrOutput() ClusterLoggingInfoBrokerLogsPtrOutput {
+	return i.ToClusterLoggingInfoBrokerLogsPtrOutputWithContext(context.Background())
+}
+
+func (i *clusterLoggingInfoBrokerLogsPtrType) ToClusterLoggingInfoBrokerLogsPtrOutputWithContext(ctx context.Context) ClusterLoggingInfoBrokerLogsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterLoggingInfoBrokerLogsPtrOutput)
+}
+
 type ClusterLoggingInfoBrokerLogsOutput struct{ *pulumi.OutputState }
 
 func (ClusterLoggingInfoBrokerLogsOutput) ElementType() reflect.Type {
@@ -1124,6 +1166,15 @@ func (o ClusterLoggingInfoBrokerLogsOutput) ToClusterLoggingInfoBrokerLogsOutput
 	return o
 }
 
+func (o ClusterLoggingInfoBrokerLogsOutput) ToClusterLoggingInfoBrokerLogsPtrOutput() ClusterLoggingInfoBrokerLogsPtrOutput {
+	return o.ToClusterLoggingInfoBrokerLogsPtrOutputWithContext(context.Background())
+}
+
+func (o ClusterLoggingInfoBrokerLogsOutput) ToClusterLoggingInfoBrokerLogsPtrOutputWithContext(ctx context.Context) ClusterLoggingInfoBrokerLogsPtrOutput {
+	return o.ApplyT(func(v ClusterLoggingInfoBrokerLogs) *ClusterLoggingInfoBrokerLogs {
+		return &v
+	}).(ClusterLoggingInfoBrokerLogsPtrOutput)
+}
 func (o ClusterLoggingInfoBrokerLogsOutput) CloudwatchLogs() ClusterLoggingInfoBrokerLogsCloudwatchLogsPtrOutput {
 	return o.ApplyT(func(v ClusterLoggingInfoBrokerLogs) *ClusterLoggingInfoBrokerLogsCloudwatchLogs {
 		return v.CloudwatchLogs
@@ -1136,6 +1187,51 @@ func (o ClusterLoggingInfoBrokerLogsOutput) Firehose() ClusterLoggingInfoBrokerL
 
 func (o ClusterLoggingInfoBrokerLogsOutput) S3() ClusterLoggingInfoBrokerLogsS3PtrOutput {
 	return o.ApplyT(func(v ClusterLoggingInfoBrokerLogs) *ClusterLoggingInfoBrokerLogsS3 { return v.S3 }).(ClusterLoggingInfoBrokerLogsS3PtrOutput)
+}
+
+type ClusterLoggingInfoBrokerLogsPtrOutput struct{ *pulumi.OutputState }
+
+func (ClusterLoggingInfoBrokerLogsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClusterLoggingInfoBrokerLogs)(nil)).Elem()
+}
+
+func (o ClusterLoggingInfoBrokerLogsPtrOutput) ToClusterLoggingInfoBrokerLogsPtrOutput() ClusterLoggingInfoBrokerLogsPtrOutput {
+	return o
+}
+
+func (o ClusterLoggingInfoBrokerLogsPtrOutput) ToClusterLoggingInfoBrokerLogsPtrOutputWithContext(ctx context.Context) ClusterLoggingInfoBrokerLogsPtrOutput {
+	return o
+}
+
+func (o ClusterLoggingInfoBrokerLogsPtrOutput) Elem() ClusterLoggingInfoBrokerLogsOutput {
+	return o.ApplyT(func(v *ClusterLoggingInfoBrokerLogs) ClusterLoggingInfoBrokerLogs { return *v }).(ClusterLoggingInfoBrokerLogsOutput)
+}
+
+func (o ClusterLoggingInfoBrokerLogsPtrOutput) CloudwatchLogs() ClusterLoggingInfoBrokerLogsCloudwatchLogsPtrOutput {
+	return o.ApplyT(func(v *ClusterLoggingInfoBrokerLogs) *ClusterLoggingInfoBrokerLogsCloudwatchLogs {
+		if v == nil {
+			return nil
+		}
+		return v.CloudwatchLogs
+	}).(ClusterLoggingInfoBrokerLogsCloudwatchLogsPtrOutput)
+}
+
+func (o ClusterLoggingInfoBrokerLogsPtrOutput) Firehose() ClusterLoggingInfoBrokerLogsFirehosePtrOutput {
+	return o.ApplyT(func(v *ClusterLoggingInfoBrokerLogs) *ClusterLoggingInfoBrokerLogsFirehose {
+		if v == nil {
+			return nil
+		}
+		return v.Firehose
+	}).(ClusterLoggingInfoBrokerLogsFirehosePtrOutput)
+}
+
+func (o ClusterLoggingInfoBrokerLogsPtrOutput) S3() ClusterLoggingInfoBrokerLogsS3PtrOutput {
+	return o.ApplyT(func(v *ClusterLoggingInfoBrokerLogs) *ClusterLoggingInfoBrokerLogsS3 {
+		if v == nil {
+			return nil
+		}
+		return v.S3
+	}).(ClusterLoggingInfoBrokerLogsS3PtrOutput)
 }
 
 type ClusterLoggingInfoBrokerLogsCloudwatchLogs struct {
@@ -1786,6 +1882,48 @@ func (i ClusterOpenMonitoringPrometheusArgs) ToClusterOpenMonitoringPrometheusOu
 	return pulumi.ToOutputWithContext(ctx, i).(ClusterOpenMonitoringPrometheusOutput)
 }
 
+func (i ClusterOpenMonitoringPrometheusArgs) ToClusterOpenMonitoringPrometheusPtrOutput() ClusterOpenMonitoringPrometheusPtrOutput {
+	return i.ToClusterOpenMonitoringPrometheusPtrOutputWithContext(context.Background())
+}
+
+func (i ClusterOpenMonitoringPrometheusArgs) ToClusterOpenMonitoringPrometheusPtrOutputWithContext(ctx context.Context) ClusterOpenMonitoringPrometheusPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterOpenMonitoringPrometheusOutput).ToClusterOpenMonitoringPrometheusPtrOutputWithContext(ctx)
+}
+
+// ClusterOpenMonitoringPrometheusPtrInput is an input type that accepts ClusterOpenMonitoringPrometheusArgs, ClusterOpenMonitoringPrometheusPtr and ClusterOpenMonitoringPrometheusPtrOutput values.
+// You can construct a concrete instance of `ClusterOpenMonitoringPrometheusPtrInput` via:
+//
+// 		 ClusterOpenMonitoringPrometheusArgs{...}
+//
+//  or:
+//
+// 		 nil
+//
+type ClusterOpenMonitoringPrometheusPtrInput interface {
+	pulumi.Input
+
+	ToClusterOpenMonitoringPrometheusPtrOutput() ClusterOpenMonitoringPrometheusPtrOutput
+	ToClusterOpenMonitoringPrometheusPtrOutputWithContext(context.Context) ClusterOpenMonitoringPrometheusPtrOutput
+}
+
+type clusterOpenMonitoringPrometheusPtrType ClusterOpenMonitoringPrometheusArgs
+
+func ClusterOpenMonitoringPrometheusPtr(v *ClusterOpenMonitoringPrometheusArgs) ClusterOpenMonitoringPrometheusPtrInput {
+	return (*clusterOpenMonitoringPrometheusPtrType)(v)
+}
+
+func (*clusterOpenMonitoringPrometheusPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClusterOpenMonitoringPrometheus)(nil)).Elem()
+}
+
+func (i *clusterOpenMonitoringPrometheusPtrType) ToClusterOpenMonitoringPrometheusPtrOutput() ClusterOpenMonitoringPrometheusPtrOutput {
+	return i.ToClusterOpenMonitoringPrometheusPtrOutputWithContext(context.Background())
+}
+
+func (i *clusterOpenMonitoringPrometheusPtrType) ToClusterOpenMonitoringPrometheusPtrOutputWithContext(ctx context.Context) ClusterOpenMonitoringPrometheusPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterOpenMonitoringPrometheusPtrOutput)
+}
+
 type ClusterOpenMonitoringPrometheusOutput struct{ *pulumi.OutputState }
 
 func (ClusterOpenMonitoringPrometheusOutput) ElementType() reflect.Type {
@@ -1800,6 +1938,16 @@ func (o ClusterOpenMonitoringPrometheusOutput) ToClusterOpenMonitoringPrometheus
 	return o
 }
 
+func (o ClusterOpenMonitoringPrometheusOutput) ToClusterOpenMonitoringPrometheusPtrOutput() ClusterOpenMonitoringPrometheusPtrOutput {
+	return o.ToClusterOpenMonitoringPrometheusPtrOutputWithContext(context.Background())
+}
+
+func (o ClusterOpenMonitoringPrometheusOutput) ToClusterOpenMonitoringPrometheusPtrOutputWithContext(ctx context.Context) ClusterOpenMonitoringPrometheusPtrOutput {
+	return o.ApplyT(func(v ClusterOpenMonitoringPrometheus) *ClusterOpenMonitoringPrometheus {
+		return &v
+	}).(ClusterOpenMonitoringPrometheusPtrOutput)
+}
+
 // Configuration block for JMX Exporter. See below.
 func (o ClusterOpenMonitoringPrometheusOutput) JmxExporter() ClusterOpenMonitoringPrometheusJmxExporterPtrOutput {
 	return o.ApplyT(func(v ClusterOpenMonitoringPrometheus) *ClusterOpenMonitoringPrometheusJmxExporter {
@@ -1810,6 +1958,44 @@ func (o ClusterOpenMonitoringPrometheusOutput) JmxExporter() ClusterOpenMonitori
 // Configuration block for Node Exporter. See below.
 func (o ClusterOpenMonitoringPrometheusOutput) NodeExporter() ClusterOpenMonitoringPrometheusNodeExporterPtrOutput {
 	return o.ApplyT(func(v ClusterOpenMonitoringPrometheus) *ClusterOpenMonitoringPrometheusNodeExporter {
+		return v.NodeExporter
+	}).(ClusterOpenMonitoringPrometheusNodeExporterPtrOutput)
+}
+
+type ClusterOpenMonitoringPrometheusPtrOutput struct{ *pulumi.OutputState }
+
+func (ClusterOpenMonitoringPrometheusPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClusterOpenMonitoringPrometheus)(nil)).Elem()
+}
+
+func (o ClusterOpenMonitoringPrometheusPtrOutput) ToClusterOpenMonitoringPrometheusPtrOutput() ClusterOpenMonitoringPrometheusPtrOutput {
+	return o
+}
+
+func (o ClusterOpenMonitoringPrometheusPtrOutput) ToClusterOpenMonitoringPrometheusPtrOutputWithContext(ctx context.Context) ClusterOpenMonitoringPrometheusPtrOutput {
+	return o
+}
+
+func (o ClusterOpenMonitoringPrometheusPtrOutput) Elem() ClusterOpenMonitoringPrometheusOutput {
+	return o.ApplyT(func(v *ClusterOpenMonitoringPrometheus) ClusterOpenMonitoringPrometheus { return *v }).(ClusterOpenMonitoringPrometheusOutput)
+}
+
+// Configuration block for JMX Exporter. See below.
+func (o ClusterOpenMonitoringPrometheusPtrOutput) JmxExporter() ClusterOpenMonitoringPrometheusJmxExporterPtrOutput {
+	return o.ApplyT(func(v *ClusterOpenMonitoringPrometheus) *ClusterOpenMonitoringPrometheusJmxExporter {
+		if v == nil {
+			return nil
+		}
+		return v.JmxExporter
+	}).(ClusterOpenMonitoringPrometheusJmxExporterPtrOutput)
+}
+
+// Configuration block for Node Exporter. See below.
+func (o ClusterOpenMonitoringPrometheusPtrOutput) NodeExporter() ClusterOpenMonitoringPrometheusNodeExporterPtrOutput {
+	return o.ApplyT(func(v *ClusterOpenMonitoringPrometheus) *ClusterOpenMonitoringPrometheusNodeExporter {
+		if v == nil {
+			return nil
+		}
 		return v.NodeExporter
 	}).(ClusterOpenMonitoringPrometheusNodeExporterPtrOutput)
 }
@@ -2100,6 +2286,7 @@ func init() {
 	pulumi.RegisterOutputType(ClusterLoggingInfoOutput{})
 	pulumi.RegisterOutputType(ClusterLoggingInfoPtrOutput{})
 	pulumi.RegisterOutputType(ClusterLoggingInfoBrokerLogsOutput{})
+	pulumi.RegisterOutputType(ClusterLoggingInfoBrokerLogsPtrOutput{})
 	pulumi.RegisterOutputType(ClusterLoggingInfoBrokerLogsCloudwatchLogsOutput{})
 	pulumi.RegisterOutputType(ClusterLoggingInfoBrokerLogsCloudwatchLogsPtrOutput{})
 	pulumi.RegisterOutputType(ClusterLoggingInfoBrokerLogsFirehoseOutput{})
@@ -2109,6 +2296,7 @@ func init() {
 	pulumi.RegisterOutputType(ClusterOpenMonitoringOutput{})
 	pulumi.RegisterOutputType(ClusterOpenMonitoringPtrOutput{})
 	pulumi.RegisterOutputType(ClusterOpenMonitoringPrometheusOutput{})
+	pulumi.RegisterOutputType(ClusterOpenMonitoringPrometheusPtrOutput{})
 	pulumi.RegisterOutputType(ClusterOpenMonitoringPrometheusJmxExporterOutput{})
 	pulumi.RegisterOutputType(ClusterOpenMonitoringPrometheusJmxExporterPtrOutput{})
 	pulumi.RegisterOutputType(ClusterOpenMonitoringPrometheusNodeExporterOutput{})

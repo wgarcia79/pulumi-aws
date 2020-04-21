@@ -462,7 +462,7 @@ func (o DistributionDefaultCacheBehaviorPtrOutput) AllowedMethods() pulumi.Strin
 		if v == nil {
 			return nil
 		}
-		return &v.AllowedMethods
+		return v.AllowedMethods
 	}).(pulumi.StringArrayOutput)
 }
 
@@ -473,7 +473,7 @@ func (o DistributionDefaultCacheBehaviorPtrOutput) CachedMethods() pulumi.String
 		if v == nil {
 			return nil
 		}
-		return &v.CachedMethods
+		return v.CachedMethods
 	}).(pulumi.StringArrayOutput)
 }
 
@@ -668,6 +668,48 @@ func (i DistributionDefaultCacheBehaviorForwardedValuesArgs) ToDistributionDefau
 	return pulumi.ToOutputWithContext(ctx, i).(DistributionDefaultCacheBehaviorForwardedValuesOutput)
 }
 
+func (i DistributionDefaultCacheBehaviorForwardedValuesArgs) ToDistributionDefaultCacheBehaviorForwardedValuesPtrOutput() DistributionDefaultCacheBehaviorForwardedValuesPtrOutput {
+	return i.ToDistributionDefaultCacheBehaviorForwardedValuesPtrOutputWithContext(context.Background())
+}
+
+func (i DistributionDefaultCacheBehaviorForwardedValuesArgs) ToDistributionDefaultCacheBehaviorForwardedValuesPtrOutputWithContext(ctx context.Context) DistributionDefaultCacheBehaviorForwardedValuesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DistributionDefaultCacheBehaviorForwardedValuesOutput).ToDistributionDefaultCacheBehaviorForwardedValuesPtrOutputWithContext(ctx)
+}
+
+// DistributionDefaultCacheBehaviorForwardedValuesPtrInput is an input type that accepts DistributionDefaultCacheBehaviorForwardedValuesArgs, DistributionDefaultCacheBehaviorForwardedValuesPtr and DistributionDefaultCacheBehaviorForwardedValuesPtrOutput values.
+// You can construct a concrete instance of `DistributionDefaultCacheBehaviorForwardedValuesPtrInput` via:
+//
+// 		 DistributionDefaultCacheBehaviorForwardedValuesArgs{...}
+//
+//  or:
+//
+// 		 nil
+//
+type DistributionDefaultCacheBehaviorForwardedValuesPtrInput interface {
+	pulumi.Input
+
+	ToDistributionDefaultCacheBehaviorForwardedValuesPtrOutput() DistributionDefaultCacheBehaviorForwardedValuesPtrOutput
+	ToDistributionDefaultCacheBehaviorForwardedValuesPtrOutputWithContext(context.Context) DistributionDefaultCacheBehaviorForwardedValuesPtrOutput
+}
+
+type distributionDefaultCacheBehaviorForwardedValuesPtrType DistributionDefaultCacheBehaviorForwardedValuesArgs
+
+func DistributionDefaultCacheBehaviorForwardedValuesPtr(v *DistributionDefaultCacheBehaviorForwardedValuesArgs) DistributionDefaultCacheBehaviorForwardedValuesPtrInput {
+	return (*distributionDefaultCacheBehaviorForwardedValuesPtrType)(v)
+}
+
+func (*distributionDefaultCacheBehaviorForwardedValuesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DistributionDefaultCacheBehaviorForwardedValues)(nil)).Elem()
+}
+
+func (i *distributionDefaultCacheBehaviorForwardedValuesPtrType) ToDistributionDefaultCacheBehaviorForwardedValuesPtrOutput() DistributionDefaultCacheBehaviorForwardedValuesPtrOutput {
+	return i.ToDistributionDefaultCacheBehaviorForwardedValuesPtrOutputWithContext(context.Background())
+}
+
+func (i *distributionDefaultCacheBehaviorForwardedValuesPtrType) ToDistributionDefaultCacheBehaviorForwardedValuesPtrOutputWithContext(ctx context.Context) DistributionDefaultCacheBehaviorForwardedValuesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DistributionDefaultCacheBehaviorForwardedValuesPtrOutput)
+}
+
 type DistributionDefaultCacheBehaviorForwardedValuesOutput struct{ *pulumi.OutputState }
 
 func (DistributionDefaultCacheBehaviorForwardedValuesOutput) ElementType() reflect.Type {
@@ -680,6 +722,16 @@ func (o DistributionDefaultCacheBehaviorForwardedValuesOutput) ToDistributionDef
 
 func (o DistributionDefaultCacheBehaviorForwardedValuesOutput) ToDistributionDefaultCacheBehaviorForwardedValuesOutputWithContext(ctx context.Context) DistributionDefaultCacheBehaviorForwardedValuesOutput {
 	return o
+}
+
+func (o DistributionDefaultCacheBehaviorForwardedValuesOutput) ToDistributionDefaultCacheBehaviorForwardedValuesPtrOutput() DistributionDefaultCacheBehaviorForwardedValuesPtrOutput {
+	return o.ToDistributionDefaultCacheBehaviorForwardedValuesPtrOutputWithContext(context.Background())
+}
+
+func (o DistributionDefaultCacheBehaviorForwardedValuesOutput) ToDistributionDefaultCacheBehaviorForwardedValuesPtrOutputWithContext(ctx context.Context) DistributionDefaultCacheBehaviorForwardedValuesPtrOutput {
+	return o.ApplyT(func(v DistributionDefaultCacheBehaviorForwardedValues) *DistributionDefaultCacheBehaviorForwardedValues {
+		return &v
+	}).(DistributionDefaultCacheBehaviorForwardedValuesPtrOutput)
 }
 
 // The forwarded values cookies
@@ -709,6 +761,73 @@ func (o DistributionDefaultCacheBehaviorForwardedValuesOutput) QueryString() pul
 // value of `true` for `queryString`, all query string keys are cached.
 func (o DistributionDefaultCacheBehaviorForwardedValuesOutput) QueryStringCacheKeys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v DistributionDefaultCacheBehaviorForwardedValues) []string { return v.QueryStringCacheKeys }).(pulumi.StringArrayOutput)
+}
+
+type DistributionDefaultCacheBehaviorForwardedValuesPtrOutput struct{ *pulumi.OutputState }
+
+func (DistributionDefaultCacheBehaviorForwardedValuesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DistributionDefaultCacheBehaviorForwardedValues)(nil)).Elem()
+}
+
+func (o DistributionDefaultCacheBehaviorForwardedValuesPtrOutput) ToDistributionDefaultCacheBehaviorForwardedValuesPtrOutput() DistributionDefaultCacheBehaviorForwardedValuesPtrOutput {
+	return o
+}
+
+func (o DistributionDefaultCacheBehaviorForwardedValuesPtrOutput) ToDistributionDefaultCacheBehaviorForwardedValuesPtrOutputWithContext(ctx context.Context) DistributionDefaultCacheBehaviorForwardedValuesPtrOutput {
+	return o
+}
+
+func (o DistributionDefaultCacheBehaviorForwardedValuesPtrOutput) Elem() DistributionDefaultCacheBehaviorForwardedValuesOutput {
+	return o.ApplyT(func(v *DistributionDefaultCacheBehaviorForwardedValues) DistributionDefaultCacheBehaviorForwardedValues {
+		return *v
+	}).(DistributionDefaultCacheBehaviorForwardedValuesOutput)
+}
+
+// The forwarded values cookies
+// that specifies how CloudFront handles cookies (maximum one).
+func (o DistributionDefaultCacheBehaviorForwardedValuesPtrOutput) Cookies() DistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput {
+	return o.ApplyT(func(v *DistributionDefaultCacheBehaviorForwardedValues) *DistributionDefaultCacheBehaviorForwardedValuesCookies {
+		if v == nil {
+			return nil
+		}
+		return &v.Cookies
+	}).(DistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput)
+}
+
+// Specifies the Headers, if any, that you want
+// CloudFront to vary upon for this cache behavior. Specify `*` to include all
+// headers.
+func (o DistributionDefaultCacheBehaviorForwardedValuesPtrOutput) Headers() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *DistributionDefaultCacheBehaviorForwardedValues) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Headers
+	}).(pulumi.StringArrayOutput)
+}
+
+// Indicates whether you want CloudFront to forward
+// query strings to the origin that is associated with this cache behavior.
+func (o DistributionDefaultCacheBehaviorForwardedValuesPtrOutput) QueryString() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DistributionDefaultCacheBehaviorForwardedValues) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.QueryString
+	}).(pulumi.BoolPtrOutput)
+}
+
+// When specified, along with a value of
+// `true` for `queryString`, all query strings are forwarded, however only the
+// query string keys listed in this argument are cached. When omitted with a
+// value of `true` for `queryString`, all query string keys are cached.
+func (o DistributionDefaultCacheBehaviorForwardedValuesPtrOutput) QueryStringCacheKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *DistributionDefaultCacheBehaviorForwardedValues) []string {
+		if v == nil {
+			return nil
+		}
+		return v.QueryStringCacheKeys
+	}).(pulumi.StringArrayOutput)
 }
 
 type DistributionDefaultCacheBehaviorForwardedValuesCookies struct {
@@ -759,6 +878,48 @@ func (i DistributionDefaultCacheBehaviorForwardedValuesCookiesArgs) ToDistributi
 	return pulumi.ToOutputWithContext(ctx, i).(DistributionDefaultCacheBehaviorForwardedValuesCookiesOutput)
 }
 
+func (i DistributionDefaultCacheBehaviorForwardedValuesCookiesArgs) ToDistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput() DistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput {
+	return i.ToDistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutputWithContext(context.Background())
+}
+
+func (i DistributionDefaultCacheBehaviorForwardedValuesCookiesArgs) ToDistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutputWithContext(ctx context.Context) DistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DistributionDefaultCacheBehaviorForwardedValuesCookiesOutput).ToDistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutputWithContext(ctx)
+}
+
+// DistributionDefaultCacheBehaviorForwardedValuesCookiesPtrInput is an input type that accepts DistributionDefaultCacheBehaviorForwardedValuesCookiesArgs, DistributionDefaultCacheBehaviorForwardedValuesCookiesPtr and DistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput values.
+// You can construct a concrete instance of `DistributionDefaultCacheBehaviorForwardedValuesCookiesPtrInput` via:
+//
+// 		 DistributionDefaultCacheBehaviorForwardedValuesCookiesArgs{...}
+//
+//  or:
+//
+// 		 nil
+//
+type DistributionDefaultCacheBehaviorForwardedValuesCookiesPtrInput interface {
+	pulumi.Input
+
+	ToDistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput() DistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput
+	ToDistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutputWithContext(context.Context) DistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput
+}
+
+type distributionDefaultCacheBehaviorForwardedValuesCookiesPtrType DistributionDefaultCacheBehaviorForwardedValuesCookiesArgs
+
+func DistributionDefaultCacheBehaviorForwardedValuesCookiesPtr(v *DistributionDefaultCacheBehaviorForwardedValuesCookiesArgs) DistributionDefaultCacheBehaviorForwardedValuesCookiesPtrInput {
+	return (*distributionDefaultCacheBehaviorForwardedValuesCookiesPtrType)(v)
+}
+
+func (*distributionDefaultCacheBehaviorForwardedValuesCookiesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DistributionDefaultCacheBehaviorForwardedValuesCookies)(nil)).Elem()
+}
+
+func (i *distributionDefaultCacheBehaviorForwardedValuesCookiesPtrType) ToDistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput() DistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput {
+	return i.ToDistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutputWithContext(context.Background())
+}
+
+func (i *distributionDefaultCacheBehaviorForwardedValuesCookiesPtrType) ToDistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutputWithContext(ctx context.Context) DistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput)
+}
+
 type DistributionDefaultCacheBehaviorForwardedValuesCookiesOutput struct{ *pulumi.OutputState }
 
 func (DistributionDefaultCacheBehaviorForwardedValuesCookiesOutput) ElementType() reflect.Type {
@@ -771,6 +932,16 @@ func (o DistributionDefaultCacheBehaviorForwardedValuesCookiesOutput) ToDistribu
 
 func (o DistributionDefaultCacheBehaviorForwardedValuesCookiesOutput) ToDistributionDefaultCacheBehaviorForwardedValuesCookiesOutputWithContext(ctx context.Context) DistributionDefaultCacheBehaviorForwardedValuesCookiesOutput {
 	return o
+}
+
+func (o DistributionDefaultCacheBehaviorForwardedValuesCookiesOutput) ToDistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput() DistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput {
+	return o.ToDistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutputWithContext(context.Background())
+}
+
+func (o DistributionDefaultCacheBehaviorForwardedValuesCookiesOutput) ToDistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutputWithContext(ctx context.Context) DistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput {
+	return o.ApplyT(func(v DistributionDefaultCacheBehaviorForwardedValuesCookies) *DistributionDefaultCacheBehaviorForwardedValuesCookies {
+		return &v
+	}).(DistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput)
 }
 
 // Specifies whether you want CloudFront to forward
@@ -786,6 +957,51 @@ func (o DistributionDefaultCacheBehaviorForwardedValuesCookiesOutput) Forward() 
 // your origin.
 func (o DistributionDefaultCacheBehaviorForwardedValuesCookiesOutput) WhitelistedNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v DistributionDefaultCacheBehaviorForwardedValuesCookies) []string { return v.WhitelistedNames }).(pulumi.StringArrayOutput)
+}
+
+type DistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput struct{ *pulumi.OutputState }
+
+func (DistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DistributionDefaultCacheBehaviorForwardedValuesCookies)(nil)).Elem()
+}
+
+func (o DistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput) ToDistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput() DistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput {
+	return o
+}
+
+func (o DistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput) ToDistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutputWithContext(ctx context.Context) DistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput {
+	return o
+}
+
+func (o DistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput) Elem() DistributionDefaultCacheBehaviorForwardedValuesCookiesOutput {
+	return o.ApplyT(func(v *DistributionDefaultCacheBehaviorForwardedValuesCookies) DistributionDefaultCacheBehaviorForwardedValuesCookies {
+		return *v
+	}).(DistributionDefaultCacheBehaviorForwardedValuesCookiesOutput)
+}
+
+// Specifies whether you want CloudFront to forward
+// cookies to the origin that is associated with this cache behavior. You can
+// specify `all`, `none` or `whitelist`. If `whitelist`, you must include the
+// subsequent `whitelistedNames`
+func (o DistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput) Forward() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DistributionDefaultCacheBehaviorForwardedValuesCookies) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Forward
+	}).(pulumi.StringPtrOutput)
+}
+
+// If you have specified `whitelist` to
+// `forward`, the whitelisted cookies that you want CloudFront to forward to
+// your origin.
+func (o DistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput) WhitelistedNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *DistributionDefaultCacheBehaviorForwardedValuesCookies) []string {
+		if v == nil {
+			return nil
+		}
+		return v.WhitelistedNames
+	}).(pulumi.StringArrayOutput)
 }
 
 type DistributionDefaultCacheBehaviorLambdaFunctionAssociation struct {
@@ -2198,7 +2414,7 @@ func (o DistributionOriginCustomOriginConfigPtrOutput) OriginSslProtocols() pulu
 		if v == nil {
 			return nil
 		}
-		return &v.OriginSslProtocols
+		return v.OriginSslProtocols
 	}).(pulumi.StringArrayOutput)
 }
 
@@ -2782,6 +2998,48 @@ func (i DistributionRestrictionsGeoRestrictionArgs) ToDistributionRestrictionsGe
 	return pulumi.ToOutputWithContext(ctx, i).(DistributionRestrictionsGeoRestrictionOutput)
 }
 
+func (i DistributionRestrictionsGeoRestrictionArgs) ToDistributionRestrictionsGeoRestrictionPtrOutput() DistributionRestrictionsGeoRestrictionPtrOutput {
+	return i.ToDistributionRestrictionsGeoRestrictionPtrOutputWithContext(context.Background())
+}
+
+func (i DistributionRestrictionsGeoRestrictionArgs) ToDistributionRestrictionsGeoRestrictionPtrOutputWithContext(ctx context.Context) DistributionRestrictionsGeoRestrictionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DistributionRestrictionsGeoRestrictionOutput).ToDistributionRestrictionsGeoRestrictionPtrOutputWithContext(ctx)
+}
+
+// DistributionRestrictionsGeoRestrictionPtrInput is an input type that accepts DistributionRestrictionsGeoRestrictionArgs, DistributionRestrictionsGeoRestrictionPtr and DistributionRestrictionsGeoRestrictionPtrOutput values.
+// You can construct a concrete instance of `DistributionRestrictionsGeoRestrictionPtrInput` via:
+//
+// 		 DistributionRestrictionsGeoRestrictionArgs{...}
+//
+//  or:
+//
+// 		 nil
+//
+type DistributionRestrictionsGeoRestrictionPtrInput interface {
+	pulumi.Input
+
+	ToDistributionRestrictionsGeoRestrictionPtrOutput() DistributionRestrictionsGeoRestrictionPtrOutput
+	ToDistributionRestrictionsGeoRestrictionPtrOutputWithContext(context.Context) DistributionRestrictionsGeoRestrictionPtrOutput
+}
+
+type distributionRestrictionsGeoRestrictionPtrType DistributionRestrictionsGeoRestrictionArgs
+
+func DistributionRestrictionsGeoRestrictionPtr(v *DistributionRestrictionsGeoRestrictionArgs) DistributionRestrictionsGeoRestrictionPtrInput {
+	return (*distributionRestrictionsGeoRestrictionPtrType)(v)
+}
+
+func (*distributionRestrictionsGeoRestrictionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DistributionRestrictionsGeoRestriction)(nil)).Elem()
+}
+
+func (i *distributionRestrictionsGeoRestrictionPtrType) ToDistributionRestrictionsGeoRestrictionPtrOutput() DistributionRestrictionsGeoRestrictionPtrOutput {
+	return i.ToDistributionRestrictionsGeoRestrictionPtrOutputWithContext(context.Background())
+}
+
+func (i *distributionRestrictionsGeoRestrictionPtrType) ToDistributionRestrictionsGeoRestrictionPtrOutputWithContext(ctx context.Context) DistributionRestrictionsGeoRestrictionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DistributionRestrictionsGeoRestrictionPtrOutput)
+}
+
 type DistributionRestrictionsGeoRestrictionOutput struct{ *pulumi.OutputState }
 
 func (DistributionRestrictionsGeoRestrictionOutput) ElementType() reflect.Type {
@@ -2796,6 +3054,16 @@ func (o DistributionRestrictionsGeoRestrictionOutput) ToDistributionRestrictions
 	return o
 }
 
+func (o DistributionRestrictionsGeoRestrictionOutput) ToDistributionRestrictionsGeoRestrictionPtrOutput() DistributionRestrictionsGeoRestrictionPtrOutput {
+	return o.ToDistributionRestrictionsGeoRestrictionPtrOutputWithContext(context.Background())
+}
+
+func (o DistributionRestrictionsGeoRestrictionOutput) ToDistributionRestrictionsGeoRestrictionPtrOutputWithContext(ctx context.Context) DistributionRestrictionsGeoRestrictionPtrOutput {
+	return o.ApplyT(func(v DistributionRestrictionsGeoRestriction) *DistributionRestrictionsGeoRestriction {
+		return &v
+	}).(DistributionRestrictionsGeoRestrictionPtrOutput)
+}
+
 // The [ISO 3166-1-alpha-2 codes][4] for which you
 // want CloudFront either to distribute your content (`whitelist`) or not
 // distribute your content (`blacklist`).
@@ -2808,6 +3076,48 @@ func (o DistributionRestrictionsGeoRestrictionOutput) Locations() pulumi.StringA
 // `blacklist`.
 func (o DistributionRestrictionsGeoRestrictionOutput) RestrictionType() pulumi.StringOutput {
 	return o.ApplyT(func(v DistributionRestrictionsGeoRestriction) string { return v.RestrictionType }).(pulumi.StringOutput)
+}
+
+type DistributionRestrictionsGeoRestrictionPtrOutput struct{ *pulumi.OutputState }
+
+func (DistributionRestrictionsGeoRestrictionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DistributionRestrictionsGeoRestriction)(nil)).Elem()
+}
+
+func (o DistributionRestrictionsGeoRestrictionPtrOutput) ToDistributionRestrictionsGeoRestrictionPtrOutput() DistributionRestrictionsGeoRestrictionPtrOutput {
+	return o
+}
+
+func (o DistributionRestrictionsGeoRestrictionPtrOutput) ToDistributionRestrictionsGeoRestrictionPtrOutputWithContext(ctx context.Context) DistributionRestrictionsGeoRestrictionPtrOutput {
+	return o
+}
+
+func (o DistributionRestrictionsGeoRestrictionPtrOutput) Elem() DistributionRestrictionsGeoRestrictionOutput {
+	return o.ApplyT(func(v *DistributionRestrictionsGeoRestriction) DistributionRestrictionsGeoRestriction { return *v }).(DistributionRestrictionsGeoRestrictionOutput)
+}
+
+// The [ISO 3166-1-alpha-2 codes][4] for which you
+// want CloudFront either to distribute your content (`whitelist`) or not
+// distribute your content (`blacklist`).
+func (o DistributionRestrictionsGeoRestrictionPtrOutput) Locations() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *DistributionRestrictionsGeoRestriction) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Locations
+	}).(pulumi.StringArrayOutput)
+}
+
+// The method that you want to use to restrict
+// distribution of your content by country: `none`, `whitelist`, or
+// `blacklist`.
+func (o DistributionRestrictionsGeoRestrictionPtrOutput) RestrictionType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DistributionRestrictionsGeoRestriction) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RestrictionType
+	}).(pulumi.StringPtrOutput)
 }
 
 type DistributionViewerCertificate struct {
@@ -3085,7 +3395,9 @@ func init() {
 	pulumi.RegisterOutputType(DistributionDefaultCacheBehaviorOutput{})
 	pulumi.RegisterOutputType(DistributionDefaultCacheBehaviorPtrOutput{})
 	pulumi.RegisterOutputType(DistributionDefaultCacheBehaviorForwardedValuesOutput{})
+	pulumi.RegisterOutputType(DistributionDefaultCacheBehaviorForwardedValuesPtrOutput{})
 	pulumi.RegisterOutputType(DistributionDefaultCacheBehaviorForwardedValuesCookiesOutput{})
+	pulumi.RegisterOutputType(DistributionDefaultCacheBehaviorForwardedValuesCookiesPtrOutput{})
 	pulumi.RegisterOutputType(DistributionDefaultCacheBehaviorLambdaFunctionAssociationOutput{})
 	pulumi.RegisterOutputType(DistributionDefaultCacheBehaviorLambdaFunctionAssociationArrayOutput{})
 	pulumi.RegisterOutputType(DistributionLoggingConfigOutput{})
@@ -3112,6 +3424,7 @@ func init() {
 	pulumi.RegisterOutputType(DistributionRestrictionsOutput{})
 	pulumi.RegisterOutputType(DistributionRestrictionsPtrOutput{})
 	pulumi.RegisterOutputType(DistributionRestrictionsGeoRestrictionOutput{})
+	pulumi.RegisterOutputType(DistributionRestrictionsGeoRestrictionPtrOutput{})
 	pulumi.RegisterOutputType(DistributionViewerCertificateOutput{})
 	pulumi.RegisterOutputType(DistributionViewerCertificatePtrOutput{})
 }

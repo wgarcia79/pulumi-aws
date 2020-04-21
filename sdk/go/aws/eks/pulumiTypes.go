@@ -291,7 +291,7 @@ func (o ClusterEncryptionConfigPtrOutput) Resources() pulumi.StringArrayOutput {
 		if v == nil {
 			return nil
 		}
-		return &v.Resources
+		return v.Resources
 	}).(pulumi.StringArrayOutput)
 }
 
@@ -329,6 +329,48 @@ func (i ClusterEncryptionConfigProviderArgs) ToClusterEncryptionConfigProviderOu
 	return pulumi.ToOutputWithContext(ctx, i).(ClusterEncryptionConfigProviderOutput)
 }
 
+func (i ClusterEncryptionConfigProviderArgs) ToClusterEncryptionConfigProviderPtrOutput() ClusterEncryptionConfigProviderPtrOutput {
+	return i.ToClusterEncryptionConfigProviderPtrOutputWithContext(context.Background())
+}
+
+func (i ClusterEncryptionConfigProviderArgs) ToClusterEncryptionConfigProviderPtrOutputWithContext(ctx context.Context) ClusterEncryptionConfigProviderPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterEncryptionConfigProviderOutput).ToClusterEncryptionConfigProviderPtrOutputWithContext(ctx)
+}
+
+// ClusterEncryptionConfigProviderPtrInput is an input type that accepts ClusterEncryptionConfigProviderArgs, ClusterEncryptionConfigProviderPtr and ClusterEncryptionConfigProviderPtrOutput values.
+// You can construct a concrete instance of `ClusterEncryptionConfigProviderPtrInput` via:
+//
+// 		 ClusterEncryptionConfigProviderArgs{...}
+//
+//  or:
+//
+// 		 nil
+//
+type ClusterEncryptionConfigProviderPtrInput interface {
+	pulumi.Input
+
+	ToClusterEncryptionConfigProviderPtrOutput() ClusterEncryptionConfigProviderPtrOutput
+	ToClusterEncryptionConfigProviderPtrOutputWithContext(context.Context) ClusterEncryptionConfigProviderPtrOutput
+}
+
+type clusterEncryptionConfigProviderPtrType ClusterEncryptionConfigProviderArgs
+
+func ClusterEncryptionConfigProviderPtr(v *ClusterEncryptionConfigProviderArgs) ClusterEncryptionConfigProviderPtrInput {
+	return (*clusterEncryptionConfigProviderPtrType)(v)
+}
+
+func (*clusterEncryptionConfigProviderPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClusterEncryptionConfigProvider)(nil)).Elem()
+}
+
+func (i *clusterEncryptionConfigProviderPtrType) ToClusterEncryptionConfigProviderPtrOutput() ClusterEncryptionConfigProviderPtrOutput {
+	return i.ToClusterEncryptionConfigProviderPtrOutputWithContext(context.Background())
+}
+
+func (i *clusterEncryptionConfigProviderPtrType) ToClusterEncryptionConfigProviderPtrOutputWithContext(ctx context.Context) ClusterEncryptionConfigProviderPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterEncryptionConfigProviderPtrOutput)
+}
+
 type ClusterEncryptionConfigProviderOutput struct{ *pulumi.OutputState }
 
 func (ClusterEncryptionConfigProviderOutput) ElementType() reflect.Type {
@@ -343,9 +385,47 @@ func (o ClusterEncryptionConfigProviderOutput) ToClusterEncryptionConfigProvider
 	return o
 }
 
+func (o ClusterEncryptionConfigProviderOutput) ToClusterEncryptionConfigProviderPtrOutput() ClusterEncryptionConfigProviderPtrOutput {
+	return o.ToClusterEncryptionConfigProviderPtrOutputWithContext(context.Background())
+}
+
+func (o ClusterEncryptionConfigProviderOutput) ToClusterEncryptionConfigProviderPtrOutputWithContext(ctx context.Context) ClusterEncryptionConfigProviderPtrOutput {
+	return o.ApplyT(func(v ClusterEncryptionConfigProvider) *ClusterEncryptionConfigProvider {
+		return &v
+	}).(ClusterEncryptionConfigProviderPtrOutput)
+}
+
 // Amazon Resource Name (ARN) of the Key Management Service (KMS) customer master key (CMK). The CMK must be symmetric, created in the same region as the cluster, and if the CMK was created in a different account, the user must have access to the CMK. For more information, see [Allowing Users in Other Accounts to Use a CMK in the AWS Key Management Service Developer Guide](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html).
 func (o ClusterEncryptionConfigProviderOutput) KeyArn() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterEncryptionConfigProvider) string { return v.KeyArn }).(pulumi.StringOutput)
+}
+
+type ClusterEncryptionConfigProviderPtrOutput struct{ *pulumi.OutputState }
+
+func (ClusterEncryptionConfigProviderPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClusterEncryptionConfigProvider)(nil)).Elem()
+}
+
+func (o ClusterEncryptionConfigProviderPtrOutput) ToClusterEncryptionConfigProviderPtrOutput() ClusterEncryptionConfigProviderPtrOutput {
+	return o
+}
+
+func (o ClusterEncryptionConfigProviderPtrOutput) ToClusterEncryptionConfigProviderPtrOutputWithContext(ctx context.Context) ClusterEncryptionConfigProviderPtrOutput {
+	return o
+}
+
+func (o ClusterEncryptionConfigProviderPtrOutput) Elem() ClusterEncryptionConfigProviderOutput {
+	return o.ApplyT(func(v *ClusterEncryptionConfigProvider) ClusterEncryptionConfigProvider { return *v }).(ClusterEncryptionConfigProviderOutput)
+}
+
+// Amazon Resource Name (ARN) of the Key Management Service (KMS) customer master key (CMK). The CMK must be symmetric, created in the same region as the cluster, and if the CMK was created in a different account, the user must have access to the CMK. For more information, see [Allowing Users in Other Accounts to Use a CMK in the AWS Key Management Service Developer Guide](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html).
+func (o ClusterEncryptionConfigProviderPtrOutput) KeyArn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClusterEncryptionConfigProvider) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.KeyArn
+	}).(pulumi.StringPtrOutput)
 }
 
 type ClusterIdentity struct {
@@ -779,7 +859,7 @@ func (o ClusterVpcConfigPtrOutput) SubnetIds() pulumi.StringArrayOutput {
 		if v == nil {
 			return nil
 		}
-		return &v.SubnetIds
+		return v.SubnetIds
 	}).(pulumi.StringArrayOutput)
 }
 
@@ -1795,6 +1875,7 @@ func init() {
 	pulumi.RegisterOutputType(ClusterEncryptionConfigOutput{})
 	pulumi.RegisterOutputType(ClusterEncryptionConfigPtrOutput{})
 	pulumi.RegisterOutputType(ClusterEncryptionConfigProviderOutput{})
+	pulumi.RegisterOutputType(ClusterEncryptionConfigProviderPtrOutput{})
 	pulumi.RegisterOutputType(ClusterIdentityOutput{})
 	pulumi.RegisterOutputType(ClusterIdentityArrayOutput{})
 	pulumi.RegisterOutputType(ClusterIdentityOidcOutput{})

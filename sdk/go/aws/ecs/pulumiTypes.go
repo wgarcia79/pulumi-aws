@@ -1062,7 +1062,7 @@ func (o ServiceNetworkConfigurationPtrOutput) Subnets() pulumi.StringArrayOutput
 		if v == nil {
 			return nil
 		}
-		return &v.Subnets
+		return v.Subnets
 	}).(pulumi.StringArrayOutput)
 }
 

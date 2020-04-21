@@ -2731,7 +2731,7 @@ func (o ListenerRuleConditionHttpHeaderPtrOutput) Values() pulumi.StringArrayOut
 		if v == nil {
 			return nil
 		}
-		return &v.Values
+		return v.Values
 	}).(pulumi.StringArrayOutput)
 }
 
@@ -2864,7 +2864,7 @@ func (o ListenerRuleConditionHttpRequestMethodPtrOutput) Values() pulumi.StringA
 		if v == nil {
 			return nil
 		}
-		return &v.Values
+		return v.Values
 	}).(pulumi.StringArrayOutput)
 }
 
@@ -3238,7 +3238,7 @@ func (o ListenerRuleConditionSourceIpPtrOutput) Values() pulumi.StringArrayOutpu
 		if v == nil {
 			return nil
 		}
-		return &v.Values
+		return v.Values
 	}).(pulumi.StringArrayOutput)
 }
 
