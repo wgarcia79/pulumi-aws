@@ -597,7 +597,7 @@ namespace Pulumi.Aws.Emr
         }
 
         [Input("clusterState")]
-        public Input<string>? State { get; set; }
+        public Input<string>? ClusterState { get; set; }
 
         /// <summary>
         /// List of configurations supplied for the EMR cluster you are creating

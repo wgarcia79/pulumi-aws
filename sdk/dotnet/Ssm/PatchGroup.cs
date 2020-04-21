@@ -101,7 +101,7 @@ namespace Pulumi.Aws.Ssm
         /// The name of the patch group that should be registered with the patch baseline.
         /// </summary>
         [Input("patchGroup")]
-        public Input<string>? PatchGroupName { get; set; }
+        public Input<string>? PatchGroup { get; set; }
 
         public PatchGroupState()
         {

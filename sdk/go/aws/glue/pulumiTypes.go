@@ -351,62 +351,122 @@ func (o CatalogTableStorageDescriptorPtrOutput) Elem() CatalogTableStorageDescri
 
 // A list of reducer grouping columns, clustering columns, and bucketing columns in the table.
 func (o CatalogTableStorageDescriptorPtrOutput) BucketColumns() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v CatalogTableStorageDescriptor) []string { return v.BucketColumns }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v *CatalogTableStorageDescriptor) []string {
+		if v == nil {
+			return nil
+		}
+		return v.BucketColumns
+	}).(pulumi.StringArrayOutput)
 }
 
 // A list of the Columns in the table.
 func (o CatalogTableStorageDescriptorPtrOutput) Columns() CatalogTableStorageDescriptorColumnArrayOutput {
-	return o.ApplyT(func(v CatalogTableStorageDescriptor) []CatalogTableStorageDescriptorColumn { return v.Columns }).(CatalogTableStorageDescriptorColumnArrayOutput)
+	return o.ApplyT(func(v *CatalogTableStorageDescriptor) []CatalogTableStorageDescriptorColumn {
+		if v == nil {
+			return nil
+		}
+		return v.Columns
+	}).(CatalogTableStorageDescriptorColumnArrayOutput)
 }
 
 // True if the data in the table is compressed, or False if not.
 func (o CatalogTableStorageDescriptorPtrOutput) Compressed() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v CatalogTableStorageDescriptor) *bool { return v.Compressed }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v *CatalogTableStorageDescriptor) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Compressed
+	}).(pulumi.BoolPtrOutput)
 }
 
 // The input format: SequenceFileInputFormat (binary), or TextInputFormat, or a custom format.
 func (o CatalogTableStorageDescriptorPtrOutput) InputFormat() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CatalogTableStorageDescriptor) *string { return v.InputFormat }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *CatalogTableStorageDescriptor) *string {
+		if v == nil {
+			return nil
+		}
+		return v.InputFormat
+	}).(pulumi.StringPtrOutput)
 }
 
 // The physical location of the table. By default this takes the form of the warehouse location, followed by the database location in the warehouse, followed by the table name.
 func (o CatalogTableStorageDescriptorPtrOutput) Location() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CatalogTableStorageDescriptor) *string { return v.Location }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *CatalogTableStorageDescriptor) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Location
+	}).(pulumi.StringPtrOutput)
 }
 
 // Must be specified if the table contains any dimension columns.
 func (o CatalogTableStorageDescriptorPtrOutput) NumberOfBuckets() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v CatalogTableStorageDescriptor) *int { return v.NumberOfBuckets }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v *CatalogTableStorageDescriptor) *int {
+		if v == nil {
+			return nil
+		}
+		return v.NumberOfBuckets
+	}).(pulumi.IntPtrOutput)
 }
 
 // The output format: SequenceFileOutputFormat (binary), or IgnoreKeyTextOutputFormat, or a custom format.
 func (o CatalogTableStorageDescriptorPtrOutput) OutputFormat() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CatalogTableStorageDescriptor) *string { return v.OutputFormat }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *CatalogTableStorageDescriptor) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OutputFormat
+	}).(pulumi.StringPtrOutput)
 }
 
 // A map of initialization parameters for the SerDe, in key-value form.
 func (o CatalogTableStorageDescriptorPtrOutput) Parameters() pulumi.StringMapOutput {
-	return o.ApplyT(func(v CatalogTableStorageDescriptor) map[string]string { return v.Parameters }).(pulumi.StringMapOutput)
+	return o.ApplyT(func(v *CatalogTableStorageDescriptor) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Parameters
+	}).(pulumi.StringMapOutput)
 }
 
 // Serialization/deserialization (SerDe) information.
 func (o CatalogTableStorageDescriptorPtrOutput) SerDeInfo() CatalogTableStorageDescriptorSerDeInfoPtrOutput {
-	return o.ApplyT(func(v CatalogTableStorageDescriptor) *CatalogTableStorageDescriptorSerDeInfo { return v.SerDeInfo }).(CatalogTableStorageDescriptorSerDeInfoPtrOutput)
+	return o.ApplyT(func(v *CatalogTableStorageDescriptor) *CatalogTableStorageDescriptorSerDeInfo {
+		if v == nil {
+			return nil
+		}
+		return v.SerDeInfo
+	}).(CatalogTableStorageDescriptorSerDeInfoPtrOutput)
 }
 
 // Information about values that appear very frequently in a column (skewed values).
 func (o CatalogTableStorageDescriptorPtrOutput) SkewedInfo() CatalogTableStorageDescriptorSkewedInfoPtrOutput {
-	return o.ApplyT(func(v CatalogTableStorageDescriptor) *CatalogTableStorageDescriptorSkewedInfo { return v.SkewedInfo }).(CatalogTableStorageDescriptorSkewedInfoPtrOutput)
+	return o.ApplyT(func(v *CatalogTableStorageDescriptor) *CatalogTableStorageDescriptorSkewedInfo {
+		if v == nil {
+			return nil
+		}
+		return v.SkewedInfo
+	}).(CatalogTableStorageDescriptorSkewedInfoPtrOutput)
 }
 
 // A list of Order objects specifying the sort order of each bucket in the table.
 func (o CatalogTableStorageDescriptorPtrOutput) SortColumns() CatalogTableStorageDescriptorSortColumnArrayOutput {
-	return o.ApplyT(func(v CatalogTableStorageDescriptor) []CatalogTableStorageDescriptorSortColumn { return v.SortColumns }).(CatalogTableStorageDescriptorSortColumnArrayOutput)
+	return o.ApplyT(func(v *CatalogTableStorageDescriptor) []CatalogTableStorageDescriptorSortColumn {
+		if v == nil {
+			return nil
+		}
+		return v.SortColumns
+	}).(CatalogTableStorageDescriptorSortColumnArrayOutput)
 }
 
 // True if the table data is stored in subdirectories, or False if not.
 func (o CatalogTableStorageDescriptorPtrOutput) StoredAsSubDirectories() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v CatalogTableStorageDescriptor) *bool { return v.StoredAsSubDirectories }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v *CatalogTableStorageDescriptor) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.StoredAsSubDirectories
+	}).(pulumi.BoolPtrOutput)
 }
 
 type CatalogTableStorageDescriptorColumn struct {
@@ -669,17 +729,32 @@ func (o CatalogTableStorageDescriptorSerDeInfoPtrOutput) Elem() CatalogTableStor
 
 // Name of the SerDe.
 func (o CatalogTableStorageDescriptorSerDeInfoPtrOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CatalogTableStorageDescriptorSerDeInfo) *string { return v.Name }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *CatalogTableStorageDescriptorSerDeInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
 }
 
 // A map of initialization parameters for the SerDe, in key-value form.
 func (o CatalogTableStorageDescriptorSerDeInfoPtrOutput) Parameters() pulumi.StringMapOutput {
-	return o.ApplyT(func(v CatalogTableStorageDescriptorSerDeInfo) map[string]string { return v.Parameters }).(pulumi.StringMapOutput)
+	return o.ApplyT(func(v *CatalogTableStorageDescriptorSerDeInfo) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Parameters
+	}).(pulumi.StringMapOutput)
 }
 
 // Usually the class that implements the SerDe. An example is: org.apache.hadoop.hive.serde2.columnar.ColumnarSerDe.
 func (o CatalogTableStorageDescriptorSerDeInfoPtrOutput) SerializationLibrary() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CatalogTableStorageDescriptorSerDeInfo) *string { return v.SerializationLibrary }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *CatalogTableStorageDescriptorSerDeInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SerializationLibrary
+	}).(pulumi.StringPtrOutput)
 }
 
 type CatalogTableStorageDescriptorSkewedInfo struct {
@@ -827,19 +902,32 @@ func (o CatalogTableStorageDescriptorSkewedInfoPtrOutput) Elem() CatalogTableSto
 
 // A list of names of columns that contain skewed values.
 func (o CatalogTableStorageDescriptorSkewedInfoPtrOutput) SkewedColumnNames() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v CatalogTableStorageDescriptorSkewedInfo) []string { return v.SkewedColumnNames }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v *CatalogTableStorageDescriptorSkewedInfo) []string {
+		if v == nil {
+			return nil
+		}
+		return v.SkewedColumnNames
+	}).(pulumi.StringArrayOutput)
 }
 
 // A list of values that appear so frequently as to be considered skewed.
 func (o CatalogTableStorageDescriptorSkewedInfoPtrOutput) SkewedColumnValueLocationMaps() pulumi.StringMapOutput {
-	return o.ApplyT(func(v CatalogTableStorageDescriptorSkewedInfo) map[string]string {
+	return o.ApplyT(func(v *CatalogTableStorageDescriptorSkewedInfo) map[string]string {
+		if v == nil {
+			return nil
+		}
 		return v.SkewedColumnValueLocationMaps
 	}).(pulumi.StringMapOutput)
 }
 
 // A mapping of skewed values to the columns that contain them.
 func (o CatalogTableStorageDescriptorSkewedInfoPtrOutput) SkewedColumnValues() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v CatalogTableStorageDescriptorSkewedInfo) []string { return v.SkewedColumnValues }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v *CatalogTableStorageDescriptorSkewedInfo) []string {
+		if v == nil {
+			return nil
+		}
+		return v.SkewedColumnValues
+	}).(pulumi.StringArrayOutput)
 }
 
 type CatalogTableStorageDescriptorSortColumn struct {
@@ -1120,32 +1208,62 @@ func (o ClassifierCsvClassifierPtrOutput) Elem() ClassifierCsvClassifierOutput {
 
 // Enables the processing of files that contain only one column.
 func (o ClassifierCsvClassifierPtrOutput) AllowSingleColumn() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ClassifierCsvClassifier) *bool { return v.AllowSingleColumn }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v *ClassifierCsvClassifier) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AllowSingleColumn
+	}).(pulumi.BoolPtrOutput)
 }
 
 // Indicates whether the CSV file contains a header. This can be one of "ABSENT", "PRESENT", or "UNKNOWN".
 func (o ClassifierCsvClassifierPtrOutput) ContainsHeader() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClassifierCsvClassifier) *string { return v.ContainsHeader }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClassifierCsvClassifier) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ContainsHeader
+	}).(pulumi.StringPtrOutput)
 }
 
 // The delimiter used in the Csv to separate columns.
 func (o ClassifierCsvClassifierPtrOutput) Delimiter() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClassifierCsvClassifier) *string { return v.Delimiter }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClassifierCsvClassifier) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Delimiter
+	}).(pulumi.StringPtrOutput)
 }
 
 // Specifies whether to trim column values.
 func (o ClassifierCsvClassifierPtrOutput) DisableValueTrimming() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ClassifierCsvClassifier) *bool { return v.DisableValueTrimming }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v *ClassifierCsvClassifier) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DisableValueTrimming
+	}).(pulumi.BoolPtrOutput)
 }
 
 // A list of strings representing column names.
 func (o ClassifierCsvClassifierPtrOutput) Headers() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v ClassifierCsvClassifier) []string { return v.Headers }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v *ClassifierCsvClassifier) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Headers
+	}).(pulumi.StringArrayOutput)
 }
 
 // A custom symbol to denote what combines content into a single column value. It must be different from the column delimiter.
 func (o ClassifierCsvClassifierPtrOutput) QuoteSymbol() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClassifierCsvClassifier) *string { return v.QuoteSymbol }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClassifierCsvClassifier) *string {
+		if v == nil {
+			return nil
+		}
+		return v.QuoteSymbol
+	}).(pulumi.StringPtrOutput)
 }
 
 type ClassifierGrokClassifier struct {
@@ -1290,18 +1408,33 @@ func (o ClassifierGrokClassifierPtrOutput) Elem() ClassifierGrokClassifierOutput
 }
 
 // An identifier of the data format that the classifier matches.
-func (o ClassifierGrokClassifierPtrOutput) Classification() pulumi.StringOutput {
-	return o.ApplyT(func(v ClassifierGrokClassifier) string { return v.Classification }).(pulumi.StringOutput)
+func (o ClassifierGrokClassifierPtrOutput) Classification() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClassifierGrokClassifier) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Classification
+	}).(pulumi.StringPtrOutput)
 }
 
 // Custom grok patterns used by this classifier.
 func (o ClassifierGrokClassifierPtrOutput) CustomPatterns() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClassifierGrokClassifier) *string { return v.CustomPatterns }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClassifierGrokClassifier) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CustomPatterns
+	}).(pulumi.StringPtrOutput)
 }
 
 // The grok pattern used by this classifier.
-func (o ClassifierGrokClassifierPtrOutput) GrokPattern() pulumi.StringOutput {
-	return o.ApplyT(func(v ClassifierGrokClassifier) string { return v.GrokPattern }).(pulumi.StringOutput)
+func (o ClassifierGrokClassifierPtrOutput) GrokPattern() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClassifierGrokClassifier) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.GrokPattern
+	}).(pulumi.StringPtrOutput)
 }
 
 type ClassifierJsonClassifier struct {
@@ -1428,8 +1561,13 @@ func (o ClassifierJsonClassifierPtrOutput) Elem() ClassifierJsonClassifierOutput
 }
 
 // A `JsonPath` string defining the JSON data for the classifier to classify. AWS Glue supports a subset of `JsonPath`, as described in [Writing JsonPath Custom Classifiers](https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-json).
-func (o ClassifierJsonClassifierPtrOutput) JsonPath() pulumi.StringOutput {
-	return o.ApplyT(func(v ClassifierJsonClassifier) string { return v.JsonPath }).(pulumi.StringOutput)
+func (o ClassifierJsonClassifierPtrOutput) JsonPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClassifierJsonClassifier) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.JsonPath
+	}).(pulumi.StringPtrOutput)
 }
 
 type ClassifierXmlClassifier struct {
@@ -1565,13 +1703,23 @@ func (o ClassifierXmlClassifierPtrOutput) Elem() ClassifierXmlClassifierOutput {
 }
 
 // An identifier of the data format that the classifier matches.
-func (o ClassifierXmlClassifierPtrOutput) Classification() pulumi.StringOutput {
-	return o.ApplyT(func(v ClassifierXmlClassifier) string { return v.Classification }).(pulumi.StringOutput)
+func (o ClassifierXmlClassifierPtrOutput) Classification() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClassifierXmlClassifier) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Classification
+	}).(pulumi.StringPtrOutput)
 }
 
 // The XML tag designating the element that contains each record in an XML document being parsed. Note that this cannot identify a self-closing element (closed by `/>`). An empty row element that contains only attributes can be parsed as long as it ends with a closing tag (for example, `<row item_a="A" item_b="B"></row>` is okay, but `<row item_a="A" item_b="B" />` is not).
-func (o ClassifierXmlClassifierPtrOutput) RowTag() pulumi.StringOutput {
-	return o.ApplyT(func(v ClassifierXmlClassifier) string { return v.RowTag }).(pulumi.StringOutput)
+func (o ClassifierXmlClassifierPtrOutput) RowTag() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClassifierXmlClassifier) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RowTag
+	}).(pulumi.StringPtrOutput)
 }
 
 type ConnectionPhysicalConnectionRequirements struct {
@@ -1717,17 +1865,32 @@ func (o ConnectionPhysicalConnectionRequirementsPtrOutput) Elem() ConnectionPhys
 
 // The availability zone of the connection. This field is redundant and implied by `subnetId`, but is currently an api requirement.
 func (o ConnectionPhysicalConnectionRequirementsPtrOutput) AvailabilityZone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ConnectionPhysicalConnectionRequirements) *string { return v.AvailabilityZone }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ConnectionPhysicalConnectionRequirements) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AvailabilityZone
+	}).(pulumi.StringPtrOutput)
 }
 
 // The security group ID list used by the connection.
 func (o ConnectionPhysicalConnectionRequirementsPtrOutput) SecurityGroupIdLists() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v ConnectionPhysicalConnectionRequirements) []string { return v.SecurityGroupIdLists }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v *ConnectionPhysicalConnectionRequirements) []string {
+		if v == nil {
+			return nil
+		}
+		return v.SecurityGroupIdLists
+	}).(pulumi.StringArrayOutput)
 }
 
 // The subnet ID used by the connection.
 func (o ConnectionPhysicalConnectionRequirementsPtrOutput) SubnetId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ConnectionPhysicalConnectionRequirements) *string { return v.SubnetId }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ConnectionPhysicalConnectionRequirements) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SubnetId
+	}).(pulumi.StringPtrOutput)
 }
 
 type CrawlerCatalogTarget struct {
@@ -2296,12 +2459,22 @@ func (o CrawlerSchemaChangePolicyPtrOutput) Elem() CrawlerSchemaChangePolicyOutp
 
 // The deletion behavior when the crawler finds a deleted object. Valid values: `LOG`, `DELETE_FROM_DATABASE`, or `DEPRECATE_IN_DATABASE`. Defaults to `DEPRECATE_IN_DATABASE`.
 func (o CrawlerSchemaChangePolicyPtrOutput) DeleteBehavior() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CrawlerSchemaChangePolicy) *string { return v.DeleteBehavior }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *CrawlerSchemaChangePolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DeleteBehavior
+	}).(pulumi.StringPtrOutput)
 }
 
 // The update behavior when the crawler finds a changed schema. Valid values: `LOG` or `UPDATE_IN_DATABASE`. Defaults to `UPDATE_IN_DATABASE`.
 func (o CrawlerSchemaChangePolicyPtrOutput) UpdateBehavior() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CrawlerSchemaChangePolicy) *string { return v.UpdateBehavior }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *CrawlerSchemaChangePolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UpdateBehavior
+	}).(pulumi.StringPtrOutput)
 }
 
 type JobCommand struct {
@@ -2447,17 +2620,32 @@ func (o JobCommandPtrOutput) Elem() JobCommandOutput {
 
 // The name of the job command. Defaults to `glueetl`. Use `pythonshell` for Python Shell Job Type, `maxCapacity` needs to be set if `pythonshell` is chosen.
 func (o JobCommandPtrOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v JobCommand) *string { return v.Name }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *JobCommand) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
 }
 
 // The Python version being used to execute a Python shell job. Allowed values are 2 or 3.
 func (o JobCommandPtrOutput) PythonVersion() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v JobCommand) *string { return v.PythonVersion }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *JobCommand) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PythonVersion
+	}).(pulumi.StringPtrOutput)
 }
 
 // Specifies the S3 path to a script that executes a job.
-func (o JobCommandPtrOutput) ScriptLocation() pulumi.StringOutput {
-	return o.ApplyT(func(v JobCommand) string { return v.ScriptLocation }).(pulumi.StringOutput)
+func (o JobCommandPtrOutput) ScriptLocation() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *JobCommand) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ScriptLocation
+	}).(pulumi.StringPtrOutput)
 }
 
 type JobExecutionProperty struct {
@@ -2585,7 +2773,12 @@ func (o JobExecutionPropertyPtrOutput) Elem() JobExecutionPropertyOutput {
 
 // The maximum number of concurrent runs allowed for a job. The default is 1.
 func (o JobExecutionPropertyPtrOutput) MaxConcurrentRuns() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v JobExecutionProperty) *int { return v.MaxConcurrentRuns }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v *JobExecutionProperty) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxConcurrentRuns
+	}).(pulumi.IntPtrOutput)
 }
 
 type JobNotificationProperty struct {
@@ -2713,7 +2906,12 @@ func (o JobNotificationPropertyPtrOutput) Elem() JobNotificationPropertyOutput {
 
 // After a job run starts, the number of minutes to wait before sending a job run delay notification.
 func (o JobNotificationPropertyPtrOutput) NotifyDelayAfter() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v JobNotificationProperty) *int { return v.NotifyDelayAfter }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v *JobNotificationProperty) *int {
+		if v == nil {
+			return nil
+		}
+		return v.NotifyDelayAfter
+	}).(pulumi.IntPtrOutput)
 }
 
 type SecurityConfigurationEncryptionConfiguration struct {
@@ -2858,23 +3056,32 @@ func (o SecurityConfigurationEncryptionConfigurationPtrOutput) Elem() SecurityCo
 	}).(SecurityConfigurationEncryptionConfigurationOutput)
 }
 
-func (o SecurityConfigurationEncryptionConfigurationPtrOutput) CloudwatchEncryption() SecurityConfigurationEncryptionConfigurationCloudwatchEncryptionOutput {
-	return o.ApplyT(func(v SecurityConfigurationEncryptionConfiguration) SecurityConfigurationEncryptionConfigurationCloudwatchEncryption {
-		return v.CloudwatchEncryption
-	}).(SecurityConfigurationEncryptionConfigurationCloudwatchEncryptionOutput)
+func (o SecurityConfigurationEncryptionConfigurationPtrOutput) CloudwatchEncryption() SecurityConfigurationEncryptionConfigurationCloudwatchEncryptionPtrOutput {
+	return o.ApplyT(func(v *SecurityConfigurationEncryptionConfiguration) *SecurityConfigurationEncryptionConfigurationCloudwatchEncryption {
+		if v == nil {
+			return nil
+		}
+		return &v.CloudwatchEncryption
+	}).(SecurityConfigurationEncryptionConfigurationCloudwatchEncryptionPtrOutput)
 }
 
-func (o SecurityConfigurationEncryptionConfigurationPtrOutput) JobBookmarksEncryption() SecurityConfigurationEncryptionConfigurationJobBookmarksEncryptionOutput {
-	return o.ApplyT(func(v SecurityConfigurationEncryptionConfiguration) SecurityConfigurationEncryptionConfigurationJobBookmarksEncryption {
-		return v.JobBookmarksEncryption
-	}).(SecurityConfigurationEncryptionConfigurationJobBookmarksEncryptionOutput)
+func (o SecurityConfigurationEncryptionConfigurationPtrOutput) JobBookmarksEncryption() SecurityConfigurationEncryptionConfigurationJobBookmarksEncryptionPtrOutput {
+	return o.ApplyT(func(v *SecurityConfigurationEncryptionConfiguration) *SecurityConfigurationEncryptionConfigurationJobBookmarksEncryption {
+		if v == nil {
+			return nil
+		}
+		return &v.JobBookmarksEncryption
+	}).(SecurityConfigurationEncryptionConfigurationJobBookmarksEncryptionPtrOutput)
 }
 
 // A `s3Encryption ` block as described below, which contains encryption configuration for S3 data.
-func (o SecurityConfigurationEncryptionConfigurationPtrOutput) S3Encryption() SecurityConfigurationEncryptionConfigurationS3EncryptionOutput {
-	return o.ApplyT(func(v SecurityConfigurationEncryptionConfiguration) SecurityConfigurationEncryptionConfigurationS3Encryption {
-		return v.S3Encryption
-	}).(SecurityConfigurationEncryptionConfigurationS3EncryptionOutput)
+func (o SecurityConfigurationEncryptionConfigurationPtrOutput) S3Encryption() SecurityConfigurationEncryptionConfigurationS3EncryptionPtrOutput {
+	return o.ApplyT(func(v *SecurityConfigurationEncryptionConfiguration) *SecurityConfigurationEncryptionConfigurationS3Encryption {
+		if v == nil {
+			return nil
+		}
+		return &v.S3Encryption
+	}).(SecurityConfigurationEncryptionConfigurationS3EncryptionPtrOutput)
 }
 
 type SecurityConfigurationEncryptionConfigurationCloudwatchEncryption struct {
@@ -3329,12 +3536,22 @@ func (o TriggerPredicatePtrOutput) Elem() TriggerPredicateOutput {
 
 // A list of the conditions that determine when the trigger will fire. Defined below.
 func (o TriggerPredicatePtrOutput) Conditions() TriggerPredicateConditionArrayOutput {
-	return o.ApplyT(func(v TriggerPredicate) []TriggerPredicateCondition { return v.Conditions }).(TriggerPredicateConditionArrayOutput)
+	return o.ApplyT(func(v *TriggerPredicate) []TriggerPredicateCondition {
+		if v == nil {
+			return nil
+		}
+		return &v.Conditions
+	}).(TriggerPredicateConditionArrayOutput)
 }
 
 // How to handle multiple conditions. Defaults to `AND`. Valid values are `AND` or `ANY`.
 func (o TriggerPredicatePtrOutput) Logical() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v TriggerPredicate) *string { return v.Logical }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *TriggerPredicate) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Logical
+	}).(pulumi.StringPtrOutput)
 }
 
 type TriggerPredicateCondition struct {

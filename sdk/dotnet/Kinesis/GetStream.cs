@@ -67,7 +67,7 @@ namespace Pulumi.Aws.Kinesis
         /// </summary>
         public readonly int CreationTimestamp;
         /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
+        /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         /// <summary>

@@ -357,7 +357,7 @@ namespace Pulumi.Aws.ApiGateway
         /// The fully-qualified domain name to register
         /// </summary>
         [Input("domainName")]
-        public Input<string>? Domain { get; set; }
+        public Input<string>? DomainName { get; set; }
 
         /// <summary>
         /// Configuration block defining API endpoint information including type. Defined below.

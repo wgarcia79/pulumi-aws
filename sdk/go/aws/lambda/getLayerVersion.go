@@ -38,7 +38,7 @@ type LookupLayerVersionResult struct {
 	CreatedDate string `pulumi:"createdDate"`
 	// Description of the specific Lambda Layer version.
 	Description string `pulumi:"description"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The Amazon Resource Name (ARN) of the Lambda Layer without version.
 	LayerArn  string `pulumi:"layerArn"`

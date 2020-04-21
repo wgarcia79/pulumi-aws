@@ -198,7 +198,7 @@ namespace Pulumi.Aws.CloudHsmV2
         /// The state of the cluster.
         /// </summary>
         [Input("clusterState")]
-        public Input<string>? State { get; set; }
+        public Input<string>? ClusterState { get; set; }
 
         /// <summary>
         /// The type of HSM module in the cluster. Currently, only hsm1.medium is supported.

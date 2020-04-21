@@ -36,7 +36,7 @@ type LookupStreamResult struct {
 	ClosedShards []string `pulumi:"closedShards"`
 	// The approximate UNIX timestamp that the stream was created.
 	CreationTimestamp int `pulumi:"creationTimestamp"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The name of the Kinesis Stream.
 	Name string `pulumi:"name"`

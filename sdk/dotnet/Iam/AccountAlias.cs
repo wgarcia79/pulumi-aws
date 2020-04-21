@@ -85,7 +85,7 @@ namespace Pulumi.Aws.Iam
         /// The account alias
         /// </summary>
         [Input("accountAlias")]
-        public Input<string>? Alias { get; set; }
+        public Input<string>? AccountAlias { get; set; }
 
         public AccountAliasState()
         {

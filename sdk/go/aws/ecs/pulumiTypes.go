@@ -143,18 +143,31 @@ func (o CapacityProviderAutoScalingGroupProviderPtrOutput) Elem() CapacityProvid
 	return o.ApplyT(func(v *CapacityProviderAutoScalingGroupProvider) CapacityProviderAutoScalingGroupProvider { return *v }).(CapacityProviderAutoScalingGroupProviderOutput)
 }
 
-func (o CapacityProviderAutoScalingGroupProviderPtrOutput) AutoScalingGroupArn() pulumi.StringOutput {
-	return o.ApplyT(func(v CapacityProviderAutoScalingGroupProvider) string { return v.AutoScalingGroupArn }).(pulumi.StringOutput)
+func (o CapacityProviderAutoScalingGroupProviderPtrOutput) AutoScalingGroupArn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CapacityProviderAutoScalingGroupProvider) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.AutoScalingGroupArn
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o CapacityProviderAutoScalingGroupProviderPtrOutput) ManagedScaling() CapacityProviderAutoScalingGroupProviderManagedScalingPtrOutput {
-	return o.ApplyT(func(v CapacityProviderAutoScalingGroupProvider) *CapacityProviderAutoScalingGroupProviderManagedScaling {
+	return o.ApplyT(func(v *CapacityProviderAutoScalingGroupProvider) *CapacityProviderAutoScalingGroupProviderManagedScaling {
+		if v == nil {
+			return nil
+		}
 		return v.ManagedScaling
 	}).(CapacityProviderAutoScalingGroupProviderManagedScalingPtrOutput)
 }
 
 func (o CapacityProviderAutoScalingGroupProviderPtrOutput) ManagedTerminationProtection() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CapacityProviderAutoScalingGroupProvider) *string { return v.ManagedTerminationProtection }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *CapacityProviderAutoScalingGroupProvider) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ManagedTerminationProtection
+	}).(pulumi.StringPtrOutput)
 }
 
 type CapacityProviderAutoScalingGroupProviderManagedScaling struct {
@@ -297,19 +310,39 @@ func (o CapacityProviderAutoScalingGroupProviderManagedScalingPtrOutput) Elem() 
 }
 
 func (o CapacityProviderAutoScalingGroupProviderManagedScalingPtrOutput) MaximumScalingStepSize() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v CapacityProviderAutoScalingGroupProviderManagedScaling) *int { return v.MaximumScalingStepSize }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v *CapacityProviderAutoScalingGroupProviderManagedScaling) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaximumScalingStepSize
+	}).(pulumi.IntPtrOutput)
 }
 
 func (o CapacityProviderAutoScalingGroupProviderManagedScalingPtrOutput) MinimumScalingStepSize() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v CapacityProviderAutoScalingGroupProviderManagedScaling) *int { return v.MinimumScalingStepSize }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v *CapacityProviderAutoScalingGroupProviderManagedScaling) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MinimumScalingStepSize
+	}).(pulumi.IntPtrOutput)
 }
 
 func (o CapacityProviderAutoScalingGroupProviderManagedScalingPtrOutput) Status() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CapacityProviderAutoScalingGroupProviderManagedScaling) *string { return v.Status }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *CapacityProviderAutoScalingGroupProviderManagedScaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Status
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o CapacityProviderAutoScalingGroupProviderManagedScalingPtrOutput) TargetCapacity() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v CapacityProviderAutoScalingGroupProviderManagedScaling) *int { return v.TargetCapacity }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v *CapacityProviderAutoScalingGroupProviderManagedScaling) *int {
+		if v == nil {
+			return nil
+		}
+		return v.TargetCapacity
+	}).(pulumi.IntPtrOutput)
 }
 
 type ClusterDefaultCapacityProviderStrategy struct {
@@ -753,7 +786,12 @@ func (o ServiceDeploymentControllerPtrOutput) Elem() ServiceDeploymentController
 }
 
 func (o ServiceDeploymentControllerPtrOutput) Type() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ServiceDeploymentController) *string { return v.Type }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ServiceDeploymentController) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(pulumi.StringPtrOutput)
 }
 
 type ServiceLoadBalancer struct {
@@ -1002,15 +1040,30 @@ func (o ServiceNetworkConfigurationPtrOutput) Elem() ServiceNetworkConfiguration
 }
 
 func (o ServiceNetworkConfigurationPtrOutput) AssignPublicIp() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ServiceNetworkConfiguration) *bool { return v.AssignPublicIp }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v *ServiceNetworkConfiguration) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AssignPublicIp
+	}).(pulumi.BoolPtrOutput)
 }
 
 func (o ServiceNetworkConfigurationPtrOutput) SecurityGroups() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v ServiceNetworkConfiguration) []string { return v.SecurityGroups }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v *ServiceNetworkConfiguration) []string {
+		if v == nil {
+			return nil
+		}
+		return v.SecurityGroups
+	}).(pulumi.StringArrayOutput)
 }
 
 func (o ServiceNetworkConfigurationPtrOutput) Subnets() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v ServiceNetworkConfiguration) []string { return v.Subnets }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v *ServiceNetworkConfiguration) []string {
+		if v == nil {
+			return nil
+		}
+		return &v.Subnets
+	}).(pulumi.StringArrayOutput)
 }
 
 type ServiceOrderedPlacementStrategy struct {
@@ -1355,19 +1408,39 @@ func (o ServiceServiceRegistriesPtrOutput) Elem() ServiceServiceRegistriesOutput
 }
 
 func (o ServiceServiceRegistriesPtrOutput) ContainerName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ServiceServiceRegistries) *string { return v.ContainerName }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ServiceServiceRegistries) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ContainerName
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o ServiceServiceRegistriesPtrOutput) ContainerPort() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ServiceServiceRegistries) *int { return v.ContainerPort }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v *ServiceServiceRegistries) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ContainerPort
+	}).(pulumi.IntPtrOutput)
 }
 
 func (o ServiceServiceRegistriesPtrOutput) Port() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ServiceServiceRegistries) *int { return v.Port }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v *ServiceServiceRegistries) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Port
+	}).(pulumi.IntPtrOutput)
 }
 
-func (o ServiceServiceRegistriesPtrOutput) RegistryArn() pulumi.StringOutput {
-	return o.ApplyT(func(v ServiceServiceRegistries) string { return v.RegistryArn }).(pulumi.StringOutput)
+func (o ServiceServiceRegistriesPtrOutput) RegistryArn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceServiceRegistries) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RegistryArn
+	}).(pulumi.StringPtrOutput)
 }
 
 type TaskDefinitionInferenceAccelerator struct {
@@ -1737,18 +1810,33 @@ func (o TaskDefinitionProxyConfigurationPtrOutput) Elem() TaskDefinitionProxyCon
 }
 
 // The name of the container that will serve as the App Mesh proxy.
-func (o TaskDefinitionProxyConfigurationPtrOutput) ContainerName() pulumi.StringOutput {
-	return o.ApplyT(func(v TaskDefinitionProxyConfiguration) string { return v.ContainerName }).(pulumi.StringOutput)
+func (o TaskDefinitionProxyConfigurationPtrOutput) ContainerName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TaskDefinitionProxyConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ContainerName
+	}).(pulumi.StringPtrOutput)
 }
 
 // The set of network configuration parameters to provide the Container Network Interface (CNI) plugin, specified a key-value mapping.
 func (o TaskDefinitionProxyConfigurationPtrOutput) Properties() pulumi.StringMapOutput {
-	return o.ApplyT(func(v TaskDefinitionProxyConfiguration) map[string]string { return v.Properties }).(pulumi.StringMapOutput)
+	return o.ApplyT(func(v *TaskDefinitionProxyConfiguration) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Properties
+	}).(pulumi.StringMapOutput)
 }
 
 // The proxy type. The default value is `APPMESH`. The only supported value is `APPMESH`.
 func (o TaskDefinitionProxyConfigurationPtrOutput) Type() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v TaskDefinitionProxyConfiguration) *string { return v.Type }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *TaskDefinitionProxyConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(pulumi.StringPtrOutput)
 }
 
 type TaskDefinitionVolume struct {
@@ -2047,27 +2135,52 @@ func (o TaskDefinitionVolumeDockerVolumeConfigurationPtrOutput) Elem() TaskDefin
 
 // If this value is `true`, the Docker volume is created if it does not already exist. *Note*: This field is only used if the scope is `shared`.
 func (o TaskDefinitionVolumeDockerVolumeConfigurationPtrOutput) Autoprovision() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v TaskDefinitionVolumeDockerVolumeConfiguration) *bool { return v.Autoprovision }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v *TaskDefinitionVolumeDockerVolumeConfiguration) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Autoprovision
+	}).(pulumi.BoolPtrOutput)
 }
 
 // The Docker volume driver to use. The driver value must match the driver name provided by Docker because it is used for task placement.
 func (o TaskDefinitionVolumeDockerVolumeConfigurationPtrOutput) Driver() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v TaskDefinitionVolumeDockerVolumeConfiguration) *string { return v.Driver }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *TaskDefinitionVolumeDockerVolumeConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Driver
+	}).(pulumi.StringPtrOutput)
 }
 
 // A map of Docker driver specific options.
 func (o TaskDefinitionVolumeDockerVolumeConfigurationPtrOutput) DriverOpts() pulumi.StringMapOutput {
-	return o.ApplyT(func(v TaskDefinitionVolumeDockerVolumeConfiguration) map[string]string { return v.DriverOpts }).(pulumi.StringMapOutput)
+	return o.ApplyT(func(v *TaskDefinitionVolumeDockerVolumeConfiguration) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.DriverOpts
+	}).(pulumi.StringMapOutput)
 }
 
 // A map of custom metadata to add to your Docker volume.
 func (o TaskDefinitionVolumeDockerVolumeConfigurationPtrOutput) Labels() pulumi.StringMapOutput {
-	return o.ApplyT(func(v TaskDefinitionVolumeDockerVolumeConfiguration) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
+	return o.ApplyT(func(v *TaskDefinitionVolumeDockerVolumeConfiguration) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Labels
+	}).(pulumi.StringMapOutput)
 }
 
 // The scope for the Docker volume, which determines its lifecycle, either `task` or `shared`.  Docker volumes that are scoped to a `task` are automatically provisioned when the task starts and destroyed when the task stops. Docker volumes that are `scoped` as shared persist after the task stops.
 func (o TaskDefinitionVolumeDockerVolumeConfigurationPtrOutput) Scope() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v TaskDefinitionVolumeDockerVolumeConfiguration) *string { return v.Scope }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *TaskDefinitionVolumeDockerVolumeConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Scope
+	}).(pulumi.StringPtrOutput)
 }
 
 type TaskDefinitionVolumeEfsVolumeConfiguration struct {
@@ -2205,13 +2318,23 @@ func (o TaskDefinitionVolumeEfsVolumeConfigurationPtrOutput) Elem() TaskDefiniti
 }
 
 // The ID of the EFS File System.
-func (o TaskDefinitionVolumeEfsVolumeConfigurationPtrOutput) FileSystemId() pulumi.StringOutput {
-	return o.ApplyT(func(v TaskDefinitionVolumeEfsVolumeConfiguration) string { return v.FileSystemId }).(pulumi.StringOutput)
+func (o TaskDefinitionVolumeEfsVolumeConfigurationPtrOutput) FileSystemId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TaskDefinitionVolumeEfsVolumeConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.FileSystemId
+	}).(pulumi.StringPtrOutput)
 }
 
 // The path to mount on the host
 func (o TaskDefinitionVolumeEfsVolumeConfigurationPtrOutput) RootDirectory() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v TaskDefinitionVolumeEfsVolumeConfiguration) *string { return v.RootDirectory }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *TaskDefinitionVolumeEfsVolumeConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RootDirectory
+	}).(pulumi.StringPtrOutput)
 }
 
 type GetClusterSetting struct {

@@ -170,7 +170,7 @@ namespace Pulumi.Aws.Iam
         /// The policy document. This is a JSON formatted string.
         /// </summary>
         [Input("policy")]
-        public Input<string>? PolicyDocument { get; set; }
+        public Input<string>? Policy { get; set; }
 
         public PolicyState()
         {

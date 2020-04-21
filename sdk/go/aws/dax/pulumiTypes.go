@@ -252,7 +252,12 @@ func (o ClusterServerSideEncryptionPtrOutput) Elem() ClusterServerSideEncryption
 
 // Whether to enable encryption at rest. Defaults to `false`.
 func (o ClusterServerSideEncryptionPtrOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ClusterServerSideEncryption) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v *ClusterServerSideEncryption) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
 }
 
 type ParameterGroupParameter struct {

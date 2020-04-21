@@ -125,7 +125,7 @@ namespace Pulumi.Aws.Iot
         /// The policy document. This is a JSON formatted string. Use the [IoT Developer Guide](http://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) for more information on IoT Policies.
         /// </summary>
         [Input("policy")]
-        public Input<string>? PolicyDocument { get; set; }
+        public Input<string>? Policy { get; set; }
 
         public PolicyState()
         {

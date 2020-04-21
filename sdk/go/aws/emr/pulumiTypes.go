@@ -283,33 +283,68 @@ func (o ClusterCoreInstanceGroupPtrOutput) Elem() ClusterCoreInstanceGroupOutput
 }
 
 func (o ClusterCoreInstanceGroupPtrOutput) AutoscalingPolicy() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterCoreInstanceGroup) *string { return v.AutoscalingPolicy }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClusterCoreInstanceGroup) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AutoscalingPolicy
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o ClusterCoreInstanceGroupPtrOutput) BidPrice() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterCoreInstanceGroup) *string { return v.BidPrice }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClusterCoreInstanceGroup) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BidPrice
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o ClusterCoreInstanceGroupPtrOutput) EbsConfigs() ClusterCoreInstanceGroupEbsConfigArrayOutput {
-	return o.ApplyT(func(v ClusterCoreInstanceGroup) []ClusterCoreInstanceGroupEbsConfig { return v.EbsConfigs }).(ClusterCoreInstanceGroupEbsConfigArrayOutput)
+	return o.ApplyT(func(v *ClusterCoreInstanceGroup) []ClusterCoreInstanceGroupEbsConfig {
+		if v == nil {
+			return nil
+		}
+		return v.EbsConfigs
+	}).(ClusterCoreInstanceGroupEbsConfigArrayOutput)
 }
 
 // The ID of the EMR Cluster
 func (o ClusterCoreInstanceGroupPtrOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterCoreInstanceGroup) *string { return v.Id }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClusterCoreInstanceGroup) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o ClusterCoreInstanceGroupPtrOutput) InstanceCount() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ClusterCoreInstanceGroup) *int { return v.InstanceCount }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v *ClusterCoreInstanceGroup) *int {
+		if v == nil {
+			return nil
+		}
+		return v.InstanceCount
+	}).(pulumi.IntPtrOutput)
 }
 
-func (o ClusterCoreInstanceGroupPtrOutput) InstanceType() pulumi.StringOutput {
-	return o.ApplyT(func(v ClusterCoreInstanceGroup) string { return v.InstanceType }).(pulumi.StringOutput)
+func (o ClusterCoreInstanceGroupPtrOutput) InstanceType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClusterCoreInstanceGroup) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.InstanceType
+	}).(pulumi.StringPtrOutput)
 }
 
 // The name of the job flow
 func (o ClusterCoreInstanceGroupPtrOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterCoreInstanceGroup) *string { return v.Name }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClusterCoreInstanceGroup) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
 }
 
 type ClusterCoreInstanceGroupEbsConfig struct {
@@ -588,35 +623,75 @@ func (o ClusterEc2AttributesPtrOutput) Elem() ClusterEc2AttributesOutput {
 }
 
 func (o ClusterEc2AttributesPtrOutput) AdditionalMasterSecurityGroups() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterEc2Attributes) *string { return v.AdditionalMasterSecurityGroups }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClusterEc2Attributes) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalMasterSecurityGroups
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o ClusterEc2AttributesPtrOutput) AdditionalSlaveSecurityGroups() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterEc2Attributes) *string { return v.AdditionalSlaveSecurityGroups }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClusterEc2Attributes) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalSlaveSecurityGroups
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o ClusterEc2AttributesPtrOutput) EmrManagedMasterSecurityGroup() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterEc2Attributes) *string { return v.EmrManagedMasterSecurityGroup }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClusterEc2Attributes) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EmrManagedMasterSecurityGroup
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o ClusterEc2AttributesPtrOutput) EmrManagedSlaveSecurityGroup() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterEc2Attributes) *string { return v.EmrManagedSlaveSecurityGroup }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClusterEc2Attributes) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EmrManagedSlaveSecurityGroup
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o ClusterEc2AttributesPtrOutput) InstanceProfile() pulumi.StringOutput {
-	return o.ApplyT(func(v ClusterEc2Attributes) string { return v.InstanceProfile }).(pulumi.StringOutput)
+func (o ClusterEc2AttributesPtrOutput) InstanceProfile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClusterEc2Attributes) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.InstanceProfile
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o ClusterEc2AttributesPtrOutput) KeyName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterEc2Attributes) *string { return v.KeyName }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClusterEc2Attributes) *string {
+		if v == nil {
+			return nil
+		}
+		return v.KeyName
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o ClusterEc2AttributesPtrOutput) ServiceAccessSecurityGroup() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterEc2Attributes) *string { return v.ServiceAccessSecurityGroup }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClusterEc2Attributes) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ServiceAccessSecurityGroup
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o ClusterEc2AttributesPtrOutput) SubnetId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterEc2Attributes) *string { return v.SubnetId }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClusterEc2Attributes) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SubnetId
+	}).(pulumi.StringPtrOutput)
 }
 
 type ClusterInstanceGroup struct {
@@ -1021,23 +1096,48 @@ func (o ClusterKerberosAttributesPtrOutput) Elem() ClusterKerberosAttributesOutp
 }
 
 func (o ClusterKerberosAttributesPtrOutput) AdDomainJoinPassword() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterKerberosAttributes) *string { return v.AdDomainJoinPassword }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClusterKerberosAttributes) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AdDomainJoinPassword
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o ClusterKerberosAttributesPtrOutput) AdDomainJoinUser() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterKerberosAttributes) *string { return v.AdDomainJoinUser }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClusterKerberosAttributes) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AdDomainJoinUser
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o ClusterKerberosAttributesPtrOutput) CrossRealmTrustPrincipalPassword() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterKerberosAttributes) *string { return v.CrossRealmTrustPrincipalPassword }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClusterKerberosAttributes) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CrossRealmTrustPrincipalPassword
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o ClusterKerberosAttributesPtrOutput) KdcAdminPassword() pulumi.StringOutput {
-	return o.ApplyT(func(v ClusterKerberosAttributes) string { return v.KdcAdminPassword }).(pulumi.StringOutput)
+func (o ClusterKerberosAttributesPtrOutput) KdcAdminPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClusterKerberosAttributes) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.KdcAdminPassword
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o ClusterKerberosAttributesPtrOutput) Realm() pulumi.StringOutput {
-	return o.ApplyT(func(v ClusterKerberosAttributes) string { return v.Realm }).(pulumi.StringOutput)
+func (o ClusterKerberosAttributesPtrOutput) Realm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClusterKerberosAttributes) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Realm
+	}).(pulumi.StringPtrOutput)
 }
 
 type ClusterMasterInstanceGroup struct {
@@ -1196,29 +1296,59 @@ func (o ClusterMasterInstanceGroupPtrOutput) Elem() ClusterMasterInstanceGroupOu
 }
 
 func (o ClusterMasterInstanceGroupPtrOutput) BidPrice() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterMasterInstanceGroup) *string { return v.BidPrice }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClusterMasterInstanceGroup) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BidPrice
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o ClusterMasterInstanceGroupPtrOutput) EbsConfigs() ClusterMasterInstanceGroupEbsConfigArrayOutput {
-	return o.ApplyT(func(v ClusterMasterInstanceGroup) []ClusterMasterInstanceGroupEbsConfig { return v.EbsConfigs }).(ClusterMasterInstanceGroupEbsConfigArrayOutput)
+	return o.ApplyT(func(v *ClusterMasterInstanceGroup) []ClusterMasterInstanceGroupEbsConfig {
+		if v == nil {
+			return nil
+		}
+		return v.EbsConfigs
+	}).(ClusterMasterInstanceGroupEbsConfigArrayOutput)
 }
 
 // The ID of the EMR Cluster
 func (o ClusterMasterInstanceGroupPtrOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterMasterInstanceGroup) *string { return v.Id }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClusterMasterInstanceGroup) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o ClusterMasterInstanceGroupPtrOutput) InstanceCount() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ClusterMasterInstanceGroup) *int { return v.InstanceCount }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v *ClusterMasterInstanceGroup) *int {
+		if v == nil {
+			return nil
+		}
+		return v.InstanceCount
+	}).(pulumi.IntPtrOutput)
 }
 
-func (o ClusterMasterInstanceGroupPtrOutput) InstanceType() pulumi.StringOutput {
-	return o.ApplyT(func(v ClusterMasterInstanceGroup) string { return v.InstanceType }).(pulumi.StringOutput)
+func (o ClusterMasterInstanceGroupPtrOutput) InstanceType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClusterMasterInstanceGroup) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.InstanceType
+	}).(pulumi.StringPtrOutput)
 }
 
 // The name of the job flow
 func (o ClusterMasterInstanceGroupPtrOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterMasterInstanceGroup) *string { return v.Name }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClusterMasterInstanceGroup) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
 }
 
 type ClusterMasterInstanceGroupEbsConfig struct {

@@ -78,7 +78,7 @@ namespace Pulumi.Aws
         /// </summary>
         public readonly string CreateDate;
         /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
+        /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         /// <summary>

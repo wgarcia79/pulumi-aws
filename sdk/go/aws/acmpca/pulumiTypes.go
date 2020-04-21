@@ -156,20 +156,33 @@ func (o CertificateAuthorityCertificateAuthorityConfigurationPtrOutput) Elem() C
 }
 
 // Type of the public key algorithm and size, in bits, of the key pair that your key pair creates when it issues a certificate. Valid values can be found in the [ACM PCA Documentation](https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_CertificateAuthorityConfiguration.html).
-func (o CertificateAuthorityCertificateAuthorityConfigurationPtrOutput) KeyAlgorithm() pulumi.StringOutput {
-	return o.ApplyT(func(v CertificateAuthorityCertificateAuthorityConfiguration) string { return v.KeyAlgorithm }).(pulumi.StringOutput)
+func (o CertificateAuthorityCertificateAuthorityConfigurationPtrOutput) KeyAlgorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CertificateAuthorityCertificateAuthorityConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.KeyAlgorithm
+	}).(pulumi.StringPtrOutput)
 }
 
 // Name of the algorithm your private CA uses to sign certificate requests. Valid values can be found in the [ACM PCA Documentation](https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_CertificateAuthorityConfiguration.html).
-func (o CertificateAuthorityCertificateAuthorityConfigurationPtrOutput) SigningAlgorithm() pulumi.StringOutput {
-	return o.ApplyT(func(v CertificateAuthorityCertificateAuthorityConfiguration) string { return v.SigningAlgorithm }).(pulumi.StringOutput)
+func (o CertificateAuthorityCertificateAuthorityConfigurationPtrOutput) SigningAlgorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CertificateAuthorityCertificateAuthorityConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.SigningAlgorithm
+	}).(pulumi.StringPtrOutput)
 }
 
 // Nested argument that contains X.500 distinguished name information. At least one nested attribute must be specified.
-func (o CertificateAuthorityCertificateAuthorityConfigurationPtrOutput) Subject() CertificateAuthorityCertificateAuthorityConfigurationSubjectOutput {
-	return o.ApplyT(func(v CertificateAuthorityCertificateAuthorityConfiguration) CertificateAuthorityCertificateAuthorityConfigurationSubject {
-		return v.Subject
-	}).(CertificateAuthorityCertificateAuthorityConfigurationSubjectOutput)
+func (o CertificateAuthorityCertificateAuthorityConfigurationPtrOutput) Subject() CertificateAuthorityCertificateAuthorityConfigurationSubjectPtrOutput {
+	return o.ApplyT(func(v *CertificateAuthorityCertificateAuthorityConfiguration) *CertificateAuthorityCertificateAuthorityConfigurationSubject {
+		if v == nil {
+			return nil
+		}
+		return &v.Subject
+	}).(CertificateAuthorityCertificateAuthorityConfigurationSubjectPtrOutput)
 }
 
 type CertificateAuthorityCertificateAuthorityConfigurationSubject struct {
@@ -468,7 +481,10 @@ func (o CertificateAuthorityRevocationConfigurationPtrOutput) Elem() Certificate
 
 // Nested argument containing configuration of the certificate revocation list (CRL), if any, maintained by the certificate authority. Defined below.
 func (o CertificateAuthorityRevocationConfigurationPtrOutput) CrlConfiguration() CertificateAuthorityRevocationConfigurationCrlConfigurationPtrOutput {
-	return o.ApplyT(func(v CertificateAuthorityRevocationConfiguration) *CertificateAuthorityRevocationConfigurationCrlConfiguration {
+	return o.ApplyT(func(v *CertificateAuthorityRevocationConfiguration) *CertificateAuthorityRevocationConfigurationCrlConfiguration {
+		if v == nil {
+			return nil
+		}
 		return v.CrlConfiguration
 	}).(CertificateAuthorityRevocationConfigurationCrlConfigurationPtrOutput)
 }
@@ -627,22 +643,42 @@ func (o CertificateAuthorityRevocationConfigurationCrlConfigurationPtrOutput) El
 
 // Name inserted into the certificate CRL Distribution Points extension that enables the use of an alias for the CRL distribution point. Use this value if you don't want the name of your S3 bucket to be public.
 func (o CertificateAuthorityRevocationConfigurationCrlConfigurationPtrOutput) CustomCname() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CertificateAuthorityRevocationConfigurationCrlConfiguration) *string { return v.CustomCname }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *CertificateAuthorityRevocationConfigurationCrlConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CustomCname
+	}).(pulumi.StringPtrOutput)
 }
 
 // Boolean value that specifies whether certificate revocation lists (CRLs) are enabled. Defaults to `false`.
 func (o CertificateAuthorityRevocationConfigurationCrlConfigurationPtrOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v CertificateAuthorityRevocationConfigurationCrlConfiguration) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v *CertificateAuthorityRevocationConfigurationCrlConfiguration) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
 }
 
 // Number of days until a certificate expires. Must be between 1 and 5000.
-func (o CertificateAuthorityRevocationConfigurationCrlConfigurationPtrOutput) ExpirationInDays() pulumi.IntOutput {
-	return o.ApplyT(func(v CertificateAuthorityRevocationConfigurationCrlConfiguration) int { return v.ExpirationInDays }).(pulumi.IntOutput)
+func (o CertificateAuthorityRevocationConfigurationCrlConfigurationPtrOutput) ExpirationInDays() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CertificateAuthorityRevocationConfigurationCrlConfiguration) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.ExpirationInDays
+	}).(pulumi.IntPtrOutput)
 }
 
 // Name of the S3 bucket that contains the CRL. If you do not provide a value for the `customCname` argument, the name of your S3 bucket is placed into the CRL Distribution Points extension of the issued certificate. You must specify a bucket policy that allows ACM PCA to write the CRL to your bucket.
 func (o CertificateAuthorityRevocationConfigurationCrlConfigurationPtrOutput) S3BucketName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CertificateAuthorityRevocationConfigurationCrlConfiguration) *string { return v.S3BucketName }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *CertificateAuthorityRevocationConfigurationCrlConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.S3BucketName
+	}).(pulumi.StringPtrOutput)
 }
 
 type GetCertificateAuthorityRevocationConfiguration struct {

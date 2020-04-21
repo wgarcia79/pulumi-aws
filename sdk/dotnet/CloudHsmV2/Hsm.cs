@@ -161,7 +161,7 @@ namespace Pulumi.Aws.CloudHsmV2
         /// The state of the HSM module.
         /// </summary>
         [Input("hsmState")]
-        public Input<string>? State { get; set; }
+        public Input<string>? HsmState { get; set; }
 
         /// <summary>
         /// The IP address of HSM module. Must be within the CIDR of selected subnet.

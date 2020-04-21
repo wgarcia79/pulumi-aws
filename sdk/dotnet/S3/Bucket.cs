@@ -401,7 +401,7 @@ namespace Pulumi.Aws.S3
         /// The name of the bucket. If omitted, this provider will assign a random, unique name.
         /// </summary>
         [Input("bucket")]
-        public Input<string>? BucketName { get; set; }
+        public Input<string>? Bucket { get; set; }
 
         /// <summary>
         /// The bucket domain name. Will be of format `bucketname.s3.amazonaws.com`.

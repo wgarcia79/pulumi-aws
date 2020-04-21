@@ -297,12 +297,22 @@ func (o PlanRuleLifecyclePtrOutput) Elem() PlanRuleLifecycleOutput {
 
 // Specifies the number of days after creation that a recovery point is moved to cold storage.
 func (o PlanRuleLifecyclePtrOutput) ColdStorageAfter() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v PlanRuleLifecycle) *int { return v.ColdStorageAfter }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v *PlanRuleLifecycle) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ColdStorageAfter
+	}).(pulumi.IntPtrOutput)
 }
 
 // Specifies the number of days after creation that a recovery point is deleted. Must be 90 days greater than `coldStorageAfter`.
 func (o PlanRuleLifecyclePtrOutput) DeleteAfter() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v PlanRuleLifecycle) *int { return v.DeleteAfter }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v *PlanRuleLifecycle) *int {
+		if v == nil {
+			return nil
+		}
+		return v.DeleteAfter
+	}).(pulumi.IntPtrOutput)
 }
 
 type SelectionSelectionTag struct {

@@ -256,7 +256,12 @@ func (o CertificateOptionsPtrOutput) Elem() CertificateOptionsOutput {
 }
 
 func (o CertificateOptionsPtrOutput) CertificateTransparencyLoggingPreference() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CertificateOptions) *string { return v.CertificateTransparencyLoggingPreference }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *CertificateOptions) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CertificateTransparencyLoggingPreference
+	}).(pulumi.StringPtrOutput)
 }
 
 func init() {

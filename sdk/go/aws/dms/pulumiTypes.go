@@ -160,27 +160,57 @@ func (o EndpointMongodbSettingsPtrOutput) Elem() EndpointMongodbSettingsOutput {
 }
 
 func (o EndpointMongodbSettingsPtrOutput) AuthMechanism() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointMongodbSettings) *string { return v.AuthMechanism }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *EndpointMongodbSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AuthMechanism
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o EndpointMongodbSettingsPtrOutput) AuthSource() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointMongodbSettings) *string { return v.AuthSource }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *EndpointMongodbSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AuthSource
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o EndpointMongodbSettingsPtrOutput) AuthType() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointMongodbSettings) *string { return v.AuthType }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *EndpointMongodbSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AuthType
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o EndpointMongodbSettingsPtrOutput) DocsToInvestigate() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointMongodbSettings) *string { return v.DocsToInvestigate }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *EndpointMongodbSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DocsToInvestigate
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o EndpointMongodbSettingsPtrOutput) ExtractDocId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointMongodbSettings) *string { return v.ExtractDocId }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *EndpointMongodbSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ExtractDocId
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o EndpointMongodbSettingsPtrOutput) NestingLevel() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointMongodbSettings) *string { return v.NestingLevel }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *EndpointMongodbSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NestingLevel
+	}).(pulumi.StringPtrOutput)
 }
 
 type EndpointS3Settings struct {
@@ -339,31 +369,66 @@ func (o EndpointS3SettingsPtrOutput) Elem() EndpointS3SettingsOutput {
 }
 
 func (o EndpointS3SettingsPtrOutput) BucketFolder() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointS3Settings) *string { return v.BucketFolder }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *EndpointS3Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BucketFolder
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o EndpointS3SettingsPtrOutput) BucketName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointS3Settings) *string { return v.BucketName }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *EndpointS3Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BucketName
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o EndpointS3SettingsPtrOutput) CompressionType() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointS3Settings) *string { return v.CompressionType }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *EndpointS3Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CompressionType
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o EndpointS3SettingsPtrOutput) CsvDelimiter() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointS3Settings) *string { return v.CsvDelimiter }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *EndpointS3Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CsvDelimiter
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o EndpointS3SettingsPtrOutput) CsvRowDelimiter() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointS3Settings) *string { return v.CsvRowDelimiter }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *EndpointS3Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CsvRowDelimiter
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o EndpointS3SettingsPtrOutput) ExternalTableDefinition() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointS3Settings) *string { return v.ExternalTableDefinition }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *EndpointS3Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ExternalTableDefinition
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o EndpointS3SettingsPtrOutput) ServiceAccessRoleArn() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EndpointS3Settings) *string { return v.ServiceAccessRoleArn }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *EndpointS3Settings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ServiceAccessRoleArn
+	}).(pulumi.StringPtrOutput)
 }
 
 func init() {

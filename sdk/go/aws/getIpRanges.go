@@ -39,7 +39,7 @@ type GetIpRangesResult struct {
 	CidrBlocks []string `pulumi:"cidrBlocks"`
 	// The publication time of the IP ranges (e.g. `2016-08-03-23-46-05`).
 	CreateDate string `pulumi:"createDate"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The lexically ordered list of IPv6 CIDR blocks.
 	Ipv6CidrBlocks []string `pulumi:"ipv6CidrBlocks"`

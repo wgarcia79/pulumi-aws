@@ -30,7 +30,7 @@ class GetIpRangesResult:
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
-        id is the provider-assigned unique ID for this managed resource.
+        The provider-assigned unique ID for this managed resource.
         """
         if ipv6_cidr_blocks and not isinstance(ipv6_cidr_blocks, list):
             raise TypeError("Expected argument 'ipv6_cidr_blocks' to be a list")
