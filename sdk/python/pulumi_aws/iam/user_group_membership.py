@@ -12,25 +12,46 @@ from .. import utilities, tables
 class UserGroupMembership(pulumi.CustomResource):
     groups: pulumi.Output[list]
     """
-    A list of [IAM Groups][1] to add the user to
+    A list of [IAM Groups](https://www.terraform.io/docs/providers/aws/r/iam_group.html) to add the user to
     """
     user: pulumi.Output[str]
     """
-    The name of the [IAM User][2] to add to groups
+    The name of the [IAM User](https://www.terraform.io/docs/providers/aws/r/iam_user.html) to add to groups
     """
     def __init__(__self__, resource_name, opts=None, groups=None, user=None, __props__=None, __name__=None, __opts__=None):
         """
-        Provides a resource for adding an [IAM User][2] to [IAM Groups][1]. This
+        Provides a resource for adding an [IAM User](https://www.terraform.io/docs/providers/aws/r/iam_user.html) to [IAM Groups](https://www.terraform.io/docs/providers/aws/r/iam_group.html). This
         resource can be used multiple times with the same user for non-overlapping
         groups.
 
         To exclusively manage the users in a group, see the
         [`iam.GroupMembership` resource][3].
 
+        ## Example usage
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        user1 = aws.iam.User("user1")
+        group1 = aws.iam.Group("group1")
+        group2 = aws.iam.Group("group2")
+        example1 = aws.iam.UserGroupMembership("example1",
+            groups=[
+                group1.name,
+                group2.name,
+            ],
+            user=user1.name)
+        group3 = aws.iam.Group("group3")
+        example2 = aws.iam.UserGroupMembership("example2",
+            groups=[group3.name],
+            user=user1.name)
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] groups: A list of [IAM Groups][1] to add the user to
-        :param pulumi.Input[str] user: The name of the [IAM User][2] to add to groups
+        :param pulumi.Input[list] groups: A list of [IAM Groups](https://www.terraform.io/docs/providers/aws/r/iam_group.html) to add the user to
+        :param pulumi.Input[str] user: The name of the [IAM User](https://www.terraform.io/docs/providers/aws/r/iam_user.html) to add to groups
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -70,8 +91,8 @@ class UserGroupMembership(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] groups: A list of [IAM Groups][1] to add the user to
-        :param pulumi.Input[str] user: The name of the [IAM User][2] to add to groups
+        :param pulumi.Input[list] groups: A list of [IAM Groups](https://www.terraform.io/docs/providers/aws/r/iam_group.html) to add the user to
+        :param pulumi.Input[str] user: The name of the [IAM User](https://www.terraform.io/docs/providers/aws/r/iam_user.html) to add to groups
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

@@ -41,6 +41,27 @@ class MaintenanceWindowTarget(pulumi.CustomResource):
         """
         Provides an SSM Maintenance Window Target resource
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        window = aws.ssm.MaintenanceWindow("window",
+            cutoff=1,
+            duration=3,
+            schedule="cron(0 16 ? * TUE *)")
+        target1 = aws.ssm.MaintenanceWindowTarget("target1",
+            description="This is a maintenance window target",
+            resource_type="INSTANCE",
+            targets=[{
+                "key": "tag:Name",
+                "values": ["acceptance_test"],
+            }],
+            window_id=window.id)
+        ```
 
 
         :param str resource_name: The name of the resource.

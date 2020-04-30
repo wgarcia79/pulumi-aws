@@ -21,7 +21,7 @@ class GetInstancesResult:
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
-        id is the provider-assigned unique ID for this managed resource.
+        The provider-assigned unique ID for this managed resource.
         """
         if ids and not isinstance(ids, list):
             raise TypeError("Expected argument 'ids' to be a list")
@@ -71,6 +71,27 @@ def get_instances(filters=None,instance_state_names=None,instance_tags=None,opts
     instances (e.g. managed via autoscaling group), as the output may change at any time
     and you'd need to re-run `apply` every time an instance comes up or dies.
 
+    ## Example Usage
+
+
+
+    ```python
+    import pulumi
+    import pulumi_aws as aws
+
+    test_instances = aws.ec2.get_instances(filters=[{
+            "name": "instance.group-id",
+            "values": ["sg-12345678"],
+        }],
+        instance_state_names=[
+            "running",
+            "stopped",
+        ],
+        instance_tags={
+            "Role": "HardWorker",
+        })
+    test_eip = aws.ec2.Eip("testEip", instance=test_instances.ids[range["value"]])
+    ```
 
 
 

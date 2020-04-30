@@ -39,6 +39,66 @@ class Target(pulumi.CustomResource):
         """
         Provides an Application AutoScaling ScalableTarget resource. To manage policies which get attached to the target, see the [`appautoscaling.Policy` resource](https://www.terraform.io/docs/providers/aws/r/appautoscaling_policy.html).
 
+        ## Example Usage
+
+        ### DynamoDB Table Autoscaling
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        dynamodb_table_read_target = aws.appautoscaling.Target("dynamodbTableReadTarget",
+            max_capacity=100,
+            min_capacity=5,
+            resource_id=f"table/{aws_dynamodb_table['example']['name']}",
+            role_arn=data["iam.Role"]["DynamoDBAutoscaleRole"]["arn"],
+            scalable_dimension="dynamodb:table:ReadCapacityUnits",
+            service_namespace="dynamodb")
+        ```
+
+        ### DynamoDB Index Autoscaling
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        dynamodb_index_read_target = aws.appautoscaling.Target("dynamodbIndexReadTarget",
+            max_capacity=100,
+            min_capacity=5,
+            resource_id=f"table/{aws_dynamodb_table['example']['name']}/index/{var['index_name']}",
+            role_arn=data["iam.Role"]["DynamoDBAutoscaleRole"]["arn"],
+            scalable_dimension="dynamodb:index:ReadCapacityUnits",
+            service_namespace="dynamodb")
+        ```
+
+        ### ECS Service Autoscaling
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        ecs_target = aws.appautoscaling.Target("ecsTarget",
+            max_capacity=4,
+            min_capacity=1,
+            resource_id=f"service/{aws_ecs_cluster['example']['name']}/{aws_ecs_service['example']['name']}",
+            role_arn=var["ecs_iam_role"],
+            scalable_dimension="ecs:service:DesiredCount",
+            service_namespace="ecs")
+        ```
+
+        ### Aurora Read Replica Autoscaling
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        replicas = aws.appautoscaling.Target("replicas",
+            max_capacity=15,
+            min_capacity=1,
+            resource_id=f"cluster:{aws_rds_cluster['example']['id']}",
+            scalable_dimension="rds:cluster:ReadReplicaCount",
+            service_namespace="rds")
+        ```
 
 
         :param str resource_name: The name of the resource.

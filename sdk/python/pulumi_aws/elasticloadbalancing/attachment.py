@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+warnings.warn("aws.Attachment has been deprecated in favour of aws.Attachment", DeprecationWarning)
 class Attachment(pulumi.CustomResource):
     elb: pulumi.Output[str]
     """
@@ -18,6 +19,7 @@ class Attachment(pulumi.CustomResource):
     """
     Instance ID to place in the ELB pool.
     """
+    warnings.warn("aws.Attachment has been deprecated in favour of aws.Attachment", DeprecationWarning)
     def __init__(__self__, resource_name, opts=None, elb=None, instance=None, __props__=None, __name__=None, __opts__=None):
         """
         Attaches an EC2 instance to an Elastic Load Balancer (ELB). For attaching resources with Application Load Balancer (ALB) or Network Load Balancer (NLB), see the [`lb.TargetGroupAttachment` resource](https://www.terraform.io/docs/providers/aws/r/lb_target_group_attachment.html).
@@ -29,13 +31,29 @@ class Attachment(pulumi.CustomResource):
         instances in conjunction with an ELB Attachment resource. Doing so will cause a
         conflict and will overwrite attachments.
 
+        ## Example Usage
 
+
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        # Create a new load balancer attachment
+        baz = aws.elb.Attachment("baz",
+            elb=aws_elb["bar"]["id"],
+            instance=aws_instance["foo"]["id"])
+        ```
+
+
+        Deprecated: aws.Attachment has been deprecated in favour of aws.Attachment
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] elb: The name of the ELB.
         :param pulumi.Input[str] instance: Instance ID to place in the ELB pool.
         """
+        pulumi.log.warn("Attachment is deprecated: aws.Attachment has been deprecated in favour of aws.Attachment")
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

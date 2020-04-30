@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+warnings.warn("aws.Listener has been deprecated in favour of aws.Listener", DeprecationWarning)
 class Listener(pulumi.CustomResource):
     arn: pulumi.Output[str]
     """
@@ -78,13 +79,141 @@ class Listener(pulumi.CustomResource):
     """
     The name of the SSL Policy for the listener. Required if `protocol` is `HTTPS` or `TLS`.
     """
+    warnings.warn("aws.Listener has been deprecated in favour of aws.Listener", DeprecationWarning)
     def __init__(__self__, resource_name, opts=None, certificate_arn=None, default_actions=None, load_balancer_arn=None, port=None, protocol=None, ssl_policy=None, __props__=None, __name__=None, __opts__=None):
         """
         Provides a Load Balancer Listener resource.
 
         > **Note:** `alb.Listener` is known as `lb.Listener`. The functionality is identical.
 
+        ## Example Usage
 
+        ### Forward Action
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        front_end_load_balancer = aws.lb.LoadBalancer("frontEndLoadBalancer")
+        front_end_target_group = aws.lb.TargetGroup("frontEndTargetGroup")
+        front_end_listener = aws.lb.Listener("frontEndListener",
+            certificate_arn="arn:aws:iam::187416307283:server-certificate/test_cert_rab3wuqwgja25ct3n4jdj2tzu4",
+            default_actions=[{
+                "target_group_arn": front_end_target_group.arn,
+                "type": "forward",
+            }],
+            load_balancer_arn=front_end_load_balancer.arn,
+            port="443",
+            protocol="HTTPS",
+            ssl_policy="ELBSecurityPolicy-2016-08")
+        ```
+
+        ### Redirect Action
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        front_end_load_balancer = aws.lb.LoadBalancer("frontEndLoadBalancer")
+        front_end_listener = aws.lb.Listener("frontEndListener",
+            default_actions=[{
+                "redirect": {
+                    "port": "443",
+                    "protocol": "HTTPS",
+                    "status_code": "HTTP_301",
+                },
+                "type": "redirect",
+            }],
+            load_balancer_arn=front_end_load_balancer.arn,
+            port="80",
+            protocol="HTTP")
+        ```
+
+        ### Fixed-response Action
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        front_end_load_balancer = aws.lb.LoadBalancer("frontEndLoadBalancer")
+        front_end_listener = aws.lb.Listener("frontEndListener",
+            default_actions=[{
+                "fixedResponse": {
+                    "content_type": "text/plain",
+                    "messageBody": "Fixed response content",
+                    "status_code": "200",
+                },
+                "type": "fixed-response",
+            }],
+            load_balancer_arn=front_end_load_balancer.arn,
+            port="80",
+            protocol="HTTP")
+        ```
+
+        ### Authenticate-cognito Action
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        front_end_load_balancer = aws.lb.LoadBalancer("frontEndLoadBalancer")
+        front_end_target_group = aws.lb.TargetGroup("frontEndTargetGroup")
+        pool = aws.cognito.UserPool("pool")
+        client = aws.cognito.UserPoolClient("client")
+        domain = aws.cognito.UserPoolDomain("domain")
+        front_end_listener = aws.lb.Listener("frontEndListener",
+            default_actions=[
+                {
+                    "authenticateCognito": {
+                        "userPoolArn": pool.arn,
+                        "userPoolClientId": client.id,
+                        "userPoolDomain": domain.domain,
+                    },
+                    "type": "authenticate-cognito",
+                },
+                {
+                    "target_group_arn": front_end_target_group.arn,
+                    "type": "forward",
+                },
+            ],
+            load_balancer_arn=front_end_load_balancer.arn,
+            port="80",
+            protocol="HTTP")
+        ```
+
+        ### Authenticate-oidc Action
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        front_end_load_balancer = aws.lb.LoadBalancer("frontEndLoadBalancer")
+        front_end_target_group = aws.lb.TargetGroup("frontEndTargetGroup")
+        front_end_listener = aws.lb.Listener("frontEndListener",
+            default_actions=[
+                {
+                    "authenticateOidc": {
+                        "authorizationEndpoint": "https://example.com/authorization_endpoint",
+                        "client_id": "client_id",
+                        "client_secret": "client_secret",
+                        "issuer": "https://example.com",
+                        "tokenEndpoint": "https://example.com/token_endpoint",
+                        "userInfoEndpoint": "https://example.com/user_info_endpoint",
+                    },
+                    "type": "authenticate-oidc",
+                },
+                {
+                    "target_group_arn": front_end_target_group.arn,
+                    "type": "forward",
+                },
+            ],
+            load_balancer_arn=front_end_load_balancer.arn,
+            port="80",
+            protocol="HTTP")
+        ```
+
+
+        Deprecated: aws.Listener has been deprecated in favour of aws.Listener
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -137,6 +266,7 @@ class Listener(pulumi.CustomResource):
           * `target_group_arn` (`pulumi.Input[str]`) - The ARN of the Target Group to which to route traffic. Required if `type` is `forward`.
           * `type` (`pulumi.Input[str]`) - The type of routing action. Valid values are `forward`, `redirect`, `fixed-response`, `authenticate-cognito` and `authenticate-oidc`.
         """
+        pulumi.log.warn("Listener is deprecated: aws.Listener has been deprecated in favour of aws.Listener")
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

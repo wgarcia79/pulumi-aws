@@ -18,7 +18,7 @@ class GetHostedZoneIdResult:
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
-        id is the provider-assigned unique ID for this managed resource.
+        The provider-assigned unique ID for this managed resource.
         """
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
@@ -37,6 +37,25 @@ def get_hosted_zone_id(region=None,opts=None):
     Use this data source to get the HostedZoneId of the AWS Elastic Load Balancing HostedZoneId
     in a given region for the purpose of using in an AWS Route53 Alias.
 
+    ## Example Usage
+
+
+
+    ```python
+    import pulumi
+    import pulumi_aws as aws
+
+    main = aws.elb.get_hosted_zone_id()
+    www = aws.route53.Record("www",
+        aliases=[{
+            "evaluateTargetHealth": True,
+            "name": aws_elb["main"]["dns_name"],
+            "zone_id": main.id,
+        }],
+        name="example.com",
+        type="A",
+        zone_id=aws_route53_zone["primary"]["zone_id"])
+    ```
 
 
 

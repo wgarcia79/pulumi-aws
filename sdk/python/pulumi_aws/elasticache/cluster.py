@@ -14,7 +14,7 @@ class Cluster(pulumi.CustomResource):
     """
     Specifies whether any database modifications
     are applied immediately, or during the next maintenance window. Default is
-    `false`. See [Amazon ElastiCache Documentation for more information.][1]
+    `false`. See [Amazon ElastiCache Documentation for more information.](https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_ModifyCacheCluster.html)
     (Available since v0.6.0)
     """
     arn: pulumi.Output[str]
@@ -155,15 +155,54 @@ class Cluster(pulumi.CustomResource):
         a difference in its planning phase because the actual modification has not yet taken
         place. You can use the `apply_immediately` flag to instruct the service to apply the
         change immediately. Using `apply_immediately` can result in a brief downtime as the server reboots.
-        See the AWS Docs on [Modifying an ElastiCache Cache Cluster][2] for more information.
+        See the AWS Docs on [Modifying an ElastiCache Cache Cluster](https://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Clusters.Modify.html) for more information.
 
+        ## Example Usage
+
+        ### Memcached Cluster
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        example = aws.elasticache.Cluster("example",
+            engine="memcached",
+            node_type="cache.m4.large",
+            num_cache_nodes=2,
+            parameter_group_name="default.memcached1.4",
+            port=11211)
+        ```
+
+        ### Redis Instance
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        example = aws.elasticache.Cluster("example",
+            engine="redis",
+            engine_version="3.2.10",
+            node_type="cache.m4.large",
+            num_cache_nodes=1,
+            parameter_group_name="default.redis3.2",
+            port=6379)
+        ```
+
+        ### Redis Cluster Mode Disabled Read Replica Instance
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        replica = aws.elasticache.Cluster("replica", replication_group_id=aws_elasticache_replication_group["example"]["id"])
+        ```
 
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] apply_immediately: Specifies whether any database modifications
                are applied immediately, or during the next maintenance window. Default is
-               `false`. See [Amazon ElastiCache Documentation for more information.][1]
+               `false`. See [Amazon ElastiCache Documentation for more information.](https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_ModifyCacheCluster.html)
                (Available since v0.6.0)
         :param pulumi.Input[str] availability_zone: The Availability Zone for the cache cluster. If you want to create cache nodes in multi-az, use `preferred_availability_zones` instead. Default: System chosen Availability Zone.
         :param pulumi.Input[str] az_mode: Specifies whether the nodes in this Memcached node group are created in a single Availability Zone or created across multiple Availability Zones in the cluster's region. Valid values for this parameter are `single-az` or `cross-az`, default is `single-az`. If you want to choose `cross-az`, `num_cache_nodes` must be greater than `1`
@@ -271,7 +310,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] apply_immediately: Specifies whether any database modifications
                are applied immediately, or during the next maintenance window. Default is
-               `false`. See [Amazon ElastiCache Documentation for more information.][1]
+               `false`. See [Amazon ElastiCache Documentation for more information.](https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_ModifyCacheCluster.html)
                (Available since v0.6.0)
         :param pulumi.Input[str] availability_zone: The Availability Zone for the cache cluster. If you want to create cache nodes in multi-az, use `preferred_availability_zones` instead. Default: System chosen Availability Zone.
         :param pulumi.Input[str] az_mode: Specifies whether the nodes in this Memcached node group are created in a single Availability Zone or created across multiple Availability Zones in the cluster's region. Valid values for this parameter are `single-az` or `cross-az`, default is `single-az`. If you want to choose `cross-az`, `num_cache_nodes` must be greater than `1`

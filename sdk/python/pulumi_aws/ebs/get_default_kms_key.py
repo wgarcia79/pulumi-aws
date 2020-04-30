@@ -18,7 +18,7 @@ class GetDefaultKmsKeyResult:
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
-        id is the provider-assigned unique ID for this managed resource.
+        The provider-assigned unique ID for this managed resource.
         """
         if key_arn and not isinstance(key_arn, str):
             raise TypeError("Expected argument 'key_arn' to be a str")
@@ -38,6 +38,21 @@ class AwaitableGetDefaultKmsKeyResult(GetDefaultKmsKeyResult):
 def get_default_kms_key(opts=None):
     """
     Use this data source to get the default EBS encryption KMS key in the current region.
+
+    ## Example Usage
+
+
+
+    ```python
+    import pulumi
+    import pulumi_aws as aws
+
+    current = aws.ebs.get_default_kms_key()
+    example = aws.ebs.Volume("example",
+        availability_zone="us-west-2a",
+        encrypted=True,
+        kms_key_id=current.key_arn)
+    ```
     """
     __args__ = dict()
 

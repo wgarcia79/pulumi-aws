@@ -33,7 +33,7 @@ class GetAvailabilityZonesResult:
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
-        id is the provider-assigned unique ID for this managed resource.
+        The provider-assigned unique ID for this managed resource.
         """
         if names and not isinstance(names, list):
             raise TypeError("Expected argument 'names' to be a list")
@@ -77,6 +77,20 @@ def get_availability_zones(all_availability_zones=None,blacklisted_names=None,bl
 
     > When [Local Zones](https://aws.amazon.com/about-aws/global-infrastructure/localzones/) are enabled in a region, by default the API and this data source include both Local Zones and Availability Zones. To return only Availability Zones, see the example section below.
 
+    ## Example Usage
+
+    ### By State
+
+    ```python
+    import pulumi
+    import pulumi_aws as aws
+
+    available = aws.get_availability_zones(state="available")
+    primary = aws.ec2.Subnet("primary", availability_zone=available.names[0])
+    # ...
+    secondary = aws.ec2.Subnet("secondary", availability_zone=available.names[1])
+    # ...
+    ```
 
 
 

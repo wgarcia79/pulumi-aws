@@ -34,7 +34,7 @@ class VirtualService(pulumi.CustomResource):
     """
     The virtual service specification to apply.
 
-      * `provider` (`dict`)
+      * `provider` (`dict`) - The App Mesh object that is acting as the provider for a virtual service. You can specify a single virtual node or virtual router.
         * `virtualNode` (`dict`) - The virtual node associated with a virtual service.
           * `virtualNodeName` (`str`) - The name of the virtual node that is acting as a service provider.
 
@@ -49,6 +49,41 @@ class VirtualService(pulumi.CustomResource):
         """
         Provides an AWS App Mesh virtual service resource.
 
+        ## Example Usage
+
+        ### Virtual Node Provider
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        servicea = aws.appmesh.VirtualService("servicea",
+            mesh_name=aws_appmesh_mesh["simple"]["id"],
+            spec={
+                "provider": {
+                    "virtualNode": {
+                        "virtualNodeName": aws_appmesh_virtual_node["serviceb1"]["name"],
+                    },
+                },
+            })
+        ```
+
+        ### Virtual Router Provider
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        servicea = aws.appmesh.VirtualService("servicea",
+            mesh_name=aws_appmesh_mesh["simple"]["id"],
+            spec={
+                "provider": {
+                    "virtualRouter": {
+                        "virtual_router_name": aws_appmesh_virtual_router["serviceb"]["name"],
+                    },
+                },
+            })
+        ```
 
 
         :param str resource_name: The name of the resource.
@@ -60,7 +95,7 @@ class VirtualService(pulumi.CustomResource):
 
         The **spec** object supports the following:
 
-          * `provider` (`pulumi.Input[dict]`)
+          * `provider` (`pulumi.Input[dict]`) - The App Mesh object that is acting as the provider for a virtual service. You can specify a single virtual node or virtual router.
             * `virtualNode` (`pulumi.Input[dict]`) - The virtual node associated with a virtual service.
               * `virtualNodeName` (`pulumi.Input[str]`) - The name of the virtual node that is acting as a service provider.
 
@@ -120,7 +155,7 @@ class VirtualService(pulumi.CustomResource):
 
         The **spec** object supports the following:
 
-          * `provider` (`pulumi.Input[dict]`)
+          * `provider` (`pulumi.Input[dict]`) - The App Mesh object that is acting as the provider for a virtual service. You can specify a single virtual node or virtual router.
             * `virtualNode` (`pulumi.Input[dict]`) - The virtual node associated with a virtual service.
               * `virtualNodeName` (`pulumi.Input[str]`) - The name of the virtual node that is acting as a service provider.
 

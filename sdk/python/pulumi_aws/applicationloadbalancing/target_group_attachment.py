@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+warnings.warn("aws.TargetGroupAttachment has been deprecated in favour of aws.TargetGroupAttachment", DeprecationWarning)
 class TargetGroupAttachment(pulumi.CustomResource):
     availability_zone: pulumi.Output[str]
     """
@@ -26,13 +27,48 @@ class TargetGroupAttachment(pulumi.CustomResource):
     """
     The ID of the target. This is the Instance ID for an instance, or the container ID for an ECS container. If the target type is ip, specify an IP address. If the target type is lambda, specify the arn of lambda.
     """
+    warnings.warn("aws.TargetGroupAttachment has been deprecated in favour of aws.TargetGroupAttachment", DeprecationWarning)
     def __init__(__self__, resource_name, opts=None, availability_zone=None, port=None, target_group_arn=None, target_id=None, __props__=None, __name__=None, __opts__=None):
         """
         Provides the ability to register instances and containers with an Application Load Balancer (ALB) or Network Load Balancer (NLB) target group. For attaching resources with Elastic Load Balancer (ELB), see the [`elb.Attachment` resource](https://www.terraform.io/docs/providers/aws/r/elb_attachment.html).
 
         > **Note:** `alb.TargetGroupAttachment` is known as `lb.TargetGroupAttachment`. The functionality is identical.
 
+        ## Example Usage
 
+
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        test_target_group = aws.lb.TargetGroup("testTargetGroup")
+        test_instance = aws.ec2.Instance("testInstance")
+        test_target_group_attachment = aws.lb.TargetGroupAttachment("testTargetGroupAttachment",
+            port=80,
+            target_group_arn=test_target_group.arn,
+            target_id=test_instance.id)
+        ```
+
+        ## Usage with lambda
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        test_target_group = aws.lb.TargetGroup("testTargetGroup", target_type="lambda")
+        test_function = aws.lambda_.Function("testFunction")
+        with_lb = aws.lambda_.Permission("withLb",
+            action="lambda:InvokeFunction",
+            function=test_function.arn,
+            principal="elasticloadbalancing.amazonaws.com",
+            source_arn=test_target_group.arn)
+        test_target_group_attachment = aws.lb.TargetGroupAttachment("testTargetGroupAttachment",
+            target_group_arn=test_target_group.arn,
+            target_id=test_function.arn)
+        ```
+
+        Deprecated: aws.TargetGroupAttachment has been deprecated in favour of aws.TargetGroupAttachment
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -41,6 +77,7 @@ class TargetGroupAttachment(pulumi.CustomResource):
         :param pulumi.Input[str] target_group_arn: The ARN of the target group with which to register targets
         :param pulumi.Input[str] target_id: The ID of the target. This is the Instance ID for an instance, or the container ID for an ECS container. If the target type is ip, specify an IP address. If the target type is lambda, specify the arn of lambda.
         """
+        pulumi.log.warn("TargetGroupAttachment is deprecated: aws.TargetGroupAttachment has been deprecated in favour of aws.TargetGroupAttachment")
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

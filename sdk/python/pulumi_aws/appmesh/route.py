@@ -48,8 +48,7 @@ class Route(pulumi.CustomResource):
               * `exact` (`str`) - The header value sent by the client must match the specified value exactly.
               * `prefix` (`str`) - Specifies the path with which to match requests.
                 This parameter must always start with /, which by itself matches all requests to the virtual router service name.
-                * `range`- (Optional) The object that specifies the range of numbers that the header value sent by the client must be included in.
-              * `range` (`dict`)
+              * `range` (`dict`) - The object that specifies the range of numbers that the header value sent by the client must be included in.
                 * `end` (`float`) - The end of the range.
                 * `start` (`float`) - The start of the range.
 
@@ -61,7 +60,6 @@ class Route(pulumi.CustomResource):
           * `method` (`str`) - The client request header method to match on. Valid values: `GET`, `HEAD`, `POST`, `PUT`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`, `PATCH`.
           * `prefix` (`str`) - Specifies the path with which to match requests.
             This parameter must always start with /, which by itself matches all requests to the virtual router service name.
-            * `range`- (Optional) The object that specifies the range of numbers that the header value sent by the client must be included in.
           * `scheme` (`str`) - The client request header scheme to match on. Valid values: `http`, `https`.
 
       * `priority` (`float`) - The priority for the route, between `0` and `1000`.
@@ -85,6 +83,90 @@ class Route(pulumi.CustomResource):
         """
         Provides an AWS App Mesh route resource.
 
+        ## Example Usage
+
+        ### HTTP Routing
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        serviceb = aws.appmesh.Route("serviceb",
+            mesh_name=aws_appmesh_mesh["simple"]["id"],
+            spec={
+                "httpRoute": {
+                    "action": {
+                        "weightedTarget": [
+                            {
+                                "virtualNode": aws_appmesh_virtual_node["serviceb1"]["name"],
+                                "weight": 90,
+                            },
+                            {
+                                "virtualNode": aws_appmesh_virtual_node["serviceb2"]["name"],
+                                "weight": 10,
+                            },
+                        ],
+                    },
+                    "match": {
+                        "prefix": "/",
+                    },
+                },
+            },
+            virtual_router_name=aws_appmesh_virtual_router["serviceb"]["name"])
+        ```
+
+        ### HTTP Header Routing
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        serviceb = aws.appmesh.Route("serviceb",
+            mesh_name=aws_appmesh_mesh["simple"]["id"],
+            spec={
+                "httpRoute": {
+                    "action": {
+                        "weightedTarget": [{
+                            "virtualNode": aws_appmesh_virtual_node["serviceb"]["name"],
+                            "weight": 100,
+                        }],
+                    },
+                    "match": {
+                        "header": [{
+                            "match": {
+                                "prefix": "123",
+                            },
+                            "name": "clientRequestId",
+                        }],
+                        "method": "POST",
+                        "prefix": "/",
+                        "scheme": "https",
+                    },
+                },
+            },
+            virtual_router_name=aws_appmesh_virtual_router["serviceb"]["name"])
+        ```
+
+        ### TCP Routing
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        serviceb = aws.appmesh.Route("serviceb",
+            mesh_name=aws_appmesh_mesh["simple"]["id"],
+            spec={
+                "tcpRoute": {
+                    "action": {
+                        "weightedTarget": [{
+                            "virtualNode": aws_appmesh_virtual_node["serviceb1"]["name"],
+                            "weight": 100,
+                        }],
+                    },
+                },
+            },
+            virtual_router_name=aws_appmesh_virtual_router["serviceb"]["name"])
+        ```
 
 
         :param str resource_name: The name of the resource.
@@ -111,8 +193,7 @@ class Route(pulumi.CustomResource):
                   * `exact` (`pulumi.Input[str]`) - The header value sent by the client must match the specified value exactly.
                   * `prefix` (`pulumi.Input[str]`) - Specifies the path with which to match requests.
                     This parameter must always start with /, which by itself matches all requests to the virtual router service name.
-                    * `range`- (Optional) The object that specifies the range of numbers that the header value sent by the client must be included in.
-                  * `range` (`pulumi.Input[dict]`)
+                  * `range` (`pulumi.Input[dict]`) - The object that specifies the range of numbers that the header value sent by the client must be included in.
                     * `end` (`pulumi.Input[float]`) - The end of the range.
                     * `start` (`pulumi.Input[float]`) - The start of the range.
 
@@ -124,7 +205,6 @@ class Route(pulumi.CustomResource):
               * `method` (`pulumi.Input[str]`) - The client request header method to match on. Valid values: `GET`, `HEAD`, `POST`, `PUT`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`, `PATCH`.
               * `prefix` (`pulumi.Input[str]`) - Specifies the path with which to match requests.
                 This parameter must always start with /, which by itself matches all requests to the virtual router service name.
-                * `range`- (Optional) The object that specifies the range of numbers that the header value sent by the client must be included in.
               * `scheme` (`pulumi.Input[str]`) - The client request header scheme to match on. Valid values: `http`, `https`.
 
           * `priority` (`pulumi.Input[float]`) - The priority for the route, between `0` and `1000`.
@@ -207,8 +287,7 @@ class Route(pulumi.CustomResource):
                   * `exact` (`pulumi.Input[str]`) - The header value sent by the client must match the specified value exactly.
                   * `prefix` (`pulumi.Input[str]`) - Specifies the path with which to match requests.
                     This parameter must always start with /, which by itself matches all requests to the virtual router service name.
-                    * `range`- (Optional) The object that specifies the range of numbers that the header value sent by the client must be included in.
-                  * `range` (`pulumi.Input[dict]`)
+                  * `range` (`pulumi.Input[dict]`) - The object that specifies the range of numbers that the header value sent by the client must be included in.
                     * `end` (`pulumi.Input[float]`) - The end of the range.
                     * `start` (`pulumi.Input[float]`) - The start of the range.
 
@@ -220,7 +299,6 @@ class Route(pulumi.CustomResource):
               * `method` (`pulumi.Input[str]`) - The client request header method to match on. Valid values: `GET`, `HEAD`, `POST`, `PUT`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`, `PATCH`.
               * `prefix` (`pulumi.Input[str]`) - Specifies the path with which to match requests.
                 This parameter must always start with /, which by itself matches all requests to the virtual router service name.
-                * `range`- (Optional) The object that specifies the range of numbers that the header value sent by the client must be included in.
               * `scheme` (`pulumi.Input[str]`) - The client request header scheme to match on. Valid values: `http`, `https`.
 
           * `priority` (`pulumi.Input[float]`) - The priority for the route, between `0` and `1000`.

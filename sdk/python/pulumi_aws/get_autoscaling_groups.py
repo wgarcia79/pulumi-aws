@@ -27,7 +27,7 @@ class GetAutoscalingGroupsResult:
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
-        id is the provider-assigned unique ID for this managed resource.
+        The provider-assigned unique ID for this managed resource.
         """
         if names and not isinstance(names, list):
             raise TypeError("Expected argument 'names' to be a list")
@@ -51,6 +51,34 @@ def get_autoscaling_groups(filters=None,opts=None):
     The Autoscaling Groups data source allows access to the list of AWS
     ASGs within a specific region. This will allow you to pass a list of AutoScaling Groups to other resources.
 
+    ## Example Usage
+
+
+
+    ```python
+    import pulumi
+    import pulumi_aws as aws
+
+    groups = aws.get_autoscaling_groups(filters=[
+        {
+            "name": "key",
+            "values": ["Team"],
+        },
+        {
+            "name": "value",
+            "values": ["Pets"],
+        },
+    ])
+    slack_notifications = aws.autoscaling.Notification("slackNotifications",
+        group_names=groups.names,
+        notifications=[
+            "autoscaling:EC2_INSTANCE_LAUNCH",
+            "autoscaling:EC2_INSTANCE_TERMINATE",
+            "autoscaling:EC2_INSTANCE_LAUNCH_ERROR",
+            "autoscaling:EC2_INSTANCE_TERMINATE_ERROR",
+        ],
+        topic_arn="TOPIC ARN")
+    ```
 
 
 

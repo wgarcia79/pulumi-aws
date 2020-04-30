@@ -103,7 +103,6 @@ class Instance(pulumi.CustomResource):
     """
     The IAM Instance Profile to
     launch the instance with. Specified as the name of the Instance Profile. Ensure your credentials have the correct permission to assign the instance profile according to the [EC2 documentation](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html#roles-usingrole-ec2instance-permissions), notably `iam:PassRole`.
-    * `ipv6_address_count`- (Optional) A number of IPv6 addresses to associate with the primary network interface. Amazon EC2 chooses the IPv6 addresses from the range of your subnet.
     """
     instance_initiated_shutdown_behavior: pulumi.Output[str]
     """
@@ -121,6 +120,9 @@ class Instance(pulumi.CustomResource):
     The type of instance to start. Updates to this field will trigger a stop/start of the EC2 instance.
     """
     ipv6_address_count: pulumi.Output[float]
+    """
+    A number of IPv6 addresses to associate with the primary network interface. Amazon EC2 chooses the IPv6 addresses from the range of your subnet.
+    """
     ipv6_addresses: pulumi.Output[list]
     """
     Specify one or more IPv6 addresses from the range of the subnet to associate with the primary network interface
@@ -245,6 +247,33 @@ class Instance(pulumi.CustomResource):
         Provides an EC2 instance resource. This allows instances to be created, updated,
         and deleted. Instances also support [provisioning](https://www.terraform.io/docs/provisioners/index.html).
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        ubuntu = aws.get_ami(filters=[
+                {
+                    "name": "name",
+                    "values": ["ubuntu/images/hvm-ssd/ubuntu-trusty-14.04-amd64-server-*"],
+                },
+                {
+                    "name": "virtualization-type",
+                    "values": ["hvm"],
+                },
+            ],
+            most_recent=True,
+            owners=["099720109477"])
+        web = aws.ec2.Instance("web",
+            ami=ubuntu.id,
+            instance_type="t2.micro",
+            tags={
+                "Name": "HelloWorld",
+            })
+        ```
 
 
         :param str resource_name: The name of the resource.
@@ -273,12 +302,12 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] host_id: The Id of a dedicated host that the instance will be assigned to. Use when an instance is to be launched on a specific dedicated host.
         :param pulumi.Input[dict] iam_instance_profile: The IAM Instance Profile to
                launch the instance with. Specified as the name of the Instance Profile. Ensure your credentials have the correct permission to assign the instance profile according to the [EC2 documentation](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html#roles-usingrole-ec2instance-permissions), notably `iam:PassRole`.
-               * `ipv6_address_count`- (Optional) A number of IPv6 addresses to associate with the primary network interface. Amazon EC2 chooses the IPv6 addresses from the range of your subnet.
         :param pulumi.Input[str] instance_initiated_shutdown_behavior: Shutdown behavior for the
                instance. Amazon defaults this to `stop` for EBS-backed instances and
                `terminate` for instance-store instances. Cannot be set on instance-store
                instances. See [Shutdown Behavior](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingInstanceInitiatedShutdownBehavior) for more information.
         :param pulumi.Input[str] instance_type: The type of instance to start. Updates to this field will trigger a stop/start of the EC2 instance.
+        :param pulumi.Input[float] ipv6_address_count: A number of IPv6 addresses to associate with the primary network interface. Amazon EC2 chooses the IPv6 addresses from the range of your subnet.
         :param pulumi.Input[list] ipv6_addresses: Specify one or more IPv6 addresses from the range of the subnet to associate with the primary network interface
         :param pulumi.Input[str] key_name: The key name of the Key Pair to use for the instance; which can be managed using the `ec2.KeyPair` resource.
         :param pulumi.Input[dict] metadata_options: Customize the metadata options of the instance. See Metadata Options below for more details.
@@ -459,13 +488,13 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] host_id: The Id of a dedicated host that the instance will be assigned to. Use when an instance is to be launched on a specific dedicated host.
         :param pulumi.Input[dict] iam_instance_profile: The IAM Instance Profile to
                launch the instance with. Specified as the name of the Instance Profile. Ensure your credentials have the correct permission to assign the instance profile according to the [EC2 documentation](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html#roles-usingrole-ec2instance-permissions), notably `iam:PassRole`.
-               * `ipv6_address_count`- (Optional) A number of IPv6 addresses to associate with the primary network interface. Amazon EC2 chooses the IPv6 addresses from the range of your subnet.
         :param pulumi.Input[str] instance_initiated_shutdown_behavior: Shutdown behavior for the
                instance. Amazon defaults this to `stop` for EBS-backed instances and
                `terminate` for instance-store instances. Cannot be set on instance-store
                instances. See [Shutdown Behavior](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingInstanceInitiatedShutdownBehavior) for more information.
         :param pulumi.Input[str] instance_state: The state of the instance. One of: `pending`, `running`, `shutting-down`, `terminated`, `stopping`, `stopped`. See [Instance Lifecycle](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html) for more information.
         :param pulumi.Input[str] instance_type: The type of instance to start. Updates to this field will trigger a stop/start of the EC2 instance.
+        :param pulumi.Input[float] ipv6_address_count: A number of IPv6 addresses to associate with the primary network interface. Amazon EC2 chooses the IPv6 addresses from the range of your subnet.
         :param pulumi.Input[list] ipv6_addresses: Specify one or more IPv6 addresses from the range of the subnet to associate with the primary network interface
         :param pulumi.Input[str] key_name: The key name of the Key Pair to use for the instance; which can be managed using the `ec2.KeyPair` resource.
         :param pulumi.Input[dict] metadata_options: Customize the metadata options of the instance. See Metadata Options below for more details.

@@ -18,26 +18,63 @@ class ResourceDataSync(pulumi.CustomResource):
     """
     Amazon S3 configuration details for the sync.
 
-      * `bucket_name` (`str`)
-      * `kms_key_arn` (`str`)
-      * `prefix` (`str`)
-      * `region` (`str`)
-      * `syncFormat` (`str`)
+      * `bucket_name` (`str`) - Name of S3 bucket where the aggregated data is stored.
+      * `kms_key_arn` (`str`) - ARN of an encryption key for a destination in Amazon S3.
+      * `prefix` (`str`) - Prefix for the bucket.
+      * `region` (`str`) - Region with the bucket targeted by the Resource Data Sync.
+      * `syncFormat` (`str`) - A supported sync format. Only JsonSerDe is currently supported. Defaults to JsonSerDe.
     """
     def __init__(__self__, resource_name, opts=None, name=None, s3_destination=None, __props__=None, __name__=None, __opts__=None):
         """
         Provides a SSM resource data sync.
 
+        ## Example Usage
 
-        ## s3_destination
 
-        `s3_destination` supports the following:
 
-        * `bucket_name` - (Required) Name of S3 bucket where the aggregated data is stored.
-        * `region` - (Required) Region with the bucket targeted by the Resource Data Sync.
-        * `kms_key_arn` - (Optional) ARN of an encryption key for a destination in Amazon S3.
-        * `prefix` - (Optional) Prefix for the bucket.
-        * `sync_format` - (Optional) A supported sync format. Only JsonSerDe is currently supported. Defaults to JsonSerDe.
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        hoge_bucket = aws.s3.Bucket("hogeBucket", region="us-east-1")
+        hoge_bucket_policy = aws.s3.BucketPolicy("hogeBucketPolicy",
+            bucket=hoge_bucket.bucket,
+            policy="""{
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Sid": "SSMBucketPermissionsCheck",
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": "ssm.amazonaws.com"
+                    },
+                    "Action": "s3:GetBucketAcl",
+                    "Resource": "arn:aws:s3:::tf-test-bucket-1234"
+                },
+                {
+                    "Sid": " SSMBucketDelivery",
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": "ssm.amazonaws.com"
+                    },
+                    "Action": "s3:PutObject",
+                    "Resource": ["arn:aws:s3:::tf-test-bucket-1234/*"],
+                    "Condition": {
+                        "StringEquals": {
+                            "s3:x-amz-acl": "bucket-owner-full-control"
+                        }
+                    }
+                }
+            ]
+        }
+
+        """)
+        foo = aws.ssm.ResourceDataSync("foo", s3_destination={
+            "bucket_name": hoge_bucket.bucket,
+            "region": hoge_bucket.region,
+        })
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -46,11 +83,11 @@ class ResourceDataSync(pulumi.CustomResource):
 
         The **s3_destination** object supports the following:
 
-          * `bucket_name` (`pulumi.Input[str]`)
-          * `kms_key_arn` (`pulumi.Input[str]`)
-          * `prefix` (`pulumi.Input[str]`)
-          * `region` (`pulumi.Input[str]`)
-          * `syncFormat` (`pulumi.Input[str]`)
+          * `bucket_name` (`pulumi.Input[str]`) - Name of S3 bucket where the aggregated data is stored.
+          * `kms_key_arn` (`pulumi.Input[str]`) - ARN of an encryption key for a destination in Amazon S3.
+          * `prefix` (`pulumi.Input[str]`) - Prefix for the bucket.
+          * `region` (`pulumi.Input[str]`) - Region with the bucket targeted by the Resource Data Sync.
+          * `syncFormat` (`pulumi.Input[str]`) - A supported sync format. Only JsonSerDe is currently supported. Defaults to JsonSerDe.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -93,11 +130,11 @@ class ResourceDataSync(pulumi.CustomResource):
 
         The **s3_destination** object supports the following:
 
-          * `bucket_name` (`pulumi.Input[str]`)
-          * `kms_key_arn` (`pulumi.Input[str]`)
-          * `prefix` (`pulumi.Input[str]`)
-          * `region` (`pulumi.Input[str]`)
-          * `syncFormat` (`pulumi.Input[str]`)
+          * `bucket_name` (`pulumi.Input[str]`) - Name of S3 bucket where the aggregated data is stored.
+          * `kms_key_arn` (`pulumi.Input[str]`) - ARN of an encryption key for a destination in Amazon S3.
+          * `prefix` (`pulumi.Input[str]`) - Prefix for the bucket.
+          * `region` (`pulumi.Input[str]`) - Region with the bucket targeted by the Resource Data Sync.
+          * `syncFormat` (`pulumi.Input[str]`) - A supported sync format. Only JsonSerDe is currently supported. Defaults to JsonSerDe.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

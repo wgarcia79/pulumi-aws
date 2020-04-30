@@ -40,7 +40,7 @@ class ServerCertificate(pulumi.CustomResource):
     The IAM path for the server certificate.  If it is not
     included, it defaults to a slash (/). If this certificate is for use with
     AWS CloudFront, the path must be in format `/cloudfront/your_path_here`.
-    See [IAM Identifiers][1] for more details on IAM Paths.
+    See [IAM Identifiers](https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html) for more details on IAM Paths.
     """
     private_key: pulumi.Output[str]
     """
@@ -62,6 +62,18 @@ class ServerCertificate(pulumi.CustomResource):
         > **Note:** All arguments including the private key will be stored in the raw state as plain-text.
         [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        test_cert = aws.iam.ServerCertificate("testCert",
+            certificate_body=(lambda path: open(path).read())("self-ca-cert.pem"),
+            private_key=(lambda path: open(path).read())("test-key.pem"))
+        ```
 
 
         :param str resource_name: The name of the resource.
@@ -79,7 +91,7 @@ class ServerCertificate(pulumi.CustomResource):
         :param pulumi.Input[str] path: The IAM path for the server certificate.  If it is not
                included, it defaults to a slash (/). If this certificate is for use with
                AWS CloudFront, the path must be in format `/cloudfront/your_path_here`.
-               See [IAM Identifiers][1] for more details on IAM Paths.
+               See [IAM Identifiers](https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html) for more details on IAM Paths.
         :param pulumi.Input[str] private_key: The contents of the private key in PEM-encoded format.
         """
         if __name__ is not None:
@@ -138,7 +150,7 @@ class ServerCertificate(pulumi.CustomResource):
         :param pulumi.Input[str] path: The IAM path for the server certificate.  If it is not
                included, it defaults to a slash (/). If this certificate is for use with
                AWS CloudFront, the path must be in format `/cloudfront/your_path_here`.
-               See [IAM Identifiers][1] for more details on IAM Paths.
+               See [IAM Identifiers](https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html) for more details on IAM Paths.
         :param pulumi.Input[str] private_key: The contents of the private key in PEM-encoded format.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

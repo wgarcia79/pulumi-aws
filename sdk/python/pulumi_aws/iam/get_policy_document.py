@@ -18,7 +18,7 @@ class GetPolicyDocumentResult:
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
-        id is the provider-assigned unique ID for this managed resource.
+        The provider-assigned unique ID for this managed resource.
         """
         if json and not isinstance(json, str):
             raise TypeError("Expected argument 'json' to be a str")
@@ -63,6 +63,44 @@ def get_policy_document(override_json=None,policy_id=None,source_json=None,state
     an IAM policy document, for use with resources which expect policy documents,
     such as the `iam.Policy` resource.
 
+    ```python
+    import pulumi
+    import pulumi_aws as aws
+
+    example_policy_document = aws.iam.get_policy_document(statements=[
+        {
+            "actions": [
+                "s3:ListAllMyBuckets",
+                "s3:GetBucketLocation",
+            ],
+            "resources": ["arn:aws:s3:::*"],
+            "sid": "1",
+        },
+        {
+            "actions": ["s3:ListBucket"],
+            "condition": [{
+                "test": "StringLike",
+                "values": [
+                    "",
+                    "home/",
+                    "home/&{aws:username}/",
+                ],
+                "variable": "s3:prefix",
+            }],
+            "resources": [f"arn:aws:s3:::{var['s3_bucket_name']}"],
+        },
+        {
+            "actions": ["s3:*"],
+            "resources": [
+                f"arn:aws:s3:::{var['s3_bucket_name']}/home/&{{aws:username}}",
+                f"arn:aws:s3:::{var['s3_bucket_name']}/home/&{{aws:username}}/*",
+            ],
+        },
+    ])
+    example_policy = aws.iam.Policy("examplePolicy",
+        path="/",
+        policy=example_policy_document.json)
+    ```
 
     Using this data source to generate policy documents is *optional*. It is also
     valid to use literal JSON strings within your configuration, or to use the

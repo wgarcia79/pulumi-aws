@@ -29,6 +29,23 @@ class DomainDkim(pulumi.CustomResource):
 
         Domain ownership needs to be confirmed first using [ses_domain_identity Resource](https://www.terraform.io/docs/providers/aws/r/ses_domain_identity.html)
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        example_domain_identity = aws.ses.DomainIdentity("exampleDomainIdentity", domain="example.com")
+        example_domain_dkim = aws.ses.DomainDkim("exampleDomainDkim", domain=example_domain_identity.domain)
+        example_amazonses_dkim_record = aws.route53.Record("exampleAmazonsesDkimRecord",
+            name=example_domain_dkim.dkim_tokens[range["value"]].apply(lambda dkim_tokens: f"{dkim_tokens}._domainkey.example.com"),
+            records=[example_domain_dkim.dkim_tokens[range["value"]].apply(lambda dkim_tokens: f"{dkim_tokens}.dkim.amazonses.com")],
+            ttl="600",
+            type="CNAME",
+            zone_id="ABCDEFGHIJ123")
+        ```
 
 
         :param str resource_name: The name of the resource.

@@ -24,7 +24,7 @@ class GetBillingServiceAccountResult:
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
-        id is the provider-assigned unique ID for this managed resource.
+        The provider-assigned unique ID for this managed resource.
         """
 class AwaitableGetBillingServiceAccountResult(GetBillingServiceAccountResult):
     # pylint: disable=using-constant-test
@@ -38,6 +38,51 @@ class AwaitableGetBillingServiceAccountResult(GetBillingServiceAccountResult):
 def get_billing_service_account(opts=None):
     """
     Use this data source to get the Account ID of the [AWS Billing and Cost Management Service Account](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-getting-started.html#step-2) for the purpose of whitelisting in S3 bucket policy.
+
+    ## Example Usage
+
+
+
+    ```python
+    import pulumi
+    import pulumi_aws as aws
+
+    main = aws.get_billing_service_account()
+    billing_logs = aws.s3.Bucket("billingLogs",
+        acl="private",
+        policy=f"""{{
+      "Id": "Policy",
+      "Version": "2012-10-17",
+      "Statement": [
+        {{
+          "Action": [
+            "s3:GetBucketAcl", "s3:GetBucketPolicy"
+          ],
+          "Effect": "Allow",
+          "Resource": "arn:aws:s3:::my-billing-tf-test-bucket",
+          "Principal": {{
+            "AWS": [
+              "{main.arn}"
+            ]
+          }}
+        }},
+        {{
+          "Action": [
+            "s3:PutObject"
+          ],
+          "Effect": "Allow",
+          "Resource": "arn:aws:s3:::my-billing-tf-test-bucket/*",
+          "Principal": {{
+            "AWS": [
+              "{main.arn}"
+            ]
+          }}
+        }}
+      ]
+    }}
+
+    """)
+    ```
     """
     __args__ = dict()
 

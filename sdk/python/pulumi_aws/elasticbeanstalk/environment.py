@@ -68,7 +68,7 @@ class Environment(pulumi.CustomResource):
     """
     platform_arn: pulumi.Output[str]
     """
-    The [ARN][2] of the Elastic Beanstalk [Platform][3]
+    The [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of the Elastic Beanstalk [Platform](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-environment.html#cfn-beanstalk-environment-platformarn)
     to use in deployment
     """
     poll_interval: pulumi.Output[str]
@@ -97,7 +97,7 @@ class Environment(pulumi.CustomResource):
     solution_stack_name: pulumi.Output[str]
     """
     A solution stack to base your environment
-    off of. Example stacks can be found in the [Amazon API documentation][1]
+    off of. Example stacks can be found in the [Amazon API documentation](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.platforms.html)
     """
     tags: pulumi.Output[dict]
     """
@@ -138,6 +138,19 @@ class Environment(pulumi.CustomResource):
         Environments are often things such as `development`, `integration`, or
         `production`.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        tftest = aws.elasticbeanstalk.Application("tftest", description="tf-test-desc")
+        tfenvtest = aws.elasticbeanstalk.Environment("tfenvtest",
+            application=tftest.name,
+            solution_stack_name="64bit Amazon Linux 2015.03 v2.0.3 running Go 1.4")
+        ```
 
         ## Option Settings
 
@@ -151,6 +164,30 @@ class Environment(pulumi.CustomResource):
         * `value` - value for the configuration option
         * `resource` - (Optional) resource name for [scheduled action](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options-general.html#command-options-general-autoscalingscheduledaction)
 
+        ### Example With Options
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        tftest = aws.elasticbeanstalk.Application("tftest", description="tf-test-desc")
+        tfenvtest = aws.elasticbeanstalk.Environment("tfenvtest",
+            application=tftest.name,
+            settings=[
+                {
+                    "name": "VPCId",
+                    "namespace": "aws:ec2:vpc",
+                    "value": "vpc-xxxxxxxx",
+                },
+                {
+                    "name": "Subnets",
+                    "namespace": "aws:ec2:vpc",
+                    "value": "subnet-xxxxxxxx",
+                },
+            ],
+            solution_stack_name="64bit Amazon Linux 2015.03 v2.0.3 running Go 1.4")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[dict] application: Name of the application that contains the version
@@ -160,7 +197,7 @@ class Environment(pulumi.CustomResource):
         :param pulumi.Input[str] description: Short description of the Environment
         :param pulumi.Input[str] name: A unique name for this Environment. This name is used
                in the application URL
-        :param pulumi.Input[str] platform_arn: The [ARN][2] of the Elastic Beanstalk [Platform][3]
+        :param pulumi.Input[str] platform_arn: The [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of the Elastic Beanstalk [Platform](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-environment.html#cfn-beanstalk-environment-platformarn)
                to use in deployment
         :param pulumi.Input[str] poll_interval: The time between polling the AWS API to
                check if changes have been applied. Use this to adjust the rate of API calls
@@ -170,7 +207,7 @@ class Environment(pulumi.CustomResource):
                override specific values that are set as defaults. The format is detailed
                below in Option Settings
         :param pulumi.Input[str] solution_stack_name: A solution stack to base your environment
-               off of. Example stacks can be found in the [Amazon API documentation][1]
+               off of. Example stacks can be found in the [Amazon API documentation](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.platforms.html)
         :param pulumi.Input[dict] tags: A set of tags to apply to the Environment.
         :param pulumi.Input[str] template_name: The name of the Elastic Beanstalk Configuration
                template to use in deployment
@@ -264,7 +301,7 @@ class Environment(pulumi.CustomResource):
         :param pulumi.Input[list] load_balancers: Elastic load balancers in use by this Environment.
         :param pulumi.Input[str] name: A unique name for this Environment. This name is used
                in the application URL
-        :param pulumi.Input[str] platform_arn: The [ARN][2] of the Elastic Beanstalk [Platform][3]
+        :param pulumi.Input[str] platform_arn: The [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of the Elastic Beanstalk [Platform](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-environment.html#cfn-beanstalk-environment-platformarn)
                to use in deployment
         :param pulumi.Input[str] poll_interval: The time between polling the AWS API to
                check if changes have been applied. Use this to adjust the rate of API calls
@@ -275,7 +312,7 @@ class Environment(pulumi.CustomResource):
                override specific values that are set as defaults. The format is detailed
                below in Option Settings
         :param pulumi.Input[str] solution_stack_name: A solution stack to base your environment
-               off of. Example stacks can be found in the [Amazon API documentation][1]
+               off of. Example stacks can be found in the [Amazon API documentation](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.platforms.html)
         :param pulumi.Input[dict] tags: A set of tags to apply to the Environment.
         :param pulumi.Input[str] template_name: The name of the Elastic Beanstalk Configuration
                template to use in deployment

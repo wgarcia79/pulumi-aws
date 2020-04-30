@@ -21,7 +21,7 @@ class GetRouteTablesResult:
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
-        id is the provider-assigned unique ID for this managed resource.
+        The provider-assigned unique ID for this managed resource.
         """
         if ids and not isinstance(ids, list):
             raise TypeError("Expected argument 'ids' to be a list")
@@ -51,6 +51,24 @@ def get_route_tables(filters=None,tags=None,vpc_id=None,opts=None):
     """
     This resource can be useful for getting back a list of route table ids to be referenced elsewhere.
 
+    ## Example Usage
+
+
+
+    ```python
+    import pulumi
+    import pulumi_aws as aws
+
+    rts = aws.ec2.get_route_tables(filters=[{
+            "name": "tag:kubernetes.io/kops/role",
+            "values": ["private*"],
+        }],
+        vpc_id=var["vpc_id"])
+    route = aws.ec2.Route("route",
+        destination_cidr_block="10.0.1.0/22",
+        route_table_id=rts.ids[range["value"]],
+        vpc_peering_connection_id="pcx-0e9a7a9ecd137dc54")
+    ```
 
 
 

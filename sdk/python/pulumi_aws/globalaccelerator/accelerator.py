@@ -22,7 +22,7 @@ class Accelerator(pulumi.CustomResource):
     """
     The DNS name of the accelerator. For example, `a5d53ff5ee6bca4ce.awsglobalaccelerator.com`.
     * `hosted_zone_id` --  The Global Accelerator Route 53 zone ID that can be used to
-    route an [Alias Resource Record Set][1] to the Global Accelerator. This attribute
+    route an [Alias Resource Record Set](https://docs.aws.amazon.com/Route53/latest/APIReference/API_AliasTarget.html) to the Global Accelerator. This attribute
     is simply an alias for the zone ID `Z2BJ6XQ5FK7U4H`.
     """
     enabled: pulumi.Output[bool]
@@ -53,6 +53,23 @@ class Accelerator(pulumi.CustomResource):
         """
         Creates a Global Accelerator accelerator.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        example = aws.globalaccelerator.Accelerator("example",
+            attributes={
+                "flowLogsEnabled": True,
+                "flowLogsS3Bucket": "example-bucket",
+                "flowLogsS3Prefix": "flow-logs/",
+            },
+            enabled=True,
+            ip_address_type="IPV4")
+        ```
 
 
         :param str resource_name: The name of the resource.
@@ -112,7 +129,7 @@ class Accelerator(pulumi.CustomResource):
         :param pulumi.Input[dict] attributes: The attributes of the accelerator. Fields documented below.
         :param pulumi.Input[str] dns_name: The DNS name of the accelerator. For example, `a5d53ff5ee6bca4ce.awsglobalaccelerator.com`.
                * `hosted_zone_id` --  The Global Accelerator Route 53 zone ID that can be used to
-               route an [Alias Resource Record Set][1] to the Global Accelerator. This attribute
+               route an [Alias Resource Record Set](https://docs.aws.amazon.com/Route53/latest/APIReference/API_AliasTarget.html) to the Global Accelerator. This attribute
                is simply an alias for the zone ID `Z2BJ6XQ5FK7U4H`.
         :param pulumi.Input[bool] enabled: Indicates whether the accelerator is enabled. The value is true or false. The default value is true.
         :param pulumi.Input[str] ip_address_type: The value for the address type must be `IPV4`.

@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+warnings.warn("aws.ListenerRule has been deprecated in favour of aws.ListenerRule", DeprecationWarning)
 class ListenerRule(pulumi.CustomResource):
     actions: pulumi.Output[list]
     """
@@ -93,13 +94,117 @@ class ListenerRule(pulumi.CustomResource):
     """
     The priority for the rule between `1` and `50000`. Leaving it unset will automatically set the rule with next available priority after currently existing highest rule. A listener can't have multiple rules with the same priority.
     """
+    warnings.warn("aws.ListenerRule has been deprecated in favour of aws.ListenerRule", DeprecationWarning)
     def __init__(__self__, resource_name, opts=None, actions=None, conditions=None, listener_arn=None, priority=None, __props__=None, __name__=None, __opts__=None):
         """
         Provides a Load Balancer Listener Rule resource.
 
         > **Note:** `alb.ListenerRule` is known as `lb.ListenerRule`. The functionality is identical.
 
+        ## Example Usage
 
+
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        front_end_load_balancer = aws.lb.LoadBalancer("frontEndLoadBalancer")
+        front_end_listener = aws.lb.Listener("frontEndListener")
+        static = aws.lb.ListenerRule("static",
+            actions=[{
+                "target_group_arn": aws_lb_target_group["static"]["arn"],
+                "type": "forward",
+            }],
+            conditions=[
+                {
+                    "pathPattern": {
+                        "values": ["/static/*"],
+                    },
+                },
+                {
+                    "hostHeader": {
+                        "values": ["example.com"],
+                    },
+                },
+            ],
+            listener_arn=front_end_listener.arn,
+            priority=100)
+        host_based_routing = aws.lb.ListenerRule("hostBasedRouting",
+            actions=[{
+                "target_group_arn": aws_lb_target_group["static"]["arn"],
+                "type": "forward",
+            }],
+            conditions=[{
+                "hostHeader": {
+                    "values": ["my-service.*.mydomain.io"],
+                },
+            }],
+            listener_arn=front_end_listener.arn,
+            priority=99)
+        redirect_http_to_https = aws.lb.ListenerRule("redirectHttpToHttps",
+            actions=[{
+                "redirect": {
+                    "port": "443",
+                    "protocol": "HTTPS",
+                    "status_code": "HTTP_301",
+                },
+                "type": "redirect",
+            }],
+            conditions=[{
+                "httpHeader": {
+                    "httpHeaderName": "X-Forwarded-For",
+                    "values": ["192.168.1.*"],
+                },
+            }],
+            listener_arn=front_end_listener.arn)
+        health_check = aws.lb.ListenerRule("healthCheck",
+            actions=[{
+                "fixedResponse": {
+                    "content_type": "text/plain",
+                    "messageBody": "HEALTHY",
+                    "status_code": "200",
+                },
+                "type": "fixed-response",
+            }],
+            conditions=[{
+                "queryString": [
+                    {
+                        "key": "health",
+                        "value": "check",
+                    },
+                    {
+                        "value": "bar",
+                    },
+                ],
+            }],
+            listener_arn=front_end_listener.arn)
+        pool = aws.cognito.UserPool("pool")
+        client = aws.cognito.UserPoolClient("client")
+        domain = aws.cognito.UserPoolDomain("domain")
+        admin = aws.lb.ListenerRule("admin",
+            actions=[
+                {
+                    "authenticateOidc": {
+                        "authorizationEndpoint": "https://example.com/authorization_endpoint",
+                        "client_id": "client_id",
+                        "client_secret": "client_secret",
+                        "issuer": "https://example.com",
+                        "tokenEndpoint": "https://example.com/token_endpoint",
+                        "userInfoEndpoint": "https://example.com/user_info_endpoint",
+                    },
+                    "type": "authenticate-oidc",
+                },
+                {
+                    "target_group_arn": aws_lb_target_group["static"]["arn"],
+                    "type": "forward",
+                },
+            ],
+            listener_arn=front_end_listener.arn)
+        ```
+
+
+        Deprecated: aws.ListenerRule has been deprecated in favour of aws.ListenerRule
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -175,6 +280,7 @@ class ListenerRule(pulumi.CustomResource):
 
           * `values` (`pulumi.Input[str]`) - List of exactly one pattern to match. Required when `field` is set.
         """
+        pulumi.log.warn("ListenerRule is deprecated: aws.ListenerRule has been deprecated in favour of aws.ListenerRule")
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

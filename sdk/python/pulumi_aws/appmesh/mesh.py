@@ -30,7 +30,7 @@ class Mesh(pulumi.CustomResource):
     """
     The service mesh specification to apply.
 
-      * `egressFilter` (`dict`)
+      * `egressFilter` (`dict`) - The egress filter rules for the service mesh.
         * `type` (`str`) - The egress filter type. By default, the type is `DROP_ALL`.
           Valid values are `ALLOW_ALL` and `DROP_ALL`.
     """
@@ -42,6 +42,29 @@ class Mesh(pulumi.CustomResource):
         """
         Provides an AWS App Mesh service mesh resource.
 
+        ## Example Usage
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        simple = aws.appmesh.Mesh("simple")
+        ```
+
+        ### Egress Filter
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        simple = aws.appmesh.Mesh("simple", spec={
+            "egressFilter": {
+                "type": "ALLOW_ALL",
+            },
+        })
+        ```
 
 
         :param str resource_name: The name of the resource.
@@ -52,7 +75,7 @@ class Mesh(pulumi.CustomResource):
 
         The **spec** object supports the following:
 
-          * `egressFilter` (`pulumi.Input[dict]`)
+          * `egressFilter` (`pulumi.Input[dict]`) - The egress filter rules for the service mesh.
             * `type` (`pulumi.Input[str]`) - The egress filter type. By default, the type is `DROP_ALL`.
               Valid values are `ALLOW_ALL` and `DROP_ALL`.
         """
@@ -103,7 +126,7 @@ class Mesh(pulumi.CustomResource):
 
         The **spec** object supports the following:
 
-          * `egressFilter` (`pulumi.Input[dict]`)
+          * `egressFilter` (`pulumi.Input[dict]`) - The egress filter rules for the service mesh.
             * `type` (`pulumi.Input[str]`) - The egress filter type. By default, the type is `DROP_ALL`.
               Valid values are `ALLOW_ALL` and `DROP_ALL`.
         """

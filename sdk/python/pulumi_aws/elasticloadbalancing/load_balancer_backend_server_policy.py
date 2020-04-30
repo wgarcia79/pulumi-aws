@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+warnings.warn("aws.LoadBalancerBackendServerPolicy has been deprecated in favour of aws.LoadBalancerBackendServerPolicy", DeprecationWarning)
 class LoadBalancerBackendServerPolicy(pulumi.CustomResource):
     instance_port: pulumi.Output[float]
     """
@@ -22,12 +23,56 @@ class LoadBalancerBackendServerPolicy(pulumi.CustomResource):
     """
     List of Policy Names to apply to the backend server.
     """
+    warnings.warn("aws.LoadBalancerBackendServerPolicy has been deprecated in favour of aws.LoadBalancerBackendServerPolicy", DeprecationWarning)
     def __init__(__self__, resource_name, opts=None, instance_port=None, load_balancer_name=None, policy_names=None, __props__=None, __name__=None, __opts__=None):
         """
         Attaches a load balancer policy to an ELB backend server.
 
 
+        ## Example Usage
 
+
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        wu_tang = aws.elb.LoadBalancer("wu-tang",
+            availability_zones=["us-east-1a"],
+            listeners=[{
+                "instance_port": 443,
+                "instanceProtocol": "http",
+                "lb_port": 443,
+                "lbProtocol": "https",
+                "sslCertificateId": "arn:aws:iam::000000000000:server-certificate/wu-tang.net",
+            }],
+            tags={
+                "Name": "wu-tang",
+            })
+        wu_tang_ca_pubkey_policy = aws.elb.LoadBalancerPolicy("wu-tang-ca-pubkey-policy",
+            load_balancer_name=wu_tang.name,
+            policy_attributes=[{
+                "name": "PublicKey",
+                "value": (lambda path: open(path).read())("wu-tang-pubkey"),
+            }],
+            policy_name="wu-tang-ca-pubkey-policy",
+            policy_type_name="PublicKeyPolicyType")
+        wu_tang_root_ca_backend_auth_policy = aws.elb.LoadBalancerPolicy("wu-tang-root-ca-backend-auth-policy",
+            load_balancer_name=wu_tang.name,
+            policy_attributes=[{
+                "name": "PublicKeyPolicyName",
+                "value": aws_load_balancer_policy["wu-tang-root-ca-pubkey-policy"]["policy_name"],
+            }],
+            policy_name="wu-tang-root-ca-backend-auth-policy",
+            policy_type_name="BackendServerAuthenticationPolicyType")
+        wu_tang_backend_auth_policies_443 = aws.elb.LoadBalancerBackendServerPolicy("wu-tang-backend-auth-policies-443",
+            instance_port=443,
+            load_balancer_name=wu_tang.name,
+            policy_names=[wu_tang_root_ca_backend_auth_policy.policy_name])
+        ```
+
+
+        Deprecated: aws.LoadBalancerBackendServerPolicy has been deprecated in favour of aws.LoadBalancerBackendServerPolicy
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -35,6 +80,7 @@ class LoadBalancerBackendServerPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] load_balancer_name: The load balancer to attach the policy to.
         :param pulumi.Input[list] policy_names: List of Policy Names to apply to the backend server.
         """
+        pulumi.log.warn("LoadBalancerBackendServerPolicy is deprecated: aws.LoadBalancerBackendServerPolicy has been deprecated in favour of aws.LoadBalancerBackendServerPolicy")
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

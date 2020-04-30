@@ -45,6 +45,22 @@ class DomainName(pulumi.CustomResource):
         > **Note:** This resource establishes ownership of and the TLS settings for
         a particular domain name. An API stage can be associated with the domain name using the `aws_apigatewayv2_api_mapping` resource.
 
+        ## Example Usage
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+
+        example = aws.apigatewayv2.DomainName("example",
+            domain_name="ws-api.example.com",
+            domain_name_configuration={
+                "certificate_arn": aws_acm_certificate["example"]["arn"],
+                "endpoint_type": "REGIONAL",
+                "security_policy": "TLS_1_2",
+            })
+        ```
 
 
         :param str resource_name: The name of the resource.

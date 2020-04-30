@@ -42,7 +42,7 @@ class GetStackResult:
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
-        id is the provider-assigned unique ID for this managed resource.
+        The provider-assigned unique ID for this managed resource.
         """
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
@@ -107,6 +107,23 @@ def get_stack(name=None,tags=None,opts=None):
     The CloudFormation Stack data source allows access to stack
     outputs and other useful data including the template body.
 
+    ## Example Usage
+
+
+
+    ```python
+    import pulumi
+    import pulumi_aws as aws
+
+    network = aws.cloudformation.get_stack(name="my-network-stack")
+    web = aws.ec2.Instance("web",
+        ami="ami-abb07bcb",
+        instance_type="t1.micro",
+        subnet_id=network.outputs["SubnetId"],
+        tags={
+            "Name": "HelloWorld",
+        })
+    ```
 
 
 

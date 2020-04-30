@@ -24,7 +24,7 @@ class GetServiceAccountResult:
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
-        id is the provider-assigned unique ID for this managed resource.
+        The provider-assigned unique ID for this managed resource.
         """
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
@@ -44,6 +44,43 @@ def get_service_account(region=None,opts=None):
     Use this data source to get the Account ID of the [AWS Redshift Service Account](http://docs.aws.amazon.com/redshift/latest/mgmt/db-auditing.html#db-auditing-enable-logging)
     in a given region for the purpose of allowing Redshift to store audit data in S3.
 
+    ## Example Usage
+
+
+
+    ```python
+    import pulumi
+    import pulumi_aws as aws
+
+    main = aws.redshift.get_service_account()
+    bucket = aws.s3.Bucket("bucket",
+        force_destroy=True,
+        policy=f"""{{
+    	"Version": "2008-10-17",
+    	"Statement": [
+    		{{
+            			"Sid": "Put bucket policy needed for audit logging",
+            			"Effect": "Allow",
+            			"Principal": {{
+    						"AWS": "{main.arn}"
+            			}},
+            			"Action": "s3:PutObject",
+            			"Resource": "arn:aws:s3:::tf-redshift-logging-test-bucket/*"
+            		}},
+            		{{
+            			"Sid": "Get bucket policy needed for audit logging ",
+            			"Effect": "Allow",
+            			"Principal": {{
+    						"AWS": "{main.arn}"
+            			}},
+            			"Action": "s3:GetBucketAcl",
+            			"Resource": "arn:aws:s3:::tf-redshift-logging-test-bucket"
+            		}}
+    	]
+    }}
+
+    """)
+    ```
 
 
 
