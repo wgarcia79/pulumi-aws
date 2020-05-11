@@ -7,6 +7,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"iam"
 )
 
 // Manages an AWS Elasticsearch Domain.

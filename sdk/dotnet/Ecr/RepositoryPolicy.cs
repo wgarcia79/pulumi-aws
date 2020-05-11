@@ -84,7 +84,7 @@ namespace Pulumi.Aws.Ecr
         /// The policy document. This is a JSON formatted string.
         /// </summary>
         [Input("policy", required: true)]
-        public Input<string> Policy { get; set; } = null!;
+        public InputUnion<string, Pulumi.Aws.Iam.Inputs.PolicyDocumentArgs> Policy { get; set; } = null!;
 
         /// <summary>
         /// Name of the repository to apply the policy.
@@ -103,7 +103,7 @@ namespace Pulumi.Aws.Ecr
         /// The policy document. This is a JSON formatted string.
         /// </summary>
         [Input("policy")]
-        public Input<string>? Policy { get; set; }
+        public InputUnion<string, Pulumi.Aws.Iam.Inputs.PolicyDocumentGetArgs>? Policy { get; set; }
 
         /// <summary>
         /// The registry ID where the repository was created.

@@ -8,6 +8,7 @@ import (
 
 	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"iam"
 )
 
 // Allows setting policy to an Elasticsearch domain while referencing domain attributes (e.g. ARN)

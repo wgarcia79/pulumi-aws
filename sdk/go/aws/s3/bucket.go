@@ -7,6 +7,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"iam"
 )
 
 // Provides a S3 bucket resource.

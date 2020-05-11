@@ -1,4 +1,4 @@
-// Copyright 2016-2018, Pulumi Corporation.
+// Copyright 2016-2020, Pulumi Corporation.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ import (
 	homedir "github.com/mitchellh/go-homedir"
 	"github.com/pulumi/pulumi-aws/provider/v2/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
+	pschema "github.com/pulumi/pulumi/pkg/v2/codegen/schema"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/tokens"
 	"github.com/terraform-providers/terraform-provider-aws/aws"
@@ -2402,6 +2403,13 @@ func Provider() tfbridge.ProviderInfo {
 			"aws_backup_plan":      {Tok: awsDataSource(backupMod, "getPlan")},
 			"aws_backup_selection": {Tok: awsDataSource(backupMod, "getSelection")},
 			"aws_backup_vault":     {Tok: awsDataSource(backupMod, "getVault")},
+		},
+		ExtraTypes: map[string]pschema.ObjectTypeSpec{
+			string(awsType(iamMod, "documents", "PolicyDocument")):     iamPolicyDocument,
+			string(awsType(iamMod, "documents", "PolicyStatement")):    iamPolicyStatement,
+			string(awsType(iamMod, "documents", "AWSPrincipal")):       iamAWSPrincipal,
+			string(awsType(iamMod, "documents", "ServicePrincipal")):   iamServicePrincipal,
+			string(awsType(iamMod, "documents", "FederatedPrincipal")): iamFederatedPrincipal,
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			Dependencies: map[string]string{

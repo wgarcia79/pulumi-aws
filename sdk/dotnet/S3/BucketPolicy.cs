@@ -82,7 +82,7 @@ namespace Pulumi.Aws.S3
         /// The text of the policy.
         /// </summary>
         [Input("policy", required: true)]
-        public Input<string> Policy { get; set; } = null!;
+        public InputUnion<string, Pulumi.Aws.Iam.Inputs.PolicyDocumentArgs> Policy { get; set; } = null!;
 
         public BucketPolicyArgs()
         {
@@ -101,7 +101,7 @@ namespace Pulumi.Aws.S3
         /// The text of the policy.
         /// </summary>
         [Input("policy")]
-        public Input<string>? Policy { get; set; }
+        public InputUnion<string, Pulumi.Aws.Iam.Inputs.PolicyDocumentGetArgs>? Policy { get; set; }
 
         public BucketPolicyState()
         {

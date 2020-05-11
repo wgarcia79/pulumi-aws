@@ -8,6 +8,7 @@ import (
 
 	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"iam"
 )
 
 // Provides an Elastic Container Registry Repository Policy.

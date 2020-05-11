@@ -10,6 +10,680 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// When you use an AWS account identifier as the principal in a policy, the permissions in the policy statement can be
+// granted to all identities contained in that account. This includes IAM users and roles in that account. When you
+// specify an AWS account, you can use the account ARN (arn:aws:iam::AWS-account-ID:root), or a shortened form that
+// consists of the AWS: prefix followed by the account ID.
+type AWSPrincipal struct {
+	AWS interface{} `pulumi:"AWS"`
+}
+
+// AWSPrincipalInput is an input type that accepts AWSPrincipalArgs and AWSPrincipalOutput values.
+// You can construct a concrete instance of `AWSPrincipalInput` via:
+//
+// 		 AWSPrincipalArgs{...}
+//
+type AWSPrincipalInput interface {
+	pulumi.Input
+
+	ToAWSPrincipalOutput() AWSPrincipalOutput
+	ToAWSPrincipalOutputWithContext(context.Context) AWSPrincipalOutput
+}
+
+// When you use an AWS account identifier as the principal in a policy, the permissions in the policy statement can be
+// granted to all identities contained in that account. This includes IAM users and roles in that account. When you
+// specify an AWS account, you can use the account ARN (arn:aws:iam::AWS-account-ID:root), or a shortened form that
+// consists of the AWS: prefix followed by the account ID.
+type AWSPrincipalArgs struct {
+	AWS pulumi.Input `pulumi:"AWS"`
+}
+
+func (AWSPrincipalArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AWSPrincipal)(nil)).Elem()
+}
+
+func (i AWSPrincipalArgs) ToAWSPrincipalOutput() AWSPrincipalOutput {
+	return i.ToAWSPrincipalOutputWithContext(context.Background())
+}
+
+func (i AWSPrincipalArgs) ToAWSPrincipalOutputWithContext(ctx context.Context) AWSPrincipalOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AWSPrincipalOutput)
+}
+
+// When you use an AWS account identifier as the principal in a policy, the permissions in the policy statement can be
+// granted to all identities contained in that account. This includes IAM users and roles in that account. When you
+// specify an AWS account, you can use the account ARN (arn:aws:iam::AWS-account-ID:root), or a shortened form that
+// consists of the AWS: prefix followed by the account ID.
+type AWSPrincipalOutput struct{ *pulumi.OutputState }
+
+func (AWSPrincipalOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AWSPrincipal)(nil)).Elem()
+}
+
+func (o AWSPrincipalOutput) ToAWSPrincipalOutput() AWSPrincipalOutput {
+	return o
+}
+
+func (o AWSPrincipalOutput) ToAWSPrincipalOutputWithContext(ctx context.Context) AWSPrincipalOutput {
+	return o
+}
+
+func (o AWSPrincipalOutput) AWS() pulumi.AnyOutput {
+	return o.ApplyT(func(v AWSPrincipal) interface{} { return v.AWS }).(pulumi.AnyOutput)
+}
+
+type FederatedPrincipal struct {
+	Federated interface{} `pulumi:"Federated"`
+}
+
+// FederatedPrincipalInput is an input type that accepts FederatedPrincipalArgs and FederatedPrincipalOutput values.
+// You can construct a concrete instance of `FederatedPrincipalInput` via:
+//
+// 		 FederatedPrincipalArgs{...}
+//
+type FederatedPrincipalInput interface {
+	pulumi.Input
+
+	ToFederatedPrincipalOutput() FederatedPrincipalOutput
+	ToFederatedPrincipalOutputWithContext(context.Context) FederatedPrincipalOutput
+}
+
+type FederatedPrincipalArgs struct {
+	Federated pulumi.Input `pulumi:"Federated"`
+}
+
+func (FederatedPrincipalArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FederatedPrincipal)(nil)).Elem()
+}
+
+func (i FederatedPrincipalArgs) ToFederatedPrincipalOutput() FederatedPrincipalOutput {
+	return i.ToFederatedPrincipalOutputWithContext(context.Background())
+}
+
+func (i FederatedPrincipalArgs) ToFederatedPrincipalOutputWithContext(ctx context.Context) FederatedPrincipalOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FederatedPrincipalOutput)
+}
+
+type FederatedPrincipalOutput struct{ *pulumi.OutputState }
+
+func (FederatedPrincipalOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FederatedPrincipal)(nil)).Elem()
+}
+
+func (o FederatedPrincipalOutput) ToFederatedPrincipalOutput() FederatedPrincipalOutput {
+	return o
+}
+
+func (o FederatedPrincipalOutput) ToFederatedPrincipalOutputWithContext(ctx context.Context) FederatedPrincipalOutput {
+	return o
+}
+
+func (o FederatedPrincipalOutput) Federated() pulumi.AnyOutput {
+	return o.ApplyT(func(v FederatedPrincipal) interface{} { return v.Federated }).(pulumi.AnyOutput)
+}
+
+// You manage access in AWS by creating policies and attaching them to IAM identities or AWS resources. A policy is an
+// object in AWS that, when associated with an entity or resource, defines their permissions. AWS evaluates these
+// policies when a principal, such as a user, makes a request. Permissions in the policies determine whether the
+// request is allowed or denied.
+//
+// IAM policies define permissions for an action regardless of the method that you use to perform the operation. For
+// example, if a policy allows the GetUser action, then a user with that policy can get user information from the
+// AWS Management Console, the AWS CLI, or the AWS API. When you create an IAM user, you can set up the user to
+// allow console or programmatic access. The IAM user can sign in to the console using a user name and password.
+// Or they can use access keys to work with the CLI or API.
+//
+// Most policies are stored in AWS as JSON documents. Identity-based policies, policies used to set boundaries, or AWS
+// STS boundary policies are JSON policy documents that you attach to a user or role. Resource-based policies are JSON
+// policy documents that you attach to a resource. SCPs are JSON policy documents with restricted syntax that you
+// attach to an AWS Organizations organizational unit (OU). ACLs are also attached to a resource, but you must use a
+// different syntax.
+//
+// A JSON policy document includes these elements:
+//
+//     - Optional policywide information at the top of the document
+//     - One or more individual statements
+//
+// Each statement includes information about a single permission. If a policy includes multiple statements, AWS applies
+// a logical OR across the statements when evaluating them. If multiple policies apply to a request, AWS applies a
+// logical OR across all of those policies when evaluating them.
+//
+// For more details about IAM policies, please refer to the AWS documentation online:
+// https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html
+type PolicyDocument struct {
+	// An optional document ID
+	Id *string `pulumi:"Id"`
+	// One or more policy statements, describing the effect, principal, action, resource, and condition.
+	Statement []PolicyStatement `pulumi:"Statement"`
+	// The version of the policy language that you want to use. As a best practice, use the latest `2012-10-17` version.
+	Version string `pulumi:"Version"`
+}
+
+// PolicyDocumentInput is an input type that accepts PolicyDocumentArgs and PolicyDocumentOutput values.
+// You can construct a concrete instance of `PolicyDocumentInput` via:
+//
+// 		 PolicyDocumentArgs{...}
+//
+type PolicyDocumentInput interface {
+	pulumi.Input
+
+	ToPolicyDocumentOutput() PolicyDocumentOutput
+	ToPolicyDocumentOutputWithContext(context.Context) PolicyDocumentOutput
+}
+
+// You manage access in AWS by creating policies and attaching them to IAM identities or AWS resources. A policy is an
+// object in AWS that, when associated with an entity or resource, defines their permissions. AWS evaluates these
+// policies when a principal, such as a user, makes a request. Permissions in the policies determine whether the
+// request is allowed or denied.
+//
+// IAM policies define permissions for an action regardless of the method that you use to perform the operation. For
+// example, if a policy allows the GetUser action, then a user with that policy can get user information from the
+// AWS Management Console, the AWS CLI, or the AWS API. When you create an IAM user, you can set up the user to
+// allow console or programmatic access. The IAM user can sign in to the console using a user name and password.
+// Or they can use access keys to work with the CLI or API.
+//
+// Most policies are stored in AWS as JSON documents. Identity-based policies, policies used to set boundaries, or AWS
+// STS boundary policies are JSON policy documents that you attach to a user or role. Resource-based policies are JSON
+// policy documents that you attach to a resource. SCPs are JSON policy documents with restricted syntax that you
+// attach to an AWS Organizations organizational unit (OU). ACLs are also attached to a resource, but you must use a
+// different syntax.
+//
+// A JSON policy document includes these elements:
+//
+//     - Optional policywide information at the top of the document
+//     - One or more individual statements
+//
+// Each statement includes information about a single permission. If a policy includes multiple statements, AWS applies
+// a logical OR across the statements when evaluating them. If multiple policies apply to a request, AWS applies a
+// logical OR across all of those policies when evaluating them.
+//
+// For more details about IAM policies, please refer to the AWS documentation online:
+// https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html
+type PolicyDocumentArgs struct {
+	// An optional document ID
+	Id pulumi.StringPtrInput `pulumi:"Id"`
+	// One or more policy statements, describing the effect, principal, action, resource, and condition.
+	Statement PolicyStatementArrayInput `pulumi:"Statement"`
+	// The version of the policy language that you want to use. As a best practice, use the latest `2012-10-17` version.
+	Version pulumi.StringInput `pulumi:"Version"`
+}
+
+func (PolicyDocumentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PolicyDocument)(nil)).Elem()
+}
+
+func (i PolicyDocumentArgs) ToPolicyDocumentOutput() PolicyDocumentOutput {
+	return i.ToPolicyDocumentOutputWithContext(context.Background())
+}
+
+func (i PolicyDocumentArgs) ToPolicyDocumentOutputWithContext(ctx context.Context) PolicyDocumentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyDocumentOutput)
+}
+
+// You manage access in AWS by creating policies and attaching them to IAM identities or AWS resources. A policy is an
+// object in AWS that, when associated with an entity or resource, defines their permissions. AWS evaluates these
+// policies when a principal, such as a user, makes a request. Permissions in the policies determine whether the
+// request is allowed or denied.
+//
+// IAM policies define permissions for an action regardless of the method that you use to perform the operation. For
+// example, if a policy allows the GetUser action, then a user with that policy can get user information from the
+// AWS Management Console, the AWS CLI, or the AWS API. When you create an IAM user, you can set up the user to
+// allow console or programmatic access. The IAM user can sign in to the console using a user name and password.
+// Or they can use access keys to work with the CLI or API.
+//
+// Most policies are stored in AWS as JSON documents. Identity-based policies, policies used to set boundaries, or AWS
+// STS boundary policies are JSON policy documents that you attach to a user or role. Resource-based policies are JSON
+// policy documents that you attach to a resource. SCPs are JSON policy documents with restricted syntax that you
+// attach to an AWS Organizations organizational unit (OU). ACLs are also attached to a resource, but you must use a
+// different syntax.
+//
+// A JSON policy document includes these elements:
+//
+//     - Optional policywide information at the top of the document
+//     - One or more individual statements
+//
+// Each statement includes information about a single permission. If a policy includes multiple statements, AWS applies
+// a logical OR across the statements when evaluating them. If multiple policies apply to a request, AWS applies a
+// logical OR across all of those policies when evaluating them.
+//
+// For more details about IAM policies, please refer to the AWS documentation online:
+// https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html
+type PolicyDocumentOutput struct{ *pulumi.OutputState }
+
+func (PolicyDocumentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PolicyDocument)(nil)).Elem()
+}
+
+func (o PolicyDocumentOutput) ToPolicyDocumentOutput() PolicyDocumentOutput {
+	return o
+}
+
+func (o PolicyDocumentOutput) ToPolicyDocumentOutputWithContext(ctx context.Context) PolicyDocumentOutput {
+	return o
+}
+
+// An optional document ID
+func (o PolicyDocumentOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PolicyDocument) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// One or more policy statements, describing the effect, principal, action, resource, and condition.
+func (o PolicyDocumentOutput) Statement() PolicyStatementArrayOutput {
+	return o.ApplyT(func(v PolicyDocument) []PolicyStatement { return v.Statement }).(PolicyStatementArrayOutput)
+}
+
+// The version of the policy language that you want to use. As a best practice, use the latest `2012-10-17` version.
+func (o PolicyDocumentOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v PolicyDocument) string { return v.Version }).(pulumi.StringOutput)
+}
+
+// The Statement element is the main element for a policy. This element is required. It can include multiple elements
+// (see the subsequent sections in this page). The Statement element contains an array of individual statements.
+type PolicyStatement struct {
+	// Include a list of actions that the policy allows or denies.
+	Action interface{} `pulumi:"Action"`
+	// Specify the circumstances under which the policy grants permission.
+	//
+	// The Condition element (or Condition block) lets you specify conditions for when a policy is in effect. The Condition
+	// element is optional. In the Condition element, you build expressions in which you use condition operators (equal,
+	// less than, etc.) to match the condition in the policy against values in the request. Condition values can include
+	// date, time, the IP address of the requester, the ARN of the request source, the user name, user ID, and the user
+	// agent of the requester. Some services let you specify additional values in conditions; for example, Amazon S3
+	// lets you write a condition using the s3:VersionId key, which is unique to that service.
+	//
+	// This block maps condition operators to their arguments. Condition operators are the "verbs" of conditions and specify
+	// the type of comparison that IAM performs. The condition operators are grouped into the following categorties:
+	//
+	//     - String
+	//     - Numeric
+	//     - Date and time
+	//     - Boolean
+	//     - Binary
+	//     - IP address
+	//     - Amazon Resource (ARN) (available for some services)
+	//     - ...IfExists (checks if the key value exists as part of another check)
+	//     - Null check (checks if the key value exists as a standalone check)
+	//
+	// For details on all of the available operators and their arguments, please refer to the AWS documentation:
+	// https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition_operators.html.
+	//
+	// Examples of arguments are:
+	//  - { "aws:MultiFactorAuthPresent": "true" }
+	//  - { "aws:SourceIp": [ "203.0.113.0/24", "2001:DB8:1234:5678::/64" ]}
+	Condition map[string]map[string]interface{} `pulumi:"Condition"`
+	// Indicate whether the policy allows or denies access.
+	Effect string `pulumi:"Effect"`
+	// Include a list of actions that are not covered by this policy.
+	NotAction interface{} `pulumi:"NotAction"`
+	// Indicate the account, user, role, or federated user to which this policy does not apply.
+	NotPrincipal interface{} `pulumi:"NotPrincipal"`
+	// A list of resources that are specifically excluded by this policy.
+	NotResource interface{} `pulumi:"NotResource"`
+	// Indicate the account, user, role, or federated user to which you would like to allow or deny access. If you are
+	// creating a policy to attach to a user or role, you cannot include this element. The principal is implied as that
+	// user or role.
+	//
+	// Use the Principal element to specify the user (IAM user, federated user, or assumed-role user), AWS account, AWS
+	// service, or other principal entity that is allowed or denied access to a resource. You use the Principal element in
+	// the trust policies for IAM roles and in resource-based policies—that is, in policies that you embed directly in a
+	// resource. For example, you can embed such policies in an Amazon S3 bucket, an Amazon Glacier vault, an Amazon SNS
+	// topic, an Amazon SQS queue, or an AWS KMS customer master key (CMK).
+	//
+	// Use the Principal element in these ways:
+	//
+	//     - In IAM roles, use the Principal element in the role's trust policy to specify who can assume the role. For
+	//       cross-account access, you must specify the 12-digit identifier of the trusted account.
+	//
+	//       Note: After you create the role, you can change the account to "*" to allow everyone to assume the role. If
+	//       you do this, we strongly recommend that you limit who can access the role through other means, such as a
+	//       Condition element that limits access to only certain IP addresses. Do not leave your role accessible to
+	//       everyone!
+	//
+	//     - In resource-based policies, use the Principal element to specify the accounts or users who are allowed to
+	//       access the resource.
+	//
+	// Do not use the Principal element in policies that you attach to IAM users and groups. Similarly, you do not specify
+	// a principal in the permission policy for an IAM role. In those cases, the principal is implicitly the user that the
+	// policy is attached to (for IAM users) or the user who assumes the role (for role access policies). When the policy
+	// is attached to an IAM group, the principal is the IAM user in that group who is making the request.
+	Principal interface{} `pulumi:"Principal"`
+	// A list of resources to which the actions apply.
+	Resource interface{} `pulumi:"Resource"`
+	// An optional statement ID to differentiate between your statements.
+	Sid *string `pulumi:"Sid"`
+}
+
+// PolicyStatementInput is an input type that accepts PolicyStatementArgs and PolicyStatementOutput values.
+// You can construct a concrete instance of `PolicyStatementInput` via:
+//
+// 		 PolicyStatementArgs{...}
+//
+type PolicyStatementInput interface {
+	pulumi.Input
+
+	ToPolicyStatementOutput() PolicyStatementOutput
+	ToPolicyStatementOutputWithContext(context.Context) PolicyStatementOutput
+}
+
+// The Statement element is the main element for a policy. This element is required. It can include multiple elements
+// (see the subsequent sections in this page). The Statement element contains an array of individual statements.
+type PolicyStatementArgs struct {
+	// Include a list of actions that the policy allows or denies.
+	Action pulumi.Input `pulumi:"Action"`
+	// Specify the circumstances under which the policy grants permission.
+	//
+	// The Condition element (or Condition block) lets you specify conditions for when a policy is in effect. The Condition
+	// element is optional. In the Condition element, you build expressions in which you use condition operators (equal,
+	// less than, etc.) to match the condition in the policy against values in the request. Condition values can include
+	// date, time, the IP address of the requester, the ARN of the request source, the user name, user ID, and the user
+	// agent of the requester. Some services let you specify additional values in conditions; for example, Amazon S3
+	// lets you write a condition using the s3:VersionId key, which is unique to that service.
+	//
+	// This block maps condition operators to their arguments. Condition operators are the "verbs" of conditions and specify
+	// the type of comparison that IAM performs. The condition operators are grouped into the following categorties:
+	//
+	//     - String
+	//     - Numeric
+	//     - Date and time
+	//     - Boolean
+	//     - Binary
+	//     - IP address
+	//     - Amazon Resource (ARN) (available for some services)
+	//     - ...IfExists (checks if the key value exists as part of another check)
+	//     - Null check (checks if the key value exists as a standalone check)
+	//
+	// For details on all of the available operators and their arguments, please refer to the AWS documentation:
+	// https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition_operators.html.
+	//
+	// Examples of arguments are:
+	//  - { "aws:MultiFactorAuthPresent": "true" }
+	//  - { "aws:SourceIp": [ "203.0.113.0/24", "2001:DB8:1234:5678::/64" ]}
+	Condition pulumi.MapMapInput `pulumi:"Condition"`
+	// Indicate whether the policy allows or denies access.
+	Effect pulumi.StringInput `pulumi:"Effect"`
+	// Include a list of actions that are not covered by this policy.
+	NotAction pulumi.Input `pulumi:"NotAction"`
+	// Indicate the account, user, role, or federated user to which this policy does not apply.
+	NotPrincipal pulumi.Input `pulumi:"NotPrincipal"`
+	// A list of resources that are specifically excluded by this policy.
+	NotResource pulumi.Input `pulumi:"NotResource"`
+	// Indicate the account, user, role, or federated user to which you would like to allow or deny access. If you are
+	// creating a policy to attach to a user or role, you cannot include this element. The principal is implied as that
+	// user or role.
+	//
+	// Use the Principal element to specify the user (IAM user, federated user, or assumed-role user), AWS account, AWS
+	// service, or other principal entity that is allowed or denied access to a resource. You use the Principal element in
+	// the trust policies for IAM roles and in resource-based policies—that is, in policies that you embed directly in a
+	// resource. For example, you can embed such policies in an Amazon S3 bucket, an Amazon Glacier vault, an Amazon SNS
+	// topic, an Amazon SQS queue, or an AWS KMS customer master key (CMK).
+	//
+	// Use the Principal element in these ways:
+	//
+	//     - In IAM roles, use the Principal element in the role's trust policy to specify who can assume the role. For
+	//       cross-account access, you must specify the 12-digit identifier of the trusted account.
+	//
+	//       Note: After you create the role, you can change the account to "*" to allow everyone to assume the role. If
+	//       you do this, we strongly recommend that you limit who can access the role through other means, such as a
+	//       Condition element that limits access to only certain IP addresses. Do not leave your role accessible to
+	//       everyone!
+	//
+	//     - In resource-based policies, use the Principal element to specify the accounts or users who are allowed to
+	//       access the resource.
+	//
+	// Do not use the Principal element in policies that you attach to IAM users and groups. Similarly, you do not specify
+	// a principal in the permission policy for an IAM role. In those cases, the principal is implicitly the user that the
+	// policy is attached to (for IAM users) or the user who assumes the role (for role access policies). When the policy
+	// is attached to an IAM group, the principal is the IAM user in that group who is making the request.
+	Principal pulumi.Input `pulumi:"Principal"`
+	// A list of resources to which the actions apply.
+	Resource pulumi.Input `pulumi:"Resource"`
+	// An optional statement ID to differentiate between your statements.
+	Sid pulumi.StringPtrInput `pulumi:"Sid"`
+}
+
+func (PolicyStatementArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PolicyStatement)(nil)).Elem()
+}
+
+func (i PolicyStatementArgs) ToPolicyStatementOutput() PolicyStatementOutput {
+	return i.ToPolicyStatementOutputWithContext(context.Background())
+}
+
+func (i PolicyStatementArgs) ToPolicyStatementOutputWithContext(ctx context.Context) PolicyStatementOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyStatementOutput)
+}
+
+// PolicyStatementArrayInput is an input type that accepts PolicyStatementArray and PolicyStatementArrayOutput values.
+// You can construct a concrete instance of `PolicyStatementArrayInput` via:
+//
+// 		 PolicyStatementArray{ PolicyStatementArgs{...} }
+//
+type PolicyStatementArrayInput interface {
+	pulumi.Input
+
+	ToPolicyStatementArrayOutput() PolicyStatementArrayOutput
+	ToPolicyStatementArrayOutputWithContext(context.Context) PolicyStatementArrayOutput
+}
+
+type PolicyStatementArray []PolicyStatementInput
+
+func (PolicyStatementArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PolicyStatement)(nil)).Elem()
+}
+
+func (i PolicyStatementArray) ToPolicyStatementArrayOutput() PolicyStatementArrayOutput {
+	return i.ToPolicyStatementArrayOutputWithContext(context.Background())
+}
+
+func (i PolicyStatementArray) ToPolicyStatementArrayOutputWithContext(ctx context.Context) PolicyStatementArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyStatementArrayOutput)
+}
+
+// The Statement element is the main element for a policy. This element is required. It can include multiple elements
+// (see the subsequent sections in this page). The Statement element contains an array of individual statements.
+type PolicyStatementOutput struct{ *pulumi.OutputState }
+
+func (PolicyStatementOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PolicyStatement)(nil)).Elem()
+}
+
+func (o PolicyStatementOutput) ToPolicyStatementOutput() PolicyStatementOutput {
+	return o
+}
+
+func (o PolicyStatementOutput) ToPolicyStatementOutputWithContext(ctx context.Context) PolicyStatementOutput {
+	return o
+}
+
+// Include a list of actions that the policy allows or denies.
+func (o PolicyStatementOutput) Action() pulumi.AnyOutput {
+	return o.ApplyT(func(v PolicyStatement) interface{} { return v.Action }).(pulumi.AnyOutput)
+}
+
+// Specify the circumstances under which the policy grants permission.
+//
+// The Condition element (or Condition block) lets you specify conditions for when a policy is in effect. The Condition
+// element is optional. In the Condition element, you build expressions in which you use condition operators (equal,
+// less than, etc.) to match the condition in the policy against values in the request. Condition values can include
+// date, time, the IP address of the requester, the ARN of the request source, the user name, user ID, and the user
+// agent of the requester. Some services let you specify additional values in conditions; for example, Amazon S3
+// lets you write a condition using the s3:VersionId key, which is unique to that service.
+//
+// This block maps condition operators to their arguments. Condition operators are the "verbs" of conditions and specify
+// the type of comparison that IAM performs. The condition operators are grouped into the following categorties:
+//
+//     - String
+//     - Numeric
+//     - Date and time
+//     - Boolean
+//     - Binary
+//     - IP address
+//     - Amazon Resource (ARN) (available for some services)
+//     - ...IfExists (checks if the key value exists as part of another check)
+//     - Null check (checks if the key value exists as a standalone check)
+//
+// For details on all of the available operators and their arguments, please refer to the AWS documentation:
+// https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition_operators.html.
+//
+// Examples of arguments are:
+//  - { "aws:MultiFactorAuthPresent": "true" }
+//  - { "aws:SourceIp": [ "203.0.113.0/24", "2001:DB8:1234:5678::/64" ]}
+func (o PolicyStatementOutput) Condition() pulumi.MapMapOutput {
+	return o.ApplyT(func(v PolicyStatement) map[string]map[string]interface{} { return v.Condition }).(pulumi.MapMapOutput)
+}
+
+// Indicate whether the policy allows or denies access.
+func (o PolicyStatementOutput) Effect() pulumi.StringOutput {
+	return o.ApplyT(func(v PolicyStatement) string { return v.Effect }).(pulumi.StringOutput)
+}
+
+// Include a list of actions that are not covered by this policy.
+func (o PolicyStatementOutput) NotAction() pulumi.AnyOutput {
+	return o.ApplyT(func(v PolicyStatement) interface{} { return v.NotAction }).(pulumi.AnyOutput)
+}
+
+// Indicate the account, user, role, or federated user to which this policy does not apply.
+func (o PolicyStatementOutput) NotPrincipal() pulumi.AnyOutput {
+	return o.ApplyT(func(v PolicyStatement) interface{} { return v.NotPrincipal }).(pulumi.AnyOutput)
+}
+
+// A list of resources that are specifically excluded by this policy.
+func (o PolicyStatementOutput) NotResource() pulumi.AnyOutput {
+	return o.ApplyT(func(v PolicyStatement) interface{} { return v.NotResource }).(pulumi.AnyOutput)
+}
+
+// Indicate the account, user, role, or federated user to which you would like to allow or deny access. If you are
+// creating a policy to attach to a user or role, you cannot include this element. The principal is implied as that
+// user or role.
+//
+// Use the Principal element to specify the user (IAM user, federated user, or assumed-role user), AWS account, AWS
+// service, or other principal entity that is allowed or denied access to a resource. You use the Principal element in
+// the trust policies for IAM roles and in resource-based policies—that is, in policies that you embed directly in a
+// resource. For example, you can embed such policies in an Amazon S3 bucket, an Amazon Glacier vault, an Amazon SNS
+// topic, an Amazon SQS queue, or an AWS KMS customer master key (CMK).
+//
+// Use the Principal element in these ways:
+//
+//     - In IAM roles, use the Principal element in the role's trust policy to specify who can assume the role. For
+//       cross-account access, you must specify the 12-digit identifier of the trusted account.
+//
+//       Note: After you create the role, you can change the account to "*" to allow everyone to assume the role. If
+//       you do this, we strongly recommend that you limit who can access the role through other means, such as a
+//       Condition element that limits access to only certain IP addresses. Do not leave your role accessible to
+//       everyone!
+//
+//     - In resource-based policies, use the Principal element to specify the accounts or users who are allowed to
+//       access the resource.
+//
+// Do not use the Principal element in policies that you attach to IAM users and groups. Similarly, you do not specify
+// a principal in the permission policy for an IAM role. In those cases, the principal is implicitly the user that the
+// policy is attached to (for IAM users) or the user who assumes the role (for role access policies). When the policy
+// is attached to an IAM group, the principal is the IAM user in that group who is making the request.
+func (o PolicyStatementOutput) Principal() pulumi.AnyOutput {
+	return o.ApplyT(func(v PolicyStatement) interface{} { return v.Principal }).(pulumi.AnyOutput)
+}
+
+// A list of resources to which the actions apply.
+func (o PolicyStatementOutput) Resource() pulumi.AnyOutput {
+	return o.ApplyT(func(v PolicyStatement) interface{} { return v.Resource }).(pulumi.AnyOutput)
+}
+
+// An optional statement ID to differentiate between your statements.
+func (o PolicyStatementOutput) Sid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PolicyStatement) *string { return v.Sid }).(pulumi.StringPtrOutput)
+}
+
+type PolicyStatementArrayOutput struct{ *pulumi.OutputState }
+
+func (PolicyStatementArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PolicyStatement)(nil)).Elem()
+}
+
+func (o PolicyStatementArrayOutput) ToPolicyStatementArrayOutput() PolicyStatementArrayOutput {
+	return o
+}
+
+func (o PolicyStatementArrayOutput) ToPolicyStatementArrayOutputWithContext(ctx context.Context) PolicyStatementArrayOutput {
+	return o
+}
+
+func (o PolicyStatementArrayOutput) Index(i pulumi.IntInput) PolicyStatementOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PolicyStatement {
+		return vs[0].([]PolicyStatement)[vs[1].(int)]
+	}).(PolicyStatementOutput)
+}
+
+// IAM roles that can be assumed by an AWS service are called service roles. Service roles must include a trust policy.
+// Trust policies are resource-based policies that are attached to a role that define which principals can assume the
+// role. Some service role have predefined trust policies. However, in some cases, you must specify the service
+// principal in the trust policy. A service principal is an identifier that is used to grant permissions to a service.
+// The identifier includes the long version of a service name, e.g. long_service_name.amazonaws.com.The service
+// principal is defined by the service. To learn the service principal for a service, see the documentation for that
+// service.
+type ServicePrincipal struct {
+	Service interface{} `pulumi:"Service"`
+}
+
+// ServicePrincipalInput is an input type that accepts ServicePrincipalArgs and ServicePrincipalOutput values.
+// You can construct a concrete instance of `ServicePrincipalInput` via:
+//
+// 		 ServicePrincipalArgs{...}
+//
+type ServicePrincipalInput interface {
+	pulumi.Input
+
+	ToServicePrincipalOutput() ServicePrincipalOutput
+	ToServicePrincipalOutputWithContext(context.Context) ServicePrincipalOutput
+}
+
+// IAM roles that can be assumed by an AWS service are called service roles. Service roles must include a trust policy.
+// Trust policies are resource-based policies that are attached to a role that define which principals can assume the
+// role. Some service role have predefined trust policies. However, in some cases, you must specify the service
+// principal in the trust policy. A service principal is an identifier that is used to grant permissions to a service.
+// The identifier includes the long version of a service name, e.g. long_service_name.amazonaws.com.The service
+// principal is defined by the service. To learn the service principal for a service, see the documentation for that
+// service.
+type ServicePrincipalArgs struct {
+	Service pulumi.Input `pulumi:"Service"`
+}
+
+func (ServicePrincipalArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServicePrincipal)(nil)).Elem()
+}
+
+func (i ServicePrincipalArgs) ToServicePrincipalOutput() ServicePrincipalOutput {
+	return i.ToServicePrincipalOutputWithContext(context.Background())
+}
+
+func (i ServicePrincipalArgs) ToServicePrincipalOutputWithContext(ctx context.Context) ServicePrincipalOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServicePrincipalOutput)
+}
+
+// IAM roles that can be assumed by an AWS service are called service roles. Service roles must include a trust policy.
+// Trust policies are resource-based policies that are attached to a role that define which principals can assume the
+// role. Some service role have predefined trust policies. However, in some cases, you must specify the service
+// principal in the trust policy. A service principal is an identifier that is used to grant permissions to a service.
+// The identifier includes the long version of a service name, e.g. long_service_name.amazonaws.com.The service
+// principal is defined by the service. To learn the service principal for a service, see the documentation for that
+// service.
+type ServicePrincipalOutput struct{ *pulumi.OutputState }
+
+func (ServicePrincipalOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServicePrincipal)(nil)).Elem()
+}
+
+func (o ServicePrincipalOutput) ToServicePrincipalOutput() ServicePrincipalOutput {
+	return o
+}
+
+func (o ServicePrincipalOutput) ToServicePrincipalOutputWithContext(ctx context.Context) ServicePrincipalOutput {
+	return o
+}
+
+func (o ServicePrincipalOutput) Service() pulumi.AnyOutput {
+	return o.ApplyT(func(v ServicePrincipal) interface{} { return v.Service }).(pulumi.AnyOutput)
+}
+
 type GetGroupUser struct {
 	// The Amazon Resource Name (ARN) specifying the iam user.
 	Arn string `pulumi:"arn"`
@@ -704,6 +1378,12 @@ func (o GetPolicyDocumentStatementPrincipalArrayOutput) Index(i pulumi.IntInput)
 }
 
 func init() {
+	pulumi.RegisterOutputType(AWSPrincipalOutput{})
+	pulumi.RegisterOutputType(FederatedPrincipalOutput{})
+	pulumi.RegisterOutputType(PolicyDocumentOutput{})
+	pulumi.RegisterOutputType(PolicyStatementOutput{})
+	pulumi.RegisterOutputType(PolicyStatementArrayOutput{})
+	pulumi.RegisterOutputType(ServicePrincipalOutput{})
 	pulumi.RegisterOutputType(GetGroupUserOutput{})
 	pulumi.RegisterOutputType(GetGroupUserArrayOutput{})
 	pulumi.RegisterOutputType(GetPolicyDocumentStatementOutput{})
