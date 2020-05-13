@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides an DocumentDB subnet group resource.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const defaultSubnetGroup = new aws.docdb.SubnetGroup("default", {
  *     subnetIds: [
  *         aws_subnet_frontend.id,

@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a Pinpoint Email Channel resource.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const app = new aws.pinpoint.App("app", {});
  * const identity = new aws.ses.DomainIdentity("identity", {
  *     domain: "example.com",

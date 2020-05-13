@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Use this data source to get a list of cognito user pools.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const selectedRestApi = pulumi.output(aws.apigateway.getRestApi({
  *     name: var_api_gateway_name,
  * }, { async: true }));

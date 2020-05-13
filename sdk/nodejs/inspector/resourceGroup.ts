@@ -6,15 +6,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides an Amazon Inspector resource group resource.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.inspector.ResourceGroup("example", {
  *     tags: {
  *         Env: "bar",

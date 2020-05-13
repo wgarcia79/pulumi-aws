@@ -6,15 +6,15 @@ import * as utilities from "../utilities";
 
 /**
  * Use this data source to fetch information about a Quantum Ledger Database.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = pulumi.output(aws.qldb.getLedger({
  *     name: "anExampleLedger",
  * }, { async: true }));

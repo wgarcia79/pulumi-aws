@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides an Elastic network interface (ENI) resource.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const test = new aws.ec2.NetworkInterface("test", {
  *     attachments: [{
  *         deviceIndex: 1,

@@ -8,16 +8,16 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a CodePipeline Webhook.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * import * as github from "@pulumi/github";
- * 
+ *
  * const barPipeline = new aws.codepipeline.Pipeline("bar", {
  *     artifactStores: {
  *         encryptionKey: {

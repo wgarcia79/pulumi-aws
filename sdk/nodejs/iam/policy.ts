@@ -8,15 +8,15 @@ import {PolicyDocument} from "./documents";
 
 /**
  * Provides an IAM policy.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const policy = new aws.iam.Policy("policy", {
  *     description: "My test policy",
  *     path: "/",

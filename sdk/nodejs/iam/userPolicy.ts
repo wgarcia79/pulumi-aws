@@ -8,15 +8,15 @@ import {PolicyDocument} from "./documents";
 
 /**
  * Provides an IAM policy attached to a user.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const lbUser = new aws.iam.User("lb", {
  *     path: "/system/",
  * });

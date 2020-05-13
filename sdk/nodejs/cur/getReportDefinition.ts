@@ -6,19 +6,19 @@ import * as utilities from "../utilities";
 
 /**
  * Use this data source to get information on an AWS Cost and Usage Report Definition.
- * 
+ *
  * > *NOTE:* The AWS Cost and Usage Report service is only available in `us-east-1` currently.
- * 
+ *
  * > *NOTE:* If AWS Organizations is enabled, only the master account can use this resource.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const reportDefinition = pulumi.output(aws.cur.getReportDefinition({
  *     reportName: "example",
  * }, { async: true }));

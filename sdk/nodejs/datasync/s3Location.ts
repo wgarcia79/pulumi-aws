@@ -10,15 +10,15 @@ import {ARN} from "../index";
 
 /**
  * Manages an S3 Location within AWS DataSync.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.datasync.S3Location("example", {
  *     s3BucketArn: aws_s3_bucket_example.arn,
  *     s3Config: {

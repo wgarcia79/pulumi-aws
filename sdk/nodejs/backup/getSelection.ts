@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Use this data source to get information on an existing backup selection.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = aws_backup_plan_example.id.apply(id => aws.backup.getSelection({
  *     planId: id,
  *     selectionId: "selection-id-example",

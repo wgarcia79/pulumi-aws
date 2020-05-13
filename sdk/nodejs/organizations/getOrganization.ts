@@ -8,25 +8,25 @@ import * as utilities from "../utilities";
 
 /**
  * Get information about the organization that the user's account belongs to
- * 
+ *
  * ## Example Usage
- * 
+ *
  * ### List all account IDs for the organization
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = aws.organizations.getOrganization({});
  * export const accountIds = example.then(example => example.accounts.map(__item => __item.id));
  * ```
- * 
+ *
  * ### SNS topic that can be interacted by the organization only
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = pulumi.output(aws.organizations.getOrganization({ async: true }));
  * const snsTopic = new aws.sns.Topic("snsTopic", {});
  * const snsTopicPolicyPolicyDocument = pulumi.all([example, snsTopic.arn]).apply(([example, arn]) => aws.iam.getPolicyDocument({

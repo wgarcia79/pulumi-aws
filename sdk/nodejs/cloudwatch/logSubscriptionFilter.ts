@@ -10,15 +10,15 @@ import {LogGroup} from "./logGroup";
 
 /**
  * Provides a CloudWatch Logs subscription filter resource.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const testLambdafunctionLogfilter = new aws.cloudwatch.LogSubscriptionFilter("testLambdafunctionLogfilter", {
  *     destinationArn: aws_kinesis_stream_test_logstream.arn,
  *     distribution: "Random",

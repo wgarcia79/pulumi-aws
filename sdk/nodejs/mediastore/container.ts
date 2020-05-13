@@ -6,15 +6,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a MediaStore Container.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.mediastore.Container("example", {});
  * ```
  *

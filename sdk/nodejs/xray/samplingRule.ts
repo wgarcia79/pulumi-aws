@@ -6,15 +6,15 @@ import * as utilities from "../utilities";
 
 /**
  * Creates and manages an AWS XRay Sampling Rule.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.xray.SamplingRule("example", {
  *     attributes: {
  *         Hello: "Tris",

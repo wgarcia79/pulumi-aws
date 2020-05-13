@@ -9,15 +9,15 @@ import * as utilities from "../utilities";
 /**
  * Use this data source to get information about an EBS volume for use in other
  * resources.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const ebsVolume = pulumi.output(aws.ebs.getVolume({
  *     filters: [
  *         {

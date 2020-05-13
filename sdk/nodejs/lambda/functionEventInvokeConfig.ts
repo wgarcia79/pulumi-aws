@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Manages an asynchronous invocation configuration for a Lambda Function or Alias. More information about asynchronous invocations and the configurable values can be found in the [Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html).
- * 
+ *
  * ## Example Usage
- * 
+ *
  * ### Destination Configuration
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.lambda.FunctionEventInvokeConfig("example", {
  *     functionName: aws_lambda_alias.example.function_name,
  *     destination_config: {
@@ -29,52 +29,52 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- * 
+ *
  * ### Error Handling Configuration
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.lambda.FunctionEventInvokeConfig("example", {
  *     functionName: aws_lambda_alias.example.function_name,
  *     maximumEventAgeInSeconds: 60,
  *     maximumRetryAttempts: 0,
  * });
  * ```
- * 
+ *
  * ### Configuration for Alias Name
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.lambda.FunctionEventInvokeConfig("example", {
  *     functionName: aws_lambda_alias.example.function_name,
  *     qualifier: aws_lambda_alias.example.name,
  * });
  * // ... other configuration ...
  * ```
- * 
+ *
  * ### Configuration for Function Latest Unpublished Version
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.lambda.FunctionEventInvokeConfig("example", {
  *     functionName: aws_lambda_function.example.function_name,
  *     qualifier: `$LATEST`,
  * });
  * // ... other configuration ...
  * ```
- * 
+ *
  * ### Configuration for Function Published Version
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.lambda.FunctionEventInvokeConfig("example", {
  *     functionName: aws_lambda_function.example.function_name,
  *     qualifier: aws_lambda_function.example.version,

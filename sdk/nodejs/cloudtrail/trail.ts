@@ -8,19 +8,19 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a CloudTrail resource.
- * 
+ *
  * > *NOTE:* For a multi-region trail, this resource must be in the home region of the trail.
- * 
+ *
  * > *NOTE:* For an organization trail, this resource must be in the master account of the organization.
- * 
+ *
  * ## Example Usage
- * 
+ *
  * ### Basic
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const current = pulumi.output(aws.getCallerIdentity({ async: true }));
  * const foo = new aws.s3.Bucket("foo", {
  *     forceDestroy: true,
@@ -60,18 +60,59 @@ import * as utilities from "../utilities";
  *     s3KeyPrefix: "prefix",
  * });
  * ```
- * 
- * ### Data Event Logging
- * 
+ *
+ * ### Logging All Lambda Function Invocations
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.cloudtrail.Trail("example", {
  *     eventSelectors: [{
  *         dataResources: [{
  *             type: "AWS::Lambda::Function",
  *             values: ["arn:aws:lambda"],
+ *         }],
+ *         includeManagementEvents: true,
+ *         readWriteType: "All",
+ *     }],
+ * });
+ * ```
+ *
+ * ### Logging All S3 Bucket Object Events
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ *
+ * const example = new aws.cloudtrail.Trail("example", {
+ *     eventSelectors: [{
+ *         dataResources: [{
+ *             type: "AWS::S3::Object",
+ *             values: ["arn:aws:s3:::"],
+ *         }],
+ *         includeManagementEvents: true,
+ *         readWriteType: "All",
+ *     }],
+ * });
+ * ```
+ *
+ * ### Logging Individual S3 Bucket Events
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ *
+ * const importantBucket = pulumi.output(aws.s3.getBucket({
+ *     bucket: "important-bucket",
+ * }, { async: true }));
+ * const example = new aws.cloudtrail.Trail("example", {
+ *     eventSelectors: [{
+ *         dataResources: [{
+ *             type: "AWS::S3::Object",
+ *             // Make sure to append a trailing '/' to your ARN if you want
+ *             // to monitor all objects in a bucket.
+ *             values: [pulumi.interpolate`${important_bucket.arn}/`],
  *         }],
  *         includeManagementEvents: true,
  *         readWriteType: "All",

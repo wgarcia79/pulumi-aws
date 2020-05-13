@@ -6,15 +6,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a Step Function Activity resource
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const sfnActivity = new aws.sfn.Activity("sfnActivity", {});
  * ```
  *

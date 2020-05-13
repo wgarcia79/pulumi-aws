@@ -9,17 +9,17 @@ import {Role} from "./role";
 
 /**
  * Attaches a Managed IAM Policy to an IAM role
- * 
+ *
  * > **NOTE:** The usage of this resource conflicts with the `aws.iam.PolicyAttachment` resource and will permanently show a difference if both are defined.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const role = new aws.iam.Role("role", {
  *     assumeRolePolicy: `    {
  *       "Version": "2012-10-17",

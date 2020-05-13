@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Information about EC2 Instance Type Offerings.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = pulumi.output(aws.ec2.getInstanceTypeOfferings({
  *     filters: [
  *         {

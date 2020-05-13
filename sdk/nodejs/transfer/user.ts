@@ -8,12 +8,12 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a AWS Transfer User resource. Managing SSH keys can be accomplished with the [`aws.transfer.SshKey` resource](https://www.terraform.io/docs/providers/aws/r/transfer_ssh_key.html).
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const fooServer = new aws.transfer.Server("foo", {
  *     identityProviderType: "SERVICE_MANAGED",
  *     tags: {

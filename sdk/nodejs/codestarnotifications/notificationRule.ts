@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a CodeStar Notifications Rule.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const code = new aws.codecommit.Repository("code", {repositoryName: "example-code-repo"});
  * const notif = new aws.sns.Topic("notif", {});
  * const notifAccess = aws.iam.getPolicyDocument({

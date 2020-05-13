@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides an IP access control group in AWS WorkSpaces Service
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const contractors = new aws.workspaces.IpGroup("contractors", {
  *     description: "Contractors IP access control group",
  * });

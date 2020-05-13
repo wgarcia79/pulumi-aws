@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides information about a Lambda Alias.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const production = pulumi.output(aws.lambda.getAlias({
  *     functionName: "my-lambda-func",
  *     name: "production",

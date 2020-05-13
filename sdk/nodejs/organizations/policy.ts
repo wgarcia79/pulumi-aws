@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a resource to manage an [AWS Organizations policy](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies.html).
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.organizations.Policy("example", {
  *     content: `{
  *   "Version": "2012-10-17",

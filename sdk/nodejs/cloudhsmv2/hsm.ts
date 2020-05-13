@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Creates an HSM module in Amazon CloudHSM v2 cluster.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const cluster = pulumi.output(aws.cloudhsmv2.getCluster({
  *     clusterId: var_cloudhsm_cluster_id,
  * }, { async: true }));

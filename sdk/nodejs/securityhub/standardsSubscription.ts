@@ -6,15 +6,15 @@ import * as utilities from "../utilities";
 
 /**
  * Subscribes to a Security Hub standard.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.securityhub.Account("example", {});
  * const cis = new aws.securityhub.StandardsSubscription("cis", {
  *     standardsArn: "arn:aws:securityhub:::ruleset/cis-aws-foundations-benchmark/v/1.2.0",

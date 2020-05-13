@@ -6,15 +6,15 @@ import * as utilities from "../utilities";
 
 /**
  * Retrieve information about a Service Quota.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const byQuotaCode = pulumi.output(aws.servicequotas.getServiceQuota({
  *     quotaCode: "L-F678F1CE",
  *     serviceCode: "vpc",

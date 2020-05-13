@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Manages a CodeBuild webhook, which is an endpoint accepted by the CodeBuild service to trigger builds from source code repositories. Depending on the source type of the CodeBuild project, the CodeBuild service may also automatically create and delete the actual repository webhook as well.
- * 
+ *
  * ## Example Usage
- * 
+ *
  * ### Bitbucket and GitHub
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.codebuild.Webhook("example", {
  *     filterGroups: [{
  *         filters: [
@@ -33,14 +33,14 @@ import * as utilities from "../utilities";
  *     projectName: aws_codebuild_project_example.name,
  * });
  * ```
- * 
+ *
  * ### GitHub Enterprise
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * import * as github from "@pulumi/github";
- * 
+ *
  * const exampleWebhook = new aws.codebuild.Webhook("example", {
  *     projectName: aws_codebuild_project_example.name,
  * });

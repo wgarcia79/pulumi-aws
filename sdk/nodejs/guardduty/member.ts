@@ -6,15 +6,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a resource to manage a GuardDuty member. To accept invitations in member accounts, see the [`aws.guardduty.InviteAccepter` resource](https://www.terraform.io/docs/providers/aws/r/guardduty_invite_accepter.html).
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const master = new aws.guardduty.Detector("master", {enable: true});
  * const memberDetector = new aws.guardduty.Detector("memberDetector", {enable: true});
  * const memberMember = new aws.guardduty.Member("memberMember", {

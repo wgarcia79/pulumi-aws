@@ -8,26 +8,26 @@ import * as utilities from "../utilities";
 
 /**
  * Retrieve information about an EC2 DHCP Options configuration.
- * 
+ *
  * ## Example Usage
- * 
+ *
  * ### Lookup by DHCP Options ID
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = pulumi.output(aws.ec2.getVpcDhcpOptions({
  *     dhcpOptionsId: "dopts-12345678",
  * }, { async: true }));
  * ```
- * 
+ *
  * ### Lookup by Filter
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = pulumi.output(aws.ec2.getVpcDhcpOptions({
  *     filters: [
  *         {

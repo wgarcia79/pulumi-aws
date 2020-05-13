@@ -9,19 +9,19 @@ import * as utilities from "../utilities";
 /**
  * Provides a Virtual Private Gateway attachment resource, allowing for an existing
  * hardware VPN gateway to be attached and/or detached from a VPC.
- * 
+ *
  * > **Note:** The `aws.ec2.VpnGateway`
  * resource can also automatically attach the Virtual Private Gateway it creates
  * to an existing VPC by setting the `vpcId` attribute accordingly.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const network = new aws.ec2.Vpc("network", {
  *     cidrBlock: "10.0.0.0/16",
  * });

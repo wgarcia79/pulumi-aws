@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides an API Gateway Usage Plan Key.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const test = new aws.apigateway.RestApi("test", {});
  * const myusageplan = new aws.apigateway.UsagePlan("myusageplan", {
  *     apiStages: [{

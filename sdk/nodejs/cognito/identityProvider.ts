@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a Cognito User Identity Provider resource.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.cognito.UserPool("example", {
  *     autoVerifiedAttributes: ["email"],
  * });

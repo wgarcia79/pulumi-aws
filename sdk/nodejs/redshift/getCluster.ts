@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides details about a specific redshift cluster.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const testCluster = pulumi.output(aws.redshift.getCluster({
  *     clusterIdentifier: "test-cluster",
  * }, { async: true }));

@@ -8,21 +8,21 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a resource to create an association between a VPC endpoint and a subnet.
- * 
+ *
  * > **NOTE on VPC Endpoints and VPC Endpoint Subnet Associations:** This provider provides
  * both a standalone VPC Endpoint Subnet Association (an association between a VPC endpoint
  * and a single `subnetId`) and a VPC Endpoint resource with a `subnetIds`
  * attribute. Do not use the same subnet ID in both a VPC Endpoint resource and a VPC Endpoint Subnet
  * Association resource. Doing so will cause a conflict of associations and will overwrite the association.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const snEc2 = new aws.ec2.VpcEndpointSubnetAssociation("snEc2", {
  *     subnetId: aws_subnet_sn.id,
  *     vpcEndpointId: aws_vpc_endpoint_ec2.id,

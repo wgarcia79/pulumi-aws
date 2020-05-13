@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides an AutoScaling Schedule resource.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const foobarGroup = new aws.autoscaling.Group("foobar", {
  *     availabilityZones: ["us-west-2a"],
  *     forceDelete: true,

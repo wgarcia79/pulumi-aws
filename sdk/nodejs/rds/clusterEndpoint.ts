@@ -9,16 +9,16 @@ import * as utilities from "../utilities";
 /**
  * Manages a RDS Aurora Cluster Endpoint.
  * You can refer to the [User Guide](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.Endpoints.html#Aurora.Endpoints.Cluster).
- * 
- * 
+ *
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const defaultCluster = new aws.rds.Cluster("default", {
  *     availabilityZones: [
  *         "us-west-2a",

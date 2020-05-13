@@ -8,17 +8,17 @@ import * as utilities from "../utilities";
 
 /**
  * Provides information for multiple EC2 Local Gateway Route Tables, such as their identifiers.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const fooLocalGatewayRouteTable = pulumi.output(aws.ec2.getLocalGatewayRouteTable({ async: true }));
- * 
+ *
  * export const foo = fooLocalGatewayRouteTable.ids;
  * ```
  *

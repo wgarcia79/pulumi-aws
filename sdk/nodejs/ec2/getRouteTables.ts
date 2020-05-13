@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * This resource can be useful for getting back a list of route table ids to be referenced elsewhere.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const rts = pulumi.output(aws.ec2.getRouteTables({
  *     filters: [{
  *         name: "tag:kubernetes.io/kops/role",

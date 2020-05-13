@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * `aws.waf.Rule` Retrieves a WAF Rule Resource Id.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = pulumi.output(aws.waf.getRule({
  *     name: "tfWAFRule",
  * }, { async: true }));

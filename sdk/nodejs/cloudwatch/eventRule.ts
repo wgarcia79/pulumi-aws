@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a CloudWatch Event Rule resource.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const console = new aws.cloudwatch.EventRule("console", {
  *     description: "Capture each AWS Console Sign In",
  *     eventPattern: `{

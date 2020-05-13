@@ -6,15 +6,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a Direct Connect Gateway.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.directconnect.Gateway("example", {
  *     amazonSideAsn: "64512",
  * });

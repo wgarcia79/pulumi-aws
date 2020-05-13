@@ -8,18 +8,18 @@ import * as utilities from "../utilities";
 
 /**
  * Creates a Lambda function alias. Creates an alias that points to the specified Lambda function version.
- * 
+ *
  * For information about Lambda and how to use it, see [What is AWS Lambda?](http://docs.aws.amazon.com/lambda/latest/dg/welcome.html)
  * For information about function aliases, see [CreateAlias](http://docs.aws.amazon.com/lambda/latest/dg/API_CreateAlias.html) and [AliasRoutingConfiguration](https://docs.aws.amazon.com/lambda/latest/dg/API_AliasRoutingConfiguration.html) in the API docs.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const testAlias = new aws.lambda.Alias("testAlias", {
  *     description: "a sample description",
  *     functionName: aws_lambda_function_lambda_function_test.arn,

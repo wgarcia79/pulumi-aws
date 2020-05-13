@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Manages an association with WAF Regional Web ACL.
- * 
+ *
  * > **Note:** An Application Load Balancer can only be associated with one WAF Regional WebACL.
- * 
+ *
  * ## Application Load Balancer Association Example
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const ipset = new aws.wafregional.IpSet("ipset", {
  *     ipSetDescriptors: [{
  *         type: "IPV4",
@@ -70,13 +70,13 @@ import * as utilities from "../utilities";
  *     webAclId: fooWebAcl.id,
  * });
  * ```
- * 
+ *
  * ## API Gateway Association Example
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const ipset = new aws.wafregional.IpSet("ipset", {
  *     ipSetDescriptors: [{
  *         type: "IPV4",

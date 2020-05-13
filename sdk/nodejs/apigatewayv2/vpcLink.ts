@@ -8,18 +8,18 @@ import * as utilities from "../utilities";
 
 /**
  * Manages an Amazon API Gateway Version 2 VPC Link.
- * 
+ *
  * > **Note:** Amazon API Gateway Version 2 VPC Links enable private integrations that connect HTTP APIs to private resources in a VPC.
  * To enable private integration for REST APIs, use the Amazon API Gateway Version 1 VPC Link [resource](https://www.terraform.io/docs/providers/aws/r/api_gateway_vpc_link.html).
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.apigatewayv2.VpcLink("example", {
  *     securityGroupIds: [data.aws_security_group.example.id],
  *     subnetIds: data.aws_subnet_ids.example.ids,

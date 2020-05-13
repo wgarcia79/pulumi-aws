@@ -9,15 +9,15 @@ import {Role} from "./role";
 
 /**
  * Provides an IAM role inline policy.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const testRole = new aws.iam.Role("testRole", {assumeRolePolicy: `{
  *   "Version": "2012-10-17",
  *   "Statement": [

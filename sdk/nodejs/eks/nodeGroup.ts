@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Manages an EKS Node Group, which can provision and optionally update an Auto Scaling Group of Kubernetes worker nodes compatible with EKS. Additional documentation about this functionality can be found in the [EKS User Guide](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html).
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.eks.NodeGroup("example", {
  *     clusterName: aws_eks_cluster.example.name,
  *     nodeRoleArn: aws_iam_role.example.arn,
@@ -28,13 +28,13 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- * 
+ *
  * ### Example IAM Role for EKS Node Group
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.iam.Role("example", {assumeRolePolicy: JSON.stringify({
  *     Statement: [{
  *         Action: "sts:AssumeRole",

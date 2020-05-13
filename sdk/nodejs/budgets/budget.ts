@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a budgets budget resource. Budgets use the cost visualisation provided by Cost Explorer to show you the status of your budgets, to provide forecasts of your estimated costs, and to track your AWS usage, including your free tier usage.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const ec2 = new aws.budgets.Budget("ec2", {
  *     budgetType: "COST",
  *     costFilters: {

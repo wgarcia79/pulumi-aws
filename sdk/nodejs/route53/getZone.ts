@@ -8,17 +8,17 @@ import * as utilities from "../utilities";
 
 /**
  * `aws.route53.Zone` provides details about a specific Route 53 Hosted Zone.
- * 
+ *
  * This data source allows to find a Hosted Zone ID given Hosted Zone name and certain search criteria.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const selected = pulumi.output(aws.route53.getZone({
  *     name: "test.com.",
  *     privateZone: true,

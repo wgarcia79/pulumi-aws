@@ -6,15 +6,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a Inspector assessment template
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.inspector.AssessmentTemplate("example", {
  *     duration: 3600,
  *     rulesPackageArns: [

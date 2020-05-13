@@ -6,15 +6,15 @@ import * as utilities from "../utilities";
 
 /**
  * Retrieve information about a GuardDuty detector.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = pulumi.output(aws.guardduty.getDetector({ async: true }));
  * ```
  *

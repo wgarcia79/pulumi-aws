@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides an API Gateway Gateway Response for a REST API Gateway.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const main = new aws.apigateway.RestApi("main", {});
  * const test = new aws.apigateway.Response("test", {
  *     responseParameters: {

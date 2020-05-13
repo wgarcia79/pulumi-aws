@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a Batch Job Queue resource.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const testQueue = new aws.batch.JobQueue("testQueue", {
  *     computeEnvironments: [
  *         aws_batch_compute_environment_test_environment_1.arn,

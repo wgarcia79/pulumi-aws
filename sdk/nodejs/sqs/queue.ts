@@ -6,13 +6,13 @@ import * as utilities from "../utilities";
 
 /**
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const queue = new aws.sqs.Queue("queue", {
  *     delaySeconds: 90,
  *     maxMessageSize: 2048,
@@ -27,25 +27,25 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- * 
+ *
  * ## FIFO queue
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const queue = new aws.sqs.Queue("queue", {
  *     contentBasedDeduplication: true,
  *     fifoQueue: true,
  * });
  * ```
- * 
+ *
  * ## Server-side encryption (SSE)
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const queue = new aws.sqs.Queue("queue", {
  *     kmsDataKeyReusePeriodSeconds: 300,
  *     kmsMasterKeyId: "alias/aws/sqs",

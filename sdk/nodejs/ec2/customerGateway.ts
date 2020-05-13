@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a customer gateway inside a VPC. These objects can be connected to VPN gateways via VPN connections, and allow you to establish tunnels between your network and the VPC.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const main = new aws.ec2.CustomerGateway("main", {
  *     bgpAsn: 65000,
  *     ipAddress: "172.83.124.10",

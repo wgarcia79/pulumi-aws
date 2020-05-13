@@ -11,15 +11,15 @@ import * as utilities from "../utilities";
  * API Gateway. To fetch the REST API you must provide a name to match against. 
  * As there is no unique name constraint on REST APIs this data source will 
  * error if there is more than one match.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const myRestApi = pulumi.output(aws.apigateway.getRestApi({
  *     name: "my-rest-api",
  * }, { async: true }));

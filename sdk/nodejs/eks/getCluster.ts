@@ -8,19 +8,19 @@ import * as utilities from "../utilities";
 
 /**
  * Retrieve information about an EKS Cluster.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = pulumi.output(aws.eks.getCluster({
  *     name: "example",
  * }, { async: true }));
- * 
+ *
  * export const endpoint = example.endpoint;
  * export const kubeconfigCertificateAuthorityData = example.certificateAuthorities.data;
  * // Only available on Kubernetes version 1.13 and 1.14 clusters created or upgraded on or after September 3, 2019.

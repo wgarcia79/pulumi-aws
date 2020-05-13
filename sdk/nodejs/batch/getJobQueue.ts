@@ -9,15 +9,15 @@ import * as utilities from "../utilities";
 /**
  * The Batch Job Queue data source allows access to details of a specific
  * job queue within AWS Batch.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const testQueue = pulumi.output(aws.batch.getJobQueue({
  *     name: "tf-test-batch-job-queue",
  * }, { async: true }));

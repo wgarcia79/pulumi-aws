@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides an Elastic File System (EFS) mount target.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const foo = new aws.ec2.Vpc("foo", {
  *     cidrBlock: "10.0.0.0/16",
  * });

@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Manages a Glue Security Configuration.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.glue.SecurityConfiguration("example", {
  *     encryptionConfiguration: {
  *         cloudwatchEncryption: {

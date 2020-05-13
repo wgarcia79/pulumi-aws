@@ -9,27 +9,27 @@ import * as utilities from "../utilities";
 /**
  * Manages an Amazon API Gateway Version 2 integration.
  * More information can be found in the [Amazon API Gateway Developer Guide](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api.html).
- * 
+ *
  * ## Example Usage
- * 
+ *
  * ### Basic
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.apigatewayv2.Integration("example", {
  *     apiId: aws_apigatewayv2_api_example.id,
  *     integrationType: "MOCK",
  * });
  * ```
- * 
+ *
  * ### Lambda Integration
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const exampleFunction = new aws.lambda.Function("example", {
  *     code: new pulumi.asset.FileArchive("example.zip"),
  *     handler: "index.handler",

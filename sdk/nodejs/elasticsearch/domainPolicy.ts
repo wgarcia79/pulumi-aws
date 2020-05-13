@@ -10,15 +10,15 @@ import {PolicyDocument} from "../iam/documents";
 
 /**
  * Allows setting policy to an Elasticsearch domain while referencing domain attributes (e.g. ARN)
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.elasticsearch.Domain("example", {
  *     elasticsearchVersion: "2.3",
  * });

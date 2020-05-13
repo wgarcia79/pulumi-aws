@@ -8,24 +8,24 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a Cognito User Pool resource.
- * 
+ *
  * ## Example Usage
- * 
+ *
  * ### Basic configuration
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const pool = new aws.cognito.UserPool("pool", {});
  * ```
- * 
+ *
  * ### Enabling SMS and Software Token Multi-Factor Authentication
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * // ... other configuration ...
  * const example = new aws.cognito.UserPool("example", {
  *     mfaConfiguration: "ON",

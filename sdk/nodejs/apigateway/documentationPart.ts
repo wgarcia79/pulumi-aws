@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a settings of an API Gateway Documentation Part.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const exampleRestApi = new aws.apigateway.RestApi("example", {});
  * const exampleDocumentationPart = new aws.apigateway.DocumentationPart("example", {
  *     location: {

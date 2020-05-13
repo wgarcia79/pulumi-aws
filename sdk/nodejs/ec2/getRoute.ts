@@ -8,22 +8,22 @@ import * as utilities from "../utilities";
 
 /**
  * `aws.ec2.Route` provides details about a specific Route.
- * 
+ *
  * This resource can prove useful when finding the resource
  * associated with a CIDR. For example, finding the peering
  * connection associated with a CIDR value.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const config = new pulumi.Config();
  * const subnetId = config.require("subnetId");
- * 
+ *
  * const selected = pulumi.output(aws.ec2.getRouteTable({
  *     subnetId: subnetId,
  * }, { async: true }));

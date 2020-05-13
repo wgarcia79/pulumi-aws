@@ -6,15 +6,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a resource to accept a pending GuardDuty invite on creation, ensure the detector has the correct master account on read, and disassociate with the master account upon removal.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const master = new aws.guardduty.Detector("master", {});
  * const memberDetector = new aws.guardduty.Detector("memberDetector", {});
  * const dev = new aws.guardduty.Member("dev", {

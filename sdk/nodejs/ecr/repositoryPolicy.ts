@@ -10,17 +10,17 @@ import {PolicyDocument} from "../iam/documents";
 
 /**
  * Provides an Elastic Container Registry Repository Policy.
- * 
+ *
  * Note that currently only one policy may be applied to a repository.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const foo = new aws.ecr.Repository("foo", {});
  * const foopolicy = new aws.ecr.RepositoryPolicy("foopolicy", {
  *     policy: `{

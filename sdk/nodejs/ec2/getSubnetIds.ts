@@ -8,17 +8,17 @@ import * as utilities from "../utilities";
 
 /**
  * `aws.ec2.getSubnetIds` provides a set of ids for a vpcId
- * 
+ *
  * This resource can be useful for getting back a set of subnet ids for a vpc.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const exampleSubnetIds = aws.ec2.getSubnetIds({
  *     vpcId: var.vpc_id,
  * });

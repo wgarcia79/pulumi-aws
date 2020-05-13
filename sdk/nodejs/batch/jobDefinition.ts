@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a Batch Job Definition resource.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const test = new aws.batch.JobDefinition("test", {
  *     containerProperties: `{
  * 	"command": ["ls", "-la"],

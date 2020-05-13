@@ -10,15 +10,15 @@ import {RestApi} from "./restApi";
 
 /**
  * Provides an API Gateway Method Settings, e.g. logging or monitoring.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const testRestApi = new aws.apigateway.RestApi("test", {
  *     description: "This is my API for demonstration purposes",
  * });

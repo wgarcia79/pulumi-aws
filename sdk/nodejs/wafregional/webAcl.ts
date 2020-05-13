@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a WAF Regional Web ACL Resource for use with Application Load Balancer.
- * 
+ *
  * ## Example Usage
- * 
+ *
  * ### Regular Rule
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const ipset = new aws.wafregional.IpSet("ipset", {
  *     ipSetDescriptors: [{
  *         type: "IPV4",
@@ -46,13 +46,13 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
- * 
+ *
  * ### Group Rule
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.wafregional.WebAcl("example", {
  *     defaultAction: {
  *         type: "ALLOW",
@@ -68,13 +68,13 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
- * 
+ *
  * ### Logging
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.wafregional.WebAcl("example", {
  *     loggingConfiguration: {
  *         logDestination: aws_kinesis_firehose_delivery_stream_example.arn,

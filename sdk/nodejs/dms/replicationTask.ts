@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a DMS (Data Migration Service) replication task resource. DMS replication tasks can be created, updated, deleted, and imported.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * // Create a new replication task
  * const test = new aws.dms.ReplicationTask("test", {
  *     cdcStartTime: "1.48434688e+09",

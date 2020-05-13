@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Manages an EKS Fargate Profile.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.eks.FargateProfile("example", {
  *     clusterName: aws_eks_cluster.example.name,
  *     podExecutionRoleArn: aws_iam_role.example.arn,
@@ -26,13 +26,13 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
- * 
+ *
  * ### Example IAM Role for EKS Fargate Profile
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.iam.Role("example", {assumeRolePolicy: JSON.stringify({
  *     Statement: [{
  *         Action: "sts:AssumeRole",

@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a Log subscription for AWS Directory Service that pushes logs to cloudwatch.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const exampleLogGroup = new aws.cloudwatch.LogGroup("example", {
  *     retentionInDays: 14,
  * });

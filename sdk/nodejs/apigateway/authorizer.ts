@@ -10,15 +10,15 @@ import {RestApi} from "./restApi";
 
 /**
  * Provides an API Gateway Authorizer.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const demoRestApi = new aws.apigateway.RestApi("demo", {});
  * const invocationRole = new aws.iam.Role("invocationRole", {
  *     assumeRolePolicy: `{

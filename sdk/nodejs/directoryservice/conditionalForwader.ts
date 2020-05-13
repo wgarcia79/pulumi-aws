@@ -6,15 +6,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a conditional forwarder for managed Microsoft AD in AWS Directory Service.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.directoryservice.ConditionalForwader("example", {
  *     directoryId: aws_directory_service_directory_ad.id,
  *     dnsIps: [

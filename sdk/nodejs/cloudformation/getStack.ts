@@ -7,15 +7,15 @@ import * as utilities from "../utilities";
 /**
  * The CloudFormation Stack data source allows access to stack
  * outputs and other useful data including the template body.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const network = pulumi.output(aws.cloudformation.getStack({
  *     name: "my-network-stack",
  * }, { async: true }));

@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a resource to create a VPC VPN Gateway.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const vpnGw = new aws.ec2.VpnGateway("vpnGw", {
  *     tags: {
  *         Name: "main",

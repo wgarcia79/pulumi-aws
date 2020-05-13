@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides an Gamelift Build resource.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const test = new aws.gamelift.Build("test", {
  *     operatingSystem: "WINDOWS_2012",
  *     storage_location: {

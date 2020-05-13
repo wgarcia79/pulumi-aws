@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a WAF Regional Regex Match Set Resource
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const exampleRegexPatternSet = new aws.wafregional.RegexPatternSet("example", {
  *     regexPatternStrings: [
  *         "one",

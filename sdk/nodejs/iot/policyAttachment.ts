@@ -9,16 +9,16 @@ import {ARN} from "../index";
 
 /**
  * Provides an IoT policy attachment.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * import * as fs from "fs";
- * 
+ *
  * const pubsub = new aws.iot.Policy("pubsub", {
  *     policy: `{
  *   "Version": "2012-10-17",

@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * `aws.route53.ResolverRule` provides details about a specific Route53 Resolver rule.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = pulumi.output(aws.route53.getResolverRule({
  *     domainName: "subdomain.example.com",
  *     ruleType: "SYSTEM",

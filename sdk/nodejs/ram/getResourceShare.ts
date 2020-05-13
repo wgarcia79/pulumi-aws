@@ -8,27 +8,27 @@ import * as utilities from "../utilities";
 
 /**
  * `aws.ram.ResourceShare` Retrieve information about a RAM Resource Share.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = pulumi.output(aws.ram.getResourceShare({
  *     name: "example",
  *     resourceOwner: "SELF",
  * }, { async: true }));
  * ```
- * 
+ *
  * ## Search by filters
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const tagFilter = pulumi.output(aws.ram.getResourceShare({
  *     filters: [{
  *         name: "NameOfTag",

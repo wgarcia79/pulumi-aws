@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides an Athena Workgroup.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.athena.Workgroup("example", {
  *     configuration: {
  *         enforceWorkgroupConfiguration: true,

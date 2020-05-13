@@ -6,15 +6,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides an AppSync API Key.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const exampleGraphQLApi = new aws.appsync.GraphQLApi("example", {
  *     authenticationType: "API_KEY",
  * });

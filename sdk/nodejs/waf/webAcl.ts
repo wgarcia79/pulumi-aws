@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a WAF Web ACL Resource
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const ipset = new aws.waf.IpSet("ipset", {
  *     ipSetDescriptors: [{
  *         type: "IPV4",
@@ -46,13 +46,13 @@ import * as utilities from "../utilities";
  *     }],
  * }, { dependsOn: [ipset, wafrule] });
  * ```
- * 
+ *
  * ### Logging
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * 
+ *
  * const example = new aws.waf.WebAcl("example", {
  *     // ... other configuration ...
  *     loggingConfiguration: {
