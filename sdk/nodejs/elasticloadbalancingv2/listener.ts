@@ -141,8 +141,12 @@ import * as utilities from "../utilities";
  *     protocol: "HTTP",
  * });
  * ```
+ *
+ *
+ * Deprecated: aws.elasticloadbalancingv2.Listener has been deprecated in favor of aws.lb.Listener
+ *
+ * @deprecated aws.elasticloadbalancingv2.Listener has been deprecated in favor of aws.lb.Listener
  */
-/** @deprecated aws.elasticloadbalancingv2.Listener has been deprecated in favor of aws.lb.Listener */
 export class Listener extends pulumi.CustomResource {
     /**
      * Get an existing Listener resource's state with the given name, ID, and optional extra

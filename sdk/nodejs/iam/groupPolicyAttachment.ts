@@ -4,8 +4,8 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-import {ARN} from "../index";
-import {Group} from "./group";
+import {ARN} from "..";
+import {Group} from "./index";
 
 /**
  * Attaches a Managed IAM Policy to an IAM group

@@ -4,8 +4,8 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-import {Policy} from ".";
-import {ARN} from "../index";
+import {ARN} from "..";
+import {Policy} from "./index";
 
 /**
  * Provides an IoT policy attachment.

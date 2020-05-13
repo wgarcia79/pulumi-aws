@@ -264,6 +264,10 @@ export interface GetPolicyDocumentArgs {
  */
 export interface GetPolicyDocumentResult {
     /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
+    /**
      * The above arguments serialized as a standard JSON policy document.
      */
     readonly json: string;
@@ -272,8 +276,4 @@ export interface GetPolicyDocumentResult {
     readonly sourceJson?: string;
     readonly statements?: outputs.iam.GetPolicyDocumentStatement[];
     readonly version?: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

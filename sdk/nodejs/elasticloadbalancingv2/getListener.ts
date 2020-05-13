@@ -37,6 +37,9 @@ import * as utilities from "../utilities";
  *     port: 443,
  * }, { async: true }));
  * ```
+ *
+ *
+ * Deprecated: aws.elasticloadbalancingv2.getListener has been deprecated in favor of aws.lb.getListener
  */
 /** @deprecated aws.elasticloadbalancingv2.getListener has been deprecated in favor of aws.lb.getListener */
 export function getListener(args?: GetListenerArgs, opts?: pulumi.InvokeOptions): Promise<GetListenerResult> {
@@ -81,12 +84,12 @@ export interface GetListenerResult {
     readonly arn: string;
     readonly certificateArn: string;
     readonly defaultActions: outputs.elasticloadbalancingv2.GetListenerDefaultAction[];
-    readonly loadBalancerArn: string;
-    readonly port: number;
-    readonly protocol: string;
-    readonly sslPolicy: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly loadBalancerArn: string;
+    readonly port: number;
+    readonly protocol: string;
+    readonly sslPolicy: string;
 }

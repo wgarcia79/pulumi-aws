@@ -32,6 +32,9 @@ import * as utilities from "../utilities";
  *     name: lbName,
  * }, { async: true }));
  * ```
+ *
+ *
+ * Deprecated: aws.applicationloadbalancing.getLoadBalancer has been deprecated in favor of aws.alb.getLoadBalancer
  */
 /** @deprecated aws.applicationloadbalancing.getLoadBalancer has been deprecated in favor of aws.alb.getLoadBalancer */
 export function getLoadBalancer(args?: GetLoadBalancerArgs, opts?: pulumi.InvokeOptions): Promise<GetLoadBalancerResult> {
@@ -76,6 +79,10 @@ export interface GetLoadBalancerResult {
     readonly dnsName: string;
     readonly dropInvalidHeaderFields: boolean;
     readonly enableDeletionProtection: boolean;
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly idleTimeout: number;
     readonly internal: boolean;
     readonly loadBalancerType: string;
@@ -86,8 +93,4 @@ export interface GetLoadBalancerResult {
     readonly tags: {[key: string]: any};
     readonly vpcId: string;
     readonly zoneId: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

@@ -18,3 +18,5 @@ replace (
 )
 
 replace github.com/pulumi/pulumi-terraform-bridge/v2 => ../../pulumi-terraform-bridge
+
+replace github.com/pulumi/pulumi/pkg/v2 => ../../pulumi/pkg

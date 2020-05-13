@@ -4,8 +4,8 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-import {ARN} from "../index";
-import {User} from "./user";
+import {ARN} from "..";
+import {User} from "./index";
 
 /**
  * Attaches a Managed IAM Policy to an IAM user

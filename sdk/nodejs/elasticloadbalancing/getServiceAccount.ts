@@ -55,6 +55,9 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
+ *
+ *
+ * Deprecated: aws.elasticloadbalancing.getServiceAccount has been deprecated in favor of aws.elb.getServiceAccount
  */
 /** @deprecated aws.elasticloadbalancing.getServiceAccount has been deprecated in favor of aws.elb.getServiceAccount */
 export function getServiceAccount(args?: GetServiceAccountArgs, opts?: pulumi.InvokeOptions): Promise<GetServiceAccountResult> {
@@ -91,9 +94,9 @@ export interface GetServiceAccountResult {
      * The ARN of the AWS ELB service account in the selected region.
      */
     readonly arn: string;
-    readonly region?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly region?: string;
 }

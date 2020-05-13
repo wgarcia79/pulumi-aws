@@ -72,6 +72,10 @@ export interface GetTargetGroupResult {
     readonly arnSuffix: string;
     readonly deregistrationDelay: number;
     readonly healthCheck: outputs.lb.GetTargetGroupHealthCheck;
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly lambdaMultiValueHeadersEnabled: boolean;
     readonly name: string;
     readonly port: number;
@@ -82,8 +86,4 @@ export interface GetTargetGroupResult {
     readonly tags: {[key: string]: any};
     readonly targetType: string;
     readonly vpcId: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

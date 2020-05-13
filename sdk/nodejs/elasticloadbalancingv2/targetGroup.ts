@@ -56,8 +56,12 @@ import * as utilities from "../utilities";
  *     targetType: "lambda",
  * });
  * ```
+ *
+ *
+ * Deprecated: aws.elasticloadbalancingv2.TargetGroup has been deprecated in favor of aws.lb.TargetGroup
+ *
+ * @deprecated aws.elasticloadbalancingv2.TargetGroup has been deprecated in favor of aws.lb.TargetGroup
  */
-/** @deprecated aws.elasticloadbalancingv2.TargetGroup has been deprecated in favor of aws.lb.TargetGroup */
 export class TargetGroup extends pulumi.CustomResource {
     /**
      * Get an existing TargetGroup resource's state with the given name, ID, and optional extra

@@ -6,8 +6,7 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-import {InstanceType} from "./instanceType";
-import {StorageType} from "./storageType";
+import {InstanceType, StorageType} from "./index";
 
 /**
  * Provides an RDS instance resource.  A DB instance is an isolated database

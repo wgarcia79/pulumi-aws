@@ -8,7 +8,6 @@ import * as utilities from "../utilities";
 
 /**
  * Provides an EC2 launch template resource. Can be used to create instances or auto scaling groups.
- *
  */
 export class LaunchTemplate extends pulumi.CustomResource {
     /**

@@ -96,13 +96,13 @@ export class OptionGroup extends pulumi.CustomResource {
      */
     public readonly namePrefix!: pulumi.Output<string>;
     /**
-     * A list of Options to apply.
-     */
-    public readonly options!: pulumi.Output<outputs.rds.OptionGroupOption[] | undefined>;
-    /**
      * The description of the option group. Defaults to "Managed by Pulumi".
      */
     public readonly optionGroupDescription!: pulumi.Output<string>;
+    /**
+     * A list of Options to apply.
+     */
+    public readonly options!: pulumi.Output<outputs.rds.OptionGroupOption[] | undefined>;
     /**
      * A map of tags to assign to the resource.
      */
@@ -125,8 +125,8 @@ export class OptionGroup extends pulumi.CustomResource {
             inputs["majorEngineVersion"] = state ? state.majorEngineVersion : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["namePrefix"] = state ? state.namePrefix : undefined;
-            inputs["options"] = state ? state.options : undefined;
             inputs["optionGroupDescription"] = state ? state.optionGroupDescription : undefined;
+            inputs["options"] = state ? state.options : undefined;
             inputs["tags"] = state ? state.tags : undefined;
         } else {
             const args = argsOrState as OptionGroupArgs | undefined;
@@ -140,8 +140,8 @@ export class OptionGroup extends pulumi.CustomResource {
             inputs["majorEngineVersion"] = args ? args.majorEngineVersion : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["namePrefix"] = args ? args.namePrefix : undefined;
-            inputs["options"] = args ? args.options : undefined;
             inputs["optionGroupDescription"] = (args ? args.optionGroupDescription : undefined) || "Managed by Pulumi";
+            inputs["options"] = args ? args.options : undefined;
             inputs["tags"] = args ? args.tags : undefined;
             inputs["arn"] = undefined /*out*/;
         }
@@ -181,13 +181,13 @@ export interface OptionGroupState {
      */
     readonly namePrefix?: pulumi.Input<string>;
     /**
-     * A list of Options to apply.
-     */
-    readonly options?: pulumi.Input<pulumi.Input<inputs.rds.OptionGroupOption>[]>;
-    /**
      * The description of the option group. Defaults to "Managed by Pulumi".
      */
     readonly optionGroupDescription?: pulumi.Input<string>;
+    /**
+     * A list of Options to apply.
+     */
+    readonly options?: pulumi.Input<pulumi.Input<inputs.rds.OptionGroupOption>[]>;
     /**
      * A map of tags to assign to the resource.
      */
@@ -215,13 +215,13 @@ export interface OptionGroupArgs {
      */
     readonly namePrefix?: pulumi.Input<string>;
     /**
-     * A list of Options to apply.
-     */
-    readonly options?: pulumi.Input<pulumi.Input<inputs.rds.OptionGroupOption>[]>;
-    /**
      * The description of the option group. Defaults to "Managed by Pulumi".
      */
     readonly optionGroupDescription?: pulumi.Input<string>;
+    /**
+     * A list of Options to apply.
+     */
+    readonly options?: pulumi.Input<pulumi.Input<inputs.rds.OptionGroupOption>[]>;
     /**
      * A map of tags to assign to the resource.
      */

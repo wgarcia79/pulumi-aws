@@ -30,6 +30,9 @@ import * as utilities from "../utilities";
  *     zoneId: aws_route53_zone_primary.zoneId,
  * });
  * ```
+ *
+ *
+ * Deprecated: aws.elasticloadbalancing.getHostedZoneId has been deprecated in favor of aws.elb.getHostedZoneId
  */
 /** @deprecated aws.elasticloadbalancing.getHostedZoneId has been deprecated in favor of aws.elb.getHostedZoneId */
 export function getHostedZoneId(args?: GetHostedZoneIdArgs, opts?: pulumi.InvokeOptions): Promise<GetHostedZoneIdResult> {
@@ -62,9 +65,9 @@ export interface GetHostedZoneIdArgs {
  * A collection of values returned by getHostedZoneId.
  */
 export interface GetHostedZoneIdResult {
-    readonly region?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly region?: string;
 }

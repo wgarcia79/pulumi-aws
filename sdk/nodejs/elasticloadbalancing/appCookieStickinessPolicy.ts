@@ -30,8 +30,12 @@ import * as utilities from "../utilities";
  *     loadBalancer: lb.name,
  * });
  * ```
+ *
+ *
+ * Deprecated: aws.elasticloadbalancing.AppCookieStickinessPolicy has been deprecated in favor of aws.elb.AppCookieStickinessPolicy
+ *
+ * @deprecated aws.elasticloadbalancing.AppCookieStickinessPolicy has been deprecated in favor of aws.elb.AppCookieStickinessPolicy
  */
-/** @deprecated aws.elasticloadbalancing.AppCookieStickinessPolicy has been deprecated in favor of aws.elb.AppCookieStickinessPolicy */
 export class AppCookieStickinessPolicy extends pulumi.CustomResource {
     /**
      * Get an existing AppCookieStickinessPolicy resource's state with the given name, ID, and optional extra

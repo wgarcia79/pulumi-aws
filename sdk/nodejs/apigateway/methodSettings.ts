@@ -6,7 +6,7 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-import {RestApi} from "./restApi";
+import {RestApi} from "./index";
 
 /**
  * Provides an API Gateway Method Settings, e.g. logging or monitoring.

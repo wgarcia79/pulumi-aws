@@ -4,7 +4,7 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-import {PolicyDocument} from "./documents";
+import {PolicyDocument} from "./index";
 
 /**
  * Provides an IAM policy attached to a user.

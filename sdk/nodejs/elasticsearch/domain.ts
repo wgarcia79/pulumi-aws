@@ -6,7 +6,7 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-import {PolicyDocument} from "../iam/documents";
+import {PolicyDocument} from "../iam";
 
 /**
  * Manages an AWS Elasticsearch Domain.

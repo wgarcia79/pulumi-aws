@@ -6,8 +6,7 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-import {Deployment} from "./deployment";
-import {RestApi} from "./restApi";
+import {Deployment, RestApi} from "./index";
 
 /**
  * Provides an API Gateway Stage.

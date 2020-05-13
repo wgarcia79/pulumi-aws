@@ -75,6 +75,8 @@ export class GatewayAssociationProposal extends pulumi.CustomResource {
     public readonly dxGatewayOwnerAccountId!: pulumi.Output<string>;
     /**
      * *Deprecated:* Use `associatedGatewayId` instead. Virtual Gateway identifier to associate with the Direct Connect Gateway.
+     *
+     * @deprecated use 'associated_gateway_id' argument instead
      */
     public readonly vpnGatewayId!: pulumi.Output<string | undefined>;
 
@@ -154,6 +156,7 @@ export interface GatewayAssociationProposalState {
     readonly dxGatewayOwnerAccountId?: pulumi.Input<string>;
     /**
      * *Deprecated:* Use `associatedGatewayId` instead. Virtual Gateway identifier to associate with the Direct Connect Gateway.
+     *
      * @deprecated use 'associated_gateway_id' argument instead
      */
     readonly vpnGatewayId?: pulumi.Input<string>;
@@ -181,6 +184,7 @@ export interface GatewayAssociationProposalArgs {
     readonly dxGatewayOwnerAccountId: pulumi.Input<string>;
     /**
      * *Deprecated:* Use `associatedGatewayId` instead. Virtual Gateway identifier to associate with the Direct Connect Gateway.
+     *
      * @deprecated use 'associated_gateway_id' argument instead
      */
     readonly vpnGatewayId?: pulumi.Input<string>;
