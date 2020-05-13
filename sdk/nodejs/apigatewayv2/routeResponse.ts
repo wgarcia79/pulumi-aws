@@ -24,8 +24,6 @@ import * as utilities from "../utilities";
  *     routeResponseKey: "$default",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/apigatewayv2_route_response.html.markdown.
  */
 export class RouteResponse extends pulumi.CustomResource {
     /**

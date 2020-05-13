@@ -28,8 +28,6 @@ import * as utilities from "../utilities";
  *     transitGatewayAttachmentId: aws_ec2_transit_gateway_vpc_attachment_example.id,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/ec2_transit_gateway_vpc_attachment_accepter.html.markdown.
  */
 export class VpcAttachmentAccepter extends pulumi.CustomResource {
     /**

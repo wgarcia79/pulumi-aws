@@ -19,8 +19,6 @@ import * as utilities from "../utilities";
  *     analyzerName: "example",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/accessanalyzer_analyzer.html.markdown.
  */
 export class Analyzer extends pulumi.CustomResource {
     /**

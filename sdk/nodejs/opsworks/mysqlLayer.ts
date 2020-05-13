@@ -24,8 +24,6 @@ import * as utilities from "../utilities";
  *     stackId: aws_opsworks_stack_main.id,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/opsworks_mysql_layer.html.markdown.
  */
 export class MysqlLayer extends pulumi.CustomResource {
     /**

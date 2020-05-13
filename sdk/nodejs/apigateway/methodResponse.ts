@@ -46,8 +46,6 @@ import {RestApi} from "./restApi";
  *     statusCode: "200",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/api_gateway_method_response.html.markdown.
  */
 export class MethodResponse extends pulumi.CustomResource {
     /**

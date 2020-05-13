@@ -21,8 +21,6 @@ import * as utilities from "../utilities";
  *     id: "EDFDVBD632BHDS5",
  * }, { async: true }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/d/cloudfront_distribution.html.markdown.
  */
 export function getDistribution(args: GetDistributionArgs, opts?: pulumi.InvokeOptions): Promise<GetDistributionResult> {
     if (!opts) {

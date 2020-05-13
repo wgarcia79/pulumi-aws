@@ -314,8 +314,6 @@ import {RoutingRule} from "./routingRules";
  *     ],
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/s3_bucket.html.markdown.
  */
 export class Bucket extends pulumi.CustomResource {
     /**

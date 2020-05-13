@@ -32,12 +32,10 @@ import * as utilities from "../utilities";
  *     name: lbTgName,
  * }, { async: true }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/d/lb_target_group.html.markdown.
  */
-/** @deprecated aws.elasticloadbalancingv2.getTargetGroup has been deprecated in favour of aws.lb.getTargetGroup */
+/** @deprecated aws.elasticloadbalancingv2.getTargetGroup has been deprecated in favor of aws.lb.getTargetGroup */
 export function getTargetGroup(args?: GetTargetGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetTargetGroupResult> {
-    pulumi.log.warn("getTargetGroup is deprecated: aws.elasticloadbalancingv2.getTargetGroup has been deprecated in favour of aws.lb.getTargetGroup")
+    pulumi.log.warn("getTargetGroup is deprecated: aws.elasticloadbalancingv2.getTargetGroup has been deprecated in favor of aws.lb.getTargetGroup")
     args = args || {};
     if (!opts) {
         opts = {}

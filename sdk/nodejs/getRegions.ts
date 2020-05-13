@@ -19,8 +19,6 @@ import * as utilities from "./utilities";
  *
  * const current = pulumi.output(aws.getRegions({ async: true }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/d/regions.html.markdown.
  */
 export function getRegions(args?: GetRegionsArgs, opts?: pulumi.InvokeOptions): Promise<GetRegionsResult> {
     args = args || {};

@@ -27,8 +27,6 @@ import * as utilities from "../utilities";
  * })));
  * export const subnetCidrBlocks = exampleSubnet.map(s => s.cidrBlock);
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/d/subnet_ids.html.markdown.
  */
 export function getSubnetIds(args: GetSubnetIdsArgs, opts?: pulumi.InvokeOptions): Promise<GetSubnetIdsResult> {
     if (!opts) {

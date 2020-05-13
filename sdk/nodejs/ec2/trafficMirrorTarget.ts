@@ -27,8 +27,6 @@ import * as utilities from "../utilities";
  *     networkInterfaceId: aws_instance_test.primaryNetworkInterfaceId,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/ec2_traffic_mirror_target.html.markdown.
  */
 export class TrafficMirrorTarget extends pulumi.CustomResource {
     /**

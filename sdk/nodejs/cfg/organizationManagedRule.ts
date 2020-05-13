@@ -29,8 +29,6 @@ import * as utilities from "../utilities";
  *     ruleIdentifier: "IAM_PASSWORD_POLICY",
  * }, { dependsOn: [exampleOrganization] });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/config_organization_managed_rule.html.markdown.
  */
 export class OrganizationManagedRule extends pulumi.CustomResource {
     /**

@@ -47,8 +47,6 @@ import * as utilities from "../utilities";
  *     clusterIdentifier: secondaryCluster.id,
  * }, { provider: secondary });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/rds_global_cluster.html.markdown.
  */
 export class GlobalCluster extends pulumi.CustomResource {
     /**

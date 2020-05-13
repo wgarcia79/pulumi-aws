@@ -58,8 +58,6 @@ import * as utilities from "../utilities";
  *     role: example.name,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/eks_node_group.html.markdown.
  */
 export class NodeGroup extends pulumi.CustomResource {
     /**

@@ -21,8 +21,6 @@ import * as utilities from "../utilities";
  *     subnetIds: aws_subnet_example.id,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/fsx_lustre_file_system.html.markdown.
  */
 export class LustreFileSystem extends pulumi.CustomResource {
     /**

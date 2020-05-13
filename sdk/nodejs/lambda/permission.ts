@@ -114,8 +114,6 @@ import {Function} from "./function";
  *     sourceArn: pulumi.interpolate`${myDemoAPI.executionArn}/*&#47;*&#47;*`,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/lambda_permission.html.markdown.
  */
 export class Permission extends pulumi.CustomResource {
     /**

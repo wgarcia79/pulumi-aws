@@ -36,8 +36,6 @@ import * as utilities from "../utilities";
  *     protocol: "TCP",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/globalaccelerator_listener.markdown.
  */
 export class Listener extends pulumi.CustomResource {
     /**

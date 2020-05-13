@@ -24,8 +24,6 @@ import {ParameterType} from "./parameterType";
  *     value: "bar",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/ssm_parameter.html.markdown.
  */
 export class Parameter extends pulumi.CustomResource {
     /**

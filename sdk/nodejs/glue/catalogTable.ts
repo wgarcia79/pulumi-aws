@@ -76,8 +76,6 @@ import * as utilities from "../utilities";
  *     tableType: "EXTERNAL_TABLE",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/glue_catalog_table.html.markdown.
  */
 export class CatalogTable extends pulumi.CustomResource {
     /**

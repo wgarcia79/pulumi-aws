@@ -30,8 +30,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/apigatewayv2_domain_name.html.markdown.
  */
 export class DomainName extends pulumi.CustomResource {
     /**

@@ -73,8 +73,6 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/lb.html.markdown.
  */
 export class LoadBalancer extends pulumi.CustomResource {
     /**

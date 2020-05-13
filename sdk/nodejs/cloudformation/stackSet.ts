@@ -71,8 +71,6 @@ import * as utilities from "../utilities";
  *     role: aWSCloudFormationStackSetAdministrationRole.name,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/cloudformation_stack_set.html.markdown.
  */
 export class StackSet extends pulumi.CustomResource {
     /**

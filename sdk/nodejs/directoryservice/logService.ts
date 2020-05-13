@@ -43,8 +43,6 @@ import * as utilities from "../utilities";
  *     logGroupName: exampleLogGroup.name,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/directory_service_log_subscription.html.markdown.
  */
 export class LogService extends pulumi.CustomResource {
     /**

@@ -21,8 +21,6 @@ import * as utilities from "../utilities";
  *     name: "exampleBackupVault",
  * }, { async: true }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/d/backup_vault.html.markdown.
  */
 export function getVault(args: GetVaultArgs, opts?: pulumi.InvokeOptions): Promise<GetVaultResult> {
     if (!opts) {

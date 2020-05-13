@@ -42,8 +42,6 @@ import * as utilities from "../utilities";
  *     workgroup: testWorkgroup.id,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/athena_named_query.html.markdown.
  */
 export class NamedQuery extends pulumi.CustomResource {
     /**

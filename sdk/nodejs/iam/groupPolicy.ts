@@ -37,8 +37,6 @@ import {PolicyDocument} from "./documents";
  * `,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/iam_group_policy.html.markdown.
  */
 export class GroupPolicy extends pulumi.CustomResource {
     /**

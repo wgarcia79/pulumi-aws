@@ -21,8 +21,6 @@ import * as utilities from "../utilities";
  *
  * export const foo = fooCoipPools.ids;
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/d/ec2_coip_pools.html.markdown.
  */
 export function getCoipPools(args?: GetCoipPoolsArgs, opts?: pulumi.InvokeOptions): Promise<GetCoipPoolsResult> {
     args = args || {};

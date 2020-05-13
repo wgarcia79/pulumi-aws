@@ -47,8 +47,6 @@ import * as utilities from "../utilities";
  *     passthroughBehavior: "WHEN_NO_MATCH",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/apigatewayv2_integration.html.markdown.
  */
 export class Integration extends pulumi.CustomResource {
     /**

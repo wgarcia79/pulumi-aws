@@ -175,8 +175,6 @@ import {InstanceProfile} from "../iam";
  * cannot currently be detected by this provider. After updating to block device
  * configuration, resource recreation can be manually triggered by using the
  * [`up` command with the --replace argument](https://www.pulumi.com/docs/reference/cli/pulumi_up/).
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/launch_configuration.html.markdown.
  */
 export class LaunchConfiguration extends pulumi.CustomResource {
     /**

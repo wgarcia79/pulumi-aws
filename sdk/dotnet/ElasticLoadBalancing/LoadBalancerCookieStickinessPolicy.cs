@@ -14,9 +14,9 @@ namespace Pulumi.Aws.ElasticLoadBalancing
     /// 
     /// 
     /// 
-    /// Deprecated: aws.elasticloadbalancing.LoadBalancerCookieStickinessPolicy has been deprecated in favour of aws.elb.LoadBalancerCookieStickinessPolicy
+    /// Deprecated: aws.elasticloadbalancing.LoadBalancerCookieStickinessPolicy has been deprecated in favor of aws.elb.LoadBalancerCookieStickinessPolicy
     /// </summary>
-    [Obsolete(@"aws.elasticloadbalancing.LoadBalancerCookieStickinessPolicy has been deprecated in favour of aws.elb.LoadBalancerCookieStickinessPolicy")]
+    [Obsolete(@"aws.elasticloadbalancing.LoadBalancerCookieStickinessPolicy has been deprecated in favor of aws.elb.LoadBalancerCookieStickinessPolicy")]
     public partial class LoadBalancerCookieStickinessPolicy : Pulumi.CustomResource
     {
         /// <summary>

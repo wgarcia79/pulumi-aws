@@ -34,8 +34,6 @@ import {Topic} from "./topic";
  *     topic: "arn:aws:sns:us-west-2:432981146916:user-updates-topic",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/sns_topic_subscription.html.markdown.
  */
 export class TopicSubscription extends pulumi.CustomResource {
     /**

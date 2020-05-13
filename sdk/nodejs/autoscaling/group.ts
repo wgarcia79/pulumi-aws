@@ -220,8 +220,6 @@ import {Metric, MetricsGranularity} from "./metrics";
  * number of configuration problems. See the [AWS Docs on Load Balancer
  * Troubleshooting](https://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-troubleshooting.html)
  * for more information.
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/autoscaling_group.html.markdown.
  */
 export class Group extends pulumi.CustomResource {
     /**

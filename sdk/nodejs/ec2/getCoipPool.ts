@@ -28,8 +28,6 @@ import * as utilities from "../utilities";
  *     id: coipPoolId,
  * }, { async: true }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/d/ec2_coip_pool.html.markdown.
  */
 export function getCoipPool(args?: GetCoipPoolArgs, opts?: pulumi.InvokeOptions): Promise<GetCoipPoolResult> {
     args = args || {};

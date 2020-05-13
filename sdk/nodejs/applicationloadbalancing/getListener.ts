@@ -37,12 +37,10 @@ import * as utilities from "../utilities";
  *     port: 443,
  * }, { async: true }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/d/lb_listener.html.markdown.
  */
-/** @deprecated aws.applicationloadbalancing.getListener has been deprecated in favour of aws.alb.getListener */
+/** @deprecated aws.applicationloadbalancing.getListener has been deprecated in favor of aws.alb.getListener */
 export function getListener(args?: GetListenerArgs, opts?: pulumi.InvokeOptions): Promise<GetListenerResult> {
-    pulumi.log.warn("getListener is deprecated: aws.applicationloadbalancing.getListener has been deprecated in favour of aws.alb.getListener")
+    pulumi.log.warn("getListener is deprecated: aws.applicationloadbalancing.getListener has been deprecated in favor of aws.alb.getListener")
     args = args || {};
     if (!opts) {
         opts = {}

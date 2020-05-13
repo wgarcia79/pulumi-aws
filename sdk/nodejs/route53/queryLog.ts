@@ -50,8 +50,6 @@ import * as utilities from "../utilities";
  *     zoneId: exampleComZone.zoneId,
  * }, { dependsOn: [route53_query_logging_policyLogResourcePolicy] });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/route53_query_log.html.markdown.
  */
 export class QueryLog extends pulumi.CustomResource {
     /**

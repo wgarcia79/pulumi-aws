@@ -78,10 +78,8 @@ import * as utilities from "../utilities";
  * P256 and P384 curves.  Using a certificate signed by a key using a different
  * curve could produce the error `ERR_SSL_VERSION_OR_CIPHER_MISMATCH` in your
  * browser.
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/elb.html.markdown.
  */
-/** @deprecated aws.elasticloadbalancing.LoadBalancer has been deprecated in favour of aws.elb.LoadBalancer */
+/** @deprecated aws.elasticloadbalancing.LoadBalancer has been deprecated in favor of aws.elb.LoadBalancer */
 export class LoadBalancer extends pulumi.CustomResource {
     /**
      * Get an existing LoadBalancer resource's state with the given name, ID, and optional extra
@@ -92,7 +90,7 @@ export class LoadBalancer extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: LoadBalancerState, opts?: pulumi.CustomResourceOptions): LoadBalancer {
-        pulumi.log.warn("LoadBalancer is deprecated: aws.elasticloadbalancing.LoadBalancer has been deprecated in favour of aws.elb.LoadBalancer")
+        pulumi.log.warn("LoadBalancer is deprecated: aws.elasticloadbalancing.LoadBalancer has been deprecated in favor of aws.elb.LoadBalancer")
         return new LoadBalancer(name, <any>state, { ...opts, id: id });
     }
 
@@ -204,11 +202,11 @@ export class LoadBalancer extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    /** @deprecated aws.elasticloadbalancing.LoadBalancer has been deprecated in favour of aws.elb.LoadBalancer */
+    /** @deprecated aws.elasticloadbalancing.LoadBalancer has been deprecated in favor of aws.elb.LoadBalancer */
     constructor(name: string, args: LoadBalancerArgs, opts?: pulumi.CustomResourceOptions)
-    /** @deprecated aws.elasticloadbalancing.LoadBalancer has been deprecated in favour of aws.elb.LoadBalancer */
+    /** @deprecated aws.elasticloadbalancing.LoadBalancer has been deprecated in favor of aws.elb.LoadBalancer */
     constructor(name: string, argsOrState?: LoadBalancerArgs | LoadBalancerState, opts?: pulumi.CustomResourceOptions) {
-        pulumi.log.warn("LoadBalancer is deprecated: aws.elasticloadbalancing.LoadBalancer has been deprecated in favour of aws.elb.LoadBalancer")
+        pulumi.log.warn("LoadBalancer is deprecated: aws.elasticloadbalancing.LoadBalancer has been deprecated in favor of aws.elb.LoadBalancer")
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
             const state = argsOrState as LoadBalancerState | undefined;

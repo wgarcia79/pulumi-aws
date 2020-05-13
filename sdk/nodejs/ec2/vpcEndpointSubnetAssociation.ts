@@ -28,8 +28,6 @@ import * as utilities from "../utilities";
  *     vpcEndpointId: aws_vpc_endpoint_ec2.id,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/vpc_endpoint_subnet_association.html.markdown.
  */
 export class VpcEndpointSubnetAssociation extends pulumi.CustomResource {
     /**

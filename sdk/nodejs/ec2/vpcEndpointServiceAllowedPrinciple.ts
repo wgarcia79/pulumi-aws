@@ -29,8 +29,6 @@ import * as utilities from "../utilities";
  *     vpcEndpointServiceId: aws_vpc_endpoint_service_foo.id,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/vpc_endpoint_service_allowed_principal.html.markdown.
  */
 export class VpcEndpointServiceAllowedPrinciple extends pulumi.CustomResource {
     /**

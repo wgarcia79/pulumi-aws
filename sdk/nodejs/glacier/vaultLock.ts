@@ -53,8 +53,6 @@ import * as utilities from "../utilities";
  *     vaultName: aws_glacier_vault_example.name,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/glacier_vault_lock.html.markdown.
  */
 export class VaultLock extends pulumi.CustomResource {
     /**

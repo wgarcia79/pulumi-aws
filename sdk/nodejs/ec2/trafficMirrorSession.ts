@@ -32,8 +32,6 @@ import * as utilities from "../utilities";
  *     trafficMirrorTargetId: target.id,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/ec2_traffic_mirror_session.html.markdown.
  */
 export class TrafficMirrorSession extends pulumi.CustomResource {
     /**

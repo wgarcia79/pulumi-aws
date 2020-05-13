@@ -22,8 +22,6 @@ import * as utilities from "../utilities";
  *     invite: true,
  * }, { dependsOn: [exampleAccount] });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/securityhub_member.markdown.
  */
 export class Member extends pulumi.CustomResource {
     /**

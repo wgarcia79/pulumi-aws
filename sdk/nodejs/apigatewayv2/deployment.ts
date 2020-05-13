@@ -25,8 +25,6 @@ import * as utilities from "../utilities";
  *     description: "Example deployment",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/apigatewayv2_deployment.html.markdown.
  */
 export class Deployment extends pulumi.CustomResource {
     /**

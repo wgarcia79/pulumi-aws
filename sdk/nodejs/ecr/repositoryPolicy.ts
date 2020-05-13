@@ -53,8 +53,6 @@ import {PolicyDocument} from "../iam/documents";
  *     repository: foo.name,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/ecr_repository_policy.html.markdown.
  */
 export class RepositoryPolicy extends pulumi.CustomResource {
     /**

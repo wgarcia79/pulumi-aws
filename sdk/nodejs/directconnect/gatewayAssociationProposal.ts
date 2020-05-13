@@ -21,8 +21,6 @@ import * as utilities from "../utilities";
  *     dxGatewayOwnerAccountId: aws_dx_gateway_example.ownerAccountId,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/dx_gateway_association_proposal.html.markdown.
  */
 export class GatewayAssociationProposal extends pulumi.CustomResource {
     /**
@@ -156,7 +154,6 @@ export interface GatewayAssociationProposalState {
     readonly dxGatewayOwnerAccountId?: pulumi.Input<string>;
     /**
      * *Deprecated:* Use `associatedGatewayId` instead. Virtual Gateway identifier to associate with the Direct Connect Gateway.
-     *
      * @deprecated use 'associated_gateway_id' argument instead
      */
     readonly vpnGatewayId?: pulumi.Input<string>;
@@ -184,7 +181,6 @@ export interface GatewayAssociationProposalArgs {
     readonly dxGatewayOwnerAccountId: pulumi.Input<string>;
     /**
      * *Deprecated:* Use `associatedGatewayId` instead. Virtual Gateway identifier to associate with the Direct Connect Gateway.
-     *
      * @deprecated use 'associated_gateway_id' argument instead
      */
     readonly vpnGatewayId?: pulumi.Input<string>;

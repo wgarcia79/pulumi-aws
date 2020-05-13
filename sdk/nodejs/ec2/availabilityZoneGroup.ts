@@ -24,8 +24,6 @@ import * as utilities from "../utilities";
  *     optInStatus: "opted-in",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/ec2_availability_zone_group.html.markdown.
  */
 export class AvailabilityZoneGroup extends pulumi.CustomResource {
     /**

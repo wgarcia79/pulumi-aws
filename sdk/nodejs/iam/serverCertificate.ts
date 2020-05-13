@@ -33,8 +33,6 @@ import * as utilities from "../utilities";
  *     privateKey: fs.readFileSync("test-key.pem", "utf-8"),
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/iam_server_certificate.html.markdown.
  */
 export class ServerCertificate extends pulumi.CustomResource {
     /**

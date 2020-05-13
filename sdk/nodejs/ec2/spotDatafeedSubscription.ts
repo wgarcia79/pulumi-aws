@@ -26,8 +26,6 @@ import * as utilities from "../utilities";
  *     prefix: "mySubdirectory",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/spot_datafeed_subscription.html.markdown.
  */
 export class SpotDatafeedSubscription extends pulumi.CustomResource {
     /**

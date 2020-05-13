@@ -16,7 +16,7 @@ import (
 //
 //
 //
-// Deprecated: aws.elasticloadbalancingv2.ListenerRule has been deprecated in favour of aws.lb.ListenerRule
+// Deprecated: aws.elasticloadbalancingv2.ListenerRule has been deprecated in favor of aws.lb.ListenerRule
 type ListenerRule struct {
 	pulumi.CustomResourceState
 

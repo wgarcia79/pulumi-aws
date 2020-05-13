@@ -69,8 +69,6 @@ import {StorageType} from "./storageType";
  *     maxAllocatedStorage: 100,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/db_instance.html.markdown.
  */
 export class Instance extends pulumi.CustomResource {
     /**

@@ -43,8 +43,6 @@ import * as utilities from "../utilities";
  *     vpcId: secondaryCidr.vpcId,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/subnet.html.markdown.
  */
 export class Subnet extends pulumi.CustomResource {
     /**

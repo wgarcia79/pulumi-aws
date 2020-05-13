@@ -9,7 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Aws.ElasticLoadBalancingV2
 {
-    [Obsolete(@"aws.elasticloadbalancingv2.getListener has been deprecated in favour of aws.lb.getListener")]
+    [Obsolete(@"aws.elasticloadbalancingv2.getListener has been deprecated in favor of aws.lb.getListener")]
     public static class GetListener
     {
         /// <summary>
@@ -24,7 +24,7 @@ namespace Pulumi.Aws.ElasticLoadBalancingV2
         /// {{% examples %}}
         /// {{% /examples %}}
         /// 
-        /// Deprecated: aws.elasticloadbalancingv2.getListener has been deprecated in favour of aws.lb.getListener
+        /// Deprecated: aws.elasticloadbalancingv2.getListener has been deprecated in favor of aws.lb.getListener
         /// </summary>
         public static Task<GetListenerResult> InvokeAsync(GetListenerArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetListenerResult>("aws:elasticloadbalancingv2/getListener:getListener", args ?? new GetListenerArgs(), options.WithVersion());

@@ -28,8 +28,6 @@ import * as utilities from "../utilities";
  *     masterAccountId: master.accountId,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/guardduty_invite_accepter.html.markdown.
  */
 export class InviteAccepter extends pulumi.CustomResource {
     /**

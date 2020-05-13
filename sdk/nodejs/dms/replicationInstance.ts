@@ -67,8 +67,6 @@ import * as utilities from "../utilities";
  *     vpcSecurityGroupIds: ["sg-12345678"],
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/dms_replication_instance.html.markdown.
  */
 export class ReplicationInstance extends pulumi.CustomResource {
     /**

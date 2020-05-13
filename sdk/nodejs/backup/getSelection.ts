@@ -22,8 +22,6 @@ import * as utilities from "../utilities";
  *     selectionId: "selection-id-example",
  * }, { async: true }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/d/backup_selection.html.markdown.
  */
 export function getSelection(args: GetSelectionArgs, opts?: pulumi.InvokeOptions): Promise<GetSelectionResult> {
     if (!opts) {

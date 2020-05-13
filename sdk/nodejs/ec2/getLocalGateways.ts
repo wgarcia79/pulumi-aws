@@ -25,8 +25,6 @@ import * as utilities from "../utilities";
  *
  * export const foo = fooLocalGateways.ids;
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/d/ec2_local_gateways.html.markdown.
  */
 export function getLocalGateways(args?: GetLocalGatewaysArgs, opts?: pulumi.InvokeOptions): Promise<GetLocalGatewaysResult> {
     args = args || {};

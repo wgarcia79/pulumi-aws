@@ -20,8 +20,6 @@ import * as utilities from "../utilities";
  *     identifier: "tf-redshift-snapshot-schedule",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/redshift_snapshot_schedule.html.markdown.
  */
 export class SnapshotSchedule extends pulumi.CustomResource {
     /**

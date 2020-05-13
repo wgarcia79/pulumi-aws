@@ -17,8 +17,6 @@ import * as utilities from "../utilities";
  *
  * const example = new aws.worklink.Fleet("example", {});
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/worklink_fleet.html.markdown.
  */
 export class Fleet extends pulumi.CustomResource {
     /**

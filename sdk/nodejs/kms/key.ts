@@ -22,8 +22,6 @@ import * as utilities from "../utilities";
  *     description: "KMS key 1",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/kms_key.html.markdown.
  */
 export class Key extends pulumi.CustomResource {
     /**

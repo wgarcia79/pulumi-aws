@@ -47,8 +47,6 @@ import * as utilities from "../utilities";
  *     policy: snsTopicPolicy.json,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/cloudwatch_event_rule.html.markdown.
  */
 export class EventRule extends pulumi.CustomResource {
     /**

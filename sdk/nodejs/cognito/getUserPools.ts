@@ -29,8 +29,6 @@ import * as utilities from "../utilities";
  *     type: "COGNITO_USER_POOLS",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/d/cognito_user_pools.markdown.
  */
 export function getUserPools(args: GetUserPoolsArgs, opts?: pulumi.InvokeOptions): Promise<GetUserPoolsResult> {
     if (!opts) {

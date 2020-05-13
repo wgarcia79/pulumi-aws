@@ -28,8 +28,6 @@ import * as utilities from "../utilities";
  *     elb: aws_elb_bar.id,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/autoscaling_attachment.html.markdown.
  */
 export class Attachment extends pulumi.CustomResource {
     /**

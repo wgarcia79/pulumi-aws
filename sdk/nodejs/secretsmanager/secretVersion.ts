@@ -47,8 +47,6 @@ import * as utilities from "../utilities";
  *     })(),
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/secretsmanager_secret_version.html.markdown.
  */
 export class SecretVersion extends pulumi.CustomResource {
     /**

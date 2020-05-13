@@ -56,8 +56,6 @@ import * as utilities from "../utilities";
  *     volumeSizeInBytes: aws_storagegateway_cached_iscsi_volume_existing.volumeSizeInBytes,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/storagegateway_cached_iscsi_volume.html.markdown.
  */
 export class CachesIscsiVolume extends pulumi.CustomResource {
     /**

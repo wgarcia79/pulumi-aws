@@ -38,8 +38,6 @@ import * as utilities from "../utilities";
  *     volumeId: example.id,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/volume_attachment.html.markdown.
  */
 export class VolumeAttachment extends pulumi.CustomResource {
     /**

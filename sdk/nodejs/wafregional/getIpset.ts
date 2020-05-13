@@ -21,8 +21,6 @@ import * as utilities from "../utilities";
  *     name: "tfWAFRegionalIPSet",
  * }, { async: true }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/d/wafregional_ipset.html.markdown.
  */
 export function getIpset(args: GetIpsetArgs, opts?: pulumi.InvokeOptions): Promise<GetIpsetResult> {
     if (!opts) {

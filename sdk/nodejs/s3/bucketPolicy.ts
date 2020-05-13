@@ -41,8 +41,6 @@ import {PolicyDocument} from "../iam/documents";
  * `,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/s3_bucket_policy.html.markdown.
  */
 export class BucketPolicy extends pulumi.CustomResource {
     /**

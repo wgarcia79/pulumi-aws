@@ -21,8 +21,6 @@ import * as utilities from "../utilities";
  *
  * export const foo = fooLocalGatewayRouteTable.ids;
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/d/ec2_local_gateway_route_tables.html.markdown.
  */
 export function getLocalGatewayRouteTables(args?: GetLocalGatewayRouteTablesArgs, opts?: pulumi.InvokeOptions): Promise<GetLocalGatewayRouteTablesResult> {
     args = args || {};

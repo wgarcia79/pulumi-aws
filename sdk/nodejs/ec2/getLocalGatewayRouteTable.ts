@@ -27,8 +27,6 @@ import * as utilities from "../utilities";
  *     localGatewayRouteTableId: awsEc2LocalGatewayRouteTable,
  * }, { async: true }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/d/ec2_local_gateway_route_table.html.markdown.
  */
 export function getLocalGatewayRouteTable(args?: GetLocalGatewayRouteTableArgs, opts?: pulumi.InvokeOptions): Promise<GetLocalGatewayRouteTableResult> {
     args = args || {};

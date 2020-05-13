@@ -66,8 +66,6 @@ import * as utilities from "../utilities";
  * `,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/appsync_function.html.markdown.
  */
 export class Function extends pulumi.CustomResource {
     /**

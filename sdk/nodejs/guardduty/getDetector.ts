@@ -17,8 +17,6 @@ import * as utilities from "../utilities";
  *
  * const example = pulumi.output(aws.guardduty.getDetector({ async: true }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/d/guardduty_detector.html.markdown.
  */
 export function getDetector(args?: GetDetectorArgs, opts?: pulumi.InvokeOptions): Promise<GetDetectorResult> {
     args = args || {};

@@ -22,8 +22,6 @@ import * as utilities from "../utilities";
  *     parentId: org.roots[0].id,
  * }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/d/organizations_organizational_units.html.markdown.
  */
 export function getOrganizationalUnits(args: GetOrganizationalUnitsArgs, opts?: pulumi.InvokeOptions): Promise<GetOrganizationalUnitsResult> {
     if (!opts) {

@@ -71,8 +71,6 @@ import * as utilities from "../utilities";
  *     privateKey: examplePrivateKey.privateKeyPem,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/acm_certificate.html.markdown.
  */
 export class Certificate extends pulumi.CustomResource {
     /**

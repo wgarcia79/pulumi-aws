@@ -23,8 +23,6 @@ import * as utilities from "../utilities";
  *     detectorId: exampleDetector.id,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/guardduty_organization_configuration.html.markdown.
  */
 export class OrganizationConfiguration extends pulumi.CustomResource {
     /**

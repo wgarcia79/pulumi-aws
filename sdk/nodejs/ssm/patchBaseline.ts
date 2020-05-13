@@ -25,8 +25,6 @@ import * as utilities from "../utilities";
  *     approvedPatches: ["KB123456"],
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/ssm_patch_baseline.html.markdown.
  */
 export class PatchBaseline extends pulumi.CustomResource {
     /**

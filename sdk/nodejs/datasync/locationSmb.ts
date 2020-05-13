@@ -27,8 +27,6 @@ import * as utilities from "../utilities";
  *     user: "Guest",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/datasync_location_smb.html.markdown.
  */
 export class LocationSmb extends pulumi.CustomResource {
     /**

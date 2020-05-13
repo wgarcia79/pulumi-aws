@@ -35,8 +35,6 @@ import * as utilities from "../utilities";
  *     shareArn: senderInvite.resourceShareArn,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/ram_resource_share_accepter.markdown.
  */
 export class ResourceShareAccepter extends pulumi.CustomResource {
     /**

@@ -77,8 +77,6 @@ import * as utilities from "../utilities";
  *     vpcId: aws_vpc_example.id,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/flow_log.html.markdown.
  */
 export class FlowLog extends pulumi.CustomResource {
     /**
@@ -232,7 +230,6 @@ export interface FlowLogState {
     readonly logFormat?: pulumi.Input<string>;
     /**
      * *Deprecated:* Use `logDestination` instead. The name of the CloudWatch log group.
-     *
      * @deprecated use 'log_destination' argument instead
      */
     readonly logGroupName?: pulumi.Input<string>;
@@ -287,7 +284,6 @@ export interface FlowLogArgs {
     readonly logFormat?: pulumi.Input<string>;
     /**
      * *Deprecated:* Use `logDestination` instead. The name of the CloudWatch log group.
-     *
      * @deprecated use 'log_destination' argument instead
      */
     readonly logGroupName?: pulumi.Input<string>;

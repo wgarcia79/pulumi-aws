@@ -72,8 +72,6 @@ import {ApplicationVersion} from "./applicationVersion";
  *     solutionStackName: "64bit Amazon Linux 2015.03 v2.0.3 running Go 1.4",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/elastic_beanstalk_environment.html.markdown.
  */
 export class Environment extends pulumi.CustomResource {
     /**

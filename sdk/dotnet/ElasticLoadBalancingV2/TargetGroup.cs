@@ -16,9 +16,9 @@ namespace Pulumi.Aws.ElasticLoadBalancingV2
     /// 
     /// 
     /// 
-    /// Deprecated: aws.elasticloadbalancingv2.TargetGroup has been deprecated in favour of aws.lb.TargetGroup
+    /// Deprecated: aws.elasticloadbalancingv2.TargetGroup has been deprecated in favor of aws.lb.TargetGroup
     /// </summary>
-    [Obsolete(@"aws.elasticloadbalancingv2.TargetGroup has been deprecated in favour of aws.lb.TargetGroup")]
+    [Obsolete(@"aws.elasticloadbalancingv2.TargetGroup has been deprecated in favor of aws.lb.TargetGroup")]
     public partial class TargetGroup : Pulumi.CustomResource
     {
         /// <summary>

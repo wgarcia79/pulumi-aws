@@ -31,8 +31,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/dms_event_subscription.html.markdown.
  */
 export class EventSubscription extends pulumi.CustomResource {
     /**

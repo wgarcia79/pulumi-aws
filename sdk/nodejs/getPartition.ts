@@ -26,8 +26,6 @@ import * as utilities from "./utilities";
  *     }],
  * }, { async: true }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/d/partition.html.markdown.
  */
 export function getPartition(opts?: pulumi.InvokeOptions): Promise<GetPartitionResult> {
     if (!opts) {

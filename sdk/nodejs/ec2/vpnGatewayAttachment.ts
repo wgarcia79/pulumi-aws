@@ -35,8 +35,6 @@ import * as utilities from "../utilities";
  *     vpnGatewayId: vpn.id,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/vpn_gateway_attachment.html.markdown.
  */
 export class VpnGatewayAttachment extends pulumi.CustomResource {
     /**

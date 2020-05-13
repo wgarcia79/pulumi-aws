@@ -22,8 +22,6 @@ import * as utilities from "../utilities";
  *     subnetId: aws_subnet_public.id,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/nat_gateway.html.markdown.
  */
 export class NatGateway extends pulumi.CustomResource {
     /**

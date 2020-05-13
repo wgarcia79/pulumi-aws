@@ -24,8 +24,6 @@ import * as utilities from "../utilities";
  *
  * export const content = foo.content;
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/d/ssm_document.html.markdown.
  */
 export function getDocument(args: GetDocumentArgs, opts?: pulumi.InvokeOptions): Promise<GetDocumentResult> {
     if (!opts) {

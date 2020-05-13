@@ -35,8 +35,6 @@ import * as utilities from "../utilities";
  *     networkInterfaceId: route.networkInterfaceId!,
  * }, { async: true }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/d/route.html.markdown.
  */
 export function getRoute(args: GetRouteArgs, opts?: pulumi.InvokeOptions): Promise<GetRouteResult> {
     if (!opts) {

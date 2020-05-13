@@ -94,8 +94,6 @@ import * as utilities from "../utilities";
  *     assumeRolePolicy: exampleAssumeRolePolicy.json,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/eks_cluster.html.markdown.
  */
 export class Cluster extends pulumi.CustomResource {
     /**

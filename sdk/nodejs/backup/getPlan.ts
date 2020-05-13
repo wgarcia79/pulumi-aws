@@ -21,8 +21,6 @@ import * as utilities from "../utilities";
  *     planId: "tfExampleBackupPlanId",
  * }, { async: true }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/d/backup_plan.html.markdown.
  */
 export function getPlan(args: GetPlanArgs, opts?: pulumi.InvokeOptions): Promise<GetPlanResult> {
     if (!opts) {

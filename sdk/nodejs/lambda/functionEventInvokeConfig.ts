@@ -81,8 +81,6 @@ import * as utilities from "../utilities";
  * });
  * // ... other configuration ...
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/lambda_function_event_invoke_config.html.markdown.
  */
 export class FunctionEventInvokeConfig extends pulumi.CustomResource {
     /**

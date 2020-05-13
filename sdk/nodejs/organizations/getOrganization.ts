@@ -53,8 +53,6 @@ import * as utilities from "../utilities";
  *     policy: snsTopicPolicyPolicyDocument.json,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/d/organizations_organization.html.markdown.
  */
 export function getOrganization(opts?: pulumi.InvokeOptions): Promise<GetOrganizationResult> {
     if (!opts) {

@@ -58,8 +58,6 @@ import * as utilities from "../utilities";
  * ## Output Reference
  *
  * There are no outputs for this resource.
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/network_interface_sg_attachment.html.markdown.
  */
 export class NetworkInterfaceSecurityGroupAttachment extends pulumi.CustomResource {
     /**

@@ -46,8 +46,6 @@ import * as utilities from "../utilities";
  *     zoneId: example.zoneId,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/route53_zone_association.html.markdown.
  */
 export class ZoneAssociation extends pulumi.CustomResource {
     /**

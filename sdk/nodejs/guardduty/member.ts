@@ -25,8 +25,6 @@ import * as utilities from "../utilities";
  *     invitationMessage: "please accept guardduty invitation",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/guardduty_member.html.markdown.
  */
 export class Member extends pulumi.CustomResource {
     /**

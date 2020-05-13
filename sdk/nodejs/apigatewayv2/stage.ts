@@ -22,8 +22,6 @@ import * as utilities from "../utilities";
  *     apiId: aws_apigatewayv2_api_example.id,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/apigatewayv2_stage.html.markdown.
  */
 export class Stage extends pulumi.CustomResource {
     /**

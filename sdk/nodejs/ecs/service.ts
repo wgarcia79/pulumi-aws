@@ -66,8 +66,6 @@ import * as utilities from "../utilities";
  *     taskDefinition: aws_ecs_task_definition_bar.arn,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/ecs_service.html.markdown.
  */
 export class Service extends pulumi.CustomResource {
     /**

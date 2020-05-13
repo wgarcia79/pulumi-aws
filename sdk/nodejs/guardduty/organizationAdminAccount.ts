@@ -22,8 +22,6 @@ import * as utilities from "../utilities";
  * const exampleDetector = new aws.guardduty.Detector("exampleDetector", {});
  * const exampleOrganizationAdminAccount = new aws.guardduty.OrganizationAdminAccount("exampleOrganizationAdminAccount", {adminAccountId: "123456789012"});
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/guardduty_organization_admin_account.html.markdown.
  */
 export class OrganizationAdminAccount extends pulumi.CustomResource {
     /**

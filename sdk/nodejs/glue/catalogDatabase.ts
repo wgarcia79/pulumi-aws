@@ -19,8 +19,6 @@ import * as utilities from "../utilities";
  *     name: "MyCatalogDatabase",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/glue_catalog_database.html.markdown.
  */
 export class CatalogDatabase extends pulumi.CustomResource {
     /**

@@ -47,8 +47,6 @@ import * as utilities from "../utilities";
  *     optionGroupDescription: "Option Group",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/db_option_group.html.markdown.
  */
 export class OptionGroup extends pulumi.CustomResource {
     /**

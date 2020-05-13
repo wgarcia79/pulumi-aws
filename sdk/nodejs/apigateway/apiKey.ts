@@ -23,8 +23,6 @@ import {RestApi} from "./restApi";
  *
  * const myDemoApiKey = new aws.apigateway.ApiKey("MyDemoApiKey", {});
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/api_gateway_api_key.html.markdown.
  */
 export class ApiKey extends pulumi.CustomResource {
     /**

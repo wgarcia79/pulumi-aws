@@ -30,8 +30,6 @@ import * as utilities from "../utilities";
  *     },
  * }});
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/ecs_capacity_provider.html.markdown.
  */
 export class CapacityProvider extends pulumi.CustomResource {
     /**

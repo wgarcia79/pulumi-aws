@@ -24,8 +24,6 @@ import * as utilities from "./utilities";
  * export const callerArn = current.arn;
  * export const callerUser = current.userId;
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/d/caller_identity.html.markdown.
  */
 export function getCallerIdentity(opts?: pulumi.InvokeOptions): Promise<GetCallerIdentityResult> {
     if (!opts) {

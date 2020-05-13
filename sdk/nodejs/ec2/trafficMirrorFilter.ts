@@ -23,8 +23,6 @@ import * as utilities from "../utilities";
  *     networkServices: ["amazon-dns"],
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/ec2_traffic_mirror_filter.html.markdown.
  */
 export class TrafficMirrorFilter extends pulumi.CustomResource {
     /**

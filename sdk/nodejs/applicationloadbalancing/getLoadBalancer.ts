@@ -32,12 +32,10 @@ import * as utilities from "../utilities";
  *     name: lbName,
  * }, { async: true }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/d/lb.html.markdown.
  */
-/** @deprecated aws.applicationloadbalancing.getLoadBalancer has been deprecated in favour of aws.alb.getLoadBalancer */
+/** @deprecated aws.applicationloadbalancing.getLoadBalancer has been deprecated in favor of aws.alb.getLoadBalancer */
 export function getLoadBalancer(args?: GetLoadBalancerArgs, opts?: pulumi.InvokeOptions): Promise<GetLoadBalancerResult> {
-    pulumi.log.warn("getLoadBalancer is deprecated: aws.applicationloadbalancing.getLoadBalancer has been deprecated in favour of aws.alb.getLoadBalancer")
+    pulumi.log.warn("getLoadBalancer is deprecated: aws.applicationloadbalancing.getLoadBalancer has been deprecated in favor of aws.alb.getLoadBalancer")
     args = args || {};
     if (!opts) {
         opts = {}

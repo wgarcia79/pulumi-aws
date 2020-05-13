@@ -33,8 +33,6 @@ import * as utilities from "../utilities";
  *     serverCertificateArn: aws_acm_certificate_cert.arn,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/ec2_client_vpn_endpoint.html.markdown.
  */
 export class Endpoint extends pulumi.CustomResource {
     /**

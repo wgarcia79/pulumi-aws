@@ -113,8 +113,6 @@ import {Bucket} from "./bucket";
  *     source: new pulumi.asset.FileAsset("important.txt"),
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/s3_bucket_object.html.markdown.
  */
 export class BucketObject extends pulumi.CustomResource {
     /**

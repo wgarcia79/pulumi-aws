@@ -38,8 +38,6 @@ import {NotificationType} from "./notificationType";
  *     topicArn: example.arn,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/autoscaling_notification.html.markdown.
  */
 export class Notification extends pulumi.CustomResource {
     /**

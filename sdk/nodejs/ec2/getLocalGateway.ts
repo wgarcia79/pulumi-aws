@@ -24,8 +24,6 @@ import * as utilities from "../utilities";
  *     id: localGatewayId,
  * }, { async: true }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/d/ec2_local_gateway.html.markdown.
  */
 export function getLocalGateway(args?: GetLocalGatewayArgs, opts?: pulumi.InvokeOptions): Promise<GetLocalGatewayResult> {
     args = args || {};

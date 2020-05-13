@@ -60,8 +60,6 @@ import {PolicyDocument} from "./documents";
  *     path: "/system/",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/iam_role.html.markdown.
  */
 export class Role extends pulumi.CustomResource {
     /**

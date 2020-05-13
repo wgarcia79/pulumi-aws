@@ -39,8 +39,6 @@ import * as utilities from "../utilities";
  *     subnetIds: [fooSubnet.id],
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/elasticache_subnet_group.html.markdown.
  */
 export class SubnetGroup extends pulumi.CustomResource {
     /**

@@ -37,8 +37,6 @@ import * as utilities from "../utilities";
  *     userName: "test-user",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/codebuild_source_credential.html.markdown.
  */
 export class SourceCredential extends pulumi.CustomResource {
     /**

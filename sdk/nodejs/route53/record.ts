@@ -106,8 +106,6 @@ import {RecordType} from "./recordType";
  *     zoneId: exampleZone.zoneId,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/route53_record.html.markdown.
  */
 export class Record extends pulumi.CustomResource {
     /**

@@ -22,8 +22,6 @@ import * as utilities from "./utilities";
  *
  * export const canonicalUserId = current.id;
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/d/canonical_user_id.html.markdown.
  */
 export function getCanonicalUserId(opts?: pulumi.InvokeOptions): Promise<GetCanonicalUserIdResult> {
     if (!opts) {

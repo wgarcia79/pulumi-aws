@@ -62,8 +62,6 @@ import * as utilities from "../utilities";
  * * `id` - The name of the Neptune event notification subscription.
  * * `arn` - The Amazon Resource Name of the Neptune event notification subscription.
  * * `customerAwsId` - The AWS customer account associated with the Neptune event notification subscription.
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/neptune_event_subscription.html.markdown.
  */
 export class EventSubscription extends pulumi.CustomResource {
     /**

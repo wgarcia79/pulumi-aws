@@ -36,8 +36,6 @@ import * as utilities from "../utilities";
  * `,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/emr_security_configuration.html.markdown.
  */
 export class SecurityConfiguration extends pulumi.CustomResource {
     /**

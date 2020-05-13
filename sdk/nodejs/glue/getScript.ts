@@ -200,8 +200,6 @@ import * as utilities from "../utilities";
  *
  * export const scalaCode = example.scalaCode;
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/d/glue_script.html.markdown.
  */
 export function getScript(args: GetScriptArgs, opts?: pulumi.InvokeOptions): Promise<GetScriptResult> {
     if (!opts) {

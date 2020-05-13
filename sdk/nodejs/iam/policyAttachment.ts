@@ -65,8 +65,6 @@ import {User} from "./user";
  *     users: [user.name],
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/iam_policy_attachment.html.markdown.
  */
 export class PolicyAttachment extends pulumi.CustomResource {
     /**

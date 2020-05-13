@@ -60,8 +60,6 @@ import * as utilities from "../utilities";
  *     type: "egress",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/security_group_rule.html.markdown.
  */
 export class SecurityGroupRule extends pulumi.CustomResource {
     /**

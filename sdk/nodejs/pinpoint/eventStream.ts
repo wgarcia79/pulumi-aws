@@ -60,8 +60,6 @@ import * as utilities from "../utilities";
  *     role: testRole.id,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-aws/blob/master/website/docs/r/pinpoint_event_stream.markdown.
  */
 export class EventStream extends pulumi.CustomResource {
     /**
