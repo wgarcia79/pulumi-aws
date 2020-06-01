@@ -73,8 +73,9 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
+ *
+ * @deprecated aws.elasticloadbalancingv2.LoadBalancer has been deprecated in favor of aws.lb.LoadBalancer
  */
-/** @deprecated aws.elasticloadbalancingv2.LoadBalancer has been deprecated in favor of aws.lb.LoadBalancer */
 export class LoadBalancer extends pulumi.CustomResource {
     /**
      * Get an existing LoadBalancer resource's state with the given name, ID, and optional extra

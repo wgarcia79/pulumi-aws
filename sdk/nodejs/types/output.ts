@@ -2,7 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
 import * as outputs from "../types/output";
+
+import {RoutingRule} from "../s3";
 
 export interface GetAmiBlockDeviceMapping {
     deviceName: string;
@@ -89,6 +92,164 @@ export interface GetRegionsFilter {
     values: string[];
 }
 
+export interface ProviderAssumeRole {
+    externalId?: string;
+    policy?: string;
+    roleArn?: string;
+    sessionName?: string;
+}
+
+export interface ProviderEndpoint {
+    accessanalyzer?: string;
+    acm?: string;
+    acmpca?: string;
+    amplify?: string;
+    apigateway?: string;
+    applicationautoscaling?: string;
+    applicationinsights?: string;
+    appmesh?: string;
+    appstream?: string;
+    appsync?: string;
+    athena?: string;
+    autoscaling?: string;
+    autoscalingplans?: string;
+    backup?: string;
+    batch?: string;
+    budgets?: string;
+    cloud9?: string;
+    cloudformation?: string;
+    cloudfront?: string;
+    cloudhsm?: string;
+    cloudsearch?: string;
+    cloudtrail?: string;
+    cloudwatch?: string;
+    cloudwatchevents?: string;
+    cloudwatchlogs?: string;
+    codebuild?: string;
+    codecommit?: string;
+    codedeploy?: string;
+    codepipeline?: string;
+    cognitoidentity?: string;
+    cognitoidp?: string;
+    configservice?: string;
+    cur?: string;
+    dataexchange?: string;
+    datapipeline?: string;
+    datasync?: string;
+    dax?: string;
+    devicefarm?: string;
+    directconnect?: string;
+    dlm?: string;
+    dms?: string;
+    docdb?: string;
+    ds?: string;
+    dynamodb?: string;
+    ec2?: string;
+    ecr?: string;
+    ecs?: string;
+    efs?: string;
+    eks?: string;
+    elasticache?: string;
+    elasticbeanstalk?: string;
+    elastictranscoder?: string;
+    elb?: string;
+    emr?: string;
+    es?: string;
+    firehose?: string;
+    fms?: string;
+    forecast?: string;
+    fsx?: string;
+    gamelift?: string;
+    glacier?: string;
+    globalaccelerator?: string;
+    glue?: string;
+    greengrass?: string;
+    guardduty?: string;
+    iam?: string;
+    imagebuilder?: string;
+    inspector?: string;
+    iot?: string;
+    iotanalytics?: string;
+    iotevents?: string;
+    kafka?: string;
+    kinesis?: string;
+    /**
+     * @deprecated use `endpoints` configuration block `kinesisanalytics` argument instead
+     */
+    kinesisAnalytics?: string;
+    kinesisanalytics?: string;
+    kinesisanalyticsv2?: string;
+    kinesisvideo?: string;
+    kms?: string;
+    lakeformation?: string;
+    lambda?: string;
+    lexmodels?: string;
+    licensemanager?: string;
+    lightsail?: string;
+    macie?: string;
+    managedblockchain?: string;
+    marketplacecatalog?: string;
+    mediaconnect?: string;
+    mediaconvert?: string;
+    medialive?: string;
+    mediapackage?: string;
+    mediastore?: string;
+    mediastoredata?: string;
+    mq?: string;
+    neptune?: string;
+    networkmanager?: string;
+    opsworks?: string;
+    organizations?: string;
+    personalize?: string;
+    pinpoint?: string;
+    pricing?: string;
+    qldb?: string;
+    quicksight?: string;
+    /**
+     * @deprecated use `endpoints` configuration block `route53` argument instead
+     */
+    r53?: string;
+    ram?: string;
+    rds?: string;
+    redshift?: string;
+    resourcegroups?: string;
+    route53?: string;
+    route53domains?: string;
+    route53resolver?: string;
+    s3?: string;
+    s3control?: string;
+    sagemaker?: string;
+    sdb?: string;
+    secretsmanager?: string;
+    securityhub?: string;
+    serverlessrepo?: string;
+    servicecatalog?: string;
+    servicediscovery?: string;
+    servicequotas?: string;
+    ses?: string;
+    shield?: string;
+    sns?: string;
+    sqs?: string;
+    ssm?: string;
+    stepfunctions?: string;
+    storagegateway?: string;
+    sts?: string;
+    swf?: string;
+    synthetics?: string;
+    transfer?: string;
+    waf?: string;
+    wafregional?: string;
+    wafv2?: string;
+    worklink?: string;
+    workmail?: string;
+    workspaces?: string;
+    xray?: string;
+}
+
+export interface ProviderIgnoreTags {
+    keyPrefixes?: string[];
+    keys?: string[];
+}
 export namespace acm {
     export interface CertificateDomainValidationOption {
         /**
@@ -610,6 +771,8 @@ export namespace alb {
     export interface ListenerRuleCondition {
         /**
          * The type of condition. Valid values are `host-header` or `path-pattern`. Must also set `values`.
+         *
+         * @deprecated use 'host_header' or 'path_pattern' attribute instead
          */
         field: string;
         /**
@@ -638,6 +801,8 @@ export namespace alb {
         sourceIp?: outputs.alb.ListenerRuleConditionSourceIp;
         /**
          * List of exactly one pattern to match. Required when `field` is set.
+         *
+         * @deprecated use 'host_header' or 'path_pattern' attribute instead
          */
         values: string;
     }
@@ -1551,6 +1716,8 @@ export namespace applicationloadbalancing {
     export interface ListenerRuleCondition {
         /**
          * The type of condition. Valid values are `host-header` or `path-pattern`. Must also set `values`.
+         *
+         * @deprecated use 'host_header' or 'path_pattern' attribute instead
          */
         field: string;
         /**
@@ -1579,6 +1746,8 @@ export namespace applicationloadbalancing {
         sourceIp?: outputs.applicationloadbalancing.ListenerRuleConditionSourceIp;
         /**
          * List of exactly one pattern to match. Required when `field` is set.
+         *
+         * @deprecated use 'host_header' or 'path_pattern' attribute instead
          */
         values: string;
     }
@@ -4452,6 +4621,8 @@ export namespace cognito {
         inviteMessageTemplate?: outputs.cognito.UserPoolAdminCreateUserConfigInviteMessageTemplate;
         /**
          * **DEPRECATED** Use password_policy.temporary_password_validity_days instead - The user account expiration limit, in days, after which the account is no longer usable.
+         *
+         * @deprecated Use password_policy.temporary_password_validity_days instead
          */
         unusedAccountValidityDays: number;
     }
@@ -4700,6 +4871,167 @@ export namespace cognito {
          * The SMS message template. Must contain the `{####}` placeholder. Conflicts with `smsVerificationMessage` argument.
          */
         smsMessage: string;
+    }
+}
+
+export namespace config {
+    export interface AssumeRole {
+        externalId?: string;
+        policy?: string;
+        roleArn?: string;
+        sessionName?: string;
+    }
+
+    export interface Endpoints {
+        accessanalyzer?: string;
+        acm?: string;
+        acmpca?: string;
+        amplify?: string;
+        apigateway?: string;
+        applicationautoscaling?: string;
+        applicationinsights?: string;
+        appmesh?: string;
+        appstream?: string;
+        appsync?: string;
+        athena?: string;
+        autoscaling?: string;
+        autoscalingplans?: string;
+        backup?: string;
+        batch?: string;
+        budgets?: string;
+        cloud9?: string;
+        cloudformation?: string;
+        cloudfront?: string;
+        cloudhsm?: string;
+        cloudsearch?: string;
+        cloudtrail?: string;
+        cloudwatch?: string;
+        cloudwatchevents?: string;
+        cloudwatchlogs?: string;
+        codebuild?: string;
+        codecommit?: string;
+        codedeploy?: string;
+        codepipeline?: string;
+        cognitoidentity?: string;
+        cognitoidp?: string;
+        configservice?: string;
+        cur?: string;
+        dataexchange?: string;
+        datapipeline?: string;
+        datasync?: string;
+        dax?: string;
+        devicefarm?: string;
+        directconnect?: string;
+        dlm?: string;
+        dms?: string;
+        docdb?: string;
+        ds?: string;
+        dynamodb?: string;
+        ec2?: string;
+        ecr?: string;
+        ecs?: string;
+        efs?: string;
+        eks?: string;
+        elasticache?: string;
+        elasticbeanstalk?: string;
+        elastictranscoder?: string;
+        elb?: string;
+        emr?: string;
+        es?: string;
+        firehose?: string;
+        fms?: string;
+        forecast?: string;
+        fsx?: string;
+        gamelift?: string;
+        glacier?: string;
+        globalaccelerator?: string;
+        glue?: string;
+        greengrass?: string;
+        guardduty?: string;
+        iam?: string;
+        imagebuilder?: string;
+        inspector?: string;
+        iot?: string;
+        iotanalytics?: string;
+        iotevents?: string;
+        kafka?: string;
+        kinesis?: string;
+        /**
+         * @deprecated use `endpoints` configuration block `kinesisanalytics` argument instead
+         */
+        kinesisAnalytics?: string;
+        kinesisanalytics?: string;
+        kinesisanalyticsv2?: string;
+        kinesisvideo?: string;
+        kms?: string;
+        lakeformation?: string;
+        lambda?: string;
+        lexmodels?: string;
+        licensemanager?: string;
+        lightsail?: string;
+        macie?: string;
+        managedblockchain?: string;
+        marketplacecatalog?: string;
+        mediaconnect?: string;
+        mediaconvert?: string;
+        medialive?: string;
+        mediapackage?: string;
+        mediastore?: string;
+        mediastoredata?: string;
+        mq?: string;
+        neptune?: string;
+        networkmanager?: string;
+        opsworks?: string;
+        organizations?: string;
+        personalize?: string;
+        pinpoint?: string;
+        pricing?: string;
+        qldb?: string;
+        quicksight?: string;
+        /**
+         * @deprecated use `endpoints` configuration block `route53` argument instead
+         */
+        r53?: string;
+        ram?: string;
+        rds?: string;
+        redshift?: string;
+        resourcegroups?: string;
+        route53?: string;
+        route53domains?: string;
+        route53resolver?: string;
+        s3?: string;
+        s3control?: string;
+        sagemaker?: string;
+        sdb?: string;
+        secretsmanager?: string;
+        securityhub?: string;
+        serverlessrepo?: string;
+        servicecatalog?: string;
+        servicediscovery?: string;
+        servicequotas?: string;
+        ses?: string;
+        shield?: string;
+        sns?: string;
+        sqs?: string;
+        ssm?: string;
+        stepfunctions?: string;
+        storagegateway?: string;
+        sts?: string;
+        swf?: string;
+        synthetics?: string;
+        transfer?: string;
+        waf?: string;
+        wafregional?: string;
+        wafv2?: string;
+        worklink?: string;
+        workmail?: string;
+        workspaces?: string;
+        xray?: string;
+    }
+
+    export interface IgnoreTags {
+        keyPrefixes?: string[];
+        keys?: string[];
     }
 }
 
@@ -8718,6 +9050,8 @@ export namespace elasticloadbalancingv2 {
     export interface ListenerRuleCondition {
         /**
          * The type of condition. Valid values are `host-header` or `path-pattern`. Must also set `values`.
+         *
+         * @deprecated use 'host_header' or 'path_pattern' attribute instead
          */
         field: string;
         /**
@@ -8746,6 +9080,8 @@ export namespace elasticloadbalancingv2 {
         sourceIp?: outputs.elasticloadbalancingv2.ListenerRuleConditionSourceIp;
         /**
          * List of exactly one pattern to match. Required when `field` is set.
+         *
+         * @deprecated use 'host_header' or 'path_pattern' attribute instead
          */
         values: string;
     }
@@ -12424,6 +12760,8 @@ export namespace lb {
     export interface ListenerRuleCondition {
         /**
          * The type of condition. Valid values are `host-header` or `path-pattern`. Must also set `values`.
+         *
+         * @deprecated use 'host_header' or 'path_pattern' attribute instead
          */
         field: string;
         /**
@@ -12452,6 +12790,8 @@ export namespace lb {
         sourceIp?: outputs.lb.ListenerRuleConditionSourceIp;
         /**
          * List of exactly one pattern to match. Required when `field` is set.
+         *
+         * @deprecated use 'host_header' or 'path_pattern' attribute instead
          */
         values: string;
     }
@@ -14399,7 +14739,7 @@ export namespace s3 {
          * A json array containing [routing rules](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration-routingrules.html)
          * describing redirect behavior and when redirects are applied.
          */
-        routingRules?: string;
+        routingRules?: string | RoutingRule[];
     }
 
     export interface InventoryDestination {
@@ -14451,7 +14791,6 @@ export namespace s3 {
     }
 
     export interface InventoryDestinationBucketEncryptionSseS3 {
-    
     }
 
     export interface InventoryFilter {
@@ -15843,3 +16182,4 @@ export namespace workspaces {
         userVolumeSizeGib?: number;
     }
 }
+

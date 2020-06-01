@@ -28,8 +28,9 @@ import * as utilities from "../utilities";
  *     instance: aws_instance_foo.id,
  * });
  * ```
+ *
+ * @deprecated aws.elasticloadbalancing.Attachment has been deprecated in favor of aws.elb.Attachment
  */
-/** @deprecated aws.elasticloadbalancing.Attachment has been deprecated in favor of aws.elb.Attachment */
 export class Attachment extends pulumi.CustomResource {
     /**
      * Get an existing Attachment resource's state with the given name, ID, and optional extra

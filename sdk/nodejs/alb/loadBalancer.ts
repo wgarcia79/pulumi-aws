@@ -6,8 +6,7 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-import {IpAddressType} from "./ipAddressType";
-import {LoadBalancerType} from "./loadBalancerType";
+import {IpAddressType, LoadBalancerType} from "./index";
 
 /**
  * Provides a Load Balancer resource.

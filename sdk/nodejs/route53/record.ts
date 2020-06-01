@@ -6,7 +6,7 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-import {RecordType} from "./recordType";
+import {RecordType} from "./index";
 
 /**
  * Provides a Route53 record resource.

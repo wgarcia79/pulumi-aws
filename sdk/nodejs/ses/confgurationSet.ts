@@ -4,7 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/** @deprecated aws.ses.ConfgurationSet has been deprecated in favor of aws.ses.ConfigurationSet */
+/**
+ * @deprecated aws.ses.ConfgurationSet has been deprecated in favor of aws.ses.ConfigurationSet
+ */
 export class ConfgurationSet extends pulumi.CustomResource {
     /**
      * Get an existing ConfgurationSet resource's state with the given name, ID, and optional extra

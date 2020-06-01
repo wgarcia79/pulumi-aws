@@ -166,6 +166,8 @@ export class MaintenanceWindowTask extends pulumi.CustomResource {
     public readonly description!: pulumi.Output<string | undefined>;
     /**
      * A structure containing information about an Amazon S3 bucket to write instance-level logs to. Use `taskInvocationParameters` configuration block `runCommandParameters` configuration block `output_s3_*` arguments instead. Conflicts with `taskInvocationParameters`. Documented below.
+     *
+     * @deprecated use 'task_invocation_parameters' argument instead
      */
     public readonly loggingInfo!: pulumi.Output<outputs.ssm.MaintenanceWindowTaskLoggingInfo | undefined>;
     /**
@@ -202,6 +204,8 @@ export class MaintenanceWindowTask extends pulumi.CustomResource {
     public readonly taskInvocationParameters!: pulumi.Output<outputs.ssm.MaintenanceWindowTaskTaskInvocationParameters | undefined>;
     /**
      * A structure containing information about parameters required by the particular `taskArn`. Use `parameter` configuration blocks under the `taskInvocationParameters` configuration block instead. Conflicts with `taskInvocationParameters`. Documented below.
+     *
+     * @deprecated use 'task_invocation_parameters' argument instead
      */
     public readonly taskParameters!: pulumi.Output<outputs.ssm.MaintenanceWindowTaskTaskParameter[] | undefined>;
     /**
@@ -296,6 +300,7 @@ export interface MaintenanceWindowTaskState {
     readonly description?: pulumi.Input<string>;
     /**
      * A structure containing information about an Amazon S3 bucket to write instance-level logs to. Use `taskInvocationParameters` configuration block `runCommandParameters` configuration block `output_s3_*` arguments instead. Conflicts with `taskInvocationParameters`. Documented below.
+     *
      * @deprecated use 'task_invocation_parameters' argument instead
      */
     readonly loggingInfo?: pulumi.Input<inputs.ssm.MaintenanceWindowTaskLoggingInfo>;
@@ -333,6 +338,7 @@ export interface MaintenanceWindowTaskState {
     readonly taskInvocationParameters?: pulumi.Input<inputs.ssm.MaintenanceWindowTaskTaskInvocationParameters>;
     /**
      * A structure containing information about parameters required by the particular `taskArn`. Use `parameter` configuration blocks under the `taskInvocationParameters` configuration block instead. Conflicts with `taskInvocationParameters`. Documented below.
+     *
      * @deprecated use 'task_invocation_parameters' argument instead
      */
     readonly taskParameters?: pulumi.Input<pulumi.Input<inputs.ssm.MaintenanceWindowTaskTaskParameter>[]>;
@@ -356,6 +362,7 @@ export interface MaintenanceWindowTaskArgs {
     readonly description?: pulumi.Input<string>;
     /**
      * A structure containing information about an Amazon S3 bucket to write instance-level logs to. Use `taskInvocationParameters` configuration block `runCommandParameters` configuration block `output_s3_*` arguments instead. Conflicts with `taskInvocationParameters`. Documented below.
+     *
      * @deprecated use 'task_invocation_parameters' argument instead
      */
     readonly loggingInfo?: pulumi.Input<inputs.ssm.MaintenanceWindowTaskLoggingInfo>;
@@ -393,6 +400,7 @@ export interface MaintenanceWindowTaskArgs {
     readonly taskInvocationParameters?: pulumi.Input<inputs.ssm.MaintenanceWindowTaskTaskInvocationParameters>;
     /**
      * A structure containing information about parameters required by the particular `taskArn`. Use `parameter` configuration blocks under the `taskInvocationParameters` configuration block instead. Conflicts with `taskInvocationParameters`. Documented below.
+     *
      * @deprecated use 'task_invocation_parameters' argument instead
      */
     readonly taskParameters?: pulumi.Input<pulumi.Input<inputs.ssm.MaintenanceWindowTaskTaskParameter>[]>;

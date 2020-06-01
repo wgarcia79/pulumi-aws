@@ -4,7 +4,7 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-import {ARN} from "../index";
+import {ARN} from "..";
 
 /**
  * Attaches Principal to AWS IoT Thing.

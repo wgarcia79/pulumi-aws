@@ -62,8 +62,9 @@ import * as utilities from "../utilities";
  *     loadBalancer: lb.id,
  * });
  * ```
+ *
+ * @deprecated aws.elasticloadbalancing.SslNegotiationPolicy has been deprecated in favor of aws.elb.SslNegotiationPolicy
  */
-/** @deprecated aws.elasticloadbalancing.SslNegotiationPolicy has been deprecated in favor of aws.elb.SslNegotiationPolicy */
 export class SslNegotiationPolicy extends pulumi.CustomResource {
     /**
      * Get an existing SslNegotiationPolicy resource's state with the given name, ID, and optional extra

@@ -117,8 +117,9 @@ import * as utilities from "../utilities";
  *     listenerArn: frontEndListener.arn,
  * });
  * ```
+ *
+ * @deprecated aws.applicationloadbalancing.ListenerRule has been deprecated in favor of aws.alb.ListenerRule
  */
-/** @deprecated aws.applicationloadbalancing.ListenerRule has been deprecated in favor of aws.alb.ListenerRule */
 export class ListenerRule extends pulumi.CustomResource {
     /**
      * Get an existing ListenerRule resource's state with the given name, ID, and optional extra

@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 import {InstanceProfile} from "../iam";
-import {InstanceType} from "./instanceType";
+import {InstanceType} from "./index";
 
 /**
  * Provides an EC2 instance resource. This allows instances to be created, updated,
@@ -227,6 +227,8 @@ export class Instance extends pulumi.CustomResource {
     public readonly rootBlockDevice!: pulumi.Output<outputs.ec2.InstanceRootBlockDevice>;
     /**
      * A list of security group names (EC2-Classic) or IDs (default VPC) to associate with.
+     *
+     * @deprecated Use of `securityGroups` is discouraged as it does not allow for changes and will force your instance to be replaced if changes are made. To avoid this, use `vpcSecurityGroupIds` which allows for updates.
      */
     public readonly securityGroups!: pulumi.Output<string[]>;
     /**
@@ -539,6 +541,7 @@ export interface InstanceState {
     readonly rootBlockDevice?: pulumi.Input<inputs.ec2.InstanceRootBlockDevice>;
     /**
      * A list of security group names (EC2-Classic) or IDs (default VPC) to associate with.
+     *
      * @deprecated Use of `securityGroups` is discouraged as it does not allow for changes and will force your instance to be replaced if changes are made. To avoid this, use `vpcSecurityGroupIds` which allows for updates.
      */
     readonly securityGroups?: pulumi.Input<pulumi.Input<string>[]>;
@@ -698,6 +701,7 @@ export interface InstanceArgs {
     readonly rootBlockDevice?: pulumi.Input<inputs.ec2.InstanceRootBlockDevice>;
     /**
      * A list of security group names (EC2-Classic) or IDs (default VPC) to associate with.
+     *
      * @deprecated Use of `securityGroups` is discouraged as it does not allow for changes and will force your instance to be replaced if changes are made. To avoid this, use `vpcSecurityGroupIds` which allows for updates.
      */
     readonly securityGroups?: pulumi.Input<pulumi.Input<string>[]>;

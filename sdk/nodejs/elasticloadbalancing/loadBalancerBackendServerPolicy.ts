@@ -2,8 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -56,8 +54,9 @@ import * as utilities from "../utilities";
  *     policyNames: [wu_tang_root_ca_backend_auth_policy.policyName],
  * });
  * ```
+ *
+ * @deprecated aws.elasticloadbalancing.LoadBalancerBackendServerPolicy has been deprecated in favor of aws.elb.LoadBalancerBackendServerPolicy
  */
-/** @deprecated aws.elasticloadbalancing.LoadBalancerBackendServerPolicy has been deprecated in favor of aws.elb.LoadBalancerBackendServerPolicy */
 export class LoadBalancerBackendServerPolicy extends pulumi.CustomResource {
     /**
      * Get an existing LoadBalancerBackendServerPolicy resource's state with the given name, ID, and optional extra

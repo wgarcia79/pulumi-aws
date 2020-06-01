@@ -476,6 +476,8 @@ export class Cluster extends pulumi.CustomResource {
     public readonly configurationsJson!: pulumi.Output<string | undefined>;
     /**
      * Use the `coreInstanceGroup` configuration block `instanceCount` argument instead. Number of Amazon EC2 instances used to execute the job flow. EMR will use one node as the cluster's master node and use the remainder of the nodes (`coreInstanceCount`-1) as core nodes. Cannot be specified if `coreInstanceGroup` or `instanceGroup` configuration blocks are set. Default `1`
+     *
+     * @deprecated use `core_instance_group` configuration block `instance_count` argument instead
      */
     public readonly coreInstanceCount!: pulumi.Output<number>;
     /**
@@ -484,6 +486,8 @@ export class Cluster extends pulumi.CustomResource {
     public readonly coreInstanceGroup!: pulumi.Output<outputs.emr.ClusterCoreInstanceGroup>;
     /**
      * Use the `coreInstanceGroup` configuration block `instanceType` argument instead. The EC2 instance type of the slave nodes. Cannot be specified if `coreInstanceGroup` or `instanceGroup` configuration blocks are set.
+     *
+     * @deprecated use `core_instance_group` configuration block `instance_type` argument instead
      */
     public readonly coreInstanceType!: pulumi.Output<string>;
     /**
@@ -500,6 +504,8 @@ export class Cluster extends pulumi.CustomResource {
     public readonly ec2Attributes!: pulumi.Output<outputs.emr.ClusterEc2Attributes | undefined>;
     /**
      * Use the `masterInstanceGroup` configuration block, `coreInstanceGroup` configuration block and [`aws.emr.InstanceGroup` resource(s)](https://www.terraform.io/docs/providers/aws/r/emr_instance_group.html) instead. A list of `instanceGroup` objects for each instance group in the cluster. Exactly one of `masterInstanceType` and `instanceGroup` must be specified. If `instanceGroup` is set, then it must contain a configuration block for at least the `MASTER` instance group type (as well as any additional instance groups). Cannot be specified if `masterInstanceGroup` or `coreInstanceGroup` configuration blocks are set. Defined below
+     *
+     * @deprecated use `master_instance_group` configuration block, `core_instance_group` configuration block, and `aws_emr_instance_group` resource(s) instead
      */
     public readonly instanceGroups!: pulumi.Output<outputs.emr.ClusterInstanceGroup[]>;
     /**
@@ -520,6 +526,8 @@ export class Cluster extends pulumi.CustomResource {
     public readonly masterInstanceGroup!: pulumi.Output<outputs.emr.ClusterMasterInstanceGroup>;
     /**
      * Use the `masterInstanceGroup` configuration block `instanceType` argument instead. The EC2 instance type of the master node. Cannot be specified if `masterInstanceGroup` or `instanceGroup` configuration blocks are set.
+     *
+     * @deprecated use `master_instance_group` configuration block `instance_type` argument instead
      */
     public readonly masterInstanceType!: pulumi.Output<string>;
     /**
@@ -548,13 +556,13 @@ export class Cluster extends pulumi.CustomResource {
      */
     public readonly serviceRole!: pulumi.Output<string>;
     /**
-     * List of steps to run when creating the cluster. Defined below. It is highly recommended to utilize [`ignoreChanges`](https://www.pulumi.com/docs/intro/concepts/programming-model/#ignorechanges) if other steps are being managed outside of this provider.
-     */
-    public readonly steps!: pulumi.Output<outputs.emr.ClusterStep[]>;
-    /**
      * The number of steps that can be executed concurrently. You can specify a maximum of 256 steps. Only valid for EMR clusters with `releaseLabel` 5.28.0 or greater. (default is 1)
      */
     public readonly stepConcurrencyLevel!: pulumi.Output<number | undefined>;
+    /**
+     * List of steps to run when creating the cluster. Defined below. It is highly recommended to utilize [`ignoreChanges`](https://www.pulumi.com/docs/intro/concepts/programming-model/#ignorechanges) if other steps are being managed outside of this provider.
+     */
+    public readonly steps!: pulumi.Output<outputs.emr.ClusterStep[]>;
     /**
      * list of tags to apply to the EMR Cluster
      */
@@ -606,8 +614,8 @@ export class Cluster extends pulumi.CustomResource {
             inputs["scaleDownBehavior"] = state ? state.scaleDownBehavior : undefined;
             inputs["securityConfiguration"] = state ? state.securityConfiguration : undefined;
             inputs["serviceRole"] = state ? state.serviceRole : undefined;
-            inputs["steps"] = state ? state.steps : undefined;
             inputs["stepConcurrencyLevel"] = state ? state.stepConcurrencyLevel : undefined;
+            inputs["steps"] = state ? state.steps : undefined;
             inputs["tags"] = state ? state.tags : undefined;
             inputs["terminationProtection"] = state ? state.terminationProtection : undefined;
             inputs["visibleToAllUsers"] = state ? state.visibleToAllUsers : undefined;
@@ -642,8 +650,8 @@ export class Cluster extends pulumi.CustomResource {
             inputs["scaleDownBehavior"] = args ? args.scaleDownBehavior : undefined;
             inputs["securityConfiguration"] = args ? args.securityConfiguration : undefined;
             inputs["serviceRole"] = args ? args.serviceRole : undefined;
-            inputs["steps"] = args ? args.steps : undefined;
             inputs["stepConcurrencyLevel"] = args ? args.stepConcurrencyLevel : undefined;
+            inputs["steps"] = args ? args.steps : undefined;
             inputs["tags"] = args ? args.tags : undefined;
             inputs["terminationProtection"] = args ? args.terminationProtection : undefined;
             inputs["visibleToAllUsers"] = args ? args.visibleToAllUsers : undefined;
@@ -694,6 +702,7 @@ export interface ClusterState {
     readonly configurationsJson?: pulumi.Input<string>;
     /**
      * Use the `coreInstanceGroup` configuration block `instanceCount` argument instead. Number of Amazon EC2 instances used to execute the job flow. EMR will use one node as the cluster's master node and use the remainder of the nodes (`coreInstanceCount`-1) as core nodes. Cannot be specified if `coreInstanceGroup` or `instanceGroup` configuration blocks are set. Default `1`
+     *
      * @deprecated use `core_instance_group` configuration block `instance_count` argument instead
      */
     readonly coreInstanceCount?: pulumi.Input<number>;
@@ -703,6 +712,7 @@ export interface ClusterState {
     readonly coreInstanceGroup?: pulumi.Input<inputs.emr.ClusterCoreInstanceGroup>;
     /**
      * Use the `coreInstanceGroup` configuration block `instanceType` argument instead. The EC2 instance type of the slave nodes. Cannot be specified if `coreInstanceGroup` or `instanceGroup` configuration blocks are set.
+     *
      * @deprecated use `core_instance_group` configuration block `instance_type` argument instead
      */
     readonly coreInstanceType?: pulumi.Input<string>;
@@ -720,6 +730,7 @@ export interface ClusterState {
     readonly ec2Attributes?: pulumi.Input<inputs.emr.ClusterEc2Attributes>;
     /**
      * Use the `masterInstanceGroup` configuration block, `coreInstanceGroup` configuration block and [`aws.emr.InstanceGroup` resource(s)](https://www.terraform.io/docs/providers/aws/r/emr_instance_group.html) instead. A list of `instanceGroup` objects for each instance group in the cluster. Exactly one of `masterInstanceType` and `instanceGroup` must be specified. If `instanceGroup` is set, then it must contain a configuration block for at least the `MASTER` instance group type (as well as any additional instance groups). Cannot be specified if `masterInstanceGroup` or `coreInstanceGroup` configuration blocks are set. Defined below
+     *
      * @deprecated use `master_instance_group` configuration block, `core_instance_group` configuration block, and `aws_emr_instance_group` resource(s) instead
      */
     readonly instanceGroups?: pulumi.Input<pulumi.Input<inputs.emr.ClusterInstanceGroup>[]>;
@@ -741,6 +752,7 @@ export interface ClusterState {
     readonly masterInstanceGroup?: pulumi.Input<inputs.emr.ClusterMasterInstanceGroup>;
     /**
      * Use the `masterInstanceGroup` configuration block `instanceType` argument instead. The EC2 instance type of the master node. Cannot be specified if `masterInstanceGroup` or `instanceGroup` configuration blocks are set.
+     *
      * @deprecated use `master_instance_group` configuration block `instance_type` argument instead
      */
     readonly masterInstanceType?: pulumi.Input<string>;
@@ -770,13 +782,13 @@ export interface ClusterState {
      */
     readonly serviceRole?: pulumi.Input<string>;
     /**
-     * List of steps to run when creating the cluster. Defined below. It is highly recommended to utilize [`ignoreChanges`](https://www.pulumi.com/docs/intro/concepts/programming-model/#ignorechanges) if other steps are being managed outside of this provider.
-     */
-    readonly steps?: pulumi.Input<pulumi.Input<inputs.emr.ClusterStep>[]>;
-    /**
      * The number of steps that can be executed concurrently. You can specify a maximum of 256 steps. Only valid for EMR clusters with `releaseLabel` 5.28.0 or greater. (default is 1)
      */
     readonly stepConcurrencyLevel?: pulumi.Input<number>;
+    /**
+     * List of steps to run when creating the cluster. Defined below. It is highly recommended to utilize [`ignoreChanges`](https://www.pulumi.com/docs/intro/concepts/programming-model/#ignorechanges) if other steps are being managed outside of this provider.
+     */
+    readonly steps?: pulumi.Input<pulumi.Input<inputs.emr.ClusterStep>[]>;
     /**
      * list of tags to apply to the EMR Cluster
      */
@@ -821,6 +833,7 @@ export interface ClusterArgs {
     readonly configurationsJson?: pulumi.Input<string>;
     /**
      * Use the `coreInstanceGroup` configuration block `instanceCount` argument instead. Number of Amazon EC2 instances used to execute the job flow. EMR will use one node as the cluster's master node and use the remainder of the nodes (`coreInstanceCount`-1) as core nodes. Cannot be specified if `coreInstanceGroup` or `instanceGroup` configuration blocks are set. Default `1`
+     *
      * @deprecated use `core_instance_group` configuration block `instance_count` argument instead
      */
     readonly coreInstanceCount?: pulumi.Input<number>;
@@ -830,6 +843,7 @@ export interface ClusterArgs {
     readonly coreInstanceGroup?: pulumi.Input<inputs.emr.ClusterCoreInstanceGroup>;
     /**
      * Use the `coreInstanceGroup` configuration block `instanceType` argument instead. The EC2 instance type of the slave nodes. Cannot be specified if `coreInstanceGroup` or `instanceGroup` configuration blocks are set.
+     *
      * @deprecated use `core_instance_group` configuration block `instance_type` argument instead
      */
     readonly coreInstanceType?: pulumi.Input<string>;
@@ -847,6 +861,7 @@ export interface ClusterArgs {
     readonly ec2Attributes?: pulumi.Input<inputs.emr.ClusterEc2Attributes>;
     /**
      * Use the `masterInstanceGroup` configuration block, `coreInstanceGroup` configuration block and [`aws.emr.InstanceGroup` resource(s)](https://www.terraform.io/docs/providers/aws/r/emr_instance_group.html) instead. A list of `instanceGroup` objects for each instance group in the cluster. Exactly one of `masterInstanceType` and `instanceGroup` must be specified. If `instanceGroup` is set, then it must contain a configuration block for at least the `MASTER` instance group type (as well as any additional instance groups). Cannot be specified if `masterInstanceGroup` or `coreInstanceGroup` configuration blocks are set. Defined below
+     *
      * @deprecated use `master_instance_group` configuration block, `core_instance_group` configuration block, and `aws_emr_instance_group` resource(s) instead
      */
     readonly instanceGroups?: pulumi.Input<pulumi.Input<inputs.emr.ClusterInstanceGroup>[]>;
@@ -868,6 +883,7 @@ export interface ClusterArgs {
     readonly masterInstanceGroup?: pulumi.Input<inputs.emr.ClusterMasterInstanceGroup>;
     /**
      * Use the `masterInstanceGroup` configuration block `instanceType` argument instead. The EC2 instance type of the master node. Cannot be specified if `masterInstanceGroup` or `instanceGroup` configuration blocks are set.
+     *
      * @deprecated use `master_instance_group` configuration block `instance_type` argument instead
      */
     readonly masterInstanceType?: pulumi.Input<string>;
@@ -892,13 +908,13 @@ export interface ClusterArgs {
      */
     readonly serviceRole: pulumi.Input<string>;
     /**
-     * List of steps to run when creating the cluster. Defined below. It is highly recommended to utilize [`ignoreChanges`](https://www.pulumi.com/docs/intro/concepts/programming-model/#ignorechanges) if other steps are being managed outside of this provider.
-     */
-    readonly steps?: pulumi.Input<pulumi.Input<inputs.emr.ClusterStep>[]>;
-    /**
      * The number of steps that can be executed concurrently. You can specify a maximum of 256 steps. Only valid for EMR clusters with `releaseLabel` 5.28.0 or greater. (default is 1)
      */
     readonly stepConcurrencyLevel?: pulumi.Input<number>;
+    /**
+     * List of steps to run when creating the cluster. Defined below. It is highly recommended to utilize [`ignoreChanges`](https://www.pulumi.com/docs/intro/concepts/programming-model/#ignorechanges) if other steps are being managed outside of this provider.
+     */
+    readonly steps?: pulumi.Input<pulumi.Input<inputs.emr.ClusterStep>[]>;
     /**
      * list of tags to apply to the EMR Cluster
      */

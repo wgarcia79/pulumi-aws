@@ -4,7 +4,7 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-import {LifecyclePolicyDocument} from "./lifecyclePolicyDocument";
+import {LifecyclePolicyDocument} from "./index";
 
 /**
  * Manages an ECR repository lifecycle policy.

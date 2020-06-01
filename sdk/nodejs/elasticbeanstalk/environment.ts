@@ -6,8 +6,7 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-import {Application} from "./application";
-import {ApplicationVersion} from "./applicationVersion";
+import {Application, ApplicationVersion} from "./index";
 
 /**
  * Provides an Elastic Beanstalk Environment Resource. Elastic Beanstalk allows

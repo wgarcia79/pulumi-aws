@@ -2,8 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -89,8 +87,9 @@ import * as utilities from "../utilities";
  * ```
  *
  * This example shows how to add a [Predefined Security Policy for ELBs](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-policy-table.html)
+ *
+ * @deprecated aws.elasticloadbalancing.ListenerPolicy has been deprecated in favor of aws.elb.ListenerPolicy
  */
-/** @deprecated aws.elasticloadbalancing.ListenerPolicy has been deprecated in favor of aws.elb.ListenerPolicy */
 export class ListenerPolicy extends pulumi.CustomResource {
     /**
      * Get an existing ListenerPolicy resource's state with the given name, ID, and optional extra

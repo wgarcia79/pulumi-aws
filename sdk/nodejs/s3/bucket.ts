@@ -6,9 +6,8 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-import {PolicyDocument} from "../iam/documents";
-import {CannedAcl} from "./cannedAcl";
-import {RoutingRule} from "./routingRules";
+import {PolicyDocument} from "../iam";
+import {CannedAcl} from "./index";
 
 /**
  * Provides a S3 bucket resource.

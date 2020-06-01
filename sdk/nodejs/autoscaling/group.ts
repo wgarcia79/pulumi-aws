@@ -6,9 +6,8 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-import {LaunchConfiguration} from "../ec2/launchConfiguration";
-import {PlacementGroup} from "../ec2/placementGroup";
-import {Metric, MetricsGranularity} from "./metrics";
+import {LaunchConfiguration, PlacementGroup} from "../ec2";
+import {Metric, MetricsGranularity} from "./index";
 
 /**
  * Provides an AutoScaling Group resource.

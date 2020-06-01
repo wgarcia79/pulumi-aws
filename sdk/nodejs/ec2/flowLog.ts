@@ -2,8 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -127,6 +125,8 @@ export class FlowLog extends pulumi.CustomResource {
     public readonly logFormat!: pulumi.Output<string>;
     /**
      * *Deprecated:* Use `logDestination` instead. The name of the CloudWatch log group.
+     *
+     * @deprecated use 'log_destination' argument instead
      */
     public readonly logGroupName!: pulumi.Output<string>;
     /**
@@ -230,6 +230,7 @@ export interface FlowLogState {
     readonly logFormat?: pulumi.Input<string>;
     /**
      * *Deprecated:* Use `logDestination` instead. The name of the CloudWatch log group.
+     *
      * @deprecated use 'log_destination' argument instead
      */
     readonly logGroupName?: pulumi.Input<string>;
@@ -284,6 +285,7 @@ export interface FlowLogArgs {
     readonly logFormat?: pulumi.Input<string>;
     /**
      * *Deprecated:* Use `logDestination` instead. The name of the CloudWatch log group.
+     *
      * @deprecated use 'log_destination' argument instead
      */
     readonly logGroupName?: pulumi.Input<string>;

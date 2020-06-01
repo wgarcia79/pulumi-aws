@@ -4,8 +4,7 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-import {PolicyDocument} from "./documents";
-import {Role} from "./role";
+import {PolicyDocument, Role} from "./index";
 
 /**
  * Provides an IAM role inline policy.
