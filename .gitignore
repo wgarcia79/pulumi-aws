@@ -12,3 +12,4 @@ Pulumi.*.yaml
 yarn.lock
 
 **/pulumiManifest.go
+**/.task
