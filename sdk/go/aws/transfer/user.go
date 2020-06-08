@@ -11,6 +11,53 @@ import (
 )
 
 // Provides a AWS Transfer User resource. Managing SSH keys can be accomplished with the `transfer.SshKey` resource.
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/iam"
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/transfer"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		fooServer, err := transfer.NewServer(ctx, "fooServer", &transfer.ServerArgs{
+// 			IdentityProviderType: pulumi.String("SERVICE_MANAGED"),
+// 			Tags: map[string]interface{}{
+// 				"NAME": "tf-acc-test-transfer-server",
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		fooRole, err := iam.NewRole(ctx, "fooRole", &iam.RoleArgs{
+// 			AssumeRolePolicy: pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		fooRolePolicy, err := iam.NewRolePolicy(ctx, "fooRolePolicy", &iam.RolePolicyArgs{
+// 			Policy: pulumi.String("TODO: TODO multi part template expressions"),
+// 			Role:   fooRole.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		fooUser, err := transfer.NewUser(ctx, "fooUser", &transfer.UserArgs{
+// 			Role:     fooRole.Arn,
+// 			ServerId: fooServer.ID(),
+// 			UserName: pulumi.String("tftestuser"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type User struct {
 	pulumi.CustomResourceState
 

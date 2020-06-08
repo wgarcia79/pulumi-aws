@@ -11,6 +11,75 @@ import (
 )
 
 // Provides an AWS Cognito Identity Pool Roles Attachment.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/cognito"
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/iam"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		mainIdentityPool, err := cognito.NewIdentityPool(ctx, "mainIdentityPool", &cognito.IdentityPoolArgs{
+// 			AllowUnauthenticatedIdentities: pulumi.Bool(false),
+// 			IdentityPoolName:               pulumi.String("identity pool"),
+// 			SupportedLoginProviders: map[string]interface{}{
+// 				"graph.facebook.com": "7346241598935555",
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		authenticatedRole, err := iam.NewRole(ctx, "authenticatedRole", &iam.RoleArgs{
+// 			AssumeRolePolicy: mainIdentityPool.ID().ApplyT(func(id string) (string, error) {
+// 				return "TODO: TODO multi part template expressions", nil
+// 			}).(pulumi.StringOutput),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		authenticatedRolePolicy, err := iam.NewRolePolicy(ctx, "authenticatedRolePolicy", &iam.RolePolicyArgs{
+// 			Policy: pulumi.String("TODO: TODO multi part template expressions"),
+// 			Role:   authenticatedRole.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		mainIdentityPoolRoleAttachment, err := cognito.NewIdentityPoolRoleAttachment(ctx, "mainIdentityPoolRoleAttachment", &cognito.IdentityPoolRoleAttachmentArgs{
+// 			IdentityPoolId: mainIdentityPool.ID(),
+// 			RoleMappings: cognito.IdentityPoolRoleAttachmentRoleMappingArray{
+// 				&cognito.IdentityPoolRoleAttachmentRoleMappingArgs{
+// 					AmbiguousRoleResolution: pulumi.String("AuthenticatedRole"),
+// 					IdentityProvider:        pulumi.String("graph.facebook.com"),
+// 					MappingRule: []map[string]interface{}{
+// 						map[string]interface{}{
+// 							"claim":     "isAdmin",
+// 							"matchType": "Equals",
+// 							"roleArn":   authenticatedRole.Arn,
+// 							"value":     "paid",
+// 						},
+// 					},
+// 					Type: pulumi.String("Rules"),
+// 				},
+// 			},
+// 			Roles: map[string]interface{}{
+// 				"authenticated": authenticatedRole.Arn,
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type IdentityPoolRoleAttachment struct {
 	pulumi.CustomResourceState
 

@@ -17,6 +17,76 @@ import (
 // To configure [Instance Groups](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-instance-group-configuration.html#emr-plan-instance-groups) for [task nodes](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-master-core-task-nodes.html#emr-plan-task), see the `emr.InstanceGroup` resource.
 //
 // > Support for [Instance Fleets](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-instance-group-configuration.html#emr-plan-instance-fleets) will be made available in an upcoming release.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/emr"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		cluster, err := emr.NewCluster(ctx, "cluster", &emr.ClusterArgs{
+// 			AdditionalInfo: pulumi.String("TODO: TODO multi part template expressions"),
+// 			Applications: pulumi.StringArray{
+// 				pulumi.String("Spark"),
+// 			},
+// 			BootstrapActions: emr.ClusterBootstrapActionArray{
+// 				&emr.ClusterBootstrapActionArgs{
+// 					Args: pulumi.StringArray{
+// 						pulumi.String("instance.isMaster=true"),
+// 						pulumi.String("echo running on master node"),
+// 					},
+// 					Name: pulumi.String("runif"),
+// 					Path: pulumi.String("s3://elasticmapreduce/bootstrap-actions/run-if"),
+// 				},
+// 			},
+// 			ConfigurationsJson: pulumi.String("TODO: TODO multi part template expressions"),
+// 			CoreInstanceGroup: &emr.ClusterCoreInstanceGroupArgs{
+// 				AutoscalingPolicy: pulumi.String("TODO: TODO multi part template expressions"),
+// 				BidPrice:          pulumi.String("0.30"),
+// 				EbsConfig: []map[string]interface{}{
+// 					map[string]interface{}{
+// 						"size":               "40",
+// 						"type":               "gp2",
+// 						"volumesPerInstance": 1,
+// 					},
+// 				},
+// 				InstanceCount: pulumi.Int(1),
+// 				InstanceType:  pulumi.String("c4.large"),
+// 			},
+// 			EbsRootVolumeSize: pulumi.Int(100),
+// 			Ec2Attributes: &emr.ClusterEc2AttributesArgs{
+// 				EmrManagedMasterSecurityGroup: pulumi.String(aws_security_group.Sg.Id),
+// 				EmrManagedSlaveSecurityGroup:  pulumi.String(aws_security_group.Sg.Id),
+// 				InstanceProfile:               pulumi.String(aws_iam_instance_profile.Emr_profile.Arn),
+// 				SubnetId:                      pulumi.String(aws_subnet.Main.Id),
+// 			},
+// 			KeepJobFlowAliveWhenNoSteps: pulumi.Bool(true),
+// 			MasterInstanceGroup: &emr.ClusterMasterInstanceGroupArgs{
+// 				InstanceType: pulumi.String("m4.large"),
+// 			},
+// 			ReleaseLabel: pulumi.String("emr-4.6.0"),
+// 			ServiceRole:  pulumi.String(aws_iam_role.Iam_emr_service_role.Arn),
+// 			Tags: map[string]interface{}{
+// 				"env":  "env",
+// 				"role": "rolename",
+// 			},
+// 			TerminationProtection: pulumi.Bool(false),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Cluster struct {
 	pulumi.CustomResourceState
 

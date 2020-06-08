@@ -12,6 +12,38 @@ import (
 
 // Allows you to set a policy of an SQS Queue
 // while referencing ARN of the queue within the policy.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/sqs"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		queue, err := sqs.NewQueue(ctx, "queue", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		test, err := sqs.NewQueuePolicy(ctx, "test", &sqs.QueuePolicyArgs{
+// 			Policy: queue.Arn.ApplyT(func(arn string) (string, error) {
+// 				return "TODO: TODO multi part template expressions", nil
+// 			}).(pulumi.StringOutput),
+// 			QueueUrl: queue.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type QueuePolicy struct {
 	pulumi.CustomResourceState
 

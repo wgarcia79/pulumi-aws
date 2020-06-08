@@ -11,6 +11,73 @@ import (
 )
 
 // Provides an AppSync DataSource.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/appsync"
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/dynamodb"
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/iam"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		exampleTable, err := dynamodb.NewTable(ctx, "exampleTable", &dynamodb.TableArgs{
+// 			Attributes: dynamodb.TableAttributeArray{
+// 				&dynamodb.TableAttributeArgs{
+// 					Name: pulumi.String("UserId"),
+// 					Type: pulumi.String("S"),
+// 				},
+// 			},
+// 			HashKey:       pulumi.String("UserId"),
+// 			ReadCapacity:  pulumi.Int(1),
+// 			WriteCapacity: pulumi.Int(1),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		exampleRole, err := iam.NewRole(ctx, "exampleRole", &iam.RoleArgs{
+// 			AssumeRolePolicy: pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		exampleRolePolicy, err := iam.NewRolePolicy(ctx, "exampleRolePolicy", &iam.RolePolicyArgs{
+// 			Policy: exampleTable.Arn.ApplyT(func(arn string) (string, error) {
+// 				return "TODO: TODO multi part template expressions", nil
+// 			}).(pulumi.StringOutput),
+// 			Role: exampleRole.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		exampleGraphQLApi, err := appsync.NewGraphQLApi(ctx, "exampleGraphQLApi", &appsync.GraphQLApiArgs{
+// 			AuthenticationType: pulumi.String("API_KEY"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		exampleDataSource, err := appsync.NewDataSource(ctx, "exampleDataSource", &appsync.DataSourceArgs{
+// 			ApiId: exampleGraphQLApi.ID(),
+// 			DynamodbConfig: &appsync.DataSourceDynamodbConfigArgs{
+// 				TableName: exampleTable.Name,
+// 			},
+// 			ServiceRoleArn: exampleRole.Arn,
+// 			Type:           pulumi.String("AMAZON_DYNAMODB"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type DataSource struct {
 	pulumi.CustomResourceState
 

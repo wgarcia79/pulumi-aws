@@ -11,6 +11,40 @@ import (
 )
 
 // Allows setting policy to an Elasticsearch domain while referencing domain attributes (e.g. ARN)
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/elasticsearch"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		example, err := elasticsearch.NewDomain(ctx, "example", &elasticsearch.DomainArgs{
+// 			ElasticsearchVersion: pulumi.String("2.3"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		main, err := elasticsearch.NewDomainPolicy(ctx, "main", &elasticsearch.DomainPolicyArgs{
+// 			AccessPolicies: example.Arn.ApplyT(func(arn string) (string, error) {
+// 				return "TODO: TODO multi part template expressions", nil
+// 			}).(pulumi.StringOutput),
+// 			DomainName: example.DomainName,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type DomainPolicy struct {
 	pulumi.CustomResourceState
 

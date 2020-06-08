@@ -12,6 +12,48 @@ import (
 // Provides a Glacier Vault Resource. You can refer to the [Glacier Developer Guide](https://docs.aws.amazon.com/amazonglacier/latest/dev/working-with-vaults.html) for a full explanation of the Glacier Vault functionality
 //
 // > **NOTE:** When removing a Glacier Vault, the Vault must be empty.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/glacier"
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/sns"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		awsSnsTopic, err := sns.NewTopic(ctx, "awsSnsTopic", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		myArchive, err := glacier.NewVault(ctx, "myArchive", &glacier.VaultArgs{
+// 			AccessPolicy: pulumi.String("TODO: TODO multi part template expressions"),
+// 			Notifications: glacier.VaultNotificationArray{
+// 				&glacier.VaultNotificationArgs{
+// 					Events: pulumi.StringArray{
+// 						pulumi.String("ArchiveRetrievalCompleted"),
+// 						pulumi.String("InventoryRetrievalCompleted"),
+// 					},
+// 					SnsTopic: pulumi.String(awsSnsTopic.Arn),
+// 				},
+// 			},
+// 			Tags: map[string]interface{}{
+// 				"Test": "MyArchive",
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Vault struct {
 	pulumi.CustomResourceState
 

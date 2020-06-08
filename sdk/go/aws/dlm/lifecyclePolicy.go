@@ -11,6 +11,72 @@ import (
 )
 
 // Provides a [Data Lifecycle Manager (DLM) lifecycle policy](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshot-lifecycle.html) for managing snapshots.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/dlm"
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/iam"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		dlmLifecycleRole, err := iam.NewRole(ctx, "dlmLifecycleRole", &iam.RoleArgs{
+// 			AssumeRolePolicy: pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		dlmLifecycle, err := iam.NewRolePolicy(ctx, "dlmLifecycle", &iam.RolePolicyArgs{
+// 			Policy: pulumi.String("TODO: TODO multi part template expressions"),
+// 			Role:   dlmLifecycleRole.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		example, err := dlm.NewLifecyclePolicy(ctx, "example", &dlm.LifecyclePolicyArgs{
+// 			Description:      pulumi.String("example DLM lifecycle policy"),
+// 			ExecutionRoleArn: dlmLifecycleRole.Arn,
+// 			PolicyDetails: &dlm.LifecyclePolicyPolicyDetailsArgs{
+// 				ResourceTypes: pulumi.StringArray{
+// 					pulumi.String("VOLUME"),
+// 				},
+// 				Schedule: []map[string]interface{}{
+// 					map[string]interface{}{
+// 						"copyTags": false,
+// 						"createRule": map[string]interface{}{
+// 							"interval":     24,
+// 							"intervalUnit": "HOURS",
+// 							"times":        "23:45",
+// 						},
+// 						"name": "2 weeks of daily snapshots",
+// 						"retainRule": map[string]interface{}{
+// 							"count": 14,
+// 						},
+// 						"tagsToAdd": map[string]interface{}{
+// 							"SnapshotCreator": "DLM",
+// 						},
+// 					},
+// 				},
+// 				TargetTags: map[string]interface{}{
+// 					"Snapshot": "true",
+// 				},
+// 			},
+// 			State: pulumi.String("ENABLED"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type LifecyclePolicy struct {
 	pulumi.CustomResourceState
 

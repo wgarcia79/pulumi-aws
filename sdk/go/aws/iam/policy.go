@@ -11,6 +11,33 @@ import (
 )
 
 // Provides an IAM policy.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/iam"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		policy, err := iam.NewPolicy(ctx, "policy", &iam.PolicyArgs{
+// 			Description: pulumi.String("My test policy"),
+// 			Path:        pulumi.String("/"),
+// 			Policy:      pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Policy struct {
 	pulumi.CustomResourceState
 

@@ -16,6 +16,80 @@ import (
 //
 // > **NOTE:** Due to [AWS Lambda improved VPC networking changes that began deploying in September 2019](https://aws.amazon.com/blogs/compute/announcing-improved-vpc-networking-for-aws-lambda-functions/), EC2 subnets and security groups associated with Lambda Functions can take up to 45 minutes to successfully delete.
 //
+// ## Example Usage
+//
+// ### Lambda Layers
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/lambda"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		exampleLayerVersion, err := lambda.NewLayerVersion(ctx, "exampleLayerVersion", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		exampleFunction, err := lambda.NewFunction(ctx, "exampleFunction", &lambda.FunctionArgs{
+// 			Layers: pulumi.StringArray{
+// 				exampleLayerVersion.Arn,
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ### CloudWatch Logging and Permissions
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/cloudwatch"
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/iam"
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/lambda"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		testLambda, err := lambda.NewFunction(ctx, "testLambda", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		example, err := cloudwatch.NewLogGroup(ctx, "example", &cloudwatch.LogGroupArgs{
+// 			RetentionInDays: pulumi.Int(14),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		lambdaLogging, err := iam.NewPolicy(ctx, "lambdaLogging", &iam.PolicyArgs{
+// 			Description: pulumi.String("IAM policy for logging from a lambda"),
+// 			Path:        pulumi.String("/"),
+// 			Policy:      pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		lambdaLogs, err := iam.NewRolePolicyAttachment(ctx, "lambdaLogs", &iam.RolePolicyAttachmentArgs{
+// 			PolicyArn: lambdaLogging.Arn,
+// 			Role:      pulumi.String(aws_iam_role.Iam_for_lambda.Name),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 //
 // ## Specifying the Deployment Package
 //

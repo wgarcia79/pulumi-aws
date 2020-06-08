@@ -11,6 +11,55 @@ import (
 )
 
 // Provides a resource-based access control mechanism for a KMS customer master key.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/iam"
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/kms"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		key, err := kms.NewKey(ctx, "key", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		role, err := iam.NewRole(ctx, "role", &iam.RoleArgs{
+// 			AssumeRolePolicy: pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		grant, err := kms.NewGrant(ctx, "grant", &kms.GrantArgs{
+// 			Constraints: kms.GrantConstraintArray{
+// 				&kms.GrantConstraintArgs{
+// 					EncryptionContextEquals: map[string]interface{}{
+// 						"Department": "Finance",
+// 					},
+// 				},
+// 			},
+// 			GranteePrincipal: role.Arn,
+// 			KeyId:            key.KeyId,
+// 			Operations: pulumi.StringArray{
+// 				pulumi.String("Encrypt"),
+// 				pulumi.String("Decrypt"),
+// 				pulumi.String("GenerateDataKey"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Grant struct {
 	pulumi.CustomResourceState
 

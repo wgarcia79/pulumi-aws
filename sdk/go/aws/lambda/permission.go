@@ -11,6 +11,97 @@ import (
 )
 
 // Gives an external source (like a CloudWatch Event Rule, SNS, or S3) permission to access the Lambda function.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/iam"
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/lambda"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		iamForLambda, err := iam.NewRole(ctx, "iamForLambda", &iam.RoleArgs{
+// 			AssumeRolePolicy: pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		testLambda, err := lambda.NewFunction(ctx, "testLambda", &lambda.FunctionArgs{
+// 			Code:    "TODO: call fileArchive",
+// 			Handler: pulumi.String("exports.handler"),
+// 			Role:    iamForLambda.Arn,
+// 			Runtime: pulumi.String("nodejs8.10"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		testAlias, err := lambda.NewAlias(ctx, "testAlias", &lambda.AliasArgs{
+// 			Description:     pulumi.String("a sample description"),
+// 			FunctionName:    testLambda.Name,
+// 			FunctionVersion: pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		allowCloudwatch, err := lambda.NewPermission(ctx, "allowCloudwatch", &lambda.PermissionArgs{
+// 			Action:    pulumi.String("lambda:InvokeFunction"),
+// 			Function:  testLambda.Name,
+// 			Principal: pulumi.String("events.amazonaws.com"),
+// 			Qualifier: testAlias.Name,
+// 			SourceArn: pulumi.String("arn:aws:events:eu-west-1:111122223333:rule/RunDaily"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ## Usage with SNS
+//
+//
+// ## Specify Lambda permissions for API Gateway REST API
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/apigateway"
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/lambda"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		myDemoAPI, err := apigateway.NewRestApi(ctx, "myDemoAPI", &apigateway.RestApiArgs{
+// 			Description: pulumi.String("This is my API for demonstration purposes"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		lambdaPermission, err := lambda.NewPermission(ctx, "lambdaPermission", &lambda.PermissionArgs{
+// 			Action:    pulumi.String("lambda:InvokeFunction"),
+// 			Function:  pulumi.String("MyDemoFunction"),
+// 			Principal: pulumi.String("apigateway.amazonaws.com"),
+// 			SourceArn: myDemoAPI.ExecutionArn.ApplyT(func(executionArn string) (string, error) {
+// 				return "TODO: TODO multi part template expressions", nil
+// 			}).(pulumi.StringOutput),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Permission struct {
 	pulumi.CustomResourceState
 

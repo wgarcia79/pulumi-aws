@@ -10,6 +10,47 @@ import (
 )
 
 // Provides a AWS Transfer Server resource.
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/iam"
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/transfer"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		fooRole, err := iam.NewRole(ctx, "fooRole", &iam.RoleArgs{
+// 			AssumeRolePolicy: pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		fooRolePolicy, err := iam.NewRolePolicy(ctx, "fooRolePolicy", &iam.RolePolicyArgs{
+// 			Policy: pulumi.String("TODO: TODO multi part template expressions"),
+// 			Role:   fooRole.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		fooServer, err := transfer.NewServer(ctx, "fooServer", &transfer.ServerArgs{
+// 			IdentityProviderType: pulumi.String("SERVICE_MANAGED"),
+// 			LoggingRole:          fooRole.Arn,
+// 			Tags: map[string]interface{}{
+// 				"ENV":  "test",
+// 				"NAME": "tf-acc-test-transfer-server",
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Server struct {
 	pulumi.CustomResourceState
 

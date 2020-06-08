@@ -11,6 +11,58 @@ import (
 )
 
 // Provides a Pinpoint Event Stream resource.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/iam"
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/kinesis"
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/pinpoint"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		app, err := pinpoint.NewApp(ctx, "app", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		testStream, err := kinesis.NewStream(ctx, "testStream", &kinesis.StreamArgs{
+// 			ShardCount: pulumi.Int(1),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		testRole, err := iam.NewRole(ctx, "testRole", &iam.RoleArgs{
+// 			AssumeRolePolicy: pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		stream, err := pinpoint.NewEventStream(ctx, "stream", &pinpoint.EventStreamArgs{
+// 			ApplicationId:        app.ApplicationId,
+// 			DestinationStreamArn: testStream.Arn,
+// 			RoleArn:              testRole.Arn,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		testRolePolicy, err := iam.NewRolePolicy(ctx, "testRolePolicy", &iam.RolePolicyArgs{
+// 			Policy: pulumi.String("TODO: TODO multi part template expressions"),
+// 			Role:   testRole.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type EventStream struct {
 	pulumi.CustomResourceState
 

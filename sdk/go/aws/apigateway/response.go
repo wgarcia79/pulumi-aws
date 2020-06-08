@@ -11,6 +11,43 @@ import (
 )
 
 // Provides an API Gateway Gateway Response for a REST API Gateway.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/apigateway"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		main, err := apigateway.NewRestApi(ctx, "main", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		test, err := apigateway.NewResponse(ctx, "test", &apigateway.ResponseArgs{
+// 			ResponseParameters: map[string]interface{}{
+// 				"gatewayresponse.header.Authorization": "'Basic'",
+// 			},
+// 			ResponseTemplates: map[string]interface{}{
+// 				"application/json": "TODO: TODO multi part template expressions",
+// 			},
+// 			ResponseType: pulumi.String("UNAUTHORIZED"),
+// 			RestApiId:    main.ID(),
+// 			StatusCode:   pulumi.String("401"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Response struct {
 	pulumi.CustomResourceState
 

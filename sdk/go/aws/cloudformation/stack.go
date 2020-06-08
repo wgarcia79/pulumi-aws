@@ -10,6 +10,34 @@ import (
 )
 
 // Provides a CloudFormation Stack resource.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/cloudformation"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		network, err := cloudformation.NewStack(ctx, "network", &cloudformation.StackArgs{
+// 			Parameters: map[string]interface{}{
+// 				"VPCCidr": "10.0.0.0/16",
+// 			},
+// 			TemplateBody: pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Stack struct {
 	pulumi.CustomResourceState
 

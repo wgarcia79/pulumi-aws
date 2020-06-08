@@ -13,6 +13,34 @@ import (
 // Provides an MQ Configuration Resource.
 //
 // For more information on Amazon MQ, see [Amazon MQ documentation](https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/welcome.html).
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/mq"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		example, err := mq.NewConfiguration(ctx, "example", &mq.ConfigurationArgs{
+// 			Data:          pulumi.String("TODO: TODO multi part template expressions"),
+// 			Description:   pulumi.String("Example Configuration"),
+// 			EngineType:    pulumi.String("ActiveMQ"),
+// 			EngineVersion: pulumi.String("5.15.0"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Configuration struct {
 	pulumi.CustomResourceState
 

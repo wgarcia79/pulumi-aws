@@ -11,6 +11,70 @@ import (
 )
 
 // Provides an HTTP Method Integration for an API Gateway Integration.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/apigateway"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		myDemoAPI, err := apigateway.NewRestApi(ctx, "myDemoAPI", &apigateway.RestApiArgs{
+// 			Description: pulumi.String("This is my API for demonstration purposes"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		myDemoResource, err := apigateway.NewResource(ctx, "myDemoResource", &apigateway.ResourceArgs{
+// 			ParentId: myDemoAPI.RootResourceId,
+// 			PathPart: pulumi.String("mydemoresource"),
+// 			RestApi:  myDemoAPI.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		myDemoMethod, err := apigateway.NewMethod(ctx, "myDemoMethod", &apigateway.MethodArgs{
+// 			Authorization: pulumi.String("NONE"),
+// 			HttpMethod:    pulumi.String("GET"),
+// 			ResourceId:    myDemoResource.ID(),
+// 			RestApi:       myDemoAPI.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		myDemoIntegration, err := apigateway.NewIntegration(ctx, "myDemoIntegration", &apigateway.IntegrationArgs{
+// 			CacheKeyParameters: pulumi.StringArray{
+// 				pulumi.String("method.request.path.param"),
+// 			},
+// 			CacheNamespace: pulumi.String("foobar"),
+// 			HttpMethod:     myDemoMethod.HttpMethod,
+// 			RequestParameters: map[string]interface{}{
+// 				"integration.request.header.X-Authorization": "'static'",
+// 			},
+// 			RequestTemplates: map[string]interface{}{
+// 				"application/xml": "TODO: TODO multi part template expressions",
+// 			},
+// 			ResourceId:          myDemoResource.ID(),
+// 			RestApi:             myDemoAPI.ID(),
+// 			TimeoutMilliseconds: pulumi.Int(29000),
+// 			Type:                pulumi.String("MOCK"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ## VPC Link
 type Integration struct {
 	pulumi.CustomResourceState
 

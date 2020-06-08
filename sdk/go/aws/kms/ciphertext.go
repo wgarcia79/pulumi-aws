@@ -16,6 +16,39 @@ import (
 // the `kms.Ciphertext` data source.
 //
 // > **Note:** All arguments including the plaintext be stored in the raw state as plain-text.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/kms"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		oauthConfig, err := kms.NewKey(ctx, "oauthConfig", &kms.KeyArgs{
+// 			Description: pulumi.String("oauth config"),
+// 			IsEnabled:   pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		oauth, err := kms.NewCiphertext(ctx, "oauth", &kms.CiphertextArgs{
+// 			KeyId:     oauthConfig.KeyId,
+// 			Plaintext: pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Ciphertext struct {
 	pulumi.CustomResourceState
 

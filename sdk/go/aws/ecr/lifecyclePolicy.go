@@ -15,6 +15,64 @@ import (
 // > **NOTE:** Only one `ecr.LifecyclePolicy` resource can be used with the same ECR repository. To apply multiple rules, they must be combined in the `policy` JSON.
 //
 // > **NOTE:** The AWS ECR API seems to reorder rules based on `rulePriority`. If you define multiple rules that are not sorted in ascending `rulePriority` order in the this provider code, the resource will be flagged for recreation every deployment.
+//
+// ## Example Usage
+//
+// ### Policy on untagged image
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/ecr"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		foo, err := ecr.NewRepository(ctx, "foo", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		foopolicy, err := ecr.NewLifecyclePolicy(ctx, "foopolicy", &ecr.LifecyclePolicyArgs{
+// 			Policy:     pulumi.String("TODO: TODO multi part template expressions"),
+// 			Repository: foo.Name,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ### Policy on tagged image
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/ecr"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		foo, err := ecr.NewRepository(ctx, "foo", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		foopolicy, err := ecr.NewLifecyclePolicy(ctx, "foopolicy", &ecr.LifecyclePolicyArgs{
+// 			Policy:     pulumi.String("TODO: TODO multi part template expressions"),
+// 			Repository: foo.Name,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type LifecyclePolicy struct {
 	pulumi.CustomResourceState
 

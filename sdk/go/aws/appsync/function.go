@@ -11,6 +11,52 @@ import (
 )
 
 // Provides an AppSync Function.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/appsync"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		testGraphQLApi, err := appsync.NewGraphQLApi(ctx, "testGraphQLApi", &appsync.GraphQLApiArgs{
+// 			AuthenticationType: pulumi.String("API_KEY"),
+// 			Schema:             pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		testDataSource, err := appsync.NewDataSource(ctx, "testDataSource", &appsync.DataSourceArgs{
+// 			ApiId: testGraphQLApi.ID(),
+// 			HttpConfig: &appsync.DataSourceHttpConfigArgs{
+// 				Endpoint: pulumi.String("http://example.com"),
+// 			},
+// 			Type: pulumi.String("HTTP"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		testFunction, err := appsync.NewFunction(ctx, "testFunction", &appsync.FunctionArgs{
+// 			ApiId:                   testGraphQLApi.ID(),
+// 			DataSource:              testDataSource.Name,
+// 			Name:                    pulumi.String("tfExample"),
+// 			RequestMappingTemplate:  pulumi.String("TODO: TODO multi part template expressions"),
+// 			ResponseMappingTemplate: pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Function struct {
 	pulumi.CustomResourceState
 

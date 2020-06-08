@@ -10,6 +10,35 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/worklink"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		example, err := worklink.NewFleet(ctx, "example", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		test, err := worklink.NewWebsiteCertificateAuthorityAssociation(ctx, "test", &worklink.WebsiteCertificateAuthorityAssociationArgs{
+// 			Certificate: "TODO: ReadFile",
+// 			FleetArn:    pulumi.String(aws_worklink_fleet.Test.Arn),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type WebsiteCertificateAuthorityAssociation struct {
 	pulumi.CustomResourceState
 

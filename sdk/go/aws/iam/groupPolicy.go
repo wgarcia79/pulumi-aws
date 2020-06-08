@@ -11,6 +11,38 @@ import (
 )
 
 // Provides an IAM policy attached to a group.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/iam"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		myDevelopers, err := iam.NewGroup(ctx, "myDevelopers", &iam.GroupArgs{
+// 			Path: pulumi.String("/users/"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		myDeveloperPolicy, err := iam.NewGroupPolicy(ctx, "myDeveloperPolicy", &iam.GroupPolicyArgs{
+// 			Group:  myDevelopers.ID(),
+// 			Policy: pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type GroupPolicy struct {
 	pulumi.CustomResourceState
 

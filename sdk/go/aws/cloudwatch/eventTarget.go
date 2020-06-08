@@ -11,6 +11,184 @@ import (
 )
 
 // Provides a CloudWatch Event Target resource.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/cloudwatch"
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/kinesis"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		console, err := cloudwatch.NewEventRule(ctx, "console", &cloudwatch.EventRuleArgs{
+// 			Description:  pulumi.String("Capture all EC2 scaling events"),
+// 			EventPattern: pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		testStream, err := kinesis.NewStream(ctx, "testStream", &kinesis.StreamArgs{
+// 			ShardCount: pulumi.Int(1),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		yada, err := cloudwatch.NewEventTarget(ctx, "yada", &cloudwatch.EventTargetArgs{
+// 			Arn:  testStream.Arn,
+// 			Rule: console.Name,
+// 			RunCommandTargets: cloudwatch.EventTargetRunCommandTargetArray{
+// 				&cloudwatch.EventTargetRunCommandTargetArgs{
+// 					Key: pulumi.String("tag:Name"),
+// 					Values: pulumi.StringArray{
+// 						pulumi.String("FooBar"),
+// 					},
+// 				},
+// 				&cloudwatch.EventTargetRunCommandTargetArgs{
+// 					Key: pulumi.String("InstanceIds"),
+// 					Values: pulumi.StringArray{
+// 						pulumi.String("i-162058cd308bffec2"),
+// 					},
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ## Example SSM Document Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/cloudwatch"
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/iam"
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/ssm"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		ssmLifecycleTrust, err := iam.LookupPolicyDocument(ctx, &iam.LookupPolicyDocumentArgs{
+// 			Statements: iam.getPolicyDocumentStatementArray{
+// 				&iam.LookupPolicyDocumentStatement{
+// 					Actions: []string{
+// 						"sts:AssumeRole",
+// 					},
+// 					Principals: iam.getPolicyDocumentStatementPrincipalArray{
+// 						&iam.LookupPolicyDocumentStatementPrincipal{
+// 							Identifiers: []string{
+// 								"events.amazonaws.com",
+// 							},
+// 							Type: "Service",
+// 						},
+// 					},
+// 				},
+// 			},
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		stopInstance, err := ssm.NewDocument(ctx, "stopInstance", &ssm.DocumentArgs{
+// 			Content:      pulumi.String("TODO: TODO multi part template expressions"),
+// 			DocumentType: pulumi.String("Command"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		ssmLifecycleRole, err := iam.NewRole(ctx, "ssmLifecycleRole", &iam.RoleArgs{
+// 			AssumeRolePolicy: pulumi.String(ssmLifecycleTrust.Json),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		ssmLifecyclePolicy, err := iam.NewPolicy(ctx, "ssmLifecyclePolicy", &iam.PolicyArgs{
+// 			Policy: ssmLifecyclePolicyDocument.ApplyT(func(ssmLifecyclePolicyDocument iam.LookupPolicyDocumentResult) (string, error) {
+// 				return ssmLifecyclePolicyDocument.Json, nil
+// 			}).(pulumi.StringOutput),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		stopInstancesEventRule, err := cloudwatch.NewEventRule(ctx, "stopInstancesEventRule", &cloudwatch.EventRuleArgs{
+// 			Description:        pulumi.String("Stop instances nightly"),
+// 			ScheduleExpression: pulumi.String("cron(0 0 * * ? *)"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		stopInstancesEventTarget, err := cloudwatch.NewEventTarget(ctx, "stopInstancesEventTarget", &cloudwatch.EventTargetArgs{
+// 			Arn:     stopInstance.Arn,
+// 			RoleArn: ssmLifecycleRole.Arn,
+// 			Rule:    stopInstancesEventRule.Name,
+// 			RunCommandTargets: cloudwatch.EventTargetRunCommandTargetArray{
+// 				&cloudwatch.EventTargetRunCommandTargetArgs{
+// 					Key: pulumi.String("tag:Terminate"),
+// 					Values: pulumi.StringArray{
+// 						pulumi.String("midnight"),
+// 					},
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ## Example RunCommand Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/cloudwatch"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		stopInstancesEventRule, err := cloudwatch.NewEventRule(ctx, "stopInstancesEventRule", &cloudwatch.EventRuleArgs{
+// 			Description:        pulumi.String("Stop instances nightly"),
+// 			ScheduleExpression: pulumi.String("cron(0 0 * * ? *)"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		stopInstancesEventTarget, err := cloudwatch.NewEventTarget(ctx, "stopInstancesEventTarget", &cloudwatch.EventTargetArgs{
+// 			Arn:     pulumi.String("TODO: TODO multi part template expressions"),
+// 			Input:   pulumi.String("{\"commands\":[\"halt\"]}"),
+// 			RoleArn: pulumi.String(aws_iam_role.Ssm_lifecycle.Arn),
+// 			Rule:    stopInstancesEventRule.Name,
+// 			RunCommandTargets: cloudwatch.EventTargetRunCommandTargetArray{
+// 				&cloudwatch.EventTargetRunCommandTargetArgs{
+// 					Key: pulumi.String("tag:Terminate"),
+// 					Values: pulumi.StringArray{
+// 						pulumi.String("midnight"),
+// 					},
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type EventTarget struct {
 	pulumi.CustomResourceState
 

@@ -15,6 +15,72 @@ import (
 // > **NOTE:** All template parameters, including those with a `Default`, must be configured or ignored with the `lifecycle` configuration block `ignoreChanges` argument.
 //
 // > **NOTE:** All `NoEcho` template parameters must be ignored with the `lifecycle` configuration block `ignoreChanges` argument.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/cloudformation"
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/iam"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		aWSCloudFormationStackSetAdministrationRoleAssumeRolePolicy, err := iam.LookupPolicyDocument(ctx, &iam.LookupPolicyDocumentArgs{
+// 			Statements: iam.getPolicyDocumentStatementArray{
+// 				&iam.LookupPolicyDocumentStatement{
+// 					Actions: []string{
+// 						"sts:AssumeRole",
+// 					},
+// 					Effect: "Allow",
+// 					Principals: iam.getPolicyDocumentStatementPrincipalArray{
+// 						&iam.LookupPolicyDocumentStatementPrincipal{
+// 							Identifiers: []string{
+// 								"cloudformation.amazonaws.com",
+// 							},
+// 							Type: "Service",
+// 						},
+// 					},
+// 				},
+// 			},
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		aWSCloudFormationStackSetAdministrationRole, err := iam.NewRole(ctx, "aWSCloudFormationStackSetAdministrationRole", &iam.RoleArgs{
+// 			AssumeRolePolicy: pulumi.String(aWSCloudFormationStackSetAdministrationRoleAssumeRolePolicy.Json),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		example, err := cloudformation.NewStackSet(ctx, "example", &cloudformation.StackSetArgs{
+// 			AdministrationRoleArn: aWSCloudFormationStackSetAdministrationRole.Arn,
+// 			Parameters: map[string]interface{}{
+// 				"VPCCidr": "10.0.0.0/16",
+// 			},
+// 			TemplateBody: pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		aWSCloudFormationStackSetAdministrationRoleExecutionPolicyRolePolicy, err := iam.NewRolePolicy(ctx, "aWSCloudFormationStackSetAdministrationRoleExecutionPolicyRolePolicy", &iam.RolePolicyArgs{
+// 			Policy: aWSCloudFormationStackSetAdministrationRoleExecutionPolicyPolicyDocument.ApplyT(func(aWSCloudFormationStackSetAdministrationRoleExecutionPolicyPolicyDocument iam.LookupPolicyDocumentResult) (string, error) {
+// 				return aWSCloudFormationStackSetAdministrationRoleExecutionPolicyPolicyDocument.Json, nil
+// 			}).(pulumi.StringOutput),
+// 			Role: aWSCloudFormationStackSetAdministrationRole.Name,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type StackSet struct {
 	pulumi.CustomResourceState
 

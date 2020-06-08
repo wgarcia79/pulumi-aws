@@ -13,6 +13,50 @@ import (
 // Connects a custom domain name registered via `apigateway.DomainName`
 // with a deployed API so that its methods can be called via the
 // custom domain name.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/apigateway"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		exampleDeployment, err := apigateway.NewDeployment(ctx, "exampleDeployment", &apigateway.DeploymentArgs{
+// 			RestApi:   pulumi.String(aws_api_gateway_rest_api.MyDemoAPI.Id),
+// 			StageName: pulumi.String("live"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		exampleDomainName, err := apigateway.NewDomainName(ctx, "exampleDomainName", &apigateway.DomainNameArgs{
+// 			CertificateBody:       "TODO: ReadFile",
+// 			CertificateChain:      "TODO: ReadFile",
+// 			CertificateName:       pulumi.String("example-api"),
+// 			CertificatePrivateKey: "TODO: ReadFile",
+// 			DomainName:            pulumi.String("example.com"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		test, err := apigateway.NewBasePathMapping(ctx, "test", &apigateway.BasePathMappingArgs{
+// 			RestApi:    pulumi.String(aws_api_gateway_rest_api.MyDemoAPI.Id),
+// 			DomainName: exampleDomainName.DomainName,
+// 			StageName:  exampleDeployment.StageName,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type BasePathMapping struct {
 	pulumi.CustomResourceState
 

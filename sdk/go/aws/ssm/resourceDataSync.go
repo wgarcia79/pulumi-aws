@@ -11,6 +11,48 @@ import (
 )
 
 // Provides a SSM resource data sync.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/s3"
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/ssm"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		hogeBucket, err := s3.NewBucket(ctx, "hogeBucket", &s3.BucketArgs{
+// 			Region: pulumi.String("us-east-1"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		hogeBucketPolicy, err := s3.NewBucketPolicy(ctx, "hogeBucketPolicy", &s3.BucketPolicyArgs{
+// 			Bucket: hogeBucket.Bucket,
+// 			Policy: pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		foo, err := ssm.NewResourceDataSync(ctx, "foo", &ssm.ResourceDataSyncArgs{
+// 			S3Destination: &ssm.ResourceDataSyncS3DestinationArgs{
+// 				BucketName: hogeBucket.Bucket,
+// 				Region:     hogeBucket.Region,
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type ResourceDataSync struct {
 	pulumi.CustomResourceState
 

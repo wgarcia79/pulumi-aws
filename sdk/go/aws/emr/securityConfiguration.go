@@ -11,6 +11,31 @@ import (
 )
 
 // Provides a resource to manage AWS EMR Security Configurations
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/emr"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		foo, err := emr.NewSecurityConfiguration(ctx, "foo", &emr.SecurityConfigurationArgs{
+// 			Configuration: pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type SecurityConfiguration struct {
 	pulumi.CustomResourceState
 

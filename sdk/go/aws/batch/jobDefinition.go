@@ -11,6 +11,32 @@ import (
 )
 
 // Provides a Batch Job Definition resource.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/batch"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		test, err := batch.NewJobDefinition(ctx, "test", &batch.JobDefinitionArgs{
+// 			ContainerProperties: pulumi.String("TODO: TODO multi part template expressions"),
+// 			Type:                pulumi.String("container"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type JobDefinition struct {
 	pulumi.CustomResourceState
 

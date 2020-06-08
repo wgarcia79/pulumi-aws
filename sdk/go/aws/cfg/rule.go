@@ -13,6 +13,97 @@ import (
 // Provides an AWS Config Rule.
 //
 // > **Note:** Config Rule requires an existing `Configuration Recorder` to be present. Use of `dependsOn` is recommended (as shown below) to avoid race conditions.
+//
+// ## Example Usage
+//
+// ### AWS Managed Rules
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/cfg"
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/iam"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		rule, err := cfg.NewRule(ctx, "rule", &cfg.RuleArgs{
+// 			Source: &cfg.RuleSourceArgs{
+// 				Owner:            pulumi.String("AWS"),
+// 				SourceIdentifier: pulumi.String("S3_BUCKET_VERSIONING_ENABLED"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		role, err := iam.NewRole(ctx, "role", &iam.RoleArgs{
+// 			AssumeRolePolicy: pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		foo, err := cfg.NewRecorder(ctx, "foo", &cfg.RecorderArgs{
+// 			RoleArn: role.Arn,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		rolePolicy, err := iam.NewRolePolicy(ctx, "rolePolicy", &iam.RolePolicyArgs{
+// 			Policy: pulumi.String("TODO: TODO multi part template expressions"),
+// 			Role:   role.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ### Custom Rules
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/cfg"
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/lambda"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		exampleRecorder, err := cfg.NewRecorder(ctx, "exampleRecorder", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		exampleFunction, err := lambda.NewFunction(ctx, "exampleFunction", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		examplePermission, err := lambda.NewPermission(ctx, "examplePermission", &lambda.PermissionArgs{
+// 			Action:    pulumi.String("lambda:InvokeFunction"),
+// 			Function:  exampleFunction.Arn,
+// 			Principal: pulumi.String("config.amazonaws.com"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		exampleRule, err := cfg.NewRule(ctx, "exampleRule", &cfg.RuleArgs{
+// 			Source: &cfg.RuleSourceArgs{
+// 				Owner:            pulumi.String("CUSTOM_LAMBDA"),
+// 				SourceIdentifier: exampleFunction.Arn,
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Rule struct {
 	pulumi.CustomResourceState
 

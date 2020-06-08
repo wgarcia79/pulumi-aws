@@ -8,6 +8,226 @@ import (
 )
 
 // Use this data source to generate a Glue script from a Directed Acyclic Graph (DAG).
+//
+// ## Example Usage
+//
+// ### Generate Python Script
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		example, err := glue.LookupScript(ctx, &glue.LookupScriptArgs{
+// 			DagEdges: glue.getScriptDagEdgeArray{
+// 				&glue.LookupScriptDagEdge{
+// 					Source: "datasource0",
+// 					Target: "applymapping1",
+// 				},
+// 				&glue.LookupScriptDagEdge{
+// 					Source: "applymapping1",
+// 					Target: "selectfields2",
+// 				},
+// 				&glue.LookupScriptDagEdge{
+// 					Source: "selectfields2",
+// 					Target: "resolvechoice3",
+// 				},
+// 				&glue.LookupScriptDagEdge{
+// 					Source: "resolvechoice3",
+// 					Target: "datasink4",
+// 				},
+// 			},
+// 			DagNodes: glue.getScriptDagNodeArray{
+// 				&glue.LookupScriptDagNode{
+// 					Args: glue.getScriptDagNodeArgArray{
+// 						&glue.LookupScriptDagNodeArg{
+// 							Name:  "database",
+// 							Value: "TODO: TODO multi part template expressions",
+// 						},
+// 						&glue.LookupScriptDagNodeArg{
+// 							Name:  "tableName",
+// 							Value: "TODO: TODO multi part template expressions",
+// 						},
+// 					},
+// 					Id:       "datasource0",
+// 					NodeType: "DataSource",
+// 				},
+// 				&glue.LookupScriptDagNode{
+// 					Args: glue.getScriptDagNodeArgArray{
+// 						&glue.LookupScriptDagNodeArg{
+// 							Name:  "mapping",
+// 							Value: "[(\"column1\", \"string\", \"column1\", \"string\")]",
+// 						},
+// 					},
+// 					Id:       "applymapping1",
+// 					NodeType: "ApplyMapping",
+// 				},
+// 				&glue.LookupScriptDagNode{
+// 					Args: glue.getScriptDagNodeArgArray{
+// 						&glue.LookupScriptDagNodeArg{
+// 							Name:  "paths",
+// 							Value: "[\"column1\"]",
+// 						},
+// 					},
+// 					Id:       "selectfields2",
+// 					NodeType: "SelectFields",
+// 				},
+// 				&glue.LookupScriptDagNode{
+// 					Args: glue.getScriptDagNodeArgArray{
+// 						&glue.LookupScriptDagNodeArg{
+// 							Name:  "choice",
+// 							Value: "\"MATCH_CATALOG\"",
+// 						},
+// 						&glue.LookupScriptDagNodeArg{
+// 							Name:  "database",
+// 							Value: "TODO: TODO multi part template expressions",
+// 						},
+// 						&glue.LookupScriptDagNodeArg{
+// 							Name:  "tableName",
+// 							Value: "TODO: TODO multi part template expressions",
+// 						},
+// 					},
+// 					Id:       "resolvechoice3",
+// 					NodeType: "ResolveChoice",
+// 				},
+// 				&glue.LookupScriptDagNode{
+// 					Args: glue.getScriptDagNodeArgArray{
+// 						&glue.LookupScriptDagNodeArg{
+// 							Name:  "database",
+// 							Value: "TODO: TODO multi part template expressions",
+// 						},
+// 						&glue.LookupScriptDagNodeArg{
+// 							Name:  "tableName",
+// 							Value: "TODO: TODO multi part template expressions",
+// 						},
+// 					},
+// 					Id:       "datasink4",
+// 					NodeType: "DataSink",
+// 				},
+// 			},
+// 			Language: "PYTHON",
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		ctx.Export("pythonScript", example.PythonScript)
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ### Generate Scala Code
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		example, err := glue.LookupScript(ctx, &glue.LookupScriptArgs{
+// 			DagEdges: glue.getScriptDagEdgeArray{
+// 				&glue.LookupScriptDagEdge{
+// 					Source: "datasource0",
+// 					Target: "applymapping1",
+// 				},
+// 				&glue.LookupScriptDagEdge{
+// 					Source: "applymapping1",
+// 					Target: "selectfields2",
+// 				},
+// 				&glue.LookupScriptDagEdge{
+// 					Source: "selectfields2",
+// 					Target: "resolvechoice3",
+// 				},
+// 				&glue.LookupScriptDagEdge{
+// 					Source: "resolvechoice3",
+// 					Target: "datasink4",
+// 				},
+// 			},
+// 			DagNodes: glue.getScriptDagNodeArray{
+// 				&glue.LookupScriptDagNode{
+// 					Args: glue.getScriptDagNodeArgArray{
+// 						&glue.LookupScriptDagNodeArg{
+// 							Name:  "database",
+// 							Value: "TODO: TODO multi part template expressions",
+// 						},
+// 						&glue.LookupScriptDagNodeArg{
+// 							Name:  "tableName",
+// 							Value: "TODO: TODO multi part template expressions",
+// 						},
+// 					},
+// 					Id:       "datasource0",
+// 					NodeType: "DataSource",
+// 				},
+// 				&glue.LookupScriptDagNode{
+// 					Args: glue.getScriptDagNodeArgArray{
+// 						&glue.LookupScriptDagNodeArg{
+// 							Name:  "mappings",
+// 							Value: "[(\"column1\", \"string\", \"column1\", \"string\")]",
+// 						},
+// 					},
+// 					Id:       "applymapping1",
+// 					NodeType: "ApplyMapping",
+// 				},
+// 				&glue.LookupScriptDagNode{
+// 					Args: glue.getScriptDagNodeArgArray{
+// 						&glue.LookupScriptDagNodeArg{
+// 							Name:  "paths",
+// 							Value: "[\"column1\"]",
+// 						},
+// 					},
+// 					Id:       "selectfields2",
+// 					NodeType: "SelectFields",
+// 				},
+// 				&glue.LookupScriptDagNode{
+// 					Args: glue.getScriptDagNodeArgArray{
+// 						&glue.LookupScriptDagNodeArg{
+// 							Name:  "choice",
+// 							Value: "\"MATCH_CATALOG\"",
+// 						},
+// 						&glue.LookupScriptDagNodeArg{
+// 							Name:  "database",
+// 							Value: "TODO: TODO multi part template expressions",
+// 						},
+// 						&glue.LookupScriptDagNodeArg{
+// 							Name:  "tableName",
+// 							Value: "TODO: TODO multi part template expressions",
+// 						},
+// 					},
+// 					Id:       "resolvechoice3",
+// 					NodeType: "ResolveChoice",
+// 				},
+// 				&glue.LookupScriptDagNode{
+// 					Args: glue.getScriptDagNodeArgArray{
+// 						&glue.LookupScriptDagNodeArg{
+// 							Name:  "database",
+// 							Value: "TODO: TODO multi part template expressions",
+// 						},
+// 						&glue.LookupScriptDagNodeArg{
+// 							Name:  "tableName",
+// 							Value: "TODO: TODO multi part template expressions",
+// 						},
+// 					},
+// 					Id:       "datasink4",
+// 					NodeType: "DataSink",
+// 				},
+// 			},
+// 			Language: "SCALA",
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		ctx.Export("scalaCode", example.ScalaCode)
+// 		return nil
+// 	})
+// }
+// ```
 func GetScript(ctx *pulumi.Context, args *GetScriptArgs, opts ...pulumi.InvokeOption) (*GetScriptResult, error) {
 	var rv GetScriptResult
 	err := ctx.Invoke("aws:glue/getScript:getScript", args, &rv, opts...)

@@ -11,6 +11,32 @@ import (
 )
 
 // Provides a Step Function State Machine resource
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/sfn"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		sfnStateMachine, err := sfn.NewStateMachine(ctx, "sfnStateMachine", &sfn.StateMachineArgs{
+// 			Definition: pulumi.String("TODO: TODO multi part template expressions"),
+// 			RoleArn:    pulumi.String(aws_iam_role.Iam_for_sfn.Arn),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type StateMachine struct {
 	pulumi.CustomResourceState
 

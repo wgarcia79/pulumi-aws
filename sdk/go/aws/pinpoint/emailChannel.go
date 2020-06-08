@@ -11,6 +11,59 @@ import (
 )
 
 // Provides a Pinpoint Email Channel resource.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/iam"
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/pinpoint"
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/ses"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		app, err := pinpoint.NewApp(ctx, "app", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		identity, err := ses.NewDomainIdentity(ctx, "identity", &ses.DomainIdentityArgs{
+// 			Domain: pulumi.String("example.com"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		role, err := iam.NewRole(ctx, "role", &iam.RoleArgs{
+// 			AssumeRolePolicy: pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		email, err := pinpoint.NewEmailChannel(ctx, "email", &pinpoint.EmailChannelArgs{
+// 			ApplicationId: app.ApplicationId,
+// 			FromAddress:   pulumi.String("user@example.com"),
+// 			Identity:      identity.Arn,
+// 			RoleArn:       role.Arn,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		rolePolicy, err := iam.NewRolePolicy(ctx, "rolePolicy", &iam.RolePolicyArgs{
+// 			Policy: pulumi.String("TODO: TODO multi part template expressions"),
+// 			Role:   role.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type EmailChannel struct {
 	pulumi.CustomResourceState
 

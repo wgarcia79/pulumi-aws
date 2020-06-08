@@ -13,6 +13,54 @@ import (
 // Provides an SES domain DKIM generation resource.
 //
 // Domain ownership needs to be confirmed first using `ses.DomainIdentity` resource.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/route53"
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/ses"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		exampleDomainIdentity, err := ses.NewDomainIdentity(ctx, "exampleDomainIdentity", &ses.DomainIdentityArgs{
+// 			Domain: pulumi.String("example.com"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		exampleDomainDkim, err := ses.NewDomainDkim(ctx, "exampleDomainDkim", &ses.DomainDkimArgs{
+// 			Domain: exampleDomainIdentity.Domain,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		exampleAmazonsesDkimRecord, err := route53.NewRecord(ctx, "exampleAmazonsesDkimRecord", &route53.RecordArgs{
+// 			Name: "TODO: element".ApplyT(func(dkimTokens string) (string, error) {
+// 				return "TODO: TODO multi part template expressions", nil
+// 			}).(pulumi.StringOutput),
+// 			Records: pulumi.StringArray{
+// 				"TODO: element".ApplyT(func(dkimTokens string) (string, error) {
+// 					return "TODO: TODO multi part template expressions", nil
+// 				}).(pulumi.StringOutput),
+// 			},
+// 			Ttl:    pulumi.Int(600),
+// 			Type:   pulumi.String("CNAME"),
+// 			ZoneId: pulumi.String("ABCDEFGHIJ123"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type DomainDkim struct {
 	pulumi.CustomResourceState
 

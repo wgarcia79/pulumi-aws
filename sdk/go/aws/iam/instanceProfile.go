@@ -10,6 +10,38 @@ import (
 )
 
 // Provides an IAM instance profile.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/iam"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		role, err := iam.NewRole(ctx, "role", &iam.RoleArgs{
+// 			AssumeRolePolicy: pulumi.String("TODO: TODO multi part template expressions"),
+// 			Path:             pulumi.String("/"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		testProfile, err := iam.NewInstanceProfile(ctx, "testProfile", &iam.InstanceProfileArgs{
+// 			Role: role.Name,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type InstanceProfile struct {
 	pulumi.CustomResourceState
 

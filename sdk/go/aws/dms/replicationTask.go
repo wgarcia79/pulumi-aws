@@ -11,6 +11,41 @@ import (
 )
 
 // Provides a DMS (Data Migration Service) replication task resource. DMS replication tasks can be created, updated, deleted, and imported.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/dms"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		test, err := dms.NewReplicationTask(ctx, "test", &dms.ReplicationTaskArgs{
+// 			CdcStartTime:            pulumi.String("1484346880"),
+// 			MigrationType:           pulumi.String("full-load"),
+// 			ReplicationInstanceArn:  pulumi.String(aws_dms_replication_instance.Test - dms - replication - instance - tf.Replication_instance_arn),
+// 			ReplicationTaskId:       pulumi.String("test-dms-replication-task-tf"),
+// 			ReplicationTaskSettings: pulumi.String("..."),
+// 			SourceEndpointArn:       pulumi.String(aws_dms_endpoint.Test - dms - source - endpoint - tf.Endpoint_arn),
+// 			TableMappings:           pulumi.String("TODO: TODO multi part template expressions"),
+// 			Tags: map[string]interface{}{
+// 				"Name": "test",
+// 			},
+// 			TargetEndpointArn: pulumi.String(aws_dms_endpoint.Test - dms - target - endpoint - tf.Endpoint_arn),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type ReplicationTask struct {
 	pulumi.CustomResourceState
 

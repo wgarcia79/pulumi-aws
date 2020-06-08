@@ -11,6 +11,45 @@ import (
 )
 
 // Provides a Redshift Cluster parameter group resource.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/redshift"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		bar, err := redshift.NewParameterGroup(ctx, "bar", &redshift.ParameterGroupArgs{
+// 			Family: pulumi.String("redshift-1.0"),
+// 			Parameters: redshift.ParameterGroupParameterArray{
+// 				&redshift.ParameterGroupParameterArgs{
+// 					Name:  pulumi.String("requireSsl"),
+// 					Value: pulumi.String("true"),
+// 				},
+// 				&redshift.ParameterGroupParameterArgs{
+// 					Name:  pulumi.String("queryGroup"),
+// 					Value: pulumi.String("example"),
+// 				},
+// 				&redshift.ParameterGroupParameterArgs{
+// 					Name:  pulumi.String("enableUserActivityLogging"),
+// 					Value: pulumi.String("true"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type ParameterGroup struct {
 	pulumi.CustomResourceState
 

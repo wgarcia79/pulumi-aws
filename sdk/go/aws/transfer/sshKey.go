@@ -11,6 +11,64 @@ import (
 )
 
 // Provides a AWS Transfer User SSH Key resource.
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/iam"
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/transfer"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		fooServer, err := transfer.NewServer(ctx, "fooServer", &transfer.ServerArgs{
+// 			IdentityProviderType: pulumi.String("SERVICE_MANAGED"),
+// 			Tags: map[string]interface{}{
+// 				"NAME": "tf-acc-test-transfer-server",
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		fooRole, err := iam.NewRole(ctx, "fooRole", &iam.RoleArgs{
+// 			AssumeRolePolicy: pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		fooRolePolicy, err := iam.NewRolePolicy(ctx, "fooRolePolicy", &iam.RolePolicyArgs{
+// 			Policy: pulumi.String("TODO: TODO multi part template expressions"),
+// 			Role:   fooRole.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		fooUser, err := transfer.NewUser(ctx, "fooUser", &transfer.UserArgs{
+// 			Role:     fooRole.Arn,
+// 			ServerId: fooServer.ID(),
+// 			Tags: map[string]interface{}{
+// 				"NAME": "tftestuser",
+// 			},
+// 			UserName: pulumi.String("tftestuser"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		fooSshKey, err := transfer.NewSshKey(ctx, "fooSshKey", &transfer.SshKeyArgs{
+// 			Body:     pulumi.String("ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD3F6tyPEFEzV0LX3X8BsXdMsQz1x2cEikKDEY0aIj41qgxMCP/iteneqXSIFZBp5vizPvaoIR3Um9xK7PGoW8giupGn+EPuxIA4cDM4vzOqOkiMPhz5XK0whEjkVzTo4+S0puvDZuwIsdiW9mxhJc7tgBNL0cYlWSYVkz4G/fslNfRPW5mYAM49f4fhtxPb5ok4Q2Lg9dPKVHO/Bgeu5woMc7RY0p1ej6D4CKFE6lymSDJpW0YHX/wqE9+cfEauh7xZcG0q9t2ta6F6fmX0agvpFyZo8aFbXeUBr7osSCJNgvavWbM/06niWrOvYX2xwWdhXmXSrbX8ZbabVohBK41 example@example.com"),
+// 			ServerId: fooServer.ID(),
+// 			UserName: fooUser.UserName,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type SshKey struct {
 	pulumi.CustomResourceState
 

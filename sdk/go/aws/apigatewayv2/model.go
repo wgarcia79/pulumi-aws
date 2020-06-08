@@ -11,6 +11,33 @@ import (
 )
 
 // Manages an Amazon API Gateway Version 2 [model](https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html#models-mappings-models).
+//
+// ## Example Usage
+//
+// ### Basic
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/apigatewayv2"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		example, err := apigatewayv2.NewModel(ctx, "example", &apigatewayv2.ModelArgs{
+// 			ApiId:       pulumi.String(aws_apigatewayv2_api.Example.Id),
+// 			ContentType: pulumi.String("application/json"),
+// 			Schema:      pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Model struct {
 	pulumi.CustomResourceState
 

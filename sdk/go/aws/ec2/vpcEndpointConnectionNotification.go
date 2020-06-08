@@ -12,6 +12,52 @@ import (
 
 // Provides a VPC Endpoint connection notification resource.
 // Connection notifications notify subscribers of VPC Endpoint events.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/ec2"
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/sns"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		topic, err := sns.NewTopic(ctx, "topic", &sns.TopicArgs{
+// 			Policy: pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		fooVpcEndpointService, err := ec2.NewVpcEndpointService(ctx, "fooVpcEndpointService", &ec2.VpcEndpointServiceArgs{
+// 			AcceptanceRequired: pulumi.Bool(false),
+// 			NetworkLoadBalancerArns: pulumi.StringArray{
+// 				pulumi.String(aws_lb.Test.Arn),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		fooVpcEndpointConnectionNotification, err := ec2.NewVpcEndpointConnectionNotification(ctx, "fooVpcEndpointConnectionNotification", &ec2.VpcEndpointConnectionNotificationArgs{
+// 			ConnectionEvents: pulumi.StringArray{
+// 				pulumi.String("Accept"),
+// 				pulumi.String("Reject"),
+// 			},
+// 			ConnectionNotificationArn: pulumi.String(topic.Arn),
+// 			VpcEndpointServiceId:      fooVpcEndpointService.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type VpcEndpointConnectionNotification struct {
 	pulumi.CustomResourceState
 

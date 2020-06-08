@@ -11,6 +11,17 @@ import (
 )
 
 // Attaches a load balancer policy to an ELB Listener.
+//
+//
+// ## Example Usage for Custom Policy
+//
+//
+// This example shows how to customize the TLS settings of an HTTPS listener.
+//
+// ## Example Usage for AWS Predefined Security Policy
+//
+//
+// This example shows how to add a [Predefined Security Policy for ELBs](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-policy-table.html)
 type ListenerPolicy struct {
 	pulumi.CustomResourceState
 

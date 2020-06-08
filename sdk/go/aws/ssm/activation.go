@@ -11,6 +11,47 @@ import (
 )
 
 // Registers an on-premises server or virtual machine with Amazon EC2 so that it can be managed using Run Command.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/iam"
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/ssm"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		testRole, err := iam.NewRole(ctx, "testRole", &iam.RoleArgs{
+// 			AssumeRolePolicy: pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		testAttach, err := iam.NewRolePolicyAttachment(ctx, "testAttach", &iam.RolePolicyAttachmentArgs{
+// 			PolicyArn: pulumi.String("arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"),
+// 			Role:      testRole.Name,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		foo, err := ssm.NewActivation(ctx, "foo", &ssm.ActivationArgs{
+// 			Description:       pulumi.String("Test"),
+// 			IamRole:           testRole.ID(),
+// 			RegistrationLimit: pulumi.Int(5),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Activation struct {
 	pulumi.CustomResourceState
 

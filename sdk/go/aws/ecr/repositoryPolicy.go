@@ -13,6 +13,36 @@ import (
 // Provides an Elastic Container Registry Repository Policy.
 //
 // Note that currently only one policy may be applied to a repository.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/ecr"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		foo, err := ecr.NewRepository(ctx, "foo", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		foopolicy, err := ecr.NewRepositoryPolicy(ctx, "foopolicy", &ecr.RepositoryPolicyArgs{
+// 			Policy:     pulumi.String("TODO: TODO multi part template expressions"),
+// 			Repository: foo.Name,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type RepositoryPolicy struct {
 	pulumi.CustomResourceState
 

@@ -11,6 +11,69 @@ import (
 )
 
 // Provides a Glue Connection resource.
+//
+// ## Example Usage
+//
+// ### Non-VPC Connection
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/glue"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		example, err := glue.NewConnection(ctx, "example", &glue.ConnectionArgs{
+// 			ConnectionProperties: map[string]interface{}{
+// 				"JDBC_CONNECTION_URL": "jdbc:mysql://example.com/exampledatabase",
+// 				"PASSWORD":            "examplepassword",
+// 				"USERNAME":            "exampleusername",
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ### VPC Connection
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/glue"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		example, err := glue.NewConnection(ctx, "example", &glue.ConnectionArgs{
+// 			ConnectionProperties: map[string]interface{}{
+// 				"JDBC_CONNECTION_URL": "TODO: TODO multi part template expressions",
+// 				"PASSWORD":            "examplepassword",
+// 				"USERNAME":            "exampleusername",
+// 			},
+// 			PhysicalConnectionRequirements: &glue.ConnectionPhysicalConnectionRequirementsArgs{
+// 				AvailabilityZone: pulumi.String(aws_subnet.Example.Availability_zone),
+// 				SecurityGroupIdList: []dynamic{
+// 					dynamic(aws_security_group.Example.Id),
+// 				},
+// 				SubnetId: pulumi.String(aws_subnet.Example.Id),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Connection struct {
 	pulumi.CustomResourceState
 

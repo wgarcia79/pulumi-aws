@@ -14,6 +14,34 @@ import (
 //
 // For information about Lambda Layers and how to use them, see [AWS Lambda Layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html)
 //
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/lambda"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		lambdaLayer, err := lambda.NewLayerVersion(ctx, "lambdaLayer", &lambda.LayerVersionArgs{
+// 			CompatibleRuntimes: pulumi.StringArray{
+// 				pulumi.String("nodejs8.10"),
+// 			},
+// 			Code:      "TODO: call fileArchive",
+// 			LayerName: pulumi.String("lambdaLayerName"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 //
 // ## Specifying the Deployment Package
 //
