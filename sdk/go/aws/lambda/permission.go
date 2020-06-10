@@ -14,9 +14,6 @@ import (
 //
 //
 // ## Usage with SNS
-//
-//
-// ## Specify Lambda permissions for API Gateway REST API
 type Permission struct {
 	pulumi.CustomResourceState
 

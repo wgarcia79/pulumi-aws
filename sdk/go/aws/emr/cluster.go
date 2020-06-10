@@ -17,13 +17,6 @@ import (
 // To configure [Instance Groups](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-instance-group-configuration.html#emr-plan-instance-groups) for [task nodes](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-master-core-task-nodes.html#emr-plan-task), see the `emr.InstanceGroup` resource.
 //
 // > Support for [Instance Fleets](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-instance-group-configuration.html#emr-plan-instance-fleets) will be made available in an upcoming release.
-//
-//
-// ## Example bootable config
-//
-// **NOTE:** This configuration demonstrates a minimal configuration needed to
-// boot an example EMR Cluster. It is not meant to display best practices. Please
-// use at your own risk.
 type Cluster struct {
 	pulumi.CustomResourceState
 

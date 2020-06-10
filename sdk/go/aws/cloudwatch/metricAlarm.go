@@ -91,56 +91,6 @@ import (
 // }
 // ```
 //
-// ## Example with an Expression
-//
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/cloudwatch"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		xxAnomalyDetection, err := cloudwatch.NewMetricAlarm(ctx, "xxAnomalyDetection", &cloudwatch.MetricAlarmArgs{
-// 			AlarmDescription:        pulumi.String("This metric monitors ec2 cpu utilization"),
-// 			ComparisonOperator:      pulumi.String("GreaterThanUpperThreshold"),
-// 			EvaluationPeriods:       pulumi.Int(2),
-// 			InsufficientDataActions: []interface{}{},
-// 			MetricQueries: cloudwatch.MetricAlarmMetricQueryArray{
-// 				&cloudwatch.MetricAlarmMetricQueryArgs{
-// 					Expression: pulumi.String("ANOMALY_DETECTION_BAND(m1)"),
-// 					Id:         pulumi.String("e1"),
-// 					Label:      pulumi.String("CPUUtilization (Expected)"),
-// 					ReturnData: pulumi.Bool(true),
-// 				},
-// 				&cloudwatch.MetricAlarmMetricQueryArgs{
-// 					Id: pulumi.String("m1"),
-// 					Metric: &cloudwatch.MetricAlarmMetricQueryMetricArgs{
-// 						Dimensions: map[string]interface{}{
-// 							"InstanceId": "i-abc123",
-// 						},
-// 						MetricName: pulumi.String("CPUUtilization"),
-// 						Namespace:  pulumi.String("AWS/EC2"),
-// 						Period:     pulumi.Int(120),
-// 						Stat:       pulumi.String("Average"),
-// 						Unit:       pulumi.String("Count"),
-// 					},
-// 					ReturnData: pulumi.Bool(true),
-// 				},
-// 			},
-// 			ThresholdMetricId: pulumi.String("e1"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
 // ## Example of monitoring Healthy Hosts on NLB using Target Group and NLB
 //
 //

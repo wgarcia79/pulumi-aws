@@ -34,9 +34,6 @@ import (
 // }
 // ```
 //
-// ## Example with Delivery Policy
-//
-//
 // ## Example with Server-side encryption (SSE)
 //
 // ```go

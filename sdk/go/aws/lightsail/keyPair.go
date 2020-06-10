@@ -58,8 +58,6 @@ import (
 // 	})
 // }
 // ```
-//
-// ## Import an existing public key
 type KeyPair struct {
 	pulumi.CustomResourceState
 

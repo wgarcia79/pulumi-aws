@@ -11,38 +11,6 @@ import (
 )
 
 // Provides an IAM access key. This is a set of credentials that allow API requests to be made as an IAM user.
-//
-// ## Example Usage
-//
-//
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/iam"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		testUser, err := iam.NewUser(ctx, "testUser", &iam.UserArgs{
-// 			Path: pulumi.String("/test/"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		testAccessKey, err := iam.NewAccessKey(ctx, "testAccessKey", &iam.AccessKeyArgs{
-// 			User: testUser.Name,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("awsIamSmtpPasswordV4", testAccessKey.SesSmtpPasswordV4)
-// 		return nil
-// 	})
-// }
-// ```
 type AccessKey struct {
 	pulumi.CustomResourceState
 
