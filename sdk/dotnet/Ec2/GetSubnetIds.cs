@@ -34,8 +34,8 @@ namespace Pulumi.Aws.Ec2
         ///         {
         ///             VpcId = @var.Vpc_id,
         ///         }));
-        ///         var exampleSubnet = exampleSubnetIds.Apply(exampleSubnetIds =&gt; "TODO: ForExpression");
-        ///         this.SubnetCidrBlocks = "TODO: ForExpression";
+        ///         var exampleSubnet = exampleSubnetIds.Apply(exampleSubnetIds =&gt; %!v(PANIC=Format method: fatal: A failure has occurred: unimplemented expression: ForExpression));
+        ///         this.SubnetCidrBlocks = %!v(PANIC=Format method: fatal: A failure has occurred: unimplemented expression: ForExpression);
         ///     }
         /// 
         ///     [Output("subnetCidrBlocks")]

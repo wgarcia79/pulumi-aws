@@ -36,26 +36,6 @@ import (
 //
 // ## Example with Delivery Policy
 //
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/sns"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		userUpdates, err := sns.NewTopic(ctx, "userUpdates", &sns.TopicArgs{
-// 			DeliveryPolicy: pulumi.String("TODO: TODO multi part template expressions"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 //
 // ## Example with Server-side encryption (SSE)
 //

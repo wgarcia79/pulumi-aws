@@ -38,46 +38,6 @@ import (
 // 	})
 // }
 // ```
-//
-// ### Lambda Integration
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/apigatewayv2"
-// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/lambda"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		exampleFunction, err := lambda.NewFunction(ctx, "exampleFunction", &lambda.FunctionArgs{
-// 			Code:    "TODO: call fileArchive",
-// 			Handler: pulumi.String("index.handler"),
-// 			Role:    pulumi.String(aws_iam_role.Example.Arn),
-// 			Runtime: pulumi.String("nodejs10.x"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		exampleIntegration, err := apigatewayv2.NewIntegration(ctx, "exampleIntegration", &apigatewayv2.IntegrationArgs{
-// 			ApiId:                   pulumi.String(aws_apigatewayv2_api.Example.Id),
-// 			ConnectionType:          pulumi.String("INTERNET"),
-// 			ContentHandlingStrategy: pulumi.String("CONVERT_TO_TEXT"),
-// 			Description:             pulumi.String("Lambda example"),
-// 			IntegrationMethod:       pulumi.String("POST"),
-// 			IntegrationType:         pulumi.String("AWS"),
-// 			IntegrationUri:          exampleFunction.InvokeArn,
-// 			PassthroughBehavior:     pulumi.String("WHEN_NO_MATCH"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type Integration struct {
 	pulumi.CustomResourceState
 

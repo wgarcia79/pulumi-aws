@@ -15,51 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// ### CloudWatch Logging
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/cloudwatch"
-// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/ec2"
-// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/iam"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		exampleLogGroup, err := cloudwatch.NewLogGroup(ctx, "exampleLogGroup", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		exampleRole, err := iam.NewRole(ctx, "exampleRole", &iam.RoleArgs{
-// 			AssumeRolePolicy: pulumi.String("TODO: TODO multi part template expressions"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		exampleFlowLog, err := ec2.NewFlowLog(ctx, "exampleFlowLog", &ec2.FlowLogArgs{
-// 			IamRoleArn:     exampleRole.Arn,
-// 			LogDestination: exampleLogGroup.Arn,
-// 			TrafficType:    pulumi.String("ALL"),
-// 			VpcId:          pulumi.String(aws_vpc.Example.Id),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		exampleRolePolicy, err := iam.NewRolePolicy(ctx, "exampleRolePolicy", &iam.RolePolicyArgs{
-// 			Policy: pulumi.String("TODO: TODO multi part template expressions"),
-// 			Role:   exampleRole.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
 // ### S3 Logging
 //
 // ```go

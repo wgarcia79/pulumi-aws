@@ -39,7 +39,7 @@ namespace Pulumi.Aws.S3
         ///             var length = values.Item1;
         ///             var myObjects = values.Item2;
         ///             var keys = values.Item3;
-        ///             return "TODO: ForExpression";
+        ///             return %!v(PANIC=Format method: fatal: A failure has occurred: unimplemented expression: ForExpression);
         ///         });
         ///     }
         /// 

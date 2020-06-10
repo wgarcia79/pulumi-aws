@@ -93,64 +93,6 @@ import (
 //
 // ## Example with an Expression
 //
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/cloudwatch"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		foobar, err := cloudwatch.NewMetricAlarm(ctx, "foobar", &cloudwatch.MetricAlarmArgs{
-// 			AlarmDescription:        pulumi.String("TODO: TODO multi part template expressions"),
-// 			ComparisonOperator:      pulumi.String("GreaterThanOrEqualToThreshold"),
-// 			EvaluationPeriods:       pulumi.Int(2),
-// 			InsufficientDataActions: []interface{}{},
-// 			MetricQueries: cloudwatch.MetricAlarmMetricQueryArray{
-// 				&cloudwatch.MetricAlarmMetricQueryArgs{
-// 					Expression: pulumi.String("m2/m1*100"),
-// 					Id:         pulumi.String("e1"),
-// 					Label:      pulumi.String("Error Rate"),
-// 					ReturnData: pulumi.Bool(true),
-// 				},
-// 				&cloudwatch.MetricAlarmMetricQueryArgs{
-// 					Id: pulumi.String("m1"),
-// 					Metric: &cloudwatch.MetricAlarmMetricQueryMetricArgs{
-// 						Dimensions: map[string]interface{}{
-// 							"LoadBalancer": "app/web",
-// 						},
-// 						MetricName: pulumi.String("RequestCount"),
-// 						Namespace:  pulumi.String("AWS/ApplicationELB"),
-// 						Period:     pulumi.Int(120),
-// 						Stat:       pulumi.String("Sum"),
-// 						Unit:       pulumi.String("Count"),
-// 					},
-// 				},
-// 				&cloudwatch.MetricAlarmMetricQueryArgs{
-// 					Id: pulumi.String("m2"),
-// 					Metric: &cloudwatch.MetricAlarmMetricQueryMetricArgs{
-// 						Dimensions: map[string]interface{}{
-// 							"LoadBalancer": "app/web",
-// 						},
-// 						MetricName: pulumi.String("HTTPCode_ELB_5XX_Count"),
-// 						Namespace:  pulumi.String("AWS/ApplicationELB"),
-// 						Period:     pulumi.Int(120),
-// 						Stat:       pulumi.String("Sum"),
-// 						Unit:       pulumi.String("Count"),
-// 					},
-// 				},
-// 			},
-// 			Threshold: pulumi.Float64(10),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 //
 // ```go
 // package main

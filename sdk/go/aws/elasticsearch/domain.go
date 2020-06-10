@@ -44,46 +44,6 @@ import (
 // 	})
 // }
 // ```
-//
-// ### Log Publishing to CloudWatch Logs
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/cloudwatch"
-// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/elasticsearch"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		exampleLogGroup, err := cloudwatch.NewLogGroup(ctx, "exampleLogGroup", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		exampleLogResourcePolicy, err := cloudwatch.NewLogResourcePolicy(ctx, "exampleLogResourcePolicy", &cloudwatch.LogResourcePolicyArgs{
-// 			PolicyDocument: pulumi.String("TODO: TODO multi part template expressions"),
-// 			PolicyName:     pulumi.String("example"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		exampleDomain, err := elasticsearch.NewDomain(ctx, "exampleDomain", &elasticsearch.DomainArgs{
-// 			LogPublishingOptions: elasticsearch.DomainLogPublishingOptionArray{
-// 				&elasticsearch.DomainLogPublishingOptionArgs{
-// 					CloudwatchLogGroupArn: exampleLogGroup.Arn,
-// 					LogType:               pulumi.String("INDEX_SLOW_LOGS"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type Domain struct {
 	pulumi.CustomResourceState
 

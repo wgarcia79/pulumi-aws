@@ -26,27 +26,19 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		lbUser, err := iam.NewUser(ctx, "lbUser", &iam.UserArgs{
-// 			Path: pulumi.String("/system/"),
+// 		testUser, err := iam.NewUser(ctx, "testUser", &iam.UserArgs{
+// 			Path: pulumi.String("/test/"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		lbAccessKey, err := iam.NewAccessKey(ctx, "lbAccessKey", &iam.AccessKeyArgs{
-// 			PgpKey: pulumi.String("keybase:some_person_that_exists"),
-// 			User:   lbUser.Name,
+// 		testAccessKey, err := iam.NewAccessKey(ctx, "testAccessKey", &iam.AccessKeyArgs{
+// 			User: testUser.Name,
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		lbRo, err := iam.NewUserPolicy(ctx, "lbRo", &iam.UserPolicyArgs{
-// 			Policy: pulumi.String("TODO: TODO multi part template expressions"),
-// 			User:   lbUser.Name,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("secret", lbAccessKey.EncryptedSecret)
+// 		ctx.Export("awsIamSmtpPasswordV4", testAccessKey.SesSmtpPasswordV4)
 // 		return nil
 // 	})
 // }

@@ -14,43 +14,6 @@ import (
 //
 // ## Example Usage
 //
-// ### IAM Role
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/backup"
-// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/iam"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		exampleRole, err := iam.NewRole(ctx, "exampleRole", &iam.RoleArgs{
-// 			AssumeRolePolicy: pulumi.String("TODO: TODO multi part template expressions"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		exampleRolePolicyAttachment, err := iam.NewRolePolicyAttachment(ctx, "exampleRolePolicyAttachment", &iam.RolePolicyAttachmentArgs{
-// 			PolicyArn: pulumi.String("arn:aws:iam::aws:policy/service-role/AWSBackupServiceRolePolicyForBackup"),
-// 			Role:      exampleRole.Name,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		exampleSelection, err := backup.NewSelection(ctx, "exampleSelection", &backup.SelectionArgs{
-// 			IamRoleArn: exampleRole.Arn,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
 // ### Selecting Backups By Tag
 //
 // ```go

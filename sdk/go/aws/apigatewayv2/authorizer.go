@@ -42,39 +42,6 @@ import (
 // 	})
 // }
 // ```
-//
-// ### Basic HTTP API
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/apigatewayv2"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		example, err := apigatewayv2.NewAuthorizer(ctx, "example", &apigatewayv2.AuthorizerArgs{
-// 			ApiId:          pulumi.String(aws_apigatewayv2_api.Example.Id),
-// 			AuthorizerType: pulumi.String("JWT"),
-// 			IdentitySources: pulumi.StringArray{
-// 				pulumi.String("TODO: TODO multi part template expressions"),
-// 			},
-// 			JwtConfiguration: &apigatewayv2.AuthorizerJwtConfigurationArgs{
-// 				Audience: pulumi.StringArray{
-// 					pulumi.String("example"),
-// 				},
-// 				Issuer: pulumi.String("TODO: TODO multi part template expressions"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type Authorizer struct {
 	pulumi.CustomResourceState
 

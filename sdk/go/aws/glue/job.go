@@ -16,61 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// ### Python Job
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/glue"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		example, err := glue.NewJob(ctx, "example", &glue.JobArgs{
-// 			Command: &glue.JobCommandArgs{
-// 				ScriptLocation: pulumi.String("TODO: TODO multi part template expressions"),
-// 			},
-// 			RoleArn: pulumi.String(aws_iam_role.Example.Arn),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ### Scala Job
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/glue"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		example, err := glue.NewJob(ctx, "example", &glue.JobArgs{
-// 			Command: &glue.JobCommandArgs{
-// 				ScriptLocation: pulumi.String("TODO: TODO multi part template expressions"),
-// 			},
-// 			DefaultArguments: map[string]interface{}{
-// 				"--job-language": "scala",
-// 			},
-// 			RoleArn: pulumi.String(aws_iam_role.Example.Arn),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
 // ### Enabling CloudWatch Logs and Metrics
 //
 // ```go
