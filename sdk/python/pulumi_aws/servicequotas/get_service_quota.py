@@ -5,8 +5,28 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetServiceQuotaResult',
+    'AwaitableGetServiceQuotaResult',
+    'get_service_quota',
+]
+
+
+@pulumi.output_type
+class _GetServiceQuotaResult:
+    adjustable: bool = pulumi.property("adjustable")
+    arn: str = pulumi.property("arn")
+    default_value: float = pulumi.property("defaultValue")
+    global_quota: bool = pulumi.property("globalQuota")
+    id: str = pulumi.property("id")
+    quota_code: str = pulumi.property("quotaCode")
+    quota_name: str = pulumi.property("quotaName")
+    service_code: str = pulumi.property("serviceCode")
+    service_name: str = pulumi.property("serviceName")
+    value: float = pulumi.property("value")
 
 
 class GetServiceQuotaResult:
@@ -85,7 +105,10 @@ class AwaitableGetServiceQuotaResult(GetServiceQuotaResult):
             value=self.value)
 
 
-def get_service_quota(quota_code=None, quota_name=None, service_code=None, opts=None):
+def get_service_quota(quota_code: Optional[str] = None,
+                      quota_name: Optional[str] = None,
+                      service_code: Optional[str] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServiceQuotaResult:
     """
     Retrieve information about a Service Quota.
 
@@ -114,16 +137,16 @@ def get_service_quota(quota_code=None, quota_name=None, service_code=None, opts=
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:servicequotas/getServiceQuota:getServiceQuota', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:servicequotas/getServiceQuota:getServiceQuota', __args__, opts=opts, typ=_GetServiceQuotaResult).value
 
     return AwaitableGetServiceQuotaResult(
-        adjustable=__ret__.get('adjustable'),
-        arn=__ret__.get('arn'),
-        default_value=__ret__.get('defaultValue'),
-        global_quota=__ret__.get('globalQuota'),
-        id=__ret__.get('id'),
-        quota_code=__ret__.get('quotaCode'),
-        quota_name=__ret__.get('quotaName'),
-        service_code=__ret__.get('serviceCode'),
-        service_name=__ret__.get('serviceName'),
-        value=__ret__.get('value'))
+        adjustable=__ret__.adjustable,
+        arn=__ret__.arn,
+        default_value=__ret__.default_value,
+        global_quota=__ret__.global_quota,
+        id=__ret__.id,
+        quota_code=__ret__.quota_code,
+        quota_name=__ret__.quota_name,
+        service_code=__ret__.service_code,
+        service_name=__ret__.service_name,
+        value=__ret__.value)

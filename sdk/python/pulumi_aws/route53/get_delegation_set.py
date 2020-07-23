@@ -5,8 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetDelegationSetResult',
+    'AwaitableGetDelegationSetResult',
+    'get_delegation_set',
+]
+
+
+@pulumi.output_type
+class _GetDelegationSetResult:
+    caller_reference: str = pulumi.property("callerReference")
+    id: str = pulumi.property("id")
+    name_servers: List[str] = pulumi.property("nameServers")
 
 
 class GetDelegationSetResult:
@@ -36,7 +49,8 @@ class AwaitableGetDelegationSetResult(GetDelegationSetResult):
             name_servers=self.name_servers)
 
 
-def get_delegation_set(id=None, opts=None):
+def get_delegation_set(id: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDelegationSetResult:
     """
     `route53.DelegationSet` provides details about a specific Route 53 Delegation Set.
 
@@ -62,9 +76,9 @@ def get_delegation_set(id=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:route53/getDelegationSet:getDelegationSet', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:route53/getDelegationSet:getDelegationSet', __args__, opts=opts, typ=_GetDelegationSetResult).value
 
     return AwaitableGetDelegationSetResult(
-        caller_reference=__ret__.get('callerReference'),
-        id=__ret__.get('id'),
-        name_servers=__ret__.get('nameServers'))
+        caller_reference=__ret__.caller_reference,
+        id=__ret__.id,
+        name_servers=__ret__.name_servers)

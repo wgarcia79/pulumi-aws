@@ -5,8 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetSecretResult',
+    'AwaitableGetSecretResult',
+    'get_secret',
+]
+
+
+@pulumi.output_type
+class _GetSecretResult:
+    id: str = pulumi.property("id")
+    secrets: List['outputs.GetSecretSecretResult'] = pulumi.property("secrets")
 
 
 class GetSecretResult:
@@ -35,17 +49,10 @@ class AwaitableGetSecretResult(GetSecretResult):
             secrets=self.secrets)
 
 
-def get_secret(secrets=None, opts=None):
+def get_secret(secrets: Optional[List[pulumi.InputType['GetSecretSecretArgs']]] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretResult:
     """
     Use this data source to access information about an existing resource.
-
-
-    The **secrets** object supports the following:
-
-      * `context` (`dict`)
-      * `grantTokens` (`list`)
-      * `name` (`str`)
-      * `payload` (`str`)
     """
     __args__ = dict()
     __args__['secrets'] = secrets
@@ -53,8 +60,8 @@ def get_secret(secrets=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:kms/getSecret:getSecret', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:kms/getSecret:getSecret', __args__, opts=opts, typ=_GetSecretResult).value
 
     return AwaitableGetSecretResult(
-        id=__ret__.get('id'),
-        secrets=__ret__.get('secrets'))
+        id=__ret__.id,
+        secrets=__ret__.secrets)

@@ -5,8 +5,26 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetOutpostResult',
+    'AwaitableGetOutpostResult',
+    'get_outpost',
+]
+
+
+@pulumi.output_type
+class _GetOutpostResult:
+    arn: str = pulumi.property("arn")
+    availability_zone: str = pulumi.property("availabilityZone")
+    availability_zone_id: str = pulumi.property("availabilityZoneId")
+    description: str = pulumi.property("description")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    owner_id: str = pulumi.property("ownerId")
+    site_id: str = pulumi.property("siteId")
 
 
 class GetOutpostResult:
@@ -74,7 +92,9 @@ class AwaitableGetOutpostResult(GetOutpostResult):
             site_id=self.site_id)
 
 
-def get_outpost(id=None, name=None, opts=None):
+def get_outpost(id: Optional[str] = None,
+                name: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOutpostResult:
     """
     Provides details about an Outposts Outpost.
 
@@ -98,14 +118,14 @@ def get_outpost(id=None, name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:outposts/getOutpost:getOutpost', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:outposts/getOutpost:getOutpost', __args__, opts=opts, typ=_GetOutpostResult).value
 
     return AwaitableGetOutpostResult(
-        arn=__ret__.get('arn'),
-        availability_zone=__ret__.get('availabilityZone'),
-        availability_zone_id=__ret__.get('availabilityZoneId'),
-        description=__ret__.get('description'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        owner_id=__ret__.get('ownerId'),
-        site_id=__ret__.get('siteId'))
+        arn=__ret__.arn,
+        availability_zone=__ret__.availability_zone,
+        availability_zone_id=__ret__.availability_zone_id,
+        description=__ret__.description,
+        id=__ret__.id,
+        name=__ret__.name,
+        owner_id=__ret__.owner_id,
+        site_id=__ret__.site_id)

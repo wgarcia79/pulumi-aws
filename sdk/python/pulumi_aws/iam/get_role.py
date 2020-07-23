@@ -5,8 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetRoleResult',
+    'AwaitableGetRoleResult',
+    'get_role',
+]
+
+
+@pulumi.output_type
+class _GetRoleResult:
+    arn: str = pulumi.property("arn")
+    assume_role_policy: str = pulumi.property("assumeRolePolicy")
+    create_date: str = pulumi.property("createDate")
+    description: str = pulumi.property("description")
+    id: str = pulumi.property("id")
+    max_session_duration: float = pulumi.property("maxSessionDuration")
+    name: str = pulumi.property("name")
+    path: str = pulumi.property("path")
+    permissions_boundary: str = pulumi.property("permissionsBoundary")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    unique_id: str = pulumi.property("uniqueId")
 
 
 class GetRoleResult:
@@ -98,7 +119,9 @@ class AwaitableGetRoleResult(GetRoleResult):
             unique_id=self.unique_id)
 
 
-def get_role(name=None, tags=None, opts=None):
+def get_role(name: Optional[str] = None,
+             tags: Optional[Mapping[str, str]] = None,
+             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRoleResult:
     """
     This data source can be used to fetch information about a specific
     IAM role. By using this data source, you can reference IAM role
@@ -115,7 +138,7 @@ def get_role(name=None, tags=None, opts=None):
 
 
     :param str name: The friendly IAM role name to match.
-    :param dict tags: The tags attached to the role.
+    :param Mapping[str, str] tags: The tags attached to the role.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -124,17 +147,17 @@ def get_role(name=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:iam/getRole:getRole', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:iam/getRole:getRole', __args__, opts=opts, typ=_GetRoleResult).value
 
     return AwaitableGetRoleResult(
-        arn=__ret__.get('arn'),
-        assume_role_policy=__ret__.get('assumeRolePolicy'),
-        create_date=__ret__.get('createDate'),
-        description=__ret__.get('description'),
-        id=__ret__.get('id'),
-        max_session_duration=__ret__.get('maxSessionDuration'),
-        name=__ret__.get('name'),
-        path=__ret__.get('path'),
-        permissions_boundary=__ret__.get('permissionsBoundary'),
-        tags=__ret__.get('tags'),
-        unique_id=__ret__.get('uniqueId'))
+        arn=__ret__.arn,
+        assume_role_policy=__ret__.assume_role_policy,
+        create_date=__ret__.create_date,
+        description=__ret__.description,
+        id=__ret__.id,
+        max_session_duration=__ret__.max_session_duration,
+        name=__ret__.name,
+        path=__ret__.path,
+        permissions_boundary=__ret__.permissions_boundary,
+        tags=__ret__.tags,
+        unique_id=__ret__.unique_id)

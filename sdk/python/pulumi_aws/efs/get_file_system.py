@@ -5,8 +5,32 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetFileSystemResult',
+    'AwaitableGetFileSystemResult',
+    'get_file_system',
+]
+
+
+@pulumi.output_type
+class _GetFileSystemResult:
+    arn: str = pulumi.property("arn")
+    creation_token: str = pulumi.property("creationToken")
+    dns_name: str = pulumi.property("dnsName")
+    encrypted: bool = pulumi.property("encrypted")
+    file_system_id: str = pulumi.property("fileSystemId")
+    id: str = pulumi.property("id")
+    kms_key_id: str = pulumi.property("kmsKeyId")
+    lifecycle_policy: 'outputs.GetFileSystemLifecyclePolicyResult' = pulumi.property("lifecyclePolicy")
+    performance_mode: str = pulumi.property("performanceMode")
+    provisioned_throughput_in_mibps: float = pulumi.property("provisionedThroughputInMibps")
+    size_in_bytes: float = pulumi.property("sizeInBytes")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    throughput_mode: str = pulumi.property("throughputMode")
 
 
 class GetFileSystemResult:
@@ -107,7 +131,10 @@ class AwaitableGetFileSystemResult(GetFileSystemResult):
             throughput_mode=self.throughput_mode)
 
 
-def get_file_system(creation_token=None, file_system_id=None, tags=None, opts=None):
+def get_file_system(creation_token: Optional[str] = None,
+                    file_system_id: Optional[str] = None,
+                    tags: Optional[Mapping[str, str]] = None,
+                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFileSystemResult:
     """
     Provides information about an Elastic File System (EFS) File System.
 
@@ -136,19 +163,19 @@ def get_file_system(creation_token=None, file_system_id=None, tags=None, opts=No
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:efs/getFileSystem:getFileSystem', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:efs/getFileSystem:getFileSystem', __args__, opts=opts, typ=_GetFileSystemResult).value
 
     return AwaitableGetFileSystemResult(
-        arn=__ret__.get('arn'),
-        creation_token=__ret__.get('creationToken'),
-        dns_name=__ret__.get('dnsName'),
-        encrypted=__ret__.get('encrypted'),
-        file_system_id=__ret__.get('fileSystemId'),
-        id=__ret__.get('id'),
-        kms_key_id=__ret__.get('kmsKeyId'),
-        lifecycle_policy=__ret__.get('lifecyclePolicy'),
-        performance_mode=__ret__.get('performanceMode'),
-        provisioned_throughput_in_mibps=__ret__.get('provisionedThroughputInMibps'),
-        size_in_bytes=__ret__.get('sizeInBytes'),
-        tags=__ret__.get('tags'),
-        throughput_mode=__ret__.get('throughputMode'))
+        arn=__ret__.arn,
+        creation_token=__ret__.creation_token,
+        dns_name=__ret__.dns_name,
+        encrypted=__ret__.encrypted,
+        file_system_id=__ret__.file_system_id,
+        id=__ret__.id,
+        kms_key_id=__ret__.kms_key_id,
+        lifecycle_policy=__ret__.lifecycle_policy,
+        performance_mode=__ret__.performance_mode,
+        provisioned_throughput_in_mibps=__ret__.provisioned_throughput_in_mibps,
+        size_in_bytes=__ret__.size_in_bytes,
+        tags=__ret__.tags,
+        throughput_mode=__ret__.throughput_mode)

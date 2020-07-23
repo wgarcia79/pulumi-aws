@@ -5,8 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetPrefixListResult',
+    'AwaitableGetPrefixListResult',
+    'get_prefix_list',
+]
+
+
+@pulumi.output_type
+class _GetPrefixListResult:
+    cidr_blocks: List[str] = pulumi.property("cidrBlocks")
+    filters: Optional[List['outputs.GetPrefixListFilterResult']] = pulumi.property("filters")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    prefix_list_id: Optional[str] = pulumi.property("prefixListId")
 
 
 class GetPrefixListResult:
@@ -53,7 +70,10 @@ class AwaitableGetPrefixListResult(GetPrefixListResult):
             prefix_list_id=self.prefix_list_id)
 
 
-def get_prefix_list(filters=None, name=None, prefix_list_id=None, opts=None):
+def get_prefix_list(filters: Optional[List[pulumi.InputType['GetPrefixListFilterArgs']]] = None,
+                    name: Optional[str] = None,
+                    prefix_list_id: Optional[str] = None,
+                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPrefixListResult:
     """
     `getPrefixList` provides details about a specific prefix list (PL)
     in the current region.
@@ -97,14 +117,9 @@ def get_prefix_list(filters=None, name=None, prefix_list_id=None, opts=None):
     ```
 
 
-    :param list filters: Configuration block(s) for filtering. Detailed below.
+    :param List[pulumi.InputType['GetPrefixListFilterArgs']] filters: Configuration block(s) for filtering. Detailed below.
     :param str name: The name of the filter field. Valid values can be found in the [EC2 DescribePrefixLists API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribePrefixLists.html).
     :param str prefix_list_id: The ID of the prefix list to select.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the filter field. Valid values can be found in the [EC2 DescribePrefixLists API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribePrefixLists.html).
-      * `values` (`list`) - Set of values that are accepted for the given filter field. Results will be selected if any given value matches.
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -114,11 +129,11 @@ def get_prefix_list(filters=None, name=None, prefix_list_id=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:index/getPrefixList:getPrefixList', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:index/getPrefixList:getPrefixList', __args__, opts=opts, typ=_GetPrefixListResult).value
 
     return AwaitableGetPrefixListResult(
-        cidr_blocks=__ret__.get('cidrBlocks'),
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        prefix_list_id=__ret__.get('prefixListId'))
+        cidr_blocks=__ret__.cidr_blocks,
+        filters=__ret__.filters,
+        id=__ret__.id,
+        name=__ret__.name,
+        prefix_list_id=__ret__.prefix_list_id)

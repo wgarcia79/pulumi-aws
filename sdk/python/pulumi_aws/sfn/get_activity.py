@@ -5,8 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetActivityResult',
+    'AwaitableGetActivityResult',
+    'get_activity',
+]
+
+
+@pulumi.output_type
+class _GetActivityResult:
+    arn: str = pulumi.property("arn")
+    creation_date: str = pulumi.property("creationDate")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
 
 
 class GetActivityResult:
@@ -46,7 +60,9 @@ class AwaitableGetActivityResult(GetActivityResult):
             name=self.name)
 
 
-def get_activity(arn=None, name=None, opts=None):
+def get_activity(arn: Optional[str] = None,
+                 name: Optional[str] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetActivityResult:
     """
     Provides a Step Functions Activity data source
 
@@ -70,10 +86,10 @@ def get_activity(arn=None, name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:sfn/getActivity:getActivity', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:sfn/getActivity:getActivity', __args__, opts=opts, typ=_GetActivityResult).value
 
     return AwaitableGetActivityResult(
-        arn=__ret__.get('arn'),
-        creation_date=__ret__.get('creationDate'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'))
+        arn=__ret__.arn,
+        creation_date=__ret__.creation_date,
+        id=__ret__.id,
+        name=__ret__.name)

@@ -5,8 +5,36 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetSubnetResult',
+    'AwaitableGetSubnetResult',
+    'get_subnet',
+]
+
+
+@pulumi.output_type
+class _GetSubnetResult:
+    arn: str = pulumi.property("arn")
+    assign_ipv6_address_on_creation: bool = pulumi.property("assignIpv6AddressOnCreation")
+    availability_zone: str = pulumi.property("availabilityZone")
+    availability_zone_id: str = pulumi.property("availabilityZoneId")
+    cidr_block: str = pulumi.property("cidrBlock")
+    default_for_az: bool = pulumi.property("defaultForAz")
+    filters: Optional[List['outputs.GetSubnetFilterResult']] = pulumi.property("filters")
+    id: str = pulumi.property("id")
+    ipv6_cidr_block: str = pulumi.property("ipv6CidrBlock")
+    ipv6_cidr_block_association_id: str = pulumi.property("ipv6CidrBlockAssociationId")
+    map_public_ip_on_launch: bool = pulumi.property("mapPublicIpOnLaunch")
+    outpost_arn: str = pulumi.property("outpostArn")
+    owner_id: str = pulumi.property("ownerId")
+    state: str = pulumi.property("state")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    vpc_id: str = pulumi.property("vpcId")
 
 
 class GetSubnetResult:
@@ -97,7 +125,17 @@ class AwaitableGetSubnetResult(GetSubnetResult):
             vpc_id=self.vpc_id)
 
 
-def get_subnet(availability_zone=None, availability_zone_id=None, cidr_block=None, default_for_az=None, filters=None, id=None, ipv6_cidr_block=None, state=None, tags=None, vpc_id=None, opts=None):
+def get_subnet(availability_zone: Optional[str] = None,
+               availability_zone_id: Optional[str] = None,
+               cidr_block: Optional[str] = None,
+               default_for_az: Optional[bool] = None,
+               filters: Optional[List[pulumi.InputType['GetSubnetFilterArgs']]] = None,
+               id: Optional[str] = None,
+               ipv6_cidr_block: Optional[str] = None,
+               state: Optional[str] = None,
+               tags: Optional[Mapping[str, str]] = None,
+               vpc_id: Optional[str] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSubnetResult:
     """
     `ec2.Subnet` provides details about a specific VPC subnet.
 
@@ -135,21 +173,13 @@ def get_subnet(availability_zone=None, availability_zone_id=None, cidr_block=Non
     :param str cidr_block: The cidr block of the desired subnet.
     :param bool default_for_az: Boolean constraint for whether the desired
            subnet must be the default subnet for its associated availability zone.
-    :param list filters: Custom filter block as described below.
+    :param List[pulumi.InputType['GetSubnetFilterArgs']] filters: Custom filter block as described below.
     :param str id: The id of the specific subnet to retrieve.
     :param str ipv6_cidr_block: The Ipv6 cidr block of the desired subnet
     :param str state: The state that the desired subnet must have.
-    :param dict tags: A map of tags, each pair of which must exactly match
+    :param Mapping[str, str] tags: A map of tags, each pair of which must exactly match
            a pair on the desired subnet.
     :param str vpc_id: The id of the VPC that the desired subnet belongs to.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter by, as defined by
-        [the underlying AWS API](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeSubnets.html).
-        For example, if matching against tag `Name`, use:
-      * `values` (`list`) - Set of values that are accepted for the given field.
-        A subnet will be selected if any one of the given values matches.
     """
     __args__ = dict()
     __args__['availabilityZone'] = availability_zone
@@ -166,22 +196,22 @@ def get_subnet(availability_zone=None, availability_zone_id=None, cidr_block=Non
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getSubnet:getSubnet', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getSubnet:getSubnet', __args__, opts=opts, typ=_GetSubnetResult).value
 
     return AwaitableGetSubnetResult(
-        arn=__ret__.get('arn'),
-        assign_ipv6_address_on_creation=__ret__.get('assignIpv6AddressOnCreation'),
-        availability_zone=__ret__.get('availabilityZone'),
-        availability_zone_id=__ret__.get('availabilityZoneId'),
-        cidr_block=__ret__.get('cidrBlock'),
-        default_for_az=__ret__.get('defaultForAz'),
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        ipv6_cidr_block=__ret__.get('ipv6CidrBlock'),
-        ipv6_cidr_block_association_id=__ret__.get('ipv6CidrBlockAssociationId'),
-        map_public_ip_on_launch=__ret__.get('mapPublicIpOnLaunch'),
-        outpost_arn=__ret__.get('outpostArn'),
-        owner_id=__ret__.get('ownerId'),
-        state=__ret__.get('state'),
-        tags=__ret__.get('tags'),
-        vpc_id=__ret__.get('vpcId'))
+        arn=__ret__.arn,
+        assign_ipv6_address_on_creation=__ret__.assign_ipv6_address_on_creation,
+        availability_zone=__ret__.availability_zone,
+        availability_zone_id=__ret__.availability_zone_id,
+        cidr_block=__ret__.cidr_block,
+        default_for_az=__ret__.default_for_az,
+        filters=__ret__.filters,
+        id=__ret__.id,
+        ipv6_cidr_block=__ret__.ipv6_cidr_block,
+        ipv6_cidr_block_association_id=__ret__.ipv6_cidr_block_association_id,
+        map_public_ip_on_launch=__ret__.map_public_ip_on_launch,
+        outpost_arn=__ret__.outpost_arn,
+        owner_id=__ret__.owner_id,
+        state=__ret__.state,
+        tags=__ret__.tags,
+        vpc_id=__ret__.vpc_id)

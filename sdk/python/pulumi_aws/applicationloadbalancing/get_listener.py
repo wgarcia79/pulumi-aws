@@ -5,10 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetListenerResult',
+    'AwaitableGetListenerResult',
+    'get_listener',
+]
 
 warnings.warn("aws.applicationloadbalancing.getListener has been deprecated in favor of aws.alb.getListener", DeprecationWarning)
+
+@pulumi.output_type
+class _GetListenerResult:
+    arn: str = pulumi.property("arn")
+    certificate_arn: str = pulumi.property("certificateArn")
+    default_actions: List['outputs.GetListenerDefaultActionResult'] = pulumi.property("defaultActions")
+    id: str = pulumi.property("id")
+    load_balancer_arn: str = pulumi.property("loadBalancerArn")
+    port: float = pulumi.property("port")
+    protocol: str = pulumi.property("protocol")
+    ssl_policy: str = pulumi.property("sslPolicy")
+
 
 class GetListenerResult:
     """
@@ -60,7 +79,10 @@ class AwaitableGetListenerResult(GetListenerResult):
             ssl_policy=self.ssl_policy)
 
 
-def get_listener(arn=None, load_balancer_arn=None, port=None, opts=None):
+def get_listener(arn: Optional[str] = None,
+                 load_balancer_arn: Optional[str] = None,
+                 port: Optional[float] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetListenerResult:
     """
     > **Note:** `alb.Listener` is known as `lb.Listener`. The functionality is identical.
 
@@ -98,14 +120,14 @@ def get_listener(arn=None, load_balancer_arn=None, port=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:applicationloadbalancing/getListener:getListener', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:applicationloadbalancing/getListener:getListener', __args__, opts=opts, typ=_GetListenerResult).value
 
     return AwaitableGetListenerResult(
-        arn=__ret__.get('arn'),
-        certificate_arn=__ret__.get('certificateArn'),
-        default_actions=__ret__.get('defaultActions'),
-        id=__ret__.get('id'),
-        load_balancer_arn=__ret__.get('loadBalancerArn'),
-        port=__ret__.get('port'),
-        protocol=__ret__.get('protocol'),
-        ssl_policy=__ret__.get('sslPolicy'))
+        arn=__ret__.arn,
+        certificate_arn=__ret__.certificate_arn,
+        default_actions=__ret__.default_actions,
+        id=__ret__.id,
+        load_balancer_arn=__ret__.load_balancer_arn,
+        port=__ret__.port,
+        protocol=__ret__.protocol,
+        ssl_policy=__ret__.ssl_policy)

@@ -5,8 +5,36 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetVpcResult',
+    'AwaitableGetVpcResult',
+    'get_vpc',
+]
+
+
+@pulumi.output_type
+class _GetVpcResult:
+    arn: str = pulumi.property("arn")
+    cidr_block: str = pulumi.property("cidrBlock")
+    cidr_block_associations: List['outputs.GetVpcCidrBlockAssociationResult'] = pulumi.property("cidrBlockAssociations")
+    default: bool = pulumi.property("default")
+    dhcp_options_id: str = pulumi.property("dhcpOptionsId")
+    enable_dns_hostnames: bool = pulumi.property("enableDnsHostnames")
+    enable_dns_support: bool = pulumi.property("enableDnsSupport")
+    filters: Optional[List['outputs.GetVpcFilterResult']] = pulumi.property("filters")
+    id: str = pulumi.property("id")
+    instance_tenancy: str = pulumi.property("instanceTenancy")
+    ipv6_association_id: str = pulumi.property("ipv6AssociationId")
+    ipv6_cidr_block: str = pulumi.property("ipv6CidrBlock")
+    main_route_table_id: str = pulumi.property("mainRouteTableId")
+    owner_id: str = pulumi.property("ownerId")
+    state: str = pulumi.property("state")
+    tags: Mapping[str, str] = pulumi.property("tags")
 
 
 class GetVpcResult:
@@ -119,7 +147,14 @@ class AwaitableGetVpcResult(GetVpcResult):
             tags=self.tags)
 
 
-def get_vpc(cidr_block=None, default=None, dhcp_options_id=None, filters=None, id=None, state=None, tags=None, opts=None):
+def get_vpc(cidr_block: Optional[str] = None,
+            default: Optional[bool] = None,
+            dhcp_options_id: Optional[str] = None,
+            filters: Optional[List[pulumi.InputType['GetVpcFilterArgs']]] = None,
+            id: Optional[str] = None,
+            state: Optional[str] = None,
+            tags: Optional[Mapping[str, str]] = None,
+            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcResult:
     """
     `ec2.Vpc` provides details about a specific VPC.
 
@@ -132,19 +167,12 @@ def get_vpc(cidr_block=None, default=None, dhcp_options_id=None, filters=None, i
     :param bool default: Boolean constraint on whether the desired VPC is
            the default VPC for the region.
     :param str dhcp_options_id: The DHCP options id of the desired VPC.
-    :param list filters: Custom filter block as described below.
+    :param List[pulumi.InputType['GetVpcFilterArgs']] filters: Custom filter block as described below.
     :param str id: The id of the specific VPC to retrieve.
     :param str state: The current state of the desired VPC.
            Can be either `"pending"` or `"available"`.
-    :param dict tags: A map of tags, each pair of which must exactly match
+    :param Mapping[str, str] tags: A map of tags, each pair of which must exactly match
            a pair on the desired VPC.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter by, as defined by
-        [the underlying AWS API](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVpcs.html).
-      * `values` (`list`) - Set of values that are accepted for the given field.
-        A VPC will be selected if any one of the given values matches.
     """
     __args__ = dict()
     __args__['cidrBlock'] = cidr_block
@@ -158,22 +186,22 @@ def get_vpc(cidr_block=None, default=None, dhcp_options_id=None, filters=None, i
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getVpc:getVpc', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getVpc:getVpc', __args__, opts=opts, typ=_GetVpcResult).value
 
     return AwaitableGetVpcResult(
-        arn=__ret__.get('arn'),
-        cidr_block=__ret__.get('cidrBlock'),
-        cidr_block_associations=__ret__.get('cidrBlockAssociations'),
-        default=__ret__.get('default'),
-        dhcp_options_id=__ret__.get('dhcpOptionsId'),
-        enable_dns_hostnames=__ret__.get('enableDnsHostnames'),
-        enable_dns_support=__ret__.get('enableDnsSupport'),
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        instance_tenancy=__ret__.get('instanceTenancy'),
-        ipv6_association_id=__ret__.get('ipv6AssociationId'),
-        ipv6_cidr_block=__ret__.get('ipv6CidrBlock'),
-        main_route_table_id=__ret__.get('mainRouteTableId'),
-        owner_id=__ret__.get('ownerId'),
-        state=__ret__.get('state'),
-        tags=__ret__.get('tags'))
+        arn=__ret__.arn,
+        cidr_block=__ret__.cidr_block,
+        cidr_block_associations=__ret__.cidr_block_associations,
+        default=__ret__.default,
+        dhcp_options_id=__ret__.dhcp_options_id,
+        enable_dns_hostnames=__ret__.enable_dns_hostnames,
+        enable_dns_support=__ret__.enable_dns_support,
+        filters=__ret__.filters,
+        id=__ret__.id,
+        instance_tenancy=__ret__.instance_tenancy,
+        ipv6_association_id=__ret__.ipv6_association_id,
+        ipv6_cidr_block=__ret__.ipv6_cidr_block,
+        main_route_table_id=__ret__.main_route_table_id,
+        owner_id=__ret__.owner_id,
+        state=__ret__.state,
+        tags=__ret__.tags)

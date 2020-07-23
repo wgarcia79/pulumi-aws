@@ -5,8 +5,23 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetCipherTextResult',
+    'AwaitableGetCipherTextResult',
+    'get_cipher_text',
+]
+
+
+@pulumi.output_type
+class _GetCipherTextResult:
+    ciphertext_blob: str = pulumi.property("ciphertextBlob")
+    context: Optional[Mapping[str, str]] = pulumi.property("context")
+    id: str = pulumi.property("id")
+    key_id: str = pulumi.property("keyId")
+    plaintext: str = pulumi.property("plaintext")
 
 
 class GetCipherTextResult:
@@ -50,7 +65,10 @@ class AwaitableGetCipherTextResult(GetCipherTextResult):
             plaintext=self.plaintext)
 
 
-def get_cipher_text(context=None, key_id=None, plaintext=None, opts=None):
+def get_cipher_text(context: Optional[Mapping[str, str]] = None,
+                    key_id: Optional[str] = None,
+                    plaintext: Optional[str] = None,
+                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCipherTextResult:
     """
     The KMS ciphertext data source allows you to encrypt plaintext into ciphertext
     by using an AWS KMS customer master key. The value returned by this data source
@@ -76,7 +94,7 @@ def get_cipher_text(context=None, key_id=None, plaintext=None, opts=None):
     ```
 
 
-    :param dict context: An optional mapping that makes up the encryption context.
+    :param Mapping[str, str] context: An optional mapping that makes up the encryption context.
     :param str key_id: Globally unique key ID for the customer master key.
     :param str plaintext: Data to be encrypted. Note that this may show up in logs, and it will be stored in the state file.
     """
@@ -88,11 +106,11 @@ def get_cipher_text(context=None, key_id=None, plaintext=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:kms/getCipherText:getCipherText', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:kms/getCipherText:getCipherText', __args__, opts=opts, typ=_GetCipherTextResult).value
 
     return AwaitableGetCipherTextResult(
-        ciphertext_blob=__ret__.get('ciphertextBlob'),
-        context=__ret__.get('context'),
-        id=__ret__.get('id'),
-        key_id=__ret__.get('keyId'),
-        plaintext=__ret__.get('plaintext'))
+        ciphertext_blob=__ret__.ciphertext_blob,
+        context=__ret__.context,
+        id=__ret__.id,
+        key_id=__ret__.key_id,
+        plaintext=__ret__.plaintext)

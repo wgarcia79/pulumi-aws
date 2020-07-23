@@ -5,8 +5,40 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetTableResult',
+    'AwaitableGetTableResult',
+    'get_table',
+]
+
+
+@pulumi.output_type
+class _GetTableResult:
+    arn: str = pulumi.property("arn")
+    attributes: List['outputs.GetTableAttributeResult'] = pulumi.property("attributes")
+    billing_mode: str = pulumi.property("billingMode")
+    global_secondary_indexes: List['outputs.GetTableGlobalSecondaryIndexResult'] = pulumi.property("globalSecondaryIndexes")
+    hash_key: str = pulumi.property("hashKey")
+    id: str = pulumi.property("id")
+    local_secondary_indexes: List['outputs.GetTableLocalSecondaryIndexResult'] = pulumi.property("localSecondaryIndexes")
+    name: str = pulumi.property("name")
+    point_in_time_recovery: 'outputs.GetTablePointInTimeRecoveryResult' = pulumi.property("pointInTimeRecovery")
+    range_key: str = pulumi.property("rangeKey")
+    read_capacity: float = pulumi.property("readCapacity")
+    replicas: List['outputs.GetTableReplicaResult'] = pulumi.property("replicas")
+    server_side_encryption: 'outputs.GetTableServerSideEncryptionResult' = pulumi.property("serverSideEncryption")
+    stream_arn: str = pulumi.property("streamArn")
+    stream_enabled: bool = pulumi.property("streamEnabled")
+    stream_label: str = pulumi.property("streamLabel")
+    stream_view_type: str = pulumi.property("streamViewType")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    ttl: 'outputs.GetTableTtlResult' = pulumi.property("ttl")
+    write_capacity: float = pulumi.property("writeCapacity")
 
 
 class GetTableResult:
@@ -107,7 +139,10 @@ class AwaitableGetTableResult(GetTableResult):
             write_capacity=self.write_capacity)
 
 
-def get_table(name=None, server_side_encryption=None, tags=None, opts=None):
+def get_table(name: Optional[str] = None,
+              server_side_encryption: Optional[pulumi.InputType['GetTableServerSideEncryptionArgs']] = None,
+              tags: Optional[Mapping[str, str]] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTableResult:
     """
     Provides information about a DynamoDB table.
 
@@ -122,11 +157,6 @@ def get_table(name=None, server_side_encryption=None, tags=None, opts=None):
 
 
     :param str name: The name of the DynamoDB table.
-
-    The **server_side_encryption** object supports the following:
-
-      * `enabled` (`bool`)
-      * `kms_key_arn` (`str`)
     """
     __args__ = dict()
     __args__['name'] = name
@@ -136,26 +166,26 @@ def get_table(name=None, server_side_encryption=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:dynamodb/getTable:getTable', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:dynamodb/getTable:getTable', __args__, opts=opts, typ=_GetTableResult).value
 
     return AwaitableGetTableResult(
-        arn=__ret__.get('arn'),
-        attributes=__ret__.get('attributes'),
-        billing_mode=__ret__.get('billingMode'),
-        global_secondary_indexes=__ret__.get('globalSecondaryIndexes'),
-        hash_key=__ret__.get('hashKey'),
-        id=__ret__.get('id'),
-        local_secondary_indexes=__ret__.get('localSecondaryIndexes'),
-        name=__ret__.get('name'),
-        point_in_time_recovery=__ret__.get('pointInTimeRecovery'),
-        range_key=__ret__.get('rangeKey'),
-        read_capacity=__ret__.get('readCapacity'),
-        replicas=__ret__.get('replicas'),
-        server_side_encryption=__ret__.get('serverSideEncryption'),
-        stream_arn=__ret__.get('streamArn'),
-        stream_enabled=__ret__.get('streamEnabled'),
-        stream_label=__ret__.get('streamLabel'),
-        stream_view_type=__ret__.get('streamViewType'),
-        tags=__ret__.get('tags'),
-        ttl=__ret__.get('ttl'),
-        write_capacity=__ret__.get('writeCapacity'))
+        arn=__ret__.arn,
+        attributes=__ret__.attributes,
+        billing_mode=__ret__.billing_mode,
+        global_secondary_indexes=__ret__.global_secondary_indexes,
+        hash_key=__ret__.hash_key,
+        id=__ret__.id,
+        local_secondary_indexes=__ret__.local_secondary_indexes,
+        name=__ret__.name,
+        point_in_time_recovery=__ret__.point_in_time_recovery,
+        range_key=__ret__.range_key,
+        read_capacity=__ret__.read_capacity,
+        replicas=__ret__.replicas,
+        server_side_encryption=__ret__.server_side_encryption,
+        stream_arn=__ret__.stream_arn,
+        stream_enabled=__ret__.stream_enabled,
+        stream_label=__ret__.stream_label,
+        stream_view_type=__ret__.stream_view_type,
+        tags=__ret__.tags,
+        ttl=__ret__.ttl,
+        write_capacity=__ret__.write_capacity)

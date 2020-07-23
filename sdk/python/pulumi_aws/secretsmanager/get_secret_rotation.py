@@ -5,8 +5,24 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetSecretRotationResult',
+    'AwaitableGetSecretRotationResult',
+    'get_secret_rotation',
+]
+
+
+@pulumi.output_type
+class _GetSecretRotationResult:
+    id: str = pulumi.property("id")
+    rotation_enabled: bool = pulumi.property("rotationEnabled")
+    rotation_lambda_arn: str = pulumi.property("rotationLambdaArn")
+    rotation_rules: List['outputs.GetSecretRotationRotationRuleResult'] = pulumi.property("rotationRules")
+    secret_id: str = pulumi.property("secretId")
 
 
 class GetSecretRotationResult:
@@ -56,7 +72,8 @@ class AwaitableGetSecretRotationResult(GetSecretRotationResult):
             secret_id=self.secret_id)
 
 
-def get_secret_rotation(secret_id=None, opts=None):
+def get_secret_rotation(secret_id: Optional[str] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretRotationResult:
     """
     Retrieve information about a Secrets Manager secret rotation. To retrieve secret metadata, see the [`secretsmanager.Secret` data source](https://www.terraform.io/docs/providers/aws/d/secretsmanager_secret.html). To retrieve a secret value, see the [`secretsmanager.SecretVersion` data source](https://www.terraform.io/docs/providers/aws/d/secretsmanager_secret_version.html).
 
@@ -79,11 +96,11 @@ def get_secret_rotation(secret_id=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:secretsmanager/getSecretRotation:getSecretRotation', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:secretsmanager/getSecretRotation:getSecretRotation', __args__, opts=opts, typ=_GetSecretRotationResult).value
 
     return AwaitableGetSecretRotationResult(
-        id=__ret__.get('id'),
-        rotation_enabled=__ret__.get('rotationEnabled'),
-        rotation_lambda_arn=__ret__.get('rotationLambdaArn'),
-        rotation_rules=__ret__.get('rotationRules'),
-        secret_id=__ret__.get('secretId'))
+        id=__ret__.id,
+        rotation_enabled=__ret__.rotation_enabled,
+        rotation_lambda_arn=__ret__.rotation_lambda_arn,
+        rotation_rules=__ret__.rotation_rules,
+        secret_id=__ret__.secret_id)

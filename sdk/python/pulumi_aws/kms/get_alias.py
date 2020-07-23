@@ -5,8 +5,23 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetAliasResult',
+    'AwaitableGetAliasResult',
+    'get_alias',
+]
+
+
+@pulumi.output_type
+class _GetAliasResult:
+    arn: str = pulumi.property("arn")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    target_key_arn: str = pulumi.property("targetKeyArn")
+    target_key_id: str = pulumi.property("targetKeyId")
 
 
 class GetAliasResult:
@@ -56,7 +71,8 @@ class AwaitableGetAliasResult(GetAliasResult):
             target_key_id=self.target_key_id)
 
 
-def get_alias(name=None, opts=None):
+def get_alias(name: Optional[str] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAliasResult:
     """
     Use this data source to get the ARN of a KMS key alias.
     By using this data source, you can reference key alias
@@ -80,11 +96,11 @@ def get_alias(name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:kms/getAlias:getAlias', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:kms/getAlias:getAlias', __args__, opts=opts, typ=_GetAliasResult).value
 
     return AwaitableGetAliasResult(
-        arn=__ret__.get('arn'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        target_key_arn=__ret__.get('targetKeyArn'),
-        target_key_id=__ret__.get('targetKeyId'))
+        arn=__ret__.arn,
+        id=__ret__.id,
+        name=__ret__.name,
+        target_key_arn=__ret__.target_key_arn,
+        target_key_id=__ret__.target_key_id)

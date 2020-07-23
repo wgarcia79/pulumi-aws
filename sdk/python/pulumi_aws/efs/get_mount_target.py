@@ -5,8 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetMountTargetResult',
+    'AwaitableGetMountTargetResult',
+    'get_mount_target',
+]
+
+
+@pulumi.output_type
+class _GetMountTargetResult:
+    availability_zone_id: str = pulumi.property("availabilityZoneId")
+    availability_zone_name: str = pulumi.property("availabilityZoneName")
+    dns_name: str = pulumi.property("dnsName")
+    file_system_arn: str = pulumi.property("fileSystemArn")
+    file_system_id: str = pulumi.property("fileSystemId")
+    id: str = pulumi.property("id")
+    ip_address: str = pulumi.property("ipAddress")
+    mount_target_dns_name: str = pulumi.property("mountTargetDnsName")
+    mount_target_id: str = pulumi.property("mountTargetId")
+    network_interface_id: str = pulumi.property("networkInterfaceId")
+    owner_id: str = pulumi.property("ownerId")
+    security_groups: List[str] = pulumi.property("securityGroups")
+    subnet_id: str = pulumi.property("subnetId")
 
 
 class GetMountTargetResult:
@@ -112,7 +135,8 @@ class AwaitableGetMountTargetResult(GetMountTargetResult):
             subnet_id=self.subnet_id)
 
 
-def get_mount_target(mount_target_id=None, opts=None):
+def get_mount_target(mount_target_id: Optional[str] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetMountTargetResult:
     """
     Provides information about an Elastic File System Mount Target (EFS).
 
@@ -138,19 +162,19 @@ def get_mount_target(mount_target_id=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:efs/getMountTarget:getMountTarget', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:efs/getMountTarget:getMountTarget', __args__, opts=opts, typ=_GetMountTargetResult).value
 
     return AwaitableGetMountTargetResult(
-        availability_zone_id=__ret__.get('availabilityZoneId'),
-        availability_zone_name=__ret__.get('availabilityZoneName'),
-        dns_name=__ret__.get('dnsName'),
-        file_system_arn=__ret__.get('fileSystemArn'),
-        file_system_id=__ret__.get('fileSystemId'),
-        id=__ret__.get('id'),
-        ip_address=__ret__.get('ipAddress'),
-        mount_target_dns_name=__ret__.get('mountTargetDnsName'),
-        mount_target_id=__ret__.get('mountTargetId'),
-        network_interface_id=__ret__.get('networkInterfaceId'),
-        owner_id=__ret__.get('ownerId'),
-        security_groups=__ret__.get('securityGroups'),
-        subnet_id=__ret__.get('subnetId'))
+        availability_zone_id=__ret__.availability_zone_id,
+        availability_zone_name=__ret__.availability_zone_name,
+        dns_name=__ret__.dns_name,
+        file_system_arn=__ret__.file_system_arn,
+        file_system_id=__ret__.file_system_id,
+        id=__ret__.id,
+        ip_address=__ret__.ip_address,
+        mount_target_dns_name=__ret__.mount_target_dns_name,
+        mount_target_id=__ret__.mount_target_id,
+        network_interface_id=__ret__.network_interface_id,
+        owner_id=__ret__.owner_id,
+        security_groups=__ret__.security_groups,
+        subnet_id=__ret__.subnet_id)

@@ -5,8 +5,20 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetSitesResult',
+    'AwaitableGetSitesResult',
+    'get_sites',
+]
+
+
+@pulumi.output_type
+class _GetSitesResult:
+    id: str = pulumi.property("id")
+    ids: List[str] = pulumi.property("ids")
 
 
 class GetSitesResult:
@@ -38,7 +50,7 @@ class AwaitableGetSitesResult(GetSitesResult):
             ids=self.ids)
 
 
-def get_sites(opts=None):
+def get_sites(              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSitesResult:
     """
     Provides details about multiple Outposts Sites.
 
@@ -56,8 +68,8 @@ def get_sites(opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:outposts/getSites:getSites', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:outposts/getSites:getSites', __args__, opts=opts, typ=_GetSitesResult).value
 
     return AwaitableGetSitesResult(
-        id=__ret__.get('id'),
-        ids=__ret__.get('ids'))
+        id=__ret__.id,
+        ids=__ret__.ids)

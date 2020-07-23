@@ -5,10 +5,41 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetLoadBalancerResult',
+    'AwaitableGetLoadBalancerResult',
+    'get_load_balancer',
+]
 
 warnings.warn("aws.elasticloadbalancing.getLoadBalancer has been deprecated in favor of aws.elb.getLoadBalancer", DeprecationWarning)
+
+@pulumi.output_type
+class _GetLoadBalancerResult:
+    access_logs: 'outputs.GetLoadBalancerAccessLogsResult' = pulumi.property("accessLogs")
+    arn: str = pulumi.property("arn")
+    availability_zones: List[str] = pulumi.property("availabilityZones")
+    connection_draining: bool = pulumi.property("connectionDraining")
+    connection_draining_timeout: float = pulumi.property("connectionDrainingTimeout")
+    cross_zone_load_balancing: bool = pulumi.property("crossZoneLoadBalancing")
+    dns_name: str = pulumi.property("dnsName")
+    health_check: 'outputs.GetLoadBalancerHealthCheckResult' = pulumi.property("healthCheck")
+    id: str = pulumi.property("id")
+    idle_timeout: float = pulumi.property("idleTimeout")
+    instances: List[str] = pulumi.property("instances")
+    internal: bool = pulumi.property("internal")
+    listeners: List['outputs.GetLoadBalancerListenerResult'] = pulumi.property("listeners")
+    name: str = pulumi.property("name")
+    security_groups: List[str] = pulumi.property("securityGroups")
+    source_security_group: str = pulumi.property("sourceSecurityGroup")
+    source_security_group_id: str = pulumi.property("sourceSecurityGroupId")
+    subnets: List[str] = pulumi.property("subnets")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    zone_id: str = pulumi.property("zoneId")
+
 
 class GetLoadBalancerResult:
     """
@@ -108,7 +139,9 @@ class AwaitableGetLoadBalancerResult(GetLoadBalancerResult):
             zone_id=self.zone_id)
 
 
-def get_load_balancer(name=None, tags=None, opts=None):
+def get_load_balancer(name: Optional[str] = None,
+                      tags: Optional[Mapping[str, str]] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLoadBalancerResult:
     """
     Provides information about a "classic" Elastic Load Balancer (ELB).
     See `LB` Data Source if you are looking for "v2"
@@ -142,26 +175,26 @@ def get_load_balancer(name=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:elasticloadbalancing/getLoadBalancer:getLoadBalancer', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:elasticloadbalancing/getLoadBalancer:getLoadBalancer', __args__, opts=opts, typ=_GetLoadBalancerResult).value
 
     return AwaitableGetLoadBalancerResult(
-        access_logs=__ret__.get('accessLogs'),
-        arn=__ret__.get('arn'),
-        availability_zones=__ret__.get('availabilityZones'),
-        connection_draining=__ret__.get('connectionDraining'),
-        connection_draining_timeout=__ret__.get('connectionDrainingTimeout'),
-        cross_zone_load_balancing=__ret__.get('crossZoneLoadBalancing'),
-        dns_name=__ret__.get('dnsName'),
-        health_check=__ret__.get('healthCheck'),
-        id=__ret__.get('id'),
-        idle_timeout=__ret__.get('idleTimeout'),
-        instances=__ret__.get('instances'),
-        internal=__ret__.get('internal'),
-        listeners=__ret__.get('listeners'),
-        name=__ret__.get('name'),
-        security_groups=__ret__.get('securityGroups'),
-        source_security_group=__ret__.get('sourceSecurityGroup'),
-        source_security_group_id=__ret__.get('sourceSecurityGroupId'),
-        subnets=__ret__.get('subnets'),
-        tags=__ret__.get('tags'),
-        zone_id=__ret__.get('zoneId'))
+        access_logs=__ret__.access_logs,
+        arn=__ret__.arn,
+        availability_zones=__ret__.availability_zones,
+        connection_draining=__ret__.connection_draining,
+        connection_draining_timeout=__ret__.connection_draining_timeout,
+        cross_zone_load_balancing=__ret__.cross_zone_load_balancing,
+        dns_name=__ret__.dns_name,
+        health_check=__ret__.health_check,
+        id=__ret__.id,
+        idle_timeout=__ret__.idle_timeout,
+        instances=__ret__.instances,
+        internal=__ret__.internal,
+        listeners=__ret__.listeners,
+        name=__ret__.name,
+        security_groups=__ret__.security_groups,
+        source_security_group=__ret__.source_security_group,
+        source_security_group_id=__ret__.source_security_group_id,
+        subnets=__ret__.subnets,
+        tags=__ret__.tags,
+        zone_id=__ret__.zone_id)

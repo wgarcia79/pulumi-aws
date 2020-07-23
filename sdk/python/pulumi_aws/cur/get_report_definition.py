@@ -5,8 +5,28 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetReportDefinitionResult',
+    'AwaitableGetReportDefinitionResult',
+    'get_report_definition',
+]
+
+
+@pulumi.output_type
+class _GetReportDefinitionResult:
+    additional_artifacts: List[str] = pulumi.property("additionalArtifacts")
+    additional_schema_elements: List[str] = pulumi.property("additionalSchemaElements")
+    compression: str = pulumi.property("compression")
+    format: str = pulumi.property("format")
+    id: str = pulumi.property("id")
+    report_name: str = pulumi.property("reportName")
+    s3_bucket: str = pulumi.property("s3Bucket")
+    s3_prefix: str = pulumi.property("s3Prefix")
+    s3_region: str = pulumi.property("s3Region")
+    time_unit: str = pulumi.property("timeUnit")
 
 
 class GetReportDefinitionResult:
@@ -91,7 +111,8 @@ class AwaitableGetReportDefinitionResult(GetReportDefinitionResult):
             time_unit=self.time_unit)
 
 
-def get_report_definition(report_name=None, opts=None):
+def get_report_definition(report_name: Optional[str] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetReportDefinitionResult:
     """
     Use this data source to get information on an AWS Cost and Usage Report Definition.
 
@@ -117,16 +138,16 @@ def get_report_definition(report_name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:cur/getReportDefinition:getReportDefinition', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:cur/getReportDefinition:getReportDefinition', __args__, opts=opts, typ=_GetReportDefinitionResult).value
 
     return AwaitableGetReportDefinitionResult(
-        additional_artifacts=__ret__.get('additionalArtifacts'),
-        additional_schema_elements=__ret__.get('additionalSchemaElements'),
-        compression=__ret__.get('compression'),
-        format=__ret__.get('format'),
-        id=__ret__.get('id'),
-        report_name=__ret__.get('reportName'),
-        s3_bucket=__ret__.get('s3Bucket'),
-        s3_prefix=__ret__.get('s3Prefix'),
-        s3_region=__ret__.get('s3Region'),
-        time_unit=__ret__.get('timeUnit'))
+        additional_artifacts=__ret__.additional_artifacts,
+        additional_schema_elements=__ret__.additional_schema_elements,
+        compression=__ret__.compression,
+        format=__ret__.format,
+        id=__ret__.id,
+        report_name=__ret__.report_name,
+        s3_bucket=__ret__.s3_bucket,
+        s3_prefix=__ret__.s3_prefix,
+        s3_region=__ret__.s3_region,
+        time_unit=__ret__.time_unit)

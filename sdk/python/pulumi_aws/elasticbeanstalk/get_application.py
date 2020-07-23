@@ -5,8 +5,24 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetApplicationResult',
+    'AwaitableGetApplicationResult',
+    'get_application',
+]
+
+
+@pulumi.output_type
+class _GetApplicationResult:
+    appversion_lifecycle: 'outputs.GetApplicationAppversionLifecycleResult' = pulumi.property("appversionLifecycle")
+    arn: str = pulumi.property("arn")
+    description: str = pulumi.property("description")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
 
 
 class GetApplicationResult:
@@ -53,7 +69,8 @@ class AwaitableGetApplicationResult(GetApplicationResult):
             name=self.name)
 
 
-def get_application(name=None, opts=None):
+def get_application(name: Optional[str] = None,
+                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetApplicationResult:
     """
     Retrieve information about an Elastic Beanstalk Application.
 
@@ -77,11 +94,11 @@ def get_application(name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:elasticbeanstalk/getApplication:getApplication', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:elasticbeanstalk/getApplication:getApplication', __args__, opts=opts, typ=_GetApplicationResult).value
 
     return AwaitableGetApplicationResult(
-        appversion_lifecycle=__ret__.get('appversionLifecycle'),
-        arn=__ret__.get('arn'),
-        description=__ret__.get('description'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'))
+        appversion_lifecycle=__ret__.appversion_lifecycle,
+        arn=__ret__.arn,
+        description=__ret__.description,
+        id=__ret__.id,
+        name=__ret__.name)

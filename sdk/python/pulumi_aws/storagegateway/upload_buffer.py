@@ -5,20 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['UploadBuffer']
 
 
 class UploadBuffer(pulumi.CustomResource):
-    disk_id: pulumi.Output[str]
+    disk_id: pulumi.Output[str] = pulumi.property("diskId")
     """
     Local disk identifier. For example, `pci-0000:03:00.0-scsi-0:0:0:0`.
     """
-    gateway_arn: pulumi.Output[str]
+
+    gateway_arn: pulumi.Output[str] = pulumi.property("gatewayArn")
     """
     The Amazon Resource Name (ARN) of the gateway.
     """
-    def __init__(__self__, resource_name, opts=None, disk_id=None, gateway_arn=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 disk_id: Optional[pulumi.Input[str]] = None,
+                 gateway_arn: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Manages an AWS Storage Gateway upload buffer.
 
@@ -70,7 +81,11 @@ class UploadBuffer(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, disk_id=None, gateway_arn=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            disk_id: Optional[pulumi.Input[str]] = None,
+            gateway_arn: Optional[pulumi.Input[str]] = None) -> 'UploadBuffer':
         """
         Get an existing UploadBuffer resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -94,3 +109,4 @@ class UploadBuffer(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

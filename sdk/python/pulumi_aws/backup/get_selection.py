@@ -5,8 +5,24 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetSelectionResult',
+    'AwaitableGetSelectionResult',
+    'get_selection',
+]
+
+
+@pulumi.output_type
+class _GetSelectionResult:
+    iam_role_arn: str = pulumi.property("iamRoleArn")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    plan_id: str = pulumi.property("planId")
+    resources: List[str] = pulumi.property("resources")
+    selection_id: str = pulumi.property("selectionId")
 
 
 class GetSelectionResult:
@@ -60,7 +76,9 @@ class AwaitableGetSelectionResult(GetSelectionResult):
             selection_id=self.selection_id)
 
 
-def get_selection(plan_id=None, selection_id=None, opts=None):
+def get_selection(plan_id: Optional[str] = None,
+                  selection_id: Optional[str] = None,
+                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSelectionResult:
     """
     Use this data source to get information on an existing backup selection.
 
@@ -85,12 +103,12 @@ def get_selection(plan_id=None, selection_id=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:backup/getSelection:getSelection', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:backup/getSelection:getSelection', __args__, opts=opts, typ=_GetSelectionResult).value
 
     return AwaitableGetSelectionResult(
-        iam_role_arn=__ret__.get('iamRoleArn'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        plan_id=__ret__.get('planId'),
-        resources=__ret__.get('resources'),
-        selection_id=__ret__.get('selectionId'))
+        iam_role_arn=__ret__.iam_role_arn,
+        id=__ret__.id,
+        name=__ret__.name,
+        plan_id=__ret__.plan_id,
+        resources=__ret__.resources,
+        selection_id=__ret__.selection_id)

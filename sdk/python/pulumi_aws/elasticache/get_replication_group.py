@@ -5,8 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetReplicationGroupResult',
+    'AwaitableGetReplicationGroupResult',
+    'get_replication_group',
+]
+
+
+@pulumi.output_type
+class _GetReplicationGroupResult:
+    auth_token_enabled: bool = pulumi.property("authTokenEnabled")
+    automatic_failover_enabled: bool = pulumi.property("automaticFailoverEnabled")
+    configuration_endpoint_address: str = pulumi.property("configurationEndpointAddress")
+    id: str = pulumi.property("id")
+    member_clusters: List[str] = pulumi.property("memberClusters")
+    node_type: str = pulumi.property("nodeType")
+    number_cache_clusters: float = pulumi.property("numberCacheClusters")
+    port: float = pulumi.property("port")
+    primary_endpoint_address: str = pulumi.property("primaryEndpointAddress")
+    replication_group_description: str = pulumi.property("replicationGroupDescription")
+    replication_group_id: str = pulumi.property("replicationGroupId")
+    snapshot_retention_limit: float = pulumi.property("snapshotRetentionLimit")
+    snapshot_window: str = pulumi.property("snapshotWindow")
 
 
 class GetReplicationGroupResult:
@@ -115,7 +138,8 @@ class AwaitableGetReplicationGroupResult(GetReplicationGroupResult):
             snapshot_window=self.snapshot_window)
 
 
-def get_replication_group(replication_group_id=None, opts=None):
+def get_replication_group(replication_group_id: Optional[str] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetReplicationGroupResult:
     """
     Use this data source to get information about an Elasticache Replication Group.
 
@@ -137,19 +161,19 @@ def get_replication_group(replication_group_id=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:elasticache/getReplicationGroup:getReplicationGroup', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:elasticache/getReplicationGroup:getReplicationGroup', __args__, opts=opts, typ=_GetReplicationGroupResult).value
 
     return AwaitableGetReplicationGroupResult(
-        auth_token_enabled=__ret__.get('authTokenEnabled'),
-        automatic_failover_enabled=__ret__.get('automaticFailoverEnabled'),
-        configuration_endpoint_address=__ret__.get('configurationEndpointAddress'),
-        id=__ret__.get('id'),
-        member_clusters=__ret__.get('memberClusters'),
-        node_type=__ret__.get('nodeType'),
-        number_cache_clusters=__ret__.get('numberCacheClusters'),
-        port=__ret__.get('port'),
-        primary_endpoint_address=__ret__.get('primaryEndpointAddress'),
-        replication_group_description=__ret__.get('replicationGroupDescription'),
-        replication_group_id=__ret__.get('replicationGroupId'),
-        snapshot_retention_limit=__ret__.get('snapshotRetentionLimit'),
-        snapshot_window=__ret__.get('snapshotWindow'))
+        auth_token_enabled=__ret__.auth_token_enabled,
+        automatic_failover_enabled=__ret__.automatic_failover_enabled,
+        configuration_endpoint_address=__ret__.configuration_endpoint_address,
+        id=__ret__.id,
+        member_clusters=__ret__.member_clusters,
+        node_type=__ret__.node_type,
+        number_cache_clusters=__ret__.number_cache_clusters,
+        port=__ret__.port,
+        primary_endpoint_address=__ret__.primary_endpoint_address,
+        replication_group_description=__ret__.replication_group_description,
+        replication_group_id=__ret__.replication_group_id,
+        snapshot_retention_limit=__ret__.snapshot_retention_limit,
+        snapshot_window=__ret__.snapshot_window)

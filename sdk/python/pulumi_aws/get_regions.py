@@ -5,8 +5,24 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetRegionsResult',
+    'AwaitableGetRegionsResult',
+    'get_regions',
+]
+
+
+@pulumi.output_type
+class _GetRegionsResult:
+    all_regions: Optional[bool] = pulumi.property("allRegions")
+    filters: Optional[List['outputs.GetRegionsFilterResult']] = pulumi.property("filters")
+    id: str = pulumi.property("id")
+    names: List[str] = pulumi.property("names")
 
 
 class GetRegionsResult:
@@ -46,7 +62,9 @@ class AwaitableGetRegionsResult(GetRegionsResult):
             names=self.names)
 
 
-def get_regions(all_regions=None, filters=None, opts=None):
+def get_regions(all_regions: Optional[bool] = None,
+                filters: Optional[List[pulumi.InputType['GetRegionsFilterArgs']]] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegionsResult:
     """
     Provides information about AWS Regions. Can be used to filter regions i.e. by Opt-In status or only regions enabled for current account. To get details like endpoint and description of each region the data source can be combined with the `getRegion` data source.
 
@@ -85,12 +103,7 @@ def get_regions(all_regions=None, filters=None, opts=None):
 
 
     :param bool all_regions: If true the source will query all regions regardless of availability.
-    :param list filters: Configuration block(s) to use as filters. Detailed below.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the filter field. Valid values can be found in the [describe-regions AWS CLI Reference][1].
-      * `values` (`list`) - Set of values that are accepted for the given filter field. Results will be selected if any given value matches.
+    :param List[pulumi.InputType['GetRegionsFilterArgs']] filters: Configuration block(s) to use as filters. Detailed below.
     """
     __args__ = dict()
     __args__['allRegions'] = all_regions
@@ -99,10 +112,10 @@ def get_regions(all_regions=None, filters=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:index/getRegions:getRegions', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:index/getRegions:getRegions', __args__, opts=opts, typ=_GetRegionsResult).value
 
     return AwaitableGetRegionsResult(
-        all_regions=__ret__.get('allRegions'),
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        names=__ret__.get('names'))
+        all_regions=__ret__.all_regions,
+        filters=__ret__.filters,
+        id=__ret__.id,
+        names=__ret__.names)

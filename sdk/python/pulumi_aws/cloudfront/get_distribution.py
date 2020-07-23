@@ -5,8 +5,28 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetDistributionResult',
+    'AwaitableGetDistributionResult',
+    'get_distribution',
+]
+
+
+@pulumi.output_type
+class _GetDistributionResult:
+    arn: str = pulumi.property("arn")
+    domain_name: str = pulumi.property("domainName")
+    enabled: bool = pulumi.property("enabled")
+    etag: str = pulumi.property("etag")
+    hosted_zone_id: str = pulumi.property("hostedZoneId")
+    id: str = pulumi.property("id")
+    in_progress_validation_batches: float = pulumi.property("inProgressValidationBatches")
+    last_modified_time: str = pulumi.property("lastModifiedTime")
+    status: str = pulumi.property("status")
+    tags: Optional[Mapping[str, str]] = pulumi.property("tags")
 
 
 class GetDistributionResult:
@@ -95,7 +115,9 @@ class AwaitableGetDistributionResult(GetDistributionResult):
             tags=self.tags)
 
 
-def get_distribution(id=None, tags=None, opts=None):
+def get_distribution(id: Optional[str] = None,
+                     tags: Optional[Mapping[str, str]] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDistributionResult:
     """
     Use this data source to retrieve information about a CloudFront distribution.
 
@@ -118,16 +140,16 @@ def get_distribution(id=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:cloudfront/getDistribution:getDistribution', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:cloudfront/getDistribution:getDistribution', __args__, opts=opts, typ=_GetDistributionResult).value
 
     return AwaitableGetDistributionResult(
-        arn=__ret__.get('arn'),
-        domain_name=__ret__.get('domainName'),
-        enabled=__ret__.get('enabled'),
-        etag=__ret__.get('etag'),
-        hosted_zone_id=__ret__.get('hostedZoneId'),
-        id=__ret__.get('id'),
-        in_progress_validation_batches=__ret__.get('inProgressValidationBatches'),
-        last_modified_time=__ret__.get('lastModifiedTime'),
-        status=__ret__.get('status'),
-        tags=__ret__.get('tags'))
+        arn=__ret__.arn,
+        domain_name=__ret__.domain_name,
+        enabled=__ret__.enabled,
+        etag=__ret__.etag,
+        hosted_zone_id=__ret__.hosted_zone_id,
+        id=__ret__.id,
+        in_progress_validation_batches=__ret__.in_progress_validation_batches,
+        last_modified_time=__ret__.last_modified_time,
+        status=__ret__.status,
+        tags=__ret__.tags)

@@ -5,8 +5,28 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetResolverRuleResult',
+    'AwaitableGetResolverRuleResult',
+    'get_resolver_rule',
+]
+
+
+@pulumi.output_type
+class _GetResolverRuleResult:
+    arn: str = pulumi.property("arn")
+    domain_name: str = pulumi.property("domainName")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    owner_id: str = pulumi.property("ownerId")
+    resolver_endpoint_id: str = pulumi.property("resolverEndpointId")
+    resolver_rule_id: str = pulumi.property("resolverRuleId")
+    rule_type: str = pulumi.property("ruleType")
+    share_status: str = pulumi.property("shareStatus")
+    tags: Mapping[str, str] = pulumi.property("tags")
 
 
 class GetResolverRuleResult:
@@ -80,7 +100,13 @@ class AwaitableGetResolverRuleResult(GetResolverRuleResult):
             tags=self.tags)
 
 
-def get_resolver_rule(domain_name=None, name=None, resolver_endpoint_id=None, resolver_rule_id=None, rule_type=None, tags=None, opts=None):
+def get_resolver_rule(domain_name: Optional[str] = None,
+                      name: Optional[str] = None,
+                      resolver_endpoint_id: Optional[str] = None,
+                      resolver_rule_id: Optional[str] = None,
+                      rule_type: Optional[str] = None,
+                      tags: Optional[Mapping[str, str]] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetResolverRuleResult:
     """
     `route53.ResolverRule` provides details about a specific Route53 Resolver rule.
 
@@ -102,7 +128,7 @@ def get_resolver_rule(domain_name=None, name=None, resolver_endpoint_id=None, re
     :param str resolver_endpoint_id: The ID of the outbound resolver endpoint of the desired resolver rule. Conflicts with `resolver_rule_id`.
     :param str resolver_rule_id: The ID of the desired resolver rule. Conflicts with `domain_name`, `name`, `resolver_endpoint_id` and `rule_type`.
     :param str rule_type: The rule type of the desired resolver rule. Valid values are `FORWARD`, `SYSTEM` and `RECURSIVE`. Conflicts with `resolver_rule_id`.
-    :param dict tags: A map of tags assigned to the resolver rule.
+    :param Mapping[str, str] tags: A map of tags assigned to the resolver rule.
     """
     __args__ = dict()
     __args__['domainName'] = domain_name
@@ -115,16 +141,16 @@ def get_resolver_rule(domain_name=None, name=None, resolver_endpoint_id=None, re
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:route53/getResolverRule:getResolverRule', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:route53/getResolverRule:getResolverRule', __args__, opts=opts, typ=_GetResolverRuleResult).value
 
     return AwaitableGetResolverRuleResult(
-        arn=__ret__.get('arn'),
-        domain_name=__ret__.get('domainName'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        owner_id=__ret__.get('ownerId'),
-        resolver_endpoint_id=__ret__.get('resolverEndpointId'),
-        resolver_rule_id=__ret__.get('resolverRuleId'),
-        rule_type=__ret__.get('ruleType'),
-        share_status=__ret__.get('shareStatus'),
-        tags=__ret__.get('tags'))
+        arn=__ret__.arn,
+        domain_name=__ret__.domain_name,
+        id=__ret__.id,
+        name=__ret__.name,
+        owner_id=__ret__.owner_id,
+        resolver_endpoint_id=__ret__.resolver_endpoint_id,
+        resolver_rule_id=__ret__.resolver_rule_id,
+        rule_type=__ret__.rule_type,
+        share_status=__ret__.share_status,
+        tags=__ret__.tags)

@@ -5,8 +5,26 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetServiceResult',
+    'AwaitableGetServiceResult',
+    'get_service',
+]
+
+
+@pulumi.output_type
+class _GetServiceResult:
+    arn: str = pulumi.property("arn")
+    cluster_arn: str = pulumi.property("clusterArn")
+    desired_count: float = pulumi.property("desiredCount")
+    id: str = pulumi.property("id")
+    launch_type: str = pulumi.property("launchType")
+    scheduling_strategy: str = pulumi.property("schedulingStrategy")
+    service_name: str = pulumi.property("serviceName")
+    task_definition: str = pulumi.property("taskDefinition")
 
 
 class GetServiceResult:
@@ -74,7 +92,9 @@ class AwaitableGetServiceResult(GetServiceResult):
             task_definition=self.task_definition)
 
 
-def get_service(cluster_arn=None, service_name=None, opts=None):
+def get_service(cluster_arn: Optional[str] = None,
+                service_name: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServiceResult:
     """
     The ECS Service data source allows access to details of a specific
     Service within a AWS ECS Cluster.
@@ -100,14 +120,14 @@ def get_service(cluster_arn=None, service_name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ecs/getService:getService', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ecs/getService:getService', __args__, opts=opts, typ=_GetServiceResult).value
 
     return AwaitableGetServiceResult(
-        arn=__ret__.get('arn'),
-        cluster_arn=__ret__.get('clusterArn'),
-        desired_count=__ret__.get('desiredCount'),
-        id=__ret__.get('id'),
-        launch_type=__ret__.get('launchType'),
-        scheduling_strategy=__ret__.get('schedulingStrategy'),
-        service_name=__ret__.get('serviceName'),
-        task_definition=__ret__.get('taskDefinition'))
+        arn=__ret__.arn,
+        cluster_arn=__ret__.cluster_arn,
+        desired_count=__ret__.desired_count,
+        id=__ret__.id,
+        launch_type=__ret__.launch_type,
+        scheduling_strategy=__ret__.scheduling_strategy,
+        service_name=__ret__.service_name,
+        task_definition=__ret__.task_definition)

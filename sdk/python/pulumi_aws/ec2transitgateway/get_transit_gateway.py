@@ -5,8 +5,34 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetTransitGatewayResult',
+    'AwaitableGetTransitGatewayResult',
+    'get_transit_gateway',
+]
+
+
+@pulumi.output_type
+class _GetTransitGatewayResult:
+    amazon_side_asn: float = pulumi.property("amazonSideAsn")
+    arn: str = pulumi.property("arn")
+    association_default_route_table_id: str = pulumi.property("associationDefaultRouteTableId")
+    auto_accept_shared_attachments: str = pulumi.property("autoAcceptSharedAttachments")
+    default_route_table_association: str = pulumi.property("defaultRouteTableAssociation")
+    default_route_table_propagation: str = pulumi.property("defaultRouteTablePropagation")
+    description: str = pulumi.property("description")
+    dns_support: str = pulumi.property("dnsSupport")
+    filters: Optional[List['outputs.GetTransitGatewayFilterResult']] = pulumi.property("filters")
+    id: Optional[str] = pulumi.property("id")
+    owner_id: str = pulumi.property("ownerId")
+    propagation_default_route_table_id: str = pulumi.property("propagationDefaultRouteTableId")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    vpn_ecmp_support: str = pulumi.property("vpnEcmpSupport")
 
 
 class GetTransitGatewayResult:
@@ -119,7 +145,10 @@ class AwaitableGetTransitGatewayResult(GetTransitGatewayResult):
             vpn_ecmp_support=self.vpn_ecmp_support)
 
 
-def get_transit_gateway(filters=None, id=None, tags=None, opts=None):
+def get_transit_gateway(filters: Optional[List[pulumi.InputType['GetTransitGatewayFilterArgs']]] = None,
+                        id: Optional[str] = None,
+                        tags: Optional[Mapping[str, str]] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTransitGatewayResult:
     """
     Get information on an EC2 Transit Gateway.
 
@@ -145,14 +174,9 @@ def get_transit_gateway(filters=None, id=None, tags=None, opts=None):
     ```
 
 
-    :param list filters: One or more configuration blocks containing name-values filters. Detailed below.
+    :param List[pulumi.InputType['GetTransitGatewayFilterArgs']] filters: One or more configuration blocks containing name-values filters. Detailed below.
     :param str id: Identifier of the EC2 Transit Gateway.
-    :param dict tags: Key-value tags for the EC2 Transit Gateway
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - Name of the filter.
-      * `values` (`list`) - List of one or more values for the filter.
+    :param Mapping[str, str] tags: Key-value tags for the EC2 Transit Gateway
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -162,20 +186,20 @@ def get_transit_gateway(filters=None, id=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2transitgateway/getTransitGateway:getTransitGateway', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2transitgateway/getTransitGateway:getTransitGateway', __args__, opts=opts, typ=_GetTransitGatewayResult).value
 
     return AwaitableGetTransitGatewayResult(
-        amazon_side_asn=__ret__.get('amazonSideAsn'),
-        arn=__ret__.get('arn'),
-        association_default_route_table_id=__ret__.get('associationDefaultRouteTableId'),
-        auto_accept_shared_attachments=__ret__.get('autoAcceptSharedAttachments'),
-        default_route_table_association=__ret__.get('defaultRouteTableAssociation'),
-        default_route_table_propagation=__ret__.get('defaultRouteTablePropagation'),
-        description=__ret__.get('description'),
-        dns_support=__ret__.get('dnsSupport'),
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        owner_id=__ret__.get('ownerId'),
-        propagation_default_route_table_id=__ret__.get('propagationDefaultRouteTableId'),
-        tags=__ret__.get('tags'),
-        vpn_ecmp_support=__ret__.get('vpnEcmpSupport'))
+        amazon_side_asn=__ret__.amazon_side_asn,
+        arn=__ret__.arn,
+        association_default_route_table_id=__ret__.association_default_route_table_id,
+        auto_accept_shared_attachments=__ret__.auto_accept_shared_attachments,
+        default_route_table_association=__ret__.default_route_table_association,
+        default_route_table_propagation=__ret__.default_route_table_propagation,
+        description=__ret__.description,
+        dns_support=__ret__.dns_support,
+        filters=__ret__.filters,
+        id=__ret__.id,
+        owner_id=__ret__.owner_id,
+        propagation_default_route_table_id=__ret__.propagation_default_route_table_id,
+        tags=__ret__.tags,
+        vpn_ecmp_support=__ret__.vpn_ecmp_support)

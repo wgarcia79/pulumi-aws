@@ -5,8 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetVpcLinkResult',
+    'AwaitableGetVpcLinkResult',
+    'get_vpc_link',
+]
+
+
+@pulumi.output_type
+class _GetVpcLinkResult:
+    description: str = pulumi.property("description")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    status: str = pulumi.property("status")
+    status_message: str = pulumi.property("statusMessage")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    target_arns: List[str] = pulumi.property("targetArns")
 
 
 class GetVpcLinkResult:
@@ -70,7 +87,9 @@ class AwaitableGetVpcLinkResult(GetVpcLinkResult):
             target_arns=self.target_arns)
 
 
-def get_vpc_link(name=None, tags=None, opts=None):
+def get_vpc_link(name: Optional[str] = None,
+                 tags: Optional[Mapping[str, str]] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcLinkResult:
     """
     Use this data source to get the id of a VPC Link in
     API Gateway. To fetch the VPC Link you must provide a name to match against.
@@ -89,7 +108,7 @@ def get_vpc_link(name=None, tags=None, opts=None):
 
     :param str name: The name of the API Gateway VPC Link to look up. If no API Gateway VPC Link is found with this name, an error will be returned. 
            If multiple API Gateway VPC Links are found with this name, an error will be returned.
-    :param dict tags: Key-value map of resource tags
+    :param Mapping[str, str] tags: Key-value map of resource tags
     """
     __args__ = dict()
     __args__['name'] = name
@@ -98,13 +117,13 @@ def get_vpc_link(name=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:apigateway/getVpcLink:getVpcLink', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:apigateway/getVpcLink:getVpcLink', __args__, opts=opts, typ=_GetVpcLinkResult).value
 
     return AwaitableGetVpcLinkResult(
-        description=__ret__.get('description'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        status=__ret__.get('status'),
-        status_message=__ret__.get('statusMessage'),
-        tags=__ret__.get('tags'),
-        target_arns=__ret__.get('targetArns'))
+        description=__ret__.description,
+        id=__ret__.id,
+        name=__ret__.name,
+        status=__ret__.status,
+        status_message=__ret__.status_message,
+        tags=__ret__.tags,
+        target_arns=__ret__.target_arns)

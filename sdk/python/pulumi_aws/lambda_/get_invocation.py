@@ -5,8 +5,24 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetInvocationResult',
+    'AwaitableGetInvocationResult',
+    'get_invocation',
+]
+
+
+@pulumi.output_type
+class _GetInvocationResult:
+    function_name: str = pulumi.property("functionName")
+    id: str = pulumi.property("id")
+    input: str = pulumi.property("input")
+    qualifier: Optional[str] = pulumi.property("qualifier")
+    result: str = pulumi.property("result")
+    result_map: Mapping[str, str] = pulumi.property("resultMap")
 
 
 class GetInvocationResult:
@@ -61,7 +77,10 @@ class AwaitableGetInvocationResult(GetInvocationResult):
             result_map=self.result_map)
 
 
-def get_invocation(function_name=None, input=None, qualifier=None, opts=None):
+def get_invocation(function_name: Optional[str] = None,
+                   input: Optional[str] = None,
+                   qualifier: Optional[str] = None,
+                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInvocationResult:
     """
     Use this data source to invoke custom lambda functions as data source.
     The lambda function is invoked with [RequestResponse](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax)
@@ -81,12 +100,12 @@ def get_invocation(function_name=None, input=None, qualifier=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:lambda/getInvocation:getInvocation', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:lambda/getInvocation:getInvocation', __args__, opts=opts, typ=_GetInvocationResult).value
 
     return AwaitableGetInvocationResult(
-        function_name=__ret__.get('functionName'),
-        id=__ret__.get('id'),
-        input=__ret__.get('input'),
-        qualifier=__ret__.get('qualifier'),
-        result=__ret__.get('result'),
-        result_map=__ret__.get('resultMap'))
+        function_name=__ret__.function_name,
+        id=__ret__.id,
+        input=__ret__.input,
+        qualifier=__ret__.qualifier,
+        result=__ret__.result,
+        result_map=__ret__.result_map)

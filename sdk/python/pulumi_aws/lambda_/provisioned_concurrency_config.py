@@ -5,24 +5,37 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['ProvisionedConcurrencyConfig']
 
 
 class ProvisionedConcurrencyConfig(pulumi.CustomResource):
-    function_name: pulumi.Output[str]
+    function_name: pulumi.Output[str] = pulumi.property("functionName")
     """
     Name or Amazon Resource Name (ARN) of the Lambda Function.
     """
-    provisioned_concurrent_executions: pulumi.Output[float]
+
+    provisioned_concurrent_executions: pulumi.Output[float] = pulumi.property("provisionedConcurrentExecutions")
     """
     Amount of capacity to allocate. Must be greater than or equal to `1`.
     """
-    qualifier: pulumi.Output[str]
+
+    qualifier: pulumi.Output[str] = pulumi.property("qualifier")
     """
     Lambda Function version or Lambda Alias name.
     """
-    def __init__(__self__, resource_name, opts=None, function_name=None, provisioned_concurrent_executions=None, qualifier=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 function_name: Optional[pulumi.Input[str]] = None,
+                 provisioned_concurrent_executions: Optional[pulumi.Input[float]] = None,
+                 qualifier: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Manages a Lambda Provisioned Concurrency Configuration.
 
@@ -89,7 +102,12 @@ class ProvisionedConcurrencyConfig(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, function_name=None, provisioned_concurrent_executions=None, qualifier=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            function_name: Optional[pulumi.Input[str]] = None,
+            provisioned_concurrent_executions: Optional[pulumi.Input[float]] = None,
+            qualifier: Optional[pulumi.Input[str]] = None) -> 'ProvisionedConcurrencyConfig':
         """
         Get an existing ProvisionedConcurrencyConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -115,3 +133,4 @@ class ProvisionedConcurrencyConfig(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,8 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetBucketObjectsResult',
+    'AwaitableGetBucketObjectsResult',
+    'get_bucket_objects',
+]
+
+
+@pulumi.output_type
+class _GetBucketObjectsResult:
+    bucket: str = pulumi.property("bucket")
+    common_prefixes: List[str] = pulumi.property("commonPrefixes")
+    delimiter: Optional[str] = pulumi.property("delimiter")
+    encoding_type: Optional[str] = pulumi.property("encodingType")
+    fetch_owner: Optional[bool] = pulumi.property("fetchOwner")
+    id: str = pulumi.property("id")
+    keys: List[str] = pulumi.property("keys")
+    max_keys: Optional[float] = pulumi.property("maxKeys")
+    owners: List[str] = pulumi.property("owners")
+    prefix: Optional[str] = pulumi.property("prefix")
+    start_after: Optional[str] = pulumi.property("startAfter")
 
 
 class GetBucketObjectsResult:
@@ -80,7 +101,14 @@ class AwaitableGetBucketObjectsResult(GetBucketObjectsResult):
             start_after=self.start_after)
 
 
-def get_bucket_objects(bucket=None, delimiter=None, encoding_type=None, fetch_owner=None, max_keys=None, prefix=None, start_after=None, opts=None):
+def get_bucket_objects(bucket: Optional[str] = None,
+                       delimiter: Optional[str] = None,
+                       encoding_type: Optional[str] = None,
+                       fetch_owner: Optional[bool] = None,
+                       max_keys: Optional[float] = None,
+                       prefix: Optional[str] = None,
+                       start_after: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBucketObjectsResult:
     """
     > **NOTE on `max_keys`:** Retrieving very large numbers of keys can adversely affect this provider's performance.
 
@@ -120,17 +148,17 @@ def get_bucket_objects(bucket=None, delimiter=None, encoding_type=None, fetch_ow
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:s3/getBucketObjects:getBucketObjects', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:s3/getBucketObjects:getBucketObjects', __args__, opts=opts, typ=_GetBucketObjectsResult).value
 
     return AwaitableGetBucketObjectsResult(
-        bucket=__ret__.get('bucket'),
-        common_prefixes=__ret__.get('commonPrefixes'),
-        delimiter=__ret__.get('delimiter'),
-        encoding_type=__ret__.get('encodingType'),
-        fetch_owner=__ret__.get('fetchOwner'),
-        id=__ret__.get('id'),
-        keys=__ret__.get('keys'),
-        max_keys=__ret__.get('maxKeys'),
-        owners=__ret__.get('owners'),
-        prefix=__ret__.get('prefix'),
-        start_after=__ret__.get('startAfter'))
+        bucket=__ret__.bucket,
+        common_prefixes=__ret__.common_prefixes,
+        delimiter=__ret__.delimiter,
+        encoding_type=__ret__.encoding_type,
+        fetch_owner=__ret__.fetch_owner,
+        id=__ret__.id,
+        keys=__ret__.keys,
+        max_keys=__ret__.max_keys,
+        owners=__ret__.owners,
+        prefix=__ret__.prefix,
+        start_after=__ret__.start_after)

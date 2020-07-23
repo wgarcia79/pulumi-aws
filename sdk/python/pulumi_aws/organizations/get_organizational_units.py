@@ -5,8 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetOrganizationalUnitsResult',
+    'AwaitableGetOrganizationalUnitsResult',
+    'get_organizational_units',
+]
+
+
+@pulumi.output_type
+class _GetOrganizationalUnitsResult:
+    childrens: List['outputs.GetOrganizationalUnitsChildrenResult'] = pulumi.property("childrens")
+    id: str = pulumi.property("id")
+    parent_id: str = pulumi.property("parentId")
 
 
 class GetOrganizationalUnitsResult:
@@ -42,7 +56,8 @@ class AwaitableGetOrganizationalUnitsResult(GetOrganizationalUnitsResult):
             parent_id=self.parent_id)
 
 
-def get_organizational_units(parent_id=None, opts=None):
+def get_organizational_units(parent_id: Optional[str] = None,
+                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationalUnitsResult:
     """
     Get all direct child organizational units under a parent organizational unit. This only provides immediate children, not all children.
 
@@ -65,9 +80,9 @@ def get_organizational_units(parent_id=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:organizations/getOrganizationalUnits:getOrganizationalUnits', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:organizations/getOrganizationalUnits:getOrganizationalUnits', __args__, opts=opts, typ=_GetOrganizationalUnitsResult).value
 
     return AwaitableGetOrganizationalUnitsResult(
-        childrens=__ret__.get('childrens'),
-        id=__ret__.get('id'),
-        parent_id=__ret__.get('parentId'))
+        childrens=__ret__.childrens,
+        id=__ret__.id,
+        parent_id=__ret__.parent_id)

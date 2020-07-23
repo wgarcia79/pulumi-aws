@@ -5,8 +5,47 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetClusterResult',
+    'AwaitableGetClusterResult',
+    'get_cluster',
+]
+
+
+@pulumi.output_type
+class _GetClusterResult:
+    arn: str = pulumi.property("arn")
+    availability_zones: List[str] = pulumi.property("availabilityZones")
+    backtrack_window: float = pulumi.property("backtrackWindow")
+    backup_retention_period: float = pulumi.property("backupRetentionPeriod")
+    cluster_identifier: str = pulumi.property("clusterIdentifier")
+    cluster_members: List[str] = pulumi.property("clusterMembers")
+    cluster_resource_id: str = pulumi.property("clusterResourceId")
+    database_name: str = pulumi.property("databaseName")
+    db_cluster_parameter_group_name: str = pulumi.property("dbClusterParameterGroupName")
+    db_subnet_group_name: str = pulumi.property("dbSubnetGroupName")
+    enabled_cloudwatch_logs_exports: List[str] = pulumi.property("enabledCloudwatchLogsExports")
+    endpoint: str = pulumi.property("endpoint")
+    engine: str = pulumi.property("engine")
+    engine_version: str = pulumi.property("engineVersion")
+    final_snapshot_identifier: str = pulumi.property("finalSnapshotIdentifier")
+    hosted_zone_id: str = pulumi.property("hostedZoneId")
+    iam_database_authentication_enabled: bool = pulumi.property("iamDatabaseAuthenticationEnabled")
+    iam_roles: List[str] = pulumi.property("iamRoles")
+    id: str = pulumi.property("id")
+    kms_key_id: str = pulumi.property("kmsKeyId")
+    master_username: str = pulumi.property("masterUsername")
+    port: float = pulumi.property("port")
+    preferred_backup_window: str = pulumi.property("preferredBackupWindow")
+    preferred_maintenance_window: str = pulumi.property("preferredMaintenanceWindow")
+    reader_endpoint: str = pulumi.property("readerEndpoint")
+    replication_source_identifier: str = pulumi.property("replicationSourceIdentifier")
+    storage_encrypted: bool = pulumi.property("storageEncrypted")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    vpc_security_group_ids: List[str] = pulumi.property("vpcSecurityGroupIds")
 
 
 class GetClusterResult:
@@ -143,7 +182,9 @@ class AwaitableGetClusterResult(GetClusterResult):
             vpc_security_group_ids=self.vpc_security_group_ids)
 
 
-def get_cluster(cluster_identifier=None, tags=None, opts=None):
+def get_cluster(cluster_identifier: Optional[str] = None,
+                tags: Optional[Mapping[str, str]] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClusterResult:
     """
     Provides information about an RDS cluster.
 
@@ -166,35 +207,35 @@ def get_cluster(cluster_identifier=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:rds/getCluster:getCluster', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:rds/getCluster:getCluster', __args__, opts=opts, typ=_GetClusterResult).value
 
     return AwaitableGetClusterResult(
-        arn=__ret__.get('arn'),
-        availability_zones=__ret__.get('availabilityZones'),
-        backtrack_window=__ret__.get('backtrackWindow'),
-        backup_retention_period=__ret__.get('backupRetentionPeriod'),
-        cluster_identifier=__ret__.get('clusterIdentifier'),
-        cluster_members=__ret__.get('clusterMembers'),
-        cluster_resource_id=__ret__.get('clusterResourceId'),
-        database_name=__ret__.get('databaseName'),
-        db_cluster_parameter_group_name=__ret__.get('dbClusterParameterGroupName'),
-        db_subnet_group_name=__ret__.get('dbSubnetGroupName'),
-        enabled_cloudwatch_logs_exports=__ret__.get('enabledCloudwatchLogsExports'),
-        endpoint=__ret__.get('endpoint'),
-        engine=__ret__.get('engine'),
-        engine_version=__ret__.get('engineVersion'),
-        final_snapshot_identifier=__ret__.get('finalSnapshotIdentifier'),
-        hosted_zone_id=__ret__.get('hostedZoneId'),
-        iam_database_authentication_enabled=__ret__.get('iamDatabaseAuthenticationEnabled'),
-        iam_roles=__ret__.get('iamRoles'),
-        id=__ret__.get('id'),
-        kms_key_id=__ret__.get('kmsKeyId'),
-        master_username=__ret__.get('masterUsername'),
-        port=__ret__.get('port'),
-        preferred_backup_window=__ret__.get('preferredBackupWindow'),
-        preferred_maintenance_window=__ret__.get('preferredMaintenanceWindow'),
-        reader_endpoint=__ret__.get('readerEndpoint'),
-        replication_source_identifier=__ret__.get('replicationSourceIdentifier'),
-        storage_encrypted=__ret__.get('storageEncrypted'),
-        tags=__ret__.get('tags'),
-        vpc_security_group_ids=__ret__.get('vpcSecurityGroupIds'))
+        arn=__ret__.arn,
+        availability_zones=__ret__.availability_zones,
+        backtrack_window=__ret__.backtrack_window,
+        backup_retention_period=__ret__.backup_retention_period,
+        cluster_identifier=__ret__.cluster_identifier,
+        cluster_members=__ret__.cluster_members,
+        cluster_resource_id=__ret__.cluster_resource_id,
+        database_name=__ret__.database_name,
+        db_cluster_parameter_group_name=__ret__.db_cluster_parameter_group_name,
+        db_subnet_group_name=__ret__.db_subnet_group_name,
+        enabled_cloudwatch_logs_exports=__ret__.enabled_cloudwatch_logs_exports,
+        endpoint=__ret__.endpoint,
+        engine=__ret__.engine,
+        engine_version=__ret__.engine_version,
+        final_snapshot_identifier=__ret__.final_snapshot_identifier,
+        hosted_zone_id=__ret__.hosted_zone_id,
+        iam_database_authentication_enabled=__ret__.iam_database_authentication_enabled,
+        iam_roles=__ret__.iam_roles,
+        id=__ret__.id,
+        kms_key_id=__ret__.kms_key_id,
+        master_username=__ret__.master_username,
+        port=__ret__.port,
+        preferred_backup_window=__ret__.preferred_backup_window,
+        preferred_maintenance_window=__ret__.preferred_maintenance_window,
+        reader_endpoint=__ret__.reader_endpoint,
+        replication_source_identifier=__ret__.replication_source_identifier,
+        storage_encrypted=__ret__.storage_encrypted,
+        tags=__ret__.tags,
+        vpc_security_group_ids=__ret__.vpc_security_group_ids)

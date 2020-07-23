@@ -5,8 +5,24 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetVaultResult',
+    'AwaitableGetVaultResult',
+    'get_vault',
+]
+
+
+@pulumi.output_type
+class _GetVaultResult:
+    arn: str = pulumi.property("arn")
+    id: str = pulumi.property("id")
+    kms_key_arn: str = pulumi.property("kmsKeyArn")
+    name: str = pulumi.property("name")
+    recovery_points: float = pulumi.property("recoveryPoints")
+    tags: Mapping[str, str] = pulumi.property("tags")
 
 
 class GetVaultResult:
@@ -63,7 +79,9 @@ class AwaitableGetVaultResult(GetVaultResult):
             tags=self.tags)
 
 
-def get_vault(name=None, tags=None, opts=None):
+def get_vault(name: Optional[str] = None,
+              tags: Optional[Mapping[str, str]] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVaultResult:
     """
     Use this data source to get information on an existing backup vault.
 
@@ -78,7 +96,7 @@ def get_vault(name=None, tags=None, opts=None):
 
 
     :param str name: The name of the backup vault.
-    :param dict tags: Metadata that you can assign to help organize the resources that you create.
+    :param Mapping[str, str] tags: Metadata that you can assign to help organize the resources that you create.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -87,12 +105,12 @@ def get_vault(name=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:backup/getVault:getVault', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:backup/getVault:getVault', __args__, opts=opts, typ=_GetVaultResult).value
 
     return AwaitableGetVaultResult(
-        arn=__ret__.get('arn'),
-        id=__ret__.get('id'),
-        kms_key_arn=__ret__.get('kmsKeyArn'),
-        name=__ret__.get('name'),
-        recovery_points=__ret__.get('recoveryPoints'),
-        tags=__ret__.get('tags'))
+        arn=__ret__.arn,
+        id=__ret__.id,
+        kms_key_arn=__ret__.kms_key_arn,
+        name=__ret__.name,
+        recovery_points=__ret__.recovery_points,
+        tags=__ret__.tags)

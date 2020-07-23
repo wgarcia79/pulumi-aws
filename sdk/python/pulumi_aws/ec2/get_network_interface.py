@@ -5,8 +5,39 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetNetworkInterfaceResult',
+    'AwaitableGetNetworkInterfaceResult',
+    'get_network_interface',
+]
+
+
+@pulumi.output_type
+class _GetNetworkInterfaceResult:
+    associations: List['outputs.GetNetworkInterfaceAssociationResult'] = pulumi.property("associations")
+    attachments: List['outputs.GetNetworkInterfaceAttachmentResult'] = pulumi.property("attachments")
+    availability_zone: str = pulumi.property("availabilityZone")
+    description: str = pulumi.property("description")
+    filters: Optional[List['outputs.GetNetworkInterfaceFilterResult']] = pulumi.property("filters")
+    id: str = pulumi.property("id")
+    interface_type: str = pulumi.property("interfaceType")
+    ipv6_addresses: List[str] = pulumi.property("ipv6Addresses")
+    mac_address: str = pulumi.property("macAddress")
+    outpost_arn: str = pulumi.property("outpostArn")
+    owner_id: str = pulumi.property("ownerId")
+    private_dns_name: str = pulumi.property("privateDnsName")
+    private_ip: str = pulumi.property("privateIp")
+    private_ips: List[str] = pulumi.property("privateIps")
+    requester_id: str = pulumi.property("requesterId")
+    security_groups: List[str] = pulumi.property("securityGroups")
+    subnet_id: str = pulumi.property("subnetId")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    vpc_id: str = pulumi.property("vpcId")
 
 
 class GetNetworkInterfaceResult:
@@ -148,7 +179,10 @@ class AwaitableGetNetworkInterfaceResult(GetNetworkInterfaceResult):
             vpc_id=self.vpc_id)
 
 
-def get_network_interface(filters=None, id=None, tags=None, opts=None):
+def get_network_interface(filters: Optional[List[pulumi.InputType['GetNetworkInterfaceFilterArgs']]] = None,
+                          id: Optional[str] = None,
+                          tags: Optional[Mapping[str, str]] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNetworkInterfaceResult:
     """
     Use this data source to get information about a Network Interface.
 
@@ -162,14 +196,9 @@ def get_network_interface(filters=None, id=None, tags=None, opts=None):
     ```
 
 
-    :param list filters: One or more name/value pairs to filter off of. There are several valid keys, for a full reference, check out [describe-network-interfaces](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-network-interfaces.html) in the AWS CLI reference.
+    :param List[pulumi.InputType['GetNetworkInterfaceFilterArgs']] filters: One or more name/value pairs to filter off of. There are several valid keys, for a full reference, check out [describe-network-interfaces](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-network-interfaces.html) in the AWS CLI reference.
     :param str id: The identifier for the network interface.
-    :param dict tags: Any tags assigned to the network interface.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`)
-      * `values` (`list`)
+    :param Mapping[str, str] tags: Any tags assigned to the network interface.
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -179,25 +208,25 @@ def get_network_interface(filters=None, id=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getNetworkInterface:getNetworkInterface', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getNetworkInterface:getNetworkInterface', __args__, opts=opts, typ=_GetNetworkInterfaceResult).value
 
     return AwaitableGetNetworkInterfaceResult(
-        associations=__ret__.get('associations'),
-        attachments=__ret__.get('attachments'),
-        availability_zone=__ret__.get('availabilityZone'),
-        description=__ret__.get('description'),
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        interface_type=__ret__.get('interfaceType'),
-        ipv6_addresses=__ret__.get('ipv6Addresses'),
-        mac_address=__ret__.get('macAddress'),
-        outpost_arn=__ret__.get('outpostArn'),
-        owner_id=__ret__.get('ownerId'),
-        private_dns_name=__ret__.get('privateDnsName'),
-        private_ip=__ret__.get('privateIp'),
-        private_ips=__ret__.get('privateIps'),
-        requester_id=__ret__.get('requesterId'),
-        security_groups=__ret__.get('securityGroups'),
-        subnet_id=__ret__.get('subnetId'),
-        tags=__ret__.get('tags'),
-        vpc_id=__ret__.get('vpcId'))
+        associations=__ret__.associations,
+        attachments=__ret__.attachments,
+        availability_zone=__ret__.availability_zone,
+        description=__ret__.description,
+        filters=__ret__.filters,
+        id=__ret__.id,
+        interface_type=__ret__.interface_type,
+        ipv6_addresses=__ret__.ipv6_addresses,
+        mac_address=__ret__.mac_address,
+        outpost_arn=__ret__.outpost_arn,
+        owner_id=__ret__.owner_id,
+        private_dns_name=__ret__.private_dns_name,
+        private_ip=__ret__.private_ip,
+        private_ips=__ret__.private_ips,
+        requester_id=__ret__.requester_id,
+        security_groups=__ret__.security_groups,
+        subnet_id=__ret__.subnet_id,
+        tags=__ret__.tags,
+        vpc_id=__ret__.vpc_id)

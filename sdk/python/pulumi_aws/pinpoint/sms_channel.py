@@ -5,36 +5,53 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['SmsChannel']
 
 
 class SmsChannel(pulumi.CustomResource):
-    application_id: pulumi.Output[str]
+    application_id: pulumi.Output[str] = pulumi.property("applicationId")
     """
     The application ID.
     """
-    enabled: pulumi.Output[bool]
+
+    enabled: pulumi.Output[Optional[bool]] = pulumi.property("enabled")
     """
     Whether the channel is enabled or disabled. Defaults to `true`.
     """
-    promotional_messages_per_second: pulumi.Output[float]
+
+    promotional_messages_per_second: pulumi.Output[float] = pulumi.property("promotionalMessagesPerSecond")
     """
     Promotional messages per second that can be sent.
     """
-    sender_id: pulumi.Output[str]
+
+    sender_id: pulumi.Output[Optional[str]] = pulumi.property("senderId")
     """
     Sender identifier of your messages.
     """
-    short_code: pulumi.Output[str]
+
+    short_code: pulumi.Output[Optional[str]] = pulumi.property("shortCode")
     """
     The Short Code registered with the phone provider.
     """
-    transactional_messages_per_second: pulumi.Output[float]
+
+    transactional_messages_per_second: pulumi.Output[float] = pulumi.property("transactionalMessagesPerSecond")
     """
     Transactional messages per second that can be sent.
     """
-    def __init__(__self__, resource_name, opts=None, application_id=None, enabled=None, sender_id=None, short_code=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 application_id: Optional[pulumi.Input[str]] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 sender_id: Optional[pulumi.Input[str]] = None,
+                 short_code: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a Pinpoint SMS Channel resource.
 
@@ -87,7 +104,15 @@ class SmsChannel(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, application_id=None, enabled=None, promotional_messages_per_second=None, sender_id=None, short_code=None, transactional_messages_per_second=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            application_id: Optional[pulumi.Input[str]] = None,
+            enabled: Optional[pulumi.Input[bool]] = None,
+            promotional_messages_per_second: Optional[pulumi.Input[float]] = None,
+            sender_id: Optional[pulumi.Input[str]] = None,
+            short_code: Optional[pulumi.Input[str]] = None,
+            transactional_messages_per_second: Optional[pulumi.Input[float]] = None) -> 'SmsChannel':
         """
         Get an existing SmsChannel resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -119,3 +144,4 @@ class SmsChannel(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,8 +5,24 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetUserResult',
+    'AwaitableGetUserResult',
+    'get_user',
+]
+
+
+@pulumi.output_type
+class _GetUserResult:
+    arn: str = pulumi.property("arn")
+    id: str = pulumi.property("id")
+    path: str = pulumi.property("path")
+    permissions_boundary: str = pulumi.property("permissionsBoundary")
+    user_id: str = pulumi.property("userId")
+    user_name: str = pulumi.property("userName")
 
 
 class GetUserResult:
@@ -66,7 +82,8 @@ class AwaitableGetUserResult(GetUserResult):
             user_name=self.user_name)
 
 
-def get_user(user_name=None, opts=None):
+def get_user(user_name: Optional[str] = None,
+             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUserResult:
     """
     This data source can be used to fetch information about a specific
     IAM user. By using this data source, you can reference IAM user
@@ -90,12 +107,12 @@ def get_user(user_name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:iam/getUser:getUser', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:iam/getUser:getUser', __args__, opts=opts, typ=_GetUserResult).value
 
     return AwaitableGetUserResult(
-        arn=__ret__.get('arn'),
-        id=__ret__.get('id'),
-        path=__ret__.get('path'),
-        permissions_boundary=__ret__.get('permissionsBoundary'),
-        user_id=__ret__.get('userId'),
-        user_name=__ret__.get('userName'))
+        arn=__ret__.arn,
+        id=__ret__.id,
+        path=__ret__.path,
+        permissions_boundary=__ret__.permissions_boundary,
+        user_id=__ret__.user_id,
+        user_name=__ret__.user_name)

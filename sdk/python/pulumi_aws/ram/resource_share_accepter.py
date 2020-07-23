@@ -5,44 +5,60 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['ResourceShareAccepter']
 
 
 class ResourceShareAccepter(pulumi.CustomResource):
-    invitation_arn: pulumi.Output[str]
+    invitation_arn: pulumi.Output[str] = pulumi.property("invitationArn")
     """
     The ARN of the resource share invitation.
     """
-    receiver_account_id: pulumi.Output[str]
+
+    receiver_account_id: pulumi.Output[str] = pulumi.property("receiverAccountId")
     """
     The account ID of the receiver account which accepts the invitation.
     """
-    resources: pulumi.Output[list]
+
+    resources: pulumi.Output[List[str]] = pulumi.property("resources")
     """
     A list of the resource ARNs shared via the resource share.
     """
-    sender_account_id: pulumi.Output[str]
+
+    sender_account_id: pulumi.Output[str] = pulumi.property("senderAccountId")
     """
     The account ID of the sender account which submits the invitation.
     """
-    share_arn: pulumi.Output[str]
+
+    share_arn: pulumi.Output[str] = pulumi.property("shareArn")
     """
     The ARN of the resource share.
     """
-    share_id: pulumi.Output[str]
+
+    share_id: pulumi.Output[str] = pulumi.property("shareId")
     """
     The ID of the resource share as displayed in the console.
     """
-    share_name: pulumi.Output[str]
+
+    share_name: pulumi.Output[str] = pulumi.property("shareName")
     """
     The name of the resource share.
     """
-    status: pulumi.Output[str]
+
+    status: pulumi.Output[str] = pulumi.property("status")
     """
     The status of the resource share (ACTIVE, PENDING, FAILED, DELETING, DELETED).
     """
-    def __init__(__self__, resource_name, opts=None, share_arn=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 share_arn: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Manage accepting a Resource Access Manager (RAM) Resource Share invitation. From a _receiver_ AWS account, accept an invitation to share resources that were shared by a _sender_ AWS account. To create a resource share in the _sender_, see the `ram.ResourceShare` resource.
 
@@ -110,7 +126,17 @@ class ResourceShareAccepter(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, invitation_arn=None, receiver_account_id=None, resources=None, sender_account_id=None, share_arn=None, share_id=None, share_name=None, status=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            invitation_arn: Optional[pulumi.Input[str]] = None,
+            receiver_account_id: Optional[pulumi.Input[str]] = None,
+            resources: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            sender_account_id: Optional[pulumi.Input[str]] = None,
+            share_arn: Optional[pulumi.Input[str]] = None,
+            share_id: Optional[pulumi.Input[str]] = None,
+            share_name: Optional[pulumi.Input[str]] = None,
+            status: Optional[pulumi.Input[str]] = None) -> 'ResourceShareAccepter':
         """
         Get an existing ResourceShareAccepter resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -120,7 +146,7 @@ class ResourceShareAccepter(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] invitation_arn: The ARN of the resource share invitation.
         :param pulumi.Input[str] receiver_account_id: The account ID of the receiver account which accepts the invitation.
-        :param pulumi.Input[list] resources: A list of the resource ARNs shared via the resource share.
+        :param pulumi.Input[List[pulumi.Input[str]]] resources: A list of the resource ARNs shared via the resource share.
         :param pulumi.Input[str] sender_account_id: The account ID of the sender account which submits the invitation.
         :param pulumi.Input[str] share_arn: The ARN of the resource share.
         :param pulumi.Input[str] share_id: The ID of the resource share as displayed in the console.
@@ -146,3 +172,4 @@ class ResourceShareAccepter(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

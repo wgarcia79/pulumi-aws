@@ -5,8 +5,27 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetClusterResult',
+    'AwaitableGetClusterResult',
+    'get_cluster',
+]
+
+
+@pulumi.output_type
+class _GetClusterResult:
+    arn: str = pulumi.property("arn")
+    bootstrap_brokers: str = pulumi.property("bootstrapBrokers")
+    bootstrap_brokers_tls: str = pulumi.property("bootstrapBrokersTls")
+    cluster_name: str = pulumi.property("clusterName")
+    id: str = pulumi.property("id")
+    kafka_version: str = pulumi.property("kafkaVersion")
+    number_of_broker_nodes: float = pulumi.property("numberOfBrokerNodes")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    zookeeper_connect_string: str = pulumi.property("zookeeperConnectString")
 
 
 class GetClusterResult:
@@ -84,7 +103,9 @@ class AwaitableGetClusterResult(GetClusterResult):
             zookeeper_connect_string=self.zookeeper_connect_string)
 
 
-def get_cluster(cluster_name=None, tags=None, opts=None):
+def get_cluster(cluster_name: Optional[str] = None,
+                tags: Optional[Mapping[str, str]] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClusterResult:
     """
     Get information on an Amazon MSK Cluster.
 
@@ -99,7 +120,7 @@ def get_cluster(cluster_name=None, tags=None, opts=None):
 
 
     :param str cluster_name: Name of the cluster.
-    :param dict tags: Map of key-value pairs assigned to the cluster.
+    :param Mapping[str, str] tags: Map of key-value pairs assigned to the cluster.
     """
     __args__ = dict()
     __args__['clusterName'] = cluster_name
@@ -108,15 +129,15 @@ def get_cluster(cluster_name=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:msk/getCluster:getCluster', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:msk/getCluster:getCluster', __args__, opts=opts, typ=_GetClusterResult).value
 
     return AwaitableGetClusterResult(
-        arn=__ret__.get('arn'),
-        bootstrap_brokers=__ret__.get('bootstrapBrokers'),
-        bootstrap_brokers_tls=__ret__.get('bootstrapBrokersTls'),
-        cluster_name=__ret__.get('clusterName'),
-        id=__ret__.get('id'),
-        kafka_version=__ret__.get('kafkaVersion'),
-        number_of_broker_nodes=__ret__.get('numberOfBrokerNodes'),
-        tags=__ret__.get('tags'),
-        zookeeper_connect_string=__ret__.get('zookeeperConnectString'))
+        arn=__ret__.arn,
+        bootstrap_brokers=__ret__.bootstrap_brokers,
+        bootstrap_brokers_tls=__ret__.bootstrap_brokers_tls,
+        cluster_name=__ret__.cluster_name,
+        id=__ret__.id,
+        kafka_version=__ret__.kafka_version,
+        number_of_broker_nodes=__ret__.number_of_broker_nodes,
+        tags=__ret__.tags,
+        zookeeper_connect_string=__ret__.zookeeper_connect_string)

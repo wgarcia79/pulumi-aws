@@ -5,8 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetVpcAttachmentResult',
+    'AwaitableGetVpcAttachmentResult',
+    'get_vpc_attachment',
+]
+
+
+@pulumi.output_type
+class _GetVpcAttachmentResult:
+    dns_support: str = pulumi.property("dnsSupport")
+    filters: Optional[List['outputs.GetVpcAttachmentFilterResult']] = pulumi.property("filters")
+    id: Optional[str] = pulumi.property("id")
+    ipv6_support: str = pulumi.property("ipv6Support")
+    subnet_ids: List[str] = pulumi.property("subnetIds")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    transit_gateway_id: str = pulumi.property("transitGatewayId")
+    vpc_id: str = pulumi.property("vpcId")
+    vpc_owner_id: str = pulumi.property("vpcOwnerId")
 
 
 class GetVpcAttachmentResult:
@@ -84,7 +105,10 @@ class AwaitableGetVpcAttachmentResult(GetVpcAttachmentResult):
             vpc_owner_id=self.vpc_owner_id)
 
 
-def get_vpc_attachment(filters=None, id=None, tags=None, opts=None):
+def get_vpc_attachment(filters: Optional[List[pulumi.InputType['GetVpcAttachmentFilterArgs']]] = None,
+                       id: Optional[str] = None,
+                       tags: Optional[Mapping[str, str]] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcAttachmentResult:
     """
     Get information on an EC2 Transit Gateway VPC Attachment.
 
@@ -110,14 +134,9 @@ def get_vpc_attachment(filters=None, id=None, tags=None, opts=None):
     ```
 
 
-    :param list filters: One or more configuration blocks containing name-values filters. Detailed below.
+    :param List[pulumi.InputType['GetVpcAttachmentFilterArgs']] filters: One or more configuration blocks containing name-values filters. Detailed below.
     :param str id: Identifier of the EC2 Transit Gateway VPC Attachment.
-    :param dict tags: Key-value tags for the EC2 Transit Gateway VPC Attachment
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - Name of the filter.
-      * `values` (`list`) - List of one or more values for the filter.
+    :param Mapping[str, str] tags: Key-value tags for the EC2 Transit Gateway VPC Attachment
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -127,15 +146,15 @@ def get_vpc_attachment(filters=None, id=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2transitgateway/getVpcAttachment:getVpcAttachment', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2transitgateway/getVpcAttachment:getVpcAttachment', __args__, opts=opts, typ=_GetVpcAttachmentResult).value
 
     return AwaitableGetVpcAttachmentResult(
-        dns_support=__ret__.get('dnsSupport'),
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        ipv6_support=__ret__.get('ipv6Support'),
-        subnet_ids=__ret__.get('subnetIds'),
-        tags=__ret__.get('tags'),
-        transit_gateway_id=__ret__.get('transitGatewayId'),
-        vpc_id=__ret__.get('vpcId'),
-        vpc_owner_id=__ret__.get('vpcOwnerId'))
+        dns_support=__ret__.dns_support,
+        filters=__ret__.filters,
+        id=__ret__.id,
+        ipv6_support=__ret__.ipv6_support,
+        subnet_ids=__ret__.subnet_ids,
+        tags=__ret__.tags,
+        transit_gateway_id=__ret__.transit_gateway_id,
+        vpc_id=__ret__.vpc_id,
+        vpc_owner_id=__ret__.vpc_owner_id)

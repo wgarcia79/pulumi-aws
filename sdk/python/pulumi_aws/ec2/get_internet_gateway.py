@@ -5,8 +5,27 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetInternetGatewayResult',
+    'AwaitableGetInternetGatewayResult',
+    'get_internet_gateway',
+]
+
+
+@pulumi.output_type
+class _GetInternetGatewayResult:
+    arn: str = pulumi.property("arn")
+    attachments: List['outputs.GetInternetGatewayAttachmentResult'] = pulumi.property("attachments")
+    filters: Optional[List['outputs.GetInternetGatewayFilterResult']] = pulumi.property("filters")
+    id: str = pulumi.property("id")
+    internet_gateway_id: str = pulumi.property("internetGatewayId")
+    owner_id: str = pulumi.property("ownerId")
+    tags: Mapping[str, str] = pulumi.property("tags")
 
 
 class GetInternetGatewayResult:
@@ -61,7 +80,10 @@ class AwaitableGetInternetGatewayResult(GetInternetGatewayResult):
             tags=self.tags)
 
 
-def get_internet_gateway(filters=None, internet_gateway_id=None, tags=None, opts=None):
+def get_internet_gateway(filters: Optional[List[pulumi.InputType['GetInternetGatewayFilterArgs']]] = None,
+                         internet_gateway_id: Optional[str] = None,
+                         tags: Optional[Mapping[str, str]] = None,
+                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInternetGatewayResult:
     """
     `ec2.InternetGateway` provides details about a specific Internet Gateway.
 
@@ -80,17 +102,10 @@ def get_internet_gateway(filters=None, internet_gateway_id=None, tags=None, opts
     ```
 
 
-    :param list filters: Custom filter block as described below.
+    :param List[pulumi.InputType['GetInternetGatewayFilterArgs']] filters: Custom filter block as described below.
     :param str internet_gateway_id: The id of the specific Internet Gateway to retrieve.
-    :param dict tags: A map of tags, each pair of which must exactly match
+    :param Mapping[str, str] tags: A map of tags, each pair of which must exactly match
            a pair on the desired Internet Gateway.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter by, as defined by
-        [the underlying AWS API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInternetGateways.html).
-      * `values` (`list`) - Set of values that are accepted for the given field.
-        An Internet Gateway will be selected if any one of the given values matches.
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -100,13 +115,13 @@ def get_internet_gateway(filters=None, internet_gateway_id=None, tags=None, opts
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getInternetGateway:getInternetGateway', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getInternetGateway:getInternetGateway', __args__, opts=opts, typ=_GetInternetGatewayResult).value
 
     return AwaitableGetInternetGatewayResult(
-        arn=__ret__.get('arn'),
-        attachments=__ret__.get('attachments'),
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        internet_gateway_id=__ret__.get('internetGatewayId'),
-        owner_id=__ret__.get('ownerId'),
-        tags=__ret__.get('tags'))
+        arn=__ret__.arn,
+        attachments=__ret__.attachments,
+        filters=__ret__.filters,
+        id=__ret__.id,
+        internet_gateway_id=__ret__.internet_gateway_id,
+        owner_id=__ret__.owner_id,
+        tags=__ret__.tags)

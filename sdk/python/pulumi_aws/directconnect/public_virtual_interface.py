@@ -5,61 +5,91 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['PublicVirtualInterface']
 
 
 class PublicVirtualInterface(pulumi.CustomResource):
-    address_family: pulumi.Output[str]
+    address_family: pulumi.Output[str] = pulumi.property("addressFamily")
     """
     The address family for the BGP peer. `ipv4 ` or `ipv6`.
     """
-    amazon_address: pulumi.Output[str]
+
+    amazon_address: pulumi.Output[str] = pulumi.property("amazonAddress")
     """
     The IPv4 CIDR address to use to send traffic to Amazon. Required for IPv4 BGP peers.
     """
-    amazon_side_asn: pulumi.Output[str]
-    arn: pulumi.Output[str]
+
+    amazon_side_asn: pulumi.Output[str] = pulumi.property("amazonSideAsn")
+
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     The ARN of the virtual interface.
     """
-    aws_device: pulumi.Output[str]
+
+    aws_device: pulumi.Output[str] = pulumi.property("awsDevice")
     """
     The Direct Connect endpoint on which the virtual interface terminates.
     """
-    bgp_asn: pulumi.Output[float]
+
+    bgp_asn: pulumi.Output[float] = pulumi.property("bgpAsn")
     """
     The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
     """
-    bgp_auth_key: pulumi.Output[str]
+
+    bgp_auth_key: pulumi.Output[str] = pulumi.property("bgpAuthKey")
     """
     The authentication key for BGP configuration.
     """
-    connection_id: pulumi.Output[str]
+
+    connection_id: pulumi.Output[str] = pulumi.property("connectionId")
     """
     The ID of the Direct Connect connection (or LAG) on which to create the virtual interface.
     """
-    customer_address: pulumi.Output[str]
+
+    customer_address: pulumi.Output[str] = pulumi.property("customerAddress")
     """
     The IPv4 CIDR destination address to which Amazon should send traffic. Required for IPv4 BGP peers.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name for the virtual interface.
     """
-    route_filter_prefixes: pulumi.Output[list]
+
+    route_filter_prefixes: pulumi.Output[List[str]] = pulumi.property("routeFilterPrefixes")
     """
     A list of routes to be advertised to the AWS network in this region.
     """
-    tags: pulumi.Output[dict]
+
+    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
     """
     A map of tags to assign to the resource.
     """
-    vlan: pulumi.Output[float]
+
+    vlan: pulumi.Output[float] = pulumi.property("vlan")
     """
     The VLAN ID.
     """
-    def __init__(__self__, resource_name, opts=None, address_family=None, amazon_address=None, bgp_asn=None, bgp_auth_key=None, connection_id=None, customer_address=None, name=None, route_filter_prefixes=None, tags=None, vlan=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 address_family: Optional[pulumi.Input[str]] = None,
+                 amazon_address: Optional[pulumi.Input[str]] = None,
+                 bgp_asn: Optional[pulumi.Input[float]] = None,
+                 bgp_auth_key: Optional[pulumi.Input[str]] = None,
+                 connection_id: Optional[pulumi.Input[str]] = None,
+                 customer_address: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 route_filter_prefixes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 vlan: Optional[pulumi.Input[float]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a Direct Connect public virtual interface resource.
 
@@ -91,8 +121,8 @@ class PublicVirtualInterface(pulumi.CustomResource):
         :param pulumi.Input[str] connection_id: The ID of the Direct Connect connection (or LAG) on which to create the virtual interface.
         :param pulumi.Input[str] customer_address: The IPv4 CIDR destination address to which Amazon should send traffic. Required for IPv4 BGP peers.
         :param pulumi.Input[str] name: The name for the virtual interface.
-        :param pulumi.Input[list] route_filter_prefixes: A list of routes to be advertised to the AWS network in this region.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[List[pulumi.Input[str]]] route_filter_prefixes: A list of routes to be advertised to the AWS network in this region.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[float] vlan: The VLAN ID.
         """
         if __name__ is not None:
@@ -142,7 +172,22 @@ class PublicVirtualInterface(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, address_family=None, amazon_address=None, amazon_side_asn=None, arn=None, aws_device=None, bgp_asn=None, bgp_auth_key=None, connection_id=None, customer_address=None, name=None, route_filter_prefixes=None, tags=None, vlan=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            address_family: Optional[pulumi.Input[str]] = None,
+            amazon_address: Optional[pulumi.Input[str]] = None,
+            amazon_side_asn: Optional[pulumi.Input[str]] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            aws_device: Optional[pulumi.Input[str]] = None,
+            bgp_asn: Optional[pulumi.Input[float]] = None,
+            bgp_auth_key: Optional[pulumi.Input[str]] = None,
+            connection_id: Optional[pulumi.Input[str]] = None,
+            customer_address: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            route_filter_prefixes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            vlan: Optional[pulumi.Input[float]] = None) -> 'PublicVirtualInterface':
         """
         Get an existing PublicVirtualInterface resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -159,8 +204,8 @@ class PublicVirtualInterface(pulumi.CustomResource):
         :param pulumi.Input[str] connection_id: The ID of the Direct Connect connection (or LAG) on which to create the virtual interface.
         :param pulumi.Input[str] customer_address: The IPv4 CIDR destination address to which Amazon should send traffic. Required for IPv4 BGP peers.
         :param pulumi.Input[str] name: The name for the virtual interface.
-        :param pulumi.Input[list] route_filter_prefixes: A list of routes to be advertised to the AWS network in this region.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[List[pulumi.Input[str]]] route_filter_prefixes: A list of routes to be advertised to the AWS network in this region.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[float] vlan: The VLAN ID.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -187,3 +232,4 @@ class PublicVirtualInterface(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

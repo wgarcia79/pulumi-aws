@@ -5,8 +5,24 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetAutoscalingGroupsResult',
+    'AwaitableGetAutoscalingGroupsResult',
+    'get_autoscaling_groups',
+]
+
+
+@pulumi.output_type
+class _GetAutoscalingGroupsResult:
+    arns: List[str] = pulumi.property("arns")
+    filters: Optional[List['outputs.GetAutoscalingGroupsFilterResult']] = pulumi.property("filters")
+    id: str = pulumi.property("id")
+    names: List[str] = pulumi.property("names")
 
 
 class GetAutoscalingGroupsResult:
@@ -49,7 +65,8 @@ class AwaitableGetAutoscalingGroupsResult(GetAutoscalingGroupsResult):
             names=self.names)
 
 
-def get_autoscaling_groups(filters=None, opts=None):
+def get_autoscaling_groups(filters: Optional[List[pulumi.InputType['GetAutoscalingGroupsFilterArgs']]] = None,
+                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAutoscalingGroupsResult:
     """
     The Autoscaling Groups data source allows access to the list of AWS
     ASGs within a specific region. This will allow you to pass a list of AutoScaling Groups to other resources.
@@ -82,12 +99,7 @@ def get_autoscaling_groups(filters=None, opts=None):
     ```
 
 
-    :param list filters: A filter used to scope the list e.g. by tags. See [related docs](http://docs.aws.amazon.com/AutoScaling/latest/APIReference/API_Filter.html).
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the filter. The valid values are: `auto-scaling-group`, `key`, `value`, and `propagate-at-launch`.
-      * `values` (`list`) - The value of the filter.
+    :param List[pulumi.InputType['GetAutoscalingGroupsFilterArgs']] filters: A filter used to scope the list e.g. by tags. See [related docs](http://docs.aws.amazon.com/AutoScaling/latest/APIReference/API_Filter.html).
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -95,10 +107,10 @@ def get_autoscaling_groups(filters=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:index/getAutoscalingGroups:getAutoscalingGroups', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:index/getAutoscalingGroups:getAutoscalingGroups', __args__, opts=opts, typ=_GetAutoscalingGroupsResult).value
 
     return AwaitableGetAutoscalingGroupsResult(
-        arns=__ret__.get('arns'),
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        names=__ret__.get('names'))
+        arns=__ret__.arns,
+        filters=__ret__.filters,
+        id=__ret__.id,
+        names=__ret__.names)

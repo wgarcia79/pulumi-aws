@@ -5,8 +5,44 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetFunctionResult',
+    'AwaitableGetFunctionResult',
+    'get_function',
+]
+
+
+@pulumi.output_type
+class _GetFunctionResult:
+    arn: str = pulumi.property("arn")
+    dead_letter_config: 'outputs.GetFunctionDeadLetterConfigResult' = pulumi.property("deadLetterConfig")
+    description: str = pulumi.property("description")
+    environment: 'outputs.GetFunctionEnvironmentResult' = pulumi.property("environment")
+    file_system_configs: List['outputs.GetFunctionFileSystemConfigResult'] = pulumi.property("fileSystemConfigs")
+    function_name: str = pulumi.property("functionName")
+    handler: str = pulumi.property("handler")
+    id: str = pulumi.property("id")
+    invoke_arn: str = pulumi.property("invokeArn")
+    kms_key_arn: str = pulumi.property("kmsKeyArn")
+    last_modified: str = pulumi.property("lastModified")
+    layers: List[str] = pulumi.property("layers")
+    memory_size: float = pulumi.property("memorySize")
+    qualified_arn: str = pulumi.property("qualifiedArn")
+    qualifier: Optional[str] = pulumi.property("qualifier")
+    reserved_concurrent_executions: float = pulumi.property("reservedConcurrentExecutions")
+    role: str = pulumi.property("role")
+    runtime: str = pulumi.property("runtime")
+    source_code_hash: str = pulumi.property("sourceCodeHash")
+    source_code_size: float = pulumi.property("sourceCodeSize")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    timeout: float = pulumi.property("timeout")
+    tracing_config: 'outputs.GetFunctionTracingConfigResult' = pulumi.property("tracingConfig")
+    version: str = pulumi.property("version")
+    vpc_config: 'outputs.GetFunctionVpcConfigResult' = pulumi.property("vpcConfig")
 
 
 class GetFunctionResult:
@@ -190,7 +226,10 @@ class AwaitableGetFunctionResult(GetFunctionResult):
             vpc_config=self.vpc_config)
 
 
-def get_function(function_name=None, qualifier=None, tags=None, opts=None):
+def get_function(function_name: Optional[str] = None,
+                 qualifier: Optional[str] = None,
+                 tags: Optional[Mapping[str, str]] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFunctionResult:
     """
     Provides information about a Lambda Function.
 
@@ -217,31 +256,31 @@ def get_function(function_name=None, qualifier=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:lambda/getFunction:getFunction', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:lambda/getFunction:getFunction', __args__, opts=opts, typ=_GetFunctionResult).value
 
     return AwaitableGetFunctionResult(
-        arn=__ret__.get('arn'),
-        dead_letter_config=__ret__.get('deadLetterConfig'),
-        description=__ret__.get('description'),
-        environment=__ret__.get('environment'),
-        file_system_configs=__ret__.get('fileSystemConfigs'),
-        function_name=__ret__.get('functionName'),
-        handler=__ret__.get('handler'),
-        id=__ret__.get('id'),
-        invoke_arn=__ret__.get('invokeArn'),
-        kms_key_arn=__ret__.get('kmsKeyArn'),
-        last_modified=__ret__.get('lastModified'),
-        layers=__ret__.get('layers'),
-        memory_size=__ret__.get('memorySize'),
-        qualified_arn=__ret__.get('qualifiedArn'),
-        qualifier=__ret__.get('qualifier'),
-        reserved_concurrent_executions=__ret__.get('reservedConcurrentExecutions'),
-        role=__ret__.get('role'),
-        runtime=__ret__.get('runtime'),
-        source_code_hash=__ret__.get('sourceCodeHash'),
-        source_code_size=__ret__.get('sourceCodeSize'),
-        tags=__ret__.get('tags'),
-        timeout=__ret__.get('timeout'),
-        tracing_config=__ret__.get('tracingConfig'),
-        version=__ret__.get('version'),
-        vpc_config=__ret__.get('vpcConfig'))
+        arn=__ret__.arn,
+        dead_letter_config=__ret__.dead_letter_config,
+        description=__ret__.description,
+        environment=__ret__.environment,
+        file_system_configs=__ret__.file_system_configs,
+        function_name=__ret__.function_name,
+        handler=__ret__.handler,
+        id=__ret__.id,
+        invoke_arn=__ret__.invoke_arn,
+        kms_key_arn=__ret__.kms_key_arn,
+        last_modified=__ret__.last_modified,
+        layers=__ret__.layers,
+        memory_size=__ret__.memory_size,
+        qualified_arn=__ret__.qualified_arn,
+        qualifier=__ret__.qualifier,
+        reserved_concurrent_executions=__ret__.reserved_concurrent_executions,
+        role=__ret__.role,
+        runtime=__ret__.runtime,
+        source_code_hash=__ret__.source_code_hash,
+        source_code_size=__ret__.source_code_size,
+        tags=__ret__.tags,
+        timeout=__ret__.timeout,
+        tracing_config=__ret__.tracing_config,
+        version=__ret__.version,
+        vpc_config=__ret__.vpc_config)

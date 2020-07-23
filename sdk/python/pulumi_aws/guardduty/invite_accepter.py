@@ -5,20 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['InviteAccepter']
 
 
 class InviteAccepter(pulumi.CustomResource):
-    detector_id: pulumi.Output[str]
+    detector_id: pulumi.Output[str] = pulumi.property("detectorId")
     """
     The detector ID of the member GuardDuty account.
     """
-    master_account_id: pulumi.Output[str]
+
+    master_account_id: pulumi.Output[str] = pulumi.property("masterAccountId")
     """
     AWS account ID for master account.
     """
-    def __init__(__self__, resource_name, opts=None, detector_id=None, master_account_id=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 detector_id: Optional[pulumi.Input[str]] = None,
+                 master_account_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a resource to accept a pending GuardDuty invite on creation, ensure the detector has the correct master account on read, and disassociate with the master account upon removal.
 
@@ -77,7 +88,11 @@ class InviteAccepter(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, detector_id=None, master_account_id=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            detector_id: Optional[pulumi.Input[str]] = None,
+            master_account_id: Optional[pulumi.Input[str]] = None) -> 'InviteAccepter':
         """
         Get an existing InviteAccepter resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -101,3 +116,4 @@ class InviteAccepter(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

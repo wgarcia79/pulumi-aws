@@ -5,56 +5,84 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['Volume']
 
 
 class Volume(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     The volume ARN (e.g. arn:aws:ec2:us-east-1:0123456789012:volume/vol-59fcb34e).
     """
-    availability_zone: pulumi.Output[str]
+
+    availability_zone: pulumi.Output[str] = pulumi.property("availabilityZone")
     """
     The AZ where the EBS volume will exist.
     """
-    encrypted: pulumi.Output[bool]
+
+    encrypted: pulumi.Output[bool] = pulumi.property("encrypted")
     """
     If true, the disk will be encrypted.
     """
-    iops: pulumi.Output[float]
+
+    iops: pulumi.Output[float] = pulumi.property("iops")
     """
     The amount of IOPS to provision for the disk.
     """
-    kms_key_id: pulumi.Output[str]
+
+    kms_key_id: pulumi.Output[str] = pulumi.property("kmsKeyId")
     """
     The ARN for the KMS encryption key. When specifying `kms_key_id`, `encrypted` needs to be set to true.
     """
-    multi_attach_enabled: pulumi.Output[bool]
+
+    multi_attach_enabled: pulumi.Output[Optional[bool]] = pulumi.property("multiAttachEnabled")
     """
     Specifies whether to enable Amazon EBS Multi-Attach. Multi-Attach is supported exclusively on `io1` volumes.
     """
-    outpost_arn: pulumi.Output[str]
+
+    outpost_arn: pulumi.Output[Optional[str]] = pulumi.property("outpostArn")
     """
     The Amazon Resource Name (ARN) of the Outpost.
     """
-    size: pulumi.Output[float]
+
+    size: pulumi.Output[float] = pulumi.property("size")
     """
     The size of the drive in GiBs.
     """
-    snapshot_id: pulumi.Output[str]
+
+    snapshot_id: pulumi.Output[str] = pulumi.property("snapshotId")
     """
     A snapshot to base the EBS volume off of.
     """
-    tags: pulumi.Output[dict]
+
+    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
     """
     A map of tags to assign to the resource.
     """
-    type: pulumi.Output[str]
+
+    type: pulumi.Output[str] = pulumi.property("type")
     """
     The type of EBS volume. Can be "standard", "gp2", "io1", "sc1" or "st1" (Default: "gp2").
     """
-    def __init__(__self__, resource_name, opts=None, availability_zone=None, encrypted=None, iops=None, kms_key_id=None, multi_attach_enabled=None, outpost_arn=None, size=None, snapshot_id=None, tags=None, type=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 availability_zone: Optional[pulumi.Input[str]] = None,
+                 encrypted: Optional[pulumi.Input[bool]] = None,
+                 iops: Optional[pulumi.Input[float]] = None,
+                 kms_key_id: Optional[pulumi.Input[str]] = None,
+                 multi_attach_enabled: Optional[pulumi.Input[bool]] = None,
+                 outpost_arn: Optional[pulumi.Input[str]] = None,
+                 size: Optional[pulumi.Input[float]] = None,
+                 snapshot_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Manages a single EBS volume.
 
@@ -84,7 +112,7 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[str] outpost_arn: The Amazon Resource Name (ARN) of the Outpost.
         :param pulumi.Input[float] size: The size of the drive in GiBs.
         :param pulumi.Input[str] snapshot_id: A snapshot to base the EBS volume off of.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[str] type: The type of EBS volume. Can be "standard", "gp2", "io1", "sc1" or "st1" (Default: "gp2").
         """
         if __name__ is not None:
@@ -124,7 +152,20 @@ class Volume(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, availability_zone=None, encrypted=None, iops=None, kms_key_id=None, multi_attach_enabled=None, outpost_arn=None, size=None, snapshot_id=None, tags=None, type=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            availability_zone: Optional[pulumi.Input[str]] = None,
+            encrypted: Optional[pulumi.Input[bool]] = None,
+            iops: Optional[pulumi.Input[float]] = None,
+            kms_key_id: Optional[pulumi.Input[str]] = None,
+            multi_attach_enabled: Optional[pulumi.Input[bool]] = None,
+            outpost_arn: Optional[pulumi.Input[str]] = None,
+            size: Optional[pulumi.Input[float]] = None,
+            snapshot_id: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            type: Optional[pulumi.Input[str]] = None) -> 'Volume':
         """
         Get an existing Volume resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -141,7 +182,7 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[str] outpost_arn: The Amazon Resource Name (ARN) of the Outpost.
         :param pulumi.Input[float] size: The size of the drive in GiBs.
         :param pulumi.Input[str] snapshot_id: A snapshot to base the EBS volume off of.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[str] type: The type of EBS volume. Can be "standard", "gp2", "io1", "sc1" or "st1" (Default: "gp2").
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -166,3 +207,4 @@ class Volume(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

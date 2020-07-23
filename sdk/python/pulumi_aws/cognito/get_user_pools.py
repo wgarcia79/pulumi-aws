@@ -5,8 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetUserPoolsResult',
+    'AwaitableGetUserPoolsResult',
+    'get_user_pools',
+]
+
+
+@pulumi.output_type
+class _GetUserPoolsResult:
+    arns: List[str] = pulumi.property("arns")
+    id: str = pulumi.property("id")
+    ids: List[str] = pulumi.property("ids")
+    name: str = pulumi.property("name")
 
 
 class GetUserPoolsResult:
@@ -46,7 +60,8 @@ class AwaitableGetUserPoolsResult(GetUserPoolsResult):
             name=self.name)
 
 
-def get_user_pools(name=None, opts=None):
+def get_user_pools(name: Optional[str] = None,
+                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUserPoolsResult:
     """
     Use this data source to get a list of cognito user pools.
 
@@ -73,10 +88,10 @@ def get_user_pools(name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:cognito/getUserPools:getUserPools', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:cognito/getUserPools:getUserPools', __args__, opts=opts, typ=_GetUserPoolsResult).value
 
     return AwaitableGetUserPoolsResult(
-        arns=__ret__.get('arns'),
-        id=__ret__.get('id'),
-        ids=__ret__.get('ids'),
-        name=__ret__.get('name'))
+        arns=__ret__.arns,
+        id=__ret__.id,
+        ids=__ret__.ids,
+        name=__ret__.name)

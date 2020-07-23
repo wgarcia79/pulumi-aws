@@ -5,8 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetSolutionStackResult',
+    'AwaitableGetSolutionStackResult',
+    'get_solution_stack',
+]
+
+
+@pulumi.output_type
+class _GetSolutionStackResult:
+    id: str = pulumi.property("id")
+    most_recent: Optional[bool] = pulumi.property("mostRecent")
+    name: str = pulumi.property("name")
+    name_regex: str = pulumi.property("nameRegex")
 
 
 class GetSolutionStackResult:
@@ -46,7 +60,9 @@ class AwaitableGetSolutionStackResult(GetSolutionStackResult):
             name_regex=self.name_regex)
 
 
-def get_solution_stack(most_recent=None, name_regex=None, opts=None):
+def get_solution_stack(most_recent: Optional[bool] = None,
+                       name_regex: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSolutionStackResult:
     """
     Use this data source to get the name of a elastic beanstalk solution stack.
 
@@ -74,10 +90,10 @@ def get_solution_stack(most_recent=None, name_regex=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:elasticbeanstalk/getSolutionStack:getSolutionStack', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:elasticbeanstalk/getSolutionStack:getSolutionStack', __args__, opts=opts, typ=_GetSolutionStackResult).value
 
     return AwaitableGetSolutionStackResult(
-        id=__ret__.get('id'),
-        most_recent=__ret__.get('mostRecent'),
-        name=__ret__.get('name'),
-        name_regex=__ret__.get('nameRegex'))
+        id=__ret__.id,
+        most_recent=__ret__.most_recent,
+        name=__ret__.name,
+        name_regex=__ret__.name_regex)

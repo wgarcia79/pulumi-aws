@@ -5,8 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetSecretResult',
+    'AwaitableGetSecretResult',
+    'get_secret',
+]
+
+
+@pulumi.output_type
+class _GetSecretResult:
+    arn: str = pulumi.property("arn")
+    description: str = pulumi.property("description")
+    id: str = pulumi.property("id")
+    kms_key_id: str = pulumi.property("kmsKeyId")
+    name: str = pulumi.property("name")
+    policy: str = pulumi.property("policy")
+    rotation_enabled: bool = pulumi.property("rotationEnabled")
+    rotation_lambda_arn: str = pulumi.property("rotationLambdaArn")
+    rotation_rules: List['outputs.GetSecretRotationRuleResult'] = pulumi.property("rotationRules")
+    tags: Mapping[str, str] = pulumi.property("tags")
 
 
 class GetSecretResult:
@@ -103,7 +124,9 @@ class AwaitableGetSecretResult(GetSecretResult):
             tags=self.tags)
 
 
-def get_secret(arn=None, name=None, opts=None):
+def get_secret(arn: Optional[str] = None,
+               name: Optional[str] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretResult:
     """
     Retrieve metadata information about a Secrets Manager secret. To retrieve a secret value, see the `secretsmanager.SecretVersion`.
 
@@ -136,16 +159,16 @@ def get_secret(arn=None, name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:secretsmanager/getSecret:getSecret', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:secretsmanager/getSecret:getSecret', __args__, opts=opts, typ=_GetSecretResult).value
 
     return AwaitableGetSecretResult(
-        arn=__ret__.get('arn'),
-        description=__ret__.get('description'),
-        id=__ret__.get('id'),
-        kms_key_id=__ret__.get('kmsKeyId'),
-        name=__ret__.get('name'),
-        policy=__ret__.get('policy'),
-        rotation_enabled=__ret__.get('rotationEnabled'),
-        rotation_lambda_arn=__ret__.get('rotationLambdaArn'),
-        rotation_rules=__ret__.get('rotationRules'),
-        tags=__ret__.get('tags'))
+        arn=__ret__.arn,
+        description=__ret__.description,
+        id=__ret__.id,
+        kms_key_id=__ret__.kms_key_id,
+        name=__ret__.name,
+        policy=__ret__.policy,
+        rotation_enabled=__ret__.rotation_enabled,
+        rotation_lambda_arn=__ret__.rotation_lambda_arn,
+        rotation_rules=__ret__.rotation_rules,
+        tags=__ret__.tags)

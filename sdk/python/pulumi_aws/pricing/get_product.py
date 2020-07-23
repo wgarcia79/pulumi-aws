@@ -5,8 +5,24 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetProductResult',
+    'AwaitableGetProductResult',
+    'get_product',
+]
+
+
+@pulumi.output_type
+class _GetProductResult:
+    filters: List['outputs.GetProductFilterResult'] = pulumi.property("filters")
+    id: str = pulumi.property("id")
+    result: str = pulumi.property("result")
+    service_code: str = pulumi.property("serviceCode")
 
 
 class GetProductResult:
@@ -46,7 +62,9 @@ class AwaitableGetProductResult(GetProductResult):
             service_code=self.service_code)
 
 
-def get_product(filters=None, service_code=None, opts=None):
+def get_product(filters: Optional[List[pulumi.InputType['GetProductFilterArgs']]] = None,
+                service_code: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProductResult:
     """
     Use this data source to get the pricing information of all products in AWS.
     This data source is only available in a us-east-1 or ap-south-1 provider.
@@ -108,13 +126,8 @@ def get_product(filters=None, service_code=None, opts=None):
     ```
 
 
-    :param list filters: A list of filters. Passed directly to the API (see GetProducts API reference). These filters must describe a single product, this resource will fail if more than one product is returned by the API.
+    :param List[pulumi.InputType['GetProductFilterArgs']] filters: A list of filters. Passed directly to the API (see GetProducts API reference). These filters must describe a single product, this resource will fail if more than one product is returned by the API.
     :param str service_code: The code of the service. Available service codes can be fetched using the DescribeServices pricing API call.
-
-    The **filters** object supports the following:
-
-      * `field` (`str`) - The product attribute name that you want to filter on.
-      * `value` (`str`) - The product attribute value that you want to filter on.
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -123,10 +136,10 @@ def get_product(filters=None, service_code=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:pricing/getProduct:getProduct', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:pricing/getProduct:getProduct', __args__, opts=opts, typ=_GetProductResult).value
 
     return AwaitableGetProductResult(
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        result=__ret__.get('result'),
-        service_code=__ret__.get('serviceCode'))
+        filters=__ret__.filters,
+        id=__ret__.id,
+        result=__ret__.result,
+        service_code=__ret__.service_code)

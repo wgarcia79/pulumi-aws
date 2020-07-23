@@ -5,8 +5,24 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetLocalGatewayRouteTablesResult',
+    'AwaitableGetLocalGatewayRouteTablesResult',
+    'get_local_gateway_route_tables',
+]
+
+
+@pulumi.output_type
+class _GetLocalGatewayRouteTablesResult:
+    filters: Optional[List['outputs.GetLocalGatewayRouteTablesFilterResult']] = pulumi.property("filters")
+    id: str = pulumi.property("id")
+    ids: List[str] = pulumi.property("ids")
+    tags: Mapping[str, str] = pulumi.property("tags")
 
 
 class GetLocalGatewayRouteTablesResult:
@@ -46,21 +62,16 @@ class AwaitableGetLocalGatewayRouteTablesResult(GetLocalGatewayRouteTablesResult
             tags=self.tags)
 
 
-def get_local_gateway_route_tables(filters=None, tags=None, opts=None):
+def get_local_gateway_route_tables(filters: Optional[List[pulumi.InputType['GetLocalGatewayRouteTablesFilterArgs']]] = None,
+                                   tags: Optional[Mapping[str, str]] = None,
+                                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLocalGatewayRouteTablesResult:
     """
     Provides information for multiple EC2 Local Gateway Route Tables, such as their identifiers.
 
 
-    :param list filters: Custom filter block as described below.
-    :param dict tags: A mapping of tags, each pair of which must exactly match
+    :param List[pulumi.InputType['GetLocalGatewayRouteTablesFilterArgs']] filters: Custom filter block as described below.
+    :param Mapping[str, str] tags: A mapping of tags, each pair of which must exactly match
            a pair on the desired local gateway route table.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter by, as defined by
-        [the underlying AWS API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeLocalGatewayRouteTables.html).
-      * `values` (`list`) - Set of values that are accepted for the given field.
-        A Local Gateway Route Table will be selected if any one of the given values matches.
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -69,10 +80,10 @@ def get_local_gateway_route_tables(filters=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getLocalGatewayRouteTables:getLocalGatewayRouteTables', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getLocalGatewayRouteTables:getLocalGatewayRouteTables', __args__, opts=opts, typ=_GetLocalGatewayRouteTablesResult).value
 
     return AwaitableGetLocalGatewayRouteTablesResult(
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        ids=__ret__.get('ids'),
-        tags=__ret__.get('tags'))
+        filters=__ret__.filters,
+        id=__ret__.id,
+        ids=__ret__.ids,
+        tags=__ret__.tags)

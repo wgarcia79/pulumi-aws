@@ -5,22 +5,33 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['ProxyProtocolPolicy']
 
 
 class ProxyProtocolPolicy(pulumi.CustomResource):
-    instance_ports: pulumi.Output[list]
+    instance_ports: pulumi.Output[List[str]] = pulumi.property("instancePorts")
     """
     List of instance ports to which the policy
     should be applied. This can be specified if the protocol is SSL or TCP.
     """
-    load_balancer: pulumi.Output[str]
+
+    load_balancer: pulumi.Output[str] = pulumi.property("loadBalancer")
     """
     The load balancer to which the policy
     should be attached.
     """
-    def __init__(__self__, resource_name, opts=None, instance_ports=None, load_balancer=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 instance_ports: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 load_balancer: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a proxy protocol policy, which allows an ELB to carry a client connection information to a backend.
 
@@ -56,7 +67,7 @@ class ProxyProtocolPolicy(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] instance_ports: List of instance ports to which the policy
+        :param pulumi.Input[List[pulumi.Input[str]]] instance_ports: List of instance ports to which the policy
                should be applied. This can be specified if the protocol is SSL or TCP.
         :param pulumi.Input[str] load_balancer: The load balancer to which the policy
                should be attached.
@@ -91,7 +102,11 @@ class ProxyProtocolPolicy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, instance_ports=None, load_balancer=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            instance_ports: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            load_balancer: Optional[pulumi.Input[str]] = None) -> 'ProxyProtocolPolicy':
         """
         Get an existing ProxyProtocolPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -99,7 +114,7 @@ class ProxyProtocolPolicy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] instance_ports: List of instance ports to which the policy
+        :param pulumi.Input[List[pulumi.Input[str]]] instance_ports: List of instance ports to which the policy
                should be applied. This can be specified if the protocol is SSL or TCP.
         :param pulumi.Input[str] load_balancer: The load balancer to which the policy
                should be attached.
@@ -117,3 +132,4 @@ class ProxyProtocolPolicy(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

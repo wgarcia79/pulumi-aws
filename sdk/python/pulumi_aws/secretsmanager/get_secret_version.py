@@ -5,8 +5,26 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetSecretVersionResult',
+    'AwaitableGetSecretVersionResult',
+    'get_secret_version',
+]
+
+
+@pulumi.output_type
+class _GetSecretVersionResult:
+    arn: str = pulumi.property("arn")
+    id: str = pulumi.property("id")
+    secret_binary: str = pulumi.property("secretBinary")
+    secret_id: str = pulumi.property("secretId")
+    secret_string: str = pulumi.property("secretString")
+    version_id: str = pulumi.property("versionId")
+    version_stage: Optional[str] = pulumi.property("versionStage")
+    version_stages: List[str] = pulumi.property("versionStages")
 
 
 class GetSecretVersionResult:
@@ -71,7 +89,10 @@ class AwaitableGetSecretVersionResult(GetSecretVersionResult):
             version_stages=self.version_stages)
 
 
-def get_secret_version(secret_id=None, version_id=None, version_stage=None, opts=None):
+def get_secret_version(secret_id: Optional[str] = None,
+                       version_id: Optional[str] = None,
+                       version_stage: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretVersionResult:
     """
     Retrieve information about a Secrets Manager secret version, including its secret value. To retrieve secret metadata, see the `secretsmanager.Secret` data source.
 
@@ -109,14 +130,14 @@ def get_secret_version(secret_id=None, version_id=None, version_stage=None, opts
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:secretsmanager/getSecretVersion:getSecretVersion', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:secretsmanager/getSecretVersion:getSecretVersion', __args__, opts=opts, typ=_GetSecretVersionResult).value
 
     return AwaitableGetSecretVersionResult(
-        arn=__ret__.get('arn'),
-        id=__ret__.get('id'),
-        secret_binary=__ret__.get('secretBinary'),
-        secret_id=__ret__.get('secretId'),
-        secret_string=__ret__.get('secretString'),
-        version_id=__ret__.get('versionId'),
-        version_stage=__ret__.get('versionStage'),
-        version_stages=__ret__.get('versionStages'))
+        arn=__ret__.arn,
+        id=__ret__.id,
+        secret_binary=__ret__.secret_binary,
+        secret_id=__ret__.secret_id,
+        secret_string=__ret__.secret_string,
+        version_id=__ret__.version_id,
+        version_stage=__ret__.version_stage,
+        version_stages=__ret__.version_stages)

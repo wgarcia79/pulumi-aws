@@ -5,8 +5,26 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetImageResult',
+    'AwaitableGetImageResult',
+    'get_image',
+]
+
+
+@pulumi.output_type
+class _GetImageResult:
+    id: str = pulumi.property("id")
+    image_digest: str = pulumi.property("imageDigest")
+    image_pushed_at: float = pulumi.property("imagePushedAt")
+    image_size_in_bytes: float = pulumi.property("imageSizeInBytes")
+    image_tag: Optional[str] = pulumi.property("imageTag")
+    image_tags: List[str] = pulumi.property("imageTags")
+    registry_id: str = pulumi.property("registryId")
+    repository_name: str = pulumi.property("repositoryName")
 
 
 class GetImageResult:
@@ -68,7 +86,11 @@ class AwaitableGetImageResult(GetImageResult):
             repository_name=self.repository_name)
 
 
-def get_image(image_digest=None, image_tag=None, registry_id=None, repository_name=None, opts=None):
+def get_image(image_digest: Optional[str] = None,
+              image_tag: Optional[str] = None,
+              registry_id: Optional[str] = None,
+              repository_name: Optional[str] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetImageResult:
     """
     The ECR Image data source allows the details of an image with a particular tag or digest to be retrieved.
 
@@ -97,14 +119,14 @@ def get_image(image_digest=None, image_tag=None, registry_id=None, repository_na
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ecr/getImage:getImage', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ecr/getImage:getImage', __args__, opts=opts, typ=_GetImageResult).value
 
     return AwaitableGetImageResult(
-        id=__ret__.get('id'),
-        image_digest=__ret__.get('imageDigest'),
-        image_pushed_at=__ret__.get('imagePushedAt'),
-        image_size_in_bytes=__ret__.get('imageSizeInBytes'),
-        image_tag=__ret__.get('imageTag'),
-        image_tags=__ret__.get('imageTags'),
-        registry_id=__ret__.get('registryId'),
-        repository_name=__ret__.get('repositoryName'))
+        id=__ret__.id,
+        image_digest=__ret__.image_digest,
+        image_pushed_at=__ret__.image_pushed_at,
+        image_size_in_bytes=__ret__.image_size_in_bytes,
+        image_tag=__ret__.image_tag,
+        image_tags=__ret__.image_tags,
+        registry_id=__ret__.registry_id,
+        repository_name=__ret__.repository_name)

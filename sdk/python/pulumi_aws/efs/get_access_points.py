@@ -5,8 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetAccessPointsResult',
+    'AwaitableGetAccessPointsResult',
+    'get_access_points',
+]
+
+
+@pulumi.output_type
+class _GetAccessPointsResult:
+    arns: List[str] = pulumi.property("arns")
+    file_system_id: str = pulumi.property("fileSystemId")
+    id: str = pulumi.property("id")
+    ids: List[str] = pulumi.property("ids")
 
 
 class GetAccessPointsResult:
@@ -49,7 +63,8 @@ class AwaitableGetAccessPointsResult(GetAccessPointsResult):
             ids=self.ids)
 
 
-def get_access_points(file_system_id=None, opts=None):
+def get_access_points(file_system_id: Optional[str] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccessPointsResult:
     """
     Provides information about multiple Elastic File System (EFS) Access Points.
 
@@ -71,10 +86,10 @@ def get_access_points(file_system_id=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:efs/getAccessPoints:getAccessPoints', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:efs/getAccessPoints:getAccessPoints', __args__, opts=opts, typ=_GetAccessPointsResult).value
 
     return AwaitableGetAccessPointsResult(
-        arns=__ret__.get('arns'),
-        file_system_id=__ret__.get('fileSystemId'),
-        id=__ret__.get('id'),
-        ids=__ret__.get('ids'))
+        arns=__ret__.arns,
+        file_system_id=__ret__.file_system_id,
+        id=__ret__.id,
+        ids=__ret__.ids)

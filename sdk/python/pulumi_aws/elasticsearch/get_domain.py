@@ -5,8 +5,41 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetDomainResult',
+    'AwaitableGetDomainResult',
+    'get_domain',
+]
+
+
+@pulumi.output_type
+class _GetDomainResult:
+    access_policies: str = pulumi.property("accessPolicies")
+    advanced_options: Mapping[str, str] = pulumi.property("advancedOptions")
+    advanced_security_options: List['outputs.GetDomainAdvancedSecurityOptionResult'] = pulumi.property("advancedSecurityOptions")
+    arn: str = pulumi.property("arn")
+    cluster_configs: List['outputs.GetDomainClusterConfigResult'] = pulumi.property("clusterConfigs")
+    cognito_options: List['outputs.GetDomainCognitoOptionResult'] = pulumi.property("cognitoOptions")
+    created: bool = pulumi.property("created")
+    deleted: bool = pulumi.property("deleted")
+    domain_id: str = pulumi.property("domainId")
+    domain_name: str = pulumi.property("domainName")
+    ebs_options: List['outputs.GetDomainEbsOptionResult'] = pulumi.property("ebsOptions")
+    elasticsearch_version: str = pulumi.property("elasticsearchVersion")
+    encryption_at_rests: List['outputs.GetDomainEncryptionAtRestResult'] = pulumi.property("encryptionAtRests")
+    endpoint: str = pulumi.property("endpoint")
+    id: str = pulumi.property("id")
+    kibana_endpoint: str = pulumi.property("kibanaEndpoint")
+    log_publishing_options: List['outputs.GetDomainLogPublishingOptionResult'] = pulumi.property("logPublishingOptions")
+    node_to_node_encryptions: List['outputs.GetDomainNodeToNodeEncryptionResult'] = pulumi.property("nodeToNodeEncryptions")
+    processing: bool = pulumi.property("processing")
+    snapshot_options: List['outputs.GetDomainSnapshotOptionResult'] = pulumi.property("snapshotOptions")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    vpc_options: List['outputs.GetDomainVpcOptionResult'] = pulumi.property("vpcOptions")
 
 
 class GetDomainResult:
@@ -173,7 +206,9 @@ class AwaitableGetDomainResult(GetDomainResult):
             vpc_options=self.vpc_options)
 
 
-def get_domain(domain_name=None, tags=None, opts=None):
+def get_domain(domain_name: Optional[str] = None,
+               tags: Optional[Mapping[str, str]] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDomainResult:
     """
     Use this data source to get information about an Elasticsearch Domain
 
@@ -188,7 +223,7 @@ def get_domain(domain_name=None, tags=None, opts=None):
 
 
     :param str domain_name: Name of the domain.
-    :param dict tags: The tags assigned to the domain.
+    :param Mapping[str, str] tags: The tags assigned to the domain.
     """
     __args__ = dict()
     __args__['domainName'] = domain_name
@@ -197,28 +232,28 @@ def get_domain(domain_name=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:elasticsearch/getDomain:getDomain', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:elasticsearch/getDomain:getDomain', __args__, opts=opts, typ=_GetDomainResult).value
 
     return AwaitableGetDomainResult(
-        access_policies=__ret__.get('accessPolicies'),
-        advanced_options=__ret__.get('advancedOptions'),
-        advanced_security_options=__ret__.get('advancedSecurityOptions'),
-        arn=__ret__.get('arn'),
-        cluster_configs=__ret__.get('clusterConfigs'),
-        cognito_options=__ret__.get('cognitoOptions'),
-        created=__ret__.get('created'),
-        deleted=__ret__.get('deleted'),
-        domain_id=__ret__.get('domainId'),
-        domain_name=__ret__.get('domainName'),
-        ebs_options=__ret__.get('ebsOptions'),
-        elasticsearch_version=__ret__.get('elasticsearchVersion'),
-        encryption_at_rests=__ret__.get('encryptionAtRests'),
-        endpoint=__ret__.get('endpoint'),
-        id=__ret__.get('id'),
-        kibana_endpoint=__ret__.get('kibanaEndpoint'),
-        log_publishing_options=__ret__.get('logPublishingOptions'),
-        node_to_node_encryptions=__ret__.get('nodeToNodeEncryptions'),
-        processing=__ret__.get('processing'),
-        snapshot_options=__ret__.get('snapshotOptions'),
-        tags=__ret__.get('tags'),
-        vpc_options=__ret__.get('vpcOptions'))
+        access_policies=__ret__.access_policies,
+        advanced_options=__ret__.advanced_options,
+        advanced_security_options=__ret__.advanced_security_options,
+        arn=__ret__.arn,
+        cluster_configs=__ret__.cluster_configs,
+        cognito_options=__ret__.cognito_options,
+        created=__ret__.created,
+        deleted=__ret__.deleted,
+        domain_id=__ret__.domain_id,
+        domain_name=__ret__.domain_name,
+        ebs_options=__ret__.ebs_options,
+        elasticsearch_version=__ret__.elasticsearch_version,
+        encryption_at_rests=__ret__.encryption_at_rests,
+        endpoint=__ret__.endpoint,
+        id=__ret__.id,
+        kibana_endpoint=__ret__.kibana_endpoint,
+        log_publishing_options=__ret__.log_publishing_options,
+        node_to_node_encryptions=__ret__.node_to_node_encryptions,
+        processing=__ret__.processing,
+        snapshot_options=__ret__.snapshot_options,
+        tags=__ret__.tags,
+        vpc_options=__ret__.vpc_options)

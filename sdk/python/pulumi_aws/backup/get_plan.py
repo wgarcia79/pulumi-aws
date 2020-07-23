@@ -5,8 +5,24 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetPlanResult',
+    'AwaitableGetPlanResult',
+    'get_plan',
+]
+
+
+@pulumi.output_type
+class _GetPlanResult:
+    arn: str = pulumi.property("arn")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    plan_id: str = pulumi.property("planId")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    version: str = pulumi.property("version")
 
 
 class GetPlanResult:
@@ -63,7 +79,9 @@ class AwaitableGetPlanResult(GetPlanResult):
             version=self.version)
 
 
-def get_plan(plan_id=None, tags=None, opts=None):
+def get_plan(plan_id: Optional[str] = None,
+             tags: Optional[Mapping[str, str]] = None,
+             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPlanResult:
     """
     Use this data source to get information on an existing backup plan.
 
@@ -78,7 +96,7 @@ def get_plan(plan_id=None, tags=None, opts=None):
 
 
     :param str plan_id: The backup plan ID.
-    :param dict tags: Metadata that you can assign to help organize the plans you create.
+    :param Mapping[str, str] tags: Metadata that you can assign to help organize the plans you create.
     """
     __args__ = dict()
     __args__['planId'] = plan_id
@@ -87,12 +105,12 @@ def get_plan(plan_id=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:backup/getPlan:getPlan', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:backup/getPlan:getPlan', __args__, opts=opts, typ=_GetPlanResult).value
 
     return AwaitableGetPlanResult(
-        arn=__ret__.get('arn'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        plan_id=__ret__.get('planId'),
-        tags=__ret__.get('tags'),
-        version=__ret__.get('version'))
+        arn=__ret__.arn,
+        id=__ret__.id,
+        name=__ret__.name,
+        plan_id=__ret__.plan_id,
+        tags=__ret__.tags,
+        version=__ret__.version)

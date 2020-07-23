@@ -5,20 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['PrincipalAssociation']
 
 
 class PrincipalAssociation(pulumi.CustomResource):
-    principal: pulumi.Output[str]
+    principal: pulumi.Output[str] = pulumi.property("principal")
     """
     The principal to associate with the resource share. Possible values are an AWS account ID, an AWS Organizations Organization ARN, or an AWS Organizations Organization Unit ARN.
     """
-    resource_share_arn: pulumi.Output[str]
+
+    resource_share_arn: pulumi.Output[str] = pulumi.property("resourceShareArn")
     """
     The Amazon Resource Name (ARN) of the resource share.
     """
-    def __init__(__self__, resource_name, opts=None, principal=None, resource_share_arn=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 principal: Optional[pulumi.Input[str]] = None,
+                 resource_share_arn: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a Resource Access Manager (RAM) principal association. Depending if [RAM Sharing with AWS Organizations is enabled](https://docs.aws.amazon.com/ram/latest/userguide/getting-started-sharing.html#getting-started-sharing-orgs), the RAM behavior with different principal types changes.
 
@@ -90,7 +101,11 @@ class PrincipalAssociation(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, principal=None, resource_share_arn=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            principal: Optional[pulumi.Input[str]] = None,
+            resource_share_arn: Optional[pulumi.Input[str]] = None) -> 'PrincipalAssociation':
         """
         Get an existing PrincipalAssociation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -114,3 +129,4 @@ class PrincipalAssociation(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

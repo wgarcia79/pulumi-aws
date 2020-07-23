@@ -5,8 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetAliasResult',
+    'AwaitableGetAliasResult',
+    'get_alias',
+]
+
+
+@pulumi.output_type
+class _GetAliasResult:
+    arn: str = pulumi.property("arn")
+    description: str = pulumi.property("description")
+    function_name: str = pulumi.property("functionName")
+    function_version: str = pulumi.property("functionVersion")
+    id: str = pulumi.property("id")
+    invoke_arn: str = pulumi.property("invokeArn")
+    name: str = pulumi.property("name")
 
 
 class GetAliasResult:
@@ -67,7 +84,9 @@ class AwaitableGetAliasResult(GetAliasResult):
             name=self.name)
 
 
-def get_alias(function_name=None, name=None, opts=None):
+def get_alias(function_name: Optional[str] = None,
+              name: Optional[str] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAliasResult:
     """
     Provides information about a Lambda Alias.
 
@@ -92,13 +111,13 @@ def get_alias(function_name=None, name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:lambda/getAlias:getAlias', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:lambda/getAlias:getAlias', __args__, opts=opts, typ=_GetAliasResult).value
 
     return AwaitableGetAliasResult(
-        arn=__ret__.get('arn'),
-        description=__ret__.get('description'),
-        function_name=__ret__.get('functionName'),
-        function_version=__ret__.get('functionVersion'),
-        id=__ret__.get('id'),
-        invoke_arn=__ret__.get('invokeArn'),
-        name=__ret__.get('name'))
+        arn=__ret__.arn,
+        description=__ret__.description,
+        function_name=__ret__.function_name,
+        function_version=__ret__.function_version,
+        id=__ret__.id,
+        invoke_arn=__ret__.invoke_arn,
+        name=__ret__.name)

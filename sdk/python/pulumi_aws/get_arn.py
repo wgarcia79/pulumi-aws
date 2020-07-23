@@ -5,8 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from . import _utilities, _tables
+
+__all__ = [
+    'GetArnResult',
+    'AwaitableGetArnResult',
+    'get_arn',
+]
+
+
+@pulumi.output_type
+class _GetArnResult:
+    account: str = pulumi.property("account")
+    arn: str = pulumi.property("arn")
+    id: str = pulumi.property("id")
+    partition: str = pulumi.property("partition")
+    region: str = pulumi.property("region")
+    resource: str = pulumi.property("resource")
+    service: str = pulumi.property("service")
 
 
 class GetArnResult:
@@ -72,7 +89,8 @@ class AwaitableGetArnResult(GetArnResult):
             service=self.service)
 
 
-def get_arn(arn=None, opts=None):
+def get_arn(arn: Optional[str] = None,
+            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetArnResult:
     """
     Parses an Amazon Resource Name (ARN) into its constituent parts.
 
@@ -94,13 +112,13 @@ def get_arn(arn=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:index/getArn:getArn', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:index/getArn:getArn', __args__, opts=opts, typ=_GetArnResult).value
 
     return AwaitableGetArnResult(
-        account=__ret__.get('account'),
-        arn=__ret__.get('arn'),
-        id=__ret__.get('id'),
-        partition=__ret__.get('partition'),
-        region=__ret__.get('region'),
-        resource=__ret__.get('resource'),
-        service=__ret__.get('service'))
+        account=__ret__.account,
+        arn=__ret__.arn,
+        id=__ret__.id,
+        partition=__ret__.partition,
+        region=__ret__.region,
+        resource=__ret__.resource,
+        service=__ret__.service)

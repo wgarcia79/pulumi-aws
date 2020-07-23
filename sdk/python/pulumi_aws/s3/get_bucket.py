@@ -5,8 +5,27 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetBucketResult',
+    'AwaitableGetBucketResult',
+    'get_bucket',
+]
+
+
+@pulumi.output_type
+class _GetBucketResult:
+    arn: str = pulumi.property("arn")
+    bucket: str = pulumi.property("bucket")
+    bucket_domain_name: str = pulumi.property("bucketDomainName")
+    bucket_regional_domain_name: str = pulumi.property("bucketRegionalDomainName")
+    hosted_zone_id: str = pulumi.property("hostedZoneId")
+    id: str = pulumi.property("id")
+    region: str = pulumi.property("region")
+    website_domain: str = pulumi.property("websiteDomain")
+    website_endpoint: str = pulumi.property("websiteEndpoint")
 
 
 class GetBucketResult:
@@ -84,7 +103,8 @@ class AwaitableGetBucketResult(GetBucketResult):
             website_endpoint=self.website_endpoint)
 
 
-def get_bucket(bucket=None, opts=None):
+def get_bucket(bucket: Optional[str] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBucketResult:
     """
     Provides details about a specific S3 bucket.
 
@@ -131,15 +151,15 @@ def get_bucket(bucket=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:s3/getBucket:getBucket', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:s3/getBucket:getBucket', __args__, opts=opts, typ=_GetBucketResult).value
 
     return AwaitableGetBucketResult(
-        arn=__ret__.get('arn'),
-        bucket=__ret__.get('bucket'),
-        bucket_domain_name=__ret__.get('bucketDomainName'),
-        bucket_regional_domain_name=__ret__.get('bucketRegionalDomainName'),
-        hosted_zone_id=__ret__.get('hostedZoneId'),
-        id=__ret__.get('id'),
-        region=__ret__.get('region'),
-        website_domain=__ret__.get('websiteDomain'),
-        website_endpoint=__ret__.get('websiteEndpoint'))
+        arn=__ret__.arn,
+        bucket=__ret__.bucket,
+        bucket_domain_name=__ret__.bucket_domain_name,
+        bucket_regional_domain_name=__ret__.bucket_regional_domain_name,
+        hosted_zone_id=__ret__.hosted_zone_id,
+        id=__ret__.id,
+        region=__ret__.region,
+        website_domain=__ret__.website_domain,
+        website_endpoint=__ret__.website_endpoint)

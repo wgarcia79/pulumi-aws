@@ -5,54 +5,75 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['ResolverRule']
 
 
 class ResolverRule(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     The ARN (Amazon Resource Name) for the resolver rule.
     """
-    domain_name: pulumi.Output[str]
+
+    domain_name: pulumi.Output[str] = pulumi.property("domainName")
     """
     DNS queries for this domain name are forwarded to the IP addresses that are specified using `target_ip`.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     A friendly name that lets you easily find a rule in the Resolver dashboard in the Route 53 console.
     """
-    owner_id: pulumi.Output[str]
+
+    owner_id: pulumi.Output[str] = pulumi.property("ownerId")
     """
     When a rule is shared with another AWS account, the account ID of the account that the rule is shared with.
     """
-    resolver_endpoint_id: pulumi.Output[str]
+
+    resolver_endpoint_id: pulumi.Output[Optional[str]] = pulumi.property("resolverEndpointId")
     """
     The ID of the outbound resolver endpoint that you want to use to route DNS queries to the IP addresses that you specify using `target_ip`.
     This argument should only be specified for `FORWARD` type rules.
     """
-    rule_type: pulumi.Output[str]
+
+    rule_type: pulumi.Output[str] = pulumi.property("ruleType")
     """
     The rule type. Valid values are `FORWARD`, `SYSTEM` and `RECURSIVE`.
     """
-    share_status: pulumi.Output[str]
+
+    share_status: pulumi.Output[str] = pulumi.property("shareStatus")
     """
     Whether the rules is shared and, if so, whether the current account is sharing the rule with another account, or another account is sharing the rule with the current account.
     Values are `NOT_SHARED`, `SHARED_BY_ME` or `SHARED_WITH_ME`
     """
-    tags: pulumi.Output[dict]
+
+    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
     """
     A map of tags to assign to the resource.
     """
-    target_ips: pulumi.Output[list]
+
+    target_ips: pulumi.Output[Optional[List['outputs.ResolverRuleTargetIp']]] = pulumi.property("targetIps")
     """
     Configuration block(s) indicating the IPs that you want Resolver to forward DNS queries to (documented below).
     This argument should only be specified for `FORWARD` type rules.
-
-      * `ip` (`str`) - One IP address that you want to forward DNS queries to. You can specify only IPv4 addresses.
-      * `port` (`float`) - The port at `ip` that you want to forward DNS queries to. Default value is `53`
     """
-    def __init__(__self__, resource_name, opts=None, domain_name=None, name=None, resolver_endpoint_id=None, rule_type=None, tags=None, target_ips=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 domain_name: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 resolver_endpoint_id: Optional[pulumi.Input[str]] = None,
+                 rule_type: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 target_ips: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ResolverRuleTargetIpArgs']]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a Route53 Resolver rule.
 
@@ -92,14 +113,9 @@ class ResolverRule(pulumi.CustomResource):
         :param pulumi.Input[str] resolver_endpoint_id: The ID of the outbound resolver endpoint that you want to use to route DNS queries to the IP addresses that you specify using `target_ip`.
                This argument should only be specified for `FORWARD` type rules.
         :param pulumi.Input[str] rule_type: The rule type. Valid values are `FORWARD`, `SYSTEM` and `RECURSIVE`.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
-        :param pulumi.Input[list] target_ips: Configuration block(s) indicating the IPs that you want Resolver to forward DNS queries to (documented below).
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ResolverRuleTargetIpArgs']]]] target_ips: Configuration block(s) indicating the IPs that you want Resolver to forward DNS queries to (documented below).
                This argument should only be specified for `FORWARD` type rules.
-
-        The **target_ips** object supports the following:
-
-          * `ip` (`pulumi.Input[str]`) - One IP address that you want to forward DNS queries to. You can specify only IPv4 addresses.
-          * `port` (`pulumi.Input[float]`) - The port at `ip` that you want to forward DNS queries to. Default value is `53`
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -138,7 +154,18 @@ class ResolverRule(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, domain_name=None, name=None, owner_id=None, resolver_endpoint_id=None, rule_type=None, share_status=None, tags=None, target_ips=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            domain_name: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            owner_id: Optional[pulumi.Input[str]] = None,
+            resolver_endpoint_id: Optional[pulumi.Input[str]] = None,
+            rule_type: Optional[pulumi.Input[str]] = None,
+            share_status: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            target_ips: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ResolverRuleTargetIpArgs']]]]] = None) -> 'ResolverRule':
         """
         Get an existing ResolverRule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -155,14 +182,9 @@ class ResolverRule(pulumi.CustomResource):
         :param pulumi.Input[str] rule_type: The rule type. Valid values are `FORWARD`, `SYSTEM` and `RECURSIVE`.
         :param pulumi.Input[str] share_status: Whether the rules is shared and, if so, whether the current account is sharing the rule with another account, or another account is sharing the rule with the current account.
                Values are `NOT_SHARED`, `SHARED_BY_ME` or `SHARED_WITH_ME`
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
-        :param pulumi.Input[list] target_ips: Configuration block(s) indicating the IPs that you want Resolver to forward DNS queries to (documented below).
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ResolverRuleTargetIpArgs']]]] target_ips: Configuration block(s) indicating the IPs that you want Resolver to forward DNS queries to (documented below).
                This argument should only be specified for `FORWARD` type rules.
-
-        The **target_ips** object supports the following:
-
-          * `ip` (`pulumi.Input[str]`) - One IP address that you want to forward DNS queries to. You can specify only IPv4 addresses.
-          * `port` (`pulumi.Input[float]`) - The port at `ip` that you want to forward DNS queries to. Default value is `53`
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -184,3 +206,4 @@ class ResolverRule(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

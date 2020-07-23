@@ -5,8 +5,26 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetServerResult',
+    'AwaitableGetServerResult',
+    'get_server',
+]
+
+
+@pulumi.output_type
+class _GetServerResult:
+    arn: str = pulumi.property("arn")
+    endpoint: str = pulumi.property("endpoint")
+    id: str = pulumi.property("id")
+    identity_provider_type: str = pulumi.property("identityProviderType")
+    invocation_role: str = pulumi.property("invocationRole")
+    logging_role: str = pulumi.property("loggingRole")
+    server_id: str = pulumi.property("serverId")
+    url: str = pulumi.property("url")
 
 
 class GetServerResult:
@@ -77,7 +95,8 @@ class AwaitableGetServerResult(GetServerResult):
             url=self.url)
 
 
-def get_server(server_id=None, opts=None):
+def get_server(server_id: Optional[str] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServerResult:
     """
     Use this data source to get the ARN of an AWS Transfer Server for use in other
     resources.
@@ -100,14 +119,14 @@ def get_server(server_id=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:transfer/getServer:getServer', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:transfer/getServer:getServer', __args__, opts=opts, typ=_GetServerResult).value
 
     return AwaitableGetServerResult(
-        arn=__ret__.get('arn'),
-        endpoint=__ret__.get('endpoint'),
-        id=__ret__.get('id'),
-        identity_provider_type=__ret__.get('identityProviderType'),
-        invocation_role=__ret__.get('invocationRole'),
-        logging_role=__ret__.get('loggingRole'),
-        server_id=__ret__.get('serverId'),
-        url=__ret__.get('url'))
+        arn=__ret__.arn,
+        endpoint=__ret__.endpoint,
+        id=__ret__.id,
+        identity_provider_type=__ret__.identity_provider_type,
+        invocation_role=__ret__.invocation_role,
+        logging_role=__ret__.logging_role,
+        server_id=__ret__.server_id,
+        url=__ret__.url)

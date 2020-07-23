@@ -5,8 +5,27 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetClusterResult',
+    'AwaitableGetClusterResult',
+    'get_cluster',
+]
+
+
+@pulumi.output_type
+class _GetClusterResult:
+    arn: str = pulumi.property("arn")
+    cluster_name: str = pulumi.property("clusterName")
+    id: str = pulumi.property("id")
+    pending_tasks_count: float = pulumi.property("pendingTasksCount")
+    registered_container_instances_count: float = pulumi.property("registeredContainerInstancesCount")
+    running_tasks_count: float = pulumi.property("runningTasksCount")
+    settings: List['outputs.GetClusterSettingResult'] = pulumi.property("settings")
+    status: str = pulumi.property("status")
 
 
 class GetClusterResult:
@@ -77,7 +96,8 @@ class AwaitableGetClusterResult(GetClusterResult):
             status=self.status)
 
 
-def get_cluster(cluster_name=None, opts=None):
+def get_cluster(cluster_name: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClusterResult:
     """
     The ECS Cluster data source allows access to details of a specific
     cluster within an AWS ECS service.
@@ -100,14 +120,14 @@ def get_cluster(cluster_name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ecs/getCluster:getCluster', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ecs/getCluster:getCluster', __args__, opts=opts, typ=_GetClusterResult).value
 
     return AwaitableGetClusterResult(
-        arn=__ret__.get('arn'),
-        cluster_name=__ret__.get('clusterName'),
-        id=__ret__.get('id'),
-        pending_tasks_count=__ret__.get('pendingTasksCount'),
-        registered_container_instances_count=__ret__.get('registeredContainerInstancesCount'),
-        running_tasks_count=__ret__.get('runningTasksCount'),
-        settings=__ret__.get('settings'),
-        status=__ret__.get('status'))
+        arn=__ret__.arn,
+        cluster_name=__ret__.cluster_name,
+        id=__ret__.id,
+        pending_tasks_count=__ret__.pending_tasks_count,
+        registered_container_instances_count=__ret__.registered_container_instances_count,
+        running_tasks_count=__ret__.running_tasks_count,
+        settings=__ret__.settings,
+        status=__ret__.status)

@@ -5,8 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetRouteResult',
+    'AwaitableGetRouteResult',
+    'get_route',
+]
+
+
+@pulumi.output_type
+class _GetRouteResult:
+    destination_cidr_block: str = pulumi.property("destinationCidrBlock")
+    destination_ipv6_cidr_block: str = pulumi.property("destinationIpv6CidrBlock")
+    egress_only_gateway_id: str = pulumi.property("egressOnlyGatewayId")
+    gateway_id: str = pulumi.property("gatewayId")
+    id: str = pulumi.property("id")
+    instance_id: str = pulumi.property("instanceId")
+    nat_gateway_id: str = pulumi.property("natGatewayId")
+    network_interface_id: str = pulumi.property("networkInterfaceId")
+    route_table_id: str = pulumi.property("routeTableId")
+    transit_gateway_id: str = pulumi.property("transitGatewayId")
+    vpc_peering_connection_id: str = pulumi.property("vpcPeeringConnectionId")
 
 
 class GetRouteResult:
@@ -71,7 +92,17 @@ class AwaitableGetRouteResult(GetRouteResult):
             vpc_peering_connection_id=self.vpc_peering_connection_id)
 
 
-def get_route(destination_cidr_block=None, destination_ipv6_cidr_block=None, egress_only_gateway_id=None, gateway_id=None, instance_id=None, nat_gateway_id=None, network_interface_id=None, route_table_id=None, transit_gateway_id=None, vpc_peering_connection_id=None, opts=None):
+def get_route(destination_cidr_block: Optional[str] = None,
+              destination_ipv6_cidr_block: Optional[str] = None,
+              egress_only_gateway_id: Optional[str] = None,
+              gateway_id: Optional[str] = None,
+              instance_id: Optional[str] = None,
+              nat_gateway_id: Optional[str] = None,
+              network_interface_id: Optional[str] = None,
+              route_table_id: Optional[str] = None,
+              transit_gateway_id: Optional[str] = None,
+              vpc_peering_connection_id: Optional[str] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRouteResult:
     """
     `ec2.Route` provides details about a specific Route.
 
@@ -123,17 +154,17 @@ def get_route(destination_cidr_block=None, destination_ipv6_cidr_block=None, egr
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getRoute:getRoute', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getRoute:getRoute', __args__, opts=opts, typ=_GetRouteResult).value
 
     return AwaitableGetRouteResult(
-        destination_cidr_block=__ret__.get('destinationCidrBlock'),
-        destination_ipv6_cidr_block=__ret__.get('destinationIpv6CidrBlock'),
-        egress_only_gateway_id=__ret__.get('egressOnlyGatewayId'),
-        gateway_id=__ret__.get('gatewayId'),
-        id=__ret__.get('id'),
-        instance_id=__ret__.get('instanceId'),
-        nat_gateway_id=__ret__.get('natGatewayId'),
-        network_interface_id=__ret__.get('networkInterfaceId'),
-        route_table_id=__ret__.get('routeTableId'),
-        transit_gateway_id=__ret__.get('transitGatewayId'),
-        vpc_peering_connection_id=__ret__.get('vpcPeeringConnectionId'))
+        destination_cidr_block=__ret__.destination_cidr_block,
+        destination_ipv6_cidr_block=__ret__.destination_ipv6_cidr_block,
+        egress_only_gateway_id=__ret__.egress_only_gateway_id,
+        gateway_id=__ret__.gateway_id,
+        id=__ret__.id,
+        instance_id=__ret__.instance_id,
+        nat_gateway_id=__ret__.nat_gateway_id,
+        network_interface_id=__ret__.network_interface_id,
+        route_table_id=__ret__.route_table_id,
+        transit_gateway_id=__ret__.transit_gateway_id,
+        vpc_peering_connection_id=__ret__.vpc_peering_connection_id)

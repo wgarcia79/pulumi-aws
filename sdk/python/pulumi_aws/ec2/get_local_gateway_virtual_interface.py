@@ -5,8 +5,30 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetLocalGatewayVirtualInterfaceResult',
+    'AwaitableGetLocalGatewayVirtualInterfaceResult',
+    'get_local_gateway_virtual_interface',
+]
+
+
+@pulumi.output_type
+class _GetLocalGatewayVirtualInterfaceResult:
+    filters: Optional[List['outputs.GetLocalGatewayVirtualInterfaceFilterResult']] = pulumi.property("filters")
+    id: str = pulumi.property("id")
+    local_address: str = pulumi.property("localAddress")
+    local_bgp_asn: float = pulumi.property("localBgpAsn")
+    local_gateway_id: str = pulumi.property("localGatewayId")
+    local_gateway_virtual_interface_ids: List[str] = pulumi.property("localGatewayVirtualInterfaceIds")
+    peer_address: str = pulumi.property("peerAddress")
+    peer_bgp_asn: float = pulumi.property("peerBgpAsn")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    vlan: float = pulumi.property("vlan")
 
 
 class GetLocalGatewayVirtualInterfaceResult:
@@ -82,7 +104,10 @@ class AwaitableGetLocalGatewayVirtualInterfaceResult(GetLocalGatewayVirtualInter
             vlan=self.vlan)
 
 
-def get_local_gateway_virtual_interface(filters=None, id=None, tags=None, opts=None):
+def get_local_gateway_virtual_interface(filters: Optional[List[pulumi.InputType['GetLocalGatewayVirtualInterfaceFilterArgs']]] = None,
+                                        id: Optional[str] = None,
+                                        tags: Optional[Mapping[str, str]] = None,
+                                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLocalGatewayVirtualInterfaceResult:
     """
     Provides details about an EC2 Local Gateway Virtual Interface. More information can be found in the [Outposts User Guide](https://docs.aws.amazon.com/outposts/latest/userguide/outposts-networking-components.html#routing).
 
@@ -96,14 +121,9 @@ def get_local_gateway_virtual_interface(filters=None, id=None, tags=None, opts=N
     ```
 
 
-    :param list filters: One or more configuration blocks containing name-values filters. See the [EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeLocalGatewayVirtualInterfaces.html) for supported filters. Detailed below.
+    :param List[pulumi.InputType['GetLocalGatewayVirtualInterfaceFilterArgs']] filters: One or more configuration blocks containing name-values filters. See the [EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeLocalGatewayVirtualInterfaces.html) for supported filters. Detailed below.
     :param str id: Identifier of EC2 Local Gateway Virtual Interface.
-    :param dict tags: Key-value map of resource tags, each pair of which must exactly match a pair on the desired local gateway route table.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - Name of the filter.
-      * `values` (`list`) - List of one or more values for the filter.
+    :param Mapping[str, str] tags: Key-value map of resource tags, each pair of which must exactly match a pair on the desired local gateway route table.
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -113,16 +133,16 @@ def get_local_gateway_virtual_interface(filters=None, id=None, tags=None, opts=N
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getLocalGatewayVirtualInterface:getLocalGatewayVirtualInterface', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getLocalGatewayVirtualInterface:getLocalGatewayVirtualInterface', __args__, opts=opts, typ=_GetLocalGatewayVirtualInterfaceResult).value
 
     return AwaitableGetLocalGatewayVirtualInterfaceResult(
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        local_address=__ret__.get('localAddress'),
-        local_bgp_asn=__ret__.get('localBgpAsn'),
-        local_gateway_id=__ret__.get('localGatewayId'),
-        local_gateway_virtual_interface_ids=__ret__.get('localGatewayVirtualInterfaceIds'),
-        peer_address=__ret__.get('peerAddress'),
-        peer_bgp_asn=__ret__.get('peerBgpAsn'),
-        tags=__ret__.get('tags'),
-        vlan=__ret__.get('vlan'))
+        filters=__ret__.filters,
+        id=__ret__.id,
+        local_address=__ret__.local_address,
+        local_bgp_asn=__ret__.local_bgp_asn,
+        local_gateway_id=__ret__.local_gateway_id,
+        local_gateway_virtual_interface_ids=__ret__.local_gateway_virtual_interface_ids,
+        peer_address=__ret__.peer_address,
+        peer_bgp_asn=__ret__.peer_bgp_asn,
+        tags=__ret__.tags,
+        vlan=__ret__.vlan)

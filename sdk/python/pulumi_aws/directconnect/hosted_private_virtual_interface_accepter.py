@@ -5,32 +5,48 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['HostedPrivateVirtualInterfaceAccepter']
 
 
 class HostedPrivateVirtualInterfaceAccepter(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     The ARN of the virtual interface.
     """
-    dx_gateway_id: pulumi.Output[str]
+
+    dx_gateway_id: pulumi.Output[Optional[str]] = pulumi.property("dxGatewayId")
     """
     The ID of the Direct Connect gateway to which to connect the virtual interface.
     """
-    tags: pulumi.Output[dict]
+
+    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
     """
     A map of tags to assign to the resource.
     """
-    virtual_interface_id: pulumi.Output[str]
+
+    virtual_interface_id: pulumi.Output[str] = pulumi.property("virtualInterfaceId")
     """
     The ID of the Direct Connect virtual interface to accept.
     """
-    vpn_gateway_id: pulumi.Output[str]
+
+    vpn_gateway_id: pulumi.Output[Optional[str]] = pulumi.property("vpnGatewayId")
     """
     The ID of the virtual private gateway to which to connect the virtual interface.
     """
-    def __init__(__self__, resource_name, opts=None, dx_gateway_id=None, tags=None, virtual_interface_id=None, vpn_gateway_id=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 dx_gateway_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 virtual_interface_id: Optional[pulumi.Input[str]] = None,
+                 vpn_gateway_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a resource to manage the accepter's side of a Direct Connect hosted private virtual interface.
         This resource accepts ownership of a private virtual interface created by another AWS account.
@@ -66,7 +82,7 @@ class HostedPrivateVirtualInterfaceAccepter(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dx_gateway_id: The ID of the Direct Connect gateway to which to connect the virtual interface.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[str] virtual_interface_id: The ID of the Direct Connect virtual interface to accept.
         :param pulumi.Input[str] vpn_gateway_id: The ID of the virtual private gateway to which to connect the virtual interface.
         """
@@ -101,7 +117,14 @@ class HostedPrivateVirtualInterfaceAccepter(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, dx_gateway_id=None, tags=None, virtual_interface_id=None, vpn_gateway_id=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            dx_gateway_id: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            virtual_interface_id: Optional[pulumi.Input[str]] = None,
+            vpn_gateway_id: Optional[pulumi.Input[str]] = None) -> 'HostedPrivateVirtualInterfaceAccepter':
         """
         Get an existing HostedPrivateVirtualInterfaceAccepter resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -111,7 +134,7 @@ class HostedPrivateVirtualInterfaceAccepter(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] arn: The ARN of the virtual interface.
         :param pulumi.Input[str] dx_gateway_id: The ID of the Direct Connect gateway to which to connect the virtual interface.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[str] virtual_interface_id: The ID of the Direct Connect virtual interface to accept.
         :param pulumi.Input[str] vpn_gateway_id: The ID of the virtual private gateway to which to connect the virtual interface.
         """
@@ -131,3 +154,4 @@ class HostedPrivateVirtualInterfaceAccepter(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

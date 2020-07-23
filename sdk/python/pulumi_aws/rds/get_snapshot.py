@@ -5,8 +5,42 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetSnapshotResult',
+    'AwaitableGetSnapshotResult',
+    'get_snapshot',
+]
+
+
+@pulumi.output_type
+class _GetSnapshotResult:
+    allocated_storage: float = pulumi.property("allocatedStorage")
+    availability_zone: str = pulumi.property("availabilityZone")
+    db_instance_identifier: Optional[str] = pulumi.property("dbInstanceIdentifier")
+    db_snapshot_arn: str = pulumi.property("dbSnapshotArn")
+    db_snapshot_identifier: Optional[str] = pulumi.property("dbSnapshotIdentifier")
+    encrypted: bool = pulumi.property("encrypted")
+    engine: str = pulumi.property("engine")
+    engine_version: str = pulumi.property("engineVersion")
+    id: str = pulumi.property("id")
+    include_public: Optional[bool] = pulumi.property("includePublic")
+    include_shared: Optional[bool] = pulumi.property("includeShared")
+    iops: float = pulumi.property("iops")
+    kms_key_id: str = pulumi.property("kmsKeyId")
+    license_model: str = pulumi.property("licenseModel")
+    most_recent: Optional[bool] = pulumi.property("mostRecent")
+    option_group_name: str = pulumi.property("optionGroupName")
+    port: float = pulumi.property("port")
+    snapshot_create_time: str = pulumi.property("snapshotCreateTime")
+    snapshot_type: Optional[str] = pulumi.property("snapshotType")
+    source_db_snapshot_identifier: str = pulumi.property("sourceDbSnapshotIdentifier")
+    source_region: str = pulumi.property("sourceRegion")
+    status: str = pulumi.property("status")
+    storage_type: str = pulumi.property("storageType")
+    vpc_id: str = pulumi.property("vpcId")
 
 
 class GetSnapshotResult:
@@ -171,40 +205,18 @@ class AwaitableGetSnapshotResult(GetSnapshotResult):
             vpc_id=self.vpc_id)
 
 
-def get_snapshot(db_instance_identifier=None, db_snapshot_identifier=None, include_public=None, include_shared=None, most_recent=None, snapshot_type=None, opts=None):
+def get_snapshot(db_instance_identifier: Optional[str] = None,
+                 db_snapshot_identifier: Optional[str] = None,
+                 include_public: Optional[bool] = None,
+                 include_shared: Optional[bool] = None,
+                 most_recent: Optional[bool] = None,
+                 snapshot_type: Optional[str] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSnapshotResult:
     """
     Use this data source to get information about a DB Snapshot for use when provisioning DB instances
 
     > **NOTE:** This data source does not apply to snapshots created on Aurora DB clusters.
     See the `rds.ClusterSnapshot` data source for DB Cluster snapshots.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_aws as aws
-
-    prod = aws.rds.Instance("prod",
-        allocated_storage=10,
-        db_subnet_group_name="my_database_subnet_group",
-        engine="mysql",
-        engine_version="5.6.17",
-        instance_class="db.t2.micro",
-        name="mydb",
-        parameter_group_name="default.mysql5.6",
-        password="bar",
-        username="foo")
-    latest_prod_snapshot = prod.id.apply(lambda id: aws.rds.get_snapshot(db_instance_identifier=id,
-        most_recent=True))
-    # Use the latest production snapshot to create a dev instance.
-    dev = aws.rds.Instance("dev",
-        instance_class="db.t2.micro",
-        lifecycle={
-            "ignoreChanges": ["snapshotIdentifier"],
-        },
-        name="mydbdev",
-        snapshot_identifier=latest_prod_snapshot.id)
-    ```
 
 
     :param str db_instance_identifier: Returns the list of snapshots created by the specific db_instance
@@ -231,30 +243,30 @@ def get_snapshot(db_instance_identifier=None, db_snapshot_identifier=None, inclu
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:rds/getSnapshot:getSnapshot', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:rds/getSnapshot:getSnapshot', __args__, opts=opts, typ=_GetSnapshotResult).value
 
     return AwaitableGetSnapshotResult(
-        allocated_storage=__ret__.get('allocatedStorage'),
-        availability_zone=__ret__.get('availabilityZone'),
-        db_instance_identifier=__ret__.get('dbInstanceIdentifier'),
-        db_snapshot_arn=__ret__.get('dbSnapshotArn'),
-        db_snapshot_identifier=__ret__.get('dbSnapshotIdentifier'),
-        encrypted=__ret__.get('encrypted'),
-        engine=__ret__.get('engine'),
-        engine_version=__ret__.get('engineVersion'),
-        id=__ret__.get('id'),
-        include_public=__ret__.get('includePublic'),
-        include_shared=__ret__.get('includeShared'),
-        iops=__ret__.get('iops'),
-        kms_key_id=__ret__.get('kmsKeyId'),
-        license_model=__ret__.get('licenseModel'),
-        most_recent=__ret__.get('mostRecent'),
-        option_group_name=__ret__.get('optionGroupName'),
-        port=__ret__.get('port'),
-        snapshot_create_time=__ret__.get('snapshotCreateTime'),
-        snapshot_type=__ret__.get('snapshotType'),
-        source_db_snapshot_identifier=__ret__.get('sourceDbSnapshotIdentifier'),
-        source_region=__ret__.get('sourceRegion'),
-        status=__ret__.get('status'),
-        storage_type=__ret__.get('storageType'),
-        vpc_id=__ret__.get('vpcId'))
+        allocated_storage=__ret__.allocated_storage,
+        availability_zone=__ret__.availability_zone,
+        db_instance_identifier=__ret__.db_instance_identifier,
+        db_snapshot_arn=__ret__.db_snapshot_arn,
+        db_snapshot_identifier=__ret__.db_snapshot_identifier,
+        encrypted=__ret__.encrypted,
+        engine=__ret__.engine,
+        engine_version=__ret__.engine_version,
+        id=__ret__.id,
+        include_public=__ret__.include_public,
+        include_shared=__ret__.include_shared,
+        iops=__ret__.iops,
+        kms_key_id=__ret__.kms_key_id,
+        license_model=__ret__.license_model,
+        most_recent=__ret__.most_recent,
+        option_group_name=__ret__.option_group_name,
+        port=__ret__.port,
+        snapshot_create_time=__ret__.snapshot_create_time,
+        snapshot_type=__ret__.snapshot_type,
+        source_db_snapshot_identifier=__ret__.source_db_snapshot_identifier,
+        source_region=__ret__.source_region,
+        status=__ret__.status,
+        storage_type=__ret__.storage_type,
+        vpc_id=__ret__.vpc_id)

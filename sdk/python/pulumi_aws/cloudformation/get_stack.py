@@ -5,8 +5,30 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetStackResult',
+    'AwaitableGetStackResult',
+    'get_stack',
+]
+
+
+@pulumi.output_type
+class _GetStackResult:
+    capabilities: List[str] = pulumi.property("capabilities")
+    description: str = pulumi.property("description")
+    disable_rollback: bool = pulumi.property("disableRollback")
+    iam_role_arn: str = pulumi.property("iamRoleArn")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    notification_arns: List[str] = pulumi.property("notificationArns")
+    outputs: Mapping[str, str] = pulumi.property("outputs")
+    parameters: Mapping[str, str] = pulumi.property("parameters")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    template_body: str = pulumi.property("templateBody")
+    timeout_in_minutes: float = pulumi.property("timeoutInMinutes")
 
 
 class GetStackResult:
@@ -105,7 +127,9 @@ class AwaitableGetStackResult(GetStackResult):
             timeout_in_minutes=self.timeout_in_minutes)
 
 
-def get_stack(name=None, tags=None, opts=None):
+def get_stack(name: Optional[str] = None,
+              tags: Optional[Mapping[str, str]] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetStackResult:
     """
     The CloudFormation Stack data source allows access to stack
     outputs and other useful data including the template body.
@@ -128,7 +152,7 @@ def get_stack(name=None, tags=None, opts=None):
 
 
     :param str name: The name of the stack
-    :param dict tags: A map of tags associated with this stack.
+    :param Mapping[str, str] tags: A map of tags associated with this stack.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -137,18 +161,18 @@ def get_stack(name=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:cloudformation/getStack:getStack', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:cloudformation/getStack:getStack', __args__, opts=opts, typ=_GetStackResult).value
 
     return AwaitableGetStackResult(
-        capabilities=__ret__.get('capabilities'),
-        description=__ret__.get('description'),
-        disable_rollback=__ret__.get('disableRollback'),
-        iam_role_arn=__ret__.get('iamRoleArn'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        notification_arns=__ret__.get('notificationArns'),
-        outputs=__ret__.get('outputs'),
-        parameters=__ret__.get('parameters'),
-        tags=__ret__.get('tags'),
-        template_body=__ret__.get('templateBody'),
-        timeout_in_minutes=__ret__.get('timeoutInMinutes'))
+        capabilities=__ret__.capabilities,
+        description=__ret__.description,
+        disable_rollback=__ret__.disable_rollback,
+        iam_role_arn=__ret__.iam_role_arn,
+        id=__ret__.id,
+        name=__ret__.name,
+        notification_arns=__ret__.notification_arns,
+        outputs=__ret__.outputs,
+        parameters=__ret__.parameters,
+        tags=__ret__.tags,
+        template_body=__ret__.template_body,
+        timeout_in_minutes=__ret__.timeout_in_minutes)

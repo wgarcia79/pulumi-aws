@@ -5,8 +5,27 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetPeeringAttachmentResult',
+    'AwaitableGetPeeringAttachmentResult',
+    'get_peering_attachment',
+]
+
+
+@pulumi.output_type
+class _GetPeeringAttachmentResult:
+    filters: Optional[List['outputs.GetPeeringAttachmentFilterResult']] = pulumi.property("filters")
+    id: Optional[str] = pulumi.property("id")
+    peer_account_id: str = pulumi.property("peerAccountId")
+    peer_region: str = pulumi.property("peerRegion")
+    peer_transit_gateway_id: str = pulumi.property("peerTransitGatewayId")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    transit_gateway_id: str = pulumi.property("transitGatewayId")
 
 
 class GetPeeringAttachmentResult:
@@ -64,7 +83,10 @@ class AwaitableGetPeeringAttachmentResult(GetPeeringAttachmentResult):
             transit_gateway_id=self.transit_gateway_id)
 
 
-def get_peering_attachment(filters=None, id=None, tags=None, opts=None):
+def get_peering_attachment(filters: Optional[List[pulumi.InputType['GetPeeringAttachmentFilterArgs']]] = None,
+                           id: Optional[str] = None,
+                           tags: Optional[Mapping[str, str]] = None,
+                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPeeringAttachmentResult:
     """
     Get information on an EC2 Transit Gateway Peering Attachment.
 
@@ -90,17 +112,10 @@ def get_peering_attachment(filters=None, id=None, tags=None, opts=None):
     ```
 
 
-    :param list filters: One or more configuration blocks containing name-values filters. Detailed below.
+    :param List[pulumi.InputType['GetPeeringAttachmentFilterArgs']] filters: One or more configuration blocks containing name-values filters. Detailed below.
     :param str id: Identifier of the EC2 Transit Gateway Peering Attachment.
-    :param dict tags: A mapping of tags, each pair of which must exactly match
+    :param Mapping[str, str] tags: A mapping of tags, each pair of which must exactly match
            a pair on the specific EC2 Transit Gateway Peering Attachment to retrieve.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter by, as defined by
-        [the underlying AWS API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeTransitGatewayPeeringAttachments.html).
-      * `values` (`list`) - Set of values that are accepted for the given field.
-        An EC2 Transit Gateway Peering Attachment be selected if any one of the given values matches.
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -110,13 +125,13 @@ def get_peering_attachment(filters=None, id=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2transitgateway/getPeeringAttachment:getPeeringAttachment', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2transitgateway/getPeeringAttachment:getPeeringAttachment', __args__, opts=opts, typ=_GetPeeringAttachmentResult).value
 
     return AwaitableGetPeeringAttachmentResult(
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        peer_account_id=__ret__.get('peerAccountId'),
-        peer_region=__ret__.get('peerRegion'),
-        peer_transit_gateway_id=__ret__.get('peerTransitGatewayId'),
-        tags=__ret__.get('tags'),
-        transit_gateway_id=__ret__.get('transitGatewayId'))
+        filters=__ret__.filters,
+        id=__ret__.id,
+        peer_account_id=__ret__.peer_account_id,
+        peer_region=__ret__.peer_region,
+        peer_transit_gateway_id=__ret__.peer_transit_gateway_id,
+        tags=__ret__.tags,
+        transit_gateway_id=__ret__.transit_gateway_id)

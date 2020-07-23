@@ -5,8 +5,27 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetJobQueueResult',
+    'AwaitableGetJobQueueResult',
+    'get_job_queue',
+]
+
+
+@pulumi.output_type
+class _GetJobQueueResult:
+    arn: str = pulumi.property("arn")
+    compute_environment_orders: List['outputs.GetJobQueueComputeEnvironmentOrderResult'] = pulumi.property("computeEnvironmentOrders")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    priority: float = pulumi.property("priority")
+    state: str = pulumi.property("state")
+    status: str = pulumi.property("status")
+    status_reason: str = pulumi.property("statusReason")
 
 
 class GetJobQueueResult:
@@ -82,7 +101,8 @@ class AwaitableGetJobQueueResult(GetJobQueueResult):
             status_reason=self.status_reason)
 
 
-def get_job_queue(name=None, opts=None):
+def get_job_queue(name: Optional[str] = None,
+                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetJobQueueResult:
     """
     The Batch Job Queue data source allows access to details of a specific
     job queue within AWS Batch.
@@ -105,14 +125,14 @@ def get_job_queue(name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:batch/getJobQueue:getJobQueue', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:batch/getJobQueue:getJobQueue', __args__, opts=opts, typ=_GetJobQueueResult).value
 
     return AwaitableGetJobQueueResult(
-        arn=__ret__.get('arn'),
-        compute_environment_orders=__ret__.get('computeEnvironmentOrders'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        priority=__ret__.get('priority'),
-        state=__ret__.get('state'),
-        status=__ret__.get('status'),
-        status_reason=__ret__.get('statusReason'))
+        arn=__ret__.arn,
+        compute_environment_orders=__ret__.compute_environment_orders,
+        id=__ret__.id,
+        name=__ret__.name,
+        priority=__ret__.priority,
+        state=__ret__.state,
+        status=__ret__.status,
+        status_reason=__ret__.status_reason)

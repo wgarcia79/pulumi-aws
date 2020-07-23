@@ -5,20 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['VpcEndpointServiceAllowedPrinciple']
 
 
 class VpcEndpointServiceAllowedPrinciple(pulumi.CustomResource):
-    principal_arn: pulumi.Output[str]
+    principal_arn: pulumi.Output[str] = pulumi.property("principalArn")
     """
     The ARN of the principal to allow permissions.
     """
-    vpc_endpoint_service_id: pulumi.Output[str]
+
+    vpc_endpoint_service_id: pulumi.Output[str] = pulumi.property("vpcEndpointServiceId")
     """
     The ID of the VPC endpoint service to allow permission.
     """
-    def __init__(__self__, resource_name, opts=None, principal_arn=None, vpc_endpoint_service_id=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 principal_arn: Optional[pulumi.Input[str]] = None,
+                 vpc_endpoint_service_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a resource to allow a principal to discover a VPC endpoint service.
 
@@ -77,7 +88,11 @@ class VpcEndpointServiceAllowedPrinciple(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, principal_arn=None, vpc_endpoint_service_id=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            principal_arn: Optional[pulumi.Input[str]] = None,
+            vpc_endpoint_service_id: Optional[pulumi.Input[str]] = None) -> 'VpcEndpointServiceAllowedPrinciple':
         """
         Get an existing VpcEndpointServiceAllowedPrinciple resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -101,3 +116,4 @@ class VpcEndpointServiceAllowedPrinciple(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,20 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['ThingPrincipalAttachment']
 
 
 class ThingPrincipalAttachment(pulumi.CustomResource):
-    principal: pulumi.Output[str]
+    principal: pulumi.Output[str] = pulumi.property("principal")
     """
     The AWS IoT Certificate ARN or Amazon Cognito Identity ID.
     """
-    thing: pulumi.Output[str]
+
+    thing: pulumi.Output[str] = pulumi.property("thing")
     """
     The name of the thing.
     """
-    def __init__(__self__, resource_name, opts=None, principal=None, thing=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 principal: Optional[pulumi.Input[str]] = None,
+                 thing: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Attaches Principal to AWS IoT Thing.
 
@@ -72,7 +83,11 @@ class ThingPrincipalAttachment(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, principal=None, thing=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            principal: Optional[pulumi.Input[str]] = None,
+            thing: Optional[pulumi.Input[str]] = None) -> 'ThingPrincipalAttachment':
         """
         Get an existing ThingPrincipalAttachment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -96,3 +111,4 @@ class ThingPrincipalAttachment(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

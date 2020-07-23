@@ -5,8 +5,28 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetStreamResult',
+    'AwaitableGetStreamResult',
+    'get_stream',
+]
+
+
+@pulumi.output_type
+class _GetStreamResult:
+    arn: str = pulumi.property("arn")
+    closed_shards: List[str] = pulumi.property("closedShards")
+    creation_timestamp: float = pulumi.property("creationTimestamp")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    open_shards: List[str] = pulumi.property("openShards")
+    retention_period: float = pulumi.property("retentionPeriod")
+    shard_level_metrics: List[str] = pulumi.property("shardLevelMetrics")
+    status: str = pulumi.property("status")
+    tags: Mapping[str, str] = pulumi.property("tags")
 
 
 class GetStreamResult:
@@ -94,7 +114,9 @@ class AwaitableGetStreamResult(GetStreamResult):
             tags=self.tags)
 
 
-def get_stream(name=None, tags=None, opts=None):
+def get_stream(name: Optional[str] = None,
+               tags: Optional[Mapping[str, str]] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetStreamResult:
     """
     Use this data source to get information about a Kinesis Stream for use in other
     resources.
@@ -112,7 +134,7 @@ def get_stream(name=None, tags=None, opts=None):
 
 
     :param str name: The name of the Kinesis Stream.
-    :param dict tags: A map of tags to assigned to the stream.
+    :param Mapping[str, str] tags: A map of tags to assigned to the stream.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -121,16 +143,16 @@ def get_stream(name=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:kinesis/getStream:getStream', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:kinesis/getStream:getStream', __args__, opts=opts, typ=_GetStreamResult).value
 
     return AwaitableGetStreamResult(
-        arn=__ret__.get('arn'),
-        closed_shards=__ret__.get('closedShards'),
-        creation_timestamp=__ret__.get('creationTimestamp'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        open_shards=__ret__.get('openShards'),
-        retention_period=__ret__.get('retentionPeriod'),
-        shard_level_metrics=__ret__.get('shardLevelMetrics'),
-        status=__ret__.get('status'),
-        tags=__ret__.get('tags'))
+        arn=__ret__.arn,
+        closed_shards=__ret__.closed_shards,
+        creation_timestamp=__ret__.creation_timestamp,
+        id=__ret__.id,
+        name=__ret__.name,
+        open_shards=__ret__.open_shards,
+        retention_period=__ret__.retention_period,
+        shard_level_metrics=__ret__.shard_level_metrics,
+        status=__ret__.status,
+        tags=__ret__.tags)

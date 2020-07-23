@@ -5,8 +5,26 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetCoipPoolResult',
+    'AwaitableGetCoipPoolResult',
+    'get_coip_pool',
+]
+
+
+@pulumi.output_type
+class _GetCoipPoolResult:
+    filters: Optional[List['outputs.GetCoipPoolFilterResult']] = pulumi.property("filters")
+    id: str = pulumi.property("id")
+    local_gateway_route_table_id: str = pulumi.property("localGatewayRouteTableId")
+    pool_cidrs: List[str] = pulumi.property("poolCidrs")
+    pool_id: str = pulumi.property("poolId")
+    tags: Mapping[str, str] = pulumi.property("tags")
 
 
 class GetCoipPoolResult:
@@ -54,7 +72,11 @@ class AwaitableGetCoipPoolResult(GetCoipPoolResult):
             tags=self.tags)
 
 
-def get_coip_pool(filters=None, local_gateway_route_table_id=None, pool_id=None, tags=None, opts=None):
+def get_coip_pool(filters: Optional[List[pulumi.InputType['GetCoipPoolFilterArgs']]] = None,
+                  local_gateway_route_table_id: Optional[str] = None,
+                  pool_id: Optional[str] = None,
+                  tags: Optional[Mapping[str, str]] = None,
+                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCoipPoolResult:
     """
     Provides details about a specific EC2 Customer-Owned IP Pool.
 
@@ -78,15 +100,8 @@ def get_coip_pool(filters=None, local_gateway_route_table_id=None, pool_id=None,
 
     :param str local_gateway_route_table_id: Local Gateway Route Table Id assigned to desired COIP Pool
     :param str pool_id: The id of the specific COIP Pool to retrieve.
-    :param dict tags: A mapping of tags, each pair of which must exactly match
+    :param Mapping[str, str] tags: A mapping of tags, each pair of which must exactly match
            a pair on the desired COIP Pool.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter by, as defined by
-        [the underlying AWS API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeCoipPools.html).
-      * `values` (`list`) - Set of values that are accepted for the given field.
-        A COIP Pool will be selected if any one of the given values matches.
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -97,12 +112,12 @@ def get_coip_pool(filters=None, local_gateway_route_table_id=None, pool_id=None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getCoipPool:getCoipPool', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getCoipPool:getCoipPool', __args__, opts=opts, typ=_GetCoipPoolResult).value
 
     return AwaitableGetCoipPoolResult(
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        local_gateway_route_table_id=__ret__.get('localGatewayRouteTableId'),
-        pool_cidrs=__ret__.get('poolCidrs'),
-        pool_id=__ret__.get('poolId'),
-        tags=__ret__.get('tags'))
+        filters=__ret__.filters,
+        id=__ret__.id,
+        local_gateway_route_table_id=__ret__.local_gateway_route_table_id,
+        pool_cidrs=__ret__.pool_cidrs,
+        pool_id=__ret__.pool_id,
+        tags=__ret__.tags)

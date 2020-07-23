@@ -5,20 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['LogService']
 
 
 class LogService(pulumi.CustomResource):
-    directory_id: pulumi.Output[str]
+    directory_id: pulumi.Output[str] = pulumi.property("directoryId")
     """
     The id of directory.
     """
-    log_group_name: pulumi.Output[str]
+
+    log_group_name: pulumi.Output[str] = pulumi.property("logGroupName")
     """
     Name of the cloudwatch log group to which the logs should be published. The log group should be already created and the directory service principal should be provided with required permission to create stream and publish logs. Changing this value would delete the current subscription and create a new one. A directory can only have one log subscription at a time.
     """
-    def __init__(__self__, resource_name, opts=None, directory_id=None, log_group_name=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 directory_id: Optional[pulumi.Input[str]] = None,
+                 log_group_name: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a Log subscription for AWS Directory Service that pushes logs to cloudwatch.
 
@@ -84,7 +95,11 @@ class LogService(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, directory_id=None, log_group_name=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            directory_id: Optional[pulumi.Input[str]] = None,
+            log_group_name: Optional[pulumi.Input[str]] = None) -> 'LogService':
         """
         Get an existing LogService resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -108,3 +123,4 @@ class LogService(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,8 +5,35 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetElasticIpResult',
+    'AwaitableGetElasticIpResult',
+    'get_elastic_ip',
+]
+
+
+@pulumi.output_type
+class _GetElasticIpResult:
+    association_id: str = pulumi.property("associationId")
+    customer_owned_ip: str = pulumi.property("customerOwnedIp")
+    customer_owned_ipv4_pool: str = pulumi.property("customerOwnedIpv4Pool")
+    domain: str = pulumi.property("domain")
+    filters: Optional[List['outputs.GetElasticIpFilterResult']] = pulumi.property("filters")
+    id: str = pulumi.property("id")
+    instance_id: str = pulumi.property("instanceId")
+    network_interface_id: str = pulumi.property("networkInterfaceId")
+    network_interface_owner_id: str = pulumi.property("networkInterfaceOwnerId")
+    private_dns: str = pulumi.property("privateDns")
+    private_ip: str = pulumi.property("privateIp")
+    public_dns: str = pulumi.property("publicDns")
+    public_ip: str = pulumi.property("publicIp")
+    public_ipv4_pool: str = pulumi.property("publicIpv4Pool")
+    tags: Mapping[str, str] = pulumi.property("tags")
 
 
 class GetElasticIpResult:
@@ -126,7 +153,11 @@ class AwaitableGetElasticIpResult(GetElasticIpResult):
             tags=self.tags)
 
 
-def get_elastic_ip(filters=None, id=None, public_ip=None, tags=None, opts=None):
+def get_elastic_ip(filters: Optional[List[pulumi.InputType['GetElasticIpFilterArgs']]] = None,
+                   id: Optional[str] = None,
+                   public_ip: Optional[str] = None,
+                   tags: Optional[Mapping[str, str]] = None,
+                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetElasticIpResult:
     """
     `ec2.Eip` provides details about a specific Elastic IP.
 
@@ -170,15 +201,10 @@ def get_elastic_ip(filters=None, id=None, public_ip=None, tags=None, opts=None):
     ```
 
 
-    :param list filters: One or more name/value pairs to use as filters. There are several valid keys, for a full reference, check out the [EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAddresses.html).
+    :param List[pulumi.InputType['GetElasticIpFilterArgs']] filters: One or more name/value pairs to use as filters. There are several valid keys, for a full reference, check out the [EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAddresses.html).
     :param str id: The allocation id of the specific VPC EIP to retrieve. If a classic EIP is required, do NOT set `id`, only set `public_ip`
     :param str public_ip: The public IP of the specific EIP to retrieve.
-    :param dict tags: A map of tags, each pair of which must exactly match a pair on the desired Elastic IP
-
-    The **filters** object supports the following:
-
-      * `name` (`str`)
-      * `values` (`list`)
+    :param Mapping[str, str] tags: A map of tags, each pair of which must exactly match a pair on the desired Elastic IP
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -189,21 +215,21 @@ def get_elastic_ip(filters=None, id=None, public_ip=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:index/getElasticIp:getElasticIp', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:index/getElasticIp:getElasticIp', __args__, opts=opts, typ=_GetElasticIpResult).value
 
     return AwaitableGetElasticIpResult(
-        association_id=__ret__.get('associationId'),
-        customer_owned_ip=__ret__.get('customerOwnedIp'),
-        customer_owned_ipv4_pool=__ret__.get('customerOwnedIpv4Pool'),
-        domain=__ret__.get('domain'),
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        instance_id=__ret__.get('instanceId'),
-        network_interface_id=__ret__.get('networkInterfaceId'),
-        network_interface_owner_id=__ret__.get('networkInterfaceOwnerId'),
-        private_dns=__ret__.get('privateDns'),
-        private_ip=__ret__.get('privateIp'),
-        public_dns=__ret__.get('publicDns'),
-        public_ip=__ret__.get('publicIp'),
-        public_ipv4_pool=__ret__.get('publicIpv4Pool'),
-        tags=__ret__.get('tags'))
+        association_id=__ret__.association_id,
+        customer_owned_ip=__ret__.customer_owned_ip,
+        customer_owned_ipv4_pool=__ret__.customer_owned_ipv4_pool,
+        domain=__ret__.domain,
+        filters=__ret__.filters,
+        id=__ret__.id,
+        instance_id=__ret__.instance_id,
+        network_interface_id=__ret__.network_interface_id,
+        network_interface_owner_id=__ret__.network_interface_owner_id,
+        private_dns=__ret__.private_dns,
+        private_ip=__ret__.private_ip,
+        public_dns=__ret__.public_dns,
+        public_ip=__ret__.public_ip,
+        public_ipv4_pool=__ret__.public_ipv4_pool,
+        tags=__ret__.tags)

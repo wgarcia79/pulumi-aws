@@ -5,8 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetConfigurationResult',
+    'AwaitableGetConfigurationResult',
+    'get_configuration',
+]
+
+
+@pulumi.output_type
+class _GetConfigurationResult:
+    arn: str = pulumi.property("arn")
+    description: str = pulumi.property("description")
+    id: str = pulumi.property("id")
+    kafka_versions: List[str] = pulumi.property("kafkaVersions")
+    latest_revision: float = pulumi.property("latestRevision")
+    name: str = pulumi.property("name")
+    server_properties: str = pulumi.property("serverProperties")
 
 
 class GetConfigurationResult:
@@ -70,7 +87,8 @@ class AwaitableGetConfigurationResult(GetConfigurationResult):
             server_properties=self.server_properties)
 
 
-def get_configuration(name=None, opts=None):
+def get_configuration(name: Optional[str] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetConfigurationResult:
     """
     Get information on an Amazon MSK Configuration.
 
@@ -92,13 +110,13 @@ def get_configuration(name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:msk/getConfiguration:getConfiguration', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:msk/getConfiguration:getConfiguration', __args__, opts=opts, typ=_GetConfigurationResult).value
 
     return AwaitableGetConfigurationResult(
-        arn=__ret__.get('arn'),
-        description=__ret__.get('description'),
-        id=__ret__.get('id'),
-        kafka_versions=__ret__.get('kafkaVersions'),
-        latest_revision=__ret__.get('latestRevision'),
-        name=__ret__.get('name'),
-        server_properties=__ret__.get('serverProperties'))
+        arn=__ret__.arn,
+        description=__ret__.description,
+        id=__ret__.id,
+        kafka_versions=__ret__.kafka_versions,
+        latest_revision=__ret__.latest_revision,
+        name=__ret__.name,
+        server_properties=__ret__.server_properties)

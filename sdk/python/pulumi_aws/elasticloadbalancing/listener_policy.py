@@ -5,28 +5,41 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['ListenerPolicy']
 
 warnings.warn("aws.elasticloadbalancing.ListenerPolicy has been deprecated in favor of aws.elb.ListenerPolicy", DeprecationWarning)
 
 
 class ListenerPolicy(pulumi.CustomResource):
-    load_balancer_name: pulumi.Output[str]
+    load_balancer_name: pulumi.Output[str] = pulumi.property("loadBalancerName")
     """
     The load balancer to attach the policy to.
     """
-    load_balancer_port: pulumi.Output[float]
+
+    load_balancer_port: pulumi.Output[float] = pulumi.property("loadBalancerPort")
     """
     The load balancer listener port to apply the policy to.
     """
-    policy_names: pulumi.Output[list]
+
+    policy_names: pulumi.Output[Optional[List[str]]] = pulumi.property("policyNames")
     """
     List of Policy Names to apply to the backend server.
     """
+
     warnings.warn("aws.elasticloadbalancing.ListenerPolicy has been deprecated in favor of aws.elb.ListenerPolicy", DeprecationWarning)
 
-    def __init__(__self__, resource_name, opts=None, load_balancer_name=None, load_balancer_port=None, policy_names=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 load_balancer_name: Optional[pulumi.Input[str]] = None,
+                 load_balancer_port: Optional[pulumi.Input[float]] = None,
+                 policy_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Attaches a load balancer policy to an ELB Listener.
 
@@ -108,7 +121,7 @@ class ListenerPolicy(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] load_balancer_name: The load balancer to attach the policy to.
         :param pulumi.Input[float] load_balancer_port: The load balancer listener port to apply the policy to.
-        :param pulumi.Input[list] policy_names: List of Policy Names to apply to the backend server.
+        :param pulumi.Input[List[pulumi.Input[str]]] policy_names: List of Policy Names to apply to the backend server.
         """
         pulumi.log.warn("ListenerPolicy is deprecated: aws.elasticloadbalancing.ListenerPolicy has been deprecated in favor of aws.elb.ListenerPolicy")
         if __name__ is not None:
@@ -142,7 +155,12 @@ class ListenerPolicy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, load_balancer_name=None, load_balancer_port=None, policy_names=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            load_balancer_name: Optional[pulumi.Input[str]] = None,
+            load_balancer_port: Optional[pulumi.Input[float]] = None,
+            policy_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'ListenerPolicy':
         """
         Get an existing ListenerPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -152,7 +170,7 @@ class ListenerPolicy(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] load_balancer_name: The load balancer to attach the policy to.
         :param pulumi.Input[float] load_balancer_port: The load balancer listener port to apply the policy to.
-        :param pulumi.Input[list] policy_names: List of Policy Names to apply to the backend server.
+        :param pulumi.Input[List[pulumi.Input[str]]] policy_names: List of Policy Names to apply to the backend server.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -168,3 +186,4 @@ class ListenerPolicy(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

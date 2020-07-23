@@ -5,8 +5,50 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetLaunchTemplateResult',
+    'AwaitableGetLaunchTemplateResult',
+    'get_launch_template',
+]
+
+
+@pulumi.output_type
+class _GetLaunchTemplateResult:
+    arn: str = pulumi.property("arn")
+    block_device_mappings: List['outputs.GetLaunchTemplateBlockDeviceMappingResult'] = pulumi.property("blockDeviceMappings")
+    credit_specifications: List['outputs.GetLaunchTemplateCreditSpecificationResult'] = pulumi.property("creditSpecifications")
+    default_version: float = pulumi.property("defaultVersion")
+    description: str = pulumi.property("description")
+    disable_api_termination: bool = pulumi.property("disableApiTermination")
+    ebs_optimized: str = pulumi.property("ebsOptimized")
+    elastic_gpu_specifications: List['outputs.GetLaunchTemplateElasticGpuSpecificationResult'] = pulumi.property("elasticGpuSpecifications")
+    filters: Optional[List['outputs.GetLaunchTemplateFilterResult']] = pulumi.property("filters")
+    hibernation_options: List['outputs.GetLaunchTemplateHibernationOptionResult'] = pulumi.property("hibernationOptions")
+    iam_instance_profiles: List['outputs.GetLaunchTemplateIamInstanceProfileResult'] = pulumi.property("iamInstanceProfiles")
+    id: str = pulumi.property("id")
+    image_id: str = pulumi.property("imageId")
+    instance_initiated_shutdown_behavior: str = pulumi.property("instanceInitiatedShutdownBehavior")
+    instance_market_options: List['outputs.GetLaunchTemplateInstanceMarketOptionResult'] = pulumi.property("instanceMarketOptions")
+    instance_type: str = pulumi.property("instanceType")
+    kernel_id: str = pulumi.property("kernelId")
+    key_name: str = pulumi.property("keyName")
+    latest_version: float = pulumi.property("latestVersion")
+    metadata_options: List['outputs.GetLaunchTemplateMetadataOptionResult'] = pulumi.property("metadataOptions")
+    monitorings: List['outputs.GetLaunchTemplateMonitoringResult'] = pulumi.property("monitorings")
+    name: Optional[str] = pulumi.property("name")
+    network_interfaces: List['outputs.GetLaunchTemplateNetworkInterfaceResult'] = pulumi.property("networkInterfaces")
+    placements: List['outputs.GetLaunchTemplatePlacementResult'] = pulumi.property("placements")
+    ram_disk_id: str = pulumi.property("ramDiskId")
+    security_group_names: List[str] = pulumi.property("securityGroupNames")
+    tag_specifications: List['outputs.GetLaunchTemplateTagSpecificationResult'] = pulumi.property("tagSpecifications")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    user_data: str = pulumi.property("userData")
+    vpc_security_group_ids: List[str] = pulumi.property("vpcSecurityGroupIds")
 
 
 class GetLaunchTemplateResult:
@@ -236,7 +278,10 @@ class AwaitableGetLaunchTemplateResult(GetLaunchTemplateResult):
             vpc_security_group_ids=self.vpc_security_group_ids)
 
 
-def get_launch_template(filters=None, name=None, tags=None, opts=None):
+def get_launch_template(filters: Optional[List[pulumi.InputType['GetLaunchTemplateFilterArgs']]] = None,
+                        name: Optional[str] = None,
+                        tags: Optional[Mapping[str, str]] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLaunchTemplateResult:
     """
     Provides information about a Launch Template.
 
@@ -261,14 +306,9 @@ def get_launch_template(filters=None, name=None, tags=None, opts=None):
     ```
 
 
-    :param list filters: Configuration block(s) for filtering. Detailed below.
+    :param List[pulumi.InputType['GetLaunchTemplateFilterArgs']] filters: Configuration block(s) for filtering. Detailed below.
     :param str name: The name of the filter field. Valid values can be found in the [EC2 DescribeLaunchTemplates API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeLaunchTemplates.html).
-    :param dict tags: A map of tags, each pair of which must exactly match a pair on the desired Launch Template.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the filter field. Valid values can be found in the [EC2 DescribeLaunchTemplates API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeLaunchTemplates.html).
-      * `values` (`list`) - Set of values that are accepted for the given filter field. Results will be selected if any given value matches.
+    :param Mapping[str, str] tags: A map of tags, each pair of which must exactly match a pair on the desired Launch Template.
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -278,36 +318,36 @@ def get_launch_template(filters=None, name=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getLaunchTemplate:getLaunchTemplate', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getLaunchTemplate:getLaunchTemplate', __args__, opts=opts, typ=_GetLaunchTemplateResult).value
 
     return AwaitableGetLaunchTemplateResult(
-        arn=__ret__.get('arn'),
-        block_device_mappings=__ret__.get('blockDeviceMappings'),
-        credit_specifications=__ret__.get('creditSpecifications'),
-        default_version=__ret__.get('defaultVersion'),
-        description=__ret__.get('description'),
-        disable_api_termination=__ret__.get('disableApiTermination'),
-        ebs_optimized=__ret__.get('ebsOptimized'),
-        elastic_gpu_specifications=__ret__.get('elasticGpuSpecifications'),
-        filters=__ret__.get('filters'),
-        hibernation_options=__ret__.get('hibernationOptions'),
-        iam_instance_profiles=__ret__.get('iamInstanceProfiles'),
-        id=__ret__.get('id'),
-        image_id=__ret__.get('imageId'),
-        instance_initiated_shutdown_behavior=__ret__.get('instanceInitiatedShutdownBehavior'),
-        instance_market_options=__ret__.get('instanceMarketOptions'),
-        instance_type=__ret__.get('instanceType'),
-        kernel_id=__ret__.get('kernelId'),
-        key_name=__ret__.get('keyName'),
-        latest_version=__ret__.get('latestVersion'),
-        metadata_options=__ret__.get('metadataOptions'),
-        monitorings=__ret__.get('monitorings'),
-        name=__ret__.get('name'),
-        network_interfaces=__ret__.get('networkInterfaces'),
-        placements=__ret__.get('placements'),
-        ram_disk_id=__ret__.get('ramDiskId'),
-        security_group_names=__ret__.get('securityGroupNames'),
-        tag_specifications=__ret__.get('tagSpecifications'),
-        tags=__ret__.get('tags'),
-        user_data=__ret__.get('userData'),
-        vpc_security_group_ids=__ret__.get('vpcSecurityGroupIds'))
+        arn=__ret__.arn,
+        block_device_mappings=__ret__.block_device_mappings,
+        credit_specifications=__ret__.credit_specifications,
+        default_version=__ret__.default_version,
+        description=__ret__.description,
+        disable_api_termination=__ret__.disable_api_termination,
+        ebs_optimized=__ret__.ebs_optimized,
+        elastic_gpu_specifications=__ret__.elastic_gpu_specifications,
+        filters=__ret__.filters,
+        hibernation_options=__ret__.hibernation_options,
+        iam_instance_profiles=__ret__.iam_instance_profiles,
+        id=__ret__.id,
+        image_id=__ret__.image_id,
+        instance_initiated_shutdown_behavior=__ret__.instance_initiated_shutdown_behavior,
+        instance_market_options=__ret__.instance_market_options,
+        instance_type=__ret__.instance_type,
+        kernel_id=__ret__.kernel_id,
+        key_name=__ret__.key_name,
+        latest_version=__ret__.latest_version,
+        metadata_options=__ret__.metadata_options,
+        monitorings=__ret__.monitorings,
+        name=__ret__.name,
+        network_interfaces=__ret__.network_interfaces,
+        placements=__ret__.placements,
+        ram_disk_id=__ret__.ram_disk_id,
+        security_group_names=__ret__.security_group_names,
+        tag_specifications=__ret__.tag_specifications,
+        tags=__ret__.tags,
+        user_data=__ret__.user_data,
+        vpc_security_group_ids=__ret__.vpc_security_group_ids)

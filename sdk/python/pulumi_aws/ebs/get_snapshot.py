@@ -5,8 +5,38 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetSnapshotResult',
+    'AwaitableGetSnapshotResult',
+    'get_snapshot',
+]
+
+
+@pulumi.output_type
+class _GetSnapshotResult:
+    arn: str = pulumi.property("arn")
+    data_encryption_key_id: str = pulumi.property("dataEncryptionKeyId")
+    description: str = pulumi.property("description")
+    encrypted: bool = pulumi.property("encrypted")
+    filters: Optional[List['outputs.GetSnapshotFilterResult']] = pulumi.property("filters")
+    id: str = pulumi.property("id")
+    kms_key_id: str = pulumi.property("kmsKeyId")
+    most_recent: Optional[bool] = pulumi.property("mostRecent")
+    owner_alias: str = pulumi.property("ownerAlias")
+    owner_id: str = pulumi.property("ownerId")
+    owners: Optional[List[str]] = pulumi.property("owners")
+    restorable_by_user_ids: Optional[List[str]] = pulumi.property("restorableByUserIds")
+    snapshot_id: str = pulumi.property("snapshotId")
+    snapshot_ids: Optional[List[str]] = pulumi.property("snapshotIds")
+    state: str = pulumi.property("state")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    volume_id: str = pulumi.property("volumeId")
+    volume_size: float = pulumi.property("volumeSize")
 
 
 class GetSnapshotResult:
@@ -135,7 +165,13 @@ class AwaitableGetSnapshotResult(GetSnapshotResult):
             volume_size=self.volume_size)
 
 
-def get_snapshot(filters=None, most_recent=None, owners=None, restorable_by_user_ids=None, snapshot_ids=None, tags=None, opts=None):
+def get_snapshot(filters: Optional[List[pulumi.InputType['GetSnapshotFilterArgs']]] = None,
+                 most_recent: Optional[bool] = None,
+                 owners: Optional[List[str]] = None,
+                 restorable_by_user_ids: Optional[List[str]] = None,
+                 snapshot_ids: Optional[List[str]] = None,
+                 tags: Optional[Mapping[str, str]] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSnapshotResult:
     """
     Use this data source to get information about an EBS Snapshot for use when provisioning EBS Volumes
 
@@ -160,19 +196,14 @@ def get_snapshot(filters=None, most_recent=None, owners=None, restorable_by_user
     ```
 
 
-    :param list filters: One or more name/value pairs to filter off of. There are
+    :param List[pulumi.InputType['GetSnapshotFilterArgs']] filters: One or more name/value pairs to filter off of. There are
            several valid keys, for a full reference, check out
            [describe-snapshots in the AWS CLI reference][1].
     :param bool most_recent: If more than one result is returned, use the most recent snapshot.
-    :param list owners: Returns the snapshots owned by the specified owner id. Multiple owners can be specified.
-    :param list restorable_by_user_ids: One or more AWS accounts IDs that can create volumes from the snapshot.
-    :param list snapshot_ids: Returns information on a specific snapshot_id.
-    :param dict tags: A map of tags for the resource.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`)
-      * `values` (`list`)
+    :param List[str] owners: Returns the snapshots owned by the specified owner id. Multiple owners can be specified.
+    :param List[str] restorable_by_user_ids: One or more AWS accounts IDs that can create volumes from the snapshot.
+    :param List[str] snapshot_ids: Returns information on a specific snapshot_id.
+    :param Mapping[str, str] tags: A map of tags for the resource.
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -185,24 +216,24 @@ def get_snapshot(filters=None, most_recent=None, owners=None, restorable_by_user
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ebs/getSnapshot:getSnapshot', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ebs/getSnapshot:getSnapshot', __args__, opts=opts, typ=_GetSnapshotResult).value
 
     return AwaitableGetSnapshotResult(
-        arn=__ret__.get('arn'),
-        data_encryption_key_id=__ret__.get('dataEncryptionKeyId'),
-        description=__ret__.get('description'),
-        encrypted=__ret__.get('encrypted'),
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        kms_key_id=__ret__.get('kmsKeyId'),
-        most_recent=__ret__.get('mostRecent'),
-        owner_alias=__ret__.get('ownerAlias'),
-        owner_id=__ret__.get('ownerId'),
-        owners=__ret__.get('owners'),
-        restorable_by_user_ids=__ret__.get('restorableByUserIds'),
-        snapshot_id=__ret__.get('snapshotId'),
-        snapshot_ids=__ret__.get('snapshotIds'),
-        state=__ret__.get('state'),
-        tags=__ret__.get('tags'),
-        volume_id=__ret__.get('volumeId'),
-        volume_size=__ret__.get('volumeSize'))
+        arn=__ret__.arn,
+        data_encryption_key_id=__ret__.data_encryption_key_id,
+        description=__ret__.description,
+        encrypted=__ret__.encrypted,
+        filters=__ret__.filters,
+        id=__ret__.id,
+        kms_key_id=__ret__.kms_key_id,
+        most_recent=__ret__.most_recent,
+        owner_alias=__ret__.owner_alias,
+        owner_id=__ret__.owner_id,
+        owners=__ret__.owners,
+        restorable_by_user_ids=__ret__.restorable_by_user_ids,
+        snapshot_id=__ret__.snapshot_id,
+        snapshot_ids=__ret__.snapshot_ids,
+        state=__ret__.state,
+        tags=__ret__.tags,
+        volume_id=__ret__.volume_id,
+        volume_size=__ret__.volume_size)

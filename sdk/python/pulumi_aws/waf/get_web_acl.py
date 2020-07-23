@@ -5,8 +5,20 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetWebAclResult',
+    'AwaitableGetWebAclResult',
+    'get_web_acl',
+]
+
+
+@pulumi.output_type
+class _GetWebAclResult:
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
 
 
 class GetWebAclResult:
@@ -35,7 +47,8 @@ class AwaitableGetWebAclResult(GetWebAclResult):
             name=self.name)
 
 
-def get_web_acl(name=None, opts=None):
+def get_web_acl(name: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWebAclResult:
     """
     `waf.WebAcl` Retrieves a WAF Web ACL Resource Id.
 
@@ -57,8 +70,8 @@ def get_web_acl(name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:waf/getWebAcl:getWebAcl', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:waf/getWebAcl:getWebAcl', __args__, opts=opts, typ=_GetWebAclResult).value
 
     return AwaitableGetWebAclResult(
-        id=__ret__.get('id'),
-        name=__ret__.get('name'))
+        id=__ret__.id,
+        name=__ret__.name)

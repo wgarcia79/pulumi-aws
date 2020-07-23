@@ -5,8 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetSiteResult',
+    'AwaitableGetSiteResult',
+    'get_site',
+]
+
+
+@pulumi.output_type
+class _GetSiteResult:
+    account_id: str = pulumi.property("accountId")
+    description: str = pulumi.property("description")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
 
 
 class GetSiteResult:
@@ -46,7 +60,9 @@ class AwaitableGetSiteResult(GetSiteResult):
             name=self.name)
 
 
-def get_site(id=None, name=None, opts=None):
+def get_site(id: Optional[str] = None,
+             name: Optional[str] = None,
+             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSiteResult:
     """
     Provides details about an Outposts Site.
 
@@ -70,10 +86,10 @@ def get_site(id=None, name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:outposts/getSite:getSite', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:outposts/getSite:getSite', __args__, opts=opts, typ=_GetSiteResult).value
 
     return AwaitableGetSiteResult(
-        account_id=__ret__.get('accountId'),
-        description=__ret__.get('description'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'))
+        account_id=__ret__.account_id,
+        description=__ret__.description,
+        id=__ret__.id,
+        name=__ret__.name)

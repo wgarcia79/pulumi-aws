@@ -5,24 +5,35 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['ListenerCertificate']
 
 warnings.warn("aws.elasticloadbalancingv2.ListenerCertificate has been deprecated in favor of aws.lb.ListenerCertificate", DeprecationWarning)
 
 
 class ListenerCertificate(pulumi.CustomResource):
-    certificate_arn: pulumi.Output[str]
+    certificate_arn: pulumi.Output[str] = pulumi.property("certificateArn")
     """
     The ARN of the certificate to attach to the listener.
     """
-    listener_arn: pulumi.Output[str]
+
+    listener_arn: pulumi.Output[str] = pulumi.property("listenerArn")
     """
     The ARN of the listener to which to attach the certificate.
     """
+
     warnings.warn("aws.elasticloadbalancingv2.ListenerCertificate has been deprecated in favor of aws.lb.ListenerCertificate", DeprecationWarning)
 
-    def __init__(__self__, resource_name, opts=None, certificate_arn=None, listener_arn=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 certificate_arn: Optional[pulumi.Input[str]] = None,
+                 listener_arn: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a Load Balancer Listener Certificate resource.
 
@@ -80,7 +91,11 @@ class ListenerCertificate(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, certificate_arn=None, listener_arn=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            certificate_arn: Optional[pulumi.Input[str]] = None,
+            listener_arn: Optional[pulumi.Input[str]] = None) -> 'ListenerCertificate':
         """
         Get an existing ListenerCertificate resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -104,3 +119,4 @@ class ListenerCertificate(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

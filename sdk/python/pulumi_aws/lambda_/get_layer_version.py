@@ -5,8 +5,30 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetLayerVersionResult',
+    'AwaitableGetLayerVersionResult',
+    'get_layer_version',
+]
+
+
+@pulumi.output_type
+class _GetLayerVersionResult:
+    arn: str = pulumi.property("arn")
+    compatible_runtime: Optional[str] = pulumi.property("compatibleRuntime")
+    compatible_runtimes: List[str] = pulumi.property("compatibleRuntimes")
+    created_date: str = pulumi.property("createdDate")
+    description: str = pulumi.property("description")
+    id: str = pulumi.property("id")
+    layer_arn: str = pulumi.property("layerArn")
+    layer_name: str = pulumi.property("layerName")
+    license_info: str = pulumi.property("licenseInfo")
+    source_code_hash: str = pulumi.property("sourceCodeHash")
+    source_code_size: float = pulumi.property("sourceCodeSize")
+    version: float = pulumi.property("version")
 
 
 class GetLayerVersionResult:
@@ -102,7 +124,10 @@ class AwaitableGetLayerVersionResult(GetLayerVersionResult):
             version=self.version)
 
 
-def get_layer_version(compatible_runtime=None, layer_name=None, version=None, opts=None):
+def get_layer_version(compatible_runtime: Optional[str] = None,
+                      layer_name: Optional[str] = None,
+                      version: Optional[float] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLayerVersionResult:
     """
     Provides information about a Lambda Layer Version.
 
@@ -130,18 +155,18 @@ def get_layer_version(compatible_runtime=None, layer_name=None, version=None, op
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:lambda/getLayerVersion:getLayerVersion', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:lambda/getLayerVersion:getLayerVersion', __args__, opts=opts, typ=_GetLayerVersionResult).value
 
     return AwaitableGetLayerVersionResult(
-        arn=__ret__.get('arn'),
-        compatible_runtime=__ret__.get('compatibleRuntime'),
-        compatible_runtimes=__ret__.get('compatibleRuntimes'),
-        created_date=__ret__.get('createdDate'),
-        description=__ret__.get('description'),
-        id=__ret__.get('id'),
-        layer_arn=__ret__.get('layerArn'),
-        layer_name=__ret__.get('layerName'),
-        license_info=__ret__.get('licenseInfo'),
-        source_code_hash=__ret__.get('sourceCodeHash'),
-        source_code_size=__ret__.get('sourceCodeSize'),
-        version=__ret__.get('version'))
+        arn=__ret__.arn,
+        compatible_runtime=__ret__.compatible_runtime,
+        compatible_runtimes=__ret__.compatible_runtimes,
+        created_date=__ret__.created_date,
+        description=__ret__.description,
+        id=__ret__.id,
+        layer_arn=__ret__.layer_arn,
+        layer_name=__ret__.layer_name,
+        license_info=__ret__.license_info,
+        source_code_hash=__ret__.source_code_hash,
+        source_code_size=__ret__.source_code_size,
+        version=__ret__.version)

@@ -5,8 +5,23 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetLocalDiskResult',
+    'AwaitableGetLocalDiskResult',
+    'get_local_disk',
+]
+
+
+@pulumi.output_type
+class _GetLocalDiskResult:
+    disk_id: str = pulumi.property("diskId")
+    disk_node: Optional[str] = pulumi.property("diskNode")
+    disk_path: Optional[str] = pulumi.property("diskPath")
+    gateway_arn: str = pulumi.property("gatewayArn")
+    id: str = pulumi.property("id")
 
 
 class GetLocalDiskResult:
@@ -50,7 +65,10 @@ class AwaitableGetLocalDiskResult(GetLocalDiskResult):
             id=self.id)
 
 
-def get_local_disk(disk_node=None, disk_path=None, gateway_arn=None, opts=None):
+def get_local_disk(disk_node: Optional[str] = None,
+                   disk_path: Optional[str] = None,
+                   gateway_arn: Optional[str] = None,
+                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLocalDiskResult:
     """
     Retrieve information about a Storage Gateway local disk. The disk identifier is useful for adding the disk as a cache or upload buffer to a gateway.
 
@@ -77,11 +95,11 @@ def get_local_disk(disk_node=None, disk_path=None, gateway_arn=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:storagegateway/getLocalDisk:getLocalDisk', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:storagegateway/getLocalDisk:getLocalDisk', __args__, opts=opts, typ=_GetLocalDiskResult).value
 
     return AwaitableGetLocalDiskResult(
-        disk_id=__ret__.get('diskId'),
-        disk_node=__ret__.get('diskNode'),
-        disk_path=__ret__.get('diskPath'),
-        gateway_arn=__ret__.get('gatewayArn'),
-        id=__ret__.get('id'))
+        disk_id=__ret__.disk_id,
+        disk_node=__ret__.disk_node,
+        disk_path=__ret__.disk_path,
+        gateway_arn=__ret__.gateway_arn,
+        id=__ret__.id)

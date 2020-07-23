@@ -5,40 +5,57 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['UserPoolDomain']
 
 
 class UserPoolDomain(pulumi.CustomResource):
-    aws_account_id: pulumi.Output[str]
+    aws_account_id: pulumi.Output[str] = pulumi.property("awsAccountId")
     """
     The AWS account ID for the user pool owner.
     """
-    certificate_arn: pulumi.Output[str]
+
+    certificate_arn: pulumi.Output[Optional[str]] = pulumi.property("certificateArn")
     """
     The ARN of an ISSUED ACM certificate in us-east-1 for a custom domain.
     """
-    cloudfront_distribution_arn: pulumi.Output[str]
+
+    cloudfront_distribution_arn: pulumi.Output[str] = pulumi.property("cloudfrontDistributionArn")
     """
     The URL of the CloudFront distribution. This is required to generate the ALIAS `route53.Record`
     """
-    domain: pulumi.Output[str]
+
+    domain: pulumi.Output[str] = pulumi.property("domain")
     """
     The domain string.
     """
-    s3_bucket: pulumi.Output[str]
+
+    s3_bucket: pulumi.Output[str] = pulumi.property("s3Bucket")
     """
     The S3 bucket where the static files for this domain are stored.
     """
-    user_pool_id: pulumi.Output[str]
+
+    user_pool_id: pulumi.Output[str] = pulumi.property("userPoolId")
     """
     The user pool ID.
     """
-    version: pulumi.Output[str]
+
+    version: pulumi.Output[str] = pulumi.property("version")
     """
     The app version.
     """
-    def __init__(__self__, resource_name, opts=None, certificate_arn=None, domain=None, user_pool_id=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 certificate_arn: Optional[pulumi.Input[str]] = None,
+                 domain: Optional[pulumi.Input[str]] = None,
+                 user_pool_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a Cognito User Pool Domain resource.
 
@@ -118,7 +135,16 @@ class UserPoolDomain(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, aws_account_id=None, certificate_arn=None, cloudfront_distribution_arn=None, domain=None, s3_bucket=None, user_pool_id=None, version=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            aws_account_id: Optional[pulumi.Input[str]] = None,
+            certificate_arn: Optional[pulumi.Input[str]] = None,
+            cloudfront_distribution_arn: Optional[pulumi.Input[str]] = None,
+            domain: Optional[pulumi.Input[str]] = None,
+            s3_bucket: Optional[pulumi.Input[str]] = None,
+            user_pool_id: Optional[pulumi.Input[str]] = None,
+            version: Optional[pulumi.Input[str]] = None) -> 'UserPoolDomain':
         """
         Get an existing UserPoolDomain resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -152,3 +178,4 @@ class UserPoolDomain(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

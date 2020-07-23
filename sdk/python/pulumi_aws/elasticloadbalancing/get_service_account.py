@@ -5,10 +5,23 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
 
+__all__ = [
+    'GetServiceAccountResult',
+    'AwaitableGetServiceAccountResult',
+    'get_service_account',
+]
+
 warnings.warn("aws.elasticloadbalancing.getServiceAccount has been deprecated in favor of aws.elb.getServiceAccount", DeprecationWarning)
+
+@pulumi.output_type
+class _GetServiceAccountResult:
+    arn: str = pulumi.property("arn")
+    id: str = pulumi.property("id")
+    region: Optional[str] = pulumi.property("region")
+
 
 class GetServiceAccountResult:
     """
@@ -43,7 +56,8 @@ class AwaitableGetServiceAccountResult(GetServiceAccountResult):
             region=self.region)
 
 
-def get_service_account(region=None, opts=None):
+def get_service_account(region: Optional[str] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServiceAccountResult:
     """
     Use this data source to get the Account ID of the [AWS Elastic Load Balancing Service Account](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-access-logs.html#attach-bucket-policy)
     in a given region for the purpose of permitting in S3 bucket policy.
@@ -102,9 +116,9 @@ def get_service_account(region=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:elasticloadbalancing/getServiceAccount:getServiceAccount', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:elasticloadbalancing/getServiceAccount:getServiceAccount', __args__, opts=opts, typ=_GetServiceAccountResult).value
 
     return AwaitableGetServiceAccountResult(
-        arn=__ret__.get('arn'),
-        id=__ret__.get('id'),
-        region=__ret__.get('region'))
+        arn=__ret__.arn,
+        id=__ret__.id,
+        region=__ret__.region)

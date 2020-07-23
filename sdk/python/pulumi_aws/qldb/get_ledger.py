@@ -5,8 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetLedgerResult',
+    'AwaitableGetLedgerResult',
+    'get_ledger',
+]
+
+
+@pulumi.output_type
+class _GetLedgerResult:
+    arn: str = pulumi.property("arn")
+    deletion_protection: bool = pulumi.property("deletionProtection")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
 
 
 class GetLedgerResult:
@@ -49,7 +63,8 @@ class AwaitableGetLedgerResult(GetLedgerResult):
             name=self.name)
 
 
-def get_ledger(name=None, opts=None):
+def get_ledger(name: Optional[str] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLedgerResult:
     """
     Use this data source to fetch information about a Quantum Ledger Database.
 
@@ -71,10 +86,10 @@ def get_ledger(name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:qldb/getLedger:getLedger', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:qldb/getLedger:getLedger', __args__, opts=opts, typ=_GetLedgerResult).value
 
     return AwaitableGetLedgerResult(
-        arn=__ret__.get('arn'),
-        deletion_protection=__ret__.get('deletionProtection'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'))
+        arn=__ret__.arn,
+        deletion_protection=__ret__.deletion_protection,
+        id=__ret__.id,
+        name=__ret__.name)

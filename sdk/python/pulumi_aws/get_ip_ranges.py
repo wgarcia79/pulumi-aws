@@ -5,8 +5,26 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from . import _utilities, _tables
+
+__all__ = [
+    'GetIpRangesResult',
+    'AwaitableGetIpRangesResult',
+    'get_ip_ranges',
+]
+
+
+@pulumi.output_type
+class _GetIpRangesResult:
+    cidr_blocks: List[str] = pulumi.property("cidrBlocks")
+    create_date: str = pulumi.property("createDate")
+    id: str = pulumi.property("id")
+    ipv6_cidr_blocks: List[str] = pulumi.property("ipv6CidrBlocks")
+    regions: Optional[List[str]] = pulumi.property("regions")
+    services: List[str] = pulumi.property("services")
+    sync_token: float = pulumi.property("syncToken")
+    url: Optional[str] = pulumi.property("url")
 
 
 class GetIpRangesResult:
@@ -72,7 +90,10 @@ class AwaitableGetIpRangesResult(GetIpRangesResult):
             url=self.url)
 
 
-def get_ip_ranges(regions=None, services=None, url=None, opts=None):
+def get_ip_ranges(regions: Optional[List[str]] = None,
+                  services: Optional[List[str]] = None,
+                  url: Optional[str] = None,
+                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIpRangesResult:
     """
     Use this data source to get the IP ranges of various AWS products and services. For more information about the contents of this data source and required JSON syntax if referencing a custom URL, see the [AWS IP Address Ranges documention](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html).
 
@@ -102,10 +123,10 @@ def get_ip_ranges(regions=None, services=None, url=None, opts=None):
     ```
 
 
-    :param list regions: Filter IP ranges by regions (or include all regions, if
+    :param List[str] regions: Filter IP ranges by regions (or include all regions, if
            omitted). Valid items are `global` (for `cloudfront`) as well as all AWS regions
            (e.g. `eu-central-1`)
-    :param list services: Filter IP ranges by services. Valid items are `amazon`
+    :param List[str] services: Filter IP ranges by services. Valid items are `amazon`
            (for amazon.com), `amazon_connect`, `api_gateway`, `cloud9`, `cloudfront`,
            `codebuild`, `dynamodb`, `ec2`, `ec2_instance_connect`, `globalaccelerator`,
            `route53`, `route53_healthchecks`, `s3` and `workspaces_gateways`. See the
@@ -120,14 +141,14 @@ def get_ip_ranges(regions=None, services=None, url=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:index/getIpRanges:getIpRanges', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:index/getIpRanges:getIpRanges', __args__, opts=opts, typ=_GetIpRangesResult).value
 
     return AwaitableGetIpRangesResult(
-        cidr_blocks=__ret__.get('cidrBlocks'),
-        create_date=__ret__.get('createDate'),
-        id=__ret__.get('id'),
-        ipv6_cidr_blocks=__ret__.get('ipv6CidrBlocks'),
-        regions=__ret__.get('regions'),
-        services=__ret__.get('services'),
-        sync_token=__ret__.get('syncToken'),
-        url=__ret__.get('url'))
+        cidr_blocks=__ret__.cidr_blocks,
+        create_date=__ret__.create_date,
+        id=__ret__.id,
+        ipv6_cidr_blocks=__ret__.ipv6_cidr_blocks,
+        regions=__ret__.regions,
+        services=__ret__.services,
+        sync_token=__ret__.sync_token,
+        url=__ret__.url)

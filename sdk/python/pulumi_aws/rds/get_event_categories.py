@@ -5,8 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetEventCategoriesResult',
+    'AwaitableGetEventCategoriesResult',
+    'get_event_categories',
+]
+
+
+@pulumi.output_type
+class _GetEventCategoriesResult:
+    event_categories: List[str] = pulumi.property("eventCategories")
+    id: str = pulumi.property("id")
+    source_type: Optional[str] = pulumi.property("sourceType")
 
 
 class GetEventCategoriesResult:
@@ -42,7 +55,8 @@ class AwaitableGetEventCategoriesResult(GetEventCategoriesResult):
             source_type=self.source_type)
 
 
-def get_event_categories(source_type=None, opts=None):
+def get_event_categories(source_type: Optional[str] = None,
+                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEventCategoriesResult:
     """
     ## Example Usage
 
@@ -75,9 +89,9 @@ def get_event_categories(source_type=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:rds/getEventCategories:getEventCategories', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:rds/getEventCategories:getEventCategories', __args__, opts=opts, typ=_GetEventCategoriesResult).value
 
     return AwaitableGetEventCategoriesResult(
-        event_categories=__ret__.get('eventCategories'),
-        id=__ret__.get('id'),
-        source_type=__ret__.get('sourceType'))
+        event_categories=__ret__.event_categories,
+        id=__ret__.id,
+        source_type=__ret__.source_type)

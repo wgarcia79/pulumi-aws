@@ -5,8 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from . import _utilities, _tables
+
+__all__ = [
+    'GetPartitionResult',
+    'AwaitableGetPartitionResult',
+    'get_partition',
+]
+
+
+@pulumi.output_type
+class _GetPartitionResult:
+    dns_suffix: str = pulumi.property("dnsSuffix")
+    id: str = pulumi.property("id")
+    partition: str = pulumi.property("partition")
 
 
 class GetPartitionResult:
@@ -39,7 +52,7 @@ class AwaitableGetPartitionResult(GetPartitionResult):
             partition=self.partition)
 
 
-def get_partition(opts=None):
+def get_partition(                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPartitionResult:
     """
     Use this data source to lookup current AWS partition in which this provider is working
 
@@ -62,9 +75,9 @@ def get_partition(opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:index/getPartition:getPartition', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:index/getPartition:getPartition', __args__, opts=opts, typ=_GetPartitionResult).value
 
     return AwaitableGetPartitionResult(
-        dns_suffix=__ret__.get('dnsSuffix'),
-        id=__ret__.get('id'),
-        partition=__ret__.get('partition'))
+        dns_suffix=__ret__.dns_suffix,
+        id=__ret__.id,
+        partition=__ret__.partition)

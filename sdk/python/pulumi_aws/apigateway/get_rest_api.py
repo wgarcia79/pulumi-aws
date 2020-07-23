@@ -5,8 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetRestApiResult',
+    'AwaitableGetRestApiResult',
+    'get_rest_api',
+]
+
+
+@pulumi.output_type
+class _GetRestApiResult:
+    api_key_source: str = pulumi.property("apiKeySource")
+    arn: str = pulumi.property("arn")
+    binary_media_types: List[str] = pulumi.property("binaryMediaTypes")
+    description: str = pulumi.property("description")
+    endpoint_configurations: List['outputs.GetRestApiEndpointConfigurationResult'] = pulumi.property("endpointConfigurations")
+    execution_arn: str = pulumi.property("executionArn")
+    id: str = pulumi.property("id")
+    minimum_compression_size: float = pulumi.property("minimumCompressionSize")
+    name: str = pulumi.property("name")
+    policy: str = pulumi.property("policy")
+    root_resource_id: str = pulumi.property("rootResourceId")
+    tags: Mapping[str, str] = pulumi.property("tags")
 
 
 class GetRestApiResult:
@@ -105,7 +128,9 @@ class AwaitableGetRestApiResult(GetRestApiResult):
             tags=self.tags)
 
 
-def get_rest_api(name=None, tags=None, opts=None):
+def get_rest_api(name: Optional[str] = None,
+                 tags: Optional[Mapping[str, str]] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRestApiResult:
     """
     Use this data source to get the id and root_resource_id of a REST API in
     API Gateway. To fetch the REST API you must provide a name to match against.
@@ -123,7 +148,7 @@ def get_rest_api(name=None, tags=None, opts=None):
 
 
     :param str name: The name of the REST API to look up. If no REST API is found with this name, an error will be returned. If multiple REST APIs are found with this name, an error will be returned.
-    :param dict tags: Key-value map of resource tags.
+    :param Mapping[str, str] tags: Key-value map of resource tags.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -132,18 +157,18 @@ def get_rest_api(name=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:apigateway/getRestApi:getRestApi', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:apigateway/getRestApi:getRestApi', __args__, opts=opts, typ=_GetRestApiResult).value
 
     return AwaitableGetRestApiResult(
-        api_key_source=__ret__.get('apiKeySource'),
-        arn=__ret__.get('arn'),
-        binary_media_types=__ret__.get('binaryMediaTypes'),
-        description=__ret__.get('description'),
-        endpoint_configurations=__ret__.get('endpointConfigurations'),
-        execution_arn=__ret__.get('executionArn'),
-        id=__ret__.get('id'),
-        minimum_compression_size=__ret__.get('minimumCompressionSize'),
-        name=__ret__.get('name'),
-        policy=__ret__.get('policy'),
-        root_resource_id=__ret__.get('rootResourceId'),
-        tags=__ret__.get('tags'))
+        api_key_source=__ret__.api_key_source,
+        arn=__ret__.arn,
+        binary_media_types=__ret__.binary_media_types,
+        description=__ret__.description,
+        endpoint_configurations=__ret__.endpoint_configurations,
+        execution_arn=__ret__.execution_arn,
+        id=__ret__.id,
+        minimum_compression_size=__ret__.minimum_compression_size,
+        name=__ret__.name,
+        policy=__ret__.policy,
+        root_resource_id=__ret__.root_resource_id,
+        tags=__ret__.tags)

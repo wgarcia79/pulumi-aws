@@ -5,8 +5,37 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetGroupResult',
+    'AwaitableGetGroupResult',
+    'get_group',
+]
+
+
+@pulumi.output_type
+class _GetGroupResult:
+    arn: str = pulumi.property("arn")
+    availability_zones: List[str] = pulumi.property("availabilityZones")
+    default_cooldown: float = pulumi.property("defaultCooldown")
+    desired_capacity: float = pulumi.property("desiredCapacity")
+    health_check_grace_period: float = pulumi.property("healthCheckGracePeriod")
+    health_check_type: str = pulumi.property("healthCheckType")
+    id: str = pulumi.property("id")
+    launch_configuration: str = pulumi.property("launchConfiguration")
+    load_balancers: List[str] = pulumi.property("loadBalancers")
+    max_size: float = pulumi.property("maxSize")
+    min_size: float = pulumi.property("minSize")
+    name: str = pulumi.property("name")
+    new_instances_protected_from_scale_in: bool = pulumi.property("newInstancesProtectedFromScaleIn")
+    placement_group: str = pulumi.property("placementGroup")
+    service_linked_role_arn: str = pulumi.property("serviceLinkedRoleArn")
+    status: str = pulumi.property("status")
+    target_group_arns: List[str] = pulumi.property("targetGroupArns")
+    termination_policies: List[str] = pulumi.property("terminationPolicies")
+    vpc_zone_identifier: str = pulumi.property("vpcZoneIdentifier")
 
 
 class GetGroupResult:
@@ -151,7 +180,8 @@ class AwaitableGetGroupResult(GetGroupResult):
             vpc_zone_identifier=self.vpc_zone_identifier)
 
 
-def get_group(name=None, opts=None):
+def get_group(name: Optional[str] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGroupResult:
     """
     Use this data source to get information on an existing autoscaling group.
 
@@ -173,25 +203,25 @@ def get_group(name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:autoscaling/getGroup:getGroup', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:autoscaling/getGroup:getGroup', __args__, opts=opts, typ=_GetGroupResult).value
 
     return AwaitableGetGroupResult(
-        arn=__ret__.get('arn'),
-        availability_zones=__ret__.get('availabilityZones'),
-        default_cooldown=__ret__.get('defaultCooldown'),
-        desired_capacity=__ret__.get('desiredCapacity'),
-        health_check_grace_period=__ret__.get('healthCheckGracePeriod'),
-        health_check_type=__ret__.get('healthCheckType'),
-        id=__ret__.get('id'),
-        launch_configuration=__ret__.get('launchConfiguration'),
-        load_balancers=__ret__.get('loadBalancers'),
-        max_size=__ret__.get('maxSize'),
-        min_size=__ret__.get('minSize'),
-        name=__ret__.get('name'),
-        new_instances_protected_from_scale_in=__ret__.get('newInstancesProtectedFromScaleIn'),
-        placement_group=__ret__.get('placementGroup'),
-        service_linked_role_arn=__ret__.get('serviceLinkedRoleArn'),
-        status=__ret__.get('status'),
-        target_group_arns=__ret__.get('targetGroupArns'),
-        termination_policies=__ret__.get('terminationPolicies'),
-        vpc_zone_identifier=__ret__.get('vpcZoneIdentifier'))
+        arn=__ret__.arn,
+        availability_zones=__ret__.availability_zones,
+        default_cooldown=__ret__.default_cooldown,
+        desired_capacity=__ret__.desired_capacity,
+        health_check_grace_period=__ret__.health_check_grace_period,
+        health_check_type=__ret__.health_check_type,
+        id=__ret__.id,
+        launch_configuration=__ret__.launch_configuration,
+        load_balancers=__ret__.load_balancers,
+        max_size=__ret__.max_size,
+        min_size=__ret__.min_size,
+        name=__ret__.name,
+        new_instances_protected_from_scale_in=__ret__.new_instances_protected_from_scale_in,
+        placement_group=__ret__.placement_group,
+        service_linked_role_arn=__ret__.service_linked_role_arn,
+        status=__ret__.status,
+        target_group_arns=__ret__.target_group_arns,
+        termination_policies=__ret__.termination_policies,
+        vpc_zone_identifier=__ret__.vpc_zone_identifier)

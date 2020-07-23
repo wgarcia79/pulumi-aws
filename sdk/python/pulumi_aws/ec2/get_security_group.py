@@ -5,8 +5,27 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetSecurityGroupResult',
+    'AwaitableGetSecurityGroupResult',
+    'get_security_group',
+]
+
+
+@pulumi.output_type
+class _GetSecurityGroupResult:
+    arn: str = pulumi.property("arn")
+    description: str = pulumi.property("description")
+    filters: Optional[List['outputs.GetSecurityGroupFilterResult']] = pulumi.property("filters")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    vpc_id: str = pulumi.property("vpcId")
 
 
 class GetSecurityGroupResult:
@@ -58,7 +77,12 @@ class AwaitableGetSecurityGroupResult(GetSecurityGroupResult):
             vpc_id=self.vpc_id)
 
 
-def get_security_group(filters=None, id=None, name=None, tags=None, vpc_id=None, opts=None):
+def get_security_group(filters: Optional[List[pulumi.InputType['GetSecurityGroupFilterArgs']]] = None,
+                       id: Optional[str] = None,
+                       name: Optional[str] = None,
+                       tags: Optional[Mapping[str, str]] = None,
+                       vpc_id: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecurityGroupResult:
     """
     `ec2.SecurityGroup` provides details about a specific Security Group.
 
@@ -84,20 +108,13 @@ def get_security_group(filters=None, id=None, name=None, tags=None, vpc_id=None,
     ```
 
 
-    :param list filters: Custom filter block as described below.
+    :param List[pulumi.InputType['GetSecurityGroupFilterArgs']] filters: Custom filter block as described below.
     :param str id: The id of the specific security group to retrieve.
     :param str name: The name of the field to filter by, as defined by
            [the underlying AWS API](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeSecurityGroups.html).
-    :param dict tags: A map of tags, each pair of which must exactly match
+    :param Mapping[str, str] tags: A map of tags, each pair of which must exactly match
            a pair on the desired security group.
     :param str vpc_id: The id of the VPC that the desired security group belongs to.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter by, as defined by
-        [the underlying AWS API](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeSecurityGroups.html).
-      * `values` (`list`) - Set of values that are accepted for the given field.
-        A Security Group will be selected if any one of the given values matches.
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -109,13 +126,13 @@ def get_security_group(filters=None, id=None, name=None, tags=None, vpc_id=None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getSecurityGroup:getSecurityGroup', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getSecurityGroup:getSecurityGroup', __args__, opts=opts, typ=_GetSecurityGroupResult).value
 
     return AwaitableGetSecurityGroupResult(
-        arn=__ret__.get('arn'),
-        description=__ret__.get('description'),
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        tags=__ret__.get('tags'),
-        vpc_id=__ret__.get('vpcId'))
+        arn=__ret__.arn,
+        description=__ret__.description,
+        filters=__ret__.filters,
+        id=__ret__.id,
+        name=__ret__.name,
+        tags=__ret__.tags,
+        vpc_id=__ret__.vpc_id)

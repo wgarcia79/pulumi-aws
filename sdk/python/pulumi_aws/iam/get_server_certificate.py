@@ -5,8 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetServerCertificateResult',
+    'AwaitableGetServerCertificateResult',
+    'get_server_certificate',
+]
+
+
+@pulumi.output_type
+class _GetServerCertificateResult:
+    arn: str = pulumi.property("arn")
+    certificate_body: str = pulumi.property("certificateBody")
+    certificate_chain: str = pulumi.property("certificateChain")
+    expiration_date: str = pulumi.property("expirationDate")
+    id: str = pulumi.property("id")
+    latest: Optional[bool] = pulumi.property("latest")
+    name: str = pulumi.property("name")
+    name_prefix: Optional[str] = pulumi.property("namePrefix")
+    path: str = pulumi.property("path")
+    path_prefix: Optional[str] = pulumi.property("pathPrefix")
+    upload_date: str = pulumi.property("uploadDate")
 
 
 class GetServerCertificateResult:
@@ -71,7 +92,11 @@ class AwaitableGetServerCertificateResult(GetServerCertificateResult):
             upload_date=self.upload_date)
 
 
-def get_server_certificate(latest=None, name=None, name_prefix=None, path_prefix=None, opts=None):
+def get_server_certificate(latest: Optional[bool] = None,
+                           name: Optional[str] = None,
+                           name_prefix: Optional[str] = None,
+                           path_prefix: Optional[str] = None,
+                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServerCertificateResult:
     """
     Use this data source to lookup information about IAM Server Certificates.
 
@@ -111,17 +136,17 @@ def get_server_certificate(latest=None, name=None, name_prefix=None, path_prefix
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:iam/getServerCertificate:getServerCertificate', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:iam/getServerCertificate:getServerCertificate', __args__, opts=opts, typ=_GetServerCertificateResult).value
 
     return AwaitableGetServerCertificateResult(
-        arn=__ret__.get('arn'),
-        certificate_body=__ret__.get('certificateBody'),
-        certificate_chain=__ret__.get('certificateChain'),
-        expiration_date=__ret__.get('expirationDate'),
-        id=__ret__.get('id'),
-        latest=__ret__.get('latest'),
-        name=__ret__.get('name'),
-        name_prefix=__ret__.get('namePrefix'),
-        path=__ret__.get('path'),
-        path_prefix=__ret__.get('pathPrefix'),
-        upload_date=__ret__.get('uploadDate'))
+        arn=__ret__.arn,
+        certificate_body=__ret__.certificate_body,
+        certificate_chain=__ret__.certificate_chain,
+        expiration_date=__ret__.expiration_date,
+        id=__ret__.id,
+        latest=__ret__.latest,
+        name=__ret__.name,
+        name_prefix=__ret__.name_prefix,
+        path=__ret__.path,
+        path_prefix=__ret__.path_prefix,
+        upload_date=__ret__.upload_date)

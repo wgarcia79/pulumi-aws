@@ -5,8 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetDocumentResult',
+    'AwaitableGetDocumentResult',
+    'get_document',
+]
+
+
+@pulumi.output_type
+class _GetDocumentResult:
+    arn: str = pulumi.property("arn")
+    content: str = pulumi.property("content")
+    document_format: Optional[str] = pulumi.property("documentFormat")
+    document_type: str = pulumi.property("documentType")
+    document_version: Optional[str] = pulumi.property("documentVersion")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
 
 
 class GetDocumentResult:
@@ -64,7 +81,10 @@ class AwaitableGetDocumentResult(GetDocumentResult):
             name=self.name)
 
 
-def get_document(document_format=None, document_version=None, name=None, opts=None):
+def get_document(document_format: Optional[str] = None,
+                 document_version: Optional[str] = None,
+                 name: Optional[str] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDocumentResult:
     """
     Gets the contents of the specified Systems Manager document.
 
@@ -104,13 +124,13 @@ def get_document(document_format=None, document_version=None, name=None, opts=No
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ssm/getDocument:getDocument', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ssm/getDocument:getDocument', __args__, opts=opts, typ=_GetDocumentResult).value
 
     return AwaitableGetDocumentResult(
-        arn=__ret__.get('arn'),
-        content=__ret__.get('content'),
-        document_format=__ret__.get('documentFormat'),
-        document_type=__ret__.get('documentType'),
-        document_version=__ret__.get('documentVersion'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'))
+        arn=__ret__.arn,
+        content=__ret__.content,
+        document_format=__ret__.document_format,
+        document_type=__ret__.document_type,
+        document_version=__ret__.document_version,
+        id=__ret__.id,
+        name=__ret__.name)

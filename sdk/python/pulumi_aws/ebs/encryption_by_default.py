@@ -5,16 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['EncryptionByDefault']
 
 
 class EncryptionByDefault(pulumi.CustomResource):
-    enabled: pulumi.Output[bool]
+    enabled: pulumi.Output[Optional[bool]] = pulumi.property("enabled")
     """
     Whether or not default EBS encryption is enabled. Valid values are `true` or `false`. Defaults to `true`.
     """
-    def __init__(__self__, resource_name, opts=None, enabled=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a resource to manage whether default EBS encryption is enabled for your AWS account in the current AWS region. To manage the default KMS key for the region, see the `ebs.DefaultKmsKey` resource.
 
@@ -58,7 +67,10 @@ class EncryptionByDefault(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, enabled=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            enabled: Optional[pulumi.Input[bool]] = None) -> 'EncryptionByDefault':
         """
         Get an existing EncryptionByDefault resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -80,3 +92,4 @@ class EncryptionByDefault(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

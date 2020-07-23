@@ -5,8 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetTopicResult',
+    'AwaitableGetTopicResult',
+    'get_topic',
+]
+
+
+@pulumi.output_type
+class _GetTopicResult:
+    arn: str = pulumi.property("arn")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
 
 
 class GetTopicResult:
@@ -42,7 +55,8 @@ class AwaitableGetTopicResult(GetTopicResult):
             name=self.name)
 
 
-def get_topic(name=None, opts=None):
+def get_topic(name: Optional[str] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTopicResult:
     """
     Use this data source to get the ARN of a topic in AWS Simple Notification
     Service (SNS). By using this data source, you can reference SNS topics
@@ -66,9 +80,9 @@ def get_topic(name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:sns/getTopic:getTopic', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:sns/getTopic:getTopic', __args__, opts=opts, typ=_GetTopicResult).value
 
     return AwaitableGetTopicResult(
-        arn=__ret__.get('arn'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'))
+        arn=__ret__.arn,
+        id=__ret__.id,
+        name=__ret__.name)

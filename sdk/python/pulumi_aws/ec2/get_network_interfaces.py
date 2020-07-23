@@ -5,8 +5,24 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetNetworkInterfacesResult',
+    'AwaitableGetNetworkInterfacesResult',
+    'get_network_interfaces',
+]
+
+
+@pulumi.output_type
+class _GetNetworkInterfacesResult:
+    filters: Optional[List['outputs.GetNetworkInterfacesFilterResult']] = pulumi.property("filters")
+    id: str = pulumi.property("id")
+    ids: List[str] = pulumi.property("ids")
+    tags: Mapping[str, str] = pulumi.property("tags")
 
 
 class GetNetworkInterfacesResult:
@@ -46,7 +62,9 @@ class AwaitableGetNetworkInterfacesResult(GetNetworkInterfacesResult):
             tags=self.tags)
 
 
-def get_network_interfaces(filters=None, tags=None, opts=None):
+def get_network_interfaces(filters: Optional[List[pulumi.InputType['GetNetworkInterfacesFilterArgs']]] = None,
+                           tags: Optional[Mapping[str, str]] = None,
+                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNetworkInterfacesResult:
     """
     ## Example Usage
 
@@ -87,15 +105,9 @@ def get_network_interfaces(filters=None, tags=None, opts=None):
     ```
 
 
-    :param list filters: Custom filter block as described below.
-    :param dict tags: A map of tags, each pair of which must exactly match
+    :param List[pulumi.InputType['GetNetworkInterfacesFilterArgs']] filters: Custom filter block as described below.
+    :param Mapping[str, str] tags: A map of tags, each pair of which must exactly match
            a pair on the desired network interfaces.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter by, as defined by
-        [the underlying AWS API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeNetworkInterfaces.html).
-      * `values` (`list`) - Set of values that are accepted for the given field.
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -104,10 +116,10 @@ def get_network_interfaces(filters=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getNetworkInterfaces:getNetworkInterfaces', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getNetworkInterfaces:getNetworkInterfaces', __args__, opts=opts, typ=_GetNetworkInterfacesResult).value
 
     return AwaitableGetNetworkInterfacesResult(
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        ids=__ret__.get('ids'),
-        tags=__ret__.get('tags'))
+        filters=__ret__.filters,
+        id=__ret__.id,
+        ids=__ret__.ids,
+        tags=__ret__.tags)

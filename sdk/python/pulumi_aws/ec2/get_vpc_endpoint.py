@@ -5,8 +5,39 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetVpcEndpointResult',
+    'AwaitableGetVpcEndpointResult',
+    'get_vpc_endpoint',
+]
+
+
+@pulumi.output_type
+class _GetVpcEndpointResult:
+    arn: str = pulumi.property("arn")
+    cidr_blocks: List[str] = pulumi.property("cidrBlocks")
+    dns_entries: List['outputs.GetVpcEndpointDnsEntryResult'] = pulumi.property("dnsEntries")
+    filters: Optional[List['outputs.GetVpcEndpointFilterResult']] = pulumi.property("filters")
+    id: str = pulumi.property("id")
+    network_interface_ids: List[str] = pulumi.property("networkInterfaceIds")
+    owner_id: str = pulumi.property("ownerId")
+    policy: str = pulumi.property("policy")
+    prefix_list_id: str = pulumi.property("prefixListId")
+    private_dns_enabled: bool = pulumi.property("privateDnsEnabled")
+    requester_managed: bool = pulumi.property("requesterManaged")
+    route_table_ids: List[str] = pulumi.property("routeTableIds")
+    security_group_ids: List[str] = pulumi.property("securityGroupIds")
+    service_name: str = pulumi.property("serviceName")
+    state: str = pulumi.property("state")
+    subnet_ids: List[str] = pulumi.property("subnetIds")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    vpc_endpoint_type: str = pulumi.property("vpcEndpointType")
+    vpc_id: str = pulumi.property("vpcId")
 
 
 class GetVpcEndpointResult:
@@ -139,7 +170,13 @@ class AwaitableGetVpcEndpointResult(GetVpcEndpointResult):
             vpc_id=self.vpc_id)
 
 
-def get_vpc_endpoint(filters=None, id=None, service_name=None, state=None, tags=None, vpc_id=None, opts=None):
+def get_vpc_endpoint(filters: Optional[List[pulumi.InputType['GetVpcEndpointFilterArgs']]] = None,
+                     id: Optional[str] = None,
+                     service_name: Optional[str] = None,
+                     state: Optional[str] = None,
+                     tags: Optional[Mapping[str, str]] = None,
+                     vpc_id: Optional[str] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcEndpointResult:
     """
     The VPC Endpoint data source provides details about
     a specific VPC endpoint.
@@ -158,20 +195,13 @@ def get_vpc_endpoint(filters=None, id=None, service_name=None, state=None, tags=
     ```
 
 
-    :param list filters: Custom filter block as described below.
+    :param List[pulumi.InputType['GetVpcEndpointFilterArgs']] filters: Custom filter block as described below.
     :param str id: The ID of the specific VPC Endpoint to retrieve.
     :param str service_name: The service name of the specific VPC Endpoint to retrieve. For AWS services the service name is usually in the form `com.amazonaws.<region>.<service>` (the SageMaker Notebook service is an exception to this rule, the service name is in the form `aws.sagemaker.<region>.notebook`).
     :param str state: The state of the specific VPC Endpoint to retrieve.
-    :param dict tags: A map of tags, each pair of which must exactly match
+    :param Mapping[str, str] tags: A map of tags, each pair of which must exactly match
            a pair on the specific VPC Endpoint to retrieve.
     :param str vpc_id: The ID of the VPC in which the specific VPC Endpoint is used.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter by, as defined by
-        [the underlying AWS API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVpcEndpoints.html).
-      * `values` (`list`) - Set of values that are accepted for the given field.
-        A VPC Endpoint will be selected if any one of the given values matches.
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -184,25 +214,25 @@ def get_vpc_endpoint(filters=None, id=None, service_name=None, state=None, tags=
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getVpcEndpoint:getVpcEndpoint', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getVpcEndpoint:getVpcEndpoint', __args__, opts=opts, typ=_GetVpcEndpointResult).value
 
     return AwaitableGetVpcEndpointResult(
-        arn=__ret__.get('arn'),
-        cidr_blocks=__ret__.get('cidrBlocks'),
-        dns_entries=__ret__.get('dnsEntries'),
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        network_interface_ids=__ret__.get('networkInterfaceIds'),
-        owner_id=__ret__.get('ownerId'),
-        policy=__ret__.get('policy'),
-        prefix_list_id=__ret__.get('prefixListId'),
-        private_dns_enabled=__ret__.get('privateDnsEnabled'),
-        requester_managed=__ret__.get('requesterManaged'),
-        route_table_ids=__ret__.get('routeTableIds'),
-        security_group_ids=__ret__.get('securityGroupIds'),
-        service_name=__ret__.get('serviceName'),
-        state=__ret__.get('state'),
-        subnet_ids=__ret__.get('subnetIds'),
-        tags=__ret__.get('tags'),
-        vpc_endpoint_type=__ret__.get('vpcEndpointType'),
-        vpc_id=__ret__.get('vpcId'))
+        arn=__ret__.arn,
+        cidr_blocks=__ret__.cidr_blocks,
+        dns_entries=__ret__.dns_entries,
+        filters=__ret__.filters,
+        id=__ret__.id,
+        network_interface_ids=__ret__.network_interface_ids,
+        owner_id=__ret__.owner_id,
+        policy=__ret__.policy,
+        prefix_list_id=__ret__.prefix_list_id,
+        private_dns_enabled=__ret__.private_dns_enabled,
+        requester_managed=__ret__.requester_managed,
+        route_table_ids=__ret__.route_table_ids,
+        security_group_ids=__ret__.security_group_ids,
+        service_name=__ret__.service_name,
+        state=__ret__.state,
+        subnet_ids=__ret__.subnet_ids,
+        tags=__ret__.tags,
+        vpc_endpoint_type=__ret__.vpc_endpoint_type,
+        vpc_id=__ret__.vpc_id)

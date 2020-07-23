@@ -5,8 +5,26 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetInstanceProfileResult',
+    'AwaitableGetInstanceProfileResult',
+    'get_instance_profile',
+]
+
+
+@pulumi.output_type
+class _GetInstanceProfileResult:
+    arn: str = pulumi.property("arn")
+    create_date: str = pulumi.property("createDate")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    path: str = pulumi.property("path")
+    role_arn: str = pulumi.property("roleArn")
+    role_id: str = pulumi.property("roleId")
+    role_name: str = pulumi.property("roleName")
 
 
 class GetInstanceProfileResult:
@@ -78,7 +96,8 @@ class AwaitableGetInstanceProfileResult(GetInstanceProfileResult):
             role_name=self.role_name)
 
 
-def get_instance_profile(name=None, opts=None):
+def get_instance_profile(name: Optional[str] = None,
+                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceProfileResult:
     """
     This data source can be used to fetch information about a specific
     IAM instance profile. By using this data source, you can reference IAM
@@ -102,14 +121,14 @@ def get_instance_profile(name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:iam/getInstanceProfile:getInstanceProfile', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:iam/getInstanceProfile:getInstanceProfile', __args__, opts=opts, typ=_GetInstanceProfileResult).value
 
     return AwaitableGetInstanceProfileResult(
-        arn=__ret__.get('arn'),
-        create_date=__ret__.get('createDate'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        path=__ret__.get('path'),
-        role_arn=__ret__.get('roleArn'),
-        role_id=__ret__.get('roleId'),
-        role_name=__ret__.get('roleName'))
+        arn=__ret__.arn,
+        create_date=__ret__.create_date,
+        id=__ret__.id,
+        name=__ret__.name,
+        path=__ret__.path,
+        role_arn=__ret__.role_arn,
+        role_id=__ret__.role_id,
+        role_name=__ret__.role_name)

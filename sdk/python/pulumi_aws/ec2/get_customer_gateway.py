@@ -5,8 +5,27 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetCustomerGatewayResult',
+    'AwaitableGetCustomerGatewayResult',
+    'get_customer_gateway',
+]
+
+
+@pulumi.output_type
+class _GetCustomerGatewayResult:
+    arn: str = pulumi.property("arn")
+    bgp_asn: float = pulumi.property("bgpAsn")
+    filters: Optional[List['outputs.GetCustomerGatewayFilterResult']] = pulumi.property("filters")
+    id: Optional[str] = pulumi.property("id")
+    ip_address: str = pulumi.property("ipAddress")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    type: str = pulumi.property("type")
 
 
 class GetCustomerGatewayResult:
@@ -67,7 +86,10 @@ class AwaitableGetCustomerGatewayResult(GetCustomerGatewayResult):
             type=self.type)
 
 
-def get_customer_gateway(filters=None, id=None, tags=None, opts=None):
+def get_customer_gateway(filters: Optional[List[pulumi.InputType['GetCustomerGatewayFilterArgs']]] = None,
+                         id: Optional[str] = None,
+                         tags: Optional[Mapping[str, str]] = None,
+                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCustomerGatewayResult:
     """
     Get an existing AWS Customer Gateway.
 
@@ -82,7 +104,7 @@ def get_customer_gateway(filters=None, id=None, tags=None, opts=None):
         "values": ["foo-prod"],
     }])
     main = aws.ec2.VpnGateway("main",
-        amazon_side_asn=7224,
+        amazon_side_asn="7224",
         vpc_id=aws_vpc["main"]["id"])
     transit = aws.ec2.VpnConnection("transit",
         customer_gateway_id=foo.id,
@@ -92,14 +114,9 @@ def get_customer_gateway(filters=None, id=None, tags=None, opts=None):
     ```
 
 
-    :param list filters: One or more [name-value pairs][dcg-filters] to filter by.
+    :param List[pulumi.InputType['GetCustomerGatewayFilterArgs']] filters: One or more [name-value pairs][dcg-filters] to filter by.
     :param str id: The ID of the gateway.
-    :param dict tags: Map of key-value pairs assigned to the gateway.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`)
-      * `values` (`list`)
+    :param Mapping[str, str] tags: Map of key-value pairs assigned to the gateway.
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -109,13 +126,13 @@ def get_customer_gateway(filters=None, id=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getCustomerGateway:getCustomerGateway', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getCustomerGateway:getCustomerGateway', __args__, opts=opts, typ=_GetCustomerGatewayResult).value
 
     return AwaitableGetCustomerGatewayResult(
-        arn=__ret__.get('arn'),
-        bgp_asn=__ret__.get('bgpAsn'),
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        ip_address=__ret__.get('ipAddress'),
-        tags=__ret__.get('tags'),
-        type=__ret__.get('type'))
+        arn=__ret__.arn,
+        bgp_asn=__ret__.bgp_asn,
+        filters=__ret__.filters,
+        id=__ret__.id,
+        ip_address=__ret__.ip_address,
+        tags=__ret__.tags,
+        type=__ret__.type)

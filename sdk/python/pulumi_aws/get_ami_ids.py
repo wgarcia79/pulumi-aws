@@ -5,8 +5,27 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetAmiIdsResult',
+    'AwaitableGetAmiIdsResult',
+    'get_ami_ids',
+]
+
+
+@pulumi.output_type
+class _GetAmiIdsResult:
+    executable_users: Optional[List[str]] = pulumi.property("executableUsers")
+    filters: Optional[List['outputs.GetAmiIdsFilterResult']] = pulumi.property("filters")
+    id: str = pulumi.property("id")
+    ids: List[str] = pulumi.property("ids")
+    name_regex: Optional[str] = pulumi.property("nameRegex")
+    owners: List[str] = pulumi.property("owners")
+    sort_ascending: Optional[bool] = pulumi.property("sortAscending")
 
 
 class GetAmiIdsResult:
@@ -55,7 +74,12 @@ class AwaitableGetAmiIdsResult(GetAmiIdsResult):
             sort_ascending=self.sort_ascending)
 
 
-def get_ami_ids(executable_users=None, filters=None, name_regex=None, owners=None, sort_ascending=None, opts=None):
+def get_ami_ids(executable_users: Optional[List[str]] = None,
+                filters: Optional[List[pulumi.InputType['GetAmiIdsFilterArgs']]] = None,
+                name_regex: Optional[str] = None,
+                owners: Optional[List[str]] = None,
+                sort_ascending: Optional[bool] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAmiIdsResult:
     """
     Use this data source to get a list of AMI IDs matching the specified criteria.
 
@@ -73,9 +97,9 @@ def get_ami_ids(executable_users=None, filters=None, name_regex=None, owners=Non
     ```
 
 
-    :param list executable_users: Limit search to users with *explicit* launch
+    :param List[str] executable_users: Limit search to users with *explicit* launch
            permission on  the image. Valid items are the numeric account ID or `self`.
-    :param list filters: One or more name/value pairs to filter off of. There
+    :param List[pulumi.InputType['GetAmiIdsFilterArgs']] filters: One or more name/value pairs to filter off of. There
            are several valid keys, for a full reference, check out
            [describe-images in the AWS CLI reference][1].
     :param str name_regex: A regex string to apply to the AMI list returned
@@ -83,13 +107,8 @@ def get_ami_ids(executable_users=None, filters=None, name_regex=None, owners=Non
            This filtering is done locally on what AWS returns, and could have a performance
            impact if the result is large. It is recommended to combine this with other
            options to narrow down the list AWS returns.
-    :param list owners: List of AMI owners to limit search. At least 1 value must be specified. Valid values: an AWS account ID, `self` (the current account), or an AWS owner alias (e.g. `amazon`, `aws-marketplace`, `microsoft`).
+    :param List[str] owners: List of AMI owners to limit search. At least 1 value must be specified. Valid values: an AWS account ID, `self` (the current account), or an AWS owner alias (e.g. `amazon`, `aws-marketplace`, `microsoft`).
     :param bool sort_ascending: Used to sort AMIs by creation time.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`)
-      * `values` (`list`)
     """
     __args__ = dict()
     __args__['executableUsers'] = executable_users
@@ -101,13 +120,13 @@ def get_ami_ids(executable_users=None, filters=None, name_regex=None, owners=Non
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:index/getAmiIds:getAmiIds', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:index/getAmiIds:getAmiIds', __args__, opts=opts, typ=_GetAmiIdsResult).value
 
     return AwaitableGetAmiIdsResult(
-        executable_users=__ret__.get('executableUsers'),
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        ids=__ret__.get('ids'),
-        name_regex=__ret__.get('nameRegex'),
-        owners=__ret__.get('owners'),
-        sort_ascending=__ret__.get('sortAscending'))
+        executable_users=__ret__.executable_users,
+        filters=__ret__.filters,
+        id=__ret__.id,
+        ids=__ret__.ids,
+        name_regex=__ret__.name_regex,
+        owners=__ret__.owners,
+        sort_ascending=__ret__.sort_ascending)

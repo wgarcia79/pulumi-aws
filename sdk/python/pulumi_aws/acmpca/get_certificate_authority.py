@@ -5,8 +5,32 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetCertificateAuthorityResult',
+    'AwaitableGetCertificateAuthorityResult',
+    'get_certificate_authority',
+]
+
+
+@pulumi.output_type
+class _GetCertificateAuthorityResult:
+    arn: str = pulumi.property("arn")
+    certificate: str = pulumi.property("certificate")
+    certificate_chain: str = pulumi.property("certificateChain")
+    certificate_signing_request: str = pulumi.property("certificateSigningRequest")
+    id: str = pulumi.property("id")
+    not_after: str = pulumi.property("notAfter")
+    not_before: str = pulumi.property("notBefore")
+    revocation_configurations: List['outputs.GetCertificateAuthorityRevocationConfigurationResult'] = pulumi.property("revocationConfigurations")
+    serial: str = pulumi.property("serial")
+    status: str = pulumi.property("status")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    type: str = pulumi.property("type")
 
 
 class GetCertificateAuthorityResult:
@@ -110,7 +134,10 @@ class AwaitableGetCertificateAuthorityResult(GetCertificateAuthorityResult):
             type=self.type)
 
 
-def get_certificate_authority(arn=None, revocation_configurations=None, tags=None, opts=None):
+def get_certificate_authority(arn: Optional[str] = None,
+                              revocation_configurations: Optional[List[pulumi.InputType['GetCertificateAuthorityRevocationConfigurationArgs']]] = None,
+                              tags: Optional[Mapping[str, str]] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCertificateAuthorityResult:
     """
     Get information on a AWS Certificate Manager Private Certificate Authority (ACM PCA Certificate Authority).
 
@@ -125,21 +152,13 @@ def get_certificate_authority(arn=None, revocation_configurations=None, tags=Non
 
 
     :param str arn: Amazon Resource Name (ARN) of the certificate authority.
-    :param list revocation_configurations: Nested attribute containing revocation configuration.
+    :param List[pulumi.InputType['GetCertificateAuthorityRevocationConfigurationArgs']] revocation_configurations: Nested attribute containing revocation configuration.
            * `revocation_configuration.0.crl_configuration` - Nested attribute containing configuration of the certificate revocation list (CRL), if any, maintained by the certificate authority.
            * `revocation_configuration.0.crl_configuration.0.custom_cname` - Name inserted into the certificate CRL Distribution Points extension that enables the use of an alias for the CRL distribution point.
            * `revocation_configuration.0.crl_configuration.0.enabled` - Boolean value that specifies whether certificate revocation lists (CRLs) are enabled.
            * `revocation_configuration.0.crl_configuration.0.expiration_in_days` - Number of days until a certificate expires.
            * `revocation_configuration.0.crl_configuration.0.s3_bucket_name` - Name of the S3 bucket that contains the CRL.
-    :param dict tags: Specifies a key-value map of user-defined tags that are attached to the certificate authority.
-
-    The **revocation_configurations** object supports the following:
-
-      * `crlConfigurations` (`list`)
-        * `customCname` (`str`)
-        * `enabled` (`bool`)
-        * `expirationInDays` (`float`)
-        * `s3_bucket_name` (`str`)
+    :param Mapping[str, str] tags: Specifies a key-value map of user-defined tags that are attached to the certificate authority.
     """
     __args__ = dict()
     __args__['arn'] = arn
@@ -149,18 +168,18 @@ def get_certificate_authority(arn=None, revocation_configurations=None, tags=Non
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:acmpca/getCertificateAuthority:getCertificateAuthority', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:acmpca/getCertificateAuthority:getCertificateAuthority', __args__, opts=opts, typ=_GetCertificateAuthorityResult).value
 
     return AwaitableGetCertificateAuthorityResult(
-        arn=__ret__.get('arn'),
-        certificate=__ret__.get('certificate'),
-        certificate_chain=__ret__.get('certificateChain'),
-        certificate_signing_request=__ret__.get('certificateSigningRequest'),
-        id=__ret__.get('id'),
-        not_after=__ret__.get('notAfter'),
-        not_before=__ret__.get('notBefore'),
-        revocation_configurations=__ret__.get('revocationConfigurations'),
-        serial=__ret__.get('serial'),
-        status=__ret__.get('status'),
-        tags=__ret__.get('tags'),
-        type=__ret__.get('type'))
+        arn=__ret__.arn,
+        certificate=__ret__.certificate,
+        certificate_chain=__ret__.certificate_chain,
+        certificate_signing_request=__ret__.certificate_signing_request,
+        id=__ret__.id,
+        not_after=__ret__.not_after,
+        not_before=__ret__.not_before,
+        revocation_configurations=__ret__.revocation_configurations,
+        serial=__ret__.serial,
+        status=__ret__.status,
+        tags=__ret__.tags,
+        type=__ret__.type)

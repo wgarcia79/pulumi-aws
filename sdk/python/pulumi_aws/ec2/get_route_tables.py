@@ -5,8 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetRouteTablesResult',
+    'AwaitableGetRouteTablesResult',
+    'get_route_tables',
+]
+
+
+@pulumi.output_type
+class _GetRouteTablesResult:
+    filters: Optional[List['outputs.GetRouteTablesFilterResult']] = pulumi.property("filters")
+    id: str = pulumi.property("id")
+    ids: List[str] = pulumi.property("ids")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    vpc_id: Optional[str] = pulumi.property("vpcId")
 
 
 class GetRouteTablesResult:
@@ -50,7 +67,10 @@ class AwaitableGetRouteTablesResult(GetRouteTablesResult):
             vpc_id=self.vpc_id)
 
 
-def get_route_tables(filters=None, tags=None, vpc_id=None, opts=None):
+def get_route_tables(filters: Optional[List[pulumi.InputType['GetRouteTablesFilterArgs']]] = None,
+                     tags: Optional[Mapping[str, str]] = None,
+                     vpc_id: Optional[str] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRouteTablesResult:
     """
     This resource can be useful for getting back a list of route table ids to be referenced elsewhere.
 
@@ -78,17 +98,10 @@ def get_route_tables(filters=None, tags=None, vpc_id=None, opts=None):
     ```
 
 
-    :param list filters: Custom filter block as described below.
-    :param dict tags: A map of tags, each pair of which must exactly match
+    :param List[pulumi.InputType['GetRouteTablesFilterArgs']] filters: Custom filter block as described below.
+    :param Mapping[str, str] tags: A map of tags, each pair of which must exactly match
            a pair on the desired route tables.
     :param str vpc_id: The VPC ID that you want to filter from.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter by, as defined by
-        [the underlying AWS API](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeRouteTables.html).
-      * `values` (`list`) - Set of values that are accepted for the given field.
-        A Route Table will be selected if any one of the given values matches.
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -98,11 +111,11 @@ def get_route_tables(filters=None, tags=None, vpc_id=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getRouteTables:getRouteTables', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getRouteTables:getRouteTables', __args__, opts=opts, typ=_GetRouteTablesResult).value
 
     return AwaitableGetRouteTablesResult(
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        ids=__ret__.get('ids'),
-        tags=__ret__.get('tags'),
-        vpc_id=__ret__.get('vpcId'))
+        filters=__ret__.filters,
+        id=__ret__.id,
+        ids=__ret__.ids,
+        tags=__ret__.tags,
+        vpc_id=__ret__.vpc_id)

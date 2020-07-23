@@ -5,8 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetOutpostInstanceTypeResult',
+    'AwaitableGetOutpostInstanceTypeResult',
+    'get_outpost_instance_type',
+]
+
+
+@pulumi.output_type
+class _GetOutpostInstanceTypeResult:
+    arn: str = pulumi.property("arn")
+    id: str = pulumi.property("id")
+    instance_type: str = pulumi.property("instanceType")
+    preferred_instance_types: Optional[List[str]] = pulumi.property("preferredInstanceTypes")
 
 
 class GetOutpostInstanceTypeResult:
@@ -43,14 +57,17 @@ class AwaitableGetOutpostInstanceTypeResult(GetOutpostInstanceTypeResult):
             preferred_instance_types=self.preferred_instance_types)
 
 
-def get_outpost_instance_type(arn=None, instance_type=None, preferred_instance_types=None, opts=None):
+def get_outpost_instance_type(arn: Optional[str] = None,
+                              instance_type: Optional[str] = None,
+                              preferred_instance_types: Optional[List[str]] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOutpostInstanceTypeResult:
     """
     Information about single Outpost Instance Type.
 
 
     :param str arn: Outpost Amazon Resource Name (ARN).
     :param str instance_type: Desired instance type. Conflicts with `preferred_instance_types`.
-    :param list preferred_instance_types: Ordered list of preferred instance types. The first match in this list will be returned. If no preferred matches are found and the original search returned more than one result, an error is returned. Conflicts with `instance_type`.
+    :param List[str] preferred_instance_types: Ordered list of preferred instance types. The first match in this list will be returned. If no preferred matches are found and the original search returned more than one result, an error is returned. Conflicts with `instance_type`.
     """
     __args__ = dict()
     __args__['arn'] = arn
@@ -60,10 +77,10 @@ def get_outpost_instance_type(arn=None, instance_type=None, preferred_instance_t
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:outposts/getOutpostInstanceType:getOutpostInstanceType', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:outposts/getOutpostInstanceType:getOutpostInstanceType', __args__, opts=opts, typ=_GetOutpostInstanceTypeResult).value
 
     return AwaitableGetOutpostInstanceTypeResult(
-        arn=__ret__.get('arn'),
-        id=__ret__.get('id'),
-        instance_type=__ret__.get('instanceType'),
-        preferred_instance_types=__ret__.get('preferredInstanceTypes'))
+        arn=__ret__.arn,
+        id=__ret__.id,
+        instance_type=__ret__.instance_type,
+        preferred_instance_types=__ret__.preferred_instance_types)

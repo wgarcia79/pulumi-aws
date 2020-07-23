@@ -5,8 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetRegexPatternSetResult',
+    'AwaitableGetRegexPatternSetResult',
+    'get_regex_pattern_set',
+]
+
+
+@pulumi.output_type
+class _GetRegexPatternSetResult:
+    arn: str = pulumi.property("arn")
+    description: str = pulumi.property("description")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    regular_expressions: List['outputs.GetRegexPatternSetRegularExpressionResult'] = pulumi.property("regularExpressions")
+    scope: str = pulumi.property("scope")
 
 
 class GetRegexPatternSetResult:
@@ -60,7 +77,9 @@ class AwaitableGetRegexPatternSetResult(GetRegexPatternSetResult):
             scope=self.scope)
 
 
-def get_regex_pattern_set(name=None, scope=None, opts=None):
+def get_regex_pattern_set(name: Optional[str] = None,
+                          scope: Optional[str] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegexPatternSetResult:
     """
     Retrieves the summary of a WAFv2 Regex Pattern Set.
 
@@ -85,12 +104,12 @@ def get_regex_pattern_set(name=None, scope=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:wafv2/getRegexPatternSet:getRegexPatternSet', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:wafv2/getRegexPatternSet:getRegexPatternSet', __args__, opts=opts, typ=_GetRegexPatternSetResult).value
 
     return AwaitableGetRegexPatternSetResult(
-        arn=__ret__.get('arn'),
-        description=__ret__.get('description'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        regular_expressions=__ret__.get('regularExpressions'),
-        scope=__ret__.get('scope'))
+        arn=__ret__.arn,
+        description=__ret__.description,
+        id=__ret__.id,
+        name=__ret__.name,
+        regular_expressions=__ret__.regular_expressions,
+        scope=__ret__.scope)

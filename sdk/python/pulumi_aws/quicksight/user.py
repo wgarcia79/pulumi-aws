@@ -5,48 +5,72 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['User']
 
 
 class User(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     Amazon Resource Name (ARN) of the user
     """
-    aws_account_id: pulumi.Output[str]
+
+    aws_account_id: pulumi.Output[str] = pulumi.property("awsAccountId")
     """
     The ID for the AWS account that the user is in. Currently, you use the ID for the AWS account that contains your Amazon QuickSight account.
     """
-    email: pulumi.Output[str]
+
+    email: pulumi.Output[str] = pulumi.property("email")
     """
     The email address of the user that you want to register.
     """
-    iam_arn: pulumi.Output[str]
+
+    iam_arn: pulumi.Output[Optional[str]] = pulumi.property("iamArn")
     """
     The ARN of the IAM user or role that you are registering with Amazon QuickSight.
     """
-    identity_type: pulumi.Output[str]
+
+    identity_type: pulumi.Output[str] = pulumi.property("identityType")
     """
     Amazon QuickSight supports several ways of managing the identity of users. This parameter accepts either  `IAM` or `QUICKSIGHT`.
     """
-    namespace: pulumi.Output[str]
+
+    namespace: pulumi.Output[Optional[str]] = pulumi.property("namespace")
     """
     The namespace. Currently, you should set this to `default`.
     """
-    session_name: pulumi.Output[str]
+
+    session_name: pulumi.Output[Optional[str]] = pulumi.property("sessionName")
     """
     The name of the IAM session to use when assuming roles that can embed QuickSight dashboards.
     """
-    user_name: pulumi.Output[str]
+
+    user_name: pulumi.Output[Optional[str]] = pulumi.property("userName")
     """
     The Amazon QuickSight user name that you want to create for the user you are registering.
     """
-    user_role: pulumi.Output[str]
+
+    user_role: pulumi.Output[str] = pulumi.property("userRole")
     """
     The Amazon QuickSight role of the user. The user role can be one of the following: `READER`, `AUTHOR`, or `ADMIN`
     """
-    def __init__(__self__, resource_name, opts=None, aws_account_id=None, email=None, iam_arn=None, identity_type=None, namespace=None, session_name=None, user_name=None, user_role=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 aws_account_id: Optional[pulumi.Input[str]] = None,
+                 email: Optional[pulumi.Input[str]] = None,
+                 iam_arn: Optional[pulumi.Input[str]] = None,
+                 identity_type: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
+                 session_name: Optional[pulumi.Input[str]] = None,
+                 user_name: Optional[pulumi.Input[str]] = None,
+                 user_role: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Resource for managing QuickSight User
 
@@ -113,7 +137,18 @@ class User(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, aws_account_id=None, email=None, iam_arn=None, identity_type=None, namespace=None, session_name=None, user_name=None, user_role=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            aws_account_id: Optional[pulumi.Input[str]] = None,
+            email: Optional[pulumi.Input[str]] = None,
+            iam_arn: Optional[pulumi.Input[str]] = None,
+            identity_type: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
+            session_name: Optional[pulumi.Input[str]] = None,
+            user_name: Optional[pulumi.Input[str]] = None,
+            user_role: Optional[pulumi.Input[str]] = None) -> 'User':
         """
         Get an existing User resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -151,3 +186,4 @@ class User(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

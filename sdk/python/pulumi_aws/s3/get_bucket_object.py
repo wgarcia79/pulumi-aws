@@ -5,8 +5,43 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetBucketObjectResult',
+    'AwaitableGetBucketObjectResult',
+    'get_bucket_object',
+]
+
+
+@pulumi.output_type
+class _GetBucketObjectResult:
+    body: str = pulumi.property("body")
+    bucket: str = pulumi.property("bucket")
+    cache_control: str = pulumi.property("cacheControl")
+    content_disposition: str = pulumi.property("contentDisposition")
+    content_encoding: str = pulumi.property("contentEncoding")
+    content_language: str = pulumi.property("contentLanguage")
+    content_length: float = pulumi.property("contentLength")
+    content_type: str = pulumi.property("contentType")
+    etag: str = pulumi.property("etag")
+    expiration: str = pulumi.property("expiration")
+    expires: str = pulumi.property("expires")
+    id: str = pulumi.property("id")
+    key: str = pulumi.property("key")
+    last_modified: str = pulumi.property("lastModified")
+    metadata: Mapping[str, str] = pulumi.property("metadata")
+    object_lock_legal_hold_status: str = pulumi.property("objectLockLegalHoldStatus")
+    object_lock_mode: str = pulumi.property("objectLockMode")
+    object_lock_retain_until_date: str = pulumi.property("objectLockRetainUntilDate")
+    range: Optional[str] = pulumi.property("range")
+    server_side_encryption: str = pulumi.property("serverSideEncryption")
+    sse_kms_key_id: str = pulumi.property("sseKmsKeyId")
+    storage_class: str = pulumi.property("storageClass")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    version_id: str = pulumi.property("versionId")
+    website_redirect_location: str = pulumi.property("websiteRedirectLocation")
 
 
 class GetBucketObjectResult:
@@ -190,7 +225,12 @@ class AwaitableGetBucketObjectResult(GetBucketObjectResult):
             website_redirect_location=self.website_redirect_location)
 
 
-def get_bucket_object(bucket=None, key=None, range=None, tags=None, version_id=None, opts=None):
+def get_bucket_object(bucket: Optional[str] = None,
+                      key: Optional[str] = None,
+                      range: Optional[str] = None,
+                      tags: Optional[Mapping[str, str]] = None,
+                      version_id: Optional[str] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBucketObjectResult:
     """
     The S3 object data source allows access to the metadata and
     _optionally_ (see below) content of an object stored inside S3 bucket.
@@ -237,7 +277,7 @@ def get_bucket_object(bucket=None, key=None, range=None, tags=None, version_id=N
 
     :param str bucket: The name of the bucket to read the object from. Alternatively, an [S3 access point](https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html) ARN can be specified
     :param str key: The full path to the object inside the bucket
-    :param dict tags: A map of tags assigned to the object.
+    :param Mapping[str, str] tags: A map of tags assigned to the object.
     :param str version_id: Specific version ID of the object returned (defaults to latest version)
     """
     __args__ = dict()
@@ -250,31 +290,31 @@ def get_bucket_object(bucket=None, key=None, range=None, tags=None, version_id=N
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:s3/getBucketObject:getBucketObject', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:s3/getBucketObject:getBucketObject', __args__, opts=opts, typ=_GetBucketObjectResult).value
 
     return AwaitableGetBucketObjectResult(
-        body=__ret__.get('body'),
-        bucket=__ret__.get('bucket'),
-        cache_control=__ret__.get('cacheControl'),
-        content_disposition=__ret__.get('contentDisposition'),
-        content_encoding=__ret__.get('contentEncoding'),
-        content_language=__ret__.get('contentLanguage'),
-        content_length=__ret__.get('contentLength'),
-        content_type=__ret__.get('contentType'),
-        etag=__ret__.get('etag'),
-        expiration=__ret__.get('expiration'),
-        expires=__ret__.get('expires'),
-        id=__ret__.get('id'),
-        key=__ret__.get('key'),
-        last_modified=__ret__.get('lastModified'),
-        metadata=__ret__.get('metadata'),
-        object_lock_legal_hold_status=__ret__.get('objectLockLegalHoldStatus'),
-        object_lock_mode=__ret__.get('objectLockMode'),
-        object_lock_retain_until_date=__ret__.get('objectLockRetainUntilDate'),
-        range=__ret__.get('range'),
-        server_side_encryption=__ret__.get('serverSideEncryption'),
-        sse_kms_key_id=__ret__.get('sseKmsKeyId'),
-        storage_class=__ret__.get('storageClass'),
-        tags=__ret__.get('tags'),
-        version_id=__ret__.get('versionId'),
-        website_redirect_location=__ret__.get('websiteRedirectLocation'))
+        body=__ret__.body,
+        bucket=__ret__.bucket,
+        cache_control=__ret__.cache_control,
+        content_disposition=__ret__.content_disposition,
+        content_encoding=__ret__.content_encoding,
+        content_language=__ret__.content_language,
+        content_length=__ret__.content_length,
+        content_type=__ret__.content_type,
+        etag=__ret__.etag,
+        expiration=__ret__.expiration,
+        expires=__ret__.expires,
+        id=__ret__.id,
+        key=__ret__.key,
+        last_modified=__ret__.last_modified,
+        metadata=__ret__.metadata,
+        object_lock_legal_hold_status=__ret__.object_lock_legal_hold_status,
+        object_lock_mode=__ret__.object_lock_mode,
+        object_lock_retain_until_date=__ret__.object_lock_retain_until_date,
+        range=__ret__.range,
+        server_side_encryption=__ret__.server_side_encryption,
+        sse_kms_key_id=__ret__.sse_kms_key_id,
+        storage_class=__ret__.storage_class,
+        tags=__ret__.tags,
+        version_id=__ret__.version_id,
+        website_redirect_location=__ret__.website_redirect_location)

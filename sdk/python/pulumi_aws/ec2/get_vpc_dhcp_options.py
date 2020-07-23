@@ -5,8 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetVpcDhcpOptionsResult',
+    'AwaitableGetVpcDhcpOptionsResult',
+    'get_vpc_dhcp_options',
+]
+
+
+@pulumi.output_type
+class _GetVpcDhcpOptionsResult:
+    arn: str = pulumi.property("arn")
+    dhcp_options_id: str = pulumi.property("dhcpOptionsId")
+    domain_name: str = pulumi.property("domainName")
+    domain_name_servers: List[str] = pulumi.property("domainNameServers")
+    filters: Optional[List['outputs.GetVpcDhcpOptionsFilterResult']] = pulumi.property("filters")
+    id: str = pulumi.property("id")
+    netbios_name_servers: List[str] = pulumi.property("netbiosNameServers")
+    netbios_node_type: str = pulumi.property("netbiosNodeType")
+    ntp_servers: List[str] = pulumi.property("ntpServers")
+    owner_id: str = pulumi.property("ownerId")
+    tags: Mapping[str, str] = pulumi.property("tags")
 
 
 class GetVpcDhcpOptionsResult:
@@ -98,7 +121,10 @@ class AwaitableGetVpcDhcpOptionsResult(GetVpcDhcpOptionsResult):
             tags=self.tags)
 
 
-def get_vpc_dhcp_options(dhcp_options_id=None, filters=None, tags=None, opts=None):
+def get_vpc_dhcp_options(dhcp_options_id: Optional[str] = None,
+                         filters: Optional[List[pulumi.InputType['GetVpcDhcpOptionsFilterArgs']]] = None,
+                         tags: Optional[Mapping[str, str]] = None,
+                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcDhcpOptionsResult:
     """
     Retrieve information about an EC2 DHCP Options configuration.
 
@@ -131,13 +157,8 @@ def get_vpc_dhcp_options(dhcp_options_id=None, filters=None, tags=None, opts=Non
 
 
     :param str dhcp_options_id: The EC2 DHCP Options ID.
-    :param list filters: List of custom filters as described below.
-    :param dict tags: A map of tags assigned to the resource.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter.
-      * `values` (`list`) - Set of values for filtering.
+    :param List[pulumi.InputType['GetVpcDhcpOptionsFilterArgs']] filters: List of custom filters as described below.
+    :param Mapping[str, str] tags: A map of tags assigned to the resource.
     """
     __args__ = dict()
     __args__['dhcpOptionsId'] = dhcp_options_id
@@ -147,17 +168,17 @@ def get_vpc_dhcp_options(dhcp_options_id=None, filters=None, tags=None, opts=Non
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getVpcDhcpOptions:getVpcDhcpOptions', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getVpcDhcpOptions:getVpcDhcpOptions', __args__, opts=opts, typ=_GetVpcDhcpOptionsResult).value
 
     return AwaitableGetVpcDhcpOptionsResult(
-        arn=__ret__.get('arn'),
-        dhcp_options_id=__ret__.get('dhcpOptionsId'),
-        domain_name=__ret__.get('domainName'),
-        domain_name_servers=__ret__.get('domainNameServers'),
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        netbios_name_servers=__ret__.get('netbiosNameServers'),
-        netbios_node_type=__ret__.get('netbiosNodeType'),
-        ntp_servers=__ret__.get('ntpServers'),
-        owner_id=__ret__.get('ownerId'),
-        tags=__ret__.get('tags'))
+        arn=__ret__.arn,
+        dhcp_options_id=__ret__.dhcp_options_id,
+        domain_name=__ret__.domain_name,
+        domain_name_servers=__ret__.domain_name_servers,
+        filters=__ret__.filters,
+        id=__ret__.id,
+        netbios_name_servers=__ret__.netbios_name_servers,
+        netbios_node_type=__ret__.netbios_node_type,
+        ntp_servers=__ret__.ntp_servers,
+        owner_id=__ret__.owner_id,
+        tags=__ret__.tags)

@@ -5,8 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetPatchBaselineResult',
+    'AwaitableGetPatchBaselineResult',
+    'get_patch_baseline',
+]
+
+
+@pulumi.output_type
+class _GetPatchBaselineResult:
+    default_baseline: Optional[bool] = pulumi.property("defaultBaseline")
+    description: str = pulumi.property("description")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    name_prefix: Optional[str] = pulumi.property("namePrefix")
+    operating_system: Optional[str] = pulumi.property("operatingSystem")
+    owner: str = pulumi.property("owner")
 
 
 class GetPatchBaselineResult:
@@ -61,7 +78,11 @@ class AwaitableGetPatchBaselineResult(GetPatchBaselineResult):
             owner=self.owner)
 
 
-def get_patch_baseline(default_baseline=None, name_prefix=None, operating_system=None, owner=None, opts=None):
+def get_patch_baseline(default_baseline: Optional[bool] = None,
+                       name_prefix: Optional[str] = None,
+                       operating_system: Optional[str] = None,
+                       owner: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPatchBaselineResult:
     """
     Provides an SSM Patch Baseline data source. Useful if you wish to reuse the default baselines provided.
 
@@ -105,13 +126,13 @@ def get_patch_baseline(default_baseline=None, name_prefix=None, operating_system
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ssm/getPatchBaseline:getPatchBaseline', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ssm/getPatchBaseline:getPatchBaseline', __args__, opts=opts, typ=_GetPatchBaselineResult).value
 
     return AwaitableGetPatchBaselineResult(
-        default_baseline=__ret__.get('defaultBaseline'),
-        description=__ret__.get('description'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        name_prefix=__ret__.get('namePrefix'),
-        operating_system=__ret__.get('operatingSystem'),
-        owner=__ret__.get('owner'))
+        default_baseline=__ret__.default_baseline,
+        description=__ret__.description,
+        id=__ret__.id,
+        name=__ret__.name,
+        name_prefix=__ret__.name_prefix,
+        operating_system=__ret__.operating_system,
+        owner=__ret__.owner)

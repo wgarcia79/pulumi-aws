@@ -5,8 +5,23 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetResourceResult',
+    'AwaitableGetResourceResult',
+    'get_resource',
+]
+
+
+@pulumi.output_type
+class _GetResourceResult:
+    id: str = pulumi.property("id")
+    parent_id: str = pulumi.property("parentId")
+    path: str = pulumi.property("path")
+    path_part: str = pulumi.property("pathPart")
+    rest_api_id: str = pulumi.property("restApiId")
 
 
 class GetResourceResult:
@@ -53,7 +68,9 @@ class AwaitableGetResourceResult(GetResourceResult):
             rest_api_id=self.rest_api_id)
 
 
-def get_resource(path=None, rest_api_id=None, opts=None):
+def get_resource(path: Optional[str] = None,
+                 rest_api_id: Optional[str] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetResourceResult:
     """
     Use this data source to get the id of a Resource in API Gateway.
     To fetch the Resource, you must provide the REST API id as well as the full path.
@@ -80,11 +97,11 @@ def get_resource(path=None, rest_api_id=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:apigateway/getResource:getResource', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:apigateway/getResource:getResource', __args__, opts=opts, typ=_GetResourceResult).value
 
     return AwaitableGetResourceResult(
-        id=__ret__.get('id'),
-        parent_id=__ret__.get('parentId'),
-        path=__ret__.get('path'),
-        path_part=__ret__.get('pathPart'),
-        rest_api_id=__ret__.get('restApiId'))
+        id=__ret__.id,
+        parent_id=__ret__.parent_id,
+        path=__ret__.path,
+        path_part=__ret__.path_part,
+        rest_api_id=__ret__.rest_api_id)

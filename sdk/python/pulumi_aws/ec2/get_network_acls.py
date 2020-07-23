@@ -5,8 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetNetworkAclsResult',
+    'AwaitableGetNetworkAclsResult',
+    'get_network_acls',
+]
+
+
+@pulumi.output_type
+class _GetNetworkAclsResult:
+    filters: Optional[List['outputs.GetNetworkAclsFilterResult']] = pulumi.property("filters")
+    id: str = pulumi.property("id")
+    ids: List[str] = pulumi.property("ids")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    vpc_id: Optional[str] = pulumi.property("vpcId")
 
 
 class GetNetworkAclsResult:
@@ -50,7 +67,10 @@ class AwaitableGetNetworkAclsResult(GetNetworkAclsResult):
             vpc_id=self.vpc_id)
 
 
-def get_network_acls(filters=None, tags=None, vpc_id=None, opts=None):
+def get_network_acls(filters: Optional[List[pulumi.InputType['GetNetworkAclsFilterArgs']]] = None,
+                     tags: Optional[Mapping[str, str]] = None,
+                     vpc_id: Optional[str] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNetworkAclsResult:
     """
     ## Example Usage
 
@@ -92,17 +112,10 @@ def get_network_acls(filters=None, tags=None, vpc_id=None, opts=None):
     ```
 
 
-    :param list filters: Custom filter block as described below.
-    :param dict tags: A map of tags, each pair of which must exactly match
+    :param List[pulumi.InputType['GetNetworkAclsFilterArgs']] filters: Custom filter block as described below.
+    :param Mapping[str, str] tags: A map of tags, each pair of which must exactly match
            a pair on the desired network ACLs.
     :param str vpc_id: The VPC ID that you want to filter from.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter by, as defined by
-        [the underlying AWS API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeNetworkAcls.html).
-      * `values` (`list`) - Set of values that are accepted for the given field.
-        A VPC will be selected if any one of the given values matches.
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -112,11 +125,11 @@ def get_network_acls(filters=None, tags=None, vpc_id=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getNetworkAcls:getNetworkAcls', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getNetworkAcls:getNetworkAcls', __args__, opts=opts, typ=_GetNetworkAclsResult).value
 
     return AwaitableGetNetworkAclsResult(
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        ids=__ret__.get('ids'),
-        tags=__ret__.get('tags'),
-        vpc_id=__ret__.get('vpcId'))
+        filters=__ret__.filters,
+        id=__ret__.id,
+        ids=__ret__.ids,
+        tags=__ret__.tags,
+        vpc_id=__ret__.vpc_id)

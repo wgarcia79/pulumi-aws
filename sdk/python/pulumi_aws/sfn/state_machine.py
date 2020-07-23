@@ -5,40 +5,58 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['StateMachine']
 
 
 class StateMachine(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     The ARN of the state machine.
     """
-    creation_date: pulumi.Output[str]
+
+    creation_date: pulumi.Output[str] = pulumi.property("creationDate")
     """
     The date the state machine was created.
     """
-    definition: pulumi.Output[str]
+
+    definition: pulumi.Output[str] = pulumi.property("definition")
     """
     The Amazon States Language definition of the state machine.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name of the state machine.
     """
-    role_arn: pulumi.Output[str]
+
+    role_arn: pulumi.Output[str] = pulumi.property("roleArn")
     """
     The Amazon Resource Name (ARN) of the IAM role to use for this state machine.
     """
-    status: pulumi.Output[str]
+
+    status: pulumi.Output[str] = pulumi.property("status")
     """
     The current status of the state machine. Either "ACTIVE" or "DELETING".
     """
-    tags: pulumi.Output[dict]
+
+    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
     """
     Key-value map of resource tags
     """
-    def __init__(__self__, resource_name, opts=None, definition=None, name=None, role_arn=None, tags=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 definition: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 role_arn: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a Step Function State Machine resource
 
@@ -70,7 +88,7 @@ class StateMachine(pulumi.CustomResource):
         :param pulumi.Input[str] definition: The Amazon States Language definition of the state machine.
         :param pulumi.Input[str] name: The name of the state machine.
         :param pulumi.Input[str] role_arn: The Amazon Resource Name (ARN) of the IAM role to use for this state machine.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -107,7 +125,16 @@ class StateMachine(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, creation_date=None, definition=None, name=None, role_arn=None, status=None, tags=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            creation_date: Optional[pulumi.Input[str]] = None,
+            definition: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            role_arn: Optional[pulumi.Input[str]] = None,
+            status: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None) -> 'StateMachine':
         """
         Get an existing StateMachine resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -121,7 +148,7 @@ class StateMachine(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the state machine.
         :param pulumi.Input[str] role_arn: The Amazon Resource Name (ARN) of the IAM role to use for this state machine.
         :param pulumi.Input[str] status: The current status of the state machine. Either "ACTIVE" or "DELETING".
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -141,3 +168,4 @@ class StateMachine(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,8 +5,23 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetCredentialsResult',
+    'AwaitableGetCredentialsResult',
+    'get_credentials',
+]
+
+
+@pulumi.output_type
+class _GetCredentialsResult:
+    authorization_token: str = pulumi.property("authorizationToken")
+    expires_at: str = pulumi.property("expiresAt")
+    id: str = pulumi.property("id")
+    proxy_endpoint: str = pulumi.property("proxyEndpoint")
+    registry_id: str = pulumi.property("registryId")
 
 
 class GetCredentialsResult:
@@ -47,7 +62,8 @@ class AwaitableGetCredentialsResult(GetCredentialsResult):
             registry_id=self.registry_id)
 
 
-def get_credentials(registry_id=None, opts=None):
+def get_credentials(registry_id: Optional[str] = None,
+                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCredentialsResult:
     """
     Use this data source to access information about an existing resource.
     """
@@ -57,11 +73,11 @@ def get_credentials(registry_id=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ecr/getCredentials:getCredentials', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ecr/getCredentials:getCredentials', __args__, opts=opts, typ=_GetCredentialsResult).value
 
     return AwaitableGetCredentialsResult(
-        authorization_token=__ret__.get('authorizationToken'),
-        expires_at=__ret__.get('expiresAt'),
-        id=__ret__.get('id'),
-        proxy_endpoint=__ret__.get('proxyEndpoint'),
-        registry_id=__ret__.get('registryId'))
+        authorization_token=__ret__.authorization_token,
+        expires_at=__ret__.expires_at,
+        id=__ret__.id,
+        proxy_endpoint=__ret__.proxy_endpoint,
+        registry_id=__ret__.registry_id)

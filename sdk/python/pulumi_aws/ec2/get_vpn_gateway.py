@@ -5,8 +5,28 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetVpnGatewayResult',
+    'AwaitableGetVpnGatewayResult',
+    'get_vpn_gateway',
+]
+
+
+@pulumi.output_type
+class _GetVpnGatewayResult:
+    amazon_side_asn: str = pulumi.property("amazonSideAsn")
+    arn: str = pulumi.property("arn")
+    attached_vpc_id: str = pulumi.property("attachedVpcId")
+    availability_zone: str = pulumi.property("availabilityZone")
+    filters: Optional[List['outputs.GetVpnGatewayFilterResult']] = pulumi.property("filters")
+    id: str = pulumi.property("id")
+    state: str = pulumi.property("state")
+    tags: Mapping[str, str] = pulumi.property("tags")
 
 
 class GetVpnGatewayResult:
@@ -56,7 +76,14 @@ class AwaitableGetVpnGatewayResult(GetVpnGatewayResult):
             tags=self.tags)
 
 
-def get_vpn_gateway(amazon_side_asn=None, attached_vpc_id=None, availability_zone=None, filters=None, id=None, state=None, tags=None, opts=None):
+def get_vpn_gateway(amazon_side_asn: Optional[str] = None,
+                    attached_vpc_id: Optional[str] = None,
+                    availability_zone: Optional[str] = None,
+                    filters: Optional[List[pulumi.InputType['GetVpnGatewayFilterArgs']]] = None,
+                    id: Optional[str] = None,
+                    state: Optional[str] = None,
+                    tags: Optional[Mapping[str, str]] = None,
+                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpnGatewayResult:
     """
     The VPN Gateway data source provides details about
     a specific VPN gateway.
@@ -78,18 +105,11 @@ def get_vpn_gateway(amazon_side_asn=None, attached_vpc_id=None, availability_zon
     :param str amazon_side_asn: The Autonomous System Number (ASN) for the Amazon side of the specific VPN Gateway to retrieve.
     :param str attached_vpc_id: The ID of a VPC attached to the specific VPN Gateway to retrieve.
     :param str availability_zone: The Availability Zone of the specific VPN Gateway to retrieve.
-    :param list filters: Custom filter block as described below.
+    :param List[pulumi.InputType['GetVpnGatewayFilterArgs']] filters: Custom filter block as described below.
     :param str id: The ID of the specific VPN Gateway to retrieve.
     :param str state: The state of the specific VPN Gateway to retrieve.
-    :param dict tags: A map of tags, each pair of which must exactly match
+    :param Mapping[str, str] tags: A map of tags, each pair of which must exactly match
            a pair on the desired VPN Gateway.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter by, as defined by
-        [the underlying AWS API](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVpnGateways.html).
-      * `values` (`list`) - Set of values that are accepted for the given field.
-        A VPN Gateway will be selected if any one of the given values matches.
     """
     __args__ = dict()
     __args__['amazonSideAsn'] = amazon_side_asn
@@ -103,14 +123,14 @@ def get_vpn_gateway(amazon_side_asn=None, attached_vpc_id=None, availability_zon
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getVpnGateway:getVpnGateway', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getVpnGateway:getVpnGateway', __args__, opts=opts, typ=_GetVpnGatewayResult).value
 
     return AwaitableGetVpnGatewayResult(
-        amazon_side_asn=__ret__.get('amazonSideAsn'),
-        arn=__ret__.get('arn'),
-        attached_vpc_id=__ret__.get('attachedVpcId'),
-        availability_zone=__ret__.get('availabilityZone'),
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        state=__ret__.get('state'),
-        tags=__ret__.get('tags'))
+        amazon_side_asn=__ret__.amazon_side_asn,
+        arn=__ret__.arn,
+        attached_vpc_id=__ret__.attached_vpc_id,
+        availability_zone=__ret__.availability_zone,
+        filters=__ret__.filters,
+        id=__ret__.id,
+        state=__ret__.state,
+        tags=__ret__.tags)

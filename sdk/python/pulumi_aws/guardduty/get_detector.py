@@ -5,8 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetDetectorResult',
+    'AwaitableGetDetectorResult',
+    'get_detector',
+]
+
+
+@pulumi.output_type
+class _GetDetectorResult:
+    finding_publishing_frequency: str = pulumi.property("findingPublishingFrequency")
+    id: Optional[str] = pulumi.property("id")
+    service_role_arn: str = pulumi.property("serviceRoleArn")
+    status: str = pulumi.property("status")
 
 
 class GetDetectorResult:
@@ -49,7 +63,8 @@ class AwaitableGetDetectorResult(GetDetectorResult):
             status=self.status)
 
 
-def get_detector(id=None, opts=None):
+def get_detector(id: Optional[str] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDetectorResult:
     """
     Retrieve information about a GuardDuty detector.
 
@@ -71,10 +86,10 @@ def get_detector(id=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:guardduty/getDetector:getDetector', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:guardduty/getDetector:getDetector', __args__, opts=opts, typ=_GetDetectorResult).value
 
     return AwaitableGetDetectorResult(
-        finding_publishing_frequency=__ret__.get('findingPublishingFrequency'),
-        id=__ret__.get('id'),
-        service_role_arn=__ret__.get('serviceRoleArn'),
-        status=__ret__.get('status'))
+        finding_publishing_frequency=__ret__.finding_publishing_frequency,
+        id=__ret__.id,
+        service_role_arn=__ret__.service_role_arn,
+        status=__ret__.status)

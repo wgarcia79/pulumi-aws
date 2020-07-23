@@ -5,60 +5,43 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['ZoneAssociation']
 
 
 class ZoneAssociation(pulumi.CustomResource):
-    vpc_id: pulumi.Output[str]
+    vpc_id: pulumi.Output[str] = pulumi.property("vpcId")
     """
     The VPC to associate with the private hosted zone.
     """
-    vpc_region: pulumi.Output[str]
+
+    vpc_region: pulumi.Output[str] = pulumi.property("vpcRegion")
     """
     The VPC's region. Defaults to the region of the AWS provider.
     """
-    zone_id: pulumi.Output[str]
+
+    zone_id: pulumi.Output[str] = pulumi.property("zoneId")
     """
     The private hosted zone to associate.
     """
-    def __init__(__self__, resource_name, opts=None, vpc_id=None, vpc_region=None, zone_id=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 vpc_id: Optional[pulumi.Input[str]] = None,
+                 vpc_region: Optional[pulumi.Input[str]] = None,
+                 zone_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Manages a Route53 Hosted Zone VPC association. VPC associations can only be made on private zones.
 
         > **NOTE:** Unless explicit association ordering is required (e.g. a separate cross-account association authorization), usage of this resource is not recommended. Use the `vpc` configuration blocks available within the `route53.Zone` resource instead.
 
         > **NOTE:** This provider provides both this standalone Zone VPC Association resource and exclusive VPC associations defined in-line in the `route53.Zone` resource via `vpc` configuration blocks. At this time, you cannot use those in-line VPC associations in conjunction with this resource and the same zone ID otherwise it will cause a perpetual difference in plan output. You can optionally use [`ignoreChanges`](https://www.pulumi.com/docs/intro/concepts/programming-model/#ignorechanges) in the `route53.Zone` resource to manage additional associations via this resource.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_aws as aws
-
-        primary = aws.ec2.Vpc("primary",
-            cidr_block="10.6.0.0/16",
-            enable_dns_hostnames=True,
-            enable_dns_support=True)
-        secondary_vpc = aws.ec2.Vpc("secondaryVpc",
-            cidr_block="10.7.0.0/16",
-            enable_dns_hostnames=True,
-            enable_dns_support=True)
-        example = aws.route53.Zone("example",
-            lifecycle={
-                "ignoreChanges": [
-                    "vpcId",
-                    "vpcRegion",
-                    "vpcs",
-                ],
-            },
-            vpcs=[{
-                "vpc_id": primary.id,
-            }])
-        secondary_zone_association = aws.route53.ZoneAssociation("secondaryZoneAssociation",
-            vpc_id=secondary_vpc.id,
-            zone_id=example.zone_id)
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -97,7 +80,12 @@ class ZoneAssociation(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, vpc_id=None, vpc_region=None, zone_id=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            vpc_id: Optional[pulumi.Input[str]] = None,
+            vpc_region: Optional[pulumi.Input[str]] = None,
+            zone_id: Optional[pulumi.Input[str]] = None) -> 'ZoneAssociation':
         """
         Get an existing ZoneAssociation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -123,3 +111,4 @@ class ZoneAssociation(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

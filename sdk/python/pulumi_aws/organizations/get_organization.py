@@ -5,8 +5,30 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetOrganizationResult',
+    'AwaitableGetOrganizationResult',
+    'get_organization',
+]
+
+
+@pulumi.output_type
+class _GetOrganizationResult:
+    accounts: List['outputs.GetOrganizationAccountResult'] = pulumi.property("accounts")
+    arn: str = pulumi.property("arn")
+    aws_service_access_principals: List[str] = pulumi.property("awsServiceAccessPrincipals")
+    enabled_policy_types: List[str] = pulumi.property("enabledPolicyTypes")
+    feature_set: str = pulumi.property("featureSet")
+    id: str = pulumi.property("id")
+    master_account_arn: str = pulumi.property("masterAccountArn")
+    master_account_email: str = pulumi.property("masterAccountEmail")
+    master_account_id: str = pulumi.property("masterAccountId")
+    non_master_accounts: List['outputs.GetOrganizationNonMasterAccountResult'] = pulumi.property("nonMasterAccounts")
+    roots: List['outputs.GetOrganizationRootResult'] = pulumi.property("roots")
 
 
 class GetOrganizationResult:
@@ -101,7 +123,7 @@ class AwaitableGetOrganizationResult(GetOrganizationResult):
             roots=self.roots)
 
 
-def get_organization(opts=None):
+def get_organization(                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationResult:
     """
     Get information about the organization that the user's account belongs to
 
@@ -150,17 +172,17 @@ def get_organization(opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:organizations/getOrganization:getOrganization', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:organizations/getOrganization:getOrganization', __args__, opts=opts, typ=_GetOrganizationResult).value
 
     return AwaitableGetOrganizationResult(
-        accounts=__ret__.get('accounts'),
-        arn=__ret__.get('arn'),
-        aws_service_access_principals=__ret__.get('awsServiceAccessPrincipals'),
-        enabled_policy_types=__ret__.get('enabledPolicyTypes'),
-        feature_set=__ret__.get('featureSet'),
-        id=__ret__.get('id'),
-        master_account_arn=__ret__.get('masterAccountArn'),
-        master_account_email=__ret__.get('masterAccountEmail'),
-        master_account_id=__ret__.get('masterAccountId'),
-        non_master_accounts=__ret__.get('nonMasterAccounts'),
-        roots=__ret__.get('roots'))
+        accounts=__ret__.accounts,
+        arn=__ret__.arn,
+        aws_service_access_principals=__ret__.aws_service_access_principals,
+        enabled_policy_types=__ret__.enabled_policy_types,
+        feature_set=__ret__.feature_set,
+        id=__ret__.id,
+        master_account_arn=__ret__.master_account_arn,
+        master_account_email=__ret__.master_account_email,
+        master_account_id=__ret__.master_account_id,
+        non_master_accounts=__ret__.non_master_accounts,
+        roots=__ret__.roots)

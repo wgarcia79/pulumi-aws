@@ -5,8 +5,27 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetComputeEnvironmentResult',
+    'AwaitableGetComputeEnvironmentResult',
+    'get_compute_environment',
+]
+
+
+@pulumi.output_type
+class _GetComputeEnvironmentResult:
+    arn: str = pulumi.property("arn")
+    compute_environment_name: str = pulumi.property("computeEnvironmentName")
+    ecs_cluster_arn: str = pulumi.property("ecsClusterArn")
+    id: str = pulumi.property("id")
+    service_role: str = pulumi.property("serviceRole")
+    state: str = pulumi.property("state")
+    status: str = pulumi.property("status")
+    status_reason: str = pulumi.property("statusReason")
+    type: str = pulumi.property("type")
 
 
 class GetComputeEnvironmentResult:
@@ -84,7 +103,8 @@ class AwaitableGetComputeEnvironmentResult(GetComputeEnvironmentResult):
             type=self.type)
 
 
-def get_compute_environment(compute_environment_name=None, opts=None):
+def get_compute_environment(compute_environment_name: Optional[str] = None,
+                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetComputeEnvironmentResult:
     """
     The Batch Compute Environment data source allows access to details of a specific
     compute environment within AWS Batch.
@@ -107,15 +127,15 @@ def get_compute_environment(compute_environment_name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:batch/getComputeEnvironment:getComputeEnvironment', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:batch/getComputeEnvironment:getComputeEnvironment', __args__, opts=opts, typ=_GetComputeEnvironmentResult).value
 
     return AwaitableGetComputeEnvironmentResult(
-        arn=__ret__.get('arn'),
-        compute_environment_name=__ret__.get('computeEnvironmentName'),
-        ecs_cluster_arn=__ret__.get('ecsClusterArn'),
-        id=__ret__.get('id'),
-        service_role=__ret__.get('serviceRole'),
-        state=__ret__.get('state'),
-        status=__ret__.get('status'),
-        status_reason=__ret__.get('statusReason'),
-        type=__ret__.get('type'))
+        arn=__ret__.arn,
+        compute_environment_name=__ret__.compute_environment_name,
+        ecs_cluster_arn=__ret__.ecs_cluster_arn,
+        id=__ret__.id,
+        service_role=__ret__.service_role,
+        state=__ret__.state,
+        status=__ret__.status,
+        status_reason=__ret__.status_reason,
+        type=__ret__.type)

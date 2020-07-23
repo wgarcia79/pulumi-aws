@@ -5,8 +5,51 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetAmiResult',
+    'AwaitableGetAmiResult',
+    'get_ami',
+]
+
+
+@pulumi.output_type
+class _GetAmiResult:
+    architecture: str = pulumi.property("architecture")
+    arn: str = pulumi.property("arn")
+    block_device_mappings: List['outputs.GetAmiBlockDeviceMappingResult'] = pulumi.property("blockDeviceMappings")
+    creation_date: str = pulumi.property("creationDate")
+    description: str = pulumi.property("description")
+    executable_users: Optional[List[str]] = pulumi.property("executableUsers")
+    filters: Optional[List['outputs.GetAmiFilterResult']] = pulumi.property("filters")
+    hypervisor: str = pulumi.property("hypervisor")
+    id: str = pulumi.property("id")
+    image_id: str = pulumi.property("imageId")
+    image_location: str = pulumi.property("imageLocation")
+    image_owner_alias: str = pulumi.property("imageOwnerAlias")
+    image_type: str = pulumi.property("imageType")
+    kernel_id: str = pulumi.property("kernelId")
+    most_recent: Optional[bool] = pulumi.property("mostRecent")
+    name: str = pulumi.property("name")
+    name_regex: Optional[str] = pulumi.property("nameRegex")
+    owner_id: str = pulumi.property("ownerId")
+    owners: List[str] = pulumi.property("owners")
+    platform: str = pulumi.property("platform")
+    product_codes: List['outputs.GetAmiProductCodeResult'] = pulumi.property("productCodes")
+    public: bool = pulumi.property("public")
+    ramdisk_id: str = pulumi.property("ramdiskId")
+    root_device_name: str = pulumi.property("rootDeviceName")
+    root_device_type: str = pulumi.property("rootDeviceType")
+    root_snapshot_id: str = pulumi.property("rootSnapshotId")
+    sriov_net_support: str = pulumi.property("sriovNetSupport")
+    state: str = pulumi.property("state")
+    state_reason: Mapping[str, str] = pulumi.property("stateReason")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    virtualization_type: str = pulumi.property("virtualizationType")
 
 
 class GetAmiResult:
@@ -253,7 +296,13 @@ class AwaitableGetAmiResult(GetAmiResult):
             virtualization_type=self.virtualization_type)
 
 
-def get_ami(executable_users=None, filters=None, most_recent=None, name_regex=None, owners=None, tags=None, opts=None):
+def get_ami(executable_users: Optional[List[str]] = None,
+            filters: Optional[List[pulumi.InputType['GetAmiFilterArgs']]] = None,
+            most_recent: Optional[bool] = None,
+            name_regex: Optional[str] = None,
+            owners: Optional[List[str]] = None,
+            tags: Optional[Mapping[str, str]] = None,
+            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAmiResult:
     """
     Use this data source to get the ID of a registered AMI for use in other
     resources.
@@ -285,9 +334,9 @@ def get_ami(executable_users=None, filters=None, most_recent=None, name_regex=No
     ```
 
 
-    :param list executable_users: Limit search to users with *explicit* launch permission on
+    :param List[str] executable_users: Limit search to users with *explicit* launch permission on
            the image. Valid items are the numeric account ID or `self`.
-    :param list filters: One or more name/value pairs to filter off of. There are
+    :param List[pulumi.InputType['GetAmiFilterArgs']] filters: One or more name/value pairs to filter off of. There are
            several valid keys, for a full reference, check out
            [describe-images in the AWS CLI reference][1].
     :param bool most_recent: If more than one result is returned, use the most
@@ -297,15 +346,10 @@ def get_ami(executable_users=None, filters=None, most_recent=None, name_regex=No
            filtering is done locally on what AWS returns, and could have a performance
            impact if the result is large. It is recommended to combine this with other
            options to narrow down the list AWS returns.
-    :param list owners: List of AMI owners to limit search. At least 1 value must be specified. Valid values: an AWS account ID, `self` (the current account), or an AWS owner alias (e.g. `amazon`, `aws-marketplace`, `microsoft`).
-    :param dict tags: Any tags assigned to the image.
+    :param List[str] owners: List of AMI owners to limit search. At least 1 value must be specified. Valid values: an AWS account ID, `self` (the current account), or an AWS owner alias (e.g. `amazon`, `aws-marketplace`, `microsoft`).
+    :param Mapping[str, str] tags: Any tags assigned to the image.
            * `tags.#.key` - The key name of the tag.
            * `tags.#.value` - The value of the tag.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the AMI that was provided during image creation.
-      * `values` (`list`)
     """
     __args__ = dict()
     __args__['executableUsers'] = executable_users
@@ -318,37 +362,37 @@ def get_ami(executable_users=None, filters=None, most_recent=None, name_regex=No
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:index/getAmi:getAmi', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:index/getAmi:getAmi', __args__, opts=opts, typ=_GetAmiResult).value
 
     return AwaitableGetAmiResult(
-        architecture=__ret__.get('architecture'),
-        arn=__ret__.get('arn'),
-        block_device_mappings=__ret__.get('blockDeviceMappings'),
-        creation_date=__ret__.get('creationDate'),
-        description=__ret__.get('description'),
-        executable_users=__ret__.get('executableUsers'),
-        filters=__ret__.get('filters'),
-        hypervisor=__ret__.get('hypervisor'),
-        id=__ret__.get('id'),
-        image_id=__ret__.get('imageId'),
-        image_location=__ret__.get('imageLocation'),
-        image_owner_alias=__ret__.get('imageOwnerAlias'),
-        image_type=__ret__.get('imageType'),
-        kernel_id=__ret__.get('kernelId'),
-        most_recent=__ret__.get('mostRecent'),
-        name=__ret__.get('name'),
-        name_regex=__ret__.get('nameRegex'),
-        owner_id=__ret__.get('ownerId'),
-        owners=__ret__.get('owners'),
-        platform=__ret__.get('platform'),
-        product_codes=__ret__.get('productCodes'),
-        public=__ret__.get('public'),
-        ramdisk_id=__ret__.get('ramdiskId'),
-        root_device_name=__ret__.get('rootDeviceName'),
-        root_device_type=__ret__.get('rootDeviceType'),
-        root_snapshot_id=__ret__.get('rootSnapshotId'),
-        sriov_net_support=__ret__.get('sriovNetSupport'),
-        state=__ret__.get('state'),
-        state_reason=__ret__.get('stateReason'),
-        tags=__ret__.get('tags'),
-        virtualization_type=__ret__.get('virtualizationType'))
+        architecture=__ret__.architecture,
+        arn=__ret__.arn,
+        block_device_mappings=__ret__.block_device_mappings,
+        creation_date=__ret__.creation_date,
+        description=__ret__.description,
+        executable_users=__ret__.executable_users,
+        filters=__ret__.filters,
+        hypervisor=__ret__.hypervisor,
+        id=__ret__.id,
+        image_id=__ret__.image_id,
+        image_location=__ret__.image_location,
+        image_owner_alias=__ret__.image_owner_alias,
+        image_type=__ret__.image_type,
+        kernel_id=__ret__.kernel_id,
+        most_recent=__ret__.most_recent,
+        name=__ret__.name,
+        name_regex=__ret__.name_regex,
+        owner_id=__ret__.owner_id,
+        owners=__ret__.owners,
+        platform=__ret__.platform,
+        product_codes=__ret__.product_codes,
+        public=__ret__.public,
+        ramdisk_id=__ret__.ramdisk_id,
+        root_device_name=__ret__.root_device_name,
+        root_device_type=__ret__.root_device_type,
+        root_snapshot_id=__ret__.root_snapshot_id,
+        sriov_net_support=__ret__.sriov_net_support,
+        state=__ret__.state,
+        state_reason=__ret__.state_reason,
+        tags=__ret__.tags,
+        virtualization_type=__ret__.virtualization_type)

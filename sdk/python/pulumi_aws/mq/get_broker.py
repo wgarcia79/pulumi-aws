@@ -5,8 +5,39 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetBrokerResult',
+    'AwaitableGetBrokerResult',
+    'get_broker',
+]
+
+
+@pulumi.output_type
+class _GetBrokerResult:
+    arn: str = pulumi.property("arn")
+    auto_minor_version_upgrade: bool = pulumi.property("autoMinorVersionUpgrade")
+    broker_id: str = pulumi.property("brokerId")
+    broker_name: str = pulumi.property("brokerName")
+    configuration: 'outputs.GetBrokerConfigurationResult' = pulumi.property("configuration")
+    deployment_mode: str = pulumi.property("deploymentMode")
+    encryption_options: List['outputs.GetBrokerEncryptionOptionResult'] = pulumi.property("encryptionOptions")
+    engine_type: str = pulumi.property("engineType")
+    engine_version: str = pulumi.property("engineVersion")
+    host_instance_type: str = pulumi.property("hostInstanceType")
+    id: str = pulumi.property("id")
+    instances: List['outputs.GetBrokerInstanceResult'] = pulumi.property("instances")
+    logs: Optional['outputs.GetBrokerLogsResult'] = pulumi.property("logs")
+    maintenance_window_start_time: 'outputs.GetBrokerMaintenanceWindowStartTimeResult' = pulumi.property("maintenanceWindowStartTime")
+    publicly_accessible: bool = pulumi.property("publiclyAccessible")
+    security_groups: List[str] = pulumi.property("securityGroups")
+    subnet_ids: List[str] = pulumi.property("subnetIds")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    users: List['outputs.GetBrokerUserResult'] = pulumi.property("users")
 
 
 class GetBrokerResult:
@@ -103,7 +134,11 @@ class AwaitableGetBrokerResult(GetBrokerResult):
             users=self.users)
 
 
-def get_broker(broker_id=None, broker_name=None, logs=None, tags=None, opts=None):
+def get_broker(broker_id: Optional[str] = None,
+               broker_name: Optional[str] = None,
+               logs: Optional[pulumi.InputType['GetBrokerLogsArgs']] = None,
+               tags: Optional[Mapping[str, str]] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBrokerResult:
     """
     Provides information about a MQ Broker.
 
@@ -127,11 +162,6 @@ def get_broker(broker_id=None, broker_name=None, logs=None, tags=None, opts=None
 
     :param str broker_id: The unique id of the mq broker.
     :param str broker_name: The unique name of the mq broker.
-
-    The **logs** object supports the following:
-
-      * `audit` (`bool`)
-      * `general` (`bool`)
     """
     __args__ = dict()
     __args__['brokerId'] = broker_id
@@ -142,25 +172,25 @@ def get_broker(broker_id=None, broker_name=None, logs=None, tags=None, opts=None
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:mq/getBroker:getBroker', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:mq/getBroker:getBroker', __args__, opts=opts, typ=_GetBrokerResult).value
 
     return AwaitableGetBrokerResult(
-        arn=__ret__.get('arn'),
-        auto_minor_version_upgrade=__ret__.get('autoMinorVersionUpgrade'),
-        broker_id=__ret__.get('brokerId'),
-        broker_name=__ret__.get('brokerName'),
-        configuration=__ret__.get('configuration'),
-        deployment_mode=__ret__.get('deploymentMode'),
-        encryption_options=__ret__.get('encryptionOptions'),
-        engine_type=__ret__.get('engineType'),
-        engine_version=__ret__.get('engineVersion'),
-        host_instance_type=__ret__.get('hostInstanceType'),
-        id=__ret__.get('id'),
-        instances=__ret__.get('instances'),
-        logs=__ret__.get('logs'),
-        maintenance_window_start_time=__ret__.get('maintenanceWindowStartTime'),
-        publicly_accessible=__ret__.get('publiclyAccessible'),
-        security_groups=__ret__.get('securityGroups'),
-        subnet_ids=__ret__.get('subnetIds'),
-        tags=__ret__.get('tags'),
-        users=__ret__.get('users'))
+        arn=__ret__.arn,
+        auto_minor_version_upgrade=__ret__.auto_minor_version_upgrade,
+        broker_id=__ret__.broker_id,
+        broker_name=__ret__.broker_name,
+        configuration=__ret__.configuration,
+        deployment_mode=__ret__.deployment_mode,
+        encryption_options=__ret__.encryption_options,
+        engine_type=__ret__.engine_type,
+        engine_version=__ret__.engine_version,
+        host_instance_type=__ret__.host_instance_type,
+        id=__ret__.id,
+        instances=__ret__.instances,
+        logs=__ret__.logs,
+        maintenance_window_start_time=__ret__.maintenance_window_start_time,
+        publicly_accessible=__ret__.publicly_accessible,
+        security_groups=__ret__.security_groups,
+        subnet_ids=__ret__.subnet_ids,
+        tags=__ret__.tags,
+        users=__ret__.users)

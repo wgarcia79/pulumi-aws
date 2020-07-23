@@ -5,8 +5,30 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetZoneResult',
+    'AwaitableGetZoneResult',
+    'get_zone',
+]
+
+
+@pulumi.output_type
+class _GetZoneResult:
+    caller_reference: str = pulumi.property("callerReference")
+    comment: str = pulumi.property("comment")
+    id: str = pulumi.property("id")
+    linked_service_description: str = pulumi.property("linkedServiceDescription")
+    linked_service_principal: str = pulumi.property("linkedServicePrincipal")
+    name: str = pulumi.property("name")
+    name_servers: List[str] = pulumi.property("nameServers")
+    private_zone: Optional[bool] = pulumi.property("privateZone")
+    resource_record_set_count: float = pulumi.property("resourceRecordSetCount")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    vpc_id: str = pulumi.property("vpcId")
+    zone_id: str = pulumi.property("zoneId")
 
 
 class GetZoneResult:
@@ -93,7 +115,13 @@ class AwaitableGetZoneResult(GetZoneResult):
             zone_id=self.zone_id)
 
 
-def get_zone(name=None, private_zone=None, resource_record_set_count=None, tags=None, vpc_id=None, zone_id=None, opts=None):
+def get_zone(name: Optional[str] = None,
+             private_zone: Optional[bool] = None,
+             resource_record_set_count: Optional[float] = None,
+             tags: Optional[Mapping[str, str]] = None,
+             vpc_id: Optional[str] = None,
+             zone_id: Optional[str] = None,
+             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetZoneResult:
     """
     `route53.Zone` provides details about a specific Route 53 Hosted Zone.
 
@@ -112,7 +140,7 @@ def get_zone(name=None, private_zone=None, resource_record_set_count=None, tags=
     www = aws.route53.Record("www",
         name=f"www.{selected.name}",
         records=["10.0.0.1"],
-        ttl="300",
+        ttl=300,
         type="A",
         zone_id=selected.zone_id)
     ```
@@ -121,7 +149,7 @@ def get_zone(name=None, private_zone=None, resource_record_set_count=None, tags=
     :param str name: The Hosted Zone name of the desired Hosted Zone.
     :param bool private_zone: Used with `name` field to get a private Hosted Zone.
     :param float resource_record_set_count: The number of Record Set in the Hosted Zone.
-    :param dict tags: Used with `name` field. A map of tags, each pair of which must exactly match a pair on the desired Hosted Zone.
+    :param Mapping[str, str] tags: Used with `name` field. A map of tags, each pair of which must exactly match a pair on the desired Hosted Zone.
     :param str vpc_id: Used with `name` field to get a private Hosted Zone associated with the vpc_id (in this case, private_zone is not mandatory).
     :param str zone_id: The Hosted Zone id of the desired Hosted Zone.
     """
@@ -136,18 +164,18 @@ def get_zone(name=None, private_zone=None, resource_record_set_count=None, tags=
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:route53/getZone:getZone', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:route53/getZone:getZone', __args__, opts=opts, typ=_GetZoneResult).value
 
     return AwaitableGetZoneResult(
-        caller_reference=__ret__.get('callerReference'),
-        comment=__ret__.get('comment'),
-        id=__ret__.get('id'),
-        linked_service_description=__ret__.get('linkedServiceDescription'),
-        linked_service_principal=__ret__.get('linkedServicePrincipal'),
-        name=__ret__.get('name'),
-        name_servers=__ret__.get('nameServers'),
-        private_zone=__ret__.get('privateZone'),
-        resource_record_set_count=__ret__.get('resourceRecordSetCount'),
-        tags=__ret__.get('tags'),
-        vpc_id=__ret__.get('vpcId'),
-        zone_id=__ret__.get('zoneId'))
+        caller_reference=__ret__.caller_reference,
+        comment=__ret__.comment,
+        id=__ret__.id,
+        linked_service_description=__ret__.linked_service_description,
+        linked_service_principal=__ret__.linked_service_principal,
+        name=__ret__.name,
+        name_servers=__ret__.name_servers,
+        private_zone=__ret__.private_zone,
+        resource_record_set_count=__ret__.resource_record_set_count,
+        tags=__ret__.tags,
+        vpc_id=__ret__.vpc_id,
+        zone_id=__ret__.zone_id)

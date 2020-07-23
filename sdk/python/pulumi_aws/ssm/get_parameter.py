@@ -5,8 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetParameterResult',
+    'AwaitableGetParameterResult',
+    'get_parameter',
+]
+
+
+@pulumi.output_type
+class _GetParameterResult:
+    arn: str = pulumi.property("arn")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    type: str = pulumi.property("type")
+    value: str = pulumi.property("value")
+    version: float = pulumi.property("version")
+    with_decryption: Optional[bool] = pulumi.property("withDecryption")
 
 
 class GetParameterResult:
@@ -55,7 +72,9 @@ class AwaitableGetParameterResult(GetParameterResult):
             with_decryption=self.with_decryption)
 
 
-def get_parameter(name=None, with_decryption=None, opts=None):
+def get_parameter(name: Optional[str] = None,
+                  with_decryption: Optional[bool] = None,
+                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetParameterResult:
     """
     Provides an SSM Parameter data source.
 
@@ -81,13 +100,13 @@ def get_parameter(name=None, with_decryption=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ssm/getParameter:getParameter', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ssm/getParameter:getParameter', __args__, opts=opts, typ=_GetParameterResult).value
 
     return AwaitableGetParameterResult(
-        arn=__ret__.get('arn'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        type=__ret__.get('type'),
-        value=__ret__.get('value'),
-        version=__ret__.get('version'),
-        with_decryption=__ret__.get('withDecryption'))
+        arn=__ret__.arn,
+        id=__ret__.id,
+        name=__ret__.name,
+        type=__ret__.type,
+        value=__ret__.value,
+        version=__ret__.version,
+        with_decryption=__ret__.with_decryption)

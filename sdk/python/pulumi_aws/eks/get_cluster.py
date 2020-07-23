@@ -5,8 +5,33 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetClusterResult',
+    'AwaitableGetClusterResult',
+    'get_cluster',
+]
+
+
+@pulumi.output_type
+class _GetClusterResult:
+    arn: str = pulumi.property("arn")
+    certificate_authority: 'outputs.GetClusterCertificateAuthorityResult' = pulumi.property("certificateAuthority")
+    created_at: str = pulumi.property("createdAt")
+    enabled_cluster_log_types: List[str] = pulumi.property("enabledClusterLogTypes")
+    endpoint: str = pulumi.property("endpoint")
+    id: str = pulumi.property("id")
+    identities: List['outputs.GetClusterIdentityResult'] = pulumi.property("identities")
+    name: str = pulumi.property("name")
+    platform_version: str = pulumi.property("platformVersion")
+    role_arn: str = pulumi.property("roleArn")
+    status: str = pulumi.property("status")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    version: str = pulumi.property("version")
+    vpc_config: 'outputs.GetClusterVpcConfigResult' = pulumi.property("vpcConfig")
 
 
 class GetClusterResult:
@@ -119,13 +144,15 @@ class AwaitableGetClusterResult(GetClusterResult):
             vpc_config=self.vpc_config)
 
 
-def get_cluster(name=None, tags=None, opts=None):
+def get_cluster(name: Optional[str] = None,
+                tags: Optional[Mapping[str, str]] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClusterResult:
     """
     Retrieve information about an EKS Cluster.
 
 
     :param str name: The name of the cluster
-    :param dict tags: Key-value map of resource tags.
+    :param Mapping[str, str] tags: Key-value map of resource tags.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -134,20 +161,20 @@ def get_cluster(name=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:eks/getCluster:getCluster', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:eks/getCluster:getCluster', __args__, opts=opts, typ=_GetClusterResult).value
 
     return AwaitableGetClusterResult(
-        arn=__ret__.get('arn'),
-        certificate_authority=__ret__.get('certificateAuthority'),
-        created_at=__ret__.get('createdAt'),
-        enabled_cluster_log_types=__ret__.get('enabledClusterLogTypes'),
-        endpoint=__ret__.get('endpoint'),
-        id=__ret__.get('id'),
-        identities=__ret__.get('identities'),
-        name=__ret__.get('name'),
-        platform_version=__ret__.get('platformVersion'),
-        role_arn=__ret__.get('roleArn'),
-        status=__ret__.get('status'),
-        tags=__ret__.get('tags'),
-        version=__ret__.get('version'),
-        vpc_config=__ret__.get('vpcConfig'))
+        arn=__ret__.arn,
+        certificate_authority=__ret__.certificate_authority,
+        created_at=__ret__.created_at,
+        enabled_cluster_log_types=__ret__.enabled_cluster_log_types,
+        endpoint=__ret__.endpoint,
+        id=__ret__.id,
+        identities=__ret__.identities,
+        name=__ret__.name,
+        platform_version=__ret__.platform_version,
+        role_arn=__ret__.role_arn,
+        status=__ret__.status,
+        tags=__ret__.tags,
+        version=__ret__.version,
+        vpc_config=__ret__.vpc_config)

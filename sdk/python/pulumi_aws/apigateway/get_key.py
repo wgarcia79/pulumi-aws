@@ -5,8 +5,26 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetKeyResult',
+    'AwaitableGetKeyResult',
+    'get_key',
+]
+
+
+@pulumi.output_type
+class _GetKeyResult:
+    created_date: str = pulumi.property("createdDate")
+    description: str = pulumi.property("description")
+    enabled: bool = pulumi.property("enabled")
+    id: str = pulumi.property("id")
+    last_updated_date: str = pulumi.property("lastUpdatedDate")
+    name: str = pulumi.property("name")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    value: str = pulumi.property("value")
 
 
 class GetKeyResult:
@@ -80,7 +98,9 @@ class AwaitableGetKeyResult(GetKeyResult):
             value=self.value)
 
 
-def get_key(id=None, tags=None, opts=None):
+def get_key(id: Optional[str] = None,
+            tags: Optional[Mapping[str, str]] = None,
+            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKeyResult:
     """
     Use this data source to get the name and value of a pre-existing API Key, for
     example to supply credentials for a dependency microservice.
@@ -96,7 +116,7 @@ def get_key(id=None, tags=None, opts=None):
 
 
     :param str id: The ID of the API Key to look up.
-    :param dict tags: A map of tags for the resource.
+    :param Mapping[str, str] tags: A map of tags for the resource.
     """
     __args__ = dict()
     __args__['id'] = id
@@ -105,14 +125,14 @@ def get_key(id=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:apigateway/getKey:getKey', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:apigateway/getKey:getKey', __args__, opts=opts, typ=_GetKeyResult).value
 
     return AwaitableGetKeyResult(
-        created_date=__ret__.get('createdDate'),
-        description=__ret__.get('description'),
-        enabled=__ret__.get('enabled'),
-        id=__ret__.get('id'),
-        last_updated_date=__ret__.get('lastUpdatedDate'),
-        name=__ret__.get('name'),
-        tags=__ret__.get('tags'),
-        value=__ret__.get('value'))
+        created_date=__ret__.created_date,
+        description=__ret__.description,
+        enabled=__ret__.enabled,
+        id=__ret__.id,
+        last_updated_date=__ret__.last_updated_date,
+        name=__ret__.name,
+        tags=__ret__.tags,
+        value=__ret__.value)

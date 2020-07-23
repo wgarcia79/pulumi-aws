@@ -5,73 +5,107 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['Stack']
 
 
 class Stack(pulumi.CustomResource):
-    capabilities: pulumi.Output[list]
+    capabilities: pulumi.Output[Optional[List[str]]] = pulumi.property("capabilities")
     """
     A list of capabilities.
     Valid values: `CAPABILITY_IAM`, `CAPABILITY_NAMED_IAM`, or `CAPABILITY_AUTO_EXPAND`
     """
-    disable_rollback: pulumi.Output[bool]
+
+    disable_rollback: pulumi.Output[Optional[bool]] = pulumi.property("disableRollback")
     """
     Set to true to disable rollback of the stack if stack creation failed.
     Conflicts with `on_failure`.
     """
-    iam_role_arn: pulumi.Output[str]
+
+    iam_role_arn: pulumi.Output[Optional[str]] = pulumi.property("iamRoleArn")
     """
     The ARN of an IAM role that AWS CloudFormation assumes to create the stack. If you don't specify a value, AWS CloudFormation uses the role that was previously associated with the stack. If no role is available, AWS CloudFormation uses a temporary session that is generated from your user credentials.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     Stack name.
     """
-    notification_arns: pulumi.Output[list]
+
+    notification_arns: pulumi.Output[Optional[List[str]]] = pulumi.property("notificationArns")
     """
     A list of SNS topic ARNs to publish stack related events.
     """
-    on_failure: pulumi.Output[str]
+
+    on_failure: pulumi.Output[Optional[str]] = pulumi.property("onFailure")
     """
     Action to be taken if stack creation fails. This must be
     one of: `DO_NOTHING`, `ROLLBACK`, or `DELETE`. Conflicts with `disable_rollback`.
     """
-    outputs: pulumi.Output[dict]
+
+    outputs: pulumi.Output[Mapping[str, str]] = pulumi.property("outputs")
     """
     A map of outputs from the stack.
     """
-    parameters: pulumi.Output[dict]
+
+    parameters: pulumi.Output[Mapping[str, str]] = pulumi.property("parameters")
     """
     A map of Parameter structures that specify input parameters for the stack.
     """
-    policy_body: pulumi.Output[str]
+
+    policy_body: pulumi.Output[str] = pulumi.property("policyBody")
     """
     Structure containing the stack policy body.
     Conflicts w/ `policy_url`.
     """
-    policy_url: pulumi.Output[str]
+
+    policy_url: pulumi.Output[Optional[str]] = pulumi.property("policyUrl")
     """
     Location of a file containing the stack policy.
     Conflicts w/ `policy_body`.
     """
-    tags: pulumi.Output[dict]
+
+    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
     """
     A list of tags to associate with this stack.
     """
-    template_body: pulumi.Output[str]
+
+    template_body: pulumi.Output[str] = pulumi.property("templateBody")
     """
     Structure containing the template body (max size: 51,200 bytes).
     """
-    template_url: pulumi.Output[str]
+
+    template_url: pulumi.Output[Optional[str]] = pulumi.property("templateUrl")
     """
     Location of a file containing the template body (max size: 460,800 bytes).
     """
-    timeout_in_minutes: pulumi.Output[float]
+
+    timeout_in_minutes: pulumi.Output[Optional[float]] = pulumi.property("timeoutInMinutes")
     """
     The amount of time that can pass before the stack status becomes `CREATE_FAILED`.
     """
-    def __init__(__self__, resource_name, opts=None, capabilities=None, disable_rollback=None, iam_role_arn=None, name=None, notification_arns=None, on_failure=None, parameters=None, policy_body=None, policy_url=None, tags=None, template_body=None, template_url=None, timeout_in_minutes=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 capabilities: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 disable_rollback: Optional[pulumi.Input[bool]] = None,
+                 iam_role_arn: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 notification_arns: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 on_failure: Optional[pulumi.Input[str]] = None,
+                 parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 policy_body: Optional[pulumi.Input[str]] = None,
+                 policy_url: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 template_body: Optional[pulumi.Input[str]] = None,
+                 template_url: Optional[pulumi.Input[str]] = None,
+                 timeout_in_minutes: Optional[pulumi.Input[float]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a CloudFormation Stack resource.
 
@@ -111,21 +145,21 @@ class Stack(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] capabilities: A list of capabilities.
+        :param pulumi.Input[List[pulumi.Input[str]]] capabilities: A list of capabilities.
                Valid values: `CAPABILITY_IAM`, `CAPABILITY_NAMED_IAM`, or `CAPABILITY_AUTO_EXPAND`
         :param pulumi.Input[bool] disable_rollback: Set to true to disable rollback of the stack if stack creation failed.
                Conflicts with `on_failure`.
         :param pulumi.Input[str] iam_role_arn: The ARN of an IAM role that AWS CloudFormation assumes to create the stack. If you don't specify a value, AWS CloudFormation uses the role that was previously associated with the stack. If no role is available, AWS CloudFormation uses a temporary session that is generated from your user credentials.
         :param pulumi.Input[str] name: Stack name.
-        :param pulumi.Input[list] notification_arns: A list of SNS topic ARNs to publish stack related events.
+        :param pulumi.Input[List[pulumi.Input[str]]] notification_arns: A list of SNS topic ARNs to publish stack related events.
         :param pulumi.Input[str] on_failure: Action to be taken if stack creation fails. This must be
                one of: `DO_NOTHING`, `ROLLBACK`, or `DELETE`. Conflicts with `disable_rollback`.
-        :param pulumi.Input[dict] parameters: A map of Parameter structures that specify input parameters for the stack.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] parameters: A map of Parameter structures that specify input parameters for the stack.
         :param pulumi.Input[str] policy_body: Structure containing the stack policy body.
                Conflicts w/ `policy_url`.
         :param pulumi.Input[str] policy_url: Location of a file containing the stack policy.
                Conflicts w/ `policy_body`.
-        :param pulumi.Input[dict] tags: A list of tags to associate with this stack.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags to associate with this stack.
         :param pulumi.Input[str] template_body: Structure containing the template body (max size: 51,200 bytes).
         :param pulumi.Input[str] template_url: Location of a file containing the template body (max size: 460,800 bytes).
         :param pulumi.Input[float] timeout_in_minutes: The amount of time that can pass before the stack status becomes `CREATE_FAILED`.
@@ -168,7 +202,23 @@ class Stack(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, capabilities=None, disable_rollback=None, iam_role_arn=None, name=None, notification_arns=None, on_failure=None, outputs=None, parameters=None, policy_body=None, policy_url=None, tags=None, template_body=None, template_url=None, timeout_in_minutes=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            capabilities: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            disable_rollback: Optional[pulumi.Input[bool]] = None,
+            iam_role_arn: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            notification_arns: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            on_failure: Optional[pulumi.Input[str]] = None,
+            outputs: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            policy_body: Optional[pulumi.Input[str]] = None,
+            policy_url: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            template_body: Optional[pulumi.Input[str]] = None,
+            template_url: Optional[pulumi.Input[str]] = None,
+            timeout_in_minutes: Optional[pulumi.Input[float]] = None) -> 'Stack':
         """
         Get an existing Stack resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -176,22 +226,22 @@ class Stack(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] capabilities: A list of capabilities.
+        :param pulumi.Input[List[pulumi.Input[str]]] capabilities: A list of capabilities.
                Valid values: `CAPABILITY_IAM`, `CAPABILITY_NAMED_IAM`, or `CAPABILITY_AUTO_EXPAND`
         :param pulumi.Input[bool] disable_rollback: Set to true to disable rollback of the stack if stack creation failed.
                Conflicts with `on_failure`.
         :param pulumi.Input[str] iam_role_arn: The ARN of an IAM role that AWS CloudFormation assumes to create the stack. If you don't specify a value, AWS CloudFormation uses the role that was previously associated with the stack. If no role is available, AWS CloudFormation uses a temporary session that is generated from your user credentials.
         :param pulumi.Input[str] name: Stack name.
-        :param pulumi.Input[list] notification_arns: A list of SNS topic ARNs to publish stack related events.
+        :param pulumi.Input[List[pulumi.Input[str]]] notification_arns: A list of SNS topic ARNs to publish stack related events.
         :param pulumi.Input[str] on_failure: Action to be taken if stack creation fails. This must be
                one of: `DO_NOTHING`, `ROLLBACK`, or `DELETE`. Conflicts with `disable_rollback`.
-        :param pulumi.Input[dict] outputs: A map of outputs from the stack.
-        :param pulumi.Input[dict] parameters: A map of Parameter structures that specify input parameters for the stack.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] outputs: A map of outputs from the stack.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] parameters: A map of Parameter structures that specify input parameters for the stack.
         :param pulumi.Input[str] policy_body: Structure containing the stack policy body.
                Conflicts w/ `policy_url`.
         :param pulumi.Input[str] policy_url: Location of a file containing the stack policy.
                Conflicts w/ `policy_body`.
-        :param pulumi.Input[dict] tags: A list of tags to associate with this stack.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags to associate with this stack.
         :param pulumi.Input[str] template_body: Structure containing the template body (max size: 51,200 bytes).
         :param pulumi.Input[str] template_url: Location of a file containing the template body (max size: 460,800 bytes).
         :param pulumi.Input[float] timeout_in_minutes: The amount of time that can pass before the stack status becomes `CREATE_FAILED`.
@@ -221,3 +271,4 @@ class Stack(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

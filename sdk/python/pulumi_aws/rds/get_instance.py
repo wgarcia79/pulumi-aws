@@ -5,8 +5,58 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetInstanceResult',
+    'AwaitableGetInstanceResult',
+    'get_instance',
+]
+
+
+@pulumi.output_type
+class _GetInstanceResult:
+    address: str = pulumi.property("address")
+    allocated_storage: float = pulumi.property("allocatedStorage")
+    auto_minor_version_upgrade: bool = pulumi.property("autoMinorVersionUpgrade")
+    availability_zone: str = pulumi.property("availabilityZone")
+    backup_retention_period: float = pulumi.property("backupRetentionPeriod")
+    ca_cert_identifier: str = pulumi.property("caCertIdentifier")
+    db_cluster_identifier: str = pulumi.property("dbClusterIdentifier")
+    db_instance_arn: str = pulumi.property("dbInstanceArn")
+    db_instance_class: str = pulumi.property("dbInstanceClass")
+    db_instance_identifier: str = pulumi.property("dbInstanceIdentifier")
+    db_instance_port: float = pulumi.property("dbInstancePort")
+    db_name: str = pulumi.property("dbName")
+    db_parameter_groups: List[str] = pulumi.property("dbParameterGroups")
+    db_security_groups: List[str] = pulumi.property("dbSecurityGroups")
+    db_subnet_group: str = pulumi.property("dbSubnetGroup")
+    enabled_cloudwatch_logs_exports: List[str] = pulumi.property("enabledCloudwatchLogsExports")
+    endpoint: str = pulumi.property("endpoint")
+    engine: str = pulumi.property("engine")
+    engine_version: str = pulumi.property("engineVersion")
+    hosted_zone_id: str = pulumi.property("hostedZoneId")
+    id: str = pulumi.property("id")
+    iops: float = pulumi.property("iops")
+    kms_key_id: str = pulumi.property("kmsKeyId")
+    license_model: str = pulumi.property("licenseModel")
+    master_username: str = pulumi.property("masterUsername")
+    monitoring_interval: float = pulumi.property("monitoringInterval")
+    monitoring_role_arn: str = pulumi.property("monitoringRoleArn")
+    multi_az: bool = pulumi.property("multiAz")
+    option_group_memberships: List[str] = pulumi.property("optionGroupMemberships")
+    port: float = pulumi.property("port")
+    preferred_backup_window: str = pulumi.property("preferredBackupWindow")
+    preferred_maintenance_window: str = pulumi.property("preferredMaintenanceWindow")
+    publicly_accessible: bool = pulumi.property("publiclyAccessible")
+    replicate_source_db: str = pulumi.property("replicateSourceDb")
+    resource_id: str = pulumi.property("resourceId")
+    storage_encrypted: bool = pulumi.property("storageEncrypted")
+    storage_type: str = pulumi.property("storageType")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    timezone: str = pulumi.property("timezone")
+    vpc_security_groups: List[str] = pulumi.property("vpcSecurityGroups")
 
 
 class GetInstanceResult:
@@ -298,7 +348,9 @@ class AwaitableGetInstanceResult(GetInstanceResult):
             vpc_security_groups=self.vpc_security_groups)
 
 
-def get_instance(db_instance_identifier=None, tags=None, opts=None):
+def get_instance(db_instance_identifier: Optional[str] = None,
+                 tags: Optional[Mapping[str, str]] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceResult:
     """
     Use this data source to get information about an RDS instance
 
@@ -321,46 +373,46 @@ def get_instance(db_instance_identifier=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:rds/getInstance:getInstance', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:rds/getInstance:getInstance', __args__, opts=opts, typ=_GetInstanceResult).value
 
     return AwaitableGetInstanceResult(
-        address=__ret__.get('address'),
-        allocated_storage=__ret__.get('allocatedStorage'),
-        auto_minor_version_upgrade=__ret__.get('autoMinorVersionUpgrade'),
-        availability_zone=__ret__.get('availabilityZone'),
-        backup_retention_period=__ret__.get('backupRetentionPeriod'),
-        ca_cert_identifier=__ret__.get('caCertIdentifier'),
-        db_cluster_identifier=__ret__.get('dbClusterIdentifier'),
-        db_instance_arn=__ret__.get('dbInstanceArn'),
-        db_instance_class=__ret__.get('dbInstanceClass'),
-        db_instance_identifier=__ret__.get('dbInstanceIdentifier'),
-        db_instance_port=__ret__.get('dbInstancePort'),
-        db_name=__ret__.get('dbName'),
-        db_parameter_groups=__ret__.get('dbParameterGroups'),
-        db_security_groups=__ret__.get('dbSecurityGroups'),
-        db_subnet_group=__ret__.get('dbSubnetGroup'),
-        enabled_cloudwatch_logs_exports=__ret__.get('enabledCloudwatchLogsExports'),
-        endpoint=__ret__.get('endpoint'),
-        engine=__ret__.get('engine'),
-        engine_version=__ret__.get('engineVersion'),
-        hosted_zone_id=__ret__.get('hostedZoneId'),
-        id=__ret__.get('id'),
-        iops=__ret__.get('iops'),
-        kms_key_id=__ret__.get('kmsKeyId'),
-        license_model=__ret__.get('licenseModel'),
-        master_username=__ret__.get('masterUsername'),
-        monitoring_interval=__ret__.get('monitoringInterval'),
-        monitoring_role_arn=__ret__.get('monitoringRoleArn'),
-        multi_az=__ret__.get('multiAz'),
-        option_group_memberships=__ret__.get('optionGroupMemberships'),
-        port=__ret__.get('port'),
-        preferred_backup_window=__ret__.get('preferredBackupWindow'),
-        preferred_maintenance_window=__ret__.get('preferredMaintenanceWindow'),
-        publicly_accessible=__ret__.get('publiclyAccessible'),
-        replicate_source_db=__ret__.get('replicateSourceDb'),
-        resource_id=__ret__.get('resourceId'),
-        storage_encrypted=__ret__.get('storageEncrypted'),
-        storage_type=__ret__.get('storageType'),
-        tags=__ret__.get('tags'),
-        timezone=__ret__.get('timezone'),
-        vpc_security_groups=__ret__.get('vpcSecurityGroups'))
+        address=__ret__.address,
+        allocated_storage=__ret__.allocated_storage,
+        auto_minor_version_upgrade=__ret__.auto_minor_version_upgrade,
+        availability_zone=__ret__.availability_zone,
+        backup_retention_period=__ret__.backup_retention_period,
+        ca_cert_identifier=__ret__.ca_cert_identifier,
+        db_cluster_identifier=__ret__.db_cluster_identifier,
+        db_instance_arn=__ret__.db_instance_arn,
+        db_instance_class=__ret__.db_instance_class,
+        db_instance_identifier=__ret__.db_instance_identifier,
+        db_instance_port=__ret__.db_instance_port,
+        db_name=__ret__.db_name,
+        db_parameter_groups=__ret__.db_parameter_groups,
+        db_security_groups=__ret__.db_security_groups,
+        db_subnet_group=__ret__.db_subnet_group,
+        enabled_cloudwatch_logs_exports=__ret__.enabled_cloudwatch_logs_exports,
+        endpoint=__ret__.endpoint,
+        engine=__ret__.engine,
+        engine_version=__ret__.engine_version,
+        hosted_zone_id=__ret__.hosted_zone_id,
+        id=__ret__.id,
+        iops=__ret__.iops,
+        kms_key_id=__ret__.kms_key_id,
+        license_model=__ret__.license_model,
+        master_username=__ret__.master_username,
+        monitoring_interval=__ret__.monitoring_interval,
+        monitoring_role_arn=__ret__.monitoring_role_arn,
+        multi_az=__ret__.multi_az,
+        option_group_memberships=__ret__.option_group_memberships,
+        port=__ret__.port,
+        preferred_backup_window=__ret__.preferred_backup_window,
+        preferred_maintenance_window=__ret__.preferred_maintenance_window,
+        publicly_accessible=__ret__.publicly_accessible,
+        replicate_source_db=__ret__.replicate_source_db,
+        resource_id=__ret__.resource_id,
+        storage_encrypted=__ret__.storage_encrypted,
+        storage_type=__ret__.storage_type,
+        tags=__ret__.tags,
+        timezone=__ret__.timezone,
+        vpc_security_groups=__ret__.vpc_security_groups)

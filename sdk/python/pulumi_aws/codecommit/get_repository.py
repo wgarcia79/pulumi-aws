@@ -5,8 +5,24 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetRepositoryResult',
+    'AwaitableGetRepositoryResult',
+    'get_repository',
+]
+
+
+@pulumi.output_type
+class _GetRepositoryResult:
+    arn: str = pulumi.property("arn")
+    clone_url_http: str = pulumi.property("cloneUrlHttp")
+    clone_url_ssh: str = pulumi.property("cloneUrlSsh")
+    id: str = pulumi.property("id")
+    repository_id: str = pulumi.property("repositoryId")
+    repository_name: str = pulumi.property("repositoryName")
 
 
 class GetRepositoryResult:
@@ -63,7 +79,8 @@ class AwaitableGetRepositoryResult(GetRepositoryResult):
             repository_name=self.repository_name)
 
 
-def get_repository(repository_name=None, opts=None):
+def get_repository(repository_name: Optional[str] = None,
+                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRepositoryResult:
     """
     The CodeCommit Repository data source allows the ARN, Repository ID, Repository URL for HTTP and Repository URL for SSH to be retrieved for an CodeCommit repository.
 
@@ -85,12 +102,12 @@ def get_repository(repository_name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:codecommit/getRepository:getRepository', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:codecommit/getRepository:getRepository', __args__, opts=opts, typ=_GetRepositoryResult).value
 
     return AwaitableGetRepositoryResult(
-        arn=__ret__.get('arn'),
-        clone_url_http=__ret__.get('cloneUrlHttp'),
-        clone_url_ssh=__ret__.get('cloneUrlSsh'),
-        id=__ret__.get('id'),
-        repository_id=__ret__.get('repositoryId'),
-        repository_name=__ret__.get('repositoryName'))
+        arn=__ret__.arn,
+        clone_url_http=__ret__.clone_url_http,
+        clone_url_ssh=__ret__.clone_url_ssh,
+        id=__ret__.id,
+        repository_id=__ret__.repository_id,
+        repository_name=__ret__.repository_name)

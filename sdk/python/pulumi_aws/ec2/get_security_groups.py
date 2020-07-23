@@ -5,8 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetSecurityGroupsResult',
+    'AwaitableGetSecurityGroupsResult',
+    'get_security_groups',
+]
+
+
+@pulumi.output_type
+class _GetSecurityGroupsResult:
+    filters: Optional[List['outputs.GetSecurityGroupsFilterResult']] = pulumi.property("filters")
+    id: str = pulumi.property("id")
+    ids: List[str] = pulumi.property("ids")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    vpc_ids: List[str] = pulumi.property("vpcIds")
 
 
 class GetSecurityGroupsResult:
@@ -54,7 +71,9 @@ class AwaitableGetSecurityGroupsResult(GetSecurityGroupsResult):
             vpc_ids=self.vpc_ids)
 
 
-def get_security_groups(filters=None, tags=None, opts=None):
+def get_security_groups(filters: Optional[List[pulumi.InputType['GetSecurityGroupsFilterArgs']]] = None,
+                        tags: Optional[Mapping[str, str]] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecurityGroupsResult:
     """
     Use this data source to get IDs and VPC membership of Security Groups that are created
     outside of this provider.
@@ -88,16 +107,11 @@ def get_security_groups(filters=None, tags=None, opts=None):
     ```
 
 
-    :param list filters: One or more name/value pairs to use as filters. There are
+    :param List[pulumi.InputType['GetSecurityGroupsFilterArgs']] filters: One or more name/value pairs to use as filters. There are
            several valid keys, for a full reference, check out
            [describe-security-groups in the AWS CLI reference][1].
-    :param dict tags: A map of tags, each pair of which must exactly match for
+    :param Mapping[str, str] tags: A map of tags, each pair of which must exactly match for
            desired security groups.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`)
-      * `values` (`list`)
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -106,11 +120,11 @@ def get_security_groups(filters=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getSecurityGroups:getSecurityGroups', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getSecurityGroups:getSecurityGroups', __args__, opts=opts, typ=_GetSecurityGroupsResult).value
 
     return AwaitableGetSecurityGroupsResult(
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        ids=__ret__.get('ids'),
-        tags=__ret__.get('tags'),
-        vpc_ids=__ret__.get('vpcIds'))
+        filters=__ret__.filters,
+        id=__ret__.id,
+        ids=__ret__.ids,
+        tags=__ret__.tags,
+        vpc_ids=__ret__.vpc_ids)

@@ -5,8 +5,28 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetResourceShareResult',
+    'AwaitableGetResourceShareResult',
+    'get_resource_share',
+]
+
+
+@pulumi.output_type
+class _GetResourceShareResult:
+    arn: str = pulumi.property("arn")
+    filters: Optional[List['outputs.GetResourceShareFilterResult']] = pulumi.property("filters")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    owning_account_id: str = pulumi.property("owningAccountId")
+    resource_owner: str = pulumi.property("resourceOwner")
+    status: str = pulumi.property("status")
+    tags: Mapping[str, str] = pulumi.property("tags")
 
 
 class GetResourceShareResult:
@@ -71,7 +91,11 @@ class AwaitableGetResourceShareResult(GetResourceShareResult):
             tags=self.tags)
 
 
-def get_resource_share(filters=None, name=None, resource_owner=None, tags=None, opts=None):
+def get_resource_share(filters: Optional[List[pulumi.InputType['GetResourceShareFilterArgs']]] = None,
+                       name: Optional[str] = None,
+                       resource_owner: Optional[str] = None,
+                       tags: Optional[Mapping[str, str]] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetResourceShareResult:
     """
     `ram.ResourceShare` Retrieve information about a RAM Resource Share.
 
@@ -99,15 +123,10 @@ def get_resource_share(filters=None, name=None, resource_owner=None, tags=None, 
     ```
 
 
-    :param list filters: A filter used to scope the list e.g. by tags. See [related docs] (https://docs.aws.amazon.com/ram/latest/APIReference/API_TagFilter.html).
+    :param List[pulumi.InputType['GetResourceShareFilterArgs']] filters: A filter used to scope the list e.g. by tags. See [related docs] (https://docs.aws.amazon.com/ram/latest/APIReference/API_TagFilter.html).
     :param str name: The name of the tag key to filter on.
     :param str resource_owner: The owner of the resource share. Valid values are SELF or OTHER-ACCOUNTS
-    :param dict tags: The Tags attached to the RAM share
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the tag key to filter on.
-      * `values` (`list`) - The value of the tag key.
+    :param Mapping[str, str] tags: The Tags attached to the RAM share
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -118,14 +137,14 @@ def get_resource_share(filters=None, name=None, resource_owner=None, tags=None, 
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ram/getResourceShare:getResourceShare', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ram/getResourceShare:getResourceShare', __args__, opts=opts, typ=_GetResourceShareResult).value
 
     return AwaitableGetResourceShareResult(
-        arn=__ret__.get('arn'),
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        owning_account_id=__ret__.get('owningAccountId'),
-        resource_owner=__ret__.get('resourceOwner'),
-        status=__ret__.get('status'),
-        tags=__ret__.get('tags'))
+        arn=__ret__.arn,
+        filters=__ret__.filters,
+        id=__ret__.id,
+        name=__ret__.name,
+        owning_account_id=__ret__.owning_account_id,
+        resource_owner=__ret__.resource_owner,
+        status=__ret__.status,
+        tags=__ret__.tags)

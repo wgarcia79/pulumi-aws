@@ -5,8 +5,35 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetTargetGroupResult',
+    'AwaitableGetTargetGroupResult',
+    'get_target_group',
+]
+
+
+@pulumi.output_type
+class _GetTargetGroupResult:
+    arn: str = pulumi.property("arn")
+    arn_suffix: str = pulumi.property("arnSuffix")
+    deregistration_delay: float = pulumi.property("deregistrationDelay")
+    health_check: 'outputs.GetTargetGroupHealthCheckResult' = pulumi.property("healthCheck")
+    id: str = pulumi.property("id")
+    lambda_multi_value_headers_enabled: bool = pulumi.property("lambdaMultiValueHeadersEnabled")
+    load_balancing_algorithm_type: str = pulumi.property("loadBalancingAlgorithmType")
+    name: str = pulumi.property("name")
+    port: float = pulumi.property("port")
+    protocol: str = pulumi.property("protocol")
+    proxy_protocol_v2: bool = pulumi.property("proxyProtocolV2")
+    slow_start: float = pulumi.property("slowStart")
+    stickiness: 'outputs.GetTargetGroupStickinessResult' = pulumi.property("stickiness")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    target_type: str = pulumi.property("targetType")
+    vpc_id: str = pulumi.property("vpcId")
 
 
 class GetTargetGroupResult:
@@ -91,7 +118,10 @@ class AwaitableGetTargetGroupResult(GetTargetGroupResult):
             vpc_id=self.vpc_id)
 
 
-def get_target_group(arn=None, name=None, tags=None, opts=None):
+def get_target_group(arn: Optional[str] = None,
+                     name: Optional[str] = None,
+                     tags: Optional[Mapping[str, str]] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTargetGroupResult:
     """
     > **Note:** `alb.TargetGroup` is known as `lb.TargetGroup`. The functionality is identical.
 
@@ -130,22 +160,22 @@ def get_target_group(arn=None, name=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:lb/getTargetGroup:getTargetGroup', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:lb/getTargetGroup:getTargetGroup', __args__, opts=opts, typ=_GetTargetGroupResult).value
 
     return AwaitableGetTargetGroupResult(
-        arn=__ret__.get('arn'),
-        arn_suffix=__ret__.get('arnSuffix'),
-        deregistration_delay=__ret__.get('deregistrationDelay'),
-        health_check=__ret__.get('healthCheck'),
-        id=__ret__.get('id'),
-        lambda_multi_value_headers_enabled=__ret__.get('lambdaMultiValueHeadersEnabled'),
-        load_balancing_algorithm_type=__ret__.get('loadBalancingAlgorithmType'),
-        name=__ret__.get('name'),
-        port=__ret__.get('port'),
-        protocol=__ret__.get('protocol'),
-        proxy_protocol_v2=__ret__.get('proxyProtocolV2'),
-        slow_start=__ret__.get('slowStart'),
-        stickiness=__ret__.get('stickiness'),
-        tags=__ret__.get('tags'),
-        target_type=__ret__.get('targetType'),
-        vpc_id=__ret__.get('vpcId'))
+        arn=__ret__.arn,
+        arn_suffix=__ret__.arn_suffix,
+        deregistration_delay=__ret__.deregistration_delay,
+        health_check=__ret__.health_check,
+        id=__ret__.id,
+        lambda_multi_value_headers_enabled=__ret__.lambda_multi_value_headers_enabled,
+        load_balancing_algorithm_type=__ret__.load_balancing_algorithm_type,
+        name=__ret__.name,
+        port=__ret__.port,
+        protocol=__ret__.protocol,
+        proxy_protocol_v2=__ret__.proxy_protocol_v2,
+        slow_start=__ret__.slow_start,
+        stickiness=__ret__.stickiness,
+        tags=__ret__.tags,
+        target_type=__ret__.target_type,
+        vpc_id=__ret__.vpc_id)

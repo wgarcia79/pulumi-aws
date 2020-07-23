@@ -5,8 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetAuthorizationTokenResult',
+    'AwaitableGetAuthorizationTokenResult',
+    'get_authorization_token',
+]
+
+
+@pulumi.output_type
+class _GetAuthorizationTokenResult:
+    authorization_token: str = pulumi.property("authorizationToken")
+    expires_at: str = pulumi.property("expiresAt")
+    id: str = pulumi.property("id")
+    password: str = pulumi.property("password")
+    proxy_endpoint: str = pulumi.property("proxyEndpoint")
+    registry_id: Optional[str] = pulumi.property("registryId")
+    user_name: str = pulumi.property("userName")
 
 
 class GetAuthorizationTokenResult:
@@ -70,7 +87,8 @@ class AwaitableGetAuthorizationTokenResult(GetAuthorizationTokenResult):
             user_name=self.user_name)
 
 
-def get_authorization_token(registry_id=None, opts=None):
+def get_authorization_token(registry_id: Optional[str] = None,
+                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAuthorizationTokenResult:
     """
     The ECR Authorization Token data source allows the authorization token, proxy endpoint, token expiration date, user name and password to be retrieved for an ECR repository.
 
@@ -92,13 +110,13 @@ def get_authorization_token(registry_id=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ecr/getAuthorizationToken:getAuthorizationToken', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ecr/getAuthorizationToken:getAuthorizationToken', __args__, opts=opts, typ=_GetAuthorizationTokenResult).value
 
     return AwaitableGetAuthorizationTokenResult(
-        authorization_token=__ret__.get('authorizationToken'),
-        expires_at=__ret__.get('expiresAt'),
-        id=__ret__.get('id'),
-        password=__ret__.get('password'),
-        proxy_endpoint=__ret__.get('proxyEndpoint'),
-        registry_id=__ret__.get('registryId'),
-        user_name=__ret__.get('userName'))
+        authorization_token=__ret__.authorization_token,
+        expires_at=__ret__.expires_at,
+        id=__ret__.id,
+        password=__ret__.password,
+        proxy_endpoint=__ret__.proxy_endpoint,
+        registry_id=__ret__.registry_id,
+        user_name=__ret__.user_name)

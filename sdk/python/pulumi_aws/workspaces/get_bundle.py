@@ -5,8 +5,27 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetBundleResult',
+    'AwaitableGetBundleResult',
+    'get_bundle',
+]
+
+
+@pulumi.output_type
+class _GetBundleResult:
+    bundle_id: Optional[str] = pulumi.property("bundleId")
+    compute_types: List['outputs.GetBundleComputeTypeResult'] = pulumi.property("computeTypes")
+    description: str = pulumi.property("description")
+    id: str = pulumi.property("id")
+    name: Optional[str] = pulumi.property("name")
+    owner: Optional[str] = pulumi.property("owner")
+    root_storages: List['outputs.GetBundleRootStorageResult'] = pulumi.property("rootStorages")
+    user_storages: List['outputs.GetBundleUserStorageResult'] = pulumi.property("userStorages")
 
 
 class GetBundleResult:
@@ -80,7 +99,10 @@ class AwaitableGetBundleResult(GetBundleResult):
             user_storages=self.user_storages)
 
 
-def get_bundle(bundle_id=None, name=None, owner=None, opts=None):
+def get_bundle(bundle_id: Optional[str] = None,
+               name: Optional[str] = None,
+               owner: Optional[str] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBundleResult:
     """
     Use this data source to get information about a WorkSpaces Bundle.
 
@@ -107,14 +129,14 @@ def get_bundle(bundle_id=None, name=None, owner=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:workspaces/getBundle:getBundle', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:workspaces/getBundle:getBundle', __args__, opts=opts, typ=_GetBundleResult).value
 
     return AwaitableGetBundleResult(
-        bundle_id=__ret__.get('bundleId'),
-        compute_types=__ret__.get('computeTypes'),
-        description=__ret__.get('description'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        owner=__ret__.get('owner'),
-        root_storages=__ret__.get('rootStorages'),
-        user_storages=__ret__.get('userStorages'))
+        bundle_id=__ret__.bundle_id,
+        compute_types=__ret__.compute_types,
+        description=__ret__.description,
+        id=__ret__.id,
+        name=__ret__.name,
+        owner=__ret__.owner,
+        root_storages=__ret__.root_storages,
+        user_storages=__ret__.user_storages)

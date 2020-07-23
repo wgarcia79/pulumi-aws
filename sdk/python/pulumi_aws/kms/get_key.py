@@ -5,8 +5,34 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetKeyResult',
+    'AwaitableGetKeyResult',
+    'get_key',
+]
+
+
+@pulumi.output_type
+class _GetKeyResult:
+    arn: str = pulumi.property("arn")
+    aws_account_id: str = pulumi.property("awsAccountId")
+    creation_date: str = pulumi.property("creationDate")
+    customer_master_key_spec: str = pulumi.property("customerMasterKeySpec")
+    deletion_date: str = pulumi.property("deletionDate")
+    description: str = pulumi.property("description")
+    enabled: bool = pulumi.property("enabled")
+    expiration_model: str = pulumi.property("expirationModel")
+    grant_tokens: Optional[List[str]] = pulumi.property("grantTokens")
+    id: str = pulumi.property("id")
+    key_id: str = pulumi.property("keyId")
+    key_manager: str = pulumi.property("keyManager")
+    key_state: str = pulumi.property("keyState")
+    key_usage: str = pulumi.property("keyUsage")
+    origin: str = pulumi.property("origin")
+    valid_to: str = pulumi.property("validTo")
 
 
 class GetKeyResult:
@@ -91,7 +117,9 @@ class AwaitableGetKeyResult(GetKeyResult):
             valid_to=self.valid_to)
 
 
-def get_key(grant_tokens=None, key_id=None, opts=None):
+def get_key(grant_tokens: Optional[List[str]] = None,
+            key_id: Optional[str] = None,
+            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKeyResult:
     """
     Use this data source to get detailed information about
     the specified KMS Key with flexible key id input.
@@ -108,7 +136,7 @@ def get_key(grant_tokens=None, key_id=None, opts=None):
     ```
 
 
-    :param list grant_tokens: List of grant tokens
+    :param List[str] grant_tokens: List of grant tokens
     :param str key_id: Key identifier which can be one of the following format:
            * Key ID. E.g: `1234abcd-12ab-34cd-56ef-1234567890ab`
            * Key ARN. E.g.: `arn:aws:kms:us-east-1:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab`
@@ -122,22 +150,22 @@ def get_key(grant_tokens=None, key_id=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:kms/getKey:getKey', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:kms/getKey:getKey', __args__, opts=opts, typ=_GetKeyResult).value
 
     return AwaitableGetKeyResult(
-        arn=__ret__.get('arn'),
-        aws_account_id=__ret__.get('awsAccountId'),
-        creation_date=__ret__.get('creationDate'),
-        customer_master_key_spec=__ret__.get('customerMasterKeySpec'),
-        deletion_date=__ret__.get('deletionDate'),
-        description=__ret__.get('description'),
-        enabled=__ret__.get('enabled'),
-        expiration_model=__ret__.get('expirationModel'),
-        grant_tokens=__ret__.get('grantTokens'),
-        id=__ret__.get('id'),
-        key_id=__ret__.get('keyId'),
-        key_manager=__ret__.get('keyManager'),
-        key_state=__ret__.get('keyState'),
-        key_usage=__ret__.get('keyUsage'),
-        origin=__ret__.get('origin'),
-        valid_to=__ret__.get('validTo'))
+        arn=__ret__.arn,
+        aws_account_id=__ret__.aws_account_id,
+        creation_date=__ret__.creation_date,
+        customer_master_key_spec=__ret__.customer_master_key_spec,
+        deletion_date=__ret__.deletion_date,
+        description=__ret__.description,
+        enabled=__ret__.enabled,
+        expiration_model=__ret__.expiration_model,
+        grant_tokens=__ret__.grant_tokens,
+        id=__ret__.id,
+        key_id=__ret__.key_id,
+        key_manager=__ret__.key_manager,
+        key_state=__ret__.key_state,
+        key_usage=__ret__.key_usage,
+        origin=__ret__.origin,
+        valid_to=__ret__.valid_to)

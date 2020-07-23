@@ -5,8 +5,23 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetWebAclResult',
+    'AwaitableGetWebAclResult',
+    'get_web_acl',
+]
+
+
+@pulumi.output_type
+class _GetWebAclResult:
+    arn: str = pulumi.property("arn")
+    description: str = pulumi.property("description")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    scope: str = pulumi.property("scope")
 
 
 class GetWebAclResult:
@@ -53,7 +68,9 @@ class AwaitableGetWebAclResult(GetWebAclResult):
             scope=self.scope)
 
 
-def get_web_acl(name=None, scope=None, opts=None):
+def get_web_acl(name: Optional[str] = None,
+                scope: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWebAclResult:
     """
     Retrieves the summary of a WAFv2 Web ACL.
 
@@ -78,11 +95,11 @@ def get_web_acl(name=None, scope=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:wafv2/getWebAcl:getWebAcl', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:wafv2/getWebAcl:getWebAcl', __args__, opts=opts, typ=_GetWebAclResult).value
 
     return AwaitableGetWebAclResult(
-        arn=__ret__.get('arn'),
-        description=__ret__.get('description'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        scope=__ret__.get('scope'))
+        arn=__ret__.arn,
+        description=__ret__.description,
+        id=__ret__.id,
+        name=__ret__.name,
+        scope=__ret__.scope)

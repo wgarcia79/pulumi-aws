@@ -5,8 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetLocalGatewayVirtualInterfaceGroupResult',
+    'AwaitableGetLocalGatewayVirtualInterfaceGroupResult',
+    'get_local_gateway_virtual_interface_group',
+]
+
+
+@pulumi.output_type
+class _GetLocalGatewayVirtualInterfaceGroupResult:
+    filters: Optional[List['outputs.GetLocalGatewayVirtualInterfaceGroupFilterResult']] = pulumi.property("filters")
+    id: str = pulumi.property("id")
+    local_gateway_id: str = pulumi.property("localGatewayId")
+    local_gateway_virtual_interface_ids: List[str] = pulumi.property("localGatewayVirtualInterfaceIds")
+    tags: Mapping[str, str] = pulumi.property("tags")
 
 
 class GetLocalGatewayVirtualInterfaceGroupResult:
@@ -47,7 +64,11 @@ class AwaitableGetLocalGatewayVirtualInterfaceGroupResult(GetLocalGatewayVirtual
             tags=self.tags)
 
 
-def get_local_gateway_virtual_interface_group(filters=None, id=None, local_gateway_id=None, tags=None, opts=None):
+def get_local_gateway_virtual_interface_group(filters: Optional[List[pulumi.InputType['GetLocalGatewayVirtualInterfaceGroupFilterArgs']]] = None,
+                                              id: Optional[str] = None,
+                                              local_gateway_id: Optional[str] = None,
+                                              tags: Optional[Mapping[str, str]] = None,
+                                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLocalGatewayVirtualInterfaceGroupResult:
     """
     Provides details about an EC2 Local Gateway Virtual Interface Group. More information can be found in the [Outposts User Guide](https://docs.aws.amazon.com/outposts/latest/userguide/outposts-networking-components.html#routing).
 
@@ -61,15 +82,10 @@ def get_local_gateway_virtual_interface_group(filters=None, id=None, local_gatew
     ```
 
 
-    :param list filters: One or more configuration blocks containing name-values filters. See the [EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeLocalGatewayVirtualInterfaceGroups.html) for supported filters. Detailed below.
+    :param List[pulumi.InputType['GetLocalGatewayVirtualInterfaceGroupFilterArgs']] filters: One or more configuration blocks containing name-values filters. See the [EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeLocalGatewayVirtualInterfaceGroups.html) for supported filters. Detailed below.
     :param str id: Identifier of EC2 Local Gateway Virtual Interface Group.
     :param str local_gateway_id: Identifier of EC2 Local Gateway.
-    :param dict tags: Key-value map of resource tags, each pair of which must exactly match a pair on the desired local gateway route table.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - Name of the filter.
-      * `values` (`list`) - List of one or more values for the filter.
+    :param Mapping[str, str] tags: Key-value map of resource tags, each pair of which must exactly match a pair on the desired local gateway route table.
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -80,11 +96,11 @@ def get_local_gateway_virtual_interface_group(filters=None, id=None, local_gatew
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getLocalGatewayVirtualInterfaceGroup:getLocalGatewayVirtualInterfaceGroup', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getLocalGatewayVirtualInterfaceGroup:getLocalGatewayVirtualInterfaceGroup', __args__, opts=opts, typ=_GetLocalGatewayVirtualInterfaceGroupResult).value
 
     return AwaitableGetLocalGatewayVirtualInterfaceGroupResult(
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        local_gateway_id=__ret__.get('localGatewayId'),
-        local_gateway_virtual_interface_ids=__ret__.get('localGatewayVirtualInterfaceIds'),
-        tags=__ret__.get('tags'))
+        filters=__ret__.filters,
+        id=__ret__.id,
+        local_gateway_id=__ret__.local_gateway_id,
+        local_gateway_virtual_interface_ids=__ret__.local_gateway_virtual_interface_ids,
+        tags=__ret__.tags)

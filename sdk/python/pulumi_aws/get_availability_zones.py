@@ -5,8 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetAvailabilityZonesResult',
+    'AwaitableGetAvailabilityZonesResult',
+    'get_availability_zones',
+]
+
+
+@pulumi.output_type
+class _GetAvailabilityZonesResult:
+    all_availability_zones: Optional[bool] = pulumi.property("allAvailabilityZones")
+    blacklisted_names: Optional[List[str]] = pulumi.property("blacklistedNames")
+    blacklisted_zone_ids: Optional[List[str]] = pulumi.property("blacklistedZoneIds")
+    exclude_names: Optional[List[str]] = pulumi.property("excludeNames")
+    exclude_zone_ids: Optional[List[str]] = pulumi.property("excludeZoneIds")
+    filters: Optional[List['outputs.GetAvailabilityZonesFilterResult']] = pulumi.property("filters")
+    group_names: Optional[List[str]] = pulumi.property("groupNames")
+    id: str = pulumi.property("id")
+    names: List[str] = pulumi.property("names")
+    state: Optional[str] = pulumi.property("state")
+    zone_ids: List[str] = pulumi.property("zoneIds")
 
 
 class GetAvailabilityZonesResult:
@@ -85,7 +108,15 @@ class AwaitableGetAvailabilityZonesResult(GetAvailabilityZonesResult):
             zone_ids=self.zone_ids)
 
 
-def get_availability_zones(all_availability_zones=None, blacklisted_names=None, blacklisted_zone_ids=None, exclude_names=None, exclude_zone_ids=None, filters=None, group_names=None, state=None, opts=None):
+def get_availability_zones(all_availability_zones: Optional[bool] = None,
+                           blacklisted_names: Optional[List[str]] = None,
+                           blacklisted_zone_ids: Optional[List[str]] = None,
+                           exclude_names: Optional[List[str]] = None,
+                           exclude_zone_ids: Optional[List[str]] = None,
+                           filters: Optional[List[pulumi.InputType['GetAvailabilityZonesFilterArgs']]] = None,
+                           group_names: Optional[List[str]] = None,
+                           state: Optional[str] = None,
+                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAvailabilityZonesResult:
     """
     The Availability Zones data source allows access to the list of AWS
     Availability Zones which can be accessed by an AWS account within the region
@@ -141,20 +172,15 @@ def get_availability_zones(all_availability_zones=None, blacklisted_names=None, 
 
 
     :param bool all_availability_zones: Set to `true` to include all Availability Zones and Local Zones regardless of your opt in status.
-    :param list blacklisted_names: List of Availability Zone names to exclude. Use `exclude_names` instead.
-    :param list blacklisted_zone_ids: List of Availability Zone IDs to exclude. Use `exclude_zone_ids` instead.
-    :param list exclude_names: List of Availability Zone names to exclude.
-    :param list exclude_zone_ids: List of Availability Zone IDs to exclude.
-    :param list filters: Configuration block(s) for filtering. Detailed below.
+    :param List[str] blacklisted_names: List of Availability Zone names to exclude. Use `exclude_names` instead.
+    :param List[str] blacklisted_zone_ids: List of Availability Zone IDs to exclude. Use `exclude_zone_ids` instead.
+    :param List[str] exclude_names: List of Availability Zone names to exclude.
+    :param List[str] exclude_zone_ids: List of Availability Zone IDs to exclude.
+    :param List[pulumi.InputType['GetAvailabilityZonesFilterArgs']] filters: Configuration block(s) for filtering. Detailed below.
     :param str state: Allows to filter list of Availability Zones based on their
            current state. Can be either `"available"`, `"information"`, `"impaired"` or
            `"unavailable"`. By default the list includes a complete set of Availability Zones
            to which the underlying AWS account has access, regardless of their state.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the filter field. Valid values can be found in the [EC2 DescribeAvailabilityZones API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html).
-      * `values` (`list`) - Set of values that are accepted for the given filter field. Results will be selected if any given value matches.
     """
     __args__ = dict()
     __args__['allAvailabilityZones'] = all_availability_zones
@@ -169,17 +195,17 @@ def get_availability_zones(all_availability_zones=None, blacklisted_names=None, 
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:index/getAvailabilityZones:getAvailabilityZones', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:index/getAvailabilityZones:getAvailabilityZones', __args__, opts=opts, typ=_GetAvailabilityZonesResult).value
 
     return AwaitableGetAvailabilityZonesResult(
-        all_availability_zones=__ret__.get('allAvailabilityZones'),
-        blacklisted_names=__ret__.get('blacklistedNames'),
-        blacklisted_zone_ids=__ret__.get('blacklistedZoneIds'),
-        exclude_names=__ret__.get('excludeNames'),
-        exclude_zone_ids=__ret__.get('excludeZoneIds'),
-        filters=__ret__.get('filters'),
-        group_names=__ret__.get('groupNames'),
-        id=__ret__.get('id'),
-        names=__ret__.get('names'),
-        state=__ret__.get('state'),
-        zone_ids=__ret__.get('zoneIds'))
+        all_availability_zones=__ret__.all_availability_zones,
+        blacklisted_names=__ret__.blacklisted_names,
+        blacklisted_zone_ids=__ret__.blacklisted_zone_ids,
+        exclude_names=__ret__.exclude_names,
+        exclude_zone_ids=__ret__.exclude_zone_ids,
+        filters=__ret__.filters,
+        group_names=__ret__.group_names,
+        id=__ret__.id,
+        names=__ret__.names,
+        state=__ret__.state,
+        zone_ids=__ret__.zone_ids)

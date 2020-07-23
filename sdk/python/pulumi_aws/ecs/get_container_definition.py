@@ -5,8 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetContainerDefinitionResult',
+    'AwaitableGetContainerDefinitionResult',
+    'get_container_definition',
+]
+
+
+@pulumi.output_type
+class _GetContainerDefinitionResult:
+    container_name: str = pulumi.property("containerName")
+    cpu: float = pulumi.property("cpu")
+    disable_networking: bool = pulumi.property("disableNetworking")
+    docker_labels: Mapping[str, str] = pulumi.property("dockerLabels")
+    environment: Mapping[str, str] = pulumi.property("environment")
+    id: str = pulumi.property("id")
+    image: str = pulumi.property("image")
+    image_digest: str = pulumi.property("imageDigest")
+    memory: float = pulumi.property("memory")
+    memory_reservation: float = pulumi.property("memoryReservation")
+    task_definition: str = pulumi.property("taskDefinition")
 
 
 class GetContainerDefinitionResult:
@@ -95,7 +116,9 @@ class AwaitableGetContainerDefinitionResult(GetContainerDefinitionResult):
             task_definition=self.task_definition)
 
 
-def get_container_definition(container_name=None, task_definition=None, opts=None):
+def get_container_definition(container_name: Optional[str] = None,
+                             task_definition: Optional[str] = None,
+                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetContainerDefinitionResult:
     """
     The ECS container definition data source allows access to details of
     a specific container within an AWS ECS service.
@@ -121,17 +144,17 @@ def get_container_definition(container_name=None, task_definition=None, opts=Non
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ecs/getContainerDefinition:getContainerDefinition', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ecs/getContainerDefinition:getContainerDefinition', __args__, opts=opts, typ=_GetContainerDefinitionResult).value
 
     return AwaitableGetContainerDefinitionResult(
-        container_name=__ret__.get('containerName'),
-        cpu=__ret__.get('cpu'),
-        disable_networking=__ret__.get('disableNetworking'),
-        docker_labels=__ret__.get('dockerLabels'),
-        environment=__ret__.get('environment'),
-        id=__ret__.get('id'),
-        image=__ret__.get('image'),
-        image_digest=__ret__.get('imageDigest'),
-        memory=__ret__.get('memory'),
-        memory_reservation=__ret__.get('memoryReservation'),
-        task_definition=__ret__.get('taskDefinition'))
+        container_name=__ret__.container_name,
+        cpu=__ret__.cpu,
+        disable_networking=__ret__.disable_networking,
+        docker_labels=__ret__.docker_labels,
+        environment=__ret__.environment,
+        id=__ret__.id,
+        image=__ret__.image,
+        image_digest=__ret__.image_digest,
+        memory=__ret__.memory,
+        memory_reservation=__ret__.memory_reservation,
+        task_definition=__ret__.task_definition)

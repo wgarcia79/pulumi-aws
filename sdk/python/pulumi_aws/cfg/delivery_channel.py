@@ -5,36 +5,51 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['DeliveryChannel']
 
 
 class DeliveryChannel(pulumi.CustomResource):
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name of the delivery channel. Defaults to `default`. Changing it recreates the resource.
     """
-    s3_bucket_name: pulumi.Output[str]
+
+    s3_bucket_name: pulumi.Output[str] = pulumi.property("s3BucketName")
     """
     The name of the S3 bucket used to store the configuration history.
     """
-    s3_key_prefix: pulumi.Output[str]
+
+    s3_key_prefix: pulumi.Output[Optional[str]] = pulumi.property("s3KeyPrefix")
     """
     The prefix for the specified S3 bucket.
     """
-    snapshot_delivery_properties: pulumi.Output[dict]
+
+    snapshot_delivery_properties: pulumi.Output[Optional['outputs.DeliveryChannelSnapshotDeliveryProperties']] = pulumi.property("snapshotDeliveryProperties")
     """
     Options for how AWS Config delivers configuration snapshots. See below
-
-      * `deliveryFrequency` (`str`) - - The frequency with which AWS Config recurringly delivers configuration snapshots.
-        e.g. `One_Hour` or `Three_Hours`.
-        Valid values are listed [here](https://docs.aws.amazon.com/config/latest/APIReference/API_ConfigSnapshotDeliveryProperties.html#API_ConfigSnapshotDeliveryProperties_Contents).
     """
-    sns_topic_arn: pulumi.Output[str]
+
+    sns_topic_arn: pulumi.Output[Optional[str]] = pulumi.property("snsTopicArn")
     """
     The ARN of the SNS topic that AWS Config delivers notifications to.
     """
-    def __init__(__self__, resource_name, opts=None, name=None, s3_bucket_name=None, s3_key_prefix=None, snapshot_delivery_properties=None, sns_topic_arn=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 s3_bucket_name: Optional[pulumi.Input[str]] = None,
+                 s3_key_prefix: Optional[pulumi.Input[str]] = None,
+                 snapshot_delivery_properties: Optional[pulumi.Input[pulumi.InputType['DeliveryChannelSnapshotDeliveryPropertiesArgs']]] = None,
+                 sns_topic_arn: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides an AWS Config Delivery Channel.
 
@@ -91,14 +106,8 @@ class DeliveryChannel(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the delivery channel. Defaults to `default`. Changing it recreates the resource.
         :param pulumi.Input[str] s3_bucket_name: The name of the S3 bucket used to store the configuration history.
         :param pulumi.Input[str] s3_key_prefix: The prefix for the specified S3 bucket.
-        :param pulumi.Input[dict] snapshot_delivery_properties: Options for how AWS Config delivers configuration snapshots. See below
+        :param pulumi.Input[pulumi.InputType['DeliveryChannelSnapshotDeliveryPropertiesArgs']] snapshot_delivery_properties: Options for how AWS Config delivers configuration snapshots. See below
         :param pulumi.Input[str] sns_topic_arn: The ARN of the SNS topic that AWS Config delivers notifications to.
-
-        The **snapshot_delivery_properties** object supports the following:
-
-          * `deliveryFrequency` (`pulumi.Input[str]`) - - The frequency with which AWS Config recurringly delivers configuration snapshots.
-            e.g. `One_Hour` or `Three_Hours`.
-            Valid values are listed [here](https://docs.aws.amazon.com/config/latest/APIReference/API_ConfigSnapshotDeliveryProperties.html#API_ConfigSnapshotDeliveryProperties_Contents).
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -131,7 +140,14 @@ class DeliveryChannel(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, name=None, s3_bucket_name=None, s3_key_prefix=None, snapshot_delivery_properties=None, sns_topic_arn=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            s3_bucket_name: Optional[pulumi.Input[str]] = None,
+            s3_key_prefix: Optional[pulumi.Input[str]] = None,
+            snapshot_delivery_properties: Optional[pulumi.Input[pulumi.InputType['DeliveryChannelSnapshotDeliveryPropertiesArgs']]] = None,
+            sns_topic_arn: Optional[pulumi.Input[str]] = None) -> 'DeliveryChannel':
         """
         Get an existing DeliveryChannel resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -142,14 +158,8 @@ class DeliveryChannel(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the delivery channel. Defaults to `default`. Changing it recreates the resource.
         :param pulumi.Input[str] s3_bucket_name: The name of the S3 bucket used to store the configuration history.
         :param pulumi.Input[str] s3_key_prefix: The prefix for the specified S3 bucket.
-        :param pulumi.Input[dict] snapshot_delivery_properties: Options for how AWS Config delivers configuration snapshots. See below
+        :param pulumi.Input[pulumi.InputType['DeliveryChannelSnapshotDeliveryPropertiesArgs']] snapshot_delivery_properties: Options for how AWS Config delivers configuration snapshots. See below
         :param pulumi.Input[str] sns_topic_arn: The ARN of the SNS topic that AWS Config delivers notifications to.
-
-        The **snapshot_delivery_properties** object supports the following:
-
-          * `deliveryFrequency` (`pulumi.Input[str]`) - - The frequency with which AWS Config recurringly delivers configuration snapshots.
-            e.g. `One_Hour` or `Three_Hours`.
-            Valid values are listed [here](https://docs.aws.amazon.com/config/latest/APIReference/API_ConfigSnapshotDeliveryProperties.html#API_ConfigSnapshotDeliveryProperties_Contents).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -167,3 +177,4 @@ class DeliveryChannel(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

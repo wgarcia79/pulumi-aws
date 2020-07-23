@@ -5,8 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetLogGroupResult',
+    'AwaitableGetLogGroupResult',
+    'get_log_group',
+]
+
+
+@pulumi.output_type
+class _GetLogGroupResult:
+    arn: str = pulumi.property("arn")
+    creation_time: float = pulumi.property("creationTime")
+    id: str = pulumi.property("id")
+    kms_key_id: str = pulumi.property("kmsKeyId")
+    name: str = pulumi.property("name")
+    retention_in_days: float = pulumi.property("retentionInDays")
+    tags: Mapping[str, str] = pulumi.property("tags")
 
 
 class GetLogGroupResult:
@@ -70,7 +87,9 @@ class AwaitableGetLogGroupResult(GetLogGroupResult):
             tags=self.tags)
 
 
-def get_log_group(name=None, tags=None, opts=None):
+def get_log_group(name: Optional[str] = None,
+                  tags: Optional[Mapping[str, str]] = None,
+                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLogGroupResult:
     """
     Use this data source to get information about an AWS Cloudwatch Log Group
 
@@ -85,7 +104,7 @@ def get_log_group(name=None, tags=None, opts=None):
 
 
     :param str name: The name of the Cloudwatch log group
-    :param dict tags: A map of tags to assign to the resource.
+    :param Mapping[str, str] tags: A map of tags to assign to the resource.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -94,13 +113,13 @@ def get_log_group(name=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:cloudwatch/getLogGroup:getLogGroup', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:cloudwatch/getLogGroup:getLogGroup', __args__, opts=opts, typ=_GetLogGroupResult).value
 
     return AwaitableGetLogGroupResult(
-        arn=__ret__.get('arn'),
-        creation_time=__ret__.get('creationTime'),
-        id=__ret__.get('id'),
-        kms_key_id=__ret__.get('kmsKeyId'),
-        name=__ret__.get('name'),
-        retention_in_days=__ret__.get('retentionInDays'),
-        tags=__ret__.get('tags'))
+        arn=__ret__.arn,
+        creation_time=__ret__.creation_time,
+        id=__ret__.id,
+        kms_key_id=__ret__.kms_key_id,
+        name=__ret__.name,
+        retention_in_days=__ret__.retention_in_days,
+        tags=__ret__.tags)

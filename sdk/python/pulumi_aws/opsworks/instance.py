@@ -5,161 +5,244 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['Instance']
 
 
 class Instance(pulumi.CustomResource):
-    agent_version: pulumi.Output[str]
+    agent_version: pulumi.Output[Optional[str]] = pulumi.property("agentVersion")
     """
     The AWS OpsWorks agent to install.  Defaults to `"INHERIT"`.
     """
-    ami_id: pulumi.Output[str]
+
+    ami_id: pulumi.Output[str] = pulumi.property("amiId")
     """
     The AMI to use for the instance.  If an AMI is specified, `os` must be `"Custom"`.
     """
-    architecture: pulumi.Output[str]
+
+    architecture: pulumi.Output[Optional[str]] = pulumi.property("architecture")
     """
     Machine architecture for created instances.  Can be either `"x86_64"` (the default) or `"i386"`
     """
-    auto_scaling_type: pulumi.Output[str]
+
+    auto_scaling_type: pulumi.Output[Optional[str]] = pulumi.property("autoScalingType")
     """
     Creates load-based or time-based instances.  If set, can be either: `"load"` or `"timer"`.
     """
-    availability_zone: pulumi.Output[str]
+
+    availability_zone: pulumi.Output[str] = pulumi.property("availabilityZone")
     """
     Name of the availability zone where instances will be created
     by default.
     """
-    created_at: pulumi.Output[str]
-    delete_ebs: pulumi.Output[bool]
-    delete_eip: pulumi.Output[bool]
-    ebs_block_devices: pulumi.Output[list]
+
+    created_at: pulumi.Output[str] = pulumi.property("createdAt")
+
+    delete_ebs: pulumi.Output[Optional[bool]] = pulumi.property("deleteEbs")
+
+    delete_eip: pulumi.Output[Optional[bool]] = pulumi.property("deleteEip")
+
+    ebs_block_devices: pulumi.Output[List['outputs.InstanceEbsBlockDevice']] = pulumi.property("ebsBlockDevices")
     """
     Additional EBS block devices to attach to the
     instance.  See Block Devices below for details.
-
-      * `deleteOnTermination` (`bool`)
-      * `device_name` (`str`)
-      * `iops` (`float`)
-      * `snapshot_id` (`str`)
-      * `volume_size` (`float`)
-      * `volumeType` (`str`)
     """
-    ebs_optimized: pulumi.Output[bool]
+
+    ebs_optimized: pulumi.Output[Optional[bool]] = pulumi.property("ebsOptimized")
     """
     If true, the launched EC2 instance will be EBS-optimized.
     """
-    ec2_instance_id: pulumi.Output[str]
+
+    ec2_instance_id: pulumi.Output[str] = pulumi.property("ec2InstanceId")
     """
     EC2 instance ID
     """
-    ecs_cluster_arn: pulumi.Output[str]
-    elastic_ip: pulumi.Output[str]
-    ephemeral_block_devices: pulumi.Output[list]
+
+    ecs_cluster_arn: pulumi.Output[str] = pulumi.property("ecsClusterArn")
+
+    elastic_ip: pulumi.Output[str] = pulumi.property("elasticIp")
+
+    ephemeral_block_devices: pulumi.Output[List['outputs.InstanceEphemeralBlockDevice']] = pulumi.property("ephemeralBlockDevices")
     """
     Customize Ephemeral (also known as
     "Instance Store") volumes on the instance. See Block Devices below for details.
-
-      * `device_name` (`str`)
-      * `virtualName` (`str`)
     """
-    hostname: pulumi.Output[str]
+
+    hostname: pulumi.Output[str] = pulumi.property("hostname")
     """
     The instance's host name.
     """
-    infrastructure_class: pulumi.Output[str]
-    install_updates_on_boot: pulumi.Output[bool]
+
+    infrastructure_class: pulumi.Output[str] = pulumi.property("infrastructureClass")
+
+    install_updates_on_boot: pulumi.Output[Optional[bool]] = pulumi.property("installUpdatesOnBoot")
     """
     Controls where to install OS and package updates when the instance boots.  Defaults to `true`.
     """
-    instance_profile_arn: pulumi.Output[str]
-    instance_type: pulumi.Output[str]
+
+    instance_profile_arn: pulumi.Output[str] = pulumi.property("instanceProfileArn")
+
+    instance_type: pulumi.Output[Optional[str]] = pulumi.property("instanceType")
     """
     The type of instance to start
     """
-    last_service_error_id: pulumi.Output[str]
-    layer_ids: pulumi.Output[list]
+
+    last_service_error_id: pulumi.Output[str] = pulumi.property("lastServiceErrorId")
+
+    layer_ids: pulumi.Output[List[str]] = pulumi.property("layerIds")
     """
     The ids of the layers the instance will belong to.
     """
-    os: pulumi.Output[str]
+
+    os: pulumi.Output[str] = pulumi.property("os")
     """
     Name of operating system that will be installed.
     """
-    platform: pulumi.Output[str]
-    private_dns: pulumi.Output[str]
+
+    platform: pulumi.Output[str] = pulumi.property("platform")
+
+    private_dns: pulumi.Output[str] = pulumi.property("privateDns")
     """
     The private DNS name assigned to the instance. Can only be
     used inside the Amazon EC2, and only available if you've enabled DNS hostnames
     for your VPC
     """
-    private_ip: pulumi.Output[str]
+
+    private_ip: pulumi.Output[str] = pulumi.property("privateIp")
     """
     The private IP address assigned to the instance
     """
-    public_dns: pulumi.Output[str]
+
+    public_dns: pulumi.Output[str] = pulumi.property("publicDns")
     """
     The public DNS name assigned to the instance. For EC2-VPC, this
     is only available if you've enabled DNS hostnames for your VPC
     """
-    public_ip: pulumi.Output[str]
+
+    public_ip: pulumi.Output[str] = pulumi.property("publicIp")
     """
     The public IP address assigned to the instance, if applicable.
     """
-    registered_by: pulumi.Output[str]
-    reported_agent_version: pulumi.Output[str]
-    reported_os_family: pulumi.Output[str]
-    reported_os_name: pulumi.Output[str]
-    reported_os_version: pulumi.Output[str]
-    root_block_devices: pulumi.Output[list]
+
+    registered_by: pulumi.Output[str] = pulumi.property("registeredBy")
+
+    reported_agent_version: pulumi.Output[str] = pulumi.property("reportedAgentVersion")
+
+    reported_os_family: pulumi.Output[str] = pulumi.property("reportedOsFamily")
+
+    reported_os_name: pulumi.Output[str] = pulumi.property("reportedOsName")
+
+    reported_os_version: pulumi.Output[str] = pulumi.property("reportedOsVersion")
+
+    root_block_devices: pulumi.Output[List['outputs.InstanceRootBlockDevice']] = pulumi.property("rootBlockDevices")
     """
     Customize details about the root block
     device of the instance. See Block Devices below for details.
-
-      * `deleteOnTermination` (`bool`)
-      * `iops` (`float`)
-      * `volume_size` (`float`)
-      * `volumeType` (`str`)
     """
-    root_device_type: pulumi.Output[str]
+
+    root_device_type: pulumi.Output[str] = pulumi.property("rootDeviceType")
     """
     Name of the type of root device instances will have by default.  Can be either `"ebs"` or `"instance-store"`
     """
-    root_device_volume_id: pulumi.Output[str]
-    security_group_ids: pulumi.Output[list]
+
+    root_device_volume_id: pulumi.Output[str] = pulumi.property("rootDeviceVolumeId")
+
+    security_group_ids: pulumi.Output[List[str]] = pulumi.property("securityGroupIds")
     """
     The associated security groups.
     """
-    ssh_host_dsa_key_fingerprint: pulumi.Output[str]
-    ssh_host_rsa_key_fingerprint: pulumi.Output[str]
-    ssh_key_name: pulumi.Output[str]
+
+    ssh_host_dsa_key_fingerprint: pulumi.Output[str] = pulumi.property("sshHostDsaKeyFingerprint")
+
+    ssh_host_rsa_key_fingerprint: pulumi.Output[str] = pulumi.property("sshHostRsaKeyFingerprint")
+
+    ssh_key_name: pulumi.Output[str] = pulumi.property("sshKeyName")
     """
     Name of the SSH keypair that instances will have by default.
     """
-    stack_id: pulumi.Output[str]
+
+    stack_id: pulumi.Output[str] = pulumi.property("stackId")
     """
     The id of the stack the instance will belong to.
     """
-    state: pulumi.Output[str]
+
+    state: pulumi.Output[Optional[str]] = pulumi.property("state")
     """
     The desired state of the instance.  Can be either `"running"` or `"stopped"`.
     """
-    status: pulumi.Output[str]
-    subnet_id: pulumi.Output[str]
+
+    status: pulumi.Output[str] = pulumi.property("status")
+
+    subnet_id: pulumi.Output[str] = pulumi.property("subnetId")
     """
     Subnet ID to attach to
     """
-    tenancy: pulumi.Output[str]
+
+    tenancy: pulumi.Output[str] = pulumi.property("tenancy")
     """
     Instance tenancy to use. Can be one of `"default"`, `"dedicated"` or `"host"`
     """
-    virtualization_type: pulumi.Output[str]
+
+    virtualization_type: pulumi.Output[str] = pulumi.property("virtualizationType")
     """
     Keyword to choose what virtualization mode created instances
     will use. Can be either `"paravirtual"` or `"hvm"`.
     """
-    def __init__(__self__, resource_name, opts=None, agent_version=None, ami_id=None, architecture=None, auto_scaling_type=None, availability_zone=None, created_at=None, delete_ebs=None, delete_eip=None, ebs_block_devices=None, ebs_optimized=None, ecs_cluster_arn=None, elastic_ip=None, ephemeral_block_devices=None, hostname=None, infrastructure_class=None, install_updates_on_boot=None, instance_profile_arn=None, instance_type=None, last_service_error_id=None, layer_ids=None, os=None, platform=None, private_dns=None, private_ip=None, public_dns=None, public_ip=None, registered_by=None, reported_agent_version=None, reported_os_family=None, reported_os_name=None, reported_os_version=None, root_block_devices=None, root_device_type=None, root_device_volume_id=None, security_group_ids=None, ssh_host_dsa_key_fingerprint=None, ssh_host_rsa_key_fingerprint=None, ssh_key_name=None, stack_id=None, state=None, status=None, subnet_id=None, tenancy=None, virtualization_type=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 agent_version: Optional[pulumi.Input[str]] = None,
+                 ami_id: Optional[pulumi.Input[str]] = None,
+                 architecture: Optional[pulumi.Input[str]] = None,
+                 auto_scaling_type: Optional[pulumi.Input[str]] = None,
+                 availability_zone: Optional[pulumi.Input[str]] = None,
+                 created_at: Optional[pulumi.Input[str]] = None,
+                 delete_ebs: Optional[pulumi.Input[bool]] = None,
+                 delete_eip: Optional[pulumi.Input[bool]] = None,
+                 ebs_block_devices: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceEbsBlockDeviceArgs']]]]] = None,
+                 ebs_optimized: Optional[pulumi.Input[bool]] = None,
+                 ecs_cluster_arn: Optional[pulumi.Input[str]] = None,
+                 elastic_ip: Optional[pulumi.Input[str]] = None,
+                 ephemeral_block_devices: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceEphemeralBlockDeviceArgs']]]]] = None,
+                 hostname: Optional[pulumi.Input[str]] = None,
+                 infrastructure_class: Optional[pulumi.Input[str]] = None,
+                 install_updates_on_boot: Optional[pulumi.Input[bool]] = None,
+                 instance_profile_arn: Optional[pulumi.Input[str]] = None,
+                 instance_type: Optional[pulumi.Input[str]] = None,
+                 last_service_error_id: Optional[pulumi.Input[str]] = None,
+                 layer_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 os: Optional[pulumi.Input[str]] = None,
+                 platform: Optional[pulumi.Input[str]] = None,
+                 private_dns: Optional[pulumi.Input[str]] = None,
+                 private_ip: Optional[pulumi.Input[str]] = None,
+                 public_dns: Optional[pulumi.Input[str]] = None,
+                 public_ip: Optional[pulumi.Input[str]] = None,
+                 registered_by: Optional[pulumi.Input[str]] = None,
+                 reported_agent_version: Optional[pulumi.Input[str]] = None,
+                 reported_os_family: Optional[pulumi.Input[str]] = None,
+                 reported_os_name: Optional[pulumi.Input[str]] = None,
+                 reported_os_version: Optional[pulumi.Input[str]] = None,
+                 root_block_devices: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceRootBlockDeviceArgs']]]]] = None,
+                 root_device_type: Optional[pulumi.Input[str]] = None,
+                 root_device_volume_id: Optional[pulumi.Input[str]] = None,
+                 security_group_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 ssh_host_dsa_key_fingerprint: Optional[pulumi.Input[str]] = None,
+                 ssh_host_rsa_key_fingerprint: Optional[pulumi.Input[str]] = None,
+                 ssh_key_name: Optional[pulumi.Input[str]] = None,
+                 stack_id: Optional[pulumi.Input[str]] = None,
+                 state: Optional[pulumi.Input[str]] = None,
+                 status: Optional[pulumi.Input[str]] = None,
+                 subnet_id: Optional[pulumi.Input[str]] = None,
+                 tenancy: Optional[pulumi.Input[str]] = None,
+                 virtualization_type: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides an OpsWorks instance resource.
 
@@ -238,15 +321,15 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] auto_scaling_type: Creates load-based or time-based instances.  If set, can be either: `"load"` or `"timer"`.
         :param pulumi.Input[str] availability_zone: Name of the availability zone where instances will be created
                by default.
-        :param pulumi.Input[list] ebs_block_devices: Additional EBS block devices to attach to the
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceEbsBlockDeviceArgs']]]] ebs_block_devices: Additional EBS block devices to attach to the
                instance.  See Block Devices below for details.
         :param pulumi.Input[bool] ebs_optimized: If true, the launched EC2 instance will be EBS-optimized.
-        :param pulumi.Input[list] ephemeral_block_devices: Customize Ephemeral (also known as
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceEphemeralBlockDeviceArgs']]]] ephemeral_block_devices: Customize Ephemeral (also known as
                "Instance Store") volumes on the instance. See Block Devices below for details.
         :param pulumi.Input[str] hostname: The instance's host name.
         :param pulumi.Input[bool] install_updates_on_boot: Controls where to install OS and package updates when the instance boots.  Defaults to `true`.
         :param pulumi.Input[str] instance_type: The type of instance to start
-        :param pulumi.Input[list] layer_ids: The ids of the layers the instance will belong to.
+        :param pulumi.Input[List[pulumi.Input[str]]] layer_ids: The ids of the layers the instance will belong to.
         :param pulumi.Input[str] os: Name of operating system that will be installed.
         :param pulumi.Input[str] private_dns: The private DNS name assigned to the instance. Can only be
                used inside the Amazon EC2, and only available if you've enabled DNS hostnames
@@ -255,10 +338,10 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] public_dns: The public DNS name assigned to the instance. For EC2-VPC, this
                is only available if you've enabled DNS hostnames for your VPC
         :param pulumi.Input[str] public_ip: The public IP address assigned to the instance, if applicable.
-        :param pulumi.Input[list] root_block_devices: Customize details about the root block
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceRootBlockDeviceArgs']]]] root_block_devices: Customize details about the root block
                device of the instance. See Block Devices below for details.
         :param pulumi.Input[str] root_device_type: Name of the type of root device instances will have by default.  Can be either `"ebs"` or `"instance-store"`
-        :param pulumi.Input[list] security_group_ids: The associated security groups.
+        :param pulumi.Input[List[pulumi.Input[str]]] security_group_ids: The associated security groups.
         :param pulumi.Input[str] ssh_key_name: Name of the SSH keypair that instances will have by default.
         :param pulumi.Input[str] stack_id: The id of the stack the instance will belong to.
         :param pulumi.Input[str] state: The desired state of the instance.  Can be either `"running"` or `"stopped"`.
@@ -266,27 +349,6 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] tenancy: Instance tenancy to use. Can be one of `"default"`, `"dedicated"` or `"host"`
         :param pulumi.Input[str] virtualization_type: Keyword to choose what virtualization mode created instances
                will use. Can be either `"paravirtual"` or `"hvm"`.
-
-        The **ebs_block_devices** object supports the following:
-
-          * `deleteOnTermination` (`pulumi.Input[bool]`)
-          * `device_name` (`pulumi.Input[str]`)
-          * `iops` (`pulumi.Input[float]`)
-          * `snapshot_id` (`pulumi.Input[str]`)
-          * `volume_size` (`pulumi.Input[float]`)
-          * `volumeType` (`pulumi.Input[str]`)
-
-        The **ephemeral_block_devices** object supports the following:
-
-          * `device_name` (`pulumi.Input[str]`)
-          * `virtualName` (`pulumi.Input[str]`)
-
-        The **root_block_devices** object supports the following:
-
-          * `deleteOnTermination` (`pulumi.Input[bool]`)
-          * `iops` (`pulumi.Input[float]`)
-          * `volume_size` (`pulumi.Input[float]`)
-          * `volumeType` (`pulumi.Input[str]`)
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -361,7 +423,54 @@ class Instance(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, agent_version=None, ami_id=None, architecture=None, auto_scaling_type=None, availability_zone=None, created_at=None, delete_ebs=None, delete_eip=None, ebs_block_devices=None, ebs_optimized=None, ec2_instance_id=None, ecs_cluster_arn=None, elastic_ip=None, ephemeral_block_devices=None, hostname=None, infrastructure_class=None, install_updates_on_boot=None, instance_profile_arn=None, instance_type=None, last_service_error_id=None, layer_ids=None, os=None, platform=None, private_dns=None, private_ip=None, public_dns=None, public_ip=None, registered_by=None, reported_agent_version=None, reported_os_family=None, reported_os_name=None, reported_os_version=None, root_block_devices=None, root_device_type=None, root_device_volume_id=None, security_group_ids=None, ssh_host_dsa_key_fingerprint=None, ssh_host_rsa_key_fingerprint=None, ssh_key_name=None, stack_id=None, state=None, status=None, subnet_id=None, tenancy=None, virtualization_type=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            agent_version: Optional[pulumi.Input[str]] = None,
+            ami_id: Optional[pulumi.Input[str]] = None,
+            architecture: Optional[pulumi.Input[str]] = None,
+            auto_scaling_type: Optional[pulumi.Input[str]] = None,
+            availability_zone: Optional[pulumi.Input[str]] = None,
+            created_at: Optional[pulumi.Input[str]] = None,
+            delete_ebs: Optional[pulumi.Input[bool]] = None,
+            delete_eip: Optional[pulumi.Input[bool]] = None,
+            ebs_block_devices: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceEbsBlockDeviceArgs']]]]] = None,
+            ebs_optimized: Optional[pulumi.Input[bool]] = None,
+            ec2_instance_id: Optional[pulumi.Input[str]] = None,
+            ecs_cluster_arn: Optional[pulumi.Input[str]] = None,
+            elastic_ip: Optional[pulumi.Input[str]] = None,
+            ephemeral_block_devices: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceEphemeralBlockDeviceArgs']]]]] = None,
+            hostname: Optional[pulumi.Input[str]] = None,
+            infrastructure_class: Optional[pulumi.Input[str]] = None,
+            install_updates_on_boot: Optional[pulumi.Input[bool]] = None,
+            instance_profile_arn: Optional[pulumi.Input[str]] = None,
+            instance_type: Optional[pulumi.Input[str]] = None,
+            last_service_error_id: Optional[pulumi.Input[str]] = None,
+            layer_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            os: Optional[pulumi.Input[str]] = None,
+            platform: Optional[pulumi.Input[str]] = None,
+            private_dns: Optional[pulumi.Input[str]] = None,
+            private_ip: Optional[pulumi.Input[str]] = None,
+            public_dns: Optional[pulumi.Input[str]] = None,
+            public_ip: Optional[pulumi.Input[str]] = None,
+            registered_by: Optional[pulumi.Input[str]] = None,
+            reported_agent_version: Optional[pulumi.Input[str]] = None,
+            reported_os_family: Optional[pulumi.Input[str]] = None,
+            reported_os_name: Optional[pulumi.Input[str]] = None,
+            reported_os_version: Optional[pulumi.Input[str]] = None,
+            root_block_devices: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceRootBlockDeviceArgs']]]]] = None,
+            root_device_type: Optional[pulumi.Input[str]] = None,
+            root_device_volume_id: Optional[pulumi.Input[str]] = None,
+            security_group_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            ssh_host_dsa_key_fingerprint: Optional[pulumi.Input[str]] = None,
+            ssh_host_rsa_key_fingerprint: Optional[pulumi.Input[str]] = None,
+            ssh_key_name: Optional[pulumi.Input[str]] = None,
+            stack_id: Optional[pulumi.Input[str]] = None,
+            state: Optional[pulumi.Input[str]] = None,
+            status: Optional[pulumi.Input[str]] = None,
+            subnet_id: Optional[pulumi.Input[str]] = None,
+            tenancy: Optional[pulumi.Input[str]] = None,
+            virtualization_type: Optional[pulumi.Input[str]] = None) -> 'Instance':
         """
         Get an existing Instance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -375,16 +484,16 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] auto_scaling_type: Creates load-based or time-based instances.  If set, can be either: `"load"` or `"timer"`.
         :param pulumi.Input[str] availability_zone: Name of the availability zone where instances will be created
                by default.
-        :param pulumi.Input[list] ebs_block_devices: Additional EBS block devices to attach to the
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceEbsBlockDeviceArgs']]]] ebs_block_devices: Additional EBS block devices to attach to the
                instance.  See Block Devices below for details.
         :param pulumi.Input[bool] ebs_optimized: If true, the launched EC2 instance will be EBS-optimized.
         :param pulumi.Input[str] ec2_instance_id: EC2 instance ID
-        :param pulumi.Input[list] ephemeral_block_devices: Customize Ephemeral (also known as
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceEphemeralBlockDeviceArgs']]]] ephemeral_block_devices: Customize Ephemeral (also known as
                "Instance Store") volumes on the instance. See Block Devices below for details.
         :param pulumi.Input[str] hostname: The instance's host name.
         :param pulumi.Input[bool] install_updates_on_boot: Controls where to install OS and package updates when the instance boots.  Defaults to `true`.
         :param pulumi.Input[str] instance_type: The type of instance to start
-        :param pulumi.Input[list] layer_ids: The ids of the layers the instance will belong to.
+        :param pulumi.Input[List[pulumi.Input[str]]] layer_ids: The ids of the layers the instance will belong to.
         :param pulumi.Input[str] os: Name of operating system that will be installed.
         :param pulumi.Input[str] private_dns: The private DNS name assigned to the instance. Can only be
                used inside the Amazon EC2, and only available if you've enabled DNS hostnames
@@ -393,10 +502,10 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] public_dns: The public DNS name assigned to the instance. For EC2-VPC, this
                is only available if you've enabled DNS hostnames for your VPC
         :param pulumi.Input[str] public_ip: The public IP address assigned to the instance, if applicable.
-        :param pulumi.Input[list] root_block_devices: Customize details about the root block
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceRootBlockDeviceArgs']]]] root_block_devices: Customize details about the root block
                device of the instance. See Block Devices below for details.
         :param pulumi.Input[str] root_device_type: Name of the type of root device instances will have by default.  Can be either `"ebs"` or `"instance-store"`
-        :param pulumi.Input[list] security_group_ids: The associated security groups.
+        :param pulumi.Input[List[pulumi.Input[str]]] security_group_ids: The associated security groups.
         :param pulumi.Input[str] ssh_key_name: Name of the SSH keypair that instances will have by default.
         :param pulumi.Input[str] stack_id: The id of the stack the instance will belong to.
         :param pulumi.Input[str] state: The desired state of the instance.  Can be either `"running"` or `"stopped"`.
@@ -404,27 +513,6 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] tenancy: Instance tenancy to use. Can be one of `"default"`, `"dedicated"` or `"host"`
         :param pulumi.Input[str] virtualization_type: Keyword to choose what virtualization mode created instances
                will use. Can be either `"paravirtual"` or `"hvm"`.
-
-        The **ebs_block_devices** object supports the following:
-
-          * `deleteOnTermination` (`pulumi.Input[bool]`)
-          * `device_name` (`pulumi.Input[str]`)
-          * `iops` (`pulumi.Input[float]`)
-          * `snapshot_id` (`pulumi.Input[str]`)
-          * `volume_size` (`pulumi.Input[float]`)
-          * `volumeType` (`pulumi.Input[str]`)
-
-        The **ephemeral_block_devices** object supports the following:
-
-          * `device_name` (`pulumi.Input[str]`)
-          * `virtualName` (`pulumi.Input[str]`)
-
-        The **root_block_devices** object supports the following:
-
-          * `deleteOnTermination` (`pulumi.Input[bool]`)
-          * `iops` (`pulumi.Input[float]`)
-          * `volume_size` (`pulumi.Input[float]`)
-          * `volumeType` (`pulumi.Input[str]`)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -482,3 +570,4 @@ class Instance(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,8 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetTaskDefinitionResult',
+    'AwaitableGetTaskDefinitionResult',
+    'get_task_definition',
+]
+
+
+@pulumi.output_type
+class _GetTaskDefinitionResult:
+    family: str = pulumi.property("family")
+    id: str = pulumi.property("id")
+    network_mode: str = pulumi.property("networkMode")
+    revision: float = pulumi.property("revision")
+    status: str = pulumi.property("status")
+    task_definition: str = pulumi.property("taskDefinition")
+    task_role_arn: str = pulumi.property("taskRoleArn")
 
 
 class GetTaskDefinitionResult:
@@ -70,7 +87,8 @@ class AwaitableGetTaskDefinitionResult(GetTaskDefinitionResult):
             task_role_arn=self.task_role_arn)
 
 
-def get_task_definition(task_definition=None, opts=None):
+def get_task_definition(task_definition: Optional[str] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTaskDefinitionResult:
     """
     The ECS task definition data source allows access to details of
     a specific AWS ECS task definition.
@@ -84,13 +102,13 @@ def get_task_definition(task_definition=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ecs/getTaskDefinition:getTaskDefinition', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ecs/getTaskDefinition:getTaskDefinition', __args__, opts=opts, typ=_GetTaskDefinitionResult).value
 
     return AwaitableGetTaskDefinitionResult(
-        family=__ret__.get('family'),
-        id=__ret__.get('id'),
-        network_mode=__ret__.get('networkMode'),
-        revision=__ret__.get('revision'),
-        status=__ret__.get('status'),
-        task_definition=__ret__.get('taskDefinition'),
-        task_role_arn=__ret__.get('taskRoleArn'))
+        family=__ret__.family,
+        id=__ret__.id,
+        network_mode=__ret__.network_mode,
+        revision=__ret__.revision,
+        status=__ret__.status,
+        task_definition=__ret__.task_definition,
+        task_role_arn=__ret__.task_role_arn)

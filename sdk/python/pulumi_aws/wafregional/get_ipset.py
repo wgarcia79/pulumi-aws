@@ -5,8 +5,20 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetIpsetResult',
+    'AwaitableGetIpsetResult',
+    'get_ipset',
+]
+
+
+@pulumi.output_type
+class _GetIpsetResult:
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
 
 
 class GetIpsetResult:
@@ -35,7 +47,8 @@ class AwaitableGetIpsetResult(GetIpsetResult):
             name=self.name)
 
 
-def get_ipset(name=None, opts=None):
+def get_ipset(name: Optional[str] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIpsetResult:
     """
     `wafregional.IpSet` Retrieves a WAF Regional IP Set Resource Id.
 
@@ -57,8 +70,8 @@ def get_ipset(name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:wafregional/getIpset:getIpset', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:wafregional/getIpset:getIpset', __args__, opts=opts, typ=_GetIpsetResult).value
 
     return AwaitableGetIpsetResult(
-        id=__ret__.get('id'),
-        name=__ret__.get('name'))
+        id=__ret__.id,
+        name=__ret__.name)

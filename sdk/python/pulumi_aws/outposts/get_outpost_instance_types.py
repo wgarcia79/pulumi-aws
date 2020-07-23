@@ -5,8 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetOutpostInstanceTypesResult',
+    'AwaitableGetOutpostInstanceTypesResult',
+    'get_outpost_instance_types',
+]
+
+
+@pulumi.output_type
+class _GetOutpostInstanceTypesResult:
+    arn: str = pulumi.property("arn")
+    id: str = pulumi.property("id")
+    instance_types: List[str] = pulumi.property("instanceTypes")
 
 
 class GetOutpostInstanceTypesResult:
@@ -42,7 +55,8 @@ class AwaitableGetOutpostInstanceTypesResult(GetOutpostInstanceTypesResult):
             instance_types=self.instance_types)
 
 
-def get_outpost_instance_types(arn=None, opts=None):
+def get_outpost_instance_types(arn: Optional[str] = None,
+                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOutpostInstanceTypesResult:
     """
     Information about Outposts Instance Types.
 
@@ -64,9 +78,9 @@ def get_outpost_instance_types(arn=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:outposts/getOutpostInstanceTypes:getOutpostInstanceTypes', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:outposts/getOutpostInstanceTypes:getOutpostInstanceTypes', __args__, opts=opts, typ=_GetOutpostInstanceTypesResult).value
 
     return AwaitableGetOutpostInstanceTypesResult(
-        arn=__ret__.get('arn'),
-        id=__ret__.get('id'),
-        instance_types=__ret__.get('instanceTypes'))
+        arn=__ret__.arn,
+        id=__ret__.id,
+        instance_types=__ret__.instance_types)

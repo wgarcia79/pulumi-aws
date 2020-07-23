@@ -5,8 +5,20 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetAccountAliasResult',
+    'AwaitableGetAccountAliasResult',
+    'get_account_alias',
+]
+
+
+@pulumi.output_type
+class _GetAccountAliasResult:
+    account_alias: str = pulumi.property("accountAlias")
+    id: str = pulumi.property("id")
 
 
 class GetAccountAliasResult:
@@ -38,7 +50,7 @@ class AwaitableGetAccountAliasResult(GetAccountAliasResult):
             id=self.id)
 
 
-def get_account_alias(opts=None):
+def get_account_alias(                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccountAliasResult:
     """
     The IAM Account Alias data source allows access to the account alias
     for the effective account in which this provider is working.
@@ -58,8 +70,8 @@ def get_account_alias(opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:iam/getAccountAlias:getAccountAlias', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:iam/getAccountAlias:getAccountAlias', __args__, opts=opts, typ=_GetAccountAliasResult).value
 
     return AwaitableGetAccountAliasResult(
-        account_alias=__ret__.get('accountAlias'),
-        id=__ret__.get('id'))
+        account_alias=__ret__.account_alias,
+        id=__ret__.id)

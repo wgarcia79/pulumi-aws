@@ -5,8 +5,30 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetRouteTableResult',
+    'AwaitableGetRouteTableResult',
+    'get_route_table',
+]
+
+
+@pulumi.output_type
+class _GetRouteTableResult:
+    associations: List['outputs.GetRouteTableAssociationResult'] = pulumi.property("associations")
+    filters: Optional[List['outputs.GetRouteTableFilterResult']] = pulumi.property("filters")
+    gateway_id: str = pulumi.property("gatewayId")
+    id: str = pulumi.property("id")
+    owner_id: str = pulumi.property("ownerId")
+    route_table_id: str = pulumi.property("routeTableId")
+    routes: List['outputs.GetRouteTableRouteResult'] = pulumi.property("routes")
+    subnet_id: str = pulumi.property("subnetId")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    vpc_id: str = pulumi.property("vpcId")
 
 
 class GetRouteTableResult:
@@ -79,7 +101,13 @@ class AwaitableGetRouteTableResult(GetRouteTableResult):
             vpc_id=self.vpc_id)
 
 
-def get_route_table(filters=None, gateway_id=None, route_table_id=None, subnet_id=None, tags=None, vpc_id=None, opts=None):
+def get_route_table(filters: Optional[List[pulumi.InputType['GetRouteTableFilterArgs']]] = None,
+                    gateway_id: Optional[str] = None,
+                    route_table_id: Optional[str] = None,
+                    subnet_id: Optional[str] = None,
+                    tags: Optional[Mapping[str, str]] = None,
+                    vpc_id: Optional[str] = None,
+                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRouteTableResult:
     """
     `ec2.RouteTable` provides details about a specific Route Table.
 
@@ -106,20 +134,13 @@ def get_route_table(filters=None, gateway_id=None, route_table_id=None, subnet_i
     ```
 
 
-    :param list filters: Custom filter block as described below.
+    :param List[pulumi.InputType['GetRouteTableFilterArgs']] filters: Custom filter block as described below.
     :param str gateway_id: The id of an Internet Gateway or Virtual Private Gateway which is connected to the Route Table (not exported if not passed as a parameter).
     :param str route_table_id: The id of the specific Route Table to retrieve.
     :param str subnet_id: The id of a Subnet which is connected to the Route Table (not exported if not passed as a parameter).
-    :param dict tags: A map of tags, each pair of which must exactly match
+    :param Mapping[str, str] tags: A map of tags, each pair of which must exactly match
            a pair on the desired Route Table.
     :param str vpc_id: The id of the VPC that the desired Route Table belongs to.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter by, as defined by
-        [the underlying AWS API](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeRouteTables.html).
-      * `values` (`list`) - Set of values that are accepted for the given field.
-        A Route Table will be selected if any one of the given values matches.
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -132,16 +153,16 @@ def get_route_table(filters=None, gateway_id=None, route_table_id=None, subnet_i
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getRouteTable:getRouteTable', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getRouteTable:getRouteTable', __args__, opts=opts, typ=_GetRouteTableResult).value
 
     return AwaitableGetRouteTableResult(
-        associations=__ret__.get('associations'),
-        filters=__ret__.get('filters'),
-        gateway_id=__ret__.get('gatewayId'),
-        id=__ret__.get('id'),
-        owner_id=__ret__.get('ownerId'),
-        route_table_id=__ret__.get('routeTableId'),
-        routes=__ret__.get('routes'),
-        subnet_id=__ret__.get('subnetId'),
-        tags=__ret__.get('tags'),
-        vpc_id=__ret__.get('vpcId'))
+        associations=__ret__.associations,
+        filters=__ret__.filters,
+        gateway_id=__ret__.gateway_id,
+        id=__ret__.id,
+        owner_id=__ret__.owner_id,
+        route_table_id=__ret__.route_table_id,
+        routes=__ret__.routes,
+        subnet_id=__ret__.subnet_id,
+        tags=__ret__.tags,
+        vpc_id=__ret__.vpc_id)

@@ -5,20 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['Protection']
 
 
 class Protection(pulumi.CustomResource):
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     A friendly name for the Protection you are creating.
     """
-    resource_arn: pulumi.Output[str]
+
+    resource_arn: pulumi.Output[str] = pulumi.property("resourceArn")
     """
     The ARN (Amazon Resource Name) of the resource to be protected.
     """
-    def __init__(__self__, resource_name, opts=None, name=None, resource_arn=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 resource_arn: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Enables AWS Shield Advanced for a specific AWS resource.
         The resource can be an Amazon CloudFront distribution, Elastic Load Balancing load balancer, AWS Global Accelerator accelerator, Elastic IP Address, or an Amazon Route 53 hosted zone.
@@ -70,7 +81,11 @@ class Protection(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, name=None, resource_arn=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            resource_arn: Optional[pulumi.Input[str]] = None) -> 'Protection':
         """
         Get an existing Protection resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -94,3 +109,4 @@ class Protection(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

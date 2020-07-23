@@ -5,20 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['QueryLog']
 
 
 class QueryLog(pulumi.CustomResource):
-    cloudwatch_log_group_arn: pulumi.Output[str]
+    cloudwatch_log_group_arn: pulumi.Output[str] = pulumi.property("cloudwatchLogGroupArn")
     """
     CloudWatch log group ARN to send query logs.
     """
-    zone_id: pulumi.Output[str]
+
+    zone_id: pulumi.Output[str] = pulumi.property("zoneId")
     """
     Route53 hosted zone ID to enable query logs.
     """
-    def __init__(__self__, resource_name, opts=None, cloudwatch_log_group_arn=None, zone_id=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 cloudwatch_log_group_arn: Optional[pulumi.Input[str]] = None,
+                 zone_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a Route53 query logging configuration resource.
 
@@ -95,7 +106,11 @@ class QueryLog(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, cloudwatch_log_group_arn=None, zone_id=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cloudwatch_log_group_arn: Optional[pulumi.Input[str]] = None,
+            zone_id: Optional[pulumi.Input[str]] = None) -> 'QueryLog':
         """
         Get an existing QueryLog resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -119,3 +134,4 @@ class QueryLog(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

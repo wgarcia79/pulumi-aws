@@ -5,8 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetServiceResult',
+    'AwaitableGetServiceResult',
+    'get_service',
+]
+
+
+@pulumi.output_type
+class _GetServiceResult:
+    id: str = pulumi.property("id")
+    service_code: str = pulumi.property("serviceCode")
+    service_name: str = pulumi.property("serviceName")
 
 
 class GetServiceResult:
@@ -42,7 +55,8 @@ class AwaitableGetServiceResult(GetServiceResult):
             service_name=self.service_name)
 
 
-def get_service(service_name=None, opts=None):
+def get_service(service_name: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServiceResult:
     """
     Retrieve information about a Service Quotas Service.
 
@@ -64,9 +78,9 @@ def get_service(service_name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:servicequotas/getService:getService', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:servicequotas/getService:getService', __args__, opts=opts, typ=_GetServiceResult).value
 
     return AwaitableGetServiceResult(
-        id=__ret__.get('id'),
-        service_code=__ret__.get('serviceCode'),
-        service_name=__ret__.get('serviceName'))
+        id=__ret__.id,
+        service_code=__ret__.service_code,
+        service_name=__ret__.service_name)

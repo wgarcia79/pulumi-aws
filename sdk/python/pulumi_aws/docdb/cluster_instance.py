@@ -5,65 +5,80 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['ClusterInstance']
 
 
 class ClusterInstance(pulumi.CustomResource):
-    apply_immediately: pulumi.Output[bool]
+    apply_immediately: pulumi.Output[bool] = pulumi.property("applyImmediately")
     """
     Specifies whether any database modifications
     are applied immediately, or during the next maintenance window. Default is`false`.
     """
-    arn: pulumi.Output[str]
+
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     Amazon Resource Name (ARN) of cluster instance
     """
-    auto_minor_version_upgrade: pulumi.Output[bool]
+
+    auto_minor_version_upgrade: pulumi.Output[Optional[bool]] = pulumi.property("autoMinorVersionUpgrade")
     """
     Indicates that minor engine upgrades will be applied automatically to the DB instance during the maintenance window. Default `true`.
     """
-    availability_zone: pulumi.Output[str]
+
+    availability_zone: pulumi.Output[str] = pulumi.property("availabilityZone")
     """
     The EC2 Availability Zone that the DB instance is created in. See [docs](https://docs.aws.amazon.com/documentdb/latest/developerguide/API_CreateDBInstance.html) about the details.
     """
-    ca_cert_identifier: pulumi.Output[str]
+
+    ca_cert_identifier: pulumi.Output[str] = pulumi.property("caCertIdentifier")
     """
     (Optional) The identifier of the CA certificate for the DB instance.
     """
-    cluster_identifier: pulumi.Output[str]
+
+    cluster_identifier: pulumi.Output[str] = pulumi.property("clusterIdentifier")
     """
     The identifier of the `docdb.Cluster` in which to launch this instance.
     """
-    db_subnet_group_name: pulumi.Output[str]
+
+    db_subnet_group_name: pulumi.Output[str] = pulumi.property("dbSubnetGroupName")
     """
     The DB subnet group to associate with this DB instance.
     """
-    dbi_resource_id: pulumi.Output[str]
+
+    dbi_resource_id: pulumi.Output[str] = pulumi.property("dbiResourceId")
     """
     The region-unique, immutable identifier for the DB instance.
     """
-    endpoint: pulumi.Output[str]
+
+    endpoint: pulumi.Output[str] = pulumi.property("endpoint")
     """
     The DNS address for this instance. May not be writable
     """
-    engine: pulumi.Output[str]
+
+    engine: pulumi.Output[Optional[str]] = pulumi.property("engine")
     """
     The name of the database engine to be used for the DocDB instance. Defaults to `docdb`. Valid Values: `docdb`.
     """
-    engine_version: pulumi.Output[str]
+
+    engine_version: pulumi.Output[str] = pulumi.property("engineVersion")
     """
     The database engine version
     """
-    identifier: pulumi.Output[str]
+
+    identifier: pulumi.Output[str] = pulumi.property("identifier")
     """
     The indentifier for the DocDB instance, if omitted, this provider will assign a random, unique identifier.
     """
-    identifier_prefix: pulumi.Output[str]
+
+    identifier_prefix: pulumi.Output[str] = pulumi.property("identifierPrefix")
     """
     Creates a unique identifier beginning with the specified prefix. Conflicts with `identifer`.
     """
-    instance_class: pulumi.Output[str]
+
+    instance_class: pulumi.Output[str] = pulumi.property("instanceClass")
     """
     The instance class to use. For details on CPU and memory, see [Scaling for DocDB Instances](https://docs.aws.amazon.com/documentdb/latest/developerguide/db-cluster-manage-performance.html#db-cluster-manage-scaling-instance). DocDB currently
     supports the below instance classes. Please see [AWS Documentation](https://docs.aws.amazon.com/documentdb/latest/developerguide/db-instance-classes.html#db-instance-class-specs) for complete details.
@@ -74,41 +89,68 @@ class ClusterInstance(pulumi.CustomResource):
     - db.r4.8xlarge
     - db.r4.16xlarge
     """
-    kms_key_id: pulumi.Output[str]
+
+    kms_key_id: pulumi.Output[str] = pulumi.property("kmsKeyId")
     """
     The ARN for the KMS encryption key if one is set to the cluster.
     """
-    port: pulumi.Output[float]
+
+    port: pulumi.Output[float] = pulumi.property("port")
     """
     The database port
     """
-    preferred_backup_window: pulumi.Output[str]
+
+    preferred_backup_window: pulumi.Output[str] = pulumi.property("preferredBackupWindow")
     """
     The daily time range during which automated backups are created if automated backups are enabled.
     """
-    preferred_maintenance_window: pulumi.Output[str]
+
+    preferred_maintenance_window: pulumi.Output[str] = pulumi.property("preferredMaintenanceWindow")
     """
     The window to perform maintenance in.
     Syntax: "ddd:hh24:mi-ddd:hh24:mi". Eg: "Mon:00:00-Mon:03:00".
     """
-    promotion_tier: pulumi.Output[float]
+
+    promotion_tier: pulumi.Output[Optional[float]] = pulumi.property("promotionTier")
     """
     Default 0. Failover Priority setting on instance level. The reader who has lower tier has higher priority to get promoter to writer.
     """
-    publicly_accessible: pulumi.Output[bool]
-    storage_encrypted: pulumi.Output[bool]
+
+    publicly_accessible: pulumi.Output[bool] = pulumi.property("publiclyAccessible")
+
+    storage_encrypted: pulumi.Output[bool] = pulumi.property("storageEncrypted")
     """
     Specifies whether the DB cluster is encrypted.
     """
-    tags: pulumi.Output[dict]
+
+    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
     """
     A map of tags to assign to the instance.
     """
-    writer: pulumi.Output[bool]
+
+    writer: pulumi.Output[bool] = pulumi.property("writer")
     """
     Boolean indicating if this instance is writable. `False` indicates this instance is a read replica.
     """
-    def __init__(__self__, resource_name, opts=None, apply_immediately=None, auto_minor_version_upgrade=None, availability_zone=None, ca_cert_identifier=None, cluster_identifier=None, engine=None, identifier=None, identifier_prefix=None, instance_class=None, preferred_maintenance_window=None, promotion_tier=None, tags=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 apply_immediately: Optional[pulumi.Input[bool]] = None,
+                 auto_minor_version_upgrade: Optional[pulumi.Input[bool]] = None,
+                 availability_zone: Optional[pulumi.Input[str]] = None,
+                 ca_cert_identifier: Optional[pulumi.Input[str]] = None,
+                 cluster_identifier: Optional[pulumi.Input[str]] = None,
+                 engine: Optional[pulumi.Input[str]] = None,
+                 identifier: Optional[pulumi.Input[str]] = None,
+                 identifier_prefix: Optional[pulumi.Input[str]] = None,
+                 instance_class: Optional[pulumi.Input[str]] = None,
+                 preferred_maintenance_window: Optional[pulumi.Input[str]] = None,
+                 promotion_tier: Optional[pulumi.Input[float]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides an DocDB Cluster Resource Instance. A Cluster Instance Resource defines
         attributes that are specific to a single instance in a [DocDB Cluster](https://www.terraform.io/docs/providers/aws/r/docdb_cluster.html).
@@ -164,7 +206,7 @@ class ClusterInstance(pulumi.CustomResource):
         :param pulumi.Input[str] preferred_maintenance_window: The window to perform maintenance in.
                Syntax: "ddd:hh24:mi-ddd:hh24:mi". Eg: "Mon:00:00-Mon:03:00".
         :param pulumi.Input[float] promotion_tier: Default 0. Failover Priority setting on instance level. The reader who has lower tier has higher priority to get promoter to writer.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the instance.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A map of tags to assign to the instance.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -217,7 +259,32 @@ class ClusterInstance(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, apply_immediately=None, arn=None, auto_minor_version_upgrade=None, availability_zone=None, ca_cert_identifier=None, cluster_identifier=None, db_subnet_group_name=None, dbi_resource_id=None, endpoint=None, engine=None, engine_version=None, identifier=None, identifier_prefix=None, instance_class=None, kms_key_id=None, port=None, preferred_backup_window=None, preferred_maintenance_window=None, promotion_tier=None, publicly_accessible=None, storage_encrypted=None, tags=None, writer=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            apply_immediately: Optional[pulumi.Input[bool]] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            auto_minor_version_upgrade: Optional[pulumi.Input[bool]] = None,
+            availability_zone: Optional[pulumi.Input[str]] = None,
+            ca_cert_identifier: Optional[pulumi.Input[str]] = None,
+            cluster_identifier: Optional[pulumi.Input[str]] = None,
+            db_subnet_group_name: Optional[pulumi.Input[str]] = None,
+            dbi_resource_id: Optional[pulumi.Input[str]] = None,
+            endpoint: Optional[pulumi.Input[str]] = None,
+            engine: Optional[pulumi.Input[str]] = None,
+            engine_version: Optional[pulumi.Input[str]] = None,
+            identifier: Optional[pulumi.Input[str]] = None,
+            identifier_prefix: Optional[pulumi.Input[str]] = None,
+            instance_class: Optional[pulumi.Input[str]] = None,
+            kms_key_id: Optional[pulumi.Input[str]] = None,
+            port: Optional[pulumi.Input[float]] = None,
+            preferred_backup_window: Optional[pulumi.Input[str]] = None,
+            preferred_maintenance_window: Optional[pulumi.Input[str]] = None,
+            promotion_tier: Optional[pulumi.Input[float]] = None,
+            publicly_accessible: Optional[pulumi.Input[bool]] = None,
+            storage_encrypted: Optional[pulumi.Input[bool]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            writer: Optional[pulumi.Input[bool]] = None) -> 'ClusterInstance':
         """
         Get an existing ClusterInstance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -254,7 +321,7 @@ class ClusterInstance(pulumi.CustomResource):
                Syntax: "ddd:hh24:mi-ddd:hh24:mi". Eg: "Mon:00:00-Mon:03:00".
         :param pulumi.Input[float] promotion_tier: Default 0. Failover Priority setting on instance level. The reader who has lower tier has higher priority to get promoter to writer.
         :param pulumi.Input[bool] storage_encrypted: Specifies whether the DB cluster is encrypted.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the instance.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A map of tags to assign to the instance.
         :param pulumi.Input[bool] writer: Boolean indicating if this instance is writable. `False` indicates this instance is a read replica.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -291,3 +358,4 @@ class ClusterInstance(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

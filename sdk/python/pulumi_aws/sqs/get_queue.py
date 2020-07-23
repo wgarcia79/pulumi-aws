@@ -5,8 +5,23 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetQueueResult',
+    'AwaitableGetQueueResult',
+    'get_queue',
+]
+
+
+@pulumi.output_type
+class _GetQueueResult:
+    arn: str = pulumi.property("arn")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    tags: Mapping[str, str] = pulumi.property("tags")
+    url: str = pulumi.property("url")
 
 
 class GetQueueResult:
@@ -56,7 +71,9 @@ class AwaitableGetQueueResult(GetQueueResult):
             url=self.url)
 
 
-def get_queue(name=None, tags=None, opts=None):
+def get_queue(name: Optional[str] = None,
+              tags: Optional[Mapping[str, str]] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetQueueResult:
     """
     Use this data source to get the ARN and URL of queue in AWS Simple Queue Service (SQS).
     By using this data source, you can reference SQS queues without having to hardcode
@@ -73,7 +90,7 @@ def get_queue(name=None, tags=None, opts=None):
 
 
     :param str name: The name of the queue to match.
-    :param dict tags: A map of tags for the resource.
+    :param Mapping[str, str] tags: A map of tags for the resource.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -82,11 +99,11 @@ def get_queue(name=None, tags=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:sqs/getQueue:getQueue', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:sqs/getQueue:getQueue', __args__, opts=opts, typ=_GetQueueResult).value
 
     return AwaitableGetQueueResult(
-        arn=__ret__.get('arn'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        tags=__ret__.get('tags'),
-        url=__ret__.get('url'))
+        arn=__ret__.arn,
+        id=__ret__.id,
+        name=__ret__.name,
+        tags=__ret__.tags,
+        url=__ret__.url)

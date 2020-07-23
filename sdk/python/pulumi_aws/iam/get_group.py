@@ -5,8 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetGroupResult',
+    'AwaitableGetGroupResult',
+    'get_group',
+]
+
+
+@pulumi.output_type
+class _GetGroupResult:
+    arn: str = pulumi.property("arn")
+    group_id: str = pulumi.property("groupId")
+    group_name: str = pulumi.property("groupName")
+    id: str = pulumi.property("id")
+    path: str = pulumi.property("path")
+    users: List['outputs.GetGroupUserResult'] = pulumi.property("users")
 
 
 class GetGroupResult:
@@ -63,7 +80,8 @@ class AwaitableGetGroupResult(GetGroupResult):
             users=self.users)
 
 
-def get_group(group_name=None, opts=None):
+def get_group(group_name: Optional[str] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGroupResult:
     """
     This data source can be used to fetch information about a specific
     IAM group. By using this data source, you can reference IAM group
@@ -87,12 +105,12 @@ def get_group(group_name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:iam/getGroup:getGroup', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:iam/getGroup:getGroup', __args__, opts=opts, typ=_GetGroupResult).value
 
     return AwaitableGetGroupResult(
-        arn=__ret__.get('arn'),
-        group_id=__ret__.get('groupId'),
-        group_name=__ret__.get('groupName'),
-        id=__ret__.get('id'),
-        path=__ret__.get('path'),
-        users=__ret__.get('users'))
+        arn=__ret__.arn,
+        group_id=__ret__.group_id,
+        group_name=__ret__.group_name,
+        id=__ret__.id,
+        path=__ret__.path,
+        users=__ret__.users)

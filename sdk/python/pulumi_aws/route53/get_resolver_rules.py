@@ -5,8 +5,24 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetResolverRulesResult',
+    'AwaitableGetResolverRulesResult',
+    'get_resolver_rules',
+]
+
+
+@pulumi.output_type
+class _GetResolverRulesResult:
+    id: str = pulumi.property("id")
+    owner_id: Optional[str] = pulumi.property("ownerId")
+    resolver_endpoint_id: Optional[str] = pulumi.property("resolverEndpointId")
+    resolver_rule_ids: List[str] = pulumi.property("resolverRuleIds")
+    rule_type: Optional[str] = pulumi.property("ruleType")
+    share_status: Optional[str] = pulumi.property("shareStatus")
 
 
 class GetResolverRulesResult:
@@ -54,7 +70,11 @@ class AwaitableGetResolverRulesResult(GetResolverRulesResult):
             share_status=self.share_status)
 
 
-def get_resolver_rules(owner_id=None, resolver_endpoint_id=None, rule_type=None, share_status=None, opts=None):
+def get_resolver_rules(owner_id: Optional[str] = None,
+                       resolver_endpoint_id: Optional[str] = None,
+                       rule_type: Optional[str] = None,
+                       share_status: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetResolverRulesResult:
     """
     `route53.getResolverRules` provides details about a set of Route53 Resolver rules.
 
@@ -87,12 +107,12 @@ def get_resolver_rules(owner_id=None, resolver_endpoint_id=None, rule_type=None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:route53/getResolverRules:getResolverRules', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:route53/getResolverRules:getResolverRules', __args__, opts=opts, typ=_GetResolverRulesResult).value
 
     return AwaitableGetResolverRulesResult(
-        id=__ret__.get('id'),
-        owner_id=__ret__.get('ownerId'),
-        resolver_endpoint_id=__ret__.get('resolverEndpointId'),
-        resolver_rule_ids=__ret__.get('resolverRuleIds'),
-        rule_type=__ret__.get('ruleType'),
-        share_status=__ret__.get('shareStatus'))
+        id=__ret__.id,
+        owner_id=__ret__.owner_id,
+        resolver_endpoint_id=__ret__.resolver_endpoint_id,
+        resolver_rule_ids=__ret__.resolver_rule_ids,
+        rule_type=__ret__.rule_type,
+        share_status=__ret__.share_status)

@@ -5,8 +5,20 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetHostedZoneIdResult',
+    'AwaitableGetHostedZoneIdResult',
+    'get_hosted_zone_id',
+]
+
+
+@pulumi.output_type
+class _GetHostedZoneIdResult:
+    id: str = pulumi.property("id")
+    region: Optional[str] = pulumi.property("region")
 
 
 class GetHostedZoneIdResult:
@@ -35,7 +47,8 @@ class AwaitableGetHostedZoneIdResult(GetHostedZoneIdResult):
             region=self.region)
 
 
-def get_hosted_zone_id(region=None, opts=None):
+def get_hosted_zone_id(region: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetHostedZoneIdResult:
     """
     Use this data source to get the HostedZoneId of the AWS Elastic Load Balancing HostedZoneId
     in a given region for the purpose of using in an AWS Route53 Alias.
@@ -68,8 +81,8 @@ def get_hosted_zone_id(region=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:elb/getHostedZoneId:getHostedZoneId', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:elb/getHostedZoneId:getHostedZoneId', __args__, opts=opts, typ=_GetHostedZoneIdResult).value
 
     return AwaitableGetHostedZoneIdResult(
-        id=__ret__.get('id'),
-        region=__ret__.get('region'))
+        id=__ret__.id,
+        region=__ret__.region)

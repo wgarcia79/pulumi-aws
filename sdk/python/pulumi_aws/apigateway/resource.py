@@ -5,28 +5,42 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['Resource']
 
 
 class Resource(pulumi.CustomResource):
-    parent_id: pulumi.Output[str]
+    parent_id: pulumi.Output[str] = pulumi.property("parentId")
     """
     The ID of the parent API resource
     """
-    path: pulumi.Output[str]
+
+    path: pulumi.Output[str] = pulumi.property("path")
     """
     The complete path for this API resource, including all parent paths.
     """
-    path_part: pulumi.Output[str]
+
+    path_part: pulumi.Output[str] = pulumi.property("pathPart")
     """
     The last path segment of this API resource.
     """
-    rest_api: pulumi.Output[str]
+
+    rest_api: pulumi.Output[str] = pulumi.property("restApi")
     """
     The ID of the associated REST API
     """
-    def __init__(__self__, resource_name, opts=None, parent_id=None, path_part=None, rest_api=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 parent_id: Optional[pulumi.Input[str]] = None,
+                 path_part: Optional[pulumi.Input[str]] = None,
+                 rest_api: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides an API Gateway Resource.
 
@@ -47,7 +61,7 @@ class Resource(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] parent_id: The ID of the parent API resource
         :param pulumi.Input[str] path_part: The last path segment of this API resource.
-        :param pulumi.Input[dict] rest_api: The ID of the associated REST API
+        :param pulumi.Input[str] rest_api: The ID of the associated REST API
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -83,7 +97,13 @@ class Resource(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, parent_id=None, path=None, path_part=None, rest_api=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            parent_id: Optional[pulumi.Input[str]] = None,
+            path: Optional[pulumi.Input[str]] = None,
+            path_part: Optional[pulumi.Input[str]] = None,
+            rest_api: Optional[pulumi.Input[str]] = None) -> 'Resource':
         """
         Get an existing Resource resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -94,7 +114,7 @@ class Resource(pulumi.CustomResource):
         :param pulumi.Input[str] parent_id: The ID of the parent API resource
         :param pulumi.Input[str] path: The complete path for this API resource, including all parent paths.
         :param pulumi.Input[str] path_part: The last path segment of this API resource.
-        :param pulumi.Input[dict] rest_api: The ID of the associated REST API
+        :param pulumi.Input[str] rest_api: The ID of the associated REST API
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -111,3 +131,4 @@ class Resource(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

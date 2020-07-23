@@ -5,8 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetEndpointResult',
+    'AwaitableGetEndpointResult',
+    'get_endpoint',
+]
+
+
+@pulumi.output_type
+class _GetEndpointResult:
+    endpoint_address: str = pulumi.property("endpointAddress")
+    endpoint_type: Optional[str] = pulumi.property("endpointType")
+    id: str = pulumi.property("id")
 
 
 class GetEndpointResult:
@@ -47,7 +60,8 @@ class AwaitableGetEndpointResult(GetEndpointResult):
             id=self.id)
 
 
-def get_endpoint(endpoint_type=None, opts=None):
+def get_endpoint(endpoint_type: Optional[str] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEndpointResult:
     """
     Returns a unique endpoint specific to the AWS account making the call.
 
@@ -60,9 +74,9 @@ def get_endpoint(endpoint_type=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:iot/getEndpoint:getEndpoint', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('aws:iot/getEndpoint:getEndpoint', __args__, opts=opts, typ=_GetEndpointResult).value
 
     return AwaitableGetEndpointResult(
-        endpoint_address=__ret__.get('endpointAddress'),
-        endpoint_type=__ret__.get('endpointType'),
-        id=__ret__.get('id'))
+        endpoint_address=__ret__.endpoint_address,
+        endpoint_type=__ret__.endpoint_type,
+        id=__ret__.id)

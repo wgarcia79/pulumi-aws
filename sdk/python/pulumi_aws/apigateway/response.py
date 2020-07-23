@@ -5,32 +5,49 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['Response']
 
 
 class Response(pulumi.CustomResource):
-    response_parameters: pulumi.Output[dict]
+    response_parameters: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("responseParameters")
     """
     A map specifying the parameters (paths, query strings and headers) of the Gateway Response.
     """
-    response_templates: pulumi.Output[dict]
+
+    response_templates: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("responseTemplates")
     """
     A map specifying the templates used to transform the response body.
     """
-    response_type: pulumi.Output[str]
+
+    response_type: pulumi.Output[str] = pulumi.property("responseType")
     """
     The response type of the associated GatewayResponse.
     """
-    rest_api_id: pulumi.Output[str]
+
+    rest_api_id: pulumi.Output[str] = pulumi.property("restApiId")
     """
     The string identifier of the associated REST API.
     """
-    status_code: pulumi.Output[str]
+
+    status_code: pulumi.Output[Optional[str]] = pulumi.property("statusCode")
     """
     The HTTP status code of the Gateway Response.
     """
-    def __init__(__self__, resource_name, opts=None, response_parameters=None, response_templates=None, response_type=None, rest_api_id=None, status_code=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 response_parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 response_templates: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 response_type: Optional[pulumi.Input[str]] = None,
+                 rest_api_id: Optional[pulumi.Input[str]] = None,
+                 status_code: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides an API Gateway Gateway Response for a REST API Gateway.
 
@@ -55,8 +72,8 @@ class Response(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] response_parameters: A map specifying the parameters (paths, query strings and headers) of the Gateway Response.
-        :param pulumi.Input[dict] response_templates: A map specifying the templates used to transform the response body.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] response_parameters: A map specifying the parameters (paths, query strings and headers) of the Gateway Response.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] response_templates: A map specifying the templates used to transform the response body.
         :param pulumi.Input[str] response_type: The response type of the associated GatewayResponse.
         :param pulumi.Input[str] rest_api_id: The string identifier of the associated REST API.
         :param pulumi.Input[str] status_code: The HTTP status code of the Gateway Response.
@@ -94,7 +111,14 @@ class Response(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, response_parameters=None, response_templates=None, response_type=None, rest_api_id=None, status_code=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            response_parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            response_templates: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            response_type: Optional[pulumi.Input[str]] = None,
+            rest_api_id: Optional[pulumi.Input[str]] = None,
+            status_code: Optional[pulumi.Input[str]] = None) -> 'Response':
         """
         Get an existing Response resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -102,8 +126,8 @@ class Response(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] response_parameters: A map specifying the parameters (paths, query strings and headers) of the Gateway Response.
-        :param pulumi.Input[dict] response_templates: A map specifying the templates used to transform the response body.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] response_parameters: A map specifying the parameters (paths, query strings and headers) of the Gateway Response.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] response_templates: A map specifying the templates used to transform the response body.
         :param pulumi.Input[str] response_type: The response type of the associated GatewayResponse.
         :param pulumi.Input[str] rest_api_id: The string identifier of the associated REST API.
         :param pulumi.Input[str] status_code: The HTTP status code of the Gateway Response.
@@ -124,3 +148,4 @@ class Response(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+
