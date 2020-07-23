@@ -5,8 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetVpnGatewayResult',
+    'AwaitableGetVpnGatewayResult',
+    'get_vpn_gateway',
+]
 
 
 class GetVpnGatewayResult:
@@ -56,7 +64,14 @@ class AwaitableGetVpnGatewayResult(GetVpnGatewayResult):
             tags=self.tags)
 
 
-def get_vpn_gateway(amazon_side_asn=None, attached_vpc_id=None, availability_zone=None, filters=None, id=None, state=None, tags=None, opts=None):
+def get_vpn_gateway(amazon_side_asn: Optional[str] = None,
+                    attached_vpc_id: Optional[str] = None,
+                    availability_zone: Optional[str] = None,
+                    filters: Optional[List[pulumi.InputType['GetVpnGatewayFilterArgs']]] = None,
+                    id: Optional[str] = None,
+                    state: Optional[str] = None,
+                    tags: Optional[Mapping[str, str]] = None,
+                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpnGatewayResult:
     """
     The VPN Gateway data source provides details about
     a specific VPN gateway.
@@ -78,18 +93,11 @@ def get_vpn_gateway(amazon_side_asn=None, attached_vpc_id=None, availability_zon
     :param str amazon_side_asn: The Autonomous System Number (ASN) for the Amazon side of the specific VPN Gateway to retrieve.
     :param str attached_vpc_id: The ID of a VPC attached to the specific VPN Gateway to retrieve.
     :param str availability_zone: The Availability Zone of the specific VPN Gateway to retrieve.
-    :param list filters: Custom filter block as described below.
+    :param List[pulumi.InputType['GetVpnGatewayFilterArgs']] filters: Custom filter block as described below.
     :param str id: The ID of the specific VPN Gateway to retrieve.
     :param str state: The state of the specific VPN Gateway to retrieve.
-    :param dict tags: A map of tags, each pair of which must exactly match
+    :param Mapping[str, str] tags: A map of tags, each pair of which must exactly match
            a pair on the desired VPN Gateway.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter by, as defined by
-        [the underlying AWS API](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVpnGateways.html).
-      * `values` (`list`) - Set of values that are accepted for the given field.
-        A VPN Gateway will be selected if any one of the given values matches.
     """
     __args__ = dict()
     __args__['amazonSideAsn'] = amazon_side_asn

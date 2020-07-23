@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetContainerDefinitionResult',
+    'AwaitableGetContainerDefinitionResult',
+    'get_container_definition',
+]
 
 
 class GetContainerDefinitionResult:
@@ -95,7 +101,9 @@ class AwaitableGetContainerDefinitionResult(GetContainerDefinitionResult):
             task_definition=self.task_definition)
 
 
-def get_container_definition(container_name=None, task_definition=None, opts=None):
+def get_container_definition(container_name: Optional[str] = None,
+                             task_definition: Optional[str] = None,
+                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetContainerDefinitionResult:
     """
     The ECS container definition data source allows access to details of
     a specific container within an AWS ECS service.

@@ -5,8 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetSubnetIdsResult',
+    'AwaitableGetSubnetIdsResult',
+    'get_subnet_ids',
+]
 
 
 class GetSubnetIdsResult:
@@ -50,7 +58,10 @@ class AwaitableGetSubnetIdsResult(GetSubnetIdsResult):
             vpc_id=self.vpc_id)
 
 
-def get_subnet_ids(filters=None, tags=None, vpc_id=None, opts=None):
+def get_subnet_ids(filters: Optional[List[pulumi.InputType['GetSubnetIdsFilterArgs']]] = None,
+                   tags: Optional[Mapping[str, str]] = None,
+                   vpc_id: Optional[str] = None,
+                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSubnetIdsResult:
     """
     `ec2.getSubnetIds` provides a set of ids for a vpc_id
 
@@ -90,18 +101,10 @@ def get_subnet_ids(filters=None, tags=None, vpc_id=None, opts=None):
     ```
 
 
-    :param list filters: Custom filter block as described below.
-    :param dict tags: A map of tags, each pair of which must exactly match
+    :param List[pulumi.InputType['GetSubnetIdsFilterArgs']] filters: Custom filter block as described below.
+    :param Mapping[str, str] tags: A map of tags, each pair of which must exactly match
            a pair on the desired subnets.
     :param str vpc_id: The VPC ID that you want to filter from.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter by, as defined by
-        [the underlying AWS API](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeSubnets.html).
-        For example, if matching against tag `Name`, use:
-      * `values` (`list`) - Set of values that are accepted for the given field.
-        Subnet IDs will be selected if any one of the given values match.
     """
     __args__ = dict()
     __args__['filters'] = filters

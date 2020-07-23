@@ -5,28 +5,40 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['StaticIp']
 
 
 class StaticIp(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     The ARN of the Lightsail static IP
     """
-    ip_address: pulumi.Output[str]
+
+    ip_address: pulumi.Output[str] = pulumi.property("ipAddress")
     """
     The allocated static IP address
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name for the allocated static IP
     """
-    support_code: pulumi.Output[str]
+
+    support_code: pulumi.Output[str] = pulumi.property("supportCode")
     """
     The support code.
     """
-    def __init__(__self__, resource_name, opts=None, name=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Allocates a static IP address.
 
@@ -73,7 +85,13 @@ class StaticIp(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, ip_address=None, name=None, support_code=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            ip_address: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            support_code: Optional[pulumi.Input[str]] = None) -> 'StaticIp':
         """
         Get an existing StaticIp resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -101,3 +119,4 @@ class StaticIp(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetBucketResult',
+    'AwaitableGetBucketResult',
+    'get_bucket',
+]
 
 
 class GetBucketResult:
@@ -84,7 +90,8 @@ class AwaitableGetBucketResult(GetBucketResult):
             website_endpoint=self.website_endpoint)
 
 
-def get_bucket(bucket=None, opts=None):
+def get_bucket(bucket: Optional[str] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBucketResult:
     """
     Provides details about a specific S3 bucket.
 

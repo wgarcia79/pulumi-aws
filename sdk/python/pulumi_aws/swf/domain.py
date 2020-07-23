@@ -5,36 +5,54 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['Domain']
 
 
 class Domain(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     Amazon Resource Name (ARN)
     """
-    description: pulumi.Output[str]
+
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     The domain description.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name of the domain. If omitted, this provider will assign a random, unique name.
     """
-    name_prefix: pulumi.Output[str]
+
+    name_prefix: pulumi.Output[Optional[str]] = pulumi.property("namePrefix")
     """
     Creates a unique name beginning with the specified prefix. Conflicts with `name`.
     """
-    tags: pulumi.Output[dict]
+
+    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
     """
     Key-value map of resource tags
     """
-    workflow_execution_retention_period_in_days: pulumi.Output[str]
+
+    workflow_execution_retention_period_in_days: pulumi.Output[str] = pulumi.property("workflowExecutionRetentionPeriodInDays")
     """
     Length of time that SWF will continue to retain information about the workflow execution after the workflow execution is complete, must be between 0 and 90 days.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, name=None, name_prefix=None, tags=None, workflow_execution_retention_period_in_days=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 name_prefix: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 workflow_execution_retention_period_in_days: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides an SWF Domain resource.
 
@@ -48,7 +66,7 @@ class Domain(pulumi.CustomResource):
 
         foo = aws.swf.Domain("foo",
             description="SWF Domain",
-            workflow_execution_retention_period_in_days=30)
+            workflow_execution_retention_period_in_days="30")
         ```
 
         :param str resource_name: The name of the resource.
@@ -56,7 +74,7 @@ class Domain(pulumi.CustomResource):
         :param pulumi.Input[str] description: The domain description.
         :param pulumi.Input[str] name: The name of the domain. If omitted, this provider will assign a random, unique name.
         :param pulumi.Input[str] name_prefix: Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         :param pulumi.Input[str] workflow_execution_retention_period_in_days: Length of time that SWF will continue to retain information about the workflow execution after the workflow execution is complete, must be between 0 and 90 days.
         """
         if __name__ is not None:
@@ -91,7 +109,15 @@ class Domain(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, description=None, name=None, name_prefix=None, tags=None, workflow_execution_retention_period_in_days=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            name_prefix: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            workflow_execution_retention_period_in_days: Optional[pulumi.Input[str]] = None) -> 'Domain':
         """
         Get an existing Domain resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -103,7 +129,7 @@ class Domain(pulumi.CustomResource):
         :param pulumi.Input[str] description: The domain description.
         :param pulumi.Input[str] name: The name of the domain. If omitted, this provider will assign a random, unique name.
         :param pulumi.Input[str] name_prefix: Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         :param pulumi.Input[str] workflow_execution_retention_period_in_days: Length of time that SWF will continue to retain information about the workflow execution after the workflow execution is complete, must be between 0 and 90 days.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -123,3 +149,4 @@ class Domain(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

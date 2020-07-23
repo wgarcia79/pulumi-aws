@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetTargetGroupResult',
+    'AwaitableGetTargetGroupResult',
+    'get_target_group',
+]
 
 warnings.warn("aws.applicationloadbalancing.getTargetGroup has been deprecated in favor of aws.alb.getTargetGroup", DeprecationWarning)
 
@@ -92,7 +99,10 @@ class AwaitableGetTargetGroupResult(GetTargetGroupResult):
             vpc_id=self.vpc_id)
 
 
-def get_target_group(arn=None, name=None, tags=None, opts=None):
+def get_target_group(arn: Optional[str] = None,
+                     name: Optional[str] = None,
+                     tags: Optional[Mapping[str, str]] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTargetGroupResult:
     """
     > **Note:** `alb.TargetGroup` is known as `lb.TargetGroup`. The functionality is identical.
 

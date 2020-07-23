@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetVpcLinkResult',
+    'AwaitableGetVpcLinkResult',
+    'get_vpc_link',
+]
 
 
 class GetVpcLinkResult:
@@ -70,7 +76,9 @@ class AwaitableGetVpcLinkResult(GetVpcLinkResult):
             target_arns=self.target_arns)
 
 
-def get_vpc_link(name=None, tags=None, opts=None):
+def get_vpc_link(name: Optional[str] = None,
+                 tags: Optional[Mapping[str, str]] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcLinkResult:
     """
     Use this data source to get the id of a VPC Link in
     API Gateway. To fetch the VPC Link you must provide a name to match against.
@@ -89,7 +97,7 @@ def get_vpc_link(name=None, tags=None, opts=None):
 
     :param str name: The name of the API Gateway VPC Link to look up. If no API Gateway VPC Link is found with this name, an error will be returned. 
            If multiple API Gateway VPC Links are found with this name, an error will be returned.
-    :param dict tags: Key-value map of resource tags
+    :param Mapping[str, str] tags: Key-value map of resource tags
     """
     __args__ = dict()
     __args__['name'] = name

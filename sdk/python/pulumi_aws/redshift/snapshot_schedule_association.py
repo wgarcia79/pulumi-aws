@@ -5,20 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['SnapshotScheduleAssociation']
 
 
 class SnapshotScheduleAssociation(pulumi.CustomResource):
-    cluster_identifier: pulumi.Output[str]
+    cluster_identifier: pulumi.Output[str] = pulumi.property("clusterIdentifier")
     """
     The cluster identifier.
     """
-    schedule_identifier: pulumi.Output[str]
+
+    schedule_identifier: pulumi.Output[str] = pulumi.property("scheduleIdentifier")
     """
     The snapshot schedule identifier.
     """
-    def __init__(__self__, resource_name, opts=None, cluster_identifier=None, schedule_identifier=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 cluster_identifier: Optional[pulumi.Input[str]] = None,
+                 schedule_identifier: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         ## Example Usage
 
@@ -76,7 +87,11 @@ class SnapshotScheduleAssociation(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, cluster_identifier=None, schedule_identifier=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cluster_identifier: Optional[pulumi.Input[str]] = None,
+            schedule_identifier: Optional[pulumi.Input[str]] = None) -> 'SnapshotScheduleAssociation':
         """
         Get an existing SnapshotScheduleAssociation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -100,3 +115,4 @@ class SnapshotScheduleAssociation(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

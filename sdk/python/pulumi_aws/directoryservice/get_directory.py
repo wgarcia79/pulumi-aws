@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetDirectoryResult',
+    'AwaitableGetDirectoryResult',
+    'get_directory',
+]
 
 
 class GetDirectoryResult:
@@ -127,7 +134,9 @@ class AwaitableGetDirectoryResult(GetDirectoryResult):
             vpc_settings=self.vpc_settings)
 
 
-def get_directory(directory_id=None, tags=None, opts=None):
+def get_directory(directory_id: Optional[str] = None,
+                  tags: Optional[Mapping[str, str]] = None,
+                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDirectoryResult:
     """
     Get attributes of AWS Directory Service directory (SimpleAD, Managed AD, AD Connector). It's especially useful to refer AWS Managed AD or on-premise AD in AD Connector configuration.
 
@@ -142,7 +151,7 @@ def get_directory(directory_id=None, tags=None, opts=None):
 
 
     :param str directory_id: The ID of the directory.
-    :param dict tags: A map of tags assigned to the directory/connector.
+    :param Mapping[str, str] tags: A map of tags assigned to the directory/connector.
     """
     __args__ = dict()
     __args__['directoryId'] = directory_id

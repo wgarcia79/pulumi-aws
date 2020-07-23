@@ -5,8 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetResourceShareResult',
+    'AwaitableGetResourceShareResult',
+    'get_resource_share',
+]
 
 
 class GetResourceShareResult:
@@ -71,7 +79,11 @@ class AwaitableGetResourceShareResult(GetResourceShareResult):
             tags=self.tags)
 
 
-def get_resource_share(filters=None, name=None, resource_owner=None, tags=None, opts=None):
+def get_resource_share(filters: Optional[List[pulumi.InputType['GetResourceShareFilterArgs']]] = None,
+                       name: Optional[str] = None,
+                       resource_owner: Optional[str] = None,
+                       tags: Optional[Mapping[str, str]] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetResourceShareResult:
     """
     `ram.ResourceShare` Retrieve information about a RAM Resource Share.
 
@@ -99,15 +111,10 @@ def get_resource_share(filters=None, name=None, resource_owner=None, tags=None, 
     ```
 
 
-    :param list filters: A filter used to scope the list e.g. by tags. See [related docs] (https://docs.aws.amazon.com/ram/latest/APIReference/API_TagFilter.html).
+    :param List[pulumi.InputType['GetResourceShareFilterArgs']] filters: A filter used to scope the list e.g. by tags. See [related docs] (https://docs.aws.amazon.com/ram/latest/APIReference/API_TagFilter.html).
     :param str name: The name of the tag key to filter on.
     :param str resource_owner: The owner of the resource share. Valid values are SELF or OTHER-ACCOUNTS
-    :param dict tags: The Tags attached to the RAM share
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the tag key to filter on.
-      * `values` (`list`) - The value of the tag key.
+    :param Mapping[str, str] tags: The Tags attached to the RAM share
     """
     __args__ = dict()
     __args__['filters'] = filters

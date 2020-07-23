@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetVaultResult',
+    'AwaitableGetVaultResult',
+    'get_vault',
+]
 
 
 class GetVaultResult:
@@ -63,7 +69,9 @@ class AwaitableGetVaultResult(GetVaultResult):
             tags=self.tags)
 
 
-def get_vault(name=None, tags=None, opts=None):
+def get_vault(name: Optional[str] = None,
+              tags: Optional[Mapping[str, str]] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVaultResult:
     """
     Use this data source to get information on an existing backup vault.
 
@@ -78,7 +86,7 @@ def get_vault(name=None, tags=None, opts=None):
 
 
     :param str name: The name of the backup vault.
-    :param dict tags: Metadata that you can assign to help organize the resources that you create.
+    :param Mapping[str, str] tags: Metadata that you can assign to help organize the resources that you create.
     """
     __args__ = dict()
     __args__['name'] = name

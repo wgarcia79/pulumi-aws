@@ -5,47 +5,60 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['VirtualService']
 
 
 class VirtualService(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     The ARN of the virtual service.
     """
-    created_date: pulumi.Output[str]
+
+    created_date: pulumi.Output[str] = pulumi.property("createdDate")
     """
     The creation date of the virtual service.
     """
-    last_updated_date: pulumi.Output[str]
+
+    last_updated_date: pulumi.Output[str] = pulumi.property("lastUpdatedDate")
     """
     The last update date of the virtual service.
     """
-    mesh_name: pulumi.Output[str]
+
+    mesh_name: pulumi.Output[str] = pulumi.property("meshName")
     """
     The name of the service mesh in which to create the virtual service.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name to use for the virtual service.
     """
-    spec: pulumi.Output[dict]
+
+    spec: pulumi.Output['outputs.VirtualServiceSpec'] = pulumi.property("spec")
     """
     The virtual service specification to apply.
-
-      * `provider` (`dict`) - The App Mesh object that is acting as the provider for a virtual service. You can specify a single virtual node or virtual router.
-        * `virtualNode` (`dict`) - The virtual node associated with a virtual service.
-          * `virtualNodeName` (`str`) - The name of the virtual node that is acting as a service provider.
-
-        * `virtualRouter` (`dict`) - The virtual router associated with a virtual service.
-          * `virtual_router_name` (`str`) - The name of the virtual router that is acting as a service provider.
     """
-    tags: pulumi.Output[dict]
+
+    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
     """
     A map of tags to assign to the resource.
     """
-    def __init__(__self__, resource_name, opts=None, mesh_name=None, name=None, spec=None, tags=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 mesh_name: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 spec: Optional[pulumi.Input[pulumi.InputType['VirtualServiceSpecArgs']]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides an AWS App Mesh virtual service resource.
 
@@ -87,17 +100,8 @@ class VirtualService(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] mesh_name: The name of the service mesh in which to create the virtual service.
         :param pulumi.Input[str] name: The name to use for the virtual service.
-        :param pulumi.Input[dict] spec: The virtual service specification to apply.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
-
-        The **spec** object supports the following:
-
-          * `provider` (`pulumi.Input[dict]`) - The App Mesh object that is acting as the provider for a virtual service. You can specify a single virtual node or virtual router.
-            * `virtualNode` (`pulumi.Input[dict]`) - The virtual node associated with a virtual service.
-              * `virtualNodeName` (`pulumi.Input[str]`) - The name of the virtual node that is acting as a service provider.
-
-            * `virtualRouter` (`pulumi.Input[dict]`) - The virtual router associated with a virtual service.
-              * `virtual_router_name` (`pulumi.Input[str]`) - The name of the virtual router that is acting as a service provider.
+        :param pulumi.Input[pulumi.InputType['VirtualServiceSpecArgs']] spec: The virtual service specification to apply.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -134,7 +138,16 @@ class VirtualService(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, created_date=None, last_updated_date=None, mesh_name=None, name=None, spec=None, tags=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            created_date: Optional[pulumi.Input[str]] = None,
+            last_updated_date: Optional[pulumi.Input[str]] = None,
+            mesh_name: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            spec: Optional[pulumi.Input[pulumi.InputType['VirtualServiceSpecArgs']]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None) -> 'VirtualService':
         """
         Get an existing VirtualService resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -147,17 +160,8 @@ class VirtualService(pulumi.CustomResource):
         :param pulumi.Input[str] last_updated_date: The last update date of the virtual service.
         :param pulumi.Input[str] mesh_name: The name of the service mesh in which to create the virtual service.
         :param pulumi.Input[str] name: The name to use for the virtual service.
-        :param pulumi.Input[dict] spec: The virtual service specification to apply.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
-
-        The **spec** object supports the following:
-
-          * `provider` (`pulumi.Input[dict]`) - The App Mesh object that is acting as the provider for a virtual service. You can specify a single virtual node or virtual router.
-            * `virtualNode` (`pulumi.Input[dict]`) - The virtual node associated with a virtual service.
-              * `virtualNodeName` (`pulumi.Input[str]`) - The name of the virtual node that is acting as a service provider.
-
-            * `virtualRouter` (`pulumi.Input[dict]`) - The virtual router associated with a virtual service.
-              * `virtual_router_name` (`pulumi.Input[str]`) - The name of the virtual router that is acting as a service provider.
+        :param pulumi.Input[pulumi.InputType['VirtualServiceSpecArgs']] spec: The virtual service specification to apply.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -177,3 +181,4 @@ class VirtualService(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

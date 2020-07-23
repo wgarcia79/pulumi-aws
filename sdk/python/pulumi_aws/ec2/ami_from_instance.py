@@ -5,108 +5,123 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['AmiFromInstance']
 
 
 class AmiFromInstance(pulumi.CustomResource):
-    architecture: pulumi.Output[str]
+    architecture: pulumi.Output[str] = pulumi.property("architecture")
     """
     Machine architecture for created instances. Defaults to "x86_64".
     """
-    arn: pulumi.Output[str]
+
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     The ARN of the AMI.
     """
-    description: pulumi.Output[str]
+
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     A longer, human-readable description for the AMI.
     """
-    ebs_block_devices: pulumi.Output[list]
+
+    ebs_block_devices: pulumi.Output[List['outputs.AmiFromInstanceEbsBlockDevice']] = pulumi.property("ebsBlockDevices")
     """
     Nested block describing an EBS block device that should be
     attached to created instances. The structure of this block is described below.
-
-      * `deleteOnTermination` (`bool`) - Boolean controlling whether the EBS volumes created to
-        support each created instance will be deleted once that instance is terminated.
-      * `device_name` (`str`) - The path at which the device is exposed to created instances.
-      * `encrypted` (`bool`) - Boolean controlling whether the created EBS volumes will be encrypted. Can't be used with `snapshot_id`.
-      * `iops` (`float`) - Number of I/O operations per second the
-        created volumes will support.
-      * `snapshot_id` (`str`) - The id of an EBS snapshot that will be used to initialize the created
-        EBS volumes. If set, the `volume_size` attribute must be at least as large as the referenced
-        snapshot.
-      * `volume_size` (`float`) - The size of created volumes in GiB.
-        If `snapshot_id` is set and `volume_size` is omitted then the volume will have the same size
-        as the selected snapshot.
-      * `volumeType` (`str`) - The type of EBS volume to create. Can be one of "standard" (the
-        default), "io1" or "gp2".
     """
-    ena_support: pulumi.Output[bool]
+
+    ena_support: pulumi.Output[bool] = pulumi.property("enaSupport")
     """
     Specifies whether enhanced networking with ENA is enabled. Defaults to `false`.
     """
-    ephemeral_block_devices: pulumi.Output[list]
+
+    ephemeral_block_devices: pulumi.Output[List['outputs.AmiFromInstanceEphemeralBlockDevice']] = pulumi.property("ephemeralBlockDevices")
     """
     Nested block describing an ephemeral block device that
     should be attached to created instances. The structure of this block is described below.
-
-      * `device_name` (`str`) - The path at which the device is exposed to created instances.
-      * `virtualName` (`str`) - A name for the ephemeral device, of the form "ephemeralN" where
-        *N* is a volume number starting from zero.
     """
-    image_location: pulumi.Output[str]
+
+    image_location: pulumi.Output[str] = pulumi.property("imageLocation")
     """
     Path to an S3 object containing an image manifest, e.g. created
     by the `ec2-upload-bundle` command in the EC2 command line tools.
     """
-    kernel_id: pulumi.Output[str]
+
+    kernel_id: pulumi.Output[str] = pulumi.property("kernelId")
     """
     The id of the kernel image (AKI) that will be used as the paravirtual
     kernel in created instances.
     """
-    manage_ebs_snapshots: pulumi.Output[bool]
-    name: pulumi.Output[str]
+
+    manage_ebs_snapshots: pulumi.Output[bool] = pulumi.property("manageEbsSnapshots")
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     A region-unique name for the AMI.
     """
-    ramdisk_id: pulumi.Output[str]
+
+    ramdisk_id: pulumi.Output[str] = pulumi.property("ramdiskId")
     """
     The id of an initrd image (ARI) that will be used when booting the
     created instances.
     """
-    root_device_name: pulumi.Output[str]
+
+    root_device_name: pulumi.Output[str] = pulumi.property("rootDeviceName")
     """
     The name of the root device (for example, `/dev/sda1`, or `/dev/xvda`).
     """
-    root_snapshot_id: pulumi.Output[str]
-    snapshot_without_reboot: pulumi.Output[bool]
+
+    root_snapshot_id: pulumi.Output[str] = pulumi.property("rootSnapshotId")
+
+    snapshot_without_reboot: pulumi.Output[Optional[bool]] = pulumi.property("snapshotWithoutReboot")
     """
     Boolean that overrides the behavior of stopping
     the instance before snapshotting. This is risky since it may cause a snapshot of an
     inconsistent filesystem state, but can be used to avoid downtime if the user otherwise
     guarantees that no filesystem writes will be underway at the time of snapshot.
     """
-    source_instance_id: pulumi.Output[str]
+
+    source_instance_id: pulumi.Output[str] = pulumi.property("sourceInstanceId")
     """
     The id of the instance to use as the basis of the AMI.
     """
-    sriov_net_support: pulumi.Output[str]
+
+    sriov_net_support: pulumi.Output[str] = pulumi.property("sriovNetSupport")
     """
     When set to "simple" (the default), enables enhanced networking
     for created instances. No other value is supported at this time.
     """
-    tags: pulumi.Output[dict]
+
+    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
     """
     A map of tags to assign to the resource.
     """
-    virtualization_type: pulumi.Output[str]
+
+    virtualization_type: pulumi.Output[str] = pulumi.property("virtualizationType")
     """
     Keyword to choose what virtualization mode created instances
     will use. Can be either "paravirtual" (the default) or "hvm". The choice of virtualization type
     changes the set of further arguments that are required, as described below.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, ebs_block_devices=None, ephemeral_block_devices=None, name=None, snapshot_without_reboot=None, source_instance_id=None, tags=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 ebs_block_devices: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['AmiFromInstanceEbsBlockDeviceArgs']]]]] = None,
+                 ephemeral_block_devices: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['AmiFromInstanceEphemeralBlockDeviceArgs']]]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 snapshot_without_reboot: Optional[pulumi.Input[bool]] = None,
+                 source_instance_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         The "AMI from instance" resource allows the creation of an Amazon Machine
         Image (AMI) modelled after an existing EBS-backed EC2 instance.
@@ -138,9 +153,9 @@ class AmiFromInstance(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: A longer, human-readable description for the AMI.
-        :param pulumi.Input[list] ebs_block_devices: Nested block describing an EBS block device that should be
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['AmiFromInstanceEbsBlockDeviceArgs']]]] ebs_block_devices: Nested block describing an EBS block device that should be
                attached to created instances. The structure of this block is described below.
-        :param pulumi.Input[list] ephemeral_block_devices: Nested block describing an ephemeral block device that
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['AmiFromInstanceEphemeralBlockDeviceArgs']]]] ephemeral_block_devices: Nested block describing an ephemeral block device that
                should be attached to created instances. The structure of this block is described below.
         :param pulumi.Input[str] name: A region-unique name for the AMI.
         :param pulumi.Input[bool] snapshot_without_reboot: Boolean that overrides the behavior of stopping
@@ -148,30 +163,7 @@ class AmiFromInstance(pulumi.CustomResource):
                inconsistent filesystem state, but can be used to avoid downtime if the user otherwise
                guarantees that no filesystem writes will be underway at the time of snapshot.
         :param pulumi.Input[str] source_instance_id: The id of the instance to use as the basis of the AMI.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
-
-        The **ebs_block_devices** object supports the following:
-
-          * `deleteOnTermination` (`pulumi.Input[bool]`) - Boolean controlling whether the EBS volumes created to
-            support each created instance will be deleted once that instance is terminated.
-          * `device_name` (`pulumi.Input[str]`) - The path at which the device is exposed to created instances.
-          * `encrypted` (`pulumi.Input[bool]`) - Boolean controlling whether the created EBS volumes will be encrypted. Can't be used with `snapshot_id`.
-          * `iops` (`pulumi.Input[float]`) - Number of I/O operations per second the
-            created volumes will support.
-          * `snapshot_id` (`pulumi.Input[str]`) - The id of an EBS snapshot that will be used to initialize the created
-            EBS volumes. If set, the `volume_size` attribute must be at least as large as the referenced
-            snapshot.
-          * `volume_size` (`pulumi.Input[float]`) - The size of created volumes in GiB.
-            If `snapshot_id` is set and `volume_size` is omitted then the volume will have the same size
-            as the selected snapshot.
-          * `volumeType` (`pulumi.Input[str]`) - The type of EBS volume to create. Can be one of "standard" (the
-            default), "io1" or "gp2".
-
-        The **ephemeral_block_devices** object supports the following:
-
-          * `device_name` (`pulumi.Input[str]`) - The path at which the device is exposed to created instances.
-          * `virtualName` (`pulumi.Input[str]`) - A name for the ephemeral device, of the form "ephemeralN" where
-            *N* is a volume number starting from zero.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -217,7 +209,27 @@ class AmiFromInstance(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, architecture=None, arn=None, description=None, ebs_block_devices=None, ena_support=None, ephemeral_block_devices=None, image_location=None, kernel_id=None, manage_ebs_snapshots=None, name=None, ramdisk_id=None, root_device_name=None, root_snapshot_id=None, snapshot_without_reboot=None, source_instance_id=None, sriov_net_support=None, tags=None, virtualization_type=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            architecture: Optional[pulumi.Input[str]] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            ebs_block_devices: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['AmiFromInstanceEbsBlockDeviceArgs']]]]] = None,
+            ena_support: Optional[pulumi.Input[bool]] = None,
+            ephemeral_block_devices: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['AmiFromInstanceEphemeralBlockDeviceArgs']]]]] = None,
+            image_location: Optional[pulumi.Input[str]] = None,
+            kernel_id: Optional[pulumi.Input[str]] = None,
+            manage_ebs_snapshots: Optional[pulumi.Input[bool]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            ramdisk_id: Optional[pulumi.Input[str]] = None,
+            root_device_name: Optional[pulumi.Input[str]] = None,
+            root_snapshot_id: Optional[pulumi.Input[str]] = None,
+            snapshot_without_reboot: Optional[pulumi.Input[bool]] = None,
+            source_instance_id: Optional[pulumi.Input[str]] = None,
+            sriov_net_support: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            virtualization_type: Optional[pulumi.Input[str]] = None) -> 'AmiFromInstance':
         """
         Get an existing AmiFromInstance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -228,10 +240,10 @@ class AmiFromInstance(pulumi.CustomResource):
         :param pulumi.Input[str] architecture: Machine architecture for created instances. Defaults to "x86_64".
         :param pulumi.Input[str] arn: The ARN of the AMI.
         :param pulumi.Input[str] description: A longer, human-readable description for the AMI.
-        :param pulumi.Input[list] ebs_block_devices: Nested block describing an EBS block device that should be
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['AmiFromInstanceEbsBlockDeviceArgs']]]] ebs_block_devices: Nested block describing an EBS block device that should be
                attached to created instances. The structure of this block is described below.
         :param pulumi.Input[bool] ena_support: Specifies whether enhanced networking with ENA is enabled. Defaults to `false`.
-        :param pulumi.Input[list] ephemeral_block_devices: Nested block describing an ephemeral block device that
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['AmiFromInstanceEphemeralBlockDeviceArgs']]]] ephemeral_block_devices: Nested block describing an ephemeral block device that
                should be attached to created instances. The structure of this block is described below.
         :param pulumi.Input[str] image_location: Path to an S3 object containing an image manifest, e.g. created
                by the `ec2-upload-bundle` command in the EC2 command line tools.
@@ -248,33 +260,10 @@ class AmiFromInstance(pulumi.CustomResource):
         :param pulumi.Input[str] source_instance_id: The id of the instance to use as the basis of the AMI.
         :param pulumi.Input[str] sriov_net_support: When set to "simple" (the default), enables enhanced networking
                for created instances. No other value is supported at this time.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[str] virtualization_type: Keyword to choose what virtualization mode created instances
                will use. Can be either "paravirtual" (the default) or "hvm". The choice of virtualization type
                changes the set of further arguments that are required, as described below.
-
-        The **ebs_block_devices** object supports the following:
-
-          * `deleteOnTermination` (`pulumi.Input[bool]`) - Boolean controlling whether the EBS volumes created to
-            support each created instance will be deleted once that instance is terminated.
-          * `device_name` (`pulumi.Input[str]`) - The path at which the device is exposed to created instances.
-          * `encrypted` (`pulumi.Input[bool]`) - Boolean controlling whether the created EBS volumes will be encrypted. Can't be used with `snapshot_id`.
-          * `iops` (`pulumi.Input[float]`) - Number of I/O operations per second the
-            created volumes will support.
-          * `snapshot_id` (`pulumi.Input[str]`) - The id of an EBS snapshot that will be used to initialize the created
-            EBS volumes. If set, the `volume_size` attribute must be at least as large as the referenced
-            snapshot.
-          * `volume_size` (`pulumi.Input[float]`) - The size of created volumes in GiB.
-            If `snapshot_id` is set and `volume_size` is omitted then the volume will have the same size
-            as the selected snapshot.
-          * `volumeType` (`pulumi.Input[str]`) - The type of EBS volume to create. Can be one of "standard" (the
-            default), "io1" or "gp2".
-
-        The **ephemeral_block_devices** object supports the following:
-
-          * `device_name` (`pulumi.Input[str]`) - The path at which the device is exposed to created instances.
-          * `virtualName` (`pulumi.Input[str]`) - A name for the ephemeral device, of the form "ephemeralN" where
-            *N* is a volume number starting from zero.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -305,3 +294,4 @@ class AmiFromInstance(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

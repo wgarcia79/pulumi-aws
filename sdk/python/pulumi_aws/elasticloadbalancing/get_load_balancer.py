@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetLoadBalancerResult',
+    'AwaitableGetLoadBalancerResult',
+    'get_load_balancer',
+]
 
 warnings.warn("aws.elasticloadbalancing.getLoadBalancer has been deprecated in favor of aws.elb.getLoadBalancer", DeprecationWarning)
 
@@ -108,7 +115,9 @@ class AwaitableGetLoadBalancerResult(GetLoadBalancerResult):
             zone_id=self.zone_id)
 
 
-def get_load_balancer(name=None, tags=None, opts=None):
+def get_load_balancer(name: Optional[str] = None,
+                      tags: Optional[Mapping[str, str]] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLoadBalancerResult:
     """
     Provides information about a "classic" Elastic Load Balancer (ELB).
     See `LB` Data Source if you are looking for "v2"

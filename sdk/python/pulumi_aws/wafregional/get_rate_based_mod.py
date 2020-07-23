@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetRateBasedModResult',
+    'AwaitableGetRateBasedModResult',
+    'get_rate_based_mod',
+]
 
 
 class GetRateBasedModResult:
@@ -35,7 +41,8 @@ class AwaitableGetRateBasedModResult(GetRateBasedModResult):
             name=self.name)
 
 
-def get_rate_based_mod(name=None, opts=None):
+def get_rate_based_mod(name: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRateBasedModResult:
     """
     `wafregional.RateBasedRule` Retrieves a WAF Regional Rate Based Rule Resource Id.
 

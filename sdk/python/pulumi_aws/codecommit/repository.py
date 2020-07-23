@@ -5,44 +5,63 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['Repository']
 
 
 class Repository(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     The ARN of the repository
     """
-    clone_url_http: pulumi.Output[str]
+
+    clone_url_http: pulumi.Output[str] = pulumi.property("cloneUrlHttp")
     """
     The URL to use for cloning the repository over HTTPS.
     """
-    clone_url_ssh: pulumi.Output[str]
+
+    clone_url_ssh: pulumi.Output[str] = pulumi.property("cloneUrlSsh")
     """
     The URL to use for cloning the repository over SSH.
     """
-    default_branch: pulumi.Output[str]
+
+    default_branch: pulumi.Output[Optional[str]] = pulumi.property("defaultBranch")
     """
     The default branch of the repository. The branch specified here needs to exist.
     """
-    description: pulumi.Output[str]
+
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     The description of the repository. This needs to be less than 1000 characters
     """
-    repository_id: pulumi.Output[str]
+
+    repository_id: pulumi.Output[str] = pulumi.property("repositoryId")
     """
     The ID of the repository
     """
-    repository_name: pulumi.Output[str]
+
+    repository_name: pulumi.Output[str] = pulumi.property("repositoryName")
     """
     The name for the repository. This needs to be less than 100 characters.
     """
-    tags: pulumi.Output[dict]
+
+    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
     """
     Key-value map of resource tags
     """
-    def __init__(__self__, resource_name, opts=None, default_branch=None, description=None, repository_name=None, tags=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 default_branch: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 repository_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a CodeCommit Repository Resource.
 
@@ -62,7 +81,7 @@ class Repository(pulumi.CustomResource):
         :param pulumi.Input[str] default_branch: The default branch of the repository. The branch specified here needs to exist.
         :param pulumi.Input[str] description: The description of the repository. This needs to be less than 1000 characters
         :param pulumi.Input[str] repository_name: The name for the repository. This needs to be less than 100 characters.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -98,7 +117,17 @@ class Repository(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, clone_url_http=None, clone_url_ssh=None, default_branch=None, description=None, repository_id=None, repository_name=None, tags=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            clone_url_http: Optional[pulumi.Input[str]] = None,
+            clone_url_ssh: Optional[pulumi.Input[str]] = None,
+            default_branch: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            repository_id: Optional[pulumi.Input[str]] = None,
+            repository_name: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None) -> 'Repository':
         """
         Get an existing Repository resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -113,7 +142,7 @@ class Repository(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the repository. This needs to be less than 1000 characters
         :param pulumi.Input[str] repository_id: The ID of the repository
         :param pulumi.Input[str] repository_name: The name for the repository. This needs to be less than 100 characters.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -134,3 +163,4 @@ class Repository(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

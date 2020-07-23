@@ -5,8 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetInternetGatewayResult',
+    'AwaitableGetInternetGatewayResult',
+    'get_internet_gateway',
+]
 
 
 class GetInternetGatewayResult:
@@ -61,7 +69,10 @@ class AwaitableGetInternetGatewayResult(GetInternetGatewayResult):
             tags=self.tags)
 
 
-def get_internet_gateway(filters=None, internet_gateway_id=None, tags=None, opts=None):
+def get_internet_gateway(filters: Optional[List[pulumi.InputType['GetInternetGatewayFilterArgs']]] = None,
+                         internet_gateway_id: Optional[str] = None,
+                         tags: Optional[Mapping[str, str]] = None,
+                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInternetGatewayResult:
     """
     `ec2.InternetGateway` provides details about a specific Internet Gateway.
 
@@ -80,17 +91,10 @@ def get_internet_gateway(filters=None, internet_gateway_id=None, tags=None, opts
     ```
 
 
-    :param list filters: Custom filter block as described below.
+    :param List[pulumi.InputType['GetInternetGatewayFilterArgs']] filters: Custom filter block as described below.
     :param str internet_gateway_id: The id of the specific Internet Gateway to retrieve.
-    :param dict tags: A map of tags, each pair of which must exactly match
+    :param Mapping[str, str] tags: A map of tags, each pair of which must exactly match
            a pair on the desired Internet Gateway.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter by, as defined by
-        [the underlying AWS API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInternetGateways.html).
-      * `values` (`list`) - Set of values that are accepted for the given field.
-        An Internet Gateway will be selected if any one of the given values matches.
     """
     __args__ = dict()
     __args__['filters'] = filters

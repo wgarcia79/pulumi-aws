@@ -5,8 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetVolumeResult',
+    'AwaitableGetVolumeResult',
+    'get_volume',
+]
 
 
 class GetVolumeResult:
@@ -123,7 +131,10 @@ class AwaitableGetVolumeResult(GetVolumeResult):
             volume_type=self.volume_type)
 
 
-def get_volume(filters=None, most_recent=None, tags=None, opts=None):
+def get_volume(filters: Optional[List[pulumi.InputType['GetVolumeFilterArgs']]] = None,
+               most_recent: Optional[bool] = None,
+               tags: Optional[Mapping[str, str]] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVolumeResult:
     """
     Use this data source to get information about an EBS volume for use in other
     resources.
@@ -148,17 +159,12 @@ def get_volume(filters=None, most_recent=None, tags=None, opts=None):
     ```
 
 
-    :param list filters: One or more name/value pairs to filter off of. There are
+    :param List[pulumi.InputType['GetVolumeFilterArgs']] filters: One or more name/value pairs to filter off of. There are
            several valid keys, for a full reference, check out
            [describe-volumes in the AWS CLI reference][1].
     :param bool most_recent: If more than one result is returned, use the most
            recent Volume.
-    :param dict tags: A map of tags for the resource.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`)
-      * `values` (`list`)
+    :param Mapping[str, str] tags: A map of tags for the resource.
     """
     __args__ = dict()
     __args__['filters'] = filters

@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetServerCertificateResult',
+    'AwaitableGetServerCertificateResult',
+    'get_server_certificate',
+]
 
 
 class GetServerCertificateResult:
@@ -71,7 +77,11 @@ class AwaitableGetServerCertificateResult(GetServerCertificateResult):
             upload_date=self.upload_date)
 
 
-def get_server_certificate(latest=None, name=None, name_prefix=None, path_prefix=None, opts=None):
+def get_server_certificate(latest: Optional[bool] = None,
+                           name: Optional[str] = None,
+                           name_prefix: Optional[str] = None,
+                           path_prefix: Optional[str] = None,
+                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServerCertificateResult:
     """
     Use this data source to lookup information about IAM Server Certificates.
 

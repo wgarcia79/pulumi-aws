@@ -5,28 +5,33 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['AccessKey']
 
 
 class AccessKey(pulumi.CustomResource):
-    encrypted_secret: pulumi.Output[str]
+    encrypted_secret: pulumi.Output[str] = pulumi.property("encryptedSecret")
     """
     The encrypted secret, base64 encoded, if `pgp_key` was specified.
     > **NOTE:** The encrypted secret may be decrypted using the command line,
     """
-    key_fingerprint: pulumi.Output[str]
+
+    key_fingerprint: pulumi.Output[str] = pulumi.property("keyFingerprint")
     """
     The fingerprint of the PGP key used to encrypt
     the secret
     """
-    pgp_key: pulumi.Output[str]
+
+    pgp_key: pulumi.Output[Optional[str]] = pulumi.property("pgpKey")
     """
     Either a base-64 encoded PGP public key, or a
     keybase username in the form `keybase:some_person_that_exists`, for use
     in the `encrypted_secret` output attribute.
     """
-    secret: pulumi.Output[str]
+
+    secret: pulumi.Output[str] = pulumi.property("secret")
     """
     The secret access key. Note that this will be written
     to the state file. If you use this, please protect your backend state file
@@ -34,28 +39,41 @@ class AccessKey(pulumi.CustomResource):
     prevent the secret from being stored in plaintext, at the cost of preventing
     the use of the secret key in automation.
     """
-    ses_smtp_password: pulumi.Output[str]
+
+    ses_smtp_password: pulumi.Output[str] = pulumi.property("sesSmtpPassword")
     """
     **DEPRECATED** The secret access key converted into an SES SMTP
     password by applying [AWS's documented conversion
     """
-    ses_smtp_password_v4: pulumi.Output[str]
+
+    ses_smtp_password_v4: pulumi.Output[str] = pulumi.property("sesSmtpPasswordV4")
     """
     The secret access key converted into an SES SMTP
     password by applying [AWS's documented Sigv4 conversion
     algorithm](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/smtp-credentials.html#smtp-credentials-convert).
     As SigV4 is region specific, valid Provider regions are `ap-south-1`, `ap-southeast-2`, `eu-central-1`, `eu-west-1`, `us-east-1` and `us-west-2`. See current [AWS SES regions](https://docs.aws.amazon.com/general/latest/gr/rande.html#ses_region)
     """
-    status: pulumi.Output[str]
+
+    status: pulumi.Output[str] = pulumi.property("status")
     """
     The access key status to apply. Defaults to `Active`.
     Valid values are `Active` and `Inactive`.
     """
-    user: pulumi.Output[str]
+
+    user: pulumi.Output[str] = pulumi.property("user")
     """
     The IAM user to associate with this access key.
     """
-    def __init__(__self__, resource_name, opts=None, pgp_key=None, status=None, user=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 pgp_key: Optional[pulumi.Input[str]] = None,
+                 status: Optional[pulumi.Input[str]] = None,
+                 user: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides an IAM access key. This is a set of credentials that allow API requests to be made as an IAM user.
 
@@ -140,7 +158,17 @@ class AccessKey(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, encrypted_secret=None, key_fingerprint=None, pgp_key=None, secret=None, ses_smtp_password=None, ses_smtp_password_v4=None, status=None, user=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            encrypted_secret: Optional[pulumi.Input[str]] = None,
+            key_fingerprint: Optional[pulumi.Input[str]] = None,
+            pgp_key: Optional[pulumi.Input[str]] = None,
+            secret: Optional[pulumi.Input[str]] = None,
+            ses_smtp_password: Optional[pulumi.Input[str]] = None,
+            ses_smtp_password_v4: Optional[pulumi.Input[str]] = None,
+            status: Optional[pulumi.Input[str]] = None,
+            user: Optional[pulumi.Input[str]] = None) -> 'AccessKey':
         """
         Get an existing AccessKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -189,3 +217,4 @@ class AccessKey(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,28 +5,42 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['ReceiptFilter']
 
 
 class ReceiptFilter(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     The SES receipt filter ARN.
     """
-    cidr: pulumi.Output[str]
+
+    cidr: pulumi.Output[str] = pulumi.property("cidr")
     """
     The IP address or address range to filter, in CIDR notation
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name of the filter
     """
-    policy: pulumi.Output[str]
+
+    policy: pulumi.Output[str] = pulumi.property("policy")
     """
     Block or Allow
     """
-    def __init__(__self__, resource_name, opts=None, cidr=None, name=None, policy=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 cidr: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 policy: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides an SES receipt filter resource
 
@@ -79,7 +93,13 @@ class ReceiptFilter(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, cidr=None, name=None, policy=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            cidr: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            policy: Optional[pulumi.Input[str]] = None) -> 'ReceiptFilter':
         """
         Get an existing ReceiptFilter resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -107,3 +127,4 @@ class ReceiptFilter(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,8 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetInstancesResult',
+    'AwaitableGetInstancesResult',
+    'get_instances',
+]
 
 
 class GetInstancesResult:
@@ -64,7 +72,10 @@ class AwaitableGetInstancesResult(GetInstancesResult):
             public_ips=self.public_ips)
 
 
-def get_instances(filters=None, instance_state_names=None, instance_tags=None, opts=None):
+def get_instances(filters: Optional[List[pulumi.InputType['GetInstancesFilterArgs']]] = None,
+                  instance_state_names: Optional[List[str]] = None,
+                  instance_tags: Optional[Mapping[str, str]] = None,
+                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstancesResult:
     """
     Use this data source to get IDs or IPs of Amazon EC2 instances to be referenced elsewhere,
     e.g. to allow easier migration from another management solution
@@ -97,17 +108,12 @@ def get_instances(filters=None, instance_state_names=None, instance_tags=None, o
     ```
 
 
-    :param list filters: One or more name/value pairs to use as filters. There are
+    :param List[pulumi.InputType['GetInstancesFilterArgs']] filters: One or more name/value pairs to use as filters. There are
            several valid keys, for a full reference, check out
            [describe-instances in the AWS CLI reference][1].
-    :param list instance_state_names: A list of instance states that should be applicable to the desired instances. The permitted values are: `pending, running, shutting-down, stopped, stopping, terminated`. The default value is `running`.
-    :param dict instance_tags: A map of tags, each pair of which must
+    :param List[str] instance_state_names: A list of instance states that should be applicable to the desired instances. The permitted values are: `pending, running, shutting-down, stopped, stopping, terminated`. The default value is `running`.
+    :param Mapping[str, str] instance_tags: A map of tags, each pair of which must
            exactly match a pair on desired instances.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`)
-      * `values` (`list`)
     """
     __args__ = dict()
     __args__['filters'] = filters

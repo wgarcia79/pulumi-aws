@@ -5,66 +5,78 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['AccessPoint']
 
 
 class AccessPoint(pulumi.CustomResource):
-    account_id: pulumi.Output[str]
+    account_id: pulumi.Output[str] = pulumi.property("accountId")
     """
     The AWS account ID for the owner of the bucket for which you want to create an access point. Defaults to automatically determined account ID of the provider.
     """
-    arn: pulumi.Output[str]
+
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     Amazon Resource Name (ARN) of the S3 Access Point.
     """
-    bucket: pulumi.Output[str]
+
+    bucket: pulumi.Output[str] = pulumi.property("bucket")
     """
     The name of the bucket that you want to associate this access point with.
     """
-    domain_name: pulumi.Output[str]
+
+    domain_name: pulumi.Output[str] = pulumi.property("domainName")
     """
     The DNS domain name of the S3 Access Point in the format _`name`_-_`account_id`_.s3-accesspoint._region_.amazonaws.com.
     Note: S3 access points only support secure access by HTTPS. HTTP isn't supported.
     """
-    has_public_access_policy: pulumi.Output[bool]
+
+    has_public_access_policy: pulumi.Output[bool] = pulumi.property("hasPublicAccessPolicy")
     """
     Indicates whether this access point currently has a policy that allows public access.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name you want to assign to this access point.
     """
-    network_origin: pulumi.Output[str]
+
+    network_origin: pulumi.Output[str] = pulumi.property("networkOrigin")
     """
     Indicates whether this access point allows access from the public Internet. Values are `VPC` (the access point doesn't allow access from the public Internet) and `Internet` (the access point allows access from the public Internet, subject to the access point and bucket access policies).
     """
-    policy: pulumi.Output[str]
+
+    policy: pulumi.Output[Optional[str]] = pulumi.property("policy")
     """
     A valid JSON document that specifies the policy that you want to apply to this access point.
     """
-    public_access_block_configuration: pulumi.Output[dict]
+
+    public_access_block_configuration: pulumi.Output[Optional['outputs.AccessPointPublicAccessBlockConfiguration']] = pulumi.property("publicAccessBlockConfiguration")
     """
     Configuration block to manage the `PublicAccessBlock` configuration that you want to apply to this Amazon S3 bucket. You can enable the configuration options in any combination. Detailed below.
-
-      * `block_public_acls` (`bool`) - Whether Amazon S3 should block public ACLs for buckets in this account. Defaults to `true`. Enabling this setting does not affect existing policies or ACLs. When set to `true` causes the following behavior:
-        * PUT Bucket acl and PUT Object acl calls fail if the specified ACL is public.
-        * PUT Object calls fail if the request includes a public ACL.
-        * PUT Bucket calls fail if the request includes a public ACL.
-      * `block_public_policy` (`bool`) - Whether Amazon S3 should block public bucket policies for buckets in this account. Defaults to `true`. Enabling this setting does not affect existing bucket policies. When set to `true` causes Amazon S3 to:
-        * Reject calls to PUT Bucket policy if the specified bucket policy allows public access.
-      * `ignore_public_acls` (`bool`) - Whether Amazon S3 should ignore public ACLs for buckets in this account. Defaults to `true`. Enabling this setting does not affect the persistence of any existing ACLs and doesn't prevent new public ACLs from being set. When set to `true` causes Amazon S3 to:
-        * Ignore all public ACLs on buckets in this account and any objects that they contain.
-      * `restrict_public_buckets` (`bool`) - Whether Amazon S3 should restrict public bucket policies for buckets in this account. Defaults to `true`. Enabling this setting does not affect previously stored bucket policies, except that public and cross-account access within any public bucket policy, including non-public delegation to specific accounts, is blocked. When set to `true`:
-        * Only the bucket owner and AWS Services can access buckets with public policies.
     """
-    vpc_configuration: pulumi.Output[dict]
+
+    vpc_configuration: pulumi.Output[Optional['outputs.AccessPointVpcConfiguration']] = pulumi.property("vpcConfiguration")
     """
     Configuration block to restrict access to this access point to requests from the specified Virtual Private Cloud (VPC). Detailed below.
-
-      * `vpc_id` (`str`) - This access point will only allow connections from the specified VPC ID.
     """
-    def __init__(__self__, resource_name, opts=None, account_id=None, bucket=None, name=None, policy=None, public_access_block_configuration=None, vpc_configuration=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 account_id: Optional[pulumi.Input[str]] = None,
+                 bucket: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 policy: Optional[pulumi.Input[str]] = None,
+                 public_access_block_configuration: Optional[pulumi.Input[pulumi.InputType['AccessPointPublicAccessBlockConfigurationArgs']]] = None,
+                 vpc_configuration: Optional[pulumi.Input[pulumi.InputType['AccessPointVpcConfigurationArgs']]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a resource to manage an S3 Access Point.
 
@@ -99,25 +111,8 @@ class AccessPoint(pulumi.CustomResource):
         :param pulumi.Input[str] bucket: The name of the bucket that you want to associate this access point with.
         :param pulumi.Input[str] name: The name you want to assign to this access point.
         :param pulumi.Input[str] policy: A valid JSON document that specifies the policy that you want to apply to this access point.
-        :param pulumi.Input[dict] public_access_block_configuration: Configuration block to manage the `PublicAccessBlock` configuration that you want to apply to this Amazon S3 bucket. You can enable the configuration options in any combination. Detailed below.
-        :param pulumi.Input[dict] vpc_configuration: Configuration block to restrict access to this access point to requests from the specified Virtual Private Cloud (VPC). Detailed below.
-
-        The **public_access_block_configuration** object supports the following:
-
-          * `block_public_acls` (`pulumi.Input[bool]`) - Whether Amazon S3 should block public ACLs for buckets in this account. Defaults to `true`. Enabling this setting does not affect existing policies or ACLs. When set to `true` causes the following behavior:
-            * PUT Bucket acl and PUT Object acl calls fail if the specified ACL is public.
-            * PUT Object calls fail if the request includes a public ACL.
-            * PUT Bucket calls fail if the request includes a public ACL.
-          * `block_public_policy` (`pulumi.Input[bool]`) - Whether Amazon S3 should block public bucket policies for buckets in this account. Defaults to `true`. Enabling this setting does not affect existing bucket policies. When set to `true` causes Amazon S3 to:
-            * Reject calls to PUT Bucket policy if the specified bucket policy allows public access.
-          * `ignore_public_acls` (`pulumi.Input[bool]`) - Whether Amazon S3 should ignore public ACLs for buckets in this account. Defaults to `true`. Enabling this setting does not affect the persistence of any existing ACLs and doesn't prevent new public ACLs from being set. When set to `true` causes Amazon S3 to:
-            * Ignore all public ACLs on buckets in this account and any objects that they contain.
-          * `restrict_public_buckets` (`pulumi.Input[bool]`) - Whether Amazon S3 should restrict public bucket policies for buckets in this account. Defaults to `true`. Enabling this setting does not affect previously stored bucket policies, except that public and cross-account access within any public bucket policy, including non-public delegation to specific accounts, is blocked. When set to `true`:
-            * Only the bucket owner and AWS Services can access buckets with public policies.
-
-        The **vpc_configuration** object supports the following:
-
-          * `vpc_id` (`pulumi.Input[str]`) - This access point will only allow connections from the specified VPC ID.
+        :param pulumi.Input[pulumi.InputType['AccessPointPublicAccessBlockConfigurationArgs']] public_access_block_configuration: Configuration block to manage the `PublicAccessBlock` configuration that you want to apply to this Amazon S3 bucket. You can enable the configuration options in any combination. Detailed below.
+        :param pulumi.Input[pulumi.InputType['AccessPointVpcConfigurationArgs']] vpc_configuration: Configuration block to restrict access to this access point to requests from the specified Virtual Private Cloud (VPC). Detailed below.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -155,7 +150,19 @@ class AccessPoint(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, account_id=None, arn=None, bucket=None, domain_name=None, has_public_access_policy=None, name=None, network_origin=None, policy=None, public_access_block_configuration=None, vpc_configuration=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            account_id: Optional[pulumi.Input[str]] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            bucket: Optional[pulumi.Input[str]] = None,
+            domain_name: Optional[pulumi.Input[str]] = None,
+            has_public_access_policy: Optional[pulumi.Input[bool]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            network_origin: Optional[pulumi.Input[str]] = None,
+            policy: Optional[pulumi.Input[str]] = None,
+            public_access_block_configuration: Optional[pulumi.Input[pulumi.InputType['AccessPointPublicAccessBlockConfigurationArgs']]] = None,
+            vpc_configuration: Optional[pulumi.Input[pulumi.InputType['AccessPointVpcConfigurationArgs']]] = None) -> 'AccessPoint':
         """
         Get an existing AccessPoint resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -172,25 +179,8 @@ class AccessPoint(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name you want to assign to this access point.
         :param pulumi.Input[str] network_origin: Indicates whether this access point allows access from the public Internet. Values are `VPC` (the access point doesn't allow access from the public Internet) and `Internet` (the access point allows access from the public Internet, subject to the access point and bucket access policies).
         :param pulumi.Input[str] policy: A valid JSON document that specifies the policy that you want to apply to this access point.
-        :param pulumi.Input[dict] public_access_block_configuration: Configuration block to manage the `PublicAccessBlock` configuration that you want to apply to this Amazon S3 bucket. You can enable the configuration options in any combination. Detailed below.
-        :param pulumi.Input[dict] vpc_configuration: Configuration block to restrict access to this access point to requests from the specified Virtual Private Cloud (VPC). Detailed below.
-
-        The **public_access_block_configuration** object supports the following:
-
-          * `block_public_acls` (`pulumi.Input[bool]`) - Whether Amazon S3 should block public ACLs for buckets in this account. Defaults to `true`. Enabling this setting does not affect existing policies or ACLs. When set to `true` causes the following behavior:
-            * PUT Bucket acl and PUT Object acl calls fail if the specified ACL is public.
-            * PUT Object calls fail if the request includes a public ACL.
-            * PUT Bucket calls fail if the request includes a public ACL.
-          * `block_public_policy` (`pulumi.Input[bool]`) - Whether Amazon S3 should block public bucket policies for buckets in this account. Defaults to `true`. Enabling this setting does not affect existing bucket policies. When set to `true` causes Amazon S3 to:
-            * Reject calls to PUT Bucket policy if the specified bucket policy allows public access.
-          * `ignore_public_acls` (`pulumi.Input[bool]`) - Whether Amazon S3 should ignore public ACLs for buckets in this account. Defaults to `true`. Enabling this setting does not affect the persistence of any existing ACLs and doesn't prevent new public ACLs from being set. When set to `true` causes Amazon S3 to:
-            * Ignore all public ACLs on buckets in this account and any objects that they contain.
-          * `restrict_public_buckets` (`pulumi.Input[bool]`) - Whether Amazon S3 should restrict public bucket policies for buckets in this account. Defaults to `true`. Enabling this setting does not affect previously stored bucket policies, except that public and cross-account access within any public bucket policy, including non-public delegation to specific accounts, is blocked. When set to `true`:
-            * Only the bucket owner and AWS Services can access buckets with public policies.
-
-        The **vpc_configuration** object supports the following:
-
-          * `vpc_id` (`pulumi.Input[str]`) - This access point will only allow connections from the specified VPC ID.
+        :param pulumi.Input[pulumi.InputType['AccessPointPublicAccessBlockConfigurationArgs']] public_access_block_configuration: Configuration block to manage the `PublicAccessBlock` configuration that you want to apply to this Amazon S3 bucket. You can enable the configuration options in any combination. Detailed below.
+        :param pulumi.Input[pulumi.InputType['AccessPointVpcConfigurationArgs']] vpc_configuration: Configuration block to restrict access to this access point to requests from the specified Virtual Private Cloud (VPC). Detailed below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -213,3 +203,4 @@ class AccessPoint(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

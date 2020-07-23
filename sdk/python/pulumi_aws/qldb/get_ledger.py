@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetLedgerResult',
+    'AwaitableGetLedgerResult',
+    'get_ledger',
+]
 
 
 class GetLedgerResult:
@@ -49,7 +55,8 @@ class AwaitableGetLedgerResult(GetLedgerResult):
             name=self.name)
 
 
-def get_ledger(name=None, opts=None):
+def get_ledger(name: Optional[str] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLedgerResult:
     """
     Use this data source to fetch information about a Quantum Ledger Database.
 

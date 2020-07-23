@@ -5,40 +5,56 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['Build']
 
 
 class Build(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     Gamelift Build ARN.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     Name of the build
     """
-    operating_system: pulumi.Output[str]
+
+    operating_system: pulumi.Output[str] = pulumi.property("operatingSystem")
     """
     Operating system that the game server binaries are built to run on. e.g. `WINDOWS_2012` or `AMAZON_LINUX`.
     """
-    storage_location: pulumi.Output[dict]
+
+    storage_location: pulumi.Output['outputs.BuildStorageLocation'] = pulumi.property("storageLocation")
     """
     Information indicating where your game build files are stored. See below.
-
-      * `bucket` (`str`) - Name of your S3 bucket.
-      * `key` (`str`) - Name of the zip file containing your build files.
-      * `role_arn` (`str`) - ARN of the access role that allows Amazon GameLift to access your S3 bucket.
     """
-    tags: pulumi.Output[dict]
+
+    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
     """
     Key-value map of resource tags
     """
-    version: pulumi.Output[str]
+
+    version: pulumi.Output[Optional[str]] = pulumi.property("version")
     """
     Version that is associated with this build.
     """
-    def __init__(__self__, resource_name, opts=None, name=None, operating_system=None, storage_location=None, tags=None, version=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 operating_system: Optional[pulumi.Input[str]] = None,
+                 storage_location: Optional[pulumi.Input[pulumi.InputType['BuildStorageLocationArgs']]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 version: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides an Gamelift Build resource.
 
@@ -62,15 +78,9 @@ class Build(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: Name of the build
         :param pulumi.Input[str] operating_system: Operating system that the game server binaries are built to run on. e.g. `WINDOWS_2012` or `AMAZON_LINUX`.
-        :param pulumi.Input[dict] storage_location: Information indicating where your game build files are stored. See below.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
+        :param pulumi.Input[pulumi.InputType['BuildStorageLocationArgs']] storage_location: Information indicating where your game build files are stored. See below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         :param pulumi.Input[str] version: Version that is associated with this build.
-
-        The **storage_location** object supports the following:
-
-          * `bucket` (`pulumi.Input[str]`) - Name of your S3 bucket.
-          * `key` (`pulumi.Input[str]`) - Name of the zip file containing your build files.
-          * `role_arn` (`pulumi.Input[str]`) - ARN of the access role that allows Amazon GameLift to access your S3 bucket.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -106,7 +116,15 @@ class Build(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, name=None, operating_system=None, storage_location=None, tags=None, version=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            operating_system: Optional[pulumi.Input[str]] = None,
+            storage_location: Optional[pulumi.Input[pulumi.InputType['BuildStorageLocationArgs']]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            version: Optional[pulumi.Input[str]] = None) -> 'Build':
         """
         Get an existing Build resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -117,15 +135,9 @@ class Build(pulumi.CustomResource):
         :param pulumi.Input[str] arn: Gamelift Build ARN.
         :param pulumi.Input[str] name: Name of the build
         :param pulumi.Input[str] operating_system: Operating system that the game server binaries are built to run on. e.g. `WINDOWS_2012` or `AMAZON_LINUX`.
-        :param pulumi.Input[dict] storage_location: Information indicating where your game build files are stored. See below.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
+        :param pulumi.Input[pulumi.InputType['BuildStorageLocationArgs']] storage_location: Information indicating where your game build files are stored. See below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         :param pulumi.Input[str] version: Version that is associated with this build.
-
-        The **storage_location** object supports the following:
-
-          * `bucket` (`pulumi.Input[str]`) - Name of your S3 bucket.
-          * `key` (`pulumi.Input[str]`) - Name of the zip file containing your build files.
-          * `role_arn` (`pulumi.Input[str]`) - ARN of the access role that allows Amazon GameLift to access your S3 bucket.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -144,3 +156,4 @@ class Build(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

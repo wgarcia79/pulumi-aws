@@ -5,8 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetLocalGatewayVirtualInterfaceGroupsResult',
+    'AwaitableGetLocalGatewayVirtualInterfaceGroupsResult',
+    'get_local_gateway_virtual_interface_groups',
+]
 
 
 class GetLocalGatewayVirtualInterfaceGroupsResult:
@@ -53,7 +61,9 @@ class AwaitableGetLocalGatewayVirtualInterfaceGroupsResult(GetLocalGatewayVirtua
             tags=self.tags)
 
 
-def get_local_gateway_virtual_interface_groups(filters=None, tags=None, opts=None):
+def get_local_gateway_virtual_interface_groups(filters: Optional[List[pulumi.InputType['GetLocalGatewayVirtualInterfaceGroupsFilterArgs']]] = None,
+                                               tags: Optional[Mapping[str, str]] = None,
+                                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLocalGatewayVirtualInterfaceGroupsResult:
     """
     Provides details about multiple EC2 Local Gateway Virtual Interface Groups, such as identifiers. More information can be found in the [Outposts User Guide](https://docs.aws.amazon.com/outposts/latest/userguide/outposts-networking-components.html#routing).
 
@@ -67,13 +77,8 @@ def get_local_gateway_virtual_interface_groups(filters=None, tags=None, opts=Non
     ```
 
 
-    :param list filters: One or more configuration blocks containing name-values filters. See the [EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeLocalGatewayVirtualInterfaceGroups.html) for supported filters. Detailed below.
-    :param dict tags: Key-value map of resource tags, each pair of which must exactly match a pair on the desired local gateway route table.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - Name of the filter.
-      * `values` (`list`) - List of one or more values for the filter.
+    :param List[pulumi.InputType['GetLocalGatewayVirtualInterfaceGroupsFilterArgs']] filters: One or more configuration blocks containing name-values filters. See the [EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeLocalGatewayVirtualInterfaceGroups.html) for supported filters. Detailed below.
+    :param Mapping[str, str] tags: Key-value map of resource tags, each pair of which must exactly match a pair on the desired local gateway route table.
     """
     __args__ = dict()
     __args__['filters'] = filters

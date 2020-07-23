@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetClusterResult',
+    'AwaitableGetClusterResult',
+    'get_cluster',
+]
 
 
 class GetClusterResult:
@@ -238,7 +244,9 @@ class AwaitableGetClusterResult(GetClusterResult):
             vpc_security_group_ids=self.vpc_security_group_ids)
 
 
-def get_cluster(cluster_identifier=None, tags=None, opts=None):
+def get_cluster(cluster_identifier: Optional[str] = None,
+                tags: Optional[Mapping[str, str]] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClusterResult:
     """
     Provides details about a specific redshift cluster.
 
@@ -271,7 +279,7 @@ def get_cluster(cluster_identifier=None, tags=None, opts=None):
 
 
     :param str cluster_identifier: The cluster identifier
-    :param dict tags: The tags associated to the cluster
+    :param Mapping[str, str] tags: The tags associated to the cluster
     """
     __args__ = dict()
     __args__['clusterIdentifier'] = cluster_identifier

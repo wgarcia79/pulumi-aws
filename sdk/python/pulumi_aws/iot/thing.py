@@ -5,36 +5,52 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['Thing']
 
 
 class Thing(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     The ARN of the thing.
     """
-    attributes: pulumi.Output[dict]
+
+    attributes: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("attributes")
     """
     Map of attributes of the thing.
     """
-    default_client_id: pulumi.Output[str]
+
+    default_client_id: pulumi.Output[str] = pulumi.property("defaultClientId")
     """
     The default client ID.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name of the thing.
     """
-    thing_type_name: pulumi.Output[str]
+
+    thing_type_name: pulumi.Output[Optional[str]] = pulumi.property("thingTypeName")
     """
     The thing type name.
     """
-    version: pulumi.Output[float]
+
+    version: pulumi.Output[float] = pulumi.property("version")
     """
     The current version of the thing record in the registry.
     """
-    def __init__(__self__, resource_name, opts=None, attributes=None, name=None, thing_type_name=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 thing_type_name: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Creates and manages an AWS IoT Thing.
 
@@ -51,7 +67,7 @@ class Thing(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] attributes: Map of attributes of the thing.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] attributes: Map of attributes of the thing.
         :param pulumi.Input[str] name: The name of the thing.
         :param pulumi.Input[str] thing_type_name: The thing type name.
         """
@@ -85,7 +101,15 @@ class Thing(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, attributes=None, default_client_id=None, name=None, thing_type_name=None, version=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            default_client_id: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            thing_type_name: Optional[pulumi.Input[str]] = None,
+            version: Optional[pulumi.Input[float]] = None) -> 'Thing':
         """
         Get an existing Thing resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -94,7 +118,7 @@ class Thing(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] arn: The ARN of the thing.
-        :param pulumi.Input[dict] attributes: Map of attributes of the thing.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] attributes: Map of attributes of the thing.
         :param pulumi.Input[str] default_client_id: The default client ID.
         :param pulumi.Input[str] name: The name of the thing.
         :param pulumi.Input[str] thing_type_name: The thing type name.
@@ -117,3 +141,4 @@ class Thing(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

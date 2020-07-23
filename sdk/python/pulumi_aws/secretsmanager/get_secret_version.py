@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetSecretVersionResult',
+    'AwaitableGetSecretVersionResult',
+    'get_secret_version',
+]
 
 
 class GetSecretVersionResult:
@@ -71,7 +77,10 @@ class AwaitableGetSecretVersionResult(GetSecretVersionResult):
             version_stages=self.version_stages)
 
 
-def get_secret_version(secret_id=None, version_id=None, version_stage=None, opts=None):
+def get_secret_version(secret_id: Optional[str] = None,
+                       version_id: Optional[str] = None,
+                       version_stage: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretVersionResult:
     """
     Retrieve information about a Secrets Manager secret version, including its secret value. To retrieve secret metadata, see the `secretsmanager.Secret` data source.
 

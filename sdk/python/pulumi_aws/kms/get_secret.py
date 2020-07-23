@@ -5,8 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetSecretResult',
+    'AwaitableGetSecretResult',
+    'get_secret',
+]
 
 
 class GetSecretResult:
@@ -35,17 +43,10 @@ class AwaitableGetSecretResult(GetSecretResult):
             secrets=self.secrets)
 
 
-def get_secret(secrets=None, opts=None):
+def get_secret(secrets: Optional[List[pulumi.InputType['GetSecretSecretArgs']]] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretResult:
     """
     Use this data source to access information about an existing resource.
-
-
-    The **secrets** object supports the following:
-
-      * `context` (`dict`)
-      * `grantTokens` (`list`)
-      * `name` (`str`)
-      * `payload` (`str`)
     """
     __args__ = dict()
     __args__['secrets'] = secrets

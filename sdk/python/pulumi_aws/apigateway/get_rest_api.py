@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetRestApiResult',
+    'AwaitableGetRestApiResult',
+    'get_rest_api',
+]
 
 
 class GetRestApiResult:
@@ -105,7 +112,9 @@ class AwaitableGetRestApiResult(GetRestApiResult):
             tags=self.tags)
 
 
-def get_rest_api(name=None, tags=None, opts=None):
+def get_rest_api(name: Optional[str] = None,
+                 tags: Optional[Mapping[str, str]] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRestApiResult:
     """
     Use this data source to get the id and root_resource_id of a REST API in
     API Gateway. To fetch the REST API you must provide a name to match against.
@@ -123,7 +132,7 @@ def get_rest_api(name=None, tags=None, opts=None):
 
 
     :param str name: The name of the REST API to look up. If no REST API is found with this name, an error will be returned. If multiple REST APIs are found with this name, an error will be returned.
-    :param dict tags: Key-value map of resource tags.
+    :param Mapping[str, str] tags: Key-value map of resource tags.
     """
     __args__ = dict()
     __args__['name'] = name

@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetWebAclResult',
+    'AwaitableGetWebAclResult',
+    'get_web_acl',
+]
 
 
 class GetWebAclResult:
@@ -35,7 +41,8 @@ class AwaitableGetWebAclResult(GetWebAclResult):
             name=self.name)
 
 
-def get_web_acl(name=None, opts=None):
+def get_web_acl(name: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWebAclResult:
     """
     `wafregional.WebAcl` Retrieves a WAF Regional Web ACL Resource Id.
 

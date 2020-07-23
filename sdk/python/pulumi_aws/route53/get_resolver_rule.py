@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetResolverRuleResult',
+    'AwaitableGetResolverRuleResult',
+    'get_resolver_rule',
+]
 
 
 class GetResolverRuleResult:
@@ -80,7 +86,13 @@ class AwaitableGetResolverRuleResult(GetResolverRuleResult):
             tags=self.tags)
 
 
-def get_resolver_rule(domain_name=None, name=None, resolver_endpoint_id=None, resolver_rule_id=None, rule_type=None, tags=None, opts=None):
+def get_resolver_rule(domain_name: Optional[str] = None,
+                      name: Optional[str] = None,
+                      resolver_endpoint_id: Optional[str] = None,
+                      resolver_rule_id: Optional[str] = None,
+                      rule_type: Optional[str] = None,
+                      tags: Optional[Mapping[str, str]] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetResolverRuleResult:
     """
     `route53.ResolverRule` provides details about a specific Route53 Resolver rule.
 
@@ -102,7 +114,7 @@ def get_resolver_rule(domain_name=None, name=None, resolver_endpoint_id=None, re
     :param str resolver_endpoint_id: The ID of the outbound resolver endpoint of the desired resolver rule. Conflicts with `resolver_rule_id`.
     :param str resolver_rule_id: The ID of the desired resolver rule. Conflicts with `domain_name`, `name`, `resolver_endpoint_id` and `rule_type`.
     :param str rule_type: The rule type of the desired resolver rule. Valid values are `FORWARD`, `SYSTEM` and `RECURSIVE`. Conflicts with `resolver_rule_id`.
-    :param dict tags: A map of tags assigned to the resolver rule.
+    :param Mapping[str, str] tags: A map of tags assigned to the resolver rule.
     """
     __args__ = dict()
     __args__['domainName'] = domain_name

@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetSolutionStackResult',
+    'AwaitableGetSolutionStackResult',
+    'get_solution_stack',
+]
 
 
 class GetSolutionStackResult:
@@ -46,7 +52,9 @@ class AwaitableGetSolutionStackResult(GetSolutionStackResult):
             name_regex=self.name_regex)
 
 
-def get_solution_stack(most_recent=None, name_regex=None, opts=None):
+def get_solution_stack(most_recent: Optional[bool] = None,
+                       name_regex: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSolutionStackResult:
     """
     Use this data source to get the name of a elastic beanstalk solution stack.
 

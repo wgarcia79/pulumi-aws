@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetCredentialsResult',
+    'AwaitableGetCredentialsResult',
+    'get_credentials',
+]
 
 
 class GetCredentialsResult:
@@ -47,7 +53,8 @@ class AwaitableGetCredentialsResult(GetCredentialsResult):
             registry_id=self.registry_id)
 
 
-def get_credentials(registry_id=None, opts=None):
+def get_credentials(registry_id: Optional[str] = None,
+                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCredentialsResult:
     """
     Use this data source to access information about an existing resource.
     """

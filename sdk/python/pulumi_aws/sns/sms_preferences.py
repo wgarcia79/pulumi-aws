@@ -5,36 +5,55 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['SmsPreferences']
 
 
 class SmsPreferences(pulumi.CustomResource):
-    default_sender_id: pulumi.Output[str]
+    default_sender_id: pulumi.Output[Optional[str]] = pulumi.property("defaultSenderId")
     """
     A string, such as your business brand, that is displayed as the sender on the receiving device.
     """
-    default_sms_type: pulumi.Output[str]
+
+    default_sms_type: pulumi.Output[Optional[str]] = pulumi.property("defaultSmsType")
     """
     The type of SMS message that you will send by default. Possible values are: Promotional, Transactional
     """
-    delivery_status_iam_role_arn: pulumi.Output[str]
+
+    delivery_status_iam_role_arn: pulumi.Output[Optional[str]] = pulumi.property("deliveryStatusIamRoleArn")
     """
     The ARN of the IAM role that allows Amazon SNS to write logs about SMS deliveries in CloudWatch Logs.
     """
-    delivery_status_success_sampling_rate: pulumi.Output[str]
+
+    delivery_status_success_sampling_rate: pulumi.Output[Optional[str]] = pulumi.property("deliveryStatusSuccessSamplingRate")
     """
     The percentage of successful SMS deliveries for which Amazon SNS will write logs in CloudWatch Logs. The value must be between 0 and 100.
     """
-    monthly_spend_limit: pulumi.Output[str]
+
+    monthly_spend_limit: pulumi.Output[Optional[str]] = pulumi.property("monthlySpendLimit")
     """
     The maximum amount in USD that you are willing to spend each month to send SMS messages.
     """
-    usage_report_s3_bucket: pulumi.Output[str]
+
+    usage_report_s3_bucket: pulumi.Output[Optional[str]] = pulumi.property("usageReportS3Bucket")
     """
     The name of the Amazon S3 bucket to receive daily SMS usage reports from Amazon SNS.
     """
-    def __init__(__self__, resource_name, opts=None, default_sender_id=None, default_sms_type=None, delivery_status_iam_role_arn=None, delivery_status_success_sampling_rate=None, monthly_spend_limit=None, usage_report_s3_bucket=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 default_sender_id: Optional[pulumi.Input[str]] = None,
+                 default_sms_type: Optional[pulumi.Input[str]] = None,
+                 delivery_status_iam_role_arn: Optional[pulumi.Input[str]] = None,
+                 delivery_status_success_sampling_rate: Optional[pulumi.Input[str]] = None,
+                 monthly_spend_limit: Optional[pulumi.Input[str]] = None,
+                 usage_report_s3_bucket: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a way to set SNS SMS preferences.
 
@@ -86,7 +105,15 @@ class SmsPreferences(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, default_sender_id=None, default_sms_type=None, delivery_status_iam_role_arn=None, delivery_status_success_sampling_rate=None, monthly_spend_limit=None, usage_report_s3_bucket=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            default_sender_id: Optional[pulumi.Input[str]] = None,
+            default_sms_type: Optional[pulumi.Input[str]] = None,
+            delivery_status_iam_role_arn: Optional[pulumi.Input[str]] = None,
+            delivery_status_success_sampling_rate: Optional[pulumi.Input[str]] = None,
+            monthly_spend_limit: Optional[pulumi.Input[str]] = None,
+            usage_report_s3_bucket: Optional[pulumi.Input[str]] = None) -> 'SmsPreferences':
         """
         Get an existing SmsPreferences resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -118,3 +145,4 @@ class SmsPreferences(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

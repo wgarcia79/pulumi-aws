@@ -5,24 +5,36 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['Dashboard']
 
 
 class Dashboard(pulumi.CustomResource):
-    dashboard_arn: pulumi.Output[str]
+    dashboard_arn: pulumi.Output[str] = pulumi.property("dashboardArn")
     """
     The Amazon Resource Name (ARN) of the dashboard.
     """
-    dashboard_body: pulumi.Output[str]
+
+    dashboard_body: pulumi.Output[str] = pulumi.property("dashboardBody")
     """
     The detailed information about the dashboard, including what widgets are included and their location on the dashboard. You can read more about the body structure in the [documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/CloudWatch-Dashboard-Body-Structure.html).
     """
-    dashboard_name: pulumi.Output[str]
+
+    dashboard_name: pulumi.Output[str] = pulumi.property("dashboardName")
     """
     The name of the dashboard.
     """
-    def __init__(__self__, resource_name, opts=None, dashboard_body=None, dashboard_name=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 dashboard_body: Optional[pulumi.Input[str]] = None,
+                 dashboard_name: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a CloudWatch Dashboard resource.
 
@@ -109,7 +121,12 @@ class Dashboard(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, dashboard_arn=None, dashboard_body=None, dashboard_name=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            dashboard_arn: Optional[pulumi.Input[str]] = None,
+            dashboard_body: Optional[pulumi.Input[str]] = None,
+            dashboard_name: Optional[pulumi.Input[str]] = None) -> 'Dashboard':
         """
         Get an existing Dashboard resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -135,3 +152,4 @@ class Dashboard(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetAccessPointResult',
+    'AwaitableGetAccessPointResult',
+    'get_access_point',
+]
 
 
 class GetAccessPointResult:
@@ -78,7 +85,9 @@ class AwaitableGetAccessPointResult(GetAccessPointResult):
             tags=self.tags)
 
 
-def get_access_point(access_point_id=None, tags=None, opts=None):
+def get_access_point(access_point_id: Optional[str] = None,
+                     tags: Optional[Mapping[str, str]] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccessPointResult:
     """
     Provides information about an Elastic File System (EFS) Access Point.
 
@@ -93,7 +102,7 @@ def get_access_point(access_point_id=None, tags=None, opts=None):
 
 
     :param str access_point_id: The ID that identifies the file system.
-    :param dict tags: Key-value mapping of resource tags.
+    :param Mapping[str, str] tags: Key-value mapping of resource tags.
     """
     __args__ = dict()
     __args__['accessPointId'] = access_point_id

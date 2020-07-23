@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetBucketObjectResult',
+    'AwaitableGetBucketObjectResult',
+    'get_bucket_object',
+]
 
 
 class GetBucketObjectResult:
@@ -190,7 +196,12 @@ class AwaitableGetBucketObjectResult(GetBucketObjectResult):
             website_redirect_location=self.website_redirect_location)
 
 
-def get_bucket_object(bucket=None, key=None, range=None, tags=None, version_id=None, opts=None):
+def get_bucket_object(bucket: Optional[str] = None,
+                      key: Optional[str] = None,
+                      range: Optional[str] = None,
+                      tags: Optional[Mapping[str, str]] = None,
+                      version_id: Optional[str] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBucketObjectResult:
     """
     The S3 object data source allows access to the metadata and
     _optionally_ (see below) content of an object stored inside S3 bucket.
@@ -237,7 +248,7 @@ def get_bucket_object(bucket=None, key=None, range=None, tags=None, version_id=N
 
     :param str bucket: The name of the bucket to read the object from. Alternatively, an [S3 access point](https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html) ARN can be specified
     :param str key: The full path to the object inside the bucket
-    :param dict tags: A map of tags assigned to the object.
+    :param Mapping[str, str] tags: A map of tags assigned to the object.
     :param str version_id: Specific version ID of the object returned (defaults to latest version)
     """
     __args__ = dict()

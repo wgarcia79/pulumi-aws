@@ -5,8 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetAmiResult',
+    'AwaitableGetAmiResult',
+    'get_ami',
+]
 
 
 class GetAmiResult:
@@ -253,7 +261,13 @@ class AwaitableGetAmiResult(GetAmiResult):
             virtualization_type=self.virtualization_type)
 
 
-def get_ami(executable_users=None, filters=None, most_recent=None, name_regex=None, owners=None, tags=None, opts=None):
+def get_ami(executable_users: Optional[List[str]] = None,
+            filters: Optional[List[pulumi.InputType['GetAmiFilterArgs']]] = None,
+            most_recent: Optional[bool] = None,
+            name_regex: Optional[str] = None,
+            owners: Optional[List[str]] = None,
+            tags: Optional[Mapping[str, str]] = None,
+            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAmiResult:
     """
     Use this data source to get the ID of a registered AMI for use in other
     resources.
@@ -285,9 +299,9 @@ def get_ami(executable_users=None, filters=None, most_recent=None, name_regex=No
     ```
 
 
-    :param list executable_users: Limit search to users with *explicit* launch permission on
+    :param List[str] executable_users: Limit search to users with *explicit* launch permission on
            the image. Valid items are the numeric account ID or `self`.
-    :param list filters: One or more name/value pairs to filter off of. There are
+    :param List[pulumi.InputType['GetAmiFilterArgs']] filters: One or more name/value pairs to filter off of. There are
            several valid keys, for a full reference, check out
            [describe-images in the AWS CLI reference][1].
     :param bool most_recent: If more than one result is returned, use the most
@@ -297,15 +311,10 @@ def get_ami(executable_users=None, filters=None, most_recent=None, name_regex=No
            filtering is done locally on what AWS returns, and could have a performance
            impact if the result is large. It is recommended to combine this with other
            options to narrow down the list AWS returns.
-    :param list owners: List of AMI owners to limit search. At least 1 value must be specified. Valid values: an AWS account ID, `self` (the current account), or an AWS owner alias (e.g. `amazon`, `aws-marketplace`, `microsoft`).
-    :param dict tags: Any tags assigned to the image.
+    :param List[str] owners: List of AMI owners to limit search. At least 1 value must be specified. Valid values: an AWS account ID, `self` (the current account), or an AWS owner alias (e.g. `amazon`, `aws-marketplace`, `microsoft`).
+    :param Mapping[str, str] tags: Any tags assigned to the image.
            * `tags.#.key` - The key name of the tag.
            * `tags.#.value` - The value of the tag.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the AMI that was provided during image creation.
-      * `values` (`list`)
     """
     __args__ = dict()
     __args__['executableUsers'] = executable_users

@@ -5,40 +5,58 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['KeyPair']
 
 
 class KeyPair(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     The key pair ARN.
     """
-    fingerprint: pulumi.Output[str]
+
+    fingerprint: pulumi.Output[str] = pulumi.property("fingerprint")
     """
     The MD5 public key fingerprint as specified in section 4 of RFC 4716.
     """
-    key_name: pulumi.Output[str]
+
+    key_name: pulumi.Output[str] = pulumi.property("keyName")
     """
     The name for the key pair.
     """
-    key_name_prefix: pulumi.Output[str]
+
+    key_name_prefix: pulumi.Output[Optional[str]] = pulumi.property("keyNamePrefix")
     """
     Creates a unique name beginning with the specified prefix. Conflicts with `key_name`.
     """
-    key_pair_id: pulumi.Output[str]
+
+    key_pair_id: pulumi.Output[str] = pulumi.property("keyPairId")
     """
     The key pair ID.
     """
-    public_key: pulumi.Output[str]
+
+    public_key: pulumi.Output[str] = pulumi.property("publicKey")
     """
     The public key material.
     """
-    tags: pulumi.Output[dict]
+
+    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
     """
     Key-value map of resource tags
     """
-    def __init__(__self__, resource_name, opts=None, key_name=None, key_name_prefix=None, public_key=None, tags=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 key_name: Optional[pulumi.Input[str]] = None,
+                 key_name_prefix: Optional[pulumi.Input[str]] = None,
+                 public_key: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides an [EC2 key pair](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) resource. A key pair is used to control login access to EC2 instances.
 
@@ -64,7 +82,7 @@ class KeyPair(pulumi.CustomResource):
         :param pulumi.Input[str] key_name: The name for the key pair.
         :param pulumi.Input[str] key_name_prefix: Creates a unique name beginning with the specified prefix. Conflicts with `key_name`.
         :param pulumi.Input[str] public_key: The public key material.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -99,7 +117,16 @@ class KeyPair(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, fingerprint=None, key_name=None, key_name_prefix=None, key_pair_id=None, public_key=None, tags=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            fingerprint: Optional[pulumi.Input[str]] = None,
+            key_name: Optional[pulumi.Input[str]] = None,
+            key_name_prefix: Optional[pulumi.Input[str]] = None,
+            key_pair_id: Optional[pulumi.Input[str]] = None,
+            public_key: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None) -> 'KeyPair':
         """
         Get an existing KeyPair resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -113,7 +140,7 @@ class KeyPair(pulumi.CustomResource):
         :param pulumi.Input[str] key_name_prefix: Creates a unique name beginning with the specified prefix. Conflicts with `key_name`.
         :param pulumi.Input[str] key_pair_id: The key pair ID.
         :param pulumi.Input[str] public_key: The public key material.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -133,3 +160,4 @@ class KeyPair(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

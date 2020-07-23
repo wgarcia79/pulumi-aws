@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetImageResult',
+    'AwaitableGetImageResult',
+    'get_image',
+]
 
 
 class GetImageResult:
@@ -68,7 +74,11 @@ class AwaitableGetImageResult(GetImageResult):
             repository_name=self.repository_name)
 
 
-def get_image(image_digest=None, image_tag=None, registry_id=None, repository_name=None, opts=None):
+def get_image(image_digest: Optional[str] = None,
+              image_tag: Optional[str] = None,
+              registry_id: Optional[str] = None,
+              repository_name: Optional[str] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetImageResult:
     """
     The ECR Image data source allows the details of an image with a particular tag or digest to be retrieved.
 

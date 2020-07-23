@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetClusterResult',
+    'AwaitableGetClusterResult',
+    'get_cluster',
+]
 
 
 class GetClusterResult:
@@ -84,7 +90,9 @@ class AwaitableGetClusterResult(GetClusterResult):
             zookeeper_connect_string=self.zookeeper_connect_string)
 
 
-def get_cluster(cluster_name=None, tags=None, opts=None):
+def get_cluster(cluster_name: Optional[str] = None,
+                tags: Optional[Mapping[str, str]] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClusterResult:
     """
     Get information on an Amazon MSK Cluster.
 
@@ -99,7 +107,7 @@ def get_cluster(cluster_name=None, tags=None, opts=None):
 
 
     :param str cluster_name: Name of the cluster.
-    :param dict tags: Map of key-value pairs assigned to the cluster.
+    :param Mapping[str, str] tags: Map of key-value pairs assigned to the cluster.
     """
     __args__ = dict()
     __args__['clusterName'] = cluster_name

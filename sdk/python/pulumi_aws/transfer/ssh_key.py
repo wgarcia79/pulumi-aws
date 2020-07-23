@@ -5,24 +5,37 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['SshKey']
 
 
 class SshKey(pulumi.CustomResource):
-    body: pulumi.Output[str]
+    body: pulumi.Output[str] = pulumi.property("body")
     """
     The public key portion of an SSH key pair.
     """
-    server_id: pulumi.Output[str]
+
+    server_id: pulumi.Output[str] = pulumi.property("serverId")
     """
     The Server ID of the Transfer Server (e.g. `s-12345678`)
     """
-    user_name: pulumi.Output[str]
+
+    user_name: pulumi.Output[str] = pulumi.property("userName")
     """
     The name of the user account that is assigned to one or more servers.
     """
-    def __init__(__self__, resource_name, opts=None, body=None, server_id=None, user_name=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 body: Optional[pulumi.Input[str]] = None,
+                 server_id: Optional[pulumi.Input[str]] = None,
+                 user_name: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a AWS Transfer User SSH Key resource.
 
@@ -118,7 +131,12 @@ class SshKey(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, body=None, server_id=None, user_name=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            body: Optional[pulumi.Input[str]] = None,
+            server_id: Optional[pulumi.Input[str]] = None,
+            user_name: Optional[pulumi.Input[str]] = None) -> 'SshKey':
         """
         Get an existing SshKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -144,3 +162,4 @@ class SshKey(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

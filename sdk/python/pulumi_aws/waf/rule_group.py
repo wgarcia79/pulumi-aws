@@ -5,39 +5,50 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['RuleGroup']
 
 
 class RuleGroup(pulumi.CustomResource):
-    activated_rules: pulumi.Output[list]
+    activated_rules: pulumi.Output[Optional[List['outputs.RuleGroupActivatedRule']]] = pulumi.property("activatedRules")
     """
     A list of activated rules, see below
-
-      * `action` (`dict`) - Specifies the action that CloudFront or AWS WAF takes when a web request matches the conditions in the rule.
-        * `type` (`str`) - The rule type, either `REGULAR`, `RATE_BASED`, or `GROUP`. Defaults to `REGULAR`.
-
-      * `priority` (`float`) - Specifies the order in which the rules are evaluated. Rules with a lower value are evaluated before rules with a higher value.
-      * `rule_id` (`str`) - The ID of a `waf_rule`
-      * `type` (`str`) - The rule type, either `REGULAR`, `RATE_BASED`, or `GROUP`. Defaults to `REGULAR`.
     """
-    arn: pulumi.Output[str]
+
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     The ARN of the WAF rule group.
     """
-    metric_name: pulumi.Output[str]
+
+    metric_name: pulumi.Output[str] = pulumi.property("metricName")
     """
     A friendly name for the metrics from the rule group
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     A friendly name of the rule group
     """
-    tags: pulumi.Output[dict]
+
+    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
     """
     Key-value map of resource tags
     """
-    def __init__(__self__, resource_name, opts=None, activated_rules=None, metric_name=None, name=None, tags=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 activated_rules: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['RuleGroupActivatedRuleArgs']]]]] = None,
+                 metric_name: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a WAF Rule Group Resource
 
@@ -61,19 +72,10 @@ class RuleGroup(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] activated_rules: A list of activated rules, see below
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['RuleGroupActivatedRuleArgs']]]] activated_rules: A list of activated rules, see below
         :param pulumi.Input[str] metric_name: A friendly name for the metrics from the rule group
         :param pulumi.Input[str] name: A friendly name of the rule group
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
-
-        The **activated_rules** object supports the following:
-
-          * `action` (`pulumi.Input[dict]`) - Specifies the action that CloudFront or AWS WAF takes when a web request matches the conditions in the rule.
-            * `type` (`pulumi.Input[str]`) - The rule type, either `REGULAR`, `RATE_BASED`, or `GROUP`. Defaults to `REGULAR`.
-
-          * `priority` (`pulumi.Input[float]`) - Specifies the order in which the rules are evaluated. Rules with a lower value are evaluated before rules with a higher value.
-          * `rule_id` (`pulumi.Input[str]`) - The ID of a `waf_rule`
-          * `type` (`pulumi.Input[str]`) - The rule type, either `REGULAR`, `RATE_BASED`, or `GROUP`. Defaults to `REGULAR`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -106,7 +108,14 @@ class RuleGroup(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, activated_rules=None, arn=None, metric_name=None, name=None, tags=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            activated_rules: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['RuleGroupActivatedRuleArgs']]]]] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            metric_name: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None) -> 'RuleGroup':
         """
         Get an existing RuleGroup resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -114,20 +123,11 @@ class RuleGroup(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] activated_rules: A list of activated rules, see below
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['RuleGroupActivatedRuleArgs']]]] activated_rules: A list of activated rules, see below
         :param pulumi.Input[str] arn: The ARN of the WAF rule group.
         :param pulumi.Input[str] metric_name: A friendly name for the metrics from the rule group
         :param pulumi.Input[str] name: A friendly name of the rule group
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
-
-        The **activated_rules** object supports the following:
-
-          * `action` (`pulumi.Input[dict]`) - Specifies the action that CloudFront or AWS WAF takes when a web request matches the conditions in the rule.
-            * `type` (`pulumi.Input[str]`) - The rule type, either `REGULAR`, `RATE_BASED`, or `GROUP`. Defaults to `REGULAR`.
-
-          * `priority` (`pulumi.Input[float]`) - Specifies the order in which the rules are evaluated. Rules with a lower value are evaluated before rules with a higher value.
-          * `rule_id` (`pulumi.Input[str]`) - The ID of a `waf_rule`
-          * `type` (`pulumi.Input[str]`) - The rule type, either `REGULAR`, `RATE_BASED`, or `GROUP`. Defaults to `REGULAR`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -145,3 +145,4 @@ class RuleGroup(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

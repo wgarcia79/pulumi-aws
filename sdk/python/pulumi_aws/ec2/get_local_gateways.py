@@ -5,8 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetLocalGatewaysResult',
+    'AwaitableGetLocalGatewaysResult',
+    'get_local_gateways',
+]
 
 
 class GetLocalGatewaysResult:
@@ -46,7 +54,9 @@ class AwaitableGetLocalGatewaysResult(GetLocalGatewaysResult):
             tags=self.tags)
 
 
-def get_local_gateways(filters=None, tags=None, opts=None):
+def get_local_gateways(filters: Optional[List[pulumi.InputType['GetLocalGatewaysFilterArgs']]] = None,
+                       tags: Optional[Mapping[str, str]] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLocalGatewaysResult:
     """
     Provides information for multiple EC2 Local Gateways, such as their identifiers.
 
@@ -65,16 +75,9 @@ def get_local_gateways(filters=None, tags=None, opts=None):
     ```
 
 
-    :param list filters: Custom filter block as described below.
-    :param dict tags: A mapping of tags, each pair of which must exactly match
+    :param List[pulumi.InputType['GetLocalGatewaysFilterArgs']] filters: Custom filter block as described below.
+    :param Mapping[str, str] tags: A mapping of tags, each pair of which must exactly match
            a pair on the desired local_gateways.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter by, as defined by
-        [the underlying AWS API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeLocalGateways.html).
-      * `values` (`list`) - Set of values that are accepted for the given field.
-        A Local Gateway will be selected if any one of the given values matches.
     """
     __args__ = dict()
     __args__['filters'] = filters

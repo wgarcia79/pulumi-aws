@@ -5,53 +5,44 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['RoleAlias']
 
 
 class RoleAlias(pulumi.CustomResource):
-    alias: pulumi.Output[str]
+    alias: pulumi.Output[str] = pulumi.property("alias")
     """
     The name of the role alias.
     """
-    arn: pulumi.Output[str]
+
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     The ARN assigned by AWS to this role alias.
     """
-    credential_duration: pulumi.Output[float]
+
+    credential_duration: pulumi.Output[Optional[float]] = pulumi.property("credentialDuration")
     """
     The duration of the credential, in seconds. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 900 seconds (15 minutes) to 3600 seconds (60 minutes).
     """
-    role_arn: pulumi.Output[str]
+
+    role_arn: pulumi.Output[str] = pulumi.property("roleArn")
     """
     The identity of the role to which the alias refers.
     """
-    def __init__(__self__, resource_name, opts=None, alias=None, credential_duration=None, role_arn=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 alias: Optional[pulumi.Input[str]] = None,
+                 credential_duration: Optional[pulumi.Input[float]] = None,
+                 role_arn: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides an IoT role alias.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_aws as aws
-
-        role = aws.iam.Role("role", policy=\"\"\"{
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Effect": "Allow",
-              "Principal": {"Service": "credentials.iot.amazonaws.com"},
-              "Action": "sts:AssumeRole"
-            }
-          ]
-        }
-
-        \"\"\")
-        alias = aws.iot.RoleAlias("alias",
-            alias="Thermostat-dynamodb-access-role-alias",
-            role_arn=role.arn)
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -91,7 +82,13 @@ class RoleAlias(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, alias=None, arn=None, credential_duration=None, role_arn=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            alias: Optional[pulumi.Input[str]] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            credential_duration: Optional[pulumi.Input[float]] = None,
+            role_arn: Optional[pulumi.Input[str]] = None) -> 'RoleAlias':
         """
         Get an existing RoleAlias resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -119,3 +116,4 @@ class RoleAlias(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

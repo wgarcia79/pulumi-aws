@@ -5,24 +5,37 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['LocalGatewayRoute']
 
 
 class LocalGatewayRoute(pulumi.CustomResource):
-    destination_cidr_block: pulumi.Output[str]
+    destination_cidr_block: pulumi.Output[str] = pulumi.property("destinationCidrBlock")
     """
     IPv4 CIDR range used for destination matches. Routing decisions are based on the most specific match.
     """
-    local_gateway_route_table_id: pulumi.Output[str]
+
+    local_gateway_route_table_id: pulumi.Output[str] = pulumi.property("localGatewayRouteTableId")
     """
     Identifier of EC2 Local Gateway Route Table.
     """
-    local_gateway_virtual_interface_group_id: pulumi.Output[str]
+
+    local_gateway_virtual_interface_group_id: pulumi.Output[str] = pulumi.property("localGatewayVirtualInterfaceGroupId")
     """
     Identifier of EC2 Local Gateway Virtual Interface Group.
     """
-    def __init__(__self__, resource_name, opts=None, destination_cidr_block=None, local_gateway_route_table_id=None, local_gateway_virtual_interface_group_id=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 destination_cidr_block: Optional[pulumi.Input[str]] = None,
+                 local_gateway_route_table_id: Optional[pulumi.Input[str]] = None,
+                 local_gateway_virtual_interface_group_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Manages an EC2 Local Gateway Route. More information can be found in the [Outposts User Guide](https://docs.aws.amazon.com/outposts/latest/userguide/outposts-networking-components.html#routing).
 
@@ -77,7 +90,12 @@ class LocalGatewayRoute(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, destination_cidr_block=None, local_gateway_route_table_id=None, local_gateway_virtual_interface_group_id=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            destination_cidr_block: Optional[pulumi.Input[str]] = None,
+            local_gateway_route_table_id: Optional[pulumi.Input[str]] = None,
+            local_gateway_virtual_interface_group_id: Optional[pulumi.Input[str]] = None) -> 'LocalGatewayRoute':
         """
         Get an existing LocalGatewayRoute resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -103,3 +121,4 @@ class LocalGatewayRoute(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

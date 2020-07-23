@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetRuleResult',
+    'AwaitableGetRuleResult',
+    'get_rule',
+]
 
 
 class GetRuleResult:
@@ -35,7 +41,8 @@ class AwaitableGetRuleResult(GetRuleResult):
             name=self.name)
 
 
-def get_rule(name=None, opts=None):
+def get_rule(name: Optional[str] = None,
+             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRuleResult:
     """
     `wafregional.Rule` Retrieves a WAF Regional Rule Resource Id.
 

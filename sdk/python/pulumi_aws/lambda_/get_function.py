@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetFunctionResult',
+    'AwaitableGetFunctionResult',
+    'get_function',
+]
 
 
 class GetFunctionResult:
@@ -190,7 +197,10 @@ class AwaitableGetFunctionResult(GetFunctionResult):
             vpc_config=self.vpc_config)
 
 
-def get_function(function_name=None, qualifier=None, tags=None, opts=None):
+def get_function(function_name: Optional[str] = None,
+                 qualifier: Optional[str] = None,
+                 tags: Optional[Mapping[str, str]] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFunctionResult:
     """
     Provides information about a Lambda Function.
 

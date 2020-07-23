@@ -5,8 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetLocalGatewayVirtualInterfaceResult',
+    'AwaitableGetLocalGatewayVirtualInterfaceResult',
+    'get_local_gateway_virtual_interface',
+]
 
 
 class GetLocalGatewayVirtualInterfaceResult:
@@ -82,7 +90,10 @@ class AwaitableGetLocalGatewayVirtualInterfaceResult(GetLocalGatewayVirtualInter
             vlan=self.vlan)
 
 
-def get_local_gateway_virtual_interface(filters=None, id=None, tags=None, opts=None):
+def get_local_gateway_virtual_interface(filters: Optional[List[pulumi.InputType['GetLocalGatewayVirtualInterfaceFilterArgs']]] = None,
+                                        id: Optional[str] = None,
+                                        tags: Optional[Mapping[str, str]] = None,
+                                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLocalGatewayVirtualInterfaceResult:
     """
     Provides details about an EC2 Local Gateway Virtual Interface. More information can be found in the [Outposts User Guide](https://docs.aws.amazon.com/outposts/latest/userguide/outposts-networking-components.html#routing).
 
@@ -96,14 +107,9 @@ def get_local_gateway_virtual_interface(filters=None, id=None, tags=None, opts=N
     ```
 
 
-    :param list filters: One or more configuration blocks containing name-values filters. See the [EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeLocalGatewayVirtualInterfaces.html) for supported filters. Detailed below.
+    :param List[pulumi.InputType['GetLocalGatewayVirtualInterfaceFilterArgs']] filters: One or more configuration blocks containing name-values filters. See the [EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeLocalGatewayVirtualInterfaces.html) for supported filters. Detailed below.
     :param str id: Identifier of EC2 Local Gateway Virtual Interface.
-    :param dict tags: Key-value map of resource tags, each pair of which must exactly match a pair on the desired local gateway route table.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - Name of the filter.
-      * `values` (`list`) - List of one or more values for the filter.
+    :param Mapping[str, str] tags: Key-value map of resource tags, each pair of which must exactly match a pair on the desired local gateway route table.
     """
     __args__ = dict()
     __args__['filters'] = filters

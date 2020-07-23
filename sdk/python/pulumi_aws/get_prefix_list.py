@@ -5,8 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetPrefixListResult',
+    'AwaitableGetPrefixListResult',
+    'get_prefix_list',
+]
 
 
 class GetPrefixListResult:
@@ -53,7 +61,10 @@ class AwaitableGetPrefixListResult(GetPrefixListResult):
             prefix_list_id=self.prefix_list_id)
 
 
-def get_prefix_list(filters=None, name=None, prefix_list_id=None, opts=None):
+def get_prefix_list(filters: Optional[List[pulumi.InputType['GetPrefixListFilterArgs']]] = None,
+                    name: Optional[str] = None,
+                    prefix_list_id: Optional[str] = None,
+                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPrefixListResult:
     """
     `getPrefixList` provides details about a specific prefix list (PL)
     in the current region.
@@ -97,14 +108,9 @@ def get_prefix_list(filters=None, name=None, prefix_list_id=None, opts=None):
     ```
 
 
-    :param list filters: Configuration block(s) for filtering. Detailed below.
+    :param List[pulumi.InputType['GetPrefixListFilterArgs']] filters: Configuration block(s) for filtering. Detailed below.
     :param str name: The name of the filter field. Valid values can be found in the [EC2 DescribePrefixLists API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribePrefixLists.html).
     :param str prefix_list_id: The ID of the prefix list to select.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the filter field. Valid values can be found in the [EC2 DescribePrefixLists API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribePrefixLists.html).
-      * `values` (`list`) - Set of values that are accepted for the given filter field. Results will be selected if any given value matches.
     """
     __args__ = dict()
     __args__['filters'] = filters

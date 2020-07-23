@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetDefaultKmsKeyResult',
+    'AwaitableGetDefaultKmsKeyResult',
+    'get_default_kms_key',
+]
 
 
 class GetDefaultKmsKeyResult:
@@ -38,7 +44,7 @@ class AwaitableGetDefaultKmsKeyResult(GetDefaultKmsKeyResult):
             key_arn=self.key_arn)
 
 
-def get_default_kms_key(opts=None):
+def get_default_kms_key(                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDefaultKmsKeyResult:
     """
     Use this data source to get the default EBS encryption KMS key in the current region.
 

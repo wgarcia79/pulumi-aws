@@ -5,36 +5,51 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['ClientCertificate']
 
 
 class ClientCertificate(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     Amazon Resource Name (ARN)
     """
-    created_date: pulumi.Output[str]
+
+    created_date: pulumi.Output[str] = pulumi.property("createdDate")
     """
     The date when the client certificate was created.
     """
-    description: pulumi.Output[str]
+
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     The description of the client certificate.
     """
-    expiration_date: pulumi.Output[str]
+
+    expiration_date: pulumi.Output[str] = pulumi.property("expirationDate")
     """
     The date when the client certificate will expire.
     """
-    pem_encoded_certificate: pulumi.Output[str]
+
+    pem_encoded_certificate: pulumi.Output[str] = pulumi.property("pemEncodedCertificate")
     """
     The PEM-encoded public key of the client certificate.
     """
-    tags: pulumi.Output[dict]
+
+    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
     """
     Key-value map of resource tags
     """
-    def __init__(__self__, resource_name, opts=None, description=None, tags=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides an API Gateway Client Certificate.
 
@@ -50,7 +65,7 @@ class ClientCertificate(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the client certificate.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -82,7 +97,15 @@ class ClientCertificate(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, created_date=None, description=None, expiration_date=None, pem_encoded_certificate=None, tags=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            created_date: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            expiration_date: Optional[pulumi.Input[str]] = None,
+            pem_encoded_certificate: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None) -> 'ClientCertificate':
         """
         Get an existing ClientCertificate resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -95,7 +118,7 @@ class ClientCertificate(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the client certificate.
         :param pulumi.Input[str] expiration_date: The date when the client certificate will expire.
         :param pulumi.Input[str] pem_encoded_certificate: The PEM-encoded public key of the client certificate.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -114,3 +137,4 @@ class ClientCertificate(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

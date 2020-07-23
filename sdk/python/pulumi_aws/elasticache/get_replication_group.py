@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetReplicationGroupResult',
+    'AwaitableGetReplicationGroupResult',
+    'get_replication_group',
+]
 
 
 class GetReplicationGroupResult:
@@ -115,7 +121,8 @@ class AwaitableGetReplicationGroupResult(GetReplicationGroupResult):
             snapshot_window=self.snapshot_window)
 
 
-def get_replication_group(replication_group_id=None, opts=None):
+def get_replication_group(replication_group_id: Optional[str] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetReplicationGroupResult:
     """
     Use this data source to get information about an Elasticache Replication Group.
 

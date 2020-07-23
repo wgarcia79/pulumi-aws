@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetBundleResult',
+    'AwaitableGetBundleResult',
+    'get_bundle',
+]
 
 
 class GetBundleResult:
@@ -80,7 +87,10 @@ class AwaitableGetBundleResult(GetBundleResult):
             user_storages=self.user_storages)
 
 
-def get_bundle(bundle_id=None, name=None, owner=None, opts=None):
+def get_bundle(bundle_id: Optional[str] = None,
+               name: Optional[str] = None,
+               owner: Optional[str] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBundleResult:
     """
     Use this data source to get information about a WorkSpaces Bundle.
 

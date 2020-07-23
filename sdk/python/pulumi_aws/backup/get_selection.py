@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetSelectionResult',
+    'AwaitableGetSelectionResult',
+    'get_selection',
+]
 
 
 class GetSelectionResult:
@@ -60,7 +66,9 @@ class AwaitableGetSelectionResult(GetSelectionResult):
             selection_id=self.selection_id)
 
 
-def get_selection(plan_id=None, selection_id=None, opts=None):
+def get_selection(plan_id: Optional[str] = None,
+                  selection_id: Optional[str] = None,
+                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSelectionResult:
     """
     Use this data source to get information on an existing backup selection.
 

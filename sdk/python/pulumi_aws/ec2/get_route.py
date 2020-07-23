@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetRouteResult',
+    'AwaitableGetRouteResult',
+    'get_route',
+]
 
 
 class GetRouteResult:
@@ -71,7 +77,17 @@ class AwaitableGetRouteResult(GetRouteResult):
             vpc_peering_connection_id=self.vpc_peering_connection_id)
 
 
-def get_route(destination_cidr_block=None, destination_ipv6_cidr_block=None, egress_only_gateway_id=None, gateway_id=None, instance_id=None, nat_gateway_id=None, network_interface_id=None, route_table_id=None, transit_gateway_id=None, vpc_peering_connection_id=None, opts=None):
+def get_route(destination_cidr_block: Optional[str] = None,
+              destination_ipv6_cidr_block: Optional[str] = None,
+              egress_only_gateway_id: Optional[str] = None,
+              gateway_id: Optional[str] = None,
+              instance_id: Optional[str] = None,
+              nat_gateway_id: Optional[str] = None,
+              network_interface_id: Optional[str] = None,
+              route_table_id: Optional[str] = None,
+              transit_gateway_id: Optional[str] = None,
+              vpc_peering_connection_id: Optional[str] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRouteResult:
     """
     `ec2.Route` provides details about a specific Route.
 

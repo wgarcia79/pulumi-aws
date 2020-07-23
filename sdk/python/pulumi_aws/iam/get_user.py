@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetUserResult',
+    'AwaitableGetUserResult',
+    'get_user',
+]
 
 
 class GetUserResult:
@@ -66,7 +72,8 @@ class AwaitableGetUserResult(GetUserResult):
             user_name=self.user_name)
 
 
-def get_user(user_name=None, opts=None):
+def get_user(user_name: Optional[str] = None,
+             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUserResult:
     """
     This data source can be used to fetch information about a specific
     IAM user. By using this data source, you can reference IAM user

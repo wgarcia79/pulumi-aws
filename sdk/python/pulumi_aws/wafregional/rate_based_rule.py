@@ -5,47 +5,62 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['RateBasedRule']
 
 
 class RateBasedRule(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     The ARN of the WAF Regional Rate Based Rule.
     """
-    metric_name: pulumi.Output[str]
+
+    metric_name: pulumi.Output[str] = pulumi.property("metricName")
     """
     The name or description for the Amazon CloudWatch metric of this rule.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name or description of the rule.
     """
-    predicates: pulumi.Output[list]
+
+    predicates: pulumi.Output[Optional[List['outputs.RateBasedRulePredicate']]] = pulumi.property("predicates")
     """
     The objects to include in a rule (documented below).
-
-      * `dataId` (`str`) - A unique identifier for a predicate in the rule, such as Byte Match Set ID or IPSet ID.
-      * `negated` (`bool`) - Set this to `false` if you want to allow, block, or count requests
-        based on the settings in the specified `ByteMatchSet`, `IPSet`, `SqlInjectionMatchSet`, `XssMatchSet`, or `SizeConstraintSet`.
-        For example, if an IPSet includes the IP address `192.0.2.44`, AWS WAF will allow or block requests based on that IP address.
-        If set to `true`, AWS WAF will allow, block, or count requests based on all IP addresses _except_ `192.0.2.44`.
-      * `type` (`str`) - The type of predicate in a rule. Valid values: `ByteMatch`, `GeoMatch`, `IPMatch`, `RegexMatch`, `SizeConstraint`, `SqlInjectionMatch`, or `XssMatch`.
     """
-    rate_key: pulumi.Output[str]
+
+    rate_key: pulumi.Output[str] = pulumi.property("rateKey")
     """
     Valid value is IP.
     """
-    rate_limit: pulumi.Output[float]
+
+    rate_limit: pulumi.Output[float] = pulumi.property("rateLimit")
     """
     The maximum number of requests, which have an identical value in the field specified by the RateKey, allowed in a five-minute period. Minimum value is 100.
     """
-    tags: pulumi.Output[dict]
+
+    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
     """
     Key-value map of resource tags
     """
-    def __init__(__self__, resource_name, opts=None, metric_name=None, name=None, predicates=None, rate_key=None, rate_limit=None, tags=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 metric_name: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 predicates: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['RateBasedRulePredicateArgs']]]]] = None,
+                 rate_key: Optional[pulumi.Input[str]] = None,
+                 rate_limit: Optional[pulumi.Input[float]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a WAF Rate Based Rule Resource
 
@@ -75,19 +90,10 @@ class RateBasedRule(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] metric_name: The name or description for the Amazon CloudWatch metric of this rule.
         :param pulumi.Input[str] name: The name or description of the rule.
-        :param pulumi.Input[list] predicates: The objects to include in a rule (documented below).
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['RateBasedRulePredicateArgs']]]] predicates: The objects to include in a rule (documented below).
         :param pulumi.Input[str] rate_key: Valid value is IP.
         :param pulumi.Input[float] rate_limit: The maximum number of requests, which have an identical value in the field specified by the RateKey, allowed in a five-minute period. Minimum value is 100.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
-
-        The **predicates** object supports the following:
-
-          * `dataId` (`pulumi.Input[str]`) - A unique identifier for a predicate in the rule, such as Byte Match Set ID or IPSet ID.
-          * `negated` (`pulumi.Input[bool]`) - Set this to `false` if you want to allow, block, or count requests
-            based on the settings in the specified `ByteMatchSet`, `IPSet`, `SqlInjectionMatchSet`, `XssMatchSet`, or `SizeConstraintSet`.
-            For example, if an IPSet includes the IP address `192.0.2.44`, AWS WAF will allow or block requests based on that IP address.
-            If set to `true`, AWS WAF will allow, block, or count requests based on all IP addresses _except_ `192.0.2.44`.
-          * `type` (`pulumi.Input[str]`) - The type of predicate in a rule. Valid values: `ByteMatch`, `GeoMatch`, `IPMatch`, `RegexMatch`, `SizeConstraint`, `SqlInjectionMatch`, or `XssMatch`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -126,7 +132,16 @@ class RateBasedRule(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, metric_name=None, name=None, predicates=None, rate_key=None, rate_limit=None, tags=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            metric_name: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            predicates: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['RateBasedRulePredicateArgs']]]]] = None,
+            rate_key: Optional[pulumi.Input[str]] = None,
+            rate_limit: Optional[pulumi.Input[float]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None) -> 'RateBasedRule':
         """
         Get an existing RateBasedRule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -137,19 +152,10 @@ class RateBasedRule(pulumi.CustomResource):
         :param pulumi.Input[str] arn: The ARN of the WAF Regional Rate Based Rule.
         :param pulumi.Input[str] metric_name: The name or description for the Amazon CloudWatch metric of this rule.
         :param pulumi.Input[str] name: The name or description of the rule.
-        :param pulumi.Input[list] predicates: The objects to include in a rule (documented below).
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['RateBasedRulePredicateArgs']]]] predicates: The objects to include in a rule (documented below).
         :param pulumi.Input[str] rate_key: Valid value is IP.
         :param pulumi.Input[float] rate_limit: The maximum number of requests, which have an identical value in the field specified by the RateKey, allowed in a five-minute period. Minimum value is 100.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags
-
-        The **predicates** object supports the following:
-
-          * `dataId` (`pulumi.Input[str]`) - A unique identifier for a predicate in the rule, such as Byte Match Set ID or IPSet ID.
-          * `negated` (`pulumi.Input[bool]`) - Set this to `false` if you want to allow, block, or count requests
-            based on the settings in the specified `ByteMatchSet`, `IPSet`, `SqlInjectionMatchSet`, `XssMatchSet`, or `SizeConstraintSet`.
-            For example, if an IPSet includes the IP address `192.0.2.44`, AWS WAF will allow or block requests based on that IP address.
-            If set to `true`, AWS WAF will allow, block, or count requests based on all IP addresses _except_ `192.0.2.44`.
-          * `type` (`pulumi.Input[str]`) - The type of predicate in a rule. Valid values: `ByteMatch`, `GeoMatch`, `IPMatch`, `RegexMatch`, `SizeConstraint`, `SqlInjectionMatch`, or `XssMatch`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Key-value map of resource tags
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -169,3 +175,4 @@ class RateBasedRule(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,20 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['WebAclAssociation']
 
 
 class WebAclAssociation(pulumi.CustomResource):
-    resource_arn: pulumi.Output[str]
+    resource_arn: pulumi.Output[str] = pulumi.property("resourceArn")
     """
     ARN of the resource to associate with. For example, an Application Load Balancer or API Gateway Stage.
     """
-    web_acl_id: pulumi.Output[str]
+
+    web_acl_id: pulumi.Output[str] = pulumi.property("webAclId")
     """
     The ID of the WAF Regional WebACL to create an association.
     """
-    def __init__(__self__, resource_name, opts=None, resource_arn=None, web_acl_id=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 resource_arn: Optional[pulumi.Input[str]] = None,
+                 web_acl_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Manages an association with WAF Regional Web ACL.
 
@@ -176,7 +187,11 @@ class WebAclAssociation(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, resource_arn=None, web_acl_id=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            resource_arn: Optional[pulumi.Input[str]] = None,
+            web_acl_id: Optional[pulumi.Input[str]] = None) -> 'WebAclAssociation':
         """
         Get an existing WebAclAssociation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -200,3 +215,4 @@ class WebAclAssociation(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,88 +5,92 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['Policy']
 
 
 class Policy(pulumi.CustomResource):
-    adjustment_type: pulumi.Output[str]
+    adjustment_type: pulumi.Output[Optional[str]] = pulumi.property("adjustmentType")
     """
     Specifies whether the adjustment is an absolute number or a percentage of the current capacity. Valid values are `ChangeInCapacity`, `ExactCapacity`, and `PercentChangeInCapacity`.
     """
-    arn: pulumi.Output[str]
+
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     The ARN assigned by AWS to the scaling policy.
     """
-    autoscaling_group_name: pulumi.Output[str]
+
+    autoscaling_group_name: pulumi.Output[str] = pulumi.property("autoscalingGroupName")
     """
     The name of the autoscaling group.
     """
-    cooldown: pulumi.Output[float]
+
+    cooldown: pulumi.Output[Optional[float]] = pulumi.property("cooldown")
     """
     The amount of time, in seconds, after a scaling activity completes and before the next scaling activity can start.
     """
-    estimated_instance_warmup: pulumi.Output[float]
+
+    estimated_instance_warmup: pulumi.Output[Optional[float]] = pulumi.property("estimatedInstanceWarmup")
     """
     The estimated time, in seconds, until a newly launched instance will contribute CloudWatch metrics. Without a value, AWS will default to the group's specified cooldown period.
     """
-    metric_aggregation_type: pulumi.Output[str]
+
+    metric_aggregation_type: pulumi.Output[str] = pulumi.property("metricAggregationType")
     """
     The aggregation type for the policy's metrics. Valid values are "Minimum", "Maximum", and "Average". Without a value, AWS will treat the aggregation type as "Average".
     """
-    min_adjustment_magnitude: pulumi.Output[float]
-    name: pulumi.Output[str]
+
+    min_adjustment_magnitude: pulumi.Output[Optional[float]] = pulumi.property("minAdjustmentMagnitude")
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name of the dimension.
     """
-    policy_type: pulumi.Output[str]
+
+    policy_type: pulumi.Output[Optional[str]] = pulumi.property("policyType")
     """
     The policy type, either "SimpleScaling", "StepScaling" or "TargetTrackingScaling". If this value isn't provided, AWS will default to "SimpleScaling."
     """
-    scaling_adjustment: pulumi.Output[float]
+
+    scaling_adjustment: pulumi.Output[Optional[float]] = pulumi.property("scalingAdjustment")
     """
     The number of members by which to
     scale, when the adjustment bounds are breached. A positive value scales
     up. A negative value scales down.
     """
-    step_adjustments: pulumi.Output[list]
+
+    step_adjustments: pulumi.Output[Optional[List['outputs.PolicyStepAdjustment']]] = pulumi.property("stepAdjustments")
     """
     A set of adjustments that manage
     group scaling. These have the following structure:
-
-      * `metricIntervalLowerBound` (`str`) - The lower bound for the
-        difference between the alarm threshold and the CloudWatch metric.
-        Without a value, AWS will treat this bound as infinity.
-      * `metricIntervalUpperBound` (`str`) - The upper bound for the
-        difference between the alarm threshold and the CloudWatch metric.
-        Without a value, AWS will treat this bound as infinity. The upper bound
-        must be greater than the lower bound.
-      * `scaling_adjustment` (`float`) - The number of members by which to
-        scale, when the adjustment bounds are breached. A positive value scales
-        up. A negative value scales down.
     """
-    target_tracking_configuration: pulumi.Output[dict]
+
+    target_tracking_configuration: pulumi.Output[Optional['outputs.PolicyTargetTrackingConfiguration']] = pulumi.property("targetTrackingConfiguration")
     """
     A target tracking policy. These have the following structure:
-
-      * `customizedMetricSpecification` (`dict`) - A customized metric. Conflicts with `predefined_metric_specification`.
-        * `metricDimensions` (`list`) - The dimensions of the metric.
-          * `name` (`str`) - The name of the dimension.
-          * `value` (`str`) - The value of the dimension.
-
-        * `metric_name` (`str`) - The name of the metric.
-        * `namespace` (`str`) - The namespace of the metric.
-        * `statistic` (`str`) - The statistic of the metric.
-        * `unit` (`str`) - The unit of the metric.
-
-      * `disableScaleIn` (`bool`) - Indicates whether scale in by the target tracking policy is disabled.
-      * `predefinedMetricSpecification` (`dict`) - A predefined metric. Conflicts with `customized_metric_specification`.
-        * `predefinedMetricType` (`str`) - The metric type.
-        * `resourceLabel` (`str`) - Identifies the resource associated with the metric type.
-
-      * `targetValue` (`float`) - The target value for the metric.
     """
-    def __init__(__self__, resource_name, opts=None, adjustment_type=None, autoscaling_group_name=None, cooldown=None, estimated_instance_warmup=None, metric_aggregation_type=None, min_adjustment_magnitude=None, name=None, policy_type=None, scaling_adjustment=None, step_adjustments=None, target_tracking_configuration=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 adjustment_type: Optional[pulumi.Input[str]] = None,
+                 autoscaling_group_name: Optional[pulumi.Input[str]] = None,
+                 cooldown: Optional[pulumi.Input[float]] = None,
+                 estimated_instance_warmup: Optional[pulumi.Input[float]] = None,
+                 metric_aggregation_type: Optional[pulumi.Input[str]] = None,
+                 min_adjustment_magnitude: Optional[pulumi.Input[float]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 policy_type: Optional[pulumi.Input[str]] = None,
+                 scaling_adjustment: Optional[pulumi.Input[float]] = None,
+                 step_adjustments: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['PolicyStepAdjustmentArgs']]]]] = None,
+                 target_tracking_configuration: Optional[pulumi.Input[pulumi.InputType['PolicyTargetTrackingConfigurationArgs']]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides an AutoScaling Scaling Policy resource.
 
@@ -129,41 +133,9 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[float] scaling_adjustment: The number of members by which to
                scale, when the adjustment bounds are breached. A positive value scales
                up. A negative value scales down.
-        :param pulumi.Input[list] step_adjustments: A set of adjustments that manage
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['PolicyStepAdjustmentArgs']]]] step_adjustments: A set of adjustments that manage
                group scaling. These have the following structure:
-        :param pulumi.Input[dict] target_tracking_configuration: A target tracking policy. These have the following structure:
-
-        The **step_adjustments** object supports the following:
-
-          * `metricIntervalLowerBound` (`pulumi.Input[str]`) - The lower bound for the
-            difference between the alarm threshold and the CloudWatch metric.
-            Without a value, AWS will treat this bound as infinity.
-          * `metricIntervalUpperBound` (`pulumi.Input[str]`) - The upper bound for the
-            difference between the alarm threshold and the CloudWatch metric.
-            Without a value, AWS will treat this bound as infinity. The upper bound
-            must be greater than the lower bound.
-          * `scaling_adjustment` (`pulumi.Input[float]`) - The number of members by which to
-            scale, when the adjustment bounds are breached. A positive value scales
-            up. A negative value scales down.
-
-        The **target_tracking_configuration** object supports the following:
-
-          * `customizedMetricSpecification` (`pulumi.Input[dict]`) - A customized metric. Conflicts with `predefined_metric_specification`.
-            * `metricDimensions` (`pulumi.Input[list]`) - The dimensions of the metric.
-              * `name` (`pulumi.Input[str]`) - The name of the dimension.
-              * `value` (`pulumi.Input[str]`) - The value of the dimension.
-
-            * `metric_name` (`pulumi.Input[str]`) - The name of the metric.
-            * `namespace` (`pulumi.Input[str]`) - The namespace of the metric.
-            * `statistic` (`pulumi.Input[str]`) - The statistic of the metric.
-            * `unit` (`pulumi.Input[str]`) - The unit of the metric.
-
-          * `disableScaleIn` (`pulumi.Input[bool]`) - Indicates whether scale in by the target tracking policy is disabled.
-          * `predefinedMetricSpecification` (`pulumi.Input[dict]`) - A predefined metric. Conflicts with `customized_metric_specification`.
-            * `predefinedMetricType` (`pulumi.Input[str]`) - The metric type.
-            * `resourceLabel` (`pulumi.Input[str]`) - Identifies the resource associated with the metric type.
-
-          * `targetValue` (`pulumi.Input[float]`) - The target value for the metric.
+        :param pulumi.Input[pulumi.InputType['PolicyTargetTrackingConfigurationArgs']] target_tracking_configuration: A target tracking policy. These have the following structure:
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -203,7 +175,21 @@ class Policy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, adjustment_type=None, arn=None, autoscaling_group_name=None, cooldown=None, estimated_instance_warmup=None, metric_aggregation_type=None, min_adjustment_magnitude=None, name=None, policy_type=None, scaling_adjustment=None, step_adjustments=None, target_tracking_configuration=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            adjustment_type: Optional[pulumi.Input[str]] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            autoscaling_group_name: Optional[pulumi.Input[str]] = None,
+            cooldown: Optional[pulumi.Input[float]] = None,
+            estimated_instance_warmup: Optional[pulumi.Input[float]] = None,
+            metric_aggregation_type: Optional[pulumi.Input[str]] = None,
+            min_adjustment_magnitude: Optional[pulumi.Input[float]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            policy_type: Optional[pulumi.Input[str]] = None,
+            scaling_adjustment: Optional[pulumi.Input[float]] = None,
+            step_adjustments: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['PolicyStepAdjustmentArgs']]]]] = None,
+            target_tracking_configuration: Optional[pulumi.Input[pulumi.InputType['PolicyTargetTrackingConfigurationArgs']]] = None) -> 'Policy':
         """
         Get an existing Policy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -222,41 +208,9 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[float] scaling_adjustment: The number of members by which to
                scale, when the adjustment bounds are breached. A positive value scales
                up. A negative value scales down.
-        :param pulumi.Input[list] step_adjustments: A set of adjustments that manage
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['PolicyStepAdjustmentArgs']]]] step_adjustments: A set of adjustments that manage
                group scaling. These have the following structure:
-        :param pulumi.Input[dict] target_tracking_configuration: A target tracking policy. These have the following structure:
-
-        The **step_adjustments** object supports the following:
-
-          * `metricIntervalLowerBound` (`pulumi.Input[str]`) - The lower bound for the
-            difference between the alarm threshold and the CloudWatch metric.
-            Without a value, AWS will treat this bound as infinity.
-          * `metricIntervalUpperBound` (`pulumi.Input[str]`) - The upper bound for the
-            difference between the alarm threshold and the CloudWatch metric.
-            Without a value, AWS will treat this bound as infinity. The upper bound
-            must be greater than the lower bound.
-          * `scaling_adjustment` (`pulumi.Input[float]`) - The number of members by which to
-            scale, when the adjustment bounds are breached. A positive value scales
-            up. A negative value scales down.
-
-        The **target_tracking_configuration** object supports the following:
-
-          * `customizedMetricSpecification` (`pulumi.Input[dict]`) - A customized metric. Conflicts with `predefined_metric_specification`.
-            * `metricDimensions` (`pulumi.Input[list]`) - The dimensions of the metric.
-              * `name` (`pulumi.Input[str]`) - The name of the dimension.
-              * `value` (`pulumi.Input[str]`) - The value of the dimension.
-
-            * `metric_name` (`pulumi.Input[str]`) - The name of the metric.
-            * `namespace` (`pulumi.Input[str]`) - The namespace of the metric.
-            * `statistic` (`pulumi.Input[str]`) - The statistic of the metric.
-            * `unit` (`pulumi.Input[str]`) - The unit of the metric.
-
-          * `disableScaleIn` (`pulumi.Input[bool]`) - Indicates whether scale in by the target tracking policy is disabled.
-          * `predefinedMetricSpecification` (`pulumi.Input[dict]`) - A predefined metric. Conflicts with `customized_metric_specification`.
-            * `predefinedMetricType` (`pulumi.Input[str]`) - The metric type.
-            * `resourceLabel` (`pulumi.Input[str]`) - Identifies the resource associated with the metric type.
-
-          * `targetValue` (`pulumi.Input[float]`) - The target value for the metric.
+        :param pulumi.Input[pulumi.InputType['PolicyTargetTrackingConfigurationArgs']] target_tracking_configuration: A target tracking policy. These have the following structure:
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -281,3 +235,4 @@ class Policy(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

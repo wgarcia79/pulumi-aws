@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetTaskDefinitionResult',
+    'AwaitableGetTaskDefinitionResult',
+    'get_task_definition',
+]
 
 
 class GetTaskDefinitionResult:
@@ -70,7 +76,8 @@ class AwaitableGetTaskDefinitionResult(GetTaskDefinitionResult):
             task_role_arn=self.task_role_arn)
 
 
-def get_task_definition(task_definition=None, opts=None):
+def get_task_definition(task_definition: Optional[str] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTaskDefinitionResult:
     """
     The ECS task definition data source allows access to details of
     a specific AWS ECS task definition.

@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetAliasResult',
+    'AwaitableGetAliasResult',
+    'get_alias',
+]
 
 
 class GetAliasResult:
@@ -67,7 +73,9 @@ class AwaitableGetAliasResult(GetAliasResult):
             name=self.name)
 
 
-def get_alias(function_name=None, name=None, opts=None):
+def get_alias(function_name: Optional[str] = None,
+              name: Optional[str] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAliasResult:
     """
     Provides information about a Lambda Alias.
 

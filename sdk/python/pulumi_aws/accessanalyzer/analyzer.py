@@ -5,25 +5,39 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['Analyzer']
 
 
 class Analyzer(pulumi.CustomResource):
-    analyzer_name: pulumi.Output[str]
+    analyzer_name: pulumi.Output[str] = pulumi.property("analyzerName")
     """
     Name of the Analyzer.
     """
-    arn: pulumi.Output[str]
-    tags: pulumi.Output[dict]
+
+    arn: pulumi.Output[str] = pulumi.property("arn")
+
+    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
     """
     Key-value map of resource tags.
     """
-    type: pulumi.Output[str]
+
+    type: pulumi.Output[Optional[str]] = pulumi.property("type")
     """
     Type of Analyzer. Valid value is currently only `ACCOUNT`. Defaults to `ACCOUNT`.
     """
-    def __init__(__self__, resource_name, opts=None, analyzer_name=None, tags=None, type=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 analyzer_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Manages an Access Analyzer Analyzer. More information can be found in the [Access Analyzer User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html).
 
@@ -39,7 +53,7 @@ class Analyzer(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] analyzer_name: Name of the Analyzer.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Key-value map of resource tags.
         :param pulumi.Input[str] type: Type of Analyzer. Valid value is currently only `ACCOUNT`. Defaults to `ACCOUNT`.
         """
         if __name__ is not None:
@@ -72,7 +86,13 @@ class Analyzer(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, analyzer_name=None, arn=None, tags=None, type=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            analyzer_name: Optional[pulumi.Input[str]] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            type: Optional[pulumi.Input[str]] = None) -> 'Analyzer':
         """
         Get an existing Analyzer resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -81,7 +101,7 @@ class Analyzer(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] analyzer_name: Name of the Analyzer.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Key-value map of resource tags.
         :param pulumi.Input[str] type: Type of Analyzer. Valid value is currently only `ACCOUNT`. Defaults to `ACCOUNT`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -99,3 +119,4 @@ class Analyzer(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

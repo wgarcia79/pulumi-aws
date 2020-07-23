@@ -5,8 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetLocalGatewayRouteTableResult',
+    'AwaitableGetLocalGatewayRouteTableResult',
+    'get_local_gateway_route_table',
+]
 
 
 class GetLocalGatewayRouteTableResult:
@@ -55,7 +63,13 @@ class AwaitableGetLocalGatewayRouteTableResult(GetLocalGatewayRouteTableResult):
             tags=self.tags)
 
 
-def get_local_gateway_route_table(filters=None, local_gateway_id=None, local_gateway_route_table_id=None, outpost_arn=None, state=None, tags=None, opts=None):
+def get_local_gateway_route_table(filters: Optional[List[pulumi.InputType['GetLocalGatewayRouteTableFilterArgs']]] = None,
+                                  local_gateway_id: Optional[str] = None,
+                                  local_gateway_route_table_id: Optional[str] = None,
+                                  outpost_arn: Optional[str] = None,
+                                  state: Optional[str] = None,
+                                  tags: Optional[Mapping[str, str]] = None,
+                                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLocalGatewayRouteTableResult:
     """
     Provides details about an EC2 Local Gateway Route Table.
 
@@ -80,15 +94,8 @@ def get_local_gateway_route_table(filters=None, local_gateway_id=None, local_gat
     :param str local_gateway_route_table_id: Local Gateway Route Table Id assigned to desired local gateway route table
     :param str outpost_arn: The arn of the Outpost the local gateway route table is associated with.
     :param str state: The state of the local gateway route table.
-    :param dict tags: A mapping of tags, each pair of which must exactly match
+    :param Mapping[str, str] tags: A mapping of tags, each pair of which must exactly match
            a pair on the desired local gateway route table.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter by, as defined by
-        [the underlying AWS API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeLocalGatewayRouteTables.html).
-      * `values` (`list`) - Set of values that are accepted for the given field.
-        A local gateway route table will be selected if any one of the given values matches.
     """
     __args__ = dict()
     __args__['filters'] = filters

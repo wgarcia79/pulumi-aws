@@ -5,8 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetNetworkInterfacesResult',
+    'AwaitableGetNetworkInterfacesResult',
+    'get_network_interfaces',
+]
 
 
 class GetNetworkInterfacesResult:
@@ -46,7 +54,9 @@ class AwaitableGetNetworkInterfacesResult(GetNetworkInterfacesResult):
             tags=self.tags)
 
 
-def get_network_interfaces(filters=None, tags=None, opts=None):
+def get_network_interfaces(filters: Optional[List[pulumi.InputType['GetNetworkInterfacesFilterArgs']]] = None,
+                           tags: Optional[Mapping[str, str]] = None,
+                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNetworkInterfacesResult:
     """
     ## Example Usage
 
@@ -87,15 +97,9 @@ def get_network_interfaces(filters=None, tags=None, opts=None):
     ```
 
 
-    :param list filters: Custom filter block as described below.
-    :param dict tags: A map of tags, each pair of which must exactly match
+    :param List[pulumi.InputType['GetNetworkInterfacesFilterArgs']] filters: Custom filter block as described below.
+    :param Mapping[str, str] tags: A map of tags, each pair of which must exactly match
            a pair on the desired network interfaces.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter by, as defined by
-        [the underlying AWS API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeNetworkInterfaces.html).
-      * `values` (`list`) - Set of values that are accepted for the given field.
     """
     __args__ = dict()
     __args__['filters'] = filters

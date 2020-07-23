@@ -5,50 +5,72 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['BgpPeer']
 
 
 class BgpPeer(pulumi.CustomResource):
-    address_family: pulumi.Output[str]
+    address_family: pulumi.Output[str] = pulumi.property("addressFamily")
     """
     The address family for the BGP peer. `ipv4 ` or `ipv6`.
     """
-    amazon_address: pulumi.Output[str]
+
+    amazon_address: pulumi.Output[str] = pulumi.property("amazonAddress")
     """
     The IPv4 CIDR address to use to send traffic to Amazon.
     Required for IPv4 BGP peers on public virtual interfaces.
     """
-    aws_device: pulumi.Output[str]
+
+    aws_device: pulumi.Output[str] = pulumi.property("awsDevice")
     """
     The Direct Connect endpoint on which the BGP peer terminates.
     """
-    bgp_asn: pulumi.Output[float]
+
+    bgp_asn: pulumi.Output[float] = pulumi.property("bgpAsn")
     """
     The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
     """
-    bgp_auth_key: pulumi.Output[str]
+
+    bgp_auth_key: pulumi.Output[str] = pulumi.property("bgpAuthKey")
     """
     The authentication key for BGP configuration.
     """
-    bgp_peer_id: pulumi.Output[str]
+
+    bgp_peer_id: pulumi.Output[str] = pulumi.property("bgpPeerId")
     """
     The ID of the BGP peer.
     """
-    bgp_status: pulumi.Output[str]
+
+    bgp_status: pulumi.Output[str] = pulumi.property("bgpStatus")
     """
     The Up/Down state of the BGP peer.
     """
-    customer_address: pulumi.Output[str]
+
+    customer_address: pulumi.Output[str] = pulumi.property("customerAddress")
     """
     The IPv4 CIDR destination address to which Amazon should send traffic.
     Required for IPv4 BGP peers on public virtual interfaces.
     """
-    virtual_interface_id: pulumi.Output[str]
+
+    virtual_interface_id: pulumi.Output[str] = pulumi.property("virtualInterfaceId")
     """
     The ID of the Direct Connect virtual interface on which to create the BGP peer.
     """
-    def __init__(__self__, resource_name, opts=None, address_family=None, amazon_address=None, bgp_asn=None, bgp_auth_key=None, customer_address=None, virtual_interface_id=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 address_family: Optional[pulumi.Input[str]] = None,
+                 amazon_address: Optional[pulumi.Input[str]] = None,
+                 bgp_asn: Optional[pulumi.Input[float]] = None,
+                 bgp_auth_key: Optional[pulumi.Input[str]] = None,
+                 customer_address: Optional[pulumi.Input[str]] = None,
+                 virtual_interface_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a Direct Connect BGP peer resource.
 
@@ -114,7 +136,18 @@ class BgpPeer(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, address_family=None, amazon_address=None, aws_device=None, bgp_asn=None, bgp_auth_key=None, bgp_peer_id=None, bgp_status=None, customer_address=None, virtual_interface_id=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            address_family: Optional[pulumi.Input[str]] = None,
+            amazon_address: Optional[pulumi.Input[str]] = None,
+            aws_device: Optional[pulumi.Input[str]] = None,
+            bgp_asn: Optional[pulumi.Input[float]] = None,
+            bgp_auth_key: Optional[pulumi.Input[str]] = None,
+            bgp_peer_id: Optional[pulumi.Input[str]] = None,
+            bgp_status: Optional[pulumi.Input[str]] = None,
+            customer_address: Optional[pulumi.Input[str]] = None,
+            virtual_interface_id: Optional[pulumi.Input[str]] = None) -> 'BgpPeer':
         """
         Get an existing BgpPeer resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -154,3 +187,4 @@ class BgpPeer(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

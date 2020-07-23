@@ -5,28 +5,43 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['UserProfile']
 
 
 class UserProfile(pulumi.CustomResource):
-    allow_self_management: pulumi.Output[bool]
+    allow_self_management: pulumi.Output[Optional[bool]] = pulumi.property("allowSelfManagement")
     """
     Whether users can specify their own SSH public key through the My Settings page
     """
-    ssh_public_key: pulumi.Output[str]
+
+    ssh_public_key: pulumi.Output[Optional[str]] = pulumi.property("sshPublicKey")
     """
     The users public key
     """
-    ssh_username: pulumi.Output[str]
+
+    ssh_username: pulumi.Output[str] = pulumi.property("sshUsername")
     """
     The ssh username, with witch this user wants to log in
     """
-    user_arn: pulumi.Output[str]
+
+    user_arn: pulumi.Output[str] = pulumi.property("userArn")
     """
     The user's IAM ARN
     """
-    def __init__(__self__, resource_name, opts=None, allow_self_management=None, ssh_public_key=None, ssh_username=None, user_arn=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 allow_self_management: Optional[pulumi.Input[bool]] = None,
+                 ssh_public_key: Optional[pulumi.Input[str]] = None,
+                 ssh_username: Optional[pulumi.Input[str]] = None,
+                 user_arn: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides an OpsWorks User Profile resource.
 
@@ -80,7 +95,13 @@ class UserProfile(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, allow_self_management=None, ssh_public_key=None, ssh_username=None, user_arn=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            allow_self_management: Optional[pulumi.Input[bool]] = None,
+            ssh_public_key: Optional[pulumi.Input[str]] = None,
+            ssh_username: Optional[pulumi.Input[str]] = None,
+            user_arn: Optional[pulumi.Input[str]] = None) -> 'UserProfile':
         """
         Get an existing UserProfile resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -108,3 +129,4 @@ class UserProfile(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

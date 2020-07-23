@@ -5,32 +5,49 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['Model']
 
 
 class Model(pulumi.CustomResource):
-    content_type: pulumi.Output[str]
+    content_type: pulumi.Output[str] = pulumi.property("contentType")
     """
     The content type of the model
     """
-    description: pulumi.Output[str]
+
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     The description of the model
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name of the model
     """
-    rest_api: pulumi.Output[str]
+
+    rest_api: pulumi.Output[str] = pulumi.property("restApi")
     """
     The ID of the associated REST API
     """
-    schema: pulumi.Output[str]
+
+    schema: pulumi.Output[Optional[str]] = pulumi.property("schema")
     """
     The schema of the model in a JSON form
     """
-    def __init__(__self__, resource_name, opts=None, content_type=None, description=None, name=None, rest_api=None, schema=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 content_type: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 rest_api: Optional[pulumi.Input[str]] = None,
+                 schema: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a Model for a REST API Gateway.
 
@@ -57,7 +74,7 @@ class Model(pulumi.CustomResource):
         :param pulumi.Input[str] content_type: The content type of the model
         :param pulumi.Input[str] description: The description of the model
         :param pulumi.Input[str] name: The name of the model
-        :param pulumi.Input[dict] rest_api: The ID of the associated REST API
+        :param pulumi.Input[str] rest_api: The ID of the associated REST API
         :param pulumi.Input[str] schema: The schema of the model in a JSON form
         """
         if __name__ is not None:
@@ -93,7 +110,14 @@ class Model(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, content_type=None, description=None, name=None, rest_api=None, schema=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            content_type: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            rest_api: Optional[pulumi.Input[str]] = None,
+            schema: Optional[pulumi.Input[str]] = None) -> 'Model':
         """
         Get an existing Model resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -104,7 +128,7 @@ class Model(pulumi.CustomResource):
         :param pulumi.Input[str] content_type: The content type of the model
         :param pulumi.Input[str] description: The description of the model
         :param pulumi.Input[str] name: The name of the model
-        :param pulumi.Input[dict] rest_api: The ID of the associated REST API
+        :param pulumi.Input[str] rest_api: The ID of the associated REST API
         :param pulumi.Input[str] schema: The schema of the model in a JSON form
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -123,3 +147,4 @@ class Model(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

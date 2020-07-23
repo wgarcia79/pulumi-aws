@@ -5,8 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetVpcDhcpOptionsResult',
+    'AwaitableGetVpcDhcpOptionsResult',
+    'get_vpc_dhcp_options',
+]
 
 
 class GetVpcDhcpOptionsResult:
@@ -98,7 +106,10 @@ class AwaitableGetVpcDhcpOptionsResult(GetVpcDhcpOptionsResult):
             tags=self.tags)
 
 
-def get_vpc_dhcp_options(dhcp_options_id=None, filters=None, tags=None, opts=None):
+def get_vpc_dhcp_options(dhcp_options_id: Optional[str] = None,
+                         filters: Optional[List[pulumi.InputType['GetVpcDhcpOptionsFilterArgs']]] = None,
+                         tags: Optional[Mapping[str, str]] = None,
+                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcDhcpOptionsResult:
     """
     Retrieve information about an EC2 DHCP Options configuration.
 
@@ -131,13 +142,8 @@ def get_vpc_dhcp_options(dhcp_options_id=None, filters=None, tags=None, opts=Non
 
 
     :param str dhcp_options_id: The EC2 DHCP Options ID.
-    :param list filters: List of custom filters as described below.
-    :param dict tags: A map of tags assigned to the resource.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter.
-      * `values` (`list`) - Set of values for filtering.
+    :param List[pulumi.InputType['GetVpcDhcpOptionsFilterArgs']] filters: List of custom filters as described below.
+    :param Mapping[str, str] tags: A map of tags assigned to the resource.
     """
     __args__ = dict()
     __args__['dhcpOptionsId'] = dhcp_options_id

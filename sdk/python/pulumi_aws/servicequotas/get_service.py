@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetServiceResult',
+    'AwaitableGetServiceResult',
+    'get_service',
+]
 
 
 class GetServiceResult:
@@ -42,7 +48,8 @@ class AwaitableGetServiceResult(GetServiceResult):
             service_name=self.service_name)
 
 
-def get_service(service_name=None, opts=None):
+def get_service(service_name: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServiceResult:
     """
     Retrieve information about a Service Quotas Service.
 

@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetLoadBalancerResult',
+    'AwaitableGetLoadBalancerResult',
+    'get_load_balancer',
+]
 
 
 class GetLoadBalancerResult:
@@ -99,7 +106,10 @@ class AwaitableGetLoadBalancerResult(GetLoadBalancerResult):
             zone_id=self.zone_id)
 
 
-def get_load_balancer(arn=None, name=None, tags=None, opts=None):
+def get_load_balancer(arn: Optional[str] = None,
+                      name: Optional[str] = None,
+                      tags: Optional[Mapping[str, str]] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLoadBalancerResult:
     """
     > **Note:** `alb.LoadBalancer` is known as `lb.LoadBalancer`. The functionality is identical.
 

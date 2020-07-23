@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetEndpointResult',
+    'AwaitableGetEndpointResult',
+    'get_endpoint',
+]
 
 
 class GetEndpointResult:
@@ -47,7 +53,8 @@ class AwaitableGetEndpointResult(GetEndpointResult):
             id=self.id)
 
 
-def get_endpoint(endpoint_type=None, opts=None):
+def get_endpoint(endpoint_type: Optional[str] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEndpointResult:
     """
     Returns a unique endpoint specific to the AWS account making the call.
 

@@ -5,20 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['VpnConnectionRoute']
 
 
 class VpnConnectionRoute(pulumi.CustomResource):
-    destination_cidr_block: pulumi.Output[str]
+    destination_cidr_block: pulumi.Output[str] = pulumi.property("destinationCidrBlock")
     """
     The CIDR block associated with the local subnet of the customer network.
     """
-    vpn_connection_id: pulumi.Output[str]
+
+    vpn_connection_id: pulumi.Output[str] = pulumi.property("vpnConnectionId")
     """
     The ID of the VPN connection.
     """
-    def __init__(__self__, resource_name, opts=None, destination_cidr_block=None, vpn_connection_id=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 destination_cidr_block: Optional[pulumi.Input[str]] = None,
+                 vpn_connection_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a static route between a VPN connection and a customer gateway.
 
@@ -31,7 +42,7 @@ class VpnConnectionRoute(pulumi.CustomResource):
         vpc = aws.ec2.Vpc("vpc", cidr_block="10.0.0.0/16")
         vpn_gateway = aws.ec2.VpnGateway("vpnGateway", vpc_id=vpc.id)
         customer_gateway = aws.ec2.CustomerGateway("customerGateway",
-            bgp_asn=65000,
+            bgp_asn="65000",
             ip_address="172.0.0.1",
             type="ipsec.1")
         main = aws.ec2.VpnConnection("main",
@@ -79,7 +90,11 @@ class VpnConnectionRoute(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, destination_cidr_block=None, vpn_connection_id=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            destination_cidr_block: Optional[pulumi.Input[str]] = None,
+            vpn_connection_id: Optional[pulumi.Input[str]] = None) -> 'VpnConnectionRoute':
         """
         Get an existing VpnConnectionRoute resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -103,3 +118,4 @@ class VpnConnectionRoute(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

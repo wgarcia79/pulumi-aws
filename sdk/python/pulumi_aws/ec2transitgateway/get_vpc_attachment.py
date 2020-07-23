@@ -5,8 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetVpcAttachmentResult',
+    'AwaitableGetVpcAttachmentResult',
+    'get_vpc_attachment',
+]
 
 
 class GetVpcAttachmentResult:
@@ -84,7 +92,10 @@ class AwaitableGetVpcAttachmentResult(GetVpcAttachmentResult):
             vpc_owner_id=self.vpc_owner_id)
 
 
-def get_vpc_attachment(filters=None, id=None, tags=None, opts=None):
+def get_vpc_attachment(filters: Optional[List[pulumi.InputType['GetVpcAttachmentFilterArgs']]] = None,
+                       id: Optional[str] = None,
+                       tags: Optional[Mapping[str, str]] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcAttachmentResult:
     """
     Get information on an EC2 Transit Gateway VPC Attachment.
 
@@ -110,14 +121,9 @@ def get_vpc_attachment(filters=None, id=None, tags=None, opts=None):
     ```
 
 
-    :param list filters: One or more configuration blocks containing name-values filters. Detailed below.
+    :param List[pulumi.InputType['GetVpcAttachmentFilterArgs']] filters: One or more configuration blocks containing name-values filters. Detailed below.
     :param str id: Identifier of the EC2 Transit Gateway VPC Attachment.
-    :param dict tags: Key-value tags for the EC2 Transit Gateway VPC Attachment
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - Name of the filter.
-      * `values` (`list`) - List of one or more values for the filter.
+    :param Mapping[str, str] tags: Key-value tags for the EC2 Transit Gateway VPC Attachment
     """
     __args__ = dict()
     __args__['filters'] = filters

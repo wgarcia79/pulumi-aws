@@ -5,39 +5,50 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['EndpointConfiguration']
 
 
 class EndpointConfiguration(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     The Amazon Resource Name (ARN) assigned by AWS to this endpoint configuration.
     """
-    kms_key_arn: pulumi.Output[str]
+
+    kms_key_arn: pulumi.Output[Optional[str]] = pulumi.property("kmsKeyArn")
     """
     Amazon Resource Name (ARN) of a AWS Key Management Service key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance that hosts the endpoint.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name of the endpoint configuration. If omitted, this provider will assign a random, unique name.
     """
-    production_variants: pulumi.Output[list]
+
+    production_variants: pulumi.Output[List['outputs.EndpointConfigurationProductionVariant']] = pulumi.property("productionVariants")
     """
     Fields are documented below.
-
-      * `acceleratorType` (`str`) - The size of the Elastic Inference (EI) instance to use for the production variant.
-      * `initialInstanceCount` (`float`) - Initial number of instances used for auto-scaling.
-      * `initialVariantWeight` (`float`) - Determines initial traffic distribution among all of the models that you specify in the endpoint configuration. If unspecified, it defaults to 1.0.
-      * `instance_type` (`str`) - The type of instance to start.
-      * `modelName` (`str`) - The name of the model to use.
-      * `variantName` (`str`) - The name of the variant. If omitted, this provider will assign a random, unique name.
     """
-    tags: pulumi.Output[dict]
+
+    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
     """
     A mapping of tags to assign to the resource.
     """
-    def __init__(__self__, resource_name, opts=None, kms_key_arn=None, name=None, production_variants=None, tags=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 kms_key_arn: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 production_variants: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['EndpointConfigurationProductionVariantArgs']]]]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a SageMaker endpoint configuration resource.
 
@@ -65,17 +76,8 @@ class EndpointConfiguration(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] kms_key_arn: Amazon Resource Name (ARN) of a AWS Key Management Service key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance that hosts the endpoint.
         :param pulumi.Input[str] name: The name of the endpoint configuration. If omitted, this provider will assign a random, unique name.
-        :param pulumi.Input[list] production_variants: Fields are documented below.
-        :param pulumi.Input[dict] tags: A mapping of tags to assign to the resource.
-
-        The **production_variants** object supports the following:
-
-          * `acceleratorType` (`pulumi.Input[str]`) - The size of the Elastic Inference (EI) instance to use for the production variant.
-          * `initialInstanceCount` (`pulumi.Input[float]`) - Initial number of instances used for auto-scaling.
-          * `initialVariantWeight` (`pulumi.Input[float]`) - Determines initial traffic distribution among all of the models that you specify in the endpoint configuration. If unspecified, it defaults to 1.0.
-          * `instance_type` (`pulumi.Input[str]`) - The type of instance to start.
-          * `modelName` (`pulumi.Input[str]`) - The name of the model to use.
-          * `variantName` (`pulumi.Input[str]`) - The name of the variant. If omitted, this provider will assign a random, unique name.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['EndpointConfigurationProductionVariantArgs']]]] production_variants: Fields are documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A mapping of tags to assign to the resource.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -108,7 +110,14 @@ class EndpointConfiguration(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, kms_key_arn=None, name=None, production_variants=None, tags=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            kms_key_arn: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            production_variants: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['EndpointConfigurationProductionVariantArgs']]]]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None) -> 'EndpointConfiguration':
         """
         Get an existing EndpointConfiguration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -119,17 +128,8 @@ class EndpointConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] arn: The Amazon Resource Name (ARN) assigned by AWS to this endpoint configuration.
         :param pulumi.Input[str] kms_key_arn: Amazon Resource Name (ARN) of a AWS Key Management Service key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance that hosts the endpoint.
         :param pulumi.Input[str] name: The name of the endpoint configuration. If omitted, this provider will assign a random, unique name.
-        :param pulumi.Input[list] production_variants: Fields are documented below.
-        :param pulumi.Input[dict] tags: A mapping of tags to assign to the resource.
-
-        The **production_variants** object supports the following:
-
-          * `acceleratorType` (`pulumi.Input[str]`) - The size of the Elastic Inference (EI) instance to use for the production variant.
-          * `initialInstanceCount` (`pulumi.Input[float]`) - Initial number of instances used for auto-scaling.
-          * `initialVariantWeight` (`pulumi.Input[float]`) - Determines initial traffic distribution among all of the models that you specify in the endpoint configuration. If unspecified, it defaults to 1.0.
-          * `instance_type` (`pulumi.Input[str]`) - The type of instance to start.
-          * `modelName` (`pulumi.Input[str]`) - The name of the model to use.
-          * `variantName` (`pulumi.Input[str]`) - The name of the variant. If omitted, this provider will assign a random, unique name.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['EndpointConfigurationProductionVariantArgs']]]] production_variants: Fields are documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A mapping of tags to assign to the resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -147,3 +147,4 @@ class EndpointConfiguration(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

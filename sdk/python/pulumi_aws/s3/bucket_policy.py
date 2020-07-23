@@ -5,20 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['BucketPolicy']
 
 
 class BucketPolicy(pulumi.CustomResource):
-    bucket: pulumi.Output[str]
+    bucket: pulumi.Output[str] = pulumi.property("bucket")
     """
     The name of the bucket to which to apply the policy.
     """
-    policy: pulumi.Output[str]
+
+    policy: pulumi.Output[str] = pulumi.property("policy")
     """
     The text of the policy.
     """
-    def __init__(__self__, resource_name, opts=None, bucket=None, policy=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 bucket: Optional[pulumi.Input[str]] = None,
+                 policy: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Attaches a policy to an S3 bucket resource.
 
@@ -55,7 +66,7 @@ class BucketPolicy(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the bucket to which to apply the policy.
-        :param pulumi.Input[dict] policy: The text of the policy.
+        :param pulumi.Input[str] policy: The text of the policy.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -87,7 +98,11 @@ class BucketPolicy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, bucket=None, policy=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            bucket: Optional[pulumi.Input[str]] = None,
+            policy: Optional[pulumi.Input[str]] = None) -> 'BucketPolicy':
         """
         Get an existing BucketPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -96,7 +111,7 @@ class BucketPolicy(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the bucket to which to apply the policy.
-        :param pulumi.Input[dict] policy: The text of the policy.
+        :param pulumi.Input[str] policy: The text of the policy.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -111,3 +126,4 @@ class BucketPolicy(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

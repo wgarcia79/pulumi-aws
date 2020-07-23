@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetSecretRotationResult',
+    'AwaitableGetSecretRotationResult',
+    'get_secret_rotation',
+]
 
 
 class GetSecretRotationResult:
@@ -56,7 +63,8 @@ class AwaitableGetSecretRotationResult(GetSecretRotationResult):
             secret_id=self.secret_id)
 
 
-def get_secret_rotation(secret_id=None, opts=None):
+def get_secret_rotation(secret_id: Optional[str] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretRotationResult:
     """
     Retrieve information about a Secrets Manager secret rotation. To retrieve secret metadata, see the [`secretsmanager.Secret` data source](https://www.terraform.io/docs/providers/aws/d/secretsmanager_secret.html). To retrieve a secret value, see the [`secretsmanager.SecretVersion` data source](https://www.terraform.io/docs/providers/aws/d/secretsmanager_secret_version.html).
 

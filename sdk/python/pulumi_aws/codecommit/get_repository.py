@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetRepositoryResult',
+    'AwaitableGetRepositoryResult',
+    'get_repository',
+]
 
 
 class GetRepositoryResult:
@@ -63,7 +69,8 @@ class AwaitableGetRepositoryResult(GetRepositoryResult):
             repository_name=self.repository_name)
 
 
-def get_repository(repository_name=None, opts=None):
+def get_repository(repository_name: Optional[str] = None,
+                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRepositoryResult:
     """
     The CodeCommit Repository data source allows the ARN, Repository ID, Repository URL for HTTP and Repository URL for SSH to be retrieved for an CodeCommit repository.
 

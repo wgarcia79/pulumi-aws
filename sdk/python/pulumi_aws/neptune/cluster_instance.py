@@ -5,110 +5,158 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['ClusterInstance']
 
 
 class ClusterInstance(pulumi.CustomResource):
-    address: pulumi.Output[str]
+    address: pulumi.Output[str] = pulumi.property("address")
     """
     The hostname of the instance. See also `endpoint` and `port`.
     """
-    apply_immediately: pulumi.Output[bool]
+
+    apply_immediately: pulumi.Output[bool] = pulumi.property("applyImmediately")
     """
     Specifies whether any instance modifications
     are applied immediately, or during the next maintenance window. Default is`false`.
     """
-    arn: pulumi.Output[str]
+
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     Amazon Resource Name (ARN) of neptune instance
     """
-    auto_minor_version_upgrade: pulumi.Output[bool]
+
+    auto_minor_version_upgrade: pulumi.Output[Optional[bool]] = pulumi.property("autoMinorVersionUpgrade")
     """
     Indicates that minor engine upgrades will be applied automatically to the instance during the maintenance window. Default is `true`.
     """
-    availability_zone: pulumi.Output[str]
+
+    availability_zone: pulumi.Output[str] = pulumi.property("availabilityZone")
     """
     The EC2 Availability Zone that the neptune instance is created in.
     """
-    cluster_identifier: pulumi.Output[str]
+
+    cluster_identifier: pulumi.Output[str] = pulumi.property("clusterIdentifier")
     """
     The identifier of the `neptune.Cluster` in which to launch this instance.
     """
-    dbi_resource_id: pulumi.Output[str]
+
+    dbi_resource_id: pulumi.Output[str] = pulumi.property("dbiResourceId")
     """
     The region-unique, immutable identifier for the neptune instance.
     """
-    endpoint: pulumi.Output[str]
+
+    endpoint: pulumi.Output[str] = pulumi.property("endpoint")
     """
     The connection endpoint in `address:port` format.
     """
-    engine: pulumi.Output[str]
+
+    engine: pulumi.Output[Optional[str]] = pulumi.property("engine")
     """
     The name of the database engine to be used for the neptune instance. Defaults to `neptune`. Valid Values: `neptune`.
     """
-    engine_version: pulumi.Output[str]
+
+    engine_version: pulumi.Output[str] = pulumi.property("engineVersion")
     """
     The neptune engine version.
     """
-    identifier: pulumi.Output[str]
+
+    identifier: pulumi.Output[str] = pulumi.property("identifier")
     """
     The indentifier for the neptune instance, if omitted, this provider will assign a random, unique identifier.
     """
-    identifier_prefix: pulumi.Output[str]
+
+    identifier_prefix: pulumi.Output[str] = pulumi.property("identifierPrefix")
     """
     Creates a unique identifier beginning with the specified prefix. Conflicts with `identifier`.
     """
-    instance_class: pulumi.Output[str]
+
+    instance_class: pulumi.Output[str] = pulumi.property("instanceClass")
     """
     The instance class to use.
     """
-    kms_key_arn: pulumi.Output[str]
+
+    kms_key_arn: pulumi.Output[str] = pulumi.property("kmsKeyArn")
     """
     The ARN for the KMS encryption key if one is set to the neptune cluster.
     """
-    neptune_parameter_group_name: pulumi.Output[str]
+
+    neptune_parameter_group_name: pulumi.Output[Optional[str]] = pulumi.property("neptuneParameterGroupName")
     """
     The name of the neptune parameter group to associate with this instance.
     """
-    neptune_subnet_group_name: pulumi.Output[str]
+
+    neptune_subnet_group_name: pulumi.Output[str] = pulumi.property("neptuneSubnetGroupName")
     """
     A subnet group to associate with this neptune instance. **NOTE:** This must match the `neptune_subnet_group_name` of the attached `neptune.Cluster`.
     """
-    port: pulumi.Output[float]
+
+    port: pulumi.Output[Optional[float]] = pulumi.property("port")
     """
     The port on which the DB accepts connections. Defaults to `8182`.
     """
-    preferred_backup_window: pulumi.Output[str]
+
+    preferred_backup_window: pulumi.Output[str] = pulumi.property("preferredBackupWindow")
     """
     The daily time range during which automated backups are created if automated backups are enabled. Eg: "04:00-09:00"
     """
-    preferred_maintenance_window: pulumi.Output[str]
+
+    preferred_maintenance_window: pulumi.Output[str] = pulumi.property("preferredMaintenanceWindow")
     """
     The window to perform maintenance in.
     Syntax: "ddd:hh24:mi-ddd:hh24:mi". Eg: "Mon:00:00-Mon:03:00".
     """
-    promotion_tier: pulumi.Output[float]
+
+    promotion_tier: pulumi.Output[Optional[float]] = pulumi.property("promotionTier")
     """
     Default 0. Failover Priority setting on instance level. The reader who has lower tier has higher priority to get promoter to writer.
     """
-    publicly_accessible: pulumi.Output[bool]
+
+    publicly_accessible: pulumi.Output[Optional[bool]] = pulumi.property("publiclyAccessible")
     """
     Bool to control if instance is publicly accessible. Default is `false`.
     """
-    storage_encrypted: pulumi.Output[bool]
+
+    storage_encrypted: pulumi.Output[bool] = pulumi.property("storageEncrypted")
     """
     Specifies whether the neptune cluster is encrypted.
     """
-    tags: pulumi.Output[dict]
+
+    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
     """
     A map of tags to assign to the instance.
     """
-    writer: pulumi.Output[bool]
+
+    writer: pulumi.Output[bool] = pulumi.property("writer")
     """
     Boolean indicating if this instance is writable. `False` indicates this instance is a read replica.
     """
-    def __init__(__self__, resource_name, opts=None, apply_immediately=None, auto_minor_version_upgrade=None, availability_zone=None, cluster_identifier=None, engine=None, engine_version=None, identifier=None, identifier_prefix=None, instance_class=None, neptune_parameter_group_name=None, neptune_subnet_group_name=None, port=None, preferred_backup_window=None, preferred_maintenance_window=None, promotion_tier=None, publicly_accessible=None, tags=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 apply_immediately: Optional[pulumi.Input[bool]] = None,
+                 auto_minor_version_upgrade: Optional[pulumi.Input[bool]] = None,
+                 availability_zone: Optional[pulumi.Input[str]] = None,
+                 cluster_identifier: Optional[pulumi.Input[str]] = None,
+                 engine: Optional[pulumi.Input[str]] = None,
+                 engine_version: Optional[pulumi.Input[str]] = None,
+                 identifier: Optional[pulumi.Input[str]] = None,
+                 identifier_prefix: Optional[pulumi.Input[str]] = None,
+                 instance_class: Optional[pulumi.Input[str]] = None,
+                 neptune_parameter_group_name: Optional[pulumi.Input[str]] = None,
+                 neptune_subnet_group_name: Optional[pulumi.Input[str]] = None,
+                 port: Optional[pulumi.Input[float]] = None,
+                 preferred_backup_window: Optional[pulumi.Input[str]] = None,
+                 preferred_maintenance_window: Optional[pulumi.Input[str]] = None,
+                 promotion_tier: Optional[pulumi.Input[float]] = None,
+                 publicly_accessible: Optional[pulumi.Input[bool]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         A Cluster Instance Resource defines attributes that are specific to a single instance in a Neptune Cluster.
 
@@ -160,7 +208,7 @@ class ClusterInstance(pulumi.CustomResource):
                Syntax: "ddd:hh24:mi-ddd:hh24:mi". Eg: "Mon:00:00-Mon:03:00".
         :param pulumi.Input[float] promotion_tier: Default 0. Failover Priority setting on instance level. The reader who has lower tier has higher priority to get promoter to writer.
         :param pulumi.Input[bool] publicly_accessible: Bool to control if instance is publicly accessible. Default is `false`.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the instance.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A map of tags to assign to the instance.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -214,7 +262,33 @@ class ClusterInstance(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, address=None, apply_immediately=None, arn=None, auto_minor_version_upgrade=None, availability_zone=None, cluster_identifier=None, dbi_resource_id=None, endpoint=None, engine=None, engine_version=None, identifier=None, identifier_prefix=None, instance_class=None, kms_key_arn=None, neptune_parameter_group_name=None, neptune_subnet_group_name=None, port=None, preferred_backup_window=None, preferred_maintenance_window=None, promotion_tier=None, publicly_accessible=None, storage_encrypted=None, tags=None, writer=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            address: Optional[pulumi.Input[str]] = None,
+            apply_immediately: Optional[pulumi.Input[bool]] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            auto_minor_version_upgrade: Optional[pulumi.Input[bool]] = None,
+            availability_zone: Optional[pulumi.Input[str]] = None,
+            cluster_identifier: Optional[pulumi.Input[str]] = None,
+            dbi_resource_id: Optional[pulumi.Input[str]] = None,
+            endpoint: Optional[pulumi.Input[str]] = None,
+            engine: Optional[pulumi.Input[str]] = None,
+            engine_version: Optional[pulumi.Input[str]] = None,
+            identifier: Optional[pulumi.Input[str]] = None,
+            identifier_prefix: Optional[pulumi.Input[str]] = None,
+            instance_class: Optional[pulumi.Input[str]] = None,
+            kms_key_arn: Optional[pulumi.Input[str]] = None,
+            neptune_parameter_group_name: Optional[pulumi.Input[str]] = None,
+            neptune_subnet_group_name: Optional[pulumi.Input[str]] = None,
+            port: Optional[pulumi.Input[float]] = None,
+            preferred_backup_window: Optional[pulumi.Input[str]] = None,
+            preferred_maintenance_window: Optional[pulumi.Input[str]] = None,
+            promotion_tier: Optional[pulumi.Input[float]] = None,
+            publicly_accessible: Optional[pulumi.Input[bool]] = None,
+            storage_encrypted: Optional[pulumi.Input[bool]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            writer: Optional[pulumi.Input[bool]] = None) -> 'ClusterInstance':
         """
         Get an existing ClusterInstance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -246,7 +320,7 @@ class ClusterInstance(pulumi.CustomResource):
         :param pulumi.Input[float] promotion_tier: Default 0. Failover Priority setting on instance level. The reader who has lower tier has higher priority to get promoter to writer.
         :param pulumi.Input[bool] publicly_accessible: Bool to control if instance is publicly accessible. Default is `false`.
         :param pulumi.Input[bool] storage_encrypted: Specifies whether the neptune cluster is encrypted.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the instance.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A map of tags to assign to the instance.
         :param pulumi.Input[bool] writer: Boolean indicating if this instance is writable. `False` indicates this instance is a read replica.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -284,3 +358,4 @@ class ClusterInstance(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

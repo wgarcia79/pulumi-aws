@@ -5,40 +5,54 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['Mesh']
 
 
 class Mesh(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     The ARN of the service mesh.
     """
-    created_date: pulumi.Output[str]
+
+    created_date: pulumi.Output[str] = pulumi.property("createdDate")
     """
     The creation date of the service mesh.
     """
-    last_updated_date: pulumi.Output[str]
+
+    last_updated_date: pulumi.Output[str] = pulumi.property("lastUpdatedDate")
     """
     The last update date of the service mesh.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name to use for the service mesh.
     """
-    spec: pulumi.Output[dict]
+
+    spec: pulumi.Output[Optional['outputs.MeshSpec']] = pulumi.property("spec")
     """
     The service mesh specification to apply.
-
-      * `egressFilter` (`dict`) - The egress filter rules for the service mesh.
-        * `type` (`str`) - The egress filter type. By default, the type is `DROP_ALL`.
-          Valid values are `ALLOW_ALL` and `DROP_ALL`.
     """
-    tags: pulumi.Output[dict]
+
+    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
     """
     A map of tags to assign to the resource.
     """
-    def __init__(__self__, resource_name, opts=None, name=None, spec=None, tags=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 spec: Optional[pulumi.Input[pulumi.InputType['MeshSpecArgs']]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides an AWS App Mesh service mesh resource.
 
@@ -67,14 +81,8 @@ class Mesh(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name to use for the service mesh.
-        :param pulumi.Input[dict] spec: The service mesh specification to apply.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
-
-        The **spec** object supports the following:
-
-          * `egressFilter` (`pulumi.Input[dict]`) - The egress filter rules for the service mesh.
-            * `type` (`pulumi.Input[str]`) - The egress filter type. By default, the type is `DROP_ALL`.
-              Valid values are `ALLOW_ALL` and `DROP_ALL`.
+        :param pulumi.Input[pulumi.InputType['MeshSpecArgs']] spec: The service mesh specification to apply.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -106,7 +114,15 @@ class Mesh(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, created_date=None, last_updated_date=None, name=None, spec=None, tags=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            created_date: Optional[pulumi.Input[str]] = None,
+            last_updated_date: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            spec: Optional[pulumi.Input[pulumi.InputType['MeshSpecArgs']]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None) -> 'Mesh':
         """
         Get an existing Mesh resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -118,14 +134,8 @@ class Mesh(pulumi.CustomResource):
         :param pulumi.Input[str] created_date: The creation date of the service mesh.
         :param pulumi.Input[str] last_updated_date: The last update date of the service mesh.
         :param pulumi.Input[str] name: The name to use for the service mesh.
-        :param pulumi.Input[dict] spec: The service mesh specification to apply.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
-
-        The **spec** object supports the following:
-
-          * `egressFilter` (`pulumi.Input[dict]`) - The egress filter rules for the service mesh.
-            * `type` (`pulumi.Input[str]`) - The egress filter type. By default, the type is `DROP_ALL`.
-              Valid values are `ALLOW_ALL` and `DROP_ALL`.
+        :param pulumi.Input[pulumi.InputType['MeshSpecArgs']] spec: The service mesh specification to apply.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -144,3 +154,4 @@ class Mesh(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

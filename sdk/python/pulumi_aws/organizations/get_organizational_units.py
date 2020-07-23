@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetOrganizationalUnitsResult',
+    'AwaitableGetOrganizationalUnitsResult',
+    'get_organizational_units',
+]
 
 
 class GetOrganizationalUnitsResult:
@@ -42,7 +49,8 @@ class AwaitableGetOrganizationalUnitsResult(GetOrganizationalUnitsResult):
             parent_id=self.parent_id)
 
 
-def get_organizational_units(parent_id=None, opts=None):
+def get_organizational_units(parent_id: Optional[str] = None,
+                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationalUnitsResult:
     """
     Get all direct child organizational units under a parent organizational unit. This only provides immediate children, not all children.
 

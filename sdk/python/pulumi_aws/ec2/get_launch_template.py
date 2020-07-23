@@ -5,8 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetLaunchTemplateResult',
+    'AwaitableGetLaunchTemplateResult',
+    'get_launch_template',
+]
 
 
 class GetLaunchTemplateResult:
@@ -236,7 +244,10 @@ class AwaitableGetLaunchTemplateResult(GetLaunchTemplateResult):
             vpc_security_group_ids=self.vpc_security_group_ids)
 
 
-def get_launch_template(filters=None, name=None, tags=None, opts=None):
+def get_launch_template(filters: Optional[List[pulumi.InputType['GetLaunchTemplateFilterArgs']]] = None,
+                        name: Optional[str] = None,
+                        tags: Optional[Mapping[str, str]] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLaunchTemplateResult:
     """
     Provides information about a Launch Template.
 
@@ -261,14 +272,9 @@ def get_launch_template(filters=None, name=None, tags=None, opts=None):
     ```
 
 
-    :param list filters: Configuration block(s) for filtering. Detailed below.
+    :param List[pulumi.InputType['GetLaunchTemplateFilterArgs']] filters: Configuration block(s) for filtering. Detailed below.
     :param str name: The name of the filter field. Valid values can be found in the [EC2 DescribeLaunchTemplates API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeLaunchTemplates.html).
-    :param dict tags: A map of tags, each pair of which must exactly match a pair on the desired Launch Template.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the filter field. Valid values can be found in the [EC2 DescribeLaunchTemplates API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeLaunchTemplates.html).
-      * `values` (`list`) - Set of values that are accepted for the given filter field. Results will be selected if any given value matches.
+    :param Mapping[str, str] tags: A map of tags, each pair of which must exactly match a pair on the desired Launch Template.
     """
     __args__ = dict()
     __args__['filters'] = filters

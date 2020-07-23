@@ -5,20 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['AmiLaunchPermission']
 
 
 class AmiLaunchPermission(pulumi.CustomResource):
-    account_id: pulumi.Output[str]
+    account_id: pulumi.Output[str] = pulumi.property("accountId")
     """
     An AWS Account ID to add launch permissions.
     """
-    image_id: pulumi.Output[str]
+
+    image_id: pulumi.Output[str] = pulumi.property("imageId")
     """
     A region-unique name for the AMI.
     """
-    def __init__(__self__, resource_name, opts=None, account_id=None, image_id=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 account_id: Optional[pulumi.Input[str]] = None,
+                 image_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Adds launch permission to Amazon Machine Image (AMI) from another AWS account.
 
@@ -68,7 +79,11 @@ class AmiLaunchPermission(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, account_id=None, image_id=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            account_id: Optional[pulumi.Input[str]] = None,
+            image_id: Optional[pulumi.Input[str]] = None) -> 'AmiLaunchPermission':
         """
         Get an existing AmiLaunchPermission resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -92,3 +107,4 @@ class AmiLaunchPermission(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

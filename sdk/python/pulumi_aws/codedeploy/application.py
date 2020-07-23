@@ -5,21 +5,34 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['Application']
 
 
 class Application(pulumi.CustomResource):
-    compute_platform: pulumi.Output[str]
+    compute_platform: pulumi.Output[Optional[str]] = pulumi.property("computePlatform")
     """
     The compute platform can either be `ECS`, `Lambda`, or `Server`. Default is `Server`.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name of the application.
     """
-    unique_id: pulumi.Output[str]
-    def __init__(__self__, resource_name, opts=None, compute_platform=None, name=None, unique_id=None, __props__=None, __name__=None, __opts__=None):
+
+    unique_id: pulumi.Output[str] = pulumi.property("uniqueId")
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 compute_platform: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 unique_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a CodeDeploy application to be used as a basis for deployments
 
@@ -81,7 +94,12 @@ class Application(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, compute_platform=None, name=None, unique_id=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            compute_platform: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            unique_id: Optional[pulumi.Input[str]] = None) -> 'Application':
         """
         Get an existing Application resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -106,3 +124,4 @@ class Application(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

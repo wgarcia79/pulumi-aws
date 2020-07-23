@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetStackResult',
+    'AwaitableGetStackResult',
+    'get_stack',
+]
 
 
 class GetStackResult:
@@ -105,7 +111,9 @@ class AwaitableGetStackResult(GetStackResult):
             timeout_in_minutes=self.timeout_in_minutes)
 
 
-def get_stack(name=None, tags=None, opts=None):
+def get_stack(name: Optional[str] = None,
+              tags: Optional[Mapping[str, str]] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetStackResult:
     """
     The CloudFormation Stack data source allows access to stack
     outputs and other useful data including the template body.
@@ -128,7 +136,7 @@ def get_stack(name=None, tags=None, opts=None):
 
 
     :param str name: The name of the stack
-    :param dict tags: A map of tags associated with this stack.
+    :param Mapping[str, str] tags: A map of tags associated with this stack.
     """
     __args__ = dict()
     __args__['name'] = name

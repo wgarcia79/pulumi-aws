@@ -5,8 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetTableResult',
+    'AwaitableGetTableResult',
+    'get_table',
+]
 
 
 class GetTableResult:
@@ -107,7 +115,10 @@ class AwaitableGetTableResult(GetTableResult):
             write_capacity=self.write_capacity)
 
 
-def get_table(name=None, server_side_encryption=None, tags=None, opts=None):
+def get_table(name: Optional[str] = None,
+              server_side_encryption: Optional[pulumi.InputType['GetTableServerSideEncryptionArgs']] = None,
+              tags: Optional[Mapping[str, str]] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTableResult:
     """
     Provides information about a DynamoDB table.
 
@@ -122,11 +133,6 @@ def get_table(name=None, server_side_encryption=None, tags=None, opts=None):
 
 
     :param str name: The name of the DynamoDB table.
-
-    The **server_side_encryption** object supports the following:
-
-      * `enabled` (`bool`)
-      * `kms_key_arn` (`str`)
     """
     __args__ = dict()
     __args__['name'] = name

@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetInvocationResult',
+    'AwaitableGetInvocationResult',
+    'get_invocation',
+]
 
 
 class GetInvocationResult:
@@ -61,7 +67,10 @@ class AwaitableGetInvocationResult(GetInvocationResult):
             result_map=self.result_map)
 
 
-def get_invocation(function_name=None, input=None, qualifier=None, opts=None):
+def get_invocation(function_name: Optional[str] = None,
+                   input: Optional[str] = None,
+                   qualifier: Optional[str] = None,
+                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInvocationResult:
     """
     Use this data source to invoke custom lambda functions as data source.
     The lambda function is invoked with [RequestResponse](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax)

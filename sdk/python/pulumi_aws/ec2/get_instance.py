@@ -5,8 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetInstanceResult',
+    'AwaitableGetInstanceResult',
+    'get_instance',
+]
 
 
 class GetInstanceResult:
@@ -285,7 +293,13 @@ class AwaitableGetInstanceResult(GetInstanceResult):
             vpc_security_group_ids=self.vpc_security_group_ids)
 
 
-def get_instance(filters=None, get_password_data=None, get_user_data=None, instance_id=None, instance_tags=None, tags=None, opts=None):
+def get_instance(filters: Optional[List[pulumi.InputType['GetInstanceFilterArgs']]] = None,
+                 get_password_data: Optional[bool] = None,
+                 get_user_data: Optional[bool] = None,
+                 instance_id: Optional[str] = None,
+                 instance_tags: Optional[Mapping[str, str]] = None,
+                 tags: Optional[Mapping[str, str]] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceResult:
     """
     Use this data source to get the ID of an Amazon EC2 Instance for use in other
     resources.
@@ -310,20 +324,15 @@ def get_instance(filters=None, get_password_data=None, get_user_data=None, insta
     ```
 
 
-    :param list filters: One or more name/value pairs to use as filters. There are
+    :param List[pulumi.InputType['GetInstanceFilterArgs']] filters: One or more name/value pairs to use as filters. There are
            several valid keys, for a full reference, check out
            [describe-instances in the AWS CLI reference][1].
     :param bool get_password_data: If true, wait for password data to become available and retrieve it. Useful for getting the administrator password for instances running Microsoft Windows. The password data is exported to the `password_data` attribute. See [GetPasswordData](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetPasswordData.html) for more information.
     :param bool get_user_data: Retrieve Base64 encoded User Data contents into the `user_data_base64` attribute. A SHA-1 hash of the User Data contents will always be present in the `user_data` attribute. Defaults to `false`.
     :param str instance_id: Specify the exact Instance ID with which to populate the data source.
-    :param dict instance_tags: A map of tags, each pair of which must
+    :param Mapping[str, str] instance_tags: A map of tags, each pair of which must
            exactly match a pair on the desired Instance.
-    :param dict tags: A mapping of tags assigned to the Instance.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`)
-      * `values` (`list`)
+    :param Mapping[str, str] tags: A mapping of tags assigned to the Instance.
     """
     __args__ = dict()
     __args__['filters'] = filters

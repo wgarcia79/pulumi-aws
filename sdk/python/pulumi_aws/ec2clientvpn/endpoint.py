@@ -5,68 +5,90 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['Endpoint']
 
 
 class Endpoint(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     The ARN of the Client VPN endpoint.
     """
-    authentication_options: pulumi.Output[list]
+
+    authentication_options: pulumi.Output[List['outputs.EndpointAuthenticationOption']] = pulumi.property("authenticationOptions")
     """
     Information about the authentication method to be used to authenticate clients.
-
-      * `active_directory_id` (`str`) - The ID of the Active Directory to be used for authentication if type is `directory-service-authentication`.
-      * `rootCertificateChainArn` (`str`) - The ARN of the client certificate. The certificate must be signed by a certificate authority (CA) and it must be provisioned in AWS Certificate Manager (ACM). Only necessary when type is set to `certificate-authentication`.
-      * `type` (`str`) - The type of client authentication to be used. Specify `certificate-authentication` to use certificate-based authentication, or `directory-service-authentication` to use Active Directory authentication.
     """
-    client_cidr_block: pulumi.Output[str]
+
+    client_cidr_block: pulumi.Output[str] = pulumi.property("clientCidrBlock")
     """
     The IPv4 address range, in CIDR notation, from which to assign client IP addresses. The address range cannot overlap with the local CIDR of the VPC in which the associated subnet is located, or the routes that you add manually. The address range cannot be changed after the Client VPN endpoint has been created. The CIDR block should be /22 or greater.
     """
-    connection_log_options: pulumi.Output[dict]
+
+    connection_log_options: pulumi.Output['outputs.EndpointConnectionLogOptions'] = pulumi.property("connectionLogOptions")
     """
     Information about the client connection logging options.
-
-      * `cloudwatchLogGroup` (`str`) - The name of the CloudWatch Logs log group.
-      * `cloudwatchLogStream` (`str`) - The name of the CloudWatch Logs log stream to which the connection data is published.
-      * `enabled` (`bool`) - Indicates whether connection logging is enabled.
     """
-    description: pulumi.Output[str]
+
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     Name of the repository.
     """
-    dns_name: pulumi.Output[str]
+
+    dns_name: pulumi.Output[str] = pulumi.property("dnsName")
     """
     The DNS name to be used by clients when establishing their VPN session.
     """
-    dns_servers: pulumi.Output[list]
+
+    dns_servers: pulumi.Output[Optional[List[str]]] = pulumi.property("dnsServers")
     """
     Information about the DNS servers to be used for DNS resolution. A Client VPN endpoint can have up to two DNS servers. If no DNS server is specified, the DNS address of the VPC that is to be associated with Client VPN endpoint is used as the DNS server.
     """
-    server_certificate_arn: pulumi.Output[str]
+
+    server_certificate_arn: pulumi.Output[str] = pulumi.property("serverCertificateArn")
     """
     The ARN of the ACM server certificate.
     """
-    split_tunnel: pulumi.Output[bool]
+
+    split_tunnel: pulumi.Output[Optional[bool]] = pulumi.property("splitTunnel")
     """
     Indicates whether split-tunnel is enabled on VPN endpoint. Default value is `false`.
     """
-    status: pulumi.Output[str]
+
+    status: pulumi.Output[str] = pulumi.property("status")
     """
     The current state of the Client VPN endpoint.
     """
-    tags: pulumi.Output[dict]
+
+    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
     """
     A mapping of tags to assign to the resource.
     """
-    transport_protocol: pulumi.Output[str]
+
+    transport_protocol: pulumi.Output[Optional[str]] = pulumi.property("transportProtocol")
     """
     The transport protocol to be used by the VPN session. Default value is `udp`.
     """
-    def __init__(__self__, resource_name, opts=None, authentication_options=None, client_cidr_block=None, connection_log_options=None, description=None, dns_servers=None, server_certificate_arn=None, split_tunnel=None, tags=None, transport_protocol=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 authentication_options: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['EndpointAuthenticationOptionArgs']]]]] = None,
+                 client_cidr_block: Optional[pulumi.Input[str]] = None,
+                 connection_log_options: Optional[pulumi.Input[pulumi.InputType['EndpointConnectionLogOptionsArgs']]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 dns_servers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 server_certificate_arn: Optional[pulumi.Input[str]] = None,
+                 split_tunnel: Optional[pulumi.Input[bool]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 transport_protocol: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides an AWS Client VPN endpoint for OpenVPN clients. For more information on usage, please see the
         [AWS Client VPN Administrator's Guide](https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/what-is.html).
@@ -94,27 +116,15 @@ class Endpoint(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] authentication_options: Information about the authentication method to be used to authenticate clients.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['EndpointAuthenticationOptionArgs']]]] authentication_options: Information about the authentication method to be used to authenticate clients.
         :param pulumi.Input[str] client_cidr_block: The IPv4 address range, in CIDR notation, from which to assign client IP addresses. The address range cannot overlap with the local CIDR of the VPC in which the associated subnet is located, or the routes that you add manually. The address range cannot be changed after the Client VPN endpoint has been created. The CIDR block should be /22 or greater.
-        :param pulumi.Input[dict] connection_log_options: Information about the client connection logging options.
+        :param pulumi.Input[pulumi.InputType['EndpointConnectionLogOptionsArgs']] connection_log_options: Information about the client connection logging options.
         :param pulumi.Input[str] description: Name of the repository.
-        :param pulumi.Input[list] dns_servers: Information about the DNS servers to be used for DNS resolution. A Client VPN endpoint can have up to two DNS servers. If no DNS server is specified, the DNS address of the VPC that is to be associated with Client VPN endpoint is used as the DNS server.
+        :param pulumi.Input[List[pulumi.Input[str]]] dns_servers: Information about the DNS servers to be used for DNS resolution. A Client VPN endpoint can have up to two DNS servers. If no DNS server is specified, the DNS address of the VPC that is to be associated with Client VPN endpoint is used as the DNS server.
         :param pulumi.Input[str] server_certificate_arn: The ARN of the ACM server certificate.
         :param pulumi.Input[bool] split_tunnel: Indicates whether split-tunnel is enabled on VPN endpoint. Default value is `false`.
-        :param pulumi.Input[dict] tags: A mapping of tags to assign to the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A mapping of tags to assign to the resource.
         :param pulumi.Input[str] transport_protocol: The transport protocol to be used by the VPN session. Default value is `udp`.
-
-        The **authentication_options** object supports the following:
-
-          * `active_directory_id` (`pulumi.Input[str]`) - The ID of the Active Directory to be used for authentication if type is `directory-service-authentication`.
-          * `rootCertificateChainArn` (`pulumi.Input[str]`) - The ARN of the client certificate. The certificate must be signed by a certificate authority (CA) and it must be provisioned in AWS Certificate Manager (ACM). Only necessary when type is set to `certificate-authentication`.
-          * `type` (`pulumi.Input[str]`) - The type of client authentication to be used. Specify `certificate-authentication` to use certificate-based authentication, or `directory-service-authentication` to use Active Directory authentication.
-
-        The **connection_log_options** object supports the following:
-
-          * `cloudwatchLogGroup` (`pulumi.Input[str]`) - The name of the CloudWatch Logs log group.
-          * `cloudwatchLogStream` (`pulumi.Input[str]`) - The name of the CloudWatch Logs log stream to which the connection data is published.
-          * `enabled` (`pulumi.Input[bool]`) - Indicates whether connection logging is enabled.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -160,7 +170,21 @@ class Endpoint(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, authentication_options=None, client_cidr_block=None, connection_log_options=None, description=None, dns_name=None, dns_servers=None, server_certificate_arn=None, split_tunnel=None, status=None, tags=None, transport_protocol=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            authentication_options: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['EndpointAuthenticationOptionArgs']]]]] = None,
+            client_cidr_block: Optional[pulumi.Input[str]] = None,
+            connection_log_options: Optional[pulumi.Input[pulumi.InputType['EndpointConnectionLogOptionsArgs']]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            dns_name: Optional[pulumi.Input[str]] = None,
+            dns_servers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            server_certificate_arn: Optional[pulumi.Input[str]] = None,
+            split_tunnel: Optional[pulumi.Input[bool]] = None,
+            status: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            transport_protocol: Optional[pulumi.Input[str]] = None) -> 'Endpoint':
         """
         Get an existing Endpoint resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -169,29 +193,17 @@ class Endpoint(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] arn: The ARN of the Client VPN endpoint.
-        :param pulumi.Input[list] authentication_options: Information about the authentication method to be used to authenticate clients.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['EndpointAuthenticationOptionArgs']]]] authentication_options: Information about the authentication method to be used to authenticate clients.
         :param pulumi.Input[str] client_cidr_block: The IPv4 address range, in CIDR notation, from which to assign client IP addresses. The address range cannot overlap with the local CIDR of the VPC in which the associated subnet is located, or the routes that you add manually. The address range cannot be changed after the Client VPN endpoint has been created. The CIDR block should be /22 or greater.
-        :param pulumi.Input[dict] connection_log_options: Information about the client connection logging options.
+        :param pulumi.Input[pulumi.InputType['EndpointConnectionLogOptionsArgs']] connection_log_options: Information about the client connection logging options.
         :param pulumi.Input[str] description: Name of the repository.
         :param pulumi.Input[str] dns_name: The DNS name to be used by clients when establishing their VPN session.
-        :param pulumi.Input[list] dns_servers: Information about the DNS servers to be used for DNS resolution. A Client VPN endpoint can have up to two DNS servers. If no DNS server is specified, the DNS address of the VPC that is to be associated with Client VPN endpoint is used as the DNS server.
+        :param pulumi.Input[List[pulumi.Input[str]]] dns_servers: Information about the DNS servers to be used for DNS resolution. A Client VPN endpoint can have up to two DNS servers. If no DNS server is specified, the DNS address of the VPC that is to be associated with Client VPN endpoint is used as the DNS server.
         :param pulumi.Input[str] server_certificate_arn: The ARN of the ACM server certificate.
         :param pulumi.Input[bool] split_tunnel: Indicates whether split-tunnel is enabled on VPN endpoint. Default value is `false`.
         :param pulumi.Input[str] status: The current state of the Client VPN endpoint.
-        :param pulumi.Input[dict] tags: A mapping of tags to assign to the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A mapping of tags to assign to the resource.
         :param pulumi.Input[str] transport_protocol: The transport protocol to be used by the VPN session. Default value is `udp`.
-
-        The **authentication_options** object supports the following:
-
-          * `active_directory_id` (`pulumi.Input[str]`) - The ID of the Active Directory to be used for authentication if type is `directory-service-authentication`.
-          * `rootCertificateChainArn` (`pulumi.Input[str]`) - The ARN of the client certificate. The certificate must be signed by a certificate authority (CA) and it must be provisioned in AWS Certificate Manager (ACM). Only necessary when type is set to `certificate-authentication`.
-          * `type` (`pulumi.Input[str]`) - The type of client authentication to be used. Specify `certificate-authentication` to use certificate-based authentication, or `directory-service-authentication` to use Active Directory authentication.
-
-        The **connection_log_options** object supports the following:
-
-          * `cloudwatchLogGroup` (`pulumi.Input[str]`) - The name of the CloudWatch Logs log group.
-          * `cloudwatchLogStream` (`pulumi.Input[str]`) - The name of the CloudWatch Logs log stream to which the connection data is published.
-          * `enabled` (`pulumi.Input[bool]`) - Indicates whether connection logging is enabled.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -216,3 +228,4 @@ class Endpoint(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

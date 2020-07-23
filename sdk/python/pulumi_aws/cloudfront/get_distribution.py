@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetDistributionResult',
+    'AwaitableGetDistributionResult',
+    'get_distribution',
+]
 
 
 class GetDistributionResult:
@@ -95,7 +101,9 @@ class AwaitableGetDistributionResult(GetDistributionResult):
             tags=self.tags)
 
 
-def get_distribution(id=None, tags=None, opts=None):
+def get_distribution(id: Optional[str] = None,
+                     tags: Optional[Mapping[str, str]] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDistributionResult:
     """
     Use this data source to retrieve information about a CloudFront distribution.
 

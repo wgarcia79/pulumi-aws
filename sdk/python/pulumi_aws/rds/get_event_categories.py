@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetEventCategoriesResult',
+    'AwaitableGetEventCategoriesResult',
+    'get_event_categories',
+]
 
 
 class GetEventCategoriesResult:
@@ -42,7 +48,8 @@ class AwaitableGetEventCategoriesResult(GetEventCategoriesResult):
             source_type=self.source_type)
 
 
-def get_event_categories(source_type=None, opts=None):
+def get_event_categories(source_type: Optional[str] = None,
+                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEventCategoriesResult:
     """
     ## Example Usage
 

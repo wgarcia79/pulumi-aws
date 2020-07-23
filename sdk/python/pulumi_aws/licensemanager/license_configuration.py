@@ -5,40 +5,61 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['LicenseConfiguration']
 
 
 class LicenseConfiguration(pulumi.CustomResource):
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     Description of the license configuration.
     """
-    license_count: pulumi.Output[float]
+
+    license_count: pulumi.Output[Optional[float]] = pulumi.property("licenseCount")
     """
     Number of licenses managed by the license configuration.
     """
-    license_count_hard_limit: pulumi.Output[bool]
+
+    license_count_hard_limit: pulumi.Output[Optional[bool]] = pulumi.property("licenseCountHardLimit")
     """
     Sets the number of available licenses as a hard limit.
     """
-    license_counting_type: pulumi.Output[str]
+
+    license_counting_type: pulumi.Output[str] = pulumi.property("licenseCountingType")
     """
     Dimension to use to track license inventory. Specify either `vCPU`, `Instance`, `Core` or `Socket`.
     """
-    license_rules: pulumi.Output[list]
+
+    license_rules: pulumi.Output[Optional[List[str]]] = pulumi.property("licenseRules")
     """
     Array of configured License Manager rules.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     Name of the license configuration.
     """
-    tags: pulumi.Output[dict]
+
+    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
     """
     A map of tags to assign to the resource.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, license_count=None, license_count_hard_limit=None, license_counting_type=None, license_rules=None, name=None, tags=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 license_count: Optional[pulumi.Input[float]] = None,
+                 license_count_hard_limit: Optional[pulumi.Input[bool]] = None,
+                 license_counting_type: Optional[pulumi.Input[str]] = None,
+                 license_rules: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a License Manager license configuration resource.
 
@@ -78,9 +99,9 @@ class LicenseConfiguration(pulumi.CustomResource):
         :param pulumi.Input[float] license_count: Number of licenses managed by the license configuration.
         :param pulumi.Input[bool] license_count_hard_limit: Sets the number of available licenses as a hard limit.
         :param pulumi.Input[str] license_counting_type: Dimension to use to track license inventory. Specify either `vCPU`, `Instance`, `Core` or `Socket`.
-        :param pulumi.Input[list] license_rules: Array of configured License Manager rules.
+        :param pulumi.Input[List[pulumi.Input[str]]] license_rules: Array of configured License Manager rules.
         :param pulumi.Input[str] name: Name of the license configuration.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -115,7 +136,16 @@ class LicenseConfiguration(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, description=None, license_count=None, license_count_hard_limit=None, license_counting_type=None, license_rules=None, name=None, tags=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            license_count: Optional[pulumi.Input[float]] = None,
+            license_count_hard_limit: Optional[pulumi.Input[bool]] = None,
+            license_counting_type: Optional[pulumi.Input[str]] = None,
+            license_rules: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None) -> 'LicenseConfiguration':
         """
         Get an existing LicenseConfiguration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -127,9 +157,9 @@ class LicenseConfiguration(pulumi.CustomResource):
         :param pulumi.Input[float] license_count: Number of licenses managed by the license configuration.
         :param pulumi.Input[bool] license_count_hard_limit: Sets the number of available licenses as a hard limit.
         :param pulumi.Input[str] license_counting_type: Dimension to use to track license inventory. Specify either `vCPU`, `Instance`, `Core` or `Socket`.
-        :param pulumi.Input[list] license_rules: Array of configured License Manager rules.
+        :param pulumi.Input[List[pulumi.Input[str]]] license_rules: Array of configured License Manager rules.
         :param pulumi.Input[str] name: Name of the license configuration.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -149,3 +179,4 @@ class LicenseConfiguration(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

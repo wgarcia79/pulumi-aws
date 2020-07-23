@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetCipherTextResult',
+    'AwaitableGetCipherTextResult',
+    'get_cipher_text',
+]
 
 
 class GetCipherTextResult:
@@ -50,7 +56,10 @@ class AwaitableGetCipherTextResult(GetCipherTextResult):
             plaintext=self.plaintext)
 
 
-def get_cipher_text(context=None, key_id=None, plaintext=None, opts=None):
+def get_cipher_text(context: Optional[Mapping[str, str]] = None,
+                    key_id: Optional[str] = None,
+                    plaintext: Optional[str] = None,
+                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCipherTextResult:
     """
     The KMS ciphertext data source allows you to encrypt plaintext into ciphertext
     by using an AWS KMS customer master key. The value returned by this data source
@@ -76,7 +85,7 @@ def get_cipher_text(context=None, key_id=None, plaintext=None, opts=None):
     ```
 
 
-    :param dict context: An optional mapping that makes up the encryption context.
+    :param Mapping[str, str] context: An optional mapping that makes up the encryption context.
     :param str key_id: Globally unique key ID for the customer master key.
     :param str plaintext: Data to be encrypted. Note that this may show up in logs, and it will be stored in the state file.
     """

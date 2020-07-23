@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetRoleResult',
+    'AwaitableGetRoleResult',
+    'get_role',
+]
 
 
 class GetRoleResult:
@@ -98,7 +104,9 @@ class AwaitableGetRoleResult(GetRoleResult):
             unique_id=self.unique_id)
 
 
-def get_role(name=None, tags=None, opts=None):
+def get_role(name: Optional[str] = None,
+             tags: Optional[Mapping[str, str]] = None,
+             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRoleResult:
     """
     This data source can be used to fetch information about a specific
     IAM role. By using this data source, you can reference IAM role
@@ -115,7 +123,7 @@ def get_role(name=None, tags=None, opts=None):
 
 
     :param str name: The friendly IAM role name to match.
-    :param dict tags: The tags attached to the role.
+    :param Mapping[str, str] tags: The tags attached to the role.
     """
     __args__ = dict()
     __args__['name'] = name

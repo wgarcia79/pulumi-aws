@@ -5,8 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetScriptResult',
+    'AwaitableGetScriptResult',
+    'get_script',
+]
 
 
 class GetScriptResult:
@@ -57,7 +65,10 @@ class AwaitableGetScriptResult(GetScriptResult):
             scala_code=self.scala_code)
 
 
-def get_script(dag_edges=None, dag_nodes=None, language=None, opts=None):
+def get_script(dag_edges: Optional[List[pulumi.InputType['GetScriptDagEdgeArgs']]] = None,
+               dag_nodes: Optional[List[pulumi.InputType['GetScriptDagNodeArgs']]] = None,
+               language: Optional[str] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetScriptResult:
     """
     Use this data source to generate a Glue script from a Directed Acyclic Graph (DAG).
 
@@ -99,7 +110,7 @@ def get_script(dag_edges=None, dag_nodes=None, language=None, opts=None):
                     },
                 ],
                 "id": "datasource0",
-                "node_type": "DataSource",
+                "nodeType": "DataSource",
             },
             {
                 "args": [{
@@ -107,7 +118,7 @@ def get_script(dag_edges=None, dag_nodes=None, language=None, opts=None):
                     "value": "[(\"column1\", \"string\", \"column1\", \"string\")]",
                 }],
                 "id": "applymapping1",
-                "node_type": "ApplyMapping",
+                "nodeType": "ApplyMapping",
             },
             {
                 "args": [{
@@ -115,7 +126,7 @@ def get_script(dag_edges=None, dag_nodes=None, language=None, opts=None):
                     "value": "[\"column1\"]",
                 }],
                 "id": "selectfields2",
-                "node_type": "SelectFields",
+                "nodeType": "SelectFields",
             },
             {
                 "args": [
@@ -133,7 +144,7 @@ def get_script(dag_edges=None, dag_nodes=None, language=None, opts=None):
                     },
                 ],
                 "id": "resolvechoice3",
-                "node_type": "ResolveChoice",
+                "nodeType": "ResolveChoice",
             },
             {
                 "args": [
@@ -147,7 +158,7 @@ def get_script(dag_edges=None, dag_nodes=None, language=None, opts=None):
                     },
                 ],
                 "id": "datasink4",
-                "node_type": "DataSink",
+                "nodeType": "DataSink",
             },
         ],
         language="PYTHON")
@@ -190,7 +201,7 @@ def get_script(dag_edges=None, dag_nodes=None, language=None, opts=None):
                     },
                 ],
                 "id": "datasource0",
-                "node_type": "DataSource",
+                "nodeType": "DataSource",
             },
             {
                 "args": [{
@@ -198,7 +209,7 @@ def get_script(dag_edges=None, dag_nodes=None, language=None, opts=None):
                     "value": "[(\"column1\", \"string\", \"column1\", \"string\")]",
                 }],
                 "id": "applymapping1",
-                "node_type": "ApplyMapping",
+                "nodeType": "ApplyMapping",
             },
             {
                 "args": [{
@@ -206,7 +217,7 @@ def get_script(dag_edges=None, dag_nodes=None, language=None, opts=None):
                     "value": "[\"column1\"]",
                 }],
                 "id": "selectfields2",
-                "node_type": "SelectFields",
+                "nodeType": "SelectFields",
             },
             {
                 "args": [
@@ -224,7 +235,7 @@ def get_script(dag_edges=None, dag_nodes=None, language=None, opts=None):
                     },
                 ],
                 "id": "resolvechoice3",
-                "node_type": "ResolveChoice",
+                "nodeType": "ResolveChoice",
             },
             {
                 "args": [
@@ -238,7 +249,7 @@ def get_script(dag_edges=None, dag_nodes=None, language=None, opts=None):
                     },
                 ],
                 "id": "datasink4",
-                "node_type": "DataSink",
+                "nodeType": "DataSink",
             },
         ],
         language="SCALA")
@@ -246,26 +257,9 @@ def get_script(dag_edges=None, dag_nodes=None, language=None, opts=None):
     ```
 
 
-    :param list dag_edges: A list of the edges in the DAG. Defined below.
-    :param list dag_nodes: A list of the nodes in the DAG. Defined below.
+    :param List[pulumi.InputType['GetScriptDagEdgeArgs']] dag_edges: A list of the edges in the DAG. Defined below.
+    :param List[pulumi.InputType['GetScriptDagNodeArgs']] dag_nodes: A list of the nodes in the DAG. Defined below.
     :param str language: The programming language of the resulting code from the DAG. Defaults to `PYTHON`. Valid values are `PYTHON` and `SCALA`.
-
-    The **dag_edges** object supports the following:
-
-      * `source` (`str`) - The ID of the node at which the edge starts.
-      * `target` (`str`) - The ID of the node at which the edge ends.
-      * `targetParameter` (`str`) - The target of the edge.
-
-    The **dag_nodes** object supports the following:
-
-      * `args` (`list`) - Nested configuration an argument or property of a node. Defined below.
-        * `name` (`str`) - The name of the argument or property.
-        * `param` (`bool`) - Boolean if the value is used as a parameter. Defaults to `false`.
-        * `value` (`str`) - The value of the argument or property.
-
-      * `id` (`str`) - A node identifier that is unique within the node's graph.
-      * `lineNumber` (`float`) - The line number of the node.
-      * `node_type` (`str`) - The type of node this is.
     """
     __args__ = dict()
     __args__['dagEdges'] = dag_edges

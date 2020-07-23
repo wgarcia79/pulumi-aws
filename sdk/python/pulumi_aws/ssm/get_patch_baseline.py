@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetPatchBaselineResult',
+    'AwaitableGetPatchBaselineResult',
+    'get_patch_baseline',
+]
 
 
 class GetPatchBaselineResult:
@@ -61,7 +67,11 @@ class AwaitableGetPatchBaselineResult(GetPatchBaselineResult):
             owner=self.owner)
 
 
-def get_patch_baseline(default_baseline=None, name_prefix=None, operating_system=None, owner=None, opts=None):
+def get_patch_baseline(default_baseline: Optional[bool] = None,
+                       name_prefix: Optional[str] = None,
+                       operating_system: Optional[str] = None,
+                       owner: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPatchBaselineResult:
     """
     Provides an SSM Patch Baseline data source. Useful if you wish to reuse the default baselines provided.
 

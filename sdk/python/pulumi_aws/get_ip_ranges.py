@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from . import _utilities, _tables
+
+__all__ = [
+    'GetIpRangesResult',
+    'AwaitableGetIpRangesResult',
+    'get_ip_ranges',
+]
 
 
 class GetIpRangesResult:
@@ -72,7 +78,10 @@ class AwaitableGetIpRangesResult(GetIpRangesResult):
             url=self.url)
 
 
-def get_ip_ranges(regions=None, services=None, url=None, opts=None):
+def get_ip_ranges(regions: Optional[List[str]] = None,
+                  services: Optional[List[str]] = None,
+                  url: Optional[str] = None,
+                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIpRangesResult:
     """
     Use this data source to get the IP ranges of various AWS products and services. For more information about the contents of this data source and required JSON syntax if referencing a custom URL, see the [AWS IP Address Ranges documention](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html).
 
@@ -102,10 +111,10 @@ def get_ip_ranges(regions=None, services=None, url=None, opts=None):
     ```
 
 
-    :param list regions: Filter IP ranges by regions (or include all regions, if
+    :param List[str] regions: Filter IP ranges by regions (or include all regions, if
            omitted). Valid items are `global` (for `cloudfront`) as well as all AWS regions
            (e.g. `eu-central-1`)
-    :param list services: Filter IP ranges by services. Valid items are `amazon`
+    :param List[str] services: Filter IP ranges by services. Valid items are `amazon`
            (for amazon.com), `amazon_connect`, `api_gateway`, `cloud9`, `cloudfront`,
            `codebuild`, `dynamodb`, `ec2`, `ec2_instance_connect`, `globalaccelerator`,
            `route53`, `route53_healthchecks`, `s3` and `workspaces_gateways`. See the

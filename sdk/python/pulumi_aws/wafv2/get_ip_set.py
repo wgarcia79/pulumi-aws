@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetIpSetResult',
+    'AwaitableGetIpSetResult',
+    'get_ip_set',
+]
 
 
 class GetIpSetResult:
@@ -67,7 +73,9 @@ class AwaitableGetIpSetResult(GetIpSetResult):
             scope=self.scope)
 
 
-def get_ip_set(name=None, scope=None, opts=None):
+def get_ip_set(name: Optional[str] = None,
+               scope: Optional[str] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIpSetResult:
     """
     Retrieves the summary of a WAFv2 IP Set.
 

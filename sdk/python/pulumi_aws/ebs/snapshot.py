@@ -5,52 +5,72 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['Snapshot']
 
 
 class Snapshot(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     Amazon Resource Name (ARN) of the EBS Snapshot.
     """
-    data_encryption_key_id: pulumi.Output[str]
+
+    data_encryption_key_id: pulumi.Output[str] = pulumi.property("dataEncryptionKeyId")
     """
     The data encryption key identifier for the snapshot.
     """
-    description: pulumi.Output[str]
+
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     A description of what the snapshot is.
     """
-    encrypted: pulumi.Output[bool]
+
+    encrypted: pulumi.Output[bool] = pulumi.property("encrypted")
     """
     Whether the snapshot is encrypted.
     """
-    kms_key_id: pulumi.Output[str]
+
+    kms_key_id: pulumi.Output[str] = pulumi.property("kmsKeyId")
     """
     The ARN for the KMS encryption key.
     """
-    owner_alias: pulumi.Output[str]
+
+    owner_alias: pulumi.Output[str] = pulumi.property("ownerAlias")
     """
     Value from an Amazon-maintained list (`amazon`, `aws-marketplace`, `microsoft`) of snapshot owners.
     """
-    owner_id: pulumi.Output[str]
+
+    owner_id: pulumi.Output[str] = pulumi.property("ownerId")
     """
     The AWS account ID of the EBS snapshot owner.
     """
-    tags: pulumi.Output[dict]
+
+    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
     """
     A map of tags to assign to the snapshot
     """
-    volume_id: pulumi.Output[str]
+
+    volume_id: pulumi.Output[str] = pulumi.property("volumeId")
     """
     The Volume ID of which to make a snapshot.
     """
-    volume_size: pulumi.Output[float]
+
+    volume_size: pulumi.Output[float] = pulumi.property("volumeSize")
     """
     The size of the drive in GiBs.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, tags=None, volume_id=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 volume_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Creates a Snapshot of an EBS Volume.
 
@@ -76,7 +96,7 @@ class Snapshot(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: A description of what the snapshot is.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the snapshot
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A map of tags to assign to the snapshot
         :param pulumi.Input[str] volume_id: The Volume ID of which to make a snapshot.
         """
         if __name__ is not None:
@@ -115,7 +135,19 @@ class Snapshot(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, data_encryption_key_id=None, description=None, encrypted=None, kms_key_id=None, owner_alias=None, owner_id=None, tags=None, volume_id=None, volume_size=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            data_encryption_key_id: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            encrypted: Optional[pulumi.Input[bool]] = None,
+            kms_key_id: Optional[pulumi.Input[str]] = None,
+            owner_alias: Optional[pulumi.Input[str]] = None,
+            owner_id: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            volume_id: Optional[pulumi.Input[str]] = None,
+            volume_size: Optional[pulumi.Input[float]] = None) -> 'Snapshot':
         """
         Get an existing Snapshot resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -130,7 +162,7 @@ class Snapshot(pulumi.CustomResource):
         :param pulumi.Input[str] kms_key_id: The ARN for the KMS encryption key.
         :param pulumi.Input[str] owner_alias: Value from an Amazon-maintained list (`amazon`, `aws-marketplace`, `microsoft`) of snapshot owners.
         :param pulumi.Input[str] owner_id: The AWS account ID of the EBS snapshot owner.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the snapshot
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A map of tags to assign to the snapshot
         :param pulumi.Input[str] volume_id: The Volume ID of which to make a snapshot.
         :param pulumi.Input[float] volume_size: The size of the drive in GiBs.
         """
@@ -155,3 +187,4 @@ class Snapshot(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

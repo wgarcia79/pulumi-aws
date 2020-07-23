@@ -5,24 +5,37 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['GcmChannel']
 
 
 class GcmChannel(pulumi.CustomResource):
-    api_key: pulumi.Output[str]
+    api_key: pulumi.Output[str] = pulumi.property("apiKey")
     """
     Platform credential API key from Google.
     """
-    application_id: pulumi.Output[str]
+
+    application_id: pulumi.Output[str] = pulumi.property("applicationId")
     """
     The application ID.
     """
-    enabled: pulumi.Output[bool]
+
+    enabled: pulumi.Output[Optional[bool]] = pulumi.property("enabled")
     """
     Whether the channel is enabled or disabled. Defaults to `true`.
     """
-    def __init__(__self__, resource_name, opts=None, api_key=None, application_id=None, enabled=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 api_key: Optional[pulumi.Input[str]] = None,
+                 application_id: Optional[pulumi.Input[str]] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a Pinpoint GCM Channel resource.
 
@@ -77,7 +90,12 @@ class GcmChannel(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, api_key=None, application_id=None, enabled=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            api_key: Optional[pulumi.Input[str]] = None,
+            application_id: Optional[pulumi.Input[str]] = None,
+            enabled: Optional[pulumi.Input[bool]] = None) -> 'GcmChannel':
         """
         Get an existing GcmChannel resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -103,3 +121,4 @@ class GcmChannel(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

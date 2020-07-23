@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetLogGroupResult',
+    'AwaitableGetLogGroupResult',
+    'get_log_group',
+]
 
 
 class GetLogGroupResult:
@@ -70,7 +76,9 @@ class AwaitableGetLogGroupResult(GetLogGroupResult):
             tags=self.tags)
 
 
-def get_log_group(name=None, tags=None, opts=None):
+def get_log_group(name: Optional[str] = None,
+                  tags: Optional[Mapping[str, str]] = None,
+                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLogGroupResult:
     """
     Use this data source to get information about an AWS Cloudwatch Log Group
 
@@ -85,7 +93,7 @@ def get_log_group(name=None, tags=None, opts=None):
 
 
     :param str name: The name of the Cloudwatch log group
-    :param dict tags: A map of tags to assign to the resource.
+    :param Mapping[str, str] tags: A map of tags to assign to the resource.
     """
     __args__ = dict()
     __args__['name'] = name

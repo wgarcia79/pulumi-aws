@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetDetectorResult',
+    'AwaitableGetDetectorResult',
+    'get_detector',
+]
 
 
 class GetDetectorResult:
@@ -49,7 +55,8 @@ class AwaitableGetDetectorResult(GetDetectorResult):
             status=self.status)
 
 
-def get_detector(id=None, opts=None):
+def get_detector(id: Optional[str] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDetectorResult:
     """
     Retrieve information about a GuardDuty detector.
 

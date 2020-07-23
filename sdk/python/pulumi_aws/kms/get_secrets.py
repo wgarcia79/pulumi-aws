@@ -5,8 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetSecretsResult',
+    'AwaitableGetSecretsResult',
+    'get_secrets',
+]
 
 
 class GetSecretsResult:
@@ -42,19 +50,13 @@ class AwaitableGetSecretsResult(GetSecretsResult):
             secrets=self.secrets)
 
 
-def get_secrets(secrets=None, opts=None):
+def get_secrets(secrets: Optional[List[pulumi.InputType['GetSecretsSecretArgs']]] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretsResult:
     """
     Decrypt multiple secrets from data encrypted with the AWS KMS service.
 
 
-    :param list secrets: One or more encrypted payload definitions from the KMS service. See the Secret Definitions below.
-
-    The **secrets** object supports the following:
-
-      * `context` (`dict`) - An optional mapping that makes up the Encryption Context for the secret.
-      * `grantTokens` (`list`) - An optional list of Grant Tokens for the secret.
-      * `name` (`str`) - The name to export this secret under in the attributes.
-      * `payload` (`str`) - Base64 encoded payload, as returned from a KMS encrypt operation.
+    :param List[pulumi.InputType['GetSecretsSecretArgs']] secrets: One or more encrypted payload definitions from the KMS service. See the Secret Definitions below.
     """
     __args__ = dict()
     __args__['secrets'] = secrets

@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetGroupResult',
+    'AwaitableGetGroupResult',
+    'get_group',
+]
 
 
 class GetGroupResult:
@@ -151,7 +157,8 @@ class AwaitableGetGroupResult(GetGroupResult):
             vpc_zone_identifier=self.vpc_zone_identifier)
 
 
-def get_group(name=None, opts=None):
+def get_group(name: Optional[str] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGroupResult:
     """
     Use this data source to get information on an existing autoscaling group.
 

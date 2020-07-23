@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetStreamResult',
+    'AwaitableGetStreamResult',
+    'get_stream',
+]
 
 
 class GetStreamResult:
@@ -94,7 +100,9 @@ class AwaitableGetStreamResult(GetStreamResult):
             tags=self.tags)
 
 
-def get_stream(name=None, tags=None, opts=None):
+def get_stream(name: Optional[str] = None,
+               tags: Optional[Mapping[str, str]] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetStreamResult:
     """
     Use this data source to get information about a Kinesis Stream for use in other
     resources.
@@ -112,7 +120,7 @@ def get_stream(name=None, tags=None, opts=None):
 
 
     :param str name: The name of the Kinesis Stream.
-    :param dict tags: A map of tags to assigned to the stream.
+    :param Mapping[str, str] tags: A map of tags to assigned to the stream.
     """
     __args__ = dict()
     __args__['name'] = name

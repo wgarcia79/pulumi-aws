@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetFileSystemResult',
+    'AwaitableGetFileSystemResult',
+    'get_file_system',
+]
 
 
 class GetFileSystemResult:
@@ -107,7 +114,10 @@ class AwaitableGetFileSystemResult(GetFileSystemResult):
             throughput_mode=self.throughput_mode)
 
 
-def get_file_system(creation_token=None, file_system_id=None, tags=None, opts=None):
+def get_file_system(creation_token: Optional[str] = None,
+                    file_system_id: Optional[str] = None,
+                    tags: Optional[Mapping[str, str]] = None,
+                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFileSystemResult:
     """
     Provides information about an Elastic File System (EFS) File System.
 

@@ -5,20 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['GroupPolicyAttachment']
 
 
 class GroupPolicyAttachment(pulumi.CustomResource):
-    group: pulumi.Output[str]
+    group: pulumi.Output[str] = pulumi.property("group")
     """
     The group the policy should be applied to
     """
-    policy_arn: pulumi.Output[str]
+
+    policy_arn: pulumi.Output[str] = pulumi.property("policyArn")
     """
     The ARN of the policy you want to apply
     """
-    def __init__(__self__, resource_name, opts=None, group=None, policy_arn=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 group: Optional[pulumi.Input[str]] = None,
+                 policy_arn: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Attaches a Managed IAM Policy to an IAM group
 
@@ -42,7 +53,7 @@ class GroupPolicyAttachment(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] group: The group the policy should be applied to
+        :param pulumi.Input[str] group: The group the policy should be applied to
         :param pulumi.Input[str] policy_arn: The ARN of the policy you want to apply
         """
         if __name__ is not None:
@@ -75,7 +86,11 @@ class GroupPolicyAttachment(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, group=None, policy_arn=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            group: Optional[pulumi.Input[str]] = None,
+            policy_arn: Optional[pulumi.Input[str]] = None) -> 'GroupPolicyAttachment':
         """
         Get an existing GroupPolicyAttachment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -83,7 +98,7 @@ class GroupPolicyAttachment(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] group: The group the policy should be applied to
+        :param pulumi.Input[str] group: The group the policy should be applied to
         :param pulumi.Input[str] policy_arn: The ARN of the policy you want to apply
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -99,3 +114,4 @@ class GroupPolicyAttachment(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetReportDefinitionResult',
+    'AwaitableGetReportDefinitionResult',
+    'get_report_definition',
+]
 
 
 class GetReportDefinitionResult:
@@ -91,7 +97,8 @@ class AwaitableGetReportDefinitionResult(GetReportDefinitionResult):
             time_unit=self.time_unit)
 
 
-def get_report_definition(report_name=None, opts=None):
+def get_report_definition(report_name: Optional[str] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetReportDefinitionResult:
     """
     Use this data source to get information on an AWS Cost and Usage Report Definition.
 

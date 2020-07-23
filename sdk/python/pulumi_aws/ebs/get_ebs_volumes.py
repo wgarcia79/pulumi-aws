@@ -5,8 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetEbsVolumesResult',
+    'AwaitableGetEbsVolumesResult',
+    'get_ebs_volumes',
+]
 
 
 class GetEbsVolumesResult:
@@ -47,7 +55,9 @@ class AwaitableGetEbsVolumesResult(GetEbsVolumesResult):
             tags=self.tags)
 
 
-def get_ebs_volumes(filters=None, tags=None, opts=None):
+def get_ebs_volumes(filters: Optional[List[pulumi.InputType['GetEbsVolumesFilterArgs']]] = None,
+                    tags: Optional[Mapping[str, str]] = None,
+                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEbsVolumesResult:
     """
     `ebs.getEbsVolumes` provides identifying information for EBS volumes matching given criteria.
 
@@ -72,17 +82,9 @@ def get_ebs_volumes(filters=None, tags=None, opts=None):
     ```
 
 
-    :param list filters: Custom filter block as described below.
-    :param dict tags: A map of tags, each pair of which must exactly match
+    :param List[pulumi.InputType['GetEbsVolumesFilterArgs']] filters: Custom filter block as described below.
+    :param Mapping[str, str] tags: A map of tags, each pair of which must exactly match
            a pair on the desired volumes.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter by, as defined by
-        [the underlying AWS API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVolumes.html).
-        For example, if matching against the `size` filter, use:
-      * `values` (`list`) - Set of values that are accepted for the given field.
-        EBS Volume IDs will be selected if any one of the given values match.
     """
     __args__ = dict()
     __args__['filters'] = filters

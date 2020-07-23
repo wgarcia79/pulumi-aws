@@ -5,8 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = [
+    'GetRouteTableResult',
+    'AwaitableGetRouteTableResult',
+    'get_route_table',
+]
 
 
 class GetRouteTableResult:
@@ -79,7 +87,13 @@ class AwaitableGetRouteTableResult(GetRouteTableResult):
             vpc_id=self.vpc_id)
 
 
-def get_route_table(filters=None, gateway_id=None, route_table_id=None, subnet_id=None, tags=None, vpc_id=None, opts=None):
+def get_route_table(filters: Optional[List[pulumi.InputType['GetRouteTableFilterArgs']]] = None,
+                    gateway_id: Optional[str] = None,
+                    route_table_id: Optional[str] = None,
+                    subnet_id: Optional[str] = None,
+                    tags: Optional[Mapping[str, str]] = None,
+                    vpc_id: Optional[str] = None,
+                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRouteTableResult:
     """
     `ec2.RouteTable` provides details about a specific Route Table.
 
@@ -106,20 +120,13 @@ def get_route_table(filters=None, gateway_id=None, route_table_id=None, subnet_i
     ```
 
 
-    :param list filters: Custom filter block as described below.
+    :param List[pulumi.InputType['GetRouteTableFilterArgs']] filters: Custom filter block as described below.
     :param str gateway_id: The id of an Internet Gateway or Virtual Private Gateway which is connected to the Route Table (not exported if not passed as a parameter).
     :param str route_table_id: The id of the specific Route Table to retrieve.
     :param str subnet_id: The id of a Subnet which is connected to the Route Table (not exported if not passed as a parameter).
-    :param dict tags: A map of tags, each pair of which must exactly match
+    :param Mapping[str, str] tags: A map of tags, each pair of which must exactly match
            a pair on the desired Route Table.
     :param str vpc_id: The id of the VPC that the desired Route Table belongs to.
-
-    The **filters** object supports the following:
-
-      * `name` (`str`) - The name of the field to filter by, as defined by
-        [the underlying AWS API](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeRouteTables.html).
-      * `values` (`list`) - Set of values that are accepted for the given field.
-        A Route Table will be selected if any one of the given values matches.
     """
     __args__ = dict()
     __args__['filters'] = filters

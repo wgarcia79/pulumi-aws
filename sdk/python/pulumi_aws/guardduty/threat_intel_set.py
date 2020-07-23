@@ -5,40 +5,60 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['ThreatIntelSet']
 
 
 class ThreatIntelSet(pulumi.CustomResource):
-    activate: pulumi.Output[bool]
+    activate: pulumi.Output[bool] = pulumi.property("activate")
     """
     Specifies whether GuardDuty is to start using the uploaded ThreatIntelSet.
     """
-    arn: pulumi.Output[str]
+
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     Amazon Resource Name (ARN) of the GuardDuty ThreatIntelSet.
     """
-    detector_id: pulumi.Output[str]
+
+    detector_id: pulumi.Output[str] = pulumi.property("detectorId")
     """
     The detector ID of the GuardDuty.
     """
-    format: pulumi.Output[str]
+
+    format: pulumi.Output[str] = pulumi.property("format")
     """
     The format of the file that contains the ThreatIntelSet. Valid values: `TXT` | `STIX` | `OTX_CSV` | `ALIEN_VAULT` | `PROOF_POINT` | `FIRE_EYE`
     """
-    location: pulumi.Output[str]
+
+    location: pulumi.Output[str] = pulumi.property("location")
     """
     The URI of the file that contains the ThreatIntelSet.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The friendly name to identify the ThreatIntelSet.
     """
-    tags: pulumi.Output[dict]
+
+    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
     """
     Key-value map of resource tags.
     """
-    def __init__(__self__, resource_name, opts=None, activate=None, detector_id=None, format=None, location=None, name=None, tags=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 activate: Optional[pulumi.Input[bool]] = None,
+                 detector_id: Optional[pulumi.Input[str]] = None,
+                 format: Optional[pulumi.Input[str]] = None,
+                 location: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a resource to manage a GuardDuty ThreatIntelSet.
 
@@ -73,7 +93,7 @@ class ThreatIntelSet(pulumi.CustomResource):
         :param pulumi.Input[str] format: The format of the file that contains the ThreatIntelSet. Valid values: `TXT` | `STIX` | `OTX_CSV` | `ALIEN_VAULT` | `PROOF_POINT` | `FIRE_EYE`
         :param pulumi.Input[str] location: The URI of the file that contains the ThreatIntelSet.
         :param pulumi.Input[str] name: The friendly name to identify the ThreatIntelSet.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Key-value map of resource tags.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -114,7 +134,16 @@ class ThreatIntelSet(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, activate=None, arn=None, detector_id=None, format=None, location=None, name=None, tags=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            activate: Optional[pulumi.Input[bool]] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            detector_id: Optional[pulumi.Input[str]] = None,
+            format: Optional[pulumi.Input[str]] = None,
+            location: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None) -> 'ThreatIntelSet':
         """
         Get an existing ThreatIntelSet resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -128,7 +157,7 @@ class ThreatIntelSet(pulumi.CustomResource):
         :param pulumi.Input[str] format: The format of the file that contains the ThreatIntelSet. Valid values: `TXT` | `STIX` | `OTX_CSV` | `ALIEN_VAULT` | `PROOF_POINT` | `FIRE_EYE`
         :param pulumi.Input[str] location: The URI of the file that contains the ThreatIntelSet.
         :param pulumi.Input[str] name: The friendly name to identify the ThreatIntelSet.
-        :param pulumi.Input[dict] tags: Key-value map of resource tags.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Key-value map of resource tags.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -148,3 +177,4 @@ class ThreatIntelSet(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,36 +5,54 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['CatalogDatabase']
 
 
 class CatalogDatabase(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     The ARN of the Glue Catalog Database.
     """
-    catalog_id: pulumi.Output[str]
+
+    catalog_id: pulumi.Output[str] = pulumi.property("catalogId")
     """
     ID of the Glue Catalog to create the database in. If omitted, this defaults to the AWS Account ID.
     """
-    description: pulumi.Output[str]
+
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     Description of the database.
     """
-    location_uri: pulumi.Output[str]
+
+    location_uri: pulumi.Output[Optional[str]] = pulumi.property("locationUri")
     """
     The location of the database (for example, an HDFS path).
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name of the database.
     """
-    parameters: pulumi.Output[dict]
+
+    parameters: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("parameters")
     """
     A list of key-value pairs that define parameters and properties of the database.
     """
-    def __init__(__self__, resource_name, opts=None, catalog_id=None, description=None, location_uri=None, name=None, parameters=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 catalog_id: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 location_uri: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a Glue Catalog Database Resource. You can refer to the [Glue Developer Guide](http://docs.aws.amazon.com/glue/latest/dg/populate-data-catalog.html) for a full explanation of the Glue Data Catalog functionality
 
@@ -53,7 +71,7 @@ class CatalogDatabase(pulumi.CustomResource):
         :param pulumi.Input[str] description: Description of the database.
         :param pulumi.Input[str] location_uri: The location of the database (for example, an HDFS path).
         :param pulumi.Input[str] name: The name of the database.
-        :param pulumi.Input[dict] parameters: A list of key-value pairs that define parameters and properties of the database.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] parameters: A list of key-value pairs that define parameters and properties of the database.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -85,7 +103,15 @@ class CatalogDatabase(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, catalog_id=None, description=None, location_uri=None, name=None, parameters=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            catalog_id: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            location_uri: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None) -> 'CatalogDatabase':
         """
         Get an existing CatalogDatabase resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -98,7 +124,7 @@ class CatalogDatabase(pulumi.CustomResource):
         :param pulumi.Input[str] description: Description of the database.
         :param pulumi.Input[str] location_uri: The location of the database (for example, an HDFS path).
         :param pulumi.Input[str] name: The name of the database.
-        :param pulumi.Input[dict] parameters: A list of key-value pairs that define parameters and properties of the database.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] parameters: A list of key-value pairs that define parameters and properties of the database.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -117,3 +143,4 @@ class CatalogDatabase(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

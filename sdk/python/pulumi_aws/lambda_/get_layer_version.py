@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetLayerVersionResult',
+    'AwaitableGetLayerVersionResult',
+    'get_layer_version',
+]
 
 
 class GetLayerVersionResult:
@@ -102,7 +108,10 @@ class AwaitableGetLayerVersionResult(GetLayerVersionResult):
             version=self.version)
 
 
-def get_layer_version(compatible_runtime=None, layer_name=None, version=None, opts=None):
+def get_layer_version(compatible_runtime: Optional[str] = None,
+                      layer_name: Optional[str] = None,
+                      version: Optional[float] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLayerVersionResult:
     """
     Provides information about a Lambda Layer Version.
 

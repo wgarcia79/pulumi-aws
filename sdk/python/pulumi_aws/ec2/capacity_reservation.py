@@ -5,60 +5,90 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['CapacityReservation']
 
 
 class CapacityReservation(pulumi.CustomResource):
-    arn: pulumi.Output[str]
+    arn: pulumi.Output[str] = pulumi.property("arn")
     """
     The ARN of the Capacity Reservation.
     """
-    availability_zone: pulumi.Output[str]
+
+    availability_zone: pulumi.Output[str] = pulumi.property("availabilityZone")
     """
     The Availability Zone in which to create the Capacity Reservation.
     """
-    ebs_optimized: pulumi.Output[bool]
+
+    ebs_optimized: pulumi.Output[Optional[bool]] = pulumi.property("ebsOptimized")
     """
     Indicates whether the Capacity Reservation supports EBS-optimized instances.
     """
-    end_date: pulumi.Output[str]
+
+    end_date: pulumi.Output[Optional[str]] = pulumi.property("endDate")
     """
     The date and time at which the Capacity Reservation expires. When a Capacity Reservation expires, the reserved capacity is released and you can no longer launch instances into it. Valid values: [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`)
     """
-    end_date_type: pulumi.Output[str]
+
+    end_date_type: pulumi.Output[Optional[str]] = pulumi.property("endDateType")
     """
     Indicates the way in which the Capacity Reservation ends. Specify either `unlimited` or `limited`.
     """
-    ephemeral_storage: pulumi.Output[bool]
+
+    ephemeral_storage: pulumi.Output[Optional[bool]] = pulumi.property("ephemeralStorage")
     """
     Indicates whether the Capacity Reservation supports instances with temporary, block-level storage.
     """
-    instance_count: pulumi.Output[float]
+
+    instance_count: pulumi.Output[float] = pulumi.property("instanceCount")
     """
     The number of instances for which to reserve capacity.
     """
-    instance_match_criteria: pulumi.Output[str]
+
+    instance_match_criteria: pulumi.Output[Optional[str]] = pulumi.property("instanceMatchCriteria")
     """
     Indicates the type of instance launches that the Capacity Reservation accepts. Specify either `open` or `targeted`.
     """
-    instance_platform: pulumi.Output[str]
+
+    instance_platform: pulumi.Output[str] = pulumi.property("instancePlatform")
     """
     The type of operating system for which to reserve capacity. Valid options are `Linux/UNIX`, `Red Hat Enterprise Linux`, `SUSE Linux`, `Windows`, `Windows with SQL Server`, `Windows with SQL Server Enterprise`, `Windows with SQL Server Standard` or `Windows with SQL Server Web`.
     """
-    instance_type: pulumi.Output[str]
+
+    instance_type: pulumi.Output[str] = pulumi.property("instanceType")
     """
     The instance type for which to reserve capacity.
     """
-    tags: pulumi.Output[dict]
+
+    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
     """
     A map of tags to assign to the resource.
     """
-    tenancy: pulumi.Output[str]
+
+    tenancy: pulumi.Output[Optional[str]] = pulumi.property("tenancy")
     """
     Indicates the tenancy of the Capacity Reservation. Specify either `default` or `dedicated`.
     """
-    def __init__(__self__, resource_name, opts=None, availability_zone=None, ebs_optimized=None, end_date=None, end_date_type=None, ephemeral_storage=None, instance_count=None, instance_match_criteria=None, instance_platform=None, instance_type=None, tags=None, tenancy=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 availability_zone: Optional[pulumi.Input[str]] = None,
+                 ebs_optimized: Optional[pulumi.Input[bool]] = None,
+                 end_date: Optional[pulumi.Input[str]] = None,
+                 end_date_type: Optional[pulumi.Input[str]] = None,
+                 ephemeral_storage: Optional[pulumi.Input[bool]] = None,
+                 instance_count: Optional[pulumi.Input[float]] = None,
+                 instance_match_criteria: Optional[pulumi.Input[str]] = None,
+                 instance_platform: Optional[pulumi.Input[str]] = None,
+                 instance_type: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 tenancy: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides an EC2 Capacity Reservation. This allows you to reserve capacity for your Amazon EC2 instances in a specific Availability Zone for any duration.
 
@@ -86,7 +116,7 @@ class CapacityReservation(pulumi.CustomResource):
         :param pulumi.Input[str] instance_match_criteria: Indicates the type of instance launches that the Capacity Reservation accepts. Specify either `open` or `targeted`.
         :param pulumi.Input[str] instance_platform: The type of operating system for which to reserve capacity. Valid options are `Linux/UNIX`, `Red Hat Enterprise Linux`, `SUSE Linux`, `Windows`, `Windows with SQL Server`, `Windows with SQL Server Enterprise`, `Windows with SQL Server Standard` or `Windows with SQL Server Web`.
         :param pulumi.Input[str] instance_type: The instance type for which to reserve capacity.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[str] tenancy: Indicates the tenancy of the Capacity Reservation. Specify either `default` or `dedicated`.
         """
         if __name__ is not None:
@@ -133,7 +163,21 @@ class CapacityReservation(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, arn=None, availability_zone=None, ebs_optimized=None, end_date=None, end_date_type=None, ephemeral_storage=None, instance_count=None, instance_match_criteria=None, instance_platform=None, instance_type=None, tags=None, tenancy=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            arn: Optional[pulumi.Input[str]] = None,
+            availability_zone: Optional[pulumi.Input[str]] = None,
+            ebs_optimized: Optional[pulumi.Input[bool]] = None,
+            end_date: Optional[pulumi.Input[str]] = None,
+            end_date_type: Optional[pulumi.Input[str]] = None,
+            ephemeral_storage: Optional[pulumi.Input[bool]] = None,
+            instance_count: Optional[pulumi.Input[float]] = None,
+            instance_match_criteria: Optional[pulumi.Input[str]] = None,
+            instance_platform: Optional[pulumi.Input[str]] = None,
+            instance_type: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            tenancy: Optional[pulumi.Input[str]] = None) -> 'CapacityReservation':
         """
         Get an existing CapacityReservation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -151,7 +195,7 @@ class CapacityReservation(pulumi.CustomResource):
         :param pulumi.Input[str] instance_match_criteria: Indicates the type of instance launches that the Capacity Reservation accepts. Specify either `open` or `targeted`.
         :param pulumi.Input[str] instance_platform: The type of operating system for which to reserve capacity. Valid options are `Linux/UNIX`, `Red Hat Enterprise Linux`, `SUSE Linux`, `Windows`, `Windows with SQL Server`, `Windows with SQL Server Enterprise`, `Windows with SQL Server Standard` or `Windows with SQL Server Web`.
         :param pulumi.Input[str] instance_type: The instance type for which to reserve capacity.
-        :param pulumi.Input[dict] tags: A map of tags to assign to the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         :param pulumi.Input[str] tenancy: Indicates the tenancy of the Capacity Reservation. Specify either `default` or `dedicated`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -177,3 +221,4 @@ class CapacityReservation(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,8 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = [
+    'GetClusterAuthResult',
+    'AwaitableGetClusterAuthResult',
+    'get_cluster_auth',
+]
 
 
 class GetClusterAuthResult:
@@ -42,7 +48,8 @@ class AwaitableGetClusterAuthResult(GetClusterAuthResult):
             token=self.token)
 
 
-def get_cluster_auth(name=None, opts=None):
+def get_cluster_auth(name: Optional[str] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClusterAuthResult:
     """
     Get an authentication token to communicate with an EKS cluster.
 

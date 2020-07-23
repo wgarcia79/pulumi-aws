@@ -5,44 +5,35 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['ByteMatchSet']
 
 
 class ByteMatchSet(pulumi.CustomResource):
-    byte_match_tuples: pulumi.Output[list]
+    byte_match_tuples: pulumi.Output[Optional[List['outputs.ByteMatchSetByteMatchTuple']]] = pulumi.property("byteMatchTuples")
     """
     Specifies the bytes (typically a string that corresponds
     with ASCII characters) that you want to search for in web requests,
     the location in requests that you want to search, and other settings.
-
-      * `fieldToMatch` (`dict`) - The part of a web request that you want to search, such as a specified header or a query string.
-        * `data` (`str`) - When `type` is `HEADER`, enter the name of the header that you want to search, e.g. `User-Agent` or `Referer`.
-          If `type` is any other value, omit this field.
-        * `type` (`str`) - The part of the web request that you want AWS WAF to search for a specified string.
-          e.g. `HEADER`, `METHOD` or `BODY`.
-          See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_FieldToMatch.html)
-          for all supported values.
-
-      * `positionalConstraint` (`str`) - Within the portion of a web request that you want to search
-        (for example, in the query string, if any), specify where you want to search.
-        e.g. `CONTAINS`, `CONTAINS_WORD` or `EXACTLY`.
-        See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_ByteMatchTuple.html#WAF-Type-ByteMatchTuple-PositionalConstraint)
-        for all supported values.
-      * `targetString` (`str`) - The value that you want to search for. e.g. `HEADER`, `METHOD` or `BODY`.
-        See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_ByteMatchTuple.html#WAF-Type-ByteMatchTuple-TargetString)
-        for all supported values.
-      * `textTransformation` (`str`) - Text transformations used to eliminate unusual formatting that attackers use in web requests in an effort to bypass AWS WAF.
-        If you specify a transformation, AWS WAF performs the transformation on `target_string` before inspecting a request for a match.
-        e.g. `CMD_LINE`, `HTML_ENTITY_DECODE` or `NONE`.
-        See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_ByteMatchTuple.html#WAF-Type-ByteMatchTuple-TextTransformation)
-        for all supported values.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name or description of the Byte Match Set.
     """
-    def __init__(__self__, resource_name, opts=None, byte_match_tuples=None, name=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 byte_match_tuples: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ByteMatchSetByteMatchTupleArgs']]]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a WAF Byte Match Set Resource
 
@@ -65,34 +56,10 @@ class ByteMatchSet(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] byte_match_tuples: Specifies the bytes (typically a string that corresponds
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ByteMatchSetByteMatchTupleArgs']]]] byte_match_tuples: Specifies the bytes (typically a string that corresponds
                with ASCII characters) that you want to search for in web requests,
                the location in requests that you want to search, and other settings.
         :param pulumi.Input[str] name: The name or description of the Byte Match Set.
-
-        The **byte_match_tuples** object supports the following:
-
-          * `fieldToMatch` (`pulumi.Input[dict]`) - The part of a web request that you want to search, such as a specified header or a query string.
-            * `data` (`pulumi.Input[str]`) - When `type` is `HEADER`, enter the name of the header that you want to search, e.g. `User-Agent` or `Referer`.
-              If `type` is any other value, omit this field.
-            * `type` (`pulumi.Input[str]`) - The part of the web request that you want AWS WAF to search for a specified string.
-              e.g. `HEADER`, `METHOD` or `BODY`.
-              See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_FieldToMatch.html)
-              for all supported values.
-
-          * `positionalConstraint` (`pulumi.Input[str]`) - Within the portion of a web request that you want to search
-            (for example, in the query string, if any), specify where you want to search.
-            e.g. `CONTAINS`, `CONTAINS_WORD` or `EXACTLY`.
-            See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_ByteMatchTuple.html#WAF-Type-ByteMatchTuple-PositionalConstraint)
-            for all supported values.
-          * `targetString` (`pulumi.Input[str]`) - The value that you want to search for. e.g. `HEADER`, `METHOD` or `BODY`.
-            See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_ByteMatchTuple.html#WAF-Type-ByteMatchTuple-TargetString)
-            for all supported values.
-          * `textTransformation` (`pulumi.Input[str]`) - Text transformations used to eliminate unusual formatting that attackers use in web requests in an effort to bypass AWS WAF.
-            If you specify a transformation, AWS WAF performs the transformation on `target_string` before inspecting a request for a match.
-            e.g. `CMD_LINE`, `HTML_ENTITY_DECODE` or `NONE`.
-            See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_ByteMatchTuple.html#WAF-Type-ByteMatchTuple-TextTransformation)
-            for all supported values.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -120,7 +87,11 @@ class ByteMatchSet(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, byte_match_tuples=None, name=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            byte_match_tuples: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ByteMatchSetByteMatchTupleArgs']]]]] = None,
+            name: Optional[pulumi.Input[str]] = None) -> 'ByteMatchSet':
         """
         Get an existing ByteMatchSet resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -128,34 +99,10 @@ class ByteMatchSet(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] byte_match_tuples: Specifies the bytes (typically a string that corresponds
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ByteMatchSetByteMatchTupleArgs']]]] byte_match_tuples: Specifies the bytes (typically a string that corresponds
                with ASCII characters) that you want to search for in web requests,
                the location in requests that you want to search, and other settings.
         :param pulumi.Input[str] name: The name or description of the Byte Match Set.
-
-        The **byte_match_tuples** object supports the following:
-
-          * `fieldToMatch` (`pulumi.Input[dict]`) - The part of a web request that you want to search, such as a specified header or a query string.
-            * `data` (`pulumi.Input[str]`) - When `type` is `HEADER`, enter the name of the header that you want to search, e.g. `User-Agent` or `Referer`.
-              If `type` is any other value, omit this field.
-            * `type` (`pulumi.Input[str]`) - The part of the web request that you want AWS WAF to search for a specified string.
-              e.g. `HEADER`, `METHOD` or `BODY`.
-              See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_FieldToMatch.html)
-              for all supported values.
-
-          * `positionalConstraint` (`pulumi.Input[str]`) - Within the portion of a web request that you want to search
-            (for example, in the query string, if any), specify where you want to search.
-            e.g. `CONTAINS`, `CONTAINS_WORD` or `EXACTLY`.
-            See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_ByteMatchTuple.html#WAF-Type-ByteMatchTuple-PositionalConstraint)
-            for all supported values.
-          * `targetString` (`pulumi.Input[str]`) - The value that you want to search for. e.g. `HEADER`, `METHOD` or `BODY`.
-            See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_ByteMatchTuple.html#WAF-Type-ByteMatchTuple-TargetString)
-            for all supported values.
-          * `textTransformation` (`pulumi.Input[str]`) - Text transformations used to eliminate unusual formatting that attackers use in web requests in an effort to bypass AWS WAF.
-            If you specify a transformation, AWS WAF performs the transformation on `target_string` before inspecting a request for a match.
-            e.g. `CMD_LINE`, `HTML_ENTITY_DECODE` or `NONE`.
-            See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_ByteMatchTuple.html#WAF-Type-ByteMatchTuple-TextTransformation)
-            for all supported values.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -170,3 +117,4 @@ class ByteMatchSet(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+
