@@ -10,15 +10,15 @@ from .. import _utilities, _tables
 from . import outputs
 
 __all__ = [
-    'GetGroupUser',
-    'GetPolicyDocumentStatement',
-    'GetPolicyDocumentStatementCondition',
-    'GetPolicyDocumentStatementNotPrincipal',
-    'GetPolicyDocumentStatementPrincipal',
+    'GetGroupUserResult',
+    'GetPolicyDocumentStatementResult',
+    'GetPolicyDocumentStatementConditionResult',
+    'GetPolicyDocumentStatementNotPrincipalResult',
+    'GetPolicyDocumentStatementPrincipalResult',
 ]
 
 @pulumi.output_type
-class GetGroupUser(dict):
+class GetGroupUserResult(dict):
     @property
     @pulumi.getter
     def arn(self) -> str:
@@ -51,12 +51,9 @@ class GetGroupUser(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetPolicyDocumentStatement(dict):
+class GetPolicyDocumentStatementResult(dict):
     @property
     @pulumi.getter
     def actions(self) -> Optional[List[str]]:
@@ -68,7 +65,7 @@ class GetPolicyDocumentStatement(dict):
 
     @property
     @pulumi.getter
-    def conditions(self) -> Optional[List['outputs.GetPolicyDocumentStatementCondition']]:
+    def conditions(self) -> Optional[List['outputs.GetPolicyDocumentStatementConditionResult']]:
         """
         A nested configuration block (described below)
         that defines a further, possibly-service-specific condition that constrains
@@ -97,7 +94,7 @@ class GetPolicyDocumentStatement(dict):
 
     @property
     @pulumi.getter(name="notPrincipals")
-    def not_principals(self) -> Optional[List['outputs.GetPolicyDocumentStatementNotPrincipal']]:
+    def not_principals(self) -> Optional[List['outputs.GetPolicyDocumentStatementNotPrincipalResult']]:
         """
         Like `principals` except gives resources that
         the statement does *not* apply to.
@@ -116,7 +113,7 @@ class GetPolicyDocumentStatement(dict):
 
     @property
     @pulumi.getter
-    def principals(self) -> Optional[List['outputs.GetPolicyDocumentStatementPrincipal']]:
+    def principals(self) -> Optional[List['outputs.GetPolicyDocumentStatementPrincipalResult']]:
         """
         A nested configuration block (described below)
         specifying a resource (or resource pattern) to which this statement applies.
@@ -140,12 +137,9 @@ class GetPolicyDocumentStatement(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetPolicyDocumentStatementCondition(dict):
+class GetPolicyDocumentStatementConditionResult(dict):
     @property
     @pulumi.getter
     def test(self) -> str:
@@ -178,12 +172,9 @@ class GetPolicyDocumentStatementCondition(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetPolicyDocumentStatementNotPrincipal(dict):
+class GetPolicyDocumentStatementNotPrincipalResult(dict):
     @property
     @pulumi.getter
     def identifiers(self) -> List[str]:
@@ -201,12 +192,9 @@ class GetPolicyDocumentStatementNotPrincipal(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetPolicyDocumentStatementPrincipal(dict):
+class GetPolicyDocumentStatementPrincipalResult(dict):
     @property
     @pulumi.getter
     def identifiers(self) -> List[str]:
@@ -223,8 +211,5 @@ class GetPolicyDocumentStatementPrincipal(dict):
         The type of principal. For AWS ARNs this is "AWS".  For AWS services (e.g. Lambda), this is "Service". For Federated access the type is "Federated".
         """
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

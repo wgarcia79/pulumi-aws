@@ -11,8 +11,8 @@ from .. import _utilities, _tables
 __all__ = [
     'SecretRotationRotationRules',
     'SecretRotationRules',
-    'GetSecretRotationRotationRule',
-    'GetSecretRotationRule',
+    'GetSecretRotationRotationRuleResult',
+    'GetSecretRotationRuleResult',
 ]
 
 @pulumi.output_type
@@ -44,24 +44,18 @@ class SecretRotationRules(dict):
 
 
 @pulumi.output_type
-class GetSecretRotationRotationRule(dict):
+class GetSecretRotationRotationRuleResult(dict):
     @property
     @pulumi.getter(name="automaticallyAfterDays")
     def automatically_after_days(self) -> float:
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
-class GetSecretRotationRule(dict):
+class GetSecretRotationRuleResult(dict):
     @property
     @pulumi.getter(name="automaticallyAfterDays")
     def automatically_after_days(self) -> float:
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

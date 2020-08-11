@@ -18,7 +18,7 @@ __all__ = [
     'UsagePlanApiStage',
     'UsagePlanQuotaSettings',
     'UsagePlanThrottleSettings',
-    'GetRestApiEndpointConfiguration',
+    'GetRestApiEndpointConfigurationResult',
 ]
 
 @pulumi.output_type
@@ -309,7 +309,7 @@ class UsagePlanThrottleSettings(dict):
 
 
 @pulumi.output_type
-class GetRestApiEndpointConfiguration(dict):
+class GetRestApiEndpointConfigurationResult(dict):
     @property
     @pulumi.getter
     def types(self) -> List[str]:
@@ -319,8 +319,5 @@ class GetRestApiEndpointConfiguration(dict):
     @pulumi.getter(name="vpcEndpointIds")
     def vpc_endpoint_ids(self) -> List[str]:
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

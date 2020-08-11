@@ -10,7 +10,7 @@ from .. import _utilities, _tables
 
 __all__ = [
     'ClusterClusterCertificate',
-    'GetClusterClusterCertificates',
+    'GetClusterClusterCertificatesResult',
 ]
 
 @pulumi.output_type
@@ -45,7 +45,7 @@ class ClusterClusterCertificate(dict):
 
 
 @pulumi.output_type
-class GetClusterClusterCertificates(dict):
+class GetClusterClusterCertificatesResult(dict):
     @property
     @pulumi.getter(name="awsHardwareCertificate")
     def aws_hardware_certificate(self) -> str:
@@ -70,8 +70,5 @@ class GetClusterClusterCertificates(dict):
     @pulumi.getter(name="manufacturerHardwareCertificate")
     def manufacturer_hardware_certificate(self) -> str:
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

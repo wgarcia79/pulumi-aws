@@ -15,11 +15,11 @@ __all__ = [
     'OrganizationRoot',
     'OrganizationRootPolicyType',
     'OrganizationalUnitAccount',
-    'GetOrganizationAccount',
-    'GetOrganizationNonMasterAccount',
-    'GetOrganizationRoot',
-    'GetOrganizationRootPolicyType',
-    'GetOrganizationalUnitsChildren',
+    'GetOrganizationAccountResult',
+    'GetOrganizationNonMasterAccountResult',
+    'GetOrganizationRootResult',
+    'GetOrganizationRootPolicyTypeResult',
+    'GetOrganizationalUnitsChildrenResult',
 ]
 
 @pulumi.output_type
@@ -210,7 +210,7 @@ class OrganizationalUnitAccount(dict):
 
 
 @pulumi.output_type
-class GetOrganizationAccount(dict):
+class GetOrganizationAccountResult(dict):
     @property
     @pulumi.getter
     def arn(self) -> str:
@@ -251,12 +251,9 @@ class GetOrganizationAccount(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetOrganizationNonMasterAccount(dict):
+class GetOrganizationNonMasterAccountResult(dict):
     @property
     @pulumi.getter
     def arn(self) -> str:
@@ -297,12 +294,9 @@ class GetOrganizationNonMasterAccount(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetOrganizationRoot(dict):
+class GetOrganizationRootResult(dict):
     @property
     @pulumi.getter
     def arn(self) -> str:
@@ -329,18 +323,15 @@ class GetOrganizationRoot(dict):
 
     @property
     @pulumi.getter(name="policyTypes")
-    def policy_types(self) -> List['outputs.GetOrganizationRootPolicyType']:
+    def policy_types(self) -> List['outputs.GetOrganizationRootPolicyTypeResult']:
         """
         List of policy types enabled for this root. All elements have these attributes:
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetOrganizationRootPolicyType(dict):
+class GetOrganizationRootPolicyTypeResult(dict):
     @property
     @pulumi.getter
     def status(self) -> str:
@@ -354,12 +345,9 @@ class GetOrganizationRootPolicyType(dict):
     def type(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetOrganizationalUnitsChildren(dict):
+class GetOrganizationalUnitsChildrenResult(dict):
     @property
     @pulumi.getter
     def arn(self) -> str:
@@ -383,8 +371,5 @@ class GetOrganizationalUnitsChildren(dict):
         Name of the organizational unit
         """
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

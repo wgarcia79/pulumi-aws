@@ -9,11 +9,11 @@ from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 __all__ = [
-    'GetProductFilter',
+    'GetProductFilterResult',
 ]
 
 @pulumi.output_type
-class GetProductFilter(dict):
+class GetProductFilterResult(dict):
     @property
     @pulumi.getter
     def field(self) -> str:
@@ -29,8 +29,5 @@ class GetProductFilter(dict):
         The product attribute value that you want to filter on.
         """
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

@@ -15,12 +15,12 @@ __all__ = [
     'BrokerLogs',
     'BrokerMaintenanceWindowStartTime',
     'BrokerUser',
-    'GetBrokerConfiguration',
-    'GetBrokerEncryptionOption',
-    'GetBrokerInstance',
-    'GetBrokerLogs',
-    'GetBrokerMaintenanceWindowStartTime',
-    'GetBrokerUser',
+    'GetBrokerConfigurationResult',
+    'GetBrokerEncryptionOptionResult',
+    'GetBrokerInstanceResult',
+    'GetBrokerLogsResult',
+    'GetBrokerMaintenanceWindowStartTimeResult',
+    'GetBrokerUserResult',
 ]
 
 @pulumi.output_type
@@ -179,7 +179,7 @@ class BrokerUser(dict):
 
 
 @pulumi.output_type
-class GetBrokerConfiguration(dict):
+class GetBrokerConfigurationResult(dict):
     @property
     @pulumi.getter
     def id(self) -> str:
@@ -190,12 +190,9 @@ class GetBrokerConfiguration(dict):
     def revision(self) -> float:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetBrokerEncryptionOption(dict):
+class GetBrokerEncryptionOptionResult(dict):
     @property
     @pulumi.getter(name="kmsKeyId")
     def kms_key_id(self) -> str:
@@ -206,12 +203,9 @@ class GetBrokerEncryptionOption(dict):
     def use_aws_owned_key(self) -> bool:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetBrokerInstance(dict):
+class GetBrokerInstanceResult(dict):
     @property
     @pulumi.getter(name="consoleUrl")
     def console_url(self) -> str:
@@ -227,12 +221,9 @@ class GetBrokerInstance(dict):
     def ip_address(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetBrokerLogs(dict):
+class GetBrokerLogsResult(dict):
     @property
     @pulumi.getter
     def audit(self) -> bool:
@@ -243,12 +234,9 @@ class GetBrokerLogs(dict):
     def general(self) -> bool:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetBrokerMaintenanceWindowStartTime(dict):
+class GetBrokerMaintenanceWindowStartTimeResult(dict):
     @property
     @pulumi.getter(name="dayOfWeek")
     def day_of_week(self) -> str:
@@ -264,12 +252,9 @@ class GetBrokerMaintenanceWindowStartTime(dict):
     def time_zone(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetBrokerUser(dict):
+class GetBrokerUserResult(dict):
     @property
     @pulumi.getter(name="consoleAccess")
     def console_access(self) -> bool:
@@ -284,8 +269,5 @@ class GetBrokerUser(dict):
     @pulumi.getter
     def username(self) -> str:
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

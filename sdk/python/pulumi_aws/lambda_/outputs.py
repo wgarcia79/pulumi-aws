@@ -21,11 +21,11 @@ __all__ = [
     'FunctionFileSystemConfig',
     'FunctionTracingConfig',
     'FunctionVpcConfig',
-    'GetFunctionDeadLetterConfig',
-    'GetFunctionEnvironment',
-    'GetFunctionFileSystemConfig',
-    'GetFunctionTracingConfig',
-    'GetFunctionVpcConfig',
+    'GetFunctionDeadLetterConfigResult',
+    'GetFunctionEnvironmentResult',
+    'GetFunctionFileSystemConfigResult',
+    'GetFunctionTracingConfigResult',
+    'GetFunctionVpcConfigResult',
 ]
 
 @pulumi.output_type
@@ -219,29 +219,23 @@ class FunctionVpcConfig(dict):
 
 
 @pulumi.output_type
-class GetFunctionDeadLetterConfig(dict):
+class GetFunctionDeadLetterConfigResult(dict):
     @property
     @pulumi.getter(name="targetArn")
     def target_arn(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetFunctionEnvironment(dict):
+class GetFunctionEnvironmentResult(dict):
     @property
     @pulumi.getter
     def variables(self) -> Mapping[str, str]:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetFunctionFileSystemConfig(dict):
+class GetFunctionFileSystemConfigResult(dict):
     @property
     @pulumi.getter
     def arn(self) -> str:
@@ -255,23 +249,17 @@ class GetFunctionFileSystemConfig(dict):
     def local_mount_path(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetFunctionTracingConfig(dict):
+class GetFunctionTracingConfigResult(dict):
     @property
     @pulumi.getter
     def mode(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetFunctionVpcConfig(dict):
+class GetFunctionVpcConfigResult(dict):
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> List[str]:
@@ -286,8 +274,5 @@ class GetFunctionVpcConfig(dict):
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> str:
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

@@ -36,9 +36,9 @@ __all__ = [
     'TriggerAction',
     'TriggerPredicate',
     'TriggerPredicateCondition',
-    'GetScriptDagEdge',
-    'GetScriptDagNode',
-    'GetScriptDagNodeArg',
+    'GetScriptDagEdgeResult',
+    'GetScriptDagNodeResult',
+    'GetScriptDagNodeArgResult',
 ]
 
 @pulumi.output_type
@@ -800,7 +800,7 @@ class TriggerPredicateCondition(dict):
 
 
 @pulumi.output_type
-class GetScriptDagEdge(dict):
+class GetScriptDagEdgeResult(dict):
     @property
     @pulumi.getter
     def source(self) -> str:
@@ -825,15 +825,12 @@ class GetScriptDagEdge(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetScriptDagNode(dict):
+class GetScriptDagNodeResult(dict):
     @property
     @pulumi.getter
-    def args(self) -> List['outputs.GetScriptDagNodeArg']:
+    def args(self) -> List['outputs.GetScriptDagNodeArgResult']:
         """
         Nested configuration an argument or property of a node. Defined below.
         """
@@ -863,12 +860,9 @@ class GetScriptDagNode(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetScriptDagNodeArg(dict):
+class GetScriptDagNodeArgResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -892,8 +886,5 @@ class GetScriptDagNodeArg(dict):
         The value of the argument or property.
         """
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

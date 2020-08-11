@@ -22,16 +22,16 @@ __all__ = [
     'DomainNodeToNodeEncryption',
     'DomainSnapshotOptions',
     'DomainVpcOptions',
-    'GetDomainAdvancedSecurityOption',
-    'GetDomainClusterConfig',
-    'GetDomainClusterConfigZoneAwarenessConfig',
-    'GetDomainCognitoOption',
-    'GetDomainEbsOption',
-    'GetDomainEncryptionAtRest',
-    'GetDomainLogPublishingOption',
-    'GetDomainNodeToNodeEncryption',
-    'GetDomainSnapshotOption',
-    'GetDomainVpcOption',
+    'GetDomainAdvancedSecurityOptionResult',
+    'GetDomainClusterConfigResult',
+    'GetDomainClusterConfigZoneAwarenessConfigResult',
+    'GetDomainCognitoOptionResult',
+    'GetDomainEbsOptionResult',
+    'GetDomainEncryptionAtRestResult',
+    'GetDomainLogPublishingOptionResult',
+    'GetDomainNodeToNodeEncryptionResult',
+    'GetDomainSnapshotOptionResult',
+    'GetDomainVpcOptionResult',
 ]
 
 @pulumi.output_type
@@ -408,7 +408,7 @@ class DomainVpcOptions(dict):
 
 
 @pulumi.output_type
-class GetDomainAdvancedSecurityOption(dict):
+class GetDomainAdvancedSecurityOptionResult(dict):
     @property
     @pulumi.getter
     def enabled(self) -> bool:
@@ -425,12 +425,9 @@ class GetDomainAdvancedSecurityOption(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetDomainClusterConfig(dict):
+class GetDomainClusterConfigResult(dict):
     @property
     @pulumi.getter(name="dedicatedMasterCount")
     def dedicated_master_count(self) -> float:
@@ -497,7 +494,7 @@ class GetDomainClusterConfig(dict):
 
     @property
     @pulumi.getter(name="zoneAwarenessConfigs")
-    def zone_awareness_configs(self) -> List['outputs.GetDomainClusterConfigZoneAwarenessConfig']:
+    def zone_awareness_configs(self) -> List['outputs.GetDomainClusterConfigZoneAwarenessConfigResult']:
         """
         Configuration block containing zone awareness settings.
         """
@@ -511,12 +508,9 @@ class GetDomainClusterConfig(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetDomainClusterConfigZoneAwarenessConfig(dict):
+class GetDomainClusterConfigZoneAwarenessConfigResult(dict):
     @property
     @pulumi.getter(name="availabilityZoneCount")
     def availability_zone_count(self) -> float:
@@ -525,12 +519,9 @@ class GetDomainClusterConfigZoneAwarenessConfig(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetDomainCognitoOption(dict):
+class GetDomainCognitoOptionResult(dict):
     @property
     @pulumi.getter
     def enabled(self) -> bool:
@@ -563,12 +554,9 @@ class GetDomainCognitoOption(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetDomainEbsOption(dict):
+class GetDomainEbsOptionResult(dict):
     @property
     @pulumi.getter(name="ebsEnabled")
     def ebs_enabled(self) -> bool:
@@ -602,12 +590,9 @@ class GetDomainEbsOption(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetDomainEncryptionAtRest(dict):
+class GetDomainEncryptionAtRestResult(dict):
     @property
     @pulumi.getter
     def enabled(self) -> bool:
@@ -624,12 +609,9 @@ class GetDomainEncryptionAtRest(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetDomainLogPublishingOption(dict):
+class GetDomainLogPublishingOptionResult(dict):
     @property
     @pulumi.getter(name="cloudwatchLogGroupArn")
     def cloudwatch_log_group_arn(self) -> str:
@@ -654,12 +636,9 @@ class GetDomainLogPublishingOption(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetDomainNodeToNodeEncryption(dict):
+class GetDomainNodeToNodeEncryptionResult(dict):
     @property
     @pulumi.getter
     def enabled(self) -> bool:
@@ -668,12 +647,9 @@ class GetDomainNodeToNodeEncryption(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetDomainSnapshotOption(dict):
+class GetDomainSnapshotOptionResult(dict):
     @property
     @pulumi.getter(name="automatedSnapshotStartHour")
     def automated_snapshot_start_hour(self) -> float:
@@ -683,12 +659,9 @@ class GetDomainSnapshotOption(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetDomainVpcOption(dict):
+class GetDomainVpcOptionResult(dict):
     @property
     @pulumi.getter(name="availabilityZones")
     def availability_zones(self) -> List[str]:
@@ -720,8 +693,5 @@ class GetDomainVpcOption(dict):
         The VPC used by the domain.
         """
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

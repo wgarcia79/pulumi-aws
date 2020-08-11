@@ -13,7 +13,7 @@ __all__ = [
     'ConfigurationTemplateSetting',
     'EnvironmentAllSetting',
     'EnvironmentSetting',
-    'GetApplicationAppversionLifecycle',
+    'GetApplicationAppversionLifecycleResult',
 ]
 
 @pulumi.output_type
@@ -144,7 +144,7 @@ class EnvironmentSetting(dict):
 
 
 @pulumi.output_type
-class GetApplicationAppversionLifecycle(dict):
+class GetApplicationAppversionLifecycleResult(dict):
     @property
     @pulumi.getter(name="deleteSourceFromS3")
     def delete_source_from_s3(self) -> bool:
@@ -176,8 +176,5 @@ class GetApplicationAppversionLifecycle(dict):
         The ARN of an IAM service role under which the application version is deleted.  Elastic Beanstalk must have permission to assume this role.
         """
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

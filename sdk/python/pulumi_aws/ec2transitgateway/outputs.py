@@ -9,16 +9,16 @@ from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 __all__ = [
-    'GetDirectConnectGatewayAttachmentFilter',
-    'GetPeeringAttachmentFilter',
-    'GetRouteTableFilter',
-    'GetTransitGatewayFilter',
-    'GetVpcAttachmentFilter',
-    'GetVpnAttachmentFilter',
+    'GetDirectConnectGatewayAttachmentFilterResult',
+    'GetPeeringAttachmentFilterResult',
+    'GetRouteTableFilterResult',
+    'GetTransitGatewayFilterResult',
+    'GetVpcAttachmentFilterResult',
+    'GetVpnAttachmentFilterResult',
 ]
 
 @pulumi.output_type
-class GetDirectConnectGatewayAttachmentFilter(dict):
+class GetDirectConnectGatewayAttachmentFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -35,12 +35,9 @@ class GetDirectConnectGatewayAttachmentFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetPeeringAttachmentFilter(dict):
+class GetPeeringAttachmentFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -59,12 +56,9 @@ class GetPeeringAttachmentFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetRouteTableFilter(dict):
+class GetRouteTableFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -81,12 +75,9 @@ class GetRouteTableFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetTransitGatewayFilter(dict):
+class GetTransitGatewayFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -103,12 +94,9 @@ class GetTransitGatewayFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetVpcAttachmentFilter(dict):
+class GetVpcAttachmentFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -125,12 +113,9 @@ class GetVpcAttachmentFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetVpnAttachmentFilter(dict):
+class GetVpnAttachmentFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -146,8 +131,5 @@ class GetVpnAttachmentFilter(dict):
         Set of values that are accepted for the given filter field. Results will be selected if any given value matches.
         """
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

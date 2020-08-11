@@ -14,7 +14,7 @@ __all__ = [
     'ComputeEnvironmentComputeResourcesLaunchTemplate',
     'JobDefinitionRetryStrategy',
     'JobDefinitionTimeout',
-    'GetJobQueueComputeEnvironmentOrder',
+    'GetJobQueueComputeEnvironmentOrderResult',
 ]
 
 @pulumi.output_type
@@ -202,7 +202,7 @@ class JobDefinitionTimeout(dict):
 
 
 @pulumi.output_type
-class GetJobQueueComputeEnvironmentOrder(dict):
+class GetJobQueueComputeEnvironmentOrderResult(dict):
     @property
     @pulumi.getter(name="computeEnvironment")
     def compute_environment(self) -> str:
@@ -212,8 +212,5 @@ class GetJobQueueComputeEnvironmentOrder(dict):
     @pulumi.getter
     def order(self) -> float:
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

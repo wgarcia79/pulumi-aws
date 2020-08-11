@@ -21,10 +21,10 @@ __all__ = [
     'NodeGroupResource',
     'NodeGroupResourceAutoscalingGroup',
     'NodeGroupScalingConfig',
-    'GetClusterCertificateAuthority',
-    'GetClusterIdentity',
-    'GetClusterIdentityOidc',
-    'GetClusterVpcConfig',
+    'GetClusterCertificateAuthorityResult',
+    'GetClusterIdentityResult',
+    'GetClusterIdentityOidcResult',
+    'GetClusterVpcConfigResult',
 ]
 
 @pulumi.output_type
@@ -278,7 +278,7 @@ class NodeGroupScalingConfig(dict):
 
 
 @pulumi.output_type
-class GetClusterCertificateAuthority(dict):
+class GetClusterCertificateAuthorityResult(dict):
     @property
     @pulumi.getter
     def data(self) -> str:
@@ -287,26 +287,20 @@ class GetClusterCertificateAuthority(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetClusterIdentity(dict):
+class GetClusterIdentityResult(dict):
     @property
     @pulumi.getter
-    def oidcs(self) -> List['outputs.GetClusterIdentityOidc']:
+    def oidcs(self) -> List['outputs.GetClusterIdentityOidcResult']:
         """
         Nested attribute containing [OpenID Connect](https://openid.net/connect/) identity provider information for the cluster.
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetClusterIdentityOidc(dict):
+class GetClusterIdentityOidcResult(dict):
     @property
     @pulumi.getter
     def issuer(self) -> str:
@@ -315,12 +309,9 @@ class GetClusterIdentityOidc(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetClusterVpcConfig(dict):
+class GetClusterVpcConfigResult(dict):
     @property
     @pulumi.getter(name="clusterSecurityGroupId")
     def cluster_security_group_id(self) -> str:
@@ -376,8 +367,5 @@ class GetClusterVpcConfig(dict):
         The VPC associated with your cluster.
         """
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

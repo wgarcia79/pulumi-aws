@@ -12,7 +12,7 @@ __all__ = [
     'ClusterCacheNode',
     'ParameterGroupParameter',
     'ReplicationGroupClusterMode',
-    'GetClusterCacheNode',
+    'GetClusterCacheNodeResult',
 ]
 
 @pulumi.output_type
@@ -92,7 +92,7 @@ class ReplicationGroupClusterMode(dict):
 
 
 @pulumi.output_type
-class GetClusterCacheNode(dict):
+class GetClusterCacheNodeResult(dict):
     @property
     @pulumi.getter
     def address(self) -> str:
@@ -119,8 +119,5 @@ class GetClusterCacheNode(dict):
         accept connections.
         """
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

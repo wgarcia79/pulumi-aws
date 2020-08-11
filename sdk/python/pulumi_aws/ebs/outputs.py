@@ -9,14 +9,14 @@ from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 __all__ = [
-    'GetEbsVolumesFilter',
-    'GetSnapshotFilter',
-    'GetSnapshotIdsFilter',
-    'GetVolumeFilter',
+    'GetEbsVolumesFilterResult',
+    'GetSnapshotFilterResult',
+    'GetSnapshotIdsFilterResult',
+    'GetVolumeFilterResult',
 ]
 
 @pulumi.output_type
-class GetEbsVolumesFilter(dict):
+class GetEbsVolumesFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -36,12 +36,9 @@ class GetEbsVolumesFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetSnapshotFilter(dict):
+class GetSnapshotFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -52,12 +49,9 @@ class GetSnapshotFilter(dict):
     def values(self) -> List[str]:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetSnapshotIdsFilter(dict):
+class GetSnapshotIdsFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -68,12 +62,9 @@ class GetSnapshotIdsFilter(dict):
     def values(self) -> List[str]:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetVolumeFilter(dict):
+class GetVolumeFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -83,8 +74,5 @@ class GetVolumeFilter(dict):
     @pulumi.getter
     def values(self) -> List[str]:
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

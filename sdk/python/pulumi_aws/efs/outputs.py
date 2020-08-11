@@ -14,10 +14,10 @@ __all__ = [
     'AccessPointRootDirectory',
     'AccessPointRootDirectoryCreationInfo',
     'FileSystemLifecyclePolicy',
-    'GetAccessPointPosixUser',
-    'GetAccessPointRootDirectory',
-    'GetAccessPointRootDirectoryCreationInfo',
-    'GetFileSystemLifecyclePolicy',
+    'GetAccessPointPosixUserResult',
+    'GetAccessPointRootDirectoryResult',
+    'GetAccessPointRootDirectoryCreationInfoResult',
+    'GetFileSystemLifecyclePolicyResult',
 ]
 
 @pulumi.output_type
@@ -117,7 +117,7 @@ class FileSystemLifecyclePolicy(dict):
 
 
 @pulumi.output_type
-class GetAccessPointPosixUser(dict):
+class GetAccessPointPosixUserResult(dict):
     @property
     @pulumi.getter
     def gid(self) -> float:
@@ -143,15 +143,12 @@ class GetAccessPointPosixUser(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetAccessPointRootDirectory(dict):
+class GetAccessPointRootDirectoryResult(dict):
     @property
     @pulumi.getter(name="creationInfos")
-    def creation_infos(self) -> List['outputs.GetAccessPointRootDirectoryCreationInfo']:
+    def creation_infos(self) -> List['outputs.GetAccessPointRootDirectoryCreationInfoResult']:
         """
         Single element list containing information on the creation permissions of the directory
         """
@@ -165,12 +162,9 @@ class GetAccessPointRootDirectory(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetAccessPointRootDirectoryCreationInfo(dict):
+class GetAccessPointRootDirectoryCreationInfoResult(dict):
     @property
     @pulumi.getter(name="ownerGid")
     def owner_gid(self) -> float:
@@ -195,18 +189,12 @@ class GetAccessPointRootDirectoryCreationInfo(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetFileSystemLifecyclePolicy(dict):
+class GetFileSystemLifecyclePolicyResult(dict):
     @property
     @pulumi.getter(name="transitionToIa")
     def transition_to_ia(self) -> str:
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

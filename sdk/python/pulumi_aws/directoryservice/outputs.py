@@ -11,8 +11,8 @@ from .. import _utilities, _tables
 __all__ = [
     'DirectoryConnectSettings',
     'DirectoryVpcSettings',
-    'GetDirectoryConnectSetting',
-    'GetDirectoryVpcSetting',
+    'GetDirectoryConnectSettingResult',
+    'GetDirectoryVpcSettingResult',
 ]
 
 @pulumi.output_type
@@ -94,7 +94,7 @@ class DirectoryVpcSettings(dict):
 
 
 @pulumi.output_type
-class GetDirectoryConnectSetting(dict):
+class GetDirectoryConnectSettingResult(dict):
     @property
     @pulumi.getter(name="availabilityZones")
     def availability_zones(self) -> List[str]:
@@ -140,12 +140,9 @@ class GetDirectoryConnectSetting(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetDirectoryVpcSetting(dict):
+class GetDirectoryVpcSettingResult(dict):
     @property
     @pulumi.getter(name="availabilityZones")
     def availability_zones(self) -> List[str]:
@@ -166,8 +163,5 @@ class GetDirectoryVpcSetting(dict):
         The ID of the VPC that the connector is in.
         """
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

@@ -9,11 +9,11 @@ from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
 
 __all__ = [
-    'GetResourceShareFilter',
+    'GetResourceShareFilterResult',
 ]
 
 @pulumi.output_type
-class GetResourceShareFilter(dict):
+class GetResourceShareFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -29,8 +29,5 @@ class GetResourceShareFilter(dict):
         The value of the tag key.
         """
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

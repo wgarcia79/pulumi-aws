@@ -84,67 +84,67 @@ __all__ = [
     'VpcPeeringConnectionRequester',
     'VpnConnectionRoute',
     'VpnConnectionVgwTelemetry',
-    'GetCoipPoolFilter',
-    'GetCoipPoolsFilter',
-    'GetCustomerGatewayFilter',
-    'GetInstanceCreditSpecification',
-    'GetInstanceEbsBlockDevice',
-    'GetInstanceEphemeralBlockDevice',
-    'GetInstanceFilter',
-    'GetInstanceMetadataOption',
-    'GetInstanceRootBlockDevice',
-    'GetInstanceTypeOfferingFilter',
-    'GetInstanceTypeOfferingsFilter',
-    'GetInstancesFilter',
-    'GetInternetGatewayAttachment',
-    'GetInternetGatewayFilter',
-    'GetLaunchConfigurationEbsBlockDevice',
-    'GetLaunchConfigurationEphemeralBlockDevice',
-    'GetLaunchConfigurationRootBlockDevice',
-    'GetLaunchTemplateBlockDeviceMapping',
-    'GetLaunchTemplateBlockDeviceMappingEb',
-    'GetLaunchTemplateCreditSpecification',
-    'GetLaunchTemplateElasticGpuSpecification',
-    'GetLaunchTemplateFilter',
-    'GetLaunchTemplateHibernationOption',
-    'GetLaunchTemplateIamInstanceProfile',
-    'GetLaunchTemplateInstanceMarketOption',
-    'GetLaunchTemplateInstanceMarketOptionSpotOption',
-    'GetLaunchTemplateMetadataOption',
-    'GetLaunchTemplateMonitoring',
-    'GetLaunchTemplateNetworkInterface',
-    'GetLaunchTemplatePlacement',
-    'GetLaunchTemplateTagSpecification',
-    'GetLocalGatewayFilter',
-    'GetLocalGatewayRouteTableFilter',
-    'GetLocalGatewayRouteTablesFilter',
-    'GetLocalGatewayVirtualInterfaceFilter',
-    'GetLocalGatewayVirtualInterfaceGroupFilter',
-    'GetLocalGatewayVirtualInterfaceGroupsFilter',
-    'GetLocalGatewaysFilter',
-    'GetNatGatewayFilter',
-    'GetNetworkAclsFilter',
-    'GetNetworkInterfaceAssociation',
-    'GetNetworkInterfaceAttachment',
-    'GetNetworkInterfaceFilter',
-    'GetNetworkInterfacesFilter',
-    'GetRouteTableAssociation',
-    'GetRouteTableFilter',
-    'GetRouteTableRoute',
-    'GetRouteTablesFilter',
-    'GetSecurityGroupFilter',
-    'GetSecurityGroupsFilter',
-    'GetSubnetFilter',
-    'GetSubnetIdsFilter',
-    'GetVpcCidrBlockAssociation',
-    'GetVpcDhcpOptionsFilter',
-    'GetVpcEndpointDnsEntry',
-    'GetVpcEndpointFilter',
-    'GetVpcEndpointServiceFilter',
-    'GetVpcFilter',
-    'GetVpcPeeringConnectionFilter',
-    'GetVpcsFilter',
-    'GetVpnGatewayFilter',
+    'GetCoipPoolFilterResult',
+    'GetCoipPoolsFilterResult',
+    'GetCustomerGatewayFilterResult',
+    'GetInstanceCreditSpecificationResult',
+    'GetInstanceEbsBlockDeviceResult',
+    'GetInstanceEphemeralBlockDeviceResult',
+    'GetInstanceFilterResult',
+    'GetInstanceMetadataOptionResult',
+    'GetInstanceRootBlockDeviceResult',
+    'GetInstanceTypeOfferingFilterResult',
+    'GetInstanceTypeOfferingsFilterResult',
+    'GetInstancesFilterResult',
+    'GetInternetGatewayAttachmentResult',
+    'GetInternetGatewayFilterResult',
+    'GetLaunchConfigurationEbsBlockDeviceResult',
+    'GetLaunchConfigurationEphemeralBlockDeviceResult',
+    'GetLaunchConfigurationRootBlockDeviceResult',
+    'GetLaunchTemplateBlockDeviceMappingResult',
+    'GetLaunchTemplateBlockDeviceMappingEbResult',
+    'GetLaunchTemplateCreditSpecificationResult',
+    'GetLaunchTemplateElasticGpuSpecificationResult',
+    'GetLaunchTemplateFilterResult',
+    'GetLaunchTemplateHibernationOptionResult',
+    'GetLaunchTemplateIamInstanceProfileResult',
+    'GetLaunchTemplateInstanceMarketOptionResult',
+    'GetLaunchTemplateInstanceMarketOptionSpotOptionResult',
+    'GetLaunchTemplateMetadataOptionResult',
+    'GetLaunchTemplateMonitoringResult',
+    'GetLaunchTemplateNetworkInterfaceResult',
+    'GetLaunchTemplatePlacementResult',
+    'GetLaunchTemplateTagSpecificationResult',
+    'GetLocalGatewayFilterResult',
+    'GetLocalGatewayRouteTableFilterResult',
+    'GetLocalGatewayRouteTablesFilterResult',
+    'GetLocalGatewayVirtualInterfaceFilterResult',
+    'GetLocalGatewayVirtualInterfaceGroupFilterResult',
+    'GetLocalGatewayVirtualInterfaceGroupsFilterResult',
+    'GetLocalGatewaysFilterResult',
+    'GetNatGatewayFilterResult',
+    'GetNetworkAclsFilterResult',
+    'GetNetworkInterfaceAssociationResult',
+    'GetNetworkInterfaceAttachmentResult',
+    'GetNetworkInterfaceFilterResult',
+    'GetNetworkInterfacesFilterResult',
+    'GetRouteTableAssociationResult',
+    'GetRouteTableFilterResult',
+    'GetRouteTableRouteResult',
+    'GetRouteTablesFilterResult',
+    'GetSecurityGroupFilterResult',
+    'GetSecurityGroupsFilterResult',
+    'GetSubnetFilterResult',
+    'GetSubnetIdsFilterResult',
+    'GetVpcCidrBlockAssociationResult',
+    'GetVpcDhcpOptionsFilterResult',
+    'GetVpcEndpointDnsEntryResult',
+    'GetVpcEndpointFilterResult',
+    'GetVpcEndpointServiceFilterResult',
+    'GetVpcFilterResult',
+    'GetVpcPeeringConnectionFilterResult',
+    'GetVpcsFilterResult',
+    'GetVpnGatewayFilterResult',
 ]
 
 @pulumi.output_type
@@ -3206,7 +3206,7 @@ class VpnConnectionVgwTelemetry(dict):
 
 
 @pulumi.output_type
-class GetCoipPoolFilter(dict):
+class GetCoipPoolFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -3225,12 +3225,9 @@ class GetCoipPoolFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetCoipPoolsFilter(dict):
+class GetCoipPoolsFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -3249,12 +3246,9 @@ class GetCoipPoolsFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetCustomerGatewayFilter(dict):
+class GetCustomerGatewayFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -3265,23 +3259,17 @@ class GetCustomerGatewayFilter(dict):
     def values(self) -> List[str]:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetInstanceCreditSpecification(dict):
+class GetInstanceCreditSpecificationResult(dict):
     @property
     @pulumi.getter(name="cpuCredits")
     def cpu_credits(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetInstanceEbsBlockDevice(dict):
+class GetInstanceEbsBlockDeviceResult(dict):
     @property
     @pulumi.getter(name="deleteOnTermination")
     def delete_on_termination(self) -> bool:
@@ -3348,12 +3336,9 @@ class GetInstanceEbsBlockDevice(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetInstanceEphemeralBlockDevice(dict):
+class GetInstanceEphemeralBlockDeviceResult(dict):
     @property
     @pulumi.getter(name="deviceName")
     def device_name(self) -> str:
@@ -3378,12 +3363,9 @@ class GetInstanceEphemeralBlockDevice(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetInstanceFilter(dict):
+class GetInstanceFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -3394,12 +3376,9 @@ class GetInstanceFilter(dict):
     def values(self) -> List[str]:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetInstanceMetadataOption(dict):
+class GetInstanceMetadataOptionResult(dict):
     @property
     @pulumi.getter(name="httpEndpoint")
     def http_endpoint(self) -> str:
@@ -3424,12 +3403,9 @@ class GetInstanceMetadataOption(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetInstanceRootBlockDevice(dict):
+class GetInstanceRootBlockDeviceResult(dict):
     @property
     @pulumi.getter(name="deleteOnTermination")
     def delete_on_termination(self) -> bool:
@@ -3488,12 +3464,9 @@ class GetInstanceRootBlockDevice(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetInstanceTypeOfferingFilter(dict):
+class GetInstanceTypeOfferingFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -3510,12 +3483,9 @@ class GetInstanceTypeOfferingFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetInstanceTypeOfferingsFilter(dict):
+class GetInstanceTypeOfferingsFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -3532,12 +3502,9 @@ class GetInstanceTypeOfferingsFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetInstancesFilter(dict):
+class GetInstancesFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -3548,12 +3515,9 @@ class GetInstancesFilter(dict):
     def values(self) -> List[str]:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetInternetGatewayAttachment(dict):
+class GetInternetGatewayAttachmentResult(dict):
     @property
     @pulumi.getter
     def state(self) -> str:
@@ -3570,12 +3534,9 @@ class GetInternetGatewayAttachment(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetInternetGatewayFilter(dict):
+class GetInternetGatewayFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -3594,12 +3555,9 @@ class GetInternetGatewayFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetLaunchConfigurationEbsBlockDevice(dict):
+class GetLaunchConfigurationEbsBlockDeviceResult(dict):
     @property
     @pulumi.getter(name="deleteOnTermination")
     def delete_on_termination(self) -> bool:
@@ -3656,12 +3614,9 @@ class GetLaunchConfigurationEbsBlockDevice(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetLaunchConfigurationEphemeralBlockDevice(dict):
+class GetLaunchConfigurationEphemeralBlockDeviceResult(dict):
     @property
     @pulumi.getter(name="deviceName")
     def device_name(self) -> str:
@@ -3678,12 +3633,9 @@ class GetLaunchConfigurationEphemeralBlockDevice(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetLaunchConfigurationRootBlockDevice(dict):
+class GetLaunchConfigurationRootBlockDeviceResult(dict):
     @property
     @pulumi.getter(name="deleteOnTermination")
     def delete_on_termination(self) -> bool:
@@ -3724,12 +3676,9 @@ class GetLaunchConfigurationRootBlockDevice(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetLaunchTemplateBlockDeviceMapping(dict):
+class GetLaunchTemplateBlockDeviceMappingResult(dict):
     @property
     @pulumi.getter(name="deviceName")
     def device_name(self) -> str:
@@ -3737,7 +3686,7 @@ class GetLaunchTemplateBlockDeviceMapping(dict):
 
     @property
     @pulumi.getter
-    def ebs(self) -> List['outputs.GetLaunchTemplateBlockDeviceMappingEb']:
+    def ebs(self) -> List['outputs.GetLaunchTemplateBlockDeviceMappingEbResult']:
         ...
 
     @property
@@ -3750,12 +3699,9 @@ class GetLaunchTemplateBlockDeviceMapping(dict):
     def virtual_name(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetLaunchTemplateBlockDeviceMappingEb(dict):
+class GetLaunchTemplateBlockDeviceMappingEbResult(dict):
     @property
     @pulumi.getter(name="deleteOnTermination")
     def delete_on_termination(self) -> str:
@@ -3791,34 +3737,25 @@ class GetLaunchTemplateBlockDeviceMappingEb(dict):
     def volume_type(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetLaunchTemplateCreditSpecification(dict):
+class GetLaunchTemplateCreditSpecificationResult(dict):
     @property
     @pulumi.getter(name="cpuCredits")
     def cpu_credits(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetLaunchTemplateElasticGpuSpecification(dict):
+class GetLaunchTemplateElasticGpuSpecificationResult(dict):
     @property
     @pulumi.getter
     def type(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetLaunchTemplateFilter(dict):
+class GetLaunchTemplateFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -3835,23 +3772,17 @@ class GetLaunchTemplateFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetLaunchTemplateHibernationOption(dict):
+class GetLaunchTemplateHibernationOptionResult(dict):
     @property
     @pulumi.getter
     def configured(self) -> bool:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetLaunchTemplateIamInstanceProfile(dict):
+class GetLaunchTemplateIamInstanceProfileResult(dict):
     @property
     @pulumi.getter
     def arn(self) -> str:
@@ -3868,12 +3799,9 @@ class GetLaunchTemplateIamInstanceProfile(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetLaunchTemplateInstanceMarketOption(dict):
+class GetLaunchTemplateInstanceMarketOptionResult(dict):
     @property
     @pulumi.getter(name="marketType")
     def market_type(self) -> str:
@@ -3881,15 +3809,12 @@ class GetLaunchTemplateInstanceMarketOption(dict):
 
     @property
     @pulumi.getter(name="spotOptions")
-    def spot_options(self) -> List['outputs.GetLaunchTemplateInstanceMarketOptionSpotOption']:
+    def spot_options(self) -> List['outputs.GetLaunchTemplateInstanceMarketOptionSpotOptionResult']:
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
-class GetLaunchTemplateInstanceMarketOptionSpotOption(dict):
+class GetLaunchTemplateInstanceMarketOptionSpotOptionResult(dict):
     @property
     @pulumi.getter(name="blockDurationMinutes")
     def block_duration_minutes(self) -> float:
@@ -3915,12 +3840,9 @@ class GetLaunchTemplateInstanceMarketOptionSpotOption(dict):
     def valid_until(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetLaunchTemplateMetadataOption(dict):
+class GetLaunchTemplateMetadataOptionResult(dict):
     @property
     @pulumi.getter(name="httpEndpoint")
     def http_endpoint(self) -> str:
@@ -3945,23 +3867,17 @@ class GetLaunchTemplateMetadataOption(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetLaunchTemplateMonitoring(dict):
+class GetLaunchTemplateMonitoringResult(dict):
     @property
     @pulumi.getter
     def enabled(self) -> bool:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetLaunchTemplateNetworkInterface(dict):
+class GetLaunchTemplateNetworkInterfaceResult(dict):
     @property
     @pulumi.getter(name="associatePublicIpAddress")
     def associate_public_ip_address(self) -> Optional[bool]:
@@ -4025,12 +3941,9 @@ class GetLaunchTemplateNetworkInterface(dict):
     def subnet_id(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetLaunchTemplatePlacement(dict):
+class GetLaunchTemplatePlacementResult(dict):
     @property
     @pulumi.getter
     def affinity(self) -> str:
@@ -4066,12 +3979,9 @@ class GetLaunchTemplatePlacement(dict):
     def tenancy(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetLaunchTemplateTagSpecification(dict):
+class GetLaunchTemplateTagSpecificationResult(dict):
     @property
     @pulumi.getter(name="resourceType")
     def resource_type(self) -> str:
@@ -4085,12 +3995,9 @@ class GetLaunchTemplateTagSpecification(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetLocalGatewayFilter(dict):
+class GetLocalGatewayFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -4109,12 +4016,9 @@ class GetLocalGatewayFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetLocalGatewayRouteTableFilter(dict):
+class GetLocalGatewayRouteTableFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -4133,12 +4037,9 @@ class GetLocalGatewayRouteTableFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetLocalGatewayRouteTablesFilter(dict):
+class GetLocalGatewayRouteTablesFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -4157,12 +4058,9 @@ class GetLocalGatewayRouteTablesFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetLocalGatewayVirtualInterfaceFilter(dict):
+class GetLocalGatewayVirtualInterfaceFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -4179,12 +4077,9 @@ class GetLocalGatewayVirtualInterfaceFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetLocalGatewayVirtualInterfaceGroupFilter(dict):
+class GetLocalGatewayVirtualInterfaceGroupFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -4201,12 +4096,9 @@ class GetLocalGatewayVirtualInterfaceGroupFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetLocalGatewayVirtualInterfaceGroupsFilter(dict):
+class GetLocalGatewayVirtualInterfaceGroupsFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -4223,12 +4115,9 @@ class GetLocalGatewayVirtualInterfaceGroupsFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetLocalGatewaysFilter(dict):
+class GetLocalGatewaysFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -4247,12 +4136,9 @@ class GetLocalGatewaysFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetNatGatewayFilter(dict):
+class GetNatGatewayFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -4271,12 +4157,9 @@ class GetNatGatewayFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetNetworkAclsFilter(dict):
+class GetNetworkAclsFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -4295,12 +4178,9 @@ class GetNetworkAclsFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetNetworkInterfaceAssociation(dict):
+class GetNetworkInterfaceAssociationResult(dict):
     @property
     @pulumi.getter(name="allocationId")
     def allocation_id(self) -> str:
@@ -4341,12 +4221,9 @@ class GetNetworkInterfaceAssociation(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetNetworkInterfaceAttachment(dict):
+class GetNetworkInterfaceAttachmentResult(dict):
     @property
     @pulumi.getter(name="attachmentId")
     def attachment_id(self) -> str:
@@ -4367,12 +4244,9 @@ class GetNetworkInterfaceAttachment(dict):
     def instance_owner_id(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetNetworkInterfaceFilter(dict):
+class GetNetworkInterfaceFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -4383,12 +4257,9 @@ class GetNetworkInterfaceFilter(dict):
     def values(self) -> List[str]:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetNetworkInterfacesFilter(dict):
+class GetNetworkInterfacesFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -4406,12 +4277,9 @@ class GetNetworkInterfacesFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetRouteTableAssociation(dict):
+class GetRouteTableAssociationResult(dict):
     @property
     @pulumi.getter(name="gatewayId")
     def gateway_id(self) -> str:
@@ -4452,12 +4320,9 @@ class GetRouteTableAssociation(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetRouteTableFilter(dict):
+class GetRouteTableFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -4476,12 +4341,9 @@ class GetRouteTableFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetRouteTableRoute(dict):
+class GetRouteTableRouteResult(dict):
     @property
     @pulumi.getter(name="cidrBlock")
     def cidr_block(self) -> str:
@@ -4554,12 +4416,9 @@ class GetRouteTableRoute(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetRouteTablesFilter(dict):
+class GetRouteTablesFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -4578,12 +4437,9 @@ class GetRouteTablesFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetSecurityGroupFilter(dict):
+class GetSecurityGroupFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -4602,12 +4458,9 @@ class GetSecurityGroupFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetSecurityGroupsFilter(dict):
+class GetSecurityGroupsFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -4618,12 +4471,9 @@ class GetSecurityGroupsFilter(dict):
     def values(self) -> List[str]:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetSubnetFilter(dict):
+class GetSubnetFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -4643,12 +4493,9 @@ class GetSubnetFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetSubnetIdsFilter(dict):
+class GetSubnetIdsFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -4668,12 +4515,9 @@ class GetSubnetIdsFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetVpcCidrBlockAssociation(dict):
+class GetVpcCidrBlockAssociationResult(dict):
     @property
     @pulumi.getter(name="associationId")
     def association_id(self) -> str:
@@ -4699,12 +4543,9 @@ class GetVpcCidrBlockAssociation(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetVpcDhcpOptionsFilter(dict):
+class GetVpcDhcpOptionsFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -4721,12 +4562,9 @@ class GetVpcDhcpOptionsFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetVpcEndpointDnsEntry(dict):
+class GetVpcEndpointDnsEntryResult(dict):
     @property
     @pulumi.getter(name="dnsName")
     def dns_name(self) -> str:
@@ -4743,12 +4581,9 @@ class GetVpcEndpointDnsEntry(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetVpcEndpointFilter(dict):
+class GetVpcEndpointFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -4767,12 +4602,9 @@ class GetVpcEndpointFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetVpcEndpointServiceFilter(dict):
+class GetVpcEndpointServiceFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -4789,12 +4621,9 @@ class GetVpcEndpointServiceFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetVpcFilter(dict):
+class GetVpcFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -4813,12 +4642,9 @@ class GetVpcFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetVpcPeeringConnectionFilter(dict):
+class GetVpcPeeringConnectionFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -4837,12 +4663,9 @@ class GetVpcPeeringConnectionFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetVpcsFilter(dict):
+class GetVpcsFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -4861,12 +4684,9 @@ class GetVpcsFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetVpnGatewayFilter(dict):
+class GetVpnGatewayFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -4884,8 +4704,5 @@ class GetVpnGatewayFilter(dict):
         A VPN Gateway will be selected if any one of the given values matches.
         """
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

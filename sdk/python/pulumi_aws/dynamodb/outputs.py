@@ -17,13 +17,13 @@ __all__ = [
     'TableReplica',
     'TableServerSideEncryption',
     'TableTtl',
-    'GetTableAttribute',
-    'GetTableGlobalSecondaryIndex',
-    'GetTableLocalSecondaryIndex',
-    'GetTablePointInTimeRecovery',
-    'GetTableReplica',
-    'GetTableServerSideEncryption',
-    'GetTableTtl',
+    'GetTableAttributeResult',
+    'GetTableGlobalSecondaryIndexResult',
+    'GetTableLocalSecondaryIndexResult',
+    'GetTablePointInTimeRecoveryResult',
+    'GetTableReplicaResult',
+    'GetTableServerSideEncryptionResult',
+    'GetTableTtlResult',
 ]
 
 @pulumi.output_type
@@ -249,7 +249,7 @@ class TableTtl(dict):
 
 
 @pulumi.output_type
-class GetTableAttribute(dict):
+class GetTableAttributeResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -263,12 +263,9 @@ class GetTableAttribute(dict):
     def type(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetTableGlobalSecondaryIndex(dict):
+class GetTableGlobalSecondaryIndexResult(dict):
     @property
     @pulumi.getter(name="hashKey")
     def hash_key(self) -> str:
@@ -307,12 +304,9 @@ class GetTableGlobalSecondaryIndex(dict):
     def write_capacity(self) -> float:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetTableLocalSecondaryIndex(dict):
+class GetTableLocalSecondaryIndexResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -336,34 +330,25 @@ class GetTableLocalSecondaryIndex(dict):
     def range_key(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetTablePointInTimeRecovery(dict):
+class GetTablePointInTimeRecoveryResult(dict):
     @property
     @pulumi.getter
     def enabled(self) -> bool:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetTableReplica(dict):
+class GetTableReplicaResult(dict):
     @property
     @pulumi.getter(name="regionName")
     def region_name(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetTableServerSideEncryption(dict):
+class GetTableServerSideEncryptionResult(dict):
     @property
     @pulumi.getter
     def enabled(self) -> bool:
@@ -374,12 +359,9 @@ class GetTableServerSideEncryption(dict):
     def kms_key_arn(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetTableTtl(dict):
+class GetTableTtlResult(dict):
     @property
     @pulumi.getter(name="attributeName")
     def attribute_name(self) -> str:
@@ -389,8 +371,5 @@ class GetTableTtl(dict):
     @pulumi.getter
     def enabled(self) -> bool:
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

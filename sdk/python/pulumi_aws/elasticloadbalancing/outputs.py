@@ -14,9 +14,9 @@ __all__ = [
     'LoadBalancerListener',
     'LoadBalancerPolicyPolicyAttribute',
     'SslNegotiationPolicyAttribute',
-    'GetLoadBalancerAccessLogs',
-    'GetLoadBalancerHealthCheck',
-    'GetLoadBalancerListener',
+    'GetLoadBalancerAccessLogsResult',
+    'GetLoadBalancerHealthCheckResult',
+    'GetLoadBalancerListenerResult',
 ]
 
 @pulumi.output_type
@@ -194,7 +194,7 @@ class SslNegotiationPolicyAttribute(dict):
 
 
 @pulumi.output_type
-class GetLoadBalancerAccessLogs(dict):
+class GetLoadBalancerAccessLogsResult(dict):
     @property
     @pulumi.getter
     def bucket(self) -> str:
@@ -215,12 +215,9 @@ class GetLoadBalancerAccessLogs(dict):
     def interval(self) -> float:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetLoadBalancerHealthCheck(dict):
+class GetLoadBalancerHealthCheckResult(dict):
     @property
     @pulumi.getter(name="healthyThreshold")
     def healthy_threshold(self) -> float:
@@ -246,12 +243,9 @@ class GetLoadBalancerHealthCheck(dict):
     def unhealthy_threshold(self) -> float:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetLoadBalancerListener(dict):
+class GetLoadBalancerListenerResult(dict):
     @property
     @pulumi.getter(name="instancePort")
     def instance_port(self) -> float:
@@ -276,8 +270,5 @@ class GetLoadBalancerListener(dict):
     @pulumi.getter(name="sslCertificateId")
     def ssl_certificate_id(self) -> str:
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

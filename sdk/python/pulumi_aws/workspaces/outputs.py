@@ -12,9 +12,9 @@ __all__ = [
     'DirectorySelfServicePermissions',
     'IpGroupRule',
     'WorkspaceWorkspaceProperties',
-    'GetBundleComputeType',
-    'GetBundleRootStorage',
-    'GetBundleUserStorage',
+    'GetBundleComputeTypeResult',
+    'GetBundleRootStorageResult',
+    'GetBundleUserStorageResult',
 ]
 
 @pulumi.output_type
@@ -132,7 +132,7 @@ class WorkspaceWorkspaceProperties(dict):
 
 
 @pulumi.output_type
-class GetBundleComputeType(dict):
+class GetBundleComputeTypeResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -141,12 +141,9 @@ class GetBundleComputeType(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetBundleRootStorage(dict):
+class GetBundleRootStorageResult(dict):
     @property
     @pulumi.getter
     def capacity(self) -> str:
@@ -155,12 +152,9 @@ class GetBundleRootStorage(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetBundleUserStorage(dict):
+class GetBundleUserStorageResult(dict):
     @property
     @pulumi.getter
     def capacity(self) -> str:
@@ -168,8 +162,5 @@ class GetBundleUserStorage(dict):
         The size of the user storage.
         """
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

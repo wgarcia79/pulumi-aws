@@ -28,7 +28,7 @@ __all__ = [
     'TaskDefinitionVolumeDockerVolumeConfiguration',
     'TaskDefinitionVolumeEfsVolumeConfiguration',
     'TaskDefinitionVolumeEfsVolumeConfigurationAuthorizationConfig',
-    'GetClusterSetting',
+    'GetClusterSettingResult',
 ]
 
 @pulumi.output_type
@@ -583,7 +583,7 @@ class TaskDefinitionVolumeEfsVolumeConfigurationAuthorizationConfig(dict):
 
 
 @pulumi.output_type
-class GetClusterSetting(dict):
+class GetClusterSettingResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -593,8 +593,5 @@ class GetClusterSetting(dict):
     @pulumi.getter
     def value(self) -> str:
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

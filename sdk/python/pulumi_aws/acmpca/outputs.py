@@ -14,8 +14,8 @@ __all__ = [
     'CertificateAuthorityCertificateAuthorityConfigurationSubject',
     'CertificateAuthorityRevocationConfiguration',
     'CertificateAuthorityRevocationConfigurationCrlConfiguration',
-    'GetCertificateAuthorityRevocationConfiguration',
-    'GetCertificateAuthorityRevocationConfigurationCrlConfiguration',
+    'GetCertificateAuthorityRevocationConfigurationResult',
+    'GetCertificateAuthorityRevocationConfigurationCrlConfigurationResult',
 ]
 
 @pulumi.output_type
@@ -211,18 +211,15 @@ class CertificateAuthorityRevocationConfigurationCrlConfiguration(dict):
 
 
 @pulumi.output_type
-class GetCertificateAuthorityRevocationConfiguration(dict):
+class GetCertificateAuthorityRevocationConfigurationResult(dict):
     @property
     @pulumi.getter(name="crlConfigurations")
-    def crl_configurations(self) -> List['outputs.GetCertificateAuthorityRevocationConfigurationCrlConfiguration']:
+    def crl_configurations(self) -> List['outputs.GetCertificateAuthorityRevocationConfigurationCrlConfigurationResult']:
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
-class GetCertificateAuthorityRevocationConfigurationCrlConfiguration(dict):
+class GetCertificateAuthorityRevocationConfigurationCrlConfigurationResult(dict):
     @property
     @pulumi.getter(name="customCname")
     def custom_cname(self) -> str:
@@ -242,8 +239,5 @@ class GetCertificateAuthorityRevocationConfigurationCrlConfiguration(dict):
     @pulumi.getter(name="s3BucketName")
     def s3_bucket_name(self) -> str:
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

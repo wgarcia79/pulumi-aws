@@ -37,15 +37,15 @@ __all__ = [
     'LoadBalancerSubnetMapping',
     'TargetGroupHealthCheck',
     'TargetGroupStickiness',
-    'GetListenerDefaultAction',
-    'GetListenerDefaultActionAuthenticateCognito',
-    'GetListenerDefaultActionAuthenticateOidc',
-    'GetListenerDefaultActionFixedResponse',
-    'GetListenerDefaultActionRedirect',
-    'GetLoadBalancerAccessLogs',
-    'GetLoadBalancerSubnetMapping',
-    'GetTargetGroupHealthCheck',
-    'GetTargetGroupStickiness',
+    'GetListenerDefaultActionResult',
+    'GetListenerDefaultActionAuthenticateCognitoResult',
+    'GetListenerDefaultActionAuthenticateOidcResult',
+    'GetListenerDefaultActionFixedResponseResult',
+    'GetListenerDefaultActionRedirectResult',
+    'GetLoadBalancerAccessLogsResult',
+    'GetLoadBalancerSubnetMappingResult',
+    'GetTargetGroupHealthCheckResult',
+    'GetTargetGroupStickinessResult',
 ]
 
 @pulumi.output_type
@@ -1135,20 +1135,20 @@ class TargetGroupStickiness(dict):
 
 
 @pulumi.output_type
-class GetListenerDefaultAction(dict):
+class GetListenerDefaultActionResult(dict):
     @property
     @pulumi.getter(name="authenticateCognitos")
-    def authenticate_cognitos(self) -> List['outputs.GetListenerDefaultActionAuthenticateCognito']:
+    def authenticate_cognitos(self) -> List['outputs.GetListenerDefaultActionAuthenticateCognitoResult']:
         ...
 
     @property
     @pulumi.getter(name="authenticateOidcs")
-    def authenticate_oidcs(self) -> List['outputs.GetListenerDefaultActionAuthenticateOidc']:
+    def authenticate_oidcs(self) -> List['outputs.GetListenerDefaultActionAuthenticateOidcResult']:
         ...
 
     @property
     @pulumi.getter(name="fixedResponses")
-    def fixed_responses(self) -> List['outputs.GetListenerDefaultActionFixedResponse']:
+    def fixed_responses(self) -> List['outputs.GetListenerDefaultActionFixedResponseResult']:
         ...
 
     @property
@@ -1158,7 +1158,7 @@ class GetListenerDefaultAction(dict):
 
     @property
     @pulumi.getter
-    def redirects(self) -> List['outputs.GetListenerDefaultActionRedirect']:
+    def redirects(self) -> List['outputs.GetListenerDefaultActionRedirectResult']:
         ...
 
     @property
@@ -1171,12 +1171,9 @@ class GetListenerDefaultAction(dict):
     def type(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetListenerDefaultActionAuthenticateCognito(dict):
+class GetListenerDefaultActionAuthenticateCognitoResult(dict):
     @property
     @pulumi.getter(name="authenticationRequestExtraParams")
     def authentication_request_extra_params(self) -> Mapping[str, str]:
@@ -1217,12 +1214,9 @@ class GetListenerDefaultActionAuthenticateCognito(dict):
     def user_pool_domain(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetListenerDefaultActionAuthenticateOidc(dict):
+class GetListenerDefaultActionAuthenticateOidcResult(dict):
     @property
     @pulumi.getter(name="authenticationRequestExtraParams")
     def authentication_request_extra_params(self) -> Mapping[str, str]:
@@ -1278,12 +1272,9 @@ class GetListenerDefaultActionAuthenticateOidc(dict):
     def user_info_endpoint(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetListenerDefaultActionFixedResponse(dict):
+class GetListenerDefaultActionFixedResponseResult(dict):
     @property
     @pulumi.getter(name="contentType")
     def content_type(self) -> str:
@@ -1299,12 +1290,9 @@ class GetListenerDefaultActionFixedResponse(dict):
     def status_code(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetListenerDefaultActionRedirect(dict):
+class GetListenerDefaultActionRedirectResult(dict):
     @property
     @pulumi.getter
     def host(self) -> str:
@@ -1338,12 +1326,9 @@ class GetListenerDefaultActionRedirect(dict):
     def status_code(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetLoadBalancerAccessLogs(dict):
+class GetLoadBalancerAccessLogsResult(dict):
     @property
     @pulumi.getter
     def bucket(self) -> str:
@@ -1359,12 +1344,9 @@ class GetLoadBalancerAccessLogs(dict):
     def prefix(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetLoadBalancerSubnetMapping(dict):
+class GetLoadBalancerSubnetMappingResult(dict):
     @property
     @pulumi.getter(name="allocationId")
     def allocation_id(self) -> Optional[str]:
@@ -1375,12 +1357,9 @@ class GetLoadBalancerSubnetMapping(dict):
     def subnet_id(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetTargetGroupHealthCheck(dict):
+class GetTargetGroupHealthCheckResult(dict):
     @property
     @pulumi.getter
     def enabled(self) -> bool:
@@ -1426,12 +1405,9 @@ class GetTargetGroupHealthCheck(dict):
     def unhealthy_threshold(self) -> float:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetTargetGroupStickiness(dict):
+class GetTargetGroupStickinessResult(dict):
     @property
     @pulumi.getter(name="cookieDuration")
     def cookie_duration(self) -> float:
@@ -1446,8 +1422,5 @@ class GetTargetGroupStickiness(dict):
     @pulumi.getter
     def type(self) -> str:
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

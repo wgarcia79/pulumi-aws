@@ -9,23 +9,23 @@ from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from . import _utilities, _tables
 
 __all__ = [
-    'GetAmiBlockDeviceMapping',
-    'GetAmiFilter',
-    'GetAmiIdsFilter',
-    'GetAmiProductCode',
-    'GetAutoscalingGroupsFilter',
-    'GetAvailabilityZoneFilter',
-    'GetAvailabilityZonesFilter',
-    'GetElasticIpFilter',
-    'GetPrefixListFilter',
-    'GetRegionsFilter',
+    'GetAmiBlockDeviceMappingResult',
+    'GetAmiFilterResult',
+    'GetAmiIdsFilterResult',
+    'GetAmiProductCodeResult',
+    'GetAutoscalingGroupsFilterResult',
+    'GetAvailabilityZoneFilterResult',
+    'GetAvailabilityZonesFilterResult',
+    'GetElasticIpFilterResult',
+    'GetPrefixListFilterResult',
+    'GetRegionsFilterResult',
     'ProviderAssumeRole',
     'ProviderEndpoint',
     'ProviderIgnoreTags',
 ]
 
 @pulumi.output_type
-class GetAmiBlockDeviceMapping(dict):
+class GetAmiBlockDeviceMappingResult(dict):
     @property
     @pulumi.getter(name="deviceName")
     def device_name(self) -> str:
@@ -46,12 +46,9 @@ class GetAmiBlockDeviceMapping(dict):
     def virtual_name(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetAmiFilter(dict):
+class GetAmiFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -65,12 +62,9 @@ class GetAmiFilter(dict):
     def values(self) -> List[str]:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetAmiIdsFilter(dict):
+class GetAmiIdsFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -81,12 +75,9 @@ class GetAmiIdsFilter(dict):
     def values(self) -> List[str]:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetAmiProductCode(dict):
+class GetAmiProductCodeResult(dict):
     @property
     @pulumi.getter(name="productCodeId")
     def product_code_id(self) -> str:
@@ -97,12 +88,9 @@ class GetAmiProductCode(dict):
     def product_code_type(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetAutoscalingGroupsFilter(dict):
+class GetAutoscalingGroupsFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -119,12 +107,9 @@ class GetAutoscalingGroupsFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetAvailabilityZoneFilter(dict):
+class GetAvailabilityZoneFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -141,12 +126,9 @@ class GetAvailabilityZoneFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetAvailabilityZonesFilter(dict):
+class GetAvailabilityZonesFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -163,12 +145,9 @@ class GetAvailabilityZonesFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetElasticIpFilter(dict):
+class GetElasticIpFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -179,12 +158,9 @@ class GetElasticIpFilter(dict):
     def values(self) -> List[str]:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetPrefixListFilter(dict):
+class GetPrefixListFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -201,12 +177,9 @@ class GetPrefixListFilter(dict):
         """
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetRegionsFilter(dict):
+class GetRegionsFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -222,9 +195,6 @@ class GetRegionsFilter(dict):
         Set of values that are accepted for the given filter field. Results will be selected if any given value matches.
         """
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type

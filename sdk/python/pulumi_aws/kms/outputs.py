@@ -10,8 +10,8 @@ from .. import _utilities, _tables
 
 __all__ = [
     'GrantConstraint',
-    'GetSecretSecret',
-    'GetSecretsSecret',
+    'GetSecretSecretResult',
+    'GetSecretsSecretResult',
 ]
 
 @pulumi.output_type
@@ -37,7 +37,7 @@ class GrantConstraint(dict):
 
 
 @pulumi.output_type
-class GetSecretSecret(dict):
+class GetSecretSecretResult(dict):
     @property
     @pulumi.getter
     def context(self) -> Optional[Mapping[str, str]]:
@@ -58,12 +58,9 @@ class GetSecretSecret(dict):
     def payload(self) -> str:
         ...
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
-class GetSecretsSecret(dict):
+class GetSecretsSecretResult(dict):
     @property
     @pulumi.getter
     def context(self) -> Optional[Mapping[str, str]]:
@@ -95,8 +92,5 @@ class GetSecretsSecret(dict):
         Base64 encoded payload, as returned from a KMS encrypt operation.
         """
         ...
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
