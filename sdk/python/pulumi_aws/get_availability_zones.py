@@ -17,21 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetAvailabilityZonesResult:
-    all_availability_zones: Optional[bool] = pulumi.property("allAvailabilityZones")
-    blacklisted_names: Optional[List[str]] = pulumi.property("blacklistedNames")
-    blacklisted_zone_ids: Optional[List[str]] = pulumi.property("blacklistedZoneIds")
-    exclude_names: Optional[List[str]] = pulumi.property("excludeNames")
-    exclude_zone_ids: Optional[List[str]] = pulumi.property("excludeZoneIds")
-    filters: Optional[List['outputs.GetAvailabilityZonesFilterResult']] = pulumi.property("filters")
-    group_names: Optional[List[str]] = pulumi.property("groupNames")
-    id: str = pulumi.property("id")
-    names: List[str] = pulumi.property("names")
-    state: Optional[str] = pulumi.property("state")
-    zone_ids: List[str] = pulumi.property("zoneIds")
-
-
 class GetAvailabilityZonesResult:
     """
     A collection of values returned by getAvailabilityZones.
@@ -39,54 +26,110 @@ class GetAvailabilityZonesResult:
     def __init__(__self__, all_availability_zones=None, blacklisted_names=None, blacklisted_zone_ids=None, exclude_names=None, exclude_zone_ids=None, filters=None, group_names=None, id=None, names=None, state=None, zone_ids=None):
         if all_availability_zones and not isinstance(all_availability_zones, bool):
             raise TypeError("Expected argument 'all_availability_zones' to be a bool")
-        __self__.all_availability_zones = all_availability_zones
+        pulumi.set(__self__, "all_availability_zones", all_availability_zones)
         if blacklisted_names and not isinstance(blacklisted_names, list):
             raise TypeError("Expected argument 'blacklisted_names' to be a list")
         if blacklisted_names is not None:
             warnings.warn("use `exclude_names` instead", DeprecationWarning)
             pulumi.log.warn("blacklisted_names is deprecated: use `exclude_names` instead")
 
-        __self__.blacklisted_names = blacklisted_names
+        pulumi.set(__self__, "blacklisted_names", blacklisted_names)
         if blacklisted_zone_ids and not isinstance(blacklisted_zone_ids, list):
             raise TypeError("Expected argument 'blacklisted_zone_ids' to be a list")
         if blacklisted_zone_ids is not None:
             warnings.warn("use `exclude_zone_ids` instead", DeprecationWarning)
             pulumi.log.warn("blacklisted_zone_ids is deprecated: use `exclude_zone_ids` instead")
 
-        __self__.blacklisted_zone_ids = blacklisted_zone_ids
+        pulumi.set(__self__, "blacklisted_zone_ids", blacklisted_zone_ids)
         if exclude_names and not isinstance(exclude_names, list):
             raise TypeError("Expected argument 'exclude_names' to be a list")
-        __self__.exclude_names = exclude_names
+        pulumi.set(__self__, "exclude_names", exclude_names)
         if exclude_zone_ids and not isinstance(exclude_zone_ids, list):
             raise TypeError("Expected argument 'exclude_zone_ids' to be a list")
-        __self__.exclude_zone_ids = exclude_zone_ids
+        pulumi.set(__self__, "exclude_zone_ids", exclude_zone_ids)
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
+        pulumi.set(__self__, "filters", filters)
         if group_names and not isinstance(group_names, list):
             raise TypeError("Expected argument 'group_names' to be a list")
-        __self__.group_names = group_names
+        pulumi.set(__self__, "group_names", group_names)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if names and not isinstance(names, list):
+            raise TypeError("Expected argument 'names' to be a list")
+        pulumi.set(__self__, "names", names)
+        if state and not isinstance(state, str):
+            raise TypeError("Expected argument 'state' to be a str")
+        pulumi.set(__self__, "state", state)
+        if zone_ids and not isinstance(zone_ids, list):
+            raise TypeError("Expected argument 'zone_ids' to be a list")
+        pulumi.set(__self__, "zone_ids", zone_ids)
+
+    @property
+    @pulumi.getter(name="allAvailabilityZones")
+    def all_availability_zones(self) -> Optional[bool]:
+        ...
+
+    @property
+    @pulumi.getter(name="blacklistedNames")
+    def blacklisted_names(self) -> Optional[List[str]]:
+        ...
+
+    @property
+    @pulumi.getter(name="blacklistedZoneIds")
+    def blacklisted_zone_ids(self) -> Optional[List[str]]:
+        ...
+
+    @property
+    @pulumi.getter(name="excludeNames")
+    def exclude_names(self) -> Optional[List[str]]:
+        ...
+
+    @property
+    @pulumi.getter(name="excludeZoneIds")
+    def exclude_zone_ids(self) -> Optional[List[str]]:
+        ...
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetAvailabilityZonesFilterResult']]:
+        ...
+
+    @property
+    @pulumi.getter(name="groupNames")
+    def group_names(self) -> Optional[List[str]]:
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if names and not isinstance(names, list):
-            raise TypeError("Expected argument 'names' to be a list")
-        __self__.names = names
+        ...
+
+    @property
+    @pulumi.getter
+    def names(self) -> List[str]:
         """
         A list of the Availability Zone names available to the account.
         """
-        if state and not isinstance(state, str):
-            raise TypeError("Expected argument 'state' to be a str")
-        __self__.state = state
-        if zone_ids and not isinstance(zone_ids, list):
-            raise TypeError("Expected argument 'zone_ids' to be a list")
-        __self__.zone_ids = zone_ids
+        ...
+
+    @property
+    @pulumi.getter
+    def state(self) -> Optional[str]:
+        ...
+
+    @property
+    @pulumi.getter(name="zoneIds")
+    def zone_ids(self) -> List[str]:
         """
         A list of the Availability Zone IDs available to the account.
         """
+        ...
+
 
 
 class AwaitableGetAvailabilityZonesResult(GetAvailabilityZonesResult):
@@ -195,7 +238,7 @@ def get_availability_zones(all_availability_zones: Optional[bool] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:index/getAvailabilityZones:getAvailabilityZones', __args__, opts=opts, typ=_GetAvailabilityZonesResult).value
+    __ret__ = pulumi.runtime.invoke('aws:index/getAvailabilityZones:getAvailabilityZones', __args__, opts=opts, typ=GetAvailabilityZonesResult).value
 
     return AwaitableGetAvailabilityZonesResult(
         all_availability_zones=__ret__.all_availability_zones,

@@ -17,14 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetProductResult:
-    filters: List['outputs.GetProductFilterResult'] = pulumi.property("filters")
-    id: str = pulumi.property("id")
-    result: str = pulumi.property("result")
-    service_code: str = pulumi.property("serviceCode")
-
-
 class GetProductResult:
     """
     A collection of values returned by getProduct.
@@ -32,22 +26,43 @@ class GetProductResult:
     def __init__(__self__, filters=None, id=None, result=None, service_code=None):
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
+        pulumi.set(__self__, "filters", filters)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if result and not isinstance(result, str):
+            raise TypeError("Expected argument 'result' to be a str")
+        pulumi.set(__self__, "result", result)
+        if service_code and not isinstance(service_code, str):
+            raise TypeError("Expected argument 'service_code' to be a str")
+        pulumi.set(__self__, "service_code", service_code)
+
+    @property
+    @pulumi.getter
+    def filters(self) -> List['outputs.GetProductFilterResult']:
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if result and not isinstance(result, str):
-            raise TypeError("Expected argument 'result' to be a str")
-        __self__.result = result
+        ...
+
+    @property
+    @pulumi.getter
+    def result(self) -> str:
         """
         Set to the product returned from the API.
         """
-        if service_code and not isinstance(service_code, str):
-            raise TypeError("Expected argument 'service_code' to be a str")
-        __self__.service_code = service_code
+        ...
+
+    @property
+    @pulumi.getter(name="serviceCode")
+    def service_code(self) -> str:
+        ...
+
 
 
 class AwaitableGetProductResult(GetProductResult):
@@ -136,7 +151,7 @@ def get_product(filters: Optional[List[pulumi.InputType['GetProductFilterArgs']]
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:pricing/getProduct:getProduct', __args__, opts=opts, typ=_GetProductResult).value
+    __ret__ = pulumi.runtime.invoke('aws:pricing/getProduct:getProduct', __args__, opts=opts, typ=GetProductResult).value
 
     return AwaitableGetProductResult(
         filters=__ret__.filters,

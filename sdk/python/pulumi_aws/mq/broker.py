@@ -14,105 +14,6 @@ __all__ = ['Broker']
 
 
 class Broker(pulumi.CustomResource):
-    apply_immediately: pulumi.Output[Optional[bool]] = pulumi.property("applyImmediately")
-    """
-    Specifies whether any broker modifications
-    are applied immediately, or during the next maintenance window. Default is `false`.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the broker.
-    """
-
-    auto_minor_version_upgrade: pulumi.Output[Optional[bool]] = pulumi.property("autoMinorVersionUpgrade")
-    """
-    Enables automatic upgrades to new minor versions for brokers, as Apache releases the versions.
-    """
-
-    broker_name: pulumi.Output[str] = pulumi.property("brokerName")
-    """
-    The name of the broker.
-    """
-
-    configuration: pulumi.Output['outputs.BrokerConfiguration'] = pulumi.property("configuration")
-    """
-    Configuration of the broker. See below.
-    """
-
-    deployment_mode: pulumi.Output[Optional[str]] = pulumi.property("deploymentMode")
-    """
-    The deployment mode of the broker. Supported: `SINGLE_INSTANCE` and `ACTIVE_STANDBY_MULTI_AZ`. Defaults to `SINGLE_INSTANCE`.
-    """
-
-    encryption_options: pulumi.Output[Optional['outputs.BrokerEncryptionOptions']] = pulumi.property("encryptionOptions")
-    """
-    Configuration block containing encryption options. See below.
-    """
-
-    engine_type: pulumi.Output[str] = pulumi.property("engineType")
-    """
-    The type of broker engine. Currently, Amazon MQ supports only `ActiveMQ`.
-    """
-
-    engine_version: pulumi.Output[str] = pulumi.property("engineVersion")
-    """
-    The version of the broker engine. See the [AmazonMQ Broker Engine docs](https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html) for supported versions.
-    """
-
-    host_instance_type: pulumi.Output[str] = pulumi.property("hostInstanceType")
-    """
-    The broker's instance type. e.g. `mq.t2.micro` or `mq.m4.large`
-    """
-
-    instances: pulumi.Output[List['outputs.BrokerInstance']] = pulumi.property("instances")
-    """
-    A list of information about allocated brokers (both active & standby).
-    * `instances.0.console_url` - The URL of the broker's [ActiveMQ Web Console](http://activemq.apache.org/web-console.html).
-    * `instances.0.ip_address` - The IP Address of the broker.
-    * `instances.0.endpoints` - The broker's wire-level protocol endpoints in the following order & format referenceable e.g. as `instances.0.endpoints.0` (SSL):
-    * `ssl://broker-id.mq.us-west-2.amazonaws.com:61617`
-    * `amqp+ssl://broker-id.mq.us-west-2.amazonaws.com:5671`
-    * `stomp+ssl://broker-id.mq.us-west-2.amazonaws.com:61614`
-    * `mqtt+ssl://broker-id.mq.us-west-2.amazonaws.com:8883`
-    * `wss://broker-id.mq.us-west-2.amazonaws.com:61619`
-    """
-
-    logs: pulumi.Output[Optional['outputs.BrokerLogs']] = pulumi.property("logs")
-    """
-    Logging configuration of the broker. See below.
-    """
-
-    maintenance_window_start_time: pulumi.Output['outputs.BrokerMaintenanceWindowStartTime'] = pulumi.property("maintenanceWindowStartTime")
-    """
-    Maintenance window start time. See below.
-    """
-
-    publicly_accessible: pulumi.Output[Optional[bool]] = pulumi.property("publiclyAccessible")
-    """
-    Whether to enable connections from applications outside of the VPC that hosts the broker's subnets.
-    """
-
-    security_groups: pulumi.Output[List[str]] = pulumi.property("securityGroups")
-    """
-    The list of security group IDs assigned to the broker.
-    """
-
-    subnet_ids: pulumi.Output[List[str]] = pulumi.property("subnetIds")
-    """
-    The list of subnet IDs in which to launch the broker. A `SINGLE_INSTANCE` deployment requires one subnet. An `ACTIVE_STANDBY_MULTI_AZ` deployment requires two subnets.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
-    users: pulumi.Output[List['outputs.BrokerUser']] = pulumi.property("users")
-    """
-    The list of all ActiveMQ usernames for the specified broker. See below.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -327,6 +228,159 @@ class Broker(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["users"] = users
         return Broker(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="applyImmediately")
+    def apply_immediately(self) -> Optional[bool]:
+        """
+        Specifies whether any broker modifications
+        are applied immediately, or during the next maintenance window. Default is `false`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the broker.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="autoMinorVersionUpgrade")
+    def auto_minor_version_upgrade(self) -> Optional[bool]:
+        """
+        Enables automatic upgrades to new minor versions for brokers, as Apache releases the versions.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="brokerName")
+    def broker_name(self) -> str:
+        """
+        The name of the broker.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def configuration(self) -> 'outputs.BrokerConfiguration':
+        """
+        Configuration of the broker. See below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="deploymentMode")
+    def deployment_mode(self) -> Optional[str]:
+        """
+        The deployment mode of the broker. Supported: `SINGLE_INSTANCE` and `ACTIVE_STANDBY_MULTI_AZ`. Defaults to `SINGLE_INSTANCE`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="encryptionOptions")
+    def encryption_options(self) -> Optional['outputs.BrokerEncryptionOptions']:
+        """
+        Configuration block containing encryption options. See below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="engineType")
+    def engine_type(self) -> str:
+        """
+        The type of broker engine. Currently, Amazon MQ supports only `ActiveMQ`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="engineVersion")
+    def engine_version(self) -> str:
+        """
+        The version of the broker engine. See the [AmazonMQ Broker Engine docs](https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html) for supported versions.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="hostInstanceType")
+    def host_instance_type(self) -> str:
+        """
+        The broker's instance type. e.g. `mq.t2.micro` or `mq.m4.large`
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def instances(self) -> List['outputs.BrokerInstance']:
+        """
+        A list of information about allocated brokers (both active & standby).
+        * `instances.0.console_url` - The URL of the broker's [ActiveMQ Web Console](http://activemq.apache.org/web-console.html).
+        * `instances.0.ip_address` - The IP Address of the broker.
+        * `instances.0.endpoints` - The broker's wire-level protocol endpoints in the following order & format referenceable e.g. as `instances.0.endpoints.0` (SSL):
+        * `ssl://broker-id.mq.us-west-2.amazonaws.com:61617`
+        * `amqp+ssl://broker-id.mq.us-west-2.amazonaws.com:5671`
+        * `stomp+ssl://broker-id.mq.us-west-2.amazonaws.com:61614`
+        * `mqtt+ssl://broker-id.mq.us-west-2.amazonaws.com:8883`
+        * `wss://broker-id.mq.us-west-2.amazonaws.com:61619`
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def logs(self) -> Optional['outputs.BrokerLogs']:
+        """
+        Logging configuration of the broker. See below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="maintenanceWindowStartTime")
+    def maintenance_window_start_time(self) -> 'outputs.BrokerMaintenanceWindowStartTime':
+        """
+        Maintenance window start time. See below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="publiclyAccessible")
+    def publicly_accessible(self) -> Optional[bool]:
+        """
+        Whether to enable connections from applications outside of the VPC that hosts the broker's subnets.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="securityGroups")
+    def security_groups(self) -> List[str]:
+        """
+        The list of security group IDs assigned to the broker.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="subnetIds")
+    def subnet_ids(self) -> List[str]:
+        """
+        The list of subnet IDs in which to launch the broker. A `SINGLE_INSTANCE` deployment requires one subnet. An `ACTIVE_STANDBY_MULTI_AZ` deployment requires two subnets.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def users(self) -> List['outputs.BrokerUser']:
+        """
+        The list of all ActiveMQ usernames for the specified broker. See below.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

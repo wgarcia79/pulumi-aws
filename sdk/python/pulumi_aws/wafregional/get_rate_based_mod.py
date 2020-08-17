@@ -15,12 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetRateBasedModResult:
-    id: str = pulumi.property("id")
-    name: str = pulumi.property("name")
-
-
 class GetRateBasedModResult:
     """
     A collection of values returned by getRateBasedMod.
@@ -28,13 +24,24 @@ class GetRateBasedModResult:
     def __init__(__self__, id=None, name=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        ...
+
 
 
 class AwaitableGetRateBasedModResult(GetRateBasedModResult):
@@ -70,7 +77,7 @@ def get_rate_based_mod(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:wafregional/getRateBasedMod:getRateBasedMod', __args__, opts=opts, typ=_GetRateBasedModResult).value
+    __ret__ = pulumi.runtime.invoke('aws:wafregional/getRateBasedMod:getRateBasedMod', __args__, opts=opts, typ=GetRateBasedModResult).value
 
     return AwaitableGetRateBasedModResult(
         id=__ret__.id,

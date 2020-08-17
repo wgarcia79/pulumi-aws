@@ -14,87 +14,6 @@ __all__ = ['Cluster']
 
 
 class Cluster(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN) of the MSK Configuration to use in the cluster.
-    """
-
-    bootstrap_brokers: pulumi.Output[str] = pulumi.property("bootstrapBrokers")
-    """
-    A comma separated list of one or more hostname:port pairs of kafka brokers suitable to boostrap connectivity to the kafka cluster. Only contains value if `client_broker` encryption in transit is set to `PLAINTEXT` or `TLS_PLAINTEXT`.
-    """
-
-    bootstrap_brokers_tls: pulumi.Output[str] = pulumi.property("bootstrapBrokersTls")
-    """
-    A comma separated list of one or more DNS names (or IPs) and TLS port pairs kafka brokers suitable to boostrap connectivity to the kafka cluster. Only contains value if `client_broker` encryption in transit is set to `TLS_PLAINTEXT` or `TLS`.
-    """
-
-    broker_node_group_info: pulumi.Output['outputs.ClusterBrokerNodeGroupInfo'] = pulumi.property("brokerNodeGroupInfo")
-    """
-    Configuration block for the broker nodes of the Kafka cluster.
-    """
-
-    client_authentication: pulumi.Output[Optional['outputs.ClusterClientAuthentication']] = pulumi.property("clientAuthentication")
-    """
-    Configuration block for specifying a client authentication. See below.
-    """
-
-    cluster_name: pulumi.Output[str] = pulumi.property("clusterName")
-    """
-    Name of the MSK cluster.
-    """
-
-    configuration_info: pulumi.Output[Optional['outputs.ClusterConfigurationInfo']] = pulumi.property("configurationInfo")
-    """
-    Configuration block for specifying a MSK Configuration to attach to Kafka brokers. See below.
-    """
-
-    current_version: pulumi.Output[str] = pulumi.property("currentVersion")
-    """
-    Current version of the MSK Cluster used for updates, e.g. `K13V1IB3VIYZZH`
-    * `encryption_info.0.encryption_at_rest_kms_key_arn` - The ARN of the KMS key used for encryption at rest of the broker data volumes.
-    """
-
-    encryption_info: pulumi.Output[Optional['outputs.ClusterEncryptionInfo']] = pulumi.property("encryptionInfo")
-    """
-    Configuration block for specifying encryption. See below.
-    """
-
-    enhanced_monitoring: pulumi.Output[Optional[str]] = pulumi.property("enhancedMonitoring")
-    """
-    Specify the desired enhanced MSK CloudWatch monitoring level.  See [Monitoring Amazon MSK with Amazon CloudWatch](https://docs.aws.amazon.com/msk/latest/developerguide/monitoring.html)
-    """
-
-    kafka_version: pulumi.Output[str] = pulumi.property("kafkaVersion")
-    """
-    Specify the desired Kafka software version.
-    """
-
-    logging_info: pulumi.Output[Optional['outputs.ClusterLoggingInfo']] = pulumi.property("loggingInfo")
-    """
-    Configuration block for streaming broker logs to Cloudwatch/S3/Kinesis Firehose. See below.
-    """
-
-    number_of_broker_nodes: pulumi.Output[float] = pulumi.property("numberOfBrokerNodes")
-    """
-    The desired total number of broker nodes in the kafka cluster.  It must be a multiple of the number of specified client subnets.
-    """
-
-    open_monitoring: pulumi.Output[Optional['outputs.ClusterOpenMonitoring']] = pulumi.property("openMonitoring")
-    """
-    Configuration block for JMX and Node monitoring for the MSK cluster. See below.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource
-    """
-
-    zookeeper_connect_string: pulumi.Output[str] = pulumi.property("zookeeperConnectString")
-    """
-    A comma separated list of one or more hostname:port pairs to use to connect to the Apache Zookeeper cluster.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -341,6 +260,135 @@ class Cluster(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["zookeeper_connect_string"] = zookeeper_connect_string
         return Cluster(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of the MSK Configuration to use in the cluster.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="bootstrapBrokers")
+    def bootstrap_brokers(self) -> str:
+        """
+        A comma separated list of one or more hostname:port pairs of kafka brokers suitable to boostrap connectivity to the kafka cluster. Only contains value if `client_broker` encryption in transit is set to `PLAINTEXT` or `TLS_PLAINTEXT`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="bootstrapBrokersTls")
+    def bootstrap_brokers_tls(self) -> str:
+        """
+        A comma separated list of one or more DNS names (or IPs) and TLS port pairs kafka brokers suitable to boostrap connectivity to the kafka cluster. Only contains value if `client_broker` encryption in transit is set to `TLS_PLAINTEXT` or `TLS`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="brokerNodeGroupInfo")
+    def broker_node_group_info(self) -> 'outputs.ClusterBrokerNodeGroupInfo':
+        """
+        Configuration block for the broker nodes of the Kafka cluster.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="clientAuthentication")
+    def client_authentication(self) -> Optional['outputs.ClusterClientAuthentication']:
+        """
+        Configuration block for specifying a client authentication. See below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> str:
+        """
+        Name of the MSK cluster.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="configurationInfo")
+    def configuration_info(self) -> Optional['outputs.ClusterConfigurationInfo']:
+        """
+        Configuration block for specifying a MSK Configuration to attach to Kafka brokers. See below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="currentVersion")
+    def current_version(self) -> str:
+        """
+        Current version of the MSK Cluster used for updates, e.g. `K13V1IB3VIYZZH`
+        * `encryption_info.0.encryption_at_rest_kms_key_arn` - The ARN of the KMS key used for encryption at rest of the broker data volumes.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="encryptionInfo")
+    def encryption_info(self) -> Optional['outputs.ClusterEncryptionInfo']:
+        """
+        Configuration block for specifying encryption. See below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="enhancedMonitoring")
+    def enhanced_monitoring(self) -> Optional[str]:
+        """
+        Specify the desired enhanced MSK CloudWatch monitoring level.  See [Monitoring Amazon MSK with Amazon CloudWatch](https://docs.aws.amazon.com/msk/latest/developerguide/monitoring.html)
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="kafkaVersion")
+    def kafka_version(self) -> str:
+        """
+        Specify the desired Kafka software version.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="loggingInfo")
+    def logging_info(self) -> Optional['outputs.ClusterLoggingInfo']:
+        """
+        Configuration block for streaming broker logs to Cloudwatch/S3/Kinesis Firehose. See below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="numberOfBrokerNodes")
+    def number_of_broker_nodes(self) -> float:
+        """
+        The desired total number of broker nodes in the kafka cluster.  It must be a multiple of the number of specified client subnets.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="openMonitoring")
+    def open_monitoring(self) -> Optional['outputs.ClusterOpenMonitoring']:
+        """
+        Configuration block for JMX and Node monitoring for the MSK cluster. See below.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="zookeeperConnectString")
+    def zookeeper_connect_string(self) -> str:
+        """
+        A comma separated list of one or more hostname:port pairs to use to connect to the Apache Zookeeper cluster.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

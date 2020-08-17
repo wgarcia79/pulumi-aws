@@ -14,31 +14,6 @@ __all__ = ['DeploymentConfig']
 
 
 class DeploymentConfig(pulumi.CustomResource):
-    compute_platform: pulumi.Output[Optional[str]] = pulumi.property("computePlatform")
-    """
-    The compute platform can be `Server`, `Lambda`, or `ECS`. Default is `Server`.
-    """
-
-    deployment_config_id: pulumi.Output[str] = pulumi.property("deploymentConfigId")
-    """
-    The AWS Assigned deployment config id
-    """
-
-    deployment_config_name: pulumi.Output[str] = pulumi.property("deploymentConfigName")
-    """
-    The name of the deployment config.
-    """
-
-    minimum_healthy_hosts: pulumi.Output[Optional['outputs.DeploymentConfigMinimumHealthyHosts']] = pulumi.property("minimumHealthyHosts")
-    """
-    A minimum_healthy_hosts block. Required for `Server` compute platform. Minimum Healthy Hosts are documented below.
-    """
-
-    traffic_routing_config: pulumi.Output[Optional['outputs.DeploymentConfigTrafficRoutingConfig']] = pulumi.property("trafficRoutingConfig")
-    """
-    A traffic_routing_config block. Traffic Routing Config is documented below.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -189,6 +164,46 @@ class DeploymentConfig(pulumi.CustomResource):
         __props__["minimum_healthy_hosts"] = minimum_healthy_hosts
         __props__["traffic_routing_config"] = traffic_routing_config
         return DeploymentConfig(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="computePlatform")
+    def compute_platform(self) -> Optional[str]:
+        """
+        The compute platform can be `Server`, `Lambda`, or `ECS`. Default is `Server`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="deploymentConfigId")
+    def deployment_config_id(self) -> str:
+        """
+        The AWS Assigned deployment config id
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="deploymentConfigName")
+    def deployment_config_name(self) -> str:
+        """
+        The name of the deployment config.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="minimumHealthyHosts")
+    def minimum_healthy_hosts(self) -> Optional['outputs.DeploymentConfigMinimumHealthyHosts']:
+        """
+        A minimum_healthy_hosts block. Required for `Server` compute platform. Minimum Healthy Hosts are documented below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="trafficRoutingConfig")
+    def traffic_routing_config(self) -> Optional['outputs.DeploymentConfigTrafficRoutingConfig']:
+        """
+        A traffic_routing_config block. Traffic Routing Config is documented below.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

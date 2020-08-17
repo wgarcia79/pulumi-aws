@@ -15,6 +15,16 @@ __all__ = [
 
 @pulumi.output_type
 class FleetIdentityProvider(dict):
+    def __init__(__self__, *,
+                 saml_metadata: str,
+                 type: str):
+        """
+        :param str saml_metadata: The SAML metadata document provided by the customer’s identity provider.
+        :param str type: The type of identity provider.
+        """
+        pulumi.set(__self__, "saml_metadata", saml_metadata)
+        pulumi.set(__self__, "type", type)
+
     @property
     @pulumi.getter(name="samlMetadata")
     def saml_metadata(self) -> str:
@@ -37,6 +47,19 @@ class FleetIdentityProvider(dict):
 
 @pulumi.output_type
 class FleetNetwork(dict):
+    def __init__(__self__, *,
+                 security_group_ids: List[str],
+                 subnet_ids: List[str],
+                 vpc_id: str):
+        """
+        :param List[str] security_group_ids: A list of security group IDs associated with access to the provided subnets.
+        :param List[str] subnet_ids: A list of subnet IDs used for X-ENI connections from Amazon WorkLink rendering containers.
+        :param str vpc_id: The VPC ID with connectivity to associated websites.
+        """
+        pulumi.set(__self__, "security_group_ids", security_group_ids)
+        pulumi.set(__self__, "subnet_ids", subnet_ids)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> List[str]:

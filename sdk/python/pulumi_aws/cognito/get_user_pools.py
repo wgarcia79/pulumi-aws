@@ -15,14 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetUserPoolsResult:
-    arns: List[str] = pulumi.property("arns")
-    id: str = pulumi.property("id")
-    ids: List[str] = pulumi.property("ids")
-    name: str = pulumi.property("name")
-
-
 class GetUserPoolsResult:
     """
     A collection of values returned by getUserPools.
@@ -30,22 +24,43 @@ class GetUserPoolsResult:
     def __init__(__self__, arns=None, id=None, ids=None, name=None):
         if arns and not isinstance(arns, list):
             raise TypeError("Expected argument 'arns' to be a list")
-        __self__.arns = arns
+        pulumi.set(__self__, "arns", arns)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if ids and not isinstance(ids, list):
+            raise TypeError("Expected argument 'ids' to be a list")
+        pulumi.set(__self__, "ids", ids)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def arns(self) -> List[str]:
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if ids and not isinstance(ids, list):
-            raise TypeError("Expected argument 'ids' to be a list")
-        __self__.ids = ids
+        ...
+
+    @property
+    @pulumi.getter
+    def ids(self) -> List[str]:
         """
         The list of cognito user pool ids.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        ...
+
 
 
 class AwaitableGetUserPoolsResult(GetUserPoolsResult):
@@ -88,7 +103,7 @@ def get_user_pools(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:cognito/getUserPools:getUserPools', __args__, opts=opts, typ=_GetUserPoolsResult).value
+    __ret__ = pulumi.runtime.invoke('aws:cognito/getUserPools:getUserPools', __args__, opts=opts, typ=GetUserPoolsResult).value
 
     return AwaitableGetUserPoolsResult(
         arns=__ret__.arns,

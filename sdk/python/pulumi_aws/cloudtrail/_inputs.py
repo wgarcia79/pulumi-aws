@@ -24,9 +24,12 @@ class TrailEventSelectorArgs:
         :param pulumi.Input[bool] include_management_events: Specify if you want your event selector to include management events for your trail.
         :param pulumi.Input[str] read_write_type: Specify if you want your trail to log read-only events, write-only events, or all. By default, the value is All. You can specify only the following value: "ReadOnly", "WriteOnly", "All". Defaults to `All`.
         """
-        pulumi.set(__self__, "dataResources", data_resources)
-        pulumi.set(__self__, "includeManagementEvents", include_management_events)
-        pulumi.set(__self__, "readWriteType", read_write_type)
+        if data_resources is not None:
+            pulumi.set(__self__, "data_resources", data_resources)
+        if include_management_events is not None:
+            pulumi.set(__self__, "include_management_events", include_management_events)
+        if read_write_type is not None:
+            pulumi.set(__self__, "read_write_type", read_write_type)
 
     @property
     @pulumi.getter(name="dataResources")

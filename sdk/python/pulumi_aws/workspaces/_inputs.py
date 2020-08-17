@@ -29,11 +29,16 @@ class DirectorySelfServicePermissionsArgs:
         :param pulumi.Input[bool] restart_workspace: Whether WorkSpaces directory users can restart their workspace. Default `true`.
         :param pulumi.Input[bool] switch_running_mode: Whether WorkSpaces directory users can switch the running mode of their workspace. Default `false`.
         """
-        pulumi.set(__self__, "changeComputeType", change_compute_type)
-        pulumi.set(__self__, "increaseVolumeSize", increase_volume_size)
-        pulumi.set(__self__, "rebuildWorkspace", rebuild_workspace)
-        pulumi.set(__self__, "restartWorkspace", restart_workspace)
-        pulumi.set(__self__, "switchRunningMode", switch_running_mode)
+        if change_compute_type is not None:
+            pulumi.set(__self__, "change_compute_type", change_compute_type)
+        if increase_volume_size is not None:
+            pulumi.set(__self__, "increase_volume_size", increase_volume_size)
+        if rebuild_workspace is not None:
+            pulumi.set(__self__, "rebuild_workspace", rebuild_workspace)
+        if restart_workspace is not None:
+            pulumi.set(__self__, "restart_workspace", restart_workspace)
+        if switch_running_mode is not None:
+            pulumi.set(__self__, "switch_running_mode", switch_running_mode)
 
     @property
     @pulumi.getter(name="changeComputeType")
@@ -106,7 +111,8 @@ class IpGroupRuleArgs:
         :param pulumi.Input[str] description: The description.
         """
         pulumi.set(__self__, "source", source)
-        pulumi.set(__self__, "description", description)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
 
     @property
     @pulumi.getter
@@ -148,11 +154,16 @@ class WorkspaceWorkspacePropertiesArgs:
         :param pulumi.Input[float] running_mode_auto_stop_timeout_in_minutes: The time after a user logs off when WorkSpaces are automatically stopped. Configured in 60-minute intervals.
         :param pulumi.Input[float] user_volume_size_gib: The size of the user storage.
         """
-        pulumi.set(__self__, "computeTypeName", compute_type_name)
-        pulumi.set(__self__, "rootVolumeSizeGib", root_volume_size_gib)
-        pulumi.set(__self__, "runningMode", running_mode)
-        pulumi.set(__self__, "runningModeAutoStopTimeoutInMinutes", running_mode_auto_stop_timeout_in_minutes)
-        pulumi.set(__self__, "userVolumeSizeGib", user_volume_size_gib)
+        if compute_type_name is not None:
+            pulumi.set(__self__, "compute_type_name", compute_type_name)
+        if root_volume_size_gib is not None:
+            pulumi.set(__self__, "root_volume_size_gib", root_volume_size_gib)
+        if running_mode is not None:
+            pulumi.set(__self__, "running_mode", running_mode)
+        if running_mode_auto_stop_timeout_in_minutes is not None:
+            pulumi.set(__self__, "running_mode_auto_stop_timeout_in_minutes", running_mode_auto_stop_timeout_in_minutes)
+        if user_volume_size_gib is not None:
+            pulumi.set(__self__, "user_volume_size_gib", user_volume_size_gib)
 
     @property
     @pulumi.getter(name="computeTypeName")

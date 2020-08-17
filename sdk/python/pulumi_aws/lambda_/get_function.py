@@ -16,35 +16,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetFunctionResult:
-    arn: str = pulumi.property("arn")
-    dead_letter_config: 'outputs.GetFunctionDeadLetterConfigResult' = pulumi.property("deadLetterConfig")
-    description: str = pulumi.property("description")
-    environment: 'outputs.GetFunctionEnvironmentResult' = pulumi.property("environment")
-    file_system_configs: List['outputs.GetFunctionFileSystemConfigResult'] = pulumi.property("fileSystemConfigs")
-    function_name: str = pulumi.property("functionName")
-    handler: str = pulumi.property("handler")
-    id: str = pulumi.property("id")
-    invoke_arn: str = pulumi.property("invokeArn")
-    kms_key_arn: str = pulumi.property("kmsKeyArn")
-    last_modified: str = pulumi.property("lastModified")
-    layers: List[str] = pulumi.property("layers")
-    memory_size: float = pulumi.property("memorySize")
-    qualified_arn: str = pulumi.property("qualifiedArn")
-    qualifier: Optional[str] = pulumi.property("qualifier")
-    reserved_concurrent_executions: float = pulumi.property("reservedConcurrentExecutions")
-    role: str = pulumi.property("role")
-    runtime: str = pulumi.property("runtime")
-    source_code_hash: str = pulumi.property("sourceCodeHash")
-    source_code_size: float = pulumi.property("sourceCodeSize")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    timeout: float = pulumi.property("timeout")
-    tracing_config: 'outputs.GetFunctionTracingConfigResult' = pulumi.property("tracingConfig")
-    version: str = pulumi.property("version")
-    vpc_config: 'outputs.GetFunctionVpcConfigResult' = pulumi.property("vpcConfig")
-
-
 class GetFunctionResult:
     """
     A collection of values returned by getFunction.
@@ -52,145 +25,271 @@ class GetFunctionResult:
     def __init__(__self__, arn=None, dead_letter_config=None, description=None, environment=None, file_system_configs=None, function_name=None, handler=None, id=None, invoke_arn=None, kms_key_arn=None, last_modified=None, layers=None, memory_size=None, qualified_arn=None, qualifier=None, reserved_concurrent_executions=None, role=None, runtime=None, source_code_hash=None, source_code_size=None, tags=None, timeout=None, tracing_config=None, version=None, vpc_config=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if dead_letter_config and not isinstance(dead_letter_config, dict):
+            raise TypeError("Expected argument 'dead_letter_config' to be a dict")
+        pulumi.set(__self__, "dead_letter_config", dead_letter_config)
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
+        if environment and not isinstance(environment, dict):
+            raise TypeError("Expected argument 'environment' to be a dict")
+        pulumi.set(__self__, "environment", environment)
+        if file_system_configs and not isinstance(file_system_configs, list):
+            raise TypeError("Expected argument 'file_system_configs' to be a list")
+        pulumi.set(__self__, "file_system_configs", file_system_configs)
+        if function_name and not isinstance(function_name, str):
+            raise TypeError("Expected argument 'function_name' to be a str")
+        pulumi.set(__self__, "function_name", function_name)
+        if handler and not isinstance(handler, str):
+            raise TypeError("Expected argument 'handler' to be a str")
+        pulumi.set(__self__, "handler", handler)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if invoke_arn and not isinstance(invoke_arn, str):
+            raise TypeError("Expected argument 'invoke_arn' to be a str")
+        pulumi.set(__self__, "invoke_arn", invoke_arn)
+        if kms_key_arn and not isinstance(kms_key_arn, str):
+            raise TypeError("Expected argument 'kms_key_arn' to be a str")
+        pulumi.set(__self__, "kms_key_arn", kms_key_arn)
+        if last_modified and not isinstance(last_modified, str):
+            raise TypeError("Expected argument 'last_modified' to be a str")
+        pulumi.set(__self__, "last_modified", last_modified)
+        if layers and not isinstance(layers, list):
+            raise TypeError("Expected argument 'layers' to be a list")
+        pulumi.set(__self__, "layers", layers)
+        if memory_size and not isinstance(memory_size, float):
+            raise TypeError("Expected argument 'memory_size' to be a float")
+        pulumi.set(__self__, "memory_size", memory_size)
+        if qualified_arn and not isinstance(qualified_arn, str):
+            raise TypeError("Expected argument 'qualified_arn' to be a str")
+        pulumi.set(__self__, "qualified_arn", qualified_arn)
+        if qualifier and not isinstance(qualifier, str):
+            raise TypeError("Expected argument 'qualifier' to be a str")
+        pulumi.set(__self__, "qualifier", qualifier)
+        if reserved_concurrent_executions and not isinstance(reserved_concurrent_executions, float):
+            raise TypeError("Expected argument 'reserved_concurrent_executions' to be a float")
+        pulumi.set(__self__, "reserved_concurrent_executions", reserved_concurrent_executions)
+        if role and not isinstance(role, str):
+            raise TypeError("Expected argument 'role' to be a str")
+        pulumi.set(__self__, "role", role)
+        if runtime and not isinstance(runtime, str):
+            raise TypeError("Expected argument 'runtime' to be a str")
+        pulumi.set(__self__, "runtime", runtime)
+        if source_code_hash and not isinstance(source_code_hash, str):
+            raise TypeError("Expected argument 'source_code_hash' to be a str")
+        pulumi.set(__self__, "source_code_hash", source_code_hash)
+        if source_code_size and not isinstance(source_code_size, float):
+            raise TypeError("Expected argument 'source_code_size' to be a float")
+        pulumi.set(__self__, "source_code_size", source_code_size)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if timeout and not isinstance(timeout, float):
+            raise TypeError("Expected argument 'timeout' to be a float")
+        pulumi.set(__self__, "timeout", timeout)
+        if tracing_config and not isinstance(tracing_config, dict):
+            raise TypeError("Expected argument 'tracing_config' to be a dict")
+        pulumi.set(__self__, "tracing_config", tracing_config)
+        if version and not isinstance(version, str):
+            raise TypeError("Expected argument 'version' to be a str")
+        pulumi.set(__self__, "version", version)
+        if vpc_config and not isinstance(vpc_config, dict):
+            raise TypeError("Expected argument 'vpc_config' to be a dict")
+        pulumi.set(__self__, "vpc_config", vpc_config)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         Unqualified (no `:QUALIFIER` or `:VERSION` suffix) Amazon Resource Name (ARN) identifying your Lambda Function. See also `qualified_arn`.
         """
-        if dead_letter_config and not isinstance(dead_letter_config, dict):
-            raise TypeError("Expected argument 'dead_letter_config' to be a dict")
-        __self__.dead_letter_config = dead_letter_config
+        ...
+
+    @property
+    @pulumi.getter(name="deadLetterConfig")
+    def dead_letter_config(self) -> 'outputs.GetFunctionDeadLetterConfigResult':
         """
         Configure the function's *dead letter queue*.
         """
-        if description and not isinstance(description, str):
-            raise TypeError("Expected argument 'description' to be a str")
-        __self__.description = description
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
         """
         Description of what your Lambda Function does.
         """
-        if environment and not isinstance(environment, dict):
-            raise TypeError("Expected argument 'environment' to be a dict")
-        __self__.environment = environment
+        ...
+
+    @property
+    @pulumi.getter
+    def environment(self) -> 'outputs.GetFunctionEnvironmentResult':
         """
         The Lambda environment's configuration settings.
         """
-        if file_system_configs and not isinstance(file_system_configs, list):
-            raise TypeError("Expected argument 'file_system_configs' to be a list")
-        __self__.file_system_configs = file_system_configs
+        ...
+
+    @property
+    @pulumi.getter(name="fileSystemConfigs")
+    def file_system_configs(self) -> List['outputs.GetFunctionFileSystemConfigResult']:
         """
         The connection settings for an Amazon EFS file system.
         """
-        if function_name and not isinstance(function_name, str):
-            raise TypeError("Expected argument 'function_name' to be a str")
-        __self__.function_name = function_name
-        if handler and not isinstance(handler, str):
-            raise TypeError("Expected argument 'handler' to be a str")
-        __self__.handler = handler
+        ...
+
+    @property
+    @pulumi.getter(name="functionName")
+    def function_name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def handler(self) -> str:
         """
         The function entrypoint in your code.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if invoke_arn and not isinstance(invoke_arn, str):
-            raise TypeError("Expected argument 'invoke_arn' to be a str")
-        __self__.invoke_arn = invoke_arn
+        ...
+
+    @property
+    @pulumi.getter(name="invokeArn")
+    def invoke_arn(self) -> str:
         """
         The ARN to be used for invoking Lambda Function from API Gateway.
         """
-        if kms_key_arn and not isinstance(kms_key_arn, str):
-            raise TypeError("Expected argument 'kms_key_arn' to be a str")
-        __self__.kms_key_arn = kms_key_arn
+        ...
+
+    @property
+    @pulumi.getter(name="kmsKeyArn")
+    def kms_key_arn(self) -> str:
         """
         The ARN for the KMS encryption key.
         """
-        if last_modified and not isinstance(last_modified, str):
-            raise TypeError("Expected argument 'last_modified' to be a str")
-        __self__.last_modified = last_modified
+        ...
+
+    @property
+    @pulumi.getter(name="lastModified")
+    def last_modified(self) -> str:
         """
         The date this resource was last modified.
         """
-        if layers and not isinstance(layers, list):
-            raise TypeError("Expected argument 'layers' to be a list")
-        __self__.layers = layers
+        ...
+
+    @property
+    @pulumi.getter
+    def layers(self) -> List[str]:
         """
         A list of Lambda Layer ARNs attached to your Lambda Function.
         """
-        if memory_size and not isinstance(memory_size, float):
-            raise TypeError("Expected argument 'memory_size' to be a float")
-        __self__.memory_size = memory_size
+        ...
+
+    @property
+    @pulumi.getter(name="memorySize")
+    def memory_size(self) -> float:
         """
         Amount of memory in MB your Lambda Function can use at runtime.
         """
-        if qualified_arn and not isinstance(qualified_arn, str):
-            raise TypeError("Expected argument 'qualified_arn' to be a str")
-        __self__.qualified_arn = qualified_arn
+        ...
+
+    @property
+    @pulumi.getter(name="qualifiedArn")
+    def qualified_arn(self) -> str:
         """
         Qualified (`:QUALIFIER` or `:VERSION` suffix) Amazon Resource Name (ARN) identifying your Lambda Function. See also `arn`.
         """
-        if qualifier and not isinstance(qualifier, str):
-            raise TypeError("Expected argument 'qualifier' to be a str")
-        __self__.qualifier = qualifier
-        if reserved_concurrent_executions and not isinstance(reserved_concurrent_executions, float):
-            raise TypeError("Expected argument 'reserved_concurrent_executions' to be a float")
-        __self__.reserved_concurrent_executions = reserved_concurrent_executions
+        ...
+
+    @property
+    @pulumi.getter
+    def qualifier(self) -> Optional[str]:
+        ...
+
+    @property
+    @pulumi.getter(name="reservedConcurrentExecutions")
+    def reserved_concurrent_executions(self) -> float:
         """
         The amount of reserved concurrent executions for this lambda function or `-1` if unreserved.
         """
-        if role and not isinstance(role, str):
-            raise TypeError("Expected argument 'role' to be a str")
-        __self__.role = role
+        ...
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
         """
         IAM role attached to the Lambda Function.
         """
-        if runtime and not isinstance(runtime, str):
-            raise TypeError("Expected argument 'runtime' to be a str")
-        __self__.runtime = runtime
+        ...
+
+    @property
+    @pulumi.getter
+    def runtime(self) -> str:
         """
         The runtime environment for the Lambda function..
         """
-        if source_code_hash and not isinstance(source_code_hash, str):
-            raise TypeError("Expected argument 'source_code_hash' to be a str")
-        __self__.source_code_hash = source_code_hash
+        ...
+
+    @property
+    @pulumi.getter(name="sourceCodeHash")
+    def source_code_hash(self) -> str:
         """
         Base64-encoded representation of raw SHA-256 sum of the zip file.
         """
-        if source_code_size and not isinstance(source_code_size, float):
-            raise TypeError("Expected argument 'source_code_size' to be a float")
-        __self__.source_code_size = source_code_size
+        ...
+
+    @property
+    @pulumi.getter(name="sourceCodeSize")
+    def source_code_size(self) -> float:
         """
         The size in bytes of the function .zip file.
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
-        if timeout and not isinstance(timeout, float):
-            raise TypeError("Expected argument 'timeout' to be a float")
-        __self__.timeout = timeout
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
+        ...
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> float:
         """
         The function execution time at which Lambda should terminate the function.
         """
-        if tracing_config and not isinstance(tracing_config, dict):
-            raise TypeError("Expected argument 'tracing_config' to be a dict")
-        __self__.tracing_config = tracing_config
+        ...
+
+    @property
+    @pulumi.getter(name="tracingConfig")
+    def tracing_config(self) -> 'outputs.GetFunctionTracingConfigResult':
         """
         Tracing settings of the function.
         """
-        if version and not isinstance(version, str):
-            raise TypeError("Expected argument 'version' to be a str")
-        __self__.version = version
+        ...
+
+    @property
+    @pulumi.getter
+    def version(self) -> str:
         """
         The version of the Lambda function.
         """
-        if vpc_config and not isinstance(vpc_config, dict):
-            raise TypeError("Expected argument 'vpc_config' to be a dict")
-        __self__.vpc_config = vpc_config
+        ...
+
+    @property
+    @pulumi.getter(name="vpcConfig")
+    def vpc_config(self) -> 'outputs.GetFunctionVpcConfigResult':
         """
         VPC configuration associated with your Lambda function.
         """
+        ...
+
 
 
 class AwaitableGetFunctionResult(GetFunctionResult):
@@ -256,7 +355,7 @@ def get_function(function_name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:lambda/getFunction:getFunction', __args__, opts=opts, typ=_GetFunctionResult).value
+    __ret__ = pulumi.runtime.invoke('aws:lambda/getFunction:getFunction', __args__, opts=opts, typ=GetFunctionResult).value
 
     return AwaitableGetFunctionResult(
         arn=__ret__.arn,

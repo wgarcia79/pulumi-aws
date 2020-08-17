@@ -29,9 +29,11 @@ class ConfigurationAggregatorAccountAggregationSourceArgs:
         :param pulumi.Input[bool] all_regions: If true, aggregate existing AWS Config regions and future regions.
         :param pulumi.Input[List[pulumi.Input[str]]] regions: List of source regions being aggregated.
         """
-        pulumi.set(__self__, "accountIds", account_ids)
-        pulumi.set(__self__, "allRegions", all_regions)
-        pulumi.set(__self__, "regions", regions)
+        pulumi.set(__self__, "account_ids", account_ids)
+        if all_regions is not None:
+            pulumi.set(__self__, "all_regions", all_regions)
+        if regions is not None:
+            pulumi.set(__self__, "regions", regions)
 
     @property
     @pulumi.getter(name="accountIds")
@@ -81,9 +83,11 @@ class ConfigurationAggregatorOrganizationAggregationSourceArgs:
         :param pulumi.Input[bool] all_regions: If true, aggregate existing AWS Config regions and future regions.
         :param pulumi.Input[List[pulumi.Input[str]]] regions: List of source regions being aggregated.
         """
-        pulumi.set(__self__, "roleArn", role_arn)
-        pulumi.set(__self__, "allRegions", all_regions)
-        pulumi.set(__self__, "regions", regions)
+        pulumi.set(__self__, "role_arn", role_arn)
+        if all_regions is not None:
+            pulumi.set(__self__, "all_regions", all_regions)
+        if regions is not None:
+            pulumi.set(__self__, "regions", regions)
 
     @property
     @pulumi.getter(name="roleArn")
@@ -131,7 +135,8 @@ class DeliveryChannelSnapshotDeliveryPropertiesArgs:
                e.g. `One_Hour` or `Three_Hours`.
                Valid values are listed [here](https://docs.aws.amazon.com/config/latest/APIReference/API_ConfigSnapshotDeliveryProperties.html#API_ConfigSnapshotDeliveryProperties_Contents).
         """
-        pulumi.set(__self__, "deliveryFrequency", delivery_frequency)
+        if delivery_frequency is not None:
+            pulumi.set(__self__, "delivery_frequency", delivery_frequency)
 
     @property
     @pulumi.getter(name="deliveryFrequency")
@@ -164,9 +169,12 @@ class RecorderRecordingGroupArgs:
                AWS Config records configuration changes (for example, `AWS::EC2::Instance` or `AWS::CloudTrail::Trail`).
                See [relevant part of AWS Docs](http://docs.aws.amazon.com/config/latest/APIReference/API_ResourceIdentifier.html#config-Type-ResourceIdentifier-resourceType) for available types.
         """
-        pulumi.set(__self__, "allSupported", all_supported)
-        pulumi.set(__self__, "includeGlobalResourceTypes", include_global_resource_types)
-        pulumi.set(__self__, "resourceTypes", resource_types)
+        if all_supported is not None:
+            pulumi.set(__self__, "all_supported", all_supported)
+        if include_global_resource_types is not None:
+            pulumi.set(__self__, "include_global_resource_types", include_global_resource_types)
+        if resource_types is not None:
+            pulumi.set(__self__, "resource_types", resource_types)
 
     @property
     @pulumi.getter(name="allSupported")
@@ -227,10 +235,14 @@ class RuleScopeArgs:
                want to trigger an evaluation for the rule.
         :param pulumi.Input[str] tag_value: The tag value applied to only those AWS resources that you want to trigger an evaluation for the rule.
         """
-        pulumi.set(__self__, "complianceResourceId", compliance_resource_id)
-        pulumi.set(__self__, "complianceResourceTypes", compliance_resource_types)
-        pulumi.set(__self__, "tagKey", tag_key)
-        pulumi.set(__self__, "tagValue", tag_value)
+        if compliance_resource_id is not None:
+            pulumi.set(__self__, "compliance_resource_id", compliance_resource_id)
+        if compliance_resource_types is not None:
+            pulumi.set(__self__, "compliance_resource_types", compliance_resource_types)
+        if tag_key is not None:
+            pulumi.set(__self__, "tag_key", tag_key)
+        if tag_value is not None:
+            pulumi.set(__self__, "tag_value", tag_value)
 
     @property
     @pulumi.getter(name="complianceResourceId")
@@ -297,8 +309,9 @@ class RuleSourceArgs:
         :param pulumi.Input[List[pulumi.Input['RuleSourceSourceDetailArgs']]] source_details: Provides the source and type of the event that causes AWS Config to evaluate your AWS resources. Only valid if `owner` is `CUSTOM_LAMBDA`.
         """
         pulumi.set(__self__, "owner", owner)
-        pulumi.set(__self__, "sourceIdentifier", source_identifier)
-        pulumi.set(__self__, "sourceDetails", source_details)
+        pulumi.set(__self__, "source_identifier", source_identifier)
+        if source_details is not None:
+            pulumi.set(__self__, "source_details", source_details)
 
     @property
     @pulumi.getter
@@ -350,9 +363,12 @@ class RuleSourceSourceDetailArgs:
                is triggered periodically. If specified, requires `message_type` to be `ScheduledNotification`.
         :param pulumi.Input[str] message_type: The type of notification that triggers AWS Config to run an evaluation for a rule. You can specify the following notification types:
         """
-        pulumi.set(__self__, "eventSource", event_source)
-        pulumi.set(__self__, "maximumExecutionFrequency", maximum_execution_frequency)
-        pulumi.set(__self__, "messageType", message_type)
+        if event_source is not None:
+            pulumi.set(__self__, "event_source", event_source)
+        if maximum_execution_frequency is not None:
+            pulumi.set(__self__, "maximum_execution_frequency", maximum_execution_frequency)
+        if message_type is not None:
+            pulumi.set(__self__, "message_type", message_type)
 
     @property
     @pulumi.getter(name="eventSource")

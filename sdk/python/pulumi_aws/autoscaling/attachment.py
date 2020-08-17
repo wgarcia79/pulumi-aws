@@ -12,21 +12,6 @@ __all__ = ['Attachment']
 
 
 class Attachment(pulumi.CustomResource):
-    alb_target_group_arn: pulumi.Output[Optional[str]] = pulumi.property("albTargetGroupArn")
-    """
-    The ARN of an ALB Target Group.
-    """
-
-    autoscaling_group_name: pulumi.Output[str] = pulumi.property("autoscalingGroupName")
-    """
-    Name of ASG to associate with the ELB.
-    """
-
-    elb: pulumi.Output[Optional[str]] = pulumi.property("elb")
-    """
-    The name of the ELB.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -128,6 +113,30 @@ class Attachment(pulumi.CustomResource):
         __props__["autoscaling_group_name"] = autoscaling_group_name
         __props__["elb"] = elb
         return Attachment(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="albTargetGroupArn")
+    def alb_target_group_arn(self) -> Optional[str]:
+        """
+        The ARN of an ALB Target Group.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="autoscalingGroupName")
+    def autoscaling_group_name(self) -> str:
+        """
+        Name of ASG to associate with the ELB.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def elb(self) -> Optional[str]:
+        """
+        The name of the ELB.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -12,16 +12,6 @@ __all__ = ['OrganizationConfiguration']
 
 
 class OrganizationConfiguration(pulumi.CustomResource):
-    auto_enable: pulumi.Output[bool] = pulumi.property("autoEnable")
-    """
-    When this setting is enabled, all new accounts that are created in, or added to, the organization are added as a member accounts of the organization’s GuardDuty delegated administrator and GuardDuty is enabled in that AWS Region.
-    """
-
-    detector_id: pulumi.Output[str] = pulumi.property("detectorId")
-    """
-    The detector ID of the GuardDuty account.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -104,6 +94,22 @@ class OrganizationConfiguration(pulumi.CustomResource):
         __props__["auto_enable"] = auto_enable
         __props__["detector_id"] = detector_id
         return OrganizationConfiguration(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="autoEnable")
+    def auto_enable(self) -> bool:
+        """
+        When this setting is enabled, all new accounts that are created in, or added to, the organization are added as a member accounts of the organization’s GuardDuty delegated administrator and GuardDuty is enabled in that AWS Region.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="detectorId")
+    def detector_id(self) -> str:
+        """
+        The detector ID of the GuardDuty account.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

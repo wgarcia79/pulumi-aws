@@ -16,20 +16,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetSecretResult:
-    arn: str = pulumi.property("arn")
-    description: str = pulumi.property("description")
-    id: str = pulumi.property("id")
-    kms_key_id: str = pulumi.property("kmsKeyId")
-    name: str = pulumi.property("name")
-    policy: str = pulumi.property("policy")
-    rotation_enabled: bool = pulumi.property("rotationEnabled")
-    rotation_lambda_arn: str = pulumi.property("rotationLambdaArn")
-    rotation_rules: List['outputs.GetSecretRotationRuleResult'] = pulumi.property("rotationRules")
-    tags: Mapping[str, str] = pulumi.property("tags")
-
-
 class GetSecretResult:
     """
     A collection of values returned by getSecret.
@@ -37,73 +25,124 @@ class GetSecretResult:
     def __init__(__self__, arn=None, description=None, id=None, kms_key_id=None, name=None, policy=None, rotation_enabled=None, rotation_lambda_arn=None, rotation_rules=None, tags=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
-        """
-        The Amazon Resource Name (ARN) of the secret.
-        """
+        pulumi.set(__self__, "arn", arn)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
-        __self__.description = description
-        """
-        A description of the secret.
-        """
+        pulumi.set(__self__, "description", description)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
+        pulumi.set(__self__, "id", id)
         if kms_key_id and not isinstance(kms_key_id, str):
             raise TypeError("Expected argument 'kms_key_id' to be a str")
-        __self__.kms_key_id = kms_key_id
-        """
-        The Key Management Service (KMS) Customer Master Key (CMK) associated with the secret.
-        """
+        pulumi.set(__self__, "kms_key_id", kms_key_id)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
+        pulumi.set(__self__, "name", name)
         if policy and not isinstance(policy, str):
             raise TypeError("Expected argument 'policy' to be a str")
-        __self__.policy = policy
-        """
-        The resource-based policy document that's attached to the secret.
-        """
+        pulumi.set(__self__, "policy", policy)
         if rotation_enabled and not isinstance(rotation_enabled, bool):
             raise TypeError("Expected argument 'rotation_enabled' to be a bool")
         if rotation_enabled is not None:
             warnings.warn("Use the aws_secretsmanager_secret_rotation data source instead", DeprecationWarning)
             pulumi.log.warn("rotation_enabled is deprecated: Use the aws_secretsmanager_secret_rotation data source instead")
 
-        __self__.rotation_enabled = rotation_enabled
-        """
-        Whether rotation is enabled or not.
-        """
+        pulumi.set(__self__, "rotation_enabled", rotation_enabled)
         if rotation_lambda_arn and not isinstance(rotation_lambda_arn, str):
             raise TypeError("Expected argument 'rotation_lambda_arn' to be a str")
         if rotation_lambda_arn is not None:
             warnings.warn("Use the aws_secretsmanager_secret_rotation data source instead", DeprecationWarning)
             pulumi.log.warn("rotation_lambda_arn is deprecated: Use the aws_secretsmanager_secret_rotation data source instead")
 
-        __self__.rotation_lambda_arn = rotation_lambda_arn
-        """
-        Rotation Lambda function Amazon Resource Name (ARN) if rotation is enabled.
-        """
+        pulumi.set(__self__, "rotation_lambda_arn", rotation_lambda_arn)
         if rotation_rules and not isinstance(rotation_rules, list):
             raise TypeError("Expected argument 'rotation_rules' to be a list")
         if rotation_rules is not None:
             warnings.warn("Use the aws_secretsmanager_secret_rotation data source instead", DeprecationWarning)
             pulumi.log.warn("rotation_rules is deprecated: Use the aws_secretsmanager_secret_rotation data source instead")
 
-        __self__.rotation_rules = rotation_rules
+        pulumi.set(__self__, "rotation_rules", rotation_rules)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) of the secret.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        A description of the secret.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The provider-assigned unique ID for this managed resource.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="kmsKeyId")
+    def kms_key_id(self) -> str:
+        """
+        The Key Management Service (KMS) Customer Master Key (CMK) associated with the secret.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def policy(self) -> str:
+        """
+        The resource-based policy document that's attached to the secret.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="rotationEnabled")
+    def rotation_enabled(self) -> bool:
+        """
+        Whether rotation is enabled or not.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="rotationLambdaArn")
+    def rotation_lambda_arn(self) -> str:
+        """
+        Rotation Lambda function Amazon Resource Name (ARN) if rotation is enabled.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="rotationRules")
+    def rotation_rules(self) -> List['outputs.GetSecretRotationRuleResult']:
         """
         Rotation rules if rotation is enabled.
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
         """
         Tags of the secret.
         """
+        ...
+
 
 
 class AwaitableGetSecretResult(GetSecretResult):
@@ -159,7 +198,7 @@ def get_secret(arn: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:secretsmanager/getSecret:getSecret', __args__, opts=opts, typ=_GetSecretResult).value
+    __ret__ = pulumi.runtime.invoke('aws:secretsmanager/getSecret:getSecret', __args__, opts=opts, typ=GetSecretResult).value
 
     return AwaitableGetSecretResult(
         arn=__ret__.arn,

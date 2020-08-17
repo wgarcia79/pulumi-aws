@@ -16,26 +16,6 @@ warnings.warn("aws.elasticloadbalancing.LoadBalancerPolicy has been deprecated i
 
 
 class LoadBalancerPolicy(pulumi.CustomResource):
-    load_balancer_name: pulumi.Output[str] = pulumi.property("loadBalancerName")
-    """
-    The load balancer on which the policy is defined.
-    """
-
-    policy_attributes: pulumi.Output[Optional[List['outputs.LoadBalancerPolicyPolicyAttribute']]] = pulumi.property("policyAttributes")
-    """
-    Policy attribute to apply to the policy.
-    """
-
-    policy_name: pulumi.Output[str] = pulumi.property("policyName")
-    """
-    The name of the load balancer policy.
-    """
-
-    policy_type_name: pulumi.Output[str] = pulumi.property("policyTypeName")
-    """
-    The policy type.
-    """
-
     warnings.warn("aws.elasticloadbalancing.LoadBalancerPolicy has been deprecated in favor of aws.elb.LoadBalancerPolicy", DeprecationWarning)
 
     def __init__(__self__,
@@ -195,6 +175,38 @@ class LoadBalancerPolicy(pulumi.CustomResource):
         __props__["policy_name"] = policy_name
         __props__["policy_type_name"] = policy_type_name
         return LoadBalancerPolicy(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="loadBalancerName")
+    def load_balancer_name(self) -> str:
+        """
+        The load balancer on which the policy is defined.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="policyAttributes")
+    def policy_attributes(self) -> Optional[List['outputs.LoadBalancerPolicyPolicyAttribute']]:
+        """
+        Policy attribute to apply to the policy.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="policyName")
+    def policy_name(self) -> str:
+        """
+        The name of the load balancer policy.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="policyTypeName")
+    def policy_type_name(self) -> str:
+        """
+        The policy type.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

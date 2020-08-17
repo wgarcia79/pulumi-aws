@@ -32,12 +32,15 @@ class EndpointConfigurationProductionVariantArgs:
         :param pulumi.Input[float] initial_variant_weight: Determines initial traffic distribution among all of the models that you specify in the endpoint configuration. If unspecified, it defaults to 1.0.
         :param pulumi.Input[str] variant_name: The name of the variant. If omitted, this provider will assign a random, unique name.
         """
-        pulumi.set(__self__, "initialInstanceCount", initial_instance_count)
-        pulumi.set(__self__, "instanceType", instance_type)
-        pulumi.set(__self__, "modelName", model_name)
-        pulumi.set(__self__, "acceleratorType", accelerator_type)
-        pulumi.set(__self__, "initialVariantWeight", initial_variant_weight)
-        pulumi.set(__self__, "variantName", variant_name)
+        pulumi.set(__self__, "initial_instance_count", initial_instance_count)
+        pulumi.set(__self__, "instance_type", instance_type)
+        pulumi.set(__self__, "model_name", model_name)
+        if accelerator_type is not None:
+            pulumi.set(__self__, "accelerator_type", accelerator_type)
+        if initial_variant_weight is not None:
+            pulumi.set(__self__, "initial_variant_weight", initial_variant_weight)
+        if variant_name is not None:
+            pulumi.set(__self__, "variant_name", variant_name)
 
     @property
     @pulumi.getter(name="initialInstanceCount")
@@ -127,9 +130,12 @@ class ModelContainerArgs:
         :param pulumi.Input[str] model_data_url: The URL for the S3 location where model artifacts are stored.
         """
         pulumi.set(__self__, "image", image)
-        pulumi.set(__self__, "containerHostname", container_hostname)
-        pulumi.set(__self__, "environment", environment)
-        pulumi.set(__self__, "modelDataUrl", model_data_url)
+        if container_hostname is not None:
+            pulumi.set(__self__, "container_hostname", container_hostname)
+        if environment is not None:
+            pulumi.set(__self__, "environment", environment)
+        if model_data_url is not None:
+            pulumi.set(__self__, "model_data_url", model_data_url)
 
     @property
     @pulumi.getter
@@ -196,9 +202,12 @@ class ModelPrimaryContainerArgs:
         :param pulumi.Input[str] model_data_url: The URL for the S3 location where model artifacts are stored.
         """
         pulumi.set(__self__, "image", image)
-        pulumi.set(__self__, "containerHostname", container_hostname)
-        pulumi.set(__self__, "environment", environment)
-        pulumi.set(__self__, "modelDataUrl", model_data_url)
+        if container_hostname is not None:
+            pulumi.set(__self__, "container_hostname", container_hostname)
+        if environment is not None:
+            pulumi.set(__self__, "environment", environment)
+        if model_data_url is not None:
+            pulumi.set(__self__, "model_data_url", model_data_url)
 
     @property
     @pulumi.getter
@@ -255,7 +264,7 @@ class ModelVpcConfigArgs:
     def __init__(__self__, *,
                  security_group_ids: pulumi.Input[List[pulumi.Input[str]]],
                  subnets: pulumi.Input[List[pulumi.Input[str]]]):
-        pulumi.set(__self__, "securityGroupIds", security_group_ids)
+        pulumi.set(__self__, "security_group_ids", security_group_ids)
         pulumi.set(__self__, "subnets", subnets)
 
     @property

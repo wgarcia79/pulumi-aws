@@ -27,7 +27,7 @@ class GlobalTableReplicaArgs:
         """
         :param pulumi.Input[str] region_name: AWS region name of replica DynamoDB Table. e.g. `us-east-1`
         """
-        pulumi.set(__self__, "regionName", region_name)
+        pulumi.set(__self__, "region_name", region_name)
 
     @property
     @pulumi.getter(name="regionName")
@@ -105,13 +105,17 @@ class TableGlobalSecondaryIndexArgs:
         :param pulumi.Input[float] read_capacity: The number of read units for this index. Must be set if billing_mode is set to PROVISIONED.
         :param pulumi.Input[float] write_capacity: The number of write units for this index. Must be set if billing_mode is set to PROVISIONED.
         """
-        pulumi.set(__self__, "hashKey", hash_key)
+        pulumi.set(__self__, "hash_key", hash_key)
         pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "projectionType", projection_type)
-        pulumi.set(__self__, "nonKeyAttributes", non_key_attributes)
-        pulumi.set(__self__, "rangeKey", range_key)
-        pulumi.set(__self__, "readCapacity", read_capacity)
-        pulumi.set(__self__, "writeCapacity", write_capacity)
+        pulumi.set(__self__, "projection_type", projection_type)
+        if non_key_attributes is not None:
+            pulumi.set(__self__, "non_key_attributes", non_key_attributes)
+        if range_key is not None:
+            pulumi.set(__self__, "range_key", range_key)
+        if read_capacity is not None:
+            pulumi.set(__self__, "read_capacity", read_capacity)
+        if write_capacity is not None:
+            pulumi.set(__self__, "write_capacity", write_capacity)
 
     @property
     @pulumi.getter(name="hashKey")
@@ -225,9 +229,10 @@ class TableLocalSecondaryIndexArgs:
                do not need to be defined as attributes on the table.
         """
         pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "projectionType", projection_type)
-        pulumi.set(__self__, "rangeKey", range_key)
-        pulumi.set(__self__, "nonKeyAttributes", non_key_attributes)
+        pulumi.set(__self__, "projection_type", projection_type)
+        pulumi.set(__self__, "range_key", range_key)
+        if non_key_attributes is not None:
+            pulumi.set(__self__, "non_key_attributes", non_key_attributes)
 
     @property
     @pulumi.getter
@@ -313,7 +318,7 @@ class TableReplicaArgs:
         """
         :param pulumi.Input[str] region_name: Region name of the replica.
         """
-        pulumi.set(__self__, "regionName", region_name)
+        pulumi.set(__self__, "region_name", region_name)
 
     @property
     @pulumi.getter(name="regionName")
@@ -339,7 +344,8 @@ class TableServerSideEncryptionArgs:
                This attribute should only be specified if the key is different from the default DynamoDB CMK, `alias/aws/dynamodb`.
         """
         pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "kmsKeyArn", kms_key_arn)
+        if kms_key_arn is not None:
+            pulumi.set(__self__, "kms_key_arn", kms_key_arn)
 
     @property
     @pulumi.getter
@@ -376,8 +382,9 @@ class TableTtlArgs:
         :param pulumi.Input[str] attribute_name: The name of the table attribute to store the TTL timestamp in.
         :param pulumi.Input[bool] enabled: Indicates whether ttl is enabled (true) or disabled (false).
         """
-        pulumi.set(__self__, "attributeName", attribute_name)
-        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "attribute_name", attribute_name)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
 
     @property
     @pulumi.getter(name="attributeName")
@@ -410,7 +417,7 @@ class GetTableServerSideEncryptionArgs:
                  enabled: bool,
                  kms_key_arn: str):
         pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "kmsKeyArn", kms_key_arn)
+        pulumi.set(__self__, "kms_key_arn", kms_key_arn)
 
     @property
     @pulumi.getter

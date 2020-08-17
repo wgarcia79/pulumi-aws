@@ -20,7 +20,8 @@ class ChannelHlsIngestArgs:
         """
         :param pulumi.Input[List[pulumi.Input['ChannelHlsIngestIngestEndpointArgs']]] ingest_endpoints: A list of the ingest endpoints
         """
-        pulumi.set(__self__, "ingestEndpoints", ingest_endpoints)
+        if ingest_endpoints is not None:
+            pulumi.set(__self__, "ingest_endpoints", ingest_endpoints)
 
     @property
     @pulumi.getter(name="ingestEndpoints")
@@ -46,9 +47,12 @@ class ChannelHlsIngestIngestEndpointArgs:
         :param pulumi.Input[str] url: The URL
         :param pulumi.Input[str] username: The username
         """
-        pulumi.set(__self__, "password", password)
-        pulumi.set(__self__, "url", url)
-        pulumi.set(__self__, "username", username)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter

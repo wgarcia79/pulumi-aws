@@ -16,6 +16,22 @@ __all__ = [
 
 @pulumi.output_type
 class AppCampaignHook(dict):
+    def __init__(__self__, *,
+                 lambda_function_name: Optional[str] = None,
+                 mode: Optional[str] = None,
+                 web_url: Optional[str] = None):
+        """
+        :param str lambda_function_name: Lambda function name or ARN to be called for delivery. Conflicts with `web_url`
+        :param str mode: What mode Lambda should be invoked in. Valid values for this parameter are `DELIVERY`, `FILTER`.
+        :param str web_url: Web URL to call for hook. If the URL has authentication specified it will be added as authentication to the request. Conflicts with `lambda_function_name`
+        """
+        if lambda_function_name is not None:
+            pulumi.set(__self__, "lambda_function_name", lambda_function_name)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+        if web_url is not None:
+            pulumi.set(__self__, "web_url", web_url)
+
     @property
     @pulumi.getter(name="lambdaFunctionName")
     def lambda_function_name(self) -> Optional[str]:
@@ -46,6 +62,26 @@ class AppCampaignHook(dict):
 
 @pulumi.output_type
 class AppLimits(dict):
+    def __init__(__self__, *,
+                 daily: Optional[float] = None,
+                 maximum_duration: Optional[float] = None,
+                 messages_per_second: Optional[float] = None,
+                 total: Optional[float] = None):
+        """
+        :param float daily: The maximum number of messages that the campaign can send daily.
+        :param float maximum_duration: The length of time (in seconds) that the campaign can run before it ends and message deliveries stop. This duration begins at the scheduled start time for the campaign. The minimum value is 60.
+        :param float messages_per_second: The number of messages that the campaign can send per second. The minimum value is 50, and the maximum is 20000.
+        :param float total: The maximum total number of messages that the campaign can send.
+        """
+        if daily is not None:
+            pulumi.set(__self__, "daily", daily)
+        if maximum_duration is not None:
+            pulumi.set(__self__, "maximum_duration", maximum_duration)
+        if messages_per_second is not None:
+            pulumi.set(__self__, "messages_per_second", messages_per_second)
+        if total is not None:
+            pulumi.set(__self__, "total", total)
+
     @property
     @pulumi.getter
     def daily(self) -> Optional[float]:
@@ -84,6 +120,18 @@ class AppLimits(dict):
 
 @pulumi.output_type
 class AppQuietTime(dict):
+    def __init__(__self__, *,
+                 end: Optional[str] = None,
+                 start: Optional[str] = None):
+        """
+        :param str end: The default end time for quiet time in ISO 8601 format. Required if `start` is set
+        :param str start: The default start time for quiet time in ISO 8601 format. Required if `end` is set
+        """
+        if end is not None:
+            pulumi.set(__self__, "end", end)
+        if start is not None:
+            pulumi.set(__self__, "start", start)
+
     @property
     @pulumi.getter
     def end(self) -> Optional[str]:

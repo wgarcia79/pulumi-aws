@@ -23,8 +23,10 @@ class S3BucketAssociationClassificationTypeArgs:
         :param pulumi.Input[str] one_time: A string value indicating whether or not Macie performs a one-time classification of all of the existing objects in the bucket.
                Valid values are `NONE` and `FULL`. Defaults to `NONE` indicating that Macie only classifies objects that are added after the association was created.
         """
-        pulumi.set(__self__, "continuous", continuous)
-        pulumi.set(__self__, "oneTime", one_time)
+        if continuous is not None:
+            pulumi.set(__self__, "continuous", continuous)
+        if one_time is not None:
+            pulumi.set(__self__, "one_time", one_time)
 
     @property
     @pulumi.getter

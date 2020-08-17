@@ -15,17 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetAliasResult:
-    arn: str = pulumi.property("arn")
-    description: str = pulumi.property("description")
-    function_name: str = pulumi.property("functionName")
-    function_version: str = pulumi.property("functionVersion")
-    id: str = pulumi.property("id")
-    invoke_arn: str = pulumi.property("invokeArn")
-    name: str = pulumi.property("name")
-
-
 class GetAliasResult:
     """
     A collection of values returned by getAlias.
@@ -33,40 +24,76 @@ class GetAliasResult:
     def __init__(__self__, arn=None, description=None, function_name=None, function_version=None, id=None, invoke_arn=None, name=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
+        if function_name and not isinstance(function_name, str):
+            raise TypeError("Expected argument 'function_name' to be a str")
+        pulumi.set(__self__, "function_name", function_name)
+        if function_version and not isinstance(function_version, str):
+            raise TypeError("Expected argument 'function_version' to be a str")
+        pulumi.set(__self__, "function_version", function_version)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if invoke_arn and not isinstance(invoke_arn, str):
+            raise TypeError("Expected argument 'invoke_arn' to be a str")
+        pulumi.set(__self__, "invoke_arn", invoke_arn)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The Amazon Resource Name (ARN) identifying the Lambda function alias.
         """
-        if description and not isinstance(description, str):
-            raise TypeError("Expected argument 'description' to be a str")
-        __self__.description = description
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
         """
         Description of alias.
         """
-        if function_name and not isinstance(function_name, str):
-            raise TypeError("Expected argument 'function_name' to be a str")
-        __self__.function_name = function_name
-        if function_version and not isinstance(function_version, str):
-            raise TypeError("Expected argument 'function_version' to be a str")
-        __self__.function_version = function_version
+        ...
+
+    @property
+    @pulumi.getter(name="functionName")
+    def function_name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="functionVersion")
+    def function_version(self) -> str:
         """
         Lambda function version which the alias uses.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if invoke_arn and not isinstance(invoke_arn, str):
-            raise TypeError("Expected argument 'invoke_arn' to be a str")
-        __self__.invoke_arn = invoke_arn
+        ...
+
+    @property
+    @pulumi.getter(name="invokeArn")
+    def invoke_arn(self) -> str:
         """
         The ARN to be used for invoking Lambda Function from API Gateway - to be used in aws_api_gateway_integration's `uri`.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        ...
+
 
 
 class AwaitableGetAliasResult(GetAliasResult):
@@ -111,7 +138,7 @@ def get_alias(function_name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:lambda/getAlias:getAlias', __args__, opts=opts, typ=_GetAliasResult).value
+    __ret__ = pulumi.runtime.invoke('aws:lambda/getAlias:getAlias', __args__, opts=opts, typ=GetAliasResult).value
 
     return AwaitableGetAliasResult(
         arn=__ret__.arn,

@@ -14,71 +14,6 @@ __all__ = ['CatalogTable']
 
 
 class CatalogTable(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the Glue Table.
-    """
-
-    catalog_id: pulumi.Output[str] = pulumi.property("catalogId")
-    """
-    ID of the Glue Catalog and database to create the table in. If omitted, this defaults to the AWS Account ID plus the database name.
-    """
-
-    database_name: pulumi.Output[str] = pulumi.property("databaseName")
-    """
-    Name of the metadata database where the table metadata resides. For Hive compatibility, this must be all lowercase.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    Description of the table.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    Name of the SerDe.
-    """
-
-    owner: pulumi.Output[Optional[str]] = pulumi.property("owner")
-    """
-    Owner of the table.
-    """
-
-    parameters: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("parameters")
-    """
-    A map of initialization parameters for the SerDe, in key-value form.
-    """
-
-    partition_keys: pulumi.Output[Optional[List['outputs.CatalogTablePartitionKey']]] = pulumi.property("partitionKeys")
-    """
-    A list of columns by which the table is partitioned. Only primitive types are supported as partition keys.
-    """
-
-    retention: pulumi.Output[Optional[float]] = pulumi.property("retention")
-    """
-    Retention time for this table.
-    """
-
-    storage_descriptor: pulumi.Output[Optional['outputs.CatalogTableStorageDescriptor']] = pulumi.property("storageDescriptor")
-    """
-    A storage descriptor object containing information about the physical storage of this table. You can refer to the [Glue Developer Guide](https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-catalog-tables.html#aws-glue-api-catalog-tables-StorageDescriptor) for a full explanation of this object.
-    """
-
-    table_type: pulumi.Output[Optional[str]] = pulumi.property("tableType")
-    """
-    The type of this table (EXTERNAL_TABLE, VIRTUAL_VIEW, etc.).
-    """
-
-    view_expanded_text: pulumi.Output[Optional[str]] = pulumi.property("viewExpandedText")
-    """
-    If the table is a view, the expanded text of the view; otherwise null.
-    """
-
-    view_original_text: pulumi.Output[Optional[str]] = pulumi.property("viewOriginalText")
-    """
-    If the table is a view, the original text of the view; otherwise null.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -273,6 +208,110 @@ class CatalogTable(pulumi.CustomResource):
         __props__["view_expanded_text"] = view_expanded_text
         __props__["view_original_text"] = view_original_text
         return CatalogTable(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the Glue Table.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="catalogId")
+    def catalog_id(self) -> str:
+        """
+        ID of the Glue Catalog and database to create the table in. If omitted, this defaults to the AWS Account ID plus the database name.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="databaseName")
+    def database_name(self) -> str:
+        """
+        Name of the metadata database where the table metadata resides. For Hive compatibility, this must be all lowercase.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Description of the table.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the SerDe.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def owner(self) -> Optional[str]:
+        """
+        Owner of the table.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of initialization parameters for the SerDe, in key-value form.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="partitionKeys")
+    def partition_keys(self) -> Optional[List['outputs.CatalogTablePartitionKey']]:
+        """
+        A list of columns by which the table is partitioned. Only primitive types are supported as partition keys.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def retention(self) -> Optional[float]:
+        """
+        Retention time for this table.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="storageDescriptor")
+    def storage_descriptor(self) -> Optional['outputs.CatalogTableStorageDescriptor']:
+        """
+        A storage descriptor object containing information about the physical storage of this table. You can refer to the [Glue Developer Guide](https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-catalog-tables.html#aws-glue-api-catalog-tables-StorageDescriptor) for a full explanation of this object.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="tableType")
+    def table_type(self) -> Optional[str]:
+        """
+        The type of this table (EXTERNAL_TABLE, VIRTUAL_VIEW, etc.).
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="viewExpandedText")
+    def view_expanded_text(self) -> Optional[str]:
+        """
+        If the table is a view, the expanded text of the view; otherwise null.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="viewOriginalText")
+    def view_original_text(self) -> Optional[str]:
+        """
+        If the table is a view, the original text of the view; otherwise null.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

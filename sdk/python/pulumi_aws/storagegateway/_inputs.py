@@ -24,7 +24,7 @@ class GatewaySmbActiveDirectorySettingsArgs:
         :param pulumi.Input[str] password: The password of the user who has permission to add the gateway to the Active Directory domain.
         :param pulumi.Input[str] username: The user name of user who has permission to add the gateway to the Active Directory domain.
         """
-        pulumi.set(__self__, "domainName", domain_name)
+        pulumi.set(__self__, "domain_name", domain_name)
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "username", username)
 
@@ -78,10 +78,14 @@ class NfsFileShareNfsFileShareDefaultsArgs:
         :param pulumi.Input[float] group_id: The default group ID for the file share (unless the files have another group ID specified). Defaults to `65534` (`nfsnobody`). Valid values: `0` through `4294967294`.
         :param pulumi.Input[float] owner_id: The default owner ID for the file share (unless the files have another owner ID specified). Defaults to `65534` (`nfsnobody`). Valid values: `0` through `4294967294`.
         """
-        pulumi.set(__self__, "directoryMode", directory_mode)
-        pulumi.set(__self__, "fileMode", file_mode)
-        pulumi.set(__self__, "groupId", group_id)
-        pulumi.set(__self__, "ownerId", owner_id)
+        if directory_mode is not None:
+            pulumi.set(__self__, "directory_mode", directory_mode)
+        if file_mode is not None:
+            pulumi.set(__self__, "file_mode", file_mode)
+        if group_id is not None:
+            pulumi.set(__self__, "group_id", group_id)
+        if owner_id is not None:
+            pulumi.set(__self__, "owner_id", owner_id)
 
     @property
     @pulumi.getter(name="directoryMode")

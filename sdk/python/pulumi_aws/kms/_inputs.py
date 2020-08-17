@@ -23,8 +23,10 @@ class GrantConstraintArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] encryption_context_equals: A list of key-value pairs that must match the encryption context in subsequent cryptographic operation requests. The grant allows the operation only when the encryption context in the request is the same as the encryption context specified in this constraint. Conflicts with `encryption_context_subset`.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] encryption_context_subset: A list of key-value pairs that must be included in the encryption context of subsequent cryptographic operation requests. The grant allows the cryptographic operation only when the encryption context in the request includes the key-value pairs specified in this constraint, although it can include additional key-value pairs. Conflicts with `encryption_context_equals`.
         """
-        pulumi.set(__self__, "encryptionContextEquals", encryption_context_equals)
-        pulumi.set(__self__, "encryptionContextSubset", encryption_context_subset)
+        if encryption_context_equals is not None:
+            pulumi.set(__self__, "encryption_context_equals", encryption_context_equals)
+        if encryption_context_subset is not None:
+            pulumi.set(__self__, "encryption_context_subset", encryption_context_subset)
 
     @property
     @pulumi.getter(name="encryptionContextEquals")
@@ -60,8 +62,10 @@ class GetSecretSecretArgs:
                  grant_tokens: Optional[List[str]] = None):
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "payload", payload)
-        pulumi.set(__self__, "context", context)
-        pulumi.set(__self__, "grantTokens", grant_tokens)
+        if context is not None:
+            pulumi.set(__self__, "context", context)
+        if grant_tokens is not None:
+            pulumi.set(__self__, "grant_tokens", grant_tokens)
 
     @property
     @pulumi.getter
@@ -115,8 +119,10 @@ class GetSecretsSecretArgs:
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "payload", payload)
-        pulumi.set(__self__, "context", context)
-        pulumi.set(__self__, "grantTokens", grant_tokens)
+        if context is not None:
+            pulumi.set(__self__, "context", context)
+        if grant_tokens is not None:
+            pulumi.set(__self__, "grant_tokens", grant_tokens)
 
     @property
     @pulumi.getter

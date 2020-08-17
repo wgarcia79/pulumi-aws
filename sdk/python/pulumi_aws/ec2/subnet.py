@@ -12,71 +12,6 @@ __all__ = ['Subnet']
 
 
 class Subnet(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the subnet.
-    """
-
-    assign_ipv6_address_on_creation: pulumi.Output[Optional[bool]] = pulumi.property("assignIpv6AddressOnCreation")
-    """
-    Specify true to indicate
-    that network interfaces created in the specified subnet should be
-    assigned an IPv6 address. Default is `false`
-    """
-
-    availability_zone: pulumi.Output[str] = pulumi.property("availabilityZone")
-    """
-    The AZ for the subnet.
-    """
-
-    availability_zone_id: pulumi.Output[str] = pulumi.property("availabilityZoneId")
-    """
-    The AZ ID of the subnet.
-    """
-
-    cidr_block: pulumi.Output[str] = pulumi.property("cidrBlock")
-    """
-    The CIDR block for the subnet.
-    """
-
-    ipv6_cidr_block: pulumi.Output[str] = pulumi.property("ipv6CidrBlock")
-    """
-    The IPv6 network range for the subnet,
-    in CIDR notation. The subnet size must use a /64 prefix length.
-    """
-
-    ipv6_cidr_block_association_id: pulumi.Output[str] = pulumi.property("ipv6CidrBlockAssociationId")
-    """
-    The association ID for the IPv6 CIDR block.
-    """
-
-    map_public_ip_on_launch: pulumi.Output[Optional[bool]] = pulumi.property("mapPublicIpOnLaunch")
-    """
-    Specify true to indicate
-    that instances launched into the subnet should be assigned
-    a public IP address. Default is `false`.
-    """
-
-    outpost_arn: pulumi.Output[Optional[str]] = pulumi.property("outpostArn")
-    """
-    The Amazon Resource Name (ARN) of the Outpost.
-    """
-
-    owner_id: pulumi.Output[str] = pulumi.property("ownerId")
-    """
-    The ID of the AWS account that owns the subnet.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
-    vpc_id: pulumi.Output[str] = pulumi.property("vpcId")
-    """
-    The VPC ID.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -242,6 +177,107 @@ class Subnet(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["vpc_id"] = vpc_id
         return Subnet(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the subnet.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="assignIpv6AddressOnCreation")
+    def assign_ipv6_address_on_creation(self) -> Optional[bool]:
+        """
+        Specify true to indicate
+        that network interfaces created in the specified subnet should be
+        assigned an IPv6 address. Default is `false`
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> str:
+        """
+        The AZ for the subnet.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="availabilityZoneId")
+    def availability_zone_id(self) -> str:
+        """
+        The AZ ID of the subnet.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="cidrBlock")
+    def cidr_block(self) -> str:
+        """
+        The CIDR block for the subnet.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="ipv6CidrBlock")
+    def ipv6_cidr_block(self) -> str:
+        """
+        The IPv6 network range for the subnet,
+        in CIDR notation. The subnet size must use a /64 prefix length.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="ipv6CidrBlockAssociationId")
+    def ipv6_cidr_block_association_id(self) -> str:
+        """
+        The association ID for the IPv6 CIDR block.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="mapPublicIpOnLaunch")
+    def map_public_ip_on_launch(self) -> Optional[bool]:
+        """
+        Specify true to indicate
+        that instances launched into the subnet should be assigned
+        a public IP address. Default is `false`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="outpostArn")
+    def outpost_arn(self) -> Optional[str]:
+        """
+        The Amazon Resource Name (ARN) of the Outpost.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
+        """
+        The ID of the AWS account that owns the subnet.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The VPC ID.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

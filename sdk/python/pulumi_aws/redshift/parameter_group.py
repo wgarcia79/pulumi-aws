@@ -14,36 +14,6 @@ __all__ = ['ParameterGroup']
 
 
 class ParameterGroup(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN) of parameter group
-    """
-
-    description: pulumi.Output[str] = pulumi.property("description")
-    """
-    The description of the Redshift parameter group. Defaults to "Managed by Pulumi".
-    """
-
-    family: pulumi.Output[str] = pulumi.property("family")
-    """
-    The family of the Redshift parameter group.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the Redshift parameter.
-    """
-
-    parameters: pulumi.Output[Optional[List['outputs.ParameterGroupParameter']]] = pulumi.property("parameters")
-    """
-    A list of Redshift parameters to apply.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -158,6 +128,54 @@ class ParameterGroup(pulumi.CustomResource):
         __props__["parameters"] = parameters
         __props__["tags"] = tags
         return ParameterGroup(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of parameter group
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the Redshift parameter group. Defaults to "Managed by Pulumi".
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def family(self) -> str:
+        """
+        The family of the Redshift parameter group.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the Redshift parameter.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[List['outputs.ParameterGroupParameter']]:
+        """
+        A list of Redshift parameters to apply.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

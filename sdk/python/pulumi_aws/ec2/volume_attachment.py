@@ -12,39 +12,6 @@ __all__ = ['VolumeAttachment']
 
 
 class VolumeAttachment(pulumi.CustomResource):
-    device_name: pulumi.Output[str] = pulumi.property("deviceName")
-    """
-    The device name to expose to the instance (for
-    example, `/dev/sdh` or `xvdh`).  See [Device Naming on Linux Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/device_naming.html#available-ec2-device-names) and [Device Naming on Windows Instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/device_naming.html#available-ec2-device-names) for more information.
-    """
-
-    force_detach: pulumi.Output[Optional[bool]] = pulumi.property("forceDetach")
-    """
-    Set to `true` if you want to force the
-    volume to detach. Useful if previous attempts failed, but use this option only
-    as a last resort, as this can result in **data loss**. See
-    [Detaching an Amazon EBS Volume from an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-detaching-volume.html) for more information.
-    """
-
-    instance_id: pulumi.Output[str] = pulumi.property("instanceId")
-    """
-    ID of the Instance to attach to
-    """
-
-    skip_destroy: pulumi.Output[Optional[bool]] = pulumi.property("skipDestroy")
-    """
-    Set this to true if you do not wish
-    to detach the volume from the instance to which it is attached at destroy
-    time, and instead just remove the attachment from this provider state. This is
-    useful when destroying an instance which has volumes created by some other
-    means attached.
-    """
-
-    volume_id: pulumi.Output[str] = pulumi.property("volumeId")
-    """
-    ID of the Volume to be attached
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -174,6 +141,54 @@ class VolumeAttachment(pulumi.CustomResource):
         __props__["skip_destroy"] = skip_destroy
         __props__["volume_id"] = volume_id
         return VolumeAttachment(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="deviceName")
+    def device_name(self) -> str:
+        """
+        The device name to expose to the instance (for
+        example, `/dev/sdh` or `xvdh`).  See [Device Naming on Linux Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/device_naming.html#available-ec2-device-names) and [Device Naming on Windows Instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/device_naming.html#available-ec2-device-names) for more information.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="forceDetach")
+    def force_detach(self) -> Optional[bool]:
+        """
+        Set to `true` if you want to force the
+        volume to detach. Useful if previous attempts failed, but use this option only
+        as a last resort, as this can result in **data loss**. See
+        [Detaching an Amazon EBS Volume from an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-detaching-volume.html) for more information.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        ID of the Instance to attach to
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="skipDestroy")
+    def skip_destroy(self) -> Optional[bool]:
+        """
+        Set this to true if you do not wish
+        to detach the volume from the instance to which it is attached at destroy
+        time, and instead just remove the attachment from this provider state. This is
+        useful when destroying an instance which has volumes created by some other
+        means attached.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="volumeId")
+    def volume_id(self) -> str:
+        """
+        ID of the Volume to be attached
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -16,15 +16,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetApplicationResult:
-    appversion_lifecycle: 'outputs.GetApplicationAppversionLifecycleResult' = pulumi.property("appversionLifecycle")
-    arn: str = pulumi.property("arn")
-    description: str = pulumi.property("description")
-    id: str = pulumi.property("id")
-    name: str = pulumi.property("name")
-
-
 class GetApplicationResult:
     """
     A collection of values returned by getApplication.
@@ -32,28 +25,54 @@ class GetApplicationResult:
     def __init__(__self__, appversion_lifecycle=None, arn=None, description=None, id=None, name=None):
         if appversion_lifecycle and not isinstance(appversion_lifecycle, dict):
             raise TypeError("Expected argument 'appversion_lifecycle' to be a dict")
-        __self__.appversion_lifecycle = appversion_lifecycle
+        pulumi.set(__self__, "appversion_lifecycle", appversion_lifecycle)
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter(name="appversionLifecycle")
+    def appversion_lifecycle(self) -> 'outputs.GetApplicationAppversionLifecycleResult':
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The Amazon Resource Name (ARN) of the application.
         """
-        if description and not isinstance(description, str):
-            raise TypeError("Expected argument 'description' to be a str")
-        __self__.description = description
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
         """
         Short description of the application
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        ...
+
 
 
 class AwaitableGetApplicationResult(GetApplicationResult):
@@ -94,7 +113,7 @@ def get_application(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:elasticbeanstalk/getApplication:getApplication', __args__, opts=opts, typ=_GetApplicationResult).value
+    __ret__ = pulumi.runtime.invoke('aws:elasticbeanstalk/getApplication:getApplication', __args__, opts=opts, typ=GetApplicationResult).value
 
     return AwaitableGetApplicationResult(
         appversion_lifecycle=__ret__.appversion_lifecycle,

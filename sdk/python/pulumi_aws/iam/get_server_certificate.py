@@ -15,21 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetServerCertificateResult:
-    arn: str = pulumi.property("arn")
-    certificate_body: str = pulumi.property("certificateBody")
-    certificate_chain: str = pulumi.property("certificateChain")
-    expiration_date: str = pulumi.property("expirationDate")
-    id: str = pulumi.property("id")
-    latest: Optional[bool] = pulumi.property("latest")
-    name: str = pulumi.property("name")
-    name_prefix: Optional[str] = pulumi.property("namePrefix")
-    path: str = pulumi.property("path")
-    path_prefix: Optional[str] = pulumi.property("pathPrefix")
-    upload_date: str = pulumi.property("uploadDate")
-
-
 class GetServerCertificateResult:
     """
     A collection of values returned by getServerCertificate.
@@ -37,40 +24,96 @@ class GetServerCertificateResult:
     def __init__(__self__, arn=None, certificate_body=None, certificate_chain=None, expiration_date=None, id=None, latest=None, name=None, name_prefix=None, path=None, path_prefix=None, upload_date=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
         if certificate_body and not isinstance(certificate_body, str):
             raise TypeError("Expected argument 'certificate_body' to be a str")
-        __self__.certificate_body = certificate_body
+        pulumi.set(__self__, "certificate_body", certificate_body)
         if certificate_chain and not isinstance(certificate_chain, str):
             raise TypeError("Expected argument 'certificate_chain' to be a str")
-        __self__.certificate_chain = certificate_chain
+        pulumi.set(__self__, "certificate_chain", certificate_chain)
         if expiration_date and not isinstance(expiration_date, str):
             raise TypeError("Expected argument 'expiration_date' to be a str")
-        __self__.expiration_date = expiration_date
+        pulumi.set(__self__, "expiration_date", expiration_date)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if latest and not isinstance(latest, bool):
+            raise TypeError("Expected argument 'latest' to be a bool")
+        pulumi.set(__self__, "latest", latest)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if name_prefix and not isinstance(name_prefix, str):
+            raise TypeError("Expected argument 'name_prefix' to be a str")
+        pulumi.set(__self__, "name_prefix", name_prefix)
+        if path and not isinstance(path, str):
+            raise TypeError("Expected argument 'path' to be a str")
+        pulumi.set(__self__, "path", path)
+        if path_prefix and not isinstance(path_prefix, str):
+            raise TypeError("Expected argument 'path_prefix' to be a str")
+        pulumi.set(__self__, "path_prefix", path_prefix)
+        if upload_date and not isinstance(upload_date, str):
+            raise TypeError("Expected argument 'upload_date' to be a str")
+        pulumi.set(__self__, "upload_date", upload_date)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="certificateBody")
+    def certificate_body(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="certificateChain")
+    def certificate_chain(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="expirationDate")
+    def expiration_date(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if latest and not isinstance(latest, bool):
-            raise TypeError("Expected argument 'latest' to be a bool")
-        __self__.latest = latest
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if name_prefix and not isinstance(name_prefix, str):
-            raise TypeError("Expected argument 'name_prefix' to be a str")
-        __self__.name_prefix = name_prefix
-        if path and not isinstance(path, str):
-            raise TypeError("Expected argument 'path' to be a str")
-        __self__.path = path
-        if path_prefix and not isinstance(path_prefix, str):
-            raise TypeError("Expected argument 'path_prefix' to be a str")
-        __self__.path_prefix = path_prefix
-        if upload_date and not isinstance(upload_date, str):
-            raise TypeError("Expected argument 'upload_date' to be a str")
-        __self__.upload_date = upload_date
+        ...
+
+    @property
+    @pulumi.getter
+    def latest(self) -> Optional[bool]:
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> Optional[str]:
+        ...
+
+    @property
+    @pulumi.getter
+    def path(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="pathPrefix")
+    def path_prefix(self) -> Optional[str]:
+        ...
+
+    @property
+    @pulumi.getter(name="uploadDate")
+    def upload_date(self) -> str:
+        ...
+
 
 
 class AwaitableGetServerCertificateResult(GetServerCertificateResult):
@@ -136,7 +179,7 @@ def get_server_certificate(latest: Optional[bool] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:iam/getServerCertificate:getServerCertificate', __args__, opts=opts, typ=_GetServerCertificateResult).value
+    __ret__ = pulumi.runtime.invoke('aws:iam/getServerCertificate:getServerCertificate', __args__, opts=opts, typ=GetServerCertificateResult).value
 
     return AwaitableGetServerCertificateResult(
         arn=__ret__.arn,

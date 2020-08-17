@@ -17,17 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetLocalGatewayRouteTableResult:
-    filters: Optional[List['outputs.GetLocalGatewayRouteTableFilterResult']] = pulumi.property("filters")
-    id: str = pulumi.property("id")
-    local_gateway_id: str = pulumi.property("localGatewayId")
-    local_gateway_route_table_id: str = pulumi.property("localGatewayRouteTableId")
-    outpost_arn: str = pulumi.property("outpostArn")
-    state: str = pulumi.property("state")
-    tags: Mapping[str, str] = pulumi.property("tags")
-
-
 class GetLocalGatewayRouteTableResult:
     """
     A collection of values returned by getLocalGatewayRouteTable.
@@ -35,28 +26,64 @@ class GetLocalGatewayRouteTableResult:
     def __init__(__self__, filters=None, id=None, local_gateway_id=None, local_gateway_route_table_id=None, outpost_arn=None, state=None, tags=None):
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
+        pulumi.set(__self__, "filters", filters)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if local_gateway_id and not isinstance(local_gateway_id, str):
+            raise TypeError("Expected argument 'local_gateway_id' to be a str")
+        pulumi.set(__self__, "local_gateway_id", local_gateway_id)
+        if local_gateway_route_table_id and not isinstance(local_gateway_route_table_id, str):
+            raise TypeError("Expected argument 'local_gateway_route_table_id' to be a str")
+        pulumi.set(__self__, "local_gateway_route_table_id", local_gateway_route_table_id)
+        if outpost_arn and not isinstance(outpost_arn, str):
+            raise TypeError("Expected argument 'outpost_arn' to be a str")
+        pulumi.set(__self__, "outpost_arn", outpost_arn)
+        if state and not isinstance(state, str):
+            raise TypeError("Expected argument 'state' to be a str")
+        pulumi.set(__self__, "state", state)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetLocalGatewayRouteTableFilterResult']]:
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if local_gateway_id and not isinstance(local_gateway_id, str):
-            raise TypeError("Expected argument 'local_gateway_id' to be a str")
-        __self__.local_gateway_id = local_gateway_id
-        if local_gateway_route_table_id and not isinstance(local_gateway_route_table_id, str):
-            raise TypeError("Expected argument 'local_gateway_route_table_id' to be a str")
-        __self__.local_gateway_route_table_id = local_gateway_route_table_id
-        if outpost_arn and not isinstance(outpost_arn, str):
-            raise TypeError("Expected argument 'outpost_arn' to be a str")
-        __self__.outpost_arn = outpost_arn
-        if state and not isinstance(state, str):
-            raise TypeError("Expected argument 'state' to be a str")
-        __self__.state = state
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        ...
+
+    @property
+    @pulumi.getter(name="localGatewayId")
+    def local_gateway_id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="localGatewayRouteTableId")
+    def local_gateway_route_table_id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="outpostArn")
+    def outpost_arn(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def state(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
+        ...
+
 
 
 class AwaitableGetLocalGatewayRouteTableResult(GetLocalGatewayRouteTableResult):
@@ -119,7 +146,7 @@ def get_local_gateway_route_table(filters: Optional[List[pulumi.InputType['GetLo
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getLocalGatewayRouteTable:getLocalGatewayRouteTable', __args__, opts=opts, typ=_GetLocalGatewayRouteTableResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getLocalGatewayRouteTable:getLocalGatewayRouteTable', __args__, opts=opts, typ=GetLocalGatewayRouteTableResult).value
 
     return AwaitableGetLocalGatewayRouteTableResult(
         filters=__ret__.filters,

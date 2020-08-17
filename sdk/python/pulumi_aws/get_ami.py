@@ -17,41 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetAmiResult:
-    architecture: str = pulumi.property("architecture")
-    arn: str = pulumi.property("arn")
-    block_device_mappings: List['outputs.GetAmiBlockDeviceMappingResult'] = pulumi.property("blockDeviceMappings")
-    creation_date: str = pulumi.property("creationDate")
-    description: str = pulumi.property("description")
-    executable_users: Optional[List[str]] = pulumi.property("executableUsers")
-    filters: Optional[List['outputs.GetAmiFilterResult']] = pulumi.property("filters")
-    hypervisor: str = pulumi.property("hypervisor")
-    id: str = pulumi.property("id")
-    image_id: str = pulumi.property("imageId")
-    image_location: str = pulumi.property("imageLocation")
-    image_owner_alias: str = pulumi.property("imageOwnerAlias")
-    image_type: str = pulumi.property("imageType")
-    kernel_id: str = pulumi.property("kernelId")
-    most_recent: Optional[bool] = pulumi.property("mostRecent")
-    name: str = pulumi.property("name")
-    name_regex: Optional[str] = pulumi.property("nameRegex")
-    owner_id: str = pulumi.property("ownerId")
-    owners: List[str] = pulumi.property("owners")
-    platform: str = pulumi.property("platform")
-    product_codes: List['outputs.GetAmiProductCodeResult'] = pulumi.property("productCodes")
-    public: bool = pulumi.property("public")
-    ramdisk_id: str = pulumi.property("ramdiskId")
-    root_device_name: str = pulumi.property("rootDeviceName")
-    root_device_type: str = pulumi.property("rootDeviceType")
-    root_snapshot_id: str = pulumi.property("rootSnapshotId")
-    sriov_net_support: str = pulumi.property("sriovNetSupport")
-    state: str = pulumi.property("state")
-    state_reason: Mapping[str, str] = pulumi.property("stateReason")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    virtualization_type: str = pulumi.property("virtualizationType")
-
-
 class GetAmiResult:
     """
     A collection of values returned by getAmi.
@@ -59,19 +26,117 @@ class GetAmiResult:
     def __init__(__self__, architecture=None, arn=None, block_device_mappings=None, creation_date=None, description=None, executable_users=None, filters=None, hypervisor=None, id=None, image_id=None, image_location=None, image_owner_alias=None, image_type=None, kernel_id=None, most_recent=None, name=None, name_regex=None, owner_id=None, owners=None, platform=None, product_codes=None, public=None, ramdisk_id=None, root_device_name=None, root_device_type=None, root_snapshot_id=None, sriov_net_support=None, state=None, state_reason=None, tags=None, virtualization_type=None):
         if architecture and not isinstance(architecture, str):
             raise TypeError("Expected argument 'architecture' to be a str")
-        __self__.architecture = architecture
+        pulumi.set(__self__, "architecture", architecture)
+        if arn and not isinstance(arn, str):
+            raise TypeError("Expected argument 'arn' to be a str")
+        pulumi.set(__self__, "arn", arn)
+        if block_device_mappings and not isinstance(block_device_mappings, list):
+            raise TypeError("Expected argument 'block_device_mappings' to be a list")
+        pulumi.set(__self__, "block_device_mappings", block_device_mappings)
+        if creation_date and not isinstance(creation_date, str):
+            raise TypeError("Expected argument 'creation_date' to be a str")
+        pulumi.set(__self__, "creation_date", creation_date)
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
+        if executable_users and not isinstance(executable_users, list):
+            raise TypeError("Expected argument 'executable_users' to be a list")
+        pulumi.set(__self__, "executable_users", executable_users)
+        if filters and not isinstance(filters, list):
+            raise TypeError("Expected argument 'filters' to be a list")
+        pulumi.set(__self__, "filters", filters)
+        if hypervisor and not isinstance(hypervisor, str):
+            raise TypeError("Expected argument 'hypervisor' to be a str")
+        pulumi.set(__self__, "hypervisor", hypervisor)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if image_id and not isinstance(image_id, str):
+            raise TypeError("Expected argument 'image_id' to be a str")
+        pulumi.set(__self__, "image_id", image_id)
+        if image_location and not isinstance(image_location, str):
+            raise TypeError("Expected argument 'image_location' to be a str")
+        pulumi.set(__self__, "image_location", image_location)
+        if image_owner_alias and not isinstance(image_owner_alias, str):
+            raise TypeError("Expected argument 'image_owner_alias' to be a str")
+        pulumi.set(__self__, "image_owner_alias", image_owner_alias)
+        if image_type and not isinstance(image_type, str):
+            raise TypeError("Expected argument 'image_type' to be a str")
+        pulumi.set(__self__, "image_type", image_type)
+        if kernel_id and not isinstance(kernel_id, str):
+            raise TypeError("Expected argument 'kernel_id' to be a str")
+        pulumi.set(__self__, "kernel_id", kernel_id)
+        if most_recent and not isinstance(most_recent, bool):
+            raise TypeError("Expected argument 'most_recent' to be a bool")
+        pulumi.set(__self__, "most_recent", most_recent)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if name_regex and not isinstance(name_regex, str):
+            raise TypeError("Expected argument 'name_regex' to be a str")
+        pulumi.set(__self__, "name_regex", name_regex)
+        if owner_id and not isinstance(owner_id, str):
+            raise TypeError("Expected argument 'owner_id' to be a str")
+        pulumi.set(__self__, "owner_id", owner_id)
+        if owners and not isinstance(owners, list):
+            raise TypeError("Expected argument 'owners' to be a list")
+        pulumi.set(__self__, "owners", owners)
+        if platform and not isinstance(platform, str):
+            raise TypeError("Expected argument 'platform' to be a str")
+        pulumi.set(__self__, "platform", platform)
+        if product_codes and not isinstance(product_codes, list):
+            raise TypeError("Expected argument 'product_codes' to be a list")
+        pulumi.set(__self__, "product_codes", product_codes)
+        if public and not isinstance(public, bool):
+            raise TypeError("Expected argument 'public' to be a bool")
+        pulumi.set(__self__, "public", public)
+        if ramdisk_id and not isinstance(ramdisk_id, str):
+            raise TypeError("Expected argument 'ramdisk_id' to be a str")
+        pulumi.set(__self__, "ramdisk_id", ramdisk_id)
+        if root_device_name and not isinstance(root_device_name, str):
+            raise TypeError("Expected argument 'root_device_name' to be a str")
+        pulumi.set(__self__, "root_device_name", root_device_name)
+        if root_device_type and not isinstance(root_device_type, str):
+            raise TypeError("Expected argument 'root_device_type' to be a str")
+        pulumi.set(__self__, "root_device_type", root_device_type)
+        if root_snapshot_id and not isinstance(root_snapshot_id, str):
+            raise TypeError("Expected argument 'root_snapshot_id' to be a str")
+        pulumi.set(__self__, "root_snapshot_id", root_snapshot_id)
+        if sriov_net_support and not isinstance(sriov_net_support, str):
+            raise TypeError("Expected argument 'sriov_net_support' to be a str")
+        pulumi.set(__self__, "sriov_net_support", sriov_net_support)
+        if state and not isinstance(state, str):
+            raise TypeError("Expected argument 'state' to be a str")
+        pulumi.set(__self__, "state", state)
+        if state_reason and not isinstance(state_reason, dict):
+            raise TypeError("Expected argument 'state_reason' to be a dict")
+        pulumi.set(__self__, "state_reason", state_reason)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if virtualization_type and not isinstance(virtualization_type, str):
+            raise TypeError("Expected argument 'virtualization_type' to be a str")
+        pulumi.set(__self__, "virtualization_type", virtualization_type)
+
+    @property
+    @pulumi.getter
+    def architecture(self) -> str:
         """
         The OS architecture of the AMI (ie: `i386` or `x86_64`).
         """
-        if arn and not isinstance(arn, str):
-            raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The ARN of the AMI.
         """
-        if block_device_mappings and not isinstance(block_device_mappings, list):
-            raise TypeError("Expected argument 'block_device_mappings' to be a list")
-        __self__.block_device_mappings = block_device_mappings
+        ...
+
+    @property
+    @pulumi.getter(name="blockDeviceMappings")
+    def block_device_mappings(self) -> List['outputs.GetAmiBlockDeviceMappingResult']:
         """
         The block device mappings of the AMI.
         * `block_device_mappings.#.device_name` - The physical name of the device.
@@ -89,172 +154,230 @@ class GetAmiResult:
         * `block_device_mappings.#.virtual_name` - The virtual device name (for
         instance stores).
         """
-        if creation_date and not isinstance(creation_date, str):
-            raise TypeError("Expected argument 'creation_date' to be a str")
-        __self__.creation_date = creation_date
+        ...
+
+    @property
+    @pulumi.getter(name="creationDate")
+    def creation_date(self) -> str:
         """
         The date and time the image was created.
         """
-        if description and not isinstance(description, str):
-            raise TypeError("Expected argument 'description' to be a str")
-        __self__.description = description
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
         """
         The description of the AMI that was provided during image
         creation.
         """
-        if executable_users and not isinstance(executable_users, list):
-            raise TypeError("Expected argument 'executable_users' to be a list")
-        __self__.executable_users = executable_users
-        if filters and not isinstance(filters, list):
-            raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
-        if hypervisor and not isinstance(hypervisor, str):
-            raise TypeError("Expected argument 'hypervisor' to be a str")
-        __self__.hypervisor = hypervisor
+        ...
+
+    @property
+    @pulumi.getter(name="executableUsers")
+    def executable_users(self) -> Optional[List[str]]:
+        ...
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetAmiFilterResult']]:
+        ...
+
+    @property
+    @pulumi.getter
+    def hypervisor(self) -> str:
         """
         The hypervisor type of the image.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if image_id and not isinstance(image_id, str):
-            raise TypeError("Expected argument 'image_id' to be a str")
-        __self__.image_id = image_id
+        ...
+
+    @property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> str:
         """
         The ID of the AMI. Should be the same as the resource `id`.
         """
-        if image_location and not isinstance(image_location, str):
-            raise TypeError("Expected argument 'image_location' to be a str")
-        __self__.image_location = image_location
+        ...
+
+    @property
+    @pulumi.getter(name="imageLocation")
+    def image_location(self) -> str:
         """
         The location of the AMI.
         """
-        if image_owner_alias and not isinstance(image_owner_alias, str):
-            raise TypeError("Expected argument 'image_owner_alias' to be a str")
-        __self__.image_owner_alias = image_owner_alias
+        ...
+
+    @property
+    @pulumi.getter(name="imageOwnerAlias")
+    def image_owner_alias(self) -> str:
         """
         The AWS account alias (for example, `amazon`, `self`) or
         the AWS account ID of the AMI owner.
         """
-        if image_type and not isinstance(image_type, str):
-            raise TypeError("Expected argument 'image_type' to be a str")
-        __self__.image_type = image_type
+        ...
+
+    @property
+    @pulumi.getter(name="imageType")
+    def image_type(self) -> str:
         """
         The type of image.
         """
-        if kernel_id and not isinstance(kernel_id, str):
-            raise TypeError("Expected argument 'kernel_id' to be a str")
-        __self__.kernel_id = kernel_id
+        ...
+
+    @property
+    @pulumi.getter(name="kernelId")
+    def kernel_id(self) -> str:
         """
         The kernel associated with the image, if any. Only applicable
         for machine images.
         """
-        if most_recent and not isinstance(most_recent, bool):
-            raise TypeError("Expected argument 'most_recent' to be a bool")
-        __self__.most_recent = most_recent
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
+        ...
+
+    @property
+    @pulumi.getter(name="mostRecent")
+    def most_recent(self) -> Optional[bool]:
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
         """
         The name of the AMI that was provided during image creation.
         """
-        if name_regex and not isinstance(name_regex, str):
-            raise TypeError("Expected argument 'name_regex' to be a str")
-        __self__.name_regex = name_regex
-        if owner_id and not isinstance(owner_id, str):
-            raise TypeError("Expected argument 'owner_id' to be a str")
-        __self__.owner_id = owner_id
+        ...
+
+    @property
+    @pulumi.getter(name="nameRegex")
+    def name_regex(self) -> Optional[str]:
+        ...
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
         """
         The AWS account ID of the image owner.
         """
-        if owners and not isinstance(owners, list):
-            raise TypeError("Expected argument 'owners' to be a list")
-        __self__.owners = owners
-        if platform and not isinstance(platform, str):
-            raise TypeError("Expected argument 'platform' to be a str")
-        __self__.platform = platform
+        ...
+
+    @property
+    @pulumi.getter
+    def owners(self) -> List[str]:
+        ...
+
+    @property
+    @pulumi.getter
+    def platform(self) -> str:
         """
         The value is Windows for `Windows` AMIs; otherwise blank.
         """
-        if product_codes and not isinstance(product_codes, list):
-            raise TypeError("Expected argument 'product_codes' to be a list")
-        __self__.product_codes = product_codes
+        ...
+
+    @property
+    @pulumi.getter(name="productCodes")
+    def product_codes(self) -> List['outputs.GetAmiProductCodeResult']:
         """
         Any product codes associated with the AMI.
         * `product_codes.#.product_code_id` - The product code.
         * `product_codes.#.product_code_type` - The type of product code.
         """
-        if public and not isinstance(public, bool):
-            raise TypeError("Expected argument 'public' to be a bool")
-        __self__.public = public
+        ...
+
+    @property
+    @pulumi.getter
+    def public(self) -> bool:
         """
         `true` if the image has public launch permissions.
         """
-        if ramdisk_id and not isinstance(ramdisk_id, str):
-            raise TypeError("Expected argument 'ramdisk_id' to be a str")
-        __self__.ramdisk_id = ramdisk_id
+        ...
+
+    @property
+    @pulumi.getter(name="ramdiskId")
+    def ramdisk_id(self) -> str:
         """
         The RAM disk associated with the image, if any. Only applicable
         for machine images.
         """
-        if root_device_name and not isinstance(root_device_name, str):
-            raise TypeError("Expected argument 'root_device_name' to be a str")
-        __self__.root_device_name = root_device_name
+        ...
+
+    @property
+    @pulumi.getter(name="rootDeviceName")
+    def root_device_name(self) -> str:
         """
         The device name of the root device.
         """
-        if root_device_type and not isinstance(root_device_type, str):
-            raise TypeError("Expected argument 'root_device_type' to be a str")
-        __self__.root_device_type = root_device_type
+        ...
+
+    @property
+    @pulumi.getter(name="rootDeviceType")
+    def root_device_type(self) -> str:
         """
         The type of root device (ie: `ebs` or `instance-store`).
         """
-        if root_snapshot_id and not isinstance(root_snapshot_id, str):
-            raise TypeError("Expected argument 'root_snapshot_id' to be a str")
-        __self__.root_snapshot_id = root_snapshot_id
+        ...
+
+    @property
+    @pulumi.getter(name="rootSnapshotId")
+    def root_snapshot_id(self) -> str:
         """
         The snapshot id associated with the root device, if any
         (only applies to `ebs` root devices).
         """
-        if sriov_net_support and not isinstance(sriov_net_support, str):
-            raise TypeError("Expected argument 'sriov_net_support' to be a str")
-        __self__.sriov_net_support = sriov_net_support
+        ...
+
+    @property
+    @pulumi.getter(name="sriovNetSupport")
+    def sriov_net_support(self) -> str:
         """
         Specifies whether enhanced networking is enabled.
         """
-        if state and not isinstance(state, str):
-            raise TypeError("Expected argument 'state' to be a str")
-        __self__.state = state
+        ...
+
+    @property
+    @pulumi.getter
+    def state(self) -> str:
         """
         The current state of the AMI. If the state is `available`, the image
         is successfully registered and can be used to launch an instance.
         """
-        if state_reason and not isinstance(state_reason, dict):
-            raise TypeError("Expected argument 'state_reason' to be a dict")
-        __self__.state_reason = state_reason
+        ...
+
+    @property
+    @pulumi.getter(name="stateReason")
+    def state_reason(self) -> Mapping[str, str]:
         """
         Describes a state change. Fields are `UNSET` if not available.
         * `state_reason.code` - The reason code for the state change.
         * `state_reason.message` - The message for the state change.
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
         """
         Any tags assigned to the image.
         * `tags.#.key` - The key name of the tag.
         * `tags.#.value` - The value of the tag.
         """
-        if virtualization_type and not isinstance(virtualization_type, str):
-            raise TypeError("Expected argument 'virtualization_type' to be a str")
-        __self__.virtualization_type = virtualization_type
+        ...
+
+    @property
+    @pulumi.getter(name="virtualizationType")
+    def virtualization_type(self) -> str:
         """
         The type of virtualization of the AMI (ie: `hvm` or
         `paravirtual`).
         """
+        ...
+
 
 
 class AwaitableGetAmiResult(GetAmiResult):
@@ -362,7 +485,7 @@ def get_ami(executable_users: Optional[List[str]] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:index/getAmi:getAmi', __args__, opts=opts, typ=_GetAmiResult).value
+    __ret__ = pulumi.runtime.invoke('aws:index/getAmi:getAmi', __args__, opts=opts, typ=GetAmiResult).value
 
     return AwaitableGetAmiResult(
         architecture=__ret__.architecture,

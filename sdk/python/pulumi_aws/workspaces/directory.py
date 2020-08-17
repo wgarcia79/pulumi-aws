@@ -14,71 +14,6 @@ __all__ = ['Directory']
 
 
 class Directory(pulumi.CustomResource):
-    alias: pulumi.Output[str] = pulumi.property("alias")
-    """
-    The directory alias.
-    """
-
-    customer_user_name: pulumi.Output[str] = pulumi.property("customerUserName")
-    """
-    The user name for the service account.
-    """
-
-    directory_id: pulumi.Output[str] = pulumi.property("directoryId")
-    """
-    The directory identifier for registration in WorkSpaces service.
-    """
-
-    directory_name: pulumi.Output[str] = pulumi.property("directoryName")
-    """
-    The name of the directory.
-    """
-
-    directory_type: pulumi.Output[str] = pulumi.property("directoryType")
-    """
-    The directory type.
-    """
-
-    dns_ip_addresses: pulumi.Output[List[str]] = pulumi.property("dnsIpAddresses")
-    """
-    The IP addresses of the DNS servers for the directory.
-    """
-
-    iam_role_id: pulumi.Output[str] = pulumi.property("iamRoleId")
-    """
-    The identifier of the IAM role. This is the role that allows Amazon WorkSpaces to make calls to other services, such as Amazon EC2, on your behalf.
-    """
-
-    ip_group_ids: pulumi.Output[List[str]] = pulumi.property("ipGroupIds")
-    """
-    The identifiers of the IP access control groups associated with the directory.
-    """
-
-    registration_code: pulumi.Output[str] = pulumi.property("registrationCode")
-    """
-    The registration code for the directory. This is the code that users enter in their Amazon WorkSpaces client application to connect to the directory.
-    """
-
-    self_service_permissions: pulumi.Output['outputs.DirectorySelfServicePermissions'] = pulumi.property("selfServicePermissions")
-    """
-    The permissions to enable or disable self-service capabilities.
-    """
-
-    subnet_ids: pulumi.Output[List[str]] = pulumi.property("subnetIds")
-    """
-    The identifiers of the subnets where the directory resides.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags assigned to the WorkSpaces directory.
-    """
-
-    workspace_security_group_id: pulumi.Output[str] = pulumi.property("workspaceSecurityGroupId")
-    """
-    The identifier of the security group that is assigned to new WorkSpaces.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -226,6 +161,110 @@ class Directory(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["workspace_security_group_id"] = workspace_security_group_id
         return Directory(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def alias(self) -> str:
+        """
+        The directory alias.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="customerUserName")
+    def customer_user_name(self) -> str:
+        """
+        The user name for the service account.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="directoryId")
+    def directory_id(self) -> str:
+        """
+        The directory identifier for registration in WorkSpaces service.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="directoryName")
+    def directory_name(self) -> str:
+        """
+        The name of the directory.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="directoryType")
+    def directory_type(self) -> str:
+        """
+        The directory type.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="dnsIpAddresses")
+    def dns_ip_addresses(self) -> List[str]:
+        """
+        The IP addresses of the DNS servers for the directory.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="iamRoleId")
+    def iam_role_id(self) -> str:
+        """
+        The identifier of the IAM role. This is the role that allows Amazon WorkSpaces to make calls to other services, such as Amazon EC2, on your behalf.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="ipGroupIds")
+    def ip_group_ids(self) -> List[str]:
+        """
+        The identifiers of the IP access control groups associated with the directory.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="registrationCode")
+    def registration_code(self) -> str:
+        """
+        The registration code for the directory. This is the code that users enter in their Amazon WorkSpaces client application to connect to the directory.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="selfServicePermissions")
+    def self_service_permissions(self) -> 'outputs.DirectorySelfServicePermissions':
+        """
+        The permissions to enable or disable self-service capabilities.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="subnetIds")
+    def subnet_ids(self) -> List[str]:
+        """
+        The identifiers of the subnets where the directory resides.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags assigned to the WorkSpaces directory.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="workspaceSecurityGroupId")
+    def workspace_security_group_id(self) -> str:
+        """
+        The identifier of the security group that is assigned to new WorkSpaces.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

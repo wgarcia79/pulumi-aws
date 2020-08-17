@@ -12,66 +12,6 @@ __all__ = ['VpcEndpointService']
 
 
 class VpcEndpointService(pulumi.CustomResource):
-    acceptance_required: pulumi.Output[bool] = pulumi.property("acceptanceRequired")
-    """
-    Whether or not VPC endpoint connection requests to the service must be accepted by the service owner - `true` or `false`.
-    """
-
-    allowed_principals: pulumi.Output[List[str]] = pulumi.property("allowedPrincipals")
-    """
-    The ARNs of one or more principals allowed to discover the endpoint service.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The Amazon Resource Name (ARN) of the VPC endpoint service.
-    """
-
-    availability_zones: pulumi.Output[List[str]] = pulumi.property("availabilityZones")
-    """
-    The Availability Zones in which the service is available.
-    """
-
-    base_endpoint_dns_names: pulumi.Output[List[str]] = pulumi.property("baseEndpointDnsNames")
-    """
-    The DNS names for the service.
-    """
-
-    manages_vpc_endpoints: pulumi.Output[bool] = pulumi.property("managesVpcEndpoints")
-    """
-    Whether or not the service manages its VPC endpoints - `true` or `false`.
-    """
-
-    network_load_balancer_arns: pulumi.Output[List[str]] = pulumi.property("networkLoadBalancerArns")
-    """
-    The ARNs of one or more Network Load Balancers for the endpoint service.
-    """
-
-    private_dns_name: pulumi.Output[str] = pulumi.property("privateDnsName")
-    """
-    The private DNS name for the service.
-    """
-
-    service_name: pulumi.Output[str] = pulumi.property("serviceName")
-    """
-    The service name.
-    """
-
-    service_type: pulumi.Output[str] = pulumi.property("serviceType")
-    """
-    The service type, `Gateway` or `Interface`.
-    """
-
-    state: pulumi.Output[str] = pulumi.property("state")
-    """
-    The state of the VPC endpoint service.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -216,6 +156,102 @@ class VpcEndpointService(pulumi.CustomResource):
         __props__["state"] = state
         __props__["tags"] = tags
         return VpcEndpointService(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="acceptanceRequired")
+    def acceptance_required(self) -> bool:
+        """
+        Whether or not VPC endpoint connection requests to the service must be accepted by the service owner - `true` or `false`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="allowedPrincipals")
+    def allowed_principals(self) -> List[str]:
+        """
+        The ARNs of one or more principals allowed to discover the endpoint service.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) of the VPC endpoint service.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="availabilityZones")
+    def availability_zones(self) -> List[str]:
+        """
+        The Availability Zones in which the service is available.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="baseEndpointDnsNames")
+    def base_endpoint_dns_names(self) -> List[str]:
+        """
+        The DNS names for the service.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="managesVpcEndpoints")
+    def manages_vpc_endpoints(self) -> bool:
+        """
+        Whether or not the service manages its VPC endpoints - `true` or `false`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="networkLoadBalancerArns")
+    def network_load_balancer_arns(self) -> List[str]:
+        """
+        The ARNs of one or more Network Load Balancers for the endpoint service.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="privateDnsName")
+    def private_dns_name(self) -> str:
+        """
+        The private DNS name for the service.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="serviceName")
+    def service_name(self) -> str:
+        """
+        The service name.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="serviceType")
+    def service_type(self) -> str:
+        """
+        The service type, `Gateway` or `Interface`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def state(self) -> str:
+        """
+        The state of the VPC endpoint service.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

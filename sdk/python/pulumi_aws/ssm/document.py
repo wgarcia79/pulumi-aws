@@ -14,108 +14,6 @@ __all__ = ['Document']
 
 
 class Document(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-
-    attachments_sources: pulumi.Output[Optional[List['outputs.DocumentAttachmentsSource']]] = pulumi.property("attachmentsSources")
-    """
-    One or more configuration blocks describing attachments sources to a version of a document. Defined below.
-    """
-
-    content: pulumi.Output[str] = pulumi.property("content")
-    """
-    The JSON or YAML content of the document.
-    """
-
-    created_date: pulumi.Output[str] = pulumi.property("createdDate")
-    """
-    The date the document was created.
-    """
-
-    default_version: pulumi.Output[str] = pulumi.property("defaultVersion")
-    """
-    The default version of the document.
-    """
-
-    description: pulumi.Output[str] = pulumi.property("description")
-    """
-    The description of the document.
-    """
-
-    document_format: pulumi.Output[Optional[str]] = pulumi.property("documentFormat")
-    """
-    The format of the document. Valid document types include: `JSON` and `YAML`
-    """
-
-    document_type: pulumi.Output[str] = pulumi.property("documentType")
-    """
-    The type of the document. Valid document types include: `Automation`, `Command`, `Package`, `Policy`, and `Session`
-    """
-
-    document_version: pulumi.Output[str] = pulumi.property("documentVersion")
-    """
-    The document version.
-    """
-
-    hash: pulumi.Output[str] = pulumi.property("hash")
-    """
-    The sha1 or sha256 of the document content
-    """
-
-    hash_type: pulumi.Output[str] = pulumi.property("hashType")
-    """
-    "Sha1" "Sha256". The hashing algorithm used when hashing the content.
-    """
-
-    latest_version: pulumi.Output[str] = pulumi.property("latestVersion")
-    """
-    The latest version of the document.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the document.
-    """
-
-    owner: pulumi.Output[str] = pulumi.property("owner")
-    """
-    The AWS user account of the person who created the document.
-    """
-
-    parameters: pulumi.Output[List['outputs.DocumentParameter']] = pulumi.property("parameters")
-    """
-    The parameters that are available to this document.
-    """
-
-    permissions: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("permissions")
-    """
-    Additional Permissions to attach to the document. See Permissions below for details.
-    """
-
-    platform_types: pulumi.Output[List[str]] = pulumi.property("platformTypes")
-    """
-    A list of OS platforms compatible with this SSM document, either "Windows" or "Linux".
-    """
-
-    schema_version: pulumi.Output[str] = pulumi.property("schemaVersion")
-    """
-    The schema version of the document.
-    """
-
-    status: pulumi.Output[str] = pulumi.property("status")
-    """
-    "Creating", "Active" or "Deleting". The current status of the document.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the object.
-    """
-
-    target_type: pulumi.Output[Optional[str]] = pulumi.property("targetType")
-    """
-    The target type which defines the kinds of resources the document can run on. For example, /AWS::EC2::Instance. For a list of valid resource types, see AWS Resource Types Reference (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -314,6 +212,171 @@ class Document(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["target_type"] = target_type
         return Document(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="attachmentsSources")
+    def attachments_sources(self) -> Optional[List['outputs.DocumentAttachmentsSource']]:
+        """
+        One or more configuration blocks describing attachments sources to a version of a document. Defined below.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        """
+        The JSON or YAML content of the document.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="createdDate")
+    def created_date(self) -> str:
+        """
+        The date the document was created.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="defaultVersion")
+    def default_version(self) -> str:
+        """
+        The default version of the document.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the document.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="documentFormat")
+    def document_format(self) -> Optional[str]:
+        """
+        The format of the document. Valid document types include: `JSON` and `YAML`
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="documentType")
+    def document_type(self) -> str:
+        """
+        The type of the document. Valid document types include: `Automation`, `Command`, `Package`, `Policy`, and `Session`
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="documentVersion")
+    def document_version(self) -> str:
+        """
+        The document version.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def hash(self) -> str:
+        """
+        The sha1 or sha256 of the document content
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="hashType")
+    def hash_type(self) -> str:
+        """
+        "Sha1" "Sha256". The hashing algorithm used when hashing the content.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="latestVersion")
+    def latest_version(self) -> str:
+        """
+        The latest version of the document.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the document.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def owner(self) -> str:
+        """
+        The AWS user account of the person who created the document.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> List['outputs.DocumentParameter']:
+        """
+        The parameters that are available to this document.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def permissions(self) -> Optional[Mapping[str, str]]:
+        """
+        Additional Permissions to attach to the document. See Permissions below for details.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="platformTypes")
+    def platform_types(self) -> List[str]:
+        """
+        A list of OS platforms compatible with this SSM document, either "Windows" or "Linux".
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="schemaVersion")
+    def schema_version(self) -> str:
+        """
+        The schema version of the document.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        "Creating", "Active" or "Deleting". The current status of the document.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the object.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="targetType")
+    def target_type(self) -> Optional[str]:
+        """
+        The target type which defines the kinds of resources the document can run on. For example, /AWS::EC2::Instance. For a list of valid resource types, see AWS Resource Types Reference (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

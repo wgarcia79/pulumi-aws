@@ -12,31 +12,6 @@ __all__ = ['VpcLink']
 
 
 class VpcLink(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The VPC Link ARN.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the VPC Link.
-    """
-
-    security_group_ids: pulumi.Output[List[str]] = pulumi.property("securityGroupIds")
-    """
-    Security group IDs for the VPC Link.
-    """
-
-    subnet_ids: pulumi.Output[List[str]] = pulumi.property("subnetIds")
-    """
-    Subnet IDs for the VPC Link.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the VPC Link.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -138,6 +113,46 @@ class VpcLink(pulumi.CustomResource):
         __props__["subnet_ids"] = subnet_ids
         __props__["tags"] = tags
         return VpcLink(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The VPC Link ARN.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the VPC Link.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="securityGroupIds")
+    def security_group_ids(self) -> List[str]:
+        """
+        Security group IDs for the VPC Link.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="subnetIds")
+    def subnet_ids(self) -> List[str]:
+        """
+        Subnet IDs for the VPC Link.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the VPC Link.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

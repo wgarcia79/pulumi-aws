@@ -12,47 +12,6 @@ __all__ = ['GlobalCluster']
 
 
 class GlobalCluster(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    RDS Global Cluster Amazon Resource Name (ARN)
-    """
-
-    database_name: pulumi.Output[Optional[str]] = pulumi.property("databaseName")
-    """
-    Name for an automatically created database on cluster creation.
-    """
-
-    deletion_protection: pulumi.Output[Optional[bool]] = pulumi.property("deletionProtection")
-    """
-    If the Global Cluster should have deletion protection enabled. The database can't be deleted when this value is set to `true`. The default is `false`.
-    """
-
-    engine: pulumi.Output[Optional[str]] = pulumi.property("engine")
-    """
-    Name of the database engine to be used for this DB cluster. Valid values: `aurora`, `aurora-mysql`, `aurora-postgresql`. Defaults to `aurora`.
-    """
-
-    engine_version: pulumi.Output[str] = pulumi.property("engineVersion")
-    """
-    Engine version of the Aurora global database.
-    * **NOTE:** When the engine is set to `aurora-mysql`, an engine version compatible with global database is required. The earliest available version is `5.7.mysql_aurora.2.06.0`.
-    """
-
-    global_cluster_identifier: pulumi.Output[str] = pulumi.property("globalClusterIdentifier")
-    """
-    The global cluster identifier.
-    """
-
-    global_cluster_resource_id: pulumi.Output[str] = pulumi.property("globalClusterResourceId")
-    """
-    AWS Region-unique, immutable identifier for the global database cluster. This identifier is found in AWS CloudTrail log entries whenever the AWS KMS key for the DB cluster is accessed
-    """
-
-    storage_encrypted: pulumi.Output[Optional[bool]] = pulumi.property("storageEncrypted")
-    """
-    Specifies whether the DB cluster is encrypted. The default is `false`.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -181,6 +140,71 @@ class GlobalCluster(pulumi.CustomResource):
         __props__["global_cluster_resource_id"] = global_cluster_resource_id
         __props__["storage_encrypted"] = storage_encrypted
         return GlobalCluster(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        RDS Global Cluster Amazon Resource Name (ARN)
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="databaseName")
+    def database_name(self) -> Optional[str]:
+        """
+        Name for an automatically created database on cluster creation.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="deletionProtection")
+    def deletion_protection(self) -> Optional[bool]:
+        """
+        If the Global Cluster should have deletion protection enabled. The database can't be deleted when this value is set to `true`. The default is `false`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def engine(self) -> Optional[str]:
+        """
+        Name of the database engine to be used for this DB cluster. Valid values: `aurora`, `aurora-mysql`, `aurora-postgresql`. Defaults to `aurora`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="engineVersion")
+    def engine_version(self) -> str:
+        """
+        Engine version of the Aurora global database.
+        * **NOTE:** When the engine is set to `aurora-mysql`, an engine version compatible with global database is required. The earliest available version is `5.7.mysql_aurora.2.06.0`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="globalClusterIdentifier")
+    def global_cluster_identifier(self) -> str:
+        """
+        The global cluster identifier.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="globalClusterResourceId")
+    def global_cluster_resource_id(self) -> str:
+        """
+        AWS Region-unique, immutable identifier for the global database cluster. This identifier is found in AWS CloudTrail log entries whenever the AWS KMS key for the DB cluster is accessed
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="storageEncrypted")
+    def storage_encrypted(self) -> Optional[bool]:
+        """
+        Specifies whether the DB cluster is encrypted. The default is `false`.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

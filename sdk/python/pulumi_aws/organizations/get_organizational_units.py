@@ -16,13 +16,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetOrganizationalUnitsResult:
-    childrens: List['outputs.GetOrganizationalUnitsChildrenResult'] = pulumi.property("childrens")
-    id: str = pulumi.property("id")
-    parent_id: str = pulumi.property("parentId")
-
-
 class GetOrganizationalUnitsResult:
     """
     A collection of values returned by getOrganizationalUnits.
@@ -30,19 +25,35 @@ class GetOrganizationalUnitsResult:
     def __init__(__self__, childrens=None, id=None, parent_id=None):
         if childrens and not isinstance(childrens, list):
             raise TypeError("Expected argument 'childrens' to be a list")
-        __self__.childrens = childrens
+        pulumi.set(__self__, "childrens", childrens)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if parent_id and not isinstance(parent_id, str):
+            raise TypeError("Expected argument 'parent_id' to be a str")
+        pulumi.set(__self__, "parent_id", parent_id)
+
+    @property
+    @pulumi.getter
+    def childrens(self) -> List['outputs.GetOrganizationalUnitsChildrenResult']:
         """
         List of child organizational units, which have the following attributes:
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if parent_id and not isinstance(parent_id, str):
-            raise TypeError("Expected argument 'parent_id' to be a str")
-        __self__.parent_id = parent_id
+        ...
+
+    @property
+    @pulumi.getter(name="parentId")
+    def parent_id(self) -> str:
+        ...
+
 
 
 class AwaitableGetOrganizationalUnitsResult(GetOrganizationalUnitsResult):
@@ -80,7 +91,7 @@ def get_organizational_units(parent_id: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:organizations/getOrganizationalUnits:getOrganizationalUnits', __args__, opts=opts, typ=_GetOrganizationalUnitsResult).value
+    __ret__ = pulumi.runtime.invoke('aws:organizations/getOrganizationalUnits:getOrganizationalUnits', __args__, opts=opts, typ=GetOrganizationalUnitsResult).value
 
     return AwaitableGetOrganizationalUnitsResult(
         childrens=__ret__.childrens,

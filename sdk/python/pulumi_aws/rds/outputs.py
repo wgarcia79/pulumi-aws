@@ -22,15 +22,21 @@ __all__ = [
 
 @pulumi.output_type
 class ClusterParameterGroupParameter(dict):
-    @property
-    @pulumi.getter(name="applyMethod")
-    def apply_method(self) -> Optional[str]:
+    def __init__(__self__, *,
+                 name: str,
+                 value: str,
+                 apply_method: Optional[str] = None):
         """
-        "immediate" (default), or "pending-reboot". Some
-        engines can't apply some parameters without a reboot, and you will need to
-        specify "pending-reboot" here.
+        :param str name: The name of the DB parameter.
+        :param str value: The value of the DB parameter.
+        :param str apply_method: "immediate" (default), or "pending-reboot". Some
+               engines can't apply some parameters without a reboot, and you will need to
+               specify "pending-reboot" here.
         """
-        ...
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+        if apply_method is not None:
+            pulumi.set(__self__, "apply_method", apply_method)
 
     @property
     @pulumi.getter
@@ -48,25 +54,47 @@ class ClusterParameterGroupParameter(dict):
         """
         ...
 
+    @property
+    @pulumi.getter(name="applyMethod")
+    def apply_method(self) -> Optional[str]:
+        """
+        "immediate" (default), or "pending-reboot". Some
+        engines can't apply some parameters without a reboot, and you will need to
+        specify "pending-reboot" here.
+        """
+        ...
+
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class ClusterS3Import(dict):
+    def __init__(__self__, *,
+                 bucket_name: str,
+                 ingestion_role: str,
+                 source_engine: str,
+                 source_engine_version: str,
+                 bucket_prefix: Optional[str] = None):
+        """
+        :param str bucket_name: The bucket name where your backup is stored
+        :param str ingestion_role: Role applied to load the data.
+        :param str source_engine: Source engine for the backup
+        :param str source_engine_version: Version of the source engine used to make the backup
+        :param str bucket_prefix: Can be blank, but is the path to your backup
+        """
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "ingestion_role", ingestion_role)
+        pulumi.set(__self__, "source_engine", source_engine)
+        pulumi.set(__self__, "source_engine_version", source_engine_version)
+        if bucket_prefix is not None:
+            pulumi.set(__self__, "bucket_prefix", bucket_prefix)
+
     @property
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> str:
         """
         The bucket name where your backup is stored
-        """
-        ...
-
-    @property
-    @pulumi.getter(name="bucketPrefix")
-    def bucket_prefix(self) -> Optional[str]:
-        """
-        Can be blank, but is the path to your backup
         """
         ...
 
@@ -94,12 +122,44 @@ class ClusterS3Import(dict):
         """
         ...
 
+    @property
+    @pulumi.getter(name="bucketPrefix")
+    def bucket_prefix(self) -> Optional[str]:
+        """
+        Can be blank, but is the path to your backup
+        """
+        ...
+
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class ClusterScalingConfiguration(dict):
+    def __init__(__self__, *,
+                 auto_pause: Optional[bool] = None,
+                 max_capacity: Optional[float] = None,
+                 min_capacity: Optional[float] = None,
+                 seconds_until_auto_pause: Optional[float] = None,
+                 timeout_action: Optional[str] = None):
+        """
+        :param bool auto_pause: Whether to enable automatic pause. A DB cluster can be paused only when it's idle (it has no connections). If a DB cluster is paused for more than seven days, the DB cluster might be backed up with a snapshot. In this case, the DB cluster is restored when there is a request to connect to it. Defaults to `true`.
+        :param float max_capacity: The maximum capacity. The maximum capacity must be greater than or equal to the minimum capacity. Valid capacity values are `1`, `2`, `4`, `8`, `16`, `32`, `64`, `128`, and `256`. Defaults to `16`.
+        :param float min_capacity: The minimum capacity. The minimum capacity must be lesser than or equal to the maximum capacity. Valid capacity values are `1`, `2`, `4`, `8`, `16`, `32`, `64`, `128`, and `256`. Defaults to `2`.
+        :param float seconds_until_auto_pause: The time, in seconds, before an Aurora DB cluster in serverless mode is paused. Valid values are `300` through `86400`. Defaults to `300`.
+        :param str timeout_action: The action to take when the timeout is reached. Valid values: `ForceApplyCapacityChange`, `RollbackCapacityChange`. Defaults to `RollbackCapacityChange`. See [documentation](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.how-it-works.html#aurora-serverless.how-it-works.timeout-action).
+        """
+        if auto_pause is not None:
+            pulumi.set(__self__, "auto_pause", auto_pause)
+        if max_capacity is not None:
+            pulumi.set(__self__, "max_capacity", max_capacity)
+        if min_capacity is not None:
+            pulumi.set(__self__, "min_capacity", min_capacity)
+        if seconds_until_auto_pause is not None:
+            pulumi.set(__self__, "seconds_until_auto_pause", seconds_until_auto_pause)
+        if timeout_action is not None:
+            pulumi.set(__self__, "timeout_action", timeout_action)
+
     @property
     @pulumi.getter(name="autoPause")
     def auto_pause(self) -> Optional[bool]:
@@ -146,19 +206,31 @@ class ClusterScalingConfiguration(dict):
 
 @pulumi.output_type
 class InstanceS3Import(dict):
+    def __init__(__self__, *,
+                 bucket_name: str,
+                 ingestion_role: str,
+                 source_engine: str,
+                 source_engine_version: str,
+                 bucket_prefix: Optional[str] = None):
+        """
+        :param str bucket_name: The bucket name where your backup is stored
+        :param str ingestion_role: Role applied to load the data.
+        :param str source_engine: Source engine for the backup
+        :param str source_engine_version: Version of the source engine used to make the backup
+        :param str bucket_prefix: Can be blank, but is the path to your backup
+        """
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "ingestion_role", ingestion_role)
+        pulumi.set(__self__, "source_engine", source_engine)
+        pulumi.set(__self__, "source_engine_version", source_engine_version)
+        if bucket_prefix is not None:
+            pulumi.set(__self__, "bucket_prefix", bucket_prefix)
+
     @property
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> str:
         """
         The bucket name where your backup is stored
-        """
-        ...
-
-    @property
-    @pulumi.getter(name="bucketPrefix")
-    def bucket_prefix(self) -> Optional[str]:
-        """
-        Can be blank, but is the path to your backup
         """
         ...
 
@@ -186,25 +258,60 @@ class InstanceS3Import(dict):
         """
         ...
 
+    @property
+    @pulumi.getter(name="bucketPrefix")
+    def bucket_prefix(self) -> Optional[str]:
+        """
+        Can be blank, but is the path to your backup
+        """
+        ...
+
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class OptionGroupOption(dict):
-    @property
-    @pulumi.getter(name="dbSecurityGroupMemberships")
-    def db_security_group_memberships(self) -> Optional[List[str]]:
+    def __init__(__self__, *,
+                 option_name: str,
+                 db_security_group_memberships: Optional[List[str]] = None,
+                 option_settings: Optional[List['outputs.OptionGroupOptionOptionSetting']] = None,
+                 port: Optional[float] = None,
+                 version: Optional[str] = None,
+                 vpc_security_group_memberships: Optional[List[str]] = None):
         """
-        A list of DB Security Groups for which the option is enabled.
+        :param str option_name: The Name of the Option (e.g. MEMCACHED).
+        :param List[str] db_security_group_memberships: A list of DB Security Groups for which the option is enabled.
+        :param List['OptionGroupOptionOptionSettingArgs'] option_settings: A list of option settings to apply.
+        :param float port: The Port number when connecting to the Option (e.g. 11211).
+        :param str version: The version of the option (e.g. 13.1.0.0).
+        :param List[str] vpc_security_group_memberships: A list of VPC Security Groups for which the option is enabled.
         """
-        ...
+        pulumi.set(__self__, "option_name", option_name)
+        if db_security_group_memberships is not None:
+            pulumi.set(__self__, "db_security_group_memberships", db_security_group_memberships)
+        if option_settings is not None:
+            pulumi.set(__self__, "option_settings", option_settings)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+        if vpc_security_group_memberships is not None:
+            pulumi.set(__self__, "vpc_security_group_memberships", vpc_security_group_memberships)
 
     @property
     @pulumi.getter(name="optionName")
     def option_name(self) -> str:
         """
         The Name of the Option (e.g. MEMCACHED).
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="dbSecurityGroupMemberships")
+    def db_security_group_memberships(self) -> Optional[List[str]]:
+        """
+        A list of DB Security Groups for which the option is enabled.
         """
         ...
 
@@ -246,6 +353,16 @@ class OptionGroupOption(dict):
 
 @pulumi.output_type
 class OptionGroupOptionOptionSetting(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 value: str):
+        """
+        :param str name: The Name of the setting.
+        :param str value: The Value of the setting.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -268,15 +385,21 @@ class OptionGroupOptionOptionSetting(dict):
 
 @pulumi.output_type
 class ParameterGroupParameter(dict):
-    @property
-    @pulumi.getter(name="applyMethod")
-    def apply_method(self) -> Optional[str]:
+    def __init__(__self__, *,
+                 name: str,
+                 value: str,
+                 apply_method: Optional[str] = None):
         """
-        "immediate" (default), or "pending-reboot". Some
-        engines can't apply some parameters without a reboot, and you will need to
-        specify "pending-reboot" here.
+        :param str name: The name of the DB parameter.
+        :param str value: The value of the DB parameter.
+        :param str apply_method: "immediate" (default), or "pending-reboot". Some
+               engines can't apply some parameters without a reboot, and you will need to
+               specify "pending-reboot" here.
         """
-        ...
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+        if apply_method is not None:
+            pulumi.set(__self__, "apply_method", apply_method)
 
     @property
     @pulumi.getter
@@ -294,12 +417,43 @@ class ParameterGroupParameter(dict):
         """
         ...
 
+    @property
+    @pulumi.getter(name="applyMethod")
+    def apply_method(self) -> Optional[str]:
+        """
+        "immediate" (default), or "pending-reboot". Some
+        engines can't apply some parameters without a reboot, and you will need to
+        specify "pending-reboot" here.
+        """
+        ...
+
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class SecurityGroupIngress(dict):
+    def __init__(__self__, *,
+                 cidr: Optional[str] = None,
+                 security_group_id: Optional[str] = None,
+                 security_group_name: Optional[str] = None,
+                 security_group_owner_id: Optional[str] = None):
+        """
+        :param str cidr: The CIDR block to accept
+        :param str security_group_id: The ID of the security group to authorize
+        :param str security_group_name: The name of the security group to authorize
+        :param str security_group_owner_id: The owner Id of the security group provided
+               by `security_group_name`.
+        """
+        if cidr is not None:
+            pulumi.set(__self__, "cidr", cidr)
+        if security_group_id is not None:
+            pulumi.set(__self__, "security_group_id", security_group_id)
+        if security_group_name is not None:
+            pulumi.set(__self__, "security_group_name", security_group_name)
+        if security_group_owner_id is not None:
+            pulumi.set(__self__, "security_group_owner_id", security_group_owner_id)
+
     @property
     @pulumi.getter
     def cidr(self) -> Optional[str]:

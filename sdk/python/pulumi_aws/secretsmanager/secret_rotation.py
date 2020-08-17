@@ -14,28 +14,6 @@ __all__ = ['SecretRotation']
 
 
 class SecretRotation(pulumi.CustomResource):
-    rotation_enabled: pulumi.Output[bool] = pulumi.property("rotationEnabled")
-    """
-    Specifies whether automatic rotation is enabled for this secret.
-    """
-
-    rotation_lambda_arn: pulumi.Output[str] = pulumi.property("rotationLambdaArn")
-    """
-    Specifies the ARN of the Lambda function that can rotate the secret.
-    """
-
-    rotation_rules: pulumi.Output['outputs.SecretRotationRotationRules'] = pulumi.property("rotationRules")
-    """
-    A structure that defines the rotation configuration for this secret. Defined below.
-    """
-
-    secret_id: pulumi.Output[str] = pulumi.property("secretId")
-    """
-    Specifies the secret to which you want to add a new version. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret. The secret must already exist.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -142,6 +120,43 @@ class SecretRotation(pulumi.CustomResource):
         __props__["secret_id"] = secret_id
         __props__["tags"] = tags
         return SecretRotation(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="rotationEnabled")
+    def rotation_enabled(self) -> bool:
+        """
+        Specifies whether automatic rotation is enabled for this secret.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="rotationLambdaArn")
+    def rotation_lambda_arn(self) -> str:
+        """
+        Specifies the ARN of the Lambda function that can rotate the secret.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="rotationRules")
+    def rotation_rules(self) -> 'outputs.SecretRotationRotationRules':
+        """
+        A structure that defines the rotation configuration for this secret. Defined below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> str:
+        """
+        Specifies the secret to which you want to add a new version. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret. The secret must already exist.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -17,15 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetSecurityGroupsResult:
-    filters: Optional[List['outputs.GetSecurityGroupsFilterResult']] = pulumi.property("filters")
-    id: str = pulumi.property("id")
-    ids: List[str] = pulumi.property("ids")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    vpc_ids: List[str] = pulumi.property("vpcIds")
-
-
 class GetSecurityGroupsResult:
     """
     A collection of values returned by getSecurityGroups.
@@ -33,29 +26,55 @@ class GetSecurityGroupsResult:
     def __init__(__self__, filters=None, id=None, ids=None, tags=None, vpc_ids=None):
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
+        pulumi.set(__self__, "filters", filters)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if ids and not isinstance(ids, list):
+            raise TypeError("Expected argument 'ids' to be a list")
+        pulumi.set(__self__, "ids", ids)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if vpc_ids and not isinstance(vpc_ids, list):
+            raise TypeError("Expected argument 'vpc_ids' to be a list")
+        pulumi.set(__self__, "vpc_ids", vpc_ids)
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetSecurityGroupsFilterResult']]:
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if ids and not isinstance(ids, list):
-            raise TypeError("Expected argument 'ids' to be a list")
-        __self__.ids = ids
+        ...
+
+    @property
+    @pulumi.getter
+    def ids(self) -> List[str]:
         """
         IDs of the matches security groups.
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
-        if vpc_ids and not isinstance(vpc_ids, list):
-            raise TypeError("Expected argument 'vpc_ids' to be a list")
-        __self__.vpc_ids = vpc_ids
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
+        ...
+
+    @property
+    @pulumi.getter(name="vpcIds")
+    def vpc_ids(self) -> List[str]:
         """
         The VPC IDs of the matched security groups. The data source's tag or filter *will span VPCs*
         unless the `vpc-id` filter is also used.
         """
+        ...
+
 
 
 class AwaitableGetSecurityGroupsResult(GetSecurityGroupsResult):
@@ -120,7 +139,7 @@ def get_security_groups(filters: Optional[List[pulumi.InputType['GetSecurityGrou
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getSecurityGroups:getSecurityGroups', __args__, opts=opts, typ=_GetSecurityGroupsResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getSecurityGroups:getSecurityGroups', __args__, opts=opts, typ=GetSecurityGroupsResult).value
 
     return AwaitableGetSecurityGroupsResult(
         filters=__ret__.filters,

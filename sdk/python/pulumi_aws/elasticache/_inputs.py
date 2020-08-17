@@ -25,10 +25,14 @@ class ClusterCacheNodeArgs:
         :param pulumi.Input[str] availability_zone: The Availability Zone for the cache cluster. If you want to create cache nodes in multi-az, use `preferred_availability_zones` instead. Default: System chosen Availability Zone.
         :param pulumi.Input[float] port: The port number on which each of the cache nodes will accept connections. For Memcache the default is 11211, and for Redis the default port is 6379. Cannot be provided with `replication_group_id`.
         """
-        pulumi.set(__self__, "address", address)
-        pulumi.set(__self__, "availabilityZone", availability_zone)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "port", port)
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
 
     @property
     @pulumi.getter
@@ -119,8 +123,8 @@ class ReplicationGroupClusterModeArgs:
         :param pulumi.Input[float] num_node_groups: Specify the number of node groups (shards) for this Redis replication group. Changing this number will trigger an online resizing operation before other settings modifications.
         :param pulumi.Input[float] replicas_per_node_group: Specify the number of replica nodes in each node group. Valid values are 0 to 5. Changing this number will force a new resource.
         """
-        pulumi.set(__self__, "numNodeGroups", num_node_groups)
-        pulumi.set(__self__, "replicasPerNodeGroup", replicas_per_node_group)
+        pulumi.set(__self__, "num_node_groups", num_node_groups)
+        pulumi.set(__self__, "replicas_per_node_group", replicas_per_node_group)
 
     @property
     @pulumi.getter(name="numNodeGroups")

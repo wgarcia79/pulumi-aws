@@ -32,8 +32,10 @@ class PipelineArtifactStoreArgs:
         """
         pulumi.set(__self__, "location", location)
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "encryptionKey", encryption_key)
-        pulumi.set(__self__, "region", region)
+        if encryption_key is not None:
+            pulumi.set(__self__, "encryption_key", encryption_key)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter
@@ -192,13 +194,20 @@ class PipelineStageActionArgs:
         pulumi.set(__self__, "owner", owner)
         pulumi.set(__self__, "provider", provider)
         pulumi.set(__self__, "version", version)
-        pulumi.set(__self__, "configuration", configuration)
-        pulumi.set(__self__, "inputArtifacts", input_artifacts)
-        pulumi.set(__self__, "namespace", namespace)
-        pulumi.set(__self__, "outputArtifacts", output_artifacts)
-        pulumi.set(__self__, "region", region)
-        pulumi.set(__self__, "roleArn", role_arn)
-        pulumi.set(__self__, "runOrder", run_order)
+        if configuration is not None:
+            pulumi.set(__self__, "configuration", configuration)
+        if input_artifacts is not None:
+            pulumi.set(__self__, "input_artifacts", input_artifacts)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+        if output_artifacts is not None:
+            pulumi.set(__self__, "output_artifacts", output_artifacts)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if role_arn is not None:
+            pulumi.set(__self__, "role_arn", role_arn)
+        if run_order is not None:
+            pulumi.set(__self__, "run_order", run_order)
 
     @property
     @pulumi.getter
@@ -354,8 +363,10 @@ class WebhookAuthenticationConfigurationArgs:
         :param pulumi.Input[str] allowed_ip_range: A valid CIDR block for `IP` filtering. Required for `IP`.
         :param pulumi.Input[str] secret_token: The shared secret for the GitHub repository webhook. Set this as `secret` in your `github_repository_webhook`'s `configuration` block. Required for `GITHUB_HMAC`.
         """
-        pulumi.set(__self__, "allowedIpRange", allowed_ip_range)
-        pulumi.set(__self__, "secretToken", secret_token)
+        if allowed_ip_range is not None:
+            pulumi.set(__self__, "allowed_ip_range", allowed_ip_range)
+        if secret_token is not None:
+            pulumi.set(__self__, "secret_token", secret_token)
 
     @property
     @pulumi.getter(name="allowedIpRange")
@@ -391,8 +402,8 @@ class WebhookFilterArgs:
         :param pulumi.Input[str] json_path: The [JSON path](https://github.com/json-path/JsonPath) to filter on.
         :param pulumi.Input[str] match_equals: The value to match on (e.g. `refs/heads/{Branch}`). See [AWS docs](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_WebhookFilterRule.html) for details.
         """
-        pulumi.set(__self__, "jsonPath", json_path)
-        pulumi.set(__self__, "matchEquals", match_equals)
+        pulumi.set(__self__, "json_path", json_path)
+        pulumi.set(__self__, "match_equals", match_equals)
 
     @property
     @pulumi.getter(name="jsonPath")

@@ -15,21 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetBucketObjectsResult:
-    bucket: str = pulumi.property("bucket")
-    common_prefixes: List[str] = pulumi.property("commonPrefixes")
-    delimiter: Optional[str] = pulumi.property("delimiter")
-    encoding_type: Optional[str] = pulumi.property("encodingType")
-    fetch_owner: Optional[bool] = pulumi.property("fetchOwner")
-    id: str = pulumi.property("id")
-    keys: List[str] = pulumi.property("keys")
-    max_keys: Optional[float] = pulumi.property("maxKeys")
-    owners: List[str] = pulumi.property("owners")
-    prefix: Optional[str] = pulumi.property("prefix")
-    start_after: Optional[str] = pulumi.property("startAfter")
-
-
 class GetBucketObjectsResult:
     """
     A collection of values returned by getBucketObjects.
@@ -37,49 +24,105 @@ class GetBucketObjectsResult:
     def __init__(__self__, bucket=None, common_prefixes=None, delimiter=None, encoding_type=None, fetch_owner=None, id=None, keys=None, max_keys=None, owners=None, prefix=None, start_after=None):
         if bucket and not isinstance(bucket, str):
             raise TypeError("Expected argument 'bucket' to be a str")
-        __self__.bucket = bucket
+        pulumi.set(__self__, "bucket", bucket)
         if common_prefixes and not isinstance(common_prefixes, list):
             raise TypeError("Expected argument 'common_prefixes' to be a list")
-        __self__.common_prefixes = common_prefixes
+        pulumi.set(__self__, "common_prefixes", common_prefixes)
+        if delimiter and not isinstance(delimiter, str):
+            raise TypeError("Expected argument 'delimiter' to be a str")
+        pulumi.set(__self__, "delimiter", delimiter)
+        if encoding_type and not isinstance(encoding_type, str):
+            raise TypeError("Expected argument 'encoding_type' to be a str")
+        pulumi.set(__self__, "encoding_type", encoding_type)
+        if fetch_owner and not isinstance(fetch_owner, bool):
+            raise TypeError("Expected argument 'fetch_owner' to be a bool")
+        pulumi.set(__self__, "fetch_owner", fetch_owner)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if keys and not isinstance(keys, list):
+            raise TypeError("Expected argument 'keys' to be a list")
+        pulumi.set(__self__, "keys", keys)
+        if max_keys and not isinstance(max_keys, float):
+            raise TypeError("Expected argument 'max_keys' to be a float")
+        pulumi.set(__self__, "max_keys", max_keys)
+        if owners and not isinstance(owners, list):
+            raise TypeError("Expected argument 'owners' to be a list")
+        pulumi.set(__self__, "owners", owners)
+        if prefix and not isinstance(prefix, str):
+            raise TypeError("Expected argument 'prefix' to be a str")
+        pulumi.set(__self__, "prefix", prefix)
+        if start_after and not isinstance(start_after, str):
+            raise TypeError("Expected argument 'start_after' to be a str")
+        pulumi.set(__self__, "start_after", start_after)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="commonPrefixes")
+    def common_prefixes(self) -> List[str]:
         """
         List of any keys between `prefix` and the next occurrence of `delimiter` (i.e., similar to subdirectories of the `prefix` "directory"); the list is only returned when you specify `delimiter`
         """
-        if delimiter and not isinstance(delimiter, str):
-            raise TypeError("Expected argument 'delimiter' to be a str")
-        __self__.delimiter = delimiter
-        if encoding_type and not isinstance(encoding_type, str):
-            raise TypeError("Expected argument 'encoding_type' to be a str")
-        __self__.encoding_type = encoding_type
-        if fetch_owner and not isinstance(fetch_owner, bool):
-            raise TypeError("Expected argument 'fetch_owner' to be a bool")
-        __self__.fetch_owner = fetch_owner
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def delimiter(self) -> Optional[str]:
+        ...
+
+    @property
+    @pulumi.getter(name="encodingType")
+    def encoding_type(self) -> Optional[str]:
+        ...
+
+    @property
+    @pulumi.getter(name="fetchOwner")
+    def fetch_owner(self) -> Optional[bool]:
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if keys and not isinstance(keys, list):
-            raise TypeError("Expected argument 'keys' to be a list")
-        __self__.keys = keys
+        ...
+
+    @property
+    @pulumi.getter
+    def keys(self) -> List[str]:
         """
         List of strings representing object keys
         """
-        if max_keys and not isinstance(max_keys, float):
-            raise TypeError("Expected argument 'max_keys' to be a float")
-        __self__.max_keys = max_keys
-        if owners and not isinstance(owners, list):
-            raise TypeError("Expected argument 'owners' to be a list")
-        __self__.owners = owners
+        ...
+
+    @property
+    @pulumi.getter(name="maxKeys")
+    def max_keys(self) -> Optional[float]:
+        ...
+
+    @property
+    @pulumi.getter
+    def owners(self) -> List[str]:
         """
         List of strings representing object owner IDs (see `fetch_owner` above)
         """
-        if prefix and not isinstance(prefix, str):
-            raise TypeError("Expected argument 'prefix' to be a str")
-        __self__.prefix = prefix
-        if start_after and not isinstance(start_after, str):
-            raise TypeError("Expected argument 'start_after' to be a str")
-        __self__.start_after = start_after
+        ...
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> Optional[str]:
+        ...
+
+    @property
+    @pulumi.getter(name="startAfter")
+    def start_after(self) -> Optional[str]:
+        ...
+
 
 
 class AwaitableGetBucketObjectsResult(GetBucketObjectsResult):
@@ -148,7 +191,7 @@ def get_bucket_objects(bucket: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:s3/getBucketObjects:getBucketObjects', __args__, opts=opts, typ=_GetBucketObjectsResult).value
+    __ret__ = pulumi.runtime.invoke('aws:s3/getBucketObjects:getBucketObjects', __args__, opts=opts, typ=GetBucketObjectsResult).value
 
     return AwaitableGetBucketObjectsResult(
         bucket=__ret__.bucket,

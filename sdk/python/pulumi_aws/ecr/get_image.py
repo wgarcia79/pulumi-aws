@@ -15,18 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetImageResult:
-    id: str = pulumi.property("id")
-    image_digest: str = pulumi.property("imageDigest")
-    image_pushed_at: float = pulumi.property("imagePushedAt")
-    image_size_in_bytes: float = pulumi.property("imageSizeInBytes")
-    image_tag: Optional[str] = pulumi.property("imageTag")
-    image_tags: List[str] = pulumi.property("imageTags")
-    registry_id: str = pulumi.property("registryId")
-    repository_name: str = pulumi.property("repositoryName")
-
-
 class GetImageResult:
     """
     A collection of values returned by getImage.
@@ -34,40 +24,81 @@ class GetImageResult:
     def __init__(__self__, id=None, image_digest=None, image_pushed_at=None, image_size_in_bytes=None, image_tag=None, image_tags=None, registry_id=None, repository_name=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if image_digest and not isinstance(image_digest, str):
+            raise TypeError("Expected argument 'image_digest' to be a str")
+        pulumi.set(__self__, "image_digest", image_digest)
+        if image_pushed_at and not isinstance(image_pushed_at, float):
+            raise TypeError("Expected argument 'image_pushed_at' to be a float")
+        pulumi.set(__self__, "image_pushed_at", image_pushed_at)
+        if image_size_in_bytes and not isinstance(image_size_in_bytes, float):
+            raise TypeError("Expected argument 'image_size_in_bytes' to be a float")
+        pulumi.set(__self__, "image_size_in_bytes", image_size_in_bytes)
+        if image_tag and not isinstance(image_tag, str):
+            raise TypeError("Expected argument 'image_tag' to be a str")
+        pulumi.set(__self__, "image_tag", image_tag)
+        if image_tags and not isinstance(image_tags, list):
+            raise TypeError("Expected argument 'image_tags' to be a list")
+        pulumi.set(__self__, "image_tags", image_tags)
+        if registry_id and not isinstance(registry_id, str):
+            raise TypeError("Expected argument 'registry_id' to be a str")
+        pulumi.set(__self__, "registry_id", registry_id)
+        if repository_name and not isinstance(repository_name, str):
+            raise TypeError("Expected argument 'repository_name' to be a str")
+        pulumi.set(__self__, "repository_name", repository_name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if image_digest and not isinstance(image_digest, str):
-            raise TypeError("Expected argument 'image_digest' to be a str")
-        __self__.image_digest = image_digest
-        if image_pushed_at and not isinstance(image_pushed_at, float):
-            raise TypeError("Expected argument 'image_pushed_at' to be a float")
-        __self__.image_pushed_at = image_pushed_at
+        ...
+
+    @property
+    @pulumi.getter(name="imageDigest")
+    def image_digest(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="imagePushedAt")
+    def image_pushed_at(self) -> float:
         """
         The date and time, expressed as a unix timestamp, at which the current image was pushed to the repository.
         """
-        if image_size_in_bytes and not isinstance(image_size_in_bytes, float):
-            raise TypeError("Expected argument 'image_size_in_bytes' to be a float")
-        __self__.image_size_in_bytes = image_size_in_bytes
+        ...
+
+    @property
+    @pulumi.getter(name="imageSizeInBytes")
+    def image_size_in_bytes(self) -> float:
         """
         The size, in bytes, of the image in the repository.
         """
-        if image_tag and not isinstance(image_tag, str):
-            raise TypeError("Expected argument 'image_tag' to be a str")
-        __self__.image_tag = image_tag
-        if image_tags and not isinstance(image_tags, list):
-            raise TypeError("Expected argument 'image_tags' to be a list")
-        __self__.image_tags = image_tags
+        ...
+
+    @property
+    @pulumi.getter(name="imageTag")
+    def image_tag(self) -> Optional[str]:
+        ...
+
+    @property
+    @pulumi.getter(name="imageTags")
+    def image_tags(self) -> List[str]:
         """
         The list of tags associated with this image.
         """
-        if registry_id and not isinstance(registry_id, str):
-            raise TypeError("Expected argument 'registry_id' to be a str")
-        __self__.registry_id = registry_id
-        if repository_name and not isinstance(repository_name, str):
-            raise TypeError("Expected argument 'repository_name' to be a str")
-        __self__.repository_name = repository_name
+        ...
+
+    @property
+    @pulumi.getter(name="registryId")
+    def registry_id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="repositoryName")
+    def repository_name(self) -> str:
+        ...
+
 
 
 class AwaitableGetImageResult(GetImageResult):
@@ -119,7 +150,7 @@ def get_image(image_digest: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ecr/getImage:getImage', __args__, opts=opts, typ=_GetImageResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ecr/getImage:getImage', __args__, opts=opts, typ=GetImageResult).value
 
     return AwaitableGetImageResult(
         id=__ret__.id,

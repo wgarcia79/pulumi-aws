@@ -15,17 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetPatchBaselineResult:
-    default_baseline: Optional[bool] = pulumi.property("defaultBaseline")
-    description: str = pulumi.property("description")
-    id: str = pulumi.property("id")
-    name: str = pulumi.property("name")
-    name_prefix: Optional[str] = pulumi.property("namePrefix")
-    operating_system: Optional[str] = pulumi.property("operatingSystem")
-    owner: str = pulumi.property("owner")
-
-
 class GetPatchBaselineResult:
     """
     A collection of values returned by getPatchBaseline.
@@ -33,34 +24,70 @@ class GetPatchBaselineResult:
     def __init__(__self__, default_baseline=None, description=None, id=None, name=None, name_prefix=None, operating_system=None, owner=None):
         if default_baseline and not isinstance(default_baseline, bool):
             raise TypeError("Expected argument 'default_baseline' to be a bool")
-        __self__.default_baseline = default_baseline
+        pulumi.set(__self__, "default_baseline", default_baseline)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
-        __self__.description = description
+        pulumi.set(__self__, "description", description)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if name_prefix and not isinstance(name_prefix, str):
+            raise TypeError("Expected argument 'name_prefix' to be a str")
+        pulumi.set(__self__, "name_prefix", name_prefix)
+        if operating_system and not isinstance(operating_system, str):
+            raise TypeError("Expected argument 'operating_system' to be a str")
+        pulumi.set(__self__, "operating_system", operating_system)
+        if owner and not isinstance(owner, str):
+            raise TypeError("Expected argument 'owner' to be a str")
+        pulumi.set(__self__, "owner", owner)
+
+    @property
+    @pulumi.getter(name="defaultBaseline")
+    def default_baseline(self) -> Optional[bool]:
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
         """
         The description of the baseline.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
         """
         The name of the baseline.
         """
-        if name_prefix and not isinstance(name_prefix, str):
-            raise TypeError("Expected argument 'name_prefix' to be a str")
-        __self__.name_prefix = name_prefix
-        if operating_system and not isinstance(operating_system, str):
-            raise TypeError("Expected argument 'operating_system' to be a str")
-        __self__.operating_system = operating_system
-        if owner and not isinstance(owner, str):
-            raise TypeError("Expected argument 'owner' to be a str")
-        __self__.owner = owner
+        ...
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> Optional[str]:
+        ...
+
+    @property
+    @pulumi.getter(name="operatingSystem")
+    def operating_system(self) -> Optional[str]:
+        ...
+
+    @property
+    @pulumi.getter
+    def owner(self) -> str:
+        ...
+
 
 
 class AwaitableGetPatchBaselineResult(GetPatchBaselineResult):
@@ -126,7 +153,7 @@ def get_patch_baseline(default_baseline: Optional[bool] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ssm/getPatchBaseline:getPatchBaseline', __args__, opts=opts, typ=_GetPatchBaselineResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ssm/getPatchBaseline:getPatchBaseline', __args__, opts=opts, typ=GetPatchBaselineResult).value
 
     return AwaitableGetPatchBaselineResult(
         default_baseline=__ret__.default_baseline,

@@ -16,6 +16,14 @@ __all__ = [
 
 @pulumi.output_type
 class ChannelHlsIngest(dict):
+    def __init__(__self__, *,
+                 ingest_endpoints: Optional[List['outputs.ChannelHlsIngestIngestEndpoint']] = None):
+        """
+        :param List['ChannelHlsIngestIngestEndpointArgs'] ingest_endpoints: A list of the ingest endpoints
+        """
+        if ingest_endpoints is not None:
+            pulumi.set(__self__, "ingest_endpoints", ingest_endpoints)
+
     @property
     @pulumi.getter(name="ingestEndpoints")
     def ingest_endpoints(self) -> Optional[List['outputs.ChannelHlsIngestIngestEndpoint']]:
@@ -30,6 +38,22 @@ class ChannelHlsIngest(dict):
 
 @pulumi.output_type
 class ChannelHlsIngestIngestEndpoint(dict):
+    def __init__(__self__, *,
+                 password: Optional[str] = None,
+                 url: Optional[str] = None,
+                 username: Optional[str] = None):
+        """
+        :param str password: The password
+        :param str url: The URL
+        :param str username: The username
+        """
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
     @property
     @pulumi.getter
     def password(self) -> Optional[str]:

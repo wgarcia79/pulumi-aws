@@ -12,44 +12,6 @@ __all__ = ['LinkAggregationGroup']
 
 
 class LinkAggregationGroup(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the LAG.
-    * `jumbo_frame_capable` -Indicates whether jumbo frames (9001 MTU) are supported.
-    """
-
-    connections_bandwidth: pulumi.Output[str] = pulumi.property("connectionsBandwidth")
-    """
-    The bandwidth of the individual physical connections bundled by the LAG. Valid values: 50Mbps, 100Mbps, 200Mbps, 300Mbps, 400Mbps, 500Mbps, 1Gbps, 2Gbps, 5Gbps and 10Gbps. Case sensitive.
-    """
-
-    force_destroy: pulumi.Output[Optional[bool]] = pulumi.property("forceDestroy")
-    """
-    A boolean that indicates all connections associated with the LAG should be deleted so that the LAG can be destroyed without error. These objects are *not* recoverable.
-    """
-
-    has_logical_redundancy: pulumi.Output[str] = pulumi.property("hasLogicalRedundancy")
-    """
-    Indicates whether the LAG supports a secondary BGP peer in the same address family (IPv4/IPv6).
-    """
-
-    jumbo_frame_capable: pulumi.Output[bool] = pulumi.property("jumboFrameCapable")
-
-    location: pulumi.Output[str] = pulumi.property("location")
-    """
-    The AWS Direct Connect location in which the LAG should be allocated. See [DescribeLocations](https://docs.aws.amazon.com/directconnect/latest/APIReference/API_DescribeLocations.html) for the list of AWS Direct Connect locations. Use `locationCode`.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the LAG.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -162,6 +124,68 @@ class LinkAggregationGroup(pulumi.CustomResource):
         __props__["name"] = name
         __props__["tags"] = tags
         return LinkAggregationGroup(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the LAG.
+        * `jumbo_frame_capable` -Indicates whether jumbo frames (9001 MTU) are supported.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="connectionsBandwidth")
+    def connections_bandwidth(self) -> str:
+        """
+        The bandwidth of the individual physical connections bundled by the LAG. Valid values: 50Mbps, 100Mbps, 200Mbps, 300Mbps, 400Mbps, 500Mbps, 1Gbps, 2Gbps, 5Gbps and 10Gbps. Case sensitive.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="forceDestroy")
+    def force_destroy(self) -> Optional[bool]:
+        """
+        A boolean that indicates all connections associated with the LAG should be deleted so that the LAG can be destroyed without error. These objects are *not* recoverable.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="hasLogicalRedundancy")
+    def has_logical_redundancy(self) -> str:
+        """
+        Indicates whether the LAG supports a secondary BGP peer in the same address family (IPv4/IPv6).
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="jumboFrameCapable")
+    def jumbo_frame_capable(self) -> bool:
+        ...
+
+    @property
+    @pulumi.getter
+    def location(self) -> str:
+        """
+        The AWS Direct Connect location in which the LAG should be allocated. See [DescribeLocations](https://docs.aws.amazon.com/directconnect/latest/APIReference/API_DescribeLocations.html) for the list of AWS Direct Connect locations. Use `locationCode`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the LAG.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -15,20 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetResolverRuleResult:
-    arn: str = pulumi.property("arn")
-    domain_name: str = pulumi.property("domainName")
-    id: str = pulumi.property("id")
-    name: str = pulumi.property("name")
-    owner_id: str = pulumi.property("ownerId")
-    resolver_endpoint_id: str = pulumi.property("resolverEndpointId")
-    resolver_rule_id: str = pulumi.property("resolverRuleId")
-    rule_type: str = pulumi.property("ruleType")
-    share_status: str = pulumi.property("shareStatus")
-    tags: Mapping[str, str] = pulumi.property("tags")
-
-
 class GetResolverRuleResult:
     """
     A collection of values returned by getResolverRule.
@@ -36,50 +24,101 @@ class GetResolverRuleResult:
     def __init__(__self__, arn=None, domain_name=None, id=None, name=None, owner_id=None, resolver_endpoint_id=None, resolver_rule_id=None, rule_type=None, share_status=None, tags=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if domain_name and not isinstance(domain_name, str):
+            raise TypeError("Expected argument 'domain_name' to be a str")
+        pulumi.set(__self__, "domain_name", domain_name)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if owner_id and not isinstance(owner_id, str):
+            raise TypeError("Expected argument 'owner_id' to be a str")
+        pulumi.set(__self__, "owner_id", owner_id)
+        if resolver_endpoint_id and not isinstance(resolver_endpoint_id, str):
+            raise TypeError("Expected argument 'resolver_endpoint_id' to be a str")
+        pulumi.set(__self__, "resolver_endpoint_id", resolver_endpoint_id)
+        if resolver_rule_id and not isinstance(resolver_rule_id, str):
+            raise TypeError("Expected argument 'resolver_rule_id' to be a str")
+        pulumi.set(__self__, "resolver_rule_id", resolver_rule_id)
+        if rule_type and not isinstance(rule_type, str):
+            raise TypeError("Expected argument 'rule_type' to be a str")
+        pulumi.set(__self__, "rule_type", rule_type)
+        if share_status and not isinstance(share_status, str):
+            raise TypeError("Expected argument 'share_status' to be a str")
+        pulumi.set(__self__, "share_status", share_status)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The ARN (Amazon Resource Name) for the resolver rule.
         """
-        if domain_name and not isinstance(domain_name, str):
-            raise TypeError("Expected argument 'domain_name' to be a str")
-        __self__.domain_name = domain_name
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter(name="domainName")
+    def domain_name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if owner_id and not isinstance(owner_id, str):
-            raise TypeError("Expected argument 'owner_id' to be a str")
-        __self__.owner_id = owner_id
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
         """
         When a rule is shared with another AWS account, the account ID of the account that the rule is shared with.
         """
-        if resolver_endpoint_id and not isinstance(resolver_endpoint_id, str):
-            raise TypeError("Expected argument 'resolver_endpoint_id' to be a str")
-        __self__.resolver_endpoint_id = resolver_endpoint_id
-        if resolver_rule_id and not isinstance(resolver_rule_id, str):
-            raise TypeError("Expected argument 'resolver_rule_id' to be a str")
-        __self__.resolver_rule_id = resolver_rule_id
-        if rule_type and not isinstance(rule_type, str):
-            raise TypeError("Expected argument 'rule_type' to be a str")
-        __self__.rule_type = rule_type
-        if share_status and not isinstance(share_status, str):
-            raise TypeError("Expected argument 'share_status' to be a str")
-        __self__.share_status = share_status
+        ...
+
+    @property
+    @pulumi.getter(name="resolverEndpointId")
+    def resolver_endpoint_id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="resolverRuleId")
+    def resolver_rule_id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="ruleType")
+    def rule_type(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="shareStatus")
+    def share_status(self) -> str:
         """
         Whether the rules is shared and, if so, whether the current account is sharing the rule with another account, or another account is sharing the rule with the current account.
         Values are `NOT_SHARED`, `SHARED_BY_ME` or `SHARED_WITH_ME`
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
         """
         A map of tags assigned to the resolver rule.
         """
+        ...
+
 
 
 class AwaitableGetResolverRuleResult(GetResolverRuleResult):
@@ -141,7 +180,7 @@ def get_resolver_rule(domain_name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:route53/getResolverRule:getResolverRule', __args__, opts=opts, typ=_GetResolverRuleResult).value
+    __ret__ = pulumi.runtime.invoke('aws:route53/getResolverRule:getResolverRule', __args__, opts=opts, typ=GetResolverRuleResult).value
 
     return AwaitableGetResolverRuleResult(
         arn=__ret__.arn,

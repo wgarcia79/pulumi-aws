@@ -12,21 +12,6 @@ __all__ = ['LifecyclePolicy']
 
 
 class LifecyclePolicy(pulumi.CustomResource):
-    policy: pulumi.Output[str] = pulumi.property("policy")
-    """
-    The policy document. This is a JSON formatted string. See more details about [Policy Parameters](http://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.html#lifecycle_policy_parameters) in the official AWS docs.
-    """
-
-    registry_id: pulumi.Output[str] = pulumi.property("registryId")
-    """
-    The registry ID where the repository was created.
-    """
-
-    repository: pulumi.Output[str] = pulumi.property("repository")
-    """
-    Name of the repository to apply the policy.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -163,6 +148,30 @@ class LifecyclePolicy(pulumi.CustomResource):
         __props__["registry_id"] = registry_id
         __props__["repository"] = repository
         return LifecyclePolicy(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def policy(self) -> str:
+        """
+        The policy document. This is a JSON formatted string. See more details about [Policy Parameters](http://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.html#lifecycle_policy_parameters) in the official AWS docs.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="registryId")
+    def registry_id(self) -> str:
+        """
+        The registry ID where the repository was created.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def repository(self) -> str:
+        """
+        Name of the repository to apply the policy.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

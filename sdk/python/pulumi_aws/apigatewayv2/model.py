@@ -12,31 +12,6 @@ __all__ = ['Model']
 
 
 class Model(pulumi.CustomResource):
-    api_id: pulumi.Output[str] = pulumi.property("apiId")
-    """
-    The API identifier.
-    """
-
-    content_type: pulumi.Output[str] = pulumi.property("contentType")
-    """
-    The content-type for the model, for example, `application/json`.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    The description of the model.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the model. Must be alphanumeric.
-    """
-
-    schema: pulumi.Output[str] = pulumi.property("schema")
-    """
-    The schema for the model. This should be a [JSON schema draft 4](https://tools.ietf.org/html/draft-zyp-json-schema-04) model.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -147,6 +122,46 @@ class Model(pulumi.CustomResource):
         __props__["name"] = name
         __props__["schema"] = schema
         return Model(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="apiId")
+    def api_id(self) -> str:
+        """
+        The API identifier.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="contentType")
+    def content_type(self) -> str:
+        """
+        The content-type for the model, for example, `application/json`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        The description of the model.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the model. Must be alphanumeric.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def schema(self) -> str:
+        """
+        The schema for the model. This should be a [JSON schema draft 4](https://tools.ietf.org/html/draft-zyp-json-schema-04) model.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

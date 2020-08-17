@@ -12,21 +12,6 @@ __all__ = ['SubnetGroup']
 
 
 class SubnetGroup(pulumi.CustomResource):
-    description: pulumi.Output[str] = pulumi.property("description")
-    """
-    Description for the cache subnet group. Defaults to "Managed by Pulumi".
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    Name for the cache subnet group. Elasticache converts this name to lowercase.
-    """
-
-    subnet_ids: pulumi.Output[List[str]] = pulumi.property("subnetIds")
-    """
-    List of VPC Subnet IDs for the cache subnet group
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -126,6 +111,30 @@ class SubnetGroup(pulumi.CustomResource):
         __props__["name"] = name
         __props__["subnet_ids"] = subnet_ids
         return SubnetGroup(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Description for the cache subnet group. Defaults to "Managed by Pulumi".
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name for the cache subnet group. Elasticache converts this name to lowercase.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="subnetIds")
+    def subnet_ids(self) -> List[str]:
+        """
+        List of VPC Subnet IDs for the cache subnet group
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

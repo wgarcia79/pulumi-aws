@@ -14,48 +14,6 @@ __all__ = ['JobDefinition']
 
 
 class JobDefinition(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The Amazon Resource Name of the job definition.
-    """
-
-    container_properties: pulumi.Output[Optional[str]] = pulumi.property("containerProperties")
-    """
-    A valid [container properties](http://docs.aws.amazon.com/batch/latest/APIReference/API_RegisterJobDefinition.html)
-    provided as a single valid JSON document. This parameter is required if the `type` parameter is `container`.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    Specifies the name of the job definition.
-    """
-
-    parameters: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("parameters")
-    """
-    Specifies the parameter substitution placeholders to set in the job definition.
-    """
-
-    retry_strategy: pulumi.Output[Optional['outputs.JobDefinitionRetryStrategy']] = pulumi.property("retryStrategy")
-    """
-    Specifies the retry strategy to use for failed jobs that are submitted with this job definition.
-    Maximum number of `retry_strategy` is `1`.  Defined below.
-    """
-
-    revision: pulumi.Output[float] = pulumi.property("revision")
-    """
-    The revision of the job definition.
-    """
-
-    timeout: pulumi.Output[Optional['outputs.JobDefinitionTimeout']] = pulumi.property("timeout")
-    """
-    Specifies the timeout for jobs so that if a job runs longer, AWS Batch terminates the job. Maximum number of `timeout` is `1`. Defined below.
-    """
-
-    type: pulumi.Output[str] = pulumi.property("type")
-    """
-    The type of job definition.  Must be `container`
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -201,6 +159,72 @@ class JobDefinition(pulumi.CustomResource):
         __props__["timeout"] = timeout
         __props__["type"] = type
         return JobDefinition(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The Amazon Resource Name of the job definition.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="containerProperties")
+    def container_properties(self) -> Optional[str]:
+        """
+        A valid [container properties](http://docs.aws.amazon.com/batch/latest/APIReference/API_RegisterJobDefinition.html)
+        provided as a single valid JSON document. This parameter is required if the `type` parameter is `container`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Specifies the name of the job definition.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[Mapping[str, str]]:
+        """
+        Specifies the parameter substitution placeholders to set in the job definition.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="retryStrategy")
+    def retry_strategy(self) -> Optional['outputs.JobDefinitionRetryStrategy']:
+        """
+        Specifies the retry strategy to use for failed jobs that are submitted with this job definition.
+        Maximum number of `retry_strategy` is `1`.  Defined below.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def revision(self) -> float:
+        """
+        The revision of the job definition.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> Optional['outputs.JobDefinitionTimeout']:
+        """
+        Specifies the timeout for jobs so that if a job runs longer, AWS Batch terminates the job. Maximum number of `timeout` is `1`. Defined below.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of job definition.  Must be `container`
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

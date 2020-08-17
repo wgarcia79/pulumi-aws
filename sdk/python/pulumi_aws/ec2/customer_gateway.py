@@ -12,32 +12,6 @@ __all__ = ['CustomerGateway']
 
 
 class CustomerGateway(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the customer gateway.
-    """
-
-    bgp_asn: pulumi.Output[str] = pulumi.property("bgpAsn")
-    """
-    The gateway's Border Gateway Protocol (BGP) Autonomous System Number (ASN).
-    """
-
-    ip_address: pulumi.Output[str] = pulumi.property("ipAddress")
-    """
-    The IP address of the gateway's Internet-routable external interface.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Tags to apply to the gateway.
-    """
-
-    type: pulumi.Output[str] = pulumi.property("type")
-    """
-    The type of customer gateway. The only type AWS
-    supports at this time is "ipsec.1".
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -141,6 +115,47 @@ class CustomerGateway(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["type"] = type
         return CustomerGateway(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the customer gateway.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="bgpAsn")
+    def bgp_asn(self) -> str:
+        """
+        The gateway's Border Gateway Protocol (BGP) Autonomous System Number (ASN).
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> str:
+        """
+        The IP address of the gateway's Internet-routable external interface.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Tags to apply to the gateway.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of customer gateway. The only type AWS
+        supports at this time is "ipsec.1".
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

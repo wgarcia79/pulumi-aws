@@ -12,31 +12,6 @@ __all__ = ['NetworkAssociation']
 
 
 class NetworkAssociation(pulumi.CustomResource):
-    client_vpn_endpoint_id: pulumi.Output[str] = pulumi.property("clientVpnEndpointId")
-    """
-    The ID of the Client VPN endpoint.
-    """
-
-    security_groups: pulumi.Output[List[str]] = pulumi.property("securityGroups")
-    """
-    The IDs of the security groups applied to the target network association.
-    """
-
-    status: pulumi.Output[str] = pulumi.property("status")
-    """
-    The current state of the target network association.
-    """
-
-    subnet_id: pulumi.Output[str] = pulumi.property("subnetId")
-    """
-    The ID of the subnet to associate with the Client VPN endpoint.
-    """
-
-    vpc_id: pulumi.Output[str] = pulumi.property("vpcId")
-    """
-    The ID of the VPC in which the target network (subnet) is located.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -129,6 +104,46 @@ class NetworkAssociation(pulumi.CustomResource):
         __props__["subnet_id"] = subnet_id
         __props__["vpc_id"] = vpc_id
         return NetworkAssociation(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="clientVpnEndpointId")
+    def client_vpn_endpoint_id(self) -> str:
+        """
+        The ID of the Client VPN endpoint.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="securityGroups")
+    def security_groups(self) -> List[str]:
+        """
+        The IDs of the security groups applied to the target network association.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The current state of the target network association.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> str:
+        """
+        The ID of the subnet to associate with the Client VPN endpoint.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The ID of the VPC in which the target network (subnet) is located.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

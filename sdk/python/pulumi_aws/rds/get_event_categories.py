@@ -15,13 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetEventCategoriesResult:
-    event_categories: List[str] = pulumi.property("eventCategories")
-    id: str = pulumi.property("id")
-    source_type: Optional[str] = pulumi.property("sourceType")
-
-
 class GetEventCategoriesResult:
     """
     A collection of values returned by getEventCategories.
@@ -29,19 +24,35 @@ class GetEventCategoriesResult:
     def __init__(__self__, event_categories=None, id=None, source_type=None):
         if event_categories and not isinstance(event_categories, list):
             raise TypeError("Expected argument 'event_categories' to be a list")
-        __self__.event_categories = event_categories
+        pulumi.set(__self__, "event_categories", event_categories)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if source_type and not isinstance(source_type, str):
+            raise TypeError("Expected argument 'source_type' to be a str")
+        pulumi.set(__self__, "source_type", source_type)
+
+    @property
+    @pulumi.getter(name="eventCategories")
+    def event_categories(self) -> List[str]:
         """
         A list of the event categories.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if source_type and not isinstance(source_type, str):
-            raise TypeError("Expected argument 'source_type' to be a str")
-        __self__.source_type = source_type
+        ...
+
+    @property
+    @pulumi.getter(name="sourceType")
+    def source_type(self) -> Optional[str]:
+        ...
+
 
 
 class AwaitableGetEventCategoriesResult(GetEventCategoriesResult):
@@ -89,7 +100,7 @@ def get_event_categories(source_type: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:rds/getEventCategories:getEventCategories', __args__, opts=opts, typ=_GetEventCategoriesResult).value
+    __ret__ = pulumi.runtime.invoke('aws:rds/getEventCategories:getEventCategories', __args__, opts=opts, typ=GetEventCategoriesResult).value
 
     return AwaitableGetEventCategoriesResult(
         event_categories=__ret__.event_categories,

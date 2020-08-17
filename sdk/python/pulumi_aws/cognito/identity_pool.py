@@ -14,52 +14,6 @@ __all__ = ['IdentityPool']
 
 
 class IdentityPool(pulumi.CustomResource):
-    allow_unauthenticated_identities: pulumi.Output[Optional[bool]] = pulumi.property("allowUnauthenticatedIdentities")
-    """
-    Whether the identity pool supports unauthenticated logins or not.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the identity pool.
-    """
-
-    cognito_identity_providers: pulumi.Output[Optional[List['outputs.IdentityPoolCognitoIdentityProvider']]] = pulumi.property("cognitoIdentityProviders")
-    """
-    An array of Amazon Cognito Identity user pools and their client IDs.
-    """
-
-    developer_provider_name: pulumi.Output[Optional[str]] = pulumi.property("developerProviderName")
-    """
-    The "domain" by which Cognito will refer to your users. This name acts as a placeholder that allows your
-    backend and the Cognito service to communicate about the developer provider.
-    """
-
-    identity_pool_name: pulumi.Output[str] = pulumi.property("identityPoolName")
-    """
-    The Cognito Identity Pool name.
-    """
-
-    openid_connect_provider_arns: pulumi.Output[Optional[List[str]]] = pulumi.property("openidConnectProviderArns")
-    """
-    A list of OpendID Connect provider ARNs.
-    """
-
-    saml_provider_arns: pulumi.Output[Optional[List[str]]] = pulumi.property("samlProviderArns")
-    """
-    An array of Amazon Resource Names (ARNs) of the SAML provider for your identity.
-    """
-
-    supported_login_providers: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("supportedLoginProviders")
-    """
-    Key-Value pairs mapping provider names to provider app IDs.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the Identity Pool.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -198,6 +152,79 @@ class IdentityPool(pulumi.CustomResource):
         __props__["supported_login_providers"] = supported_login_providers
         __props__["tags"] = tags
         return IdentityPool(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="allowUnauthenticatedIdentities")
+    def allow_unauthenticated_identities(self) -> Optional[bool]:
+        """
+        Whether the identity pool supports unauthenticated logins or not.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the identity pool.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="cognitoIdentityProviders")
+    def cognito_identity_providers(self) -> Optional[List['outputs.IdentityPoolCognitoIdentityProvider']]:
+        """
+        An array of Amazon Cognito Identity user pools and their client IDs.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="developerProviderName")
+    def developer_provider_name(self) -> Optional[str]:
+        """
+        The "domain" by which Cognito will refer to your users. This name acts as a placeholder that allows your
+        backend and the Cognito service to communicate about the developer provider.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="identityPoolName")
+    def identity_pool_name(self) -> str:
+        """
+        The Cognito Identity Pool name.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="openidConnectProviderArns")
+    def openid_connect_provider_arns(self) -> Optional[List[str]]:
+        """
+        A list of OpendID Connect provider ARNs.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="samlProviderArns")
+    def saml_provider_arns(self) -> Optional[List[str]]:
+        """
+        An array of Amazon Resource Names (ARNs) of the SAML provider for your identity.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="supportedLoginProviders")
+    def supported_login_providers(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-Value pairs mapping provider names to provider app IDs.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the Identity Pool.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -49,10 +49,13 @@ class DistributionCustomErrorResponseArgs:
         :param pulumi.Input[str] response_page_path: The path of the custom error page (for
                example, `/custom_404.html`).
         """
-        pulumi.set(__self__, "errorCode", error_code)
-        pulumi.set(__self__, "errorCachingMinTtl", error_caching_min_ttl)
-        pulumi.set(__self__, "responseCode", response_code)
-        pulumi.set(__self__, "responsePagePath", response_page_path)
+        pulumi.set(__self__, "error_code", error_code)
+        if error_caching_min_ttl is not None:
+            pulumi.set(__self__, "error_caching_min_ttl", error_caching_min_ttl)
+        if response_code is not None:
+            pulumi.set(__self__, "response_code", response_code)
+        if response_page_path is not None:
+            pulumi.set(__self__, "response_page_path", response_page_path)
 
     @property
     @pulumi.getter(name="errorCode")
@@ -162,19 +165,27 @@ class DistributionDefaultCacheBehaviorArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] trusted_signers: The AWS accounts, if any, that you want to
                allow to create signed URLs for private content.
         """
-        pulumi.set(__self__, "allowedMethods", allowed_methods)
-        pulumi.set(__self__, "cachedMethods", cached_methods)
-        pulumi.set(__self__, "forwardedValues", forwarded_values)
-        pulumi.set(__self__, "targetOriginId", target_origin_id)
-        pulumi.set(__self__, "viewerProtocolPolicy", viewer_protocol_policy)
-        pulumi.set(__self__, "compress", compress)
-        pulumi.set(__self__, "defaultTtl", default_ttl)
-        pulumi.set(__self__, "fieldLevelEncryptionId", field_level_encryption_id)
-        pulumi.set(__self__, "lambdaFunctionAssociations", lambda_function_associations)
-        pulumi.set(__self__, "maxTtl", max_ttl)
-        pulumi.set(__self__, "minTtl", min_ttl)
-        pulumi.set(__self__, "smoothStreaming", smooth_streaming)
-        pulumi.set(__self__, "trustedSigners", trusted_signers)
+        pulumi.set(__self__, "allowed_methods", allowed_methods)
+        pulumi.set(__self__, "cached_methods", cached_methods)
+        pulumi.set(__self__, "forwarded_values", forwarded_values)
+        pulumi.set(__self__, "target_origin_id", target_origin_id)
+        pulumi.set(__self__, "viewer_protocol_policy", viewer_protocol_policy)
+        if compress is not None:
+            pulumi.set(__self__, "compress", compress)
+        if default_ttl is not None:
+            pulumi.set(__self__, "default_ttl", default_ttl)
+        if field_level_encryption_id is not None:
+            pulumi.set(__self__, "field_level_encryption_id", field_level_encryption_id)
+        if lambda_function_associations is not None:
+            pulumi.set(__self__, "lambda_function_associations", lambda_function_associations)
+        if max_ttl is not None:
+            pulumi.set(__self__, "max_ttl", max_ttl)
+        if min_ttl is not None:
+            pulumi.set(__self__, "min_ttl", min_ttl)
+        if smooth_streaming is not None:
+            pulumi.set(__self__, "smooth_streaming", smooth_streaming)
+        if trusted_signers is not None:
+            pulumi.set(__self__, "trusted_signers", trusted_signers)
 
     @property
     @pulumi.getter(name="allowedMethods")
@@ -377,9 +388,11 @@ class DistributionDefaultCacheBehaviorForwardedValuesArgs:
                value of `true` for `query_string`, all query string keys are cached.
         """
         pulumi.set(__self__, "cookies", cookies)
-        pulumi.set(__self__, "queryString", query_string)
-        pulumi.set(__self__, "headers", headers)
-        pulumi.set(__self__, "queryStringCacheKeys", query_string_cache_keys)
+        pulumi.set(__self__, "query_string", query_string)
+        if headers is not None:
+            pulumi.set(__self__, "headers", headers)
+        if query_string_cache_keys is not None:
+            pulumi.set(__self__, "query_string_cache_keys", query_string_cache_keys)
 
     @property
     @pulumi.getter
@@ -452,7 +465,8 @@ class DistributionDefaultCacheBehaviorForwardedValuesCookiesArgs:
                your origin.
         """
         pulumi.set(__self__, "forward", forward)
-        pulumi.set(__self__, "whitelistedNames", whitelisted_names)
+        if whitelisted_names is not None:
+            pulumi.set(__self__, "whitelisted_names", whitelisted_names)
 
     @property
     @pulumi.getter
@@ -497,9 +511,10 @@ class DistributionDefaultCacheBehaviorLambdaFunctionAssociationArgs:
         :param pulumi.Input[str] lambda_arn: ARN of the Lambda function.
         :param pulumi.Input[bool] include_body: When set to true it exposes the request body to the lambda function. Defaults to false. Valid values: `true`, `false`.
         """
-        pulumi.set(__self__, "eventType", event_type)
-        pulumi.set(__self__, "lambdaArn", lambda_arn)
-        pulumi.set(__self__, "includeBody", include_body)
+        pulumi.set(__self__, "event_type", event_type)
+        pulumi.set(__self__, "lambda_arn", lambda_arn)
+        if include_body is not None:
+            pulumi.set(__self__, "include_body", include_body)
 
     @property
     @pulumi.getter(name="eventType")
@@ -555,8 +570,10 @@ class DistributionLoggingConfigArgs:
                to the access log filenames for this distribution, for example, `myprefix/`.
         """
         pulumi.set(__self__, "bucket", bucket)
-        pulumi.set(__self__, "includeCookies", include_cookies)
-        pulumi.set(__self__, "prefix", prefix)
+        if include_cookies is not None:
+            pulumi.set(__self__, "include_cookies", include_cookies)
+        if prefix is not None:
+            pulumi.set(__self__, "prefix", prefix)
 
     @property
     @pulumi.getter
@@ -655,20 +672,28 @@ class DistributionOrderedCacheBehaviorArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] trusted_signers: The AWS accounts, if any, that you want to
                allow to create signed URLs for private content.
         """
-        pulumi.set(__self__, "allowedMethods", allowed_methods)
-        pulumi.set(__self__, "cachedMethods", cached_methods)
-        pulumi.set(__self__, "forwardedValues", forwarded_values)
-        pulumi.set(__self__, "pathPattern", path_pattern)
-        pulumi.set(__self__, "targetOriginId", target_origin_id)
-        pulumi.set(__self__, "viewerProtocolPolicy", viewer_protocol_policy)
-        pulumi.set(__self__, "compress", compress)
-        pulumi.set(__self__, "defaultTtl", default_ttl)
-        pulumi.set(__self__, "fieldLevelEncryptionId", field_level_encryption_id)
-        pulumi.set(__self__, "lambdaFunctionAssociations", lambda_function_associations)
-        pulumi.set(__self__, "maxTtl", max_ttl)
-        pulumi.set(__self__, "minTtl", min_ttl)
-        pulumi.set(__self__, "smoothStreaming", smooth_streaming)
-        pulumi.set(__self__, "trustedSigners", trusted_signers)
+        pulumi.set(__self__, "allowed_methods", allowed_methods)
+        pulumi.set(__self__, "cached_methods", cached_methods)
+        pulumi.set(__self__, "forwarded_values", forwarded_values)
+        pulumi.set(__self__, "path_pattern", path_pattern)
+        pulumi.set(__self__, "target_origin_id", target_origin_id)
+        pulumi.set(__self__, "viewer_protocol_policy", viewer_protocol_policy)
+        if compress is not None:
+            pulumi.set(__self__, "compress", compress)
+        if default_ttl is not None:
+            pulumi.set(__self__, "default_ttl", default_ttl)
+        if field_level_encryption_id is not None:
+            pulumi.set(__self__, "field_level_encryption_id", field_level_encryption_id)
+        if lambda_function_associations is not None:
+            pulumi.set(__self__, "lambda_function_associations", lambda_function_associations)
+        if max_ttl is not None:
+            pulumi.set(__self__, "max_ttl", max_ttl)
+        if min_ttl is not None:
+            pulumi.set(__self__, "min_ttl", min_ttl)
+        if smooth_streaming is not None:
+            pulumi.set(__self__, "smooth_streaming", smooth_streaming)
+        if trusted_signers is not None:
+            pulumi.set(__self__, "trusted_signers", trusted_signers)
 
     @property
     @pulumi.getter(name="allowedMethods")
@@ -884,9 +909,11 @@ class DistributionOrderedCacheBehaviorForwardedValuesArgs:
                value of `true` for `query_string`, all query string keys are cached.
         """
         pulumi.set(__self__, "cookies", cookies)
-        pulumi.set(__self__, "queryString", query_string)
-        pulumi.set(__self__, "headers", headers)
-        pulumi.set(__self__, "queryStringCacheKeys", query_string_cache_keys)
+        pulumi.set(__self__, "query_string", query_string)
+        if headers is not None:
+            pulumi.set(__self__, "headers", headers)
+        if query_string_cache_keys is not None:
+            pulumi.set(__self__, "query_string_cache_keys", query_string_cache_keys)
 
     @property
     @pulumi.getter
@@ -959,7 +986,8 @@ class DistributionOrderedCacheBehaviorForwardedValuesCookiesArgs:
                your origin.
         """
         pulumi.set(__self__, "forward", forward)
-        pulumi.set(__self__, "whitelistedNames", whitelisted_names)
+        if whitelisted_names is not None:
+            pulumi.set(__self__, "whitelisted_names", whitelisted_names)
 
     @property
     @pulumi.getter
@@ -1004,9 +1032,10 @@ class DistributionOrderedCacheBehaviorLambdaFunctionAssociationArgs:
         :param pulumi.Input[str] lambda_arn: ARN of the Lambda function.
         :param pulumi.Input[bool] include_body: When set to true it exposes the request body to the lambda function. Defaults to false. Valid values: `true`, `false`.
         """
-        pulumi.set(__self__, "eventType", event_type)
-        pulumi.set(__self__, "lambdaArn", lambda_arn)
-        pulumi.set(__self__, "includeBody", include_body)
+        pulumi.set(__self__, "event_type", event_type)
+        pulumi.set(__self__, "lambda_arn", lambda_arn)
+        if include_body is not None:
+            pulumi.set(__self__, "include_body", include_body)
 
     @property
     @pulumi.getter(name="eventType")
@@ -1073,12 +1102,16 @@ class DistributionOriginArgs:
                configuration information. If a custom origin is required, use
                `custom_origin_config` instead.
         """
-        pulumi.set(__self__, "domainName", domain_name)
-        pulumi.set(__self__, "originId", origin_id)
-        pulumi.set(__self__, "customHeaders", custom_headers)
-        pulumi.set(__self__, "customOriginConfig", custom_origin_config)
-        pulumi.set(__self__, "originPath", origin_path)
-        pulumi.set(__self__, "s3OriginConfig", s3_origin_config)
+        pulumi.set(__self__, "domain_name", domain_name)
+        pulumi.set(__self__, "origin_id", origin_id)
+        if custom_headers is not None:
+            pulumi.set(__self__, "custom_headers", custom_headers)
+        if custom_origin_config is not None:
+            pulumi.set(__self__, "custom_origin_config", custom_origin_config)
+        if origin_path is not None:
+            pulumi.set(__self__, "origin_path", origin_path)
+        if s3_origin_config is not None:
+            pulumi.set(__self__, "s3_origin_config", s3_origin_config)
 
     @property
     @pulumi.getter(name="domainName")
@@ -1209,12 +1242,14 @@ class DistributionOriginCustomOriginConfigArgs:
         :param pulumi.Input[float] origin_keepalive_timeout: The Custom KeepAlive timeout, in seconds. By default, AWS enforces a limit of `60`. But you can request an [increase](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/RequestAndResponseBehaviorCustomOrigin.html#request-custom-request-timeout).
         :param pulumi.Input[float] origin_read_timeout: The Custom Read timeout, in seconds. By default, AWS enforces a limit of `60`. But you can request an [increase](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/RequestAndResponseBehaviorCustomOrigin.html#request-custom-request-timeout).
         """
-        pulumi.set(__self__, "httpPort", http_port)
-        pulumi.set(__self__, "httpsPort", https_port)
-        pulumi.set(__self__, "originProtocolPolicy", origin_protocol_policy)
-        pulumi.set(__self__, "originSslProtocols", origin_ssl_protocols)
-        pulumi.set(__self__, "originKeepaliveTimeout", origin_keepalive_timeout)
-        pulumi.set(__self__, "originReadTimeout", origin_read_timeout)
+        pulumi.set(__self__, "http_port", http_port)
+        pulumi.set(__self__, "https_port", https_port)
+        pulumi.set(__self__, "origin_protocol_policy", origin_protocol_policy)
+        pulumi.set(__self__, "origin_ssl_protocols", origin_ssl_protocols)
+        if origin_keepalive_timeout is not None:
+            pulumi.set(__self__, "origin_keepalive_timeout", origin_keepalive_timeout)
+        if origin_read_timeout is not None:
+            pulumi.set(__self__, "origin_read_timeout", origin_read_timeout)
 
     @property
     @pulumi.getter(name="httpPort")
@@ -1303,9 +1338,9 @@ class DistributionOriginGroupArgs:
         :param pulumi.Input[List[pulumi.Input['DistributionOriginGroupMemberArgs']]] members: Ordered member configuration blocks assigned to the origin group, where the first member is the primary origin. You must specify two members.
         :param pulumi.Input[str] origin_id: The unique identifier of the member origin
         """
-        pulumi.set(__self__, "failoverCriteria", failover_criteria)
+        pulumi.set(__self__, "failover_criteria", failover_criteria)
         pulumi.set(__self__, "members", members)
-        pulumi.set(__self__, "originId", origin_id)
+        pulumi.set(__self__, "origin_id", origin_id)
 
     @property
     @pulumi.getter(name="failoverCriteria")
@@ -1351,7 +1386,7 @@ class DistributionOriginGroupFailoverCriteriaArgs:
         """
         :param pulumi.Input[List[pulumi.Input[float]]] status_codes: A list of HTTP status codes for the origin group
         """
-        pulumi.set(__self__, "statusCodes", status_codes)
+        pulumi.set(__self__, "status_codes", status_codes)
 
     @property
     @pulumi.getter(name="statusCodes")
@@ -1373,7 +1408,7 @@ class DistributionOriginGroupMemberArgs:
         """
         :param pulumi.Input[str] origin_id: The unique identifier of the member origin
         """
-        pulumi.set(__self__, "originId", origin_id)
+        pulumi.set(__self__, "origin_id", origin_id)
 
     @property
     @pulumi.getter(name="originId")
@@ -1396,7 +1431,7 @@ class DistributionOriginS3OriginConfigArgs:
         :param pulumi.Input[str] origin_access_identity: The [CloudFront origin access
                identity][5] to associate with the origin.
         """
-        pulumi.set(__self__, "originAccessIdentity", origin_access_identity)
+        pulumi.set(__self__, "origin_access_identity", origin_access_identity)
 
     @property
     @pulumi.getter(name="originAccessIdentity")
@@ -1416,7 +1451,7 @@ class DistributionOriginS3OriginConfigArgs:
 class DistributionRestrictionsArgs:
     def __init__(__self__, *,
                  geo_restriction: pulumi.Input['DistributionRestrictionsGeoRestrictionArgs']):
-        pulumi.set(__self__, "geoRestriction", geo_restriction)
+        pulumi.set(__self__, "geo_restriction", geo_restriction)
 
     @property
     @pulumi.getter(name="geoRestriction")
@@ -1441,8 +1476,9 @@ class DistributionRestrictionsGeoRestrictionArgs:
                want CloudFront either to distribute your content (`whitelist`) or not
                distribute your content (`blacklist`).
         """
-        pulumi.set(__self__, "restrictionType", restriction_type)
-        pulumi.set(__self__, "locations", locations)
+        pulumi.set(__self__, "restriction_type", restriction_type)
+        if locations is not None:
+            pulumi.set(__self__, "locations", locations)
 
     @property
     @pulumi.getter(name="restrictionType")
@@ -1503,11 +1539,16 @@ class DistributionViewerCertificateArgs:
                specified. If you have specified `cloudfront_default_certificate`, `TLSv1`
                must be specified.
         """
-        pulumi.set(__self__, "acmCertificateArn", acm_certificate_arn)
-        pulumi.set(__self__, "cloudfrontDefaultCertificate", cloudfront_default_certificate)
-        pulumi.set(__self__, "iamCertificateId", iam_certificate_id)
-        pulumi.set(__self__, "minimumProtocolVersion", minimum_protocol_version)
-        pulumi.set(__self__, "sslSupportMethod", ssl_support_method)
+        if acm_certificate_arn is not None:
+            pulumi.set(__self__, "acm_certificate_arn", acm_certificate_arn)
+        if cloudfront_default_certificate is not None:
+            pulumi.set(__self__, "cloudfront_default_certificate", cloudfront_default_certificate)
+        if iam_certificate_id is not None:
+            pulumi.set(__self__, "iam_certificate_id", iam_certificate_id)
+        if minimum_protocol_version is not None:
+            pulumi.set(__self__, "minimum_protocol_version", minimum_protocol_version)
+        if ssl_support_method is not None:
+            pulumi.set(__self__, "ssl_support_method", ssl_support_method)
 
     @property
     @pulumi.getter(name="acmCertificateArn")

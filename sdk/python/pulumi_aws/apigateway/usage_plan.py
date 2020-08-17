@@ -14,46 +14,6 @@ __all__ = ['UsagePlan']
 
 
 class UsagePlan(pulumi.CustomResource):
-    api_stages: pulumi.Output[Optional[List['outputs.UsagePlanApiStage']]] = pulumi.property("apiStages")
-    """
-    The associated API stages of the usage plan.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN)
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    The description of a usage plan.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the usage plan.
-    """
-
-    product_code: pulumi.Output[Optional[str]] = pulumi.property("productCode")
-    """
-    The AWS Markeplace product identifier to associate with the usage plan as a SaaS product on AWS Marketplace.
-    """
-
-    quota_settings: pulumi.Output[Optional['outputs.UsagePlanQuotaSettings']] = pulumi.property("quotaSettings")
-    """
-    The quota settings of the usage plan.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of resource tags
-    """
-
-    throttle_settings: pulumi.Output[Optional['outputs.UsagePlanThrottleSettings']] = pulumi.property("throttleSettings")
-    """
-    The throttling limits of the usage plan.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -189,6 +149,70 @@ class UsagePlan(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["throttle_settings"] = throttle_settings
         return UsagePlan(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="apiStages")
+    def api_stages(self) -> Optional[List['outputs.UsagePlanApiStage']]:
+        """
+        The associated API stages of the usage plan.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN)
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        The description of a usage plan.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the usage plan.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="productCode")
+    def product_code(self) -> Optional[str]:
+        """
+        The AWS Markeplace product identifier to associate with the usage plan as a SaaS product on AWS Marketplace.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="quotaSettings")
+    def quota_settings(self) -> Optional['outputs.UsagePlanQuotaSettings']:
+        """
+        The quota settings of the usage plan.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of resource tags
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="throttleSettings")
+    def throttle_settings(self) -> Optional['outputs.UsagePlanThrottleSettings']:
+        """
+        The throttling limits of the usage plan.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

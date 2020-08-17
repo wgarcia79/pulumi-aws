@@ -12,16 +12,6 @@ __all__ = ['NetworkInterfaceSecurityGroupAttachment']
 
 
 class NetworkInterfaceSecurityGroupAttachment(pulumi.CustomResource):
-    network_interface_id: pulumi.Output[str] = pulumi.property("networkInterfaceId")
-    """
-    The ID of the network interface to attach to.
-    """
-
-    security_group_id: pulumi.Output[str] = pulumi.property("securityGroupId")
-    """
-    The ID of the security group.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -154,6 +144,22 @@ class NetworkInterfaceSecurityGroupAttachment(pulumi.CustomResource):
         __props__["network_interface_id"] = network_interface_id
         __props__["security_group_id"] = security_group_id
         return NetworkInterfaceSecurityGroupAttachment(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="networkInterfaceId")
+    def network_interface_id(self) -> str:
+        """
+        The ID of the network interface to attach to.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="securityGroupId")
+    def security_group_id(self) -> str:
+        """
+        The ID of the security group.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -14,73 +14,6 @@ __all__ = ['Certificate']
 
 
 class Certificate(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the certificate
-    """
-
-    certificate_authority_arn: pulumi.Output[Optional[str]] = pulumi.property("certificateAuthorityArn")
-    """
-    ARN of an ACMPCA
-    """
-
-    certificate_body: pulumi.Output[Optional[str]] = pulumi.property("certificateBody")
-    """
-    The certificate's PEM-formatted public key
-    """
-
-    certificate_chain: pulumi.Output[Optional[str]] = pulumi.property("certificateChain")
-    """
-    The certificate's PEM-formatted chain
-    * Creating a private CA issued certificate
-    """
-
-    domain_name: pulumi.Output[str] = pulumi.property("domainName")
-    """
-    A domain name for which the certificate should be issued
-    """
-
-    domain_validation_options: pulumi.Output[List['outputs.CertificateDomainValidationOption']] = pulumi.property("domainValidationOptions")
-    """
-    A list of attributes to feed into other resources to complete certificate validation. Can have more than one element, e.g. if SANs are defined. Only set if `DNS`-validation was used.
-    """
-
-    options: pulumi.Output[Optional['outputs.CertificateOptions']] = pulumi.property("options")
-    """
-    Configuration block used to set certificate options. Detailed below.
-    * Importing an existing certificate
-    """
-
-    private_key: pulumi.Output[Optional[str]] = pulumi.property("privateKey")
-    """
-    The certificate's PEM-formatted private key
-    """
-
-    status: pulumi.Output[str] = pulumi.property("status")
-    """
-    Status of the certificate.
-    """
-
-    subject_alternative_names: pulumi.Output[List[str]] = pulumi.property("subjectAlternativeNames")
-    """
-    A list of domains that should be SANs in the issued certificate. To remove all elements of a previously configured list, set this value equal to an empty list (`[]`) to trigger recreation.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
-    validation_emails: pulumi.Output[List[str]] = pulumi.property("validationEmails")
-    """
-    A list of addresses that received a validation E-Mail. Only set if `EMAIL`-validation was used.
-    """
-
-    validation_method: pulumi.Output[str] = pulumi.property("validationMethod")
-    """
-    Which method to use for validation. `DNS` or `EMAIL` are valid, `NONE` can be used for certificates that were imported into ACM and then into the provider.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -263,6 +196,112 @@ class Certificate(pulumi.CustomResource):
         __props__["validation_emails"] = validation_emails
         __props__["validation_method"] = validation_method
         return Certificate(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the certificate
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="certificateAuthorityArn")
+    def certificate_authority_arn(self) -> Optional[str]:
+        """
+        ARN of an ACMPCA
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="certificateBody")
+    def certificate_body(self) -> Optional[str]:
+        """
+        The certificate's PEM-formatted public key
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="certificateChain")
+    def certificate_chain(self) -> Optional[str]:
+        """
+        The certificate's PEM-formatted chain
+        * Creating a private CA issued certificate
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="domainName")
+    def domain_name(self) -> str:
+        """
+        A domain name for which the certificate should be issued
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="domainValidationOptions")
+    def domain_validation_options(self) -> List['outputs.CertificateDomainValidationOption']:
+        """
+        A list of attributes to feed into other resources to complete certificate validation. Can have more than one element, e.g. if SANs are defined. Only set if `DNS`-validation was used.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def options(self) -> Optional['outputs.CertificateOptions']:
+        """
+        Configuration block used to set certificate options. Detailed below.
+        * Importing an existing certificate
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[str]:
+        """
+        The certificate's PEM-formatted private key
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        Status of the certificate.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="subjectAlternativeNames")
+    def subject_alternative_names(self) -> List[str]:
+        """
+        A list of domains that should be SANs in the issued certificate. To remove all elements of a previously configured list, set this value equal to an empty list (`[]`) to trigger recreation.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="validationEmails")
+    def validation_emails(self) -> List[str]:
+        """
+        A list of addresses that received a validation E-Mail. Only set if `EMAIL`-validation was used.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="validationMethod")
+    def validation_method(self) -> str:
+        """
+        Which method to use for validation. `DNS` or `EMAIL` are valid, `NONE` can be used for certificates that were imported into ACM and then into the provider.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

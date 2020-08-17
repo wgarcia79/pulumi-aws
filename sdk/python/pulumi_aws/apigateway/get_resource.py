@@ -15,15 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetResourceResult:
-    id: str = pulumi.property("id")
-    parent_id: str = pulumi.property("parentId")
-    path: str = pulumi.property("path")
-    path_part: str = pulumi.property("pathPart")
-    rest_api_id: str = pulumi.property("restApiId")
-
-
 class GetResourceResult:
     """
     A collection of values returned by getResource.
@@ -31,28 +24,54 @@ class GetResourceResult:
     def __init__(__self__, id=None, parent_id=None, path=None, path_part=None, rest_api_id=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if parent_id and not isinstance(parent_id, str):
+            raise TypeError("Expected argument 'parent_id' to be a str")
+        pulumi.set(__self__, "parent_id", parent_id)
+        if path and not isinstance(path, str):
+            raise TypeError("Expected argument 'path' to be a str")
+        pulumi.set(__self__, "path", path)
+        if path_part and not isinstance(path_part, str):
+            raise TypeError("Expected argument 'path_part' to be a str")
+        pulumi.set(__self__, "path_part", path_part)
+        if rest_api_id and not isinstance(rest_api_id, str):
+            raise TypeError("Expected argument 'rest_api_id' to be a str")
+        pulumi.set(__self__, "rest_api_id", rest_api_id)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if parent_id and not isinstance(parent_id, str):
-            raise TypeError("Expected argument 'parent_id' to be a str")
-        __self__.parent_id = parent_id
+        ...
+
+    @property
+    @pulumi.getter(name="parentId")
+    def parent_id(self) -> str:
         """
         Set to the ID of the parent Resource.
         """
-        if path and not isinstance(path, str):
-            raise TypeError("Expected argument 'path' to be a str")
-        __self__.path = path
-        if path_part and not isinstance(path_part, str):
-            raise TypeError("Expected argument 'path_part' to be a str")
-        __self__.path_part = path_part
+        ...
+
+    @property
+    @pulumi.getter
+    def path(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="pathPart")
+    def path_part(self) -> str:
         """
         Set to the path relative to the parent Resource.
         """
-        if rest_api_id and not isinstance(rest_api_id, str):
-            raise TypeError("Expected argument 'rest_api_id' to be a str")
-        __self__.rest_api_id = rest_api_id
+        ...
+
+    @property
+    @pulumi.getter(name="restApiId")
+    def rest_api_id(self) -> str:
+        ...
+
 
 
 class AwaitableGetResourceResult(GetResourceResult):
@@ -97,7 +116,7 @@ def get_resource(path: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:apigateway/getResource:getResource', __args__, opts=opts, typ=_GetResourceResult).value
+    __ret__ = pulumi.runtime.invoke('aws:apigateway/getResource:getResource', __args__, opts=opts, typ=GetResourceResult).value
 
     return AwaitableGetResourceResult(
         id=__ret__.id,

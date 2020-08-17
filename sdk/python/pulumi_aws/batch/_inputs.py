@@ -50,21 +50,29 @@ class ComputeEnvironmentComputeResourcesArgs:
         :param pulumi.Input[str] spot_iam_fleet_role: The Amazon Resource Name (ARN) of the Amazon EC2 Spot Fleet IAM role applied to a SPOT compute environment. This parameter is required for SPOT compute environments.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Key-value pair tags to be applied to resources that are launched in the compute environment.
         """
-        pulumi.set(__self__, "instanceRole", instance_role)
-        pulumi.set(__self__, "instanceTypes", instance_types)
-        pulumi.set(__self__, "maxVcpus", max_vcpus)
-        pulumi.set(__self__, "minVcpus", min_vcpus)
-        pulumi.set(__self__, "securityGroupIds", security_group_ids)
+        pulumi.set(__self__, "instance_role", instance_role)
+        pulumi.set(__self__, "instance_types", instance_types)
+        pulumi.set(__self__, "max_vcpus", max_vcpus)
+        pulumi.set(__self__, "min_vcpus", min_vcpus)
+        pulumi.set(__self__, "security_group_ids", security_group_ids)
         pulumi.set(__self__, "subnets", subnets)
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "allocationStrategy", allocation_strategy)
-        pulumi.set(__self__, "bidPercentage", bid_percentage)
-        pulumi.set(__self__, "desiredVcpus", desired_vcpus)
-        pulumi.set(__self__, "ec2KeyPair", ec2_key_pair)
-        pulumi.set(__self__, "imageId", image_id)
-        pulumi.set(__self__, "launchTemplate", launch_template)
-        pulumi.set(__self__, "spotIamFleetRole", spot_iam_fleet_role)
-        pulumi.set(__self__, "tags", tags)
+        if allocation_strategy is not None:
+            pulumi.set(__self__, "allocation_strategy", allocation_strategy)
+        if bid_percentage is not None:
+            pulumi.set(__self__, "bid_percentage", bid_percentage)
+        if desired_vcpus is not None:
+            pulumi.set(__self__, "desired_vcpus", desired_vcpus)
+        if ec2_key_pair is not None:
+            pulumi.set(__self__, "ec2_key_pair", ec2_key_pair)
+        if image_id is not None:
+            pulumi.set(__self__, "image_id", image_id)
+        if launch_template is not None:
+            pulumi.set(__self__, "launch_template", launch_template)
+        if spot_iam_fleet_role is not None:
+            pulumi.set(__self__, "spot_iam_fleet_role", spot_iam_fleet_role)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="instanceRole")
@@ -258,9 +266,12 @@ class ComputeEnvironmentComputeResourcesLaunchTemplateArgs:
         :param pulumi.Input[str] launch_template_name: Name of the launch template.
         :param pulumi.Input[str] version: The version number of the launch template. Default: The default version of the launch template.
         """
-        pulumi.set(__self__, "launchTemplateId", launch_template_id)
-        pulumi.set(__self__, "launchTemplateName", launch_template_name)
-        pulumi.set(__self__, "version", version)
+        if launch_template_id is not None:
+            pulumi.set(__self__, "launch_template_id", launch_template_id)
+        if launch_template_name is not None:
+            pulumi.set(__self__, "launch_template_name", launch_template_name)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
 
     @property
     @pulumi.getter(name="launchTemplateId")
@@ -306,7 +317,8 @@ class JobDefinitionRetryStrategyArgs:
         """
         :param pulumi.Input[float] attempts: The number of times to move a job to the `RUNNABLE` status. You may specify between `1` and `10` attempts.
         """
-        pulumi.set(__self__, "attempts", attempts)
+        if attempts is not None:
+            pulumi.set(__self__, "attempts", attempts)
 
     @property
     @pulumi.getter
@@ -328,7 +340,8 @@ class JobDefinitionTimeoutArgs:
         """
         :param pulumi.Input[float] attempt_duration_seconds: The time duration in seconds after which AWS Batch terminates your jobs if they have not finished. The minimum value for the timeout is `60` seconds.
         """
-        pulumi.set(__self__, "attemptDurationSeconds", attempt_duration_seconds)
+        if attempt_duration_seconds is not None:
+            pulumi.set(__self__, "attempt_duration_seconds", attempt_duration_seconds)
 
     @property
     @pulumi.getter(name="attemptDurationSeconds")

@@ -36,7 +36,8 @@ class ClusterBootstrapActionArgs:
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "path", path)
-        pulumi.set(__self__, "args", args)
+        if args is not None:
+            pulumi.set(__self__, "args", args)
 
     @property
     @pulumi.getter
@@ -94,13 +95,19 @@ class ClusterCoreInstanceGroupArgs:
         :param pulumi.Input[float] instance_count: Target number of instances for the instance group. Must be 1 or 3. Defaults to 1. Launching with multiple master nodes is only supported in EMR version 5.23.0+, and requires this resource's `core_instance_group` to be configured. Public (Internet accessible) instances must be created in VPC subnets that have `map public IP on launch` enabled. Termination protection is automatically enabled when launched with multiple master nodes and this provider must have the `termination_protection = false` configuration applied before destroying this resource.
         :param pulumi.Input[str] name: The name of the step.
         """
-        pulumi.set(__self__, "instanceType", instance_type)
-        pulumi.set(__self__, "autoscalingPolicy", autoscaling_policy)
-        pulumi.set(__self__, "bidPrice", bid_price)
-        pulumi.set(__self__, "ebsConfigs", ebs_configs)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "instanceCount", instance_count)
-        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "instance_type", instance_type)
+        if autoscaling_policy is not None:
+            pulumi.set(__self__, "autoscaling_policy", autoscaling_policy)
+        if bid_price is not None:
+            pulumi.set(__self__, "bid_price", bid_price)
+        if ebs_configs is not None:
+            pulumi.set(__self__, "ebs_configs", ebs_configs)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if instance_count is not None:
+            pulumi.set(__self__, "instance_count", instance_count)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter(name="instanceType")
@@ -202,8 +209,10 @@ class ClusterCoreInstanceGroupEbsConfigArgs:
         """
         pulumi.set(__self__, "size", size)
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "volumesPerInstance", volumes_per_instance)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if volumes_per_instance is not None:
+            pulumi.set(__self__, "volumes_per_instance", volumes_per_instance)
 
     @property
     @pulumi.getter
@@ -275,14 +284,21 @@ class ClusterEc2AttributesArgs:
         :param pulumi.Input[str] service_access_security_group: Identifier of the Amazon EC2 service-access security group - required when the cluster runs on a private subnet
         :param pulumi.Input[str] subnet_id: VPC subnet id where you want the job flow to launch. Cannot specify the `cc1.4xlarge` instance type for nodes of a job flow launched in a Amazon VPC
         """
-        pulumi.set(__self__, "instanceProfile", instance_profile)
-        pulumi.set(__self__, "additionalMasterSecurityGroups", additional_master_security_groups)
-        pulumi.set(__self__, "additionalSlaveSecurityGroups", additional_slave_security_groups)
-        pulumi.set(__self__, "emrManagedMasterSecurityGroup", emr_managed_master_security_group)
-        pulumi.set(__self__, "emrManagedSlaveSecurityGroup", emr_managed_slave_security_group)
-        pulumi.set(__self__, "keyName", key_name)
-        pulumi.set(__self__, "serviceAccessSecurityGroup", service_access_security_group)
-        pulumi.set(__self__, "subnetId", subnet_id)
+        pulumi.set(__self__, "instance_profile", instance_profile)
+        if additional_master_security_groups is not None:
+            pulumi.set(__self__, "additional_master_security_groups", additional_master_security_groups)
+        if additional_slave_security_groups is not None:
+            pulumi.set(__self__, "additional_slave_security_groups", additional_slave_security_groups)
+        if emr_managed_master_security_group is not None:
+            pulumi.set(__self__, "emr_managed_master_security_group", emr_managed_master_security_group)
+        if emr_managed_slave_security_group is not None:
+            pulumi.set(__self__, "emr_managed_slave_security_group", emr_managed_slave_security_group)
+        if key_name is not None:
+            pulumi.set(__self__, "key_name", key_name)
+        if service_access_security_group is not None:
+            pulumi.set(__self__, "service_access_security_group", service_access_security_group)
+        if subnet_id is not None:
+            pulumi.set(__self__, "subnet_id", subnet_id)
 
     @property
     @pulumi.getter(name="instanceProfile")
@@ -402,14 +418,20 @@ class ClusterInstanceGroupArgs:
         :param pulumi.Input[float] instance_count: Target number of instances for the instance group. Must be 1 or 3. Defaults to 1. Launching with multiple master nodes is only supported in EMR version 5.23.0+, and requires this resource's `core_instance_group` to be configured. Public (Internet accessible) instances must be created in VPC subnets that have `map public IP on launch` enabled. Termination protection is automatically enabled when launched with multiple master nodes and this provider must have the `termination_protection = false` configuration applied before destroying this resource.
         :param pulumi.Input[str] name: The name of the step.
         """
-        pulumi.set(__self__, "instanceRole", instance_role)
-        pulumi.set(__self__, "instanceType", instance_type)
-        pulumi.set(__self__, "autoscalingPolicy", autoscaling_policy)
-        pulumi.set(__self__, "bidPrice", bid_price)
-        pulumi.set(__self__, "ebsConfigs", ebs_configs)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "instanceCount", instance_count)
-        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "instance_role", instance_role)
+        pulumi.set(__self__, "instance_type", instance_type)
+        if autoscaling_policy is not None:
+            pulumi.set(__self__, "autoscaling_policy", autoscaling_policy)
+        if bid_price is not None:
+            pulumi.set(__self__, "bid_price", bid_price)
+        if ebs_configs is not None:
+            pulumi.set(__self__, "ebs_configs", ebs_configs)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if instance_count is not None:
+            pulumi.set(__self__, "instance_count", instance_count)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter(name="instanceRole")
@@ -523,8 +545,10 @@ class ClusterInstanceGroupEbsConfigArgs:
         """
         pulumi.set(__self__, "size", size)
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "volumesPerInstance", volumes_per_instance)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if volumes_per_instance is not None:
+            pulumi.set(__self__, "volumes_per_instance", volumes_per_instance)
 
     @property
     @pulumi.getter
@@ -590,11 +614,14 @@ class ClusterKerberosAttributesArgs:
         :param pulumi.Input[str] ad_domain_join_user: Required only when establishing a cross-realm trust with an Active Directory domain. A user with sufficient privileges to join resources to the domain. This provider cannot perform drift detection of this configuration.
         :param pulumi.Input[str] cross_realm_trust_principal_password: Required only when establishing a cross-realm trust with a KDC in a different realm. The cross-realm principal password, which must be identical across realms. This provider cannot perform drift detection of this configuration.
         """
-        pulumi.set(__self__, "kdcAdminPassword", kdc_admin_password)
+        pulumi.set(__self__, "kdc_admin_password", kdc_admin_password)
         pulumi.set(__self__, "realm", realm)
-        pulumi.set(__self__, "adDomainJoinPassword", ad_domain_join_password)
-        pulumi.set(__self__, "adDomainJoinUser", ad_domain_join_user)
-        pulumi.set(__self__, "crossRealmTrustPrincipalPassword", cross_realm_trust_principal_password)
+        if ad_domain_join_password is not None:
+            pulumi.set(__self__, "ad_domain_join_password", ad_domain_join_password)
+        if ad_domain_join_user is not None:
+            pulumi.set(__self__, "ad_domain_join_user", ad_domain_join_user)
+        if cross_realm_trust_principal_password is not None:
+            pulumi.set(__self__, "cross_realm_trust_principal_password", cross_realm_trust_principal_password)
 
     @property
     @pulumi.getter(name="kdcAdminPassword")
@@ -674,12 +701,17 @@ class ClusterMasterInstanceGroupArgs:
         :param pulumi.Input[float] instance_count: Target number of instances for the instance group. Must be 1 or 3. Defaults to 1. Launching with multiple master nodes is only supported in EMR version 5.23.0+, and requires this resource's `core_instance_group` to be configured. Public (Internet accessible) instances must be created in VPC subnets that have `map public IP on launch` enabled. Termination protection is automatically enabled when launched with multiple master nodes and this provider must have the `termination_protection = false` configuration applied before destroying this resource.
         :param pulumi.Input[str] name: The name of the step.
         """
-        pulumi.set(__self__, "instanceType", instance_type)
-        pulumi.set(__self__, "bidPrice", bid_price)
-        pulumi.set(__self__, "ebsConfigs", ebs_configs)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "instanceCount", instance_count)
-        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "instance_type", instance_type)
+        if bid_price is not None:
+            pulumi.set(__self__, "bid_price", bid_price)
+        if ebs_configs is not None:
+            pulumi.set(__self__, "ebs_configs", ebs_configs)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if instance_count is not None:
+            pulumi.set(__self__, "instance_count", instance_count)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter(name="instanceType")
@@ -769,8 +801,10 @@ class ClusterMasterInstanceGroupEbsConfigArgs:
         """
         pulumi.set(__self__, "size", size)
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "volumesPerInstance", volumes_per_instance)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if volumes_per_instance is not None:
+            pulumi.set(__self__, "volumes_per_instance", volumes_per_instance)
 
     @property
     @pulumi.getter
@@ -832,8 +866,8 @@ class ClusterStepArgs:
         :param pulumi.Input['ClusterStepHadoopJarStepArgs'] hadoop_jar_step: The JAR file used for the step. Defined below.
         :param pulumi.Input[str] name: The name of the step.
         """
-        pulumi.set(__self__, "actionOnFailure", action_on_failure)
-        pulumi.set(__self__, "hadoopJarStep", hadoop_jar_step)
+        pulumi.set(__self__, "action_on_failure", action_on_failure)
+        pulumi.set(__self__, "hadoop_jar_step", hadoop_jar_step)
         pulumi.set(__self__, "name", name)
 
     @property
@@ -887,9 +921,12 @@ class ClusterStepHadoopJarStepArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] properties: Key-Value map of Java properties that are set when the step runs. You can use these properties to pass key value pairs to your main function.
         """
         pulumi.set(__self__, "jar", jar)
-        pulumi.set(__self__, "args", args)
-        pulumi.set(__self__, "mainClass", main_class)
-        pulumi.set(__self__, "properties", properties)
+        if args is not None:
+            pulumi.set(__self__, "args", args)
+        if main_class is not None:
+            pulumi.set(__self__, "main_class", main_class)
+        if properties is not None:
+            pulumi.set(__self__, "properties", properties)
 
     @property
     @pulumi.getter
@@ -955,8 +992,10 @@ class InstanceGroupEbsConfigArgs:
         """
         pulumi.set(__self__, "size", size)
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "volumesPerInstance", volumes_per_instance)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if volumes_per_instance is not None:
+            pulumi.set(__self__, "volumes_per_instance", volumes_per_instance)
 
     @property
     @pulumi.getter

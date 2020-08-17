@@ -16,15 +16,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetSecretRotationResult:
-    id: str = pulumi.property("id")
-    rotation_enabled: bool = pulumi.property("rotationEnabled")
-    rotation_lambda_arn: str = pulumi.property("rotationLambdaArn")
-    rotation_rules: List['outputs.GetSecretRotationRotationRuleResult'] = pulumi.property("rotationRules")
-    secret_id: str = pulumi.property("secretId")
-
-
 class GetSecretRotationResult:
     """
     A collection of values returned by getSecretRotation.
@@ -32,31 +25,57 @@ class GetSecretRotationResult:
     def __init__(__self__, id=None, rotation_enabled=None, rotation_lambda_arn=None, rotation_rules=None, secret_id=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if rotation_enabled and not isinstance(rotation_enabled, bool):
+            raise TypeError("Expected argument 'rotation_enabled' to be a bool")
+        pulumi.set(__self__, "rotation_enabled", rotation_enabled)
+        if rotation_lambda_arn and not isinstance(rotation_lambda_arn, str):
+            raise TypeError("Expected argument 'rotation_lambda_arn' to be a str")
+        pulumi.set(__self__, "rotation_lambda_arn", rotation_lambda_arn)
+        if rotation_rules and not isinstance(rotation_rules, list):
+            raise TypeError("Expected argument 'rotation_rules' to be a list")
+        pulumi.set(__self__, "rotation_rules", rotation_rules)
+        if secret_id and not isinstance(secret_id, str):
+            raise TypeError("Expected argument 'secret_id' to be a str")
+        pulumi.set(__self__, "secret_id", secret_id)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if rotation_enabled and not isinstance(rotation_enabled, bool):
-            raise TypeError("Expected argument 'rotation_enabled' to be a bool")
-        __self__.rotation_enabled = rotation_enabled
+        ...
+
+    @property
+    @pulumi.getter(name="rotationEnabled")
+    def rotation_enabled(self) -> bool:
         """
         The ARN of the secret.
         """
-        if rotation_lambda_arn and not isinstance(rotation_lambda_arn, str):
-            raise TypeError("Expected argument 'rotation_lambda_arn' to be a str")
-        __self__.rotation_lambda_arn = rotation_lambda_arn
+        ...
+
+    @property
+    @pulumi.getter(name="rotationLambdaArn")
+    def rotation_lambda_arn(self) -> str:
         """
         The decrypted part of the protected secret information that was originally provided as a string.
         """
-        if rotation_rules and not isinstance(rotation_rules, list):
-            raise TypeError("Expected argument 'rotation_rules' to be a list")
-        __self__.rotation_rules = rotation_rules
+        ...
+
+    @property
+    @pulumi.getter(name="rotationRules")
+    def rotation_rules(self) -> List['outputs.GetSecretRotationRotationRuleResult']:
         """
         The decrypted part of the protected secret information that was originally provided as a binary. Base64 encoded.
         """
-        if secret_id and not isinstance(secret_id, str):
-            raise TypeError("Expected argument 'secret_id' to be a str")
-        __self__.secret_id = secret_id
+        ...
+
+    @property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> str:
+        ...
+
 
 
 class AwaitableGetSecretRotationResult(GetSecretRotationResult):
@@ -96,7 +115,7 @@ def get_secret_rotation(secret_id: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:secretsmanager/getSecretRotation:getSecretRotation', __args__, opts=opts, typ=_GetSecretRotationResult).value
+    __ret__ = pulumi.runtime.invoke('aws:secretsmanager/getSecretRotation:getSecretRotation', __args__, opts=opts, typ=GetSecretRotationResult).value
 
     return AwaitableGetSecretRotationResult(
         id=__ret__.id,

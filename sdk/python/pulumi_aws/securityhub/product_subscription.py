@@ -12,16 +12,6 @@ __all__ = ['ProductSubscription']
 
 
 class ProductSubscription(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of a resource that represents your subscription to the product that generates the findings that you want to import into Security Hub.
-    """
-
-    product_arn: pulumi.Output[str] = pulumi.property("productArn")
-    """
-    The ARN of the product that generates findings that you want to import into Security Hub - see below.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -98,6 +88,22 @@ class ProductSubscription(pulumi.CustomResource):
         __props__["arn"] = arn
         __props__["product_arn"] = product_arn
         return ProductSubscription(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of a resource that represents your subscription to the product that generates the findings that you want to import into Security Hub.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="productArn")
+    def product_arn(self) -> str:
+        """
+        The ARN of the product that generates findings that you want to import into Security Hub - see below.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

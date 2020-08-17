@@ -12,21 +12,6 @@ __all__ = ['ZoneAssociation']
 
 
 class ZoneAssociation(pulumi.CustomResource):
-    vpc_id: pulumi.Output[str] = pulumi.property("vpcId")
-    """
-    The VPC to associate with the private hosted zone.
-    """
-
-    vpc_region: pulumi.Output[str] = pulumi.property("vpcRegion")
-    """
-    The VPC's region. Defaults to the region of the AWS provider.
-    """
-
-    zone_id: pulumi.Output[str] = pulumi.property("zoneId")
-    """
-    The private hosted zone to associate.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -105,6 +90,30 @@ class ZoneAssociation(pulumi.CustomResource):
         __props__["vpc_region"] = vpc_region
         __props__["zone_id"] = zone_id
         return ZoneAssociation(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The VPC to associate with the private hosted zone.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="vpcRegion")
+    def vpc_region(self) -> str:
+        """
+        The VPC's region. Defaults to the region of the AWS provider.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The private hosted zone to associate.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

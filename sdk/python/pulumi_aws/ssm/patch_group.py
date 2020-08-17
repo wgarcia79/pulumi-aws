@@ -12,16 +12,6 @@ __all__ = ['PatchGroup']
 
 
 class PatchGroup(pulumi.CustomResource):
-    baseline_id: pulumi.Output[str] = pulumi.property("baselineId")
-    """
-    The ID of the patch baseline to register the patch group with.
-    """
-
-    patch_group: pulumi.Output[str] = pulumi.property("patchGroup")
-    """
-    The name of the patch group that should be registered with the patch baseline.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -102,6 +92,22 @@ class PatchGroup(pulumi.CustomResource):
         __props__["baseline_id"] = baseline_id
         __props__["patch_group"] = patch_group
         return PatchGroup(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="baselineId")
+    def baseline_id(self) -> str:
+        """
+        The ID of the patch baseline to register the patch group with.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="patchGroup")
+    def patch_group(self) -> str:
+        """
+        The name of the patch group that should be registered with the patch baseline.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

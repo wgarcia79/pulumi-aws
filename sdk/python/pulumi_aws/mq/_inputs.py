@@ -27,8 +27,10 @@ class BrokerConfigurationArgs:
         :param pulumi.Input[str] id: The Configuration ID.
         :param pulumi.Input[float] revision: Revision of the Configuration.
         """
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "revision", revision)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if revision is not None:
+            pulumi.set(__self__, "revision", revision)
 
     @property
     @pulumi.getter
@@ -64,8 +66,10 @@ class BrokerEncryptionOptionsArgs:
         :param pulumi.Input[str] kms_key_id: Amazon Resource Name (ARN) of Key Management Service (KMS) Customer Master Key (CMK) to use for encryption at rest. Requires setting `use_aws_owned_key` to `false`. To perform drift detection when AWS managed CMKs or customer managed CMKs are in use, this value must be configured.
         :param pulumi.Input[bool] use_aws_owned_key: Boolean to enable an AWS owned Key Management Service (KMS) Customer Master Key (CMK) that is not in your account. Defaults to `true`. Setting to `false` without configuring `kms_key_id` will create an AWS managed Customer Master Key (CMK) aliased to `aws/mq` in your account.
         """
-        pulumi.set(__self__, "kmsKeyId", kms_key_id)
-        pulumi.set(__self__, "useAwsOwnedKey", use_aws_owned_key)
+        if kms_key_id is not None:
+            pulumi.set(__self__, "kms_key_id", kms_key_id)
+        if use_aws_owned_key is not None:
+            pulumi.set(__self__, "use_aws_owned_key", use_aws_owned_key)
 
     @property
     @pulumi.getter(name="kmsKeyId")
@@ -98,9 +102,12 @@ class BrokerInstanceArgs:
                  console_url: Optional[pulumi.Input[str]] = None,
                  endpoints: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
                  ip_address: Optional[pulumi.Input[str]] = None):
-        pulumi.set(__self__, "consoleUrl", console_url)
-        pulumi.set(__self__, "endpoints", endpoints)
-        pulumi.set(__self__, "ipAddress", ip_address)
+        if console_url is not None:
+            pulumi.set(__self__, "console_url", console_url)
+        if endpoints is not None:
+            pulumi.set(__self__, "endpoints", endpoints)
+        if ip_address is not None:
+            pulumi.set(__self__, "ip_address", ip_address)
 
     @property
     @pulumi.getter(name="consoleUrl")
@@ -139,8 +146,10 @@ class BrokerLogsArgs:
         :param pulumi.Input[bool] audit: Enables audit logging. User management action made using JMX or the ActiveMQ Web Console is logged. Defaults to `false`.
         :param pulumi.Input[bool] general: Enables general logging via CloudWatch. Defaults to `false`.
         """
-        pulumi.set(__self__, "audit", audit)
-        pulumi.set(__self__, "general", general)
+        if audit is not None:
+            pulumi.set(__self__, "audit", audit)
+        if general is not None:
+            pulumi.set(__self__, "general", general)
 
     @property
     @pulumi.getter
@@ -178,9 +187,9 @@ class BrokerMaintenanceWindowStartTimeArgs:
         :param pulumi.Input[str] time_of_day: The time, in 24-hour format. e.g. `02:00`
         :param pulumi.Input[str] time_zone: The time zone, UTC by default, in either the Country/City format, or the UTC offset format. e.g. `CET`
         """
-        pulumi.set(__self__, "dayOfWeek", day_of_week)
-        pulumi.set(__self__, "timeOfDay", time_of_day)
-        pulumi.set(__self__, "timeZone", time_zone)
+        pulumi.set(__self__, "day_of_week", day_of_week)
+        pulumi.set(__self__, "time_of_day", time_of_day)
+        pulumi.set(__self__, "time_zone", time_zone)
 
     @property
     @pulumi.getter(name="dayOfWeek")
@@ -234,8 +243,10 @@ class BrokerUserArgs:
         """
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "username", username)
-        pulumi.set(__self__, "consoleAccess", console_access)
-        pulumi.set(__self__, "groups", groups)
+        if console_access is not None:
+            pulumi.set(__self__, "console_access", console_access)
+        if groups is not None:
+            pulumi.set(__self__, "groups", groups)
 
     @property
     @pulumi.getter

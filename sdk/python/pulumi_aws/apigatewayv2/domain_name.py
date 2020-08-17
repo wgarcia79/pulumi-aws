@@ -14,31 +14,6 @@ __all__ = ['DomainName']
 
 
 class DomainName(pulumi.CustomResource):
-    api_mapping_selection_expression: pulumi.Output[str] = pulumi.property("apiMappingSelectionExpression")
-    """
-    The [API mapping selection expression](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-mapping-selection-expressions) for the domain name.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the domain name.
-    """
-
-    domain_name: pulumi.Output[str] = pulumi.property("domainName")
-    """
-    The domain name.
-    """
-
-    domain_name_configuration: pulumi.Output['outputs.DomainNameDomainNameConfiguration'] = pulumi.property("domainNameConfiguration")
-    """
-    The domain name configuration.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the domain name.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -141,6 +116,46 @@ class DomainName(pulumi.CustomResource):
         __props__["domain_name_configuration"] = domain_name_configuration
         __props__["tags"] = tags
         return DomainName(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="apiMappingSelectionExpression")
+    def api_mapping_selection_expression(self) -> str:
+        """
+        The [API mapping selection expression](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-mapping-selection-expressions) for the domain name.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the domain name.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="domainName")
+    def domain_name(self) -> str:
+        """
+        The domain name.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="domainNameConfiguration")
+    def domain_name_configuration(self) -> 'outputs.DomainNameDomainNameConfiguration':
+        """
+        The domain name configuration.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the domain name.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

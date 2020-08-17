@@ -14,26 +14,6 @@ __all__ = ['BucketNotification']
 
 
 class BucketNotification(pulumi.CustomResource):
-    bucket: pulumi.Output[str] = pulumi.property("bucket")
-    """
-    The name of the bucket to put notification configuration.
-    """
-
-    lambda_functions: pulumi.Output[Optional[List['outputs.BucketNotificationLambdaFunction']]] = pulumi.property("lambdaFunctions")
-    """
-    Used to configure notifications to a Lambda Function (documented below).
-    """
-
-    queues: pulumi.Output[Optional[List['outputs.BucketNotificationQueue']]] = pulumi.property("queues")
-    """
-    The notification configuration to SQS Queue (documented below).
-    """
-
-    topics: pulumi.Output[Optional[List['outputs.BucketNotificationTopic']]] = pulumi.property("topics")
-    """
-    The notification configuration to SNS Topic (documented below).
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -316,6 +296,38 @@ class BucketNotification(pulumi.CustomResource):
         __props__["queues"] = queues
         __props__["topics"] = topics
         return BucketNotification(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> str:
+        """
+        The name of the bucket to put notification configuration.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="lambdaFunctions")
+    def lambda_functions(self) -> Optional[List['outputs.BucketNotificationLambdaFunction']]:
+        """
+        Used to configure notifications to a Lambda Function (documented below).
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def queues(self) -> Optional[List['outputs.BucketNotificationQueue']]:
+        """
+        The notification configuration to SQS Queue (documented below).
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def topics(self) -> Optional[List['outputs.BucketNotificationTopic']]:
+        """
+        The notification configuration to SNS Topic (documented below).
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

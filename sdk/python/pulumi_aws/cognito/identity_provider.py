@@ -12,36 +12,6 @@ __all__ = ['IdentityProvider']
 
 
 class IdentityProvider(pulumi.CustomResource):
-    attribute_mapping: pulumi.Output[Mapping[str, str]] = pulumi.property("attributeMapping")
-    """
-    The map of attribute mapping of user pool attributes. [AttributeMapping in AWS API documentation](https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateIdentityProvider.html#CognitoUserPools-CreateIdentityProvider-request-AttributeMapping)
-    """
-
-    idp_identifiers: pulumi.Output[Optional[List[str]]] = pulumi.property("idpIdentifiers")
-    """
-    The list of identity providers.
-    """
-
-    provider_details: pulumi.Output[Mapping[str, str]] = pulumi.property("providerDetails")
-    """
-    The map of identity details, such as access token
-    """
-
-    provider_name: pulumi.Output[str] = pulumi.property("providerName")
-    """
-    The provider name
-    """
-
-    provider_type: pulumi.Output[str] = pulumi.property("providerType")
-    """
-    The provider type.  [See AWS API for valid values](https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateIdentityProvider.html#CognitoUserPools-CreateIdentityProvider-request-ProviderType)
-    """
-
-    user_pool_id: pulumi.Output[str] = pulumi.property("userPoolId")
-    """
-    The user pool id
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -160,6 +130,54 @@ class IdentityProvider(pulumi.CustomResource):
         __props__["provider_type"] = provider_type
         __props__["user_pool_id"] = user_pool_id
         return IdentityProvider(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="attributeMapping")
+    def attribute_mapping(self) -> Mapping[str, str]:
+        """
+        The map of attribute mapping of user pool attributes. [AttributeMapping in AWS API documentation](https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateIdentityProvider.html#CognitoUserPools-CreateIdentityProvider-request-AttributeMapping)
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="idpIdentifiers")
+    def idp_identifiers(self) -> Optional[List[str]]:
+        """
+        The list of identity providers.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="providerDetails")
+    def provider_details(self) -> Mapping[str, str]:
+        """
+        The map of identity details, such as access token
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> str:
+        """
+        The provider name
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="providerType")
+    def provider_type(self) -> str:
+        """
+        The provider type.  [See AWS API for valid values](https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateIdentityProvider.html#CognitoUserPools-CreateIdentityProvider-request-ProviderType)
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="userPoolId")
+    def user_pool_id(self) -> str:
+        """
+        The user pool id
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -14,21 +14,6 @@ __all__ = ['SizeConstraintSet']
 
 
 class SizeConstraintSet(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN)
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name or description of the Size Constraint Set.
-    """
-
-    size_constraints: pulumi.Output[Optional[List['outputs.SizeConstraintSetSizeConstraint']]] = pulumi.property("sizeConstraints")
-    """
-    Specifies the parts of web requests that you want to inspect the size of.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -113,6 +98,30 @@ class SizeConstraintSet(pulumi.CustomResource):
         __props__["name"] = name
         __props__["size_constraints"] = size_constraints
         return SizeConstraintSet(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN)
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name or description of the Size Constraint Set.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="sizeConstraints")
+    def size_constraints(self) -> Optional[List['outputs.SizeConstraintSetSizeConstraint']]:
+        """
+        Specifies the parts of web requests that you want to inspect the size of.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

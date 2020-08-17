@@ -14,56 +14,6 @@ __all__ = ['DataSource']
 
 
 class DataSource(pulumi.CustomResource):
-    api_id: pulumi.Output[str] = pulumi.property("apiId")
-    """
-    The API ID for the GraphQL API for the DataSource.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    A description of the DataSource.
-    """
-
-    dynamodb_config: pulumi.Output[Optional['outputs.DataSourceDynamodbConfig']] = pulumi.property("dynamodbConfig")
-    """
-    DynamoDB settings. See below
-    """
-
-    elasticsearch_config: pulumi.Output[Optional['outputs.DataSourceElasticsearchConfig']] = pulumi.property("elasticsearchConfig")
-    """
-    Amazon Elasticsearch settings. See below
-    """
-
-    http_config: pulumi.Output[Optional['outputs.DataSourceHttpConfig']] = pulumi.property("httpConfig")
-    """
-    HTTP settings. See below
-    """
-
-    lambda_config: pulumi.Output[Optional['outputs.DataSourceLambdaConfig']] = pulumi.property("lambdaConfig")
-    """
-    AWS Lambda settings. See below
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    A user-supplied name for the DataSource.
-    """
-
-    service_role_arn: pulumi.Output[Optional[str]] = pulumi.property("serviceRoleArn")
-    """
-    The IAM service role ARN for the data source.
-    """
-
-    type: pulumi.Output[str] = pulumi.property("type")
-    """
-    The type of the DataSource. Valid values: `AWS_LAMBDA`, `AMAZON_DYNAMODB`, `AMAZON_ELASTICSEARCH`, `HTTP`, `NONE`.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -234,6 +184,86 @@ class DataSource(pulumi.CustomResource):
         __props__["service_role_arn"] = service_role_arn
         __props__["type"] = type
         return DataSource(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="apiId")
+    def api_id(self) -> str:
+        """
+        The API ID for the GraphQL API for the DataSource.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        A description of the DataSource.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="dynamodbConfig")
+    def dynamodb_config(self) -> Optional['outputs.DataSourceDynamodbConfig']:
+        """
+        DynamoDB settings. See below
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="elasticsearchConfig")
+    def elasticsearch_config(self) -> Optional['outputs.DataSourceElasticsearchConfig']:
+        """
+        Amazon Elasticsearch settings. See below
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="httpConfig")
+    def http_config(self) -> Optional['outputs.DataSourceHttpConfig']:
+        """
+        HTTP settings. See below
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="lambdaConfig")
+    def lambda_config(self) -> Optional['outputs.DataSourceLambdaConfig']:
+        """
+        AWS Lambda settings. See below
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A user-supplied name for the DataSource.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="serviceRoleArn")
+    def service_role_arn(self) -> Optional[str]:
+        """
+        The IAM service role ARN for the data source.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the DataSource. Valid values: `AWS_LAMBDA`, `AMAZON_DYNAMODB`, `AMAZON_ELASTICSEARCH`, `HTTP`, `NONE`.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

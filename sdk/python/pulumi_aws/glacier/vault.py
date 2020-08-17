@@ -14,37 +14,6 @@ __all__ = ['Vault']
 
 
 class Vault(pulumi.CustomResource):
-    access_policy: pulumi.Output[Optional[str]] = pulumi.property("accessPolicy")
-    """
-    The policy document. This is a JSON formatted string.
-    The heredoc syntax or `file` function is helpful here. Use the [Glacier Developer Guide](https://docs.aws.amazon.com/amazonglacier/latest/dev/vault-access-policy.html) for more information on Glacier Vault Policy
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the vault.
-    """
-
-    location: pulumi.Output[str] = pulumi.property("location")
-    """
-    The URI of the vault that was created.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the Vault. Names can be between 1 and 255 characters long and the valid characters are a-z, A-Z, 0-9, '_' (underscore), '-' (hyphen), and '.' (period).
-    """
-
-    notifications: pulumi.Output[Optional[List['outputs.VaultNotification']]] = pulumi.property("notifications")
-    """
-    The notifications for the Vault. Fields documented below.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -170,6 +139,55 @@ class Vault(pulumi.CustomResource):
         __props__["notifications"] = notifications
         __props__["tags"] = tags
         return Vault(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="accessPolicy")
+    def access_policy(self) -> Optional[str]:
+        """
+        The policy document. This is a JSON formatted string.
+        The heredoc syntax or `file` function is helpful here. Use the [Glacier Developer Guide](https://docs.aws.amazon.com/amazonglacier/latest/dev/vault-access-policy.html) for more information on Glacier Vault Policy
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the vault.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def location(self) -> str:
+        """
+        The URI of the vault that was created.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the Vault. Names can be between 1 and 255 characters long and the valid characters are a-z, A-Z, 0-9, '_' (underscore), '-' (hyphen), and '.' (period).
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def notifications(self) -> Optional[List['outputs.VaultNotification']]:
+        """
+        The notifications for the Vault. Fields documented below.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -14,41 +14,6 @@ __all__ = ['Task']
 
 
 class Task(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN) of the DataSync Task.
-    """
-
-    cloudwatch_log_group_arn: pulumi.Output[Optional[str]] = pulumi.property("cloudwatchLogGroupArn")
-    """
-    Amazon Resource Name (ARN) of the CloudWatch Log Group that is used to monitor and log events in the sync task.
-    """
-
-    destination_location_arn: pulumi.Output[str] = pulumi.property("destinationLocationArn")
-    """
-    Amazon Resource Name (ARN) of destination DataSync Location.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    Name of the DataSync Task.
-    """
-
-    options: pulumi.Output[Optional['outputs.TaskOptions']] = pulumi.property("options")
-    """
-    Configuration block containing option that controls the default behavior when you start an execution of this DataSync Task. For each individual task execution, you can override these options by specifying an overriding configuration in those executions.
-    """
-
-    source_location_arn: pulumi.Output[str] = pulumi.property("sourceLocationArn")
-    """
-    Amazon Resource Name (ARN) of source DataSync Location.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value pairs of resource tags to assign to the DataSync Task.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -159,6 +124,62 @@ class Task(pulumi.CustomResource):
         __props__["source_location_arn"] = source_location_arn
         __props__["tags"] = tags
         return Task(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of the DataSync Task.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="cloudwatchLogGroupArn")
+    def cloudwatch_log_group_arn(self) -> Optional[str]:
+        """
+        Amazon Resource Name (ARN) of the CloudWatch Log Group that is used to monitor and log events in the sync task.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="destinationLocationArn")
+    def destination_location_arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of destination DataSync Location.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the DataSync Task.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def options(self) -> Optional['outputs.TaskOptions']:
+        """
+        Configuration block containing option that controls the default behavior when you start an execution of this DataSync Task. For each individual task execution, you can override these options by specifying an overriding configuration in those executions.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="sourceLocationArn")
+    def source_location_arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of source DataSync Location.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value pairs of resource tags to assign to the DataSync Task.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

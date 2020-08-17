@@ -12,16 +12,6 @@ __all__ = ['BucketPolicy']
 
 
 class BucketPolicy(pulumi.CustomResource):
-    bucket: pulumi.Output[str] = pulumi.property("bucket")
-    """
-    The name of the bucket to which to apply the policy.
-    """
-
-    policy: pulumi.Output[str] = pulumi.property("policy")
-    """
-    The text of the policy.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -120,6 +110,22 @@ class BucketPolicy(pulumi.CustomResource):
         __props__["bucket"] = bucket
         __props__["policy"] = policy
         return BucketPolicy(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> str:
+        """
+        The name of the bucket to which to apply the policy.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def policy(self) -> str:
+        """
+        The text of the policy.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

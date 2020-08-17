@@ -14,38 +14,6 @@ __all__ = ['AccessPoint']
 
 
 class AccessPoint(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name of the access point.
-    """
-
-    file_system_arn: pulumi.Output[str] = pulumi.property("fileSystemArn")
-    """
-    Amazon Resource Name of the file system.
-    """
-
-    file_system_id: pulumi.Output[str] = pulumi.property("fileSystemId")
-    """
-    The ID of the file system for which the access point is intended.
-    """
-
-    owner_id: pulumi.Output[str] = pulumi.property("ownerId")
-
-    posix_user: pulumi.Output[Optional['outputs.AccessPointPosixUser']] = pulumi.property("posixUser")
-    """
-    The operating system user and group applied to all file system requests made using the access point. See Posix User below.
-    """
-
-    root_directory: pulumi.Output['outputs.AccessPointRootDirectory'] = pulumi.property("rootDirectory")
-    """
-    Specifies the directory on the Amazon EFS file system that the access point provides access to. See Root Directory below.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value mapping of resource tags.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -144,6 +112,59 @@ class AccessPoint(pulumi.CustomResource):
         __props__["root_directory"] = root_directory
         __props__["tags"] = tags
         return AccessPoint(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name of the access point.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="fileSystemArn")
+    def file_system_arn(self) -> str:
+        """
+        Amazon Resource Name of the file system.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="fileSystemId")
+    def file_system_id(self) -> str:
+        """
+        The ID of the file system for which the access point is intended.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="posixUser")
+    def posix_user(self) -> Optional['outputs.AccessPointPosixUser']:
+        """
+        The operating system user and group applied to all file system requests made using the access point. See Posix User below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="rootDirectory")
+    def root_directory(self) -> 'outputs.AccessPointRootDirectory':
+        """
+        Specifies the directory on the Amazon EFS file system that the access point provides access to. See Root Directory below.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value mapping of resource tags.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

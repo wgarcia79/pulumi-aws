@@ -17,17 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetPolicyDocumentResult:
-    id: str = pulumi.property("id")
-    json: str = pulumi.property("json")
-    override_json: Optional[str] = pulumi.property("overrideJson")
-    policy_id: Optional[str] = pulumi.property("policyId")
-    source_json: Optional[str] = pulumi.property("sourceJson")
-    statements: Optional[List['outputs.GetPolicyDocumentStatementResult']] = pulumi.property("statements")
-    version: Optional[str] = pulumi.property("version")
-
-
 class GetPolicyDocumentResult:
     """
     A collection of values returned by getPolicyDocument.
@@ -35,31 +26,67 @@ class GetPolicyDocumentResult:
     def __init__(__self__, id=None, json=None, override_json=None, policy_id=None, source_json=None, statements=None, version=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if json and not isinstance(json, str):
+            raise TypeError("Expected argument 'json' to be a str")
+        pulumi.set(__self__, "json", json)
+        if override_json and not isinstance(override_json, str):
+            raise TypeError("Expected argument 'override_json' to be a str")
+        pulumi.set(__self__, "override_json", override_json)
+        if policy_id and not isinstance(policy_id, str):
+            raise TypeError("Expected argument 'policy_id' to be a str")
+        pulumi.set(__self__, "policy_id", policy_id)
+        if source_json and not isinstance(source_json, str):
+            raise TypeError("Expected argument 'source_json' to be a str")
+        pulumi.set(__self__, "source_json", source_json)
+        if statements and not isinstance(statements, list):
+            raise TypeError("Expected argument 'statements' to be a list")
+        pulumi.set(__self__, "statements", statements)
+        if version and not isinstance(version, str):
+            raise TypeError("Expected argument 'version' to be a str")
+        pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if json and not isinstance(json, str):
-            raise TypeError("Expected argument 'json' to be a str")
-        __self__.json = json
+        ...
+
+    @property
+    @pulumi.getter
+    def json(self) -> str:
         """
         The above arguments serialized as a standard JSON policy document.
         """
-        if override_json and not isinstance(override_json, str):
-            raise TypeError("Expected argument 'override_json' to be a str")
-        __self__.override_json = override_json
-        if policy_id and not isinstance(policy_id, str):
-            raise TypeError("Expected argument 'policy_id' to be a str")
-        __self__.policy_id = policy_id
-        if source_json and not isinstance(source_json, str):
-            raise TypeError("Expected argument 'source_json' to be a str")
-        __self__.source_json = source_json
-        if statements and not isinstance(statements, list):
-            raise TypeError("Expected argument 'statements' to be a list")
-        __self__.statements = statements
-        if version and not isinstance(version, str):
-            raise TypeError("Expected argument 'version' to be a str")
-        __self__.version = version
+        ...
+
+    @property
+    @pulumi.getter(name="overrideJson")
+    def override_json(self) -> Optional[str]:
+        ...
+
+    @property
+    @pulumi.getter(name="policyId")
+    def policy_id(self) -> Optional[str]:
+        ...
+
+    @property
+    @pulumi.getter(name="sourceJson")
+    def source_json(self) -> Optional[str]:
+        ...
+
+    @property
+    @pulumi.getter
+    def statements(self) -> Optional[List['outputs.GetPolicyDocumentStatementResult']]:
+        ...
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[str]:
+        ...
+
 
 
 class AwaitableGetPolicyDocumentResult(GetPolicyDocumentResult):
@@ -297,7 +324,7 @@ def get_policy_document(override_json: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:iam/getPolicyDocument:getPolicyDocument', __args__, opts=opts, typ=_GetPolicyDocumentResult).value
+    __ret__ = pulumi.runtime.invoke('aws:iam/getPolicyDocument:getPolicyDocument', __args__, opts=opts, typ=GetPolicyDocumentResult).value
 
     return AwaitableGetPolicyDocumentResult(
         id=__ret__.id,

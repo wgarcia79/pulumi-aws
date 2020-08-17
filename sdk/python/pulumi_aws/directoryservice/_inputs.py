@@ -29,12 +29,14 @@ class DirectoryConnectSettingsArgs:
         :param pulumi.Input[str] vpc_id: The identifier of the VPC that the directory is in.
         :param pulumi.Input[List[pulumi.Input[str]]] connect_ips: The IP addresses of the AD Connector servers.
         """
-        pulumi.set(__self__, "customerDnsIps", customer_dns_ips)
-        pulumi.set(__self__, "customerUsername", customer_username)
-        pulumi.set(__self__, "subnetIds", subnet_ids)
-        pulumi.set(__self__, "vpcId", vpc_id)
-        pulumi.set(__self__, "availabilityZones", availability_zones)
-        pulumi.set(__self__, "connectIps", connect_ips)
+        pulumi.set(__self__, "customer_dns_ips", customer_dns_ips)
+        pulumi.set(__self__, "customer_username", customer_username)
+        pulumi.set(__self__, "subnet_ids", subnet_ids)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+        if availability_zones is not None:
+            pulumi.set(__self__, "availability_zones", availability_zones)
+        if connect_ips is not None:
+            pulumi.set(__self__, "connect_ips", connect_ips)
 
     @property
     @pulumi.getter(name="customerDnsIps")
@@ -116,9 +118,10 @@ class DirectoryVpcSettingsArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] subnet_ids: The identifiers of the subnets for the directory servers (2 subnets in 2 different AZs).
         :param pulumi.Input[str] vpc_id: The identifier of the VPC that the directory is in.
         """
-        pulumi.set(__self__, "subnetIds", subnet_ids)
-        pulumi.set(__self__, "vpcId", vpc_id)
-        pulumi.set(__self__, "availabilityZones", availability_zones)
+        pulumi.set(__self__, "subnet_ids", subnet_ids)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+        if availability_zones is not None:
+            pulumi.set(__self__, "availability_zones", availability_zones)
 
     @property
     @pulumi.getter(name="subnetIds")

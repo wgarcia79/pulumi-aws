@@ -12,51 +12,6 @@ __all__ = ['TopicSubscription']
 
 
 class TopicSubscription(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the subscription stored as a more user-friendly property
-    """
-
-    confirmation_timeout_in_minutes: pulumi.Output[Optional[float]] = pulumi.property("confirmationTimeoutInMinutes")
-    """
-    Integer indicating number of minutes to wait in retying mode for fetching subscription arn before marking it as failure. Only applicable for http and https protocols (default is 1 minute).
-    """
-
-    delivery_policy: pulumi.Output[Optional[str]] = pulumi.property("deliveryPolicy")
-    """
-    JSON String with the delivery policy (retries, backoff, etc.) that will be used in the subscription - this only applies to HTTP/S subscriptions. Refer to the [SNS docs](https://docs.aws.amazon.com/sns/latest/dg/DeliveryPolicies.html) for more details.
-    """
-
-    endpoint: pulumi.Output[str] = pulumi.property("endpoint")
-    """
-    The endpoint to send data to, the contents will vary with the protocol. (see below for more information)
-    """
-
-    endpoint_auto_confirms: pulumi.Output[Optional[bool]] = pulumi.property("endpointAutoConfirms")
-    """
-    Boolean indicating whether the end point is capable of [auto confirming subscription](http://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.html#SendMessageToHttp.prepare) e.g., PagerDuty (default is false)
-    """
-
-    filter_policy: pulumi.Output[Optional[str]] = pulumi.property("filterPolicy")
-    """
-    JSON String with the filter policy that will be used in the subscription to filter messages seen by the target resource. Refer to the [SNS docs](https://docs.aws.amazon.com/sns/latest/dg/message-filtering.html) for more details.
-    """
-
-    protocol: pulumi.Output[str] = pulumi.property("protocol")
-    """
-    The protocol to use. The possible values for this are: `sqs`, `sms`, `lambda`, `application`. (`http` or `https` are partially supported, see below) (`email` is an option but is unsupported, see below).
-    """
-
-    raw_message_delivery: pulumi.Output[Optional[bool]] = pulumi.property("rawMessageDelivery")
-    """
-    Boolean indicating whether or not to enable raw message delivery (the original message is directly passed, not wrapped in JSON with the original message in the message property) (default is false).
-    """
-
-    topic: pulumi.Output[str] = pulumi.property("topic")
-    """
-    The ARN of the SNS topic to subscribe to
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -327,6 +282,78 @@ class TopicSubscription(pulumi.CustomResource):
         __props__["raw_message_delivery"] = raw_message_delivery
         __props__["topic"] = topic
         return TopicSubscription(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the subscription stored as a more user-friendly property
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="confirmationTimeoutInMinutes")
+    def confirmation_timeout_in_minutes(self) -> Optional[float]:
+        """
+        Integer indicating number of minutes to wait in retying mode for fetching subscription arn before marking it as failure. Only applicable for http and https protocols (default is 1 minute).
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="deliveryPolicy")
+    def delivery_policy(self) -> Optional[str]:
+        """
+        JSON String with the delivery policy (retries, backoff, etc.) that will be used in the subscription - this only applies to HTTP/S subscriptions. Refer to the [SNS docs](https://docs.aws.amazon.com/sns/latest/dg/DeliveryPolicies.html) for more details.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def endpoint(self) -> str:
+        """
+        The endpoint to send data to, the contents will vary with the protocol. (see below for more information)
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="endpointAutoConfirms")
+    def endpoint_auto_confirms(self) -> Optional[bool]:
+        """
+        Boolean indicating whether the end point is capable of [auto confirming subscription](http://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.html#SendMessageToHttp.prepare) e.g., PagerDuty (default is false)
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="filterPolicy")
+    def filter_policy(self) -> Optional[str]:
+        """
+        JSON String with the filter policy that will be used in the subscription to filter messages seen by the target resource. Refer to the [SNS docs](https://docs.aws.amazon.com/sns/latest/dg/message-filtering.html) for more details.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        """
+        The protocol to use. The possible values for this are: `sqs`, `sms`, `lambda`, `application`. (`http` or `https` are partially supported, see below) (`email` is an option but is unsupported, see below).
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="rawMessageDelivery")
+    def raw_message_delivery(self) -> Optional[bool]:
+        """
+        Boolean indicating whether or not to enable raw message delivery (the original message is directly passed, not wrapped in JSON with the original message in the message property) (default is false).
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def topic(self) -> str:
+        """
+        The ARN of the SNS topic to subscribe to
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

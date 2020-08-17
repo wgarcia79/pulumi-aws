@@ -17,25 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetVpcEndpointServiceResult:
-    acceptance_required: bool = pulumi.property("acceptanceRequired")
-    arn: str = pulumi.property("arn")
-    availability_zones: List[str] = pulumi.property("availabilityZones")
-    base_endpoint_dns_names: List[str] = pulumi.property("baseEndpointDnsNames")
-    filters: Optional[List['outputs.GetVpcEndpointServiceFilterResult']] = pulumi.property("filters")
-    id: str = pulumi.property("id")
-    manages_vpc_endpoints: bool = pulumi.property("managesVpcEndpoints")
-    owner: str = pulumi.property("owner")
-    private_dns_name: str = pulumi.property("privateDnsName")
-    service: Optional[str] = pulumi.property("service")
-    service_id: str = pulumi.property("serviceId")
-    service_name: str = pulumi.property("serviceName")
-    service_type: str = pulumi.property("serviceType")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    vpc_endpoint_policy_supported: bool = pulumi.property("vpcEndpointPolicySupported")
-
-
 class GetVpcEndpointServiceResult:
     """
     A collection of values returned by getVpcEndpointService.
@@ -43,85 +26,161 @@ class GetVpcEndpointServiceResult:
     def __init__(__self__, acceptance_required=None, arn=None, availability_zones=None, base_endpoint_dns_names=None, filters=None, id=None, manages_vpc_endpoints=None, owner=None, private_dns_name=None, service=None, service_id=None, service_name=None, service_type=None, tags=None, vpc_endpoint_policy_supported=None):
         if acceptance_required and not isinstance(acceptance_required, bool):
             raise TypeError("Expected argument 'acceptance_required' to be a bool")
-        __self__.acceptance_required = acceptance_required
+        pulumi.set(__self__, "acceptance_required", acceptance_required)
+        if arn and not isinstance(arn, str):
+            raise TypeError("Expected argument 'arn' to be a str")
+        pulumi.set(__self__, "arn", arn)
+        if availability_zones and not isinstance(availability_zones, list):
+            raise TypeError("Expected argument 'availability_zones' to be a list")
+        pulumi.set(__self__, "availability_zones", availability_zones)
+        if base_endpoint_dns_names and not isinstance(base_endpoint_dns_names, list):
+            raise TypeError("Expected argument 'base_endpoint_dns_names' to be a list")
+        pulumi.set(__self__, "base_endpoint_dns_names", base_endpoint_dns_names)
+        if filters and not isinstance(filters, list):
+            raise TypeError("Expected argument 'filters' to be a list")
+        pulumi.set(__self__, "filters", filters)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if manages_vpc_endpoints and not isinstance(manages_vpc_endpoints, bool):
+            raise TypeError("Expected argument 'manages_vpc_endpoints' to be a bool")
+        pulumi.set(__self__, "manages_vpc_endpoints", manages_vpc_endpoints)
+        if owner and not isinstance(owner, str):
+            raise TypeError("Expected argument 'owner' to be a str")
+        pulumi.set(__self__, "owner", owner)
+        if private_dns_name and not isinstance(private_dns_name, str):
+            raise TypeError("Expected argument 'private_dns_name' to be a str")
+        pulumi.set(__self__, "private_dns_name", private_dns_name)
+        if service and not isinstance(service, str):
+            raise TypeError("Expected argument 'service' to be a str")
+        pulumi.set(__self__, "service", service)
+        if service_id and not isinstance(service_id, str):
+            raise TypeError("Expected argument 'service_id' to be a str")
+        pulumi.set(__self__, "service_id", service_id)
+        if service_name and not isinstance(service_name, str):
+            raise TypeError("Expected argument 'service_name' to be a str")
+        pulumi.set(__self__, "service_name", service_name)
+        if service_type and not isinstance(service_type, str):
+            raise TypeError("Expected argument 'service_type' to be a str")
+        pulumi.set(__self__, "service_type", service_type)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if vpc_endpoint_policy_supported and not isinstance(vpc_endpoint_policy_supported, bool):
+            raise TypeError("Expected argument 'vpc_endpoint_policy_supported' to be a bool")
+        pulumi.set(__self__, "vpc_endpoint_policy_supported", vpc_endpoint_policy_supported)
+
+    @property
+    @pulumi.getter(name="acceptanceRequired")
+    def acceptance_required(self) -> bool:
         """
         Whether or not VPC endpoint connection requests to the service must be accepted by the service owner - `true` or `false`.
         """
-        if arn and not isinstance(arn, str):
-            raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The Amazon Resource Name (ARN) of the VPC endpoint service.
         """
-        if availability_zones and not isinstance(availability_zones, list):
-            raise TypeError("Expected argument 'availability_zones' to be a list")
-        __self__.availability_zones = availability_zones
+        ...
+
+    @property
+    @pulumi.getter(name="availabilityZones")
+    def availability_zones(self) -> List[str]:
         """
         The Availability Zones in which the service is available.
         """
-        if base_endpoint_dns_names and not isinstance(base_endpoint_dns_names, list):
-            raise TypeError("Expected argument 'base_endpoint_dns_names' to be a list")
-        __self__.base_endpoint_dns_names = base_endpoint_dns_names
+        ...
+
+    @property
+    @pulumi.getter(name="baseEndpointDnsNames")
+    def base_endpoint_dns_names(self) -> List[str]:
         """
         The DNS names for the service.
         """
-        if filters and not isinstance(filters, list):
-            raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetVpcEndpointServiceFilterResult']]:
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if manages_vpc_endpoints and not isinstance(manages_vpc_endpoints, bool):
-            raise TypeError("Expected argument 'manages_vpc_endpoints' to be a bool")
-        __self__.manages_vpc_endpoints = manages_vpc_endpoints
+        ...
+
+    @property
+    @pulumi.getter(name="managesVpcEndpoints")
+    def manages_vpc_endpoints(self) -> bool:
         """
         Whether or not the service manages its VPC endpoints - `true` or `false`.
         """
-        if owner and not isinstance(owner, str):
-            raise TypeError("Expected argument 'owner' to be a str")
-        __self__.owner = owner
+        ...
+
+    @property
+    @pulumi.getter
+    def owner(self) -> str:
         """
         The AWS account ID of the service owner or `amazon`.
         """
-        if private_dns_name and not isinstance(private_dns_name, str):
-            raise TypeError("Expected argument 'private_dns_name' to be a str")
-        __self__.private_dns_name = private_dns_name
+        ...
+
+    @property
+    @pulumi.getter(name="privateDnsName")
+    def private_dns_name(self) -> str:
         """
         The private DNS name for the service.
         """
-        if service and not isinstance(service, str):
-            raise TypeError("Expected argument 'service' to be a str")
-        __self__.service = service
-        if service_id and not isinstance(service_id, str):
-            raise TypeError("Expected argument 'service_id' to be a str")
-        __self__.service_id = service_id
+        ...
+
+    @property
+    @pulumi.getter
+    def service(self) -> Optional[str]:
+        ...
+
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> str:
         """
         The ID of the endpoint service.
         """
-        if service_name and not isinstance(service_name, str):
-            raise TypeError("Expected argument 'service_name' to be a str")
-        __self__.service_name = service_name
-        if service_type and not isinstance(service_type, str):
-            raise TypeError("Expected argument 'service_type' to be a str")
-        __self__.service_type = service_type
+        ...
+
+    @property
+    @pulumi.getter(name="serviceName")
+    def service_name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="serviceType")
+    def service_type(self) -> str:
         """
         The service type, `Gateway` or `Interface`.
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
         """
         A map of tags assigned to the resource.
         """
-        if vpc_endpoint_policy_supported and not isinstance(vpc_endpoint_policy_supported, bool):
-            raise TypeError("Expected argument 'vpc_endpoint_policy_supported' to be a bool")
-        __self__.vpc_endpoint_policy_supported = vpc_endpoint_policy_supported
+        ...
+
+    @property
+    @pulumi.getter(name="vpcEndpointPolicySupported")
+    def vpc_endpoint_policy_supported(self) -> bool:
         """
         Whether or not the service supports endpoint policies - `true` or `false`.
         """
+        ...
+
 
 
 class AwaitableGetVpcEndpointServiceResult(GetVpcEndpointServiceResult):
@@ -206,7 +265,7 @@ def get_vpc_endpoint_service(filters: Optional[List[pulumi.InputType['GetVpcEndp
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getVpcEndpointService:getVpcEndpointService', __args__, opts=opts, typ=_GetVpcEndpointServiceResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getVpcEndpointService:getVpcEndpointService', __args__, opts=opts, typ=GetVpcEndpointServiceResult).value
 
     return AwaitableGetVpcEndpointServiceResult(
         acceptance_required=__ret__.acceptance_required,

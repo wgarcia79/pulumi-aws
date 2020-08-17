@@ -14,46 +14,6 @@ __all__ = ['Connection']
 
 
 class Connection(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the Glue Connection.
-    """
-
-    catalog_id: pulumi.Output[str] = pulumi.property("catalogId")
-    """
-    The ID of the Data Catalog in which to create the connection. If none is supplied, the AWS account ID is used by default.
-    """
-
-    connection_properties: pulumi.Output[Mapping[str, str]] = pulumi.property("connectionProperties")
-    """
-    A map of key-value pairs used as parameters for this connection.
-    """
-
-    connection_type: pulumi.Output[Optional[str]] = pulumi.property("connectionType")
-    """
-    The type of the connection. Supported are: `JDBC`, `MONGODB`, `KAFKA`. Defaults to `JBDC`.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    Description of the connection.
-    """
-
-    match_criterias: pulumi.Output[Optional[List[str]]] = pulumi.property("matchCriterias")
-    """
-    A list of criteria that can be used in selecting this connection.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the connection.
-    """
-
-    physical_connection_requirements: pulumi.Output[Optional['outputs.ConnectionPhysicalConnectionRequirements']] = pulumi.property("physicalConnectionRequirements")
-    """
-    A map of physical connection requirements, such as VPC and SecurityGroup. Defined below.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -188,6 +148,70 @@ class Connection(pulumi.CustomResource):
         __props__["name"] = name
         __props__["physical_connection_requirements"] = physical_connection_requirements
         return Connection(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the Glue Connection.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="catalogId")
+    def catalog_id(self) -> str:
+        """
+        The ID of the Data Catalog in which to create the connection. If none is supplied, the AWS account ID is used by default.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="connectionProperties")
+    def connection_properties(self) -> Mapping[str, str]:
+        """
+        A map of key-value pairs used as parameters for this connection.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="connectionType")
+    def connection_type(self) -> Optional[str]:
+        """
+        The type of the connection. Supported are: `JDBC`, `MONGODB`, `KAFKA`. Defaults to `JBDC`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Description of the connection.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="matchCriterias")
+    def match_criterias(self) -> Optional[List[str]]:
+        """
+        A list of criteria that can be used in selecting this connection.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the connection.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="physicalConnectionRequirements")
+    def physical_connection_requirements(self) -> Optional['outputs.ConnectionPhysicalConnectionRequirements']:
+        """
+        A map of physical connection requirements, such as VPC and SecurityGroup. Defined below.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

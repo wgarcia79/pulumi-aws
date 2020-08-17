@@ -12,33 +12,6 @@ __all__ = ['ReplicationSubnetGroup']
 
 
 class ReplicationSubnetGroup(pulumi.CustomResource):
-    replication_subnet_group_arn: pulumi.Output[str] = pulumi.property("replicationSubnetGroupArn")
-
-    replication_subnet_group_description: pulumi.Output[str] = pulumi.property("replicationSubnetGroupDescription")
-    """
-    The description for the subnet group.
-    """
-
-    replication_subnet_group_id: pulumi.Output[str] = pulumi.property("replicationSubnetGroupId")
-    """
-    The name for the replication subnet group. This value is stored as a lowercase string.
-    """
-
-    subnet_ids: pulumi.Output[List[str]] = pulumi.property("subnetIds")
-    """
-    A list of the EC2 subnet IDs for the subnet group.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
-    vpc_id: pulumi.Output[str] = pulumi.property("vpcId")
-    """
-    The ID of the VPC the subnet group is in.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -144,6 +117,51 @@ class ReplicationSubnetGroup(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["vpc_id"] = vpc_id
         return ReplicationSubnetGroup(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="replicationSubnetGroupArn")
+    def replication_subnet_group_arn(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="replicationSubnetGroupDescription")
+    def replication_subnet_group_description(self) -> str:
+        """
+        The description for the subnet group.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="replicationSubnetGroupId")
+    def replication_subnet_group_id(self) -> str:
+        """
+        The name for the replication subnet group. This value is stored as a lowercase string.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="subnetIds")
+    def subnet_ids(self) -> List[str]:
+        """
+        A list of the EC2 subnet IDs for the subnet group.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The ID of the VPC the subnet group is in.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

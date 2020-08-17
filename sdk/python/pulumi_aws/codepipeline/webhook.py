@@ -14,46 +14,6 @@ __all__ = ['Webhook']
 
 
 class Webhook(pulumi.CustomResource):
-    authentication: pulumi.Output[str] = pulumi.property("authentication")
-    """
-    The type of authentication  to use. One of `IP`, `GITHUB_HMAC`, or `UNAUTHENTICATED`.
-    """
-
-    authentication_configuration: pulumi.Output[Optional['outputs.WebhookAuthenticationConfiguration']] = pulumi.property("authenticationConfiguration")
-    """
-    An `auth` block. Required for `IP` and `GITHUB_HMAC`. Auth blocks are documented below.
-    """
-
-    filters: pulumi.Output[List['outputs.WebhookFilter']] = pulumi.property("filters")
-    """
-    One or more `filter` blocks. Filter blocks are documented below.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the webhook.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
-    target_action: pulumi.Output[str] = pulumi.property("targetAction")
-    """
-    The name of the action in a pipeline you want to connect to the webhook. The action must be from the source (first) stage of the pipeline.
-    """
-
-    target_pipeline: pulumi.Output[str] = pulumi.property("targetPipeline")
-    """
-    The name of the pipeline.
-    """
-
-    url: pulumi.Output[str] = pulumi.property("url")
-    """
-    The CodePipeline webhook's URL. POST events to this endpoint to trigger the target.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -233,6 +193,70 @@ class Webhook(pulumi.CustomResource):
         __props__["target_pipeline"] = target_pipeline
         __props__["url"] = url
         return Webhook(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def authentication(self) -> str:
+        """
+        The type of authentication  to use. One of `IP`, `GITHUB_HMAC`, or `UNAUTHENTICATED`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="authenticationConfiguration")
+    def authentication_configuration(self) -> Optional['outputs.WebhookAuthenticationConfiguration']:
+        """
+        An `auth` block. Required for `IP` and `GITHUB_HMAC`. Auth blocks are documented below.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def filters(self) -> List['outputs.WebhookFilter']:
+        """
+        One or more `filter` blocks. Filter blocks are documented below.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the webhook.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="targetAction")
+    def target_action(self) -> str:
+        """
+        The name of the action in a pipeline you want to connect to the webhook. The action must be from the source (first) stage of the pipeline.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="targetPipeline")
+    def target_pipeline(self) -> str:
+        """
+        The name of the pipeline.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def url(self) -> str:
+        """
+        The CodePipeline webhook's URL. POST events to this endpoint to trigger the target.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

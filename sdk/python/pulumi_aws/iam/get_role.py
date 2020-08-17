@@ -15,21 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetRoleResult:
-    arn: str = pulumi.property("arn")
-    assume_role_policy: str = pulumi.property("assumeRolePolicy")
-    create_date: str = pulumi.property("createDate")
-    description: str = pulumi.property("description")
-    id: str = pulumi.property("id")
-    max_session_duration: float = pulumi.property("maxSessionDuration")
-    name: str = pulumi.property("name")
-    path: str = pulumi.property("path")
-    permissions_boundary: str = pulumi.property("permissionsBoundary")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    unique_id: str = pulumi.property("uniqueId")
-
-
 class GetRoleResult:
     """
     A collection of values returned by getRole.
@@ -37,67 +24,123 @@ class GetRoleResult:
     def __init__(__self__, arn=None, assume_role_policy=None, create_date=None, description=None, id=None, max_session_duration=None, name=None, path=None, permissions_boundary=None, tags=None, unique_id=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if assume_role_policy and not isinstance(assume_role_policy, str):
+            raise TypeError("Expected argument 'assume_role_policy' to be a str")
+        pulumi.set(__self__, "assume_role_policy", assume_role_policy)
+        if create_date and not isinstance(create_date, str):
+            raise TypeError("Expected argument 'create_date' to be a str")
+        pulumi.set(__self__, "create_date", create_date)
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if max_session_duration and not isinstance(max_session_duration, float):
+            raise TypeError("Expected argument 'max_session_duration' to be a float")
+        pulumi.set(__self__, "max_session_duration", max_session_duration)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if path and not isinstance(path, str):
+            raise TypeError("Expected argument 'path' to be a str")
+        pulumi.set(__self__, "path", path)
+        if permissions_boundary and not isinstance(permissions_boundary, str):
+            raise TypeError("Expected argument 'permissions_boundary' to be a str")
+        pulumi.set(__self__, "permissions_boundary", permissions_boundary)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if unique_id and not isinstance(unique_id, str):
+            raise TypeError("Expected argument 'unique_id' to be a str")
+        pulumi.set(__self__, "unique_id", unique_id)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The Amazon Resource Name (ARN) specifying the role.
         """
-        if assume_role_policy and not isinstance(assume_role_policy, str):
-            raise TypeError("Expected argument 'assume_role_policy' to be a str")
-        __self__.assume_role_policy = assume_role_policy
+        ...
+
+    @property
+    @pulumi.getter(name="assumeRolePolicy")
+    def assume_role_policy(self) -> str:
         """
         The policy document associated with the role.
         """
-        if create_date and not isinstance(create_date, str):
-            raise TypeError("Expected argument 'create_date' to be a str")
-        __self__.create_date = create_date
+        ...
+
+    @property
+    @pulumi.getter(name="createDate")
+    def create_date(self) -> str:
         """
         Creation date of the role in RFC 3339 format.
         """
-        if description and not isinstance(description, str):
-            raise TypeError("Expected argument 'description' to be a str")
-        __self__.description = description
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
         """
         Description for the role.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if max_session_duration and not isinstance(max_session_duration, float):
-            raise TypeError("Expected argument 'max_session_duration' to be a float")
-        __self__.max_session_duration = max_session_duration
+        ...
+
+    @property
+    @pulumi.getter(name="maxSessionDuration")
+    def max_session_duration(self) -> float:
         """
         Maximum session duration.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if path and not isinstance(path, str):
-            raise TypeError("Expected argument 'path' to be a str")
-        __self__.path = path
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def path(self) -> str:
         """
         The path to the role.
         """
-        if permissions_boundary and not isinstance(permissions_boundary, str):
-            raise TypeError("Expected argument 'permissions_boundary' to be a str")
-        __self__.permissions_boundary = permissions_boundary
+        ...
+
+    @property
+    @pulumi.getter(name="permissionsBoundary")
+    def permissions_boundary(self) -> str:
         """
         The ARN of the policy that is used to set the permissions boundary for the role.
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
         """
         The tags attached to the role.
         """
-        if unique_id and not isinstance(unique_id, str):
-            raise TypeError("Expected argument 'unique_id' to be a str")
-        __self__.unique_id = unique_id
+        ...
+
+    @property
+    @pulumi.getter(name="uniqueId")
+    def unique_id(self) -> str:
         """
         The stable and unique string identifying the role.
         """
+        ...
+
 
 
 class AwaitableGetRoleResult(GetRoleResult):
@@ -147,7 +190,7 @@ def get_role(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:iam/getRole:getRole', __args__, opts=opts, typ=_GetRoleResult).value
+    __ret__ = pulumi.runtime.invoke('aws:iam/getRole:getRole', __args__, opts=opts, typ=GetRoleResult).value
 
     return AwaitableGetRoleResult(
         arn=__ret__.arn,

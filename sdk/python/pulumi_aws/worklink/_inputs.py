@@ -22,7 +22,7 @@ class FleetIdentityProviderArgs:
         :param pulumi.Input[str] saml_metadata: The SAML metadata document provided by the customer’s identity provider.
         :param pulumi.Input[str] type: The type of identity provider.
         """
-        pulumi.set(__self__, "samlMetadata", saml_metadata)
+        pulumi.set(__self__, "saml_metadata", saml_metadata)
         pulumi.set(__self__, "type", type)
 
     @property
@@ -61,9 +61,9 @@ class FleetNetworkArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] subnet_ids: A list of subnet IDs used for X-ENI connections from Amazon WorkLink rendering containers.
         :param pulumi.Input[str] vpc_id: The VPC ID with connectivity to associated websites.
         """
-        pulumi.set(__self__, "securityGroupIds", security_group_ids)
-        pulumi.set(__self__, "subnetIds", subnet_ids)
-        pulumi.set(__self__, "vpcId", vpc_id)
+        pulumi.set(__self__, "security_group_ids", security_group_ids)
+        pulumi.set(__self__, "subnet_ids", subnet_ids)
+        pulumi.set(__self__, "vpc_id", vpc_id)
 
     @property
     @pulumi.getter(name="securityGroupIds")

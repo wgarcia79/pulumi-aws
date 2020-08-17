@@ -14,26 +14,6 @@ __all__ = ['ParameterGroup']
 
 
 class ParameterGroup(pulumi.CustomResource):
-    description: pulumi.Output[str] = pulumi.property("description")
-    """
-    The description of the ElastiCache parameter group. Defaults to "Managed by Pulumi".
-    """
-
-    family: pulumi.Output[str] = pulumi.property("family")
-    """
-    The family of the ElastiCache parameter group.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the ElastiCache parameter.
-    """
-
-    parameters: pulumi.Output[Optional[List['outputs.ParameterGroupParameter']]] = pulumi.property("parameters")
-    """
-    A list of ElastiCache parameters to apply.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -136,6 +116,38 @@ class ParameterGroup(pulumi.CustomResource):
         __props__["name"] = name
         __props__["parameters"] = parameters
         return ParameterGroup(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the ElastiCache parameter group. Defaults to "Managed by Pulumi".
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def family(self) -> str:
+        """
+        The family of the ElastiCache parameter group.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the ElastiCache parameter.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[List['outputs.ParameterGroupParameter']]:
+        """
+        A list of ElastiCache parameters to apply.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

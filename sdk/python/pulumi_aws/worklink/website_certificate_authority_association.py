@@ -12,26 +12,6 @@ __all__ = ['WebsiteCertificateAuthorityAssociation']
 
 
 class WebsiteCertificateAuthorityAssociation(pulumi.CustomResource):
-    certificate: pulumi.Output[str] = pulumi.property("certificate")
-    """
-    The root certificate of the Certificate Authority.
-    """
-
-    display_name: pulumi.Output[Optional[str]] = pulumi.property("displayName")
-    """
-    The certificate name to display.
-    """
-
-    fleet_arn: pulumi.Output[str] = pulumi.property("fleetArn")
-    """
-    The ARN of the fleet.
-    """
-
-    website_ca_id: pulumi.Output[str] = pulumi.property("websiteCaId")
-    """
-    A unique identifier for the Certificate Authority.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -120,6 +100,38 @@ class WebsiteCertificateAuthorityAssociation(pulumi.CustomResource):
         __props__["fleet_arn"] = fleet_arn
         __props__["website_ca_id"] = website_ca_id
         return WebsiteCertificateAuthorityAssociation(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def certificate(self) -> str:
+        """
+        The root certificate of the Certificate Authority.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> Optional[str]:
+        """
+        The certificate name to display.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="fleetArn")
+    def fleet_arn(self) -> str:
+        """
+        The ARN of the fleet.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="websiteCaId")
+    def website_ca_id(self) -> str:
+        """
+        A unique identifier for the Certificate Authority.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

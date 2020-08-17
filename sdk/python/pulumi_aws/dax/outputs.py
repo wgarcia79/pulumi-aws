@@ -16,6 +16,23 @@ __all__ = [
 
 @pulumi.output_type
 class ClusterNode(dict):
+    def __init__(__self__, *,
+                 address: Optional[str] = None,
+                 availability_zone: Optional[str] = None,
+                 id: Optional[str] = None,
+                 port: Optional[float] = None):
+        """
+        :param float port: The port used by the configuration endpoint
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+
     @property
     @pulumi.getter
     def address(self) -> Optional[str]:
@@ -45,6 +62,14 @@ class ClusterNode(dict):
 
 @pulumi.output_type
 class ClusterServerSideEncryption(dict):
+    def __init__(__self__, *,
+                 enabled: Optional[bool] = None):
+        """
+        :param bool enabled: Whether to enable encryption at rest. Defaults to `false`.
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
     @property
     @pulumi.getter
     def enabled(self) -> Optional[bool]:
@@ -59,6 +84,16 @@ class ClusterServerSideEncryption(dict):
 
 @pulumi.output_type
 class ParameterGroupParameter(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 value: str):
+        """
+        :param str name: The name of the parameter.
+        :param str value: The value for the parameter.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
     @property
     @pulumi.getter
     def name(self) -> str:

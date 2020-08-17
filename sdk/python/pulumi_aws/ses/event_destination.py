@@ -14,41 +14,6 @@ __all__ = ['EventDestination']
 
 
 class EventDestination(pulumi.CustomResource):
-    cloudwatch_destinations: pulumi.Output[Optional[List['outputs.EventDestinationCloudwatchDestination']]] = pulumi.property("cloudwatchDestinations")
-    """
-    CloudWatch destination for the events
-    """
-
-    configuration_set_name: pulumi.Output[str] = pulumi.property("configurationSetName")
-    """
-    The name of the configuration set
-    """
-
-    enabled: pulumi.Output[Optional[bool]] = pulumi.property("enabled")
-    """
-    If true, the event destination will be enabled
-    """
-
-    kinesis_destination: pulumi.Output[Optional['outputs.EventDestinationKinesisDestination']] = pulumi.property("kinesisDestination")
-    """
-    Send the events to a kinesis firehose destination
-    """
-
-    matching_types: pulumi.Output[List[str]] = pulumi.property("matchingTypes")
-    """
-    A list of matching types. May be any of `"send"`, `"reject"`, `"bounce"`, `"complaint"`, `"delivery"`, `"open"`, `"click"`, or `"renderingFailure"`.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the event destination
-    """
-
-    sns_destination: pulumi.Output[Optional['outputs.EventDestinationSnsDestination']] = pulumi.property("snsDestination")
-    """
-    Send the events to an SNS Topic destination
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -203,6 +168,62 @@ class EventDestination(pulumi.CustomResource):
         __props__["name"] = name
         __props__["sns_destination"] = sns_destination
         return EventDestination(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="cloudwatchDestinations")
+    def cloudwatch_destinations(self) -> Optional[List['outputs.EventDestinationCloudwatchDestination']]:
+        """
+        CloudWatch destination for the events
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="configurationSetName")
+    def configuration_set_name(self) -> str:
+        """
+        The name of the configuration set
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        If true, the event destination will be enabled
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="kinesisDestination")
+    def kinesis_destination(self) -> Optional['outputs.EventDestinationKinesisDestination']:
+        """
+        Send the events to a kinesis firehose destination
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="matchingTypes")
+    def matching_types(self) -> List[str]:
+        """
+        A list of matching types. May be any of `"send"`, `"reject"`, `"bounce"`, `"complaint"`, `"delivery"`, `"open"`, `"click"`, or `"renderingFailure"`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the event destination
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="snsDestination")
+    def sns_destination(self) -> Optional['outputs.EventDestinationSnsDestination']:
+        """
+        Send the events to an SNS Topic destination
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

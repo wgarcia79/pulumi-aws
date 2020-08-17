@@ -46,11 +46,16 @@ class ApplicationAppSourceArgs:
         :param pulumi.Input[str] username: Username to use when authenticating to the source.
         """
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "password", password)
-        pulumi.set(__self__, "revision", revision)
-        pulumi.set(__self__, "sshKey", ssh_key)
-        pulumi.set(__self__, "url", url)
-        pulumi.set(__self__, "username", username)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if revision is not None:
+            pulumi.set(__self__, "revision", revision)
+        if ssh_key is not None:
+            pulumi.set(__self__, "ssh_key", ssh_key)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter
@@ -138,7 +143,8 @@ class ApplicationEnvironmentArgs:
         """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
-        pulumi.set(__self__, "secure", secure)
+        if secure is not None:
+            pulumi.set(__self__, "secure", secure)
 
     @property
     @pulumi.getter
@@ -189,8 +195,9 @@ class ApplicationSslConfigurationArgs:
         :param pulumi.Input[str] chain: Can be used to specify an intermediate certificate authority key or client authentication.
         """
         pulumi.set(__self__, "certificate", certificate)
-        pulumi.set(__self__, "privateKey", private_key)
-        pulumi.set(__self__, "chain", chain)
+        pulumi.set(__self__, "private_key", private_key)
+        if chain is not None:
+            pulumi.set(__self__, "chain", chain)
 
     @property
     @pulumi.getter
@@ -248,13 +255,17 @@ class CustomLayerEbsVolumeArgs:
         :param pulumi.Input[str] raid_level: The RAID level to use for the volume.
         :param pulumi.Input[str] type: The type of volume to create. This may be `standard` (the default), `io1` or `gp2`.
         """
-        pulumi.set(__self__, "mountPoint", mount_point)
-        pulumi.set(__self__, "numberOfDisks", number_of_disks)
+        pulumi.set(__self__, "mount_point", mount_point)
+        pulumi.set(__self__, "number_of_disks", number_of_disks)
         pulumi.set(__self__, "size", size)
-        pulumi.set(__self__, "encrypted", encrypted)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "raidLevel", raid_level)
-        pulumi.set(__self__, "type", type)
+        if encrypted is not None:
+            pulumi.set(__self__, "encrypted", encrypted)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if raid_level is not None:
+            pulumi.set(__self__, "raid_level", raid_level)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="mountPoint")
@@ -359,13 +370,17 @@ class GangliaLayerEbsVolumeArgs:
         :param pulumi.Input[str] raid_level: The RAID level to use for the volume.
         :param pulumi.Input[str] type: The type of volume to create. This may be `standard` (the default), `io1` or `gp2`.
         """
-        pulumi.set(__self__, "mountPoint", mount_point)
-        pulumi.set(__self__, "numberOfDisks", number_of_disks)
+        pulumi.set(__self__, "mount_point", mount_point)
+        pulumi.set(__self__, "number_of_disks", number_of_disks)
         pulumi.set(__self__, "size", size)
-        pulumi.set(__self__, "encrypted", encrypted)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "raidLevel", raid_level)
-        pulumi.set(__self__, "type", type)
+        if encrypted is not None:
+            pulumi.set(__self__, "encrypted", encrypted)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if raid_level is not None:
+            pulumi.set(__self__, "raid_level", raid_level)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="mountPoint")
@@ -467,13 +482,17 @@ class HaproxyLayerEbsVolumeArgs:
         :param pulumi.Input[str] raid_level: The RAID level to use for the volume.
         :param pulumi.Input[str] type: The type of volume to create. This may be `standard` (the default), `io1` or `gp2`.
         """
-        pulumi.set(__self__, "mountPoint", mount_point)
-        pulumi.set(__self__, "numberOfDisks", number_of_disks)
+        pulumi.set(__self__, "mount_point", mount_point)
+        pulumi.set(__self__, "number_of_disks", number_of_disks)
         pulumi.set(__self__, "size", size)
-        pulumi.set(__self__, "encrypted", encrypted)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "raidLevel", raid_level)
-        pulumi.set(__self__, "type", type)
+        if encrypted is not None:
+            pulumi.set(__self__, "encrypted", encrypted)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if raid_level is not None:
+            pulumi.set(__self__, "raid_level", raid_level)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="mountPoint")
@@ -566,12 +585,17 @@ class InstanceEbsBlockDeviceArgs:
                  snapshot_id: Optional[pulumi.Input[str]] = None,
                  volume_size: Optional[pulumi.Input[float]] = None,
                  volume_type: Optional[pulumi.Input[str]] = None):
-        pulumi.set(__self__, "deviceName", device_name)
-        pulumi.set(__self__, "deleteOnTermination", delete_on_termination)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "snapshotId", snapshot_id)
-        pulumi.set(__self__, "volumeSize", volume_size)
-        pulumi.set(__self__, "volumeType", volume_type)
+        pulumi.set(__self__, "device_name", device_name)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if snapshot_id is not None:
+            pulumi.set(__self__, "snapshot_id", snapshot_id)
+        if volume_size is not None:
+            pulumi.set(__self__, "volume_size", volume_size)
+        if volume_type is not None:
+            pulumi.set(__self__, "volume_type", volume_type)
 
     @property
     @pulumi.getter(name="deviceName")
@@ -633,8 +657,8 @@ class InstanceEphemeralBlockDeviceArgs:
     def __init__(__self__, *,
                  device_name: pulumi.Input[str],
                  virtual_name: pulumi.Input[str]):
-        pulumi.set(__self__, "deviceName", device_name)
-        pulumi.set(__self__, "virtualName", virtual_name)
+        pulumi.set(__self__, "device_name", device_name)
+        pulumi.set(__self__, "virtual_name", virtual_name)
 
     @property
     @pulumi.getter(name="deviceName")
@@ -662,10 +686,14 @@ class InstanceRootBlockDeviceArgs:
                  iops: Optional[pulumi.Input[float]] = None,
                  volume_size: Optional[pulumi.Input[float]] = None,
                  volume_type: Optional[pulumi.Input[str]] = None):
-        pulumi.set(__self__, "deleteOnTermination", delete_on_termination)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "volumeSize", volume_size)
-        pulumi.set(__self__, "volumeType", volume_type)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if volume_size is not None:
+            pulumi.set(__self__, "volume_size", volume_size)
+        if volume_type is not None:
+            pulumi.set(__self__, "volume_type", volume_type)
 
     @property
     @pulumi.getter(name="deleteOnTermination")
@@ -722,13 +750,17 @@ class JavaAppLayerEbsVolumeArgs:
         :param pulumi.Input[str] raid_level: The RAID level to use for the volume.
         :param pulumi.Input[str] type: The type of volume to create. This may be `standard` (the default), `io1` or `gp2`.
         """
-        pulumi.set(__self__, "mountPoint", mount_point)
-        pulumi.set(__self__, "numberOfDisks", number_of_disks)
+        pulumi.set(__self__, "mount_point", mount_point)
+        pulumi.set(__self__, "number_of_disks", number_of_disks)
         pulumi.set(__self__, "size", size)
-        pulumi.set(__self__, "encrypted", encrypted)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "raidLevel", raid_level)
-        pulumi.set(__self__, "type", type)
+        if encrypted is not None:
+            pulumi.set(__self__, "encrypted", encrypted)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if raid_level is not None:
+            pulumi.set(__self__, "raid_level", raid_level)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="mountPoint")
@@ -830,13 +862,17 @@ class MemcachedLayerEbsVolumeArgs:
         :param pulumi.Input[str] raid_level: The RAID level to use for the volume.
         :param pulumi.Input[str] type: The type of volume to create. This may be `standard` (the default), `io1` or `gp2`.
         """
-        pulumi.set(__self__, "mountPoint", mount_point)
-        pulumi.set(__self__, "numberOfDisks", number_of_disks)
+        pulumi.set(__self__, "mount_point", mount_point)
+        pulumi.set(__self__, "number_of_disks", number_of_disks)
         pulumi.set(__self__, "size", size)
-        pulumi.set(__self__, "encrypted", encrypted)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "raidLevel", raid_level)
-        pulumi.set(__self__, "type", type)
+        if encrypted is not None:
+            pulumi.set(__self__, "encrypted", encrypted)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if raid_level is not None:
+            pulumi.set(__self__, "raid_level", raid_level)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="mountPoint")
@@ -938,13 +974,17 @@ class MysqlLayerEbsVolumeArgs:
         :param pulumi.Input[str] raid_level: The RAID level to use for the volume.
         :param pulumi.Input[str] type: The type of volume to create. This may be `standard` (the default), `io1` or `gp2`.
         """
-        pulumi.set(__self__, "mountPoint", mount_point)
-        pulumi.set(__self__, "numberOfDisks", number_of_disks)
+        pulumi.set(__self__, "mount_point", mount_point)
+        pulumi.set(__self__, "number_of_disks", number_of_disks)
         pulumi.set(__self__, "size", size)
-        pulumi.set(__self__, "encrypted", encrypted)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "raidLevel", raid_level)
-        pulumi.set(__self__, "type", type)
+        if encrypted is not None:
+            pulumi.set(__self__, "encrypted", encrypted)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if raid_level is not None:
+            pulumi.set(__self__, "raid_level", raid_level)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="mountPoint")
@@ -1046,13 +1086,17 @@ class NodejsAppLayerEbsVolumeArgs:
         :param pulumi.Input[str] raid_level: The RAID level to use for the volume.
         :param pulumi.Input[str] type: The type of volume to create. This may be `standard` (the default), `io1` or `gp2`.
         """
-        pulumi.set(__self__, "mountPoint", mount_point)
-        pulumi.set(__self__, "numberOfDisks", number_of_disks)
+        pulumi.set(__self__, "mount_point", mount_point)
+        pulumi.set(__self__, "number_of_disks", number_of_disks)
         pulumi.set(__self__, "size", size)
-        pulumi.set(__self__, "encrypted", encrypted)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "raidLevel", raid_level)
-        pulumi.set(__self__, "type", type)
+        if encrypted is not None:
+            pulumi.set(__self__, "encrypted", encrypted)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if raid_level is not None:
+            pulumi.set(__self__, "raid_level", raid_level)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="mountPoint")
@@ -1154,13 +1198,17 @@ class PhpAppLayerEbsVolumeArgs:
         :param pulumi.Input[str] raid_level: The RAID level to use for the volume.
         :param pulumi.Input[str] type: The type of volume to create. This may be `standard` (the default), `io1` or `gp2`.
         """
-        pulumi.set(__self__, "mountPoint", mount_point)
-        pulumi.set(__self__, "numberOfDisks", number_of_disks)
+        pulumi.set(__self__, "mount_point", mount_point)
+        pulumi.set(__self__, "number_of_disks", number_of_disks)
         pulumi.set(__self__, "size", size)
-        pulumi.set(__self__, "encrypted", encrypted)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "raidLevel", raid_level)
-        pulumi.set(__self__, "type", type)
+        if encrypted is not None:
+            pulumi.set(__self__, "encrypted", encrypted)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if raid_level is not None:
+            pulumi.set(__self__, "raid_level", raid_level)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="mountPoint")
@@ -1262,13 +1310,17 @@ class RailsAppLayerEbsVolumeArgs:
         :param pulumi.Input[str] raid_level: The RAID level to use for the volume.
         :param pulumi.Input[str] type: The type of volume to create. This may be `standard` (the default), `io1` or `gp2`.
         """
-        pulumi.set(__self__, "mountPoint", mount_point)
-        pulumi.set(__self__, "numberOfDisks", number_of_disks)
+        pulumi.set(__self__, "mount_point", mount_point)
+        pulumi.set(__self__, "number_of_disks", number_of_disks)
         pulumi.set(__self__, "size", size)
-        pulumi.set(__self__, "encrypted", encrypted)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "raidLevel", raid_level)
-        pulumi.set(__self__, "type", type)
+        if encrypted is not None:
+            pulumi.set(__self__, "encrypted", encrypted)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if raid_level is not None:
+            pulumi.set(__self__, "raid_level", raid_level)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="mountPoint")
@@ -1371,10 +1423,14 @@ class StackCustomCookbooksSourceArgs:
         """
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "url", url)
-        pulumi.set(__self__, "password", password)
-        pulumi.set(__self__, "revision", revision)
-        pulumi.set(__self__, "sshKey", ssh_key)
-        pulumi.set(__self__, "username", username)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if revision is not None:
+            pulumi.set(__self__, "revision", revision)
+        if ssh_key is not None:
+            pulumi.set(__self__, "ssh_key", ssh_key)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter
@@ -1467,13 +1523,17 @@ class StaticWebLayerEbsVolumeArgs:
         :param pulumi.Input[str] raid_level: The RAID level to use for the volume.
         :param pulumi.Input[str] type: The type of volume to create. This may be `standard` (the default), `io1` or `gp2`.
         """
-        pulumi.set(__self__, "mountPoint", mount_point)
-        pulumi.set(__self__, "numberOfDisks", number_of_disks)
+        pulumi.set(__self__, "mount_point", mount_point)
+        pulumi.set(__self__, "number_of_disks", number_of_disks)
         pulumi.set(__self__, "size", size)
-        pulumi.set(__self__, "encrypted", encrypted)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "raidLevel", raid_level)
-        pulumi.set(__self__, "type", type)
+        if encrypted is not None:
+            pulumi.set(__self__, "encrypted", encrypted)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if raid_level is not None:
+            pulumi.set(__self__, "raid_level", raid_level)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="mountPoint")

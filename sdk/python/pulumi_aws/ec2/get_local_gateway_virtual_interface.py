@@ -17,20 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetLocalGatewayVirtualInterfaceResult:
-    filters: Optional[List['outputs.GetLocalGatewayVirtualInterfaceFilterResult']] = pulumi.property("filters")
-    id: str = pulumi.property("id")
-    local_address: str = pulumi.property("localAddress")
-    local_bgp_asn: float = pulumi.property("localBgpAsn")
-    local_gateway_id: str = pulumi.property("localGatewayId")
-    local_gateway_virtual_interface_ids: List[str] = pulumi.property("localGatewayVirtualInterfaceIds")
-    peer_address: str = pulumi.property("peerAddress")
-    peer_bgp_asn: float = pulumi.property("peerBgpAsn")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    vlan: float = pulumi.property("vlan")
-
-
 class GetLocalGatewayVirtualInterfaceResult:
     """
     A collection of values returned by getLocalGatewayVirtualInterface.
@@ -38,52 +26,103 @@ class GetLocalGatewayVirtualInterfaceResult:
     def __init__(__self__, filters=None, id=None, local_address=None, local_bgp_asn=None, local_gateway_id=None, local_gateway_virtual_interface_ids=None, peer_address=None, peer_bgp_asn=None, tags=None, vlan=None):
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
+        pulumi.set(__self__, "filters", filters)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
         if local_address and not isinstance(local_address, str):
             raise TypeError("Expected argument 'local_address' to be a str")
-        __self__.local_address = local_address
+        pulumi.set(__self__, "local_address", local_address)
+        if local_bgp_asn and not isinstance(local_bgp_asn, float):
+            raise TypeError("Expected argument 'local_bgp_asn' to be a float")
+        pulumi.set(__self__, "local_bgp_asn", local_bgp_asn)
+        if local_gateway_id and not isinstance(local_gateway_id, str):
+            raise TypeError("Expected argument 'local_gateway_id' to be a str")
+        pulumi.set(__self__, "local_gateway_id", local_gateway_id)
+        if local_gateway_virtual_interface_ids and not isinstance(local_gateway_virtual_interface_ids, list):
+            raise TypeError("Expected argument 'local_gateway_virtual_interface_ids' to be a list")
+        pulumi.set(__self__, "local_gateway_virtual_interface_ids", local_gateway_virtual_interface_ids)
+        if peer_address and not isinstance(peer_address, str):
+            raise TypeError("Expected argument 'peer_address' to be a str")
+        pulumi.set(__self__, "peer_address", peer_address)
+        if peer_bgp_asn and not isinstance(peer_bgp_asn, float):
+            raise TypeError("Expected argument 'peer_bgp_asn' to be a float")
+        pulumi.set(__self__, "peer_bgp_asn", peer_bgp_asn)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if vlan and not isinstance(vlan, float):
+            raise TypeError("Expected argument 'vlan' to be a float")
+        pulumi.set(__self__, "vlan", vlan)
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetLocalGatewayVirtualInterfaceFilterResult']]:
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="localAddress")
+    def local_address(self) -> str:
         """
         Local address.
         """
-        if local_bgp_asn and not isinstance(local_bgp_asn, float):
-            raise TypeError("Expected argument 'local_bgp_asn' to be a float")
-        __self__.local_bgp_asn = local_bgp_asn
+        ...
+
+    @property
+    @pulumi.getter(name="localBgpAsn")
+    def local_bgp_asn(self) -> float:
         """
         Border Gateway Protocol (BGP) Autonomous System Number (ASN) of the EC2 Local Gateway.
         """
-        if local_gateway_id and not isinstance(local_gateway_id, str):
-            raise TypeError("Expected argument 'local_gateway_id' to be a str")
-        __self__.local_gateway_id = local_gateway_id
+        ...
+
+    @property
+    @pulumi.getter(name="localGatewayId")
+    def local_gateway_id(self) -> str:
         """
         Identifier of the EC2 Local Gateway.
         """
-        if local_gateway_virtual_interface_ids and not isinstance(local_gateway_virtual_interface_ids, list):
-            raise TypeError("Expected argument 'local_gateway_virtual_interface_ids' to be a list")
-        __self__.local_gateway_virtual_interface_ids = local_gateway_virtual_interface_ids
-        if peer_address and not isinstance(peer_address, str):
-            raise TypeError("Expected argument 'peer_address' to be a str")
-        __self__.peer_address = peer_address
+        ...
+
+    @property
+    @pulumi.getter(name="localGatewayVirtualInterfaceIds")
+    def local_gateway_virtual_interface_ids(self) -> List[str]:
+        ...
+
+    @property
+    @pulumi.getter(name="peerAddress")
+    def peer_address(self) -> str:
         """
         Peer address.
         """
-        if peer_bgp_asn and not isinstance(peer_bgp_asn, float):
-            raise TypeError("Expected argument 'peer_bgp_asn' to be a float")
-        __self__.peer_bgp_asn = peer_bgp_asn
+        ...
+
+    @property
+    @pulumi.getter(name="peerBgpAsn")
+    def peer_bgp_asn(self) -> float:
         """
         Border Gateway Protocol (BGP) Autonomous System Number (ASN) of the peer.
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
-        if vlan and not isinstance(vlan, float):
-            raise TypeError("Expected argument 'vlan' to be a float")
-        __self__.vlan = vlan
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
+        ...
+
+    @property
+    @pulumi.getter
+    def vlan(self) -> float:
         """
         Virtual Local Area Network.
         """
+        ...
+
 
 
 class AwaitableGetLocalGatewayVirtualInterfaceResult(GetLocalGatewayVirtualInterfaceResult):
@@ -133,7 +172,7 @@ def get_local_gateway_virtual_interface(filters: Optional[List[pulumi.InputType[
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getLocalGatewayVirtualInterface:getLocalGatewayVirtualInterface', __args__, opts=opts, typ=_GetLocalGatewayVirtualInterfaceResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getLocalGatewayVirtualInterface:getLocalGatewayVirtualInterface', __args__, opts=opts, typ=GetLocalGatewayVirtualInterfaceResult).value
 
     return AwaitableGetLocalGatewayVirtualInterfaceResult(
         filters=__ret__.filters,

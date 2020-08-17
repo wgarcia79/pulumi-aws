@@ -49,15 +49,24 @@ class GetPolicyDocumentStatementArgs:
                to. This is required by AWS if used for an IAM policy.
         :param str sid: An ID for the policy statement.
         """
-        pulumi.set(__self__, "actions", actions)
-        pulumi.set(__self__, "conditions", conditions)
-        pulumi.set(__self__, "effect", effect)
-        pulumi.set(__self__, "notActions", not_actions)
-        pulumi.set(__self__, "notPrincipals", not_principals)
-        pulumi.set(__self__, "notResources", not_resources)
-        pulumi.set(__self__, "principals", principals)
-        pulumi.set(__self__, "resources", resources)
-        pulumi.set(__self__, "sid", sid)
+        if actions is not None:
+            pulumi.set(__self__, "actions", actions)
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
+        if effect is not None:
+            pulumi.set(__self__, "effect", effect)
+        if not_actions is not None:
+            pulumi.set(__self__, "not_actions", not_actions)
+        if not_principals is not None:
+            pulumi.set(__self__, "not_principals", not_principals)
+        if not_resources is not None:
+            pulumi.set(__self__, "not_resources", not_resources)
+        if principals is not None:
+            pulumi.set(__self__, "principals", principals)
+        if resources is not None:
+            pulumi.set(__self__, "resources", resources)
+        if sid is not None:
+            pulumi.set(__self__, "sid", sid)
 
     @property
     @pulumi.getter

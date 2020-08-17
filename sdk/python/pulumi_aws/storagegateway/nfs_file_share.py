@@ -14,91 +14,6 @@ __all__ = ['NfsFileShare']
 
 
 class NfsFileShare(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN) of the NFS File Share.
-    """
-
-    client_lists: pulumi.Output[List[str]] = pulumi.property("clientLists")
-    """
-    The list of clients that are allowed to access the file gateway. The list must contain either valid IP addresses or valid CIDR blocks. Set to `["0.0.0.0/0"]` to not limit access. Minimum 1 item. Maximum 100 items.
-    """
-
-    default_storage_class: pulumi.Output[Optional[str]] = pulumi.property("defaultStorageClass")
-    """
-    The default storage class for objects put into an Amazon S3 bucket by the file gateway. Defaults to `S3_STANDARD`. Valid values: `S3_STANDARD`, `S3_STANDARD_IA`, `S3_ONEZONE_IA`.
-    """
-
-    fileshare_id: pulumi.Output[str] = pulumi.property("fileshareId")
-    """
-    ID of the NFS File Share.
-    """
-
-    gateway_arn: pulumi.Output[str] = pulumi.property("gatewayArn")
-    """
-    Amazon Resource Name (ARN) of the file gateway.
-    """
-
-    guess_mime_type_enabled: pulumi.Output[Optional[bool]] = pulumi.property("guessMimeTypeEnabled")
-    """
-    Boolean value that enables guessing of the MIME type for uploaded objects based on file extensions. Defaults to `true`.
-    """
-
-    kms_encrypted: pulumi.Output[Optional[bool]] = pulumi.property("kmsEncrypted")
-    """
-    Boolean value if `true` to use Amazon S3 server side encryption with your own AWS KMS key, or `false` to use a key managed by Amazon S3. Defaults to `false`.
-    """
-
-    kms_key_arn: pulumi.Output[Optional[str]] = pulumi.property("kmsKeyArn")
-    """
-    Amazon Resource Name (ARN) for KMS key used for Amazon S3 server side encryption. This value can only be set when `kms_encrypted` is true.
-    """
-
-    location_arn: pulumi.Output[str] = pulumi.property("locationArn")
-    """
-    The ARN of the backed storage used for storing file data.
-    """
-
-    nfs_file_share_defaults: pulumi.Output[Optional['outputs.NfsFileShareNfsFileShareDefaults']] = pulumi.property("nfsFileShareDefaults")
-    """
-    Nested argument with file share default values. More information below.
-    """
-
-    object_acl: pulumi.Output[Optional[str]] = pulumi.property("objectAcl")
-    """
-    Access Control List permission for S3 bucket objects. Defaults to `private`.
-    """
-
-    path: pulumi.Output[str] = pulumi.property("path")
-    """
-    File share path used by the NFS client to identify the mount point.
-    """
-
-    read_only: pulumi.Output[Optional[bool]] = pulumi.property("readOnly")
-    """
-    Boolean to indicate write status of file share. File share does not accept writes if `true`. Defaults to `false`.
-    """
-
-    requester_pays: pulumi.Output[Optional[bool]] = pulumi.property("requesterPays")
-    """
-    Boolean who pays the cost of the request and the data download from the Amazon S3 bucket. Set this value to `true` if you want the requester to pay instead of the bucket owner. Defaults to `false`.
-    """
-
-    role_arn: pulumi.Output[str] = pulumi.property("roleArn")
-    """
-    The ARN of the AWS Identity and Access Management (IAM) role that a file gateway assumes when it accesses the underlying storage.
-    """
-
-    squash: pulumi.Output[Optional[str]] = pulumi.property("squash")
-    """
-    Maps a user to anonymous user. Defaults to `RootSquash`. Valid values: `RootSquash` (only root is mapped to anonymous user), `NoSquash` (no one is mapped to anonymous user), `AllSquash` (everyone is mapped to anonymous user)
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of resource tags
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -268,6 +183,142 @@ class NfsFileShare(pulumi.CustomResource):
         __props__["squash"] = squash
         __props__["tags"] = tags
         return NfsFileShare(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of the NFS File Share.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="clientLists")
+    def client_lists(self) -> List[str]:
+        """
+        The list of clients that are allowed to access the file gateway. The list must contain either valid IP addresses or valid CIDR blocks. Set to `["0.0.0.0/0"]` to not limit access. Minimum 1 item. Maximum 100 items.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="defaultStorageClass")
+    def default_storage_class(self) -> Optional[str]:
+        """
+        The default storage class for objects put into an Amazon S3 bucket by the file gateway. Defaults to `S3_STANDARD`. Valid values: `S3_STANDARD`, `S3_STANDARD_IA`, `S3_ONEZONE_IA`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="fileshareId")
+    def fileshare_id(self) -> str:
+        """
+        ID of the NFS File Share.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="gatewayArn")
+    def gateway_arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of the file gateway.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="guessMimeTypeEnabled")
+    def guess_mime_type_enabled(self) -> Optional[bool]:
+        """
+        Boolean value that enables guessing of the MIME type for uploaded objects based on file extensions. Defaults to `true`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="kmsEncrypted")
+    def kms_encrypted(self) -> Optional[bool]:
+        """
+        Boolean value if `true` to use Amazon S3 server side encryption with your own AWS KMS key, or `false` to use a key managed by Amazon S3. Defaults to `false`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="kmsKeyArn")
+    def kms_key_arn(self) -> Optional[str]:
+        """
+        Amazon Resource Name (ARN) for KMS key used for Amazon S3 server side encryption. This value can only be set when `kms_encrypted` is true.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="locationArn")
+    def location_arn(self) -> str:
+        """
+        The ARN of the backed storage used for storing file data.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="nfsFileShareDefaults")
+    def nfs_file_share_defaults(self) -> Optional['outputs.NfsFileShareNfsFileShareDefaults']:
+        """
+        Nested argument with file share default values. More information below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="objectAcl")
+    def object_acl(self) -> Optional[str]:
+        """
+        Access Control List permission for S3 bucket objects. Defaults to `private`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def path(self) -> str:
+        """
+        File share path used by the NFS client to identify the mount point.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="readOnly")
+    def read_only(self) -> Optional[bool]:
+        """
+        Boolean to indicate write status of file share. File share does not accept writes if `true`. Defaults to `false`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="requesterPays")
+    def requester_pays(self) -> Optional[bool]:
+        """
+        Boolean who pays the cost of the request and the data download from the Amazon S3 bucket. Set this value to `true` if you want the requester to pay instead of the bucket owner. Defaults to `false`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> str:
+        """
+        The ARN of the AWS Identity and Access Management (IAM) role that a file gateway assumes when it accesses the underlying storage.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def squash(self) -> Optional[str]:
+        """
+        Maps a user to anonymous user. Defaults to `RootSquash`. Valid values: `RootSquash` (only root is mapped to anonymous user), `NoSquash` (no one is mapped to anonymous user), `AllSquash` (everyone is mapped to anonymous user)
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of resource tags
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -28,7 +28,8 @@ class AccessPointPosixUserArgs:
         """
         pulumi.set(__self__, "gid", gid)
         pulumi.set(__self__, "uid", uid)
-        pulumi.set(__self__, "secondaryGids", secondary_gids)
+        if secondary_gids is not None:
+            pulumi.set(__self__, "secondary_gids", secondary_gids)
 
     @property
     @pulumi.getter
@@ -76,8 +77,10 @@ class AccessPointRootDirectoryArgs:
         :param pulumi.Input['AccessPointRootDirectoryCreationInfoArgs'] creation_info: Specifies the POSIX IDs and permissions to apply to the access point's Root Directory. See Creation Info below.
         :param pulumi.Input[str] path: Specifies the path on the EFS file system to expose as the root directory to NFS clients using the access point to access the EFS file system. A path can have up to four subdirectories. If the specified path does not exist, you are required to provide `creation_info`.
         """
-        pulumi.set(__self__, "creationInfo", creation_info)
-        pulumi.set(__self__, "path", path)
+        if creation_info is not None:
+            pulumi.set(__self__, "creation_info", creation_info)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
 
     @property
     @pulumi.getter(name="creationInfo")
@@ -115,8 +118,8 @@ class AccessPointRootDirectoryCreationInfoArgs:
         :param pulumi.Input[float] owner_uid: Specifies the POSIX user ID to apply to the `root_directory`.
         :param pulumi.Input[str] permissions: Specifies the POSIX permissions to apply to the RootDirectory, in the format of an octal number representing the file's mode bits.
         """
-        pulumi.set(__self__, "ownerGid", owner_gid)
-        pulumi.set(__self__, "ownerUid", owner_uid)
+        pulumi.set(__self__, "owner_gid", owner_gid)
+        pulumi.set(__self__, "owner_uid", owner_uid)
         pulumi.set(__self__, "permissions", permissions)
 
     @property
@@ -163,7 +166,7 @@ class FileSystemLifecyclePolicyArgs:
         """
         :param pulumi.Input[str] transition_to_ia: Indicates how long it takes to transition files to the IA storage class. Valid values: `AFTER_7_DAYS`, `AFTER_14_DAYS`, `AFTER_30_DAYS`, `AFTER_60_DAYS`, or `AFTER_90_DAYS`.
         """
-        pulumi.set(__self__, "transitionToIa", transition_to_ia)
+        pulumi.set(__self__, "transition_to_ia", transition_to_ia)
 
     @property
     @pulumi.getter(name="transitionToIa")

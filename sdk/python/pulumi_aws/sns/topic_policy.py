@@ -12,16 +12,6 @@ __all__ = ['TopicPolicy']
 
 
 class TopicPolicy(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the SNS topic
-    """
-
-    policy: pulumi.Output[str] = pulumi.property("policy")
-    """
-    The fully-formed AWS policy as JSON.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -130,6 +120,22 @@ class TopicPolicy(pulumi.CustomResource):
         __props__["arn"] = arn
         __props__["policy"] = policy
         return TopicPolicy(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the SNS topic
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def policy(self) -> str:
+        """
+        The fully-formed AWS policy as JSON.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

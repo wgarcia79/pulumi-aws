@@ -14,33 +14,6 @@ __all__ = ['EfsLocation']
 
 
 class EfsLocation(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN) of the DataSync Location.
-    """
-
-    ec2_config: pulumi.Output['outputs.EfsLocationEc2Config'] = pulumi.property("ec2Config")
-    """
-    Configuration block containing EC2 configurations for connecting to the EFS File System.
-    """
-
-    efs_file_system_arn: pulumi.Output[str] = pulumi.property("efsFileSystemArn")
-    """
-    Amazon Resource Name (ARN) of EFS File System.
-    """
-
-    subdirectory: pulumi.Output[Optional[str]] = pulumi.property("subdirectory")
-    """
-    Subdirectory to perform actions as source or destination. Default `/`.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value pairs of resource tags to assign to the DataSync Location.
-    """
-
-    uri: pulumi.Output[str] = pulumi.property("uri")
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -144,6 +117,51 @@ class EfsLocation(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["uri"] = uri
         return EfsLocation(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of the DataSync Location.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="ec2Config")
+    def ec2_config(self) -> 'outputs.EfsLocationEc2Config':
+        """
+        Configuration block containing EC2 configurations for connecting to the EFS File System.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="efsFileSystemArn")
+    def efs_file_system_arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of EFS File System.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def subdirectory(self) -> Optional[str]:
+        """
+        Subdirectory to perform actions as source or destination. Default `/`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value pairs of resource tags to assign to the DataSync Location.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def uri(self) -> str:
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

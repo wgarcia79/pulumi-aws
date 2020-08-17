@@ -17,14 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetInstanceTypeOfferingsResult:
-    filters: Optional[List['outputs.GetInstanceTypeOfferingsFilterResult']] = pulumi.property("filters")
-    id: str = pulumi.property("id")
-    instance_types: List[str] = pulumi.property("instanceTypes")
-    location_type: Optional[str] = pulumi.property("locationType")
-
-
 class GetInstanceTypeOfferingsResult:
     """
     A collection of values returned by getInstanceTypeOfferings.
@@ -32,22 +26,43 @@ class GetInstanceTypeOfferingsResult:
     def __init__(__self__, filters=None, id=None, instance_types=None, location_type=None):
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
+        pulumi.set(__self__, "filters", filters)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if instance_types and not isinstance(instance_types, list):
+            raise TypeError("Expected argument 'instance_types' to be a list")
+        pulumi.set(__self__, "instance_types", instance_types)
+        if location_type and not isinstance(location_type, str):
+            raise TypeError("Expected argument 'location_type' to be a str")
+        pulumi.set(__self__, "location_type", location_type)
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetInstanceTypeOfferingsFilterResult']]:
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if instance_types and not isinstance(instance_types, list):
-            raise TypeError("Expected argument 'instance_types' to be a list")
-        __self__.instance_types = instance_types
+        ...
+
+    @property
+    @pulumi.getter(name="instanceTypes")
+    def instance_types(self) -> List[str]:
         """
         Set of EC2 Instance Types.
         """
-        if location_type and not isinstance(location_type, str):
-            raise TypeError("Expected argument 'location_type' to be a str")
-        __self__.location_type = location_type
+        ...
+
+    @property
+    @pulumi.getter(name="locationType")
+    def location_type(self) -> Optional[str]:
+        ...
+
 
 
 class AwaitableGetInstanceTypeOfferingsResult(GetInstanceTypeOfferingsResult):
@@ -101,7 +116,7 @@ def get_instance_type_offerings(filters: Optional[List[pulumi.InputType['GetInst
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getInstanceTypeOfferings:getInstanceTypeOfferings', __args__, opts=opts, typ=_GetInstanceTypeOfferingsResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getInstanceTypeOfferings:getInstanceTypeOfferings', __args__, opts=opts, typ=GetInstanceTypeOfferingsResult).value
 
     return AwaitableGetInstanceTypeOfferingsResult(
         filters=__ret__.filters,

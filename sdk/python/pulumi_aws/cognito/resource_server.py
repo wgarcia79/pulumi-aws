@@ -14,28 +14,6 @@ __all__ = ['ResourceServer']
 
 
 class ResourceServer(pulumi.CustomResource):
-    identifier: pulumi.Output[str] = pulumi.property("identifier")
-    """
-    An identifier for the resource server.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    A name for the resource server.
-    """
-
-    scope_identifiers: pulumi.Output[List[str]] = pulumi.property("scopeIdentifiers")
-    """
-    A list of all scopes configured for this resource server in the format identifier/scope_name.
-    """
-
-    scopes: pulumi.Output[Optional[List['outputs.ResourceServerScope']]] = pulumi.property("scopes")
-    """
-    A list of Authorization Scope.
-    """
-
-    user_pool_id: pulumi.Output[str] = pulumi.property("userPoolId")
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -146,6 +124,43 @@ class ResourceServer(pulumi.CustomResource):
         __props__["scopes"] = scopes
         __props__["user_pool_id"] = user_pool_id
         return ResourceServer(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def identifier(self) -> str:
+        """
+        An identifier for the resource server.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A name for the resource server.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="scopeIdentifiers")
+    def scope_identifiers(self) -> List[str]:
+        """
+        A list of all scopes configured for this resource server in the format identifier/scope_name.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def scopes(self) -> Optional[List['outputs.ResourceServerScope']]:
+        """
+        A list of Authorization Scope.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="userPoolId")
+    def user_pool_id(self) -> str:
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

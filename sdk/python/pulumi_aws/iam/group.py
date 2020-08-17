@@ -12,26 +12,6 @@ __all__ = ['Group']
 
 
 class Group(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN assigned by AWS for this group.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The group's name. The name must consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: `=,.@-_.`. Group names are not distinguished by case. For example, you cannot create groups named both "ADMINS" and "admins".
-    """
-
-    path: pulumi.Output[Optional[str]] = pulumi.property("path")
-    """
-    Path in which to create the group.
-    """
-
-    unique_id: pulumi.Output[str] = pulumi.property("uniqueId")
-    """
-    The [unique ID][1] assigned by AWS.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -113,6 +93,38 @@ class Group(pulumi.CustomResource):
         __props__["path"] = path
         __props__["unique_id"] = unique_id
         return Group(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN assigned by AWS for this group.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The group's name. The name must consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: `=,.@-_.`. Group names are not distinguished by case. For example, you cannot create groups named both "ADMINS" and "admins".
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[str]:
+        """
+        Path in which to create the group.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="uniqueId")
+    def unique_id(self) -> str:
+        """
+        The [unique ID][1] assigned by AWS.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

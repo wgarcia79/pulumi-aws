@@ -14,26 +14,6 @@ __all__ = ['OrganizationalUnit']
 
 
 class OrganizationalUnit(pulumi.CustomResource):
-    accounts: pulumi.Output[List['outputs.OrganizationalUnitAccount']] = pulumi.property("accounts")
-    """
-    List of child accounts for this Organizational Unit. Does not return account information for child Organizational Units. All elements have these attributes:
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    ARN of the organizational unit
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name for the organizational unit
-    """
-
-    parent_id: pulumi.Output[str] = pulumi.property("parentId")
-    """
-    ID of the parent organizational unit, which may be the root
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -117,6 +97,38 @@ class OrganizationalUnit(pulumi.CustomResource):
         __props__["name"] = name
         __props__["parent_id"] = parent_id
         return OrganizationalUnit(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def accounts(self) -> List['outputs.OrganizationalUnitAccount']:
+        """
+        List of child accounts for this Organizational Unit. Does not return account information for child Organizational Units. All elements have these attributes:
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        ARN of the organizational unit
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name for the organizational unit
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="parentId")
+    def parent_id(self) -> str:
+        """
+        ID of the parent organizational unit, which may be the root
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

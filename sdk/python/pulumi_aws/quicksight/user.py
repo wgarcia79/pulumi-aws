@@ -12,51 +12,6 @@ __all__ = ['User']
 
 
 class User(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN) of the user
-    """
-
-    aws_account_id: pulumi.Output[str] = pulumi.property("awsAccountId")
-    """
-    The ID for the AWS account that the user is in. Currently, you use the ID for the AWS account that contains your Amazon QuickSight account.
-    """
-
-    email: pulumi.Output[str] = pulumi.property("email")
-    """
-    The email address of the user that you want to register.
-    """
-
-    iam_arn: pulumi.Output[Optional[str]] = pulumi.property("iamArn")
-    """
-    The ARN of the IAM user or role that you are registering with Amazon QuickSight.
-    """
-
-    identity_type: pulumi.Output[str] = pulumi.property("identityType")
-    """
-    Amazon QuickSight supports several ways of managing the identity of users. This parameter accepts either  `IAM` or `QUICKSIGHT`.
-    """
-
-    namespace: pulumi.Output[Optional[str]] = pulumi.property("namespace")
-    """
-    The namespace. Currently, you should set this to `default`.
-    """
-
-    session_name: pulumi.Output[Optional[str]] = pulumi.property("sessionName")
-    """
-    The name of the IAM session to use when assuming roles that can embed QuickSight dashboards.
-    """
-
-    user_name: pulumi.Output[Optional[str]] = pulumi.property("userName")
-    """
-    The Amazon QuickSight user name that you want to create for the user you are registering.
-    """
-
-    user_role: pulumi.Output[str] = pulumi.property("userRole")
-    """
-    The Amazon QuickSight role of the user. The user role can be one of the following: `READER`, `AUTHOR`, or `ADMIN`
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -180,6 +135,78 @@ class User(pulumi.CustomResource):
         __props__["user_name"] = user_name
         __props__["user_role"] = user_role
         return User(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of the user
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="awsAccountId")
+    def aws_account_id(self) -> str:
+        """
+        The ID for the AWS account that the user is in. Currently, you use the ID for the AWS account that contains your Amazon QuickSight account.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def email(self) -> str:
+        """
+        The email address of the user that you want to register.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="iamArn")
+    def iam_arn(self) -> Optional[str]:
+        """
+        The ARN of the IAM user or role that you are registering with Amazon QuickSight.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="identityType")
+    def identity_type(self) -> str:
+        """
+        Amazon QuickSight supports several ways of managing the identity of users. This parameter accepts either  `IAM` or `QUICKSIGHT`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[str]:
+        """
+        The namespace. Currently, you should set this to `default`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="sessionName")
+    def session_name(self) -> Optional[str]:
+        """
+        The name of the IAM session to use when assuming roles that can embed QuickSight dashboards.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> Optional[str]:
+        """
+        The Amazon QuickSight user name that you want to create for the user you are registering.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="userRole")
+    def user_role(self) -> str:
+        """
+        The Amazon QuickSight role of the user. The user role can be one of the following: `READER`, `AUTHOR`, or `ADMIN`
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

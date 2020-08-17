@@ -12,80 +12,6 @@ __all__ = ['ClusterSnapshot']
 
 
 class ClusterSnapshot(pulumi.CustomResource):
-    allocated_storage: pulumi.Output[float] = pulumi.property("allocatedStorage")
-    """
-    Specifies the allocated storage size in gigabytes (GB).
-    """
-
-    availability_zones: pulumi.Output[List[str]] = pulumi.property("availabilityZones")
-    """
-    List of EC2 Availability Zones that instances in the DB cluster snapshot can be restored in.
-    """
-
-    db_cluster_identifier: pulumi.Output[str] = pulumi.property("dbClusterIdentifier")
-    """
-    The DB Cluster Identifier from which to take the snapshot.
-    """
-
-    db_cluster_snapshot_arn: pulumi.Output[str] = pulumi.property("dbClusterSnapshotArn")
-    """
-    The Amazon Resource Name (ARN) for the DB Cluster Snapshot.
-    """
-
-    db_cluster_snapshot_identifier: pulumi.Output[str] = pulumi.property("dbClusterSnapshotIdentifier")
-    """
-    The Identifier for the snapshot.
-    """
-
-    engine: pulumi.Output[str] = pulumi.property("engine")
-    """
-    Specifies the name of the database engine.
-    """
-
-    engine_version: pulumi.Output[str] = pulumi.property("engineVersion")
-    """
-    Version of the database engine for this DB cluster snapshot.
-    """
-
-    kms_key_id: pulumi.Output[str] = pulumi.property("kmsKeyId")
-    """
-    If storage_encrypted is true, the AWS KMS key identifier for the encrypted DB cluster snapshot.
-    """
-
-    license_model: pulumi.Output[str] = pulumi.property("licenseModel")
-    """
-    License model information for the restored DB cluster.
-    """
-
-    port: pulumi.Output[float] = pulumi.property("port")
-    """
-    Port that the DB cluster was listening on at the time of the snapshot.
-    """
-
-    snapshot_type: pulumi.Output[str] = pulumi.property("snapshotType")
-
-    source_db_cluster_snapshot_arn: pulumi.Output[str] = pulumi.property("sourceDbClusterSnapshotArn")
-
-    status: pulumi.Output[str] = pulumi.property("status")
-    """
-    The status of this DB Cluster Snapshot.
-    """
-
-    storage_encrypted: pulumi.Output[bool] = pulumi.property("storageEncrypted")
-    """
-    Specifies whether the DB cluster snapshot is encrypted.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the DB cluster.
-    """
-
-    vpc_id: pulumi.Output[str] = pulumi.property("vpcId")
-    """
-    The VPC ID associated with the DB cluster snapshot.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -221,6 +147,128 @@ class ClusterSnapshot(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["vpc_id"] = vpc_id
         return ClusterSnapshot(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="allocatedStorage")
+    def allocated_storage(self) -> float:
+        """
+        Specifies the allocated storage size in gigabytes (GB).
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="availabilityZones")
+    def availability_zones(self) -> List[str]:
+        """
+        List of EC2 Availability Zones that instances in the DB cluster snapshot can be restored in.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="dbClusterIdentifier")
+    def db_cluster_identifier(self) -> str:
+        """
+        The DB Cluster Identifier from which to take the snapshot.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="dbClusterSnapshotArn")
+    def db_cluster_snapshot_arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) for the DB Cluster Snapshot.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="dbClusterSnapshotIdentifier")
+    def db_cluster_snapshot_identifier(self) -> str:
+        """
+        The Identifier for the snapshot.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def engine(self) -> str:
+        """
+        Specifies the name of the database engine.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="engineVersion")
+    def engine_version(self) -> str:
+        """
+        Version of the database engine for this DB cluster snapshot.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="kmsKeyId")
+    def kms_key_id(self) -> str:
+        """
+        If storage_encrypted is true, the AWS KMS key identifier for the encrypted DB cluster snapshot.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="licenseModel")
+    def license_model(self) -> str:
+        """
+        License model information for the restored DB cluster.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def port(self) -> float:
+        """
+        Port that the DB cluster was listening on at the time of the snapshot.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="snapshotType")
+    def snapshot_type(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="sourceDbClusterSnapshotArn")
+    def source_db_cluster_snapshot_arn(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of this DB Cluster Snapshot.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="storageEncrypted")
+    def storage_encrypted(self) -> bool:
+        """
+        Specifies whether the DB cluster snapshot is encrypted.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the DB cluster.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The VPC ID associated with the DB cluster snapshot.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

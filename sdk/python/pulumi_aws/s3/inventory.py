@@ -14,47 +14,6 @@ __all__ = ['Inventory']
 
 
 class Inventory(pulumi.CustomResource):
-    bucket: pulumi.Output[str] = pulumi.property("bucket")
-    """
-    The name of the bucket where the inventory configuration will be stored.
-    """
-
-    destination: pulumi.Output['outputs.InventoryDestination'] = pulumi.property("destination")
-    """
-    Contains information about where to publish the inventory results (documented below).
-    """
-
-    enabled: pulumi.Output[Optional[bool]] = pulumi.property("enabled")
-    """
-    Specifies whether the inventory is enabled or disabled.
-    """
-
-    filter: pulumi.Output[Optional['outputs.InventoryFilter']] = pulumi.property("filter")
-    """
-    Specifies an inventory filter. The inventory only includes objects that meet the filter's criteria (documented below).
-    """
-
-    included_object_versions: pulumi.Output[str] = pulumi.property("includedObjectVersions")
-    """
-    Object versions to include in the inventory list. Valid values: `All`, `Current`.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    Unique identifier of the inventory configuration for the bucket.
-    """
-
-    optional_fields: pulumi.Output[Optional[List[str]]] = pulumi.property("optionalFields")
-    """
-    List of optional fields that are included in the inventory results.
-    Valid values: `Size`, `LastModifiedDate`, `StorageClass`, `ETag`, `IsMultipartUploaded`, `ReplicationStatus`, `EncryptionStatus`, `ObjectLockRetainUntilDate`, `ObjectLockMode`, `ObjectLockLegalHoldStatus`, `IntelligentTieringAccessTier`.
-    """
-
-    schedule: pulumi.Output['outputs.InventorySchedule'] = pulumi.property("schedule")
-    """
-    Specifies the schedule for generating inventory results (documented below).
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -213,6 +172,71 @@ class Inventory(pulumi.CustomResource):
         __props__["optional_fields"] = optional_fields
         __props__["schedule"] = schedule
         return Inventory(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> str:
+        """
+        The name of the bucket where the inventory configuration will be stored.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def destination(self) -> 'outputs.InventoryDestination':
+        """
+        Contains information about where to publish the inventory results (documented below).
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Specifies whether the inventory is enabled or disabled.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def filter(self) -> Optional['outputs.InventoryFilter']:
+        """
+        Specifies an inventory filter. The inventory only includes objects that meet the filter's criteria (documented below).
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="includedObjectVersions")
+    def included_object_versions(self) -> str:
+        """
+        Object versions to include in the inventory list. Valid values: `All`, `Current`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Unique identifier of the inventory configuration for the bucket.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="optionalFields")
+    def optional_fields(self) -> Optional[List[str]]:
+        """
+        List of optional fields that are included in the inventory results.
+        Valid values: `Size`, `LastModifiedDate`, `StorageClass`, `ETag`, `IsMultipartUploaded`, `ReplicationStatus`, `EncryptionStatus`, `ObjectLockRetainUntilDate`, `ObjectLockMode`, `ObjectLockLegalHoldStatus`, `IntelligentTieringAccessTier`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def schedule(self) -> 'outputs.InventorySchedule':
+        """
+        Specifies the schedule for generating inventory results (documented below).
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

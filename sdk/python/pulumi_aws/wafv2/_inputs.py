@@ -19,7 +19,7 @@ class RegexPatternSetRegularExpressionArgs:
         """
         :param pulumi.Input[str] regex_string: The string representing the regular expression, see the AWS WAF [documentation](https://docs.aws.amazon.com/waf/latest/developerguide/waf-regex-pattern-set-creating.html) for more information.
         """
-        pulumi.set(__self__, "regexString", regex_string)
+        pulumi.set(__self__, "regex_string", regex_string)
 
     @property
     @pulumi.getter(name="regexString")

@@ -12,39 +12,6 @@ __all__ = ['SnapshotSchedule']
 
 
 class SnapshotSchedule(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-
-    definitions: pulumi.Output[List[str]] = pulumi.property("definitions")
-    """
-    The definition of the snapshot schedule. The definition is made up of schedule expressions, for example `cron(30 12 *)` or `rate(12 hours)`.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    The description of the snapshot schedule.
-    """
-
-    force_destroy: pulumi.Output[Optional[bool]] = pulumi.property("forceDestroy")
-    """
-    Whether to destroy all associated clusters with this snapshot schedule on deletion. Must be enabled and applied before attempting deletion.
-    """
-
-    identifier: pulumi.Output[str] = pulumi.property("identifier")
-    """
-    The snapshot schedule identifier. If omitted, this provider will assign a random, unique identifier.
-    """
-
-    identifier_prefix: pulumi.Output[str] = pulumi.property("identifierPrefix")
-    """
-    Creates a unique
-    identifier beginning with the specified prefix. Conflicts with `identifier`.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -149,6 +116,60 @@ class SnapshotSchedule(pulumi.CustomResource):
         __props__["identifier_prefix"] = identifier_prefix
         __props__["tags"] = tags
         return SnapshotSchedule(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def definitions(self) -> List[str]:
+        """
+        The definition of the snapshot schedule. The definition is made up of schedule expressions, for example `cron(30 12 *)` or `rate(12 hours)`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        The description of the snapshot schedule.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="forceDestroy")
+    def force_destroy(self) -> Optional[bool]:
+        """
+        Whether to destroy all associated clusters with this snapshot schedule on deletion. Must be enabled and applied before attempting deletion.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def identifier(self) -> str:
+        """
+        The snapshot schedule identifier. If omitted, this provider will assign a random, unique identifier.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="identifierPrefix")
+    def identifier_prefix(self) -> str:
+        """
+        Creates a unique
+        identifier beginning with the specified prefix. Conflicts with `identifier`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

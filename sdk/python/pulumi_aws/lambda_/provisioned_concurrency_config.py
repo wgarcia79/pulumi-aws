@@ -12,21 +12,6 @@ __all__ = ['ProvisionedConcurrencyConfig']
 
 
 class ProvisionedConcurrencyConfig(pulumi.CustomResource):
-    function_name: pulumi.Output[str] = pulumi.property("functionName")
-    """
-    Name or Amazon Resource Name (ARN) of the Lambda Function.
-    """
-
-    provisioned_concurrent_executions: pulumi.Output[float] = pulumi.property("provisionedConcurrentExecutions")
-    """
-    Amount of capacity to allocate. Must be greater than or equal to `1`.
-    """
-
-    qualifier: pulumi.Output[str] = pulumi.property("qualifier")
-    """
-    Lambda Function version or Lambda Alias name.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -127,6 +112,30 @@ class ProvisionedConcurrencyConfig(pulumi.CustomResource):
         __props__["provisioned_concurrent_executions"] = provisioned_concurrent_executions
         __props__["qualifier"] = qualifier
         return ProvisionedConcurrencyConfig(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="functionName")
+    def function_name(self) -> str:
+        """
+        Name or Amazon Resource Name (ARN) of the Lambda Function.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="provisionedConcurrentExecutions")
+    def provisioned_concurrent_executions(self) -> float:
+        """
+        Amount of capacity to allocate. Must be greater than or equal to `1`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def qualifier(self) -> str:
+        """
+        Lambda Function version or Lambda Alias name.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

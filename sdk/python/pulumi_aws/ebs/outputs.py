@@ -17,6 +17,19 @@ __all__ = [
 
 @pulumi.output_type
 class GetEbsVolumesFilterResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 values: List[str]):
+        """
+        :param str name: The name of the field to filter by, as defined by
+               [the underlying AWS API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVolumes.html).
+               For example, if matching against the `size` filter, use:
+        :param List[str] values: Set of values that are accepted for the given field.
+               EBS Volume IDs will be selected if any one of the given values match.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "values", values)
+
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -39,6 +52,12 @@ class GetEbsVolumesFilterResult(dict):
 
 @pulumi.output_type
 class GetSnapshotFilterResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 values: List[str]):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "values", values)
+
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -52,6 +71,12 @@ class GetSnapshotFilterResult(dict):
 
 @pulumi.output_type
 class GetSnapshotIdsFilterResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 values: List[str]):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "values", values)
+
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -65,6 +90,12 @@ class GetSnapshotIdsFilterResult(dict):
 
 @pulumi.output_type
 class GetVolumeFilterResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 values: List[str]):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "values", values)
+
     @property
     @pulumi.getter
     def name(self) -> str:

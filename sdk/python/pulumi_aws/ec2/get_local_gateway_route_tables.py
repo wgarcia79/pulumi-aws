@@ -17,14 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetLocalGatewayRouteTablesResult:
-    filters: Optional[List['outputs.GetLocalGatewayRouteTablesFilterResult']] = pulumi.property("filters")
-    id: str = pulumi.property("id")
-    ids: List[str] = pulumi.property("ids")
-    tags: Mapping[str, str] = pulumi.property("tags")
-
-
 class GetLocalGatewayRouteTablesResult:
     """
     A collection of values returned by getLocalGatewayRouteTables.
@@ -32,22 +26,43 @@ class GetLocalGatewayRouteTablesResult:
     def __init__(__self__, filters=None, id=None, ids=None, tags=None):
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
+        pulumi.set(__self__, "filters", filters)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if ids and not isinstance(ids, list):
+            raise TypeError("Expected argument 'ids' to be a list")
+        pulumi.set(__self__, "ids", ids)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetLocalGatewayRouteTablesFilterResult']]:
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if ids and not isinstance(ids, list):
-            raise TypeError("Expected argument 'ids' to be a list")
-        __self__.ids = ids
+        ...
+
+    @property
+    @pulumi.getter
+    def ids(self) -> List[str]:
         """
         Set of Local Gateway Route Table identifiers
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
+        ...
+
 
 
 class AwaitableGetLocalGatewayRouteTablesResult(GetLocalGatewayRouteTablesResult):
@@ -80,7 +95,7 @@ def get_local_gateway_route_tables(filters: Optional[List[pulumi.InputType['GetL
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getLocalGatewayRouteTables:getLocalGatewayRouteTables', __args__, opts=opts, typ=_GetLocalGatewayRouteTablesResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getLocalGatewayRouteTables:getLocalGatewayRouteTables', __args__, opts=opts, typ=GetLocalGatewayRouteTablesResult).value
 
     return AwaitableGetLocalGatewayRouteTablesResult(
         filters=__ret__.filters,

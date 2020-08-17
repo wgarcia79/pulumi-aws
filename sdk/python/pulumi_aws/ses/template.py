@@ -12,26 +12,6 @@ __all__ = ['Template']
 
 
 class Template(pulumi.CustomResource):
-    html: pulumi.Output[Optional[str]] = pulumi.property("html")
-    """
-    The HTML body of the email. Must be less than 500KB in size, including both the text and HTML parts.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the template. Cannot exceed 64 characters. You will refer to this name when you send email.
-    """
-
-    subject: pulumi.Output[Optional[str]] = pulumi.property("subject")
-    """
-    The subject line of the email.
-    """
-
-    text: pulumi.Output[Optional[str]] = pulumi.property("text")
-    """
-    The email body that will be visible to recipients whose email clients do not display HTML. Must be less than 500KB in size, including both the text and HTML parts.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -122,6 +102,38 @@ class Template(pulumi.CustomResource):
         __props__["subject"] = subject
         __props__["text"] = text
         return Template(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def html(self) -> Optional[str]:
+        """
+        The HTML body of the email. Must be less than 500KB in size, including both the text and HTML parts.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the template. Cannot exceed 64 characters. You will refer to this name when you send email.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def subject(self) -> Optional[str]:
+        """
+        The subject line of the email.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def text(self) -> Optional[str]:
+        """
+        The email body that will be visible to recipients whose email clients do not display HTML. Must be less than 500KB in size, including both the text and HTML parts.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

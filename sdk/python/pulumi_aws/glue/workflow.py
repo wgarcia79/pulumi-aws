@@ -12,21 +12,6 @@ __all__ = ['Workflow']
 
 
 class Workflow(pulumi.CustomResource):
-    default_run_properties: pulumi.Output[Optional[Mapping[str, Any]]] = pulumi.property("defaultRunProperties")
-    """
-    A map of default run properties for this workflow. These properties are passed to all jobs associated to the workflow.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    Description of the workflow.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name you assign to this workflow.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -126,6 +111,30 @@ class Workflow(pulumi.CustomResource):
         __props__["description"] = description
         __props__["name"] = name
         return Workflow(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="defaultRunProperties")
+    def default_run_properties(self) -> Optional[Mapping[str, Any]]:
+        """
+        A map of default run properties for this workflow. These properties are passed to all jobs associated to the workflow.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Description of the workflow.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name you assign to this workflow.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

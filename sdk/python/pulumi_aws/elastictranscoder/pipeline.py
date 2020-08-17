@@ -14,58 +14,6 @@ __all__ = ['Pipeline']
 
 
 class Pipeline(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-
-    aws_kms_key_arn: pulumi.Output[Optional[str]] = pulumi.property("awsKmsKeyArn")
-    """
-    The AWS Key Management Service (AWS KMS) key that you want to use with this pipeline.
-    """
-
-    content_config: pulumi.Output['outputs.PipelineContentConfig'] = pulumi.property("contentConfig")
-    """
-    The ContentConfig object specifies information about the Amazon S3 bucket in which you want Elastic Transcoder to save transcoded files and playlists. (documented below)
-    """
-
-    content_config_permissions: pulumi.Output[Optional[List['outputs.PipelineContentConfigPermission']]] = pulumi.property("contentConfigPermissions")
-    """
-    The permissions for the `content_config` object. (documented below)
-    """
-
-    input_bucket: pulumi.Output[str] = pulumi.property("inputBucket")
-    """
-    The Amazon S3 bucket in which you saved the media files that you want to transcode and the graphics that you want to use as watermarks.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the pipeline. Maximum 40 characters
-    """
-
-    notifications: pulumi.Output[Optional['outputs.PipelineNotifications']] = pulumi.property("notifications")
-    """
-    The Amazon Simple Notification Service (Amazon SNS) topic that you want to notify to report job status. (documented below)
-    """
-
-    output_bucket: pulumi.Output[str] = pulumi.property("outputBucket")
-    """
-    The Amazon S3 bucket in which you want Elastic Transcoder to save the transcoded files.
-    """
-
-    role: pulumi.Output[str] = pulumi.property("role")
-    """
-    The IAM Amazon Resource Name (ARN) for the role that you want Elastic Transcoder to use to transcode jobs for this pipeline.
-    """
-
-    thumbnail_config: pulumi.Output['outputs.PipelineThumbnailConfig'] = pulumi.property("thumbnailConfig")
-    """
-    The ThumbnailConfig object specifies information about the Amazon S3 bucket in which you want Elastic Transcoder to save thumbnail files. (documented below)
-    """
-
-    thumbnail_config_permissions: pulumi.Output[Optional[List['outputs.PipelineThumbnailConfigPermission']]] = pulumi.property("thumbnailConfigPermissions")
-    """
-    The permissions for the `thumbnail_config` object. (documented below)
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -204,6 +152,91 @@ class Pipeline(pulumi.CustomResource):
         __props__["thumbnail_config"] = thumbnail_config
         __props__["thumbnail_config_permissions"] = thumbnail_config_permissions
         return Pipeline(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="awsKmsKeyArn")
+    def aws_kms_key_arn(self) -> Optional[str]:
+        """
+        The AWS Key Management Service (AWS KMS) key that you want to use with this pipeline.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="contentConfig")
+    def content_config(self) -> 'outputs.PipelineContentConfig':
+        """
+        The ContentConfig object specifies information about the Amazon S3 bucket in which you want Elastic Transcoder to save transcoded files and playlists. (documented below)
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="contentConfigPermissions")
+    def content_config_permissions(self) -> Optional[List['outputs.PipelineContentConfigPermission']]:
+        """
+        The permissions for the `content_config` object. (documented below)
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="inputBucket")
+    def input_bucket(self) -> str:
+        """
+        The Amazon S3 bucket in which you saved the media files that you want to transcode and the graphics that you want to use as watermarks.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the pipeline. Maximum 40 characters
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def notifications(self) -> Optional['outputs.PipelineNotifications']:
+        """
+        The Amazon Simple Notification Service (Amazon SNS) topic that you want to notify to report job status. (documented below)
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="outputBucket")
+    def output_bucket(self) -> str:
+        """
+        The Amazon S3 bucket in which you want Elastic Transcoder to save the transcoded files.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        The IAM Amazon Resource Name (ARN) for the role that you want Elastic Transcoder to use to transcode jobs for this pipeline.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="thumbnailConfig")
+    def thumbnail_config(self) -> 'outputs.PipelineThumbnailConfig':
+        """
+        The ThumbnailConfig object specifies information about the Amazon S3 bucket in which you want Elastic Transcoder to save thumbnail files. (documented below)
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="thumbnailConfigPermissions")
+    def thumbnail_config_permissions(self) -> Optional[List['outputs.PipelineThumbnailConfigPermission']]:
+        """
+        The permissions for the `thumbnail_config` object. (documented below)
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

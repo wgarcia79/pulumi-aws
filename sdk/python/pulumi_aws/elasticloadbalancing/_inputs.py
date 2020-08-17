@@ -30,9 +30,12 @@ class LoadBalancerAccessLogsArgs:
         :param pulumi.Input[float] interval: The publishing interval in minutes. Default: 60 minutes.
         """
         pulumi.set(__self__, "bucket", bucket)
-        pulumi.set(__self__, "bucketPrefix", bucket_prefix)
-        pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "interval", interval)
+        if bucket_prefix is not None:
+            pulumi.set(__self__, "bucket_prefix", bucket_prefix)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if interval is not None:
+            pulumi.set(__self__, "interval", interval)
 
     @property
     @pulumi.getter
@@ -101,11 +104,11 @@ class LoadBalancerHealthCheckArgs:
         :param pulumi.Input[float] timeout: The length of time before the check times out.
         :param pulumi.Input[float] unhealthy_threshold: The number of checks before the instance is declared unhealthy.
         """
-        pulumi.set(__self__, "healthyThreshold", healthy_threshold)
+        pulumi.set(__self__, "healthy_threshold", healthy_threshold)
         pulumi.set(__self__, "interval", interval)
         pulumi.set(__self__, "target", target)
         pulumi.set(__self__, "timeout", timeout)
-        pulumi.set(__self__, "unhealthyThreshold", unhealthy_threshold)
+        pulumi.set(__self__, "unhealthy_threshold", unhealthy_threshold)
 
     @property
     @pulumi.getter(name="healthyThreshold")
@@ -189,11 +192,12 @@ class LoadBalancerListenerArgs:
         :param pulumi.Input[str] ssl_certificate_id: The ARN of an SSL certificate you have
                uploaded to AWS IAM. **Note ECDSA-specific restrictions below.  Only valid when `lb_protocol` is either HTTPS or SSL**
         """
-        pulumi.set(__self__, "instancePort", instance_port)
-        pulumi.set(__self__, "instanceProtocol", instance_protocol)
-        pulumi.set(__self__, "lbPort", lb_port)
-        pulumi.set(__self__, "lbProtocol", lb_protocol)
-        pulumi.set(__self__, "sslCertificateId", ssl_certificate_id)
+        pulumi.set(__self__, "instance_port", instance_port)
+        pulumi.set(__self__, "instance_protocol", instance_protocol)
+        pulumi.set(__self__, "lb_port", lb_port)
+        pulumi.set(__self__, "lb_protocol", lb_protocol)
+        if ssl_certificate_id is not None:
+            pulumi.set(__self__, "ssl_certificate_id", ssl_certificate_id)
 
     @property
     @pulumi.getter(name="instancePort")
@@ -264,8 +268,10 @@ class LoadBalancerPolicyPolicyAttributeArgs:
     def __init__(__self__, *,
                  name: Optional[pulumi.Input[str]] = None,
                  value: Optional[pulumi.Input[str]] = None):
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter

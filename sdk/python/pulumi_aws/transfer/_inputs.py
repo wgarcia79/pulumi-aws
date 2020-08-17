@@ -19,7 +19,7 @@ class ServerEndpointDetailsArgs:
         """
         :param pulumi.Input[str] vpc_endpoint_id: The ID of the VPC endpoint.
         """
-        pulumi.set(__self__, "vpcEndpointId", vpc_endpoint_id)
+        pulumi.set(__self__, "vpc_endpoint_id", vpc_endpoint_id)
 
     @property
     @pulumi.getter(name="vpcEndpointId")

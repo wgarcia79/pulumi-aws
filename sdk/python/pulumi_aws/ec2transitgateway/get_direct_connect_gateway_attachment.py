@@ -17,15 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetDirectConnectGatewayAttachmentResult:
-    dx_gateway_id: Optional[str] = pulumi.property("dxGatewayId")
-    filters: Optional[List['outputs.GetDirectConnectGatewayAttachmentFilterResult']] = pulumi.property("filters")
-    id: str = pulumi.property("id")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    transit_gateway_id: Optional[str] = pulumi.property("transitGatewayId")
-
-
 class GetDirectConnectGatewayAttachmentResult:
     """
     A collection of values returned by getDirectConnectGatewayAttachment.
@@ -33,25 +26,51 @@ class GetDirectConnectGatewayAttachmentResult:
     def __init__(__self__, dx_gateway_id=None, filters=None, id=None, tags=None, transit_gateway_id=None):
         if dx_gateway_id and not isinstance(dx_gateway_id, str):
             raise TypeError("Expected argument 'dx_gateway_id' to be a str")
-        __self__.dx_gateway_id = dx_gateway_id
+        pulumi.set(__self__, "dx_gateway_id", dx_gateway_id)
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
+        pulumi.set(__self__, "filters", filters)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if transit_gateway_id and not isinstance(transit_gateway_id, str):
+            raise TypeError("Expected argument 'transit_gateway_id' to be a str")
+        pulumi.set(__self__, "transit_gateway_id", transit_gateway_id)
+
+    @property
+    @pulumi.getter(name="dxGatewayId")
+    def dx_gateway_id(self) -> Optional[str]:
+        ...
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetDirectConnectGatewayAttachmentFilterResult']]:
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
         """
         Key-value tags for the EC2 Transit Gateway Attachment
         """
-        if transit_gateway_id and not isinstance(transit_gateway_id, str):
-            raise TypeError("Expected argument 'transit_gateway_id' to be a str")
-        __self__.transit_gateway_id = transit_gateway_id
+        ...
+
+    @property
+    @pulumi.getter(name="transitGatewayId")
+    def transit_gateway_id(self) -> Optional[str]:
+        ...
+
 
 
 class AwaitableGetDirectConnectGatewayAttachmentResult(GetDirectConnectGatewayAttachmentResult):
@@ -101,7 +120,7 @@ def get_direct_connect_gateway_attachment(dx_gateway_id: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2transitgateway/getDirectConnectGatewayAttachment:getDirectConnectGatewayAttachment', __args__, opts=opts, typ=_GetDirectConnectGatewayAttachmentResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2transitgateway/getDirectConnectGatewayAttachment:getDirectConnectGatewayAttachment', __args__, opts=opts, typ=GetDirectConnectGatewayAttachmentResult).value
 
     return AwaitableGetDirectConnectGatewayAttachmentResult(
         dx_gateway_id=__ret__.dx_gateway_id,

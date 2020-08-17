@@ -17,24 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetTransitGatewayResult:
-    amazon_side_asn: float = pulumi.property("amazonSideAsn")
-    arn: str = pulumi.property("arn")
-    association_default_route_table_id: str = pulumi.property("associationDefaultRouteTableId")
-    auto_accept_shared_attachments: str = pulumi.property("autoAcceptSharedAttachments")
-    default_route_table_association: str = pulumi.property("defaultRouteTableAssociation")
-    default_route_table_propagation: str = pulumi.property("defaultRouteTablePropagation")
-    description: str = pulumi.property("description")
-    dns_support: str = pulumi.property("dnsSupport")
-    filters: Optional[List['outputs.GetTransitGatewayFilterResult']] = pulumi.property("filters")
-    id: Optional[str] = pulumi.property("id")
-    owner_id: str = pulumi.property("ownerId")
-    propagation_default_route_table_id: str = pulumi.property("propagationDefaultRouteTableId")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    vpn_ecmp_support: str = pulumi.property("vpnEcmpSupport")
-
-
 class GetTransitGatewayResult:
     """
     A collection of values returned by getTransitGateway.
@@ -42,85 +26,156 @@ class GetTransitGatewayResult:
     def __init__(__self__, amazon_side_asn=None, arn=None, association_default_route_table_id=None, auto_accept_shared_attachments=None, default_route_table_association=None, default_route_table_propagation=None, description=None, dns_support=None, filters=None, id=None, owner_id=None, propagation_default_route_table_id=None, tags=None, vpn_ecmp_support=None):
         if amazon_side_asn and not isinstance(amazon_side_asn, float):
             raise TypeError("Expected argument 'amazon_side_asn' to be a float")
-        __self__.amazon_side_asn = amazon_side_asn
+        pulumi.set(__self__, "amazon_side_asn", amazon_side_asn)
+        if arn and not isinstance(arn, str):
+            raise TypeError("Expected argument 'arn' to be a str")
+        pulumi.set(__self__, "arn", arn)
+        if association_default_route_table_id and not isinstance(association_default_route_table_id, str):
+            raise TypeError("Expected argument 'association_default_route_table_id' to be a str")
+        pulumi.set(__self__, "association_default_route_table_id", association_default_route_table_id)
+        if auto_accept_shared_attachments and not isinstance(auto_accept_shared_attachments, str):
+            raise TypeError("Expected argument 'auto_accept_shared_attachments' to be a str")
+        pulumi.set(__self__, "auto_accept_shared_attachments", auto_accept_shared_attachments)
+        if default_route_table_association and not isinstance(default_route_table_association, str):
+            raise TypeError("Expected argument 'default_route_table_association' to be a str")
+        pulumi.set(__self__, "default_route_table_association", default_route_table_association)
+        if default_route_table_propagation and not isinstance(default_route_table_propagation, str):
+            raise TypeError("Expected argument 'default_route_table_propagation' to be a str")
+        pulumi.set(__self__, "default_route_table_propagation", default_route_table_propagation)
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
+        if dns_support and not isinstance(dns_support, str):
+            raise TypeError("Expected argument 'dns_support' to be a str")
+        pulumi.set(__self__, "dns_support", dns_support)
+        if filters and not isinstance(filters, list):
+            raise TypeError("Expected argument 'filters' to be a list")
+        pulumi.set(__self__, "filters", filters)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if owner_id and not isinstance(owner_id, str):
+            raise TypeError("Expected argument 'owner_id' to be a str")
+        pulumi.set(__self__, "owner_id", owner_id)
+        if propagation_default_route_table_id and not isinstance(propagation_default_route_table_id, str):
+            raise TypeError("Expected argument 'propagation_default_route_table_id' to be a str")
+        pulumi.set(__self__, "propagation_default_route_table_id", propagation_default_route_table_id)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if vpn_ecmp_support and not isinstance(vpn_ecmp_support, str):
+            raise TypeError("Expected argument 'vpn_ecmp_support' to be a str")
+        pulumi.set(__self__, "vpn_ecmp_support", vpn_ecmp_support)
+
+    @property
+    @pulumi.getter(name="amazonSideAsn")
+    def amazon_side_asn(self) -> float:
         """
         Private Autonomous System Number (ASN) for the Amazon side of a BGP session
         """
-        if arn and not isinstance(arn, str):
-            raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         EC2 Transit Gateway Amazon Resource Name (ARN)
         """
-        if association_default_route_table_id and not isinstance(association_default_route_table_id, str):
-            raise TypeError("Expected argument 'association_default_route_table_id' to be a str")
-        __self__.association_default_route_table_id = association_default_route_table_id
+        ...
+
+    @property
+    @pulumi.getter(name="associationDefaultRouteTableId")
+    def association_default_route_table_id(self) -> str:
         """
         Identifier of the default association route table
         """
-        if auto_accept_shared_attachments and not isinstance(auto_accept_shared_attachments, str):
-            raise TypeError("Expected argument 'auto_accept_shared_attachments' to be a str")
-        __self__.auto_accept_shared_attachments = auto_accept_shared_attachments
+        ...
+
+    @property
+    @pulumi.getter(name="autoAcceptSharedAttachments")
+    def auto_accept_shared_attachments(self) -> str:
         """
         Whether resource attachment requests are automatically accepted.
         """
-        if default_route_table_association and not isinstance(default_route_table_association, str):
-            raise TypeError("Expected argument 'default_route_table_association' to be a str")
-        __self__.default_route_table_association = default_route_table_association
+        ...
+
+    @property
+    @pulumi.getter(name="defaultRouteTableAssociation")
+    def default_route_table_association(self) -> str:
         """
         Whether resource attachments are automatically associated with the default association route table.
         """
-        if default_route_table_propagation and not isinstance(default_route_table_propagation, str):
-            raise TypeError("Expected argument 'default_route_table_propagation' to be a str")
-        __self__.default_route_table_propagation = default_route_table_propagation
+        ...
+
+    @property
+    @pulumi.getter(name="defaultRouteTablePropagation")
+    def default_route_table_propagation(self) -> str:
         """
         Whether resource attachments automatically propagate routes to the default propagation route table.
         """
-        if description and not isinstance(description, str):
-            raise TypeError("Expected argument 'description' to be a str")
-        __self__.description = description
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
         """
         Description of the EC2 Transit Gateway
         """
-        if dns_support and not isinstance(dns_support, str):
-            raise TypeError("Expected argument 'dns_support' to be a str")
-        __self__.dns_support = dns_support
+        ...
+
+    @property
+    @pulumi.getter(name="dnsSupport")
+    def dns_support(self) -> str:
         """
         Whether DNS support is enabled.
         """
-        if filters and not isinstance(filters, list):
-            raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetTransitGatewayFilterResult']]:
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
         """
         EC2 Transit Gateway identifier
         """
-        if owner_id and not isinstance(owner_id, str):
-            raise TypeError("Expected argument 'owner_id' to be a str")
-        __self__.owner_id = owner_id
+        ...
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
         """
         Identifier of the AWS account that owns the EC2 Transit Gateway
         """
-        if propagation_default_route_table_id and not isinstance(propagation_default_route_table_id, str):
-            raise TypeError("Expected argument 'propagation_default_route_table_id' to be a str")
-        __self__.propagation_default_route_table_id = propagation_default_route_table_id
+        ...
+
+    @property
+    @pulumi.getter(name="propagationDefaultRouteTableId")
+    def propagation_default_route_table_id(self) -> str:
         """
         Identifier of the default propagation route table.
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
         """
         Key-value tags for the EC2 Transit Gateway
         """
-        if vpn_ecmp_support and not isinstance(vpn_ecmp_support, str):
-            raise TypeError("Expected argument 'vpn_ecmp_support' to be a str")
-        __self__.vpn_ecmp_support = vpn_ecmp_support
+        ...
+
+    @property
+    @pulumi.getter(name="vpnEcmpSupport")
+    def vpn_ecmp_support(self) -> str:
         """
         Whether VPN Equal Cost Multipath Protocol support is enabled.
         """
+        ...
+
 
 
 class AwaitableGetTransitGatewayResult(GetTransitGatewayResult):
@@ -186,7 +241,7 @@ def get_transit_gateway(filters: Optional[List[pulumi.InputType['GetTransitGatew
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2transitgateway/getTransitGateway:getTransitGateway', __args__, opts=opts, typ=_GetTransitGatewayResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2transitgateway/getTransitGateway:getTransitGateway', __args__, opts=opts, typ=GetTransitGatewayResult).value
 
     return AwaitableGetTransitGatewayResult(
         amazon_side_asn=__ret__.amazon_side_asn,

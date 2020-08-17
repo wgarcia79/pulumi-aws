@@ -17,17 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetAmiIdsResult:
-    executable_users: Optional[List[str]] = pulumi.property("executableUsers")
-    filters: Optional[List['outputs.GetAmiIdsFilterResult']] = pulumi.property("filters")
-    id: str = pulumi.property("id")
-    ids: List[str] = pulumi.property("ids")
-    name_regex: Optional[str] = pulumi.property("nameRegex")
-    owners: List[str] = pulumi.property("owners")
-    sort_ascending: Optional[bool] = pulumi.property("sortAscending")
-
-
 class GetAmiIdsResult:
     """
     A collection of values returned by getAmiIds.
@@ -35,28 +26,64 @@ class GetAmiIdsResult:
     def __init__(__self__, executable_users=None, filters=None, id=None, ids=None, name_regex=None, owners=None, sort_ascending=None):
         if executable_users and not isinstance(executable_users, list):
             raise TypeError("Expected argument 'executable_users' to be a list")
-        __self__.executable_users = executable_users
+        pulumi.set(__self__, "executable_users", executable_users)
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
+        pulumi.set(__self__, "filters", filters)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if ids and not isinstance(ids, list):
+            raise TypeError("Expected argument 'ids' to be a list")
+        pulumi.set(__self__, "ids", ids)
+        if name_regex and not isinstance(name_regex, str):
+            raise TypeError("Expected argument 'name_regex' to be a str")
+        pulumi.set(__self__, "name_regex", name_regex)
+        if owners and not isinstance(owners, list):
+            raise TypeError("Expected argument 'owners' to be a list")
+        pulumi.set(__self__, "owners", owners)
+        if sort_ascending and not isinstance(sort_ascending, bool):
+            raise TypeError("Expected argument 'sort_ascending' to be a bool")
+        pulumi.set(__self__, "sort_ascending", sort_ascending)
+
+    @property
+    @pulumi.getter(name="executableUsers")
+    def executable_users(self) -> Optional[List[str]]:
+        ...
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetAmiIdsFilterResult']]:
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if ids and not isinstance(ids, list):
-            raise TypeError("Expected argument 'ids' to be a list")
-        __self__.ids = ids
-        if name_regex and not isinstance(name_regex, str):
-            raise TypeError("Expected argument 'name_regex' to be a str")
-        __self__.name_regex = name_regex
-        if owners and not isinstance(owners, list):
-            raise TypeError("Expected argument 'owners' to be a list")
-        __self__.owners = owners
-        if sort_ascending and not isinstance(sort_ascending, bool):
-            raise TypeError("Expected argument 'sort_ascending' to be a bool")
-        __self__.sort_ascending = sort_ascending
+        ...
+
+    @property
+    @pulumi.getter
+    def ids(self) -> List[str]:
+        ...
+
+    @property
+    @pulumi.getter(name="nameRegex")
+    def name_regex(self) -> Optional[str]:
+        ...
+
+    @property
+    @pulumi.getter
+    def owners(self) -> List[str]:
+        ...
+
+    @property
+    @pulumi.getter(name="sortAscending")
+    def sort_ascending(self) -> Optional[bool]:
+        ...
+
 
 
 class AwaitableGetAmiIdsResult(GetAmiIdsResult):
@@ -120,7 +147,7 @@ def get_ami_ids(executable_users: Optional[List[str]] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:index/getAmiIds:getAmiIds', __args__, opts=opts, typ=_GetAmiIdsResult).value
+    __ret__ = pulumi.runtime.invoke('aws:index/getAmiIds:getAmiIds', __args__, opts=opts, typ=GetAmiIdsResult).value
 
     return AwaitableGetAmiIdsResult(
         executable_users=__ret__.executable_users,

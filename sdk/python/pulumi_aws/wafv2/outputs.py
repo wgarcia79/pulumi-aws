@@ -15,6 +15,13 @@ __all__ = [
 
 @pulumi.output_type
 class RegexPatternSetRegularExpression(dict):
+    def __init__(__self__, *,
+                 regex_string: str):
+        """
+        :param str regex_string: The string representing the regular expression, see the AWS WAF [documentation](https://docs.aws.amazon.com/waf/latest/developerguide/waf-regex-pattern-set-creating.html) for more information.
+        """
+        pulumi.set(__self__, "regex_string", regex_string)
+
     @property
     @pulumi.getter(name="regexString")
     def regex_string(self) -> str:
@@ -29,6 +36,13 @@ class RegexPatternSetRegularExpression(dict):
 
 @pulumi.output_type
 class GetRegexPatternSetRegularExpressionResult(dict):
+    def __init__(__self__, *,
+                 regex_string: str):
+        """
+        :param str regex_string: (Required) The string representing the regular expression, see the AWS WAF [documentation](https://docs.aws.amazon.com/waf/latest/developerguide/waf-regex-pattern-set-creating.html) for more information.
+        """
+        pulumi.set(__self__, "regex_string", regex_string)
+
     @property
     @pulumi.getter(name="regexString")
     def regex_string(self) -> str:

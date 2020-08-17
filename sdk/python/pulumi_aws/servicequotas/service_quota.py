@@ -12,50 +12,6 @@ __all__ = ['ServiceQuota']
 
 
 class ServiceQuota(pulumi.CustomResource):
-    adjustable: pulumi.Output[bool] = pulumi.property("adjustable")
-    """
-    Whether the service quota can be increased.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN) of the service quota.
-    """
-
-    default_value: pulumi.Output[float] = pulumi.property("defaultValue")
-    """
-    Default value of the service quota.
-    """
-
-    quota_code: pulumi.Output[str] = pulumi.property("quotaCode")
-    """
-    Code of the service quota to track. For example: `L-F678F1CE`. Available values can be found with the [AWS CLI service-quotas list-service-quotas command](https://docs.aws.amazon.com/cli/latest/reference/service-quotas/list-service-quotas.html).
-    """
-
-    quota_name: pulumi.Output[str] = pulumi.property("quotaName")
-    """
-    Name of the quota.
-    """
-
-    request_id: pulumi.Output[str] = pulumi.property("requestId")
-
-    request_status: pulumi.Output[str] = pulumi.property("requestStatus")
-
-    service_code: pulumi.Output[str] = pulumi.property("serviceCode")
-    """
-    Code of the service to track. For example: `vpc`. Available values can be found with the [AWS CLI service-quotas list-services command](https://docs.aws.amazon.com/cli/latest/reference/service-quotas/list-services.html).
-    """
-
-    service_name: pulumi.Output[str] = pulumi.property("serviceName")
-    """
-    Name of the service.
-    """
-
-    value: pulumi.Output[float] = pulumi.property("value")
-    """
-    Float specifying the desired value for the service quota. If the desired value is higher than the current value, a quota increase request is submitted. When a known request is submitted and pending, the value reflects the desired value of the pending request.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -170,6 +126,80 @@ class ServiceQuota(pulumi.CustomResource):
         __props__["service_name"] = service_name
         __props__["value"] = value
         return ServiceQuota(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def adjustable(self) -> bool:
+        """
+        Whether the service quota can be increased.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of the service quota.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> float:
+        """
+        Default value of the service quota.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="quotaCode")
+    def quota_code(self) -> str:
+        """
+        Code of the service quota to track. For example: `L-F678F1CE`. Available values can be found with the [AWS CLI service-quotas list-service-quotas command](https://docs.aws.amazon.com/cli/latest/reference/service-quotas/list-service-quotas.html).
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="quotaName")
+    def quota_name(self) -> str:
+        """
+        Name of the quota.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="requestId")
+    def request_id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="requestStatus")
+    def request_status(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="serviceCode")
+    def service_code(self) -> str:
+        """
+        Code of the service to track. For example: `vpc`. Available values can be found with the [AWS CLI service-quotas list-services command](https://docs.aws.amazon.com/cli/latest/reference/service-quotas/list-services.html).
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="serviceName")
+    def service_name(self) -> str:
+        """
+        Name of the service.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def value(self) -> float:
+        """
+        Float specifying the desired value for the service quota. If the desired value is higher than the current value, a quota increase request is submitted. When a known request is submitted and pending, the value reflects the desired value of the pending request.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

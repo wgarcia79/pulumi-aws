@@ -12,61 +12,6 @@ __all__ = ['OrganizationManagedRule']
 
 
 class OrganizationManagedRule(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN) of the rule
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    Description of the rule
-    """
-
-    excluded_accounts: pulumi.Output[Optional[List[str]]] = pulumi.property("excludedAccounts")
-    """
-    List of AWS account identifiers to exclude from the rule
-    """
-
-    input_parameters: pulumi.Output[Optional[str]] = pulumi.property("inputParameters")
-    """
-    A string in JSON format that is passed to the AWS Config Rule Lambda Function
-    """
-
-    maximum_execution_frequency: pulumi.Output[Optional[str]] = pulumi.property("maximumExecutionFrequency")
-    """
-    The maximum frequency with which AWS Config runs evaluations for a rule, if the rule is triggered at a periodic frequency. Defaults to `TwentyFour_Hours` for periodic frequency triggered rules. Valid values: `One_Hour`, `Three_Hours`, `Six_Hours`, `Twelve_Hours`, or `TwentyFour_Hours`.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the rule
-    """
-
-    resource_id_scope: pulumi.Output[Optional[str]] = pulumi.property("resourceIdScope")
-    """
-    Identifier of the AWS resource to evaluate
-    """
-
-    resource_types_scopes: pulumi.Output[Optional[List[str]]] = pulumi.property("resourceTypesScopes")
-    """
-    List of types of AWS resources to evaluate
-    """
-
-    rule_identifier: pulumi.Output[str] = pulumi.property("ruleIdentifier")
-    """
-    Identifier of an available AWS Config Managed Rule to call. For available values, see the [List of AWS Config Managed Rules](https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html) documentation
-    """
-
-    tag_key_scope: pulumi.Output[Optional[str]] = pulumi.property("tagKeyScope")
-    """
-    Tag key of AWS resources to evaluate
-    """
-
-    tag_value_scope: pulumi.Output[Optional[str]] = pulumi.property("tagValueScope")
-    """
-    Tag value of AWS resources to evaluate
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -202,6 +147,94 @@ class OrganizationManagedRule(pulumi.CustomResource):
         __props__["tag_key_scope"] = tag_key_scope
         __props__["tag_value_scope"] = tag_value_scope
         return OrganizationManagedRule(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of the rule
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Description of the rule
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="excludedAccounts")
+    def excluded_accounts(self) -> Optional[List[str]]:
+        """
+        List of AWS account identifiers to exclude from the rule
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="inputParameters")
+    def input_parameters(self) -> Optional[str]:
+        """
+        A string in JSON format that is passed to the AWS Config Rule Lambda Function
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="maximumExecutionFrequency")
+    def maximum_execution_frequency(self) -> Optional[str]:
+        """
+        The maximum frequency with which AWS Config runs evaluations for a rule, if the rule is triggered at a periodic frequency. Defaults to `TwentyFour_Hours` for periodic frequency triggered rules. Valid values: `One_Hour`, `Three_Hours`, `Six_Hours`, `Twelve_Hours`, or `TwentyFour_Hours`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the rule
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="resourceIdScope")
+    def resource_id_scope(self) -> Optional[str]:
+        """
+        Identifier of the AWS resource to evaluate
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="resourceTypesScopes")
+    def resource_types_scopes(self) -> Optional[List[str]]:
+        """
+        List of types of AWS resources to evaluate
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="ruleIdentifier")
+    def rule_identifier(self) -> str:
+        """
+        Identifier of an available AWS Config Managed Rule to call. For available values, see the [List of AWS Config Managed Rules](https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html) documentation
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="tagKeyScope")
+    def tag_key_scope(self) -> Optional[str]:
+        """
+        Tag key of AWS resources to evaluate
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="tagValueScope")
+    def tag_value_scope(self) -> Optional[str]:
+        """
+        Tag value of AWS resources to evaluate
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

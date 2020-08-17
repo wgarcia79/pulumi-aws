@@ -14,6 +14,17 @@ __all__ = [
 
 @pulumi.output_type
 class GroupResourceQuery(dict):
+    def __init__(__self__, *,
+                 query: str,
+                 type: Optional[str] = None):
+        """
+        :param str query: The resource query as a JSON string.
+        :param str type: The type of the resource query. Defaults to `TAG_FILTERS_1_0`.
+        """
+        pulumi.set(__self__, "query", query)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
     @property
     @pulumi.getter
     def query(self) -> str:

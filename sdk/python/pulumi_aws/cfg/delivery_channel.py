@@ -14,31 +14,6 @@ __all__ = ['DeliveryChannel']
 
 
 class DeliveryChannel(pulumi.CustomResource):
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the delivery channel. Defaults to `default`. Changing it recreates the resource.
-    """
-
-    s3_bucket_name: pulumi.Output[str] = pulumi.property("s3BucketName")
-    """
-    The name of the S3 bucket used to store the configuration history.
-    """
-
-    s3_key_prefix: pulumi.Output[Optional[str]] = pulumi.property("s3KeyPrefix")
-    """
-    The prefix for the specified S3 bucket.
-    """
-
-    snapshot_delivery_properties: pulumi.Output[Optional['outputs.DeliveryChannelSnapshotDeliveryProperties']] = pulumi.property("snapshotDeliveryProperties")
-    """
-    Options for how AWS Config delivers configuration snapshots. See below
-    """
-
-    sns_topic_arn: pulumi.Output[Optional[str]] = pulumi.property("snsTopicArn")
-    """
-    The ARN of the SNS topic that AWS Config delivers notifications to.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -171,6 +146,46 @@ class DeliveryChannel(pulumi.CustomResource):
         __props__["snapshot_delivery_properties"] = snapshot_delivery_properties
         __props__["sns_topic_arn"] = sns_topic_arn
         return DeliveryChannel(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the delivery channel. Defaults to `default`. Changing it recreates the resource.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="s3BucketName")
+    def s3_bucket_name(self) -> str:
+        """
+        The name of the S3 bucket used to store the configuration history.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="s3KeyPrefix")
+    def s3_key_prefix(self) -> Optional[str]:
+        """
+        The prefix for the specified S3 bucket.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="snapshotDeliveryProperties")
+    def snapshot_delivery_properties(self) -> Optional['outputs.DeliveryChannelSnapshotDeliveryProperties']:
+        """
+        Options for how AWS Config delivers configuration snapshots. See below
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="snsTopicArn")
+    def sns_topic_arn(self) -> Optional[str]:
+        """
+        The ARN of the SNS topic that AWS Config delivers notifications to.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

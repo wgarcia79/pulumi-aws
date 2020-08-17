@@ -14,26 +14,6 @@ __all__ = ['ThingType']
 
 
 class ThingType(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the created AWS IoT Thing Type.
-    """
-
-    deprecated: pulumi.Output[Optional[bool]] = pulumi.property("deprecated")
-    """
-    Whether the thing type is deprecated. If true, no new things could be associated with this type.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the thing type.
-    """
-
-    properties: pulumi.Output[Optional['outputs.ThingTypeProperties']] = pulumi.property("properties")
-    """
-    , Configuration block that can contain the following properties of the thing type:
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -117,6 +97,38 @@ class ThingType(pulumi.CustomResource):
         __props__["name"] = name
         __props__["properties"] = properties
         return ThingType(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the created AWS IoT Thing Type.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def deprecated(self) -> Optional[bool]:
+        """
+        Whether the thing type is deprecated. If true, no new things could be associated with this type.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the thing type.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def properties(self) -> Optional['outputs.ThingTypeProperties']:
+        """
+        , Configuration block that can contain the following properties of the thing type:
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -14,36 +14,6 @@ __all__ = ['Webhook']
 
 
 class Webhook(pulumi.CustomResource):
-    branch_filter: pulumi.Output[Optional[str]] = pulumi.property("branchFilter")
-    """
-    A regular expression used to determine which branches get built. Default is all branches are built. It is recommended to use `filter_group` over `branch_filter`.
-    """
-
-    filter_groups: pulumi.Output[Optional[List['outputs.WebhookFilterGroup']]] = pulumi.property("filterGroups")
-    """
-    Information about the webhook's trigger. Filter group blocks are documented below.
-    """
-
-    payload_url: pulumi.Output[str] = pulumi.property("payloadUrl")
-    """
-    The CodeBuild endpoint where webhook events are sent.
-    """
-
-    project_name: pulumi.Output[str] = pulumi.property("projectName")
-    """
-    The name of the build project.
-    """
-
-    secret: pulumi.Output[str] = pulumi.property("secret")
-    """
-    The secret token of the associated repository. Not returned by the CodeBuild API for all source types.
-    """
-
-    url: pulumi.Output[str] = pulumi.property("url")
-    """
-    The URL to the webhook.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -180,6 +150,54 @@ class Webhook(pulumi.CustomResource):
         __props__["secret"] = secret
         __props__["url"] = url
         return Webhook(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="branchFilter")
+    def branch_filter(self) -> Optional[str]:
+        """
+        A regular expression used to determine which branches get built. Default is all branches are built. It is recommended to use `filter_group` over `branch_filter`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="filterGroups")
+    def filter_groups(self) -> Optional[List['outputs.WebhookFilterGroup']]:
+        """
+        Information about the webhook's trigger. Filter group blocks are documented below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="payloadUrl")
+    def payload_url(self) -> str:
+        """
+        The CodeBuild endpoint where webhook events are sent.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The name of the build project.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def secret(self) -> str:
+        """
+        The secret token of the associated repository. Not returned by the CodeBuild API for all source types.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def url(self) -> str:
+        """
+        The URL to the webhook.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

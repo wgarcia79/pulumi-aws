@@ -17,20 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetRouteTableResult:
-    associations: List['outputs.GetRouteTableAssociationResult'] = pulumi.property("associations")
-    filters: Optional[List['outputs.GetRouteTableFilterResult']] = pulumi.property("filters")
-    gateway_id: str = pulumi.property("gatewayId")
-    id: str = pulumi.property("id")
-    owner_id: str = pulumi.property("ownerId")
-    route_table_id: str = pulumi.property("routeTableId")
-    routes: List['outputs.GetRouteTableRouteResult'] = pulumi.property("routes")
-    subnet_id: str = pulumi.property("subnetId")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    vpc_id: str = pulumi.property("vpcId")
-
-
 class GetRouteTableResult:
     """
     A collection of values returned by getRouteTable.
@@ -38,49 +26,100 @@ class GetRouteTableResult:
     def __init__(__self__, associations=None, filters=None, gateway_id=None, id=None, owner_id=None, route_table_id=None, routes=None, subnet_id=None, tags=None, vpc_id=None):
         if associations and not isinstance(associations, list):
             raise TypeError("Expected argument 'associations' to be a list")
-        __self__.associations = associations
+        pulumi.set(__self__, "associations", associations)
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
+        pulumi.set(__self__, "filters", filters)
         if gateway_id and not isinstance(gateway_id, str):
             raise TypeError("Expected argument 'gateway_id' to be a str")
-        __self__.gateway_id = gateway_id
+        pulumi.set(__self__, "gateway_id", gateway_id)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if owner_id and not isinstance(owner_id, str):
+            raise TypeError("Expected argument 'owner_id' to be a str")
+        pulumi.set(__self__, "owner_id", owner_id)
+        if route_table_id and not isinstance(route_table_id, str):
+            raise TypeError("Expected argument 'route_table_id' to be a str")
+        pulumi.set(__self__, "route_table_id", route_table_id)
+        if routes and not isinstance(routes, list):
+            raise TypeError("Expected argument 'routes' to be a list")
+        pulumi.set(__self__, "routes", routes)
+        if subnet_id and not isinstance(subnet_id, str):
+            raise TypeError("Expected argument 'subnet_id' to be a str")
+        pulumi.set(__self__, "subnet_id", subnet_id)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if vpc_id and not isinstance(vpc_id, str):
+            raise TypeError("Expected argument 'vpc_id' to be a str")
+        pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter
+    def associations(self) -> List['outputs.GetRouteTableAssociationResult']:
+        ...
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetRouteTableFilterResult']]:
+        ...
+
+    @property
+    @pulumi.getter(name="gatewayId")
+    def gateway_id(self) -> str:
         """
         The Gateway ID. Only set when associated with an Internet Gateway or Virtual Private Gateway.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if owner_id and not isinstance(owner_id, str):
-            raise TypeError("Expected argument 'owner_id' to be a str")
-        __self__.owner_id = owner_id
+        ...
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
         """
         The ID of the AWS account that owns the route table
         """
-        if route_table_id and not isinstance(route_table_id, str):
-            raise TypeError("Expected argument 'route_table_id' to be a str")
-        __self__.route_table_id = route_table_id
+        ...
+
+    @property
+    @pulumi.getter(name="routeTableId")
+    def route_table_id(self) -> str:
         """
         The Route Table ID.
         """
-        if routes and not isinstance(routes, list):
-            raise TypeError("Expected argument 'routes' to be a list")
-        __self__.routes = routes
-        if subnet_id and not isinstance(subnet_id, str):
-            raise TypeError("Expected argument 'subnet_id' to be a str")
-        __self__.subnet_id = subnet_id
+        ...
+
+    @property
+    @pulumi.getter
+    def routes(self) -> List['outputs.GetRouteTableRouteResult']:
+        ...
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> str:
         """
         The Subnet ID. Only set when associated with a Subnet.
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
-        if vpc_id and not isinstance(vpc_id, str):
-            raise TypeError("Expected argument 'vpc_id' to be a str")
-        __self__.vpc_id = vpc_id
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
+        ...
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        ...
+
 
 
 class AwaitableGetRouteTableResult(GetRouteTableResult):
@@ -153,7 +192,7 @@ def get_route_table(filters: Optional[List[pulumi.InputType['GetRouteTableFilter
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getRouteTable:getRouteTable', __args__, opts=opts, typ=_GetRouteTableResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getRouteTable:getRouteTable', __args__, opts=opts, typ=GetRouteTableResult).value
 
     return AwaitableGetRouteTableResult(
         associations=__ret__.associations,

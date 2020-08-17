@@ -34,9 +34,11 @@ class DataSourceDynamodbConfigArgs:
         :param pulumi.Input[str] region: AWS region of Elasticsearch domain. Defaults to current region.
         :param pulumi.Input[bool] use_caller_credentials: Set to `true` to use Amazon Cognito credentials with this data source.
         """
-        pulumi.set(__self__, "tableName", table_name)
-        pulumi.set(__self__, "region", region)
-        pulumi.set(__self__, "useCallerCredentials", use_caller_credentials)
+        pulumi.set(__self__, "table_name", table_name)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if use_caller_credentials is not None:
+            pulumi.set(__self__, "use_caller_credentials", use_caller_credentials)
 
     @property
     @pulumi.getter(name="tableName")
@@ -85,7 +87,8 @@ class DataSourceElasticsearchConfigArgs:
         :param pulumi.Input[str] region: AWS region of Elasticsearch domain. Defaults to current region.
         """
         pulumi.set(__self__, "endpoint", endpoint)
-        pulumi.set(__self__, "region", region)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter
@@ -141,7 +144,7 @@ class DataSourceLambdaConfigArgs:
         """
         :param pulumi.Input[str] function_arn: The ARN for the Lambda function.
         """
-        pulumi.set(__self__, "functionArn", function_arn)
+        pulumi.set(__self__, "function_arn", function_arn)
 
     @property
     @pulumi.getter(name="functionArn")
@@ -167,9 +170,11 @@ class GraphQLApiAdditionalAuthenticationProviderArgs:
         :param pulumi.Input['GraphQLApiAdditionalAuthenticationProviderOpenidConnectConfigArgs'] openid_connect_config: Nested argument containing OpenID Connect configuration. Defined below.
         :param pulumi.Input['GraphQLApiAdditionalAuthenticationProviderUserPoolConfigArgs'] user_pool_config: The Amazon Cognito User Pool configuration. Defined below.
         """
-        pulumi.set(__self__, "authenticationType", authentication_type)
-        pulumi.set(__self__, "openidConnectConfig", openid_connect_config)
-        pulumi.set(__self__, "userPoolConfig", user_pool_config)
+        pulumi.set(__self__, "authentication_type", authentication_type)
+        if openid_connect_config is not None:
+            pulumi.set(__self__, "openid_connect_config", openid_connect_config)
+        if user_pool_config is not None:
+            pulumi.set(__self__, "user_pool_config", user_pool_config)
 
     @property
     @pulumi.getter(name="authenticationType")
@@ -222,9 +227,12 @@ class GraphQLApiAdditionalAuthenticationProviderOpenidConnectConfigArgs:
         :param pulumi.Input[float] iat_ttl: Number of milliseconds a token is valid after being issued to a user.
         """
         pulumi.set(__self__, "issuer", issuer)
-        pulumi.set(__self__, "authTtl", auth_ttl)
-        pulumi.set(__self__, "clientId", client_id)
-        pulumi.set(__self__, "iatTtl", iat_ttl)
+        if auth_ttl is not None:
+            pulumi.set(__self__, "auth_ttl", auth_ttl)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if iat_ttl is not None:
+            pulumi.set(__self__, "iat_ttl", iat_ttl)
 
     @property
     @pulumi.getter
@@ -286,9 +294,11 @@ class GraphQLApiAdditionalAuthenticationProviderUserPoolConfigArgs:
         :param pulumi.Input[str] app_id_client_regex: A regular expression for validating the incoming Amazon Cognito User Pool app client ID.
         :param pulumi.Input[str] aws_region: The AWS region in which the user pool was created.
         """
-        pulumi.set(__self__, "userPoolId", user_pool_id)
-        pulumi.set(__self__, "appIdClientRegex", app_id_client_regex)
-        pulumi.set(__self__, "awsRegion", aws_region)
+        pulumi.set(__self__, "user_pool_id", user_pool_id)
+        if app_id_client_regex is not None:
+            pulumi.set(__self__, "app_id_client_regex", app_id_client_regex)
+        if aws_region is not None:
+            pulumi.set(__self__, "aws_region", aws_region)
 
     @property
     @pulumi.getter(name="userPoolId")
@@ -338,9 +348,10 @@ class GraphQLApiLogConfigArgs:
         :param pulumi.Input[str] field_log_level: Field logging level. Valid values: `ALL`, `ERROR`, `NONE`.
         :param pulumi.Input[bool] exclude_verbose_content: Set to TRUE to exclude sections that contain information such as headers, context, and evaluated mapping templates, regardless of logging  level. Valid values: `true`, `false`. Default value: `false`
         """
-        pulumi.set(__self__, "cloudwatchLogsRoleArn", cloudwatch_logs_role_arn)
-        pulumi.set(__self__, "fieldLogLevel", field_log_level)
-        pulumi.set(__self__, "excludeVerboseContent", exclude_verbose_content)
+        pulumi.set(__self__, "cloudwatch_logs_role_arn", cloudwatch_logs_role_arn)
+        pulumi.set(__self__, "field_log_level", field_log_level)
+        if exclude_verbose_content is not None:
+            pulumi.set(__self__, "exclude_verbose_content", exclude_verbose_content)
 
     @property
     @pulumi.getter(name="cloudwatchLogsRoleArn")
@@ -393,9 +404,12 @@ class GraphQLApiOpenidConnectConfigArgs:
         :param pulumi.Input[float] iat_ttl: Number of milliseconds a token is valid after being issued to a user.
         """
         pulumi.set(__self__, "issuer", issuer)
-        pulumi.set(__self__, "authTtl", auth_ttl)
-        pulumi.set(__self__, "clientId", client_id)
-        pulumi.set(__self__, "iatTtl", iat_ttl)
+        if auth_ttl is not None:
+            pulumi.set(__self__, "auth_ttl", auth_ttl)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if iat_ttl is not None:
+            pulumi.set(__self__, "iat_ttl", iat_ttl)
 
     @property
     @pulumi.getter
@@ -459,10 +473,12 @@ class GraphQLApiUserPoolConfigArgs:
         :param pulumi.Input[str] app_id_client_regex: A regular expression for validating the incoming Amazon Cognito User Pool app client ID.
         :param pulumi.Input[str] aws_region: The AWS region in which the user pool was created.
         """
-        pulumi.set(__self__, "defaultAction", default_action)
-        pulumi.set(__self__, "userPoolId", user_pool_id)
-        pulumi.set(__self__, "appIdClientRegex", app_id_client_regex)
-        pulumi.set(__self__, "awsRegion", aws_region)
+        pulumi.set(__self__, "default_action", default_action)
+        pulumi.set(__self__, "user_pool_id", user_pool_id)
+        if app_id_client_regex is not None:
+            pulumi.set(__self__, "app_id_client_regex", app_id_client_regex)
+        if aws_region is not None:
+            pulumi.set(__self__, "aws_region", aws_region)
 
     @property
     @pulumi.getter(name="defaultAction")
@@ -522,8 +538,10 @@ class ResolverCachingConfigArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] caching_keys: The list of caching key.
         :param pulumi.Input[float] ttl: The TTL in seconds.
         """
-        pulumi.set(__self__, "cachingKeys", caching_keys)
-        pulumi.set(__self__, "ttl", ttl)
+        if caching_keys is not None:
+            pulumi.set(__self__, "caching_keys", caching_keys)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
 
     @property
     @pulumi.getter(name="cachingKeys")
@@ -557,7 +575,8 @@ class ResolverPipelineConfigArgs:
         """
         :param pulumi.Input[List[pulumi.Input[str]]] functions: The list of Function ID.
         """
-        pulumi.set(__self__, "functions", functions)
+        if functions is not None:
+            pulumi.set(__self__, "functions", functions)
 
     @property
     @pulumi.getter

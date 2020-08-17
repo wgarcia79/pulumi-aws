@@ -14,83 +14,6 @@ __all__ = ['Api']
 
 
 class Api(pulumi.CustomResource):
-    api_endpoint: pulumi.Output[str] = pulumi.property("apiEndpoint")
-    """
-    The URI of the API, of the form `{api-id}.execute-api.{region}.amazonaws.com`.
-    """
-
-    api_key_selection_expression: pulumi.Output[Optional[str]] = pulumi.property("apiKeySelectionExpression")
-    """
-    An [API key selection expression](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-apikey-selection-expressions).
-    Valid values: `$context.authorizer.usageIdentifierKey`, `$request.header.x-api-key`. Defaults to `$request.header.x-api-key`.
-    Applicable for WebSocket APIs.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the API.
-    """
-
-    cors_configuration: pulumi.Output[Optional['outputs.ApiCorsConfiguration']] = pulumi.property("corsConfiguration")
-    """
-    The cross-origin resource sharing (CORS) [configuration](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-cors.html). Applicable for HTTP APIs.
-    """
-
-    credentials_arn: pulumi.Output[Optional[str]] = pulumi.property("credentialsArn")
-    """
-    Part of _quick create_. Specifies any credentials required for the integration. Applicable for HTTP APIs.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    The description of the API.
-    """
-
-    execution_arn: pulumi.Output[str] = pulumi.property("executionArn")
-    """
-    The ARN prefix to be used in an `lambda.Permission`'s `source_arn` attribute
-    or in an `iam.Policy` to authorize access to the [`@connections` API](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-how-to-call-websocket-api-connections.html).
-    See the [Amazon API Gateway Developer Guide](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-control-access-iam.html) for details.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the API.
-    """
-
-    protocol_type: pulumi.Output[str] = pulumi.property("protocolType")
-    """
-    The API protocol. Valid values: `HTTP`, `WEBSOCKET`.
-    """
-
-    route_key: pulumi.Output[Optional[str]] = pulumi.property("routeKey")
-    """
-    Part of _quick create_. Specifies any [route key](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-routes.html). Applicable for HTTP APIs.
-    """
-
-    route_selection_expression: pulumi.Output[Optional[str]] = pulumi.property("routeSelectionExpression")
-    """
-    The [route selection expression](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-route-selection-expressions) for the API.
-    Defaults to `$request.method $request.path`.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the API.
-    """
-
-    target: pulumi.Output[Optional[str]] = pulumi.property("target")
-    """
-    Part of _quick create_. Quick create produces an API with an integration, a default catch-all route, and a default stage which is configured to automatically deploy changes.
-    For HTTP integrations, specify a fully qualified URL. For Lambda integrations, specify a function ARN.
-    The type of the integration will be `HTTP_PROXY` or `AWS_PROXY`, respectively. Applicable for HTTP APIs.
-    """
-
-    version: pulumi.Output[Optional[str]] = pulumi.property("version")
-    """
-    A version identifier for the API.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -257,6 +180,125 @@ class Api(pulumi.CustomResource):
         __props__["target"] = target
         __props__["version"] = version
         return Api(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="apiEndpoint")
+    def api_endpoint(self) -> str:
+        """
+        The URI of the API, of the form `{api-id}.execute-api.{region}.amazonaws.com`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="apiKeySelectionExpression")
+    def api_key_selection_expression(self) -> Optional[str]:
+        """
+        An [API key selection expression](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-apikey-selection-expressions).
+        Valid values: `$context.authorizer.usageIdentifierKey`, `$request.header.x-api-key`. Defaults to `$request.header.x-api-key`.
+        Applicable for WebSocket APIs.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the API.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="corsConfiguration")
+    def cors_configuration(self) -> Optional['outputs.ApiCorsConfiguration']:
+        """
+        The cross-origin resource sharing (CORS) [configuration](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-cors.html). Applicable for HTTP APIs.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="credentialsArn")
+    def credentials_arn(self) -> Optional[str]:
+        """
+        Part of _quick create_. Specifies any credentials required for the integration. Applicable for HTTP APIs.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        The description of the API.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="executionArn")
+    def execution_arn(self) -> str:
+        """
+        The ARN prefix to be used in an `lambda.Permission`'s `source_arn` attribute
+        or in an `iam.Policy` to authorize access to the [`@connections` API](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-how-to-call-websocket-api-connections.html).
+        See the [Amazon API Gateway Developer Guide](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-control-access-iam.html) for details.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the API.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="protocolType")
+    def protocol_type(self) -> str:
+        """
+        The API protocol. Valid values: `HTTP`, `WEBSOCKET`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="routeKey")
+    def route_key(self) -> Optional[str]:
+        """
+        Part of _quick create_. Specifies any [route key](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-routes.html). Applicable for HTTP APIs.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="routeSelectionExpression")
+    def route_selection_expression(self) -> Optional[str]:
+        """
+        The [route selection expression](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-route-selection-expressions) for the API.
+        Defaults to `$request.method $request.path`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the API.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def target(self) -> Optional[str]:
+        """
+        Part of _quick create_. Quick create produces an API with an integration, a default catch-all route, and a default stage which is configured to automatically deploy changes.
+        For HTTP integrations, specify a fully qualified URL. For Lambda integrations, specify a function ARN.
+        The type of the integration will be `HTTP_PROXY` or `AWS_PROXY`, respectively. Applicable for HTTP APIs.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[str]:
+        """
+        A version identifier for the API.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

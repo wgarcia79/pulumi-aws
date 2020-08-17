@@ -14,31 +14,6 @@ __all__ = ['Alias']
 
 
 class Alias(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Alias ARN.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    Description of the alias.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    Name of the alias.
-    """
-
-    routing_strategy: pulumi.Output['outputs.AliasRoutingStrategy'] = pulumi.property("routingStrategy")
-    """
-    Specifies the fleet and/or routing type to use for the alias.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of resource tags
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -135,6 +110,46 @@ class Alias(pulumi.CustomResource):
         __props__["routing_strategy"] = routing_strategy
         __props__["tags"] = tags
         return Alias(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Alias ARN.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Description of the alias.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the alias.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="routingStrategy")
+    def routing_strategy(self) -> 'outputs.AliasRoutingStrategy':
+        """
+        Specifies the fleet and/or routing type to use for the alias.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of resource tags
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

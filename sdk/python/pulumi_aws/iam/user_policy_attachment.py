@@ -12,16 +12,6 @@ __all__ = ['UserPolicyAttachment']
 
 
 class UserPolicyAttachment(pulumi.CustomResource):
-    policy_arn: pulumi.Output[str] = pulumi.property("policyArn")
-    """
-    The ARN of the policy you want to apply
-    """
-
-    user: pulumi.Output[str] = pulumi.property("user")
-    """
-    The user the policy should be applied to
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -108,6 +98,22 @@ class UserPolicyAttachment(pulumi.CustomResource):
         __props__["policy_arn"] = policy_arn
         __props__["user"] = user
         return UserPolicyAttachment(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="policyArn")
+    def policy_arn(self) -> str:
+        """
+        The ARN of the policy you want to apply
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def user(self) -> str:
+        """
+        The user the policy should be applied to
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

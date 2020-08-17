@@ -15,12 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetDefaultKmsKeyResult:
-    id: str = pulumi.property("id")
-    key_arn: str = pulumi.property("keyArn")
-
-
 class GetDefaultKmsKeyResult:
     """
     A collection of values returned by getDefaultKmsKey.
@@ -28,16 +24,27 @@ class GetDefaultKmsKeyResult:
     def __init__(__self__, id=None, key_arn=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if key_arn and not isinstance(key_arn, str):
+            raise TypeError("Expected argument 'key_arn' to be a str")
+        pulumi.set(__self__, "key_arn", key_arn)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if key_arn and not isinstance(key_arn, str):
-            raise TypeError("Expected argument 'key_arn' to be a str")
-        __self__.key_arn = key_arn
+        ...
+
+    @property
+    @pulumi.getter(name="keyArn")
+    def key_arn(self) -> str:
         """
         Amazon Resource Name (ARN) of the default KMS key uses to encrypt an EBS volume in this region when no key is specified in an API call that creates the volume and encryption by default is enabled.
         """
+        ...
+
 
 
 class AwaitableGetDefaultKmsKeyResult(GetDefaultKmsKeyResult):
@@ -72,7 +79,7 @@ def get_default_kms_key(                        opts: Optional[pulumi.InvokeOpti
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ebs/getDefaultKmsKey:getDefaultKmsKey', __args__, opts=opts, typ=_GetDefaultKmsKeyResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ebs/getDefaultKmsKey:getDefaultKmsKey', __args__, opts=opts, typ=GetDefaultKmsKeyResult).value
 
     return AwaitableGetDefaultKmsKeyResult(
         id=__ret__.id,

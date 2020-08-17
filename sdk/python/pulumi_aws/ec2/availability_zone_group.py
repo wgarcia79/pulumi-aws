@@ -12,16 +12,6 @@ __all__ = ['AvailabilityZoneGroup']
 
 
 class AvailabilityZoneGroup(pulumi.CustomResource):
-    group_name: pulumi.Output[str] = pulumi.property("groupName")
-    """
-    Name of the Availability Zone Group.
-    """
-
-    opt_in_status: pulumi.Output[str] = pulumi.property("optInStatus")
-    """
-    Indicates whether to enable or disable Availability Zone Group. Valid values: `opted-in` or `not-opted-in`.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -103,6 +93,22 @@ class AvailabilityZoneGroup(pulumi.CustomResource):
         __props__["group_name"] = group_name
         __props__["opt_in_status"] = opt_in_status
         return AvailabilityZoneGroup(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="groupName")
+    def group_name(self) -> str:
+        """
+        Name of the Availability Zone Group.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="optInStatus")
+    def opt_in_status(self) -> str:
+        """
+        Indicates whether to enable or disable Availability Zone Group. Valid values: `opted-in` or `not-opted-in`.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

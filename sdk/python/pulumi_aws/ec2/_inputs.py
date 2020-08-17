@@ -144,13 +144,20 @@ class AmiCopyEbsBlockDeviceArgs:
         :param pulumi.Input[str] volume_type: The type of EBS volume to create. Can be one of "standard" (the
                default), "io1" or "gp2".
         """
-        pulumi.set(__self__, "deleteOnTermination", delete_on_termination)
-        pulumi.set(__self__, "deviceName", device_name)
-        pulumi.set(__self__, "encrypted", encrypted)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "snapshotId", snapshot_id)
-        pulumi.set(__self__, "volumeSize", volume_size)
-        pulumi.set(__self__, "volumeType", volume_type)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+        if device_name is not None:
+            pulumi.set(__self__, "device_name", device_name)
+        if encrypted is not None:
+            pulumi.set(__self__, "encrypted", encrypted)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if snapshot_id is not None:
+            pulumi.set(__self__, "snapshot_id", snapshot_id)
+        if volume_size is not None:
+            pulumi.set(__self__, "volume_size", volume_size)
+        if volume_type is not None:
+            pulumi.set(__self__, "volume_type", volume_type)
 
     @property
     @pulumi.getter(name="deleteOnTermination")
@@ -254,8 +261,10 @@ class AmiCopyEphemeralBlockDeviceArgs:
         :param pulumi.Input[str] virtual_name: A name for the ephemeral device, of the form "ephemeralN" where
                *N* is a volume number starting from zero.
         """
-        pulumi.set(__self__, "deviceName", device_name)
-        pulumi.set(__self__, "virtualName", virtual_name)
+        if device_name is not None:
+            pulumi.set(__self__, "device_name", device_name)
+        if virtual_name is not None:
+            pulumi.set(__self__, "virtual_name", virtual_name)
 
     @property
     @pulumi.getter(name="deviceName")
@@ -309,13 +318,19 @@ class AmiEbsBlockDeviceArgs:
         :param pulumi.Input[str] volume_type: The type of EBS volume to create. Can be one of "standard" (the
                default), "io1" or "gp2".
         """
-        pulumi.set(__self__, "deviceName", device_name)
-        pulumi.set(__self__, "deleteOnTermination", delete_on_termination)
-        pulumi.set(__self__, "encrypted", encrypted)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "snapshotId", snapshot_id)
-        pulumi.set(__self__, "volumeSize", volume_size)
-        pulumi.set(__self__, "volumeType", volume_type)
+        pulumi.set(__self__, "device_name", device_name)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+        if encrypted is not None:
+            pulumi.set(__self__, "encrypted", encrypted)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if snapshot_id is not None:
+            pulumi.set(__self__, "snapshot_id", snapshot_id)
+        if volume_size is not None:
+            pulumi.set(__self__, "volume_size", volume_size)
+        if volume_type is not None:
+            pulumi.set(__self__, "volume_type", volume_type)
 
     @property
     @pulumi.getter(name="deviceName")
@@ -419,8 +434,8 @@ class AmiEphemeralBlockDeviceArgs:
         :param pulumi.Input[str] virtual_name: A name for the ephemeral device, of the form "ephemeralN" where
                *N* is a volume number starting from zero.
         """
-        pulumi.set(__self__, "deviceName", device_name)
-        pulumi.set(__self__, "virtualName", virtual_name)
+        pulumi.set(__self__, "device_name", device_name)
+        pulumi.set(__self__, "virtual_name", virtual_name)
 
     @property
     @pulumi.getter(name="deviceName")
@@ -474,13 +489,20 @@ class AmiFromInstanceEbsBlockDeviceArgs:
         :param pulumi.Input[str] volume_type: The type of EBS volume to create. Can be one of "standard" (the
                default), "io1" or "gp2".
         """
-        pulumi.set(__self__, "deleteOnTermination", delete_on_termination)
-        pulumi.set(__self__, "deviceName", device_name)
-        pulumi.set(__self__, "encrypted", encrypted)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "snapshotId", snapshot_id)
-        pulumi.set(__self__, "volumeSize", volume_size)
-        pulumi.set(__self__, "volumeType", volume_type)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+        if device_name is not None:
+            pulumi.set(__self__, "device_name", device_name)
+        if encrypted is not None:
+            pulumi.set(__self__, "encrypted", encrypted)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if snapshot_id is not None:
+            pulumi.set(__self__, "snapshot_id", snapshot_id)
+        if volume_size is not None:
+            pulumi.set(__self__, "volume_size", volume_size)
+        if volume_type is not None:
+            pulumi.set(__self__, "volume_type", volume_type)
 
     @property
     @pulumi.getter(name="deleteOnTermination")
@@ -584,8 +606,10 @@ class AmiFromInstanceEphemeralBlockDeviceArgs:
         :param pulumi.Input[str] virtual_name: A name for the ephemeral device, of the form "ephemeralN" where
                *N* is a volume number starting from zero.
         """
-        pulumi.set(__self__, "deviceName", device_name)
-        pulumi.set(__self__, "virtualName", virtual_name)
+        if device_name is not None:
+            pulumi.set(__self__, "device_name", device_name)
+        if virtual_name is not None:
+            pulumi.set(__self__, "virtual_name", virtual_name)
 
     @property
     @pulumi.getter(name="deviceName")
@@ -639,14 +663,18 @@ class DefaultNetworkAclEgressArgs:
         :param pulumi.Input[str] ipv6_cidr_block: The IPv6 CIDR block.
         """
         pulumi.set(__self__, "action", action)
-        pulumi.set(__self__, "fromPort", from_port)
+        pulumi.set(__self__, "from_port", from_port)
         pulumi.set(__self__, "protocol", protocol)
-        pulumi.set(__self__, "ruleNo", rule_no)
-        pulumi.set(__self__, "toPort", to_port)
-        pulumi.set(__self__, "cidrBlock", cidr_block)
-        pulumi.set(__self__, "icmpCode", icmp_code)
-        pulumi.set(__self__, "icmpType", icmp_type)
-        pulumi.set(__self__, "ipv6CidrBlock", ipv6_cidr_block)
+        pulumi.set(__self__, "rule_no", rule_no)
+        pulumi.set(__self__, "to_port", to_port)
+        if cidr_block is not None:
+            pulumi.set(__self__, "cidr_block", cidr_block)
+        if icmp_code is not None:
+            pulumi.set(__self__, "icmp_code", icmp_code)
+        if icmp_type is not None:
+            pulumi.set(__self__, "icmp_type", icmp_type)
+        if ipv6_cidr_block is not None:
+            pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
 
     @property
     @pulumi.getter
@@ -785,14 +813,18 @@ class DefaultNetworkAclIngressArgs:
         :param pulumi.Input[str] ipv6_cidr_block: The IPv6 CIDR block.
         """
         pulumi.set(__self__, "action", action)
-        pulumi.set(__self__, "fromPort", from_port)
+        pulumi.set(__self__, "from_port", from_port)
         pulumi.set(__self__, "protocol", protocol)
-        pulumi.set(__self__, "ruleNo", rule_no)
-        pulumi.set(__self__, "toPort", to_port)
-        pulumi.set(__self__, "cidrBlock", cidr_block)
-        pulumi.set(__self__, "icmpCode", icmp_code)
-        pulumi.set(__self__, "icmpType", icmp_type)
-        pulumi.set(__self__, "ipv6CidrBlock", ipv6_cidr_block)
+        pulumi.set(__self__, "rule_no", rule_no)
+        pulumi.set(__self__, "to_port", to_port)
+        if cidr_block is not None:
+            pulumi.set(__self__, "cidr_block", cidr_block)
+        if icmp_code is not None:
+            pulumi.set(__self__, "icmp_code", icmp_code)
+        if icmp_type is not None:
+            pulumi.set(__self__, "icmp_type", icmp_type)
+        if ipv6_cidr_block is not None:
+            pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
 
     @property
     @pulumi.getter
@@ -928,15 +960,24 @@ class DefaultRouteTableRouteArgs:
         :param pulumi.Input[str] transit_gateway_id: Identifier of an EC2 Transit Gateway.
         :param pulumi.Input[str] vpc_peering_connection_id: Identifier of a VPC peering connection.
         """
-        pulumi.set(__self__, "cidrBlock", cidr_block)
-        pulumi.set(__self__, "egressOnlyGatewayId", egress_only_gateway_id)
-        pulumi.set(__self__, "gatewayId", gateway_id)
-        pulumi.set(__self__, "instanceId", instance_id)
-        pulumi.set(__self__, "ipv6CidrBlock", ipv6_cidr_block)
-        pulumi.set(__self__, "natGatewayId", nat_gateway_id)
-        pulumi.set(__self__, "networkInterfaceId", network_interface_id)
-        pulumi.set(__self__, "transitGatewayId", transit_gateway_id)
-        pulumi.set(__self__, "vpcPeeringConnectionId", vpc_peering_connection_id)
+        if cidr_block is not None:
+            pulumi.set(__self__, "cidr_block", cidr_block)
+        if egress_only_gateway_id is not None:
+            pulumi.set(__self__, "egress_only_gateway_id", egress_only_gateway_id)
+        if gateway_id is not None:
+            pulumi.set(__self__, "gateway_id", gateway_id)
+        if instance_id is not None:
+            pulumi.set(__self__, "instance_id", instance_id)
+        if ipv6_cidr_block is not None:
+            pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
+        if nat_gateway_id is not None:
+            pulumi.set(__self__, "nat_gateway_id", nat_gateway_id)
+        if network_interface_id is not None:
+            pulumi.set(__self__, "network_interface_id", network_interface_id)
+        if transit_gateway_id is not None:
+            pulumi.set(__self__, "transit_gateway_id", transit_gateway_id)
+        if vpc_peering_connection_id is not None:
+            pulumi.set(__self__, "vpc_peering_connection_id", vpc_peering_connection_id)
 
     @property
     @pulumi.getter(name="cidrBlock")
@@ -1062,15 +1103,21 @@ class DefaultSecurityGroupEgressArgs:
         """
         :param pulumi.Input[str] description: The description of the security group
         """
-        pulumi.set(__self__, "fromPort", from_port)
+        pulumi.set(__self__, "from_port", from_port)
         pulumi.set(__self__, "protocol", protocol)
-        pulumi.set(__self__, "toPort", to_port)
-        pulumi.set(__self__, "cidrBlocks", cidr_blocks)
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "ipv6CidrBlocks", ipv6_cidr_blocks)
-        pulumi.set(__self__, "prefixListIds", prefix_list_ids)
-        pulumi.set(__self__, "securityGroups", security_groups)
-        pulumi.set(__self__, "self", self)
+        pulumi.set(__self__, "to_port", to_port)
+        if cidr_blocks is not None:
+            pulumi.set(__self__, "cidr_blocks", cidr_blocks)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if ipv6_cidr_blocks is not None:
+            pulumi.set(__self__, "ipv6_cidr_blocks", ipv6_cidr_blocks)
+        if prefix_list_ids is not None:
+            pulumi.set(__self__, "prefix_list_ids", prefix_list_ids)
+        if security_groups is not None:
+            pulumi.set(__self__, "security_groups", security_groups)
+        if self is not None:
+            pulumi.set(__self__, "self", self)
 
     @property
     @pulumi.getter(name="fromPort")
@@ -1172,15 +1219,21 @@ class DefaultSecurityGroupIngressArgs:
         """
         :param pulumi.Input[str] description: The description of the security group
         """
-        pulumi.set(__self__, "fromPort", from_port)
+        pulumi.set(__self__, "from_port", from_port)
         pulumi.set(__self__, "protocol", protocol)
-        pulumi.set(__self__, "toPort", to_port)
-        pulumi.set(__self__, "cidrBlocks", cidr_blocks)
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "ipv6CidrBlocks", ipv6_cidr_blocks)
-        pulumi.set(__self__, "prefixListIds", prefix_list_ids)
-        pulumi.set(__self__, "securityGroups", security_groups)
-        pulumi.set(__self__, "self", self)
+        pulumi.set(__self__, "to_port", to_port)
+        if cidr_blocks is not None:
+            pulumi.set(__self__, "cidr_blocks", cidr_blocks)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if ipv6_cidr_blocks is not None:
+            pulumi.set(__self__, "ipv6_cidr_blocks", ipv6_cidr_blocks)
+        if prefix_list_ids is not None:
+            pulumi.set(__self__, "prefix_list_ids", prefix_list_ids)
+        if security_groups is not None:
+            pulumi.set(__self__, "security_groups", security_groups)
+        if self is not None:
+            pulumi.set(__self__, "self", self)
 
     @property
     @pulumi.getter(name="fromPort")
@@ -1276,8 +1329,9 @@ class FleetLaunchTemplateConfigArgs:
         :param pulumi.Input['FleetLaunchTemplateConfigLaunchTemplateSpecificationArgs'] launch_template_specification: Nested argument containing EC2 Launch Template to use. Defined below.
         :param pulumi.Input[List[pulumi.Input['FleetLaunchTemplateConfigOverrideArgs']]] overrides: Nested argument(s) containing parameters to override the same parameters in the Launch Template. Defined below.
         """
-        pulumi.set(__self__, "launchTemplateSpecification", launch_template_specification)
-        pulumi.set(__self__, "overrides", overrides)
+        pulumi.set(__self__, "launch_template_specification", launch_template_specification)
+        if overrides is not None:
+            pulumi.set(__self__, "overrides", overrides)
 
     @property
     @pulumi.getter(name="launchTemplateSpecification")
@@ -1316,8 +1370,10 @@ class FleetLaunchTemplateConfigLaunchTemplateSpecificationArgs:
         :param pulumi.Input[str] launch_template_name: Name of the launch template.
         """
         pulumi.set(__self__, "version", version)
-        pulumi.set(__self__, "launchTemplateId", launch_template_id)
-        pulumi.set(__self__, "launchTemplateName", launch_template_name)
+        if launch_template_id is not None:
+            pulumi.set(__self__, "launch_template_id", launch_template_id)
+        if launch_template_name is not None:
+            pulumi.set(__self__, "launch_template_name", launch_template_name)
 
     @property
     @pulumi.getter
@@ -1373,12 +1429,18 @@ class FleetLaunchTemplateConfigOverrideArgs:
         :param pulumi.Input[str] subnet_id: ID of the subnet in which to launch the instances.
         :param pulumi.Input[float] weighted_capacity: Number of units provided by the specified instance type.
         """
-        pulumi.set(__self__, "availabilityZone", availability_zone)
-        pulumi.set(__self__, "instanceType", instance_type)
-        pulumi.set(__self__, "maxPrice", max_price)
-        pulumi.set(__self__, "priority", priority)
-        pulumi.set(__self__, "subnetId", subnet_id)
-        pulumi.set(__self__, "weightedCapacity", weighted_capacity)
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
+        if instance_type is not None:
+            pulumi.set(__self__, "instance_type", instance_type)
+        if max_price is not None:
+            pulumi.set(__self__, "max_price", max_price)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+        if subnet_id is not None:
+            pulumi.set(__self__, "subnet_id", subnet_id)
+        if weighted_capacity is not None:
+            pulumi.set(__self__, "weighted_capacity", weighted_capacity)
 
     @property
     @pulumi.getter(name="availabilityZone")
@@ -1460,7 +1522,8 @@ class FleetOnDemandOptionsArgs:
         """
         :param pulumi.Input[str] allocation_strategy: How to allocate the target capacity across the Spot pools. Valid values: `diversified`, `lowestPrice`. Default: `lowestPrice`.
         """
-        pulumi.set(__self__, "allocationStrategy", allocation_strategy)
+        if allocation_strategy is not None:
+            pulumi.set(__self__, "allocation_strategy", allocation_strategy)
 
     @property
     @pulumi.getter(name="allocationStrategy")
@@ -1486,9 +1549,12 @@ class FleetSpotOptionsArgs:
         :param pulumi.Input[str] instance_interruption_behavior: Behavior when a Spot Instance is interrupted. Valid values: `hibernate`, `stop`, `terminate`. Default: `terminate`.
         :param pulumi.Input[float] instance_pools_to_use_count: Number of Spot pools across which to allocate your target Spot capacity. Valid only when Spot `allocation_strategy` is set to `lowestPrice`. Default: `1`.
         """
-        pulumi.set(__self__, "allocationStrategy", allocation_strategy)
-        pulumi.set(__self__, "instanceInterruptionBehavior", instance_interruption_behavior)
-        pulumi.set(__self__, "instancePoolsToUseCount", instance_pools_to_use_count)
+        if allocation_strategy is not None:
+            pulumi.set(__self__, "allocation_strategy", allocation_strategy)
+        if instance_interruption_behavior is not None:
+            pulumi.set(__self__, "instance_interruption_behavior", instance_interruption_behavior)
+        if instance_pools_to_use_count is not None:
+            pulumi.set(__self__, "instance_pools_to_use_count", instance_pools_to_use_count)
 
     @property
     @pulumi.getter(name="allocationStrategy")
@@ -1540,10 +1606,12 @@ class FleetTargetCapacitySpecificationArgs:
         :param pulumi.Input[float] on_demand_target_capacity: The number of On-Demand units to request.
         :param pulumi.Input[float] spot_target_capacity: The number of Spot units to request.
         """
-        pulumi.set(__self__, "defaultTargetCapacityType", default_target_capacity_type)
-        pulumi.set(__self__, "totalTargetCapacity", total_target_capacity)
-        pulumi.set(__self__, "onDemandTargetCapacity", on_demand_target_capacity)
-        pulumi.set(__self__, "spotTargetCapacity", spot_target_capacity)
+        pulumi.set(__self__, "default_target_capacity_type", default_target_capacity_type)
+        pulumi.set(__self__, "total_target_capacity", total_target_capacity)
+        if on_demand_target_capacity is not None:
+            pulumi.set(__self__, "on_demand_target_capacity", on_demand_target_capacity)
+        if spot_target_capacity is not None:
+            pulumi.set(__self__, "spot_target_capacity", spot_target_capacity)
 
     @property
     @pulumi.getter(name="defaultTargetCapacityType")
@@ -1601,7 +1669,8 @@ class InstanceCreditSpecificationArgs:
         """
         :param pulumi.Input[str] cpu_credits: The credit option for CPU usage. Can be `"standard"` or `"unlimited"`. T3 instances are launched as unlimited by default. T2 instances are launched as standard by default.
         """
-        pulumi.set(__self__, "cpuCredits", cpu_credits)
+        if cpu_credits is not None:
+            pulumi.set(__self__, "cpu_credits", cpu_credits)
 
     @property
     @pulumi.getter(name="cpuCredits")
@@ -1644,15 +1713,23 @@ class InstanceEbsBlockDeviceArgs:
         :param pulumi.Input[str] volume_type: The type of volume. Can be `"standard"`, `"gp2"`,
                or `"io1"`. (Default: `"gp2"`).
         """
-        pulumi.set(__self__, "deviceName", device_name)
-        pulumi.set(__self__, "deleteOnTermination", delete_on_termination)
-        pulumi.set(__self__, "encrypted", encrypted)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "kmsKeyId", kms_key_id)
-        pulumi.set(__self__, "snapshotId", snapshot_id)
-        pulumi.set(__self__, "volumeId", volume_id)
-        pulumi.set(__self__, "volumeSize", volume_size)
-        pulumi.set(__self__, "volumeType", volume_type)
+        pulumi.set(__self__, "device_name", device_name)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+        if encrypted is not None:
+            pulumi.set(__self__, "encrypted", encrypted)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if kms_key_id is not None:
+            pulumi.set(__self__, "kms_key_id", kms_key_id)
+        if snapshot_id is not None:
+            pulumi.set(__self__, "snapshot_id", snapshot_id)
+        if volume_id is not None:
+            pulumi.set(__self__, "volume_id", volume_id)
+        if volume_size is not None:
+            pulumi.set(__self__, "volume_size", volume_size)
+        if volume_type is not None:
+            pulumi.set(__self__, "volume_type", volume_type)
 
     @property
     @pulumi.getter(name="deviceName")
@@ -1779,9 +1856,11 @@ class InstanceEphemeralBlockDeviceArgs:
                Name](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#InstanceStoreDeviceNames)
                (e.g. `"ephemeral0"`).
         """
-        pulumi.set(__self__, "deviceName", device_name)
-        pulumi.set(__self__, "noDevice", no_device)
-        pulumi.set(__self__, "virtualName", virtual_name)
+        pulumi.set(__self__, "device_name", device_name)
+        if no_device is not None:
+            pulumi.set(__self__, "no_device", no_device)
+        if virtual_name is not None:
+            pulumi.set(__self__, "virtual_name", virtual_name)
 
     @property
     @pulumi.getter(name="deviceName")
@@ -1833,9 +1912,12 @@ class InstanceMetadataOptionsArgs:
         :param pulumi.Input[float] http_put_response_hop_limit: The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel. Can be an integer from `1` to `64`. (Default: `1`).
         :param pulumi.Input[str] http_tokens: Whether or not the metadata service requires session tokens, also referred to as _Instance Metadata Service Version 2_. Can be `"optional"` or `"required"`. (Default: `"optional"`).
         """
-        pulumi.set(__self__, "httpEndpoint", http_endpoint)
-        pulumi.set(__self__, "httpPutResponseHopLimit", http_put_response_hop_limit)
-        pulumi.set(__self__, "httpTokens", http_tokens)
+        if http_endpoint is not None:
+            pulumi.set(__self__, "http_endpoint", http_endpoint)
+        if http_put_response_hop_limit is not None:
+            pulumi.set(__self__, "http_put_response_hop_limit", http_put_response_hop_limit)
+        if http_tokens is not None:
+            pulumi.set(__self__, "http_tokens", http_tokens)
 
     @property
     @pulumi.getter(name="httpEndpoint")
@@ -1885,9 +1967,10 @@ class InstanceNetworkInterfaceArgs:
         :param pulumi.Input[str] network_interface_id: The ID of the network interface to attach.
         :param pulumi.Input[bool] delete_on_termination: Whether or not to delete the network interface on instance termination. Defaults to `false`. Currently, the only valid value is `false`, as this is only supported when creating new network interfaces when launching an instance.
         """
-        pulumi.set(__self__, "deviceIndex", device_index)
-        pulumi.set(__self__, "networkInterfaceId", network_interface_id)
-        pulumi.set(__self__, "deleteOnTermination", delete_on_termination)
+        pulumi.set(__self__, "device_index", device_index)
+        pulumi.set(__self__, "network_interface_id", network_interface_id)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
 
     @property
     @pulumi.getter(name="deviceIndex")
@@ -1950,14 +2033,22 @@ class InstanceRootBlockDeviceArgs:
         :param pulumi.Input[float] volume_size: The size of the volume in gibibytes (GiB).
         :param pulumi.Input[str] volume_type: The type of volume. Can be `"standard"`, `"gp2"`, `"io1"`, `"sc1"`, or `"st1"`. (Default: `"standard"`).
         """
-        pulumi.set(__self__, "deleteOnTermination", delete_on_termination)
-        pulumi.set(__self__, "deviceName", device_name)
-        pulumi.set(__self__, "encrypted", encrypted)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "kmsKeyId", kms_key_id)
-        pulumi.set(__self__, "volumeId", volume_id)
-        pulumi.set(__self__, "volumeSize", volume_size)
-        pulumi.set(__self__, "volumeType", volume_type)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+        if device_name is not None:
+            pulumi.set(__self__, "device_name", device_name)
+        if encrypted is not None:
+            pulumi.set(__self__, "encrypted", encrypted)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if kms_key_id is not None:
+            pulumi.set(__self__, "kms_key_id", kms_key_id)
+        if volume_id is not None:
+            pulumi.set(__self__, "volume_id", volume_id)
+        if volume_size is not None:
+            pulumi.set(__self__, "volume_size", volume_size)
+        if volume_type is not None:
+            pulumi.set(__self__, "volume_type", volume_type)
 
     @property
     @pulumi.getter(name="deleteOnTermination")
@@ -2068,14 +2159,21 @@ class LaunchConfigurationEbsBlockDeviceArgs:
                  snapshot_id: Optional[pulumi.Input[str]] = None,
                  volume_size: Optional[pulumi.Input[float]] = None,
                  volume_type: Optional[pulumi.Input[str]] = None):
-        pulumi.set(__self__, "deviceName", device_name)
-        pulumi.set(__self__, "deleteOnTermination", delete_on_termination)
-        pulumi.set(__self__, "encrypted", encrypted)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "noDevice", no_device)
-        pulumi.set(__self__, "snapshotId", snapshot_id)
-        pulumi.set(__self__, "volumeSize", volume_size)
-        pulumi.set(__self__, "volumeType", volume_type)
+        pulumi.set(__self__, "device_name", device_name)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+        if encrypted is not None:
+            pulumi.set(__self__, "encrypted", encrypted)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if no_device is not None:
+            pulumi.set(__self__, "no_device", no_device)
+        if snapshot_id is not None:
+            pulumi.set(__self__, "snapshot_id", snapshot_id)
+        if volume_size is not None:
+            pulumi.set(__self__, "volume_size", volume_size)
+        if volume_type is not None:
+            pulumi.set(__self__, "volume_type", volume_type)
 
     @property
     @pulumi.getter(name="deviceName")
@@ -2155,8 +2253,8 @@ class LaunchConfigurationEphemeralBlockDeviceArgs:
     def __init__(__self__, *,
                  device_name: pulumi.Input[str],
                  virtual_name: pulumi.Input[str]):
-        pulumi.set(__self__, "deviceName", device_name)
-        pulumi.set(__self__, "virtualName", virtual_name)
+        pulumi.set(__self__, "device_name", device_name)
+        pulumi.set(__self__, "virtual_name", virtual_name)
 
     @property
     @pulumi.getter(name="deviceName")
@@ -2185,11 +2283,16 @@ class LaunchConfigurationRootBlockDeviceArgs:
                  iops: Optional[pulumi.Input[float]] = None,
                  volume_size: Optional[pulumi.Input[float]] = None,
                  volume_type: Optional[pulumi.Input[str]] = None):
-        pulumi.set(__self__, "deleteOnTermination", delete_on_termination)
-        pulumi.set(__self__, "encrypted", encrypted)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "volumeSize", volume_size)
-        pulumi.set(__self__, "volumeType", volume_type)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+        if encrypted is not None:
+            pulumi.set(__self__, "encrypted", encrypted)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if volume_size is not None:
+            pulumi.set(__self__, "volume_size", volume_size)
+        if volume_type is not None:
+            pulumi.set(__self__, "volume_type", volume_type)
 
     @property
     @pulumi.getter(name="deleteOnTermination")
@@ -2252,10 +2355,14 @@ class LaunchTemplateBlockDeviceMappingArgs:
                Name](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#InstanceStoreDeviceNames)
                (e.g. `"ephemeral0"`).
         """
-        pulumi.set(__self__, "deviceName", device_name)
-        pulumi.set(__self__, "ebs", ebs)
-        pulumi.set(__self__, "noDevice", no_device)
-        pulumi.set(__self__, "virtualName", virtual_name)
+        if device_name is not None:
+            pulumi.set(__self__, "device_name", device_name)
+        if ebs is not None:
+            pulumi.set(__self__, "ebs", ebs)
+        if no_device is not None:
+            pulumi.set(__self__, "no_device", no_device)
+        if virtual_name is not None:
+            pulumi.set(__self__, "virtual_name", virtual_name)
 
     @property
     @pulumi.getter(name="deviceName")
@@ -2331,13 +2438,20 @@ class LaunchTemplateBlockDeviceMappingEbsArgs:
         :param pulumi.Input[float] volume_size: The size of the volume in gigabytes.
         :param pulumi.Input[str] volume_type: The type of volume. Can be `"standard"`, `"gp2"`, or `"io1"`. (Default: `"standard"`).
         """
-        pulumi.set(__self__, "deleteOnTermination", delete_on_termination)
-        pulumi.set(__self__, "encrypted", encrypted)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "kmsKeyId", kms_key_id)
-        pulumi.set(__self__, "snapshotId", snapshot_id)
-        pulumi.set(__self__, "volumeSize", volume_size)
-        pulumi.set(__self__, "volumeType", volume_type)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+        if encrypted is not None:
+            pulumi.set(__self__, "encrypted", encrypted)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if kms_key_id is not None:
+            pulumi.set(__self__, "kms_key_id", kms_key_id)
+        if snapshot_id is not None:
+            pulumi.set(__self__, "snapshot_id", snapshot_id)
+        if volume_size is not None:
+            pulumi.set(__self__, "volume_size", volume_size)
+        if volume_type is not None:
+            pulumi.set(__self__, "volume_type", volume_type)
 
     @property
     @pulumi.getter(name="deleteOnTermination")
@@ -2437,8 +2551,10 @@ class LaunchTemplateCapacityReservationSpecificationArgs:
         :param pulumi.Input[str] capacity_reservation_preference: Indicates the instance's Capacity Reservation preferences. Can be `open` or `none`. (Default `none`).
         :param pulumi.Input['LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetArgs'] capacity_reservation_target: Used to target a specific Capacity Reservation:
         """
-        pulumi.set(__self__, "capacityReservationPreference", capacity_reservation_preference)
-        pulumi.set(__self__, "capacityReservationTarget", capacity_reservation_target)
+        if capacity_reservation_preference is not None:
+            pulumi.set(__self__, "capacity_reservation_preference", capacity_reservation_preference)
+        if capacity_reservation_target is not None:
+            pulumi.set(__self__, "capacity_reservation_target", capacity_reservation_target)
 
     @property
     @pulumi.getter(name="capacityReservationPreference")
@@ -2472,7 +2588,8 @@ class LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetArg
         """
         :param pulumi.Input[str] capacity_reservation_id: The ID of the Capacity Reservation to target.
         """
-        pulumi.set(__self__, "capacityReservationId", capacity_reservation_id)
+        if capacity_reservation_id is not None:
+            pulumi.set(__self__, "capacity_reservation_id", capacity_reservation_id)
 
     @property
     @pulumi.getter(name="capacityReservationId")
@@ -2497,8 +2614,10 @@ class LaunchTemplateCpuOptionsArgs:
         :param pulumi.Input[float] threads_per_core: The number of threads per CPU core. To disable Intel Hyper-Threading Technology for the instance, specify a value of 1.
                Otherwise, specify the default value of 2.
         """
-        pulumi.set(__self__, "coreCount", core_count)
-        pulumi.set(__self__, "threadsPerCore", threads_per_core)
+        if core_count is not None:
+            pulumi.set(__self__, "core_count", core_count)
+        if threads_per_core is not None:
+            pulumi.set(__self__, "threads_per_core", threads_per_core)
 
     @property
     @pulumi.getter(name="coreCount")
@@ -2533,7 +2652,8 @@ class LaunchTemplateCreditSpecificationArgs:
         """
         :param pulumi.Input[str] cpu_credits: The credit option for CPU usage. Can be `"standard"` or `"unlimited"`. T3 instances are launched as unlimited by default. T2 instances are launched as standard by default.
         """
-        pulumi.set(__self__, "cpuCredits", cpu_credits)
+        if cpu_credits is not None:
+            pulumi.set(__self__, "cpu_credits", cpu_credits)
 
     @property
     @pulumi.getter(name="cpuCredits")
@@ -2623,8 +2743,10 @@ class LaunchTemplateIamInstanceProfileArgs:
         :param pulumi.Input[str] arn: The Amazon Resource Name (ARN) of the instance profile.
         :param pulumi.Input[str] name: The name of the instance profile.
         """
-        pulumi.set(__self__, "arn", arn)
-        pulumi.set(__self__, "name", name)
+        if arn is not None:
+            pulumi.set(__self__, "arn", arn)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -2660,8 +2782,10 @@ class LaunchTemplateInstanceMarketOptionsArgs:
         :param pulumi.Input[str] market_type: The market type. Can be `spot`.
         :param pulumi.Input['LaunchTemplateInstanceMarketOptionsSpotOptionsArgs'] spot_options: The options for [Spot Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html)
         """
-        pulumi.set(__self__, "marketType", market_type)
-        pulumi.set(__self__, "spotOptions", spot_options)
+        if market_type is not None:
+            pulumi.set(__self__, "market_type", market_type)
+        if spot_options is not None:
+            pulumi.set(__self__, "spot_options", spot_options)
 
     @property
     @pulumi.getter(name="marketType")
@@ -2704,11 +2828,16 @@ class LaunchTemplateInstanceMarketOptionsSpotOptionsArgs:
         :param pulumi.Input[str] spot_instance_type: The Spot Instance request type. Can be `one-time`, or `persistent`.
         :param pulumi.Input[str] valid_until: The end date of the request.
         """
-        pulumi.set(__self__, "blockDurationMinutes", block_duration_minutes)
-        pulumi.set(__self__, "instanceInterruptionBehavior", instance_interruption_behavior)
-        pulumi.set(__self__, "maxPrice", max_price)
-        pulumi.set(__self__, "spotInstanceType", spot_instance_type)
-        pulumi.set(__self__, "validUntil", valid_until)
+        if block_duration_minutes is not None:
+            pulumi.set(__self__, "block_duration_minutes", block_duration_minutes)
+        if instance_interruption_behavior is not None:
+            pulumi.set(__self__, "instance_interruption_behavior", instance_interruption_behavior)
+        if max_price is not None:
+            pulumi.set(__self__, "max_price", max_price)
+        if spot_instance_type is not None:
+            pulumi.set(__self__, "spot_instance_type", spot_instance_type)
+        if valid_until is not None:
+            pulumi.set(__self__, "valid_until", valid_until)
 
     @property
     @pulumi.getter(name="blockDurationMinutes")
@@ -2779,7 +2908,7 @@ class LaunchTemplateLicenseSpecificationArgs:
         """
         :param pulumi.Input[str] license_configuration_arn: ARN of the license configuration.
         """
-        pulumi.set(__self__, "licenseConfigurationArn", license_configuration_arn)
+        pulumi.set(__self__, "license_configuration_arn", license_configuration_arn)
 
     @property
     @pulumi.getter(name="licenseConfigurationArn")
@@ -2805,9 +2934,12 @@ class LaunchTemplateMetadataOptionsArgs:
         :param pulumi.Input[float] http_put_response_hop_limit: The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel. Can be an integer from `1` to `64`. (Default: `1`).
         :param pulumi.Input[str] http_tokens: Whether or not the metadata service requires session tokens, also referred to as _Instance Metadata Service Version 2_. Can be `"optional"` or `"required"`. (Default: `"optional"`).
         """
-        pulumi.set(__self__, "httpEndpoint", http_endpoint)
-        pulumi.set(__self__, "httpPutResponseHopLimit", http_put_response_hop_limit)
-        pulumi.set(__self__, "httpTokens", http_tokens)
+        if http_endpoint is not None:
+            pulumi.set(__self__, "http_endpoint", http_endpoint)
+        if http_put_response_hop_limit is not None:
+            pulumi.set(__self__, "http_put_response_hop_limit", http_put_response_hop_limit)
+        if http_tokens is not None:
+            pulumi.set(__self__, "http_tokens", http_tokens)
 
     @property
     @pulumi.getter(name="httpEndpoint")
@@ -2853,7 +2985,8 @@ class LaunchTemplateMonitoringArgs:
         """
         :param pulumi.Input[bool] enabled: If `true`, the launched EC2 instance will have detailed monitoring enabled.
         """
-        pulumi.set(__self__, "enabled", enabled)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
 
     @property
     @pulumi.getter
@@ -2897,18 +3030,30 @@ class LaunchTemplateNetworkInterfaceArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] security_groups: A list of security group IDs to associate.
         :param pulumi.Input[str] subnet_id: The VPC Subnet ID to associate.
         """
-        pulumi.set(__self__, "associatePublicIpAddress", associate_public_ip_address)
-        pulumi.set(__self__, "deleteOnTermination", delete_on_termination)
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "deviceIndex", device_index)
-        pulumi.set(__self__, "ipv4AddressCount", ipv4_address_count)
-        pulumi.set(__self__, "ipv4Addresses", ipv4_addresses)
-        pulumi.set(__self__, "ipv6AddressCount", ipv6_address_count)
-        pulumi.set(__self__, "ipv6Addresses", ipv6_addresses)
-        pulumi.set(__self__, "networkInterfaceId", network_interface_id)
-        pulumi.set(__self__, "privateIpAddress", private_ip_address)
-        pulumi.set(__self__, "securityGroups", security_groups)
-        pulumi.set(__self__, "subnetId", subnet_id)
+        if associate_public_ip_address is not None:
+            pulumi.set(__self__, "associate_public_ip_address", associate_public_ip_address)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if device_index is not None:
+            pulumi.set(__self__, "device_index", device_index)
+        if ipv4_address_count is not None:
+            pulumi.set(__self__, "ipv4_address_count", ipv4_address_count)
+        if ipv4_addresses is not None:
+            pulumi.set(__self__, "ipv4_addresses", ipv4_addresses)
+        if ipv6_address_count is not None:
+            pulumi.set(__self__, "ipv6_address_count", ipv6_address_count)
+        if ipv6_addresses is not None:
+            pulumi.set(__self__, "ipv6_addresses", ipv6_addresses)
+        if network_interface_id is not None:
+            pulumi.set(__self__, "network_interface_id", network_interface_id)
+        if private_ip_address is not None:
+            pulumi.set(__self__, "private_ip_address", private_ip_address)
+        if security_groups is not None:
+            pulumi.set(__self__, "security_groups", security_groups)
+        if subnet_id is not None:
+            pulumi.set(__self__, "subnet_id", subnet_id)
 
     @property
     @pulumi.getter(name="associatePublicIpAddress")
@@ -3074,13 +3219,20 @@ class LaunchTemplatePlacementArgs:
         :param pulumi.Input[str] spread_domain: Reserved for future use.
         :param pulumi.Input[str] tenancy: The tenancy of the instance (if the instance is running in a VPC). Can be `default`, `dedicated`, or `host`.
         """
-        pulumi.set(__self__, "affinity", affinity)
-        pulumi.set(__self__, "availabilityZone", availability_zone)
-        pulumi.set(__self__, "groupName", group_name)
-        pulumi.set(__self__, "hostId", host_id)
-        pulumi.set(__self__, "partitionNumber", partition_number)
-        pulumi.set(__self__, "spreadDomain", spread_domain)
-        pulumi.set(__self__, "tenancy", tenancy)
+        if affinity is not None:
+            pulumi.set(__self__, "affinity", affinity)
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
+        if group_name is not None:
+            pulumi.set(__self__, "group_name", group_name)
+        if host_id is not None:
+            pulumi.set(__self__, "host_id", host_id)
+        if partition_number is not None:
+            pulumi.set(__self__, "partition_number", partition_number)
+        if spread_domain is not None:
+            pulumi.set(__self__, "spread_domain", spread_domain)
+        if tenancy is not None:
+            pulumi.set(__self__, "tenancy", tenancy)
 
     @property
     @pulumi.getter
@@ -3176,8 +3328,10 @@ class LaunchTemplateTagSpecificationArgs:
         :param pulumi.Input[str] resource_type: The type of resource to tag. Valid values are `instance` and `volume`.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A map of tags to assign to the resource.
         """
-        pulumi.set(__self__, "resourceType", resource_type)
-        pulumi.set(__self__, "tags", tags)
+        if resource_type is not None:
+            pulumi.set(__self__, "resource_type", resource_type)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="resourceType")
@@ -3230,14 +3384,18 @@ class NetworkAclEgressArgs:
         :param pulumi.Input[str] ipv6_cidr_block: The IPv6 CIDR block.
         """
         pulumi.set(__self__, "action", action)
-        pulumi.set(__self__, "fromPort", from_port)
+        pulumi.set(__self__, "from_port", from_port)
         pulumi.set(__self__, "protocol", protocol)
-        pulumi.set(__self__, "ruleNo", rule_no)
-        pulumi.set(__self__, "toPort", to_port)
-        pulumi.set(__self__, "cidrBlock", cidr_block)
-        pulumi.set(__self__, "icmpCode", icmp_code)
-        pulumi.set(__self__, "icmpType", icmp_type)
-        pulumi.set(__self__, "ipv6CidrBlock", ipv6_cidr_block)
+        pulumi.set(__self__, "rule_no", rule_no)
+        pulumi.set(__self__, "to_port", to_port)
+        if cidr_block is not None:
+            pulumi.set(__self__, "cidr_block", cidr_block)
+        if icmp_code is not None:
+            pulumi.set(__self__, "icmp_code", icmp_code)
+        if icmp_type is not None:
+            pulumi.set(__self__, "icmp_type", icmp_type)
+        if ipv6_cidr_block is not None:
+            pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
 
     @property
     @pulumi.getter
@@ -3376,14 +3534,18 @@ class NetworkAclIngressArgs:
         :param pulumi.Input[str] ipv6_cidr_block: The IPv6 CIDR block.
         """
         pulumi.set(__self__, "action", action)
-        pulumi.set(__self__, "fromPort", from_port)
+        pulumi.set(__self__, "from_port", from_port)
         pulumi.set(__self__, "protocol", protocol)
-        pulumi.set(__self__, "ruleNo", rule_no)
-        pulumi.set(__self__, "toPort", to_port)
-        pulumi.set(__self__, "cidrBlock", cidr_block)
-        pulumi.set(__self__, "icmpCode", icmp_code)
-        pulumi.set(__self__, "icmpType", icmp_type)
-        pulumi.set(__self__, "ipv6CidrBlock", ipv6_cidr_block)
+        pulumi.set(__self__, "rule_no", rule_no)
+        pulumi.set(__self__, "to_port", to_port)
+        if cidr_block is not None:
+            pulumi.set(__self__, "cidr_block", cidr_block)
+        if icmp_code is not None:
+            pulumi.set(__self__, "icmp_code", icmp_code)
+        if icmp_type is not None:
+            pulumi.set(__self__, "icmp_type", icmp_type)
+        if ipv6_cidr_block is not None:
+            pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
 
     @property
     @pulumi.getter
@@ -3506,9 +3668,10 @@ class NetworkInterfaceAttachmentArgs:
         :param pulumi.Input[float] device_index: Integer to define the devices index.
         :param pulumi.Input[str] instance: ID of the instance to attach to.
         """
-        pulumi.set(__self__, "deviceIndex", device_index)
+        pulumi.set(__self__, "device_index", device_index)
         pulumi.set(__self__, "instance", instance)
-        pulumi.set(__self__, "attachmentId", attachment_id)
+        if attachment_id is not None:
+            pulumi.set(__self__, "attachment_id", attachment_id)
 
     @property
     @pulumi.getter(name="deviceIndex")
@@ -3560,9 +3723,12 @@ class PeeringConnectionOptionsAccepterArgs:
                instance in a peer VPC. This enables an outbound communication from the local VPC to the remote ClassicLink
                connection. This option is not supported for inter-region VPC peering.
         """
-        pulumi.set(__self__, "allowClassicLinkToRemoteVpc", allow_classic_link_to_remote_vpc)
-        pulumi.set(__self__, "allowRemoteVpcDnsResolution", allow_remote_vpc_dns_resolution)
-        pulumi.set(__self__, "allowVpcToRemoteClassicLink", allow_vpc_to_remote_classic_link)
+        if allow_classic_link_to_remote_vpc is not None:
+            pulumi.set(__self__, "allow_classic_link_to_remote_vpc", allow_classic_link_to_remote_vpc)
+        if allow_remote_vpc_dns_resolution is not None:
+            pulumi.set(__self__, "allow_remote_vpc_dns_resolution", allow_remote_vpc_dns_resolution)
+        if allow_vpc_to_remote_classic_link is not None:
+            pulumi.set(__self__, "allow_vpc_to_remote_classic_link", allow_vpc_to_remote_classic_link)
 
     @property
     @pulumi.getter(name="allowClassicLinkToRemoteVpc")
@@ -3622,9 +3788,12 @@ class PeeringConnectionOptionsRequesterArgs:
                instance in a peer VPC. This enables an outbound communication from the local VPC to the remote ClassicLink
                connection. This option is not supported for inter-region VPC peering.
         """
-        pulumi.set(__self__, "allowClassicLinkToRemoteVpc", allow_classic_link_to_remote_vpc)
-        pulumi.set(__self__, "allowRemoteVpcDnsResolution", allow_remote_vpc_dns_resolution)
-        pulumi.set(__self__, "allowVpcToRemoteClassicLink", allow_vpc_to_remote_classic_link)
+        if allow_classic_link_to_remote_vpc is not None:
+            pulumi.set(__self__, "allow_classic_link_to_remote_vpc", allow_classic_link_to_remote_vpc)
+        if allow_remote_vpc_dns_resolution is not None:
+            pulumi.set(__self__, "allow_remote_vpc_dns_resolution", allow_remote_vpc_dns_resolution)
+        if allow_vpc_to_remote_classic_link is not None:
+            pulumi.set(__self__, "allow_vpc_to_remote_classic_link", allow_vpc_to_remote_classic_link)
 
     @property
     @pulumi.getter(name="allowClassicLinkToRemoteVpc")
@@ -3691,15 +3860,24 @@ class RouteTableRouteArgs:
         :param pulumi.Input[str] transit_gateway_id: Identifier of an EC2 Transit Gateway.
         :param pulumi.Input[str] vpc_peering_connection_id: Identifier of a VPC peering connection.
         """
-        pulumi.set(__self__, "cidrBlock", cidr_block)
-        pulumi.set(__self__, "egressOnlyGatewayId", egress_only_gateway_id)
-        pulumi.set(__self__, "gatewayId", gateway_id)
-        pulumi.set(__self__, "instanceId", instance_id)
-        pulumi.set(__self__, "ipv6CidrBlock", ipv6_cidr_block)
-        pulumi.set(__self__, "natGatewayId", nat_gateway_id)
-        pulumi.set(__self__, "networkInterfaceId", network_interface_id)
-        pulumi.set(__self__, "transitGatewayId", transit_gateway_id)
-        pulumi.set(__self__, "vpcPeeringConnectionId", vpc_peering_connection_id)
+        if cidr_block is not None:
+            pulumi.set(__self__, "cidr_block", cidr_block)
+        if egress_only_gateway_id is not None:
+            pulumi.set(__self__, "egress_only_gateway_id", egress_only_gateway_id)
+        if gateway_id is not None:
+            pulumi.set(__self__, "gateway_id", gateway_id)
+        if instance_id is not None:
+            pulumi.set(__self__, "instance_id", instance_id)
+        if ipv6_cidr_block is not None:
+            pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
+        if nat_gateway_id is not None:
+            pulumi.set(__self__, "nat_gateway_id", nat_gateway_id)
+        if network_interface_id is not None:
+            pulumi.set(__self__, "network_interface_id", network_interface_id)
+        if transit_gateway_id is not None:
+            pulumi.set(__self__, "transit_gateway_id", transit_gateway_id)
+        if vpc_peering_connection_id is not None:
+            pulumi.set(__self__, "vpc_peering_connection_id", vpc_peering_connection_id)
 
     @property
     @pulumi.getter(name="cidrBlock")
@@ -3836,15 +4014,21 @@ class SecurityGroupEgressArgs:
         :param pulumi.Input[bool] self: If true, the security group itself will be added as
                a source to this egress rule.
         """
-        pulumi.set(__self__, "fromPort", from_port)
+        pulumi.set(__self__, "from_port", from_port)
         pulumi.set(__self__, "protocol", protocol)
-        pulumi.set(__self__, "toPort", to_port)
-        pulumi.set(__self__, "cidrBlocks", cidr_blocks)
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "ipv6CidrBlocks", ipv6_cidr_blocks)
-        pulumi.set(__self__, "prefixListIds", prefix_list_ids)
-        pulumi.set(__self__, "securityGroups", security_groups)
-        pulumi.set(__self__, "self", self)
+        pulumi.set(__self__, "to_port", to_port)
+        if cidr_blocks is not None:
+            pulumi.set(__self__, "cidr_blocks", cidr_blocks)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if ipv6_cidr_blocks is not None:
+            pulumi.set(__self__, "ipv6_cidr_blocks", ipv6_cidr_blocks)
+        if prefix_list_ids is not None:
+            pulumi.set(__self__, "prefix_list_ids", prefix_list_ids)
+        if security_groups is not None:
+            pulumi.set(__self__, "security_groups", security_groups)
+        if self is not None:
+            pulumi.set(__self__, "self", self)
 
     @property
     @pulumi.getter(name="fromPort")
@@ -3984,15 +4168,21 @@ class SecurityGroupIngressArgs:
         :param pulumi.Input[bool] self: If true, the security group itself will be added as
                a source to this egress rule.
         """
-        pulumi.set(__self__, "fromPort", from_port)
+        pulumi.set(__self__, "from_port", from_port)
         pulumi.set(__self__, "protocol", protocol)
-        pulumi.set(__self__, "toPort", to_port)
-        pulumi.set(__self__, "cidrBlocks", cidr_blocks)
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "ipv6CidrBlocks", ipv6_cidr_blocks)
-        pulumi.set(__self__, "prefixListIds", prefix_list_ids)
-        pulumi.set(__self__, "securityGroups", security_groups)
-        pulumi.set(__self__, "self", self)
+        pulumi.set(__self__, "to_port", to_port)
+        if cidr_blocks is not None:
+            pulumi.set(__self__, "cidr_blocks", cidr_blocks)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if ipv6_cidr_blocks is not None:
+            pulumi.set(__self__, "ipv6_cidr_blocks", ipv6_cidr_blocks)
+        if prefix_list_ids is not None:
+            pulumi.set(__self__, "prefix_list_ids", prefix_list_ids)
+        if security_groups is not None:
+            pulumi.set(__self__, "security_groups", security_groups)
+        if self is not None:
+            pulumi.set(__self__, "self", self)
 
     @property
     @pulumi.getter(name="fromPort")
@@ -4138,25 +4328,43 @@ class SpotFleetRequestLaunchSpecificationArgs:
         :param pulumi.Input[str] weighted_capacity: The capacity added to the fleet by a fulfilled request.
         """
         pulumi.set(__self__, "ami", ami)
-        pulumi.set(__self__, "instanceType", instance_type)
-        pulumi.set(__self__, "associatePublicIpAddress", associate_public_ip_address)
-        pulumi.set(__self__, "availabilityZone", availability_zone)
-        pulumi.set(__self__, "ebsBlockDevices", ebs_block_devices)
-        pulumi.set(__self__, "ebsOptimized", ebs_optimized)
-        pulumi.set(__self__, "ephemeralBlockDevices", ephemeral_block_devices)
-        pulumi.set(__self__, "iamInstanceProfile", iam_instance_profile)
-        pulumi.set(__self__, "iamInstanceProfileArn", iam_instance_profile_arn)
-        pulumi.set(__self__, "keyName", key_name)
-        pulumi.set(__self__, "monitoring", monitoring)
-        pulumi.set(__self__, "placementGroup", placement_group)
-        pulumi.set(__self__, "placementTenancy", placement_tenancy)
-        pulumi.set(__self__, "rootBlockDevices", root_block_devices)
-        pulumi.set(__self__, "spotPrice", spot_price)
-        pulumi.set(__self__, "subnetId", subnet_id)
-        pulumi.set(__self__, "tags", tags)
-        pulumi.set(__self__, "userData", user_data)
-        pulumi.set(__self__, "vpcSecurityGroupIds", vpc_security_group_ids)
-        pulumi.set(__self__, "weightedCapacity", weighted_capacity)
+        pulumi.set(__self__, "instance_type", instance_type)
+        if associate_public_ip_address is not None:
+            pulumi.set(__self__, "associate_public_ip_address", associate_public_ip_address)
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
+        if ebs_block_devices is not None:
+            pulumi.set(__self__, "ebs_block_devices", ebs_block_devices)
+        if ebs_optimized is not None:
+            pulumi.set(__self__, "ebs_optimized", ebs_optimized)
+        if ephemeral_block_devices is not None:
+            pulumi.set(__self__, "ephemeral_block_devices", ephemeral_block_devices)
+        if iam_instance_profile is not None:
+            pulumi.set(__self__, "iam_instance_profile", iam_instance_profile)
+        if iam_instance_profile_arn is not None:
+            pulumi.set(__self__, "iam_instance_profile_arn", iam_instance_profile_arn)
+        if key_name is not None:
+            pulumi.set(__self__, "key_name", key_name)
+        if monitoring is not None:
+            pulumi.set(__self__, "monitoring", monitoring)
+        if placement_group is not None:
+            pulumi.set(__self__, "placement_group", placement_group)
+        if placement_tenancy is not None:
+            pulumi.set(__self__, "placement_tenancy", placement_tenancy)
+        if root_block_devices is not None:
+            pulumi.set(__self__, "root_block_devices", root_block_devices)
+        if spot_price is not None:
+            pulumi.set(__self__, "spot_price", spot_price)
+        if subnet_id is not None:
+            pulumi.set(__self__, "subnet_id", subnet_id)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if user_data is not None:
+            pulumi.set(__self__, "user_data", user_data)
+        if vpc_security_group_ids is not None:
+            pulumi.set(__self__, "vpc_security_group_ids", vpc_security_group_ids)
+        if weighted_capacity is not None:
+            pulumi.set(__self__, "weighted_capacity", weighted_capacity)
 
     @property
     @pulumi.getter
@@ -4368,14 +4576,21 @@ class SpotFleetRequestLaunchSpecificationEbsBlockDeviceArgs:
                  snapshot_id: Optional[pulumi.Input[str]] = None,
                  volume_size: Optional[pulumi.Input[float]] = None,
                  volume_type: Optional[pulumi.Input[str]] = None):
-        pulumi.set(__self__, "deviceName", device_name)
-        pulumi.set(__self__, "deleteOnTermination", delete_on_termination)
-        pulumi.set(__self__, "encrypted", encrypted)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "kmsKeyId", kms_key_id)
-        pulumi.set(__self__, "snapshotId", snapshot_id)
-        pulumi.set(__self__, "volumeSize", volume_size)
-        pulumi.set(__self__, "volumeType", volume_type)
+        pulumi.set(__self__, "device_name", device_name)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+        if encrypted is not None:
+            pulumi.set(__self__, "encrypted", encrypted)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if kms_key_id is not None:
+            pulumi.set(__self__, "kms_key_id", kms_key_id)
+        if snapshot_id is not None:
+            pulumi.set(__self__, "snapshot_id", snapshot_id)
+        if volume_size is not None:
+            pulumi.set(__self__, "volume_size", volume_size)
+        if volume_type is not None:
+            pulumi.set(__self__, "volume_type", volume_type)
 
     @property
     @pulumi.getter(name="deviceName")
@@ -4455,8 +4670,8 @@ class SpotFleetRequestLaunchSpecificationEphemeralBlockDeviceArgs:
     def __init__(__self__, *,
                  device_name: pulumi.Input[str],
                  virtual_name: pulumi.Input[str]):
-        pulumi.set(__self__, "deviceName", device_name)
-        pulumi.set(__self__, "virtualName", virtual_name)
+        pulumi.set(__self__, "device_name", device_name)
+        pulumi.set(__self__, "virtual_name", virtual_name)
 
     @property
     @pulumi.getter(name="deviceName")
@@ -4486,12 +4701,18 @@ class SpotFleetRequestLaunchSpecificationRootBlockDeviceArgs:
                  kms_key_id: Optional[pulumi.Input[str]] = None,
                  volume_size: Optional[pulumi.Input[float]] = None,
                  volume_type: Optional[pulumi.Input[str]] = None):
-        pulumi.set(__self__, "deleteOnTermination", delete_on_termination)
-        pulumi.set(__self__, "encrypted", encrypted)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "kmsKeyId", kms_key_id)
-        pulumi.set(__self__, "volumeSize", volume_size)
-        pulumi.set(__self__, "volumeType", volume_type)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+        if encrypted is not None:
+            pulumi.set(__self__, "encrypted", encrypted)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if kms_key_id is not None:
+            pulumi.set(__self__, "kms_key_id", kms_key_id)
+        if volume_size is not None:
+            pulumi.set(__self__, "volume_size", volume_size)
+        if volume_type is not None:
+            pulumi.set(__self__, "volume_type", volume_type)
 
     @property
     @pulumi.getter(name="deleteOnTermination")
@@ -4557,8 +4778,9 @@ class SpotFleetRequestLaunchTemplateConfigArgs:
         :param pulumi.Input['SpotFleetRequestLaunchTemplateConfigLaunchTemplateSpecificationArgs'] launch_template_specification: Launch template specification. See Launch Template Specification below for more details.
         :param pulumi.Input[List[pulumi.Input['SpotFleetRequestLaunchTemplateConfigOverrideArgs']]] overrides: One or more override configurations. See Overrides below for more details.
         """
-        pulumi.set(__self__, "launchTemplateSpecification", launch_template_specification)
-        pulumi.set(__self__, "overrides", overrides)
+        pulumi.set(__self__, "launch_template_specification", launch_template_specification)
+        if overrides is not None:
+            pulumi.set(__self__, "overrides", overrides)
 
     @property
     @pulumi.getter(name="launchTemplateSpecification")
@@ -4596,9 +4818,12 @@ class SpotFleetRequestLaunchTemplateConfigLaunchTemplateSpecificationArgs:
         :param pulumi.Input[str] name: The name of the launch template. Conflicts with `id`.
         :param pulumi.Input[str] version: Template version. Unlike the autoscaling equivalent, does not support `$Latest` or `$Default`, so use the launch_template resource's attribute, e.g. `"${aws_launch_template.foo.latest_version}"`. It will use the default version if omitted.
         """
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "version", version)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
 
     @property
     @pulumi.getter
@@ -4654,12 +4879,18 @@ class SpotFleetRequestLaunchTemplateConfigOverrideArgs:
         :param pulumi.Input[str] subnet_id: The subnet in which to launch the requested instance.
         :param pulumi.Input[float] weighted_capacity: The capacity added to the fleet by a fulfilled request.
         """
-        pulumi.set(__self__, "availabilityZone", availability_zone)
-        pulumi.set(__self__, "instanceType", instance_type)
-        pulumi.set(__self__, "priority", priority)
-        pulumi.set(__self__, "spotPrice", spot_price)
-        pulumi.set(__self__, "subnetId", subnet_id)
-        pulumi.set(__self__, "weightedCapacity", weighted_capacity)
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
+        if instance_type is not None:
+            pulumi.set(__self__, "instance_type", instance_type)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+        if spot_price is not None:
+            pulumi.set(__self__, "spot_price", spot_price)
+        if subnet_id is not None:
+            pulumi.set(__self__, "subnet_id", subnet_id)
+        if weighted_capacity is not None:
+            pulumi.set(__self__, "weighted_capacity", weighted_capacity)
 
     @property
     @pulumi.getter(name="availabilityZone")
@@ -4741,7 +4972,8 @@ class SpotInstanceRequestCreditSpecificationArgs:
         """
         :param pulumi.Input[str] cpu_credits: The credit option for CPU usage. Can be `"standard"` or `"unlimited"`. T3 instances are launched as unlimited by default. T2 instances are launched as standard by default.
         """
-        pulumi.set(__self__, "cpuCredits", cpu_credits)
+        if cpu_credits is not None:
+            pulumi.set(__self__, "cpu_credits", cpu_credits)
 
     @property
     @pulumi.getter(name="cpuCredits")
@@ -4784,15 +5016,23 @@ class SpotInstanceRequestEbsBlockDeviceArgs:
         :param pulumi.Input[str] volume_type: The type of volume. Can be `"standard"`, `"gp2"`,
                or `"io1"`. (Default: `"gp2"`).
         """
-        pulumi.set(__self__, "deviceName", device_name)
-        pulumi.set(__self__, "deleteOnTermination", delete_on_termination)
-        pulumi.set(__self__, "encrypted", encrypted)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "kmsKeyId", kms_key_id)
-        pulumi.set(__self__, "snapshotId", snapshot_id)
-        pulumi.set(__self__, "volumeId", volume_id)
-        pulumi.set(__self__, "volumeSize", volume_size)
-        pulumi.set(__self__, "volumeType", volume_type)
+        pulumi.set(__self__, "device_name", device_name)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+        if encrypted is not None:
+            pulumi.set(__self__, "encrypted", encrypted)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if kms_key_id is not None:
+            pulumi.set(__self__, "kms_key_id", kms_key_id)
+        if snapshot_id is not None:
+            pulumi.set(__self__, "snapshot_id", snapshot_id)
+        if volume_id is not None:
+            pulumi.set(__self__, "volume_id", volume_id)
+        if volume_size is not None:
+            pulumi.set(__self__, "volume_size", volume_size)
+        if volume_type is not None:
+            pulumi.set(__self__, "volume_type", volume_type)
 
     @property
     @pulumi.getter(name="deviceName")
@@ -4919,9 +5159,11 @@ class SpotInstanceRequestEphemeralBlockDeviceArgs:
                Name](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#InstanceStoreDeviceNames)
                (e.g. `"ephemeral0"`).
         """
-        pulumi.set(__self__, "deviceName", device_name)
-        pulumi.set(__self__, "noDevice", no_device)
-        pulumi.set(__self__, "virtualName", virtual_name)
+        pulumi.set(__self__, "device_name", device_name)
+        if no_device is not None:
+            pulumi.set(__self__, "no_device", no_device)
+        if virtual_name is not None:
+            pulumi.set(__self__, "virtual_name", virtual_name)
 
     @property
     @pulumi.getter(name="deviceName")
@@ -4973,9 +5215,12 @@ class SpotInstanceRequestMetadataOptionsArgs:
         :param pulumi.Input[float] http_put_response_hop_limit: The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel. Can be an integer from `1` to `64`. (Default: `1`).
         :param pulumi.Input[str] http_tokens: Whether or not the metadata service requires session tokens, also referred to as _Instance Metadata Service Version 2_. Can be `"optional"` or `"required"`. (Default: `"optional"`).
         """
-        pulumi.set(__self__, "httpEndpoint", http_endpoint)
-        pulumi.set(__self__, "httpPutResponseHopLimit", http_put_response_hop_limit)
-        pulumi.set(__self__, "httpTokens", http_tokens)
+        if http_endpoint is not None:
+            pulumi.set(__self__, "http_endpoint", http_endpoint)
+        if http_put_response_hop_limit is not None:
+            pulumi.set(__self__, "http_put_response_hop_limit", http_put_response_hop_limit)
+        if http_tokens is not None:
+            pulumi.set(__self__, "http_tokens", http_tokens)
 
     @property
     @pulumi.getter(name="httpEndpoint")
@@ -5025,9 +5270,10 @@ class SpotInstanceRequestNetworkInterfaceArgs:
         :param pulumi.Input[str] network_interface_id: The ID of the network interface to attach.
         :param pulumi.Input[bool] delete_on_termination: Whether or not to delete the network interface on instance termination. Defaults to `false`. Currently, the only valid value is `false`, as this is only supported when creating new network interfaces when launching an instance.
         """
-        pulumi.set(__self__, "deviceIndex", device_index)
-        pulumi.set(__self__, "networkInterfaceId", network_interface_id)
-        pulumi.set(__self__, "deleteOnTermination", delete_on_termination)
+        pulumi.set(__self__, "device_index", device_index)
+        pulumi.set(__self__, "network_interface_id", network_interface_id)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
 
     @property
     @pulumi.getter(name="deviceIndex")
@@ -5090,14 +5336,22 @@ class SpotInstanceRequestRootBlockDeviceArgs:
         :param pulumi.Input[float] volume_size: The size of the volume in gibibytes (GiB).
         :param pulumi.Input[str] volume_type: The type of volume. Can be `"standard"`, `"gp2"`, `"io1"`, `"sc1"`, or `"st1"`. (Default: `"standard"`).
         """
-        pulumi.set(__self__, "deleteOnTermination", delete_on_termination)
-        pulumi.set(__self__, "deviceName", device_name)
-        pulumi.set(__self__, "encrypted", encrypted)
-        pulumi.set(__self__, "iops", iops)
-        pulumi.set(__self__, "kmsKeyId", kms_key_id)
-        pulumi.set(__self__, "volumeId", volume_id)
-        pulumi.set(__self__, "volumeSize", volume_size)
-        pulumi.set(__self__, "volumeType", volume_type)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+        if device_name is not None:
+            pulumi.set(__self__, "device_name", device_name)
+        if encrypted is not None:
+            pulumi.set(__self__, "encrypted", encrypted)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if kms_key_id is not None:
+            pulumi.set(__self__, "kms_key_id", kms_key_id)
+        if volume_id is not None:
+            pulumi.set(__self__, "volume_id", volume_id)
+        if volume_size is not None:
+            pulumi.set(__self__, "volume_size", volume_size)
+        if volume_type is not None:
+            pulumi.set(__self__, "volume_type", volume_type)
 
     @property
     @pulumi.getter(name="deleteOnTermination")
@@ -5206,8 +5460,10 @@ class TrafficMirrorFilterRuleDestinationPortRangeArgs:
         :param pulumi.Input[float] from_port: Starting port of the range
         :param pulumi.Input[float] to_port: Ending port of the range
         """
-        pulumi.set(__self__, "fromPort", from_port)
-        pulumi.set(__self__, "toPort", to_port)
+        if from_port is not None:
+            pulumi.set(__self__, "from_port", from_port)
+        if to_port is not None:
+            pulumi.set(__self__, "to_port", to_port)
 
     @property
     @pulumi.getter(name="fromPort")
@@ -5243,8 +5499,10 @@ class TrafficMirrorFilterRuleSourcePortRangeArgs:
         :param pulumi.Input[float] from_port: Starting port of the range
         :param pulumi.Input[float] to_port: Ending port of the range
         """
-        pulumi.set(__self__, "fromPort", from_port)
-        pulumi.set(__self__, "toPort", to_port)
+        if from_port is not None:
+            pulumi.set(__self__, "from_port", from_port)
+        if to_port is not None:
+            pulumi.set(__self__, "to_port", to_port)
 
     @property
     @pulumi.getter(name="fromPort")
@@ -5280,8 +5538,10 @@ class VpcEndpointDnsEntryArgs:
         :param pulumi.Input[str] dns_name: The DNS name.
         :param pulumi.Input[str] hosted_zone_id: The ID of the private hosted zone.
         """
-        pulumi.set(__self__, "dnsName", dns_name)
-        pulumi.set(__self__, "hostedZoneId", hosted_zone_id)
+        if dns_name is not None:
+            pulumi.set(__self__, "dns_name", dns_name)
+        if hosted_zone_id is not None:
+            pulumi.set(__self__, "hosted_zone_id", hosted_zone_id)
 
     @property
     @pulumi.getter(name="dnsName")
@@ -5326,9 +5586,12 @@ class VpcPeeringConnectionAccepterArgs:
                instance in a peer VPC. This enables an outbound communication from the local VPC to the remote ClassicLink
                connection.
         """
-        pulumi.set(__self__, "allowClassicLinkToRemoteVpc", allow_classic_link_to_remote_vpc)
-        pulumi.set(__self__, "allowRemoteVpcDnsResolution", allow_remote_vpc_dns_resolution)
-        pulumi.set(__self__, "allowVpcToRemoteClassicLink", allow_vpc_to_remote_classic_link)
+        if allow_classic_link_to_remote_vpc is not None:
+            pulumi.set(__self__, "allow_classic_link_to_remote_vpc", allow_classic_link_to_remote_vpc)
+        if allow_remote_vpc_dns_resolution is not None:
+            pulumi.set(__self__, "allow_remote_vpc_dns_resolution", allow_remote_vpc_dns_resolution)
+        if allow_vpc_to_remote_classic_link is not None:
+            pulumi.set(__self__, "allow_vpc_to_remote_classic_link", allow_vpc_to_remote_classic_link)
 
     @property
     @pulumi.getter(name="allowClassicLinkToRemoteVpc")
@@ -5388,9 +5651,12 @@ class VpcPeeringConnectionAccepterAccepterArgs:
         :param pulumi.Input[bool] allow_vpc_to_remote_classic_link: Indicates whether a local VPC can communicate with a ClassicLink
                connection in the peer VPC over the VPC Peering Connection.
         """
-        pulumi.set(__self__, "allowClassicLinkToRemoteVpc", allow_classic_link_to_remote_vpc)
-        pulumi.set(__self__, "allowRemoteVpcDnsResolution", allow_remote_vpc_dns_resolution)
-        pulumi.set(__self__, "allowVpcToRemoteClassicLink", allow_vpc_to_remote_classic_link)
+        if allow_classic_link_to_remote_vpc is not None:
+            pulumi.set(__self__, "allow_classic_link_to_remote_vpc", allow_classic_link_to_remote_vpc)
+        if allow_remote_vpc_dns_resolution is not None:
+            pulumi.set(__self__, "allow_remote_vpc_dns_resolution", allow_remote_vpc_dns_resolution)
+        if allow_vpc_to_remote_classic_link is not None:
+            pulumi.set(__self__, "allow_vpc_to_remote_classic_link", allow_vpc_to_remote_classic_link)
 
     @property
     @pulumi.getter(name="allowClassicLinkToRemoteVpc")
@@ -5446,9 +5712,12 @@ class VpcPeeringConnectionAccepterRequesterArgs:
         :param pulumi.Input[bool] allow_vpc_to_remote_classic_link: Indicates whether a local VPC can communicate with a ClassicLink
                connection in the peer VPC over the VPC Peering Connection.
         """
-        pulumi.set(__self__, "allowClassicLinkToRemoteVpc", allow_classic_link_to_remote_vpc)
-        pulumi.set(__self__, "allowRemoteVpcDnsResolution", allow_remote_vpc_dns_resolution)
-        pulumi.set(__self__, "allowVpcToRemoteClassicLink", allow_vpc_to_remote_classic_link)
+        if allow_classic_link_to_remote_vpc is not None:
+            pulumi.set(__self__, "allow_classic_link_to_remote_vpc", allow_classic_link_to_remote_vpc)
+        if allow_remote_vpc_dns_resolution is not None:
+            pulumi.set(__self__, "allow_remote_vpc_dns_resolution", allow_remote_vpc_dns_resolution)
+        if allow_vpc_to_remote_classic_link is not None:
+            pulumi.set(__self__, "allow_vpc_to_remote_classic_link", allow_vpc_to_remote_classic_link)
 
     @property
     @pulumi.getter(name="allowClassicLinkToRemoteVpc")
@@ -5508,9 +5777,12 @@ class VpcPeeringConnectionRequesterArgs:
                instance in a peer VPC. This enables an outbound communication from the local VPC to the remote ClassicLink
                connection.
         """
-        pulumi.set(__self__, "allowClassicLinkToRemoteVpc", allow_classic_link_to_remote_vpc)
-        pulumi.set(__self__, "allowRemoteVpcDnsResolution", allow_remote_vpc_dns_resolution)
-        pulumi.set(__self__, "allowVpcToRemoteClassicLink", allow_vpc_to_remote_classic_link)
+        if allow_classic_link_to_remote_vpc is not None:
+            pulumi.set(__self__, "allow_classic_link_to_remote_vpc", allow_classic_link_to_remote_vpc)
+        if allow_remote_vpc_dns_resolution is not None:
+            pulumi.set(__self__, "allow_remote_vpc_dns_resolution", allow_remote_vpc_dns_resolution)
+        if allow_vpc_to_remote_classic_link is not None:
+            pulumi.set(__self__, "allow_vpc_to_remote_classic_link", allow_vpc_to_remote_classic_link)
 
     @property
     @pulumi.getter(name="allowClassicLinkToRemoteVpc")
@@ -5562,9 +5834,12 @@ class VpnConnectionRouteArgs:
                  destination_cidr_block: Optional[pulumi.Input[str]] = None,
                  source: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[str]] = None):
-        pulumi.set(__self__, "destinationCidrBlock", destination_cidr_block)
-        pulumi.set(__self__, "source", source)
-        pulumi.set(__self__, "state", state)
+        if destination_cidr_block is not None:
+            pulumi.set(__self__, "destination_cidr_block", destination_cidr_block)
+        if source is not None:
+            pulumi.set(__self__, "source", source)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
 
     @property
     @pulumi.getter(name="destinationCidrBlock")
@@ -5602,11 +5877,16 @@ class VpnConnectionVgwTelemetryArgs:
                  outside_ip_address: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  status_message: Optional[pulumi.Input[str]] = None):
-        pulumi.set(__self__, "acceptedRouteCount", accepted_route_count)
-        pulumi.set(__self__, "lastStatusChange", last_status_change)
-        pulumi.set(__self__, "outsideIpAddress", outside_ip_address)
-        pulumi.set(__self__, "status", status)
-        pulumi.set(__self__, "statusMessage", status_message)
+        if accepted_route_count is not None:
+            pulumi.set(__self__, "accepted_route_count", accepted_route_count)
+        if last_status_change is not None:
+            pulumi.set(__self__, "last_status_change", last_status_change)
+        if outside_ip_address is not None:
+            pulumi.set(__self__, "outside_ip_address", outside_ip_address)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if status_message is not None:
+            pulumi.set(__self__, "status_message", status_message)
 
     @property
     @pulumi.getter(name="acceptedRouteCount")

@@ -14,31 +14,6 @@ __all__ = ['Plan']
 
 
 class Plan(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the backup plan.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The display name of a backup plan.
-    """
-
-    rules: pulumi.Output[List['outputs.PlanRule']] = pulumi.property("rules")
-    """
-    A rule object that specifies a scheduled task that is used to back up a selection of resources.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Metadata that you can assign to help organize the plans you create.
-    """
-
-    version: pulumi.Output[str] = pulumi.property("version")
-    """
-    Unique, randomly generated, Unicode, UTF-8 encoded string that serves as the version ID of the backup plan.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -132,6 +107,46 @@ class Plan(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["version"] = version
         return Plan(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the backup plan.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The display name of a backup plan.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def rules(self) -> List['outputs.PlanRule']:
+        """
+        A rule object that specifies a scheduled task that is used to back up a selection of resources.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Metadata that you can assign to help organize the plans you create.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def version(self) -> str:
+        """
+        Unique, randomly generated, Unicode, UTF-8 encoded string that serves as the version ID of the backup plan.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

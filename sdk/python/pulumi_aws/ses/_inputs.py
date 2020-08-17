@@ -32,9 +32,9 @@ class EventDestinationCloudwatchDestinationArgs:
         :param pulumi.Input[str] dimension_name: The name for the dimension
         :param pulumi.Input[str] value_source: The source for the value. It can be either `"messageTag"` or `"emailHeader"`
         """
-        pulumi.set(__self__, "defaultValue", default_value)
-        pulumi.set(__self__, "dimensionName", dimension_name)
-        pulumi.set(__self__, "valueSource", value_source)
+        pulumi.set(__self__, "default_value", default_value)
+        pulumi.set(__self__, "dimension_name", dimension_name)
+        pulumi.set(__self__, "value_source", value_source)
 
     @property
     @pulumi.getter(name="defaultValue")
@@ -82,8 +82,8 @@ class EventDestinationKinesisDestinationArgs:
         :param pulumi.Input[str] role_arn: The ARN of the role that has permissions to access the Kinesis Stream
         :param pulumi.Input[str] stream_arn: The ARN of the Kinesis Stream
         """
-        pulumi.set(__self__, "roleArn", role_arn)
-        pulumi.set(__self__, "streamArn", stream_arn)
+        pulumi.set(__self__, "role_arn", role_arn)
+        pulumi.set(__self__, "stream_arn", stream_arn)
 
     @property
     @pulumi.getter(name="roleArn")
@@ -117,7 +117,7 @@ class EventDestinationSnsDestinationArgs:
         """
         :param pulumi.Input[str] topic_arn: The ARN of the SNS topic
         """
-        pulumi.set(__self__, "topicArn", topic_arn)
+        pulumi.set(__self__, "topic_arn", topic_arn)
 
     @property
     @pulumi.getter(name="topicArn")
@@ -143,8 +143,8 @@ class ReceiptRuleAddHeaderActionArgs:
         :param pulumi.Input[str] header_value: The value of the header to add
         :param pulumi.Input[float] position: The position of the action in the receipt rule
         """
-        pulumi.set(__self__, "headerName", header_name)
-        pulumi.set(__self__, "headerValue", header_value)
+        pulumi.set(__self__, "header_name", header_name)
+        pulumi.set(__self__, "header_value", header_value)
         pulumi.set(__self__, "position", position)
 
     @property
@@ -204,9 +204,11 @@ class ReceiptRuleBounceActionArgs:
         pulumi.set(__self__, "message", message)
         pulumi.set(__self__, "position", position)
         pulumi.set(__self__, "sender", sender)
-        pulumi.set(__self__, "smtpReplyCode", smtp_reply_code)
-        pulumi.set(__self__, "statusCode", status_code)
-        pulumi.set(__self__, "topicArn", topic_arn)
+        pulumi.set(__self__, "smtp_reply_code", smtp_reply_code)
+        if status_code is not None:
+            pulumi.set(__self__, "status_code", status_code)
+        if topic_arn is not None:
+            pulumi.set(__self__, "topic_arn", topic_arn)
 
     @property
     @pulumi.getter
@@ -294,10 +296,12 @@ class ReceiptRuleLambdaActionArgs:
         :param pulumi.Input[str] invocation_type: Event or RequestResponse
         :param pulumi.Input[str] topic_arn: The ARN of an SNS topic to notify
         """
-        pulumi.set(__self__, "functionArn", function_arn)
+        pulumi.set(__self__, "function_arn", function_arn)
         pulumi.set(__self__, "position", position)
-        pulumi.set(__self__, "invocationType", invocation_type)
-        pulumi.set(__self__, "topicArn", topic_arn)
+        if invocation_type is not None:
+            pulumi.set(__self__, "invocation_type", invocation_type)
+        if topic_arn is not None:
+            pulumi.set(__self__, "topic_arn", topic_arn)
 
     @property
     @pulumi.getter(name="functionArn")
@@ -363,11 +367,14 @@ class ReceiptRuleS3ActionArgs:
         :param pulumi.Input[str] object_key_prefix: The key prefix of the S3 bucket
         :param pulumi.Input[str] topic_arn: The ARN of an SNS topic to notify
         """
-        pulumi.set(__self__, "bucketName", bucket_name)
+        pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "position", position)
-        pulumi.set(__self__, "kmsKeyArn", kms_key_arn)
-        pulumi.set(__self__, "objectKeyPrefix", object_key_prefix)
-        pulumi.set(__self__, "topicArn", topic_arn)
+        if kms_key_arn is not None:
+            pulumi.set(__self__, "kms_key_arn", kms_key_arn)
+        if object_key_prefix is not None:
+            pulumi.set(__self__, "object_key_prefix", object_key_prefix)
+        if topic_arn is not None:
+            pulumi.set(__self__, "topic_arn", topic_arn)
 
     @property
     @pulumi.getter(name="bucketName")
@@ -440,7 +447,7 @@ class ReceiptRuleSnsActionArgs:
         :param pulumi.Input[str] topic_arn: The ARN of an SNS topic to notify
         """
         pulumi.set(__self__, "position", position)
-        pulumi.set(__self__, "topicArn", topic_arn)
+        pulumi.set(__self__, "topic_arn", topic_arn)
 
     @property
     @pulumi.getter
@@ -480,7 +487,8 @@ class ReceiptRuleStopActionArgs:
         """
         pulumi.set(__self__, "position", position)
         pulumi.set(__self__, "scope", scope)
-        pulumi.set(__self__, "topicArn", topic_arn)
+        if topic_arn is not None:
+            pulumi.set(__self__, "topic_arn", topic_arn)
 
     @property
     @pulumi.getter
@@ -530,9 +538,10 @@ class ReceiptRuleWorkmailActionArgs:
         :param pulumi.Input[float] position: The position of the action in the receipt rule
         :param pulumi.Input[str] topic_arn: The ARN of an SNS topic to notify
         """
-        pulumi.set(__self__, "organizationArn", organization_arn)
+        pulumi.set(__self__, "organization_arn", organization_arn)
         pulumi.set(__self__, "position", position)
-        pulumi.set(__self__, "topicArn", topic_arn)
+        if topic_arn is not None:
+            pulumi.set(__self__, "topic_arn", topic_arn)
 
     @property
     @pulumi.getter(name="organizationArn")

@@ -12,36 +12,6 @@ __all__ = ['Configuration']
 
 
 class Configuration(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN) of the configuration.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    Description of the configuration.
-    """
-
-    kafka_versions: pulumi.Output[List[str]] = pulumi.property("kafkaVersions")
-    """
-    List of Apache Kafka versions which can use this configuration.
-    """
-
-    latest_revision: pulumi.Output[float] = pulumi.property("latestRevision")
-    """
-    Latest revision of the configuration.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    Name of the configuration.
-    """
-
-    server_properties: pulumi.Output[str] = pulumi.property("serverProperties")
-    """
-    Contents of the server.properties file. Supported properties are documented in the [MSK Developer Guide](https://docs.aws.amazon.com/msk/latest/developerguide/msk-configuration-properties.html).
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -146,6 +116,54 @@ class Configuration(pulumi.CustomResource):
         __props__["name"] = name
         __props__["server_properties"] = server_properties
         return Configuration(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of the configuration.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Description of the configuration.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="kafkaVersions")
+    def kafka_versions(self) -> List[str]:
+        """
+        List of Apache Kafka versions which can use this configuration.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="latestRevision")
+    def latest_revision(self) -> float:
+        """
+        Latest revision of the configuration.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the configuration.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="serverProperties")
+    def server_properties(self) -> str:
+        """
+        Contents of the server.properties file. Supported properties are documented in the [MSK Developer Guide](https://docs.aws.amazon.com/msk/latest/developerguide/msk-configuration-properties.html).
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -87,10 +87,12 @@ class EventTargetBatchTargetArgs:
         :param pulumi.Input[float] array_size: The size of the array, if this is an array batch job. Valid values are integers between 2 and 10,000.
         :param pulumi.Input[float] job_attempts: The number of times to attempt to retry, if the job fails. Valid values are 1 to 10.
         """
-        pulumi.set(__self__, "jobDefinition", job_definition)
-        pulumi.set(__self__, "jobName", job_name)
-        pulumi.set(__self__, "arraySize", array_size)
-        pulumi.set(__self__, "jobAttempts", job_attempts)
+        pulumi.set(__self__, "job_definition", job_definition)
+        pulumi.set(__self__, "job_name", job_name)
+        if array_size is not None:
+            pulumi.set(__self__, "array_size", array_size)
+        if job_attempts is not None:
+            pulumi.set(__self__, "job_attempts", job_attempts)
 
     @property
     @pulumi.getter(name="jobDefinition")
@@ -158,12 +160,17 @@ class EventTargetEcsTargetArgs:
         :param pulumi.Input[str] platform_version: Specifies the platform version for the task. Specify only the numeric portion of the platform version, such as 1.1.0. This is used only if LaunchType is FARGATE. For more information about valid platform versions, see [AWS Fargate Platform Versions](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html).
         :param pulumi.Input[float] task_count: The number of tasks to create based on the TaskDefinition. The default is 1.
         """
-        pulumi.set(__self__, "taskDefinitionArn", task_definition_arn)
-        pulumi.set(__self__, "group", group)
-        pulumi.set(__self__, "launchType", launch_type)
-        pulumi.set(__self__, "networkConfiguration", network_configuration)
-        pulumi.set(__self__, "platformVersion", platform_version)
-        pulumi.set(__self__, "taskCount", task_count)
+        pulumi.set(__self__, "task_definition_arn", task_definition_arn)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if launch_type is not None:
+            pulumi.set(__self__, "launch_type", launch_type)
+        if network_configuration is not None:
+            pulumi.set(__self__, "network_configuration", network_configuration)
+        if platform_version is not None:
+            pulumi.set(__self__, "platform_version", platform_version)
+        if task_count is not None:
+            pulumi.set(__self__, "task_count", task_count)
 
     @property
     @pulumi.getter(name="taskDefinitionArn")
@@ -250,8 +257,10 @@ class EventTargetEcsTargetNetworkConfigurationArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] security_groups: The security groups associated with the task or service. If you do not specify a security group, the default security group for the VPC is used.
         """
         pulumi.set(__self__, "subnets", subnets)
-        pulumi.set(__self__, "assignPublicIp", assign_public_ip)
-        pulumi.set(__self__, "securityGroups", security_groups)
+        if assign_public_ip is not None:
+            pulumi.set(__self__, "assign_public_ip", assign_public_ip)
+        if security_groups is not None:
+            pulumi.set(__self__, "security_groups", security_groups)
 
     @property
     @pulumi.getter
@@ -299,8 +308,9 @@ class EventTargetInputTransformerArgs:
         :param pulumi.Input[str] input_template: Structure containing the template body.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] input_paths: Key value pairs specified in the form of JSONPath (for example, time = $.time)
         """
-        pulumi.set(__self__, "inputTemplate", input_template)
-        pulumi.set(__self__, "inputPaths", input_paths)
+        pulumi.set(__self__, "input_template", input_template)
+        if input_paths is not None:
+            pulumi.set(__self__, "input_paths", input_paths)
 
     @property
     @pulumi.getter(name="inputTemplate")
@@ -334,7 +344,8 @@ class EventTargetKinesisTargetArgs:
         """
         :param pulumi.Input[str] partition_key_path: The JSON path to be extracted from the event and used as the partition key.
         """
-        pulumi.set(__self__, "partitionKeyPath", partition_key_path)
+        if partition_key_path is not None:
+            pulumi.set(__self__, "partition_key_path", partition_key_path)
 
     @property
     @pulumi.getter(name="partitionKeyPath")
@@ -393,7 +404,8 @@ class EventTargetSqsTargetArgs:
         """
         :param pulumi.Input[str] message_group_id: The FIFO message group ID to use as the target.
         """
-        pulumi.set(__self__, "messageGroupId", message_group_id)
+        if message_group_id is not None:
+            pulumi.set(__self__, "message_group_id", message_group_id)
 
     @property
     @pulumi.getter(name="messageGroupId")
@@ -424,7 +436,8 @@ class LogMetricFilterMetricTransformationArgs:
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "namespace", namespace)
         pulumi.set(__self__, "value", value)
-        pulumi.set(__self__, "defaultValue", default_value)
+        if default_value is not None:
+            pulumi.set(__self__, "default_value", default_value)
 
     @property
     @pulumi.getter
@@ -491,10 +504,14 @@ class MetricAlarmMetricQueryArgs:
         :param pulumi.Input[bool] return_data: Specify exactly one `metric_query` to be `true` to use that `metric_query` result as the alarm.
         """
         pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "expression", expression)
-        pulumi.set(__self__, "label", label)
-        pulumi.set(__self__, "metric", metric)
-        pulumi.set(__self__, "returnData", return_data)
+        if expression is not None:
+            pulumi.set(__self__, "expression", expression)
+        if label is not None:
+            pulumi.set(__self__, "label", label)
+        if metric is not None:
+            pulumi.set(__self__, "metric", metric)
+        if return_data is not None:
+            pulumi.set(__self__, "return_data", return_data)
 
     @property
     @pulumi.getter
@@ -577,12 +594,15 @@ class MetricAlarmMetricQueryMetricArgs:
                See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
         :param pulumi.Input[str] unit: The unit for this metric.
         """
-        pulumi.set(__self__, "metricName", metric_name)
+        pulumi.set(__self__, "metric_name", metric_name)
         pulumi.set(__self__, "period", period)
         pulumi.set(__self__, "stat", stat)
-        pulumi.set(__self__, "dimensions", dimensions)
-        pulumi.set(__self__, "namespace", namespace)
-        pulumi.set(__self__, "unit", unit)
+        if dimensions is not None:
+            pulumi.set(__self__, "dimensions", dimensions)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+        if unit is not None:
+            pulumi.set(__self__, "unit", unit)
 
     @property
     @pulumi.getter(name="metricName")

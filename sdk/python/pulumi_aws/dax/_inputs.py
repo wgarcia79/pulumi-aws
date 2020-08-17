@@ -24,10 +24,14 @@ class ClusterNodeArgs:
         """
         :param pulumi.Input[float] port: The port used by the configuration endpoint
         """
-        pulumi.set(__self__, "address", address)
-        pulumi.set(__self__, "availabilityZone", availability_zone)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "port", port)
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
 
     @property
     @pulumi.getter
@@ -76,7 +80,8 @@ class ClusterServerSideEncryptionArgs:
         """
         :param pulumi.Input[bool] enabled: Whether to enable encryption at rest. Defaults to `false`.
         """
-        pulumi.set(__self__, "enabled", enabled)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
 
     @property
     @pulumi.getter

@@ -15,13 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetDelegationSetResult:
-    caller_reference: str = pulumi.property("callerReference")
-    id: str = pulumi.property("id")
-    name_servers: List[str] = pulumi.property("nameServers")
-
-
 class GetDelegationSetResult:
     """
     A collection of values returned by getDelegationSet.
@@ -29,13 +24,29 @@ class GetDelegationSetResult:
     def __init__(__self__, caller_reference=None, id=None, name_servers=None):
         if caller_reference and not isinstance(caller_reference, str):
             raise TypeError("Expected argument 'caller_reference' to be a str")
-        __self__.caller_reference = caller_reference
+        pulumi.set(__self__, "caller_reference", caller_reference)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
         if name_servers and not isinstance(name_servers, list):
             raise TypeError("Expected argument 'name_servers' to be a list")
-        __self__.name_servers = name_servers
+        pulumi.set(__self__, "name_servers", name_servers)
+
+    @property
+    @pulumi.getter(name="callerReference")
+    def caller_reference(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="nameServers")
+    def name_servers(self) -> List[str]:
+        ...
+
 
 
 class AwaitableGetDelegationSetResult(GetDelegationSetResult):
@@ -76,7 +87,7 @@ def get_delegation_set(id: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:route53/getDelegationSet:getDelegationSet', __args__, opts=opts, typ=_GetDelegationSetResult).value
+    __ret__ = pulumi.runtime.invoke('aws:route53/getDelegationSet:getDelegationSet', __args__, opts=opts, typ=GetDelegationSetResult).value
 
     return AwaitableGetDelegationSetResult(
         caller_reference=__ret__.caller_reference,

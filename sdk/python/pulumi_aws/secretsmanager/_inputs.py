@@ -20,7 +20,7 @@ class SecretRotationRotationRulesArgs:
         """
         :param pulumi.Input[float] automatically_after_days: Specifies the number of days between automatic scheduled rotations of the secret.
         """
-        pulumi.set(__self__, "automaticallyAfterDays", automatically_after_days)
+        pulumi.set(__self__, "automatically_after_days", automatically_after_days)
 
     @property
     @pulumi.getter(name="automaticallyAfterDays")
@@ -42,7 +42,7 @@ class SecretRotationRulesArgs:
         """
         :param pulumi.Input[float] automatically_after_days: Specifies the number of days between automatic scheduled rotations of the secret.
         """
-        pulumi.set(__self__, "automaticallyAfterDays", automatically_after_days)
+        pulumi.set(__self__, "automatically_after_days", automatically_after_days)
 
     @property
     @pulumi.getter(name="automaticallyAfterDays")

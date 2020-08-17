@@ -14,67 +14,6 @@ __all__ = ['EventTarget']
 
 
 class EventTarget(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The Amazon Resource Name (ARN) associated of the target.
-    """
-
-    batch_target: pulumi.Output[Optional['outputs.EventTargetBatchTarget']] = pulumi.property("batchTarget")
-    """
-    Parameters used when you are using the rule to invoke an Amazon Batch Job. Documented below. A maximum of 1 are allowed.
-    """
-
-    ecs_target: pulumi.Output[Optional['outputs.EventTargetEcsTarget']] = pulumi.property("ecsTarget")
-    """
-    Parameters used when you are using the rule to invoke Amazon ECS Task. Documented below. A maximum of 1 are allowed.
-    """
-
-    input: pulumi.Output[Optional[str]] = pulumi.property("input")
-    """
-    Valid JSON text passed to the target.
-    """
-
-    input_path: pulumi.Output[Optional[str]] = pulumi.property("inputPath")
-    """
-    The value of the [JSONPath](http://goessner.net/articles/JsonPath/)
-    that is used for extracting part of the matched event when passing it to the target.
-    """
-
-    input_transformer: pulumi.Output[Optional['outputs.EventTargetInputTransformer']] = pulumi.property("inputTransformer")
-    """
-    Parameters used when you are providing a custom input to a target based on certain event data.
-    """
-
-    kinesis_target: pulumi.Output[Optional['outputs.EventTargetKinesisTarget']] = pulumi.property("kinesisTarget")
-    """
-    Parameters used when you are using the rule to invoke an Amazon Kinesis Stream. Documented below. A maximum of 1 are allowed.
-    """
-
-    role_arn: pulumi.Output[Optional[str]] = pulumi.property("roleArn")
-    """
-    The Amazon Resource Name (ARN) of the IAM role to be used for this target when the rule is triggered. Required if `ecs_target` is used.
-    """
-
-    rule: pulumi.Output[str] = pulumi.property("rule")
-    """
-    The name of the rule you want to add targets to.
-    """
-
-    run_command_targets: pulumi.Output[Optional[List['outputs.EventTargetRunCommandTarget']]] = pulumi.property("runCommandTargets")
-    """
-    Parameters used when you are using the rule to invoke Amazon EC2 Run Command. Documented below. A maximum of 5 are allowed.
-    """
-
-    sqs_target: pulumi.Output[Optional['outputs.EventTargetSqsTarget']] = pulumi.property("sqsTarget")
-    """
-    Parameters used when you are using the rule to invoke an Amazon SQS Queue. Documented below. A maximum of 1 are allowed.
-    """
-
-    target_id: pulumi.Output[str] = pulumi.property("targetId")
-    """
-    The unique target assignment ID.  If missing, will generate a random, unique id.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -327,6 +266,103 @@ class EventTarget(pulumi.CustomResource):
         __props__["sqs_target"] = sqs_target
         __props__["target_id"] = target_id
         return EventTarget(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) associated of the target.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="batchTarget")
+    def batch_target(self) -> Optional['outputs.EventTargetBatchTarget']:
+        """
+        Parameters used when you are using the rule to invoke an Amazon Batch Job. Documented below. A maximum of 1 are allowed.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="ecsTarget")
+    def ecs_target(self) -> Optional['outputs.EventTargetEcsTarget']:
+        """
+        Parameters used when you are using the rule to invoke Amazon ECS Task. Documented below. A maximum of 1 are allowed.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def input(self) -> Optional[str]:
+        """
+        Valid JSON text passed to the target.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="inputPath")
+    def input_path(self) -> Optional[str]:
+        """
+        The value of the [JSONPath](http://goessner.net/articles/JsonPath/)
+        that is used for extracting part of the matched event when passing it to the target.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="inputTransformer")
+    def input_transformer(self) -> Optional['outputs.EventTargetInputTransformer']:
+        """
+        Parameters used when you are providing a custom input to a target based on certain event data.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="kinesisTarget")
+    def kinesis_target(self) -> Optional['outputs.EventTargetKinesisTarget']:
+        """
+        Parameters used when you are using the rule to invoke an Amazon Kinesis Stream. Documented below. A maximum of 1 are allowed.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> Optional[str]:
+        """
+        The Amazon Resource Name (ARN) of the IAM role to be used for this target when the rule is triggered. Required if `ecs_target` is used.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def rule(self) -> str:
+        """
+        The name of the rule you want to add targets to.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="runCommandTargets")
+    def run_command_targets(self) -> Optional[List['outputs.EventTargetRunCommandTarget']]:
+        """
+        Parameters used when you are using the rule to invoke Amazon EC2 Run Command. Documented below. A maximum of 5 are allowed.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="sqsTarget")
+    def sqs_target(self) -> Optional['outputs.EventTargetSqsTarget']:
+        """
+        Parameters used when you are using the rule to invoke an Amazon SQS Queue. Documented below. A maximum of 1 are allowed.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="targetId")
+    def target_id(self) -> str:
+        """
+        The unique target assignment ID.  If missing, will generate a random, unique id.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

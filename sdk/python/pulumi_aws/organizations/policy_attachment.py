@@ -12,16 +12,6 @@ __all__ = ['PolicyAttachment']
 
 
 class PolicyAttachment(pulumi.CustomResource):
-    policy_id: pulumi.Output[str] = pulumi.property("policyId")
-    """
-    The unique identifier (ID) of the policy that you want to attach to the target.
-    """
-
-    target_id: pulumi.Output[str] = pulumi.property("targetId")
-    """
-    The unique identifier (ID) of the root, organizational unit, or account number that you want to attach the policy to.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -122,6 +112,22 @@ class PolicyAttachment(pulumi.CustomResource):
         __props__["policy_id"] = policy_id
         __props__["target_id"] = target_id
         return PolicyAttachment(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="policyId")
+    def policy_id(self) -> str:
+        """
+        The unique identifier (ID) of the policy that you want to attach to the target.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="targetId")
+    def target_id(self) -> str:
+        """
+        The unique identifier (ID) of the root, organizational unit, or account number that you want to attach the policy to.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

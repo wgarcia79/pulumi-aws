@@ -14,49 +14,6 @@ __all__ = ['DefaultSecurityGroup']
 
 
 class DefaultSecurityGroup(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-
-    description: pulumi.Output[str] = pulumi.property("description")
-    """
-    The description of the security group
-    """
-
-    egress: pulumi.Output[Optional[List['outputs.DefaultSecurityGroupEgress']]] = pulumi.property("egress")
-    """
-    Can be specified multiple times for each
-    egress rule. Each egress block supports fields documented below.
-    """
-
-    ingress: pulumi.Output[Optional[List['outputs.DefaultSecurityGroupIngress']]] = pulumi.property("ingress")
-    """
-    Can be specified multiple times for each
-    ingress rule. Each ingress block supports fields documented below.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the security group
-    """
-
-    owner_id: pulumi.Output[str] = pulumi.property("ownerId")
-    """
-    The owner ID.
-    """
-
-    revoke_rules_on_delete: pulumi.Output[Optional[bool]] = pulumi.property("revokeRulesOnDelete")
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
-    vpc_id: pulumi.Output[str] = pulumi.property("vpcId")
-    """
-    The VPC ID. **Note that changing
-    the `vpc_id` will _not_ restore any default security group rules that were
-    modified, added, or removed.** It will be left in its current state
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -246,6 +203,76 @@ class DefaultSecurityGroup(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["vpc_id"] = vpc_id
         return DefaultSecurityGroup(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the security group
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def egress(self) -> Optional[List['outputs.DefaultSecurityGroupEgress']]:
+        """
+        Can be specified multiple times for each
+        egress rule. Each egress block supports fields documented below.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def ingress(self) -> Optional[List['outputs.DefaultSecurityGroupIngress']]:
+        """
+        Can be specified multiple times for each
+        ingress rule. Each ingress block supports fields documented below.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the security group
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
+        """
+        The owner ID.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="revokeRulesOnDelete")
+    def revoke_rules_on_delete(self) -> Optional[bool]:
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The VPC ID. **Note that changing
+        the `vpc_id` will _not_ restore any default security group rules that were
+        modified, added, or removed.** It will be left in its current state
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

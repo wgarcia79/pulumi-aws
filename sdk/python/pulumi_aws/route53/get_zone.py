@@ -15,22 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetZoneResult:
-    caller_reference: str = pulumi.property("callerReference")
-    comment: str = pulumi.property("comment")
-    id: str = pulumi.property("id")
-    linked_service_description: str = pulumi.property("linkedServiceDescription")
-    linked_service_principal: str = pulumi.property("linkedServicePrincipal")
-    name: str = pulumi.property("name")
-    name_servers: List[str] = pulumi.property("nameServers")
-    private_zone: Optional[bool] = pulumi.property("privateZone")
-    resource_record_set_count: float = pulumi.property("resourceRecordSetCount")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    vpc_id: str = pulumi.property("vpcId")
-    zone_id: str = pulumi.property("zoneId")
-
-
 class GetZoneResult:
     """
     A collection of values returned by getZone.
@@ -38,61 +24,122 @@ class GetZoneResult:
     def __init__(__self__, caller_reference=None, comment=None, id=None, linked_service_description=None, linked_service_principal=None, name=None, name_servers=None, private_zone=None, resource_record_set_count=None, tags=None, vpc_id=None, zone_id=None):
         if caller_reference and not isinstance(caller_reference, str):
             raise TypeError("Expected argument 'caller_reference' to be a str")
-        __self__.caller_reference = caller_reference
+        pulumi.set(__self__, "caller_reference", caller_reference)
+        if comment and not isinstance(comment, str):
+            raise TypeError("Expected argument 'comment' to be a str")
+        pulumi.set(__self__, "comment", comment)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if linked_service_description and not isinstance(linked_service_description, str):
+            raise TypeError("Expected argument 'linked_service_description' to be a str")
+        pulumi.set(__self__, "linked_service_description", linked_service_description)
+        if linked_service_principal and not isinstance(linked_service_principal, str):
+            raise TypeError("Expected argument 'linked_service_principal' to be a str")
+        pulumi.set(__self__, "linked_service_principal", linked_service_principal)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if name_servers and not isinstance(name_servers, list):
+            raise TypeError("Expected argument 'name_servers' to be a list")
+        pulumi.set(__self__, "name_servers", name_servers)
+        if private_zone and not isinstance(private_zone, bool):
+            raise TypeError("Expected argument 'private_zone' to be a bool")
+        pulumi.set(__self__, "private_zone", private_zone)
+        if resource_record_set_count and not isinstance(resource_record_set_count, float):
+            raise TypeError("Expected argument 'resource_record_set_count' to be a float")
+        pulumi.set(__self__, "resource_record_set_count", resource_record_set_count)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if vpc_id and not isinstance(vpc_id, str):
+            raise TypeError("Expected argument 'vpc_id' to be a str")
+        pulumi.set(__self__, "vpc_id", vpc_id)
+        if zone_id and not isinstance(zone_id, str):
+            raise TypeError("Expected argument 'zone_id' to be a str")
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter(name="callerReference")
+    def caller_reference(self) -> str:
         """
         Caller Reference of the Hosted Zone.
         """
-        if comment and not isinstance(comment, str):
-            raise TypeError("Expected argument 'comment' to be a str")
-        __self__.comment = comment
+        ...
+
+    @property
+    @pulumi.getter
+    def comment(self) -> str:
         """
         The comment field of the Hosted Zone.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if linked_service_description and not isinstance(linked_service_description, str):
-            raise TypeError("Expected argument 'linked_service_description' to be a str")
-        __self__.linked_service_description = linked_service_description
+        ...
+
+    @property
+    @pulumi.getter(name="linkedServiceDescription")
+    def linked_service_description(self) -> str:
         """
         The description provided by the service that created the Hosted Zone (e.g. `arn:aws:servicediscovery:us-east-1:1234567890:namespace/ns-xxxxxxxxxxxxxxxx`).
         """
-        if linked_service_principal and not isinstance(linked_service_principal, str):
-            raise TypeError("Expected argument 'linked_service_principal' to be a str")
-        __self__.linked_service_principal = linked_service_principal
+        ...
+
+    @property
+    @pulumi.getter(name="linkedServicePrincipal")
+    def linked_service_principal(self) -> str:
         """
         The service that created the Hosted Zone (e.g. `servicediscovery.amazonaws.com`).
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if name_servers and not isinstance(name_servers, list):
-            raise TypeError("Expected argument 'name_servers' to be a list")
-        __self__.name_servers = name_servers
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="nameServers")
+    def name_servers(self) -> List[str]:
         """
         The list of DNS name servers for the Hosted Zone.
         """
-        if private_zone and not isinstance(private_zone, bool):
-            raise TypeError("Expected argument 'private_zone' to be a bool")
-        __self__.private_zone = private_zone
-        if resource_record_set_count and not isinstance(resource_record_set_count, float):
-            raise TypeError("Expected argument 'resource_record_set_count' to be a float")
-        __self__.resource_record_set_count = resource_record_set_count
+        ...
+
+    @property
+    @pulumi.getter(name="privateZone")
+    def private_zone(self) -> Optional[bool]:
+        ...
+
+    @property
+    @pulumi.getter(name="resourceRecordSetCount")
+    def resource_record_set_count(self) -> float:
         """
         The number of Record Set in the Hosted Zone.
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
-        if vpc_id and not isinstance(vpc_id, str):
-            raise TypeError("Expected argument 'vpc_id' to be a str")
-        __self__.vpc_id = vpc_id
-        if zone_id and not isinstance(zone_id, str):
-            raise TypeError("Expected argument 'zone_id' to be a str")
-        __self__.zone_id = zone_id
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
+        ...
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        ...
+
 
 
 class AwaitableGetZoneResult(GetZoneResult):
@@ -164,7 +211,7 @@ def get_zone(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:route53/getZone:getZone', __args__, opts=opts, typ=_GetZoneResult).value
+    __ret__ = pulumi.runtime.invoke('aws:route53/getZone:getZone', __args__, opts=opts, typ=GetZoneResult).value
 
     return AwaitableGetZoneResult(
         caller_reference=__ret__.caller_reference,

@@ -25,9 +25,12 @@ class AppCampaignHookArgs:
         :param pulumi.Input[str] mode: What mode Lambda should be invoked in. Valid values for this parameter are `DELIVERY`, `FILTER`.
         :param pulumi.Input[str] web_url: Web URL to call for hook. If the URL has authentication specified it will be added as authentication to the request. Conflicts with `lambda_function_name`
         """
-        pulumi.set(__self__, "lambdaFunctionName", lambda_function_name)
-        pulumi.set(__self__, "mode", mode)
-        pulumi.set(__self__, "webUrl", web_url)
+        if lambda_function_name is not None:
+            pulumi.set(__self__, "lambda_function_name", lambda_function_name)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+        if web_url is not None:
+            pulumi.set(__self__, "web_url", web_url)
 
     @property
     @pulumi.getter(name="lambdaFunctionName")
@@ -79,10 +82,14 @@ class AppLimitsArgs:
         :param pulumi.Input[float] messages_per_second: The number of messages that the campaign can send per second. The minimum value is 50, and the maximum is 20000.
         :param pulumi.Input[float] total: The maximum total number of messages that the campaign can send.
         """
-        pulumi.set(__self__, "daily", daily)
-        pulumi.set(__self__, "maximumDuration", maximum_duration)
-        pulumi.set(__self__, "messagesPerSecond", messages_per_second)
-        pulumi.set(__self__, "total", total)
+        if daily is not None:
+            pulumi.set(__self__, "daily", daily)
+        if maximum_duration is not None:
+            pulumi.set(__self__, "maximum_duration", maximum_duration)
+        if messages_per_second is not None:
+            pulumi.set(__self__, "messages_per_second", messages_per_second)
+        if total is not None:
+            pulumi.set(__self__, "total", total)
 
     @property
     @pulumi.getter
@@ -142,8 +149,10 @@ class AppQuietTimeArgs:
         :param pulumi.Input[str] end: The default end time for quiet time in ISO 8601 format. Required if `start` is set
         :param pulumi.Input[str] start: The default start time for quiet time in ISO 8601 format. Required if `end` is set
         """
-        pulumi.set(__self__, "end", end)
-        pulumi.set(__self__, "start", start)
+        if end is not None:
+            pulumi.set(__self__, "end", end)
+        if start is not None:
+            pulumi.set(__self__, "start", start)
 
     @property
     @pulumi.getter

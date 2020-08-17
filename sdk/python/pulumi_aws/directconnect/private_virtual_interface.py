@@ -12,84 +12,6 @@ __all__ = ['PrivateVirtualInterface']
 
 
 class PrivateVirtualInterface(pulumi.CustomResource):
-    address_family: pulumi.Output[str] = pulumi.property("addressFamily")
-    """
-    The address family for the BGP peer. `ipv4 ` or `ipv6`.
-    """
-
-    amazon_address: pulumi.Output[str] = pulumi.property("amazonAddress")
-    """
-    The IPv4 CIDR address to use to send traffic to Amazon. Required for IPv4 BGP peers.
-    """
-
-    amazon_side_asn: pulumi.Output[str] = pulumi.property("amazonSideAsn")
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the virtual interface.
-    """
-
-    aws_device: pulumi.Output[str] = pulumi.property("awsDevice")
-    """
-    The Direct Connect endpoint on which the virtual interface terminates.
-    """
-
-    bgp_asn: pulumi.Output[float] = pulumi.property("bgpAsn")
-    """
-    The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
-    """
-
-    bgp_auth_key: pulumi.Output[str] = pulumi.property("bgpAuthKey")
-    """
-    The authentication key for BGP configuration.
-    """
-
-    connection_id: pulumi.Output[str] = pulumi.property("connectionId")
-    """
-    The ID of the Direct Connect connection (or LAG) on which to create the virtual interface.
-    """
-
-    customer_address: pulumi.Output[str] = pulumi.property("customerAddress")
-    """
-    The IPv4 CIDR destination address to which Amazon should send traffic. Required for IPv4 BGP peers.
-    """
-
-    dx_gateway_id: pulumi.Output[Optional[str]] = pulumi.property("dxGatewayId")
-    """
-    The ID of the Direct Connect gateway to which to connect the virtual interface.
-    """
-
-    jumbo_frame_capable: pulumi.Output[bool] = pulumi.property("jumboFrameCapable")
-    """
-    Indicates whether jumbo frames (9001 MTU) are supported.
-    """
-
-    mtu: pulumi.Output[Optional[float]] = pulumi.property("mtu")
-    """
-    The maximum transmission unit (MTU) is the size, in bytes, of the largest permissible packet that can be passed over the connection.
-    The MTU of a virtual private interface can be either `1500` or `9001` (jumbo frames). Default is `1500`.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name for the virtual interface.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
-    vlan: pulumi.Output[float] = pulumi.property("vlan")
-    """
-    The VLAN ID.
-    """
-
-    vpn_gateway_id: pulumi.Output[Optional[str]] = pulumi.property("vpnGatewayId")
-    """
-    The ID of the virtual private gateway to which to connect the virtual interface.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -252,6 +174,132 @@ class PrivateVirtualInterface(pulumi.CustomResource):
         __props__["vlan"] = vlan
         __props__["vpn_gateway_id"] = vpn_gateway_id
         return PrivateVirtualInterface(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="addressFamily")
+    def address_family(self) -> str:
+        """
+        The address family for the BGP peer. `ipv4 ` or `ipv6`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="amazonAddress")
+    def amazon_address(self) -> str:
+        """
+        The IPv4 CIDR address to use to send traffic to Amazon. Required for IPv4 BGP peers.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="amazonSideAsn")
+    def amazon_side_asn(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the virtual interface.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="awsDevice")
+    def aws_device(self) -> str:
+        """
+        The Direct Connect endpoint on which the virtual interface terminates.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="bgpAsn")
+    def bgp_asn(self) -> float:
+        """
+        The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="bgpAuthKey")
+    def bgp_auth_key(self) -> str:
+        """
+        The authentication key for BGP configuration.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="connectionId")
+    def connection_id(self) -> str:
+        """
+        The ID of the Direct Connect connection (or LAG) on which to create the virtual interface.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="customerAddress")
+    def customer_address(self) -> str:
+        """
+        The IPv4 CIDR destination address to which Amazon should send traffic. Required for IPv4 BGP peers.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="dxGatewayId")
+    def dx_gateway_id(self) -> Optional[str]:
+        """
+        The ID of the Direct Connect gateway to which to connect the virtual interface.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="jumboFrameCapable")
+    def jumbo_frame_capable(self) -> bool:
+        """
+        Indicates whether jumbo frames (9001 MTU) are supported.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def mtu(self) -> Optional[float]:
+        """
+        The maximum transmission unit (MTU) is the size, in bytes, of the largest permissible packet that can be passed over the connection.
+        The MTU of a virtual private interface can be either `1500` or `9001` (jumbo frames). Default is `1500`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name for the virtual interface.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def vlan(self) -> float:
+        """
+        The VLAN ID.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="vpnGatewayId")
+    def vpn_gateway_id(self) -> Optional[str]:
+        """
+        The ID of the virtual private gateway to which to connect the virtual interface.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

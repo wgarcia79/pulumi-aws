@@ -16,24 +16,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetClusterResult:
-    arn: str = pulumi.property("arn")
-    certificate_authority: 'outputs.GetClusterCertificateAuthorityResult' = pulumi.property("certificateAuthority")
-    created_at: str = pulumi.property("createdAt")
-    enabled_cluster_log_types: List[str] = pulumi.property("enabledClusterLogTypes")
-    endpoint: str = pulumi.property("endpoint")
-    id: str = pulumi.property("id")
-    identities: List['outputs.GetClusterIdentityResult'] = pulumi.property("identities")
-    name: str = pulumi.property("name")
-    platform_version: str = pulumi.property("platformVersion")
-    role_arn: str = pulumi.property("roleArn")
-    status: str = pulumi.property("status")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    version: str = pulumi.property("version")
-    vpc_config: 'outputs.GetClusterVpcConfigResult' = pulumi.property("vpcConfig")
-
-
 class GetClusterResult:
     """
     A collection of values returned by getCluster.
@@ -41,85 +25,156 @@ class GetClusterResult:
     def __init__(__self__, arn=None, certificate_authority=None, created_at=None, enabled_cluster_log_types=None, endpoint=None, id=None, identities=None, name=None, platform_version=None, role_arn=None, status=None, tags=None, version=None, vpc_config=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if certificate_authority and not isinstance(certificate_authority, dict):
+            raise TypeError("Expected argument 'certificate_authority' to be a dict")
+        pulumi.set(__self__, "certificate_authority", certificate_authority)
+        if created_at and not isinstance(created_at, str):
+            raise TypeError("Expected argument 'created_at' to be a str")
+        pulumi.set(__self__, "created_at", created_at)
+        if enabled_cluster_log_types and not isinstance(enabled_cluster_log_types, list):
+            raise TypeError("Expected argument 'enabled_cluster_log_types' to be a list")
+        pulumi.set(__self__, "enabled_cluster_log_types", enabled_cluster_log_types)
+        if endpoint and not isinstance(endpoint, str):
+            raise TypeError("Expected argument 'endpoint' to be a str")
+        pulumi.set(__self__, "endpoint", endpoint)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if identities and not isinstance(identities, list):
+            raise TypeError("Expected argument 'identities' to be a list")
+        pulumi.set(__self__, "identities", identities)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if platform_version and not isinstance(platform_version, str):
+            raise TypeError("Expected argument 'platform_version' to be a str")
+        pulumi.set(__self__, "platform_version", platform_version)
+        if role_arn and not isinstance(role_arn, str):
+            raise TypeError("Expected argument 'role_arn' to be a str")
+        pulumi.set(__self__, "role_arn", role_arn)
+        if status and not isinstance(status, str):
+            raise TypeError("Expected argument 'status' to be a str")
+        pulumi.set(__self__, "status", status)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if version and not isinstance(version, str):
+            raise TypeError("Expected argument 'version' to be a str")
+        pulumi.set(__self__, "version", version)
+        if vpc_config and not isinstance(vpc_config, dict):
+            raise TypeError("Expected argument 'vpc_config' to be a dict")
+        pulumi.set(__self__, "vpc_config", vpc_config)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The Amazon Resource Name (ARN) of the cluster.
         """
-        if certificate_authority and not isinstance(certificate_authority, dict):
-            raise TypeError("Expected argument 'certificate_authority' to be a dict")
-        __self__.certificate_authority = certificate_authority
+        ...
+
+    @property
+    @pulumi.getter(name="certificateAuthority")
+    def certificate_authority(self) -> 'outputs.GetClusterCertificateAuthorityResult':
         """
         Nested attribute containing `certificate-authority-data` for your cluster.
         """
-        if created_at and not isinstance(created_at, str):
-            raise TypeError("Expected argument 'created_at' to be a str")
-        __self__.created_at = created_at
+        ...
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
         """
         The Unix epoch time stamp in seconds for when the cluster was created.
         """
-        if enabled_cluster_log_types and not isinstance(enabled_cluster_log_types, list):
-            raise TypeError("Expected argument 'enabled_cluster_log_types' to be a list")
-        __self__.enabled_cluster_log_types = enabled_cluster_log_types
+        ...
+
+    @property
+    @pulumi.getter(name="enabledClusterLogTypes")
+    def enabled_cluster_log_types(self) -> List[str]:
         """
         The enabled control plane logs.
         """
-        if endpoint and not isinstance(endpoint, str):
-            raise TypeError("Expected argument 'endpoint' to be a str")
-        __self__.endpoint = endpoint
+        ...
+
+    @property
+    @pulumi.getter
+    def endpoint(self) -> str:
         """
         The endpoint for your Kubernetes API server.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if identities and not isinstance(identities, list):
-            raise TypeError("Expected argument 'identities' to be a list")
-        __self__.identities = identities
+        ...
+
+    @property
+    @pulumi.getter
+    def identities(self) -> List['outputs.GetClusterIdentityResult']:
         """
         Nested attribute containing identity provider information for your cluster. Only available on Kubernetes version 1.13 and 1.14 clusters created or upgraded on or after September 3, 2019. For an example using this information to enable IAM Roles for Service Accounts, see the `eks.Cluster` resource documentation.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if platform_version and not isinstance(platform_version, str):
-            raise TypeError("Expected argument 'platform_version' to be a str")
-        __self__.platform_version = platform_version
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="platformVersion")
+    def platform_version(self) -> str:
         """
         The platform version for the cluster.
         """
-        if role_arn and not isinstance(role_arn, str):
-            raise TypeError("Expected argument 'role_arn' to be a str")
-        __self__.role_arn = role_arn
+        ...
+
+    @property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> str:
         """
         The Amazon Resource Name (ARN) of the IAM role that provides permissions for the Kubernetes control plane to make calls to AWS API operations on your behalf.
         """
-        if status and not isinstance(status, str):
-            raise TypeError("Expected argument 'status' to be a str")
-        __self__.status = status
+        ...
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
         """
         The status of the EKS cluster. One of `CREATING`, `ACTIVE`, `DELETING`, `FAILED`.
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
         """
         Key-value map of resource tags.
         """
-        if version and not isinstance(version, str):
-            raise TypeError("Expected argument 'version' to be a str")
-        __self__.version = version
+        ...
+
+    @property
+    @pulumi.getter
+    def version(self) -> str:
         """
         The Kubernetes server version for the cluster.
         """
-        if vpc_config and not isinstance(vpc_config, dict):
-            raise TypeError("Expected argument 'vpc_config' to be a dict")
-        __self__.vpc_config = vpc_config
+        ...
+
+    @property
+    @pulumi.getter(name="vpcConfig")
+    def vpc_config(self) -> 'outputs.GetClusterVpcConfigResult':
         """
         Nested list containing VPC configuration for the cluster.
         """
+        ...
+
 
 
 class AwaitableGetClusterResult(GetClusterResult):
@@ -161,7 +216,7 @@ def get_cluster(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:eks/getCluster:getCluster', __args__, opts=opts, typ=_GetClusterResult).value
+    __ret__ = pulumi.runtime.invoke('aws:eks/getCluster:getCluster', __args__, opts=opts, typ=GetClusterResult).value
 
     return AwaitableGetClusterResult(
         arn=__ret__.arn,

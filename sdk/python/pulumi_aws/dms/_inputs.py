@@ -29,10 +29,12 @@ class EndpointElasticsearchSettingsArgs:
         :param pulumi.Input[float] error_retry_duration: Maximum number of seconds for which DMS retries failed API requests to the Elasticsearch cluster. Defaults to `300`.
         :param pulumi.Input[float] full_load_error_percentage: Maximum percentage of records that can fail to be written before a full load operation stops. Defaults to `10`.
         """
-        pulumi.set(__self__, "endpointUri", endpoint_uri)
-        pulumi.set(__self__, "serviceAccessRoleArn", service_access_role_arn)
-        pulumi.set(__self__, "errorRetryDuration", error_retry_duration)
-        pulumi.set(__self__, "fullLoadErrorPercentage", full_load_error_percentage)
+        pulumi.set(__self__, "endpoint_uri", endpoint_uri)
+        pulumi.set(__self__, "service_access_role_arn", service_access_role_arn)
+        if error_retry_duration is not None:
+            pulumi.set(__self__, "error_retry_duration", error_retry_duration)
+        if full_load_error_percentage is not None:
+            pulumi.set(__self__, "full_load_error_percentage", full_load_error_percentage)
 
     @property
     @pulumi.getter(name="endpointUri")
@@ -93,7 +95,8 @@ class EndpointKafkaSettingsArgs:
         :param pulumi.Input[str] topic: Kafka topic for migration. Defaults to `kafka-default-topic`.
         """
         pulumi.set(__self__, "broker", broker)
-        pulumi.set(__self__, "topic", topic)
+        if topic is not None:
+            pulumi.set(__self__, "topic", topic)
 
     @property
     @pulumi.getter
@@ -131,9 +134,12 @@ class EndpointKinesisSettingsArgs:
         :param pulumi.Input[str] service_access_role_arn: Amazon Resource Name (ARN) of the IAM Role with permissions to write to the Kinesis data stream.
         :param pulumi.Input[str] stream_arn: Amazon Resource Name (ARN) of the Kinesis data stream.
         """
-        pulumi.set(__self__, "messageFormat", message_format)
-        pulumi.set(__self__, "serviceAccessRoleArn", service_access_role_arn)
-        pulumi.set(__self__, "streamArn", stream_arn)
+        if message_format is not None:
+            pulumi.set(__self__, "message_format", message_format)
+        if service_access_role_arn is not None:
+            pulumi.set(__self__, "service_access_role_arn", service_access_role_arn)
+        if stream_arn is not None:
+            pulumi.set(__self__, "stream_arn", stream_arn)
 
     @property
     @pulumi.getter(name="messageFormat")
@@ -189,12 +195,18 @@ class EndpointMongodbSettingsArgs:
         :param pulumi.Input[str] extract_doc_id: Document ID. Use this setting when `nesting_level` is set to `none`. Defaults to `false`.
         :param pulumi.Input[str] nesting_level: Specifies either document or table mode. Defaults to `none`. Valid values are `one` (table mode) and `none` (document mode).
         """
-        pulumi.set(__self__, "authMechanism", auth_mechanism)
-        pulumi.set(__self__, "authSource", auth_source)
-        pulumi.set(__self__, "authType", auth_type)
-        pulumi.set(__self__, "docsToInvestigate", docs_to_investigate)
-        pulumi.set(__self__, "extractDocId", extract_doc_id)
-        pulumi.set(__self__, "nestingLevel", nesting_level)
+        if auth_mechanism is not None:
+            pulumi.set(__self__, "auth_mechanism", auth_mechanism)
+        if auth_source is not None:
+            pulumi.set(__self__, "auth_source", auth_source)
+        if auth_type is not None:
+            pulumi.set(__self__, "auth_type", auth_type)
+        if docs_to_investigate is not None:
+            pulumi.set(__self__, "docs_to_investigate", docs_to_investigate)
+        if extract_doc_id is not None:
+            pulumi.set(__self__, "extract_doc_id", extract_doc_id)
+        if nesting_level is not None:
+            pulumi.set(__self__, "nesting_level", nesting_level)
 
     @property
     @pulumi.getter(name="authMechanism")
@@ -288,13 +300,20 @@ class EndpointS3SettingsArgs:
         :param pulumi.Input[str] external_table_definition: JSON document that describes how AWS DMS should interpret the data.
         :param pulumi.Input[str] service_access_role_arn: Amazon Resource Name (ARN) of the IAM Role with permissions to read from or write to the S3 Bucket.
         """
-        pulumi.set(__self__, "bucketFolder", bucket_folder)
-        pulumi.set(__self__, "bucketName", bucket_name)
-        pulumi.set(__self__, "compressionType", compression_type)
-        pulumi.set(__self__, "csvDelimiter", csv_delimiter)
-        pulumi.set(__self__, "csvRowDelimiter", csv_row_delimiter)
-        pulumi.set(__self__, "externalTableDefinition", external_table_definition)
-        pulumi.set(__self__, "serviceAccessRoleArn", service_access_role_arn)
+        if bucket_folder is not None:
+            pulumi.set(__self__, "bucket_folder", bucket_folder)
+        if bucket_name is not None:
+            pulumi.set(__self__, "bucket_name", bucket_name)
+        if compression_type is not None:
+            pulumi.set(__self__, "compression_type", compression_type)
+        if csv_delimiter is not None:
+            pulumi.set(__self__, "csv_delimiter", csv_delimiter)
+        if csv_row_delimiter is not None:
+            pulumi.set(__self__, "csv_row_delimiter", csv_row_delimiter)
+        if external_table_definition is not None:
+            pulumi.set(__self__, "external_table_definition", external_table_definition)
+        if service_access_role_arn is not None:
+            pulumi.set(__self__, "service_access_role_arn", service_access_role_arn)
 
     @property
     @pulumi.getter(name="bucketFolder")

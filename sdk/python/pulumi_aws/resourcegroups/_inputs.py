@@ -22,7 +22,8 @@ class GroupResourceQueryArgs:
         :param pulumi.Input[str] type: The type of the resource query. Defaults to `TAG_FILTERS_1_0`.
         """
         pulumi.set(__self__, "query", query)
-        pulumi.set(__self__, "type", type)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter

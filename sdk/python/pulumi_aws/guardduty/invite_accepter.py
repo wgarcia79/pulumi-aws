@@ -12,16 +12,6 @@ __all__ = ['InviteAccepter']
 
 
 class InviteAccepter(pulumi.CustomResource):
-    detector_id: pulumi.Output[str] = pulumi.property("detectorId")
-    """
-    The detector ID of the member GuardDuty account.
-    """
-
-    master_account_id: pulumi.Output[str] = pulumi.property("masterAccountId")
-    """
-    AWS account ID for master account.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -110,6 +100,22 @@ class InviteAccepter(pulumi.CustomResource):
         __props__["detector_id"] = detector_id
         __props__["master_account_id"] = master_account_id
         return InviteAccepter(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="detectorId")
+    def detector_id(self) -> str:
+        """
+        The detector ID of the member GuardDuty account.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="masterAccountId")
+    def master_account_id(self) -> str:
+        """
+        AWS account ID for master account.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

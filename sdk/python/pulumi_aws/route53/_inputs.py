@@ -30,9 +30,9 @@ class RecordAliasArgs:
         :param pulumi.Input[str] name: DNS domain name for a CloudFront distribution, S3 bucket, ELB, or another resource record set in this hosted zone.
         :param pulumi.Input[str] zone_id: Hosted zone ID for a CloudFront distribution, S3 bucket, ELB, or Route 53 hosted zone. See `resource_elb.zone_id` for example.
         """
-        pulumi.set(__self__, "evaluateTargetHealth", evaluate_target_health)
+        pulumi.set(__self__, "evaluate_target_health", evaluate_target_health)
         pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "zoneId", zone_id)
+        pulumi.set(__self__, "zone_id", zone_id)
 
     @property
     @pulumi.getter(name="evaluateTargetHealth")
@@ -104,9 +104,12 @@ class RecordGeolocationRoutingPolicyArgs:
         :param pulumi.Input[str] country: A two-character country code or `*` to indicate a default resource record set.
         :param pulumi.Input[str] subdivision: A subdivision code for a country.
         """
-        pulumi.set(__self__, "continent", continent)
-        pulumi.set(__self__, "country", country)
-        pulumi.set(__self__, "subdivision", subdivision)
+        if continent is not None:
+            pulumi.set(__self__, "continent", continent)
+        if country is not None:
+            pulumi.set(__self__, "country", country)
+        if subdivision is not None:
+            pulumi.set(__self__, "subdivision", subdivision)
 
     @property
     @pulumi.getter
@@ -199,9 +202,11 @@ class ResolverEndpointIpAddressArgs:
         :param pulumi.Input[str] subnet_id: The ID of the subnet that contains the IP address.
         :param pulumi.Input[str] ip: The IP address in the subnet that you want to use for DNS queries.
         """
-        pulumi.set(__self__, "subnetId", subnet_id)
-        pulumi.set(__self__, "ip", ip)
-        pulumi.set(__self__, "ipId", ip_id)
+        pulumi.set(__self__, "subnet_id", subnet_id)
+        if ip is not None:
+            pulumi.set(__self__, "ip", ip)
+        if ip_id is not None:
+            pulumi.set(__self__, "ip_id", ip_id)
 
     @property
     @pulumi.getter(name="subnetId")
@@ -247,7 +252,8 @@ class ResolverRuleTargetIpArgs:
         :param pulumi.Input[float] port: The port at `ip` that you want to forward DNS queries to. Default value is `53`
         """
         pulumi.set(__self__, "ip", ip)
-        pulumi.set(__self__, "port", port)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
 
     @property
     @pulumi.getter
@@ -283,8 +289,9 @@ class ZoneVpcArgs:
         :param pulumi.Input[str] vpc_id: ID of the VPC to associate.
         :param pulumi.Input[str] vpc_region: Region of the VPC to associate. Defaults to AWS provider region.
         """
-        pulumi.set(__self__, "vpcId", vpc_id)
-        pulumi.set(__self__, "vpcRegion", vpc_region)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+        if vpc_region is not None:
+            pulumi.set(__self__, "vpc_region", vpc_region)
 
     @property
     @pulumi.getter(name="vpcId")

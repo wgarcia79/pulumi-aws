@@ -15,16 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetVaultResult:
-    arn: str = pulumi.property("arn")
-    id: str = pulumi.property("id")
-    kms_key_arn: str = pulumi.property("kmsKeyArn")
-    name: str = pulumi.property("name")
-    recovery_points: float = pulumi.property("recoveryPoints")
-    tags: Mapping[str, str] = pulumi.property("tags")
-
-
 class GetVaultResult:
     """
     A collection of values returned by getVault.
@@ -32,37 +24,68 @@ class GetVaultResult:
     def __init__(__self__, arn=None, id=None, kms_key_arn=None, name=None, recovery_points=None, tags=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if kms_key_arn and not isinstance(kms_key_arn, str):
+            raise TypeError("Expected argument 'kms_key_arn' to be a str")
+        pulumi.set(__self__, "kms_key_arn", kms_key_arn)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if recovery_points and not isinstance(recovery_points, float):
+            raise TypeError("Expected argument 'recovery_points' to be a float")
+        pulumi.set(__self__, "recovery_points", recovery_points)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The ARN of the vault.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if kms_key_arn and not isinstance(kms_key_arn, str):
-            raise TypeError("Expected argument 'kms_key_arn' to be a str")
-        __self__.kms_key_arn = kms_key_arn
+        ...
+
+    @property
+    @pulumi.getter(name="kmsKeyArn")
+    def kms_key_arn(self) -> str:
         """
         The server-side encryption key that is used to protect your backups.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if recovery_points and not isinstance(recovery_points, float):
-            raise TypeError("Expected argument 'recovery_points' to be a float")
-        __self__.recovery_points = recovery_points
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="recoveryPoints")
+    def recovery_points(self) -> float:
         """
         The number of recovery points that are stored in a backup vault.
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
         """
         Metadata that you can assign to help organize the resources that you create.
         """
+        ...
+
 
 
 class AwaitableGetVaultResult(GetVaultResult):
@@ -105,7 +128,7 @@ def get_vault(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:backup/getVault:getVault', __args__, opts=opts, typ=_GetVaultResult).value
+    __ret__ = pulumi.runtime.invoke('aws:backup/getVault:getVault', __args__, opts=opts, typ=GetVaultResult).value
 
     return AwaitableGetVaultResult(
         arn=__ret__.arn,

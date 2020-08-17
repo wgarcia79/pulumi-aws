@@ -15,18 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetServiceResult:
-    arn: str = pulumi.property("arn")
-    cluster_arn: str = pulumi.property("clusterArn")
-    desired_count: float = pulumi.property("desiredCount")
-    id: str = pulumi.property("id")
-    launch_type: str = pulumi.property("launchType")
-    scheduling_strategy: str = pulumi.property("schedulingStrategy")
-    service_name: str = pulumi.property("serviceName")
-    task_definition: str = pulumi.property("taskDefinition")
-
-
 class GetServiceResult:
     """
     A collection of values returned by getService.
@@ -34,46 +24,87 @@ class GetServiceResult:
     def __init__(__self__, arn=None, cluster_arn=None, desired_count=None, id=None, launch_type=None, scheduling_strategy=None, service_name=None, task_definition=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if cluster_arn and not isinstance(cluster_arn, str):
+            raise TypeError("Expected argument 'cluster_arn' to be a str")
+        pulumi.set(__self__, "cluster_arn", cluster_arn)
+        if desired_count and not isinstance(desired_count, float):
+            raise TypeError("Expected argument 'desired_count' to be a float")
+        pulumi.set(__self__, "desired_count", desired_count)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if launch_type and not isinstance(launch_type, str):
+            raise TypeError("Expected argument 'launch_type' to be a str")
+        pulumi.set(__self__, "launch_type", launch_type)
+        if scheduling_strategy and not isinstance(scheduling_strategy, str):
+            raise TypeError("Expected argument 'scheduling_strategy' to be a str")
+        pulumi.set(__self__, "scheduling_strategy", scheduling_strategy)
+        if service_name and not isinstance(service_name, str):
+            raise TypeError("Expected argument 'service_name' to be a str")
+        pulumi.set(__self__, "service_name", service_name)
+        if task_definition and not isinstance(task_definition, str):
+            raise TypeError("Expected argument 'task_definition' to be a str")
+        pulumi.set(__self__, "task_definition", task_definition)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The ARN of the ECS Service
         """
-        if cluster_arn and not isinstance(cluster_arn, str):
-            raise TypeError("Expected argument 'cluster_arn' to be a str")
-        __self__.cluster_arn = cluster_arn
-        if desired_count and not isinstance(desired_count, float):
-            raise TypeError("Expected argument 'desired_count' to be a float")
-        __self__.desired_count = desired_count
+        ...
+
+    @property
+    @pulumi.getter(name="clusterArn")
+    def cluster_arn(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="desiredCount")
+    def desired_count(self) -> float:
         """
         The number of tasks for the ECS Service
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if launch_type and not isinstance(launch_type, str):
-            raise TypeError("Expected argument 'launch_type' to be a str")
-        __self__.launch_type = launch_type
+        ...
+
+    @property
+    @pulumi.getter(name="launchType")
+    def launch_type(self) -> str:
         """
         The launch type for the ECS Service
         """
-        if scheduling_strategy and not isinstance(scheduling_strategy, str):
-            raise TypeError("Expected argument 'scheduling_strategy' to be a str")
-        __self__.scheduling_strategy = scheduling_strategy
+        ...
+
+    @property
+    @pulumi.getter(name="schedulingStrategy")
+    def scheduling_strategy(self) -> str:
         """
         The scheduling strategy for the ECS Service
         """
-        if service_name and not isinstance(service_name, str):
-            raise TypeError("Expected argument 'service_name' to be a str")
-        __self__.service_name = service_name
-        if task_definition and not isinstance(task_definition, str):
-            raise TypeError("Expected argument 'task_definition' to be a str")
-        __self__.task_definition = task_definition
+        ...
+
+    @property
+    @pulumi.getter(name="serviceName")
+    def service_name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="taskDefinition")
+    def task_definition(self) -> str:
         """
         The family for the latest ACTIVE revision
         """
+        ...
+
 
 
 class AwaitableGetServiceResult(GetServiceResult):
@@ -120,7 +151,7 @@ def get_service(cluster_arn: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ecs/getService:getService', __args__, opts=opts, typ=_GetServiceResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ecs/getService:getService', __args__, opts=opts, typ=GetServiceResult).value
 
     return AwaitableGetServiceResult(
         arn=__ret__.arn,

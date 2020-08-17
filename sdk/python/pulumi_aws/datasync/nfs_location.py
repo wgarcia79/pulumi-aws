@@ -14,33 +14,6 @@ __all__ = ['NfsLocation']
 
 
 class NfsLocation(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN) of the DataSync Location.
-    """
-
-    on_prem_config: pulumi.Output['outputs.NfsLocationOnPremConfig'] = pulumi.property("onPremConfig")
-    """
-    Configuration block containing information for connecting to the NFS File System.
-    """
-
-    server_hostname: pulumi.Output[str] = pulumi.property("serverHostname")
-    """
-    Specifies the IP address or DNS name of the NFS server. The DataSync Agent(s) use this to mount the NFS server.
-    """
-
-    subdirectory: pulumi.Output[str] = pulumi.property("subdirectory")
-    """
-    Subdirectory to perform actions as source or destination. Should be exported by the NFS server.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value pairs of resource tags to assign to the DataSync Location.
-    """
-
-    uri: pulumi.Output[str] = pulumi.property("uri")
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -146,6 +119,51 @@ class NfsLocation(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["uri"] = uri
         return NfsLocation(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of the DataSync Location.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="onPremConfig")
+    def on_prem_config(self) -> 'outputs.NfsLocationOnPremConfig':
+        """
+        Configuration block containing information for connecting to the NFS File System.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="serverHostname")
+    def server_hostname(self) -> str:
+        """
+        Specifies the IP address or DNS name of the NFS server. The DataSync Agent(s) use this to mount the NFS server.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def subdirectory(self) -> str:
+        """
+        Subdirectory to perform actions as source or destination. Should be exported by the NFS server.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value pairs of resource tags to assign to the DataSync Location.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def uri(self) -> str:
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

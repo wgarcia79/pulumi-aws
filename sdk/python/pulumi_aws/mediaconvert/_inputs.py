@@ -24,8 +24,8 @@ class QueueReservationPlanSettingsArgs:
         :param pulumi.Input[float] reserved_slots: Specifies the number of reserved transcode slots (RTS) for queue.
         """
         pulumi.set(__self__, "commitment", commitment)
-        pulumi.set(__self__, "renewalType", renewal_type)
-        pulumi.set(__self__, "reservedSlots", reserved_slots)
+        pulumi.set(__self__, "renewal_type", renewal_type)
+        pulumi.set(__self__, "reserved_slots", reserved_slots)
 
     @property
     @pulumi.getter

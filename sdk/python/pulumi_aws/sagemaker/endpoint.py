@@ -12,26 +12,6 @@ __all__ = ['Endpoint']
 
 
 class Endpoint(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The Amazon Resource Name (ARN) assigned by AWS to this endpoint.
-    """
-
-    endpoint_config_name: pulumi.Output[str] = pulumi.property("endpointConfigName")
-    """
-    The name of the endpoint configuration to use.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the endpoint. If omitted, this provider will assign a random, unique name.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A mapping of tags to assign to the resource.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -123,6 +103,38 @@ class Endpoint(pulumi.CustomResource):
         __props__["name"] = name
         __props__["tags"] = tags
         return Endpoint(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) assigned by AWS to this endpoint.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="endpointConfigName")
+    def endpoint_config_name(self) -> str:
+        """
+        The name of the endpoint configuration to use.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the endpoint. If omitted, this provider will assign a random, unique name.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A mapping of tags to assign to the resource.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

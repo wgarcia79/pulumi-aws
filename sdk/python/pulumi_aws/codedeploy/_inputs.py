@@ -47,8 +47,10 @@ class DeploymentConfigMinimumHealthyHostsArgs:
                deployment, AWS CodeDeploy converts the percentage to the equivalent number of instance and rounds up fractional instances.
                When the type is `HOST_COUNT`, the value represents the minimum number of healthy instances as an absolute value.
         """
-        pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "value", value)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -89,9 +91,12 @@ class DeploymentConfigTrafficRoutingConfigArgs:
         :param pulumi.Input['DeploymentConfigTrafficRoutingConfigTimeBasedLinearArgs'] time_based_linear: The time based linear configuration information. If `type` is `TimeBasedCanary`, use `time_based_canary` instead.
         :param pulumi.Input[str] type: Type of traffic routing config. One of `TimeBasedCanary`, `TimeBasedLinear`, `AllAtOnce`.
         """
-        pulumi.set(__self__, "timeBasedCanary", time_based_canary)
-        pulumi.set(__self__, "timeBasedLinear", time_based_linear)
-        pulumi.set(__self__, "type", type)
+        if time_based_canary is not None:
+            pulumi.set(__self__, "time_based_canary", time_based_canary)
+        if time_based_linear is not None:
+            pulumi.set(__self__, "time_based_linear", time_based_linear)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="timeBasedCanary")
@@ -139,8 +144,10 @@ class DeploymentConfigTrafficRoutingConfigTimeBasedCanaryArgs:
         :param pulumi.Input[float] interval: The number of minutes between the first and second traffic shifts of a `TimeBasedCanary` deployment.
         :param pulumi.Input[float] percentage: The percentage of traffic to shift in the first increment of a `TimeBasedCanary` deployment.
         """
-        pulumi.set(__self__, "interval", interval)
-        pulumi.set(__self__, "percentage", percentage)
+        if interval is not None:
+            pulumi.set(__self__, "interval", interval)
+        if percentage is not None:
+            pulumi.set(__self__, "percentage", percentage)
 
     @property
     @pulumi.getter
@@ -176,8 +183,10 @@ class DeploymentConfigTrafficRoutingConfigTimeBasedLinearArgs:
         :param pulumi.Input[float] interval: The number of minutes between each incremental traffic shift of a `TimeBasedLinear` deployment.
         :param pulumi.Input[float] percentage: The percentage of traffic that is shifted at the start of each increment of a `TimeBasedLinear` deployment.
         """
-        pulumi.set(__self__, "interval", interval)
-        pulumi.set(__self__, "percentage", percentage)
+        if interval is not None:
+            pulumi.set(__self__, "interval", interval)
+        if percentage is not None:
+            pulumi.set(__self__, "percentage", percentage)
 
     @property
     @pulumi.getter
@@ -217,9 +226,12 @@ class DeploymentGroupAlarmConfigurationArgs:
                * `true`: The deployment will proceed even if alarm status information can't be retrieved.
                * `false`: The deployment will stop if alarm status information can't be retrieved.
         """
-        pulumi.set(__self__, "alarms", alarms)
-        pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "ignorePollAlarmFailure", ignore_poll_alarm_failure)
+        if alarms is not None:
+            pulumi.set(__self__, "alarms", alarms)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if ignore_poll_alarm_failure is not None:
+            pulumi.set(__self__, "ignore_poll_alarm_failure", ignore_poll_alarm_failure)
 
     @property
     @pulumi.getter
@@ -269,8 +281,10 @@ class DeploymentGroupAutoRollbackConfigurationArgs:
         :param pulumi.Input[bool] enabled: Indicates whether a defined automatic rollback configuration is currently enabled for this Deployment Group. If you enable automatic rollback, you must specify at least one event type.
         :param pulumi.Input[List[pulumi.Input[str]]] events: The event type or types that trigger a rollback. Supported types are `DEPLOYMENT_FAILURE` and `DEPLOYMENT_STOP_ON_ALARM`.
         """
-        pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "events", events)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if events is not None:
+            pulumi.set(__self__, "events", events)
 
     @property
     @pulumi.getter
@@ -308,9 +322,12 @@ class DeploymentGroupBlueGreenDeploymentConfigArgs:
         :param pulumi.Input['DeploymentGroupBlueGreenDeploymentConfigGreenFleetProvisioningOptionArgs'] green_fleet_provisioning_option: Information about how instances are provisioned for a replacement environment in a blue/green deployment (documented below).
         :param pulumi.Input['DeploymentGroupBlueGreenDeploymentConfigTerminateBlueInstancesOnDeploymentSuccessArgs'] terminate_blue_instances_on_deployment_success: Information about whether to terminate instances in the original fleet during a blue/green deployment (documented below).
         """
-        pulumi.set(__self__, "deploymentReadyOption", deployment_ready_option)
-        pulumi.set(__self__, "greenFleetProvisioningOption", green_fleet_provisioning_option)
-        pulumi.set(__self__, "terminateBlueInstancesOnDeploymentSuccess", terminate_blue_instances_on_deployment_success)
+        if deployment_ready_option is not None:
+            pulumi.set(__self__, "deployment_ready_option", deployment_ready_option)
+        if green_fleet_provisioning_option is not None:
+            pulumi.set(__self__, "green_fleet_provisioning_option", green_fleet_provisioning_option)
+        if terminate_blue_instances_on_deployment_success is not None:
+            pulumi.set(__self__, "terminate_blue_instances_on_deployment_success", terminate_blue_instances_on_deployment_success)
 
     @property
     @pulumi.getter(name="deploymentReadyOption")
@@ -360,8 +377,10 @@ class DeploymentGroupBlueGreenDeploymentConfigDeploymentReadyOptionArgs:
                * `STOP_DEPLOYMENT`: Do not register new instances with load balancer unless traffic is rerouted manually. If traffic is not rerouted manually before the end of the specified wait period, the deployment status is changed to Stopped.
         :param pulumi.Input[float] wait_time_in_minutes: The number of minutes to wait before the status of a blue/green deployment changed to Stopped if rerouting is not started manually. Applies only to the `STOP_DEPLOYMENT` option for `action_on_timeout`.
         """
-        pulumi.set(__self__, "actionOnTimeout", action_on_timeout)
-        pulumi.set(__self__, "waitTimeInMinutes", wait_time_in_minutes)
+        if action_on_timeout is not None:
+            pulumi.set(__self__, "action_on_timeout", action_on_timeout)
+        if wait_time_in_minutes is not None:
+            pulumi.set(__self__, "wait_time_in_minutes", wait_time_in_minutes)
 
     @property
     @pulumi.getter(name="actionOnTimeout")
@@ -399,7 +418,8 @@ class DeploymentGroupBlueGreenDeploymentConfigGreenFleetProvisioningOptionArgs:
                * `DISCOVER_EXISTING`: Use instances that already exist or will be created manually.
                * `COPY_AUTO_SCALING_GROUP`: Use settings from a specified **Auto Scaling** group to define and create instances in a new Auto Scaling group. _Exactly one Auto Scaling group must be specified_ when selecting `COPY_AUTO_SCALING_GROUP`. Use `autoscaling_groups` to specify the Auto Scaling group.
         """
-        pulumi.set(__self__, "action", action)
+        if action is not None:
+            pulumi.set(__self__, "action", action)
 
     @property
     @pulumi.getter
@@ -427,8 +447,10 @@ class DeploymentGroupBlueGreenDeploymentConfigTerminateBlueInstancesOnDeployment
                * `KEEP_ALIVE`: Instances are left running after they are deregistered from the load balancer and removed from the deployment group.
         :param pulumi.Input[float] termination_wait_time_in_minutes: The number of minutes to wait after a successful blue/green deployment before terminating instances from the original environment.
         """
-        pulumi.set(__self__, "action", action)
-        pulumi.set(__self__, "terminationWaitTimeInMinutes", termination_wait_time_in_minutes)
+        if action is not None:
+            pulumi.set(__self__, "action", action)
+        if termination_wait_time_in_minutes is not None:
+            pulumi.set(__self__, "termination_wait_time_in_minutes", termination_wait_time_in_minutes)
 
     @property
     @pulumi.getter
@@ -466,8 +488,10 @@ class DeploymentGroupDeploymentStyleArgs:
         :param pulumi.Input[str] deployment_option: Indicates whether to route deployment traffic behind a load balancer. Valid Values are `WITH_TRAFFIC_CONTROL` or `WITHOUT_TRAFFIC_CONTROL`. Default is `WITHOUT_TRAFFIC_CONTROL`.
         :param pulumi.Input[str] deployment_type: Indicates whether to run an in-place deployment or a blue/green deployment. Valid Values are `IN_PLACE` or `BLUE_GREEN`. Default is `IN_PLACE`.
         """
-        pulumi.set(__self__, "deploymentOption", deployment_option)
-        pulumi.set(__self__, "deploymentType", deployment_type)
+        if deployment_option is not None:
+            pulumi.set(__self__, "deployment_option", deployment_option)
+        if deployment_type is not None:
+            pulumi.set(__self__, "deployment_type", deployment_type)
 
     @property
     @pulumi.getter(name="deploymentOption")
@@ -505,9 +529,12 @@ class DeploymentGroupEc2TagFilterArgs:
         :param pulumi.Input[str] type: The type of the tag filter, either `KEY_ONLY`, `VALUE_ONLY`, or `KEY_AND_VALUE`.
         :param pulumi.Input[str] value: The value of the tag filter.
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "value", value)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -553,7 +580,8 @@ class DeploymentGroupEc2TagSetArgs:
         """
         :param pulumi.Input[List[pulumi.Input['DeploymentGroupEc2TagSetEc2TagFilterArgs']]] ec2_tag_filters: Tag filters associated with the deployment group. See the AWS docs for details.
         """
-        pulumi.set(__self__, "ec2TagFilters", ec2_tag_filters)
+        if ec2_tag_filters is not None:
+            pulumi.set(__self__, "ec2_tag_filters", ec2_tag_filters)
 
     @property
     @pulumi.getter(name="ec2TagFilters")
@@ -579,9 +607,12 @@ class DeploymentGroupEc2TagSetEc2TagFilterArgs:
         :param pulumi.Input[str] type: The type of the tag filter, either `KEY_ONLY`, `VALUE_ONLY`, or `KEY_AND_VALUE`.
         :param pulumi.Input[str] value: The value of the tag filter.
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "value", value)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -629,8 +660,8 @@ class DeploymentGroupEcsServiceArgs:
         :param pulumi.Input[str] cluster_name: The name of the ECS cluster.
         :param pulumi.Input[str] service_name: The name of the ECS service.
         """
-        pulumi.set(__self__, "clusterName", cluster_name)
-        pulumi.set(__self__, "serviceName", service_name)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "service_name", service_name)
 
     @property
     @pulumi.getter(name="clusterName")
@@ -668,9 +699,12 @@ class DeploymentGroupLoadBalancerInfoArgs:
         :param pulumi.Input[List[pulumi.Input['DeploymentGroupLoadBalancerInfoTargetGroupInfoArgs']]] target_group_infos: The (Application/Network Load Balancer) target group to use in a deployment. Conflicts with `elb_info` and `target_group_pair_info`.
         :param pulumi.Input['DeploymentGroupLoadBalancerInfoTargetGroupPairInfoArgs'] target_group_pair_info: The (Application/Network Load Balancer) target group pair to use in a deployment. Conflicts with `elb_info` and `target_group_info`.
         """
-        pulumi.set(__self__, "elbInfos", elb_infos)
-        pulumi.set(__self__, "targetGroupInfos", target_group_infos)
-        pulumi.set(__self__, "targetGroupPairInfo", target_group_pair_info)
+        if elb_infos is not None:
+            pulumi.set(__self__, "elb_infos", elb_infos)
+        if target_group_infos is not None:
+            pulumi.set(__self__, "target_group_infos", target_group_infos)
+        if target_group_pair_info is not None:
+            pulumi.set(__self__, "target_group_pair_info", target_group_pair_info)
 
     @property
     @pulumi.getter(name="elbInfos")
@@ -716,7 +750,8 @@ class DeploymentGroupLoadBalancerInfoElbInfoArgs:
         """
         :param pulumi.Input[str] name: The name of the load balancer that will be used to route traffic from original instances to replacement instances in a blue/green deployment. For in-place deployments, the name of the load balancer that instances are deregistered from so they are not serving traffic during a deployment, and then re-registered with after the deployment completes.
         """
-        pulumi.set(__self__, "name", name)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -738,7 +773,8 @@ class DeploymentGroupLoadBalancerInfoTargetGroupInfoArgs:
         """
         :param pulumi.Input[str] name: The name of the target group that instances in the original environment are deregistered from, and instances in the replacement environment registered with. For in-place deployments, the name of the target group that instances are deregistered from, so they are not serving traffic during a deployment, and then re-registered with after the deployment completes.
         """
-        pulumi.set(__self__, "name", name)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -764,9 +800,10 @@ class DeploymentGroupLoadBalancerInfoTargetGroupPairInfoArgs:
         :param pulumi.Input[List[pulumi.Input['DeploymentGroupLoadBalancerInfoTargetGroupPairInfoTargetGroupArgs']]] target_groups: Configuration blocks for a target group within a target group pair (documented below).
         :param pulumi.Input['DeploymentGroupLoadBalancerInfoTargetGroupPairInfoTestTrafficRouteArgs'] test_traffic_route: Configuration block for the test traffic route (documented below).
         """
-        pulumi.set(__self__, "prodTrafficRoute", prod_traffic_route)
-        pulumi.set(__self__, "targetGroups", target_groups)
-        pulumi.set(__self__, "testTrafficRoute", test_traffic_route)
+        pulumi.set(__self__, "prod_traffic_route", prod_traffic_route)
+        pulumi.set(__self__, "target_groups", target_groups)
+        if test_traffic_route is not None:
+            pulumi.set(__self__, "test_traffic_route", test_traffic_route)
 
     @property
     @pulumi.getter(name="prodTrafficRoute")
@@ -812,7 +849,7 @@ class DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRouteArgs:
         """
         :param pulumi.Input[List[pulumi.Input[str]]] listener_arns: List of Amazon Resource Names (ARNs) of the load balancer listeners.
         """
-        pulumi.set(__self__, "listenerArns", listener_arns)
+        pulumi.set(__self__, "listener_arns", listener_arns)
 
     @property
     @pulumi.getter(name="listenerArns")
@@ -856,7 +893,7 @@ class DeploymentGroupLoadBalancerInfoTargetGroupPairInfoTestTrafficRouteArgs:
         """
         :param pulumi.Input[List[pulumi.Input[str]]] listener_arns: List of Amazon Resource Names (ARNs) of the load balancer listeners.
         """
-        pulumi.set(__self__, "listenerArns", listener_arns)
+        pulumi.set(__self__, "listener_arns", listener_arns)
 
     @property
     @pulumi.getter(name="listenerArns")
@@ -882,9 +919,12 @@ class DeploymentGroupOnPremisesInstanceTagFilterArgs:
         :param pulumi.Input[str] type: The type of the tag filter, either `KEY_ONLY`, `VALUE_ONLY`, or `KEY_AND_VALUE`.
         :param pulumi.Input[str] value: The value of the tag filter.
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "value", value)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -934,9 +974,9 @@ class DeploymentGroupTriggerConfigurationArgs:
         :param pulumi.Input[str] trigger_name: The name of the notification trigger.
         :param pulumi.Input[str] trigger_target_arn: The ARN of the SNS topic through which notifications are sent.
         """
-        pulumi.set(__self__, "triggerEvents", trigger_events)
-        pulumi.set(__self__, "triggerName", trigger_name)
-        pulumi.set(__self__, "triggerTargetArn", trigger_target_arn)
+        pulumi.set(__self__, "trigger_events", trigger_events)
+        pulumi.set(__self__, "trigger_name", trigger_name)
+        pulumi.set(__self__, "trigger_target_arn", trigger_target_arn)
 
     @property
     @pulumi.getter(name="triggerEvents")

@@ -14,53 +14,6 @@ __all__ = ['LocationSmb']
 
 
 class LocationSmb(pulumi.CustomResource):
-    agent_arns: pulumi.Output[List[str]] = pulumi.property("agentArns")
-    """
-    A list of DataSync Agent ARNs with which this location will be associated.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN) of the DataSync Location.
-    """
-
-    domain: pulumi.Output[str] = pulumi.property("domain")
-    """
-    The name of the Windows domain the SMB server belongs to.
-    """
-
-    mount_options: pulumi.Output[Optional['outputs.LocationSmbMountOptions']] = pulumi.property("mountOptions")
-    """
-    Configuration block containing mount options used by DataSync to access the SMB Server. Can be `AUTOMATIC`, `SMB2`, or `SMB3`.
-    """
-
-    password: pulumi.Output[str] = pulumi.property("password")
-    """
-    The password of the user who can mount the share and has file permissions in the SMB.
-    """
-
-    server_hostname: pulumi.Output[str] = pulumi.property("serverHostname")
-    """
-    Specifies the IP address or DNS name of the SMB server. The DataSync Agent(s) use this to mount the SMB share.
-    """
-
-    subdirectory: pulumi.Output[str] = pulumi.property("subdirectory")
-    """
-    Subdirectory to perform actions as source or destination. Should be exported by the NFS server.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value pairs of resource tags to assign to the DataSync Location.
-    """
-
-    uri: pulumi.Output[str] = pulumi.property("uri")
-
-    user: pulumi.Output[str] = pulumi.property("user")
-    """
-    The user who can mount the share and has file and folder permissions in the SMB share.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -194,6 +147,83 @@ class LocationSmb(pulumi.CustomResource):
         __props__["uri"] = uri
         __props__["user"] = user
         return LocationSmb(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="agentArns")
+    def agent_arns(self) -> List[str]:
+        """
+        A list of DataSync Agent ARNs with which this location will be associated.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of the DataSync Location.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def domain(self) -> str:
+        """
+        The name of the Windows domain the SMB server belongs to.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="mountOptions")
+    def mount_options(self) -> Optional['outputs.LocationSmbMountOptions']:
+        """
+        Configuration block containing mount options used by DataSync to access the SMB Server. Can be `AUTOMATIC`, `SMB2`, or `SMB3`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def password(self) -> str:
+        """
+        The password of the user who can mount the share and has file permissions in the SMB.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="serverHostname")
+    def server_hostname(self) -> str:
+        """
+        Specifies the IP address or DNS name of the SMB server. The DataSync Agent(s) use this to mount the SMB share.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def subdirectory(self) -> str:
+        """
+        Subdirectory to perform actions as source or destination. Should be exported by the NFS server.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value pairs of resource tags to assign to the DataSync Location.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def uri(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def user(self) -> str:
+        """
+        The user who can mount the share and has file and folder permissions in the SMB share.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

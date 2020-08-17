@@ -12,21 +12,6 @@ __all__ = ['GroupMembership']
 
 
 class GroupMembership(pulumi.CustomResource):
-    group: pulumi.Output[str] = pulumi.property("group")
-    """
-    The IAM Group name to attach the list of `users` to
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name to identify the Group Membership
-    """
-
-    users: pulumi.Output[List[str]] = pulumi.property("users")
-    """
-    A list of IAM User names to associate with the Group
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -125,6 +110,30 @@ class GroupMembership(pulumi.CustomResource):
         __props__["name"] = name
         __props__["users"] = users
         return GroupMembership(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def group(self) -> str:
+        """
+        The IAM Group name to attach the list of `users` to
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name to identify the Group Membership
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def users(self) -> List[str]:
+        """
+        A list of IAM User names to associate with the Group
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

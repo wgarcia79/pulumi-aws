@@ -18,6 +18,33 @@ __all__ = [
 
 @pulumi.output_type
 class ApplicationAppversionLifecycle(dict):
+    def __init__(__self__, *,
+                 service_role: str,
+                 delete_source_from_s3: Optional[bool] = None,
+                 max_age_in_days: Optional[float] = None,
+                 max_count: Optional[float] = None):
+        """
+        :param str service_role: The ARN of an IAM service role under which the application version is deleted.  Elastic Beanstalk must have permission to assume this role.
+        :param bool delete_source_from_s3: Set to `true` to delete a version's source bundle from S3 when the application version is deleted.
+        :param float max_age_in_days: The number of days to retain an application version ('max_age_in_days' and 'max_count' cannot be enabled simultaneously.).
+        :param float max_count: The maximum number of application versions to retain ('max_age_in_days' and 'max_count' cannot be enabled simultaneously.).
+        """
+        pulumi.set(__self__, "service_role", service_role)
+        if delete_source_from_s3 is not None:
+            pulumi.set(__self__, "delete_source_from_s3", delete_source_from_s3)
+        if max_age_in_days is not None:
+            pulumi.set(__self__, "max_age_in_days", max_age_in_days)
+        if max_count is not None:
+            pulumi.set(__self__, "max_count", max_count)
+
+    @property
+    @pulumi.getter(name="serviceRole")
+    def service_role(self) -> str:
+        """
+        The ARN of an IAM service role under which the application version is deleted.  Elastic Beanstalk must have permission to assume this role.
+        """
+        ...
+
     @property
     @pulumi.getter(name="deleteSourceFromS3")
     def delete_source_from_s3(self) -> Optional[bool]:
@@ -42,20 +69,26 @@ class ApplicationAppversionLifecycle(dict):
         """
         ...
 
-    @property
-    @pulumi.getter(name="serviceRole")
-    def service_role(self) -> str:
-        """
-        The ARN of an IAM service role under which the application version is deleted.  Elastic Beanstalk must have permission to assume this role.
-        """
-        ...
-
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class ConfigurationTemplateSetting(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 namespace: str,
+                 value: str,
+                 resource: Optional[str] = None):
+        """
+        :param str name: A unique name for this Template.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "namespace", namespace)
+        pulumi.set(__self__, "value", value)
+        if resource is not None:
+            pulumi.set(__self__, "resource", resource)
+
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -71,12 +104,12 @@ class ConfigurationTemplateSetting(dict):
 
     @property
     @pulumi.getter
-    def resource(self) -> Optional[str]:
+    def value(self) -> str:
         ...
 
     @property
     @pulumi.getter
-    def value(self) -> str:
+    def resource(self) -> Optional[str]:
         ...
 
     def _translate_property(self, prop):
@@ -85,6 +118,21 @@ class ConfigurationTemplateSetting(dict):
 
 @pulumi.output_type
 class EnvironmentAllSetting(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 namespace: str,
+                 value: str,
+                 resource: Optional[str] = None):
+        """
+        :param str name: A unique name for this Environment. This name is used
+               in the application URL
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "namespace", namespace)
+        pulumi.set(__self__, "value", value)
+        if resource is not None:
+            pulumi.set(__self__, "resource", resource)
+
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -101,12 +149,12 @@ class EnvironmentAllSetting(dict):
 
     @property
     @pulumi.getter
-    def resource(self) -> Optional[str]:
+    def value(self) -> str:
         ...
 
     @property
     @pulumi.getter
-    def value(self) -> str:
+    def resource(self) -> Optional[str]:
         ...
 
     def _translate_property(self, prop):
@@ -115,6 +163,21 @@ class EnvironmentAllSetting(dict):
 
 @pulumi.output_type
 class EnvironmentSetting(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 namespace: str,
+                 value: str,
+                 resource: Optional[str] = None):
+        """
+        :param str name: A unique name for this Environment. This name is used
+               in the application URL
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "namespace", namespace)
+        pulumi.set(__self__, "value", value)
+        if resource is not None:
+            pulumi.set(__self__, "resource", resource)
+
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -131,12 +194,12 @@ class EnvironmentSetting(dict):
 
     @property
     @pulumi.getter
-    def resource(self) -> Optional[str]:
+    def value(self) -> str:
         ...
 
     @property
     @pulumi.getter
-    def value(self) -> str:
+    def resource(self) -> Optional[str]:
         ...
 
     def _translate_property(self, prop):
@@ -145,6 +208,22 @@ class EnvironmentSetting(dict):
 
 @pulumi.output_type
 class GetApplicationAppversionLifecycleResult(dict):
+    def __init__(__self__, *,
+                 delete_source_from_s3: bool,
+                 max_age_in_days: float,
+                 max_count: float,
+                 service_role: str):
+        """
+        :param bool delete_source_from_s3: Specifies whether delete a version's source bundle from S3 when the application version is deleted.
+        :param float max_age_in_days: The number of days to retain an application version.
+        :param float max_count: The maximum number of application versions to retain.
+        :param str service_role: The ARN of an IAM service role under which the application version is deleted.  Elastic Beanstalk must have permission to assume this role.
+        """
+        pulumi.set(__self__, "delete_source_from_s3", delete_source_from_s3)
+        pulumi.set(__self__, "max_age_in_days", max_age_in_days)
+        pulumi.set(__self__, "max_count", max_count)
+        pulumi.set(__self__, "service_role", service_role)
+
     @property
     @pulumi.getter(name="deleteSourceFromS3")
     def delete_source_from_s3(self) -> bool:

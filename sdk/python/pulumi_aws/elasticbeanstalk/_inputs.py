@@ -28,10 +28,13 @@ class ApplicationAppversionLifecycleArgs:
         :param pulumi.Input[float] max_age_in_days: The number of days to retain an application version ('max_age_in_days' and 'max_count' cannot be enabled simultaneously.).
         :param pulumi.Input[float] max_count: The maximum number of application versions to retain ('max_age_in_days' and 'max_count' cannot be enabled simultaneously.).
         """
-        pulumi.set(__self__, "serviceRole", service_role)
-        pulumi.set(__self__, "deleteSourceFromS3", delete_source_from_s3)
-        pulumi.set(__self__, "maxAgeInDays", max_age_in_days)
-        pulumi.set(__self__, "maxCount", max_count)
+        pulumi.set(__self__, "service_role", service_role)
+        if delete_source_from_s3 is not None:
+            pulumi.set(__self__, "delete_source_from_s3", delete_source_from_s3)
+        if max_age_in_days is not None:
+            pulumi.set(__self__, "max_age_in_days", max_age_in_days)
+        if max_count is not None:
+            pulumi.set(__self__, "max_count", max_count)
 
     @property
     @pulumi.getter(name="serviceRole")
@@ -95,7 +98,8 @@ class ConfigurationTemplateSettingArgs:
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "namespace", namespace)
         pulumi.set(__self__, "value", value)
-        pulumi.set(__self__, "resource", resource)
+        if resource is not None:
+            pulumi.set(__self__, "resource", resource)
 
     @property
     @pulumi.getter
@@ -151,7 +155,8 @@ class EnvironmentAllSettingArgs:
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "namespace", namespace)
         pulumi.set(__self__, "value", value)
-        pulumi.set(__self__, "resource", resource)
+        if resource is not None:
+            pulumi.set(__self__, "resource", resource)
 
     @property
     @pulumi.getter
@@ -208,7 +213,8 @@ class EnvironmentSettingArgs:
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "namespace", namespace)
         pulumi.set(__self__, "value", value)
-        pulumi.set(__self__, "resource", resource)
+        if resource is not None:
+            pulumi.set(__self__, "resource", resource)
 
     @property
     @pulumi.getter

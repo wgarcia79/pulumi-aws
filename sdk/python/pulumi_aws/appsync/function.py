@@ -12,51 +12,6 @@ __all__ = ['Function']
 
 
 class Function(pulumi.CustomResource):
-    api_id: pulumi.Output[str] = pulumi.property("apiId")
-    """
-    The ID of the associated AppSync API.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the Function object.
-    """
-
-    data_source: pulumi.Output[str] = pulumi.property("dataSource")
-    """
-    The Function DataSource name.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    The Function description.
-    """
-
-    function_id: pulumi.Output[str] = pulumi.property("functionId")
-    """
-    A unique ID representing the Function object.
-    """
-
-    function_version: pulumi.Output[Optional[str]] = pulumi.property("functionVersion")
-    """
-    The version of the request mapping template. Currently the supported value is `2018-05-29`.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The Function name. The function name does not have to be unique.
-    """
-
-    request_mapping_template: pulumi.Output[str] = pulumi.property("requestMappingTemplate")
-    """
-    The Function request mapping template. Functions support only the 2018-05-29 version of the request mapping template.
-    """
-
-    response_mapping_template: pulumi.Output[str] = pulumi.property("responseMappingTemplate")
-    """
-    The Function response mapping template.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -223,6 +178,78 @@ class Function(pulumi.CustomResource):
         __props__["request_mapping_template"] = request_mapping_template
         __props__["response_mapping_template"] = response_mapping_template
         return Function(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="apiId")
+    def api_id(self) -> str:
+        """
+        The ID of the associated AppSync API.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the Function object.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="dataSource")
+    def data_source(self) -> str:
+        """
+        The Function DataSource name.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        The Function description.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="functionId")
+    def function_id(self) -> str:
+        """
+        A unique ID representing the Function object.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="functionVersion")
+    def function_version(self) -> Optional[str]:
+        """
+        The version of the request mapping template. Currently the supported value is `2018-05-29`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The Function name. The function name does not have to be unique.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="requestMappingTemplate")
+    def request_mapping_template(self) -> str:
+        """
+        The Function request mapping template. Functions support only the 2018-05-29 version of the request mapping template.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="responseMappingTemplate")
+    def response_mapping_template(self) -> str:
+        """
+        The Function response mapping template.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

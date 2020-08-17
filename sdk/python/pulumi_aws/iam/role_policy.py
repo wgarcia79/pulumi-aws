@@ -12,28 +12,6 @@ __all__ = ['RolePolicy']
 
 
 class RolePolicy(pulumi.CustomResource):
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the role policy. If omitted, this provider will
-    assign a random, unique name.
-    """
-
-    name_prefix: pulumi.Output[Optional[str]] = pulumi.property("namePrefix")
-    """
-    Creates a unique name beginning with the specified
-    prefix. Conflicts with `name`.
-    """
-
-    policy: pulumi.Output[str] = pulumi.property("policy")
-    """
-    The policy document. This is a JSON formatted string.
-    """
-
-    role: pulumi.Output[str] = pulumi.property("role")
-    """
-    The IAM role to attach to the policy.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -155,6 +133,40 @@ class RolePolicy(pulumi.CustomResource):
         __props__["policy"] = policy
         __props__["role"] = role
         return RolePolicy(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the role policy. If omitted, this provider will
+        assign a random, unique name.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> Optional[str]:
+        """
+        Creates a unique name beginning with the specified
+        prefix. Conflicts with `name`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def policy(self) -> str:
+        """
+        The policy document. This is a JSON formatted string.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        The IAM role to attach to the policy.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

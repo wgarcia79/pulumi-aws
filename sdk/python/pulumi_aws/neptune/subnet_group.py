@@ -12,36 +12,6 @@ __all__ = ['SubnetGroup']
 
 
 class SubnetGroup(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the neptune subnet group.
-    """
-
-    description: pulumi.Output[str] = pulumi.property("description")
-    """
-    The description of the neptune subnet group. Defaults to "Managed by Pulumi".
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the neptune subnet group. If omitted, this provider will assign a random, unique name.
-    """
-
-    name_prefix: pulumi.Output[str] = pulumi.property("namePrefix")
-    """
-    Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-    """
-
-    subnet_ids: pulumi.Output[List[str]] = pulumi.property("subnetIds")
-    """
-    A list of VPC subnet IDs.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -148,6 +118,54 @@ class SubnetGroup(pulumi.CustomResource):
         __props__["subnet_ids"] = subnet_ids
         __props__["tags"] = tags
         return SubnetGroup(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the neptune subnet group.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the neptune subnet group. Defaults to "Managed by Pulumi".
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the neptune subnet group. If omitted, this provider will assign a random, unique name.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> str:
+        """
+        Creates a unique name beginning with the specified prefix. Conflicts with `name`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="subnetIds")
+    def subnet_ids(self) -> List[str]:
+        """
+        A list of VPC subnet IDs.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

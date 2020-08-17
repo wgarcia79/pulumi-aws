@@ -12,21 +12,6 @@ __all__ = ['MailFrom']
 
 
 class MailFrom(pulumi.CustomResource):
-    behavior_on_mx_failure: pulumi.Output[Optional[str]] = pulumi.property("behaviorOnMxFailure")
-    """
-    The action that you want Amazon SES to take if it cannot successfully read the required MX record when you send an email. Defaults to `UseDefaultValue`. See the [SES API documentation](https://docs.aws.amazon.com/ses/latest/APIReference/API_SetIdentityMailFromDomain.html) for more information.
-    """
-
-    domain: pulumi.Output[str] = pulumi.property("domain")
-    """
-    Verified domain name to generate DKIM tokens for.
-    """
-
-    mail_from_domain: pulumi.Output[str] = pulumi.property("mailFromDomain")
-    """
-    Subdomain (of above domain) which is to be used as MAIL FROM address (Required for DMARC validation)
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -130,6 +115,30 @@ class MailFrom(pulumi.CustomResource):
         __props__["domain"] = domain
         __props__["mail_from_domain"] = mail_from_domain
         return MailFrom(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="behaviorOnMxFailure")
+    def behavior_on_mx_failure(self) -> Optional[str]:
+        """
+        The action that you want Amazon SES to take if it cannot successfully read the required MX record when you send an email. Defaults to `UseDefaultValue`. See the [SES API documentation](https://docs.aws.amazon.com/ses/latest/APIReference/API_SetIdentityMailFromDomain.html) for more information.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def domain(self) -> str:
+        """
+        Verified domain name to generate DKIM tokens for.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="mailFromDomain")
+    def mail_from_domain(self) -> str:
+        """
+        Subdomain (of above domain) which is to be used as MAIL FROM address (Required for DMARC validation)
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

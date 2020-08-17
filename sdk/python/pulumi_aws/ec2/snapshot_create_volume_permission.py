@@ -12,16 +12,6 @@ __all__ = ['SnapshotCreateVolumePermission']
 
 
 class SnapshotCreateVolumePermission(pulumi.CustomResource):
-    account_id: pulumi.Output[str] = pulumi.property("accountId")
-    """
-    An AWS Account ID to add create volume permissions
-    """
-
-    snapshot_id: pulumi.Output[str] = pulumi.property("snapshotId")
-    """
-    A snapshot ID
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -105,6 +95,22 @@ class SnapshotCreateVolumePermission(pulumi.CustomResource):
         __props__["account_id"] = account_id
         __props__["snapshot_id"] = snapshot_id
         return SnapshotCreateVolumePermission(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
+        """
+        An AWS Account ID to add create volume permissions
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> str:
+        """
+        A snapshot ID
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

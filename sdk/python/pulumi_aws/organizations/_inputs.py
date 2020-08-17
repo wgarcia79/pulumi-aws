@@ -31,11 +31,16 @@ class OrganizationAccountArgs:
         :param pulumi.Input[str] name: The name of the policy type
         :param pulumi.Input[str] status: The status of the policy type as it relates to the associated root
         """
-        pulumi.set(__self__, "arn", arn)
-        pulumi.set(__self__, "email", email)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "status", status)
+        if arn is not None:
+            pulumi.set(__self__, "arn", arn)
+        if email is not None:
+            pulumi.set(__self__, "email", email)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter
@@ -113,11 +118,16 @@ class OrganizationNonMasterAccountArgs:
         :param pulumi.Input[str] name: The name of the policy type
         :param pulumi.Input[str] status: The status of the policy type as it relates to the associated root
         """
-        pulumi.set(__self__, "arn", arn)
-        pulumi.set(__self__, "email", email)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "status", status)
+        if arn is not None:
+            pulumi.set(__self__, "arn", arn)
+        if email is not None:
+            pulumi.set(__self__, "email", email)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter
@@ -193,10 +203,14 @@ class OrganizationRootArgs:
         :param pulumi.Input[str] name: The name of the policy type
         :param pulumi.Input[List[pulumi.Input['OrganizationRootPolicyTypeArgs']]] policy_types: List of policy types enabled for this root. All elements have these attributes:
         """
-        pulumi.set(__self__, "arn", arn)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "policyTypes", policy_types)
+        if arn is not None:
+            pulumi.set(__self__, "arn", arn)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if policy_types is not None:
+            pulumi.set(__self__, "policy_types", policy_types)
 
     @property
     @pulumi.getter
@@ -255,8 +269,10 @@ class OrganizationRootPolicyTypeArgs:
         """
         :param pulumi.Input[str] status: The status of the policy type as it relates to the associated root
         """
-        pulumi.set(__self__, "status", status)
-        pulumi.set(__self__, "type", type)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -293,10 +309,14 @@ class OrganizationalUnitAccountArgs:
         :param pulumi.Input[str] id: Identifier of the organization unit
         :param pulumi.Input[str] name: The name for the organizational unit
         """
-        pulumi.set(__self__, "arn", arn)
-        pulumi.set(__self__, "email", email)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
+        if arn is not None:
+            pulumi.set(__self__, "arn", arn)
+        if email is not None:
+            pulumi.set(__self__, "email", email)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter

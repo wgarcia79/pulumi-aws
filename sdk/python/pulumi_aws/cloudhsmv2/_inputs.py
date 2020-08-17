@@ -20,11 +20,16 @@ class ClusterClusterCertificateArgs:
                  cluster_csr: Optional[pulumi.Input[str]] = None,
                  hsm_certificate: Optional[pulumi.Input[str]] = None,
                  manufacturer_hardware_certificate: Optional[pulumi.Input[str]] = None):
-        pulumi.set(__self__, "awsHardwareCertificate", aws_hardware_certificate)
-        pulumi.set(__self__, "clusterCertificate", cluster_certificate)
-        pulumi.set(__self__, "clusterCsr", cluster_csr)
-        pulumi.set(__self__, "hsmCertificate", hsm_certificate)
-        pulumi.set(__self__, "manufacturerHardwareCertificate", manufacturer_hardware_certificate)
+        if aws_hardware_certificate is not None:
+            pulumi.set(__self__, "aws_hardware_certificate", aws_hardware_certificate)
+        if cluster_certificate is not None:
+            pulumi.set(__self__, "cluster_certificate", cluster_certificate)
+        if cluster_csr is not None:
+            pulumi.set(__self__, "cluster_csr", cluster_csr)
+        if hsm_certificate is not None:
+            pulumi.set(__self__, "hsm_certificate", hsm_certificate)
+        if manufacturer_hardware_certificate is not None:
+            pulumi.set(__self__, "manufacturer_hardware_certificate", manufacturer_hardware_certificate)
 
     @property
     @pulumi.getter(name="awsHardwareCertificate")

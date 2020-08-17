@@ -12,21 +12,6 @@ __all__ = ['ResolverRuleAssociation']
 
 
 class ResolverRuleAssociation(pulumi.CustomResource):
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    A name for the association that you're creating between a resolver rule and a VPC.
-    """
-
-    resolver_rule_id: pulumi.Output[str] = pulumi.property("resolverRuleId")
-    """
-    The ID of the resolver rule that you want to associate with the VPC.
-    """
-
-    vpc_id: pulumi.Output[str] = pulumi.property("vpcId")
-    """
-    The ID of the VPC that you want to associate the resolver rule with.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -112,6 +97,30 @@ class ResolverRuleAssociation(pulumi.CustomResource):
         __props__["resolver_rule_id"] = resolver_rule_id
         __props__["vpc_id"] = vpc_id
         return ResolverRuleAssociation(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A name for the association that you're creating between a resolver rule and a VPC.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="resolverRuleId")
+    def resolver_rule_id(self) -> str:
+        """
+        The ID of the resolver rule that you want to associate with the VPC.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The ID of the VPC that you want to associate the resolver rule with.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

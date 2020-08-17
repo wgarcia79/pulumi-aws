@@ -14,61 +14,6 @@ __all__ = ['GraphQLApi']
 
 
 class GraphQLApi(pulumi.CustomResource):
-    additional_authentication_providers: pulumi.Output[Optional[List['outputs.GraphQLApiAdditionalAuthenticationProvider']]] = pulumi.property("additionalAuthenticationProviders")
-    """
-    One or more additional authentication providers for the GraphqlApi. Defined below.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN
-    """
-
-    authentication_type: pulumi.Output[str] = pulumi.property("authenticationType")
-    """
-    The authentication type. Valid values: `API_KEY`, `AWS_IAM`, `AMAZON_COGNITO_USER_POOLS`, `OPENID_CONNECT`
-    """
-
-    log_config: pulumi.Output[Optional['outputs.GraphQLApiLogConfig']] = pulumi.property("logConfig")
-    """
-    Nested argument containing logging configuration. Defined below.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    A user-supplied name for the GraphqlApi.
-    """
-
-    openid_connect_config: pulumi.Output[Optional['outputs.GraphQLApiOpenidConnectConfig']] = pulumi.property("openidConnectConfig")
-    """
-    Nested argument containing OpenID Connect configuration. Defined below.
-    """
-
-    schema: pulumi.Output[Optional[str]] = pulumi.property("schema")
-    """
-    The schema definition, in GraphQL schema language format. This provider cannot perform drift detection of this configuration.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
-    uris: pulumi.Output[Mapping[str, str]] = pulumi.property("uris")
-    """
-    Map of URIs associated with the API. e.g. `uris["GRAPHQL"] = https://ID.appsync-api.REGION.amazonaws.com/graphql`
-    """
-
-    user_pool_config: pulumi.Output[Optional['outputs.GraphQLApiUserPoolConfig']] = pulumi.property("userPoolConfig")
-    """
-    The Amazon Cognito User Pool configuration. Defined below.
-    """
-
-    xray_enabled: pulumi.Output[Optional[bool]] = pulumi.property("xrayEnabled")
-    """
-    Whether tracing with X-ray is enabled. Defaults to false.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -286,6 +231,94 @@ class GraphQLApi(pulumi.CustomResource):
         __props__["user_pool_config"] = user_pool_config
         __props__["xray_enabled"] = xray_enabled
         return GraphQLApi(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="additionalAuthenticationProviders")
+    def additional_authentication_providers(self) -> Optional[List['outputs.GraphQLApiAdditionalAuthenticationProvider']]:
+        """
+        One or more additional authentication providers for the GraphqlApi. Defined below.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="authenticationType")
+    def authentication_type(self) -> str:
+        """
+        The authentication type. Valid values: `API_KEY`, `AWS_IAM`, `AMAZON_COGNITO_USER_POOLS`, `OPENID_CONNECT`
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="logConfig")
+    def log_config(self) -> Optional['outputs.GraphQLApiLogConfig']:
+        """
+        Nested argument containing logging configuration. Defined below.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A user-supplied name for the GraphqlApi.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="openidConnectConfig")
+    def openid_connect_config(self) -> Optional['outputs.GraphQLApiOpenidConnectConfig']:
+        """
+        Nested argument containing OpenID Connect configuration. Defined below.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def schema(self) -> Optional[str]:
+        """
+        The schema definition, in GraphQL schema language format. This provider cannot perform drift detection of this configuration.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def uris(self) -> Mapping[str, str]:
+        """
+        Map of URIs associated with the API. e.g. `uris["GRAPHQL"] = https://ID.appsync-api.REGION.amazonaws.com/graphql`
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="userPoolConfig")
+    def user_pool_config(self) -> Optional['outputs.GraphQLApiUserPoolConfig']:
+        """
+        The Amazon Cognito User Pool configuration. Defined below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="xrayEnabled")
+    def xray_enabled(self) -> Optional[bool]:
+        """
+        Whether tracing with X-ray is enabled. Defaults to false.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

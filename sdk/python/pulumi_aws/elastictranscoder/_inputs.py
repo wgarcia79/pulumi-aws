@@ -30,8 +30,10 @@ class PipelineContentConfigArgs:
         :param pulumi.Input[str] bucket: The Amazon S3 bucket in which you want Elastic Transcoder to save transcoded files and playlists.
         :param pulumi.Input[str] storage_class: The Amazon S3 storage class, Standard or ReducedRedundancy, that you want Elastic Transcoder to assign to the files and playlists that it stores in your Amazon S3 bucket.
         """
-        pulumi.set(__self__, "bucket", bucket)
-        pulumi.set(__self__, "storageClass", storage_class)
+        if bucket is not None:
+            pulumi.set(__self__, "bucket", bucket)
+        if storage_class is not None:
+            pulumi.set(__self__, "storage_class", storage_class)
 
     @property
     @pulumi.getter
@@ -69,9 +71,12 @@ class PipelineContentConfigPermissionArgs:
         :param pulumi.Input[str] grantee: The AWS user or group that you want to have access to transcoded files and playlists.
         :param pulumi.Input[str] grantee_type: Specify the type of value that appears in the `content_config_permissions.grantee` object. Valid values are `Canonical`, `Email` or `Group`.
         """
-        pulumi.set(__self__, "accesses", accesses)
-        pulumi.set(__self__, "grantee", grantee)
-        pulumi.set(__self__, "granteeType", grantee_type)
+        if accesses is not None:
+            pulumi.set(__self__, "accesses", accesses)
+        if grantee is not None:
+            pulumi.set(__self__, "grantee", grantee)
+        if grantee_type is not None:
+            pulumi.set(__self__, "grantee_type", grantee_type)
 
     @property
     @pulumi.getter
@@ -123,10 +128,14 @@ class PipelineNotificationsArgs:
         :param pulumi.Input[str] progressing: The topic ARN for the Amazon Simple Notification Service (Amazon SNS) topic that you want to notify when Elastic Transcoder has started to process a job in this pipeline.
         :param pulumi.Input[str] warning: The topic ARN for the Amazon SNS topic that you want to notify when Elastic Transcoder encounters a warning condition while processing a job in this pipeline.
         """
-        pulumi.set(__self__, "completed", completed)
-        pulumi.set(__self__, "error", error)
-        pulumi.set(__self__, "progressing", progressing)
-        pulumi.set(__self__, "warning", warning)
+        if completed is not None:
+            pulumi.set(__self__, "completed", completed)
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+        if progressing is not None:
+            pulumi.set(__self__, "progressing", progressing)
+        if warning is not None:
+            pulumi.set(__self__, "warning", warning)
 
     @property
     @pulumi.getter
@@ -186,8 +195,10 @@ class PipelineThumbnailConfigArgs:
         :param pulumi.Input[str] bucket: The Amazon S3 bucket in which you want Elastic Transcoder to save thumbnail files.
         :param pulumi.Input[str] storage_class: The Amazon S3 storage class, Standard or ReducedRedundancy, that you want Elastic Transcoder to assign to the thumbnails that it stores in your Amazon S3 bucket.
         """
-        pulumi.set(__self__, "bucket", bucket)
-        pulumi.set(__self__, "storageClass", storage_class)
+        if bucket is not None:
+            pulumi.set(__self__, "bucket", bucket)
+        if storage_class is not None:
+            pulumi.set(__self__, "storage_class", storage_class)
 
     @property
     @pulumi.getter
@@ -225,9 +236,12 @@ class PipelineThumbnailConfigPermissionArgs:
         :param pulumi.Input[str] grantee: The AWS user or group that you want to have access to thumbnail files.
         :param pulumi.Input[str] grantee_type: Specify the type of value that appears in the `thumbnail_config_permissions.grantee` object.
         """
-        pulumi.set(__self__, "accesses", accesses)
-        pulumi.set(__self__, "grantee", grantee)
-        pulumi.set(__self__, "granteeType", grantee_type)
+        if accesses is not None:
+            pulumi.set(__self__, "accesses", accesses)
+        if grantee is not None:
+            pulumi.set(__self__, "grantee", grantee)
+        if grantee_type is not None:
+            pulumi.set(__self__, "grantee_type", grantee_type)
 
     @property
     @pulumi.getter
@@ -281,11 +295,16 @@ class PresetAudioArgs:
         :param pulumi.Input[str] codec: The audio codec for the output file. Valid values are `AAC`, `flac`, `mp2`, `mp3`, `pcm`, and `vorbis`.
         :param pulumi.Input[str] sample_rate: The sample rate of the audio stream in the output file, in hertz. Valid values are: `auto`, `22050`, `32000`, `44100`, `48000`, `96000`
         """
-        pulumi.set(__self__, "audioPackingMode", audio_packing_mode)
-        pulumi.set(__self__, "bitRate", bit_rate)
-        pulumi.set(__self__, "channels", channels)
-        pulumi.set(__self__, "codec", codec)
-        pulumi.set(__self__, "sampleRate", sample_rate)
+        if audio_packing_mode is not None:
+            pulumi.set(__self__, "audio_packing_mode", audio_packing_mode)
+        if bit_rate is not None:
+            pulumi.set(__self__, "bit_rate", bit_rate)
+        if channels is not None:
+            pulumi.set(__self__, "channels", channels)
+        if codec is not None:
+            pulumi.set(__self__, "codec", codec)
+        if sample_rate is not None:
+            pulumi.set(__self__, "sample_rate", sample_rate)
 
     @property
     @pulumi.getter(name="audioPackingMode")
@@ -361,10 +380,14 @@ class PresetAudioCodecOptionsArgs:
         :param pulumi.Input[str] profile: If you specified AAC for Audio:Codec, choose the AAC profile for the output file.
         :param pulumi.Input[str] signed: Whether audio samples are represented with negative and positive numbers (signed) or only positive numbers (unsigned). The supported value is Signed. (PCM Only)
         """
-        pulumi.set(__self__, "bitDepth", bit_depth)
-        pulumi.set(__self__, "bitOrder", bit_order)
-        pulumi.set(__self__, "profile", profile)
-        pulumi.set(__self__, "signed", signed)
+        if bit_depth is not None:
+            pulumi.set(__self__, "bit_depth", bit_depth)
+        if bit_order is not None:
+            pulumi.set(__self__, "bit_order", bit_order)
+        if profile is not None:
+            pulumi.set(__self__, "profile", profile)
+        if signed is not None:
+            pulumi.set(__self__, "signed", signed)
 
     @property
     @pulumi.getter(name="bitDepth")
@@ -436,14 +459,22 @@ class PresetThumbnailsArgs:
         :param pulumi.Input[str] resolution: The width and height of thumbnail files in pixels, in the format WidthxHeight, where both values are even integers. The values cannot exceed the width and height that you specified in the Video:Resolution object. (To better control resolution and aspect ratio of thumbnails, we recommend that you use the thumbnail values `max_width`, `max_height`, `sizing_policy`, and `padding_policy` instead of `resolution` and `aspect_ratio`. The two groups of settings are mutually exclusive. Do not use them together)
         :param pulumi.Input[str] sizing_policy: A value that controls scaling of thumbnails. Valid values are: `Fit`, `Fill`, `Stretch`, `Keep`, `ShrinkToFit`, and `ShrinkToFill`.
         """
-        pulumi.set(__self__, "aspectRatio", aspect_ratio)
-        pulumi.set(__self__, "format", format)
-        pulumi.set(__self__, "interval", interval)
-        pulumi.set(__self__, "maxHeight", max_height)
-        pulumi.set(__self__, "maxWidth", max_width)
-        pulumi.set(__self__, "paddingPolicy", padding_policy)
-        pulumi.set(__self__, "resolution", resolution)
-        pulumi.set(__self__, "sizingPolicy", sizing_policy)
+        if aspect_ratio is not None:
+            pulumi.set(__self__, "aspect_ratio", aspect_ratio)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if interval is not None:
+            pulumi.set(__self__, "interval", interval)
+        if max_height is not None:
+            pulumi.set(__self__, "max_height", max_height)
+        if max_width is not None:
+            pulumi.set(__self__, "max_width", max_width)
+        if padding_policy is not None:
+            pulumi.set(__self__, "padding_policy", padding_policy)
+        if resolution is not None:
+            pulumi.set(__self__, "resolution", resolution)
+        if sizing_policy is not None:
+            pulumi.set(__self__, "sizing_policy", sizing_policy)
 
     @property
     @pulumi.getter(name="aspectRatio")
@@ -573,19 +604,32 @@ class PresetVideoArgs:
         :param pulumi.Input[str] resolution: The width and height of the video in the output file, in pixels. Valid values are `auto` and `widthxheight`. (see note for `aspect_ratio`)
         :param pulumi.Input[str] sizing_policy: A value that controls scaling of the output video. Valid values are: `Fit`, `Fill`, `Stretch`, `Keep`, `ShrinkToFit`, `ShrinkToFill`.
         """
-        pulumi.set(__self__, "aspectRatio", aspect_ratio)
-        pulumi.set(__self__, "bitRate", bit_rate)
-        pulumi.set(__self__, "codec", codec)
-        pulumi.set(__self__, "displayAspectRatio", display_aspect_ratio)
-        pulumi.set(__self__, "fixedGop", fixed_gop)
-        pulumi.set(__self__, "frameRate", frame_rate)
-        pulumi.set(__self__, "keyframesMaxDist", keyframes_max_dist)
-        pulumi.set(__self__, "maxFrameRate", max_frame_rate)
-        pulumi.set(__self__, "maxHeight", max_height)
-        pulumi.set(__self__, "maxWidth", max_width)
-        pulumi.set(__self__, "paddingPolicy", padding_policy)
-        pulumi.set(__self__, "resolution", resolution)
-        pulumi.set(__self__, "sizingPolicy", sizing_policy)
+        if aspect_ratio is not None:
+            pulumi.set(__self__, "aspect_ratio", aspect_ratio)
+        if bit_rate is not None:
+            pulumi.set(__self__, "bit_rate", bit_rate)
+        if codec is not None:
+            pulumi.set(__self__, "codec", codec)
+        if display_aspect_ratio is not None:
+            pulumi.set(__self__, "display_aspect_ratio", display_aspect_ratio)
+        if fixed_gop is not None:
+            pulumi.set(__self__, "fixed_gop", fixed_gop)
+        if frame_rate is not None:
+            pulumi.set(__self__, "frame_rate", frame_rate)
+        if keyframes_max_dist is not None:
+            pulumi.set(__self__, "keyframes_max_dist", keyframes_max_dist)
+        if max_frame_rate is not None:
+            pulumi.set(__self__, "max_frame_rate", max_frame_rate)
+        if max_height is not None:
+            pulumi.set(__self__, "max_height", max_height)
+        if max_width is not None:
+            pulumi.set(__self__, "max_width", max_width)
+        if padding_policy is not None:
+            pulumi.set(__self__, "padding_policy", padding_policy)
+        if resolution is not None:
+            pulumi.set(__self__, "resolution", resolution)
+        if sizing_policy is not None:
+            pulumi.set(__self__, "sizing_policy", sizing_policy)
 
     @property
     @pulumi.getter(name="aspectRatio")
@@ -769,16 +813,26 @@ class PresetVideoWatermarkArgs:
         :param pulumi.Input[str] vertical_align: The vertical position of the watermark unless you specify a nonzero value for `vertical_align`. Valid values are `Top`, `Bottom`, `Center`.
         :param pulumi.Input[str] vertical_offset: The amount by which you want the vertical position of the watermark to be offset from the position specified by `vertical_align`
         """
-        pulumi.set(__self__, "horizontalAlign", horizontal_align)
-        pulumi.set(__self__, "horizontalOffset", horizontal_offset)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "maxHeight", max_height)
-        pulumi.set(__self__, "maxWidth", max_width)
-        pulumi.set(__self__, "opacity", opacity)
-        pulumi.set(__self__, "sizingPolicy", sizing_policy)
-        pulumi.set(__self__, "target", target)
-        pulumi.set(__self__, "verticalAlign", vertical_align)
-        pulumi.set(__self__, "verticalOffset", vertical_offset)
+        if horizontal_align is not None:
+            pulumi.set(__self__, "horizontal_align", horizontal_align)
+        if horizontal_offset is not None:
+            pulumi.set(__self__, "horizontal_offset", horizontal_offset)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if max_height is not None:
+            pulumi.set(__self__, "max_height", max_height)
+        if max_width is not None:
+            pulumi.set(__self__, "max_width", max_width)
+        if opacity is not None:
+            pulumi.set(__self__, "opacity", opacity)
+        if sizing_policy is not None:
+            pulumi.set(__self__, "sizing_policy", sizing_policy)
+        if target is not None:
+            pulumi.set(__self__, "target", target)
+        if vertical_align is not None:
+            pulumi.set(__self__, "vertical_align", vertical_align)
+        if vertical_offset is not None:
+            pulumi.set(__self__, "vertical_offset", vertical_offset)
 
     @property
     @pulumi.getter(name="horizontalAlign")

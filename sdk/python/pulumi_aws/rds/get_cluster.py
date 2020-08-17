@@ -15,39 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetClusterResult:
-    arn: str = pulumi.property("arn")
-    availability_zones: List[str] = pulumi.property("availabilityZones")
-    backtrack_window: float = pulumi.property("backtrackWindow")
-    backup_retention_period: float = pulumi.property("backupRetentionPeriod")
-    cluster_identifier: str = pulumi.property("clusterIdentifier")
-    cluster_members: List[str] = pulumi.property("clusterMembers")
-    cluster_resource_id: str = pulumi.property("clusterResourceId")
-    database_name: str = pulumi.property("databaseName")
-    db_cluster_parameter_group_name: str = pulumi.property("dbClusterParameterGroupName")
-    db_subnet_group_name: str = pulumi.property("dbSubnetGroupName")
-    enabled_cloudwatch_logs_exports: List[str] = pulumi.property("enabledCloudwatchLogsExports")
-    endpoint: str = pulumi.property("endpoint")
-    engine: str = pulumi.property("engine")
-    engine_version: str = pulumi.property("engineVersion")
-    final_snapshot_identifier: str = pulumi.property("finalSnapshotIdentifier")
-    hosted_zone_id: str = pulumi.property("hostedZoneId")
-    iam_database_authentication_enabled: bool = pulumi.property("iamDatabaseAuthenticationEnabled")
-    iam_roles: List[str] = pulumi.property("iamRoles")
-    id: str = pulumi.property("id")
-    kms_key_id: str = pulumi.property("kmsKeyId")
-    master_username: str = pulumi.property("masterUsername")
-    port: float = pulumi.property("port")
-    preferred_backup_window: str = pulumi.property("preferredBackupWindow")
-    preferred_maintenance_window: str = pulumi.property("preferredMaintenanceWindow")
-    reader_endpoint: str = pulumi.property("readerEndpoint")
-    replication_source_identifier: str = pulumi.property("replicationSourceIdentifier")
-    storage_encrypted: bool = pulumi.property("storageEncrypted")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    vpc_security_group_ids: List[str] = pulumi.property("vpcSecurityGroupIds")
-
-
 class GetClusterResult:
     """
     A collection of values returned by getCluster.
@@ -55,94 +24,240 @@ class GetClusterResult:
     def __init__(__self__, arn=None, availability_zones=None, backtrack_window=None, backup_retention_period=None, cluster_identifier=None, cluster_members=None, cluster_resource_id=None, database_name=None, db_cluster_parameter_group_name=None, db_subnet_group_name=None, enabled_cloudwatch_logs_exports=None, endpoint=None, engine=None, engine_version=None, final_snapshot_identifier=None, hosted_zone_id=None, iam_database_authentication_enabled=None, iam_roles=None, id=None, kms_key_id=None, master_username=None, port=None, preferred_backup_window=None, preferred_maintenance_window=None, reader_endpoint=None, replication_source_identifier=None, storage_encrypted=None, tags=None, vpc_security_group_ids=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
         if availability_zones and not isinstance(availability_zones, list):
             raise TypeError("Expected argument 'availability_zones' to be a list")
-        __self__.availability_zones = availability_zones
+        pulumi.set(__self__, "availability_zones", availability_zones)
         if backtrack_window and not isinstance(backtrack_window, float):
             raise TypeError("Expected argument 'backtrack_window' to be a float")
-        __self__.backtrack_window = backtrack_window
+        pulumi.set(__self__, "backtrack_window", backtrack_window)
         if backup_retention_period and not isinstance(backup_retention_period, float):
             raise TypeError("Expected argument 'backup_retention_period' to be a float")
-        __self__.backup_retention_period = backup_retention_period
+        pulumi.set(__self__, "backup_retention_period", backup_retention_period)
         if cluster_identifier and not isinstance(cluster_identifier, str):
             raise TypeError("Expected argument 'cluster_identifier' to be a str")
-        __self__.cluster_identifier = cluster_identifier
+        pulumi.set(__self__, "cluster_identifier", cluster_identifier)
         if cluster_members and not isinstance(cluster_members, list):
             raise TypeError("Expected argument 'cluster_members' to be a list")
-        __self__.cluster_members = cluster_members
+        pulumi.set(__self__, "cluster_members", cluster_members)
         if cluster_resource_id and not isinstance(cluster_resource_id, str):
             raise TypeError("Expected argument 'cluster_resource_id' to be a str")
-        __self__.cluster_resource_id = cluster_resource_id
+        pulumi.set(__self__, "cluster_resource_id", cluster_resource_id)
         if database_name and not isinstance(database_name, str):
             raise TypeError("Expected argument 'database_name' to be a str")
-        __self__.database_name = database_name
+        pulumi.set(__self__, "database_name", database_name)
         if db_cluster_parameter_group_name and not isinstance(db_cluster_parameter_group_name, str):
             raise TypeError("Expected argument 'db_cluster_parameter_group_name' to be a str")
-        __self__.db_cluster_parameter_group_name = db_cluster_parameter_group_name
+        pulumi.set(__self__, "db_cluster_parameter_group_name", db_cluster_parameter_group_name)
         if db_subnet_group_name and not isinstance(db_subnet_group_name, str):
             raise TypeError("Expected argument 'db_subnet_group_name' to be a str")
-        __self__.db_subnet_group_name = db_subnet_group_name
+        pulumi.set(__self__, "db_subnet_group_name", db_subnet_group_name)
         if enabled_cloudwatch_logs_exports and not isinstance(enabled_cloudwatch_logs_exports, list):
             raise TypeError("Expected argument 'enabled_cloudwatch_logs_exports' to be a list")
-        __self__.enabled_cloudwatch_logs_exports = enabled_cloudwatch_logs_exports
+        pulumi.set(__self__, "enabled_cloudwatch_logs_exports", enabled_cloudwatch_logs_exports)
         if endpoint and not isinstance(endpoint, str):
             raise TypeError("Expected argument 'endpoint' to be a str")
-        __self__.endpoint = endpoint
+        pulumi.set(__self__, "endpoint", endpoint)
         if engine and not isinstance(engine, str):
             raise TypeError("Expected argument 'engine' to be a str")
-        __self__.engine = engine
+        pulumi.set(__self__, "engine", engine)
         if engine_version and not isinstance(engine_version, str):
             raise TypeError("Expected argument 'engine_version' to be a str")
-        __self__.engine_version = engine_version
+        pulumi.set(__self__, "engine_version", engine_version)
         if final_snapshot_identifier and not isinstance(final_snapshot_identifier, str):
             raise TypeError("Expected argument 'final_snapshot_identifier' to be a str")
-        __self__.final_snapshot_identifier = final_snapshot_identifier
+        pulumi.set(__self__, "final_snapshot_identifier", final_snapshot_identifier)
         if hosted_zone_id and not isinstance(hosted_zone_id, str):
             raise TypeError("Expected argument 'hosted_zone_id' to be a str")
-        __self__.hosted_zone_id = hosted_zone_id
+        pulumi.set(__self__, "hosted_zone_id", hosted_zone_id)
         if iam_database_authentication_enabled and not isinstance(iam_database_authentication_enabled, bool):
             raise TypeError("Expected argument 'iam_database_authentication_enabled' to be a bool")
-        __self__.iam_database_authentication_enabled = iam_database_authentication_enabled
+        pulumi.set(__self__, "iam_database_authentication_enabled", iam_database_authentication_enabled)
         if iam_roles and not isinstance(iam_roles, list):
             raise TypeError("Expected argument 'iam_roles' to be a list")
-        __self__.iam_roles = iam_roles
+        pulumi.set(__self__, "iam_roles", iam_roles)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if kms_key_id and not isinstance(kms_key_id, str):
+            raise TypeError("Expected argument 'kms_key_id' to be a str")
+        pulumi.set(__self__, "kms_key_id", kms_key_id)
+        if master_username and not isinstance(master_username, str):
+            raise TypeError("Expected argument 'master_username' to be a str")
+        pulumi.set(__self__, "master_username", master_username)
+        if port and not isinstance(port, float):
+            raise TypeError("Expected argument 'port' to be a float")
+        pulumi.set(__self__, "port", port)
+        if preferred_backup_window and not isinstance(preferred_backup_window, str):
+            raise TypeError("Expected argument 'preferred_backup_window' to be a str")
+        pulumi.set(__self__, "preferred_backup_window", preferred_backup_window)
+        if preferred_maintenance_window and not isinstance(preferred_maintenance_window, str):
+            raise TypeError("Expected argument 'preferred_maintenance_window' to be a str")
+        pulumi.set(__self__, "preferred_maintenance_window", preferred_maintenance_window)
+        if reader_endpoint and not isinstance(reader_endpoint, str):
+            raise TypeError("Expected argument 'reader_endpoint' to be a str")
+        pulumi.set(__self__, "reader_endpoint", reader_endpoint)
+        if replication_source_identifier and not isinstance(replication_source_identifier, str):
+            raise TypeError("Expected argument 'replication_source_identifier' to be a str")
+        pulumi.set(__self__, "replication_source_identifier", replication_source_identifier)
+        if storage_encrypted and not isinstance(storage_encrypted, bool):
+            raise TypeError("Expected argument 'storage_encrypted' to be a bool")
+        pulumi.set(__self__, "storage_encrypted", storage_encrypted)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if vpc_security_group_ids and not isinstance(vpc_security_group_ids, list):
+            raise TypeError("Expected argument 'vpc_security_group_ids' to be a list")
+        pulumi.set(__self__, "vpc_security_group_ids", vpc_security_group_ids)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="availabilityZones")
+    def availability_zones(self) -> List[str]:
+        ...
+
+    @property
+    @pulumi.getter(name="backtrackWindow")
+    def backtrack_window(self) -> float:
+        ...
+
+    @property
+    @pulumi.getter(name="backupRetentionPeriod")
+    def backup_retention_period(self) -> float:
+        ...
+
+    @property
+    @pulumi.getter(name="clusterIdentifier")
+    def cluster_identifier(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="clusterMembers")
+    def cluster_members(self) -> List[str]:
+        ...
+
+    @property
+    @pulumi.getter(name="clusterResourceId")
+    def cluster_resource_id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="databaseName")
+    def database_name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="dbClusterParameterGroupName")
+    def db_cluster_parameter_group_name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="dbSubnetGroupName")
+    def db_subnet_group_name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="enabledCloudwatchLogsExports")
+    def enabled_cloudwatch_logs_exports(self) -> List[str]:
+        ...
+
+    @property
+    @pulumi.getter
+    def endpoint(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def engine(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="engineVersion")
+    def engine_version(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="finalSnapshotIdentifier")
+    def final_snapshot_identifier(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="hostedZoneId")
+    def hosted_zone_id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="iamDatabaseAuthenticationEnabled")
+    def iam_database_authentication_enabled(self) -> bool:
+        ...
+
+    @property
+    @pulumi.getter(name="iamRoles")
+    def iam_roles(self) -> List[str]:
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if kms_key_id and not isinstance(kms_key_id, str):
-            raise TypeError("Expected argument 'kms_key_id' to be a str")
-        __self__.kms_key_id = kms_key_id
-        if master_username and not isinstance(master_username, str):
-            raise TypeError("Expected argument 'master_username' to be a str")
-        __self__.master_username = master_username
-        if port and not isinstance(port, float):
-            raise TypeError("Expected argument 'port' to be a float")
-        __self__.port = port
-        if preferred_backup_window and not isinstance(preferred_backup_window, str):
-            raise TypeError("Expected argument 'preferred_backup_window' to be a str")
-        __self__.preferred_backup_window = preferred_backup_window
-        if preferred_maintenance_window and not isinstance(preferred_maintenance_window, str):
-            raise TypeError("Expected argument 'preferred_maintenance_window' to be a str")
-        __self__.preferred_maintenance_window = preferred_maintenance_window
-        if reader_endpoint and not isinstance(reader_endpoint, str):
-            raise TypeError("Expected argument 'reader_endpoint' to be a str")
-        __self__.reader_endpoint = reader_endpoint
-        if replication_source_identifier and not isinstance(replication_source_identifier, str):
-            raise TypeError("Expected argument 'replication_source_identifier' to be a str")
-        __self__.replication_source_identifier = replication_source_identifier
-        if storage_encrypted and not isinstance(storage_encrypted, bool):
-            raise TypeError("Expected argument 'storage_encrypted' to be a bool")
-        __self__.storage_encrypted = storage_encrypted
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
-        if vpc_security_group_ids and not isinstance(vpc_security_group_ids, list):
-            raise TypeError("Expected argument 'vpc_security_group_ids' to be a list")
-        __self__.vpc_security_group_ids = vpc_security_group_ids
+        ...
+
+    @property
+    @pulumi.getter(name="kmsKeyId")
+    def kms_key_id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="masterUsername")
+    def master_username(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def port(self) -> float:
+        ...
+
+    @property
+    @pulumi.getter(name="preferredBackupWindow")
+    def preferred_backup_window(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="preferredMaintenanceWindow")
+    def preferred_maintenance_window(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="readerEndpoint")
+    def reader_endpoint(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="replicationSourceIdentifier")
+    def replication_source_identifier(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="storageEncrypted")
+    def storage_encrypted(self) -> bool:
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
+        ...
+
+    @property
+    @pulumi.getter(name="vpcSecurityGroupIds")
+    def vpc_security_group_ids(self) -> List[str]:
+        ...
+
 
 
 class AwaitableGetClusterResult(GetClusterResult):
@@ -207,7 +322,7 @@ def get_cluster(cluster_identifier: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:rds/getCluster:getCluster', __args__, opts=opts, typ=_GetClusterResult).value
+    __ret__ = pulumi.runtime.invoke('aws:rds/getCluster:getCluster', __args__, opts=opts, typ=GetClusterResult).value
 
     return AwaitableGetClusterResult(
         arn=__ret__.arn,

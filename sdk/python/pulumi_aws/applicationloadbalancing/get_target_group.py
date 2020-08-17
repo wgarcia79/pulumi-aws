@@ -17,26 +17,8 @@ __all__ = [
 
 warnings.warn("aws.applicationloadbalancing.getTargetGroup has been deprecated in favor of aws.alb.getTargetGroup", DeprecationWarning)
 
+
 @pulumi.output_type
-class _GetTargetGroupResult:
-    arn: str = pulumi.property("arn")
-    arn_suffix: str = pulumi.property("arnSuffix")
-    deregistration_delay: float = pulumi.property("deregistrationDelay")
-    health_check: 'outputs.GetTargetGroupHealthCheckResult' = pulumi.property("healthCheck")
-    id: str = pulumi.property("id")
-    lambda_multi_value_headers_enabled: bool = pulumi.property("lambdaMultiValueHeadersEnabled")
-    load_balancing_algorithm_type: str = pulumi.property("loadBalancingAlgorithmType")
-    name: str = pulumi.property("name")
-    port: float = pulumi.property("port")
-    protocol: str = pulumi.property("protocol")
-    proxy_protocol_v2: bool = pulumi.property("proxyProtocolV2")
-    slow_start: float = pulumi.property("slowStart")
-    stickiness: 'outputs.GetTargetGroupStickinessResult' = pulumi.property("stickiness")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    target_type: str = pulumi.property("targetType")
-    vpc_id: str = pulumi.property("vpcId")
-
-
 class GetTargetGroupResult:
     """
     A collection of values returned by getTargetGroup.
@@ -44,55 +26,136 @@ class GetTargetGroupResult:
     def __init__(__self__, arn=None, arn_suffix=None, deregistration_delay=None, health_check=None, id=None, lambda_multi_value_headers_enabled=None, load_balancing_algorithm_type=None, name=None, port=None, protocol=None, proxy_protocol_v2=None, slow_start=None, stickiness=None, tags=None, target_type=None, vpc_id=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
         if arn_suffix and not isinstance(arn_suffix, str):
             raise TypeError("Expected argument 'arn_suffix' to be a str")
-        __self__.arn_suffix = arn_suffix
+        pulumi.set(__self__, "arn_suffix", arn_suffix)
         if deregistration_delay and not isinstance(deregistration_delay, float):
             raise TypeError("Expected argument 'deregistration_delay' to be a float")
-        __self__.deregistration_delay = deregistration_delay
+        pulumi.set(__self__, "deregistration_delay", deregistration_delay)
         if health_check and not isinstance(health_check, dict):
             raise TypeError("Expected argument 'health_check' to be a dict")
-        __self__.health_check = health_check
+        pulumi.set(__self__, "health_check", health_check)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if lambda_multi_value_headers_enabled and not isinstance(lambda_multi_value_headers_enabled, bool):
+            raise TypeError("Expected argument 'lambda_multi_value_headers_enabled' to be a bool")
+        pulumi.set(__self__, "lambda_multi_value_headers_enabled", lambda_multi_value_headers_enabled)
+        if load_balancing_algorithm_type and not isinstance(load_balancing_algorithm_type, str):
+            raise TypeError("Expected argument 'load_balancing_algorithm_type' to be a str")
+        pulumi.set(__self__, "load_balancing_algorithm_type", load_balancing_algorithm_type)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if port and not isinstance(port, float):
+            raise TypeError("Expected argument 'port' to be a float")
+        pulumi.set(__self__, "port", port)
+        if protocol and not isinstance(protocol, str):
+            raise TypeError("Expected argument 'protocol' to be a str")
+        pulumi.set(__self__, "protocol", protocol)
+        if proxy_protocol_v2 and not isinstance(proxy_protocol_v2, bool):
+            raise TypeError("Expected argument 'proxy_protocol_v2' to be a bool")
+        pulumi.set(__self__, "proxy_protocol_v2", proxy_protocol_v2)
+        if slow_start and not isinstance(slow_start, float):
+            raise TypeError("Expected argument 'slow_start' to be a float")
+        pulumi.set(__self__, "slow_start", slow_start)
+        if stickiness and not isinstance(stickiness, dict):
+            raise TypeError("Expected argument 'stickiness' to be a dict")
+        pulumi.set(__self__, "stickiness", stickiness)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if target_type and not isinstance(target_type, str):
+            raise TypeError("Expected argument 'target_type' to be a str")
+        pulumi.set(__self__, "target_type", target_type)
+        if vpc_id and not isinstance(vpc_id, str):
+            raise TypeError("Expected argument 'vpc_id' to be a str")
+        pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="arnSuffix")
+    def arn_suffix(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="deregistrationDelay")
+    def deregistration_delay(self) -> float:
+        ...
+
+    @property
+    @pulumi.getter(name="healthCheck")
+    def health_check(self) -> 'outputs.GetTargetGroupHealthCheckResult':
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if lambda_multi_value_headers_enabled and not isinstance(lambda_multi_value_headers_enabled, bool):
-            raise TypeError("Expected argument 'lambda_multi_value_headers_enabled' to be a bool")
-        __self__.lambda_multi_value_headers_enabled = lambda_multi_value_headers_enabled
-        if load_balancing_algorithm_type and not isinstance(load_balancing_algorithm_type, str):
-            raise TypeError("Expected argument 'load_balancing_algorithm_type' to be a str")
-        __self__.load_balancing_algorithm_type = load_balancing_algorithm_type
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if port and not isinstance(port, float):
-            raise TypeError("Expected argument 'port' to be a float")
-        __self__.port = port
-        if protocol and not isinstance(protocol, str):
-            raise TypeError("Expected argument 'protocol' to be a str")
-        __self__.protocol = protocol
-        if proxy_protocol_v2 and not isinstance(proxy_protocol_v2, bool):
-            raise TypeError("Expected argument 'proxy_protocol_v2' to be a bool")
-        __self__.proxy_protocol_v2 = proxy_protocol_v2
-        if slow_start and not isinstance(slow_start, float):
-            raise TypeError("Expected argument 'slow_start' to be a float")
-        __self__.slow_start = slow_start
-        if stickiness and not isinstance(stickiness, dict):
-            raise TypeError("Expected argument 'stickiness' to be a dict")
-        __self__.stickiness = stickiness
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
-        if target_type and not isinstance(target_type, str):
-            raise TypeError("Expected argument 'target_type' to be a str")
-        __self__.target_type = target_type
-        if vpc_id and not isinstance(vpc_id, str):
-            raise TypeError("Expected argument 'vpc_id' to be a str")
-        __self__.vpc_id = vpc_id
+        ...
+
+    @property
+    @pulumi.getter(name="lambdaMultiValueHeadersEnabled")
+    def lambda_multi_value_headers_enabled(self) -> bool:
+        ...
+
+    @property
+    @pulumi.getter(name="loadBalancingAlgorithmType")
+    def load_balancing_algorithm_type(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def port(self) -> float:
+        ...
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="proxyProtocolV2")
+    def proxy_protocol_v2(self) -> bool:
+        ...
+
+    @property
+    @pulumi.getter(name="slowStart")
+    def slow_start(self) -> float:
+        ...
+
+    @property
+    @pulumi.getter
+    def stickiness(self) -> 'outputs.GetTargetGroupStickinessResult':
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
+        ...
+
+    @property
+    @pulumi.getter(name="targetType")
+    def target_type(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        ...
+
 
 
 class AwaitableGetTargetGroupResult(GetTargetGroupResult):
@@ -162,7 +225,7 @@ def get_target_group(arn: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:applicationloadbalancing/getTargetGroup:getTargetGroup', __args__, opts=opts, typ=_GetTargetGroupResult).value
+    __ret__ = pulumi.runtime.invoke('aws:applicationloadbalancing/getTargetGroup:getTargetGroup', __args__, opts=opts, typ=GetTargetGroupResult).value
 
     return AwaitableGetTargetGroupResult(
         arn=__ret__.arn,

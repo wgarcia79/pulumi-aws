@@ -12,31 +12,6 @@ __all__ = ['NamedQuery']
 
 
 class NamedQuery(pulumi.CustomResource):
-    database: pulumi.Output[str] = pulumi.property("database")
-    """
-    The database to which the query belongs.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    A brief explanation of the query. Maximum length of 1024.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The plain language name for the query. Maximum length of 128.
-    """
-
-    query: pulumi.Output[str] = pulumi.property("query")
-    """
-    The text of the query itself. In other words, all query statements. Maximum length of 262144.
-    """
-
-    workgroup: pulumi.Output[Optional[str]] = pulumi.property("workgroup")
-    """
-    The workgroup to which the query belongs. Defaults to `primary`
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -150,6 +125,46 @@ class NamedQuery(pulumi.CustomResource):
         __props__["query"] = query
         __props__["workgroup"] = workgroup
         return NamedQuery(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def database(self) -> str:
+        """
+        The database to which the query belongs.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        A brief explanation of the query. Maximum length of 1024.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The plain language name for the query. Maximum length of 128.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def query(self) -> str:
+        """
+        The text of the query itself. In other words, all query statements. Maximum length of 262144.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def workgroup(self) -> Optional[str]:
+        """
+        The workgroup to which the query belongs. Defaults to `primary`
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -17,24 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetVpcPeeringConnectionResult:
-    accepter: Mapping[str, bool] = pulumi.property("accepter")
-    cidr_block: str = pulumi.property("cidrBlock")
-    filters: Optional[List['outputs.GetVpcPeeringConnectionFilterResult']] = pulumi.property("filters")
-    id: str = pulumi.property("id")
-    owner_id: str = pulumi.property("ownerId")
-    peer_cidr_block: str = pulumi.property("peerCidrBlock")
-    peer_owner_id: str = pulumi.property("peerOwnerId")
-    peer_region: str = pulumi.property("peerRegion")
-    peer_vpc_id: str = pulumi.property("peerVpcId")
-    region: str = pulumi.property("region")
-    requester: Mapping[str, bool] = pulumi.property("requester")
-    status: str = pulumi.property("status")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    vpc_id: str = pulumi.property("vpcId")
-
-
 class GetVpcPeeringConnectionResult:
     """
     A collection of values returned by getVpcPeeringConnection.
@@ -42,54 +26,125 @@ class GetVpcPeeringConnectionResult:
     def __init__(__self__, accepter=None, cidr_block=None, filters=None, id=None, owner_id=None, peer_cidr_block=None, peer_owner_id=None, peer_region=None, peer_vpc_id=None, region=None, requester=None, status=None, tags=None, vpc_id=None):
         if accepter and not isinstance(accepter, dict):
             raise TypeError("Expected argument 'accepter' to be a dict")
-        __self__.accepter = accepter
+        pulumi.set(__self__, "accepter", accepter)
+        if cidr_block and not isinstance(cidr_block, str):
+            raise TypeError("Expected argument 'cidr_block' to be a str")
+        pulumi.set(__self__, "cidr_block", cidr_block)
+        if filters and not isinstance(filters, list):
+            raise TypeError("Expected argument 'filters' to be a list")
+        pulumi.set(__self__, "filters", filters)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if owner_id and not isinstance(owner_id, str):
+            raise TypeError("Expected argument 'owner_id' to be a str")
+        pulumi.set(__self__, "owner_id", owner_id)
+        if peer_cidr_block and not isinstance(peer_cidr_block, str):
+            raise TypeError("Expected argument 'peer_cidr_block' to be a str")
+        pulumi.set(__self__, "peer_cidr_block", peer_cidr_block)
+        if peer_owner_id and not isinstance(peer_owner_id, str):
+            raise TypeError("Expected argument 'peer_owner_id' to be a str")
+        pulumi.set(__self__, "peer_owner_id", peer_owner_id)
+        if peer_region and not isinstance(peer_region, str):
+            raise TypeError("Expected argument 'peer_region' to be a str")
+        pulumi.set(__self__, "peer_region", peer_region)
+        if peer_vpc_id and not isinstance(peer_vpc_id, str):
+            raise TypeError("Expected argument 'peer_vpc_id' to be a str")
+        pulumi.set(__self__, "peer_vpc_id", peer_vpc_id)
+        if region and not isinstance(region, str):
+            raise TypeError("Expected argument 'region' to be a str")
+        pulumi.set(__self__, "region", region)
+        if requester and not isinstance(requester, dict):
+            raise TypeError("Expected argument 'requester' to be a dict")
+        pulumi.set(__self__, "requester", requester)
+        if status and not isinstance(status, str):
+            raise TypeError("Expected argument 'status' to be a str")
+        pulumi.set(__self__, "status", status)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if vpc_id and not isinstance(vpc_id, str):
+            raise TypeError("Expected argument 'vpc_id' to be a str")
+        pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter
+    def accepter(self) -> Mapping[str, bool]:
         """
         A configuration block that describes [VPC Peering Connection]
         (https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) options set for the accepter VPC.
         """
-        if cidr_block and not isinstance(cidr_block, str):
-            raise TypeError("Expected argument 'cidr_block' to be a str")
-        __self__.cidr_block = cidr_block
-        if filters and not isinstance(filters, list):
-            raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        if owner_id and not isinstance(owner_id, str):
-            raise TypeError("Expected argument 'owner_id' to be a str")
-        __self__.owner_id = owner_id
-        if peer_cidr_block and not isinstance(peer_cidr_block, str):
-            raise TypeError("Expected argument 'peer_cidr_block' to be a str")
-        __self__.peer_cidr_block = peer_cidr_block
-        if peer_owner_id and not isinstance(peer_owner_id, str):
-            raise TypeError("Expected argument 'peer_owner_id' to be a str")
-        __self__.peer_owner_id = peer_owner_id
-        if peer_region and not isinstance(peer_region, str):
-            raise TypeError("Expected argument 'peer_region' to be a str")
-        __self__.peer_region = peer_region
-        if peer_vpc_id and not isinstance(peer_vpc_id, str):
-            raise TypeError("Expected argument 'peer_vpc_id' to be a str")
-        __self__.peer_vpc_id = peer_vpc_id
-        if region and not isinstance(region, str):
-            raise TypeError("Expected argument 'region' to be a str")
-        __self__.region = region
-        if requester and not isinstance(requester, dict):
-            raise TypeError("Expected argument 'requester' to be a dict")
-        __self__.requester = requester
+        ...
+
+    @property
+    @pulumi.getter(name="cidrBlock")
+    def cidr_block(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetVpcPeeringConnectionFilterResult']]:
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="peerCidrBlock")
+    def peer_cidr_block(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="peerOwnerId")
+    def peer_owner_id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="peerRegion")
+    def peer_region(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="peerVpcId")
+    def peer_vpc_id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def requester(self) -> Mapping[str, bool]:
         """
         A configuration block that describes [VPC Peering Connection]
         (https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) options set for the requester VPC.
         """
-        if status and not isinstance(status, str):
-            raise TypeError("Expected argument 'status' to be a str")
-        __self__.status = status
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
-        if vpc_id and not isinstance(vpc_id, str):
-            raise TypeError("Expected argument 'vpc_id' to be a str")
-        __self__.vpc_id = vpc_id
+        ...
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
+        ...
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        ...
+
 
 
 class AwaitableGetVpcPeeringConnectionResult(GetVpcPeeringConnectionResult):
@@ -180,7 +235,7 @@ def get_vpc_peering_connection(cidr_block: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getVpcPeeringConnection:getVpcPeeringConnection', __args__, opts=opts, typ=_GetVpcPeeringConnectionResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getVpcPeeringConnection:getVpcPeeringConnection', __args__, opts=opts, typ=GetVpcPeeringConnectionResult).value
 
     return AwaitableGetVpcPeeringConnectionResult(
         accepter=__ret__.accepter,

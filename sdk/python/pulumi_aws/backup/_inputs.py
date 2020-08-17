@@ -37,14 +37,20 @@ class PlanRuleArgs:
         :param pulumi.Input[str] schedule: A CRON expression specifying when AWS Backup initiates a backup job.
         :param pulumi.Input[float] start_window: The amount of time in minutes before beginning a backup.
         """
-        pulumi.set(__self__, "ruleName", rule_name)
-        pulumi.set(__self__, "targetVaultName", target_vault_name)
-        pulumi.set(__self__, "completionWindow", completion_window)
-        pulumi.set(__self__, "copyActions", copy_actions)
-        pulumi.set(__self__, "lifecycle", lifecycle)
-        pulumi.set(__self__, "recoveryPointTags", recovery_point_tags)
-        pulumi.set(__self__, "schedule", schedule)
-        pulumi.set(__self__, "startWindow", start_window)
+        pulumi.set(__self__, "rule_name", rule_name)
+        pulumi.set(__self__, "target_vault_name", target_vault_name)
+        if completion_window is not None:
+            pulumi.set(__self__, "completion_window", completion_window)
+        if copy_actions is not None:
+            pulumi.set(__self__, "copy_actions", copy_actions)
+        if lifecycle is not None:
+            pulumi.set(__self__, "lifecycle", lifecycle)
+        if recovery_point_tags is not None:
+            pulumi.set(__self__, "recovery_point_tags", recovery_point_tags)
+        if schedule is not None:
+            pulumi.set(__self__, "schedule", schedule)
+        if start_window is not None:
+            pulumi.set(__self__, "start_window", start_window)
 
     @property
     @pulumi.getter(name="ruleName")
@@ -152,8 +158,9 @@ class PlanRuleCopyActionArgs:
         :param pulumi.Input[str] destination_vault_arn: An Amazon Resource Name (ARN) that uniquely identifies the destination backup vault for the copied backup.
         :param pulumi.Input['PlanRuleCopyActionLifecycleArgs'] lifecycle: The lifecycle defines when a protected resource is copied over to a backup vault and when it expires.  Fields documented above.
         """
-        pulumi.set(__self__, "destinationVaultArn", destination_vault_arn)
-        pulumi.set(__self__, "lifecycle", lifecycle)
+        pulumi.set(__self__, "destination_vault_arn", destination_vault_arn)
+        if lifecycle is not None:
+            pulumi.set(__self__, "lifecycle", lifecycle)
 
     @property
     @pulumi.getter(name="destinationVaultArn")
@@ -189,8 +196,10 @@ class PlanRuleCopyActionLifecycleArgs:
         :param pulumi.Input[float] cold_storage_after: Specifies the number of days after creation that a recovery point is moved to cold storage.
         :param pulumi.Input[float] delete_after: Specifies the number of days after creation that a recovery point is deleted. Must be 90 days greater than `cold_storage_after`.
         """
-        pulumi.set(__self__, "coldStorageAfter", cold_storage_after)
-        pulumi.set(__self__, "deleteAfter", delete_after)
+        if cold_storage_after is not None:
+            pulumi.set(__self__, "cold_storage_after", cold_storage_after)
+        if delete_after is not None:
+            pulumi.set(__self__, "delete_after", delete_after)
 
     @property
     @pulumi.getter(name="coldStorageAfter")
@@ -226,8 +235,10 @@ class PlanRuleLifecycleArgs:
         :param pulumi.Input[float] cold_storage_after: Specifies the number of days after creation that a recovery point is moved to cold storage.
         :param pulumi.Input[float] delete_after: Specifies the number of days after creation that a recovery point is deleted. Must be 90 days greater than `cold_storage_after`.
         """
-        pulumi.set(__self__, "coldStorageAfter", cold_storage_after)
-        pulumi.set(__self__, "deleteAfter", delete_after)
+        if cold_storage_after is not None:
+            pulumi.set(__self__, "cold_storage_after", cold_storage_after)
+        if delete_after is not None:
+            pulumi.set(__self__, "delete_after", delete_after)
 
     @property
     @pulumi.getter(name="coldStorageAfter")

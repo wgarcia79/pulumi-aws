@@ -16,32 +16,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetClusterResult:
-    arn: str = pulumi.property("arn")
-    availability_zone: str = pulumi.property("availabilityZone")
-    cache_nodes: List['outputs.GetClusterCacheNodeResult'] = pulumi.property("cacheNodes")
-    cluster_address: str = pulumi.property("clusterAddress")
-    cluster_id: str = pulumi.property("clusterId")
-    configuration_endpoint: str = pulumi.property("configurationEndpoint")
-    engine: str = pulumi.property("engine")
-    engine_version: str = pulumi.property("engineVersion")
-    id: str = pulumi.property("id")
-    maintenance_window: str = pulumi.property("maintenanceWindow")
-    node_type: str = pulumi.property("nodeType")
-    notification_topic_arn: str = pulumi.property("notificationTopicArn")
-    num_cache_nodes: float = pulumi.property("numCacheNodes")
-    parameter_group_name: str = pulumi.property("parameterGroupName")
-    port: float = pulumi.property("port")
-    replication_group_id: str = pulumi.property("replicationGroupId")
-    security_group_ids: List[str] = pulumi.property("securityGroupIds")
-    security_group_names: List[str] = pulumi.property("securityGroupNames")
-    snapshot_retention_limit: float = pulumi.property("snapshotRetentionLimit")
-    snapshot_window: str = pulumi.property("snapshotWindow")
-    subnet_group_name: str = pulumi.property("subnetGroupName")
-    tags: Mapping[str, str] = pulumi.property("tags")
-
-
 class GetClusterResult:
     """
     A collection of values returned by getCluster.
@@ -49,136 +25,247 @@ class GetClusterResult:
     def __init__(__self__, arn=None, availability_zone=None, cache_nodes=None, cluster_address=None, cluster_id=None, configuration_endpoint=None, engine=None, engine_version=None, id=None, maintenance_window=None, node_type=None, notification_topic_arn=None, num_cache_nodes=None, parameter_group_name=None, port=None, replication_group_id=None, security_group_ids=None, security_group_names=None, snapshot_retention_limit=None, snapshot_window=None, subnet_group_name=None, tags=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
         if availability_zone and not isinstance(availability_zone, str):
             raise TypeError("Expected argument 'availability_zone' to be a str")
-        __self__.availability_zone = availability_zone
+        pulumi.set(__self__, "availability_zone", availability_zone)
+        if cache_nodes and not isinstance(cache_nodes, list):
+            raise TypeError("Expected argument 'cache_nodes' to be a list")
+        pulumi.set(__self__, "cache_nodes", cache_nodes)
+        if cluster_address and not isinstance(cluster_address, str):
+            raise TypeError("Expected argument 'cluster_address' to be a str")
+        pulumi.set(__self__, "cluster_address", cluster_address)
+        if cluster_id and not isinstance(cluster_id, str):
+            raise TypeError("Expected argument 'cluster_id' to be a str")
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        if configuration_endpoint and not isinstance(configuration_endpoint, str):
+            raise TypeError("Expected argument 'configuration_endpoint' to be a str")
+        pulumi.set(__self__, "configuration_endpoint", configuration_endpoint)
+        if engine and not isinstance(engine, str):
+            raise TypeError("Expected argument 'engine' to be a str")
+        pulumi.set(__self__, "engine", engine)
+        if engine_version and not isinstance(engine_version, str):
+            raise TypeError("Expected argument 'engine_version' to be a str")
+        pulumi.set(__self__, "engine_version", engine_version)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if maintenance_window and not isinstance(maintenance_window, str):
+            raise TypeError("Expected argument 'maintenance_window' to be a str")
+        pulumi.set(__self__, "maintenance_window", maintenance_window)
+        if node_type and not isinstance(node_type, str):
+            raise TypeError("Expected argument 'node_type' to be a str")
+        pulumi.set(__self__, "node_type", node_type)
+        if notification_topic_arn and not isinstance(notification_topic_arn, str):
+            raise TypeError("Expected argument 'notification_topic_arn' to be a str")
+        pulumi.set(__self__, "notification_topic_arn", notification_topic_arn)
+        if num_cache_nodes and not isinstance(num_cache_nodes, float):
+            raise TypeError("Expected argument 'num_cache_nodes' to be a float")
+        pulumi.set(__self__, "num_cache_nodes", num_cache_nodes)
+        if parameter_group_name and not isinstance(parameter_group_name, str):
+            raise TypeError("Expected argument 'parameter_group_name' to be a str")
+        pulumi.set(__self__, "parameter_group_name", parameter_group_name)
+        if port and not isinstance(port, float):
+            raise TypeError("Expected argument 'port' to be a float")
+        pulumi.set(__self__, "port", port)
+        if replication_group_id and not isinstance(replication_group_id, str):
+            raise TypeError("Expected argument 'replication_group_id' to be a str")
+        pulumi.set(__self__, "replication_group_id", replication_group_id)
+        if security_group_ids and not isinstance(security_group_ids, list):
+            raise TypeError("Expected argument 'security_group_ids' to be a list")
+        pulumi.set(__self__, "security_group_ids", security_group_ids)
+        if security_group_names and not isinstance(security_group_names, list):
+            raise TypeError("Expected argument 'security_group_names' to be a list")
+        pulumi.set(__self__, "security_group_names", security_group_names)
+        if snapshot_retention_limit and not isinstance(snapshot_retention_limit, float):
+            raise TypeError("Expected argument 'snapshot_retention_limit' to be a float")
+        pulumi.set(__self__, "snapshot_retention_limit", snapshot_retention_limit)
+        if snapshot_window and not isinstance(snapshot_window, str):
+            raise TypeError("Expected argument 'snapshot_window' to be a str")
+        pulumi.set(__self__, "snapshot_window", snapshot_window)
+        if subnet_group_name and not isinstance(subnet_group_name, str):
+            raise TypeError("Expected argument 'subnet_group_name' to be a str")
+        pulumi.set(__self__, "subnet_group_name", subnet_group_name)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> str:
         """
         The Availability Zone for the cache cluster.
         """
-        if cache_nodes and not isinstance(cache_nodes, list):
-            raise TypeError("Expected argument 'cache_nodes' to be a list")
-        __self__.cache_nodes = cache_nodes
+        ...
+
+    @property
+    @pulumi.getter(name="cacheNodes")
+    def cache_nodes(self) -> List['outputs.GetClusterCacheNodeResult']:
         """
         List of node objects including `id`, `address`, `port` and `availability_zone`.
         Referenceable e.g. as `${data.aws_elasticache_cluster.bar.cache_nodes.0.address}`
         """
-        if cluster_address and not isinstance(cluster_address, str):
-            raise TypeError("Expected argument 'cluster_address' to be a str")
-        __self__.cluster_address = cluster_address
+        ...
+
+    @property
+    @pulumi.getter(name="clusterAddress")
+    def cluster_address(self) -> str:
         """
         (Memcached only) The DNS name of the cache cluster without the port appended.
         """
-        if cluster_id and not isinstance(cluster_id, str):
-            raise TypeError("Expected argument 'cluster_id' to be a str")
-        __self__.cluster_id = cluster_id
-        if configuration_endpoint and not isinstance(configuration_endpoint, str):
-            raise TypeError("Expected argument 'configuration_endpoint' to be a str")
-        __self__.configuration_endpoint = configuration_endpoint
+        ...
+
+    @property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="configurationEndpoint")
+    def configuration_endpoint(self) -> str:
         """
         (Memcached only) The configuration endpoint to allow host discovery.
         """
-        if engine and not isinstance(engine, str):
-            raise TypeError("Expected argument 'engine' to be a str")
-        __self__.engine = engine
+        ...
+
+    @property
+    @pulumi.getter
+    def engine(self) -> str:
         """
         Name of the cache engine.
         """
-        if engine_version and not isinstance(engine_version, str):
-            raise TypeError("Expected argument 'engine_version' to be a str")
-        __self__.engine_version = engine_version
+        ...
+
+    @property
+    @pulumi.getter(name="engineVersion")
+    def engine_version(self) -> str:
         """
         Version number of the cache engine.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if maintenance_window and not isinstance(maintenance_window, str):
-            raise TypeError("Expected argument 'maintenance_window' to be a str")
-        __self__.maintenance_window = maintenance_window
+        ...
+
+    @property
+    @pulumi.getter(name="maintenanceWindow")
+    def maintenance_window(self) -> str:
         """
         Specifies the weekly time range for when maintenance
         on the cache cluster is performed.
         """
-        if node_type and not isinstance(node_type, str):
-            raise TypeError("Expected argument 'node_type' to be a str")
-        __self__.node_type = node_type
+        ...
+
+    @property
+    @pulumi.getter(name="nodeType")
+    def node_type(self) -> str:
         """
         The cluster node type.
         """
-        if notification_topic_arn and not isinstance(notification_topic_arn, str):
-            raise TypeError("Expected argument 'notification_topic_arn' to be a str")
-        __self__.notification_topic_arn = notification_topic_arn
+        ...
+
+    @property
+    @pulumi.getter(name="notificationTopicArn")
+    def notification_topic_arn(self) -> str:
         """
         An Amazon Resource Name (ARN) of an
         SNS topic that ElastiCache notifications get sent to.
         """
-        if num_cache_nodes and not isinstance(num_cache_nodes, float):
-            raise TypeError("Expected argument 'num_cache_nodes' to be a float")
-        __self__.num_cache_nodes = num_cache_nodes
+        ...
+
+    @property
+    @pulumi.getter(name="numCacheNodes")
+    def num_cache_nodes(self) -> float:
         """
         The number of cache nodes that the cache cluster has.
         """
-        if parameter_group_name and not isinstance(parameter_group_name, str):
-            raise TypeError("Expected argument 'parameter_group_name' to be a str")
-        __self__.parameter_group_name = parameter_group_name
+        ...
+
+    @property
+    @pulumi.getter(name="parameterGroupName")
+    def parameter_group_name(self) -> str:
         """
         Name of the parameter group associated with this cache cluster.
         """
-        if port and not isinstance(port, float):
-            raise TypeError("Expected argument 'port' to be a float")
-        __self__.port = port
+        ...
+
+    @property
+    @pulumi.getter
+    def port(self) -> float:
         """
         The port number on which each of the cache nodes will
         accept connections.
         """
-        if replication_group_id and not isinstance(replication_group_id, str):
-            raise TypeError("Expected argument 'replication_group_id' to be a str")
-        __self__.replication_group_id = replication_group_id
+        ...
+
+    @property
+    @pulumi.getter(name="replicationGroupId")
+    def replication_group_id(self) -> str:
         """
         The replication group to which this cache cluster belongs.
         """
-        if security_group_ids and not isinstance(security_group_ids, list):
-            raise TypeError("Expected argument 'security_group_ids' to be a list")
-        __self__.security_group_ids = security_group_ids
+        ...
+
+    @property
+    @pulumi.getter(name="securityGroupIds")
+    def security_group_ids(self) -> List[str]:
         """
         List VPC security groups associated with the cache cluster.
         """
-        if security_group_names and not isinstance(security_group_names, list):
-            raise TypeError("Expected argument 'security_group_names' to be a list")
-        __self__.security_group_names = security_group_names
+        ...
+
+    @property
+    @pulumi.getter(name="securityGroupNames")
+    def security_group_names(self) -> List[str]:
         """
         List of security group names associated with this cache cluster.
         """
-        if snapshot_retention_limit and not isinstance(snapshot_retention_limit, float):
-            raise TypeError("Expected argument 'snapshot_retention_limit' to be a float")
-        __self__.snapshot_retention_limit = snapshot_retention_limit
+        ...
+
+    @property
+    @pulumi.getter(name="snapshotRetentionLimit")
+    def snapshot_retention_limit(self) -> float:
         """
         The number of days for which ElastiCache will
         retain automatic cache cluster snapshots before deleting them.
         """
-        if snapshot_window and not isinstance(snapshot_window, str):
-            raise TypeError("Expected argument 'snapshot_window' to be a str")
-        __self__.snapshot_window = snapshot_window
+        ...
+
+    @property
+    @pulumi.getter(name="snapshotWindow")
+    def snapshot_window(self) -> str:
         """
         The daily time range (in UTC) during which ElastiCache will
         begin taking a daily snapshot of the cache cluster.
         """
-        if subnet_group_name and not isinstance(subnet_group_name, str):
-            raise TypeError("Expected argument 'subnet_group_name' to be a str")
-        __self__.subnet_group_name = subnet_group_name
+        ...
+
+    @property
+    @pulumi.getter(name="subnetGroupName")
+    def subnet_group_name(self) -> str:
         """
         Name of the subnet group associated to the cache cluster.
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
         """
         The tags assigned to the resource
         """
+        ...
+
 
 
 class AwaitableGetClusterResult(GetClusterResult):
@@ -237,7 +324,7 @@ def get_cluster(cluster_id: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:elasticache/getCluster:getCluster', __args__, opts=opts, typ=_GetClusterResult).value
+    __ret__ = pulumi.runtime.invoke('aws:elasticache/getCluster:getCluster', __args__, opts=opts, typ=GetClusterResult).value
 
     return AwaitableGetClusterResult(
         arn=__ret__.arn,

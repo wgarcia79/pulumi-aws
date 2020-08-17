@@ -28,8 +28,10 @@ class ClusterLoggingArgs:
         :param pulumi.Input[str] s3_key_prefix: The prefix applied to the log file names.
         """
         pulumi.set(__self__, "enable", enable)
-        pulumi.set(__self__, "bucketName", bucket_name)
-        pulumi.set(__self__, "s3KeyPrefix", s3_key_prefix)
+        if bucket_name is not None:
+            pulumi.set(__self__, "bucket_name", bucket_name)
+        if s3_key_prefix is not None:
+            pulumi.set(__self__, "s3_key_prefix", s3_key_prefix)
 
     @property
     @pulumi.getter
@@ -80,9 +82,11 @@ class ClusterSnapshotCopyArgs:
         :param pulumi.Input[str] grant_name: The name of the snapshot copy grant to use when snapshots of an AWS KMS-encrypted cluster are copied to the destination region.
         :param pulumi.Input[float] retention_period: The number of days to retain automated snapshots in the destination region after they are copied from the source region. Defaults to `7`.
         """
-        pulumi.set(__self__, "destinationRegion", destination_region)
-        pulumi.set(__self__, "grantName", grant_name)
-        pulumi.set(__self__, "retentionPeriod", retention_period)
+        pulumi.set(__self__, "destination_region", destination_region)
+        if grant_name is not None:
+            pulumi.set(__self__, "grant_name", grant_name)
+        if retention_period is not None:
+            pulumi.set(__self__, "retention_period", retention_period)
 
     @property
     @pulumi.getter(name="destinationRegion")
@@ -170,9 +174,12 @@ class SecurityGroupIngressArgs:
         :param pulumi.Input[str] security_group_owner_id: The owner Id of the security group provided
                by `security_group_name`.
         """
-        pulumi.set(__self__, "cidr", cidr)
-        pulumi.set(__self__, "securityGroupName", security_group_name)
-        pulumi.set(__self__, "securityGroupOwnerId", security_group_owner_id)
+        if cidr is not None:
+            pulumi.set(__self__, "cidr", cidr)
+        if security_group_name is not None:
+            pulumi.set(__self__, "security_group_name", security_group_name)
+        if security_group_owner_id is not None:
+            pulumi.set(__self__, "security_group_owner_id", security_group_owner_id)
 
     @property
     @pulumi.getter

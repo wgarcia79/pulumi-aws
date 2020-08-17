@@ -14,83 +14,6 @@ __all__ = ['Crawler']
 
 
 class Crawler(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the crawler
-    """
-
-    catalog_targets: pulumi.Output[Optional[List['outputs.CrawlerCatalogTarget']]] = pulumi.property("catalogTargets")
-
-    classifiers: pulumi.Output[Optional[List[str]]] = pulumi.property("classifiers")
-    """
-    List of custom classifiers. By default, all AWS classifiers are included in a crawl, but these custom classifiers always override the default classifiers for a given classification.
-    """
-
-    configuration: pulumi.Output[Optional[str]] = pulumi.property("configuration")
-    """
-    JSON string of configuration information.
-    """
-
-    database_name: pulumi.Output[str] = pulumi.property("databaseName")
-    """
-    Glue database where results are written.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    Description of the crawler.
-    """
-
-    dynamodb_targets: pulumi.Output[Optional[List['outputs.CrawlerDynamodbTarget']]] = pulumi.property("dynamodbTargets")
-    """
-    List of nested DynamoDB target arguments. See below.
-    """
-
-    jdbc_targets: pulumi.Output[Optional[List['outputs.CrawlerJdbcTarget']]] = pulumi.property("jdbcTargets")
-    """
-    List of nested JBDC target arguments. See below.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    Name of the crawler.
-    """
-
-    role: pulumi.Output[str] = pulumi.property("role")
-    """
-    The IAM role friendly name (including path without leading slash), or ARN of an IAM role, used by the crawler to access other resources.
-    """
-
-    s3_targets: pulumi.Output[Optional[List['outputs.CrawlerS3Target']]] = pulumi.property("s3Targets")
-    """
-    List nested Amazon S3 target arguments. See below.
-    """
-
-    schedule: pulumi.Output[Optional[str]] = pulumi.property("schedule")
-    """
-    A cron expression used to specify the schedule. For more information, see [Time-Based Schedules for Jobs and Crawlers](https://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html). For example, to run something every day at 12:15 UTC, you would specify: `cron(15 12 * * ? *)`.
-    """
-
-    schema_change_policy: pulumi.Output[Optional['outputs.CrawlerSchemaChangePolicy']] = pulumi.property("schemaChangePolicy")
-    """
-    Policy for the crawler's update and deletion behavior.
-    """
-
-    security_configuration: pulumi.Output[Optional[str]] = pulumi.property("securityConfiguration")
-    """
-    The name of Security Configuration to be used by the crawler
-    """
-
-    table_prefix: pulumi.Output[Optional[str]] = pulumi.property("tablePrefix")
-    """
-    The table prefix used for catalog tables that are created.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of resource tags
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -306,6 +229,131 @@ class Crawler(pulumi.CustomResource):
         __props__["table_prefix"] = table_prefix
         __props__["tags"] = tags
         return Crawler(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the crawler
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="catalogTargets")
+    def catalog_targets(self) -> Optional[List['outputs.CrawlerCatalogTarget']]:
+        ...
+
+    @property
+    @pulumi.getter
+    def classifiers(self) -> Optional[List[str]]:
+        """
+        List of custom classifiers. By default, all AWS classifiers are included in a crawl, but these custom classifiers always override the default classifiers for a given classification.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def configuration(self) -> Optional[str]:
+        """
+        JSON string of configuration information.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="databaseName")
+    def database_name(self) -> str:
+        """
+        Glue database where results are written.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Description of the crawler.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="dynamodbTargets")
+    def dynamodb_targets(self) -> Optional[List['outputs.CrawlerDynamodbTarget']]:
+        """
+        List of nested DynamoDB target arguments. See below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="jdbcTargets")
+    def jdbc_targets(self) -> Optional[List['outputs.CrawlerJdbcTarget']]:
+        """
+        List of nested JBDC target arguments. See below.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the crawler.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        The IAM role friendly name (including path without leading slash), or ARN of an IAM role, used by the crawler to access other resources.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="s3Targets")
+    def s3_targets(self) -> Optional[List['outputs.CrawlerS3Target']]:
+        """
+        List nested Amazon S3 target arguments. See below.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def schedule(self) -> Optional[str]:
+        """
+        A cron expression used to specify the schedule. For more information, see [Time-Based Schedules for Jobs and Crawlers](https://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html). For example, to run something every day at 12:15 UTC, you would specify: `cron(15 12 * * ? *)`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="schemaChangePolicy")
+    def schema_change_policy(self) -> Optional['outputs.CrawlerSchemaChangePolicy']:
+        """
+        Policy for the crawler's update and deletion behavior.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="securityConfiguration")
+    def security_configuration(self) -> Optional[str]:
+        """
+        The name of Security Configuration to be used by the crawler
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="tablePrefix")
+    def table_prefix(self) -> Optional[str]:
+        """
+        The table prefix used for catalog tables that are created.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of resource tags
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

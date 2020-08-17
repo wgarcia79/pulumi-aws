@@ -12,16 +12,6 @@ __all__ = ['AmiLaunchPermission']
 
 
 class AmiLaunchPermission(pulumi.CustomResource):
-    account_id: pulumi.Output[str] = pulumi.property("accountId")
-    """
-    An AWS Account ID to add launch permissions.
-    """
-
-    image_id: pulumi.Output[str] = pulumi.property("imageId")
-    """
-    A region-unique name for the AMI.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -101,6 +91,22 @@ class AmiLaunchPermission(pulumi.CustomResource):
         __props__["account_id"] = account_id
         __props__["image_id"] = image_id
         return AmiLaunchPermission(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
+        """
+        An AWS Account ID to add launch permissions.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> str:
+        """
+        A region-unique name for the AMI.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

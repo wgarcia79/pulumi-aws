@@ -14,47 +14,6 @@ __all__ = ['Zone']
 
 
 class Zone(pulumi.CustomResource):
-    comment: pulumi.Output[str] = pulumi.property("comment")
-    """
-    A comment for the hosted zone. Defaults to 'Managed by Pulumi'.
-    """
-
-    delegation_set_id: pulumi.Output[Optional[str]] = pulumi.property("delegationSetId")
-    """
-    The ID of the reusable delegation set whose NS records you want to assign to the hosted zone. Conflicts with `vpc` as delegation sets can only be used for public zones.
-    """
-
-    force_destroy: pulumi.Output[Optional[bool]] = pulumi.property("forceDestroy")
-    """
-    Whether to destroy all records (possibly managed outside of this provider) in the zone when destroying the zone.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    This is the name of the hosted zone.
-    """
-
-    name_servers: pulumi.Output[List[str]] = pulumi.property("nameServers")
-    """
-    A list of name servers in associated (or default) delegation set.
-    Find more about delegation sets in [AWS docs](https://docs.aws.amazon.com/Route53/latest/APIReference/actions-on-reusable-delegation-sets.html).
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A mapping of tags to assign to the zone.
-    """
-
-    vpcs: pulumi.Output[Optional[List['outputs.ZoneVpc']]] = pulumi.property("vpcs")
-    """
-    Configuration block(s) specifying VPC(s) to associate with a private hosted zone. Conflicts with the `delegation_set_id` argument in this resource and any `route53.ZoneAssociation` resource specifying the same zone ID. Detailed below.
-    """
-
-    zone_id: pulumi.Output[str] = pulumi.property("zoneId")
-    """
-    The Hosted Zone ID. This can be referenced by zone records.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -204,6 +163,71 @@ class Zone(pulumi.CustomResource):
         __props__["vpcs"] = vpcs
         __props__["zone_id"] = zone_id
         return Zone(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def comment(self) -> str:
+        """
+        A comment for the hosted zone. Defaults to 'Managed by Pulumi'.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="delegationSetId")
+    def delegation_set_id(self) -> Optional[str]:
+        """
+        The ID of the reusable delegation set whose NS records you want to assign to the hosted zone. Conflicts with `vpc` as delegation sets can only be used for public zones.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="forceDestroy")
+    def force_destroy(self) -> Optional[bool]:
+        """
+        Whether to destroy all records (possibly managed outside of this provider) in the zone when destroying the zone.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        This is the name of the hosted zone.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="nameServers")
+    def name_servers(self) -> List[str]:
+        """
+        A list of name servers in associated (or default) delegation set.
+        Find more about delegation sets in [AWS docs](https://docs.aws.amazon.com/Route53/latest/APIReference/actions-on-reusable-delegation-sets.html).
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A mapping of tags to assign to the zone.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def vpcs(self) -> Optional[List['outputs.ZoneVpc']]:
+        """
+        Configuration block(s) specifying VPC(s) to associate with a private hosted zone. Conflicts with the `delegation_set_id` argument in this resource and any `route53.ZoneAssociation` resource specifying the same zone ID. Detailed below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The Hosted Zone ID. This can be referenced by zone records.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

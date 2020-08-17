@@ -14,31 +14,6 @@ __all__ = ['RouteTable']
 
 
 class RouteTable(pulumi.CustomResource):
-    owner_id: pulumi.Output[str] = pulumi.property("ownerId")
-    """
-    The ID of the AWS account that owns the route table.
-    """
-
-    propagating_vgws: pulumi.Output[List[str]] = pulumi.property("propagatingVgws")
-    """
-    A list of virtual gateways for propagation.
-    """
-
-    routes: pulumi.Output[List['outputs.RouteTableRoute']] = pulumi.property("routes")
-    """
-    A list of route objects. Their keys are documented below.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A mapping of tags to assign to the resource.
-    """
-
-    vpc_id: pulumi.Output[str] = pulumi.property("vpcId")
-    """
-    The VPC ID.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -163,6 +138,46 @@ class RouteTable(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["vpc_id"] = vpc_id
         return RouteTable(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
+        """
+        The ID of the AWS account that owns the route table.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="propagatingVgws")
+    def propagating_vgws(self) -> List[str]:
+        """
+        A list of virtual gateways for propagation.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def routes(self) -> List['outputs.RouteTableRoute']:
+        """
+        A list of route objects. Their keys are documented below.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A mapping of tags to assign to the resource.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The VPC ID.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -22,7 +22,7 @@ class VaultNotificationArgs:
         :param pulumi.Input[str] sns_topic: The SNS Topic ARN.
         """
         pulumi.set(__self__, "events", events)
-        pulumi.set(__self__, "snsTopic", sns_topic)
+        pulumi.set(__self__, "sns_topic", sns_topic)
 
     @property
     @pulumi.getter

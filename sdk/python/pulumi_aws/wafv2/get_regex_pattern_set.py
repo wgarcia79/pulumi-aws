@@ -16,16 +16,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetRegexPatternSetResult:
-    arn: str = pulumi.property("arn")
-    description: str = pulumi.property("description")
-    id: str = pulumi.property("id")
-    name: str = pulumi.property("name")
-    regular_expressions: List['outputs.GetRegexPatternSetRegularExpressionResult'] = pulumi.property("regularExpressions")
-    scope: str = pulumi.property("scope")
-
-
 class GetRegexPatternSetResult:
     """
     A collection of values returned by getRegexPatternSet.
@@ -33,34 +25,65 @@ class GetRegexPatternSetResult:
     def __init__(__self__, arn=None, description=None, id=None, name=None, regular_expressions=None, scope=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if regular_expressions and not isinstance(regular_expressions, list):
+            raise TypeError("Expected argument 'regular_expressions' to be a list")
+        pulumi.set(__self__, "regular_expressions", regular_expressions)
+        if scope and not isinstance(scope, str):
+            raise TypeError("Expected argument 'scope' to be a str")
+        pulumi.set(__self__, "scope", scope)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The Amazon Resource Name (ARN) of the entity.
         """
-        if description and not isinstance(description, str):
-            raise TypeError("Expected argument 'description' to be a str")
-        __self__.description = description
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
         """
         The description of the set that helps with identification.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if regular_expressions and not isinstance(regular_expressions, list):
-            raise TypeError("Expected argument 'regular_expressions' to be a list")
-        __self__.regular_expressions = regular_expressions
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="regularExpressions")
+    def regular_expressions(self) -> List['outputs.GetRegexPatternSetRegularExpressionResult']:
         """
         One or more blocks of regular expression patterns that AWS WAF is searching for. See Regular Expression below for details.
         """
-        if scope and not isinstance(scope, str):
-            raise TypeError("Expected argument 'scope' to be a str")
-        __self__.scope = scope
+        ...
+
+    @property
+    @pulumi.getter
+    def scope(self) -> str:
+        ...
+
 
 
 class AwaitableGetRegexPatternSetResult(GetRegexPatternSetResult):
@@ -104,7 +127,7 @@ def get_regex_pattern_set(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:wafv2/getRegexPatternSet:getRegexPatternSet', __args__, opts=opts, typ=_GetRegexPatternSetResult).value
+    __ret__ = pulumi.runtime.invoke('aws:wafv2/getRegexPatternSet:getRegexPatternSet', __args__, opts=opts, typ=GetRegexPatternSetResult).value
 
     return AwaitableGetRegexPatternSetResult(
         arn=__ret__.arn,

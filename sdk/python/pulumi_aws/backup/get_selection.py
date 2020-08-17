@@ -15,16 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetSelectionResult:
-    iam_role_arn: str = pulumi.property("iamRoleArn")
-    id: str = pulumi.property("id")
-    name: str = pulumi.property("name")
-    plan_id: str = pulumi.property("planId")
-    resources: List[str] = pulumi.property("resources")
-    selection_id: str = pulumi.property("selectionId")
-
-
 class GetSelectionResult:
     """
     A collection of values returned by getSelection.
@@ -32,34 +24,65 @@ class GetSelectionResult:
     def __init__(__self__, iam_role_arn=None, id=None, name=None, plan_id=None, resources=None, selection_id=None):
         if iam_role_arn and not isinstance(iam_role_arn, str):
             raise TypeError("Expected argument 'iam_role_arn' to be a str")
-        __self__.iam_role_arn = iam_role_arn
+        pulumi.set(__self__, "iam_role_arn", iam_role_arn)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if plan_id and not isinstance(plan_id, str):
+            raise TypeError("Expected argument 'plan_id' to be a str")
+        pulumi.set(__self__, "plan_id", plan_id)
+        if resources and not isinstance(resources, list):
+            raise TypeError("Expected argument 'resources' to be a list")
+        pulumi.set(__self__, "resources", resources)
+        if selection_id and not isinstance(selection_id, str):
+            raise TypeError("Expected argument 'selection_id' to be a str")
+        pulumi.set(__self__, "selection_id", selection_id)
+
+    @property
+    @pulumi.getter(name="iamRoleArn")
+    def iam_role_arn(self) -> str:
         """
         The ARN of the IAM role that AWS Backup uses to authenticate when restoring and backing up the target resource. See the [AWS Backup Developer Guide](https://docs.aws.amazon.com/aws-backup/latest/devguide/access-control.html#managed-policies) for additional information about using AWS managed policies or creating custom policies attached to the IAM role.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
         """
         The display name of a resource selection document.
         """
-        if plan_id and not isinstance(plan_id, str):
-            raise TypeError("Expected argument 'plan_id' to be a str")
-        __self__.plan_id = plan_id
-        if resources and not isinstance(resources, list):
-            raise TypeError("Expected argument 'resources' to be a list")
-        __self__.resources = resources
+        ...
+
+    @property
+    @pulumi.getter(name="planId")
+    def plan_id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def resources(self) -> List[str]:
         """
         An array of strings that either contain Amazon Resource Names (ARNs) or match patterns of resources to assign to a backup plan..
         """
-        if selection_id and not isinstance(selection_id, str):
-            raise TypeError("Expected argument 'selection_id' to be a str")
-        __self__.selection_id = selection_id
+        ...
+
+    @property
+    @pulumi.getter(name="selectionId")
+    def selection_id(self) -> str:
+        ...
+
 
 
 class AwaitableGetSelectionResult(GetSelectionResult):
@@ -103,7 +126,7 @@ def get_selection(plan_id: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:backup/getSelection:getSelection', __args__, opts=opts, typ=_GetSelectionResult).value
+    __ret__ = pulumi.runtime.invoke('aws:backup/getSelection:getSelection', __args__, opts=opts, typ=GetSelectionResult).value
 
     return AwaitableGetSelectionResult(
         iam_role_arn=__ret__.iam_role_arn,

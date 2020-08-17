@@ -14,47 +14,6 @@ __all__ = ['NotificationRule']
 
 
 class NotificationRule(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The codestar notification rule ARN.
-    """
-
-    detail_type: pulumi.Output[str] = pulumi.property("detailType")
-    """
-    The level of detail to include in the notifications for this resource. Possible values are `BASIC` and `FULL`.
-    """
-
-    event_type_ids: pulumi.Output[List[str]] = pulumi.property("eventTypeIds")
-    """
-    A list of event types associated with this notification rule.
-    For list of allowed events see [here](https://docs.aws.amazon.com/codestar-notifications/latest/userguide/concepts.html#concepts-api).
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of notification rule.
-    """
-
-    resource: pulumi.Output[str] = pulumi.property("resource")
-    """
-    The ARN of the resource to associate with the notification rule.
-    """
-
-    status: pulumi.Output[Optional[str]] = pulumi.property("status")
-    """
-    The status of the notification rule. Possible values are `ENABLED` and `DISABLED`, default is `ENABLED`.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
-    targets: pulumi.Output[Optional[List['outputs.NotificationRuleTarget']]] = pulumi.property("targets")
-    """
-    Configuration blocks containing notification target information. Can be specified multiple times. At least one target must be specified on creation.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -189,6 +148,71 @@ class NotificationRule(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["targets"] = targets
         return NotificationRule(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The codestar notification rule ARN.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="detailType")
+    def detail_type(self) -> str:
+        """
+        The level of detail to include in the notifications for this resource. Possible values are `BASIC` and `FULL`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="eventTypeIds")
+    def event_type_ids(self) -> List[str]:
+        """
+        A list of event types associated with this notification rule.
+        For list of allowed events see [here](https://docs.aws.amazon.com/codestar-notifications/latest/userguide/concepts.html#concepts-api).
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of notification rule.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def resource(self) -> str:
+        """
+        The ARN of the resource to associate with the notification rule.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        The status of the notification rule. Possible values are `ENABLED` and `DISABLED`, default is `ENABLED`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def targets(self) -> Optional[List['outputs.NotificationRuleTarget']]:
+        """
+        Configuration blocks containing notification target information. Can be specified multiple times. At least one target must be specified on creation.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

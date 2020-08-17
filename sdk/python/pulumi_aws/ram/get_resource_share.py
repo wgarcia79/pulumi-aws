@@ -17,18 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetResourceShareResult:
-    arn: str = pulumi.property("arn")
-    filters: Optional[List['outputs.GetResourceShareFilterResult']] = pulumi.property("filters")
-    id: str = pulumi.property("id")
-    name: str = pulumi.property("name")
-    owning_account_id: str = pulumi.property("owningAccountId")
-    resource_owner: str = pulumi.property("resourceOwner")
-    status: str = pulumi.property("status")
-    tags: Mapping[str, str] = pulumi.property("tags")
-
-
 class GetResourceShareResult:
     """
     A collection of values returned by getResourceShare.
@@ -36,43 +26,84 @@ class GetResourceShareResult:
     def __init__(__self__, arn=None, filters=None, id=None, name=None, owning_account_id=None, resource_owner=None, status=None, tags=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if filters and not isinstance(filters, list):
+            raise TypeError("Expected argument 'filters' to be a list")
+        pulumi.set(__self__, "filters", filters)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if owning_account_id and not isinstance(owning_account_id, str):
+            raise TypeError("Expected argument 'owning_account_id' to be a str")
+        pulumi.set(__self__, "owning_account_id", owning_account_id)
+        if resource_owner and not isinstance(resource_owner, str):
+            raise TypeError("Expected argument 'resource_owner' to be a str")
+        pulumi.set(__self__, "resource_owner", resource_owner)
+        if status and not isinstance(status, str):
+            raise TypeError("Expected argument 'status' to be a str")
+        pulumi.set(__self__, "status", status)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The Amazon Resource Name (ARN) of the resource share.
         """
-        if filters and not isinstance(filters, list):
-            raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetResourceShareFilterResult']]:
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if owning_account_id and not isinstance(owning_account_id, str):
-            raise TypeError("Expected argument 'owning_account_id' to be a str")
-        __self__.owning_account_id = owning_account_id
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="owningAccountId")
+    def owning_account_id(self) -> str:
         """
         The ID of the AWS account that owns the resource share.
         """
-        if resource_owner and not isinstance(resource_owner, str):
-            raise TypeError("Expected argument 'resource_owner' to be a str")
-        __self__.resource_owner = resource_owner
-        if status and not isinstance(status, str):
-            raise TypeError("Expected argument 'status' to be a str")
-        __self__.status = status
+        ...
+
+    @property
+    @pulumi.getter(name="resourceOwner")
+    def resource_owner(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
         """
         The Status of the RAM share.
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
         """
         The Tags attached to the RAM share
         """
+        ...
+
 
 
 class AwaitableGetResourceShareResult(GetResourceShareResult):
@@ -137,7 +168,7 @@ def get_resource_share(filters: Optional[List[pulumi.InputType['GetResourceShare
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ram/getResourceShare:getResourceShare', __args__, opts=opts, typ=_GetResourceShareResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ram/getResourceShare:getResourceShare', __args__, opts=opts, typ=GetResourceShareResult).value
 
     return AwaitableGetResourceShareResult(
         arn=__ret__.arn,

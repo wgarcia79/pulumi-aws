@@ -29,7 +29,8 @@ class AliasRoutingConfigArgs:
         """
         :param pulumi.Input[Mapping[str, pulumi.Input[float]]] additional_version_weights: A map that defines the proportion of events that should be sent to different versions of a lambda function.
         """
-        pulumi.set(__self__, "additionalVersionWeights", additional_version_weights)
+        if additional_version_weights is not None:
+            pulumi.set(__self__, "additional_version_weights", additional_version_weights)
 
     @property
     @pulumi.getter(name="additionalVersionWeights")
@@ -51,7 +52,8 @@ class EventSourceMappingDestinationConfigArgs:
         """
         :param pulumi.Input['EventSourceMappingDestinationConfigOnFailureArgs'] on_failure: The destination configuration for failed invocations. Detailed below.
         """
-        pulumi.set(__self__, "onFailure", on_failure)
+        if on_failure is not None:
+            pulumi.set(__self__, "on_failure", on_failure)
 
     @property
     @pulumi.getter(name="onFailure")
@@ -73,7 +75,7 @@ class EventSourceMappingDestinationConfigOnFailureArgs:
         """
         :param pulumi.Input[str] destination_arn: The Amazon Resource Name (ARN) of the destination resource.
         """
-        pulumi.set(__self__, "destinationArn", destination_arn)
+        pulumi.set(__self__, "destination_arn", destination_arn)
 
     @property
     @pulumi.getter(name="destinationArn")
@@ -98,7 +100,7 @@ class FunctionDeadLetterConfigArgs:
                which means allowing either the `sns:Publish` or `sqs:SendMessage` action on this ARN, depending on
                which service is targeted.
         """
-        pulumi.set(__self__, "targetArn", target_arn)
+        pulumi.set(__self__, "target_arn", target_arn)
 
     @property
     @pulumi.getter(name="targetArn")
@@ -123,7 +125,8 @@ class FunctionEnvironmentArgs:
         """
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] variables: A map that defines environment variables for the Lambda function.
         """
-        pulumi.set(__self__, "variables", variables)
+        if variables is not None:
+            pulumi.set(__self__, "variables", variables)
 
     @property
     @pulumi.getter
@@ -147,8 +150,10 @@ class FunctionEventInvokeConfigDestinationConfigArgs:
         :param pulumi.Input['FunctionEventInvokeConfigDestinationConfigOnFailureArgs'] on_failure: Configuration block with destination configuration for failed asynchronous invocations. See below for details.
         :param pulumi.Input['FunctionEventInvokeConfigDestinationConfigOnSuccessArgs'] on_success: Configuration block with destination configuration for successful asynchronous invocations. See below for details.
         """
-        pulumi.set(__self__, "onFailure", on_failure)
-        pulumi.set(__self__, "onSuccess", on_success)
+        if on_failure is not None:
+            pulumi.set(__self__, "on_failure", on_failure)
+        if on_success is not None:
+            pulumi.set(__self__, "on_success", on_success)
 
     @property
     @pulumi.getter(name="onFailure")
@@ -229,7 +234,7 @@ class FunctionFileSystemConfigArgs:
         :param pulumi.Input[str] local_mount_path: The path where the function can access the file system, starting with /mnt/.
         """
         pulumi.set(__self__, "arn", arn)
-        pulumi.set(__self__, "localMountPath", local_mount_path)
+        pulumi.set(__self__, "local_mount_path", local_mount_path)
 
     @property
     @pulumi.getter
@@ -296,9 +301,10 @@ class FunctionVpcConfigArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] security_group_ids: A list of security group IDs associated with the Lambda function.
         :param pulumi.Input[List[pulumi.Input[str]]] subnet_ids: A list of subnet IDs associated with the Lambda function.
         """
-        pulumi.set(__self__, "securityGroupIds", security_group_ids)
-        pulumi.set(__self__, "subnetIds", subnet_ids)
-        pulumi.set(__self__, "vpcId", vpc_id)
+        pulumi.set(__self__, "security_group_ids", security_group_ids)
+        pulumi.set(__self__, "subnet_ids", subnet_ids)
+        if vpc_id is not None:
+            pulumi.set(__self__, "vpc_id", vpc_id)
 
     @property
     @pulumi.getter(name="securityGroupIds")

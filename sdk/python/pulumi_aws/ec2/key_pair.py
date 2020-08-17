@@ -12,41 +12,6 @@ __all__ = ['KeyPair']
 
 
 class KeyPair(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The key pair ARN.
-    """
-
-    fingerprint: pulumi.Output[str] = pulumi.property("fingerprint")
-    """
-    The MD5 public key fingerprint as specified in section 4 of RFC 4716.
-    """
-
-    key_name: pulumi.Output[str] = pulumi.property("keyName")
-    """
-    The name for the key pair.
-    """
-
-    key_name_prefix: pulumi.Output[Optional[str]] = pulumi.property("keyNamePrefix")
-    """
-    Creates a unique name beginning with the specified prefix. Conflicts with `key_name`.
-    """
-
-    key_pair_id: pulumi.Output[str] = pulumi.property("keyPairId")
-    """
-    The key pair ID.
-    """
-
-    public_key: pulumi.Output[str] = pulumi.property("publicKey")
-    """
-    The public key material.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of resource tags
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -154,6 +119,62 @@ class KeyPair(pulumi.CustomResource):
         __props__["public_key"] = public_key
         __props__["tags"] = tags
         return KeyPair(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The key pair ARN.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def fingerprint(self) -> str:
+        """
+        The MD5 public key fingerprint as specified in section 4 of RFC 4716.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="keyName")
+    def key_name(self) -> str:
+        """
+        The name for the key pair.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="keyNamePrefix")
+    def key_name_prefix(self) -> Optional[str]:
+        """
+        Creates a unique name beginning with the specified prefix. Conflicts with `key_name`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="keyPairId")
+    def key_pair_id(self) -> str:
+        """
+        The key pair ID.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> str:
+        """
+        The public key material.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of resource tags
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

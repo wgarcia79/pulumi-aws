@@ -12,28 +12,6 @@ __all__ = ['VpcLink']
 
 
 class VpcLink(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    The description of the VPC link.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name used to label and identify the VPC link.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of resource tags
-    """
-
-    target_arn: pulumi.Output[str] = pulumi.property("targetArn")
-    """
-    The list of network load balancer arns in the VPC targeted by the VPC link. Currently AWS only supports 1 target.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -135,6 +113,43 @@ class VpcLink(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["target_arn"] = target_arn
         return VpcLink(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        The description of the VPC link.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name used to label and identify the VPC link.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of resource tags
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="targetArn")
+    def target_arn(self) -> str:
+        """
+        The list of network load balancer arns in the VPC targeted by the VPC link. Currently AWS only supports 1 target.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

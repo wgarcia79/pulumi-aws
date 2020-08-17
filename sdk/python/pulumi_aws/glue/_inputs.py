@@ -52,8 +52,10 @@ class CatalogTablePartitionKeyArgs:
         :param pulumi.Input[str] type: The datatype of data in the Column.
         """
         pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "comment", comment)
-        pulumi.set(__self__, "type", type)
+        if comment is not None:
+            pulumi.set(__self__, "comment", comment)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -121,18 +123,30 @@ class CatalogTableStorageDescriptorArgs:
         :param pulumi.Input[List[pulumi.Input['CatalogTableStorageDescriptorSortColumnArgs']]] sort_columns: A list of Order objects specifying the sort order of each bucket in the table.
         :param pulumi.Input[bool] stored_as_sub_directories: True if the table data is stored in subdirectories, or False if not.
         """
-        pulumi.set(__self__, "bucketColumns", bucket_columns)
-        pulumi.set(__self__, "columns", columns)
-        pulumi.set(__self__, "compressed", compressed)
-        pulumi.set(__self__, "inputFormat", input_format)
-        pulumi.set(__self__, "location", location)
-        pulumi.set(__self__, "numberOfBuckets", number_of_buckets)
-        pulumi.set(__self__, "outputFormat", output_format)
-        pulumi.set(__self__, "parameters", parameters)
-        pulumi.set(__self__, "serDeInfo", ser_de_info)
-        pulumi.set(__self__, "skewedInfo", skewed_info)
-        pulumi.set(__self__, "sortColumns", sort_columns)
-        pulumi.set(__self__, "storedAsSubDirectories", stored_as_sub_directories)
+        if bucket_columns is not None:
+            pulumi.set(__self__, "bucket_columns", bucket_columns)
+        if columns is not None:
+            pulumi.set(__self__, "columns", columns)
+        if compressed is not None:
+            pulumi.set(__self__, "compressed", compressed)
+        if input_format is not None:
+            pulumi.set(__self__, "input_format", input_format)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
+        if number_of_buckets is not None:
+            pulumi.set(__self__, "number_of_buckets", number_of_buckets)
+        if output_format is not None:
+            pulumi.set(__self__, "output_format", output_format)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+        if ser_de_info is not None:
+            pulumi.set(__self__, "ser_de_info", ser_de_info)
+        if skewed_info is not None:
+            pulumi.set(__self__, "skewed_info", skewed_info)
+        if sort_columns is not None:
+            pulumi.set(__self__, "sort_columns", sort_columns)
+        if stored_as_sub_directories is not None:
+            pulumi.set(__self__, "stored_as_sub_directories", stored_as_sub_directories)
 
     @property
     @pulumi.getter(name="bucketColumns")
@@ -291,8 +305,10 @@ class CatalogTableStorageDescriptorColumnArgs:
         :param pulumi.Input[str] type: The datatype of data in the Column.
         """
         pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "comment", comment)
-        pulumi.set(__self__, "type", type)
+        if comment is not None:
+            pulumi.set(__self__, "comment", comment)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -342,9 +358,12 @@ class CatalogTableStorageDescriptorSerDeInfoArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] parameters: A map of initialization parameters for the SerDe, in key-value form.
         :param pulumi.Input[str] serialization_library: Usually the class that implements the SerDe. An example is: org.apache.hadoop.hive.serde2.columnar.ColumnarSerDe.
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "parameters", parameters)
-        pulumi.set(__self__, "serializationLibrary", serialization_library)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+        if serialization_library is not None:
+            pulumi.set(__self__, "serialization_library", serialization_library)
 
     @property
     @pulumi.getter
@@ -394,9 +413,12 @@ class CatalogTableStorageDescriptorSkewedInfoArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] skewed_column_value_location_maps: A list of values that appear so frequently as to be considered skewed.
         :param pulumi.Input[List[pulumi.Input[str]]] skewed_column_values: A map of skewed values to the columns that contain them.
         """
-        pulumi.set(__self__, "skewedColumnNames", skewed_column_names)
-        pulumi.set(__self__, "skewedColumnValueLocationMaps", skewed_column_value_location_maps)
-        pulumi.set(__self__, "skewedColumnValues", skewed_column_values)
+        if skewed_column_names is not None:
+            pulumi.set(__self__, "skewed_column_names", skewed_column_names)
+        if skewed_column_value_location_maps is not None:
+            pulumi.set(__self__, "skewed_column_value_location_maps", skewed_column_value_location_maps)
+        if skewed_column_values is not None:
+            pulumi.set(__self__, "skewed_column_values", skewed_column_values)
 
     @property
     @pulumi.getter(name="skewedColumnNames")
@@ -445,7 +467,7 @@ class CatalogTableStorageDescriptorSortColumnArgs:
         :param pulumi.Input[float] sort_order: Indicates that the column is sorted in ascending order (== 1), or in descending order (==0).
         """
         pulumi.set(__self__, "column", column)
-        pulumi.set(__self__, "sortOrder", sort_order)
+        pulumi.set(__self__, "sort_order", sort_order)
 
     @property
     @pulumi.getter
@@ -489,12 +511,18 @@ class ClassifierCsvClassifierArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] headers: A list of strings representing column names.
         :param pulumi.Input[str] quote_symbol: A custom symbol to denote what combines content into a single column value. It must be different from the column delimiter.
         """
-        pulumi.set(__self__, "allowSingleColumn", allow_single_column)
-        pulumi.set(__self__, "containsHeader", contains_header)
-        pulumi.set(__self__, "delimiter", delimiter)
-        pulumi.set(__self__, "disableValueTrimming", disable_value_trimming)
-        pulumi.set(__self__, "headers", headers)
-        pulumi.set(__self__, "quoteSymbol", quote_symbol)
+        if allow_single_column is not None:
+            pulumi.set(__self__, "allow_single_column", allow_single_column)
+        if contains_header is not None:
+            pulumi.set(__self__, "contains_header", contains_header)
+        if delimiter is not None:
+            pulumi.set(__self__, "delimiter", delimiter)
+        if disable_value_trimming is not None:
+            pulumi.set(__self__, "disable_value_trimming", disable_value_trimming)
+        if headers is not None:
+            pulumi.set(__self__, "headers", headers)
+        if quote_symbol is not None:
+            pulumi.set(__self__, "quote_symbol", quote_symbol)
 
     @property
     @pulumi.getter(name="allowSingleColumn")
@@ -581,8 +609,9 @@ class ClassifierGrokClassifierArgs:
         :param pulumi.Input[str] custom_patterns: Custom grok patterns used by this classifier.
         """
         pulumi.set(__self__, "classification", classification)
-        pulumi.set(__self__, "grokPattern", grok_pattern)
-        pulumi.set(__self__, "customPatterns", custom_patterns)
+        pulumi.set(__self__, "grok_pattern", grok_pattern)
+        if custom_patterns is not None:
+            pulumi.set(__self__, "custom_patterns", custom_patterns)
 
     @property
     @pulumi.getter
@@ -628,7 +657,7 @@ class ClassifierJsonClassifierArgs:
         """
         :param pulumi.Input[str] json_path: A `JsonPath` string defining the JSON data for the classifier to classify. AWS Glue supports a subset of `JsonPath`, as described in [Writing JsonPath Custom Classifiers](https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-json).
         """
-        pulumi.set(__self__, "jsonPath", json_path)
+        pulumi.set(__self__, "json_path", json_path)
 
     @property
     @pulumi.getter(name="jsonPath")
@@ -653,7 +682,7 @@ class ClassifierXmlClassifierArgs:
         :param pulumi.Input[str] row_tag: The XML tag designating the element that contains each record in an XML document being parsed. Note that this cannot identify a self-closing element (closed by `/>`). An empty row element that contains only attributes can be parsed as long as it ends with a closing tag (for example, `<row item_a="A" item_b="B"></row>` is okay, but `<row item_a="A" item_b="B" />` is not).
         """
         pulumi.set(__self__, "classification", classification)
-        pulumi.set(__self__, "rowTag", row_tag)
+        pulumi.set(__self__, "row_tag", row_tag)
 
     @property
     @pulumi.getter
@@ -691,9 +720,12 @@ class ConnectionPhysicalConnectionRequirementsArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] security_group_id_lists: The security group ID list used by the connection.
         :param pulumi.Input[str] subnet_id: The subnet ID used by the connection.
         """
-        pulumi.set(__self__, "availabilityZone", availability_zone)
-        pulumi.set(__self__, "securityGroupIdLists", security_group_id_lists)
-        pulumi.set(__self__, "subnetId", subnet_id)
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
+        if security_group_id_lists is not None:
+            pulumi.set(__self__, "security_group_id_lists", security_group_id_lists)
+        if subnet_id is not None:
+            pulumi.set(__self__, "subnet_id", subnet_id)
 
     @property
     @pulumi.getter(name="availabilityZone")
@@ -741,7 +773,7 @@ class CrawlerCatalogTargetArgs:
         :param pulumi.Input[str] database_name: The name of the Glue database to be synchronized.
         :param pulumi.Input[List[pulumi.Input[str]]] tables: A list of catalog tables to be synchronized.
         """
-        pulumi.set(__self__, "databaseName", database_name)
+        pulumi.set(__self__, "database_name", database_name)
         pulumi.set(__self__, "tables", tables)
 
     @property
@@ -802,9 +834,10 @@ class CrawlerJdbcTargetArgs:
         :param pulumi.Input[str] path: The path of the JDBC target.
         :param pulumi.Input[List[pulumi.Input[str]]] exclusions: A list of glob patterns used to exclude from the crawl.
         """
-        pulumi.set(__self__, "connectionName", connection_name)
+        pulumi.set(__self__, "connection_name", connection_name)
         pulumi.set(__self__, "path", path)
-        pulumi.set(__self__, "exclusions", exclusions)
+        if exclusions is not None:
+            pulumi.set(__self__, "exclusions", exclusions)
 
     @property
     @pulumi.getter(name="connectionName")
@@ -853,7 +886,8 @@ class CrawlerS3TargetArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] exclusions: A list of glob patterns used to exclude from the crawl.
         """
         pulumi.set(__self__, "path", path)
-        pulumi.set(__self__, "exclusions", exclusions)
+        if exclusions is not None:
+            pulumi.set(__self__, "exclusions", exclusions)
 
     @property
     @pulumi.getter
@@ -889,8 +923,10 @@ class CrawlerSchemaChangePolicyArgs:
         :param pulumi.Input[str] delete_behavior: The deletion behavior when the crawler finds a deleted object. Valid values: `LOG`, `DELETE_FROM_DATABASE`, or `DEPRECATE_IN_DATABASE`. Defaults to `DEPRECATE_IN_DATABASE`.
         :param pulumi.Input[str] update_behavior: The update behavior when the crawler finds a changed schema. Valid values: `LOG` or `UPDATE_IN_DATABASE`. Defaults to `UPDATE_IN_DATABASE`.
         """
-        pulumi.set(__self__, "deleteBehavior", delete_behavior)
-        pulumi.set(__self__, "updateBehavior", update_behavior)
+        if delete_behavior is not None:
+            pulumi.set(__self__, "delete_behavior", delete_behavior)
+        if update_behavior is not None:
+            pulumi.set(__self__, "update_behavior", update_behavior)
 
     @property
     @pulumi.getter(name="deleteBehavior")
@@ -928,9 +964,11 @@ class JobCommandArgs:
         :param pulumi.Input[str] name: The name of the job command. Defaults to `glueetl`. Use `pythonshell` for Python Shell Job Type, `max_capacity` needs to be set if `pythonshell` is chosen.
         :param pulumi.Input[str] python_version: The Python version being used to execute a Python shell job. Allowed values are 2 or 3.
         """
-        pulumi.set(__self__, "scriptLocation", script_location)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "pythonVersion", python_version)
+        pulumi.set(__self__, "script_location", script_location)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if python_version is not None:
+            pulumi.set(__self__, "python_version", python_version)
 
     @property
     @pulumi.getter(name="scriptLocation")
@@ -976,7 +1014,8 @@ class JobExecutionPropertyArgs:
         """
         :param pulumi.Input[float] max_concurrent_runs: The maximum number of concurrent runs allowed for a job. The default is 1.
         """
-        pulumi.set(__self__, "maxConcurrentRuns", max_concurrent_runs)
+        if max_concurrent_runs is not None:
+            pulumi.set(__self__, "max_concurrent_runs", max_concurrent_runs)
 
     @property
     @pulumi.getter(name="maxConcurrentRuns")
@@ -998,7 +1037,8 @@ class JobNotificationPropertyArgs:
         """
         :param pulumi.Input[float] notify_delay_after: After a job run starts, the number of minutes to wait before sending a job run delay notification.
         """
-        pulumi.set(__self__, "notifyDelayAfter", notify_delay_after)
+        if notify_delay_after is not None:
+            pulumi.set(__self__, "notify_delay_after", notify_delay_after)
 
     @property
     @pulumi.getter(name="notifyDelayAfter")
@@ -1022,9 +1062,9 @@ class SecurityConfigurationEncryptionConfigurationArgs:
         """
         :param pulumi.Input['SecurityConfigurationEncryptionConfigurationS3EncryptionArgs'] s3_encryption: A `s3_encryption ` block as described below, which contains encryption configuration for S3 data.
         """
-        pulumi.set(__self__, "cloudwatchEncryption", cloudwatch_encryption)
-        pulumi.set(__self__, "jobBookmarksEncryption", job_bookmarks_encryption)
-        pulumi.set(__self__, "s3Encryption", s3_encryption)
+        pulumi.set(__self__, "cloudwatch_encryption", cloudwatch_encryption)
+        pulumi.set(__self__, "job_bookmarks_encryption", job_bookmarks_encryption)
+        pulumi.set(__self__, "s3_encryption", s3_encryption)
 
     @property
     @pulumi.getter(name="cloudwatchEncryption")
@@ -1066,8 +1106,10 @@ class SecurityConfigurationEncryptionConfigurationCloudwatchEncryptionArgs:
         :param pulumi.Input[str] cloudwatch_encryption_mode: Encryption mode to use for CloudWatch data. Valid values: `DISABLED`, `SSE-KMS`. Default value: `DISABLED`.
         :param pulumi.Input[str] kms_key_arn: Amazon Resource Name (ARN) of the KMS key to be used to encrypt the data.
         """
-        pulumi.set(__self__, "cloudwatchEncryptionMode", cloudwatch_encryption_mode)
-        pulumi.set(__self__, "kmsKeyArn", kms_key_arn)
+        if cloudwatch_encryption_mode is not None:
+            pulumi.set(__self__, "cloudwatch_encryption_mode", cloudwatch_encryption_mode)
+        if kms_key_arn is not None:
+            pulumi.set(__self__, "kms_key_arn", kms_key_arn)
 
     @property
     @pulumi.getter(name="cloudwatchEncryptionMode")
@@ -1103,8 +1145,10 @@ class SecurityConfigurationEncryptionConfigurationJobBookmarksEncryptionArgs:
         :param pulumi.Input[str] job_bookmarks_encryption_mode: Encryption mode to use for job bookmarks data. Valid values: `CSE-KMS`, `DISABLED`. Default value: `DISABLED`.
         :param pulumi.Input[str] kms_key_arn: Amazon Resource Name (ARN) of the KMS key to be used to encrypt the data.
         """
-        pulumi.set(__self__, "jobBookmarksEncryptionMode", job_bookmarks_encryption_mode)
-        pulumi.set(__self__, "kmsKeyArn", kms_key_arn)
+        if job_bookmarks_encryption_mode is not None:
+            pulumi.set(__self__, "job_bookmarks_encryption_mode", job_bookmarks_encryption_mode)
+        if kms_key_arn is not None:
+            pulumi.set(__self__, "kms_key_arn", kms_key_arn)
 
     @property
     @pulumi.getter(name="jobBookmarksEncryptionMode")
@@ -1140,8 +1184,10 @@ class SecurityConfigurationEncryptionConfigurationS3EncryptionArgs:
         :param pulumi.Input[str] kms_key_arn: Amazon Resource Name (ARN) of the KMS key to be used to encrypt the data.
         :param pulumi.Input[str] s3_encryption_mode: Encryption mode to use for S3 data. Valid values: `DISABLED`, `SSE-KMS`, `SSE-S3`. Default value: `DISABLED`.
         """
-        pulumi.set(__self__, "kmsKeyArn", kms_key_arn)
-        pulumi.set(__self__, "s3EncryptionMode", s3_encryption_mode)
+        if kms_key_arn is not None:
+            pulumi.set(__self__, "kms_key_arn", kms_key_arn)
+        if s3_encryption_mode is not None:
+            pulumi.set(__self__, "s3_encryption_mode", s3_encryption_mode)
 
     @property
     @pulumi.getter(name="kmsKeyArn")
@@ -1181,10 +1227,14 @@ class TriggerActionArgs:
         :param pulumi.Input[str] job_name: The name of a job to be executed. Conflicts with `crawler_name`.
         :param pulumi.Input[float] timeout: The job run timeout in minutes. It overrides the timeout value of the job.
         """
-        pulumi.set(__self__, "arguments", arguments)
-        pulumi.set(__self__, "crawlerName", crawler_name)
-        pulumi.set(__self__, "jobName", job_name)
-        pulumi.set(__self__, "timeout", timeout)
+        if arguments is not None:
+            pulumi.set(__self__, "arguments", arguments)
+        if crawler_name is not None:
+            pulumi.set(__self__, "crawler_name", crawler_name)
+        if job_name is not None:
+            pulumi.set(__self__, "job_name", job_name)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
 
     @property
     @pulumi.getter
@@ -1245,7 +1295,8 @@ class TriggerPredicateArgs:
         :param pulumi.Input[str] logical: How to handle multiple conditions. Defaults to `AND`. Valid values are `AND` or `ANY`.
         """
         pulumi.set(__self__, "conditions", conditions)
-        pulumi.set(__self__, "logical", logical)
+        if logical is not None:
+            pulumi.set(__self__, "logical", logical)
 
     @property
     @pulumi.getter
@@ -1287,11 +1338,16 @@ class TriggerPredicateConditionArgs:
         :param pulumi.Input[str] logical_operator: A logical operator. Defaults to `EQUALS`.
         :param pulumi.Input[str] state: The condition job state. Currently, the values supported are `SUCCEEDED`, `STOPPED`, `TIMEOUT` and `FAILED`. If this is specified, `job_name` must also be specified. Conflicts with `crawler_state`.
         """
-        pulumi.set(__self__, "crawlState", crawl_state)
-        pulumi.set(__self__, "crawlerName", crawler_name)
-        pulumi.set(__self__, "jobName", job_name)
-        pulumi.set(__self__, "logicalOperator", logical_operator)
-        pulumi.set(__self__, "state", state)
+        if crawl_state is not None:
+            pulumi.set(__self__, "crawl_state", crawl_state)
+        if crawler_name is not None:
+            pulumi.set(__self__, "crawler_name", crawler_name)
+        if job_name is not None:
+            pulumi.set(__self__, "job_name", job_name)
+        if logical_operator is not None:
+            pulumi.set(__self__, "logical_operator", logical_operator)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
 
     @property
     @pulumi.getter(name="crawlState")
@@ -1367,7 +1423,8 @@ class GetScriptDagEdgeArgs:
         """
         pulumi.set(__self__, "source", source)
         pulumi.set(__self__, "target", target)
-        pulumi.set(__self__, "targetParameter", target_parameter)
+        if target_parameter is not None:
+            pulumi.set(__self__, "target_parameter", target_parameter)
 
     @property
     @pulumi.getter
@@ -1421,8 +1478,9 @@ class GetScriptDagNodeArgs:
         """
         pulumi.set(__self__, "args", args)
         pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "nodeType", node_type)
-        pulumi.set(__self__, "lineNumber", line_number)
+        pulumi.set(__self__, "node_type", node_type)
+        if line_number is not None:
+            pulumi.set(__self__, "line_number", line_number)
 
     @property
     @pulumi.getter
@@ -1486,7 +1544,8 @@ class GetScriptDagNodeArgArgs:
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "value", value)
-        pulumi.set(__self__, "param", param)
+        if param is not None:
+            pulumi.set(__self__, "param", param)
 
     @property
     @pulumi.getter

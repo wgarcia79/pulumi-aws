@@ -12,31 +12,6 @@ __all__ = ['Response']
 
 
 class Response(pulumi.CustomResource):
-    response_parameters: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("responseParameters")
-    """
-    A map specifying the parameters (paths, query strings and headers) of the Gateway Response.
-    """
-
-    response_templates: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("responseTemplates")
-    """
-    A map specifying the templates used to transform the response body.
-    """
-
-    response_type: pulumi.Output[str] = pulumi.property("responseType")
-    """
-    The response type of the associated GatewayResponse.
-    """
-
-    rest_api_id: pulumi.Output[str] = pulumi.property("restApiId")
-    """
-    The string identifier of the associated REST API.
-    """
-
-    status_code: pulumi.Output[Optional[str]] = pulumi.property("statusCode")
-    """
-    The HTTP status code of the Gateway Response.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -142,6 +117,46 @@ class Response(pulumi.CustomResource):
         __props__["rest_api_id"] = rest_api_id
         __props__["status_code"] = status_code
         return Response(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="responseParameters")
+    def response_parameters(self) -> Optional[Mapping[str, str]]:
+        """
+        A map specifying the parameters (paths, query strings and headers) of the Gateway Response.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="responseTemplates")
+    def response_templates(self) -> Optional[Mapping[str, str]]:
+        """
+        A map specifying the templates used to transform the response body.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="responseType")
+    def response_type(self) -> str:
+        """
+        The response type of the associated GatewayResponse.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="restApiId")
+    def rest_api_id(self) -> str:
+        """
+        The string identifier of the associated REST API.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="statusCode")
+    def status_code(self) -> Optional[str]:
+        """
+        The HTTP status code of the Gateway Response.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

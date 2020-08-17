@@ -15,13 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetClusterAuthResult:
-    id: str = pulumi.property("id")
-    name: str = pulumi.property("name")
-    token: str = pulumi.property("token")
-
-
 class GetClusterAuthResult:
     """
     A collection of values returned by getClusterAuth.
@@ -29,19 +24,35 @@ class GetClusterAuthResult:
     def __init__(__self__, id=None, name=None, token=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if token and not isinstance(token, str):
+            raise TypeError("Expected argument 'token' to be a str")
+        pulumi.set(__self__, "token", token)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if token and not isinstance(token, str):
-            raise TypeError("Expected argument 'token' to be a str")
-        __self__.token = token
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def token(self) -> str:
         """
         The token to use to authenticate with the cluster.
         """
+        ...
+
 
 
 class AwaitableGetClusterAuthResult(GetClusterAuthResult):
@@ -74,7 +85,7 @@ def get_cluster_auth(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:eks/getClusterAuth:getClusterAuth', __args__, opts=opts, typ=_GetClusterAuthResult).value
+    __ret__ = pulumi.runtime.invoke('aws:eks/getClusterAuth:getClusterAuth', __args__, opts=opts, typ=GetClusterAuthResult).value
 
     return AwaitableGetClusterAuthResult(
         id=__ret__.id,

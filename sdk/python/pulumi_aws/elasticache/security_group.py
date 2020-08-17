@@ -12,22 +12,6 @@ __all__ = ['SecurityGroup']
 
 
 class SecurityGroup(pulumi.CustomResource):
-    description: pulumi.Output[str] = pulumi.property("description")
-    """
-    description for the cache security group. Defaults to "Managed by Pulumi".
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    Name for the cache security group. This value is stored as a lowercase string.
-    """
-
-    security_group_names: pulumi.Output[List[str]] = pulumi.property("securityGroupNames")
-    """
-    List of EC2 security group names to be
-    authorized for ingress to the cache security group
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -119,6 +103,31 @@ class SecurityGroup(pulumi.CustomResource):
         __props__["name"] = name
         __props__["security_group_names"] = security_group_names
         return SecurityGroup(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        description for the cache security group. Defaults to "Managed by Pulumi".
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name for the cache security group. This value is stored as a lowercase string.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="securityGroupNames")
+    def security_group_names(self) -> List[str]:
+        """
+        List of EC2 security group names to be
+        authorized for ingress to the cache security group
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

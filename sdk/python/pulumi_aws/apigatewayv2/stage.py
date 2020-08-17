@@ -14,82 +14,6 @@ __all__ = ['Stage']
 
 
 class Stage(pulumi.CustomResource):
-    access_log_settings: pulumi.Output[Optional['outputs.StageAccessLogSettings']] = pulumi.property("accessLogSettings")
-    """
-    Settings for logging access in this stage.
-    Use the `apigateway.Account` resource to configure [permissions for CloudWatch Logging](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html#set-up-access-logging-permissions).
-    """
-
-    api_id: pulumi.Output[str] = pulumi.property("apiId")
-    """
-    The API identifier.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the stage.
-    """
-
-    auto_deploy: pulumi.Output[Optional[bool]] = pulumi.property("autoDeploy")
-    """
-    Whether updates to an API automatically trigger a new deployment. Defaults to `false`.
-    """
-
-    client_certificate_id: pulumi.Output[Optional[str]] = pulumi.property("clientCertificateId")
-    """
-    The identifier of a client certificate for the stage. Use the `apigateway.ClientCertificate` resource to configure a client certificate.
-    Supported only for WebSocket APIs.
-    """
-
-    default_route_settings: pulumi.Output[Optional['outputs.StageDefaultRouteSettings']] = pulumi.property("defaultRouteSettings")
-    """
-    The default route settings for the stage.
-    """
-
-    deployment_id: pulumi.Output[Optional[str]] = pulumi.property("deploymentId")
-    """
-    The deployment identifier of the stage. Use the `apigatewayv2.Deployment` resource to configure a deployment.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    The description for the stage.
-    """
-
-    execution_arn: pulumi.Output[str] = pulumi.property("executionArn")
-    """
-    The ARN prefix to be used in an `lambda.Permission`'s `source_arn` attribute
-    or in an `iam.Policy` to authorize access to the [`@connections` API](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-how-to-call-websocket-api-connections.html).
-    See the [Amazon API Gateway Developer Guide](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-control-access-iam.html) for details.
-    Set only for WebSocket APIs.
-    """
-
-    invoke_url: pulumi.Output[str] = pulumi.property("invokeUrl")
-    """
-    The URL to invoke the API pointing to the stage,
-    e.g. `wss://z4675bid1j.execute-api.eu-west-2.amazonaws.com/example-stage`, or `https://z4675bid1j.execute-api.eu-west-2.amazonaws.com/`
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the stage.
-    """
-
-    route_settings: pulumi.Output[Optional[List['outputs.StageRouteSetting']]] = pulumi.property("routeSettings")
-    """
-    Route settings for the stage.
-    """
-
-    stage_variables: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("stageVariables")
-    """
-    A map that defines the stage variables for the stage.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the stage.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -241,6 +165,124 @@ class Stage(pulumi.CustomResource):
         __props__["stage_variables"] = stage_variables
         __props__["tags"] = tags
         return Stage(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="accessLogSettings")
+    def access_log_settings(self) -> Optional['outputs.StageAccessLogSettings']:
+        """
+        Settings for logging access in this stage.
+        Use the `apigateway.Account` resource to configure [permissions for CloudWatch Logging](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html#set-up-access-logging-permissions).
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="apiId")
+    def api_id(self) -> str:
+        """
+        The API identifier.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the stage.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="autoDeploy")
+    def auto_deploy(self) -> Optional[bool]:
+        """
+        Whether updates to an API automatically trigger a new deployment. Defaults to `false`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="clientCertificateId")
+    def client_certificate_id(self) -> Optional[str]:
+        """
+        The identifier of a client certificate for the stage. Use the `apigateway.ClientCertificate` resource to configure a client certificate.
+        Supported only for WebSocket APIs.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="defaultRouteSettings")
+    def default_route_settings(self) -> Optional['outputs.StageDefaultRouteSettings']:
+        """
+        The default route settings for the stage.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="deploymentId")
+    def deployment_id(self) -> Optional[str]:
+        """
+        The deployment identifier of the stage. Use the `apigatewayv2.Deployment` resource to configure a deployment.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        The description for the stage.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="executionArn")
+    def execution_arn(self) -> str:
+        """
+        The ARN prefix to be used in an `lambda.Permission`'s `source_arn` attribute
+        or in an `iam.Policy` to authorize access to the [`@connections` API](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-how-to-call-websocket-api-connections.html).
+        See the [Amazon API Gateway Developer Guide](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-control-access-iam.html) for details.
+        Set only for WebSocket APIs.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="invokeUrl")
+    def invoke_url(self) -> str:
+        """
+        The URL to invoke the API pointing to the stage,
+        e.g. `wss://z4675bid1j.execute-api.eu-west-2.amazonaws.com/example-stage`, or `https://z4675bid1j.execute-api.eu-west-2.amazonaws.com/`
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the stage.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="routeSettings")
+    def route_settings(self) -> Optional[List['outputs.StageRouteSetting']]:
+        """
+        Route settings for the stage.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="stageVariables")
+    def stage_variables(self) -> Optional[Mapping[str, str]]:
+        """
+        A map that defines the stage variables for the stage.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the stage.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

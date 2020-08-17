@@ -14,66 +14,6 @@ __all__ = ['SecurityGroup']
 
 
 class SecurityGroup(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the security group
-    """
-
-    description: pulumi.Output[str] = pulumi.property("description")
-    """
-    Description of this egress rule.
-    """
-
-    egress: pulumi.Output[List['outputs.SecurityGroupEgress']] = pulumi.property("egress")
-    """
-    Can be specified multiple times for each
-    egress rule. Each egress block supports fields documented below.
-    """
-
-    ingress: pulumi.Output[List['outputs.SecurityGroupIngress']] = pulumi.property("ingress")
-    """
-    Can be specified multiple times for each
-    ingress rule. Each ingress block supports fields documented below.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the security group. If omitted, this provider will
-    assign a random, unique name
-    """
-
-    name_prefix: pulumi.Output[Optional[str]] = pulumi.property("namePrefix")
-    """
-    Creates a unique name beginning with the specified
-    prefix. Conflicts with `name`.
-    """
-
-    owner_id: pulumi.Output[str] = pulumi.property("ownerId")
-    """
-    The owner ID.
-    """
-
-    revoke_rules_on_delete: pulumi.Output[Optional[bool]] = pulumi.property("revokeRulesOnDelete")
-    """
-    Instruct this provider to revoke all of the
-    Security Groups attached ingress and egress rules before deleting the rule
-    itself. This is normally not needed, however certain AWS services such as
-    Elastic Map Reduce may automatically add required rules to security groups used
-    with the service, and those rules may contain a cyclic dependency that prevent
-    the security groups from being destroyed without removing the dependency first.
-    Default `false`
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
-    vpc_id: pulumi.Output[str] = pulumi.property("vpcId")
-    """
-    The VPC ID.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -257,6 +197,96 @@ class SecurityGroup(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["vpc_id"] = vpc_id
         return SecurityGroup(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the security group
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Description of this egress rule.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def egress(self) -> List['outputs.SecurityGroupEgress']:
+        """
+        Can be specified multiple times for each
+        egress rule. Each egress block supports fields documented below.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def ingress(self) -> List['outputs.SecurityGroupIngress']:
+        """
+        Can be specified multiple times for each
+        ingress rule. Each ingress block supports fields documented below.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the security group. If omitted, this provider will
+        assign a random, unique name
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> Optional[str]:
+        """
+        Creates a unique name beginning with the specified
+        prefix. Conflicts with `name`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
+        """
+        The owner ID.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="revokeRulesOnDelete")
+    def revoke_rules_on_delete(self) -> Optional[bool]:
+        """
+        Instruct this provider to revoke all of the
+        Security Groups attached ingress and egress rules before deleting the rule
+        itself. This is normally not needed, however certain AWS services such as
+        Elastic Map Reduce may automatically add required rules to security groups used
+        with the service, and those rules may contain a cyclic dependency that prevent
+        the security groups from being destroyed without removing the dependency first.
+        Default `false`
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The VPC ID.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

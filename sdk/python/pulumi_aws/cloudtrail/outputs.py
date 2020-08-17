@@ -16,6 +16,22 @@ __all__ = [
 
 @pulumi.output_type
 class TrailEventSelector(dict):
+    def __init__(__self__, *,
+                 data_resources: Optional[List['outputs.TrailEventSelectorDataResource']] = None,
+                 include_management_events: Optional[bool] = None,
+                 read_write_type: Optional[str] = None):
+        """
+        :param List['TrailEventSelectorDataResourceArgs'] data_resources: Specifies logging data events. Fields documented below.
+        :param bool include_management_events: Specify if you want your event selector to include management events for your trail.
+        :param str read_write_type: Specify if you want your trail to log read-only events, write-only events, or all. By default, the value is All. You can specify only the following value: "ReadOnly", "WriteOnly", "All". Defaults to `All`.
+        """
+        if data_resources is not None:
+            pulumi.set(__self__, "data_resources", data_resources)
+        if include_management_events is not None:
+            pulumi.set(__self__, "include_management_events", include_management_events)
+        if read_write_type is not None:
+            pulumi.set(__self__, "read_write_type", read_write_type)
+
     @property
     @pulumi.getter(name="dataResources")
     def data_resources(self) -> Optional[List['outputs.TrailEventSelectorDataResource']]:
@@ -46,6 +62,16 @@ class TrailEventSelector(dict):
 
 @pulumi.output_type
 class TrailEventSelectorDataResource(dict):
+    def __init__(__self__, *,
+                 type: str,
+                 values: List[str]):
+        """
+        :param str type: The resource type in which you want to log data events. You can specify only the following value: "AWS::S3::Object", "AWS::Lambda::Function"
+        :param List[str] values: A list of ARN for the specified S3 buckets and object prefixes..
+        """
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "values", values)
+
     @property
     @pulumi.getter
     def type(self) -> str:

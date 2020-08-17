@@ -15,14 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetLedgerResult:
-    arn: str = pulumi.property("arn")
-    deletion_protection: bool = pulumi.property("deletionProtection")
-    id: str = pulumi.property("id")
-    name: str = pulumi.property("name")
-
-
 class GetLedgerResult:
     """
     A collection of values returned by getLedger.
@@ -30,25 +24,46 @@ class GetLedgerResult:
     def __init__(__self__, arn=None, deletion_protection=None, id=None, name=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if deletion_protection and not isinstance(deletion_protection, bool):
+            raise TypeError("Expected argument 'deletion_protection' to be a bool")
+        pulumi.set(__self__, "deletion_protection", deletion_protection)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         Amazon Resource Name (ARN) of the ledger.
         """
-        if deletion_protection and not isinstance(deletion_protection, bool):
-            raise TypeError("Expected argument 'deletion_protection' to be a bool")
-        __self__.deletion_protection = deletion_protection
+        ...
+
+    @property
+    @pulumi.getter(name="deletionProtection")
+    def deletion_protection(self) -> bool:
         """
         Deletion protection on the QLDB Ledger instance. Set to `true` by default.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        ...
+
 
 
 class AwaitableGetLedgerResult(GetLedgerResult):
@@ -86,7 +101,7 @@ def get_ledger(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:qldb/getLedger:getLedger', __args__, opts=opts, typ=_GetLedgerResult).value
+    __ret__ = pulumi.runtime.invoke('aws:qldb/getLedger:getLedger', __args__, opts=opts, typ=GetLedgerResult).value
 
     return AwaitableGetLedgerResult(
         arn=__ret__.arn,

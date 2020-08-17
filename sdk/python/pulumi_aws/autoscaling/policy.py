@@ -14,66 +14,6 @@ __all__ = ['Policy']
 
 
 class Policy(pulumi.CustomResource):
-    adjustment_type: pulumi.Output[Optional[str]] = pulumi.property("adjustmentType")
-    """
-    Specifies whether the adjustment is an absolute number or a percentage of the current capacity. Valid values are `ChangeInCapacity`, `ExactCapacity`, and `PercentChangeInCapacity`.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN assigned by AWS to the scaling policy.
-    """
-
-    autoscaling_group_name: pulumi.Output[str] = pulumi.property("autoscalingGroupName")
-    """
-    The name of the autoscaling group.
-    """
-
-    cooldown: pulumi.Output[Optional[float]] = pulumi.property("cooldown")
-    """
-    The amount of time, in seconds, after a scaling activity completes and before the next scaling activity can start.
-    """
-
-    estimated_instance_warmup: pulumi.Output[Optional[float]] = pulumi.property("estimatedInstanceWarmup")
-    """
-    The estimated time, in seconds, until a newly launched instance will contribute CloudWatch metrics. Without a value, AWS will default to the group's specified cooldown period.
-    """
-
-    metric_aggregation_type: pulumi.Output[str] = pulumi.property("metricAggregationType")
-    """
-    The aggregation type for the policy's metrics. Valid values are "Minimum", "Maximum", and "Average". Without a value, AWS will treat the aggregation type as "Average".
-    """
-
-    min_adjustment_magnitude: pulumi.Output[Optional[float]] = pulumi.property("minAdjustmentMagnitude")
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the dimension.
-    """
-
-    policy_type: pulumi.Output[Optional[str]] = pulumi.property("policyType")
-    """
-    The policy type, either "SimpleScaling", "StepScaling" or "TargetTrackingScaling". If this value isn't provided, AWS will default to "SimpleScaling."
-    """
-
-    scaling_adjustment: pulumi.Output[Optional[float]] = pulumi.property("scalingAdjustment")
-    """
-    The number of members by which to
-    scale, when the adjustment bounds are breached. A positive value scales
-    up. A negative value scales down.
-    """
-
-    step_adjustments: pulumi.Output[Optional[List['outputs.PolicyStepAdjustment']]] = pulumi.property("stepAdjustments")
-    """
-    A set of adjustments that manage
-    group scaling. These have the following structure:
-    """
-
-    target_tracking_configuration: pulumi.Output[Optional['outputs.PolicyTargetTrackingConfiguration']] = pulumi.property("targetTrackingConfiguration")
-    """
-    A target tracking policy. These have the following structure:
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -229,6 +169,102 @@ class Policy(pulumi.CustomResource):
         __props__["step_adjustments"] = step_adjustments
         __props__["target_tracking_configuration"] = target_tracking_configuration
         return Policy(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="adjustmentType")
+    def adjustment_type(self) -> Optional[str]:
+        """
+        Specifies whether the adjustment is an absolute number or a percentage of the current capacity. Valid values are `ChangeInCapacity`, `ExactCapacity`, and `PercentChangeInCapacity`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN assigned by AWS to the scaling policy.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="autoscalingGroupName")
+    def autoscaling_group_name(self) -> str:
+        """
+        The name of the autoscaling group.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def cooldown(self) -> Optional[float]:
+        """
+        The amount of time, in seconds, after a scaling activity completes and before the next scaling activity can start.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="estimatedInstanceWarmup")
+    def estimated_instance_warmup(self) -> Optional[float]:
+        """
+        The estimated time, in seconds, until a newly launched instance will contribute CloudWatch metrics. Without a value, AWS will default to the group's specified cooldown period.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="metricAggregationType")
+    def metric_aggregation_type(self) -> str:
+        """
+        The aggregation type for the policy's metrics. Valid values are "Minimum", "Maximum", and "Average". Without a value, AWS will treat the aggregation type as "Average".
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="minAdjustmentMagnitude")
+    def min_adjustment_magnitude(self) -> Optional[float]:
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the dimension.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="policyType")
+    def policy_type(self) -> Optional[str]:
+        """
+        The policy type, either "SimpleScaling", "StepScaling" or "TargetTrackingScaling". If this value isn't provided, AWS will default to "SimpleScaling."
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="scalingAdjustment")
+    def scaling_adjustment(self) -> Optional[float]:
+        """
+        The number of members by which to
+        scale, when the adjustment bounds are breached. A positive value scales
+        up. A negative value scales down.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="stepAdjustments")
+    def step_adjustments(self) -> Optional[List['outputs.PolicyStepAdjustment']]:
+        """
+        A set of adjustments that manage
+        group scaling. These have the following structure:
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="targetTrackingConfiguration")
+    def target_tracking_configuration(self) -> Optional['outputs.PolicyTargetTrackingConfiguration']:
+        """
+        A target tracking policy. These have the following structure:
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

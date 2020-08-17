@@ -12,18 +12,6 @@ __all__ = ['ProxyProtocolPolicy']
 
 
 class ProxyProtocolPolicy(pulumi.CustomResource):
-    instance_ports: pulumi.Output[List[str]] = pulumi.property("instancePorts")
-    """
-    List of instance ports to which the policy
-    should be applied. This can be specified if the protocol is SSL or TCP.
-    """
-
-    load_balancer: pulumi.Output[str] = pulumi.property("loadBalancer")
-    """
-    The load balancer to which the policy
-    should be attached.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -126,6 +114,24 @@ class ProxyProtocolPolicy(pulumi.CustomResource):
         __props__["instance_ports"] = instance_ports
         __props__["load_balancer"] = load_balancer
         return ProxyProtocolPolicy(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="instancePorts")
+    def instance_ports(self) -> List[str]:
+        """
+        List of instance ports to which the policy
+        should be applied. This can be specified if the protocol is SSL or TCP.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="loadBalancer")
+    def load_balancer(self) -> str:
+        """
+        The load balancer to which the policy
+        should be attached.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

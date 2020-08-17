@@ -27,11 +27,13 @@ class TriggerTriggerArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] branches: The branches that will be included in the trigger configuration. If no branches are specified, the trigger will apply to all branches.
         :param pulumi.Input[str] custom_data: Any custom data associated with the trigger that will be included in the information sent to the target of the trigger.
         """
-        pulumi.set(__self__, "destinationArn", destination_arn)
+        pulumi.set(__self__, "destination_arn", destination_arn)
         pulumi.set(__self__, "events", events)
         pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "branches", branches)
-        pulumi.set(__self__, "customData", custom_data)
+        if branches is not None:
+            pulumi.set(__self__, "branches", branches)
+        if custom_data is not None:
+            pulumi.set(__self__, "custom_data", custom_data)
 
     @property
     @pulumi.getter(name="destinationArn")

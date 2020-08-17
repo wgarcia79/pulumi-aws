@@ -29,8 +29,10 @@ class AccountThrottleSettingsArgs:
         :param pulumi.Input[float] burst_limit: The absolute maximum number of times API Gateway allows the API to be called per second (RPS).
         :param pulumi.Input[float] rate_limit: The number of times API Gateway allows the API to be called per second on average (RPS).
         """
-        pulumi.set(__self__, "burstLimit", burst_limit)
-        pulumi.set(__self__, "rateLimit", rate_limit)
+        if burst_limit is not None:
+            pulumi.set(__self__, "burst_limit", burst_limit)
+        if rate_limit is not None:
+            pulumi.set(__self__, "rate_limit", rate_limit)
 
     @property
     @pulumi.getter(name="burstLimit")
@@ -73,10 +75,14 @@ class DocumentationPartLocationArgs:
         :param pulumi.Input[str] status_code: The HTTP status code of a response. The default value is `*` for any status code.
         """
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "method", method)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "path", path)
-        pulumi.set(__self__, "statusCode", status_code)
+        if method is not None:
+            pulumi.set(__self__, "method", method)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if status_code is not None:
+            pulumi.set(__self__, "status_code", status_code)
 
     @property
     @pulumi.getter
@@ -186,16 +192,26 @@ class MethodSettingsSettingsArgs:
         :param pulumi.Input[float] throttling_rate_limit: Specifies the throttling rate limit.
         :param pulumi.Input[str] unauthorized_cache_control_header_strategy: Specifies how to handle unauthorized requests for cache invalidation. The available values are `FAIL_WITH_403`, `SUCCEED_WITH_RESPONSE_HEADER`, `SUCCEED_WITHOUT_RESPONSE_HEADER`.
         """
-        pulumi.set(__self__, "cacheDataEncrypted", cache_data_encrypted)
-        pulumi.set(__self__, "cacheTtlInSeconds", cache_ttl_in_seconds)
-        pulumi.set(__self__, "cachingEnabled", caching_enabled)
-        pulumi.set(__self__, "dataTraceEnabled", data_trace_enabled)
-        pulumi.set(__self__, "loggingLevel", logging_level)
-        pulumi.set(__self__, "metricsEnabled", metrics_enabled)
-        pulumi.set(__self__, "requireAuthorizationForCacheControl", require_authorization_for_cache_control)
-        pulumi.set(__self__, "throttlingBurstLimit", throttling_burst_limit)
-        pulumi.set(__self__, "throttlingRateLimit", throttling_rate_limit)
-        pulumi.set(__self__, "unauthorizedCacheControlHeaderStrategy", unauthorized_cache_control_header_strategy)
+        if cache_data_encrypted is not None:
+            pulumi.set(__self__, "cache_data_encrypted", cache_data_encrypted)
+        if cache_ttl_in_seconds is not None:
+            pulumi.set(__self__, "cache_ttl_in_seconds", cache_ttl_in_seconds)
+        if caching_enabled is not None:
+            pulumi.set(__self__, "caching_enabled", caching_enabled)
+        if data_trace_enabled is not None:
+            pulumi.set(__self__, "data_trace_enabled", data_trace_enabled)
+        if logging_level is not None:
+            pulumi.set(__self__, "logging_level", logging_level)
+        if metrics_enabled is not None:
+            pulumi.set(__self__, "metrics_enabled", metrics_enabled)
+        if require_authorization_for_cache_control is not None:
+            pulumi.set(__self__, "require_authorization_for_cache_control", require_authorization_for_cache_control)
+        if throttling_burst_limit is not None:
+            pulumi.set(__self__, "throttling_burst_limit", throttling_burst_limit)
+        if throttling_rate_limit is not None:
+            pulumi.set(__self__, "throttling_rate_limit", throttling_rate_limit)
+        if unauthorized_cache_control_header_strategy is not None:
+            pulumi.set(__self__, "unauthorized_cache_control_header_strategy", unauthorized_cache_control_header_strategy)
 
     @property
     @pulumi.getter(name="cacheDataEncrypted")
@@ -328,7 +344,8 @@ class RestApiEndpointConfigurationArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] vpc_endpoint_ids: A list of VPC Endpoint Ids. It is only supported for PRIVATE endpoint type.
         """
         pulumi.set(__self__, "types", types)
-        pulumi.set(__self__, "vpcEndpointIds", vpc_endpoint_ids)
+        if vpc_endpoint_ids is not None:
+            pulumi.set(__self__, "vpc_endpoint_ids", vpc_endpoint_ids)
 
     @property
     @pulumi.getter
@@ -365,7 +382,7 @@ class StageAccessLogSettingsArgs:
         :param pulumi.Input[str] format: The formatting and values recorded in the logs. 
                For more information on configuring the log format rules visit the AWS [documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html)
         """
-        pulumi.set(__self__, "destinationArn", destination_arn)
+        pulumi.set(__self__, "destination_arn", destination_arn)
         pulumi.set(__self__, "format", format)
 
     @property
@@ -403,7 +420,7 @@ class UsagePlanApiStageArgs:
         :param pulumi.Input[str] api_id: API Id of the associated API stage in a usage plan.
         :param pulumi.Input[str] stage: API stage name of the associated API stage in a usage plan.
         """
-        pulumi.set(__self__, "apiId", api_id)
+        pulumi.set(__self__, "api_id", api_id)
         pulumi.set(__self__, "stage", stage)
 
     @property
@@ -444,7 +461,8 @@ class UsagePlanQuotaSettingsArgs:
         """
         pulumi.set(__self__, "limit", limit)
         pulumi.set(__self__, "period", period)
-        pulumi.set(__self__, "offset", offset)
+        if offset is not None:
+            pulumi.set(__self__, "offset", offset)
 
     @property
     @pulumi.getter
@@ -492,8 +510,10 @@ class UsagePlanThrottleSettingsArgs:
         :param pulumi.Input[float] burst_limit: The API request burst limit, the maximum rate limit over a time ranging from one to a few seconds, depending upon whether the underlying token bucket is at its full capacity.
         :param pulumi.Input[float] rate_limit: The API request steady-state rate limit.
         """
-        pulumi.set(__self__, "burstLimit", burst_limit)
-        pulumi.set(__self__, "rateLimit", rate_limit)
+        if burst_limit is not None:
+            pulumi.set(__self__, "burst_limit", burst_limit)
+        if rate_limit is not None:
+            pulumi.set(__self__, "rate_limit", rate_limit)
 
     @property
     @pulumi.getter(name="burstLimit")

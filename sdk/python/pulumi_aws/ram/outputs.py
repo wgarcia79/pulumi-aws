@@ -14,6 +14,16 @@ __all__ = [
 
 @pulumi.output_type
 class GetResourceShareFilterResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 values: List[str]):
+        """
+        :param str name: The name of the tag key to filter on.
+        :param List[str] values: The value of the tag key.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "values", values)
+
     @property
     @pulumi.getter
     def name(self) -> str:

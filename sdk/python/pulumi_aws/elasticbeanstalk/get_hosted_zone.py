@@ -15,12 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetHostedZoneResult:
-    id: str = pulumi.property("id")
-    region: Optional[str] = pulumi.property("region")
-
-
 class GetHostedZoneResult:
     """
     A collection of values returned by getHostedZone.
@@ -28,16 +24,27 @@ class GetHostedZoneResult:
     def __init__(__self__, id=None, region=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if region and not isinstance(region, str):
+            raise TypeError("Expected argument 'region' to be a str")
+        pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if region and not isinstance(region, str):
-            raise TypeError("Expected argument 'region' to be a str")
-        __self__.region = region
+        ...
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
         """
         The region of the hosted zone.
         """
+        ...
+
 
 
 class AwaitableGetHostedZoneResult(GetHostedZoneResult):
@@ -73,7 +80,7 @@ def get_hosted_zone(region: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:elasticbeanstalk/getHostedZone:getHostedZone', __args__, opts=opts, typ=_GetHostedZoneResult).value
+    __ret__ = pulumi.runtime.invoke('aws:elasticbeanstalk/getHostedZone:getHostedZone', __args__, opts=opts, typ=GetHostedZoneResult).value
 
     return AwaitableGetHostedZoneResult(
         id=__ret__.id,

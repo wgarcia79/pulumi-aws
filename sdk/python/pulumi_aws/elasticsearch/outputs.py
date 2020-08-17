@@ -36,6 +36,21 @@ __all__ = [
 
 @pulumi.output_type
 class DomainAdvancedSecurityOptions(dict):
+    def __init__(__self__, *,
+                 enabled: bool,
+                 internal_user_database_enabled: Optional[bool] = None,
+                 master_user_options: Optional['outputs.DomainAdvancedSecurityOptionsMasterUserOptions'] = None):
+        """
+        :param bool enabled: Specifies whether Amazon Cognito authentication with Kibana is enabled or not
+        :param bool internal_user_database_enabled: Whether the internal user database is enabled. If not set, defaults to `false` by the AWS API.
+        :param 'DomainAdvancedSecurityOptionsMasterUserOptionsArgs' master_user_options: Credentials for the master user: username and password, or ARN
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        if internal_user_database_enabled is not None:
+            pulumi.set(__self__, "internal_user_database_enabled", internal_user_database_enabled)
+        if master_user_options is not None:
+            pulumi.set(__self__, "master_user_options", master_user_options)
+
     @property
     @pulumi.getter
     def enabled(self) -> bool:
@@ -66,6 +81,22 @@ class DomainAdvancedSecurityOptions(dict):
 
 @pulumi.output_type
 class DomainAdvancedSecurityOptionsMasterUserOptions(dict):
+    def __init__(__self__, *,
+                 master_user_arn: Optional[str] = None,
+                 master_user_name: Optional[str] = None,
+                 master_user_password: Optional[str] = None):
+        """
+        :param str master_user_arn: ARN for the master user. Only specify if `internal_user_database_enabled` is not set or set to `false`)
+        :param str master_user_name: The master user's username, which is stored in the Amazon Elasticsearch Service domain's internal database. Only specify if `internal_user_database_enabled` is set to `true`.
+        :param str master_user_password: The master user's password, which is stored in the Amazon Elasticsearch Service domain's internal database. Only specify if `internal_user_database_enabled` is set to `true`.
+        """
+        if master_user_arn is not None:
+            pulumi.set(__self__, "master_user_arn", master_user_arn)
+        if master_user_name is not None:
+            pulumi.set(__self__, "master_user_name", master_user_name)
+        if master_user_password is not None:
+            pulumi.set(__self__, "master_user_password", master_user_password)
+
     @property
     @pulumi.getter(name="masterUserArn")
     def master_user_arn(self) -> Optional[str]:
@@ -96,6 +127,50 @@ class DomainAdvancedSecurityOptionsMasterUserOptions(dict):
 
 @pulumi.output_type
 class DomainClusterConfig(dict):
+    def __init__(__self__, *,
+                 dedicated_master_count: Optional[float] = None,
+                 dedicated_master_enabled: Optional[bool] = None,
+                 dedicated_master_type: Optional[str] = None,
+                 instance_count: Optional[float] = None,
+                 instance_type: Optional[str] = None,
+                 warm_count: Optional[float] = None,
+                 warm_enabled: Optional[bool] = None,
+                 warm_type: Optional[str] = None,
+                 zone_awareness_config: Optional['outputs.DomainClusterConfigZoneAwarenessConfig'] = None,
+                 zone_awareness_enabled: Optional[bool] = None):
+        """
+        :param float dedicated_master_count: Number of dedicated master nodes in the cluster
+        :param bool dedicated_master_enabled: Indicates whether dedicated master nodes are enabled for the cluster.
+        :param str dedicated_master_type: Instance type of the dedicated master nodes in the cluster.
+        :param float instance_count: Number of instances in the cluster.
+        :param str instance_type: Instance type of data nodes in the cluster.
+        :param float warm_count: The number of warm nodes in the cluster. Valid values are between `2` and `150`. `warm_count` can be only and must be set when `warm_enabled` is set to `true`.
+        :param bool warm_enabled: Indicates whether to enable warm storage.
+        :param str warm_type: The instance type for the Elasticsearch cluster's warm nodes. Valid values are `ultrawarm1.medium.elasticsearch`, `ultrawarm1.large.elasticsearch` and `ultrawarm1.xlarge.elasticsearch`. `warm_type` can be only and must be set when `warm_enabled` is set to `true`.
+        :param 'DomainClusterConfigZoneAwarenessConfigArgs' zone_awareness_config: Configuration block containing zone awareness settings. Documented below.
+        :param bool zone_awareness_enabled: Indicates whether zone awareness is enabled, set to `true` for multi-az deployment. To enable awareness with three Availability Zones, the `availability_zone_count` within the `zone_awareness_config` must be set to `3`.
+        """
+        if dedicated_master_count is not None:
+            pulumi.set(__self__, "dedicated_master_count", dedicated_master_count)
+        if dedicated_master_enabled is not None:
+            pulumi.set(__self__, "dedicated_master_enabled", dedicated_master_enabled)
+        if dedicated_master_type is not None:
+            pulumi.set(__self__, "dedicated_master_type", dedicated_master_type)
+        if instance_count is not None:
+            pulumi.set(__self__, "instance_count", instance_count)
+        if instance_type is not None:
+            pulumi.set(__self__, "instance_type", instance_type)
+        if warm_count is not None:
+            pulumi.set(__self__, "warm_count", warm_count)
+        if warm_enabled is not None:
+            pulumi.set(__self__, "warm_enabled", warm_enabled)
+        if warm_type is not None:
+            pulumi.set(__self__, "warm_type", warm_type)
+        if zone_awareness_config is not None:
+            pulumi.set(__self__, "zone_awareness_config", zone_awareness_config)
+        if zone_awareness_enabled is not None:
+            pulumi.set(__self__, "zone_awareness_enabled", zone_awareness_enabled)
+
     @property
     @pulumi.getter(name="dedicatedMasterCount")
     def dedicated_master_count(self) -> Optional[float]:
@@ -182,6 +257,14 @@ class DomainClusterConfig(dict):
 
 @pulumi.output_type
 class DomainClusterConfigZoneAwarenessConfig(dict):
+    def __init__(__self__, *,
+                 availability_zone_count: Optional[float] = None):
+        """
+        :param float availability_zone_count: Number of Availability Zones for the domain to use with `zone_awareness_enabled`. Defaults to `2`. Valid values: `2` or `3`.
+        """
+        if availability_zone_count is not None:
+            pulumi.set(__self__, "availability_zone_count", availability_zone_count)
+
     @property
     @pulumi.getter(name="availabilityZoneCount")
     def availability_zone_count(self) -> Optional[float]:
@@ -196,13 +279,22 @@ class DomainClusterConfigZoneAwarenessConfig(dict):
 
 @pulumi.output_type
 class DomainCognitoOptions(dict):
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[bool]:
+    def __init__(__self__, *,
+                 identity_pool_id: str,
+                 role_arn: str,
+                 user_pool_id: str,
+                 enabled: Optional[bool] = None):
         """
-        Specifies whether Amazon Cognito authentication with Kibana is enabled or not
+        :param str identity_pool_id: ID of the Cognito Identity Pool to use
+        :param str role_arn: ARN of the IAM role that has the AmazonESCognitoAccess policy attached
+        :param str user_pool_id: ID of the Cognito User Pool to use
+        :param bool enabled: Specifies whether Amazon Cognito authentication with Kibana is enabled or not
         """
-        ...
+        pulumi.set(__self__, "identity_pool_id", identity_pool_id)
+        pulumi.set(__self__, "role_arn", role_arn)
+        pulumi.set(__self__, "user_pool_id", user_pool_id)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
 
     @property
     @pulumi.getter(name="identityPoolId")
@@ -228,12 +320,31 @@ class DomainCognitoOptions(dict):
         """
         ...
 
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Specifies whether Amazon Cognito authentication with Kibana is enabled or not
+        """
+        ...
+
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class DomainDomainEndpointOptions(dict):
+    def __init__(__self__, *,
+                 enforce_https: bool,
+                 tls_security_policy: Optional[str] = None):
+        """
+        :param bool enforce_https: Whether or not to require HTTPS
+        :param str tls_security_policy: The name of the TLS security policy that needs to be applied to the HTTPS endpoint. Valid values:  `Policy-Min-TLS-1-0-2019-07` and `Policy-Min-TLS-1-2-2019-07`. This provider will only perform drift detection if a configuration value is provided.
+        """
+        pulumi.set(__self__, "enforce_https", enforce_https)
+        if tls_security_policy is not None:
+            pulumi.set(__self__, "tls_security_policy", tls_security_policy)
+
     @property
     @pulumi.getter(name="enforceHttps")
     def enforce_https(self) -> bool:
@@ -256,6 +367,27 @@ class DomainDomainEndpointOptions(dict):
 
 @pulumi.output_type
 class DomainEbsOptions(dict):
+    def __init__(__self__, *,
+                 ebs_enabled: bool,
+                 iops: Optional[float] = None,
+                 volume_size: Optional[float] = None,
+                 volume_type: Optional[str] = None):
+        """
+        :param bool ebs_enabled: Whether EBS volumes are attached to data nodes in the domain.
+        :param float iops: The baseline input/output (I/O) performance of EBS volumes
+               attached to data nodes. Applicable only for the Provisioned IOPS EBS volume type.
+        :param float volume_size: The size of EBS volumes attached to data nodes (in GB).
+               **Required** if `ebs_enabled` is set to `true`.
+        :param str volume_type: The type of EBS volumes attached to data nodes.
+        """
+        pulumi.set(__self__, "ebs_enabled", ebs_enabled)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if volume_size is not None:
+            pulumi.set(__self__, "volume_size", volume_size)
+        if volume_type is not None:
+            pulumi.set(__self__, "volume_type", volume_type)
+
     @property
     @pulumi.getter(name="ebsEnabled")
     def ebs_enabled(self) -> bool:
@@ -296,6 +428,17 @@ class DomainEbsOptions(dict):
 
 @pulumi.output_type
 class DomainEncryptAtRest(dict):
+    def __init__(__self__, *,
+                 enabled: bool,
+                 kms_key_id: Optional[str] = None):
+        """
+        :param bool enabled: Specifies whether Amazon Cognito authentication with Kibana is enabled or not
+        :param str kms_key_id: The KMS key id to encrypt the Elasticsearch domain with. If not specified then it defaults to using the `aws/es` service KMS key.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        if kms_key_id is not None:
+            pulumi.set(__self__, "kms_key_id", kms_key_id)
+
     @property
     @pulumi.getter
     def enabled(self) -> bool:
@@ -318,19 +461,25 @@ class DomainEncryptAtRest(dict):
 
 @pulumi.output_type
 class DomainLogPublishingOption(dict):
+    def __init__(__self__, *,
+                 cloudwatch_log_group_arn: str,
+                 log_type: str,
+                 enabled: Optional[bool] = None):
+        """
+        :param str cloudwatch_log_group_arn: ARN of the Cloudwatch log group to which log needs to be published.
+        :param str log_type: A type of Elasticsearch log. Valid values: INDEX_SLOW_LOGS, SEARCH_SLOW_LOGS, ES_APPLICATION_LOGS
+        :param bool enabled: Specifies whether Amazon Cognito authentication with Kibana is enabled or not
+        """
+        pulumi.set(__self__, "cloudwatch_log_group_arn", cloudwatch_log_group_arn)
+        pulumi.set(__self__, "log_type", log_type)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
     @property
     @pulumi.getter(name="cloudwatchLogGroupArn")
     def cloudwatch_log_group_arn(self) -> str:
         """
         ARN of the Cloudwatch log group to which log needs to be published.
-        """
-        ...
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[bool]:
-        """
-        Specifies whether Amazon Cognito authentication with Kibana is enabled or not
         """
         ...
 
@@ -342,12 +491,27 @@ class DomainLogPublishingOption(dict):
         """
         ...
 
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Specifies whether Amazon Cognito authentication with Kibana is enabled or not
+        """
+        ...
+
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class DomainNodeToNodeEncryption(dict):
+    def __init__(__self__, *,
+                 enabled: bool):
+        """
+        :param bool enabled: Specifies whether Amazon Cognito authentication with Kibana is enabled or not
+        """
+        pulumi.set(__self__, "enabled", enabled)
+
     @property
     @pulumi.getter
     def enabled(self) -> bool:
@@ -362,6 +526,14 @@ class DomainNodeToNodeEncryption(dict):
 
 @pulumi.output_type
 class DomainSnapshotOptions(dict):
+    def __init__(__self__, *,
+                 automated_snapshot_start_hour: float):
+        """
+        :param float automated_snapshot_start_hour: Hour during which the service takes an automated daily
+               snapshot of the indices in the domain.
+        """
+        pulumi.set(__self__, "automated_snapshot_start_hour", automated_snapshot_start_hour)
+
     @property
     @pulumi.getter(name="automatedSnapshotStartHour")
     def automated_snapshot_start_hour(self) -> float:
@@ -377,6 +549,24 @@ class DomainSnapshotOptions(dict):
 
 @pulumi.output_type
 class DomainVpcOptions(dict):
+    def __init__(__self__, *,
+                 availability_zones: Optional[List[str]] = None,
+                 security_group_ids: Optional[List[str]] = None,
+                 subnet_ids: Optional[List[str]] = None,
+                 vpc_id: Optional[str] = None):
+        """
+        :param List[str] security_group_ids: List of VPC Security Group IDs to be applied to the Elasticsearch domain endpoints. If omitted, the default Security Group for the VPC will be used.
+        :param List[str] subnet_ids: List of VPC Subnet IDs for the Elasticsearch domain endpoints to be created in.
+        """
+        if availability_zones is not None:
+            pulumi.set(__self__, "availability_zones", availability_zones)
+        if security_group_ids is not None:
+            pulumi.set(__self__, "security_group_ids", security_group_ids)
+        if subnet_ids is not None:
+            pulumi.set(__self__, "subnet_ids", subnet_ids)
+        if vpc_id is not None:
+            pulumi.set(__self__, "vpc_id", vpc_id)
+
     @property
     @pulumi.getter(name="availabilityZones")
     def availability_zones(self) -> Optional[List[str]]:
@@ -409,6 +599,16 @@ class DomainVpcOptions(dict):
 
 @pulumi.output_type
 class GetDomainAdvancedSecurityOptionResult(dict):
+    def __init__(__self__, *,
+                 enabled: bool,
+                 internal_user_database_enabled: bool):
+        """
+        :param bool enabled: Whether node to node encryption is enabled.
+        :param bool internal_user_database_enabled: Whether the internal user database is enabled.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "internal_user_database_enabled", internal_user_database_enabled)
+
     @property
     @pulumi.getter
     def enabled(self) -> bool:
@@ -428,6 +628,41 @@ class GetDomainAdvancedSecurityOptionResult(dict):
 
 @pulumi.output_type
 class GetDomainClusterConfigResult(dict):
+    def __init__(__self__, *,
+                 dedicated_master_count: float,
+                 dedicated_master_enabled: bool,
+                 dedicated_master_type: str,
+                 instance_count: float,
+                 instance_type: str,
+                 warm_count: float,
+                 warm_type: str,
+                 zone_awareness_configs: List['outputs.GetDomainClusterConfigZoneAwarenessConfigResult'],
+                 zone_awareness_enabled: bool,
+                 warm_enabled: Optional[bool] = None):
+        """
+        :param float dedicated_master_count: Number of dedicated master nodes in the cluster.
+        :param bool dedicated_master_enabled: Indicates whether dedicated master nodes are enabled for the cluster.
+        :param str dedicated_master_type: Instance type of the dedicated master nodes in the cluster.
+        :param float instance_count: Number of instances in the cluster.
+        :param str instance_type: Instance type of data nodes in the cluster.
+        :param float warm_count: The number of warm nodes in the cluster.
+        :param str warm_type: The instance type for the Elasticsearch cluster's warm nodes.
+        :param List['GetDomainClusterConfigZoneAwarenessConfigArgs'] zone_awareness_configs: Configuration block containing zone awareness settings.
+        :param bool zone_awareness_enabled: Indicates whether zone awareness is enabled.
+        :param bool warm_enabled: Indicates warm storage is enabled.
+        """
+        pulumi.set(__self__, "dedicated_master_count", dedicated_master_count)
+        pulumi.set(__self__, "dedicated_master_enabled", dedicated_master_enabled)
+        pulumi.set(__self__, "dedicated_master_type", dedicated_master_type)
+        pulumi.set(__self__, "instance_count", instance_count)
+        pulumi.set(__self__, "instance_type", instance_type)
+        pulumi.set(__self__, "warm_count", warm_count)
+        pulumi.set(__self__, "warm_type", warm_type)
+        pulumi.set(__self__, "zone_awareness_configs", zone_awareness_configs)
+        pulumi.set(__self__, "zone_awareness_enabled", zone_awareness_enabled)
+        if warm_enabled is not None:
+            pulumi.set(__self__, "warm_enabled", warm_enabled)
+
     @property
     @pulumi.getter(name="dedicatedMasterCount")
     def dedicated_master_count(self) -> float:
@@ -477,14 +712,6 @@ class GetDomainClusterConfigResult(dict):
         ...
 
     @property
-    @pulumi.getter(name="warmEnabled")
-    def warm_enabled(self) -> Optional[bool]:
-        """
-        Indicates warm storage is enabled.
-        """
-        ...
-
-    @property
     @pulumi.getter(name="warmType")
     def warm_type(self) -> str:
         """
@@ -508,9 +735,24 @@ class GetDomainClusterConfigResult(dict):
         """
         ...
 
+    @property
+    @pulumi.getter(name="warmEnabled")
+    def warm_enabled(self) -> Optional[bool]:
+        """
+        Indicates warm storage is enabled.
+        """
+        ...
+
 
 @pulumi.output_type
 class GetDomainClusterConfigZoneAwarenessConfigResult(dict):
+    def __init__(__self__, *,
+                 availability_zone_count: float):
+        """
+        :param float availability_zone_count: Number of availability zones used.
+        """
+        pulumi.set(__self__, "availability_zone_count", availability_zone_count)
+
     @property
     @pulumi.getter(name="availabilityZoneCount")
     def availability_zone_count(self) -> float:
@@ -522,6 +764,22 @@ class GetDomainClusterConfigZoneAwarenessConfigResult(dict):
 
 @pulumi.output_type
 class GetDomainCognitoOptionResult(dict):
+    def __init__(__self__, *,
+                 enabled: bool,
+                 identity_pool_id: str,
+                 role_arn: str,
+                 user_pool_id: str):
+        """
+        :param bool enabled: Whether node to node encryption is enabled.
+        :param str identity_pool_id: The Cognito Identity pool used by the domain.
+        :param str role_arn: The IAM Role with the AmazonESCognitoAccess policy attached.
+        :param str user_pool_id: The Cognito User pool used by the domain.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "identity_pool_id", identity_pool_id)
+        pulumi.set(__self__, "role_arn", role_arn)
+        pulumi.set(__self__, "user_pool_id", user_pool_id)
+
     @property
     @pulumi.getter
     def enabled(self) -> bool:
@@ -557,6 +815,23 @@ class GetDomainCognitoOptionResult(dict):
 
 @pulumi.output_type
 class GetDomainEbsOptionResult(dict):
+    def __init__(__self__, *,
+                 ebs_enabled: bool,
+                 iops: float,
+                 volume_size: float,
+                 volume_type: str):
+        """
+        :param bool ebs_enabled: Whether EBS volumes are attached to data nodes in the domain.
+        :param float iops: The baseline input/output (I/O) performance of EBS volumes
+               attached to data nodes.
+        :param float volume_size: The size of EBS volumes attached to data nodes (in GB).
+        :param str volume_type: The type of EBS volumes attached to data nodes.
+        """
+        pulumi.set(__self__, "ebs_enabled", ebs_enabled)
+        pulumi.set(__self__, "iops", iops)
+        pulumi.set(__self__, "volume_size", volume_size)
+        pulumi.set(__self__, "volume_type", volume_type)
+
     @property
     @pulumi.getter(name="ebsEnabled")
     def ebs_enabled(self) -> bool:
@@ -593,6 +868,16 @@ class GetDomainEbsOptionResult(dict):
 
 @pulumi.output_type
 class GetDomainEncryptionAtRestResult(dict):
+    def __init__(__self__, *,
+                 enabled: bool,
+                 kms_key_id: str):
+        """
+        :param bool enabled: Whether node to node encryption is enabled.
+        :param str kms_key_id: The KMS key id used to encrypt data at rest.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "kms_key_id", kms_key_id)
+
     @property
     @pulumi.getter
     def enabled(self) -> bool:
@@ -612,6 +897,19 @@ class GetDomainEncryptionAtRestResult(dict):
 
 @pulumi.output_type
 class GetDomainLogPublishingOptionResult(dict):
+    def __init__(__self__, *,
+                 cloudwatch_log_group_arn: str,
+                 enabled: bool,
+                 log_type: str):
+        """
+        :param str cloudwatch_log_group_arn: The CloudWatch Log Group where the logs are published.
+        :param bool enabled: Whether node to node encryption is enabled.
+        :param str log_type: The type of Elasticsearch log being published.
+        """
+        pulumi.set(__self__, "cloudwatch_log_group_arn", cloudwatch_log_group_arn)
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "log_type", log_type)
+
     @property
     @pulumi.getter(name="cloudwatchLogGroupArn")
     def cloudwatch_log_group_arn(self) -> str:
@@ -639,6 +937,13 @@ class GetDomainLogPublishingOptionResult(dict):
 
 @pulumi.output_type
 class GetDomainNodeToNodeEncryptionResult(dict):
+    def __init__(__self__, *,
+                 enabled: bool):
+        """
+        :param bool enabled: Whether node to node encryption is enabled.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+
     @property
     @pulumi.getter
     def enabled(self) -> bool:
@@ -650,6 +955,14 @@ class GetDomainNodeToNodeEncryptionResult(dict):
 
 @pulumi.output_type
 class GetDomainSnapshotOptionResult(dict):
+    def __init__(__self__, *,
+                 automated_snapshot_start_hour: float):
+        """
+        :param float automated_snapshot_start_hour: Hour during which the service takes an automated daily
+               snapshot of the indices in the domain.
+        """
+        pulumi.set(__self__, "automated_snapshot_start_hour", automated_snapshot_start_hour)
+
     @property
     @pulumi.getter(name="automatedSnapshotStartHour")
     def automated_snapshot_start_hour(self) -> float:
@@ -662,6 +975,22 @@ class GetDomainSnapshotOptionResult(dict):
 
 @pulumi.output_type
 class GetDomainVpcOptionResult(dict):
+    def __init__(__self__, *,
+                 availability_zones: List[str],
+                 security_group_ids: List[str],
+                 subnet_ids: List[str],
+                 vpc_id: str):
+        """
+        :param List[str] availability_zones: The availability zones used by the domain.
+        :param List[str] security_group_ids: The security groups used by the domain.
+        :param List[str] subnet_ids: The subnets used by the domain.
+        :param str vpc_id: The VPC used by the domain.
+        """
+        pulumi.set(__self__, "availability_zones", availability_zones)
+        pulumi.set(__self__, "security_group_ids", security_group_ids)
+        pulumi.set(__self__, "subnet_ids", subnet_ids)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+
     @property
     @pulumi.getter(name="availabilityZones")
     def availability_zones(self) -> List[str]:

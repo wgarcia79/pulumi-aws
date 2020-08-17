@@ -14,85 +14,6 @@ __all__ = ['Stage']
 
 
 class Stage(pulumi.CustomResource):
-    access_log_settings: pulumi.Output[Optional['outputs.StageAccessLogSettings']] = pulumi.property("accessLogSettings")
-    """
-    Enables access logs for the API stage. Detailed below.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN)
-    """
-
-    cache_cluster_enabled: pulumi.Output[Optional[bool]] = pulumi.property("cacheClusterEnabled")
-    """
-    Specifies whether a cache cluster is enabled for the stage
-    """
-
-    cache_cluster_size: pulumi.Output[Optional[str]] = pulumi.property("cacheClusterSize")
-    """
-    The size of the cache cluster for the stage, if enabled.
-    Allowed values include `0.5`, `1.6`, `6.1`, `13.5`, `28.4`, `58.2`, `118` and `237`.
-    """
-
-    client_certificate_id: pulumi.Output[Optional[str]] = pulumi.property("clientCertificateId")
-    """
-    The identifier of a client certificate for the stage.
-    """
-
-    deployment: pulumi.Output[str] = pulumi.property("deployment")
-    """
-    The ID of the deployment that the stage points to
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    The description of the stage
-    """
-
-    documentation_version: pulumi.Output[Optional[str]] = pulumi.property("documentationVersion")
-    """
-    The version of the associated API documentation
-    """
-
-    execution_arn: pulumi.Output[str] = pulumi.property("executionArn")
-    """
-    The execution ARN to be used in `lambda_permission`'s `source_arn`
-    when allowing API Gateway to invoke a Lambda function,
-    e.g. `arn:aws:execute-api:eu-west-2:123456789012:z4675bid1j/prod`
-    """
-
-    invoke_url: pulumi.Output[str] = pulumi.property("invokeUrl")
-    """
-    The URL to invoke the API pointing to the stage,
-    e.g. `https://z4675bid1j.execute-api.eu-west-2.amazonaws.com/prod`
-    """
-
-    rest_api: pulumi.Output[str] = pulumi.property("restApi")
-    """
-    The ID of the associated REST API
-    """
-
-    stage_name: pulumi.Output[str] = pulumi.property("stageName")
-    """
-    The name of the stage
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
-    variables: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("variables")
-    """
-    A map that defines the stage variables
-    """
-
-    xray_tracing_enabled: pulumi.Output[Optional[bool]] = pulumi.property("xrayTracingEnabled")
-    """
-    Whether active tracing with X-ray is enabled. Defaults to `false`.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -279,6 +200,130 @@ class Stage(pulumi.CustomResource):
         __props__["variables"] = variables
         __props__["xray_tracing_enabled"] = xray_tracing_enabled
         return Stage(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="accessLogSettings")
+    def access_log_settings(self) -> Optional['outputs.StageAccessLogSettings']:
+        """
+        Enables access logs for the API stage. Detailed below.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN)
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="cacheClusterEnabled")
+    def cache_cluster_enabled(self) -> Optional[bool]:
+        """
+        Specifies whether a cache cluster is enabled for the stage
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="cacheClusterSize")
+    def cache_cluster_size(self) -> Optional[str]:
+        """
+        The size of the cache cluster for the stage, if enabled.
+        Allowed values include `0.5`, `1.6`, `6.1`, `13.5`, `28.4`, `58.2`, `118` and `237`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="clientCertificateId")
+    def client_certificate_id(self) -> Optional[str]:
+        """
+        The identifier of a client certificate for the stage.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def deployment(self) -> str:
+        """
+        The ID of the deployment that the stage points to
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        The description of the stage
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="documentationVersion")
+    def documentation_version(self) -> Optional[str]:
+        """
+        The version of the associated API documentation
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="executionArn")
+    def execution_arn(self) -> str:
+        """
+        The execution ARN to be used in `lambda_permission`'s `source_arn`
+        when allowing API Gateway to invoke a Lambda function,
+        e.g. `arn:aws:execute-api:eu-west-2:123456789012:z4675bid1j/prod`
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="invokeUrl")
+    def invoke_url(self) -> str:
+        """
+        The URL to invoke the API pointing to the stage,
+        e.g. `https://z4675bid1j.execute-api.eu-west-2.amazonaws.com/prod`
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="restApi")
+    def rest_api(self) -> str:
+        """
+        The ID of the associated REST API
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="stageName")
+    def stage_name(self) -> str:
+        """
+        The name of the stage
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def variables(self) -> Optional[Mapping[str, str]]:
+        """
+        A map that defines the stage variables
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="xrayTracingEnabled")
+    def xray_tracing_enabled(self) -> Optional[bool]:
+        """
+        Whether active tracing with X-ray is enabled. Defaults to `false`.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

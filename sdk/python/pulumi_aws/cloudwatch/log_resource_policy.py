@@ -12,16 +12,6 @@ __all__ = ['LogResourcePolicy']
 
 
 class LogResourcePolicy(pulumi.CustomResource):
-    policy_document: pulumi.Output[str] = pulumi.property("policyDocument")
-    """
-    Details of the resource policy, including the identity of the principal that is enabled to put logs to this account. This is formatted as a JSON string. Maximum length of 5120 characters.
-    """
-
-    policy_name: pulumi.Output[str] = pulumi.property("policyName")
-    """
-    Name of the resource policy.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -135,6 +125,22 @@ class LogResourcePolicy(pulumi.CustomResource):
         __props__["policy_document"] = policy_document
         __props__["policy_name"] = policy_name
         return LogResourcePolicy(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="policyDocument")
+    def policy_document(self) -> str:
+        """
+        Details of the resource policy, including the identity of the principal that is enabled to put logs to this account. This is formatted as a JSON string. Maximum length of 5120 characters.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="policyName")
+    def policy_name(self) -> str:
+        """
+        Name of the resource policy.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

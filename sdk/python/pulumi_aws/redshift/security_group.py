@@ -14,21 +14,6 @@ __all__ = ['SecurityGroup']
 
 
 class SecurityGroup(pulumi.CustomResource):
-    description: pulumi.Output[str] = pulumi.property("description")
-    """
-    The description of the Redshift security group. Defaults to "Managed by Pulumi".
-    """
-
-    ingress: pulumi.Output[List['outputs.SecurityGroupIngress']] = pulumi.property("ingress")
-    """
-    A list of ingress rules.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the Redshift security group.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -114,6 +99,30 @@ class SecurityGroup(pulumi.CustomResource):
         __props__["ingress"] = ingress
         __props__["name"] = name
         return SecurityGroup(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the Redshift security group. Defaults to "Managed by Pulumi".
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def ingress(self) -> List['outputs.SecurityGroupIngress']:
+        """
+        A list of ingress rules.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the Redshift security group.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -15,16 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetUserResult:
-    arn: str = pulumi.property("arn")
-    id: str = pulumi.property("id")
-    path: str = pulumi.property("path")
-    permissions_boundary: str = pulumi.property("permissionsBoundary")
-    user_id: str = pulumi.property("userId")
-    user_name: str = pulumi.property("userName")
-
-
 class GetUserResult:
     """
     A collection of values returned by getUser.
@@ -32,40 +24,71 @@ class GetUserResult:
     def __init__(__self__, arn=None, id=None, path=None, permissions_boundary=None, user_id=None, user_name=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if path and not isinstance(path, str):
+            raise TypeError("Expected argument 'path' to be a str")
+        pulumi.set(__self__, "path", path)
+        if permissions_boundary and not isinstance(permissions_boundary, str):
+            raise TypeError("Expected argument 'permissions_boundary' to be a str")
+        pulumi.set(__self__, "permissions_boundary", permissions_boundary)
+        if user_id and not isinstance(user_id, str):
+            raise TypeError("Expected argument 'user_id' to be a str")
+        pulumi.set(__self__, "user_id", user_id)
+        if user_name and not isinstance(user_name, str):
+            raise TypeError("Expected argument 'user_name' to be a str")
+        pulumi.set(__self__, "user_name", user_name)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The Amazon Resource Name (ARN) assigned by AWS for this user.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if path and not isinstance(path, str):
-            raise TypeError("Expected argument 'path' to be a str")
-        __self__.path = path
+        ...
+
+    @property
+    @pulumi.getter
+    def path(self) -> str:
         """
         Path in which this user was created.
         """
-        if permissions_boundary and not isinstance(permissions_boundary, str):
-            raise TypeError("Expected argument 'permissions_boundary' to be a str")
-        __self__.permissions_boundary = permissions_boundary
+        ...
+
+    @property
+    @pulumi.getter(name="permissionsBoundary")
+    def permissions_boundary(self) -> str:
         """
         The ARN of the policy that is used to set the permissions boundary for the user.
         """
-        if user_id and not isinstance(user_id, str):
-            raise TypeError("Expected argument 'user_id' to be a str")
-        __self__.user_id = user_id
+        ...
+
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> str:
         """
         The unique ID assigned by AWS for this user.
         """
-        if user_name and not isinstance(user_name, str):
-            raise TypeError("Expected argument 'user_name' to be a str")
-        __self__.user_name = user_name
+        ...
+
+    @property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> str:
         """
         The name associated to this User
         """
+        ...
+
 
 
 class AwaitableGetUserResult(GetUserResult):
@@ -107,7 +130,7 @@ def get_user(user_name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:iam/getUser:getUser', __args__, opts=opts, typ=_GetUserResult).value
+    __ret__ = pulumi.runtime.invoke('aws:iam/getUser:getUser', __args__, opts=opts, typ=GetUserResult).value
 
     return AwaitableGetUserResult(
         arn=__ret__.arn,

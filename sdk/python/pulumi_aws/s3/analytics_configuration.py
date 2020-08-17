@@ -14,26 +14,6 @@ __all__ = ['AnalyticsConfiguration']
 
 
 class AnalyticsConfiguration(pulumi.CustomResource):
-    bucket: pulumi.Output[str] = pulumi.property("bucket")
-    """
-    The name of the bucket this analytics configuration is associated with.
-    """
-
-    filter: pulumi.Output[Optional['outputs.AnalyticsConfigurationFilter']] = pulumi.property("filter")
-    """
-    Object filtering that accepts a prefix, tags, or a logical AND of prefix and tags (documented below).
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    Unique identifier of the analytics configuration for the bucket.
-    """
-
-    storage_class_analysis: pulumi.Output[Optional['outputs.AnalyticsConfigurationStorageClassAnalysis']] = pulumi.property("storageClassAnalysis")
-    """
-    Configuration for the analytics data export (documented below).
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -151,6 +131,38 @@ class AnalyticsConfiguration(pulumi.CustomResource):
         __props__["name"] = name
         __props__["storage_class_analysis"] = storage_class_analysis
         return AnalyticsConfiguration(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> str:
+        """
+        The name of the bucket this analytics configuration is associated with.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def filter(self) -> Optional['outputs.AnalyticsConfigurationFilter']:
+        """
+        Object filtering that accepts a prefix, tags, or a logical AND of prefix and tags (documented below).
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Unique identifier of the analytics configuration for the bucket.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="storageClassAnalysis")
+    def storage_class_analysis(self) -> Optional['outputs.AnalyticsConfigurationStorageClassAnalysis']:
+        """
+        Configuration for the analytics data export (documented below).
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

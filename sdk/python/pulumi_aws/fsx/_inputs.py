@@ -29,12 +29,14 @@ class WindowsFileSystemSelfManagedActiveDirectoryArgs:
         :param pulumi.Input[str] file_system_administrators_group: The name of the domain group whose members are granted administrative privileges for the file system. Administrative privileges include taking ownership of files and folders, and setting audit controls (audit ACLs) on files and folders. The group that you specify must already exist in your domain. Defaults to `Domain Admins`.
         :param pulumi.Input[str] organizational_unit_distinguished_name: The fully qualified distinguished name of the organizational unit within your self-managed AD directory that the Windows File Server instance will join. For example, `OU=FSx,DC=yourdomain,DC=corp,DC=com`. Only accepts OU as the direct parent of the file system. If none is provided, the FSx file system is created in the default location of your self-managed AD directory. To learn more, see [RFC 2253](https://tools.ietf.org/html/rfc2253).
         """
-        pulumi.set(__self__, "dnsIps", dns_ips)
-        pulumi.set(__self__, "domainName", domain_name)
+        pulumi.set(__self__, "dns_ips", dns_ips)
+        pulumi.set(__self__, "domain_name", domain_name)
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "username", username)
-        pulumi.set(__self__, "fileSystemAdministratorsGroup", file_system_administrators_group)
-        pulumi.set(__self__, "organizationalUnitDistinguishedName", organizational_unit_distinguished_name)
+        if file_system_administrators_group is not None:
+            pulumi.set(__self__, "file_system_administrators_group", file_system_administrators_group)
+        if organizational_unit_distinguished_name is not None:
+            pulumi.set(__self__, "organizational_unit_distinguished_name", organizational_unit_distinguished_name)
 
     @property
     @pulumi.getter(name="dnsIps")

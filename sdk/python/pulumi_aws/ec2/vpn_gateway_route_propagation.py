@@ -12,16 +12,6 @@ __all__ = ['VpnGatewayRoutePropagation']
 
 
 class VpnGatewayRoutePropagation(pulumi.CustomResource):
-    route_table_id: pulumi.Output[str] = pulumi.property("routeTableId")
-    """
-    The id of the `ec2.RouteTable` to propagate routes into.
-    """
-
-    vpn_gateway_id: pulumi.Output[str] = pulumi.property("vpnGatewayId")
-    """
-    The id of the `ec2.VpnGateway` to propagate routes from.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -105,6 +95,22 @@ class VpnGatewayRoutePropagation(pulumi.CustomResource):
         __props__["route_table_id"] = route_table_id
         __props__["vpn_gateway_id"] = vpn_gateway_id
         return VpnGatewayRoutePropagation(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="routeTableId")
+    def route_table_id(self) -> str:
+        """
+        The id of the `ec2.RouteTable` to propagate routes into.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="vpnGatewayId")
+    def vpn_gateway_id(self) -> str:
+        """
+        The id of the `ec2.VpnGateway` to propagate routes from.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

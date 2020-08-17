@@ -14,33 +14,6 @@ __all__ = ['S3Location']
 
 
 class S3Location(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN) of the DataSync Location.
-    """
-
-    s3_bucket_arn: pulumi.Output[str] = pulumi.property("s3BucketArn")
-    """
-    Amazon Resource Name (ARN) of the S3 Bucket.
-    """
-
-    s3_config: pulumi.Output['outputs.S3LocationS3Config'] = pulumi.property("s3Config")
-    """
-    Configuration block containing information for connecting to S3.
-    """
-
-    subdirectory: pulumi.Output[str] = pulumi.property("subdirectory")
-    """
-    Prefix to perform actions as source or destination.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value pairs of resource tags to assign to the DataSync Location.
-    """
-
-    uri: pulumi.Output[str] = pulumi.property("uri")
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -144,6 +117,51 @@ class S3Location(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["uri"] = uri
         return S3Location(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of the DataSync Location.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="s3BucketArn")
+    def s3_bucket_arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of the S3 Bucket.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="s3Config")
+    def s3_config(self) -> 'outputs.S3LocationS3Config':
+        """
+        Configuration block containing information for connecting to S3.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def subdirectory(self) -> str:
+        """
+        Prefix to perform actions as source or destination.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value pairs of resource tags to assign to the DataSync Location.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def uri(self) -> str:
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

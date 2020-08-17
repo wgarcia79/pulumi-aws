@@ -12,66 +12,6 @@ __all__ = ['TransitGateway']
 
 
 class TransitGateway(pulumi.CustomResource):
-    amazon_side_asn: pulumi.Output[Optional[float]] = pulumi.property("amazonSideAsn")
-    """
-    Private Autonomous System Number (ASN) for the Amazon side of a BGP session. The range is `64512` to `65534` for 16-bit ASNs and `4200000000` to `4294967294` for 32-bit ASNs. Default value: `64512`.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    EC2 Transit Gateway Amazon Resource Name (ARN)
-    """
-
-    association_default_route_table_id: pulumi.Output[str] = pulumi.property("associationDefaultRouteTableId")
-    """
-    Identifier of the default association route table
-    """
-
-    auto_accept_shared_attachments: pulumi.Output[Optional[str]] = pulumi.property("autoAcceptSharedAttachments")
-    """
-    Whether resource attachment requests are automatically accepted. Valid values: `disable`, `enable`. Default value: `disable`.
-    """
-
-    default_route_table_association: pulumi.Output[Optional[str]] = pulumi.property("defaultRouteTableAssociation")
-    """
-    Whether resource attachments are automatically associated with the default association route table. Valid values: `disable`, `enable`. Default value: `enable`.
-    """
-
-    default_route_table_propagation: pulumi.Output[Optional[str]] = pulumi.property("defaultRouteTablePropagation")
-    """
-    Whether resource attachments automatically propagate routes to the default propagation route table. Valid values: `disable`, `enable`. Default value: `enable`.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    Description of the EC2 Transit Gateway.
-    """
-
-    dns_support: pulumi.Output[Optional[str]] = pulumi.property("dnsSupport")
-    """
-    Whether DNS support is enabled. Valid values: `disable`, `enable`. Default value: `enable`.
-    """
-
-    owner_id: pulumi.Output[str] = pulumi.property("ownerId")
-    """
-    Identifier of the AWS account that owns the EC2 Transit Gateway
-    """
-
-    propagation_default_route_table_id: pulumi.Output[str] = pulumi.property("propagationDefaultRouteTableId")
-    """
-    Identifier of the default propagation route table
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value tags for the EC2 Transit Gateway.
-    """
-
-    vpn_ecmp_support: pulumi.Output[Optional[str]] = pulumi.property("vpnEcmpSupport")
-    """
-    Whether VPN Equal Cost Multipath Protocol support is enabled. Valid values: `disable`, `enable`. Default value: `enable`.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -197,6 +137,102 @@ class TransitGateway(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["vpn_ecmp_support"] = vpn_ecmp_support
         return TransitGateway(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="amazonSideAsn")
+    def amazon_side_asn(self) -> Optional[float]:
+        """
+        Private Autonomous System Number (ASN) for the Amazon side of a BGP session. The range is `64512` to `65534` for 16-bit ASNs and `4200000000` to `4294967294` for 32-bit ASNs. Default value: `64512`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        EC2 Transit Gateway Amazon Resource Name (ARN)
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="associationDefaultRouteTableId")
+    def association_default_route_table_id(self) -> str:
+        """
+        Identifier of the default association route table
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="autoAcceptSharedAttachments")
+    def auto_accept_shared_attachments(self) -> Optional[str]:
+        """
+        Whether resource attachment requests are automatically accepted. Valid values: `disable`, `enable`. Default value: `disable`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="defaultRouteTableAssociation")
+    def default_route_table_association(self) -> Optional[str]:
+        """
+        Whether resource attachments are automatically associated with the default association route table. Valid values: `disable`, `enable`. Default value: `enable`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="defaultRouteTablePropagation")
+    def default_route_table_propagation(self) -> Optional[str]:
+        """
+        Whether resource attachments automatically propagate routes to the default propagation route table. Valid values: `disable`, `enable`. Default value: `enable`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Description of the EC2 Transit Gateway.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="dnsSupport")
+    def dns_support(self) -> Optional[str]:
+        """
+        Whether DNS support is enabled. Valid values: `disable`, `enable`. Default value: `enable`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
+        """
+        Identifier of the AWS account that owns the EC2 Transit Gateway
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="propagationDefaultRouteTableId")
+    def propagation_default_route_table_id(self) -> str:
+        """
+        Identifier of the default propagation route table
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value tags for the EC2 Transit Gateway.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="vpnEcmpSupport")
+    def vpn_ecmp_support(self) -> Optional[str]:
+        """
+        Whether VPN Equal Cost Multipath Protocol support is enabled. Valid values: `disable`, `enable`. Default value: `enable`.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

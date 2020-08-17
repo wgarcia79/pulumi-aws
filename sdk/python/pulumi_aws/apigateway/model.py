@@ -12,31 +12,6 @@ __all__ = ['Model']
 
 
 class Model(pulumi.CustomResource):
-    content_type: pulumi.Output[str] = pulumi.property("contentType")
-    """
-    The content type of the model
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    The description of the model
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the model
-    """
-
-    rest_api: pulumi.Output[str] = pulumi.property("restApi")
-    """
-    The ID of the associated REST API
-    """
-
-    schema: pulumi.Output[Optional[str]] = pulumi.property("schema")
-    """
-    The schema of the model in a JSON form
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -141,6 +116,46 @@ class Model(pulumi.CustomResource):
         __props__["rest_api"] = rest_api
         __props__["schema"] = schema
         return Model(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="contentType")
+    def content_type(self) -> str:
+        """
+        The content type of the model
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        The description of the model
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the model
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="restApi")
+    def rest_api(self) -> str:
+        """
+        The ID of the associated REST API
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def schema(self) -> Optional[str]:
+        """
+        The schema of the model in a JSON form
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

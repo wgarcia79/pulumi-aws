@@ -17,14 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetAutoscalingGroupsResult:
-    arns: List[str] = pulumi.property("arns")
-    filters: Optional[List['outputs.GetAutoscalingGroupsFilterResult']] = pulumi.property("filters")
-    id: str = pulumi.property("id")
-    names: List[str] = pulumi.property("names")
-
-
 class GetAutoscalingGroupsResult:
     """
     A collection of values returned by getAutoscalingGroups.
@@ -32,25 +26,46 @@ class GetAutoscalingGroupsResult:
     def __init__(__self__, arns=None, filters=None, id=None, names=None):
         if arns and not isinstance(arns, list):
             raise TypeError("Expected argument 'arns' to be a list")
-        __self__.arns = arns
+        pulumi.set(__self__, "arns", arns)
+        if filters and not isinstance(filters, list):
+            raise TypeError("Expected argument 'filters' to be a list")
+        pulumi.set(__self__, "filters", filters)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if names and not isinstance(names, list):
+            raise TypeError("Expected argument 'names' to be a list")
+        pulumi.set(__self__, "names", names)
+
+    @property
+    @pulumi.getter
+    def arns(self) -> List[str]:
         """
         A list of the Autoscaling Groups Arns in the current region.
         """
-        if filters and not isinstance(filters, list):
-            raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetAutoscalingGroupsFilterResult']]:
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if names and not isinstance(names, list):
-            raise TypeError("Expected argument 'names' to be a list")
-        __self__.names = names
+        ...
+
+    @property
+    @pulumi.getter
+    def names(self) -> List[str]:
         """
         A list of the Autoscaling Groups in the current region.
         """
+        ...
+
 
 
 class AwaitableGetAutoscalingGroupsResult(GetAutoscalingGroupsResult):
@@ -107,7 +122,7 @@ def get_autoscaling_groups(filters: Optional[List[pulumi.InputType['GetAutoscali
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:index/getAutoscalingGroups:getAutoscalingGroups', __args__, opts=opts, typ=_GetAutoscalingGroupsResult).value
+    __ret__ = pulumi.runtime.invoke('aws:index/getAutoscalingGroups:getAutoscalingGroups', __args__, opts=opts, typ=GetAutoscalingGroupsResult).value
 
     return AwaitableGetAutoscalingGroupsResult(
         arns=__ret__.arns,

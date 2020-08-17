@@ -12,41 +12,6 @@ __all__ = ['UserPoolDomain']
 
 
 class UserPoolDomain(pulumi.CustomResource):
-    aws_account_id: pulumi.Output[str] = pulumi.property("awsAccountId")
-    """
-    The AWS account ID for the user pool owner.
-    """
-
-    certificate_arn: pulumi.Output[Optional[str]] = pulumi.property("certificateArn")
-    """
-    The ARN of an ISSUED ACM certificate in us-east-1 for a custom domain.
-    """
-
-    cloudfront_distribution_arn: pulumi.Output[str] = pulumi.property("cloudfrontDistributionArn")
-    """
-    The URL of the CloudFront distribution. This is required to generate the ALIAS `route53.Record`
-    """
-
-    domain: pulumi.Output[str] = pulumi.property("domain")
-    """
-    The domain string.
-    """
-
-    s3_bucket: pulumi.Output[str] = pulumi.property("s3Bucket")
-    """
-    The S3 bucket where the static files for this domain are stored.
-    """
-
-    user_pool_id: pulumi.Output[str] = pulumi.property("userPoolId")
-    """
-    The user pool ID.
-    """
-
-    version: pulumi.Output[str] = pulumi.property("version")
-    """
-    The app version.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -172,6 +137,62 @@ class UserPoolDomain(pulumi.CustomResource):
         __props__["user_pool_id"] = user_pool_id
         __props__["version"] = version
         return UserPoolDomain(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="awsAccountId")
+    def aws_account_id(self) -> str:
+        """
+        The AWS account ID for the user pool owner.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="certificateArn")
+    def certificate_arn(self) -> Optional[str]:
+        """
+        The ARN of an ISSUED ACM certificate in us-east-1 for a custom domain.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="cloudfrontDistributionArn")
+    def cloudfront_distribution_arn(self) -> str:
+        """
+        The URL of the CloudFront distribution. This is required to generate the ALIAS `route53.Record`
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def domain(self) -> str:
+        """
+        The domain string.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="s3Bucket")
+    def s3_bucket(self) -> str:
+        """
+        The S3 bucket where the static files for this domain are stored.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="userPoolId")
+    def user_pool_id(self) -> str:
+        """
+        The user pool ID.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def version(self) -> str:
+        """
+        The app version.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

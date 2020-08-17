@@ -12,11 +12,6 @@ __all__ = ['EncryptionByDefault']
 
 
 class EncryptionByDefault(pulumi.CustomResource):
-    enabled: pulumi.Output[Optional[bool]] = pulumi.property("enabled")
-    """
-    Whether or not default EBS encryption is enabled. Valid values are `true` or `false`. Defaults to `true`.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -86,6 +81,14 @@ class EncryptionByDefault(pulumi.CustomResource):
 
         __props__["enabled"] = enabled
         return EncryptionByDefault(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Whether or not default EBS encryption is enabled. Valid values are `true` or `false`. Defaults to `true`.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

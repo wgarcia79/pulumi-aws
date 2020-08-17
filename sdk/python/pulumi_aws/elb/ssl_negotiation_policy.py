@@ -14,29 +14,6 @@ __all__ = ['SslNegotiationPolicy']
 
 
 class SslNegotiationPolicy(pulumi.CustomResource):
-    attributes: pulumi.Output[Optional[List['outputs.SslNegotiationPolicyAttribute']]] = pulumi.property("attributes")
-    """
-    An SSL Negotiation policy attribute. Each has two properties:
-    """
-
-    lb_port: pulumi.Output[float] = pulumi.property("lbPort")
-    """
-    The load balancer port to which the policy
-    should be applied. This must be an active listener on the load
-    balancer.
-    """
-
-    load_balancer: pulumi.Output[str] = pulumi.property("loadBalancer")
-    """
-    The load balancer to which the policy
-    should be attached.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the attribute
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -175,6 +152,41 @@ class SslNegotiationPolicy(pulumi.CustomResource):
         __props__["load_balancer"] = load_balancer
         __props__["name"] = name
         return SslNegotiationPolicy(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def attributes(self) -> Optional[List['outputs.SslNegotiationPolicyAttribute']]:
+        """
+        An SSL Negotiation policy attribute. Each has two properties:
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="lbPort")
+    def lb_port(self) -> float:
+        """
+        The load balancer port to which the policy
+        should be applied. This must be an active listener on the load
+        balancer.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="loadBalancer")
+    def load_balancer(self) -> str:
+        """
+        The load balancer to which the policy
+        should be attached.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the attribute
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

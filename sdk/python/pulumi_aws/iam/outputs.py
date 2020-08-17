@@ -19,6 +19,22 @@ __all__ = [
 
 @pulumi.output_type
 class GetGroupUserResult(dict):
+    def __init__(__self__, *,
+                 arn: str,
+                 path: str,
+                 user_id: str,
+                 user_name: str):
+        """
+        :param str arn: The Amazon Resource Name (ARN) specifying the iam user.
+        :param str path: The path to the iam user.
+        :param str user_id: The stable and unique string identifying the iam user.
+        :param str user_name: The name of the iam user.
+        """
+        pulumi.set(__self__, "arn", arn)
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "user_id", user_id)
+        pulumi.set(__self__, "user_name", user_name)
+
     @property
     @pulumi.getter
     def arn(self) -> str:
@@ -54,6 +70,57 @@ class GetGroupUserResult(dict):
 
 @pulumi.output_type
 class GetPolicyDocumentStatementResult(dict):
+    def __init__(__self__, *,
+                 actions: Optional[List[str]] = None,
+                 conditions: Optional[List['outputs.GetPolicyDocumentStatementConditionResult']] = None,
+                 effect: Optional[str] = None,
+                 not_actions: Optional[List[str]] = None,
+                 not_principals: Optional[List['outputs.GetPolicyDocumentStatementNotPrincipalResult']] = None,
+                 not_resources: Optional[List[str]] = None,
+                 principals: Optional[List['outputs.GetPolicyDocumentStatementPrincipalResult']] = None,
+                 resources: Optional[List[str]] = None,
+                 sid: Optional[str] = None):
+        """
+        :param List[str] actions: A list of actions that this statement either allows
+               or denies. For example, ``["ec2:RunInstances", "s3:*"]``.
+        :param List['GetPolicyDocumentStatementConditionArgs'] conditions: A nested configuration block (described below)
+               that defines a further, possibly-service-specific condition that constrains
+               whether this statement applies.
+        :param str effect: Either "Allow" or "Deny", to specify whether this
+               statement allows or denies the given actions. The default is "Allow".
+        :param List[str] not_actions: A list of actions that this statement does *not*
+               apply to. Used to apply a policy statement to all actions *except* those
+               listed.
+        :param List['GetPolicyDocumentStatementNotPrincipalArgs'] not_principals: Like `principals` except gives resources that
+               the statement does *not* apply to.
+        :param List[str] not_resources: A list of resource ARNs that this statement
+               does *not* apply to. Used to apply a policy statement to all resources
+               *except* those listed.
+        :param List['GetPolicyDocumentStatementPrincipalArgs'] principals: A nested configuration block (described below)
+               specifying a resource (or resource pattern) to which this statement applies.
+        :param List[str] resources: A list of resource ARNs that this statement applies
+               to. This is required by AWS if used for an IAM policy.
+        :param str sid: An ID for the policy statement.
+        """
+        if actions is not None:
+            pulumi.set(__self__, "actions", actions)
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
+        if effect is not None:
+            pulumi.set(__self__, "effect", effect)
+        if not_actions is not None:
+            pulumi.set(__self__, "not_actions", not_actions)
+        if not_principals is not None:
+            pulumi.set(__self__, "not_principals", not_principals)
+        if not_resources is not None:
+            pulumi.set(__self__, "not_resources", not_resources)
+        if principals is not None:
+            pulumi.set(__self__, "principals", principals)
+        if resources is not None:
+            pulumi.set(__self__, "resources", resources)
+        if sid is not None:
+            pulumi.set(__self__, "sid", sid)
+
     @property
     @pulumi.getter
     def actions(self) -> Optional[List[str]]:
@@ -140,6 +207,27 @@ class GetPolicyDocumentStatementResult(dict):
 
 @pulumi.output_type
 class GetPolicyDocumentStatementConditionResult(dict):
+    def __init__(__self__, *,
+                 test: str,
+                 values: List[str],
+                 variable: str):
+        """
+        :param str test: The name of the
+               [IAM condition operator](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition_operators.html)
+               to evaluate.
+        :param List[str] values: The values to evaluate the condition against. If multiple
+               values are provided, the condition matches if at least one of them applies.
+               (That is, the tests are combined with the "OR" boolean operation.)
+        :param str variable: The name of a
+               [Context Variable](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html#AvailableKeys)
+               to apply the condition to. Context variables may either be standard AWS
+               variables starting with `aws:`, or service-specific variables prefixed with
+               the service name.
+        """
+        pulumi.set(__self__, "test", test)
+        pulumi.set(__self__, "values", values)
+        pulumi.set(__self__, "variable", variable)
+
     @property
     @pulumi.getter
     def test(self) -> str:
@@ -175,6 +263,17 @@ class GetPolicyDocumentStatementConditionResult(dict):
 
 @pulumi.output_type
 class GetPolicyDocumentStatementNotPrincipalResult(dict):
+    def __init__(__self__, *,
+                 identifiers: List[str],
+                 type: str):
+        """
+        :param List[str] identifiers: List of identifiers for principals. When `type`
+               is "AWS", these are IAM user or role ARNs.  When `type` is "Service", these are AWS Service roles e.g. `lambda.amazonaws.com`. When `type` is "Federated", these are web identity users or SAML provider ARNs.
+        :param str type: The type of principal. For AWS ARNs this is "AWS".  For AWS services (e.g. Lambda), this is "Service". For Federated access the type is "Federated".
+        """
+        pulumi.set(__self__, "identifiers", identifiers)
+        pulumi.set(__self__, "type", type)
+
     @property
     @pulumi.getter
     def identifiers(self) -> List[str]:
@@ -195,6 +294,17 @@ class GetPolicyDocumentStatementNotPrincipalResult(dict):
 
 @pulumi.output_type
 class GetPolicyDocumentStatementPrincipalResult(dict):
+    def __init__(__self__, *,
+                 identifiers: List[str],
+                 type: str):
+        """
+        :param List[str] identifiers: List of identifiers for principals. When `type`
+               is "AWS", these are IAM user or role ARNs.  When `type` is "Service", these are AWS Service roles e.g. `lambda.amazonaws.com`. When `type` is "Federated", these are web identity users or SAML provider ARNs.
+        :param str type: The type of principal. For AWS ARNs this is "AWS".  For AWS services (e.g. Lambda), this is "Service". For Federated access the type is "Federated".
+        """
+        pulumi.set(__self__, "identifiers", identifiers)
+        pulumi.set(__self__, "type", type)
+
     @property
     @pulumi.getter
     def identifiers(self) -> List[str]:

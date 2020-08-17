@@ -14,46 +14,6 @@ __all__ = ['Service']
 
 
 class Service(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the service.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    The description of the service.
-    """
-
-    dns_config: pulumi.Output[Optional['outputs.ServiceDnsConfig']] = pulumi.property("dnsConfig")
-    """
-    A complex type that contains information about the resource record sets that you want Amazon Route 53 to create when you register an instance.
-    """
-
-    health_check_config: pulumi.Output[Optional['outputs.ServiceHealthCheckConfig']] = pulumi.property("healthCheckConfig")
-    """
-    A complex type that contains settings for an optional health check. Only for Public DNS namespaces.
-    """
-
-    health_check_custom_config: pulumi.Output[Optional['outputs.ServiceHealthCheckCustomConfig']] = pulumi.property("healthCheckCustomConfig")
-    """
-    A complex type that contains settings for ECS managed health checks.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the service.
-    """
-
-    namespace_id: pulumi.Output[str] = pulumi.property("namespaceId")
-    """
-    The ID of the namespace to use for DNS configuration.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the service.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -199,6 +159,70 @@ class Service(pulumi.CustomResource):
         __props__["namespace_id"] = namespace_id
         __props__["tags"] = tags
         return Service(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the service.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        The description of the service.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="dnsConfig")
+    def dns_config(self) -> Optional['outputs.ServiceDnsConfig']:
+        """
+        A complex type that contains information about the resource record sets that you want Amazon Route 53 to create when you register an instance.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="healthCheckConfig")
+    def health_check_config(self) -> Optional['outputs.ServiceHealthCheckConfig']:
+        """
+        A complex type that contains settings for an optional health check. Only for Public DNS namespaces.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="healthCheckCustomConfig")
+    def health_check_custom_config(self) -> Optional['outputs.ServiceHealthCheckCustomConfig']:
+        """
+        A complex type that contains settings for ECS managed health checks.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the service.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="namespaceId")
+    def namespace_id(self) -> str:
+        """
+        The ID of the namespace to use for DNS configuration.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the service.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

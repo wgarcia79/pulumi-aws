@@ -12,11 +12,6 @@ __all__ = ['ActiveReceiptRuleSet']
 
 
 class ActiveReceiptRuleSet(pulumi.CustomResource):
-    rule_set_name: pulumi.Output[str] = pulumi.property("ruleSetName")
-    """
-    The name of the rule set
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -86,6 +81,14 @@ class ActiveReceiptRuleSet(pulumi.CustomResource):
 
         __props__["rule_set_name"] = rule_set_name
         return ActiveReceiptRuleSet(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="ruleSetName")
+    def rule_set_name(self) -> str:
+        """
+        The name of the rule set
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

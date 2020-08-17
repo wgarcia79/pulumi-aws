@@ -57,13 +57,20 @@ class ListenerDefaultActionArgs:
         :param pulumi.Input[str] target_group_arn: The ARN of the Target Group to which to route traffic. Specify only if `type` is `forward` and you want to route to a single target group. To route to one or more target groups, use a `forward` block instead.
         """
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "authenticateCognito", authenticate_cognito)
-        pulumi.set(__self__, "authenticateOidc", authenticate_oidc)
-        pulumi.set(__self__, "fixedResponse", fixed_response)
-        pulumi.set(__self__, "forward", forward)
-        pulumi.set(__self__, "order", order)
-        pulumi.set(__self__, "redirect", redirect)
-        pulumi.set(__self__, "targetGroupArn", target_group_arn)
+        if authenticate_cognito is not None:
+            pulumi.set(__self__, "authenticate_cognito", authenticate_cognito)
+        if authenticate_oidc is not None:
+            pulumi.set(__self__, "authenticate_oidc", authenticate_oidc)
+        if fixed_response is not None:
+            pulumi.set(__self__, "fixed_response", fixed_response)
+        if forward is not None:
+            pulumi.set(__self__, "forward", forward)
+        if order is not None:
+            pulumi.set(__self__, "order", order)
+        if redirect is not None:
+            pulumi.set(__self__, "redirect", redirect)
+        if target_group_arn is not None:
+            pulumi.set(__self__, "target_group_arn", target_group_arn)
 
     @property
     @pulumi.getter
@@ -174,14 +181,19 @@ class ListenerDefaultActionAuthenticateCognitoArgs:
         :param pulumi.Input[str] session_cookie_name: The name of the cookie used to maintain session information.
         :param pulumi.Input[float] session_timeout: The maximum duration of the authentication session, in seconds.
         """
-        pulumi.set(__self__, "userPoolArn", user_pool_arn)
-        pulumi.set(__self__, "userPoolClientId", user_pool_client_id)
-        pulumi.set(__self__, "userPoolDomain", user_pool_domain)
-        pulumi.set(__self__, "authenticationRequestExtraParams", authentication_request_extra_params)
-        pulumi.set(__self__, "onUnauthenticatedRequest", on_unauthenticated_request)
-        pulumi.set(__self__, "scope", scope)
-        pulumi.set(__self__, "sessionCookieName", session_cookie_name)
-        pulumi.set(__self__, "sessionTimeout", session_timeout)
+        pulumi.set(__self__, "user_pool_arn", user_pool_arn)
+        pulumi.set(__self__, "user_pool_client_id", user_pool_client_id)
+        pulumi.set(__self__, "user_pool_domain", user_pool_domain)
+        if authentication_request_extra_params is not None:
+            pulumi.set(__self__, "authentication_request_extra_params", authentication_request_extra_params)
+        if on_unauthenticated_request is not None:
+            pulumi.set(__self__, "on_unauthenticated_request", on_unauthenticated_request)
+        if scope is not None:
+            pulumi.set(__self__, "scope", scope)
+        if session_cookie_name is not None:
+            pulumi.set(__self__, "session_cookie_name", session_cookie_name)
+        if session_timeout is not None:
+            pulumi.set(__self__, "session_timeout", session_timeout)
 
     @property
     @pulumi.getter(name="userPoolArn")
@@ -307,17 +319,22 @@ class ListenerDefaultActionAuthenticateOidcArgs:
         :param pulumi.Input[str] session_cookie_name: The name of the cookie used to maintain session information.
         :param pulumi.Input[float] session_timeout: The maximum duration of the authentication session, in seconds.
         """
-        pulumi.set(__self__, "authorizationEndpoint", authorization_endpoint)
-        pulumi.set(__self__, "clientId", client_id)
-        pulumi.set(__self__, "clientSecret", client_secret)
+        pulumi.set(__self__, "authorization_endpoint", authorization_endpoint)
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "client_secret", client_secret)
         pulumi.set(__self__, "issuer", issuer)
-        pulumi.set(__self__, "tokenEndpoint", token_endpoint)
-        pulumi.set(__self__, "userInfoEndpoint", user_info_endpoint)
-        pulumi.set(__self__, "authenticationRequestExtraParams", authentication_request_extra_params)
-        pulumi.set(__self__, "onUnauthenticatedRequest", on_unauthenticated_request)
-        pulumi.set(__self__, "scope", scope)
-        pulumi.set(__self__, "sessionCookieName", session_cookie_name)
-        pulumi.set(__self__, "sessionTimeout", session_timeout)
+        pulumi.set(__self__, "token_endpoint", token_endpoint)
+        pulumi.set(__self__, "user_info_endpoint", user_info_endpoint)
+        if authentication_request_extra_params is not None:
+            pulumi.set(__self__, "authentication_request_extra_params", authentication_request_extra_params)
+        if on_unauthenticated_request is not None:
+            pulumi.set(__self__, "on_unauthenticated_request", on_unauthenticated_request)
+        if scope is not None:
+            pulumi.set(__self__, "scope", scope)
+        if session_cookie_name is not None:
+            pulumi.set(__self__, "session_cookie_name", session_cookie_name)
+        if session_timeout is not None:
+            pulumi.set(__self__, "session_timeout", session_timeout)
 
     @property
     @pulumi.getter(name="authorizationEndpoint")
@@ -463,9 +480,11 @@ class ListenerDefaultActionFixedResponseArgs:
         :param pulumi.Input[str] message_body: The message body.
         :param pulumi.Input[str] status_code: The HTTP response code. Valid values are `2XX`, `4XX`, or `5XX`.
         """
-        pulumi.set(__self__, "contentType", content_type)
-        pulumi.set(__self__, "messageBody", message_body)
-        pulumi.set(__self__, "statusCode", status_code)
+        pulumi.set(__self__, "content_type", content_type)
+        if message_body is not None:
+            pulumi.set(__self__, "message_body", message_body)
+        if status_code is not None:
+            pulumi.set(__self__, "status_code", status_code)
 
     @property
     @pulumi.getter(name="contentType")
@@ -513,8 +532,9 @@ class ListenerDefaultActionForwardArgs:
         :param pulumi.Input[List[pulumi.Input['ListenerDefaultActionForwardTargetGroupArgs']]] target_groups: One or more target groups block.
         :param pulumi.Input['ListenerDefaultActionForwardStickinessArgs'] stickiness: The target group stickiness for the rule.
         """
-        pulumi.set(__self__, "targetGroups", target_groups)
-        pulumi.set(__self__, "stickiness", stickiness)
+        pulumi.set(__self__, "target_groups", target_groups)
+        if stickiness is not None:
+            pulumi.set(__self__, "stickiness", stickiness)
 
     @property
     @pulumi.getter(name="targetGroups")
@@ -551,7 +571,8 @@ class ListenerDefaultActionForwardStickinessArgs:
         :param pulumi.Input[bool] enabled: Indicates whether target group stickiness is enabled.
         """
         pulumi.set(__self__, "duration", duration)
-        pulumi.set(__self__, "enabled", enabled)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
 
     @property
     @pulumi.getter
@@ -588,7 +609,8 @@ class ListenerDefaultActionForwardTargetGroupArgs:
         :param pulumi.Input[float] weight: The weight. The range is 0 to 999.
         """
         pulumi.set(__self__, "arn", arn)
-        pulumi.set(__self__, "weight", weight)
+        if weight is not None:
+            pulumi.set(__self__, "weight", weight)
 
     @property
     @pulumi.getter
@@ -632,12 +654,17 @@ class ListenerDefaultActionRedirectArgs:
         :param pulumi.Input[str] protocol: The protocol. Valid values are `HTTP`, `HTTPS`, or `#{protocol}`. Defaults to `#{protocol}`.
         :param pulumi.Input[str] query: The query parameters, URL-encoded when necessary, but not percent-encoded. Do not include the leading "?". Defaults to `#{query}`.
         """
-        pulumi.set(__self__, "statusCode", status_code)
-        pulumi.set(__self__, "host", host)
-        pulumi.set(__self__, "path", path)
-        pulumi.set(__self__, "port", port)
-        pulumi.set(__self__, "protocol", protocol)
-        pulumi.set(__self__, "query", query)
+        pulumi.set(__self__, "status_code", status_code)
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+        if query is not None:
+            pulumi.set(__self__, "query", query)
 
     @property
     @pulumi.getter(name="statusCode")
@@ -733,13 +760,20 @@ class ListenerRuleActionArgs:
         :param pulumi.Input[str] target_group_arn: The ARN of the Target Group to which to route traffic. Specify only if `type` is `forward` and you want to route to a single target group. To route to one or more target groups, use a `forward` block instead.
         """
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "authenticateCognito", authenticate_cognito)
-        pulumi.set(__self__, "authenticateOidc", authenticate_oidc)
-        pulumi.set(__self__, "fixedResponse", fixed_response)
-        pulumi.set(__self__, "forward", forward)
-        pulumi.set(__self__, "order", order)
-        pulumi.set(__self__, "redirect", redirect)
-        pulumi.set(__self__, "targetGroupArn", target_group_arn)
+        if authenticate_cognito is not None:
+            pulumi.set(__self__, "authenticate_cognito", authenticate_cognito)
+        if authenticate_oidc is not None:
+            pulumi.set(__self__, "authenticate_oidc", authenticate_oidc)
+        if fixed_response is not None:
+            pulumi.set(__self__, "fixed_response", fixed_response)
+        if forward is not None:
+            pulumi.set(__self__, "forward", forward)
+        if order is not None:
+            pulumi.set(__self__, "order", order)
+        if redirect is not None:
+            pulumi.set(__self__, "redirect", redirect)
+        if target_group_arn is not None:
+            pulumi.set(__self__, "target_group_arn", target_group_arn)
 
     @property
     @pulumi.getter
@@ -856,14 +890,19 @@ class ListenerRuleActionAuthenticateCognitoArgs:
         :param pulumi.Input[str] session_cookie_name: The name of the cookie used to maintain session information.
         :param pulumi.Input[float] session_timeout: The maximum duration of the authentication session, in seconds.
         """
-        pulumi.set(__self__, "userPoolArn", user_pool_arn)
-        pulumi.set(__self__, "userPoolClientId", user_pool_client_id)
-        pulumi.set(__self__, "userPoolDomain", user_pool_domain)
-        pulumi.set(__self__, "authenticationRequestExtraParams", authentication_request_extra_params)
-        pulumi.set(__self__, "onUnauthenticatedRequest", on_unauthenticated_request)
-        pulumi.set(__self__, "scope", scope)
-        pulumi.set(__self__, "sessionCookieName", session_cookie_name)
-        pulumi.set(__self__, "sessionTimeout", session_timeout)
+        pulumi.set(__self__, "user_pool_arn", user_pool_arn)
+        pulumi.set(__self__, "user_pool_client_id", user_pool_client_id)
+        pulumi.set(__self__, "user_pool_domain", user_pool_domain)
+        if authentication_request_extra_params is not None:
+            pulumi.set(__self__, "authentication_request_extra_params", authentication_request_extra_params)
+        if on_unauthenticated_request is not None:
+            pulumi.set(__self__, "on_unauthenticated_request", on_unauthenticated_request)
+        if scope is not None:
+            pulumi.set(__self__, "scope", scope)
+        if session_cookie_name is not None:
+            pulumi.set(__self__, "session_cookie_name", session_cookie_name)
+        if session_timeout is not None:
+            pulumi.set(__self__, "session_timeout", session_timeout)
 
     @property
     @pulumi.getter(name="userPoolArn")
@@ -989,17 +1028,22 @@ class ListenerRuleActionAuthenticateOidcArgs:
         :param pulumi.Input[str] session_cookie_name: The name of the cookie used to maintain session information.
         :param pulumi.Input[float] session_timeout: The maximum duration of the authentication session, in seconds.
         """
-        pulumi.set(__self__, "authorizationEndpoint", authorization_endpoint)
-        pulumi.set(__self__, "clientId", client_id)
-        pulumi.set(__self__, "clientSecret", client_secret)
+        pulumi.set(__self__, "authorization_endpoint", authorization_endpoint)
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "client_secret", client_secret)
         pulumi.set(__self__, "issuer", issuer)
-        pulumi.set(__self__, "tokenEndpoint", token_endpoint)
-        pulumi.set(__self__, "userInfoEndpoint", user_info_endpoint)
-        pulumi.set(__self__, "authenticationRequestExtraParams", authentication_request_extra_params)
-        pulumi.set(__self__, "onUnauthenticatedRequest", on_unauthenticated_request)
-        pulumi.set(__self__, "scope", scope)
-        pulumi.set(__self__, "sessionCookieName", session_cookie_name)
-        pulumi.set(__self__, "sessionTimeout", session_timeout)
+        pulumi.set(__self__, "token_endpoint", token_endpoint)
+        pulumi.set(__self__, "user_info_endpoint", user_info_endpoint)
+        if authentication_request_extra_params is not None:
+            pulumi.set(__self__, "authentication_request_extra_params", authentication_request_extra_params)
+        if on_unauthenticated_request is not None:
+            pulumi.set(__self__, "on_unauthenticated_request", on_unauthenticated_request)
+        if scope is not None:
+            pulumi.set(__self__, "scope", scope)
+        if session_cookie_name is not None:
+            pulumi.set(__self__, "session_cookie_name", session_cookie_name)
+        if session_timeout is not None:
+            pulumi.set(__self__, "session_timeout", session_timeout)
 
     @property
     @pulumi.getter(name="authorizationEndpoint")
@@ -1145,9 +1189,11 @@ class ListenerRuleActionFixedResponseArgs:
         :param pulumi.Input[str] message_body: The message body.
         :param pulumi.Input[str] status_code: The HTTP response code. Valid values are `2XX`, `4XX`, or `5XX`.
         """
-        pulumi.set(__self__, "contentType", content_type)
-        pulumi.set(__self__, "messageBody", message_body)
-        pulumi.set(__self__, "statusCode", status_code)
+        pulumi.set(__self__, "content_type", content_type)
+        if message_body is not None:
+            pulumi.set(__self__, "message_body", message_body)
+        if status_code is not None:
+            pulumi.set(__self__, "status_code", status_code)
 
     @property
     @pulumi.getter(name="contentType")
@@ -1195,8 +1241,9 @@ class ListenerRuleActionForwardArgs:
         :param pulumi.Input[List[pulumi.Input['ListenerRuleActionForwardTargetGroupArgs']]] target_groups: One or more target groups block.
         :param pulumi.Input['ListenerRuleActionForwardStickinessArgs'] stickiness: The target group stickiness for the rule.
         """
-        pulumi.set(__self__, "targetGroups", target_groups)
-        pulumi.set(__self__, "stickiness", stickiness)
+        pulumi.set(__self__, "target_groups", target_groups)
+        if stickiness is not None:
+            pulumi.set(__self__, "stickiness", stickiness)
 
     @property
     @pulumi.getter(name="targetGroups")
@@ -1233,7 +1280,8 @@ class ListenerRuleActionForwardStickinessArgs:
         :param pulumi.Input[bool] enabled: Indicates whether target group stickiness is enabled.
         """
         pulumi.set(__self__, "duration", duration)
-        pulumi.set(__self__, "enabled", enabled)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
 
     @property
     @pulumi.getter
@@ -1270,7 +1318,8 @@ class ListenerRuleActionForwardTargetGroupArgs:
         :param pulumi.Input[float] weight: The weight. The range is 0 to 999.
         """
         pulumi.set(__self__, "arn", arn)
-        pulumi.set(__self__, "weight", weight)
+        if weight is not None:
+            pulumi.set(__self__, "weight", weight)
 
     @property
     @pulumi.getter
@@ -1314,12 +1363,17 @@ class ListenerRuleActionRedirectArgs:
         :param pulumi.Input[str] protocol: The protocol. Valid values are `HTTP`, `HTTPS`, or `#{protocol}`. Defaults to `#{protocol}`.
         :param pulumi.Input[str] query: The query parameters, URL-encoded when necessary, but not percent-encoded. Do not include the leading "?". Defaults to `#{query}`.
         """
-        pulumi.set(__self__, "statusCode", status_code)
-        pulumi.set(__self__, "host", host)
-        pulumi.set(__self__, "path", path)
-        pulumi.set(__self__, "port", port)
-        pulumi.set(__self__, "protocol", protocol)
-        pulumi.set(__self__, "query", query)
+        pulumi.set(__self__, "status_code", status_code)
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+        if query is not None:
+            pulumi.set(__self__, "query", query)
 
     @property
     @pulumi.getter(name="statusCode")
@@ -1418,17 +1472,25 @@ class ListenerRuleConditionArgs:
         if field is not None:
             warnings.warn("use 'host_header' or 'path_pattern' attribute instead", DeprecationWarning)
             pulumi.log.warn("field is deprecated: use 'host_header' or 'path_pattern' attribute instead")
-        pulumi.set(__self__, "field", field)
-        pulumi.set(__self__, "hostHeader", host_header)
-        pulumi.set(__self__, "httpHeader", http_header)
-        pulumi.set(__self__, "httpRequestMethod", http_request_method)
-        pulumi.set(__self__, "pathPattern", path_pattern)
-        pulumi.set(__self__, "queryStrings", query_strings)
-        pulumi.set(__self__, "sourceIp", source_ip)
+        if field is not None:
+            pulumi.set(__self__, "field", field)
+        if host_header is not None:
+            pulumi.set(__self__, "host_header", host_header)
+        if http_header is not None:
+            pulumi.set(__self__, "http_header", http_header)
+        if http_request_method is not None:
+            pulumi.set(__self__, "http_request_method", http_request_method)
+        if path_pattern is not None:
+            pulumi.set(__self__, "path_pattern", path_pattern)
+        if query_strings is not None:
+            pulumi.set(__self__, "query_strings", query_strings)
+        if source_ip is not None:
+            pulumi.set(__self__, "source_ip", source_ip)
         if values is not None:
             warnings.warn("use 'host_header' or 'path_pattern' attribute instead", DeprecationWarning)
             pulumi.log.warn("values is deprecated: use 'host_header' or 'path_pattern' attribute instead")
-        pulumi.set(__self__, "values", values)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
 
     @property
     @pulumi.getter
@@ -1534,7 +1596,8 @@ class ListenerRuleConditionHostHeaderArgs:
         """
         :param pulumi.Input[List[pulumi.Input[str]]] values: List of exactly one pattern to match. Required when `field` is set.
         """
-        pulumi.set(__self__, "values", values)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
 
     @property
     @pulumi.getter
@@ -1558,7 +1621,7 @@ class ListenerRuleConditionHttpHeaderArgs:
         :param pulumi.Input[str] http_header_name: Name of HTTP header to search. The maximum size is 40 characters. Comparison is case insensitive. Only RFC7240 characters are supported. Wildcards are not supported. You cannot use HTTP header condition to specify the host header, use a `host-header` condition instead.
         :param pulumi.Input[List[pulumi.Input[str]]] values: List of header value patterns to match. Maximum size of each pattern is 128 characters. Comparison is case insensitive. Wildcard characters supported: * (matches 0 or more characters) and ? (matches exactly 1 character). If the same header appears multiple times in the request they will be searched in order until a match is found. Only one pattern needs to match for the condition to be satisfied. To require that all of the strings are a match, create one condition block per string.
         """
-        pulumi.set(__self__, "httpHeaderName", http_header_name)
+        pulumi.set(__self__, "http_header_name", http_header_name)
         pulumi.set(__self__, "values", values)
 
     @property
@@ -1615,7 +1678,8 @@ class ListenerRuleConditionPathPatternArgs:
         """
         :param pulumi.Input[List[pulumi.Input[str]]] values: List of exactly one pattern to match. Required when `field` is set.
         """
-        pulumi.set(__self__, "values", values)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
 
     @property
     @pulumi.getter
@@ -1640,7 +1704,8 @@ class ListenerRuleConditionQueryStringArgs:
         :param pulumi.Input[str] key: Query string key pattern to match.
         """
         pulumi.set(__self__, "value", value)
-        pulumi.set(__self__, "key", key)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
 
     @property
     @pulumi.getter
@@ -1701,8 +1766,10 @@ class LoadBalancerAccessLogsArgs:
         :param pulumi.Input[str] prefix: The S3 bucket prefix. Logs are stored in the root if not configured.
         """
         pulumi.set(__self__, "bucket", bucket)
-        pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "prefix", prefix)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if prefix is not None:
+            pulumi.set(__self__, "prefix", prefix)
 
     @property
     @pulumi.getter
@@ -1750,8 +1817,9 @@ class LoadBalancerSubnetMappingArgs:
         :param pulumi.Input[str] subnet_id: The id of the subnet of which to attach to the load balancer. You can specify only one subnet per Availability Zone.
         :param pulumi.Input[str] allocation_id: The allocation ID of the Elastic IP address.
         """
-        pulumi.set(__self__, "subnetId", subnet_id)
-        pulumi.set(__self__, "allocationId", allocation_id)
+        pulumi.set(__self__, "subnet_id", subnet_id)
+        if allocation_id is not None:
+            pulumi.set(__self__, "allocation_id", allocation_id)
 
     @property
     @pulumi.getter(name="subnetId")
@@ -1801,15 +1869,24 @@ class TargetGroupHealthCheckArgs:
         :param pulumi.Input[float] timeout: The amount of time, in seconds, during which no response means a failed health check. For Application Load Balancers, the range is 2 to 120 seconds, and the default is 5 seconds for the `instance` target type and 30 seconds for the `lambda` target type. For Network Load Balancers, you cannot set a custom value, and the default is 10 seconds for TCP and HTTPS health checks and 6 seconds for HTTP health checks.
         :param pulumi.Input[float] unhealthy_threshold: The number of consecutive health check failures required before considering the target unhealthy . For Network Load Balancers, this value must be the same as the `healthy_threshold`. Defaults to 3.
         """
-        pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "healthyThreshold", healthy_threshold)
-        pulumi.set(__self__, "interval", interval)
-        pulumi.set(__self__, "matcher", matcher)
-        pulumi.set(__self__, "path", path)
-        pulumi.set(__self__, "port", port)
-        pulumi.set(__self__, "protocol", protocol)
-        pulumi.set(__self__, "timeout", timeout)
-        pulumi.set(__self__, "unhealthyThreshold", unhealthy_threshold)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if healthy_threshold is not None:
+            pulumi.set(__self__, "healthy_threshold", healthy_threshold)
+        if interval is not None:
+            pulumi.set(__self__, "interval", interval)
+        if matcher is not None:
+            pulumi.set(__self__, "matcher", matcher)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+        if unhealthy_threshold is not None:
+            pulumi.set(__self__, "unhealthy_threshold", unhealthy_threshold)
 
     @property
     @pulumi.getter
@@ -1932,8 +2009,10 @@ class TargetGroupStickinessArgs:
         :param pulumi.Input[bool] enabled: Indicates whether  health checks are enabled. Defaults to true.
         """
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "cookieDuration", cookie_duration)
-        pulumi.set(__self__, "enabled", enabled)
+        if cookie_duration is not None:
+            pulumi.set(__self__, "cookie_duration", cookie_duration)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
 
     @property
     @pulumi.getter

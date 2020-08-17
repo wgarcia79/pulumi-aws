@@ -14,21 +14,6 @@ __all__ = ['ParameterGroup']
 
 
 class ParameterGroup(pulumi.CustomResource):
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    A description of the parameter group.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the parameter group.
-    """
-
-    parameters: pulumi.Output[List['outputs.ParameterGroupParameter']] = pulumi.property("parameters")
-    """
-    The parameters of the parameter group.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -117,6 +102,30 @@ class ParameterGroup(pulumi.CustomResource):
         __props__["name"] = name
         __props__["parameters"] = parameters
         return ParameterGroup(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        A description of the parameter group.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the parameter group.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> List['outputs.ParameterGroupParameter']:
+        """
+        The parameters of the parameter group.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

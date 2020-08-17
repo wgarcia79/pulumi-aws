@@ -15,14 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetExportResult:
-    exporting_stack_id: str = pulumi.property("exportingStackId")
-    id: str = pulumi.property("id")
-    name: str = pulumi.property("name")
-    value: str = pulumi.property("value")
-
-
 class GetExportResult:
     """
     A collection of values returned by getExport.
@@ -30,25 +24,46 @@ class GetExportResult:
     def __init__(__self__, exporting_stack_id=None, id=None, name=None, value=None):
         if exporting_stack_id and not isinstance(exporting_stack_id, str):
             raise TypeError("Expected argument 'exporting_stack_id' to be a str")
-        __self__.exporting_stack_id = exporting_stack_id
+        pulumi.set(__self__, "exporting_stack_id", exporting_stack_id)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if value and not isinstance(value, str):
+            raise TypeError("Expected argument 'value' to be a str")
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="exportingStackId")
+    def exporting_stack_id(self) -> str:
         """
         The exporting_stack_id (AWS ARNs) equivalent `ExportingStackId` from [list-exports](http://docs.aws.amazon.com/cli/latest/reference/cloudformation/list-exports.html)
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if value and not isinstance(value, str):
-            raise TypeError("Expected argument 'value' to be a str")
-        __self__.value = value
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
         """
         The value from Cloudformation export identified by the export name found from [list-exports](http://docs.aws.amazon.com/cli/latest/reference/cloudformation/list-exports.html)
         """
+        ...
+
 
 
 class AwaitableGetExportResult(GetExportResult):
@@ -93,7 +108,7 @@ def get_export(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:cloudformation/getExport:getExport', __args__, opts=opts, typ=_GetExportResult).value
+    __ret__ = pulumi.runtime.invoke('aws:cloudformation/getExport:getExport', __args__, opts=opts, typ=GetExportResult).value
 
     return AwaitableGetExportResult(
         exporting_stack_id=__ret__.exporting_stack_id,

@@ -12,45 +12,6 @@ __all__ = ['EipAssociation']
 
 
 class EipAssociation(pulumi.CustomResource):
-    allocation_id: pulumi.Output[str] = pulumi.property("allocationId")
-    """
-    The allocation ID. This is required for EC2-VPC.
-    """
-
-    allow_reassociation: pulumi.Output[Optional[bool]] = pulumi.property("allowReassociation")
-    """
-    Whether to allow an Elastic IP to
-    be re-associated. Defaults to `true` in VPC.
-    """
-
-    instance_id: pulumi.Output[str] = pulumi.property("instanceId")
-    """
-    The ID of the instance. This is required for
-    EC2-Classic. For EC2-VPC, you can specify either the instance ID or the
-    network interface ID, but not both. The operation fails if you specify an
-    instance ID unless exactly one network interface is attached.
-    """
-
-    network_interface_id: pulumi.Output[str] = pulumi.property("networkInterfaceId")
-    """
-    The ID of the network interface. If the
-    instance has more than one network interface, you must specify a network
-    interface ID.
-    """
-
-    private_ip_address: pulumi.Output[str] = pulumi.property("privateIpAddress")
-    """
-    The primary or secondary private IP address
-    to associate with the Elastic IP address. If no private IP address is
-    specified, the Elastic IP address is associated with the primary private IP
-    address.
-    """
-
-    public_ip: pulumi.Output[str] = pulumi.property("publicIp")
-    """
-    The Elastic IP address. This is required for EC2-Classic.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -182,6 +143,63 @@ class EipAssociation(pulumi.CustomResource):
         __props__["private_ip_address"] = private_ip_address
         __props__["public_ip"] = public_ip
         return EipAssociation(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="allocationId")
+    def allocation_id(self) -> str:
+        """
+        The allocation ID. This is required for EC2-VPC.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="allowReassociation")
+    def allow_reassociation(self) -> Optional[bool]:
+        """
+        Whether to allow an Elastic IP to
+        be re-associated. Defaults to `true` in VPC.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The ID of the instance. This is required for
+        EC2-Classic. For EC2-VPC, you can specify either the instance ID or the
+        network interface ID, but not both. The operation fails if you specify an
+        instance ID unless exactly one network interface is attached.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="networkInterfaceId")
+    def network_interface_id(self) -> str:
+        """
+        The ID of the network interface. If the
+        instance has more than one network interface, you must specify a network
+        interface ID.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="privateIpAddress")
+    def private_ip_address(self) -> str:
+        """
+        The primary or secondary private IP address
+        to associate with the Elastic IP address. If no private IP address is
+        specified, the Elastic IP address is associated with the primary private IP
+        address.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="publicIp")
+    def public_ip(self) -> str:
+        """
+        The Elastic IP address. This is required for EC2-Classic.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

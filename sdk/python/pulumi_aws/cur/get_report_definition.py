@@ -15,20 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetReportDefinitionResult:
-    additional_artifacts: List[str] = pulumi.property("additionalArtifacts")
-    additional_schema_elements: List[str] = pulumi.property("additionalSchemaElements")
-    compression: str = pulumi.property("compression")
-    format: str = pulumi.property("format")
-    id: str = pulumi.property("id")
-    report_name: str = pulumi.property("reportName")
-    s3_bucket: str = pulumi.property("s3Bucket")
-    s3_prefix: str = pulumi.property("s3Prefix")
-    s3_region: str = pulumi.property("s3Region")
-    time_unit: str = pulumi.property("timeUnit")
-
-
 class GetReportDefinitionResult:
     """
     A collection of values returned by getReportDefinition.
@@ -36,61 +24,112 @@ class GetReportDefinitionResult:
     def __init__(__self__, additional_artifacts=None, additional_schema_elements=None, compression=None, format=None, id=None, report_name=None, s3_bucket=None, s3_prefix=None, s3_region=None, time_unit=None):
         if additional_artifacts and not isinstance(additional_artifacts, list):
             raise TypeError("Expected argument 'additional_artifacts' to be a list")
-        __self__.additional_artifacts = additional_artifacts
+        pulumi.set(__self__, "additional_artifacts", additional_artifacts)
+        if additional_schema_elements and not isinstance(additional_schema_elements, list):
+            raise TypeError("Expected argument 'additional_schema_elements' to be a list")
+        pulumi.set(__self__, "additional_schema_elements", additional_schema_elements)
+        if compression and not isinstance(compression, str):
+            raise TypeError("Expected argument 'compression' to be a str")
+        pulumi.set(__self__, "compression", compression)
+        if format and not isinstance(format, str):
+            raise TypeError("Expected argument 'format' to be a str")
+        pulumi.set(__self__, "format", format)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if report_name and not isinstance(report_name, str):
+            raise TypeError("Expected argument 'report_name' to be a str")
+        pulumi.set(__self__, "report_name", report_name)
+        if s3_bucket and not isinstance(s3_bucket, str):
+            raise TypeError("Expected argument 's3_bucket' to be a str")
+        pulumi.set(__self__, "s3_bucket", s3_bucket)
+        if s3_prefix and not isinstance(s3_prefix, str):
+            raise TypeError("Expected argument 's3_prefix' to be a str")
+        pulumi.set(__self__, "s3_prefix", s3_prefix)
+        if s3_region and not isinstance(s3_region, str):
+            raise TypeError("Expected argument 's3_region' to be a str")
+        pulumi.set(__self__, "s3_region", s3_region)
+        if time_unit and not isinstance(time_unit, str):
+            raise TypeError("Expected argument 'time_unit' to be a str")
+        pulumi.set(__self__, "time_unit", time_unit)
+
+    @property
+    @pulumi.getter(name="additionalArtifacts")
+    def additional_artifacts(self) -> List[str]:
         """
         A list of additional artifacts.
         """
-        if additional_schema_elements and not isinstance(additional_schema_elements, list):
-            raise TypeError("Expected argument 'additional_schema_elements' to be a list")
-        __self__.additional_schema_elements = additional_schema_elements
+        ...
+
+    @property
+    @pulumi.getter(name="additionalSchemaElements")
+    def additional_schema_elements(self) -> List[str]:
         """
         A list of schema elements.
         """
-        if compression and not isinstance(compression, str):
-            raise TypeError("Expected argument 'compression' to be a str")
-        __self__.compression = compression
+        ...
+
+    @property
+    @pulumi.getter
+    def compression(self) -> str:
         """
         Preferred format for report.
         """
-        if format and not isinstance(format, str):
-            raise TypeError("Expected argument 'format' to be a str")
-        __self__.format = format
+        ...
+
+    @property
+    @pulumi.getter
+    def format(self) -> str:
         """
         Preferred compression format for report.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if report_name and not isinstance(report_name, str):
-            raise TypeError("Expected argument 'report_name' to be a str")
-        __self__.report_name = report_name
-        if s3_bucket and not isinstance(s3_bucket, str):
-            raise TypeError("Expected argument 's3_bucket' to be a str")
-        __self__.s3_bucket = s3_bucket
+        ...
+
+    @property
+    @pulumi.getter(name="reportName")
+    def report_name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="s3Bucket")
+    def s3_bucket(self) -> str:
         """
         Name of customer S3 bucket.
         """
-        if s3_prefix and not isinstance(s3_prefix, str):
-            raise TypeError("Expected argument 's3_prefix' to be a str")
-        __self__.s3_prefix = s3_prefix
+        ...
+
+    @property
+    @pulumi.getter(name="s3Prefix")
+    def s3_prefix(self) -> str:
         """
         Preferred report path prefix.
         """
-        if s3_region and not isinstance(s3_region, str):
-            raise TypeError("Expected argument 's3_region' to be a str")
-        __self__.s3_region = s3_region
+        ...
+
+    @property
+    @pulumi.getter(name="s3Region")
+    def s3_region(self) -> str:
         """
         Region of customer S3 bucket.
         """
-        if time_unit and not isinstance(time_unit, str):
-            raise TypeError("Expected argument 'time_unit' to be a str")
-        __self__.time_unit = time_unit
+        ...
+
+    @property
+    @pulumi.getter(name="timeUnit")
+    def time_unit(self) -> str:
         """
         The frequency on which report data are measured and displayed.
         """
+        ...
+
 
 
 class AwaitableGetReportDefinitionResult(GetReportDefinitionResult):
@@ -138,7 +177,7 @@ def get_report_definition(report_name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:cur/getReportDefinition:getReportDefinition', __args__, opts=opts, typ=_GetReportDefinitionResult).value
+    __ret__ = pulumi.runtime.invoke('aws:cur/getReportDefinition:getReportDefinition', __args__, opts=opts, typ=GetReportDefinitionResult).value
 
     return AwaitableGetReportDefinitionResult(
         additional_artifacts=__ret__.additional_artifacts,

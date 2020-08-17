@@ -16,13 +16,8 @@ __all__ = [
 
 warnings.warn("aws.elasticloadbalancing.getServiceAccount has been deprecated in favor of aws.elb.getServiceAccount", DeprecationWarning)
 
+
 @pulumi.output_type
-class _GetServiceAccountResult:
-    arn: str = pulumi.property("arn")
-    id: str = pulumi.property("id")
-    region: Optional[str] = pulumi.property("region")
-
-
 class GetServiceAccountResult:
     """
     A collection of values returned by getServiceAccount.
@@ -30,19 +25,35 @@ class GetServiceAccountResult:
     def __init__(__self__, arn=None, id=None, region=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if region and not isinstance(region, str):
+            raise TypeError("Expected argument 'region' to be a str")
+        pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The ARN of the AWS ELB service account in the selected region.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if region and not isinstance(region, str):
-            raise TypeError("Expected argument 'region' to be a str")
-        __self__.region = region
+        ...
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        ...
+
 
 
 class AwaitableGetServiceAccountResult(GetServiceAccountResult):
@@ -116,7 +127,7 @@ def get_service_account(region: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:elasticloadbalancing/getServiceAccount:getServiceAccount', __args__, opts=opts, typ=_GetServiceAccountResult).value
+    __ret__ = pulumi.runtime.invoke('aws:elasticloadbalancing/getServiceAccount:getServiceAccount', __args__, opts=opts, typ=GetServiceAccountResult).value
 
     return AwaitableGetServiceAccountResult(
         arn=__ret__.arn,

@@ -17,29 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetBrokerResult:
-    arn: str = pulumi.property("arn")
-    auto_minor_version_upgrade: bool = pulumi.property("autoMinorVersionUpgrade")
-    broker_id: str = pulumi.property("brokerId")
-    broker_name: str = pulumi.property("brokerName")
-    configuration: 'outputs.GetBrokerConfigurationResult' = pulumi.property("configuration")
-    deployment_mode: str = pulumi.property("deploymentMode")
-    encryption_options: List['outputs.GetBrokerEncryptionOptionResult'] = pulumi.property("encryptionOptions")
-    engine_type: str = pulumi.property("engineType")
-    engine_version: str = pulumi.property("engineVersion")
-    host_instance_type: str = pulumi.property("hostInstanceType")
-    id: str = pulumi.property("id")
-    instances: List['outputs.GetBrokerInstanceResult'] = pulumi.property("instances")
-    logs: Optional['outputs.GetBrokerLogsResult'] = pulumi.property("logs")
-    maintenance_window_start_time: 'outputs.GetBrokerMaintenanceWindowStartTimeResult' = pulumi.property("maintenanceWindowStartTime")
-    publicly_accessible: bool = pulumi.property("publiclyAccessible")
-    security_groups: List[str] = pulumi.property("securityGroups")
-    subnet_ids: List[str] = pulumi.property("subnetIds")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    users: List['outputs.GetBrokerUserResult'] = pulumi.property("users")
-
-
 class GetBrokerResult:
     """
     A collection of values returned by getBroker.
@@ -47,64 +26,160 @@ class GetBrokerResult:
     def __init__(__self__, arn=None, auto_minor_version_upgrade=None, broker_id=None, broker_name=None, configuration=None, deployment_mode=None, encryption_options=None, engine_type=None, engine_version=None, host_instance_type=None, id=None, instances=None, logs=None, maintenance_window_start_time=None, publicly_accessible=None, security_groups=None, subnet_ids=None, tags=None, users=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
         if auto_minor_version_upgrade and not isinstance(auto_minor_version_upgrade, bool):
             raise TypeError("Expected argument 'auto_minor_version_upgrade' to be a bool")
-        __self__.auto_minor_version_upgrade = auto_minor_version_upgrade
+        pulumi.set(__self__, "auto_minor_version_upgrade", auto_minor_version_upgrade)
         if broker_id and not isinstance(broker_id, str):
             raise TypeError("Expected argument 'broker_id' to be a str")
-        __self__.broker_id = broker_id
+        pulumi.set(__self__, "broker_id", broker_id)
         if broker_name and not isinstance(broker_name, str):
             raise TypeError("Expected argument 'broker_name' to be a str")
-        __self__.broker_name = broker_name
+        pulumi.set(__self__, "broker_name", broker_name)
         if configuration and not isinstance(configuration, dict):
             raise TypeError("Expected argument 'configuration' to be a dict")
-        __self__.configuration = configuration
+        pulumi.set(__self__, "configuration", configuration)
         if deployment_mode and not isinstance(deployment_mode, str):
             raise TypeError("Expected argument 'deployment_mode' to be a str")
-        __self__.deployment_mode = deployment_mode
+        pulumi.set(__self__, "deployment_mode", deployment_mode)
         if encryption_options and not isinstance(encryption_options, list):
             raise TypeError("Expected argument 'encryption_options' to be a list")
-        __self__.encryption_options = encryption_options
+        pulumi.set(__self__, "encryption_options", encryption_options)
         if engine_type and not isinstance(engine_type, str):
             raise TypeError("Expected argument 'engine_type' to be a str")
-        __self__.engine_type = engine_type
+        pulumi.set(__self__, "engine_type", engine_type)
         if engine_version and not isinstance(engine_version, str):
             raise TypeError("Expected argument 'engine_version' to be a str")
-        __self__.engine_version = engine_version
+        pulumi.set(__self__, "engine_version", engine_version)
         if host_instance_type and not isinstance(host_instance_type, str):
             raise TypeError("Expected argument 'host_instance_type' to be a str")
-        __self__.host_instance_type = host_instance_type
+        pulumi.set(__self__, "host_instance_type", host_instance_type)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if instances and not isinstance(instances, list):
+            raise TypeError("Expected argument 'instances' to be a list")
+        pulumi.set(__self__, "instances", instances)
+        if logs and not isinstance(logs, dict):
+            raise TypeError("Expected argument 'logs' to be a dict")
+        pulumi.set(__self__, "logs", logs)
+        if maintenance_window_start_time and not isinstance(maintenance_window_start_time, dict):
+            raise TypeError("Expected argument 'maintenance_window_start_time' to be a dict")
+        pulumi.set(__self__, "maintenance_window_start_time", maintenance_window_start_time)
+        if publicly_accessible and not isinstance(publicly_accessible, bool):
+            raise TypeError("Expected argument 'publicly_accessible' to be a bool")
+        pulumi.set(__self__, "publicly_accessible", publicly_accessible)
+        if security_groups and not isinstance(security_groups, list):
+            raise TypeError("Expected argument 'security_groups' to be a list")
+        pulumi.set(__self__, "security_groups", security_groups)
+        if subnet_ids and not isinstance(subnet_ids, list):
+            raise TypeError("Expected argument 'subnet_ids' to be a list")
+        pulumi.set(__self__, "subnet_ids", subnet_ids)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if users and not isinstance(users, list):
+            raise TypeError("Expected argument 'users' to be a list")
+        pulumi.set(__self__, "users", users)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="autoMinorVersionUpgrade")
+    def auto_minor_version_upgrade(self) -> bool:
+        ...
+
+    @property
+    @pulumi.getter(name="brokerId")
+    def broker_id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="brokerName")
+    def broker_name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def configuration(self) -> 'outputs.GetBrokerConfigurationResult':
+        ...
+
+    @property
+    @pulumi.getter(name="deploymentMode")
+    def deployment_mode(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="encryptionOptions")
+    def encryption_options(self) -> List['outputs.GetBrokerEncryptionOptionResult']:
+        ...
+
+    @property
+    @pulumi.getter(name="engineType")
+    def engine_type(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="engineVersion")
+    def engine_version(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="hostInstanceType")
+    def host_instance_type(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if instances and not isinstance(instances, list):
-            raise TypeError("Expected argument 'instances' to be a list")
-        __self__.instances = instances
-        if logs and not isinstance(logs, dict):
-            raise TypeError("Expected argument 'logs' to be a dict")
-        __self__.logs = logs
-        if maintenance_window_start_time and not isinstance(maintenance_window_start_time, dict):
-            raise TypeError("Expected argument 'maintenance_window_start_time' to be a dict")
-        __self__.maintenance_window_start_time = maintenance_window_start_time
-        if publicly_accessible and not isinstance(publicly_accessible, bool):
-            raise TypeError("Expected argument 'publicly_accessible' to be a bool")
-        __self__.publicly_accessible = publicly_accessible
-        if security_groups and not isinstance(security_groups, list):
-            raise TypeError("Expected argument 'security_groups' to be a list")
-        __self__.security_groups = security_groups
-        if subnet_ids and not isinstance(subnet_ids, list):
-            raise TypeError("Expected argument 'subnet_ids' to be a list")
-        __self__.subnet_ids = subnet_ids
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
-        if users and not isinstance(users, list):
-            raise TypeError("Expected argument 'users' to be a list")
-        __self__.users = users
+        ...
+
+    @property
+    @pulumi.getter
+    def instances(self) -> List['outputs.GetBrokerInstanceResult']:
+        ...
+
+    @property
+    @pulumi.getter
+    def logs(self) -> Optional['outputs.GetBrokerLogsResult']:
+        ...
+
+    @property
+    @pulumi.getter(name="maintenanceWindowStartTime")
+    def maintenance_window_start_time(self) -> 'outputs.GetBrokerMaintenanceWindowStartTimeResult':
+        ...
+
+    @property
+    @pulumi.getter(name="publiclyAccessible")
+    def publicly_accessible(self) -> bool:
+        ...
+
+    @property
+    @pulumi.getter(name="securityGroups")
+    def security_groups(self) -> List[str]:
+        ...
+
+    @property
+    @pulumi.getter(name="subnetIds")
+    def subnet_ids(self) -> List[str]:
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
+        ...
+
+    @property
+    @pulumi.getter
+    def users(self) -> List['outputs.GetBrokerUserResult']:
+        ...
+
 
 
 class AwaitableGetBrokerResult(GetBrokerResult):
@@ -172,7 +247,7 @@ def get_broker(broker_id: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:mq/getBroker:getBroker', __args__, opts=opts, typ=_GetBrokerResult).value
+    __ret__ = pulumi.runtime.invoke('aws:mq/getBroker:getBroker', __args__, opts=opts, typ=GetBrokerResult).value
 
     return AwaitableGetBrokerResult(
         arn=__ret__.arn,

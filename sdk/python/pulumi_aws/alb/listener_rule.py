@@ -14,31 +14,6 @@ __all__ = ['ListenerRule']
 
 
 class ListenerRule(pulumi.CustomResource):
-    actions: pulumi.Output[List['outputs.ListenerRuleAction']] = pulumi.property("actions")
-    """
-    An Action block. Action blocks are documented below.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The Amazon Resource Name (ARN) of the target group.
-    """
-
-    conditions: pulumi.Output[List['outputs.ListenerRuleCondition']] = pulumi.property("conditions")
-    """
-    A Condition block. Multiple condition blocks of different types can be set and all must be satisfied for the rule to match. Condition blocks are documented below.
-    """
-
-    listener_arn: pulumi.Output[str] = pulumi.property("listenerArn")
-    """
-    The ARN of the listener to which to attach the rule.
-    """
-
-    priority: pulumi.Output[float] = pulumi.property("priority")
-    """
-    The priority for the rule between `1` and `50000`. Leaving it unset will automatically set the rule with next available priority after currently existing highest rule. A listener can't have multiple rules with the same priority.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -256,6 +231,46 @@ class ListenerRule(pulumi.CustomResource):
         __props__["listener_arn"] = listener_arn
         __props__["priority"] = priority
         return ListenerRule(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def actions(self) -> List['outputs.ListenerRuleAction']:
+        """
+        An Action block. Action blocks are documented below.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) of the target group.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def conditions(self) -> List['outputs.ListenerRuleCondition']:
+        """
+        A Condition block. Multiple condition blocks of different types can be set and all must be satisfied for the rule to match. Condition blocks are documented below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="listenerArn")
+    def listener_arn(self) -> str:
+        """
+        The ARN of the listener to which to attach the rule.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def priority(self) -> float:
+        """
+        The priority for the rule between `1` and `50000`. Leaving it unset will automatically set the rule with next available priority after currently existing highest rule. A listener can't have multiple rules with the same priority.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

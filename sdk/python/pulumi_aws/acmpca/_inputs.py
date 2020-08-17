@@ -28,8 +28,8 @@ class CertificateAuthorityCertificateAuthorityConfigurationArgs:
         :param pulumi.Input[str] signing_algorithm: Name of the algorithm your private CA uses to sign certificate requests. Valid values can be found in the [ACM PCA Documentation](https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_CertificateAuthorityConfiguration.html).
         :param pulumi.Input['CertificateAuthorityCertificateAuthorityConfigurationSubjectArgs'] subject: Nested argument that contains X.500 distinguished name information. At least one nested attribute must be specified.
         """
-        pulumi.set(__self__, "keyAlgorithm", key_algorithm)
-        pulumi.set(__self__, "signingAlgorithm", signing_algorithm)
+        pulumi.set(__self__, "key_algorithm", key_algorithm)
+        pulumi.set(__self__, "signing_algorithm", signing_algorithm)
         pulumi.set(__self__, "subject", subject)
 
     @property
@@ -100,19 +100,32 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubjectArgs:
         :param pulumi.Input[str] surname: Family name. In the US and the UK for example, the surname of an individual is ordered last. In Asian cultures the surname is typically ordered first.
         :param pulumi.Input[str] title: A title such as Mr. or Ms. which is pre-pended to the name to refer formally to the certificate subject.
         """
-        pulumi.set(__self__, "commonName", common_name)
-        pulumi.set(__self__, "country", country)
-        pulumi.set(__self__, "distinguishedNameQualifier", distinguished_name_qualifier)
-        pulumi.set(__self__, "generationQualifier", generation_qualifier)
-        pulumi.set(__self__, "givenName", given_name)
-        pulumi.set(__self__, "initials", initials)
-        pulumi.set(__self__, "locality", locality)
-        pulumi.set(__self__, "organization", organization)
-        pulumi.set(__self__, "organizationalUnit", organizational_unit)
-        pulumi.set(__self__, "pseudonym", pseudonym)
-        pulumi.set(__self__, "state", state)
-        pulumi.set(__self__, "surname", surname)
-        pulumi.set(__self__, "title", title)
+        if common_name is not None:
+            pulumi.set(__self__, "common_name", common_name)
+        if country is not None:
+            pulumi.set(__self__, "country", country)
+        if distinguished_name_qualifier is not None:
+            pulumi.set(__self__, "distinguished_name_qualifier", distinguished_name_qualifier)
+        if generation_qualifier is not None:
+            pulumi.set(__self__, "generation_qualifier", generation_qualifier)
+        if given_name is not None:
+            pulumi.set(__self__, "given_name", given_name)
+        if initials is not None:
+            pulumi.set(__self__, "initials", initials)
+        if locality is not None:
+            pulumi.set(__self__, "locality", locality)
+        if organization is not None:
+            pulumi.set(__self__, "organization", organization)
+        if organizational_unit is not None:
+            pulumi.set(__self__, "organizational_unit", organizational_unit)
+        if pseudonym is not None:
+            pulumi.set(__self__, "pseudonym", pseudonym)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
+        if surname is not None:
+            pulumi.set(__self__, "surname", surname)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
 
     @property
     @pulumi.getter(name="commonName")
@@ -278,7 +291,8 @@ class CertificateAuthorityRevocationConfigurationArgs:
         """
         :param pulumi.Input['CertificateAuthorityRevocationConfigurationCrlConfigurationArgs'] crl_configuration: Nested argument containing configuration of the certificate revocation list (CRL), if any, maintained by the certificate authority. Defined below.
         """
-        pulumi.set(__self__, "crlConfiguration", crl_configuration)
+        if crl_configuration is not None:
+            pulumi.set(__self__, "crl_configuration", crl_configuration)
 
     @property
     @pulumi.getter(name="crlConfiguration")
@@ -306,10 +320,13 @@ class CertificateAuthorityRevocationConfigurationCrlConfigurationArgs:
         :param pulumi.Input[bool] enabled: Boolean value that specifies whether certificate revocation lists (CRLs) are enabled. Defaults to `false`.
         :param pulumi.Input[str] s3_bucket_name: Name of the S3 bucket that contains the CRL. If you do not provide a value for the `custom_cname` argument, the name of your S3 bucket is placed into the CRL Distribution Points extension of the issued certificate. You must specify a bucket policy that allows ACM PCA to write the CRL to your bucket.
         """
-        pulumi.set(__self__, "expirationInDays", expiration_in_days)
-        pulumi.set(__self__, "customCname", custom_cname)
-        pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "s3BucketName", s3_bucket_name)
+        pulumi.set(__self__, "expiration_in_days", expiration_in_days)
+        if custom_cname is not None:
+            pulumi.set(__self__, "custom_cname", custom_cname)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if s3_bucket_name is not None:
+            pulumi.set(__self__, "s3_bucket_name", s3_bucket_name)
 
     @property
     @pulumi.getter(name="expirationInDays")
@@ -364,7 +381,7 @@ class CertificateAuthorityRevocationConfigurationCrlConfigurationArgs:
 class GetCertificateAuthorityRevocationConfigurationArgs:
     def __init__(__self__, *,
                  crl_configurations: List['GetCertificateAuthorityRevocationConfigurationCrlConfigurationArgs']):
-        pulumi.set(__self__, "crlConfigurations", crl_configurations)
+        pulumi.set(__self__, "crl_configurations", crl_configurations)
 
     @property
     @pulumi.getter(name="crlConfigurations")
@@ -383,10 +400,10 @@ class GetCertificateAuthorityRevocationConfigurationCrlConfigurationArgs:
                  enabled: bool,
                  expiration_in_days: float,
                  s3_bucket_name: str):
-        pulumi.set(__self__, "customCname", custom_cname)
+        pulumi.set(__self__, "custom_cname", custom_cname)
         pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "expirationInDays", expiration_in_days)
-        pulumi.set(__self__, "s3BucketName", s3_bucket_name)
+        pulumi.set(__self__, "expiration_in_days", expiration_in_days)
+        pulumi.set(__self__, "s3_bucket_name", s3_bucket_name)
 
     @property
     @pulumi.getter(name="customCname")

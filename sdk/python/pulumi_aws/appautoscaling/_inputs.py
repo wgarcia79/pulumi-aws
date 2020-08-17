@@ -33,11 +33,16 @@ class PolicyStepScalingPolicyConfigurationArgs:
         :param pulumi.Input[float] min_adjustment_magnitude: The minimum number to adjust your scalable dimension as a result of a scaling activity. If the adjustment type is PercentChangeInCapacity, the scaling policy changes the scalable dimension of the scalable target by this amount.
         :param pulumi.Input[List[pulumi.Input['PolicyStepScalingPolicyConfigurationStepAdjustmentArgs']]] step_adjustments: A set of adjustments that manage scaling. These have the following structure:
         """
-        pulumi.set(__self__, "adjustmentType", adjustment_type)
-        pulumi.set(__self__, "cooldown", cooldown)
-        pulumi.set(__self__, "metricAggregationType", metric_aggregation_type)
-        pulumi.set(__self__, "minAdjustmentMagnitude", min_adjustment_magnitude)
-        pulumi.set(__self__, "stepAdjustments", step_adjustments)
+        if adjustment_type is not None:
+            pulumi.set(__self__, "adjustment_type", adjustment_type)
+        if cooldown is not None:
+            pulumi.set(__self__, "cooldown", cooldown)
+        if metric_aggregation_type is not None:
+            pulumi.set(__self__, "metric_aggregation_type", metric_aggregation_type)
+        if min_adjustment_magnitude is not None:
+            pulumi.set(__self__, "min_adjustment_magnitude", min_adjustment_magnitude)
+        if step_adjustments is not None:
+            pulumi.set(__self__, "step_adjustments", step_adjustments)
 
     @property
     @pulumi.getter(name="adjustmentType")
@@ -111,9 +116,11 @@ class PolicyStepScalingPolicyConfigurationStepAdjustmentArgs:
         :param pulumi.Input[str] metric_interval_lower_bound: The lower bound for the difference between the alarm threshold and the CloudWatch metric. Without a value, AWS will treat this bound as negative infinity.
         :param pulumi.Input[str] metric_interval_upper_bound: The upper bound for the difference between the alarm threshold and the CloudWatch metric. Without a value, AWS will treat this bound as infinity. The upper bound must be greater than the lower bound.
         """
-        pulumi.set(__self__, "scalingAdjustment", scaling_adjustment)
-        pulumi.set(__self__, "metricIntervalLowerBound", metric_interval_lower_bound)
-        pulumi.set(__self__, "metricIntervalUpperBound", metric_interval_upper_bound)
+        pulumi.set(__self__, "scaling_adjustment", scaling_adjustment)
+        if metric_interval_lower_bound is not None:
+            pulumi.set(__self__, "metric_interval_lower_bound", metric_interval_lower_bound)
+        if metric_interval_upper_bound is not None:
+            pulumi.set(__self__, "metric_interval_upper_bound", metric_interval_upper_bound)
 
     @property
     @pulumi.getter(name="scalingAdjustment")
@@ -169,12 +176,17 @@ class PolicyTargetTrackingScalingPolicyConfigurationArgs:
         :param pulumi.Input[float] scale_in_cooldown: The amount of time, in seconds, after a scale in activity completes before another scale in activity can start.
         :param pulumi.Input[float] scale_out_cooldown: The amount of time, in seconds, after a scale out activity completes before another scale out activity can start.
         """
-        pulumi.set(__self__, "targetValue", target_value)
-        pulumi.set(__self__, "customizedMetricSpecification", customized_metric_specification)
-        pulumi.set(__self__, "disableScaleIn", disable_scale_in)
-        pulumi.set(__self__, "predefinedMetricSpecification", predefined_metric_specification)
-        pulumi.set(__self__, "scaleInCooldown", scale_in_cooldown)
-        pulumi.set(__self__, "scaleOutCooldown", scale_out_cooldown)
+        pulumi.set(__self__, "target_value", target_value)
+        if customized_metric_specification is not None:
+            pulumi.set(__self__, "customized_metric_specification", customized_metric_specification)
+        if disable_scale_in is not None:
+            pulumi.set(__self__, "disable_scale_in", disable_scale_in)
+        if predefined_metric_specification is not None:
+            pulumi.set(__self__, "predefined_metric_specification", predefined_metric_specification)
+        if scale_in_cooldown is not None:
+            pulumi.set(__self__, "scale_in_cooldown", scale_in_cooldown)
+        if scale_out_cooldown is not None:
+            pulumi.set(__self__, "scale_out_cooldown", scale_out_cooldown)
 
     @property
     @pulumi.getter(name="targetValue")
@@ -264,11 +276,13 @@ class PolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificatio
         :param pulumi.Input[List[pulumi.Input['PolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationDimensionArgs']]] dimensions: Configuration block(s) with the dimensions of the metric if the metric was published with dimensions. Detailed below.
         :param pulumi.Input[str] unit: The unit of the metric.
         """
-        pulumi.set(__self__, "metricName", metric_name)
+        pulumi.set(__self__, "metric_name", metric_name)
         pulumi.set(__self__, "namespace", namespace)
         pulumi.set(__self__, "statistic", statistic)
-        pulumi.set(__self__, "dimensions", dimensions)
-        pulumi.set(__self__, "unit", unit)
+        if dimensions is not None:
+            pulumi.set(__self__, "dimensions", dimensions)
+        if unit is not None:
+            pulumi.set(__self__, "unit", unit)
 
     @property
     @pulumi.getter(name="metricName")
@@ -377,8 +391,9 @@ class PolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecificatio
         :param pulumi.Input[str] predefined_metric_type: The metric type.
         :param pulumi.Input[str] resource_label: Reserved for future use.
         """
-        pulumi.set(__self__, "predefinedMetricType", predefined_metric_type)
-        pulumi.set(__self__, "resourceLabel", resource_label)
+        pulumi.set(__self__, "predefined_metric_type", predefined_metric_type)
+        if resource_label is not None:
+            pulumi.set(__self__, "resource_label", resource_label)
 
     @property
     @pulumi.getter(name="predefinedMetricType")
@@ -414,8 +429,10 @@ class ScheduledActionScalableTargetActionArgs:
         :param pulumi.Input[float] max_capacity: The maximum capacity.
         :param pulumi.Input[float] min_capacity: The minimum capacity.
         """
-        pulumi.set(__self__, "maxCapacity", max_capacity)
-        pulumi.set(__self__, "minCapacity", min_capacity)
+        if max_capacity is not None:
+            pulumi.set(__self__, "max_capacity", max_capacity)
+        if min_capacity is not None:
+            pulumi.set(__self__, "min_capacity", min_capacity)
 
     @property
     @pulumi.getter(name="maxCapacity")

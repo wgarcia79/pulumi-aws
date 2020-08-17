@@ -25,8 +25,10 @@ class EndpointAuthenticationOptionArgs:
         :param pulumi.Input[str] root_certificate_chain_arn: The ARN of the client certificate. The certificate must be signed by a certificate authority (CA) and it must be provisioned in AWS Certificate Manager (ACM). Only necessary when type is set to `certificate-authentication`.
         """
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "activeDirectoryId", active_directory_id)
-        pulumi.set(__self__, "rootCertificateChainArn", root_certificate_chain_arn)
+        if active_directory_id is not None:
+            pulumi.set(__self__, "active_directory_id", active_directory_id)
+        if root_certificate_chain_arn is not None:
+            pulumi.set(__self__, "root_certificate_chain_arn", root_certificate_chain_arn)
 
     @property
     @pulumi.getter
@@ -77,8 +79,10 @@ class EndpointConnectionLogOptionsArgs:
         :param pulumi.Input[str] cloudwatch_log_stream: The name of the CloudWatch Logs log stream to which the connection data is published.
         """
         pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "cloudwatchLogGroup", cloudwatch_log_group)
-        pulumi.set(__self__, "cloudwatchLogStream", cloudwatch_log_stream)
+        if cloudwatch_log_group is not None:
+            pulumi.set(__self__, "cloudwatch_log_group", cloudwatch_log_group)
+        if cloudwatch_log_stream is not None:
+            pulumi.set(__self__, "cloudwatch_log_stream", cloudwatch_log_stream)
 
     @property
     @pulumi.getter

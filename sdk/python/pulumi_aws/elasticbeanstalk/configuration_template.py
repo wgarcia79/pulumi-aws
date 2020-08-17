@@ -14,39 +14,6 @@ __all__ = ['ConfigurationTemplate']
 
 
 class ConfigurationTemplate(pulumi.CustomResource):
-    application: pulumi.Output[str] = pulumi.property("application")
-    """
-    name of the application to associate with this configuration template
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    Short description of the Template
-    """
-
-    environment_id: pulumi.Output[Optional[str]] = pulumi.property("environmentId")
-    """
-    The ID of the environment used with this configuration template
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    A unique name for this Template.
-    """
-
-    settings: pulumi.Output[List['outputs.ConfigurationTemplateSetting']] = pulumi.property("settings")
-    """
-    Option settings to configure the new Environment. These
-    override specific values that are set as defaults. The format is detailed
-    below in Option Settings
-    """
-
-    solution_stack_name: pulumi.Output[Optional[str]] = pulumi.property("solutionStackName")
-    """
-    A solution stack to base your Template
-    off of. Example stacks can be found in the [Amazon API documentation](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.platforms.html)
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -165,6 +132,57 @@ class ConfigurationTemplate(pulumi.CustomResource):
         __props__["settings"] = settings
         __props__["solution_stack_name"] = solution_stack_name
         return ConfigurationTemplate(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def application(self) -> str:
+        """
+        name of the application to associate with this configuration template
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Short description of the Template
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="environmentId")
+    def environment_id(self) -> Optional[str]:
+        """
+        The ID of the environment used with this configuration template
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A unique name for this Template.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def settings(self) -> List['outputs.ConfigurationTemplateSetting']:
+        """
+        Option settings to configure the new Environment. These
+        override specific values that are set as defaults. The format is detailed
+        below in Option Settings
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="solutionStackName")
+    def solution_stack_name(self) -> Optional[str]:
+        """
+        A solution stack to base your Template
+        off of. Example stacks can be found in the [Amazon API documentation](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.platforms.html)
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -25,8 +25,8 @@ class EfsLocationEc2ConfigArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] security_group_arns: List of Amazon Resource Names (ARNs) of the EC2 Security Groups that are associated with the EFS Mount Target.
         :param pulumi.Input[str] subnet_arn: Amazon Resource Name (ARN) of the EC2 Subnet that is associated with the EFS Mount Target.
         """
-        pulumi.set(__self__, "securityGroupArns", security_group_arns)
-        pulumi.set(__self__, "subnetArn", subnet_arn)
+        pulumi.set(__self__, "security_group_arns", security_group_arns)
+        pulumi.set(__self__, "subnet_arn", subnet_arn)
 
     @property
     @pulumi.getter(name="securityGroupArns")
@@ -60,7 +60,8 @@ class LocationSmbMountOptionsArgs:
         """
         :param pulumi.Input[str] version: The specific SMB version that you want DataSync to use for mounting your SMB share. Valid values: `AUTOMATIC`, `SMB2`, and `SMB3`. Default: `AUTOMATIC`
         """
-        pulumi.set(__self__, "version", version)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
 
     @property
     @pulumi.getter
@@ -82,7 +83,7 @@ class NfsLocationOnPremConfigArgs:
         """
         :param pulumi.Input[List[pulumi.Input[str]]] agent_arns: List of Amazon Resource Names (ARNs) of the DataSync Agents used to connect to the NFS server.
         """
-        pulumi.set(__self__, "agentArns", agent_arns)
+        pulumi.set(__self__, "agent_arns", agent_arns)
 
     @property
     @pulumi.getter(name="agentArns")
@@ -104,7 +105,7 @@ class S3LocationS3ConfigArgs:
         """
         :param pulumi.Input[str] bucket_access_role_arn: Amazon Resource Names (ARN) of the IAM Role used to connect to the S3 Bucket.
         """
-        pulumi.set(__self__, "bucketAccessRoleArn", bucket_access_role_arn)
+        pulumi.set(__self__, "bucket_access_role_arn", bucket_access_role_arn)
 
     @property
     @pulumi.getter(name="bucketAccessRoleArn")
@@ -142,15 +143,24 @@ class TaskOptionsArgs:
         :param pulumi.Input[str] uid: User identifier of the file's owners. Valid values: `BOTH`, `INT_VALUE`, `NAME`, `NONE`. Default: `INT_VALUE` (preserve integer value of the ID).
         :param pulumi.Input[str] verify_mode: Whether a data integrity verification should be performed at the end of a task execution after all data and metadata have been transferred. Valid values: `NONE`, `POINT_IN_TIME_CONSISTENT`, `ONLY_FILES_TRANSFERRED`. Default: `POINT_IN_TIME_CONSISTENT`.
         """
-        pulumi.set(__self__, "atime", atime)
-        pulumi.set(__self__, "bytesPerSecond", bytes_per_second)
-        pulumi.set(__self__, "gid", gid)
-        pulumi.set(__self__, "mtime", mtime)
-        pulumi.set(__self__, "posixPermissions", posix_permissions)
-        pulumi.set(__self__, "preserveDeletedFiles", preserve_deleted_files)
-        pulumi.set(__self__, "preserveDevices", preserve_devices)
-        pulumi.set(__self__, "uid", uid)
-        pulumi.set(__self__, "verifyMode", verify_mode)
+        if atime is not None:
+            pulumi.set(__self__, "atime", atime)
+        if bytes_per_second is not None:
+            pulumi.set(__self__, "bytes_per_second", bytes_per_second)
+        if gid is not None:
+            pulumi.set(__self__, "gid", gid)
+        if mtime is not None:
+            pulumi.set(__self__, "mtime", mtime)
+        if posix_permissions is not None:
+            pulumi.set(__self__, "posix_permissions", posix_permissions)
+        if preserve_deleted_files is not None:
+            pulumi.set(__self__, "preserve_deleted_files", preserve_deleted_files)
+        if preserve_devices is not None:
+            pulumi.set(__self__, "preserve_devices", preserve_devices)
+        if uid is not None:
+            pulumi.set(__self__, "uid", uid)
+        if verify_mode is not None:
+            pulumi.set(__self__, "verify_mode", verify_mode)
 
     @property
     @pulumi.getter

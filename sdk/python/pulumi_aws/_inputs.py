@@ -301,10 +301,14 @@ class ProviderAssumeRoleArgs:
                  policy: Optional[pulumi.Input[str]] = None,
                  role_arn: Optional[pulumi.Input[str]] = None,
                  session_name: Optional[pulumi.Input[str]] = None):
-        pulumi.set(__self__, "externalId", external_id)
-        pulumi.set(__self__, "policy", policy)
-        pulumi.set(__self__, "roleArn", role_arn)
-        pulumi.set(__self__, "sessionName", session_name)
+        if external_id is not None:
+            pulumi.set(__self__, "external_id", external_id)
+        if policy is not None:
+            pulumi.set(__self__, "policy", policy)
+        if role_arn is not None:
+            pulumi.set(__self__, "role_arn", role_arn)
+        if session_name is not None:
+            pulumi.set(__self__, "session_name", session_name)
 
     @property
     @pulumi.getter(name="externalId")
@@ -487,153 +491,294 @@ class ProviderEndpointArgs:
                  workmail: Optional[pulumi.Input[str]] = None,
                  workspaces: Optional[pulumi.Input[str]] = None,
                  xray: Optional[pulumi.Input[str]] = None):
-        pulumi.set(__self__, "accessanalyzer", accessanalyzer)
-        pulumi.set(__self__, "acm", acm)
-        pulumi.set(__self__, "acmpca", acmpca)
-        pulumi.set(__self__, "amplify", amplify)
-        pulumi.set(__self__, "apigateway", apigateway)
-        pulumi.set(__self__, "applicationautoscaling", applicationautoscaling)
-        pulumi.set(__self__, "applicationinsights", applicationinsights)
-        pulumi.set(__self__, "appmesh", appmesh)
-        pulumi.set(__self__, "appstream", appstream)
-        pulumi.set(__self__, "appsync", appsync)
-        pulumi.set(__self__, "athena", athena)
-        pulumi.set(__self__, "autoscaling", autoscaling)
-        pulumi.set(__self__, "autoscalingplans", autoscalingplans)
-        pulumi.set(__self__, "backup", backup)
-        pulumi.set(__self__, "batch", batch)
-        pulumi.set(__self__, "budgets", budgets)
-        pulumi.set(__self__, "cloud9", cloud9)
-        pulumi.set(__self__, "cloudformation", cloudformation)
-        pulumi.set(__self__, "cloudfront", cloudfront)
-        pulumi.set(__self__, "cloudhsm", cloudhsm)
-        pulumi.set(__self__, "cloudsearch", cloudsearch)
-        pulumi.set(__self__, "cloudtrail", cloudtrail)
-        pulumi.set(__self__, "cloudwatch", cloudwatch)
-        pulumi.set(__self__, "cloudwatchevents", cloudwatchevents)
-        pulumi.set(__self__, "cloudwatchlogs", cloudwatchlogs)
-        pulumi.set(__self__, "codeartifact", codeartifact)
-        pulumi.set(__self__, "codebuild", codebuild)
-        pulumi.set(__self__, "codecommit", codecommit)
-        pulumi.set(__self__, "codedeploy", codedeploy)
-        pulumi.set(__self__, "codepipeline", codepipeline)
-        pulumi.set(__self__, "cognitoidentity", cognitoidentity)
-        pulumi.set(__self__, "cognitoidp", cognitoidp)
-        pulumi.set(__self__, "configservice", configservice)
-        pulumi.set(__self__, "cur", cur)
-        pulumi.set(__self__, "dataexchange", dataexchange)
-        pulumi.set(__self__, "datapipeline", datapipeline)
-        pulumi.set(__self__, "datasync", datasync)
-        pulumi.set(__self__, "dax", dax)
-        pulumi.set(__self__, "devicefarm", devicefarm)
-        pulumi.set(__self__, "directconnect", directconnect)
-        pulumi.set(__self__, "dlm", dlm)
-        pulumi.set(__self__, "dms", dms)
-        pulumi.set(__self__, "docdb", docdb)
-        pulumi.set(__self__, "ds", ds)
-        pulumi.set(__self__, "dynamodb", dynamodb)
-        pulumi.set(__self__, "ec2", ec2)
-        pulumi.set(__self__, "ecr", ecr)
-        pulumi.set(__self__, "ecs", ecs)
-        pulumi.set(__self__, "efs", efs)
-        pulumi.set(__self__, "eks", eks)
-        pulumi.set(__self__, "elasticache", elasticache)
-        pulumi.set(__self__, "elasticbeanstalk", elasticbeanstalk)
-        pulumi.set(__self__, "elastictranscoder", elastictranscoder)
-        pulumi.set(__self__, "elb", elb)
-        pulumi.set(__self__, "emr", emr)
-        pulumi.set(__self__, "es", es)
-        pulumi.set(__self__, "firehose", firehose)
-        pulumi.set(__self__, "fms", fms)
-        pulumi.set(__self__, "forecast", forecast)
-        pulumi.set(__self__, "fsx", fsx)
-        pulumi.set(__self__, "gamelift", gamelift)
-        pulumi.set(__self__, "glacier", glacier)
-        pulumi.set(__self__, "globalaccelerator", globalaccelerator)
-        pulumi.set(__self__, "glue", glue)
-        pulumi.set(__self__, "greengrass", greengrass)
-        pulumi.set(__self__, "guardduty", guardduty)
-        pulumi.set(__self__, "iam", iam)
-        pulumi.set(__self__, "imagebuilder", imagebuilder)
-        pulumi.set(__self__, "inspector", inspector)
-        pulumi.set(__self__, "iot", iot)
-        pulumi.set(__self__, "iotanalytics", iotanalytics)
-        pulumi.set(__self__, "iotevents", iotevents)
-        pulumi.set(__self__, "kafka", kafka)
-        pulumi.set(__self__, "kinesis", kinesis)
+        if accessanalyzer is not None:
+            pulumi.set(__self__, "accessanalyzer", accessanalyzer)
+        if acm is not None:
+            pulumi.set(__self__, "acm", acm)
+        if acmpca is not None:
+            pulumi.set(__self__, "acmpca", acmpca)
+        if amplify is not None:
+            pulumi.set(__self__, "amplify", amplify)
+        if apigateway is not None:
+            pulumi.set(__self__, "apigateway", apigateway)
+        if applicationautoscaling is not None:
+            pulumi.set(__self__, "applicationautoscaling", applicationautoscaling)
+        if applicationinsights is not None:
+            pulumi.set(__self__, "applicationinsights", applicationinsights)
+        if appmesh is not None:
+            pulumi.set(__self__, "appmesh", appmesh)
+        if appstream is not None:
+            pulumi.set(__self__, "appstream", appstream)
+        if appsync is not None:
+            pulumi.set(__self__, "appsync", appsync)
+        if athena is not None:
+            pulumi.set(__self__, "athena", athena)
+        if autoscaling is not None:
+            pulumi.set(__self__, "autoscaling", autoscaling)
+        if autoscalingplans is not None:
+            pulumi.set(__self__, "autoscalingplans", autoscalingplans)
+        if backup is not None:
+            pulumi.set(__self__, "backup", backup)
+        if batch is not None:
+            pulumi.set(__self__, "batch", batch)
+        if budgets is not None:
+            pulumi.set(__self__, "budgets", budgets)
+        if cloud9 is not None:
+            pulumi.set(__self__, "cloud9", cloud9)
+        if cloudformation is not None:
+            pulumi.set(__self__, "cloudformation", cloudformation)
+        if cloudfront is not None:
+            pulumi.set(__self__, "cloudfront", cloudfront)
+        if cloudhsm is not None:
+            pulumi.set(__self__, "cloudhsm", cloudhsm)
+        if cloudsearch is not None:
+            pulumi.set(__self__, "cloudsearch", cloudsearch)
+        if cloudtrail is not None:
+            pulumi.set(__self__, "cloudtrail", cloudtrail)
+        if cloudwatch is not None:
+            pulumi.set(__self__, "cloudwatch", cloudwatch)
+        if cloudwatchevents is not None:
+            pulumi.set(__self__, "cloudwatchevents", cloudwatchevents)
+        if cloudwatchlogs is not None:
+            pulumi.set(__self__, "cloudwatchlogs", cloudwatchlogs)
+        if codeartifact is not None:
+            pulumi.set(__self__, "codeartifact", codeartifact)
+        if codebuild is not None:
+            pulumi.set(__self__, "codebuild", codebuild)
+        if codecommit is not None:
+            pulumi.set(__self__, "codecommit", codecommit)
+        if codedeploy is not None:
+            pulumi.set(__self__, "codedeploy", codedeploy)
+        if codepipeline is not None:
+            pulumi.set(__self__, "codepipeline", codepipeline)
+        if cognitoidentity is not None:
+            pulumi.set(__self__, "cognitoidentity", cognitoidentity)
+        if cognitoidp is not None:
+            pulumi.set(__self__, "cognitoidp", cognitoidp)
+        if configservice is not None:
+            pulumi.set(__self__, "configservice", configservice)
+        if cur is not None:
+            pulumi.set(__self__, "cur", cur)
+        if dataexchange is not None:
+            pulumi.set(__self__, "dataexchange", dataexchange)
+        if datapipeline is not None:
+            pulumi.set(__self__, "datapipeline", datapipeline)
+        if datasync is not None:
+            pulumi.set(__self__, "datasync", datasync)
+        if dax is not None:
+            pulumi.set(__self__, "dax", dax)
+        if devicefarm is not None:
+            pulumi.set(__self__, "devicefarm", devicefarm)
+        if directconnect is not None:
+            pulumi.set(__self__, "directconnect", directconnect)
+        if dlm is not None:
+            pulumi.set(__self__, "dlm", dlm)
+        if dms is not None:
+            pulumi.set(__self__, "dms", dms)
+        if docdb is not None:
+            pulumi.set(__self__, "docdb", docdb)
+        if ds is not None:
+            pulumi.set(__self__, "ds", ds)
+        if dynamodb is not None:
+            pulumi.set(__self__, "dynamodb", dynamodb)
+        if ec2 is not None:
+            pulumi.set(__self__, "ec2", ec2)
+        if ecr is not None:
+            pulumi.set(__self__, "ecr", ecr)
+        if ecs is not None:
+            pulumi.set(__self__, "ecs", ecs)
+        if efs is not None:
+            pulumi.set(__self__, "efs", efs)
+        if eks is not None:
+            pulumi.set(__self__, "eks", eks)
+        if elasticache is not None:
+            pulumi.set(__self__, "elasticache", elasticache)
+        if elasticbeanstalk is not None:
+            pulumi.set(__self__, "elasticbeanstalk", elasticbeanstalk)
+        if elastictranscoder is not None:
+            pulumi.set(__self__, "elastictranscoder", elastictranscoder)
+        if elb is not None:
+            pulumi.set(__self__, "elb", elb)
+        if emr is not None:
+            pulumi.set(__self__, "emr", emr)
+        if es is not None:
+            pulumi.set(__self__, "es", es)
+        if firehose is not None:
+            pulumi.set(__self__, "firehose", firehose)
+        if fms is not None:
+            pulumi.set(__self__, "fms", fms)
+        if forecast is not None:
+            pulumi.set(__self__, "forecast", forecast)
+        if fsx is not None:
+            pulumi.set(__self__, "fsx", fsx)
+        if gamelift is not None:
+            pulumi.set(__self__, "gamelift", gamelift)
+        if glacier is not None:
+            pulumi.set(__self__, "glacier", glacier)
+        if globalaccelerator is not None:
+            pulumi.set(__self__, "globalaccelerator", globalaccelerator)
+        if glue is not None:
+            pulumi.set(__self__, "glue", glue)
+        if greengrass is not None:
+            pulumi.set(__self__, "greengrass", greengrass)
+        if guardduty is not None:
+            pulumi.set(__self__, "guardduty", guardduty)
+        if iam is not None:
+            pulumi.set(__self__, "iam", iam)
+        if imagebuilder is not None:
+            pulumi.set(__self__, "imagebuilder", imagebuilder)
+        if inspector is not None:
+            pulumi.set(__self__, "inspector", inspector)
+        if iot is not None:
+            pulumi.set(__self__, "iot", iot)
+        if iotanalytics is not None:
+            pulumi.set(__self__, "iotanalytics", iotanalytics)
+        if iotevents is not None:
+            pulumi.set(__self__, "iotevents", iotevents)
+        if kafka is not None:
+            pulumi.set(__self__, "kafka", kafka)
+        if kinesis is not None:
+            pulumi.set(__self__, "kinesis", kinesis)
         if kinesis_analytics is not None:
             warnings.warn("use `endpoints` configuration block `kinesisanalytics` argument instead", DeprecationWarning)
             pulumi.log.warn("kinesis_analytics is deprecated: use `endpoints` configuration block `kinesisanalytics` argument instead")
-        pulumi.set(__self__, "kinesisAnalytics", kinesis_analytics)
-        pulumi.set(__self__, "kinesisanalytics", kinesisanalytics)
-        pulumi.set(__self__, "kinesisanalyticsv2", kinesisanalyticsv2)
-        pulumi.set(__self__, "kinesisvideo", kinesisvideo)
-        pulumi.set(__self__, "kms", kms)
-        pulumi.set(__self__, "lakeformation", lakeformation)
-        pulumi.set(__self__, "lambda", lambda_)
-        pulumi.set(__self__, "lexmodels", lexmodels)
-        pulumi.set(__self__, "licensemanager", licensemanager)
-        pulumi.set(__self__, "lightsail", lightsail)
-        pulumi.set(__self__, "macie", macie)
-        pulumi.set(__self__, "managedblockchain", managedblockchain)
-        pulumi.set(__self__, "marketplacecatalog", marketplacecatalog)
-        pulumi.set(__self__, "mediaconnect", mediaconnect)
-        pulumi.set(__self__, "mediaconvert", mediaconvert)
-        pulumi.set(__self__, "medialive", medialive)
-        pulumi.set(__self__, "mediapackage", mediapackage)
-        pulumi.set(__self__, "mediastore", mediastore)
-        pulumi.set(__self__, "mediastoredata", mediastoredata)
-        pulumi.set(__self__, "mq", mq)
-        pulumi.set(__self__, "neptune", neptune)
-        pulumi.set(__self__, "networkmanager", networkmanager)
-        pulumi.set(__self__, "opsworks", opsworks)
-        pulumi.set(__self__, "organizations", organizations)
-        pulumi.set(__self__, "outposts", outposts)
-        pulumi.set(__self__, "personalize", personalize)
-        pulumi.set(__self__, "pinpoint", pinpoint)
-        pulumi.set(__self__, "pricing", pricing)
-        pulumi.set(__self__, "qldb", qldb)
-        pulumi.set(__self__, "quicksight", quicksight)
+        if kinesis_analytics is not None:
+            pulumi.set(__self__, "kinesis_analytics", kinesis_analytics)
+        if kinesisanalytics is not None:
+            pulumi.set(__self__, "kinesisanalytics", kinesisanalytics)
+        if kinesisanalyticsv2 is not None:
+            pulumi.set(__self__, "kinesisanalyticsv2", kinesisanalyticsv2)
+        if kinesisvideo is not None:
+            pulumi.set(__self__, "kinesisvideo", kinesisvideo)
+        if kms is not None:
+            pulumi.set(__self__, "kms", kms)
+        if lakeformation is not None:
+            pulumi.set(__self__, "lakeformation", lakeformation)
+        if lambda_ is not None:
+            pulumi.set(__self__, "lambda_", lambda_)
+        if lexmodels is not None:
+            pulumi.set(__self__, "lexmodels", lexmodels)
+        if licensemanager is not None:
+            pulumi.set(__self__, "licensemanager", licensemanager)
+        if lightsail is not None:
+            pulumi.set(__self__, "lightsail", lightsail)
+        if macie is not None:
+            pulumi.set(__self__, "macie", macie)
+        if managedblockchain is not None:
+            pulumi.set(__self__, "managedblockchain", managedblockchain)
+        if marketplacecatalog is not None:
+            pulumi.set(__self__, "marketplacecatalog", marketplacecatalog)
+        if mediaconnect is not None:
+            pulumi.set(__self__, "mediaconnect", mediaconnect)
+        if mediaconvert is not None:
+            pulumi.set(__self__, "mediaconvert", mediaconvert)
+        if medialive is not None:
+            pulumi.set(__self__, "medialive", medialive)
+        if mediapackage is not None:
+            pulumi.set(__self__, "mediapackage", mediapackage)
+        if mediastore is not None:
+            pulumi.set(__self__, "mediastore", mediastore)
+        if mediastoredata is not None:
+            pulumi.set(__self__, "mediastoredata", mediastoredata)
+        if mq is not None:
+            pulumi.set(__self__, "mq", mq)
+        if neptune is not None:
+            pulumi.set(__self__, "neptune", neptune)
+        if networkmanager is not None:
+            pulumi.set(__self__, "networkmanager", networkmanager)
+        if opsworks is not None:
+            pulumi.set(__self__, "opsworks", opsworks)
+        if organizations is not None:
+            pulumi.set(__self__, "organizations", organizations)
+        if outposts is not None:
+            pulumi.set(__self__, "outposts", outposts)
+        if personalize is not None:
+            pulumi.set(__self__, "personalize", personalize)
+        if pinpoint is not None:
+            pulumi.set(__self__, "pinpoint", pinpoint)
+        if pricing is not None:
+            pulumi.set(__self__, "pricing", pricing)
+        if qldb is not None:
+            pulumi.set(__self__, "qldb", qldb)
+        if quicksight is not None:
+            pulumi.set(__self__, "quicksight", quicksight)
         if r53 is not None:
             warnings.warn("use `endpoints` configuration block `route53` argument instead", DeprecationWarning)
             pulumi.log.warn("r53 is deprecated: use `endpoints` configuration block `route53` argument instead")
-        pulumi.set(__self__, "r53", r53)
-        pulumi.set(__self__, "ram", ram)
-        pulumi.set(__self__, "rds", rds)
-        pulumi.set(__self__, "redshift", redshift)
-        pulumi.set(__self__, "resourcegroups", resourcegroups)
-        pulumi.set(__self__, "resourcegroupstaggingapi", resourcegroupstaggingapi)
-        pulumi.set(__self__, "route53", route53)
-        pulumi.set(__self__, "route53domains", route53domains)
-        pulumi.set(__self__, "route53resolver", route53resolver)
-        pulumi.set(__self__, "s3", s3)
-        pulumi.set(__self__, "s3control", s3control)
-        pulumi.set(__self__, "sagemaker", sagemaker)
-        pulumi.set(__self__, "sdb", sdb)
-        pulumi.set(__self__, "secretsmanager", secretsmanager)
-        pulumi.set(__self__, "securityhub", securityhub)
-        pulumi.set(__self__, "serverlessrepo", serverlessrepo)
-        pulumi.set(__self__, "servicecatalog", servicecatalog)
-        pulumi.set(__self__, "servicediscovery", servicediscovery)
-        pulumi.set(__self__, "servicequotas", servicequotas)
-        pulumi.set(__self__, "ses", ses)
-        pulumi.set(__self__, "shield", shield)
-        pulumi.set(__self__, "sns", sns)
-        pulumi.set(__self__, "sqs", sqs)
-        pulumi.set(__self__, "ssm", ssm)
-        pulumi.set(__self__, "stepfunctions", stepfunctions)
-        pulumi.set(__self__, "storagegateway", storagegateway)
-        pulumi.set(__self__, "sts", sts)
-        pulumi.set(__self__, "swf", swf)
-        pulumi.set(__self__, "synthetics", synthetics)
-        pulumi.set(__self__, "transfer", transfer)
-        pulumi.set(__self__, "waf", waf)
-        pulumi.set(__self__, "wafregional", wafregional)
-        pulumi.set(__self__, "wafv2", wafv2)
-        pulumi.set(__self__, "worklink", worklink)
-        pulumi.set(__self__, "workmail", workmail)
-        pulumi.set(__self__, "workspaces", workspaces)
-        pulumi.set(__self__, "xray", xray)
+        if r53 is not None:
+            pulumi.set(__self__, "r53", r53)
+        if ram is not None:
+            pulumi.set(__self__, "ram", ram)
+        if rds is not None:
+            pulumi.set(__self__, "rds", rds)
+        if redshift is not None:
+            pulumi.set(__self__, "redshift", redshift)
+        if resourcegroups is not None:
+            pulumi.set(__self__, "resourcegroups", resourcegroups)
+        if resourcegroupstaggingapi is not None:
+            pulumi.set(__self__, "resourcegroupstaggingapi", resourcegroupstaggingapi)
+        if route53 is not None:
+            pulumi.set(__self__, "route53", route53)
+        if route53domains is not None:
+            pulumi.set(__self__, "route53domains", route53domains)
+        if route53resolver is not None:
+            pulumi.set(__self__, "route53resolver", route53resolver)
+        if s3 is not None:
+            pulumi.set(__self__, "s3", s3)
+        if s3control is not None:
+            pulumi.set(__self__, "s3control", s3control)
+        if sagemaker is not None:
+            pulumi.set(__self__, "sagemaker", sagemaker)
+        if sdb is not None:
+            pulumi.set(__self__, "sdb", sdb)
+        if secretsmanager is not None:
+            pulumi.set(__self__, "secretsmanager", secretsmanager)
+        if securityhub is not None:
+            pulumi.set(__self__, "securityhub", securityhub)
+        if serverlessrepo is not None:
+            pulumi.set(__self__, "serverlessrepo", serverlessrepo)
+        if servicecatalog is not None:
+            pulumi.set(__self__, "servicecatalog", servicecatalog)
+        if servicediscovery is not None:
+            pulumi.set(__self__, "servicediscovery", servicediscovery)
+        if servicequotas is not None:
+            pulumi.set(__self__, "servicequotas", servicequotas)
+        if ses is not None:
+            pulumi.set(__self__, "ses", ses)
+        if shield is not None:
+            pulumi.set(__self__, "shield", shield)
+        if sns is not None:
+            pulumi.set(__self__, "sns", sns)
+        if sqs is not None:
+            pulumi.set(__self__, "sqs", sqs)
+        if ssm is not None:
+            pulumi.set(__self__, "ssm", ssm)
+        if stepfunctions is not None:
+            pulumi.set(__self__, "stepfunctions", stepfunctions)
+        if storagegateway is not None:
+            pulumi.set(__self__, "storagegateway", storagegateway)
+        if sts is not None:
+            pulumi.set(__self__, "sts", sts)
+        if swf is not None:
+            pulumi.set(__self__, "swf", swf)
+        if synthetics is not None:
+            pulumi.set(__self__, "synthetics", synthetics)
+        if transfer is not None:
+            pulumi.set(__self__, "transfer", transfer)
+        if waf is not None:
+            pulumi.set(__self__, "waf", waf)
+        if wafregional is not None:
+            pulumi.set(__self__, "wafregional", wafregional)
+        if wafv2 is not None:
+            pulumi.set(__self__, "wafv2", wafv2)
+        if worklink is not None:
+            pulumi.set(__self__, "worklink", worklink)
+        if workmail is not None:
+            pulumi.set(__self__, "workmail", workmail)
+        if workspaces is not None:
+            pulumi.set(__self__, "workspaces", workspaces)
+        if xray is not None:
+            pulumi.set(__self__, "xray", xray)
 
     @property
     @pulumi.getter
@@ -1910,8 +2055,10 @@ class ProviderIgnoreTagsArgs:
     def __init__(__self__, *,
                  key_prefixes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
                  keys: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
-        pulumi.set(__self__, "keyPrefixes", key_prefixes)
-        pulumi.set(__self__, "keys", keys)
+        if key_prefixes is not None:
+            pulumi.set(__self__, "key_prefixes", key_prefixes)
+        if keys is not None:
+            pulumi.set(__self__, "keys", keys)
 
     @property
     @pulumi.getter(name="keyPrefixes")

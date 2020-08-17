@@ -14,73 +14,6 @@ __all__ = ['AnalyticsApplication']
 
 
 class AnalyticsApplication(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the Kinesis Analytics Appliation.
-    """
-
-    cloudwatch_logging_options: pulumi.Output[Optional['outputs.AnalyticsApplicationCloudwatchLoggingOptions']] = pulumi.property("cloudwatchLoggingOptions")
-    """
-    The CloudWatch log stream options to monitor application errors.
-    See CloudWatch Logging Options below for more details.
-    """
-
-    code: pulumi.Output[Optional[str]] = pulumi.property("code")
-    """
-    SQL Code to transform input data, and generate output.
-    """
-
-    create_timestamp: pulumi.Output[str] = pulumi.property("createTimestamp")
-    """
-    The Timestamp when the application version was created.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    Description of the application.
-    """
-
-    inputs: pulumi.Output[Optional['outputs.AnalyticsApplicationInputs']] = pulumi.property("inputs")
-    """
-    Input configuration of the application. See Inputs below for more details.
-    """
-
-    last_update_timestamp: pulumi.Output[str] = pulumi.property("lastUpdateTimestamp")
-    """
-    The Timestamp when the application was last updated.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    Name of the Kinesis Analytics Application.
-    """
-
-    outputs: pulumi.Output[Optional[List['outputs.AnalyticsApplicationOutput']]] = pulumi.property("outputs")
-    """
-    Output destination configuration of the application. See Outputs below for more details.
-    """
-
-    reference_data_sources: pulumi.Output[Optional['outputs.AnalyticsApplicationReferenceDataSources']] = pulumi.property("referenceDataSources")
-    """
-    An S3 Reference Data Source for the application.
-    See Reference Data Sources below for more details.
-    """
-
-    status: pulumi.Output[str] = pulumi.property("status")
-    """
-    The Status of the application.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of tags for the Kinesis Analytics Application.
-    """
-
-    version: pulumi.Output[float] = pulumi.property("version")
-    """
-    The Version of the application.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -242,6 +175,112 @@ class AnalyticsApplication(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["version"] = version
         return AnalyticsApplication(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the Kinesis Analytics Appliation.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="cloudwatchLoggingOptions")
+    def cloudwatch_logging_options(self) -> Optional['outputs.AnalyticsApplicationCloudwatchLoggingOptions']:
+        """
+        The CloudWatch log stream options to monitor application errors.
+        See CloudWatch Logging Options below for more details.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def code(self) -> Optional[str]:
+        """
+        SQL Code to transform input data, and generate output.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="createTimestamp")
+    def create_timestamp(self) -> str:
+        """
+        The Timestamp when the application version was created.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Description of the application.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def inputs(self) -> Optional['outputs.AnalyticsApplicationInputs']:
+        """
+        Input configuration of the application. See Inputs below for more details.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="lastUpdateTimestamp")
+    def last_update_timestamp(self) -> str:
+        """
+        The Timestamp when the application was last updated.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the Kinesis Analytics Application.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def outputs(self) -> Optional[List['outputs.AnalyticsApplicationOutput']]:
+        """
+        Output destination configuration of the application. See Outputs below for more details.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="referenceDataSources")
+    def reference_data_sources(self) -> Optional['outputs.AnalyticsApplicationReferenceDataSources']:
+        """
+        An S3 Reference Data Source for the application.
+        See Reference Data Sources below for more details.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The Status of the application.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of tags for the Kinesis Analytics Application.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def version(self) -> float:
+        """
+        The Version of the application.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

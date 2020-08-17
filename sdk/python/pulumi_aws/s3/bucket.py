@@ -14,129 +14,6 @@ __all__ = ['Bucket']
 
 
 class Bucket(pulumi.CustomResource):
-    acceleration_status: pulumi.Output[str] = pulumi.property("accelerationStatus")
-    """
-    Sets the accelerate configuration of an existing bucket. Can be `Enabled` or `Suspended`.
-    """
-
-    acl: pulumi.Output[Optional[str]] = pulumi.property("acl")
-    """
-    The [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl) to apply. Defaults to "private".  Conflicts with `grant`.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the bucket. Will be of format `arn:aws:s3:::bucketname`.
-    """
-
-    bucket: pulumi.Output[str] = pulumi.property("bucket")
-    """
-    The name of the bucket. If omitted, this provider will assign a random, unique name.
-    """
-
-    bucket_domain_name: pulumi.Output[str] = pulumi.property("bucketDomainName")
-    """
-    The bucket domain name. Will be of format `bucketname.s3.amazonaws.com`.
-    """
-
-    bucket_prefix: pulumi.Output[Optional[str]] = pulumi.property("bucketPrefix")
-    """
-    Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
-    """
-
-    bucket_regional_domain_name: pulumi.Output[str] = pulumi.property("bucketRegionalDomainName")
-    """
-    The bucket region-specific domain name. The bucket domain name including the region name, please refer [here](https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region) for format. Note: The AWS CloudFront allows specifying S3 region-specific endpoint when creating S3 origin, it will prevent [redirect issues](https://forums.aws.amazon.com/thread.jspa?threadID=216814) from CloudFront to S3 Origin URL.
-    """
-
-    cors_rules: pulumi.Output[Optional[List['outputs.BucketCorsRule']]] = pulumi.property("corsRules")
-    """
-    A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
-    """
-
-    force_destroy: pulumi.Output[Optional[bool]] = pulumi.property("forceDestroy")
-    """
-    A boolean that indicates all objects (including any [locked objects](https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock-overview.html)) should be deleted from the bucket so that the bucket can be destroyed without error. These objects are *not* recoverable.
-    """
-
-    grants: pulumi.Output[Optional[List['outputs.BucketGrant']]] = pulumi.property("grants")
-    """
-    An [ACL policy grant](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#sample-acl) (documented below). Conflicts with `acl`.
-    """
-
-    hosted_zone_id: pulumi.Output[str] = pulumi.property("hostedZoneId")
-    """
-    The [Route 53 Hosted Zone ID](https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_website_region_endpoints) for this bucket's region.
-    """
-
-    lifecycle_rules: pulumi.Output[Optional[List['outputs.BucketLifecycleRule']]] = pulumi.property("lifecycleRules")
-    """
-    A configuration of [object lifecycle management](http://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html) (documented below).
-    """
-
-    loggings: pulumi.Output[Optional[List['outputs.BucketLogging']]] = pulumi.property("loggings")
-    """
-    A settings of [bucket logging](https://docs.aws.amazon.com/AmazonS3/latest/UG/ManagingBucketLogging.html) (documented below).
-    """
-
-    object_lock_configuration: pulumi.Output[Optional['outputs.BucketObjectLockConfiguration']] = pulumi.property("objectLockConfiguration")
-    """
-    A configuration of [S3 object locking](https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html) (documented below)
-    """
-
-    policy: pulumi.Output[Optional[str]] = pulumi.property("policy")
-    """
-    A valid [bucket policy](https://docs.aws.amazon.com/AmazonS3/latest/dev/example-bucket-policies.html) JSON document. Note that if the policy document is not specific enough (but still valid), the provider may view the policy as constantly changing in a `pulumi up / preview / update`. In this case, please make sure you use the verbose/specific version of the policy.
-    """
-
-    region: pulumi.Output[str] = pulumi.property("region")
-    """
-    If specified, the AWS region this bucket should reside in. Otherwise, the region used by the callee.
-    """
-
-    replication_configuration: pulumi.Output[Optional['outputs.BucketReplicationConfiguration']] = pulumi.property("replicationConfiguration")
-    """
-    A configuration of [replication configuration](http://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html) (documented below).
-    """
-
-    request_payer: pulumi.Output[str] = pulumi.property("requestPayer")
-    """
-    Specifies who should bear the cost of Amazon S3 data transfer.
-    Can be either `BucketOwner` or `Requester`. By default, the owner of the S3 bucket would incur
-    the costs of any data transfer. See [Requester Pays Buckets](http://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html)
-    developer guide for more information.
-    """
-
-    server_side_encryption_configuration: pulumi.Output[Optional['outputs.BucketServerSideEncryptionConfiguration']] = pulumi.property("serverSideEncryptionConfiguration")
-    """
-    A configuration of [server-side encryption configuration](http://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-encryption.html) (documented below)
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A mapping of tags to assign to the bucket.
-    """
-
-    versioning: pulumi.Output['outputs.BucketVersioning'] = pulumi.property("versioning")
-    """
-    A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
-    """
-
-    website: pulumi.Output[Optional['outputs.BucketWebsite']] = pulumi.property("website")
-    """
-    A website object (documented below).
-    """
-
-    website_domain: pulumi.Output[str] = pulumi.property("websiteDomain")
-    """
-    The domain of the website endpoint, if the bucket is configured with a website. If not, this will be an empty string. This is used to create Route 53 alias records.
-    """
-
-    website_endpoint: pulumi.Output[str] = pulumi.property("websiteEndpoint")
-    """
-    The website endpoint, if the bucket is configured with a website. If not, this will be an empty string.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -609,6 +486,201 @@ class Bucket(pulumi.CustomResource):
         __props__["website_domain"] = website_domain
         __props__["website_endpoint"] = website_endpoint
         return Bucket(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="accelerationStatus")
+    def acceleration_status(self) -> str:
+        """
+        Sets the accelerate configuration of an existing bucket. Can be `Enabled` or `Suspended`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def acl(self) -> Optional[str]:
+        """
+        The [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl) to apply. Defaults to "private".  Conflicts with `grant`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the bucket. Will be of format `arn:aws:s3:::bucketname`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> str:
+        """
+        The name of the bucket. If omitted, this provider will assign a random, unique name.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="bucketDomainName")
+    def bucket_domain_name(self) -> str:
+        """
+        The bucket domain name. Will be of format `bucketname.s3.amazonaws.com`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="bucketPrefix")
+    def bucket_prefix(self) -> Optional[str]:
+        """
+        Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="bucketRegionalDomainName")
+    def bucket_regional_domain_name(self) -> str:
+        """
+        The bucket region-specific domain name. The bucket domain name including the region name, please refer [here](https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region) for format. Note: The AWS CloudFront allows specifying S3 region-specific endpoint when creating S3 origin, it will prevent [redirect issues](https://forums.aws.amazon.com/thread.jspa?threadID=216814) from CloudFront to S3 Origin URL.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="corsRules")
+    def cors_rules(self) -> Optional[List['outputs.BucketCorsRule']]:
+        """
+        A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="forceDestroy")
+    def force_destroy(self) -> Optional[bool]:
+        """
+        A boolean that indicates all objects (including any [locked objects](https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock-overview.html)) should be deleted from the bucket so that the bucket can be destroyed without error. These objects are *not* recoverable.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def grants(self) -> Optional[List['outputs.BucketGrant']]:
+        """
+        An [ACL policy grant](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#sample-acl) (documented below). Conflicts with `acl`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="hostedZoneId")
+    def hosted_zone_id(self) -> str:
+        """
+        The [Route 53 Hosted Zone ID](https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_website_region_endpoints) for this bucket's region.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="lifecycleRules")
+    def lifecycle_rules(self) -> Optional[List['outputs.BucketLifecycleRule']]:
+        """
+        A configuration of [object lifecycle management](http://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html) (documented below).
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def loggings(self) -> Optional[List['outputs.BucketLogging']]:
+        """
+        A settings of [bucket logging](https://docs.aws.amazon.com/AmazonS3/latest/UG/ManagingBucketLogging.html) (documented below).
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="objectLockConfiguration")
+    def object_lock_configuration(self) -> Optional['outputs.BucketObjectLockConfiguration']:
+        """
+        A configuration of [S3 object locking](https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html) (documented below)
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def policy(self) -> Optional[str]:
+        """
+        A valid [bucket policy](https://docs.aws.amazon.com/AmazonS3/latest/dev/example-bucket-policies.html) JSON document. Note that if the policy document is not specific enough (but still valid), the provider may view the policy as constantly changing in a `pulumi up / preview / update`. In this case, please make sure you use the verbose/specific version of the policy.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        If specified, the AWS region this bucket should reside in. Otherwise, the region used by the callee.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="replicationConfiguration")
+    def replication_configuration(self) -> Optional['outputs.BucketReplicationConfiguration']:
+        """
+        A configuration of [replication configuration](http://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html) (documented below).
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="requestPayer")
+    def request_payer(self) -> str:
+        """
+        Specifies who should bear the cost of Amazon S3 data transfer.
+        Can be either `BucketOwner` or `Requester`. By default, the owner of the S3 bucket would incur
+        the costs of any data transfer. See [Requester Pays Buckets](http://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html)
+        developer guide for more information.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="serverSideEncryptionConfiguration")
+    def server_side_encryption_configuration(self) -> Optional['outputs.BucketServerSideEncryptionConfiguration']:
+        """
+        A configuration of [server-side encryption configuration](http://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-encryption.html) (documented below)
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A mapping of tags to assign to the bucket.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def versioning(self) -> 'outputs.BucketVersioning':
+        """
+        A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def website(self) -> Optional['outputs.BucketWebsite']:
+        """
+        A website object (documented below).
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="websiteDomain")
+    def website_domain(self) -> str:
+        """
+        The domain of the website endpoint, if the bucket is configured with a website. If not, this will be an empty string. This is used to create Route 53 alias records.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="websiteEndpoint")
+    def website_endpoint(self) -> str:
+        """
+        The website endpoint, if the bucket is configured with a website. If not, this will be an empty string.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -12,22 +12,6 @@ __all__ = ['MainRouteTableAssociation']
 
 
 class MainRouteTableAssociation(pulumi.CustomResource):
-    original_route_table_id: pulumi.Output[str] = pulumi.property("originalRouteTableId")
-    """
-    Used internally, see __Notes__ below
-    """
-
-    route_table_id: pulumi.Output[str] = pulumi.property("routeTableId")
-    """
-    The ID of the Route Table to set as the new
-    main route table for the target VPC
-    """
-
-    vpc_id: pulumi.Output[str] = pulumi.property("vpcId")
-    """
-    The ID of the VPC whose main route table should be set
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -121,6 +105,31 @@ class MainRouteTableAssociation(pulumi.CustomResource):
         __props__["route_table_id"] = route_table_id
         __props__["vpc_id"] = vpc_id
         return MainRouteTableAssociation(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="originalRouteTableId")
+    def original_route_table_id(self) -> str:
+        """
+        Used internally, see __Notes__ below
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="routeTableId")
+    def route_table_id(self) -> str:
+        """
+        The ID of the Route Table to set as the new
+        main route table for the target VPC
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The ID of the VPC whose main route table should be set
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

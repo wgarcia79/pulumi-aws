@@ -15,21 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetRouteResult:
-    destination_cidr_block: str = pulumi.property("destinationCidrBlock")
-    destination_ipv6_cidr_block: str = pulumi.property("destinationIpv6CidrBlock")
-    egress_only_gateway_id: str = pulumi.property("egressOnlyGatewayId")
-    gateway_id: str = pulumi.property("gatewayId")
-    id: str = pulumi.property("id")
-    instance_id: str = pulumi.property("instanceId")
-    nat_gateway_id: str = pulumi.property("natGatewayId")
-    network_interface_id: str = pulumi.property("networkInterfaceId")
-    route_table_id: str = pulumi.property("routeTableId")
-    transit_gateway_id: str = pulumi.property("transitGatewayId")
-    vpc_peering_connection_id: str = pulumi.property("vpcPeeringConnectionId")
-
-
 class GetRouteResult:
     """
     A collection of values returned by getRoute.
@@ -37,40 +24,96 @@ class GetRouteResult:
     def __init__(__self__, destination_cidr_block=None, destination_ipv6_cidr_block=None, egress_only_gateway_id=None, gateway_id=None, id=None, instance_id=None, nat_gateway_id=None, network_interface_id=None, route_table_id=None, transit_gateway_id=None, vpc_peering_connection_id=None):
         if destination_cidr_block and not isinstance(destination_cidr_block, str):
             raise TypeError("Expected argument 'destination_cidr_block' to be a str")
-        __self__.destination_cidr_block = destination_cidr_block
+        pulumi.set(__self__, "destination_cidr_block", destination_cidr_block)
         if destination_ipv6_cidr_block and not isinstance(destination_ipv6_cidr_block, str):
             raise TypeError("Expected argument 'destination_ipv6_cidr_block' to be a str")
-        __self__.destination_ipv6_cidr_block = destination_ipv6_cidr_block
+        pulumi.set(__self__, "destination_ipv6_cidr_block", destination_ipv6_cidr_block)
         if egress_only_gateway_id and not isinstance(egress_only_gateway_id, str):
             raise TypeError("Expected argument 'egress_only_gateway_id' to be a str")
-        __self__.egress_only_gateway_id = egress_only_gateway_id
+        pulumi.set(__self__, "egress_only_gateway_id", egress_only_gateway_id)
         if gateway_id and not isinstance(gateway_id, str):
             raise TypeError("Expected argument 'gateway_id' to be a str")
-        __self__.gateway_id = gateway_id
+        pulumi.set(__self__, "gateway_id", gateway_id)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if instance_id and not isinstance(instance_id, str):
+            raise TypeError("Expected argument 'instance_id' to be a str")
+        pulumi.set(__self__, "instance_id", instance_id)
+        if nat_gateway_id and not isinstance(nat_gateway_id, str):
+            raise TypeError("Expected argument 'nat_gateway_id' to be a str")
+        pulumi.set(__self__, "nat_gateway_id", nat_gateway_id)
+        if network_interface_id and not isinstance(network_interface_id, str):
+            raise TypeError("Expected argument 'network_interface_id' to be a str")
+        pulumi.set(__self__, "network_interface_id", network_interface_id)
+        if route_table_id and not isinstance(route_table_id, str):
+            raise TypeError("Expected argument 'route_table_id' to be a str")
+        pulumi.set(__self__, "route_table_id", route_table_id)
+        if transit_gateway_id and not isinstance(transit_gateway_id, str):
+            raise TypeError("Expected argument 'transit_gateway_id' to be a str")
+        pulumi.set(__self__, "transit_gateway_id", transit_gateway_id)
+        if vpc_peering_connection_id and not isinstance(vpc_peering_connection_id, str):
+            raise TypeError("Expected argument 'vpc_peering_connection_id' to be a str")
+        pulumi.set(__self__, "vpc_peering_connection_id", vpc_peering_connection_id)
+
+    @property
+    @pulumi.getter(name="destinationCidrBlock")
+    def destination_cidr_block(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="destinationIpv6CidrBlock")
+    def destination_ipv6_cidr_block(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="egressOnlyGatewayId")
+    def egress_only_gateway_id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="gatewayId")
+    def gateway_id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if instance_id and not isinstance(instance_id, str):
-            raise TypeError("Expected argument 'instance_id' to be a str")
-        __self__.instance_id = instance_id
-        if nat_gateway_id and not isinstance(nat_gateway_id, str):
-            raise TypeError("Expected argument 'nat_gateway_id' to be a str")
-        __self__.nat_gateway_id = nat_gateway_id
-        if network_interface_id and not isinstance(network_interface_id, str):
-            raise TypeError("Expected argument 'network_interface_id' to be a str")
-        __self__.network_interface_id = network_interface_id
-        if route_table_id and not isinstance(route_table_id, str):
-            raise TypeError("Expected argument 'route_table_id' to be a str")
-        __self__.route_table_id = route_table_id
-        if transit_gateway_id and not isinstance(transit_gateway_id, str):
-            raise TypeError("Expected argument 'transit_gateway_id' to be a str")
-        __self__.transit_gateway_id = transit_gateway_id
-        if vpc_peering_connection_id and not isinstance(vpc_peering_connection_id, str):
-            raise TypeError("Expected argument 'vpc_peering_connection_id' to be a str")
-        __self__.vpc_peering_connection_id = vpc_peering_connection_id
+        ...
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="natGatewayId")
+    def nat_gateway_id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="networkInterfaceId")
+    def network_interface_id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="routeTableId")
+    def route_table_id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="transitGatewayId")
+    def transit_gateway_id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="vpcPeeringConnectionId")
+    def vpc_peering_connection_id(self) -> str:
+        ...
+
 
 
 class AwaitableGetRouteResult(GetRouteResult):
@@ -154,7 +197,7 @@ def get_route(destination_cidr_block: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getRoute:getRoute', __args__, opts=opts, typ=_GetRouteResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getRoute:getRoute', __args__, opts=opts, typ=GetRouteResult).value
 
     return AwaitableGetRouteResult(
         destination_cidr_block=__ret__.destination_cidr_block,

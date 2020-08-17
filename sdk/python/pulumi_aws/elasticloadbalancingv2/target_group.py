@@ -16,91 +16,6 @@ warnings.warn("aws.elasticloadbalancingv2.TargetGroup has been deprecated in fav
 
 
 class TargetGroup(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the Target Group (matches `id`)
-    """
-
-    arn_suffix: pulumi.Output[str] = pulumi.property("arnSuffix")
-    """
-    The ARN suffix for use with CloudWatch Metrics.
-    """
-
-    deregistration_delay: pulumi.Output[Optional[float]] = pulumi.property("deregistrationDelay")
-    """
-    The amount time for Elastic Load Balancing to wait before changing the state of a deregistering target from draining to unused. The range is 0-3600 seconds. The default value is 300 seconds.
-    """
-
-    health_check: pulumi.Output['outputs.TargetGroupHealthCheck'] = pulumi.property("healthCheck")
-    """
-    A Health Check block. Health Check blocks are documented below.
-    """
-
-    lambda_multi_value_headers_enabled: pulumi.Output[Optional[bool]] = pulumi.property("lambdaMultiValueHeadersEnabled")
-    """
-    Boolean whether the request and response headers exchanged between the load balancer and the Lambda function include arrays of values or strings. Only applies when `target_type` is `lambda`.
-    """
-
-    load_balancing_algorithm_type: pulumi.Output[str] = pulumi.property("loadBalancingAlgorithmType")
-    """
-    Determines how the load balancer selects targets when routing requests. Only applicable for Application Load Balancer Target Groups. The value is `round_robin` or `least_outstanding_requests`. The default is `round_robin`.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the target group. If omitted, this provider will assign a random, unique name.
-    """
-
-    name_prefix: pulumi.Output[Optional[str]] = pulumi.property("namePrefix")
-    """
-    Creates a unique name beginning with the specified prefix. Conflicts with `name`. Cannot be longer than 6 characters.
-    """
-
-    port: pulumi.Output[Optional[float]] = pulumi.property("port")
-    """
-    The port on which targets receive traffic, unless overridden when registering a specific target. Required when `target_type` is `instance` or `ip`. Does not apply when `target_type` is `lambda`.
-    """
-
-    protocol: pulumi.Output[Optional[str]] = pulumi.property("protocol")
-    """
-    The protocol to use for routing traffic to the targets. Should be one of "TCP", "TLS", "UDP", "TCP_UDP", "HTTP" or "HTTPS". Required when `target_type` is `instance` or `ip`. Does not apply when `target_type` is `lambda`.
-    """
-
-    proxy_protocol_v2: pulumi.Output[Optional[bool]] = pulumi.property("proxyProtocolV2")
-    """
-    Boolean to enable / disable support for proxy protocol v2 on Network Load Balancers. See [doc](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-target-groups.html#proxy-protocol) for more information.
-    """
-
-    slow_start: pulumi.Output[Optional[float]] = pulumi.property("slowStart")
-    """
-    The amount time for targets to warm up before the load balancer sends them a full share of requests. The range is 30-900 seconds or 0 to disable. The default value is 0 seconds.
-    """
-
-    stickiness: pulumi.Output['outputs.TargetGroupStickiness'] = pulumi.property("stickiness")
-    """
-    A Stickiness block. Stickiness blocks are documented below. `stickiness` is only valid if used with Load Balancers of type `Application`
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
-    target_type: pulumi.Output[Optional[str]] = pulumi.property("targetType")
-    """
-    The type of target that you must specify when registering targets with this target group.
-    The possible values are `instance` (targets are specified by instance ID) or `ip` (targets are specified by IP address) or `lambda` (targets are specified by lambda arn).
-    The default is `instance`. Note that you can't specify targets for a target group using both instance IDs and IP addresses.
-    If the target type is `ip`, specify IP addresses from the subnets of the virtual private cloud (VPC) for the target group,
-    the RFC 1918 range (10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16), and the RFC 6598 range (100.64.0.0/10).
-    You can't specify publicly routable IP addresses.
-    """
-
-    vpc_id: pulumi.Output[Optional[str]] = pulumi.property("vpcId")
-    """
-    The identifier of the VPC in which to create the target group. Required when `target_type` is `instance` or `ip`. Does not apply when `target_type` is `lambda`.
-    """
-
     warnings.warn("aws.elasticloadbalancingv2.TargetGroup has been deprecated in favor of aws.lb.TargetGroup", DeprecationWarning)
 
     def __init__(__self__,
@@ -295,6 +210,139 @@ class TargetGroup(pulumi.CustomResource):
         __props__["target_type"] = target_type
         __props__["vpc_id"] = vpc_id
         return TargetGroup(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the Target Group (matches `id`)
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="arnSuffix")
+    def arn_suffix(self) -> str:
+        """
+        The ARN suffix for use with CloudWatch Metrics.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="deregistrationDelay")
+    def deregistration_delay(self) -> Optional[float]:
+        """
+        The amount time for Elastic Load Balancing to wait before changing the state of a deregistering target from draining to unused. The range is 0-3600 seconds. The default value is 300 seconds.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="healthCheck")
+    def health_check(self) -> 'outputs.TargetGroupHealthCheck':
+        """
+        A Health Check block. Health Check blocks are documented below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="lambdaMultiValueHeadersEnabled")
+    def lambda_multi_value_headers_enabled(self) -> Optional[bool]:
+        """
+        Boolean whether the request and response headers exchanged between the load balancer and the Lambda function include arrays of values or strings. Only applies when `target_type` is `lambda`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="loadBalancingAlgorithmType")
+    def load_balancing_algorithm_type(self) -> str:
+        """
+        Determines how the load balancer selects targets when routing requests. Only applicable for Application Load Balancer Target Groups. The value is `round_robin` or `least_outstanding_requests`. The default is `round_robin`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the target group. If omitted, this provider will assign a random, unique name.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> Optional[str]:
+        """
+        Creates a unique name beginning with the specified prefix. Conflicts with `name`. Cannot be longer than 6 characters.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[float]:
+        """
+        The port on which targets receive traffic, unless overridden when registering a specific target. Required when `target_type` is `instance` or `ip`. Does not apply when `target_type` is `lambda`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> Optional[str]:
+        """
+        The protocol to use for routing traffic to the targets. Should be one of "TCP", "TLS", "UDP", "TCP_UDP", "HTTP" or "HTTPS". Required when `target_type` is `instance` or `ip`. Does not apply when `target_type` is `lambda`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="proxyProtocolV2")
+    def proxy_protocol_v2(self) -> Optional[bool]:
+        """
+        Boolean to enable / disable support for proxy protocol v2 on Network Load Balancers. See [doc](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-target-groups.html#proxy-protocol) for more information.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="slowStart")
+    def slow_start(self) -> Optional[float]:
+        """
+        The amount time for targets to warm up before the load balancer sends them a full share of requests. The range is 30-900 seconds or 0 to disable. The default value is 0 seconds.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def stickiness(self) -> 'outputs.TargetGroupStickiness':
+        """
+        A Stickiness block. Stickiness blocks are documented below. `stickiness` is only valid if used with Load Balancers of type `Application`
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="targetType")
+    def target_type(self) -> Optional[str]:
+        """
+        The type of target that you must specify when registering targets with this target group.
+        The possible values are `instance` (targets are specified by instance ID) or `ip` (targets are specified by IP address) or `lambda` (targets are specified by lambda arn).
+        The default is `instance`. Note that you can't specify targets for a target group using both instance IDs and IP addresses.
+        If the target type is `ip`, specify IP addresses from the subnets of the virtual private cloud (VPC) for the target group,
+        the RFC 1918 range (10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16), and the RFC 6598 range (100.64.0.0/10).
+        You can't specify publicly routable IP addresses.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[str]:
+        """
+        The identifier of the VPC in which to create the target group. Required when `target_type` is `instance` or `ip`. Does not apply when `target_type` is `lambda`.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -12,66 +12,6 @@ __all__ = ['CapacityReservation']
 
 
 class CapacityReservation(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the Capacity Reservation.
-    """
-
-    availability_zone: pulumi.Output[str] = pulumi.property("availabilityZone")
-    """
-    The Availability Zone in which to create the Capacity Reservation.
-    """
-
-    ebs_optimized: pulumi.Output[Optional[bool]] = pulumi.property("ebsOptimized")
-    """
-    Indicates whether the Capacity Reservation supports EBS-optimized instances.
-    """
-
-    end_date: pulumi.Output[Optional[str]] = pulumi.property("endDate")
-    """
-    The date and time at which the Capacity Reservation expires. When a Capacity Reservation expires, the reserved capacity is released and you can no longer launch instances into it. Valid values: [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`)
-    """
-
-    end_date_type: pulumi.Output[Optional[str]] = pulumi.property("endDateType")
-    """
-    Indicates the way in which the Capacity Reservation ends. Specify either `unlimited` or `limited`.
-    """
-
-    ephemeral_storage: pulumi.Output[Optional[bool]] = pulumi.property("ephemeralStorage")
-    """
-    Indicates whether the Capacity Reservation supports instances with temporary, block-level storage.
-    """
-
-    instance_count: pulumi.Output[float] = pulumi.property("instanceCount")
-    """
-    The number of instances for which to reserve capacity.
-    """
-
-    instance_match_criteria: pulumi.Output[Optional[str]] = pulumi.property("instanceMatchCriteria")
-    """
-    Indicates the type of instance launches that the Capacity Reservation accepts. Specify either `open` or `targeted`.
-    """
-
-    instance_platform: pulumi.Output[str] = pulumi.property("instancePlatform")
-    """
-    The type of operating system for which to reserve capacity. Valid options are `Linux/UNIX`, `Red Hat Enterprise Linux`, `SUSE Linux`, `Windows`, `Windows with SQL Server`, `Windows with SQL Server Enterprise`, `Windows with SQL Server Standard` or `Windows with SQL Server Web`.
-    """
-
-    instance_type: pulumi.Output[str] = pulumi.property("instanceType")
-    """
-    The instance type for which to reserve capacity.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
-    tenancy: pulumi.Output[Optional[str]] = pulumi.property("tenancy")
-    """
-    Indicates the tenancy of the Capacity Reservation. Specify either `default` or `dedicated`.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -215,6 +155,102 @@ class CapacityReservation(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["tenancy"] = tenancy
         return CapacityReservation(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the Capacity Reservation.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> str:
+        """
+        The Availability Zone in which to create the Capacity Reservation.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="ebsOptimized")
+    def ebs_optimized(self) -> Optional[bool]:
+        """
+        Indicates whether the Capacity Reservation supports EBS-optimized instances.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="endDate")
+    def end_date(self) -> Optional[str]:
+        """
+        The date and time at which the Capacity Reservation expires. When a Capacity Reservation expires, the reserved capacity is released and you can no longer launch instances into it. Valid values: [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (`YYYY-MM-DDTHH:MM:SSZ`)
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="endDateType")
+    def end_date_type(self) -> Optional[str]:
+        """
+        Indicates the way in which the Capacity Reservation ends. Specify either `unlimited` or `limited`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="ephemeralStorage")
+    def ephemeral_storage(self) -> Optional[bool]:
+        """
+        Indicates whether the Capacity Reservation supports instances with temporary, block-level storage.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="instanceCount")
+    def instance_count(self) -> float:
+        """
+        The number of instances for which to reserve capacity.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="instanceMatchCriteria")
+    def instance_match_criteria(self) -> Optional[str]:
+        """
+        Indicates the type of instance launches that the Capacity Reservation accepts. Specify either `open` or `targeted`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="instancePlatform")
+    def instance_platform(self) -> str:
+        """
+        The type of operating system for which to reserve capacity. Valid options are `Linux/UNIX`, `Red Hat Enterprise Linux`, `SUSE Linux`, `Windows`, `Windows with SQL Server`, `Windows with SQL Server Enterprise`, `Windows with SQL Server Standard` or `Windows with SQL Server Web`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="instanceType")
+    def instance_type(self) -> str:
+        """
+        The instance type for which to reserve capacity.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tenancy(self) -> Optional[str]:
+        """
+        Indicates the tenancy of the Capacity Reservation. Specify either `default` or `dedicated`.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

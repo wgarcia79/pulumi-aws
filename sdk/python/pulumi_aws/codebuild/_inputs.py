@@ -53,14 +53,22 @@ class ProjectArtifactsArgs:
         :param pulumi.Input[str] path: If `type` is set to `S3`, this is the path to the output artifact
         """
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "artifactIdentifier", artifact_identifier)
-        pulumi.set(__self__, "encryptionDisabled", encryption_disabled)
-        pulumi.set(__self__, "location", location)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "namespaceType", namespace_type)
-        pulumi.set(__self__, "overrideArtifactName", override_artifact_name)
-        pulumi.set(__self__, "packaging", packaging)
-        pulumi.set(__self__, "path", path)
+        if artifact_identifier is not None:
+            pulumi.set(__self__, "artifact_identifier", artifact_identifier)
+        if encryption_disabled is not None:
+            pulumi.set(__self__, "encryption_disabled", encryption_disabled)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if namespace_type is not None:
+            pulumi.set(__self__, "namespace_type", namespace_type)
+        if override_artifact_name is not None:
+            pulumi.set(__self__, "override_artifact_name", override_artifact_name)
+        if packaging is not None:
+            pulumi.set(__self__, "packaging", packaging)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
 
     @property
     @pulumi.getter
@@ -182,9 +190,12 @@ class ProjectCacheArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] modes: Specifies settings that AWS CodeBuild uses to store and reuse build dependencies. Valid values:  `LOCAL_SOURCE_CACHE`, `LOCAL_DOCKER_LAYER_CACHE`, and `LOCAL_CUSTOM_CACHE`
         :param pulumi.Input[str] type: The type of storage that will be used for the AWS CodeBuild project cache. Valid values: `NO_CACHE`, `LOCAL`, and `S3`. Defaults to `NO_CACHE`.
         """
-        pulumi.set(__self__, "location", location)
-        pulumi.set(__self__, "modes", modes)
-        pulumi.set(__self__, "type", type)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
+        if modes is not None:
+            pulumi.set(__self__, "modes", modes)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -244,14 +255,19 @@ class ProjectEnvironmentArgs:
         :param pulumi.Input[bool] privileged_mode: If set to true, enables running the Docker daemon inside a Docker container. Defaults to `false`.
         :param pulumi.Input['ProjectEnvironmentRegistryCredentialArgs'] registry_credential: Information about credentials for access to a private Docker registry. Registry Credential config blocks are documented below.
         """
-        pulumi.set(__self__, "computeType", compute_type)
+        pulumi.set(__self__, "compute_type", compute_type)
         pulumi.set(__self__, "image", image)
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "certificate", certificate)
-        pulumi.set(__self__, "environmentVariables", environment_variables)
-        pulumi.set(__self__, "imagePullCredentialsType", image_pull_credentials_type)
-        pulumi.set(__self__, "privilegedMode", privileged_mode)
-        pulumi.set(__self__, "registryCredential", registry_credential)
+        if certificate is not None:
+            pulumi.set(__self__, "certificate", certificate)
+        if environment_variables is not None:
+            pulumi.set(__self__, "environment_variables", environment_variables)
+        if image_pull_credentials_type is not None:
+            pulumi.set(__self__, "image_pull_credentials_type", image_pull_credentials_type)
+        if privileged_mode is not None:
+            pulumi.set(__self__, "privileged_mode", privileged_mode)
+        if registry_credential is not None:
+            pulumi.set(__self__, "registry_credential", registry_credential)
 
     @property
     @pulumi.getter(name="computeType")
@@ -363,7 +379,8 @@ class ProjectEnvironmentEnvironmentVariableArgs:
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "value", value)
-        pulumi.set(__self__, "type", type)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -412,7 +429,7 @@ class ProjectEnvironmentRegistryCredentialArgs:
         :param pulumi.Input[str] credential_provider: The service that created the credentials to access a private Docker registry. The valid value, SECRETS_MANAGER, is for AWS Secrets Manager.
         """
         pulumi.set(__self__, "credential", credential)
-        pulumi.set(__self__, "credentialProvider", credential_provider)
+        pulumi.set(__self__, "credential_provider", credential_provider)
 
     @property
     @pulumi.getter
@@ -448,8 +465,10 @@ class ProjectLogsConfigArgs:
         :param pulumi.Input['ProjectLogsConfigCloudwatchLogsArgs'] cloudwatch_logs: Configuration for the builds to store logs to CloudWatch
         :param pulumi.Input['ProjectLogsConfigS3LogsArgs'] s3_logs: Configuration for the builds to store logs to S3.
         """
-        pulumi.set(__self__, "cloudwatchLogs", cloudwatch_logs)
-        pulumi.set(__self__, "s3Logs", s3_logs)
+        if cloudwatch_logs is not None:
+            pulumi.set(__self__, "cloudwatch_logs", cloudwatch_logs)
+        if s3_logs is not None:
+            pulumi.set(__self__, "s3_logs", s3_logs)
 
     @property
     @pulumi.getter(name="cloudwatchLogs")
@@ -487,9 +506,12 @@ class ProjectLogsConfigCloudwatchLogsArgs:
         :param pulumi.Input[str] status: Current status of logs in S3 for a build project. Valid values: `ENABLED`, `DISABLED`. Defaults to `DISABLED`.
         :param pulumi.Input[str] stream_name: The stream name of the logs in CloudWatch Logs.
         """
-        pulumi.set(__self__, "groupName", group_name)
-        pulumi.set(__self__, "status", status)
-        pulumi.set(__self__, "streamName", stream_name)
+        if group_name is not None:
+            pulumi.set(__self__, "group_name", group_name)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if stream_name is not None:
+            pulumi.set(__self__, "stream_name", stream_name)
 
     @property
     @pulumi.getter(name="groupName")
@@ -539,9 +561,12 @@ class ProjectLogsConfigS3LogsArgs:
         :param pulumi.Input[str] location: Information about the build output artifact location. If `type` is set to `CODEPIPELINE` or `NO_ARTIFACTS` then this value will be ignored. If `type` is set to `S3`, this is the name of the output bucket.
         :param pulumi.Input[str] status: Current status of logs in CloudWatch Logs for a build project. Valid values: `ENABLED`, `DISABLED`. Defaults to `ENABLED`.
         """
-        pulumi.set(__self__, "encryptionDisabled", encryption_disabled)
-        pulumi.set(__self__, "location", location)
-        pulumi.set(__self__, "status", status)
+        if encryption_disabled is not None:
+            pulumi.set(__self__, "encryption_disabled", encryption_disabled)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter(name="encryptionDisabled")
@@ -603,15 +628,22 @@ class ProjectSecondaryArtifactArgs:
         :param pulumi.Input[str] packaging: The type of build output artifact to create. If `type` is set to `S3`, valid values for this parameter are: `NONE` or `ZIP`
         :param pulumi.Input[str] path: If `type` is set to `S3`, this is the path to the output artifact
         """
-        pulumi.set(__self__, "artifactIdentifier", artifact_identifier)
+        pulumi.set(__self__, "artifact_identifier", artifact_identifier)
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "encryptionDisabled", encryption_disabled)
-        pulumi.set(__self__, "location", location)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "namespaceType", namespace_type)
-        pulumi.set(__self__, "overrideArtifactName", override_artifact_name)
-        pulumi.set(__self__, "packaging", packaging)
-        pulumi.set(__self__, "path", path)
+        if encryption_disabled is not None:
+            pulumi.set(__self__, "encryption_disabled", encryption_disabled)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if namespace_type is not None:
+            pulumi.set(__self__, "namespace_type", namespace_type)
+        if override_artifact_name is not None:
+            pulumi.set(__self__, "override_artifact_name", override_artifact_name)
+        if packaging is not None:
+            pulumi.set(__self__, "packaging", packaging)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
 
     @property
     @pulumi.getter(name="artifactIdentifier")
@@ -745,15 +777,22 @@ class ProjectSecondarySourceArgs:
         :param pulumi.Input[str] location: The location of the source code from git or s3.
         :param pulumi.Input[bool] report_build_status: Set to `true` to report the status of a build's start and finish to your source provider. This option is only valid when your source provider is `GITHUB`, `BITBUCKET`, or `GITHUB_ENTERPRISE`.
         """
-        pulumi.set(__self__, "sourceIdentifier", source_identifier)
+        pulumi.set(__self__, "source_identifier", source_identifier)
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "auths", auths)
-        pulumi.set(__self__, "buildspec", buildspec)
-        pulumi.set(__self__, "gitCloneDepth", git_clone_depth)
-        pulumi.set(__self__, "gitSubmodulesConfig", git_submodules_config)
-        pulumi.set(__self__, "insecureSsl", insecure_ssl)
-        pulumi.set(__self__, "location", location)
-        pulumi.set(__self__, "reportBuildStatus", report_build_status)
+        if auths is not None:
+            pulumi.set(__self__, "auths", auths)
+        if buildspec is not None:
+            pulumi.set(__self__, "buildspec", buildspec)
+        if git_clone_depth is not None:
+            pulumi.set(__self__, "git_clone_depth", git_clone_depth)
+        if git_submodules_config is not None:
+            pulumi.set(__self__, "git_submodules_config", git_submodules_config)
+        if insecure_ssl is not None:
+            pulumi.set(__self__, "insecure_ssl", insecure_ssl)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
+        if report_build_status is not None:
+            pulumi.set(__self__, "report_build_status", report_build_status)
 
     @property
     @pulumi.getter(name="sourceIdentifier")
@@ -874,7 +913,8 @@ class ProjectSecondarySourceAuthArgs:
         :param pulumi.Input[str] resource: The resource value that applies to the specified authorization type.
         """
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "resource", resource)
+        if resource is not None:
+            pulumi.set(__self__, "resource", resource)
 
     @property
     @pulumi.getter
@@ -908,7 +948,7 @@ class ProjectSecondarySourceGitSubmodulesConfigArgs:
         """
         :param pulumi.Input[bool] fetch_submodules: If set to true, fetches Git submodules for the AWS CodeBuild build project.
         """
-        pulumi.set(__self__, "fetchSubmodules", fetch_submodules)
+        pulumi.set(__self__, "fetch_submodules", fetch_submodules)
 
     @property
     @pulumi.getter(name="fetchSubmodules")
@@ -945,13 +985,20 @@ class ProjectSourceArgs:
         :param pulumi.Input[bool] report_build_status: Set to `true` to report the status of a build's start and finish to your source provider. This option is only valid when the `type` is `BITBUCKET` or `GITHUB`.
         """
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "auths", auths)
-        pulumi.set(__self__, "buildspec", buildspec)
-        pulumi.set(__self__, "gitCloneDepth", git_clone_depth)
-        pulumi.set(__self__, "gitSubmodulesConfig", git_submodules_config)
-        pulumi.set(__self__, "insecureSsl", insecure_ssl)
-        pulumi.set(__self__, "location", location)
-        pulumi.set(__self__, "reportBuildStatus", report_build_status)
+        if auths is not None:
+            pulumi.set(__self__, "auths", auths)
+        if buildspec is not None:
+            pulumi.set(__self__, "buildspec", buildspec)
+        if git_clone_depth is not None:
+            pulumi.set(__self__, "git_clone_depth", git_clone_depth)
+        if git_submodules_config is not None:
+            pulumi.set(__self__, "git_submodules_config", git_submodules_config)
+        if insecure_ssl is not None:
+            pulumi.set(__self__, "insecure_ssl", insecure_ssl)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
+        if report_build_status is not None:
+            pulumi.set(__self__, "report_build_status", report_build_status)
 
     @property
     @pulumi.getter
@@ -1060,7 +1107,8 @@ class ProjectSourceAuthArgs:
         :param pulumi.Input[str] resource: The resource value that applies to the specified authorization type.
         """
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "resource", resource)
+        if resource is not None:
+            pulumi.set(__self__, "resource", resource)
 
     @property
     @pulumi.getter
@@ -1094,7 +1142,7 @@ class ProjectSourceGitSubmodulesConfigArgs:
         """
         :param pulumi.Input[bool] fetch_submodules: If set to true, fetches Git submodules for the AWS CodeBuild build project.
         """
-        pulumi.set(__self__, "fetchSubmodules", fetch_submodules)
+        pulumi.set(__self__, "fetch_submodules", fetch_submodules)
 
     @property
     @pulumi.getter(name="fetchSubmodules")
@@ -1120,9 +1168,9 @@ class ProjectVpcConfigArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] subnets: The subnet IDs within which to run builds.
         :param pulumi.Input[str] vpc_id: The ID of the VPC within which to run builds.
         """
-        pulumi.set(__self__, "securityGroupIds", security_group_ids)
+        pulumi.set(__self__, "security_group_ids", security_group_ids)
         pulumi.set(__self__, "subnets", subnets)
-        pulumi.set(__self__, "vpcId", vpc_id)
+        pulumi.set(__self__, "vpc_id", vpc_id)
 
     @property
     @pulumi.getter(name="securityGroupIds")
@@ -1168,7 +1216,8 @@ class WebhookFilterGroupArgs:
         """
         :param pulumi.Input[List[pulumi.Input['WebhookFilterGroupFilterArgs']]] filters: A webhook filter for the group. Filter blocks are documented below.
         """
-        pulumi.set(__self__, "filters", filters)
+        if filters is not None:
+            pulumi.set(__self__, "filters", filters)
 
     @property
     @pulumi.getter
@@ -1196,7 +1245,8 @@ class WebhookFilterGroupFilterArgs:
         """
         pulumi.set(__self__, "pattern", pattern)
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "excludeMatchedPattern", exclude_matched_pattern)
+        if exclude_matched_pattern is not None:
+            pulumi.set(__self__, "exclude_matched_pattern", exclude_matched_pattern)
 
     @property
     @pulumi.getter

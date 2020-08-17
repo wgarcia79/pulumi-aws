@@ -19,6 +19,30 @@ __all__ = [
 
 @pulumi.output_type
 class DirectorySelfServicePermissions(dict):
+    def __init__(__self__, *,
+                 change_compute_type: Optional[bool] = None,
+                 increase_volume_size: Optional[bool] = None,
+                 rebuild_workspace: Optional[bool] = None,
+                 restart_workspace: Optional[bool] = None,
+                 switch_running_mode: Optional[bool] = None):
+        """
+        :param bool change_compute_type: Whether WorkSpaces directory users can change the compute type (bundle) for their workspace. Default `false`.
+        :param bool increase_volume_size: Whether WorkSpaces directory users can increase the volume size of the drives on their workspace. Default `false`.
+        :param bool rebuild_workspace: Whether WorkSpaces directory users can rebuild the operating system of a workspace to its original state. Default `false`.
+        :param bool restart_workspace: Whether WorkSpaces directory users can restart their workspace. Default `true`.
+        :param bool switch_running_mode: Whether WorkSpaces directory users can switch the running mode of their workspace. Default `false`.
+        """
+        if change_compute_type is not None:
+            pulumi.set(__self__, "change_compute_type", change_compute_type)
+        if increase_volume_size is not None:
+            pulumi.set(__self__, "increase_volume_size", increase_volume_size)
+        if rebuild_workspace is not None:
+            pulumi.set(__self__, "rebuild_workspace", rebuild_workspace)
+        if restart_workspace is not None:
+            pulumi.set(__self__, "restart_workspace", restart_workspace)
+        if switch_running_mode is not None:
+            pulumi.set(__self__, "switch_running_mode", switch_running_mode)
+
     @property
     @pulumi.getter(name="changeComputeType")
     def change_compute_type(self) -> Optional[bool]:
@@ -65,13 +89,16 @@ class DirectorySelfServicePermissions(dict):
 
 @pulumi.output_type
 class IpGroupRule(dict):
-    @property
-    @pulumi.getter
-    def description(self) -> Optional[str]:
+    def __init__(__self__, *,
+                 source: str,
+                 description: Optional[str] = None):
         """
-        The description.
+        :param str source: The IP address range, in CIDR notation, e.g. `10.0.0.0/16`
+        :param str description: The description.
         """
-        ...
+        pulumi.set(__self__, "source", source)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
 
     @property
     @pulumi.getter
@@ -81,12 +108,44 @@ class IpGroupRule(dict):
         """
         ...
 
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        The description.
+        """
+        ...
+
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class WorkspaceWorkspaceProperties(dict):
+    def __init__(__self__, *,
+                 compute_type_name: Optional[str] = None,
+                 root_volume_size_gib: Optional[float] = None,
+                 running_mode: Optional[str] = None,
+                 running_mode_auto_stop_timeout_in_minutes: Optional[float] = None,
+                 user_volume_size_gib: Optional[float] = None):
+        """
+        :param str compute_type_name: The compute type. For more information, see [Amazon WorkSpaces Bundles](http://aws.amazon.com/workspaces/details/#Amazon_WorkSpaces_Bundles). Valid values are `VALUE`, `STANDARD`, `PERFORMANCE`, `POWER`, `GRAPHICS`, `POWERPRO` and `GRAPHICSPRO`.
+        :param float root_volume_size_gib: The size of the root volume.
+        :param str running_mode: The running mode. For more information, see [Manage the WorkSpace Running Mode](https://docs.aws.amazon.com/workspaces/latest/adminguide/running-mode.html). Valid values are `AUTO_STOP` and `ALWAYS_ON`.
+        :param float running_mode_auto_stop_timeout_in_minutes: The time after a user logs off when WorkSpaces are automatically stopped. Configured in 60-minute intervals.
+        :param float user_volume_size_gib: The size of the user storage.
+        """
+        if compute_type_name is not None:
+            pulumi.set(__self__, "compute_type_name", compute_type_name)
+        if root_volume_size_gib is not None:
+            pulumi.set(__self__, "root_volume_size_gib", root_volume_size_gib)
+        if running_mode is not None:
+            pulumi.set(__self__, "running_mode", running_mode)
+        if running_mode_auto_stop_timeout_in_minutes is not None:
+            pulumi.set(__self__, "running_mode_auto_stop_timeout_in_minutes", running_mode_auto_stop_timeout_in_minutes)
+        if user_volume_size_gib is not None:
+            pulumi.set(__self__, "user_volume_size_gib", user_volume_size_gib)
+
     @property
     @pulumi.getter(name="computeTypeName")
     def compute_type_name(self) -> Optional[str]:
@@ -133,6 +192,13 @@ class WorkspaceWorkspaceProperties(dict):
 
 @pulumi.output_type
 class GetBundleComputeTypeResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: The name of the bundle. You cannot combine this parameter with `bundle_id`.
+        """
+        pulumi.set(__self__, "name", name)
+
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -144,6 +210,13 @@ class GetBundleComputeTypeResult(dict):
 
 @pulumi.output_type
 class GetBundleRootStorageResult(dict):
+    def __init__(__self__, *,
+                 capacity: str):
+        """
+        :param str capacity: The size of the user storage.
+        """
+        pulumi.set(__self__, "capacity", capacity)
+
     @property
     @pulumi.getter
     def capacity(self) -> str:
@@ -155,6 +228,13 @@ class GetBundleRootStorageResult(dict):
 
 @pulumi.output_type
 class GetBundleUserStorageResult(dict):
+    def __init__(__self__, *,
+                 capacity: str):
+        """
+        :param str capacity: The size of the user storage.
+        """
+        pulumi.set(__self__, "capacity", capacity)
+
     @property
     @pulumi.getter
     def capacity(self) -> str:

@@ -12,46 +12,6 @@ __all__ = ['ResourceShareAccepter']
 
 
 class ResourceShareAccepter(pulumi.CustomResource):
-    invitation_arn: pulumi.Output[str] = pulumi.property("invitationArn")
-    """
-    The ARN of the resource share invitation.
-    """
-
-    receiver_account_id: pulumi.Output[str] = pulumi.property("receiverAccountId")
-    """
-    The account ID of the receiver account which accepts the invitation.
-    """
-
-    resources: pulumi.Output[List[str]] = pulumi.property("resources")
-    """
-    A list of the resource ARNs shared via the resource share.
-    """
-
-    sender_account_id: pulumi.Output[str] = pulumi.property("senderAccountId")
-    """
-    The account ID of the sender account which submits the invitation.
-    """
-
-    share_arn: pulumi.Output[str] = pulumi.property("shareArn")
-    """
-    The ARN of the resource share.
-    """
-
-    share_id: pulumi.Output[str] = pulumi.property("shareId")
-    """
-    The ID of the resource share as displayed in the console.
-    """
-
-    share_name: pulumi.Output[str] = pulumi.property("shareName")
-    """
-    The name of the resource share.
-    """
-
-    status: pulumi.Output[str] = pulumi.property("status")
-    """
-    The status of the resource share (ACTIVE, PENDING, FAILED, DELETING, DELETED).
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -166,6 +126,70 @@ class ResourceShareAccepter(pulumi.CustomResource):
         __props__["share_name"] = share_name
         __props__["status"] = status
         return ResourceShareAccepter(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="invitationArn")
+    def invitation_arn(self) -> str:
+        """
+        The ARN of the resource share invitation.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="receiverAccountId")
+    def receiver_account_id(self) -> str:
+        """
+        The account ID of the receiver account which accepts the invitation.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def resources(self) -> List[str]:
+        """
+        A list of the resource ARNs shared via the resource share.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="senderAccountId")
+    def sender_account_id(self) -> str:
+        """
+        The account ID of the sender account which submits the invitation.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="shareArn")
+    def share_arn(self) -> str:
+        """
+        The ARN of the resource share.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="shareId")
+    def share_id(self) -> str:
+        """
+        The ID of the resource share as displayed in the console.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="shareName")
+    def share_name(self) -> str:
+        """
+        The name of the resource share.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the resource share (ACTIVE, PENDING, FAILED, DELETING, DELETED).
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -14,41 +14,6 @@ __all__ = ['WebAcl']
 
 
 class WebAcl(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the WAF WebACL.
-    """
-
-    default_action: pulumi.Output['outputs.WebAclDefaultAction'] = pulumi.property("defaultAction")
-    """
-    Configuration block with action that you want AWS WAF to take when a request doesn't match the criteria in any of the rules that are associated with the web ACL. Detailed below.
-    """
-
-    logging_configuration: pulumi.Output[Optional['outputs.WebAclLoggingConfiguration']] = pulumi.property("loggingConfiguration")
-    """
-    Configuration block to enable WAF logging. Detailed below.
-    """
-
-    metric_name: pulumi.Output[str] = pulumi.property("metricName")
-    """
-    The name or description for the Amazon CloudWatch metric of this web ACL.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name or description of the web ACL.
-    """
-
-    rules: pulumi.Output[Optional[List['outputs.WebAclRule']]] = pulumi.property("rules")
-    """
-    Configuration blocks containing rules to associate with the web ACL and the settings for each rule. Detailed below.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of resource tags
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -205,6 +170,62 @@ class WebAcl(pulumi.CustomResource):
         __props__["rules"] = rules
         __props__["tags"] = tags
         return WebAcl(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the WAF WebACL.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="defaultAction")
+    def default_action(self) -> 'outputs.WebAclDefaultAction':
+        """
+        Configuration block with action that you want AWS WAF to take when a request doesn't match the criteria in any of the rules that are associated with the web ACL. Detailed below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="loggingConfiguration")
+    def logging_configuration(self) -> Optional['outputs.WebAclLoggingConfiguration']:
+        """
+        Configuration block to enable WAF logging. Detailed below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="metricName")
+    def metric_name(self) -> str:
+        """
+        The name or description for the Amazon CloudWatch metric of this web ACL.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name or description of the web ACL.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def rules(self) -> Optional[List['outputs.WebAclRule']]:
+        """
+        Configuration blocks containing rules to associate with the web ACL and the settings for each rule. Detailed below.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of resource tags
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

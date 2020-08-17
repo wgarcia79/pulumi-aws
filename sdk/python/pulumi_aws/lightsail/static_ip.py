@@ -12,26 +12,6 @@ __all__ = ['StaticIp']
 
 
 class StaticIp(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the Lightsail static IP
-    """
-
-    ip_address: pulumi.Output[str] = pulumi.property("ipAddress")
-    """
-    The allocated static IP address
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name for the allocated static IP
-    """
-
-    support_code: pulumi.Output[str] = pulumi.property("supportCode")
-    """
-    The support code.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -113,6 +93,38 @@ class StaticIp(pulumi.CustomResource):
         __props__["name"] = name
         __props__["support_code"] = support_code
         return StaticIp(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the Lightsail static IP
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> str:
+        """
+        The allocated static IP address
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name for the allocated static IP
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="supportCode")
+    def support_code(self) -> str:
+        """
+        The support code.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

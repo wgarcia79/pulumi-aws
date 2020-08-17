@@ -15,21 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetContainerDefinitionResult:
-    container_name: str = pulumi.property("containerName")
-    cpu: float = pulumi.property("cpu")
-    disable_networking: bool = pulumi.property("disableNetworking")
-    docker_labels: Mapping[str, str] = pulumi.property("dockerLabels")
-    environment: Mapping[str, str] = pulumi.property("environment")
-    id: str = pulumi.property("id")
-    image: str = pulumi.property("image")
-    image_digest: str = pulumi.property("imageDigest")
-    memory: float = pulumi.property("memory")
-    memory_reservation: float = pulumi.property("memoryReservation")
-    task_definition: str = pulumi.property("taskDefinition")
-
-
 class GetContainerDefinitionResult:
     """
     A collection of values returned by getContainerDefinition.
@@ -37,64 +24,120 @@ class GetContainerDefinitionResult:
     def __init__(__self__, container_name=None, cpu=None, disable_networking=None, docker_labels=None, environment=None, id=None, image=None, image_digest=None, memory=None, memory_reservation=None, task_definition=None):
         if container_name and not isinstance(container_name, str):
             raise TypeError("Expected argument 'container_name' to be a str")
-        __self__.container_name = container_name
+        pulumi.set(__self__, "container_name", container_name)
         if cpu and not isinstance(cpu, float):
             raise TypeError("Expected argument 'cpu' to be a float")
-        __self__.cpu = cpu
+        pulumi.set(__self__, "cpu", cpu)
+        if disable_networking and not isinstance(disable_networking, bool):
+            raise TypeError("Expected argument 'disable_networking' to be a bool")
+        pulumi.set(__self__, "disable_networking", disable_networking)
+        if docker_labels and not isinstance(docker_labels, dict):
+            raise TypeError("Expected argument 'docker_labels' to be a dict")
+        pulumi.set(__self__, "docker_labels", docker_labels)
+        if environment and not isinstance(environment, dict):
+            raise TypeError("Expected argument 'environment' to be a dict")
+        pulumi.set(__self__, "environment", environment)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if image and not isinstance(image, str):
+            raise TypeError("Expected argument 'image' to be a str")
+        pulumi.set(__self__, "image", image)
+        if image_digest and not isinstance(image_digest, str):
+            raise TypeError("Expected argument 'image_digest' to be a str")
+        pulumi.set(__self__, "image_digest", image_digest)
+        if memory and not isinstance(memory, float):
+            raise TypeError("Expected argument 'memory' to be a float")
+        pulumi.set(__self__, "memory", memory)
+        if memory_reservation and not isinstance(memory_reservation, float):
+            raise TypeError("Expected argument 'memory_reservation' to be a float")
+        pulumi.set(__self__, "memory_reservation", memory_reservation)
+        if task_definition and not isinstance(task_definition, str):
+            raise TypeError("Expected argument 'task_definition' to be a str")
+        pulumi.set(__self__, "task_definition", task_definition)
+
+    @property
+    @pulumi.getter(name="containerName")
+    def container_name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def cpu(self) -> float:
         """
         The CPU limit for this container definition
         """
-        if disable_networking and not isinstance(disable_networking, bool):
-            raise TypeError("Expected argument 'disable_networking' to be a bool")
-        __self__.disable_networking = disable_networking
+        ...
+
+    @property
+    @pulumi.getter(name="disableNetworking")
+    def disable_networking(self) -> bool:
         """
         Indicator if networking is disabled
         """
-        if docker_labels and not isinstance(docker_labels, dict):
-            raise TypeError("Expected argument 'docker_labels' to be a dict")
-        __self__.docker_labels = docker_labels
+        ...
+
+    @property
+    @pulumi.getter(name="dockerLabels")
+    def docker_labels(self) -> Mapping[str, str]:
         """
         Set docker labels
         """
-        if environment and not isinstance(environment, dict):
-            raise TypeError("Expected argument 'environment' to be a dict")
-        __self__.environment = environment
+        ...
+
+    @property
+    @pulumi.getter
+    def environment(self) -> Mapping[str, str]:
         """
         The environment in use
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if image and not isinstance(image, str):
-            raise TypeError("Expected argument 'image' to be a str")
-        __self__.image = image
+        ...
+
+    @property
+    @pulumi.getter
+    def image(self) -> str:
         """
         The docker image in use, including the digest
         """
-        if image_digest and not isinstance(image_digest, str):
-            raise TypeError("Expected argument 'image_digest' to be a str")
-        __self__.image_digest = image_digest
+        ...
+
+    @property
+    @pulumi.getter(name="imageDigest")
+    def image_digest(self) -> str:
         """
         The digest of the docker image in use
         """
-        if memory and not isinstance(memory, float):
-            raise TypeError("Expected argument 'memory' to be a float")
-        __self__.memory = memory
+        ...
+
+    @property
+    @pulumi.getter
+    def memory(self) -> float:
         """
         The memory limit for this container definition
         """
-        if memory_reservation and not isinstance(memory_reservation, float):
-            raise TypeError("Expected argument 'memory_reservation' to be a float")
-        __self__.memory_reservation = memory_reservation
+        ...
+
+    @property
+    @pulumi.getter(name="memoryReservation")
+    def memory_reservation(self) -> float:
         """
         The soft limit (in MiB) of memory to reserve for the container. When system memory is under contention, Docker attempts to keep the container memory to this soft limit
         """
-        if task_definition and not isinstance(task_definition, str):
-            raise TypeError("Expected argument 'task_definition' to be a str")
-        __self__.task_definition = task_definition
+        ...
+
+    @property
+    @pulumi.getter(name="taskDefinition")
+    def task_definition(self) -> str:
+        ...
+
 
 
 class AwaitableGetContainerDefinitionResult(GetContainerDefinitionResult):
@@ -144,7 +187,7 @@ def get_container_definition(container_name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ecs/getContainerDefinition:getContainerDefinition', __args__, opts=opts, typ=_GetContainerDefinitionResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ecs/getContainerDefinition:getContainerDefinition', __args__, opts=opts, typ=GetContainerDefinitionResult).value
 
     return AwaitableGetContainerDefinitionResult(
         container_name=__ret__.container_name,

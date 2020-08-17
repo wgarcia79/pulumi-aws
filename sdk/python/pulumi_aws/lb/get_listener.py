@@ -16,18 +16,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetListenerResult:
-    arn: str = pulumi.property("arn")
-    certificate_arn: str = pulumi.property("certificateArn")
-    default_actions: List['outputs.GetListenerDefaultActionResult'] = pulumi.property("defaultActions")
-    id: str = pulumi.property("id")
-    load_balancer_arn: str = pulumi.property("loadBalancerArn")
-    port: float = pulumi.property("port")
-    protocol: str = pulumi.property("protocol")
-    ssl_policy: str = pulumi.property("sslPolicy")
-
-
 class GetListenerResult:
     """
     A collection of values returned by getListener.
@@ -35,31 +25,72 @@ class GetListenerResult:
     def __init__(__self__, arn=None, certificate_arn=None, default_actions=None, id=None, load_balancer_arn=None, port=None, protocol=None, ssl_policy=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
         if certificate_arn and not isinstance(certificate_arn, str):
             raise TypeError("Expected argument 'certificate_arn' to be a str")
-        __self__.certificate_arn = certificate_arn
+        pulumi.set(__self__, "certificate_arn", certificate_arn)
         if default_actions and not isinstance(default_actions, list):
             raise TypeError("Expected argument 'default_actions' to be a list")
-        __self__.default_actions = default_actions
+        pulumi.set(__self__, "default_actions", default_actions)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if load_balancer_arn and not isinstance(load_balancer_arn, str):
+            raise TypeError("Expected argument 'load_balancer_arn' to be a str")
+        pulumi.set(__self__, "load_balancer_arn", load_balancer_arn)
+        if port and not isinstance(port, float):
+            raise TypeError("Expected argument 'port' to be a float")
+        pulumi.set(__self__, "port", port)
+        if protocol and not isinstance(protocol, str):
+            raise TypeError("Expected argument 'protocol' to be a str")
+        pulumi.set(__self__, "protocol", protocol)
+        if ssl_policy and not isinstance(ssl_policy, str):
+            raise TypeError("Expected argument 'ssl_policy' to be a str")
+        pulumi.set(__self__, "ssl_policy", ssl_policy)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="certificateArn")
+    def certificate_arn(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="defaultActions")
+    def default_actions(self) -> List['outputs.GetListenerDefaultActionResult']:
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if load_balancer_arn and not isinstance(load_balancer_arn, str):
-            raise TypeError("Expected argument 'load_balancer_arn' to be a str")
-        __self__.load_balancer_arn = load_balancer_arn
-        if port and not isinstance(port, float):
-            raise TypeError("Expected argument 'port' to be a float")
-        __self__.port = port
-        if protocol and not isinstance(protocol, str):
-            raise TypeError("Expected argument 'protocol' to be a str")
-        __self__.protocol = protocol
-        if ssl_policy and not isinstance(ssl_policy, str):
-            raise TypeError("Expected argument 'ssl_policy' to be a str")
-        __self__.ssl_policy = ssl_policy
+        ...
+
+    @property
+    @pulumi.getter(name="loadBalancerArn")
+    def load_balancer_arn(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def port(self) -> float:
+        ...
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="sslPolicy")
+    def ssl_policy(self) -> str:
+        ...
+
 
 
 class AwaitableGetListenerResult(GetListenerResult):
@@ -118,7 +149,7 @@ def get_listener(arn: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:lb/getListener:getListener', __args__, opts=opts, typ=_GetListenerResult).value
+    __ret__ = pulumi.runtime.invoke('aws:lb/getListener:getListener', __args__, opts=opts, typ=GetListenerResult).value
 
     return AwaitableGetListenerResult(
         arn=__ret__.arn,

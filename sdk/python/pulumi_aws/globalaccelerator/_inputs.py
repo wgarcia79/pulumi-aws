@@ -26,9 +26,12 @@ class AcceleratorAttributesArgs:
         :param pulumi.Input[str] flow_logs_s3_bucket: The name of the Amazon S3 bucket for the flow logs.
         :param pulumi.Input[str] flow_logs_s3_prefix: The prefix for the location in the Amazon S3 bucket for the flow logs.
         """
-        pulumi.set(__self__, "flowLogsEnabled", flow_logs_enabled)
-        pulumi.set(__self__, "flowLogsS3Bucket", flow_logs_s3_bucket)
-        pulumi.set(__self__, "flowLogsS3Prefix", flow_logs_s3_prefix)
+        if flow_logs_enabled is not None:
+            pulumi.set(__self__, "flow_logs_enabled", flow_logs_enabled)
+        if flow_logs_s3_bucket is not None:
+            pulumi.set(__self__, "flow_logs_s3_bucket", flow_logs_s3_bucket)
+        if flow_logs_s3_prefix is not None:
+            pulumi.set(__self__, "flow_logs_s3_prefix", flow_logs_s3_prefix)
 
     @property
     @pulumi.getter(name="flowLogsEnabled")
@@ -76,8 +79,10 @@ class AcceleratorIpSetArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] ip_addresses: A list of IP addresses in the IP address set.
         :param pulumi.Input[str] ip_family: The types of IP addresses included in this IP set.
         """
-        pulumi.set(__self__, "ipAddresses", ip_addresses)
-        pulumi.set(__self__, "ipFamily", ip_family)
+        if ip_addresses is not None:
+            pulumi.set(__self__, "ip_addresses", ip_addresses)
+        if ip_family is not None:
+            pulumi.set(__self__, "ip_family", ip_family)
 
     @property
     @pulumi.getter(name="ipAddresses")
@@ -113,8 +118,10 @@ class EndpointGroupEndpointConfigurationArgs:
         :param pulumi.Input[str] endpoint_id: An ID for the endpoint. If the endpoint is a Network Load Balancer or Application Load Balancer, this is the Amazon Resource Name (ARN) of the resource. If the endpoint is an Elastic IP address, this is the Elastic IP address allocation ID.
         :param pulumi.Input[float] weight: The weight associated with the endpoint. When you add weights to endpoints, you configure AWS Global Accelerator to route traffic based on proportions that you specify.
         """
-        pulumi.set(__self__, "endpointId", endpoint_id)
-        pulumi.set(__self__, "weight", weight)
+        if endpoint_id is not None:
+            pulumi.set(__self__, "endpoint_id", endpoint_id)
+        if weight is not None:
+            pulumi.set(__self__, "weight", weight)
 
     @property
     @pulumi.getter(name="endpointId")
@@ -150,8 +157,10 @@ class ListenerPortRangeArgs:
         :param pulumi.Input[float] from_port: The first port in the range of ports, inclusive.
         :param pulumi.Input[float] to_port: The last port in the range of ports, inclusive.
         """
-        pulumi.set(__self__, "fromPort", from_port)
-        pulumi.set(__self__, "toPort", to_port)
+        if from_port is not None:
+            pulumi.set(__self__, "from_port", from_port)
+        if to_port is not None:
+            pulumi.set(__self__, "to_port", to_port)
 
     @property
     @pulumi.getter(name="fromPort")

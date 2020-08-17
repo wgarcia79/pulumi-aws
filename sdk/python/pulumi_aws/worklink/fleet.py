@@ -14,61 +14,6 @@ __all__ = ['Fleet']
 
 
 class Fleet(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the created WorkLink Fleet.
-    """
-
-    audit_stream_arn: pulumi.Output[Optional[str]] = pulumi.property("auditStreamArn")
-    """
-    The ARN of the Amazon Kinesis data stream that receives the audit events.
-    """
-
-    company_code: pulumi.Output[str] = pulumi.property("companyCode")
-    """
-    The identifier used by users to sign in to the Amazon WorkLink app.
-    """
-
-    created_time: pulumi.Output[str] = pulumi.property("createdTime")
-    """
-    The time that the fleet was created.
-    """
-
-    device_ca_certificate: pulumi.Output[Optional[str]] = pulumi.property("deviceCaCertificate")
-    """
-    The certificate chain, including intermediate certificates and the root certificate authority certificate used to issue device certificates.
-    """
-
-    display_name: pulumi.Output[Optional[str]] = pulumi.property("displayName")
-    """
-    The name of the fleet.
-    """
-
-    identity_provider: pulumi.Output[Optional['outputs.FleetIdentityProvider']] = pulumi.property("identityProvider")
-    """
-    Provide this to allow manage the identity provider configuration for the fleet. Fields documented below.
-    """
-
-    last_updated_time: pulumi.Output[str] = pulumi.property("lastUpdatedTime")
-    """
-    The time that the fleet was last updated.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    A region-unique name for the AMI.
-    """
-
-    network: pulumi.Output[Optional['outputs.FleetNetwork']] = pulumi.property("network")
-    """
-    Provide this to allow manage the company network configuration for the fleet. Fields documented below.
-    """
-
-    optimize_for_end_user_location: pulumi.Output[Optional[bool]] = pulumi.property("optimizeForEndUserLocation")
-    """
-    The option to optimize for better performance by routing traffic through the closest AWS Region to users, which may be outside of your home Region. Defaults to `true`.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -213,6 +158,94 @@ class Fleet(pulumi.CustomResource):
         __props__["network"] = network
         __props__["optimize_for_end_user_location"] = optimize_for_end_user_location
         return Fleet(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the created WorkLink Fleet.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="auditStreamArn")
+    def audit_stream_arn(self) -> Optional[str]:
+        """
+        The ARN of the Amazon Kinesis data stream that receives the audit events.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="companyCode")
+    def company_code(self) -> str:
+        """
+        The identifier used by users to sign in to the Amazon WorkLink app.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="createdTime")
+    def created_time(self) -> str:
+        """
+        The time that the fleet was created.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="deviceCaCertificate")
+    def device_ca_certificate(self) -> Optional[str]:
+        """
+        The certificate chain, including intermediate certificates and the root certificate authority certificate used to issue device certificates.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> Optional[str]:
+        """
+        The name of the fleet.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="identityProvider")
+    def identity_provider(self) -> Optional['outputs.FleetIdentityProvider']:
+        """
+        Provide this to allow manage the identity provider configuration for the fleet. Fields documented below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="lastUpdatedTime")
+    def last_updated_time(self) -> str:
+        """
+        The time that the fleet was last updated.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A region-unique name for the AMI.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def network(self) -> Optional['outputs.FleetNetwork']:
+        """
+        Provide this to allow manage the company network configuration for the fleet. Fields documented below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="optimizeForEndUserLocation")
+    def optimize_for_end_user_location(self) -> Optional[bool]:
+        """
+        The option to optimize for better performance by routing traffic through the closest AWS Region to users, which may be outside of your home Region. Defaults to `true`.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

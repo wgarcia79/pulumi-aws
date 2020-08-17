@@ -17,15 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetLocalGatewayVirtualInterfaceGroupsResult:
-    filters: Optional[List['outputs.GetLocalGatewayVirtualInterfaceGroupsFilterResult']] = pulumi.property("filters")
-    id: str = pulumi.property("id")
-    ids: List[str] = pulumi.property("ids")
-    local_gateway_virtual_interface_ids: List[str] = pulumi.property("localGatewayVirtualInterfaceIds")
-    tags: Mapping[str, str] = pulumi.property("tags")
-
-
 class GetLocalGatewayVirtualInterfaceGroupsResult:
     """
     A collection of values returned by getLocalGatewayVirtualInterfaceGroups.
@@ -33,28 +26,54 @@ class GetLocalGatewayVirtualInterfaceGroupsResult:
     def __init__(__self__, filters=None, id=None, ids=None, local_gateway_virtual_interface_ids=None, tags=None):
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
+        pulumi.set(__self__, "filters", filters)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if ids and not isinstance(ids, list):
+            raise TypeError("Expected argument 'ids' to be a list")
+        pulumi.set(__self__, "ids", ids)
+        if local_gateway_virtual_interface_ids and not isinstance(local_gateway_virtual_interface_ids, list):
+            raise TypeError("Expected argument 'local_gateway_virtual_interface_ids' to be a list")
+        pulumi.set(__self__, "local_gateway_virtual_interface_ids", local_gateway_virtual_interface_ids)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetLocalGatewayVirtualInterfaceGroupsFilterResult']]:
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if ids and not isinstance(ids, list):
-            raise TypeError("Expected argument 'ids' to be a list")
-        __self__.ids = ids
+        ...
+
+    @property
+    @pulumi.getter
+    def ids(self) -> List[str]:
         """
         Set of EC2 Local Gateway Virtual Interface Group identifiers.
         """
-        if local_gateway_virtual_interface_ids and not isinstance(local_gateway_virtual_interface_ids, list):
-            raise TypeError("Expected argument 'local_gateway_virtual_interface_ids' to be a list")
-        __self__.local_gateway_virtual_interface_ids = local_gateway_virtual_interface_ids
+        ...
+
+    @property
+    @pulumi.getter(name="localGatewayVirtualInterfaceIds")
+    def local_gateway_virtual_interface_ids(self) -> List[str]:
         """
         Set of EC2 Local Gateway Virtual Interface identifiers.
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
+        ...
+
 
 
 class AwaitableGetLocalGatewayVirtualInterfaceGroupsResult(GetLocalGatewayVirtualInterfaceGroupsResult):
@@ -96,7 +115,7 @@ def get_local_gateway_virtual_interface_groups(filters: Optional[List[pulumi.Inp
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getLocalGatewayVirtualInterfaceGroups:getLocalGatewayVirtualInterfaceGroups', __args__, opts=opts, typ=_GetLocalGatewayVirtualInterfaceGroupsResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getLocalGatewayVirtualInterfaceGroups:getLocalGatewayVirtualInterfaceGroups', __args__, opts=opts, typ=GetLocalGatewayVirtualInterfaceGroupsResult).value
 
     return AwaitableGetLocalGatewayVirtualInterfaceGroupsResult(
         filters=__ret__.filters,

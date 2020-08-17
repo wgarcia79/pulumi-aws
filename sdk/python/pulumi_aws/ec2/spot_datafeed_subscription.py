@@ -12,16 +12,6 @@ __all__ = ['SpotDatafeedSubscription']
 
 
 class SpotDatafeedSubscription(pulumi.CustomResource):
-    bucket: pulumi.Output[str] = pulumi.property("bucket")
-    """
-    The Amazon S3 bucket in which to store the Spot instance data feed.
-    """
-
-    prefix: pulumi.Output[Optional[str]] = pulumi.property("prefix")
-    """
-    Path of folder inside bucket to place spot pricing data.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -103,6 +93,22 @@ class SpotDatafeedSubscription(pulumi.CustomResource):
         __props__["bucket"] = bucket
         __props__["prefix"] = prefix
         return SpotDatafeedSubscription(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> str:
+        """
+        The Amazon S3 bucket in which to store the Spot instance data feed.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> Optional[str]:
+        """
+        Path of folder inside bucket to place spot pricing data.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

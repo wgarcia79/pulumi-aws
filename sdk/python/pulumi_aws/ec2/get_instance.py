@@ -17,49 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetInstanceResult:
-    ami: str = pulumi.property("ami")
-    arn: str = pulumi.property("arn")
-    associate_public_ip_address: bool = pulumi.property("associatePublicIpAddress")
-    availability_zone: str = pulumi.property("availabilityZone")
-    credit_specifications: List['outputs.GetInstanceCreditSpecificationResult'] = pulumi.property("creditSpecifications")
-    disable_api_termination: bool = pulumi.property("disableApiTermination")
-    ebs_block_devices: List['outputs.GetInstanceEbsBlockDeviceResult'] = pulumi.property("ebsBlockDevices")
-    ebs_optimized: bool = pulumi.property("ebsOptimized")
-    ephemeral_block_devices: List['outputs.GetInstanceEphemeralBlockDeviceResult'] = pulumi.property("ephemeralBlockDevices")
-    filters: Optional[List['outputs.GetInstanceFilterResult']] = pulumi.property("filters")
-    get_password_data: Optional[bool] = pulumi.property("getPasswordData")
-    get_user_data: Optional[bool] = pulumi.property("getUserData")
-    host_id: str = pulumi.property("hostId")
-    iam_instance_profile: str = pulumi.property("iamInstanceProfile")
-    id: str = pulumi.property("id")
-    instance_id: Optional[str] = pulumi.property("instanceId")
-    instance_state: str = pulumi.property("instanceState")
-    instance_tags: Mapping[str, str] = pulumi.property("instanceTags")
-    instance_type: str = pulumi.property("instanceType")
-    key_name: str = pulumi.property("keyName")
-    metadata_options: List['outputs.GetInstanceMetadataOptionResult'] = pulumi.property("metadataOptions")
-    monitoring: bool = pulumi.property("monitoring")
-    network_interface_id: str = pulumi.property("networkInterfaceId")
-    outpost_arn: str = pulumi.property("outpostArn")
-    password_data: str = pulumi.property("passwordData")
-    placement_group: str = pulumi.property("placementGroup")
-    private_dns: str = pulumi.property("privateDns")
-    private_ip: str = pulumi.property("privateIp")
-    public_dns: str = pulumi.property("publicDns")
-    public_ip: str = pulumi.property("publicIp")
-    root_block_devices: List['outputs.GetInstanceRootBlockDeviceResult'] = pulumi.property("rootBlockDevices")
-    security_groups: List[str] = pulumi.property("securityGroups")
-    source_dest_check: bool = pulumi.property("sourceDestCheck")
-    subnet_id: str = pulumi.property("subnetId")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    tenancy: str = pulumi.property("tenancy")
-    user_data: str = pulumi.property("userData")
-    user_data_base64: str = pulumi.property("userDataBase64")
-    vpc_security_group_ids: List[str] = pulumi.property("vpcSecurityGroupIds")
-
-
 class GetInstanceResult:
     """
     A collection of values returned by getInstance.
@@ -67,226 +26,422 @@ class GetInstanceResult:
     def __init__(__self__, ami=None, arn=None, associate_public_ip_address=None, availability_zone=None, credit_specifications=None, disable_api_termination=None, ebs_block_devices=None, ebs_optimized=None, ephemeral_block_devices=None, filters=None, get_password_data=None, get_user_data=None, host_id=None, iam_instance_profile=None, id=None, instance_id=None, instance_state=None, instance_tags=None, instance_type=None, key_name=None, metadata_options=None, monitoring=None, network_interface_id=None, outpost_arn=None, password_data=None, placement_group=None, private_dns=None, private_ip=None, public_dns=None, public_ip=None, root_block_devices=None, security_groups=None, source_dest_check=None, subnet_id=None, tags=None, tenancy=None, user_data=None, user_data_base64=None, vpc_security_group_ids=None):
         if ami and not isinstance(ami, str):
             raise TypeError("Expected argument 'ami' to be a str")
-        __self__.ami = ami
+        pulumi.set(__self__, "ami", ami)
+        if arn and not isinstance(arn, str):
+            raise TypeError("Expected argument 'arn' to be a str")
+        pulumi.set(__self__, "arn", arn)
+        if associate_public_ip_address and not isinstance(associate_public_ip_address, bool):
+            raise TypeError("Expected argument 'associate_public_ip_address' to be a bool")
+        pulumi.set(__self__, "associate_public_ip_address", associate_public_ip_address)
+        if availability_zone and not isinstance(availability_zone, str):
+            raise TypeError("Expected argument 'availability_zone' to be a str")
+        pulumi.set(__self__, "availability_zone", availability_zone)
+        if credit_specifications and not isinstance(credit_specifications, list):
+            raise TypeError("Expected argument 'credit_specifications' to be a list")
+        pulumi.set(__self__, "credit_specifications", credit_specifications)
+        if disable_api_termination and not isinstance(disable_api_termination, bool):
+            raise TypeError("Expected argument 'disable_api_termination' to be a bool")
+        pulumi.set(__self__, "disable_api_termination", disable_api_termination)
+        if ebs_block_devices and not isinstance(ebs_block_devices, list):
+            raise TypeError("Expected argument 'ebs_block_devices' to be a list")
+        pulumi.set(__self__, "ebs_block_devices", ebs_block_devices)
+        if ebs_optimized and not isinstance(ebs_optimized, bool):
+            raise TypeError("Expected argument 'ebs_optimized' to be a bool")
+        pulumi.set(__self__, "ebs_optimized", ebs_optimized)
+        if ephemeral_block_devices and not isinstance(ephemeral_block_devices, list):
+            raise TypeError("Expected argument 'ephemeral_block_devices' to be a list")
+        pulumi.set(__self__, "ephemeral_block_devices", ephemeral_block_devices)
+        if filters and not isinstance(filters, list):
+            raise TypeError("Expected argument 'filters' to be a list")
+        pulumi.set(__self__, "filters", filters)
+        if get_password_data and not isinstance(get_password_data, bool):
+            raise TypeError("Expected argument 'get_password_data' to be a bool")
+        pulumi.set(__self__, "get_password_data", get_password_data)
+        if get_user_data and not isinstance(get_user_data, bool):
+            raise TypeError("Expected argument 'get_user_data' to be a bool")
+        pulumi.set(__self__, "get_user_data", get_user_data)
+        if host_id and not isinstance(host_id, str):
+            raise TypeError("Expected argument 'host_id' to be a str")
+        pulumi.set(__self__, "host_id", host_id)
+        if iam_instance_profile and not isinstance(iam_instance_profile, str):
+            raise TypeError("Expected argument 'iam_instance_profile' to be a str")
+        pulumi.set(__self__, "iam_instance_profile", iam_instance_profile)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if instance_id and not isinstance(instance_id, str):
+            raise TypeError("Expected argument 'instance_id' to be a str")
+        pulumi.set(__self__, "instance_id", instance_id)
+        if instance_state and not isinstance(instance_state, str):
+            raise TypeError("Expected argument 'instance_state' to be a str")
+        pulumi.set(__self__, "instance_state", instance_state)
+        if instance_tags and not isinstance(instance_tags, dict):
+            raise TypeError("Expected argument 'instance_tags' to be a dict")
+        pulumi.set(__self__, "instance_tags", instance_tags)
+        if instance_type and not isinstance(instance_type, str):
+            raise TypeError("Expected argument 'instance_type' to be a str")
+        pulumi.set(__self__, "instance_type", instance_type)
+        if key_name and not isinstance(key_name, str):
+            raise TypeError("Expected argument 'key_name' to be a str")
+        pulumi.set(__self__, "key_name", key_name)
+        if metadata_options and not isinstance(metadata_options, list):
+            raise TypeError("Expected argument 'metadata_options' to be a list")
+        pulumi.set(__self__, "metadata_options", metadata_options)
+        if monitoring and not isinstance(monitoring, bool):
+            raise TypeError("Expected argument 'monitoring' to be a bool")
+        pulumi.set(__self__, "monitoring", monitoring)
+        if network_interface_id and not isinstance(network_interface_id, str):
+            raise TypeError("Expected argument 'network_interface_id' to be a str")
+        pulumi.set(__self__, "network_interface_id", network_interface_id)
+        if outpost_arn and not isinstance(outpost_arn, str):
+            raise TypeError("Expected argument 'outpost_arn' to be a str")
+        pulumi.set(__self__, "outpost_arn", outpost_arn)
+        if password_data and not isinstance(password_data, str):
+            raise TypeError("Expected argument 'password_data' to be a str")
+        pulumi.set(__self__, "password_data", password_data)
+        if placement_group and not isinstance(placement_group, str):
+            raise TypeError("Expected argument 'placement_group' to be a str")
+        pulumi.set(__self__, "placement_group", placement_group)
+        if private_dns and not isinstance(private_dns, str):
+            raise TypeError("Expected argument 'private_dns' to be a str")
+        pulumi.set(__self__, "private_dns", private_dns)
+        if private_ip and not isinstance(private_ip, str):
+            raise TypeError("Expected argument 'private_ip' to be a str")
+        pulumi.set(__self__, "private_ip", private_ip)
+        if public_dns and not isinstance(public_dns, str):
+            raise TypeError("Expected argument 'public_dns' to be a str")
+        pulumi.set(__self__, "public_dns", public_dns)
+        if public_ip and not isinstance(public_ip, str):
+            raise TypeError("Expected argument 'public_ip' to be a str")
+        pulumi.set(__self__, "public_ip", public_ip)
+        if root_block_devices and not isinstance(root_block_devices, list):
+            raise TypeError("Expected argument 'root_block_devices' to be a list")
+        pulumi.set(__self__, "root_block_devices", root_block_devices)
+        if security_groups and not isinstance(security_groups, list):
+            raise TypeError("Expected argument 'security_groups' to be a list")
+        pulumi.set(__self__, "security_groups", security_groups)
+        if source_dest_check and not isinstance(source_dest_check, bool):
+            raise TypeError("Expected argument 'source_dest_check' to be a bool")
+        pulumi.set(__self__, "source_dest_check", source_dest_check)
+        if subnet_id and not isinstance(subnet_id, str):
+            raise TypeError("Expected argument 'subnet_id' to be a str")
+        pulumi.set(__self__, "subnet_id", subnet_id)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if tenancy and not isinstance(tenancy, str):
+            raise TypeError("Expected argument 'tenancy' to be a str")
+        pulumi.set(__self__, "tenancy", tenancy)
+        if user_data and not isinstance(user_data, str):
+            raise TypeError("Expected argument 'user_data' to be a str")
+        pulumi.set(__self__, "user_data", user_data)
+        if user_data_base64 and not isinstance(user_data_base64, str):
+            raise TypeError("Expected argument 'user_data_base64' to be a str")
+        pulumi.set(__self__, "user_data_base64", user_data_base64)
+        if vpc_security_group_ids and not isinstance(vpc_security_group_ids, list):
+            raise TypeError("Expected argument 'vpc_security_group_ids' to be a list")
+        pulumi.set(__self__, "vpc_security_group_ids", vpc_security_group_ids)
+
+    @property
+    @pulumi.getter
+    def ami(self) -> str:
         """
         The ID of the AMI used to launch the instance.
         """
-        if arn and not isinstance(arn, str):
-            raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The ARN of the instance.
         """
-        if associate_public_ip_address and not isinstance(associate_public_ip_address, bool):
-            raise TypeError("Expected argument 'associate_public_ip_address' to be a bool")
-        __self__.associate_public_ip_address = associate_public_ip_address
+        ...
+
+    @property
+    @pulumi.getter(name="associatePublicIpAddress")
+    def associate_public_ip_address(self) -> bool:
         """
         Whether or not the Instance is associated with a public IP address or not (Boolean).
         """
-        if availability_zone and not isinstance(availability_zone, str):
-            raise TypeError("Expected argument 'availability_zone' to be a str")
-        __self__.availability_zone = availability_zone
+        ...
+
+    @property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> str:
         """
         The availability zone of the Instance.
         """
-        if credit_specifications and not isinstance(credit_specifications, list):
-            raise TypeError("Expected argument 'credit_specifications' to be a list")
-        __self__.credit_specifications = credit_specifications
+        ...
+
+    @property
+    @pulumi.getter(name="creditSpecifications")
+    def credit_specifications(self) -> List['outputs.GetInstanceCreditSpecificationResult']:
         """
         The credit specification of the Instance.
         """
-        if disable_api_termination and not isinstance(disable_api_termination, bool):
-            raise TypeError("Expected argument 'disable_api_termination' to be a bool")
-        __self__.disable_api_termination = disable_api_termination
-        if ebs_block_devices and not isinstance(ebs_block_devices, list):
-            raise TypeError("Expected argument 'ebs_block_devices' to be a list")
-        __self__.ebs_block_devices = ebs_block_devices
+        ...
+
+    @property
+    @pulumi.getter(name="disableApiTermination")
+    def disable_api_termination(self) -> bool:
+        ...
+
+    @property
+    @pulumi.getter(name="ebsBlockDevices")
+    def ebs_block_devices(self) -> List['outputs.GetInstanceEbsBlockDeviceResult']:
         """
         The EBS block device mappings of the Instance.
         """
-        if ebs_optimized and not isinstance(ebs_optimized, bool):
-            raise TypeError("Expected argument 'ebs_optimized' to be a bool")
-        __self__.ebs_optimized = ebs_optimized
+        ...
+
+    @property
+    @pulumi.getter(name="ebsOptimized")
+    def ebs_optimized(self) -> bool:
         """
         Whether the Instance is EBS optimized or not (Boolean).
         """
-        if ephemeral_block_devices and not isinstance(ephemeral_block_devices, list):
-            raise TypeError("Expected argument 'ephemeral_block_devices' to be a list")
-        __self__.ephemeral_block_devices = ephemeral_block_devices
+        ...
+
+    @property
+    @pulumi.getter(name="ephemeralBlockDevices")
+    def ephemeral_block_devices(self) -> List['outputs.GetInstanceEphemeralBlockDeviceResult']:
         """
         The ephemeral block device mappings of the Instance.
         """
-        if filters and not isinstance(filters, list):
-            raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
-        if get_password_data and not isinstance(get_password_data, bool):
-            raise TypeError("Expected argument 'get_password_data' to be a bool")
-        __self__.get_password_data = get_password_data
-        if get_user_data and not isinstance(get_user_data, bool):
-            raise TypeError("Expected argument 'get_user_data' to be a bool")
-        __self__.get_user_data = get_user_data
-        if host_id and not isinstance(host_id, str):
-            raise TypeError("Expected argument 'host_id' to be a str")
-        __self__.host_id = host_id
+        ...
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetInstanceFilterResult']]:
+        ...
+
+    @property
+    @pulumi.getter(name="getPasswordData")
+    def get_password_data(self) -> Optional[bool]:
+        ...
+
+    @property
+    @pulumi.getter(name="getUserData")
+    def get_user_data(self) -> Optional[bool]:
+        ...
+
+    @property
+    @pulumi.getter(name="hostId")
+    def host_id(self) -> str:
         """
         The Id of the dedicated host the instance will be assigned to.
         """
-        if iam_instance_profile and not isinstance(iam_instance_profile, str):
-            raise TypeError("Expected argument 'iam_instance_profile' to be a str")
-        __self__.iam_instance_profile = iam_instance_profile
+        ...
+
+    @property
+    @pulumi.getter(name="iamInstanceProfile")
+    def iam_instance_profile(self) -> str:
         """
         The name of the instance profile associated with the Instance.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if instance_id and not isinstance(instance_id, str):
-            raise TypeError("Expected argument 'instance_id' to be a str")
-        __self__.instance_id = instance_id
-        if instance_state and not isinstance(instance_state, str):
-            raise TypeError("Expected argument 'instance_state' to be a str")
-        __self__.instance_state = instance_state
+        ...
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> Optional[str]:
+        ...
+
+    @property
+    @pulumi.getter(name="instanceState")
+    def instance_state(self) -> str:
         """
         The state of the instance. One of: `pending`, `running`, `shutting-down`, `terminated`, `stopping`, `stopped`. See [Instance Lifecycle](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html) for more information.
         """
-        if instance_tags and not isinstance(instance_tags, dict):
-            raise TypeError("Expected argument 'instance_tags' to be a dict")
-        __self__.instance_tags = instance_tags
-        if instance_type and not isinstance(instance_type, str):
-            raise TypeError("Expected argument 'instance_type' to be a str")
-        __self__.instance_type = instance_type
+        ...
+
+    @property
+    @pulumi.getter(name="instanceTags")
+    def instance_tags(self) -> Mapping[str, str]:
+        ...
+
+    @property
+    @pulumi.getter(name="instanceType")
+    def instance_type(self) -> str:
         """
         The type of the Instance.
         """
-        if key_name and not isinstance(key_name, str):
-            raise TypeError("Expected argument 'key_name' to be a str")
-        __self__.key_name = key_name
+        ...
+
+    @property
+    @pulumi.getter(name="keyName")
+    def key_name(self) -> str:
         """
         The key name of the Instance.
         """
-        if metadata_options and not isinstance(metadata_options, list):
-            raise TypeError("Expected argument 'metadata_options' to be a list")
-        __self__.metadata_options = metadata_options
+        ...
+
+    @property
+    @pulumi.getter(name="metadataOptions")
+    def metadata_options(self) -> List['outputs.GetInstanceMetadataOptionResult']:
         """
         The metadata options of the Instance.
         """
-        if monitoring and not isinstance(monitoring, bool):
-            raise TypeError("Expected argument 'monitoring' to be a bool")
-        __self__.monitoring = monitoring
+        ...
+
+    @property
+    @pulumi.getter
+    def monitoring(self) -> bool:
         """
         Whether detailed monitoring is enabled or disabled for the Instance (Boolean).
         """
-        if network_interface_id and not isinstance(network_interface_id, str):
-            raise TypeError("Expected argument 'network_interface_id' to be a str")
-        __self__.network_interface_id = network_interface_id
+        ...
+
+    @property
+    @pulumi.getter(name="networkInterfaceId")
+    def network_interface_id(self) -> str:
         """
         The ID of the network interface that was created with the Instance.
         """
-        if outpost_arn and not isinstance(outpost_arn, str):
-            raise TypeError("Expected argument 'outpost_arn' to be a str")
-        __self__.outpost_arn = outpost_arn
+        ...
+
+    @property
+    @pulumi.getter(name="outpostArn")
+    def outpost_arn(self) -> str:
         """
         The Amazon Resource Name (ARN) of the Outpost.
         """
-        if password_data and not isinstance(password_data, str):
-            raise TypeError("Expected argument 'password_data' to be a str")
-        __self__.password_data = password_data
+        ...
+
+    @property
+    @pulumi.getter(name="passwordData")
+    def password_data(self) -> str:
         """
         Base-64 encoded encrypted password data for the instance.
         Useful for getting the administrator password for instances running Microsoft Windows.
         This attribute is only exported if `get_password_data` is true.
         See [GetPasswordData](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetPasswordData.html) for more information.
         """
-        if placement_group and not isinstance(placement_group, str):
-            raise TypeError("Expected argument 'placement_group' to be a str")
-        __self__.placement_group = placement_group
+        ...
+
+    @property
+    @pulumi.getter(name="placementGroup")
+    def placement_group(self) -> str:
         """
         The placement group of the Instance.
         """
-        if private_dns and not isinstance(private_dns, str):
-            raise TypeError("Expected argument 'private_dns' to be a str")
-        __self__.private_dns = private_dns
+        ...
+
+    @property
+    @pulumi.getter(name="privateDns")
+    def private_dns(self) -> str:
         """
         The private DNS name assigned to the Instance. Can only be
         used inside the Amazon EC2, and only available if you've enabled DNS hostnames
         for your VPC.
         """
-        if private_ip and not isinstance(private_ip, str):
-            raise TypeError("Expected argument 'private_ip' to be a str")
-        __self__.private_ip = private_ip
+        ...
+
+    @property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> str:
         """
         The private IP address assigned to the Instance.
         """
-        if public_dns and not isinstance(public_dns, str):
-            raise TypeError("Expected argument 'public_dns' to be a str")
-        __self__.public_dns = public_dns
+        ...
+
+    @property
+    @pulumi.getter(name="publicDns")
+    def public_dns(self) -> str:
         """
         The public DNS name assigned to the Instance. For EC2-VPC, this
         is only available if you've enabled DNS hostnames for your VPC.
         """
-        if public_ip and not isinstance(public_ip, str):
-            raise TypeError("Expected argument 'public_ip' to be a str")
-        __self__.public_ip = public_ip
+        ...
+
+    @property
+    @pulumi.getter(name="publicIp")
+    def public_ip(self) -> str:
         """
         The public IP address assigned to the Instance, if applicable. **NOTE**: If you are using an `ec2.Eip` with your instance, you should refer to the EIP's address directly and not use `public_ip`, as this field will change after the EIP is attached.
         """
-        if root_block_devices and not isinstance(root_block_devices, list):
-            raise TypeError("Expected argument 'root_block_devices' to be a list")
-        __self__.root_block_devices = root_block_devices
+        ...
+
+    @property
+    @pulumi.getter(name="rootBlockDevices")
+    def root_block_devices(self) -> List['outputs.GetInstanceRootBlockDeviceResult']:
         """
         The root block device mappings of the Instance
         """
-        if security_groups and not isinstance(security_groups, list):
-            raise TypeError("Expected argument 'security_groups' to be a list")
-        __self__.security_groups = security_groups
+        ...
+
+    @property
+    @pulumi.getter(name="securityGroups")
+    def security_groups(self) -> List[str]:
         """
         The associated security groups.
         """
-        if source_dest_check and not isinstance(source_dest_check, bool):
-            raise TypeError("Expected argument 'source_dest_check' to be a bool")
-        __self__.source_dest_check = source_dest_check
+        ...
+
+    @property
+    @pulumi.getter(name="sourceDestCheck")
+    def source_dest_check(self) -> bool:
         """
         Whether the network interface performs source/destination checking (Boolean).
         """
-        if subnet_id and not isinstance(subnet_id, str):
-            raise TypeError("Expected argument 'subnet_id' to be a str")
-        __self__.subnet_id = subnet_id
+        ...
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> str:
         """
         The VPC subnet ID.
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
         """
         A mapping of tags assigned to the Instance.
         """
-        if tenancy and not isinstance(tenancy, str):
-            raise TypeError("Expected argument 'tenancy' to be a str")
-        __self__.tenancy = tenancy
+        ...
+
+    @property
+    @pulumi.getter
+    def tenancy(self) -> str:
         """
         The tenancy of the instance: `dedicated`, `default`, `host`.
         """
-        if user_data and not isinstance(user_data, str):
-            raise TypeError("Expected argument 'user_data' to be a str")
-        __self__.user_data = user_data
+        ...
+
+    @property
+    @pulumi.getter(name="userData")
+    def user_data(self) -> str:
         """
         SHA-1 hash of User Data supplied to the Instance.
         """
-        if user_data_base64 and not isinstance(user_data_base64, str):
-            raise TypeError("Expected argument 'user_data_base64' to be a str")
-        __self__.user_data_base64 = user_data_base64
+        ...
+
+    @property
+    @pulumi.getter(name="userDataBase64")
+    def user_data_base64(self) -> str:
         """
         Base64 encoded contents of User Data supplied to the Instance. This attribute is only exported if `get_user_data` is true.
         """
-        if vpc_security_group_ids and not isinstance(vpc_security_group_ids, list):
-            raise TypeError("Expected argument 'vpc_security_group_ids' to be a list")
-        __self__.vpc_security_group_ids = vpc_security_group_ids
+        ...
+
+    @property
+    @pulumi.getter(name="vpcSecurityGroupIds")
+    def vpc_security_group_ids(self) -> List[str]:
         """
         The associated security groups in a non-default VPC.
         """
+        ...
+
 
 
 class AwaitableGetInstanceResult(GetInstanceResult):
@@ -388,7 +543,7 @@ def get_instance(filters: Optional[List[pulumi.InputType['GetInstanceFilterArgs'
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getInstance:getInstance', __args__, opts=opts, typ=_GetInstanceResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getInstance:getInstance', __args__, opts=opts, typ=GetInstanceResult).value
 
     return AwaitableGetInstanceResult(
         ami=__ret__.ami,

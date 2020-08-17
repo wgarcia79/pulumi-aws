@@ -15,18 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetInstanceProfileResult:
-    arn: str = pulumi.property("arn")
-    create_date: str = pulumi.property("createDate")
-    id: str = pulumi.property("id")
-    name: str = pulumi.property("name")
-    path: str = pulumi.property("path")
-    role_arn: str = pulumi.property("roleArn")
-    role_id: str = pulumi.property("roleId")
-    role_name: str = pulumi.property("roleName")
-
-
 class GetInstanceProfileResult:
     """
     A collection of values returned by getInstanceProfile.
@@ -34,50 +24,91 @@ class GetInstanceProfileResult:
     def __init__(__self__, arn=None, create_date=None, id=None, name=None, path=None, role_arn=None, role_id=None, role_name=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if create_date and not isinstance(create_date, str):
+            raise TypeError("Expected argument 'create_date' to be a str")
+        pulumi.set(__self__, "create_date", create_date)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if path and not isinstance(path, str):
+            raise TypeError("Expected argument 'path' to be a str")
+        pulumi.set(__self__, "path", path)
+        if role_arn and not isinstance(role_arn, str):
+            raise TypeError("Expected argument 'role_arn' to be a str")
+        pulumi.set(__self__, "role_arn", role_arn)
+        if role_id and not isinstance(role_id, str):
+            raise TypeError("Expected argument 'role_id' to be a str")
+        pulumi.set(__self__, "role_id", role_id)
+        if role_name and not isinstance(role_name, str):
+            raise TypeError("Expected argument 'role_name' to be a str")
+        pulumi.set(__self__, "role_name", role_name)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The Amazon Resource Name (ARN) specifying the instance profile.
         """
-        if create_date and not isinstance(create_date, str):
-            raise TypeError("Expected argument 'create_date' to be a str")
-        __self__.create_date = create_date
+        ...
+
+    @property
+    @pulumi.getter(name="createDate")
+    def create_date(self) -> str:
         """
         The string representation of the date the instance profile
         was created.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if path and not isinstance(path, str):
-            raise TypeError("Expected argument 'path' to be a str")
-        __self__.path = path
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def path(self) -> str:
         """
         The path to the instance profile.
         """
-        if role_arn and not isinstance(role_arn, str):
-            raise TypeError("Expected argument 'role_arn' to be a str")
-        __self__.role_arn = role_arn
+        ...
+
+    @property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> str:
         """
         The role arn associated with this instance profile.
         """
-        if role_id and not isinstance(role_id, str):
-            raise TypeError("Expected argument 'role_id' to be a str")
-        __self__.role_id = role_id
+        ...
+
+    @property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> str:
         """
         The role id associated with this instance profile.
         """
-        if role_name and not isinstance(role_name, str):
-            raise TypeError("Expected argument 'role_name' to be a str")
-        __self__.role_name = role_name
+        ...
+
+    @property
+    @pulumi.getter(name="roleName")
+    def role_name(self) -> str:
         """
         The role name associated with this instance profile.
         """
+        ...
+
 
 
 class AwaitableGetInstanceProfileResult(GetInstanceProfileResult):
@@ -121,7 +152,7 @@ def get_instance_profile(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:iam/getInstanceProfile:getInstanceProfile', __args__, opts=opts, typ=_GetInstanceProfileResult).value
+    __ret__ = pulumi.runtime.invoke('aws:iam/getInstanceProfile:getInstanceProfile', __args__, opts=opts, typ=GetInstanceProfileResult).value
 
     return AwaitableGetInstanceProfileResult(
         arn=__ret__.arn,

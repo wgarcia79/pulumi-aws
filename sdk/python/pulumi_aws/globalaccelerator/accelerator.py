@@ -14,46 +14,6 @@ __all__ = ['Accelerator']
 
 
 class Accelerator(pulumi.CustomResource):
-    attributes: pulumi.Output[Optional['outputs.AcceleratorAttributes']] = pulumi.property("attributes")
-    """
-    The attributes of the accelerator. Fields documented below.
-    """
-
-    dns_name: pulumi.Output[str] = pulumi.property("dnsName")
-    """
-    The DNS name of the accelerator. For example, `a5d53ff5ee6bca4ce.awsglobalaccelerator.com`.
-    * `hosted_zone_id` --  The Global Accelerator Route 53 zone ID that can be used to
-    route an [Alias Resource Record Set](https://docs.aws.amazon.com/Route53/latest/APIReference/API_AliasTarget.html) to the Global Accelerator. This attribute
-    is simply an alias for the zone ID `Z2BJ6XQ5FK7U4H`.
-    """
-
-    enabled: pulumi.Output[Optional[bool]] = pulumi.property("enabled")
-    """
-    Indicates whether the accelerator is enabled. The value is true or false. The default value is true.
-    """
-
-    hosted_zone_id: pulumi.Output[str] = pulumi.property("hostedZoneId")
-
-    ip_address_type: pulumi.Output[Optional[str]] = pulumi.property("ipAddressType")
-    """
-    The value for the address type must be `IPV4`.
-    """
-
-    ip_sets: pulumi.Output[List['outputs.AcceleratorIpSet']] = pulumi.property("ipSets")
-    """
-    IP address set associated with the accelerator.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the accelerator.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -166,6 +126,70 @@ class Accelerator(pulumi.CustomResource):
         __props__["name"] = name
         __props__["tags"] = tags
         return Accelerator(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def attributes(self) -> Optional['outputs.AcceleratorAttributes']:
+        """
+        The attributes of the accelerator. Fields documented below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="dnsName")
+    def dns_name(self) -> str:
+        """
+        The DNS name of the accelerator. For example, `a5d53ff5ee6bca4ce.awsglobalaccelerator.com`.
+        * `hosted_zone_id` --  The Global Accelerator Route 53 zone ID that can be used to
+        route an [Alias Resource Record Set](https://docs.aws.amazon.com/Route53/latest/APIReference/API_AliasTarget.html) to the Global Accelerator. This attribute
+        is simply an alias for the zone ID `Z2BJ6XQ5FK7U4H`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Indicates whether the accelerator is enabled. The value is true or false. The default value is true.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="hostedZoneId")
+    def hosted_zone_id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="ipAddressType")
+    def ip_address_type(self) -> Optional[str]:
+        """
+        The value for the address type must be `IPV4`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="ipSets")
+    def ip_sets(self) -> List['outputs.AcceleratorIpSet']:
+        """
+        IP address set associated with the accelerator.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the accelerator.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

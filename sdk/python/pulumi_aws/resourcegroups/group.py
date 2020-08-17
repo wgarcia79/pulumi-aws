@@ -14,31 +14,6 @@ __all__ = ['Group']
 
 
 class Group(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN assigned by AWS for this resource group.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    A description of the resource group.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The resource group's name. A resource group name can have a maximum of 127 characters, including letters, numbers, hyphens, dots, and underscores. The name cannot start with `AWS` or `aws`.
-    """
-
-    resource_query: pulumi.Output['outputs.GroupResourceQuery'] = pulumi.property("resourceQuery")
-    """
-    A `resource_query` block. Resource queries are documented below.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of resource tags
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -144,6 +119,46 @@ class Group(pulumi.CustomResource):
         __props__["resource_query"] = resource_query
         __props__["tags"] = tags
         return Group(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN assigned by AWS for this resource group.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        A description of the resource group.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The resource group's name. A resource group name can have a maximum of 127 characters, including letters, numbers, hyphens, dots, and underscores. The name cannot start with `AWS` or `aws`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="resourceQuery")
+    def resource_query(self) -> 'outputs.GroupResourceQuery':
+        """
+        A `resource_query` block. Resource queries are documented below.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of resource tags
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

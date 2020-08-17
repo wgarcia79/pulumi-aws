@@ -12,21 +12,6 @@ __all__ = ['AssessmentTarget']
 
 
 class AssessmentTarget(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The target assessment ARN.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the assessment target.
-    """
-
-    resource_group_arn: pulumi.Output[Optional[str]] = pulumi.property("resourceGroupArn")
-    """
-    Inspector Resource Group Amazon Resource Name (ARN) stating tags for instance matching. If not specified, all EC2 instances in the current AWS account and region are included in the assessment target.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -108,6 +93,30 @@ class AssessmentTarget(pulumi.CustomResource):
         __props__["name"] = name
         __props__["resource_group_arn"] = resource_group_arn
         return AssessmentTarget(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The target assessment ARN.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the assessment target.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="resourceGroupArn")
+    def resource_group_arn(self) -> Optional[str]:
+        """
+        Inspector Resource Group Amazon Resource Name (ARN) stating tags for instance matching. If not specified, all EC2 instances in the current AWS account and region are included in the assessment target.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -34,7 +34,8 @@ class ClusterParameterGroupParameterArgs:
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "value", value)
-        pulumi.set(__self__, "applyMethod", apply_method)
+        if apply_method is not None:
+            pulumi.set(__self__, "apply_method", apply_method)
 
     @property
     @pulumi.getter
@@ -90,11 +91,12 @@ class ClusterS3ImportArgs:
         :param pulumi.Input[str] source_engine_version: Version of the source engine used to make the backup
         :param pulumi.Input[str] bucket_prefix: Can be blank, but is the path to your backup
         """
-        pulumi.set(__self__, "bucketName", bucket_name)
-        pulumi.set(__self__, "ingestionRole", ingestion_role)
-        pulumi.set(__self__, "sourceEngine", source_engine)
-        pulumi.set(__self__, "sourceEngineVersion", source_engine_version)
-        pulumi.set(__self__, "bucketPrefix", bucket_prefix)
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "ingestion_role", ingestion_role)
+        pulumi.set(__self__, "source_engine", source_engine)
+        pulumi.set(__self__, "source_engine_version", source_engine_version)
+        if bucket_prefix is not None:
+            pulumi.set(__self__, "bucket_prefix", bucket_prefix)
 
     @property
     @pulumi.getter(name="bucketName")
@@ -172,11 +174,16 @@ class ClusterScalingConfigurationArgs:
         :param pulumi.Input[float] seconds_until_auto_pause: The time, in seconds, before an Aurora DB cluster in serverless mode is paused. Valid values are `300` through `86400`. Defaults to `300`.
         :param pulumi.Input[str] timeout_action: The action to take when the timeout is reached. Valid values: `ForceApplyCapacityChange`, `RollbackCapacityChange`. Defaults to `RollbackCapacityChange`. See [documentation](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.how-it-works.html#aurora-serverless.how-it-works.timeout-action).
         """
-        pulumi.set(__self__, "autoPause", auto_pause)
-        pulumi.set(__self__, "maxCapacity", max_capacity)
-        pulumi.set(__self__, "minCapacity", min_capacity)
-        pulumi.set(__self__, "secondsUntilAutoPause", seconds_until_auto_pause)
-        pulumi.set(__self__, "timeoutAction", timeout_action)
+        if auto_pause is not None:
+            pulumi.set(__self__, "auto_pause", auto_pause)
+        if max_capacity is not None:
+            pulumi.set(__self__, "max_capacity", max_capacity)
+        if min_capacity is not None:
+            pulumi.set(__self__, "min_capacity", min_capacity)
+        if seconds_until_auto_pause is not None:
+            pulumi.set(__self__, "seconds_until_auto_pause", seconds_until_auto_pause)
+        if timeout_action is not None:
+            pulumi.set(__self__, "timeout_action", timeout_action)
 
     @property
     @pulumi.getter(name="autoPause")
@@ -254,11 +261,12 @@ class InstanceS3ImportArgs:
         :param pulumi.Input[str] source_engine_version: Version of the source engine used to make the backup
         :param pulumi.Input[str] bucket_prefix: Can be blank, but is the path to your backup
         """
-        pulumi.set(__self__, "bucketName", bucket_name)
-        pulumi.set(__self__, "ingestionRole", ingestion_role)
-        pulumi.set(__self__, "sourceEngine", source_engine)
-        pulumi.set(__self__, "sourceEngineVersion", source_engine_version)
-        pulumi.set(__self__, "bucketPrefix", bucket_prefix)
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "ingestion_role", ingestion_role)
+        pulumi.set(__self__, "source_engine", source_engine)
+        pulumi.set(__self__, "source_engine_version", source_engine_version)
+        if bucket_prefix is not None:
+            pulumi.set(__self__, "bucket_prefix", bucket_prefix)
 
     @property
     @pulumi.getter(name="bucketName")
@@ -338,12 +346,17 @@ class OptionGroupOptionArgs:
         :param pulumi.Input[str] version: The version of the option (e.g. 13.1.0.0).
         :param pulumi.Input[List[pulumi.Input[str]]] vpc_security_group_memberships: A list of VPC Security Groups for which the option is enabled.
         """
-        pulumi.set(__self__, "optionName", option_name)
-        pulumi.set(__self__, "dbSecurityGroupMemberships", db_security_group_memberships)
-        pulumi.set(__self__, "optionSettings", option_settings)
-        pulumi.set(__self__, "port", port)
-        pulumi.set(__self__, "version", version)
-        pulumi.set(__self__, "vpcSecurityGroupMemberships", vpc_security_group_memberships)
+        pulumi.set(__self__, "option_name", option_name)
+        if db_security_group_memberships is not None:
+            pulumi.set(__self__, "db_security_group_memberships", db_security_group_memberships)
+        if option_settings is not None:
+            pulumi.set(__self__, "option_settings", option_settings)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+        if vpc_security_group_memberships is not None:
+            pulumi.set(__self__, "vpc_security_group_memberships", vpc_security_group_memberships)
 
     @property
     @pulumi.getter(name="optionName")
@@ -470,7 +483,8 @@ class ParameterGroupParameterArgs:
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "value", value)
-        pulumi.set(__self__, "applyMethod", apply_method)
+        if apply_method is not None:
+            pulumi.set(__self__, "apply_method", apply_method)
 
     @property
     @pulumi.getter
@@ -525,10 +539,14 @@ class SecurityGroupIngressArgs:
         :param pulumi.Input[str] security_group_owner_id: The owner Id of the security group provided
                by `security_group_name`.
         """
-        pulumi.set(__self__, "cidr", cidr)
-        pulumi.set(__self__, "securityGroupId", security_group_id)
-        pulumi.set(__self__, "securityGroupName", security_group_name)
-        pulumi.set(__self__, "securityGroupOwnerId", security_group_owner_id)
+        if cidr is not None:
+            pulumi.set(__self__, "cidr", cidr)
+        if security_group_id is not None:
+            pulumi.set(__self__, "security_group_id", security_group_id)
+        if security_group_name is not None:
+            pulumi.set(__self__, "security_group_name", security_group_name)
+        if security_group_owner_id is not None:
+            pulumi.set(__self__, "security_group_owner_id", security_group_owner_id)
 
     @property
     @pulumi.getter

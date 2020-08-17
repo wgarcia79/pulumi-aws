@@ -12,11 +12,6 @@ __all__ = ['StandardsSubscription']
 
 
 class StandardsSubscription(pulumi.CustomResource):
-    standards_arn: pulumi.Output[str] = pulumi.property("standardsArn")
-    """
-    The ARN of a standard - see below.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -90,6 +85,14 @@ class StandardsSubscription(pulumi.CustomResource):
 
         __props__["standards_arn"] = standards_arn
         return StandardsSubscription(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="standardsArn")
+    def standards_arn(self) -> str:
+        """
+        The ARN of a standard - see below.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -12,31 +12,6 @@ __all__ = ['NetworkInterfaceAttachment']
 
 
 class NetworkInterfaceAttachment(pulumi.CustomResource):
-    attachment_id: pulumi.Output[str] = pulumi.property("attachmentId")
-    """
-    The ENI Attachment ID.
-    """
-
-    device_index: pulumi.Output[float] = pulumi.property("deviceIndex")
-    """
-    Network interface index (int).
-    """
-
-    instance_id: pulumi.Output[str] = pulumi.property("instanceId")
-    """
-    Instance ID to attach.
-    """
-
-    network_interface_id: pulumi.Output[str] = pulumi.property("networkInterfaceId")
-    """
-    ENI ID to attach.
-    """
-
-    status: pulumi.Output[str] = pulumi.property("status")
-    """
-    The status of the Network Interface Attachment.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -133,6 +108,46 @@ class NetworkInterfaceAttachment(pulumi.CustomResource):
         __props__["network_interface_id"] = network_interface_id
         __props__["status"] = status
         return NetworkInterfaceAttachment(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="attachmentId")
+    def attachment_id(self) -> str:
+        """
+        The ENI Attachment ID.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="deviceIndex")
+    def device_index(self) -> float:
+        """
+        Network interface index (int).
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        Instance ID to attach.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="networkInterfaceId")
+    def network_interface_id(self) -> str:
+        """
+        ENI ID to attach.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the Network Interface Attachment.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

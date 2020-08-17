@@ -12,18 +12,6 @@ __all__ = ['Application']
 
 
 class Application(pulumi.CustomResource):
-    compute_platform: pulumi.Output[Optional[str]] = pulumi.property("computePlatform")
-    """
-    The compute platform can either be `ECS`, `Lambda`, or `Server`. Default is `Server`.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the application.
-    """
-
-    unique_id: pulumi.Output[str] = pulumi.property("uniqueId")
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -118,6 +106,27 @@ class Application(pulumi.CustomResource):
         __props__["name"] = name
         __props__["unique_id"] = unique_id
         return Application(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="computePlatform")
+    def compute_platform(self) -> Optional[str]:
+        """
+        The compute platform can either be `ECS`, `Lambda`, or `Server`. Default is `Server`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the application.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="uniqueId")
+    def unique_id(self) -> str:
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

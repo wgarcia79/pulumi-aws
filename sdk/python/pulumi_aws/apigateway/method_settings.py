@@ -14,26 +14,6 @@ __all__ = ['MethodSettings']
 
 
 class MethodSettings(pulumi.CustomResource):
-    method_path: pulumi.Output[str] = pulumi.property("methodPath")
-    """
-    Method path defined as `{resource_path}/{http_method}` for an individual method override, or `*/*` for overriding all methods in the stage.
-    """
-
-    rest_api: pulumi.Output[str] = pulumi.property("restApi")
-    """
-    The ID of the REST API
-    """
-
-    settings: pulumi.Output['outputs.MethodSettingsSettings'] = pulumi.property("settings")
-    """
-    The settings block, see below.
-    """
-
-    stage_name: pulumi.Output[str] = pulumi.property("stageName")
-    """
-    The name of the stage
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -164,6 +144,38 @@ class MethodSettings(pulumi.CustomResource):
         __props__["settings"] = settings
         __props__["stage_name"] = stage_name
         return MethodSettings(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="methodPath")
+    def method_path(self) -> str:
+        """
+        Method path defined as `{resource_path}/{http_method}` for an individual method override, or `*/*` for overriding all methods in the stage.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="restApi")
+    def rest_api(self) -> str:
+        """
+        The ID of the REST API
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def settings(self) -> 'outputs.MethodSettingsSettings':
+        """
+        The settings block, see below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="stageName")
+    def stage_name(self) -> str:
+        """
+        The name of the stage
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

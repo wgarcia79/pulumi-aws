@@ -40,17 +40,28 @@ class BudgetCostTypesArgs:
         :param pulumi.Input[bool] use_amortized: Specifies whether a budget uses the amortized rate. Defaults to `false`
         :param pulumi.Input[bool] use_blended: A boolean value whether to use blended costs in the cost budget. Defaults to `false`
         """
-        pulumi.set(__self__, "includeCredit", include_credit)
-        pulumi.set(__self__, "includeDiscount", include_discount)
-        pulumi.set(__self__, "includeOtherSubscription", include_other_subscription)
-        pulumi.set(__self__, "includeRecurring", include_recurring)
-        pulumi.set(__self__, "includeRefund", include_refund)
-        pulumi.set(__self__, "includeSubscription", include_subscription)
-        pulumi.set(__self__, "includeSupport", include_support)
-        pulumi.set(__self__, "includeTax", include_tax)
-        pulumi.set(__self__, "includeUpfront", include_upfront)
-        pulumi.set(__self__, "useAmortized", use_amortized)
-        pulumi.set(__self__, "useBlended", use_blended)
+        if include_credit is not None:
+            pulumi.set(__self__, "include_credit", include_credit)
+        if include_discount is not None:
+            pulumi.set(__self__, "include_discount", include_discount)
+        if include_other_subscription is not None:
+            pulumi.set(__self__, "include_other_subscription", include_other_subscription)
+        if include_recurring is not None:
+            pulumi.set(__self__, "include_recurring", include_recurring)
+        if include_refund is not None:
+            pulumi.set(__self__, "include_refund", include_refund)
+        if include_subscription is not None:
+            pulumi.set(__self__, "include_subscription", include_subscription)
+        if include_support is not None:
+            pulumi.set(__self__, "include_support", include_support)
+        if include_tax is not None:
+            pulumi.set(__self__, "include_tax", include_tax)
+        if include_upfront is not None:
+            pulumi.set(__self__, "include_upfront", include_upfront)
+        if use_amortized is not None:
+            pulumi.set(__self__, "use_amortized", use_amortized)
+        if use_blended is not None:
+            pulumi.set(__self__, "use_blended", use_blended)
 
     @property
     @pulumi.getter(name="includeCredit")
@@ -202,12 +213,14 @@ class BudgetNotificationArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] subscriber_email_addresses: (Optional) E-Mail addresses to notify. Either this or `subscriber_sns_topic_arns` is required.
         :param pulumi.Input[List[pulumi.Input[str]]] subscriber_sns_topic_arns: (Optional) SNS topics to notify. Either this or `subscriber_email_addresses` is required.
         """
-        pulumi.set(__self__, "comparisonOperator", comparison_operator)
-        pulumi.set(__self__, "notificationType", notification_type)
+        pulumi.set(__self__, "comparison_operator", comparison_operator)
+        pulumi.set(__self__, "notification_type", notification_type)
         pulumi.set(__self__, "threshold", threshold)
-        pulumi.set(__self__, "thresholdType", threshold_type)
-        pulumi.set(__self__, "subscriberEmailAddresses", subscriber_email_addresses)
-        pulumi.set(__self__, "subscriberSnsTopicArns", subscriber_sns_topic_arns)
+        pulumi.set(__self__, "threshold_type", threshold_type)
+        if subscriber_email_addresses is not None:
+            pulumi.set(__self__, "subscriber_email_addresses", subscriber_email_addresses)
+        if subscriber_sns_topic_arns is not None:
+            pulumi.set(__self__, "subscriber_sns_topic_arns", subscriber_sns_topic_arns)
 
     @property
     @pulumi.getter(name="comparisonOperator")

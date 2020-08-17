@@ -12,61 +12,6 @@ __all__ = ['Authorizer']
 
 
 class Authorizer(pulumi.CustomResource):
-    authorizer_credentials: pulumi.Output[Optional[str]] = pulumi.property("authorizerCredentials")
-    """
-    The credentials required for the authorizer.
-    To specify an IAM Role for API Gateway to assume, use the IAM Role ARN.
-    """
-
-    authorizer_result_ttl_in_seconds: pulumi.Output[Optional[float]] = pulumi.property("authorizerResultTtlInSeconds")
-    """
-    The TTL of cached authorizer results in seconds.
-    Defaults to `300`.
-    """
-
-    authorizer_uri: pulumi.Output[Optional[str]] = pulumi.property("authorizerUri")
-    """
-    The authorizer's Uniform Resource Identifier (URI).
-    This must be a well-formed Lambda function URI in the form of `arn:aws:apigateway:{region}:lambda:path/{service_api}`,
-    e.g. `arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:012345678912:function:my-function/invocations`
-    """
-
-    identity_source: pulumi.Output[Optional[str]] = pulumi.property("identitySource")
-    """
-    The source of the identity in an incoming request.
-    Defaults to `method.request.header.Authorization`. For `REQUEST` type, this may be a comma-separated list of values, including headers, query string parameters and stage variables - e.g. `"method.request.header.SomeHeaderName,method.request.querystring.SomeQueryStringName,stageVariables.SomeStageVariableName"`
-    """
-
-    identity_validation_expression: pulumi.Output[Optional[str]] = pulumi.property("identityValidationExpression")
-    """
-    A validation expression for the incoming identity.
-    For `TOKEN` type, this value should be a regular expression. The incoming token from the client is matched
-    against this expression, and will proceed if the token matches. If the token doesn't match,
-    the client receives a 401 Unauthorized response.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the authorizer
-    """
-
-    provider_arns: pulumi.Output[Optional[List[str]]] = pulumi.property("providerArns")
-    """
-    A list of the Amazon Cognito user pool ARNs.
-    Each element is of this format: `arn:aws:cognito-idp:{region}:{account_id}:userpool/{user_pool_id}`.
-    """
-
-    rest_api: pulumi.Output[str] = pulumi.property("restApi")
-    """
-    The ID of the associated REST API
-    """
-
-    type: pulumi.Output[Optional[str]] = pulumi.property("type")
-    """
-    The type of the authorizer. Possible values are `TOKEN` for a Lambda function using a single authorization token submitted in a custom header, `REQUEST` for a Lambda function using incoming request parameters, or `COGNITO_USER_POOLS` for using an Amazon Cognito user pool.
-    Defaults to `TOKEN`.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -195,6 +140,88 @@ class Authorizer(pulumi.CustomResource):
         __props__["rest_api"] = rest_api
         __props__["type"] = type
         return Authorizer(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="authorizerCredentials")
+    def authorizer_credentials(self) -> Optional[str]:
+        """
+        The credentials required for the authorizer.
+        To specify an IAM Role for API Gateway to assume, use the IAM Role ARN.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="authorizerResultTtlInSeconds")
+    def authorizer_result_ttl_in_seconds(self) -> Optional[float]:
+        """
+        The TTL of cached authorizer results in seconds.
+        Defaults to `300`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="authorizerUri")
+    def authorizer_uri(self) -> Optional[str]:
+        """
+        The authorizer's Uniform Resource Identifier (URI).
+        This must be a well-formed Lambda function URI in the form of `arn:aws:apigateway:{region}:lambda:path/{service_api}`,
+        e.g. `arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:012345678912:function:my-function/invocations`
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="identitySource")
+    def identity_source(self) -> Optional[str]:
+        """
+        The source of the identity in an incoming request.
+        Defaults to `method.request.header.Authorization`. For `REQUEST` type, this may be a comma-separated list of values, including headers, query string parameters and stage variables - e.g. `"method.request.header.SomeHeaderName,method.request.querystring.SomeQueryStringName,stageVariables.SomeStageVariableName"`
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="identityValidationExpression")
+    def identity_validation_expression(self) -> Optional[str]:
+        """
+        A validation expression for the incoming identity.
+        For `TOKEN` type, this value should be a regular expression. The incoming token from the client is matched
+        against this expression, and will proceed if the token matches. If the token doesn't match,
+        the client receives a 401 Unauthorized response.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the authorizer
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="providerArns")
+    def provider_arns(self) -> Optional[List[str]]:
+        """
+        A list of the Amazon Cognito user pool ARNs.
+        Each element is of this format: `arn:aws:cognito-idp:{region}:{account_id}:userpool/{user_pool_id}`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="restApi")
+    def rest_api(self) -> str:
+        """
+        The ID of the associated REST API
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        The type of the authorizer. Possible values are `TOKEN` for a Lambda function using a single authorization token submitted in a custom header, `REQUEST` for a Lambda function using incoming request parameters, or `COGNITO_USER_POOLS` for using an Amazon Cognito user pool.
+        Defaults to `TOKEN`.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

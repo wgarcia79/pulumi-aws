@@ -12,26 +12,6 @@ __all__ = ['SnapshotCopyGrant']
 
 
 class SnapshotCopyGrant(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN) of snapshot copy grant
-    """
-
-    kms_key_id: pulumi.Output[str] = pulumi.property("kmsKeyId")
-    """
-    The unique identifier for the customer master key (CMK) that the grant applies to. Specify the key ID or the Amazon Resource Name (ARN) of the CMK. To specify a CMK in a different AWS account, you must use the key ARN. If not specified, the default key is used.
-    """
-
-    snapshot_copy_grant_name: pulumi.Output[str] = pulumi.property("snapshotCopyGrantName")
-    """
-    A friendly name for identifying the grant.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -123,6 +103,38 @@ class SnapshotCopyGrant(pulumi.CustomResource):
         __props__["snapshot_copy_grant_name"] = snapshot_copy_grant_name
         __props__["tags"] = tags
         return SnapshotCopyGrant(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of snapshot copy grant
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="kmsKeyId")
+    def kms_key_id(self) -> str:
+        """
+        The unique identifier for the customer master key (CMK) that the grant applies to. Specify the key ID or the Amazon Resource Name (ARN) of the CMK. To specify a CMK in a different AWS account, you must use the key ARN. If not specified, the default key is used.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="snapshotCopyGrantName")
+    def snapshot_copy_grant_name(self) -> str:
+        """
+        A friendly name for identifying the grant.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

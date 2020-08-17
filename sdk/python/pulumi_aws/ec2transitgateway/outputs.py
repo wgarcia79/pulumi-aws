@@ -19,6 +19,16 @@ __all__ = [
 
 @pulumi.output_type
 class GetDirectConnectGatewayAttachmentFilterResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 values: List[str]):
+        """
+        :param str name: The name of the filter field. Valid values can be found in the [EC2 DescribeTransitGatewayAttachments API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeTransitGatewayAttachments.html).
+        :param List[str] values: Set of values that are accepted for the given filter field. Results will be selected if any given value matches.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "values", values)
+
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -38,6 +48,18 @@ class GetDirectConnectGatewayAttachmentFilterResult(dict):
 
 @pulumi.output_type
 class GetPeeringAttachmentFilterResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 values: List[str]):
+        """
+        :param str name: The name of the field to filter by, as defined by
+               [the underlying AWS API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeTransitGatewayPeeringAttachments.html).
+        :param List[str] values: Set of values that are accepted for the given field.
+               An EC2 Transit Gateway Peering Attachment be selected if any one of the given values matches.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "values", values)
+
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -59,6 +81,16 @@ class GetPeeringAttachmentFilterResult(dict):
 
 @pulumi.output_type
 class GetRouteTableFilterResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 values: List[str]):
+        """
+        :param str name: Name of the filter.
+        :param List[str] values: List of one or more values for the filter.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "values", values)
+
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -78,6 +110,16 @@ class GetRouteTableFilterResult(dict):
 
 @pulumi.output_type
 class GetTransitGatewayFilterResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 values: List[str]):
+        """
+        :param str name: Name of the filter.
+        :param List[str] values: List of one or more values for the filter.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "values", values)
+
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -97,6 +139,16 @@ class GetTransitGatewayFilterResult(dict):
 
 @pulumi.output_type
 class GetVpcAttachmentFilterResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 values: List[str]):
+        """
+        :param str name: Name of the filter.
+        :param List[str] values: List of one or more values for the filter.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "values", values)
+
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -116,6 +168,16 @@ class GetVpcAttachmentFilterResult(dict):
 
 @pulumi.output_type
 class GetVpnAttachmentFilterResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 values: List[str]):
+        """
+        :param str name: The name of the filter field. Valid values can be found in the [EC2 DescribeTransitGatewayAttachments API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeTransitGatewayAttachments.html).
+        :param List[str] values: Set of values that are accepted for the given filter field. Results will be selected if any given value matches.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "values", values)
+
     @property
     @pulumi.getter
     def name(self) -> str:

@@ -12,16 +12,6 @@ __all__ = ['Project']
 
 
 class Project(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The Amazon Resource Name of this project
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the project
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -98,6 +88,22 @@ class Project(pulumi.CustomResource):
         __props__["arn"] = arn
         __props__["name"] = name
         return Project(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The Amazon Resource Name of this project
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the project
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -12,22 +12,6 @@ __all__ = ['Notification']
 
 
 class Notification(pulumi.CustomResource):
-    group_names: pulumi.Output[List[str]] = pulumi.property("groupNames")
-    """
-    A list of AutoScaling Group Names
-    """
-
-    notifications: pulumi.Output[List[str]] = pulumi.property("notifications")
-    """
-    A list of Notification Types that trigger
-    notifications. Acceptable values are documented [in the AWS documentation here](https://docs.aws.amazon.com/AutoScaling/latest/APIReference/API_NotificationConfiguration.html)
-    """
-
-    topic_arn: pulumi.Output[str] = pulumi.property("topicArn")
-    """
-    The Topic ARN for notifications to be sent through
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -133,6 +117,31 @@ class Notification(pulumi.CustomResource):
         __props__["notifications"] = notifications
         __props__["topic_arn"] = topic_arn
         return Notification(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="groupNames")
+    def group_names(self) -> List[str]:
+        """
+        A list of AutoScaling Group Names
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def notifications(self) -> List[str]:
+        """
+        A list of Notification Types that trigger
+        notifications. Acceptable values are documented [in the AWS documentation here](https://docs.aws.amazon.com/AutoScaling/latest/APIReference/API_NotificationConfiguration.html)
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="topicArn")
+    def topic_arn(self) -> str:
+        """
+        The Topic ARN for notifications to be sent through
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

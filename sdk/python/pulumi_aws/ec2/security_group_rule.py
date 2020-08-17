@@ -12,65 +12,6 @@ __all__ = ['SecurityGroupRule']
 
 
 class SecurityGroupRule(pulumi.CustomResource):
-    cidr_blocks: pulumi.Output[Optional[List[str]]] = pulumi.property("cidrBlocks")
-    """
-    List of CIDR blocks. Cannot be specified with `source_security_group_id`.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    Description of the rule.
-    """
-
-    from_port: pulumi.Output[float] = pulumi.property("fromPort")
-    """
-    The start port (or ICMP type number if protocol is "icmp" or "icmpv6").
-    """
-
-    ipv6_cidr_blocks: pulumi.Output[Optional[List[str]]] = pulumi.property("ipv6CidrBlocks")
-    """
-    List of IPv6 CIDR blocks.
-    """
-
-    prefix_list_ids: pulumi.Output[Optional[List[str]]] = pulumi.property("prefixListIds")
-    """
-    List of prefix list IDs (for allowing access to VPC endpoints).
-    Only valid with `egress`.
-    """
-
-    protocol: pulumi.Output[str] = pulumi.property("protocol")
-    """
-    The protocol. If not icmp, icmpv6, tcp, udp, or all use the [protocol number](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml)
-    """
-
-    security_group_id: pulumi.Output[str] = pulumi.property("securityGroupId")
-    """
-    The security group to apply this rule to.
-    """
-
-    self: pulumi.Output[Optional[bool]] = pulumi.property("self")
-    """
-    If true, the security group itself will be added as
-    a source to this ingress rule. Cannot be specified with `source_security_group_id`.
-    """
-
-    source_security_group_id: pulumi.Output[str] = pulumi.property("sourceSecurityGroupId")
-    """
-    The security group id to allow access to/from,
-    depending on the `type`. Cannot be specified with `cidr_blocks` and `self`.
-    """
-
-    to_port: pulumi.Output[float] = pulumi.property("toPort")
-    """
-    The end port (or ICMP code if protocol is "icmp").
-    """
-
-    type: pulumi.Output[str] = pulumi.property("type")
-    """
-    The type of rule being created. Valid options are `ingress` (inbound)
-    or `egress` (outbound).
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -256,6 +197,98 @@ class SecurityGroupRule(pulumi.CustomResource):
         __props__["to_port"] = to_port
         __props__["type"] = type
         return SecurityGroupRule(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="cidrBlocks")
+    def cidr_blocks(self) -> Optional[List[str]]:
+        """
+        List of CIDR blocks. Cannot be specified with `source_security_group_id`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Description of the rule.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="fromPort")
+    def from_port(self) -> float:
+        """
+        The start port (or ICMP type number if protocol is "icmp" or "icmpv6").
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="ipv6CidrBlocks")
+    def ipv6_cidr_blocks(self) -> Optional[List[str]]:
+        """
+        List of IPv6 CIDR blocks.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="prefixListIds")
+    def prefix_list_ids(self) -> Optional[List[str]]:
+        """
+        List of prefix list IDs (for allowing access to VPC endpoints).
+        Only valid with `egress`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        """
+        The protocol. If not icmp, icmpv6, tcp, udp, or all use the [protocol number](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml)
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="securityGroupId")
+    def security_group_id(self) -> str:
+        """
+        The security group to apply this rule to.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def self(self) -> Optional[bool]:
+        """
+        If true, the security group itself will be added as
+        a source to this ingress rule. Cannot be specified with `source_security_group_id`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="sourceSecurityGroupId")
+    def source_security_group_id(self) -> str:
+        """
+        The security group id to allow access to/from,
+        depending on the `type`. Cannot be specified with `cidr_blocks` and `self`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="toPort")
+    def to_port(self) -> float:
+        """
+        The end port (or ICMP code if protocol is "icmp").
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of rule being created. Valid options are `ingress` (inbound)
+        or `egress` (outbound).
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

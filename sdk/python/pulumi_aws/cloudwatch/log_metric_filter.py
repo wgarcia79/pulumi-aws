@@ -14,28 +14,6 @@ __all__ = ['LogMetricFilter']
 
 
 class LogMetricFilter(pulumi.CustomResource):
-    log_group_name: pulumi.Output[str] = pulumi.property("logGroupName")
-    """
-    The name of the log group to associate the metric filter with.
-    """
-
-    metric_transformation: pulumi.Output['outputs.LogMetricFilterMetricTransformation'] = pulumi.property("metricTransformation")
-    """
-    A block defining collection of information
-    needed to define how metric data gets emitted. See below.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    A name for the metric filter.
-    """
-
-    pattern: pulumi.Output[str] = pulumi.property("pattern")
-    """
-    A valid [CloudWatch Logs filter pattern](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/FilterAndPatternSyntax.html)
-    for extracting metric data out of ingested log events.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -139,6 +117,40 @@ class LogMetricFilter(pulumi.CustomResource):
         __props__["name"] = name
         __props__["pattern"] = pattern
         return LogMetricFilter(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="logGroupName")
+    def log_group_name(self) -> str:
+        """
+        The name of the log group to associate the metric filter with.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="metricTransformation")
+    def metric_transformation(self) -> 'outputs.LogMetricFilterMetricTransformation':
+        """
+        A block defining collection of information
+        needed to define how metric data gets emitted. See below.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A name for the metric filter.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def pattern(self) -> str:
+        """
+        A valid [CloudWatch Logs filter pattern](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/FilterAndPatternSyntax.html)
+        for extracting metric data out of ingested log events.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

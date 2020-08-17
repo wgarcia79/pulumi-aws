@@ -14,73 +14,6 @@ __all__ = ['RestApi']
 
 
 class RestApi(pulumi.CustomResource):
-    api_key_source: pulumi.Output[Optional[str]] = pulumi.property("apiKeySource")
-    """
-    The source of the API key for requests. Valid values are HEADER (default) and AUTHORIZER.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN)
-    """
-
-    binary_media_types: pulumi.Output[Optional[List[str]]] = pulumi.property("binaryMediaTypes")
-    """
-    The list of binary media types supported by the RestApi. By default, the RestApi supports only UTF-8-encoded text payloads.
-    """
-
-    body: pulumi.Output[Optional[str]] = pulumi.property("body")
-    """
-    An OpenAPI specification that defines the set of routes and integrations to create as part of the REST API.
-    """
-
-    created_date: pulumi.Output[str] = pulumi.property("createdDate")
-    """
-    The creation date of the REST API
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    The description of the REST API
-    """
-
-    endpoint_configuration: pulumi.Output['outputs.RestApiEndpointConfiguration'] = pulumi.property("endpointConfiguration")
-    """
-    Nested argument defining API endpoint configuration including endpoint type. Defined below.
-    """
-
-    execution_arn: pulumi.Output[str] = pulumi.property("executionArn")
-    """
-    The execution ARN part to be used in `lambda_permission`'s `source_arn`
-    when allowing API Gateway to invoke a Lambda function,
-    e.g. `arn:aws:execute-api:eu-west-2:123456789012:z4675bid1j`, which can be concatenated with allowed stage, method and resource path.
-    """
-
-    minimum_compression_size: pulumi.Output[Optional[float]] = pulumi.property("minimumCompressionSize")
-    """
-    Minimum response size to compress for the REST API. Integer between -1 and 10485760 (10MB). Setting a value greater than -1 will enable compression, -1 disables compression (default).
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the REST API
-    """
-
-    policy: pulumi.Output[Optional[str]] = pulumi.property("policy")
-    """
-    JSON formatted policy document that controls access to the API Gateway.
-    """
-
-    root_resource_id: pulumi.Output[str] = pulumi.property("rootResourceId")
-    """
-    The resource ID of the REST API's root
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of resource tags
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -227,6 +160,112 @@ class RestApi(pulumi.CustomResource):
         __props__["root_resource_id"] = root_resource_id
         __props__["tags"] = tags
         return RestApi(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="apiKeySource")
+    def api_key_source(self) -> Optional[str]:
+        """
+        The source of the API key for requests. Valid values are HEADER (default) and AUTHORIZER.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN)
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="binaryMediaTypes")
+    def binary_media_types(self) -> Optional[List[str]]:
+        """
+        The list of binary media types supported by the RestApi. By default, the RestApi supports only UTF-8-encoded text payloads.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def body(self) -> Optional[str]:
+        """
+        An OpenAPI specification that defines the set of routes and integrations to create as part of the REST API.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="createdDate")
+    def created_date(self) -> str:
+        """
+        The creation date of the REST API
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        The description of the REST API
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="endpointConfiguration")
+    def endpoint_configuration(self) -> 'outputs.RestApiEndpointConfiguration':
+        """
+        Nested argument defining API endpoint configuration including endpoint type. Defined below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="executionArn")
+    def execution_arn(self) -> str:
+        """
+        The execution ARN part to be used in `lambda_permission`'s `source_arn`
+        when allowing API Gateway to invoke a Lambda function,
+        e.g. `arn:aws:execute-api:eu-west-2:123456789012:z4675bid1j`, which can be concatenated with allowed stage, method and resource path.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="minimumCompressionSize")
+    def minimum_compression_size(self) -> Optional[float]:
+        """
+        Minimum response size to compress for the REST API. Integer between -1 and 10485760 (10MB). Setting a value greater than -1 will enable compression, -1 disables compression (default).
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the REST API
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def policy(self) -> Optional[str]:
+        """
+        JSON formatted policy document that controls access to the API Gateway.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="rootResourceId")
+    def root_resource_id(self) -> str:
+        """
+        The resource ID of the REST API's root
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of resource tags
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

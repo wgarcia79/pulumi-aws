@@ -12,81 +12,6 @@ __all__ = ['Stack']
 
 
 class Stack(pulumi.CustomResource):
-    capabilities: pulumi.Output[Optional[List[str]]] = pulumi.property("capabilities")
-    """
-    A list of capabilities.
-    Valid values: `CAPABILITY_IAM`, `CAPABILITY_NAMED_IAM`, or `CAPABILITY_AUTO_EXPAND`
-    """
-
-    disable_rollback: pulumi.Output[Optional[bool]] = pulumi.property("disableRollback")
-    """
-    Set to true to disable rollback of the stack if stack creation failed.
-    Conflicts with `on_failure`.
-    """
-
-    iam_role_arn: pulumi.Output[Optional[str]] = pulumi.property("iamRoleArn")
-    """
-    The ARN of an IAM role that AWS CloudFormation assumes to create the stack. If you don't specify a value, AWS CloudFormation uses the role that was previously associated with the stack. If no role is available, AWS CloudFormation uses a temporary session that is generated from your user credentials.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    Stack name.
-    """
-
-    notification_arns: pulumi.Output[Optional[List[str]]] = pulumi.property("notificationArns")
-    """
-    A list of SNS topic ARNs to publish stack related events.
-    """
-
-    on_failure: pulumi.Output[Optional[str]] = pulumi.property("onFailure")
-    """
-    Action to be taken if stack creation fails. This must be
-    one of: `DO_NOTHING`, `ROLLBACK`, or `DELETE`. Conflicts with `disable_rollback`.
-    """
-
-    outputs: pulumi.Output[Mapping[str, str]] = pulumi.property("outputs")
-    """
-    A map of outputs from the stack.
-    """
-
-    parameters: pulumi.Output[Mapping[str, str]] = pulumi.property("parameters")
-    """
-    A map of Parameter structures that specify input parameters for the stack.
-    """
-
-    policy_body: pulumi.Output[str] = pulumi.property("policyBody")
-    """
-    Structure containing the stack policy body.
-    Conflicts w/ `policy_url`.
-    """
-
-    policy_url: pulumi.Output[Optional[str]] = pulumi.property("policyUrl")
-    """
-    Location of a file containing the stack policy.
-    Conflicts w/ `policy_body`.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A list of tags to associate with this stack.
-    """
-
-    template_body: pulumi.Output[str] = pulumi.property("templateBody")
-    """
-    Structure containing the template body (max size: 51,200 bytes).
-    """
-
-    template_url: pulumi.Output[Optional[str]] = pulumi.property("templateUrl")
-    """
-    Location of a file containing the template body (max size: 460,800 bytes).
-    """
-
-    timeout_in_minutes: pulumi.Output[Optional[float]] = pulumi.property("timeoutInMinutes")
-    """
-    The amount of time that can pass before the stack status becomes `CREATE_FAILED`.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -265,6 +190,123 @@ class Stack(pulumi.CustomResource):
         __props__["template_url"] = template_url
         __props__["timeout_in_minutes"] = timeout_in_minutes
         return Stack(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def capabilities(self) -> Optional[List[str]]:
+        """
+        A list of capabilities.
+        Valid values: `CAPABILITY_IAM`, `CAPABILITY_NAMED_IAM`, or `CAPABILITY_AUTO_EXPAND`
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="disableRollback")
+    def disable_rollback(self) -> Optional[bool]:
+        """
+        Set to true to disable rollback of the stack if stack creation failed.
+        Conflicts with `on_failure`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="iamRoleArn")
+    def iam_role_arn(self) -> Optional[str]:
+        """
+        The ARN of an IAM role that AWS CloudFormation assumes to create the stack. If you don't specify a value, AWS CloudFormation uses the role that was previously associated with the stack. If no role is available, AWS CloudFormation uses a temporary session that is generated from your user credentials.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Stack name.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="notificationArns")
+    def notification_arns(self) -> Optional[List[str]]:
+        """
+        A list of SNS topic ARNs to publish stack related events.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="onFailure")
+    def on_failure(self) -> Optional[str]:
+        """
+        Action to be taken if stack creation fails. This must be
+        one of: `DO_NOTHING`, `ROLLBACK`, or `DELETE`. Conflicts with `disable_rollback`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def outputs(self) -> Mapping[str, str]:
+        """
+        A map of outputs from the stack.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Mapping[str, str]:
+        """
+        A map of Parameter structures that specify input parameters for the stack.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="policyBody")
+    def policy_body(self) -> str:
+        """
+        Structure containing the stack policy body.
+        Conflicts w/ `policy_url`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="policyUrl")
+    def policy_url(self) -> Optional[str]:
+        """
+        Location of a file containing the stack policy.
+        Conflicts w/ `policy_body`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A list of tags to associate with this stack.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="templateBody")
+    def template_body(self) -> str:
+        """
+        Structure containing the template body (max size: 51,200 bytes).
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="templateUrl")
+    def template_url(self) -> Optional[str]:
+        """
+        Location of a file containing the template body (max size: 460,800 bytes).
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="timeoutInMinutes")
+    def timeout_in_minutes(self) -> Optional[float]:
+        """
+        The amount of time that can pass before the stack status becomes `CREATE_FAILED`.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -15,15 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetAliasResult:
-    arn: str = pulumi.property("arn")
-    id: str = pulumi.property("id")
-    name: str = pulumi.property("name")
-    target_key_arn: str = pulumi.property("targetKeyArn")
-    target_key_id: str = pulumi.property("targetKeyId")
-
-
 class GetAliasResult:
     """
     A collection of values returned by getAlias.
@@ -31,31 +24,57 @@ class GetAliasResult:
     def __init__(__self__, arn=None, id=None, name=None, target_key_arn=None, target_key_id=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if target_key_arn and not isinstance(target_key_arn, str):
+            raise TypeError("Expected argument 'target_key_arn' to be a str")
+        pulumi.set(__self__, "target_key_arn", target_key_arn)
+        if target_key_id and not isinstance(target_key_id, str):
+            raise TypeError("Expected argument 'target_key_id' to be a str")
+        pulumi.set(__self__, "target_key_id", target_key_id)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The Amazon Resource Name(ARN) of the key alias.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if target_key_arn and not isinstance(target_key_arn, str):
-            raise TypeError("Expected argument 'target_key_arn' to be a str")
-        __self__.target_key_arn = target_key_arn
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="targetKeyArn")
+    def target_key_arn(self) -> str:
         """
         ARN pointed to by the alias.
         """
-        if target_key_id and not isinstance(target_key_id, str):
-            raise TypeError("Expected argument 'target_key_id' to be a str")
-        __self__.target_key_id = target_key_id
+        ...
+
+    @property
+    @pulumi.getter(name="targetKeyId")
+    def target_key_id(self) -> str:
         """
         Key identifier pointed to by the alias.
         """
+        ...
+
 
 
 class AwaitableGetAliasResult(GetAliasResult):
@@ -96,7 +115,7 @@ def get_alias(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:kms/getAlias:getAlias', __args__, opts=opts, typ=_GetAliasResult).value
+    __ret__ = pulumi.runtime.invoke('aws:kms/getAlias:getAlias', __args__, opts=opts, typ=GetAliasResult).value
 
     return AwaitableGetAliasResult(
         arn=__ret__.arn,

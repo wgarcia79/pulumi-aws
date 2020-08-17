@@ -12,46 +12,6 @@ __all__ = ['VpcDhcpOptions']
 
 
 class VpcDhcpOptions(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the DHCP Options Set.
-    """
-
-    domain_name: pulumi.Output[Optional[str]] = pulumi.property("domainName")
-    """
-    the suffix domain name to use by default when resolving non Fully Qualified Domain Names. In other words, this is what ends up being the `search` value in the `/etc/resolv.conf` file.
-    """
-
-    domain_name_servers: pulumi.Output[Optional[List[str]]] = pulumi.property("domainNameServers")
-    """
-    List of name servers to configure in `/etc/resolv.conf`. If you want to use the default AWS nameservers you should set this to `AmazonProvidedDNS`.
-    """
-
-    netbios_name_servers: pulumi.Output[Optional[List[str]]] = pulumi.property("netbiosNameServers")
-    """
-    List of NETBIOS name servers.
-    """
-
-    netbios_node_type: pulumi.Output[Optional[str]] = pulumi.property("netbiosNodeType")
-    """
-    The NetBIOS node type (1, 2, 4, or 8). AWS recommends to specify 2 since broadcast and multicast are not supported in their network. For more information about these node types, see [RFC 2132](http://www.ietf.org/rfc/rfc2132.txt).
-    """
-
-    ntp_servers: pulumi.Output[Optional[List[str]]] = pulumi.property("ntpServers")
-    """
-    List of NTP servers to configure.
-    """
-
-    owner_id: pulumi.Output[str] = pulumi.property("ownerId")
-    """
-    The ID of the AWS account that owns the DHCP options set.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -189,6 +149,70 @@ class VpcDhcpOptions(pulumi.CustomResource):
         __props__["owner_id"] = owner_id
         __props__["tags"] = tags
         return VpcDhcpOptions(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the DHCP Options Set.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="domainName")
+    def domain_name(self) -> Optional[str]:
+        """
+        the suffix domain name to use by default when resolving non Fully Qualified Domain Names. In other words, this is what ends up being the `search` value in the `/etc/resolv.conf` file.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="domainNameServers")
+    def domain_name_servers(self) -> Optional[List[str]]:
+        """
+        List of name servers to configure in `/etc/resolv.conf`. If you want to use the default AWS nameservers you should set this to `AmazonProvidedDNS`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="netbiosNameServers")
+    def netbios_name_servers(self) -> Optional[List[str]]:
+        """
+        List of NETBIOS name servers.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="netbiosNodeType")
+    def netbios_node_type(self) -> Optional[str]:
+        """
+        The NetBIOS node type (1, 2, 4, or 8). AWS recommends to specify 2 since broadcast and multicast are not supported in their network. For more information about these node types, see [RFC 2132](http://www.ietf.org/rfc/rfc2132.txt).
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="ntpServers")
+    def ntp_servers(self) -> Optional[List[str]]:
+        """
+        List of NTP servers to configure.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
+        """
+        The ID of the AWS account that owns the DHCP options set.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

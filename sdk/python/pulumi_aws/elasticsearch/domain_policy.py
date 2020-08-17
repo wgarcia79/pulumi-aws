@@ -12,16 +12,6 @@ __all__ = ['DomainPolicy']
 
 
 class DomainPolicy(pulumi.CustomResource):
-    access_policies: pulumi.Output[str] = pulumi.property("accessPolicies")
-    """
-    IAM policy document specifying the access policies for the domain
-    """
-
-    domain_name: pulumi.Output[str] = pulumi.property("domainName")
-    """
-    Name of the domain.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -117,6 +107,22 @@ class DomainPolicy(pulumi.CustomResource):
         __props__["access_policies"] = access_policies
         __props__["domain_name"] = domain_name
         return DomainPolicy(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="accessPolicies")
+    def access_policies(self) -> str:
+        """
+        IAM policy document specifying the access policies for the domain
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="domainName")
+    def domain_name(self) -> str:
+        """
+        Name of the domain.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

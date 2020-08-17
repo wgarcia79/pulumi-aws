@@ -25,7 +25,8 @@ class ClusterParameterGroupParameterArgs:
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "value", value)
-        pulumi.set(__self__, "applyMethod", apply_method)
+        if apply_method is not None:
+            pulumi.set(__self__, "apply_method", apply_method)
 
     @property
     @pulumi.getter

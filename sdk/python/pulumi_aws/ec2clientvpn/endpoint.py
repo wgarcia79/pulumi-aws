@@ -14,66 +14,6 @@ __all__ = ['Endpoint']
 
 
 class Endpoint(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the Client VPN endpoint.
-    """
-
-    authentication_options: pulumi.Output[List['outputs.EndpointAuthenticationOption']] = pulumi.property("authenticationOptions")
-    """
-    Information about the authentication method to be used to authenticate clients.
-    """
-
-    client_cidr_block: pulumi.Output[str] = pulumi.property("clientCidrBlock")
-    """
-    The IPv4 address range, in CIDR notation, from which to assign client IP addresses. The address range cannot overlap with the local CIDR of the VPC in which the associated subnet is located, or the routes that you add manually. The address range cannot be changed after the Client VPN endpoint has been created. The CIDR block should be /22 or greater.
-    """
-
-    connection_log_options: pulumi.Output['outputs.EndpointConnectionLogOptions'] = pulumi.property("connectionLogOptions")
-    """
-    Information about the client connection logging options.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    Name of the repository.
-    """
-
-    dns_name: pulumi.Output[str] = pulumi.property("dnsName")
-    """
-    The DNS name to be used by clients when establishing their VPN session.
-    """
-
-    dns_servers: pulumi.Output[Optional[List[str]]] = pulumi.property("dnsServers")
-    """
-    Information about the DNS servers to be used for DNS resolution. A Client VPN endpoint can have up to two DNS servers. If no DNS server is specified, the DNS address of the VPC that is to be associated with Client VPN endpoint is used as the DNS server.
-    """
-
-    server_certificate_arn: pulumi.Output[str] = pulumi.property("serverCertificateArn")
-    """
-    The ARN of the ACM server certificate.
-    """
-
-    split_tunnel: pulumi.Output[Optional[bool]] = pulumi.property("splitTunnel")
-    """
-    Indicates whether split-tunnel is enabled on VPN endpoint. Default value is `false`.
-    """
-
-    status: pulumi.Output[str] = pulumi.property("status")
-    """
-    The current state of the Client VPN endpoint.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A mapping of tags to assign to the resource.
-    """
-
-    transport_protocol: pulumi.Output[Optional[str]] = pulumi.property("transportProtocol")
-    """
-    The transport protocol to be used by the VPN session. Default value is `udp`.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -222,6 +162,102 @@ class Endpoint(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["transport_protocol"] = transport_protocol
         return Endpoint(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the Client VPN endpoint.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="authenticationOptions")
+    def authentication_options(self) -> List['outputs.EndpointAuthenticationOption']:
+        """
+        Information about the authentication method to be used to authenticate clients.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="clientCidrBlock")
+    def client_cidr_block(self) -> str:
+        """
+        The IPv4 address range, in CIDR notation, from which to assign client IP addresses. The address range cannot overlap with the local CIDR of the VPC in which the associated subnet is located, or the routes that you add manually. The address range cannot be changed after the Client VPN endpoint has been created. The CIDR block should be /22 or greater.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="connectionLogOptions")
+    def connection_log_options(self) -> 'outputs.EndpointConnectionLogOptions':
+        """
+        Information about the client connection logging options.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Name of the repository.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="dnsName")
+    def dns_name(self) -> str:
+        """
+        The DNS name to be used by clients when establishing their VPN session.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="dnsServers")
+    def dns_servers(self) -> Optional[List[str]]:
+        """
+        Information about the DNS servers to be used for DNS resolution. A Client VPN endpoint can have up to two DNS servers. If no DNS server is specified, the DNS address of the VPC that is to be associated with Client VPN endpoint is used as the DNS server.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="serverCertificateArn")
+    def server_certificate_arn(self) -> str:
+        """
+        The ARN of the ACM server certificate.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="splitTunnel")
+    def split_tunnel(self) -> Optional[bool]:
+        """
+        Indicates whether split-tunnel is enabled on VPN endpoint. Default value is `false`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The current state of the Client VPN endpoint.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A mapping of tags to assign to the resource.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="transportProtocol")
+    def transport_protocol(self) -> Optional[str]:
+        """
+        The transport protocol to be used by the VPN session. Default value is `udp`.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

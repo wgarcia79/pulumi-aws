@@ -18,6 +18,19 @@ __all__ = [
 
 @pulumi.output_type
 class LifecyclePolicyPolicyDetails(dict):
+    def __init__(__self__, *,
+                 resource_types: List[str],
+                 schedules: List['outputs.LifecyclePolicyPolicyDetailsSchedule'],
+                 target_tags: Mapping[str, str]):
+        """
+        :param List[str] resource_types: A list of resource types that should be targeted by the lifecycle policy. `VOLUME` is currently the only allowed value.
+        :param List['LifecyclePolicyPolicyDetailsScheduleArgs'] schedules: See the `schedule` configuration block.
+        :param Mapping[str, str] target_tags: A map of tag keys and their values. Any resources that match the `resource_types` and are tagged with _any_ of these tags will be targeted.
+        """
+        pulumi.set(__self__, "resource_types", resource_types)
+        pulumi.set(__self__, "schedules", schedules)
+        pulumi.set(__self__, "target_tags", target_tags)
+
     @property
     @pulumi.getter(name="resourceTypes")
     def resource_types(self) -> List[str]:
@@ -48,13 +61,26 @@ class LifecyclePolicyPolicyDetails(dict):
 
 @pulumi.output_type
 class LifecyclePolicyPolicyDetailsSchedule(dict):
-    @property
-    @pulumi.getter(name="copyTags")
-    def copy_tags(self) -> Optional[bool]:
+    def __init__(__self__, *,
+                 create_rule: 'outputs.LifecyclePolicyPolicyDetailsScheduleCreateRule',
+                 name: str,
+                 retain_rule: 'outputs.LifecyclePolicyPolicyDetailsScheduleRetainRule',
+                 copy_tags: Optional[bool] = None,
+                 tags_to_add: Optional[Mapping[str, str]] = None):
         """
-        Copy all user-defined tags on a source volume to snapshots of the volume created by this policy.
+        :param 'LifecyclePolicyPolicyDetailsScheduleCreateRuleArgs' create_rule: See the `create_rule` block. Max of 1 per schedule.
+        :param str name: A name for the schedule.
+        :param 'LifecyclePolicyPolicyDetailsScheduleRetainRuleArgs' retain_rule: See the `retain_rule` block. Max of 1 per schedule.
+        :param bool copy_tags: Copy all user-defined tags on a source volume to snapshots of the volume created by this policy.
+        :param Mapping[str, str] tags_to_add: A map of tag keys and their values. DLM lifecycle policies will already tag the snapshot with the tags on the volume. This configuration adds extra tags on top of these.
         """
-        ...
+        pulumi.set(__self__, "create_rule", create_rule)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "retain_rule", retain_rule)
+        if copy_tags is not None:
+            pulumi.set(__self__, "copy_tags", copy_tags)
+        if tags_to_add is not None:
+            pulumi.set(__self__, "tags_to_add", tags_to_add)
 
     @property
     @pulumi.getter(name="createRule")
@@ -81,6 +107,14 @@ class LifecyclePolicyPolicyDetailsSchedule(dict):
         ...
 
     @property
+    @pulumi.getter(name="copyTags")
+    def copy_tags(self) -> Optional[bool]:
+        """
+        Copy all user-defined tags on a source volume to snapshots of the volume created by this policy.
+        """
+        ...
+
+    @property
     @pulumi.getter(name="tagsToAdd")
     def tags_to_add(self) -> Optional[Mapping[str, str]]:
         """
@@ -94,6 +128,21 @@ class LifecyclePolicyPolicyDetailsSchedule(dict):
 
 @pulumi.output_type
 class LifecyclePolicyPolicyDetailsScheduleCreateRule(dict):
+    def __init__(__self__, *,
+                 interval: float,
+                 interval_unit: Optional[str] = None,
+                 times: Optional[str] = None):
+        """
+        :param float interval: How often this lifecycle policy should be evaluated. `1`, `2`,`3`,`4`,`6`,`8`,`12` or `24` are valid values.
+        :param str interval_unit: The unit for how often the lifecycle policy should be evaluated. `HOURS` is currently the only allowed value and also the default value.
+        :param str times: A list of times in 24 hour clock format that sets when the lifecycle policy should be evaluated. Max of 1.
+        """
+        pulumi.set(__self__, "interval", interval)
+        if interval_unit is not None:
+            pulumi.set(__self__, "interval_unit", interval_unit)
+        if times is not None:
+            pulumi.set(__self__, "times", times)
+
     @property
     @pulumi.getter
     def interval(self) -> float:
@@ -124,6 +173,13 @@ class LifecyclePolicyPolicyDetailsScheduleCreateRule(dict):
 
 @pulumi.output_type
 class LifecyclePolicyPolicyDetailsScheduleRetainRule(dict):
+    def __init__(__self__, *,
+                 count: float):
+        """
+        :param float count: How many snapshots to keep. Must be an integer between 1 and 1000.
+        """
+        pulumi.set(__self__, "count", count)
+
     @property
     @pulumi.getter
     def count(self) -> float:

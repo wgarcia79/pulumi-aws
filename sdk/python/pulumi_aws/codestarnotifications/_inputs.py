@@ -24,8 +24,10 @@ class NotificationRuleTargetArgs:
         :param pulumi.Input[str] type: The type of the notification target. Default value is `SNS`.
         """
         pulumi.set(__self__, "address", address)
-        pulumi.set(__self__, "status", status)
-        pulumi.set(__self__, "type", type)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter

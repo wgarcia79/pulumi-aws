@@ -12,26 +12,6 @@ __all__ = ['Deployment']
 
 
 class Deployment(pulumi.CustomResource):
-    api_id: pulumi.Output[str] = pulumi.property("apiId")
-    """
-    The API identifier.
-    """
-
-    auto_deployed: pulumi.Output[bool] = pulumi.property("autoDeployed")
-    """
-    Whether the deployment was automatically released.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    The description for the deployment resource.
-    """
-
-    triggers: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("triggers")
-    """
-    A map of arbitrary keys and values that, when changed, will trigger a redeployment.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -123,6 +103,38 @@ class Deployment(pulumi.CustomResource):
         __props__["description"] = description
         __props__["triggers"] = triggers
         return Deployment(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="apiId")
+    def api_id(self) -> str:
+        """
+        The API identifier.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="autoDeployed")
+    def auto_deployed(self) -> bool:
+        """
+        Whether the deployment was automatically released.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        The description for the deployment resource.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def triggers(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of arbitrary keys and values that, when changed, will trigger a redeployment.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

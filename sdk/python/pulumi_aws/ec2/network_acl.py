@@ -14,41 +14,6 @@ __all__ = ['NetworkAcl']
 
 
 class NetworkAcl(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the network ACL
-    """
-
-    egress: pulumi.Output[List['outputs.NetworkAclEgress']] = pulumi.property("egress")
-    """
-    Specifies an egress rule. Parameters defined below.
-    """
-
-    ingress: pulumi.Output[List['outputs.NetworkAclIngress']] = pulumi.property("ingress")
-    """
-    Specifies an ingress rule. Parameters defined below.
-    """
-
-    owner_id: pulumi.Output[str] = pulumi.property("ownerId")
-    """
-    The ID of the AWS account that owns the network ACL.
-    """
-
-    subnet_ids: pulumi.Output[List[str]] = pulumi.property("subnetIds")
-    """
-    A list of Subnet IDs to apply the ACL to
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A mapping of tags to assign to the resource.
-    """
-
-    vpc_id: pulumi.Output[str] = pulumi.property("vpcId")
-    """
-    The ID of the associated VPC.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -177,6 +142,62 @@ class NetworkAcl(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["vpc_id"] = vpc_id
         return NetworkAcl(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the network ACL
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def egress(self) -> List['outputs.NetworkAclEgress']:
+        """
+        Specifies an egress rule. Parameters defined below.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def ingress(self) -> List['outputs.NetworkAclIngress']:
+        """
+        Specifies an ingress rule. Parameters defined below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
+        """
+        The ID of the AWS account that owns the network ACL.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="subnetIds")
+    def subnet_ids(self) -> List[str]:
+        """
+        A list of Subnet IDs to apply the ACL to
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A mapping of tags to assign to the resource.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The ID of the associated VPC.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

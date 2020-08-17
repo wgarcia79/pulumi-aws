@@ -40,8 +40,9 @@ class AssociationOutputLocationArgs:
         :param pulumi.Input[str] s3_bucket_name: The S3 bucket name.
         :param pulumi.Input[str] s3_key_prefix: The S3 bucket prefix. Results stored in the root if not configured.
         """
-        pulumi.set(__self__, "s3BucketName", s3_bucket_name)
-        pulumi.set(__self__, "s3KeyPrefix", s3_key_prefix)
+        pulumi.set(__self__, "s3_bucket_name", s3_bucket_name)
+        if s3_key_prefix is not None:
+            pulumi.set(__self__, "s3_key_prefix", s3_key_prefix)
 
     @property
     @pulumi.getter(name="s3BucketName")
@@ -118,7 +119,8 @@ class DocumentAttachmentsSourceArgs:
         """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "values", values)
-        pulumi.set(__self__, "name", name)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -168,10 +170,14 @@ class DocumentParameterArgs:
         :param pulumi.Input[str] description: The description of the document.
         :param pulumi.Input[str] name: The name of the document.
         """
-        pulumi.set(__self__, "defaultValue", default_value)
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "type", type)
+        if default_value is not None:
+            pulumi.set(__self__, "default_value", default_value)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="defaultValue")
@@ -249,9 +255,10 @@ class MaintenanceWindowTaskLoggingInfoArgs:
                  s3_bucket_name: pulumi.Input[str],
                  s3_region: pulumi.Input[str],
                  s3_bucket_prefix: Optional[pulumi.Input[str]] = None):
-        pulumi.set(__self__, "s3BucketName", s3_bucket_name)
-        pulumi.set(__self__, "s3Region", s3_region)
-        pulumi.set(__self__, "s3BucketPrefix", s3_bucket_prefix)
+        pulumi.set(__self__, "s3_bucket_name", s3_bucket_name)
+        pulumi.set(__self__, "s3_region", s3_region)
+        if s3_bucket_prefix is not None:
+            pulumi.set(__self__, "s3_bucket_prefix", s3_bucket_prefix)
 
     @property
     @pulumi.getter(name="s3BucketName")
@@ -321,10 +328,14 @@ class MaintenanceWindowTaskTaskInvocationParametersArgs:
         :param pulumi.Input['MaintenanceWindowTaskTaskInvocationParametersRunCommandParametersArgs'] run_command_parameters: The parameters for a RUN_COMMAND task type. Documented below.
         :param pulumi.Input['MaintenanceWindowTaskTaskInvocationParametersStepFunctionsParametersArgs'] step_functions_parameters: The parameters for a STEP_FUNCTIONS task type. Documented below.
         """
-        pulumi.set(__self__, "automationParameters", automation_parameters)
-        pulumi.set(__self__, "lambdaParameters", lambda_parameters)
-        pulumi.set(__self__, "runCommandParameters", run_command_parameters)
-        pulumi.set(__self__, "stepFunctionsParameters", step_functions_parameters)
+        if automation_parameters is not None:
+            pulumi.set(__self__, "automation_parameters", automation_parameters)
+        if lambda_parameters is not None:
+            pulumi.set(__self__, "lambda_parameters", lambda_parameters)
+        if run_command_parameters is not None:
+            pulumi.set(__self__, "run_command_parameters", run_command_parameters)
+        if step_functions_parameters is not None:
+            pulumi.set(__self__, "step_functions_parameters", step_functions_parameters)
 
     @property
     @pulumi.getter(name="automationParameters")
@@ -384,8 +395,10 @@ class MaintenanceWindowTaskTaskInvocationParametersAutomationParametersArgs:
         :param pulumi.Input[str] document_version: The version of an Automation document to use during task execution.
         :param pulumi.Input[List[pulumi.Input['MaintenanceWindowTaskTaskInvocationParametersAutomationParametersParameterArgs']]] parameters: The parameters for the RUN_COMMAND task execution. Documented below.
         """
-        pulumi.set(__self__, "documentVersion", document_version)
-        pulumi.set(__self__, "parameters", parameters)
+        if document_version is not None:
+            pulumi.set(__self__, "document_version", document_version)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
 
     @property
     @pulumi.getter(name="documentVersion")
@@ -460,9 +473,12 @@ class MaintenanceWindowTaskTaskInvocationParametersLambdaParametersArgs:
         :param pulumi.Input[str] payload: JSON to provide to your Lambda function as input.
         :param pulumi.Input[str] qualifier: Specify a Lambda function version or alias name.
         """
-        pulumi.set(__self__, "clientContext", client_context)
-        pulumi.set(__self__, "payload", payload)
-        pulumi.set(__self__, "qualifier", qualifier)
+        if client_context is not None:
+            pulumi.set(__self__, "client_context", client_context)
+        if payload is not None:
+            pulumi.set(__self__, "payload", payload)
+        if qualifier is not None:
+            pulumi.set(__self__, "qualifier", qualifier)
 
     @property
     @pulumi.getter(name="clientContext")
@@ -524,15 +540,24 @@ class MaintenanceWindowTaskTaskInvocationParametersRunCommandParametersArgs:
         :param pulumi.Input[str] service_role_arn: The IAM service role to assume during task execution.
         :param pulumi.Input[float] timeout_seconds: If this time is reached and the command has not already started executing, it doesn't run.
         """
-        pulumi.set(__self__, "comment", comment)
-        pulumi.set(__self__, "documentHash", document_hash)
-        pulumi.set(__self__, "documentHashType", document_hash_type)
-        pulumi.set(__self__, "notificationConfig", notification_config)
-        pulumi.set(__self__, "outputS3Bucket", output_s3_bucket)
-        pulumi.set(__self__, "outputS3KeyPrefix", output_s3_key_prefix)
-        pulumi.set(__self__, "parameters", parameters)
-        pulumi.set(__self__, "serviceRoleArn", service_role_arn)
-        pulumi.set(__self__, "timeoutSeconds", timeout_seconds)
+        if comment is not None:
+            pulumi.set(__self__, "comment", comment)
+        if document_hash is not None:
+            pulumi.set(__self__, "document_hash", document_hash)
+        if document_hash_type is not None:
+            pulumi.set(__self__, "document_hash_type", document_hash_type)
+        if notification_config is not None:
+            pulumi.set(__self__, "notification_config", notification_config)
+        if output_s3_bucket is not None:
+            pulumi.set(__self__, "output_s3_bucket", output_s3_bucket)
+        if output_s3_key_prefix is not None:
+            pulumi.set(__self__, "output_s3_key_prefix", output_s3_key_prefix)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+        if service_role_arn is not None:
+            pulumi.set(__self__, "service_role_arn", service_role_arn)
+        if timeout_seconds is not None:
+            pulumi.set(__self__, "timeout_seconds", timeout_seconds)
 
     @property
     @pulumi.getter
@@ -654,9 +679,12 @@ class MaintenanceWindowTaskTaskInvocationParametersRunCommandParametersNotificat
         :param pulumi.Input[List[pulumi.Input[str]]] notification_events: The different events for which you can receive notifications. Valid values: `All`, `InProgress`, `Success`, `TimedOut`, `Cancelled`, and `Failed`
         :param pulumi.Input[str] notification_type: When specified with `Command`, receive notification when the status of a command changes. When specified with `Invocation`, for commands sent to multiple instances, receive notification on a per-instance basis when the status of a command changes. Valid values: `Command` and `Invocation`
         """
-        pulumi.set(__self__, "notificationArn", notification_arn)
-        pulumi.set(__self__, "notificationEvents", notification_events)
-        pulumi.set(__self__, "notificationType", notification_type)
+        if notification_arn is not None:
+            pulumi.set(__self__, "notification_arn", notification_arn)
+        if notification_events is not None:
+            pulumi.set(__self__, "notification_events", notification_events)
+        if notification_type is not None:
+            pulumi.set(__self__, "notification_type", notification_type)
 
     @property
     @pulumi.getter(name="notificationArn")
@@ -741,8 +769,10 @@ class MaintenanceWindowTaskTaskInvocationParametersStepFunctionsParametersArgs:
         :param pulumi.Input[str] input: The inputs for the STEP_FUNCTION task.
         :param pulumi.Input[str] name: The name of the STEP_FUNCTION task.
         """
-        pulumi.set(__self__, "input", input)
-        pulumi.set(__self__, "name", name)
+        if input is not None:
+            pulumi.set(__self__, "input", input)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -815,10 +845,12 @@ class PatchBaselineApprovalRuleArgs:
         :param pulumi.Input[str] compliance_level: Defines the compliance level for patches approved by this rule. Valid compliance levels include the following: `CRITICAL`, `HIGH`, `MEDIUM`, `LOW`, `INFORMATIONAL`, `UNSPECIFIED`. The default value is `UNSPECIFIED`.
         :param pulumi.Input[bool] enable_non_security: Boolean enabling the application of non-security updates. The default value is 'false'. Valid for Linux instances only.
         """
-        pulumi.set(__self__, "approveAfterDays", approve_after_days)
-        pulumi.set(__self__, "patchFilters", patch_filters)
-        pulumi.set(__self__, "complianceLevel", compliance_level)
-        pulumi.set(__self__, "enableNonSecurity", enable_non_security)
+        pulumi.set(__self__, "approve_after_days", approve_after_days)
+        pulumi.set(__self__, "patch_filters", patch_filters)
+        if compliance_level is not None:
+            pulumi.set(__self__, "compliance_level", compliance_level)
+        if enable_non_security is not None:
+            pulumi.set(__self__, "enable_non_security", enable_non_security)
 
     @property
     @pulumi.getter(name="approveAfterDays")
@@ -938,11 +970,14 @@ class ResourceDataSyncS3DestinationArgs:
         :param pulumi.Input[str] prefix: Prefix for the bucket.
         :param pulumi.Input[str] sync_format: A supported sync format. Only JsonSerDe is currently supported. Defaults to JsonSerDe.
         """
-        pulumi.set(__self__, "bucketName", bucket_name)
+        pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "region", region)
-        pulumi.set(__self__, "kmsKeyArn", kms_key_arn)
-        pulumi.set(__self__, "prefix", prefix)
-        pulumi.set(__self__, "syncFormat", sync_format)
+        if kms_key_arn is not None:
+            pulumi.set(__self__, "kms_key_arn", kms_key_arn)
+        if prefix is not None:
+            pulumi.set(__self__, "prefix", prefix)
+        if sync_format is not None:
+            pulumi.set(__self__, "sync_format", sync_format)
 
     @property
     @pulumi.getter(name="bucketName")

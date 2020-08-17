@@ -12,56 +12,6 @@ __all__ = ['Snapshot']
 
 
 class Snapshot(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN) of the EBS Snapshot.
-    """
-
-    data_encryption_key_id: pulumi.Output[str] = pulumi.property("dataEncryptionKeyId")
-    """
-    The data encryption key identifier for the snapshot.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    A description of what the snapshot is.
-    """
-
-    encrypted: pulumi.Output[bool] = pulumi.property("encrypted")
-    """
-    Whether the snapshot is encrypted.
-    """
-
-    kms_key_id: pulumi.Output[str] = pulumi.property("kmsKeyId")
-    """
-    The ARN for the KMS encryption key.
-    """
-
-    owner_alias: pulumi.Output[str] = pulumi.property("ownerAlias")
-    """
-    Value from an Amazon-maintained list (`amazon`, `aws-marketplace`, `microsoft`) of snapshot owners.
-    """
-
-    owner_id: pulumi.Output[str] = pulumi.property("ownerId")
-    """
-    The AWS account ID of the EBS snapshot owner.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the snapshot
-    """
-
-    volume_id: pulumi.Output[str] = pulumi.property("volumeId")
-    """
-    The Volume ID of which to make a snapshot.
-    """
-
-    volume_size: pulumi.Output[float] = pulumi.property("volumeSize")
-    """
-    The size of the drive in GiBs.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -181,6 +131,86 @@ class Snapshot(pulumi.CustomResource):
         __props__["volume_id"] = volume_id
         __props__["volume_size"] = volume_size
         return Snapshot(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of the EBS Snapshot.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="dataEncryptionKeyId")
+    def data_encryption_key_id(self) -> str:
+        """
+        The data encryption key identifier for the snapshot.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        A description of what the snapshot is.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def encrypted(self) -> bool:
+        """
+        Whether the snapshot is encrypted.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="kmsKeyId")
+    def kms_key_id(self) -> str:
+        """
+        The ARN for the KMS encryption key.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="ownerAlias")
+    def owner_alias(self) -> str:
+        """
+        Value from an Amazon-maintained list (`amazon`, `aws-marketplace`, `microsoft`) of snapshot owners.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
+        """
+        The AWS account ID of the EBS snapshot owner.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the snapshot
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="volumeId")
+    def volume_id(self) -> str:
+        """
+        The Volume ID of which to make a snapshot.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="volumeSize")
+    def volume_size(self) -> float:
+        """
+        The size of the drive in GiBs.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -26,9 +26,9 @@ class LifecyclePolicyPolicyDetailsArgs:
         :param pulumi.Input[List[pulumi.Input['LifecyclePolicyPolicyDetailsScheduleArgs']]] schedules: See the `schedule` configuration block.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] target_tags: A map of tag keys and their values. Any resources that match the `resource_types` and are tagged with _any_ of these tags will be targeted.
         """
-        pulumi.set(__self__, "resourceTypes", resource_types)
+        pulumi.set(__self__, "resource_types", resource_types)
         pulumi.set(__self__, "schedules", schedules)
-        pulumi.set(__self__, "targetTags", target_tags)
+        pulumi.set(__self__, "target_tags", target_tags)
 
     @property
     @pulumi.getter(name="resourceTypes")
@@ -82,11 +82,13 @@ class LifecyclePolicyPolicyDetailsScheduleArgs:
         :param pulumi.Input[bool] copy_tags: Copy all user-defined tags on a source volume to snapshots of the volume created by this policy.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags_to_add: A map of tag keys and their values. DLM lifecycle policies will already tag the snapshot with the tags on the volume. This configuration adds extra tags on top of these.
         """
-        pulumi.set(__self__, "createRule", create_rule)
+        pulumi.set(__self__, "create_rule", create_rule)
         pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "retainRule", retain_rule)
-        pulumi.set(__self__, "copyTags", copy_tags)
-        pulumi.set(__self__, "tagsToAdd", tags_to_add)
+        pulumi.set(__self__, "retain_rule", retain_rule)
+        if copy_tags is not None:
+            pulumi.set(__self__, "copy_tags", copy_tags)
+        if tags_to_add is not None:
+            pulumi.set(__self__, "tags_to_add", tags_to_add)
 
     @property
     @pulumi.getter(name="createRule")
@@ -161,8 +163,10 @@ class LifecyclePolicyPolicyDetailsScheduleCreateRuleArgs:
         :param pulumi.Input[str] times: A list of times in 24 hour clock format that sets when the lifecycle policy should be evaluated. Max of 1.
         """
         pulumi.set(__self__, "interval", interval)
-        pulumi.set(__self__, "intervalUnit", interval_unit)
-        pulumi.set(__self__, "times", times)
+        if interval_unit is not None:
+            pulumi.set(__self__, "interval_unit", interval_unit)
+        if times is not None:
+            pulumi.set(__self__, "times", times)
 
     @property
     @pulumi.getter

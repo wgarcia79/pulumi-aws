@@ -12,32 +12,6 @@ __all__ = ['Alias']
 
 
 class Alias(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The Amazon Resource Name (ARN) of the key alias.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The display name of the alias. The name must start with the word "alias" followed by a forward slash (alias/)
-    """
-
-    name_prefix: pulumi.Output[Optional[str]] = pulumi.property("namePrefix")
-    """
-    Creates an unique alias beginning with the specified prefix.
-    The name must start with the word "alias" followed by a forward slash (alias/).  Conflicts with `name`.
-    """
-
-    target_key_arn: pulumi.Output[str] = pulumi.property("targetKeyArn")
-    """
-    The Amazon Resource Name (ARN) of the target key identifier.
-    """
-
-    target_key_id: pulumi.Output[str] = pulumi.property("targetKeyId")
-    """
-    Identifier for the key for which the alias is for, can be either an ARN or key_id.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -132,6 +106,47 @@ class Alias(pulumi.CustomResource):
         __props__["target_key_arn"] = target_key_arn
         __props__["target_key_id"] = target_key_id
         return Alias(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) of the key alias.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The display name of the alias. The name must start with the word "alias" followed by a forward slash (alias/)
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> Optional[str]:
+        """
+        Creates an unique alias beginning with the specified prefix.
+        The name must start with the word "alias" followed by a forward slash (alias/).  Conflicts with `name`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="targetKeyArn")
+    def target_key_arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) of the target key identifier.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="targetKeyId")
+    def target_key_id(self) -> str:
+        """
+        Identifier for the key for which the alias is for, can be either an ARN or key_id.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

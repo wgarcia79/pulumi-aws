@@ -12,61 +12,6 @@ __all__ = ['StackSet']
 
 
 class StackSet(pulumi.CustomResource):
-    administration_role_arn: pulumi.Output[str] = pulumi.property("administrationRoleArn")
-    """
-    Amazon Resource Number (ARN) of the IAM Role in the administrator account.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN) of the StackSet.
-    """
-
-    capabilities: pulumi.Output[Optional[List[str]]] = pulumi.property("capabilities")
-    """
-    A list of capabilities. Valid values: `CAPABILITY_IAM`, `CAPABILITY_NAMED_IAM`, `CAPABILITY_AUTO_EXPAND`.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    Description of the StackSet.
-    """
-
-    execution_role_name: pulumi.Output[Optional[str]] = pulumi.property("executionRoleName")
-    """
-    Name of the IAM Role in all target accounts for StackSet operations. Defaults to `AWSCloudFormationStackSetExecutionRole`.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    Name of the StackSet. The name must be unique in the region where you create your StackSet. The name can contain only alphanumeric characters (case-sensitive) and hyphens. It must start with an alphabetic character and cannot be longer than 128 characters.
-    """
-
-    parameters: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("parameters")
-    """
-    Key-value map of input parameters for the StackSet template. All template parameters, including those with a `Default`, must be configured or ignored with `lifecycle` configuration block `ignore_changes` argument. All `NoEcho` template parameters must be ignored with the `lifecycle` configuration block `ignore_changes` argument.
-    """
-
-    stack_set_id: pulumi.Output[str] = pulumi.property("stackSetId")
-    """
-    Unique identifier of the StackSet.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of tags to associate with this StackSet and the Stacks created from it. AWS CloudFormation also propagates these tags to supported resources that are created in the Stacks. A maximum number of 50 tags can be specified.
-    """
-
-    template_body: pulumi.Output[str] = pulumi.property("templateBody")
-    """
-    String containing the CloudFormation template body. Maximum size: 51,200 bytes. Conflicts with `template_url`.
-    """
-
-    template_url: pulumi.Output[Optional[str]] = pulumi.property("templateUrl")
-    """
-    String containing the location of a file containing the CloudFormation template body. The URL must point to a template that is located in an Amazon S3 bucket. Maximum location file size: 460,800 bytes. Conflicts with `template_body`.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -239,6 +184,94 @@ class StackSet(pulumi.CustomResource):
         __props__["template_body"] = template_body
         __props__["template_url"] = template_url
         return StackSet(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="administrationRoleArn")
+    def administration_role_arn(self) -> str:
+        """
+        Amazon Resource Number (ARN) of the IAM Role in the administrator account.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of the StackSet.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def capabilities(self) -> Optional[List[str]]:
+        """
+        A list of capabilities. Valid values: `CAPABILITY_IAM`, `CAPABILITY_NAMED_IAM`, `CAPABILITY_AUTO_EXPAND`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Description of the StackSet.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="executionRoleName")
+    def execution_role_name(self) -> Optional[str]:
+        """
+        Name of the IAM Role in all target accounts for StackSet operations. Defaults to `AWSCloudFormationStackSetExecutionRole`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the StackSet. The name must be unique in the region where you create your StackSet. The name can contain only alphanumeric characters (case-sensitive) and hyphens. It must start with an alphabetic character and cannot be longer than 128 characters.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of input parameters for the StackSet template. All template parameters, including those with a `Default`, must be configured or ignored with `lifecycle` configuration block `ignore_changes` argument. All `NoEcho` template parameters must be ignored with the `lifecycle` configuration block `ignore_changes` argument.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="stackSetId")
+    def stack_set_id(self) -> str:
+        """
+        Unique identifier of the StackSet.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of tags to associate with this StackSet and the Stacks created from it. AWS CloudFormation also propagates these tags to supported resources that are created in the Stacks. A maximum number of 50 tags can be specified.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="templateBody")
+    def template_body(self) -> str:
+        """
+        String containing the CloudFormation template body. Maximum size: 51,200 bytes. Conflicts with `template_url`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="templateUrl")
+    def template_url(self) -> Optional[str]:
+        """
+        String containing the location of a file containing the CloudFormation template body. The URL must point to a template that is located in an Amazon S3 bucket. Maximum location file size: 460,800 bytes. Conflicts with `template_body`.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

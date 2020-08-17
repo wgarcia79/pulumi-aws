@@ -15,17 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetIpSetResult:
-    addresses: List[str] = pulumi.property("addresses")
-    arn: str = pulumi.property("arn")
-    description: str = pulumi.property("description")
-    id: str = pulumi.property("id")
-    ip_address_version: str = pulumi.property("ipAddressVersion")
-    name: str = pulumi.property("name")
-    scope: str = pulumi.property("scope")
-
-
 class GetIpSetResult:
     """
     A collection of values returned by getIpSet.
@@ -33,40 +24,76 @@ class GetIpSetResult:
     def __init__(__self__, addresses=None, arn=None, description=None, id=None, ip_address_version=None, name=None, scope=None):
         if addresses and not isinstance(addresses, list):
             raise TypeError("Expected argument 'addresses' to be a list")
-        __self__.addresses = addresses
+        pulumi.set(__self__, "addresses", addresses)
+        if arn and not isinstance(arn, str):
+            raise TypeError("Expected argument 'arn' to be a str")
+        pulumi.set(__self__, "arn", arn)
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if ip_address_version and not isinstance(ip_address_version, str):
+            raise TypeError("Expected argument 'ip_address_version' to be a str")
+        pulumi.set(__self__, "ip_address_version", ip_address_version)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if scope and not isinstance(scope, str):
+            raise TypeError("Expected argument 'scope' to be a str")
+        pulumi.set(__self__, "scope", scope)
+
+    @property
+    @pulumi.getter
+    def addresses(self) -> List[str]:
         """
         An array of strings that specify one or more IP addresses or blocks of IP addresses in Classless Inter-Domain Routing (CIDR) notation.
         """
-        if arn and not isinstance(arn, str):
-            raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        ...
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The Amazon Resource Name (ARN) of the entity.
         """
-        if description and not isinstance(description, str):
-            raise TypeError("Expected argument 'description' to be a str")
-        __self__.description = description
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
         """
         The description of the set that helps with identification.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if ip_address_version and not isinstance(ip_address_version, str):
-            raise TypeError("Expected argument 'ip_address_version' to be a str")
-        __self__.ip_address_version = ip_address_version
+        ...
+
+    @property
+    @pulumi.getter(name="ipAddressVersion")
+    def ip_address_version(self) -> str:
         """
         The IP address version of the set.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if scope and not isinstance(scope, str):
-            raise TypeError("Expected argument 'scope' to be a str")
-        __self__.scope = scope
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def scope(self) -> str:
+        ...
+
 
 
 class AwaitableGetIpSetResult(GetIpSetResult):
@@ -111,7 +138,7 @@ def get_ip_set(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:wafv2/getIpSet:getIpSet', __args__, opts=opts, typ=_GetIpSetResult).value
+    __ret__ = pulumi.runtime.invoke('aws:wafv2/getIpSet:getIpSet', __args__, opts=opts, typ=GetIpSetResult).value
 
     return AwaitableGetIpSetResult(
         addresses=__ret__.addresses,

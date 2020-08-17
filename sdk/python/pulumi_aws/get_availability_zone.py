@@ -17,21 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetAvailabilityZoneResult:
-    all_availability_zones: Optional[bool] = pulumi.property("allAvailabilityZones")
-    filters: Optional[List['outputs.GetAvailabilityZoneFilterResult']] = pulumi.property("filters")
-    group_name: str = pulumi.property("groupName")
-    id: str = pulumi.property("id")
-    name: str = pulumi.property("name")
-    name_suffix: str = pulumi.property("nameSuffix")
-    network_border_group: str = pulumi.property("networkBorderGroup")
-    opt_in_status: str = pulumi.property("optInStatus")
-    region: str = pulumi.property("region")
-    state: str = pulumi.property("state")
-    zone_id: str = pulumi.property("zoneId")
-
-
 class GetAvailabilityZoneResult:
     """
     A collection of values returned by getAvailabilityZone.
@@ -39,55 +26,111 @@ class GetAvailabilityZoneResult:
     def __init__(__self__, all_availability_zones=None, filters=None, group_name=None, id=None, name=None, name_suffix=None, network_border_group=None, opt_in_status=None, region=None, state=None, zone_id=None):
         if all_availability_zones and not isinstance(all_availability_zones, bool):
             raise TypeError("Expected argument 'all_availability_zones' to be a bool")
-        __self__.all_availability_zones = all_availability_zones
+        pulumi.set(__self__, "all_availability_zones", all_availability_zones)
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
+        pulumi.set(__self__, "filters", filters)
         if group_name and not isinstance(group_name, str):
             raise TypeError("Expected argument 'group_name' to be a str")
-        __self__.group_name = group_name
+        pulumi.set(__self__, "group_name", group_name)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if name_suffix and not isinstance(name_suffix, str):
+            raise TypeError("Expected argument 'name_suffix' to be a str")
+        pulumi.set(__self__, "name_suffix", name_suffix)
+        if network_border_group and not isinstance(network_border_group, str):
+            raise TypeError("Expected argument 'network_border_group' to be a str")
+        pulumi.set(__self__, "network_border_group", network_border_group)
+        if opt_in_status and not isinstance(opt_in_status, str):
+            raise TypeError("Expected argument 'opt_in_status' to be a str")
+        pulumi.set(__self__, "opt_in_status", opt_in_status)
+        if region and not isinstance(region, str):
+            raise TypeError("Expected argument 'region' to be a str")
+        pulumi.set(__self__, "region", region)
+        if state and not isinstance(state, str):
+            raise TypeError("Expected argument 'state' to be a str")
+        pulumi.set(__self__, "state", state)
+        if zone_id and not isinstance(zone_id, str):
+            raise TypeError("Expected argument 'zone_id' to be a str")
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter(name="allAvailabilityZones")
+    def all_availability_zones(self) -> Optional[bool]:
+        ...
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetAvailabilityZoneFilterResult']]:
+        ...
+
+    @property
+    @pulumi.getter(name="groupName")
+    def group_name(self) -> str:
         """
         For Availability Zones, this is the same value as the Region name. For Local Zones, the name of the associated group, for example `us-west-2-lax-1`.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if name_suffix and not isinstance(name_suffix, str):
-            raise TypeError("Expected argument 'name_suffix' to be a str")
-        __self__.name_suffix = name_suffix
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="nameSuffix")
+    def name_suffix(self) -> str:
         """
         The part of the AZ name that appears after the region name, uniquely identifying the AZ within its region.
         """
-        if network_border_group and not isinstance(network_border_group, str):
-            raise TypeError("Expected argument 'network_border_group' to be a str")
-        __self__.network_border_group = network_border_group
+        ...
+
+    @property
+    @pulumi.getter(name="networkBorderGroup")
+    def network_border_group(self) -> str:
         """
         The name of the location from which the address is advertised.
         """
-        if opt_in_status and not isinstance(opt_in_status, str):
-            raise TypeError("Expected argument 'opt_in_status' to be a str")
-        __self__.opt_in_status = opt_in_status
+        ...
+
+    @property
+    @pulumi.getter(name="optInStatus")
+    def opt_in_status(self) -> str:
         """
         For Availability Zones, this always has the value of `opt-in-not-required`. For Local Zones, this is the opt in status. The possible values are `opted-in` and `not-opted-in`.
         """
-        if region and not isinstance(region, str):
-            raise TypeError("Expected argument 'region' to be a str")
-        __self__.region = region
+        ...
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
         """
         The region where the selected availability zone resides. This is always the region selected on the provider, since this data source searches only within that region.
         """
-        if state and not isinstance(state, str):
-            raise TypeError("Expected argument 'state' to be a str")
-        __self__.state = state
-        if zone_id and not isinstance(zone_id, str):
-            raise TypeError("Expected argument 'zone_id' to be a str")
-        __self__.zone_id = zone_id
+        ...
+
+    @property
+    @pulumi.getter
+    def state(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        ...
+
 
 
 class AwaitableGetAvailabilityZoneResult(GetAvailabilityZoneResult):
@@ -145,7 +188,7 @@ def get_availability_zone(all_availability_zones: Optional[bool] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:index/getAvailabilityZone:getAvailabilityZone', __args__, opts=opts, typ=_GetAvailabilityZoneResult).value
+    __ret__ = pulumi.runtime.invoke('aws:index/getAvailabilityZone:getAvailabilityZone', __args__, opts=opts, typ=GetAvailabilityZoneResult).value
 
     return AwaitableGetAvailabilityZoneResult(
         all_availability_zones=__ret__.all_availability_zones,

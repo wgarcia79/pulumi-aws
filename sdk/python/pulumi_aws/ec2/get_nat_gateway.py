@@ -17,20 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetNatGatewayResult:
-    allocation_id: str = pulumi.property("allocationId")
-    filters: Optional[List['outputs.GetNatGatewayFilterResult']] = pulumi.property("filters")
-    id: str = pulumi.property("id")
-    network_interface_id: str = pulumi.property("networkInterfaceId")
-    private_ip: str = pulumi.property("privateIp")
-    public_ip: str = pulumi.property("publicIp")
-    state: str = pulumi.property("state")
-    subnet_id: str = pulumi.property("subnetId")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    vpc_id: str = pulumi.property("vpcId")
-
-
 class GetNatGatewayResult:
     """
     A collection of values returned by getNatGateway.
@@ -38,46 +26,97 @@ class GetNatGatewayResult:
     def __init__(__self__, allocation_id=None, filters=None, id=None, network_interface_id=None, private_ip=None, public_ip=None, state=None, subnet_id=None, tags=None, vpc_id=None):
         if allocation_id and not isinstance(allocation_id, str):
             raise TypeError("Expected argument 'allocation_id' to be a str")
-        __self__.allocation_id = allocation_id
+        pulumi.set(__self__, "allocation_id", allocation_id)
+        if filters and not isinstance(filters, list):
+            raise TypeError("Expected argument 'filters' to be a list")
+        pulumi.set(__self__, "filters", filters)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if network_interface_id and not isinstance(network_interface_id, str):
+            raise TypeError("Expected argument 'network_interface_id' to be a str")
+        pulumi.set(__self__, "network_interface_id", network_interface_id)
+        if private_ip and not isinstance(private_ip, str):
+            raise TypeError("Expected argument 'private_ip' to be a str")
+        pulumi.set(__self__, "private_ip", private_ip)
+        if public_ip and not isinstance(public_ip, str):
+            raise TypeError("Expected argument 'public_ip' to be a str")
+        pulumi.set(__self__, "public_ip", public_ip)
+        if state and not isinstance(state, str):
+            raise TypeError("Expected argument 'state' to be a str")
+        pulumi.set(__self__, "state", state)
+        if subnet_id and not isinstance(subnet_id, str):
+            raise TypeError("Expected argument 'subnet_id' to be a str")
+        pulumi.set(__self__, "subnet_id", subnet_id)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if vpc_id and not isinstance(vpc_id, str):
+            raise TypeError("Expected argument 'vpc_id' to be a str")
+        pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter(name="allocationId")
+    def allocation_id(self) -> str:
         """
         The Id of the EIP allocated to the selected Nat Gateway.
         """
-        if filters and not isinstance(filters, list):
-            raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        if network_interface_id and not isinstance(network_interface_id, str):
-            raise TypeError("Expected argument 'network_interface_id' to be a str")
-        __self__.network_interface_id = network_interface_id
+        ...
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetNatGatewayFilterResult']]:
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="networkInterfaceId")
+    def network_interface_id(self) -> str:
         """
         The Id of the ENI allocated to the selected Nat Gateway.
         """
-        if private_ip and not isinstance(private_ip, str):
-            raise TypeError("Expected argument 'private_ip' to be a str")
-        __self__.private_ip = private_ip
+        ...
+
+    @property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> str:
         """
         The private Ip address of the selected Nat Gateway.
         """
-        if public_ip and not isinstance(public_ip, str):
-            raise TypeError("Expected argument 'public_ip' to be a str")
-        __self__.public_ip = public_ip
+        ...
+
+    @property
+    @pulumi.getter(name="publicIp")
+    def public_ip(self) -> str:
         """
         The public Ip (EIP) address of the selected Nat Gateway.
         """
-        if state and not isinstance(state, str):
-            raise TypeError("Expected argument 'state' to be a str")
-        __self__.state = state
-        if subnet_id and not isinstance(subnet_id, str):
-            raise TypeError("Expected argument 'subnet_id' to be a str")
-        __self__.subnet_id = subnet_id
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
-        if vpc_id and not isinstance(vpc_id, str):
-            raise TypeError("Expected argument 'vpc_id' to be a str")
-        __self__.vpc_id = vpc_id
+        ...
+
+    @property
+    @pulumi.getter
+    def state(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
+        ...
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        ...
+
 
 
 class AwaitableGetNatGatewayResult(GetNatGatewayResult):
@@ -151,7 +190,7 @@ def get_nat_gateway(filters: Optional[List[pulumi.InputType['GetNatGatewayFilter
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getNatGateway:getNatGateway', __args__, opts=opts, typ=_GetNatGatewayResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getNatGateway:getNatGateway', __args__, opts=opts, typ=GetNatGatewayResult).value
 
     return AwaitableGetNatGatewayResult(
         allocation_id=__ret__.allocation_id,

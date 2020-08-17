@@ -12,16 +12,6 @@ __all__ = ['PrincipalAssociation']
 
 
 class PrincipalAssociation(pulumi.CustomResource):
-    principal: pulumi.Output[str] = pulumi.property("principal")
-    """
-    The principal to associate with the resource share. Possible values are an AWS account ID, an AWS Organizations Organization ARN, or an AWS Organizations Organization Unit ARN.
-    """
-
-    resource_share_arn: pulumi.Output[str] = pulumi.property("resourceShareArn")
-    """
-    The Amazon Resource Name (ARN) of the resource share.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -123,6 +113,22 @@ class PrincipalAssociation(pulumi.CustomResource):
         __props__["principal"] = principal
         __props__["resource_share_arn"] = resource_share_arn
         return PrincipalAssociation(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def principal(self) -> str:
+        """
+        The principal to associate with the resource share. Possible values are an AWS account ID, an AWS Organizations Organization ARN, or an AWS Organizations Organization Unit ARN.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="resourceShareArn")
+    def resource_share_arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) of the resource share.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

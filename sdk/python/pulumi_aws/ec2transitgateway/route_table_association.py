@@ -12,26 +12,6 @@ __all__ = ['RouteTableAssociation']
 
 
 class RouteTableAssociation(pulumi.CustomResource):
-    resource_id: pulumi.Output[str] = pulumi.property("resourceId")
-    """
-    Identifier of the resource
-    """
-
-    resource_type: pulumi.Output[str] = pulumi.property("resourceType")
-    """
-    Type of the resource
-    """
-
-    transit_gateway_attachment_id: pulumi.Output[str] = pulumi.property("transitGatewayAttachmentId")
-    """
-    Identifier of EC2 Transit Gateway Attachment.
-    """
-
-    transit_gateway_route_table_id: pulumi.Output[str] = pulumi.property("transitGatewayRouteTableId")
-    """
-    Identifier of EC2 Transit Gateway Route Table.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -119,6 +99,38 @@ class RouteTableAssociation(pulumi.CustomResource):
         __props__["transit_gateway_attachment_id"] = transit_gateway_attachment_id
         __props__["transit_gateway_route_table_id"] = transit_gateway_route_table_id
         return RouteTableAssociation(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> str:
+        """
+        Identifier of the resource
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> str:
+        """
+        Type of the resource
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="transitGatewayAttachmentId")
+    def transit_gateway_attachment_id(self) -> str:
+        """
+        Identifier of EC2 Transit Gateway Attachment.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="transitGatewayRouteTableId")
+    def transit_gateway_route_table_id(self) -> str:
+        """
+        Identifier of EC2 Transit Gateway Route Table.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

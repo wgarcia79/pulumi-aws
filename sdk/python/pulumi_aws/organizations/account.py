@@ -12,47 +12,6 @@ __all__ = ['Account']
 
 
 class Account(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN for this account.
-    """
-
-    email: pulumi.Output[str] = pulumi.property("email")
-    """
-    The email address of the owner to assign to the new member account. This email address must not already be associated with another AWS account.
-    """
-
-    iam_user_access_to_billing: pulumi.Output[Optional[str]] = pulumi.property("iamUserAccessToBilling")
-    """
-    If set to `ALLOW`, the new account enables IAM users to access account billing information if they have the required permissions. If set to `DENY`, then only the root user of the new account can access account billing information.
-    """
-
-    joined_method: pulumi.Output[str] = pulumi.property("joinedMethod")
-
-    joined_timestamp: pulumi.Output[str] = pulumi.property("joinedTimestamp")
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    A friendly name for the member account.
-    """
-
-    parent_id: pulumi.Output[str] = pulumi.property("parentId")
-    """
-    Parent Organizational Unit ID or Root ID for the account. Defaults to the Organization default Root ID. A configuration must be present for this argument to perform drift detection.
-    """
-
-    role_name: pulumi.Output[Optional[str]] = pulumi.property("roleName")
-    """
-    The name of an IAM role that Organizations automatically preconfigures in the new member account. This role trusts the master account, allowing users in the master account to assume the role, as permitted by the master account administrator. The role has administrator permissions in the new member account. The Organizations API provides no method for reading this information after account creation, so this provider cannot perform drift detection on its value and will always show a difference for a configured value after import unless [`ignoreChanges`](https://www.pulumi.com/docs/intro/concepts/programming-model/#ignorechanges) is used.
-    """
-
-    status: pulumi.Output[str] = pulumi.property("status")
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value mapping of resource tags.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -169,6 +128,77 @@ class Account(pulumi.CustomResource):
         __props__["status"] = status
         __props__["tags"] = tags
         return Account(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN for this account.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def email(self) -> str:
+        """
+        The email address of the owner to assign to the new member account. This email address must not already be associated with another AWS account.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="iamUserAccessToBilling")
+    def iam_user_access_to_billing(self) -> Optional[str]:
+        """
+        If set to `ALLOW`, the new account enables IAM users to access account billing information if they have the required permissions. If set to `DENY`, then only the root user of the new account can access account billing information.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="joinedMethod")
+    def joined_method(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="joinedTimestamp")
+    def joined_timestamp(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A friendly name for the member account.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="parentId")
+    def parent_id(self) -> str:
+        """
+        Parent Organizational Unit ID or Root ID for the account. Defaults to the Organization default Root ID. A configuration must be present for this argument to perform drift detection.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="roleName")
+    def role_name(self) -> Optional[str]:
+        """
+        The name of an IAM role that Organizations automatically preconfigures in the new member account. This role trusts the master account, allowing users in the master account to assume the role, as permitted by the master account administrator. The role has administrator permissions in the new member account. The Organizations API provides no method for reading this information after account creation, so this provider cannot perform drift detection on its value and will always show a difference for a configured value after import unless [`ignoreChanges`](https://www.pulumi.com/docs/intro/concepts/programming-model/#ignorechanges) is used.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value mapping of resource tags.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

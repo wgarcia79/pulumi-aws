@@ -12,31 +12,6 @@ __all__ = ['Group']
 
 
 class Group(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN) of group
-    """
-
-    aws_account_id: pulumi.Output[str] = pulumi.property("awsAccountId")
-    """
-    The ID for the AWS account that the group is in. Currently, you use the ID for the AWS account that contains your Amazon QuickSight account.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    A description for the group.
-    """
-
-    group_name: pulumi.Output[str] = pulumi.property("groupName")
-    """
-    A name for the group.
-    """
-
-    namespace: pulumi.Output[Optional[str]] = pulumi.property("namespace")
-    """
-    The namespace. Currently, you should set this to `default`.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -128,6 +103,46 @@ class Group(pulumi.CustomResource):
         __props__["group_name"] = group_name
         __props__["namespace"] = namespace
         return Group(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of group
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="awsAccountId")
+    def aws_account_id(self) -> str:
+        """
+        The ID for the AWS account that the group is in. Currently, you use the ID for the AWS account that contains your Amazon QuickSight account.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        A description for the group.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="groupName")
+    def group_name(self) -> str:
+        """
+        A name for the group.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[str]:
+        """
+        The namespace. Currently, you should set this to `default`.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

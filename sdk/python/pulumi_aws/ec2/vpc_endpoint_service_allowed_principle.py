@@ -12,16 +12,6 @@ __all__ = ['VpcEndpointServiceAllowedPrinciple']
 
 
 class VpcEndpointServiceAllowedPrinciple(pulumi.CustomResource):
-    principal_arn: pulumi.Output[str] = pulumi.property("principalArn")
-    """
-    The ARN of the principal to allow permissions.
-    """
-
-    vpc_endpoint_service_id: pulumi.Output[str] = pulumi.property("vpcEndpointServiceId")
-    """
-    The ID of the VPC endpoint service to allow permission.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -110,6 +100,22 @@ class VpcEndpointServiceAllowedPrinciple(pulumi.CustomResource):
         __props__["principal_arn"] = principal_arn
         __props__["vpc_endpoint_service_id"] = vpc_endpoint_service_id
         return VpcEndpointServiceAllowedPrinciple(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="principalArn")
+    def principal_arn(self) -> str:
+        """
+        The ARN of the principal to allow permissions.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="vpcEndpointServiceId")
+    def vpc_endpoint_service_id(self) -> str:
+        """
+        The ID of the VPC endpoint service to allow permission.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

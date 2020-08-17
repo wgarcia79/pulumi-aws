@@ -12,41 +12,6 @@ __all__ = ['StateMachine']
 
 
 class StateMachine(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the state machine.
-    """
-
-    creation_date: pulumi.Output[str] = pulumi.property("creationDate")
-    """
-    The date the state machine was created.
-    """
-
-    definition: pulumi.Output[str] = pulumi.property("definition")
-    """
-    The Amazon States Language definition of the state machine.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the state machine.
-    """
-
-    role_arn: pulumi.Output[str] = pulumi.property("roleArn")
-    """
-    The Amazon Resource Name (ARN) of the IAM role to use for this state machine.
-    """
-
-    status: pulumi.Output[str] = pulumi.property("status")
-    """
-    The current status of the state machine. Either "ACTIVE" or "DELETING".
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of resource tags
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -162,6 +127,62 @@ class StateMachine(pulumi.CustomResource):
         __props__["status"] = status
         __props__["tags"] = tags
         return StateMachine(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the state machine.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="creationDate")
+    def creation_date(self) -> str:
+        """
+        The date the state machine was created.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def definition(self) -> str:
+        """
+        The Amazon States Language definition of the state machine.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the state machine.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) of the IAM role to use for this state machine.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The current status of the state machine. Either "ACTIVE" or "DELETING".
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of resource tags
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

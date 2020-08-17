@@ -12,60 +12,6 @@ __all__ = ['Key']
 
 
 class Key(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The Amazon Resource Name (ARN) of the key.
-    """
-
-    customer_master_key_spec: pulumi.Output[Optional[str]] = pulumi.property("customerMasterKeySpec")
-    """
-    Specifies whether the key contains a symmetric key or an asymmetric key pair and the encryption algorithms or signing algorithms that the key supports.
-    Valid values: `SYMMETRIC_DEFAULT`,  `RSA_2048`, `RSA_3072`, `RSA_4096`, `ECC_NIST_P256`, `ECC_NIST_P384`, `ECC_NIST_P521`, or `ECC_SECG_P256K1`. Defaults to `SYMMETRIC_DEFAULT`. For help with choosing a key spec, see the [AWS KMS Developer Guide](https://docs.aws.amazon.com/kms/latest/developerguide/symm-asymm-choose.html).
-    """
-
-    deletion_window_in_days: pulumi.Output[Optional[float]] = pulumi.property("deletionWindowInDays")
-    """
-    Duration in days after which the key is deleted
-    after destruction of the resource, must be between 7 and 30 days. Defaults to 30 days.
-    """
-
-    description: pulumi.Output[str] = pulumi.property("description")
-    """
-    The description of the key as viewed in AWS console.
-    """
-
-    enable_key_rotation: pulumi.Output[Optional[bool]] = pulumi.property("enableKeyRotation")
-    """
-    Specifies whether [key rotation](http://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html)
-    is enabled. Defaults to false.
-    """
-
-    is_enabled: pulumi.Output[Optional[bool]] = pulumi.property("isEnabled")
-    """
-    Specifies whether the key is enabled. Defaults to true.
-    """
-
-    key_id: pulumi.Output[str] = pulumi.property("keyId")
-    """
-    The globally unique identifier for the key.
-    """
-
-    key_usage: pulumi.Output[Optional[str]] = pulumi.property("keyUsage")
-    """
-    Specifies the intended use of the key. Valid values: `ENCRYPT_DECRYPT` or `SIGN_VERIFY`.
-    Defaults to `ENCRYPT_DECRYPT`.
-    """
-
-    policy: pulumi.Output[str] = pulumi.property("policy")
-    """
-    A valid policy JSON document.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the object.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -193,6 +139,90 @@ class Key(pulumi.CustomResource):
         __props__["policy"] = policy
         __props__["tags"] = tags
         return Key(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) of the key.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="customerMasterKeySpec")
+    def customer_master_key_spec(self) -> Optional[str]:
+        """
+        Specifies whether the key contains a symmetric key or an asymmetric key pair and the encryption algorithms or signing algorithms that the key supports.
+        Valid values: `SYMMETRIC_DEFAULT`,  `RSA_2048`, `RSA_3072`, `RSA_4096`, `ECC_NIST_P256`, `ECC_NIST_P384`, `ECC_NIST_P521`, or `ECC_SECG_P256K1`. Defaults to `SYMMETRIC_DEFAULT`. For help with choosing a key spec, see the [AWS KMS Developer Guide](https://docs.aws.amazon.com/kms/latest/developerguide/symm-asymm-choose.html).
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="deletionWindowInDays")
+    def deletion_window_in_days(self) -> Optional[float]:
+        """
+        Duration in days after which the key is deleted
+        after destruction of the resource, must be between 7 and 30 days. Defaults to 30 days.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the key as viewed in AWS console.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="enableKeyRotation")
+    def enable_key_rotation(self) -> Optional[bool]:
+        """
+        Specifies whether [key rotation](http://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html)
+        is enabled. Defaults to false.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="isEnabled")
+    def is_enabled(self) -> Optional[bool]:
+        """
+        Specifies whether the key is enabled. Defaults to true.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> str:
+        """
+        The globally unique identifier for the key.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="keyUsage")
+    def key_usage(self) -> Optional[str]:
+        """
+        Specifies the intended use of the key. Valid values: `ENCRYPT_DECRYPT` or `SIGN_VERIFY`.
+        Defaults to `ENCRYPT_DECRYPT`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def policy(self) -> str:
+        """
+        A valid policy JSON document.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the object.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
