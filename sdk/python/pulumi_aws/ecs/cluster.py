@@ -14,36 +14,6 @@ __all__ = ['Cluster']
 
 
 class Cluster(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The Amazon Resource Name (ARN) that identifies the cluster
-    """
-
-    capacity_providers: pulumi.Output[Optional[List[str]]] = pulumi.property("capacityProviders")
-    """
-    List of short names of one or more capacity providers to associate with the cluster. Valid values also include `FARGATE` and `FARGATE_SPOT`.
-    """
-
-    default_capacity_provider_strategies: pulumi.Output[Optional[List['outputs.ClusterDefaultCapacityProviderStrategy']]] = pulumi.property("defaultCapacityProviderStrategies")
-    """
-    The capacity provider strategy to use by default for the cluster. Can be one or more.  Defined below.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the cluster (up to 255 letters, numbers, hyphens, and underscores)
-    """
-
-    settings: pulumi.Output[List['outputs.ClusterSetting']] = pulumi.property("settings")
-    """
-    Configuration block(s) with cluster settings. For example, this can be used to enable CloudWatch Container Insights for a cluster. Defined below.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of resource tags
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -139,6 +109,54 @@ class Cluster(pulumi.CustomResource):
         __props__["settings"] = settings
         __props__["tags"] = tags
         return Cluster(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) that identifies the cluster
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="capacityProviders")
+    def capacity_providers(self) -> Optional[List[str]]:
+        """
+        List of short names of one or more capacity providers to associate with the cluster. Valid values also include `FARGATE` and `FARGATE_SPOT`.
+        """
+        return pulumi.get(self, "capacity_providers")
+
+    @property
+    @pulumi.getter(name="defaultCapacityProviderStrategies")
+    def default_capacity_provider_strategies(self) -> Optional[List['outputs.ClusterDefaultCapacityProviderStrategy']]:
+        """
+        The capacity provider strategy to use by default for the cluster. Can be one or more.  Defined below.
+        """
+        return pulumi.get(self, "default_capacity_provider_strategies")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the cluster (up to 255 letters, numbers, hyphens, and underscores)
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def settings(self) -> List['outputs.ClusterSetting']:
+        """
+        Configuration block(s) with cluster settings. For example, this can be used to enable CloudWatch Container Insights for a cluster. Defined below.
+        """
+        return pulumi.get(self, "settings")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of resource tags
+        """
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

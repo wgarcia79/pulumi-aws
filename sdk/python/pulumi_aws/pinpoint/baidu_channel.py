@@ -12,26 +12,6 @@ __all__ = ['BaiduChannel']
 
 
 class BaiduChannel(pulumi.CustomResource):
-    api_key: pulumi.Output[str] = pulumi.property("apiKey")
-    """
-    Platform credential API key from Baidu.
-    """
-
-    application_id: pulumi.Output[str] = pulumi.property("applicationId")
-    """
-    The application ID.
-    """
-
-    enabled: pulumi.Output[Optional[bool]] = pulumi.property("enabled")
-    """
-    Specifies whether to enable the channel. Defaults to `true`.
-    """
-
-    secret_key: pulumi.Output[str] = pulumi.property("secretKey")
-    """
-    Platform credential Secret key from Baidu.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -129,6 +109,38 @@ class BaiduChannel(pulumi.CustomResource):
         __props__["enabled"] = enabled
         __props__["secret_key"] = secret_key
         return BaiduChannel(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> str:
+        """
+        Platform credential API key from Baidu.
+        """
+        return pulumi.get(self, "api_key")
+
+    @property
+    @pulumi.getter(name="applicationId")
+    def application_id(self) -> str:
+        """
+        The application ID.
+        """
+        return pulumi.get(self, "application_id")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Specifies whether to enable the channel. Defaults to `true`.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="secretKey")
+    def secret_key(self) -> str:
+        """
+        Platform credential Secret key from Baidu.
+        """
+        return pulumi.get(self, "secret_key")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

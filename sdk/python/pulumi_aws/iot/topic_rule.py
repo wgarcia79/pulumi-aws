@@ -14,76 +14,6 @@ __all__ = ['TopicRule']
 
 
 class TopicRule(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the topic rule
-    """
-
-    cloudwatch_alarm: pulumi.Output[Optional['outputs.TopicRuleCloudwatchAlarm']] = pulumi.property("cloudwatchAlarm")
-
-    cloudwatch_metric: pulumi.Output[Optional['outputs.TopicRuleCloudwatchMetric']] = pulumi.property("cloudwatchMetric")
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    The description of the rule.
-    """
-
-    dynamodb: pulumi.Output[Optional['outputs.TopicRuleDynamodb']] = pulumi.property("dynamodb")
-
-    dynamodbv2s: pulumi.Output[Optional[List['outputs.TopicRuleDynamodbv2']]] = pulumi.property("dynamodbv2s")
-
-    elasticsearch: pulumi.Output[Optional['outputs.TopicRuleElasticsearch']] = pulumi.property("elasticsearch")
-
-    enabled: pulumi.Output[bool] = pulumi.property("enabled")
-    """
-    Specifies whether the rule is enabled.
-    """
-
-    error_action: pulumi.Output[Optional['outputs.TopicRuleErrorAction']] = pulumi.property("errorAction")
-    """
-    Configuration block with error action to be associated with the rule. See the documentation for `cloudwatch_alarm`, `cloudwatch_metric`, `dynamodb`, `dynamodbv2`, `elasticsearch`, `firehose`, `iot_analytics`, `iot_events`, `kinesis`, `lambda`, `republish`, `s3`, `step_functions`, `sns`, `sqs` configuration blocks for further configuration details.
-    """
-
-    firehose: pulumi.Output[Optional['outputs.TopicRuleFirehose']] = pulumi.property("firehose")
-
-    iot_analytics: pulumi.Output[Optional[List['outputs.TopicRuleIotAnalytic']]] = pulumi.property("iotAnalytics")
-
-    iot_events: pulumi.Output[Optional[List['outputs.TopicRuleIotEvent']]] = pulumi.property("iotEvents")
-
-    kinesis: pulumi.Output[Optional['outputs.TopicRuleKinesis']] = pulumi.property("kinesis")
-
-    lambda_: pulumi.Output[Optional['outputs.TopicRuleLambda']] = pulumi.property("lambda")
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the rule.
-    """
-
-    republish: pulumi.Output[Optional['outputs.TopicRuleRepublish']] = pulumi.property("republish")
-
-    s3: pulumi.Output[Optional['outputs.TopicRuleS3']] = pulumi.property("s3")
-
-    sns: pulumi.Output[Optional['outputs.TopicRuleSns']] = pulumi.property("sns")
-
-    sql: pulumi.Output[str] = pulumi.property("sql")
-    """
-    The SQL statement used to query the topic. For more information, see AWS IoT SQL Reference (http://docs.aws.amazon.com/iot/latest/developerguide/iot-rules.html#aws-iot-sql-reference) in the AWS IoT Developer Guide.
-    """
-
-    sql_version: pulumi.Output[str] = pulumi.property("sqlVersion")
-    """
-    The version of the SQL rules engine to use when evaluating the rule.
-    """
-
-    sqs: pulumi.Output[Optional['outputs.TopicRuleSqs']] = pulumi.property("sqs")
-
-    step_functions: pulumi.Output[Optional[List['outputs.TopicRuleStepFunction']]] = pulumi.property("stepFunctions")
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of resource tags
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -303,6 +233,145 @@ class TopicRule(pulumi.CustomResource):
         __props__["step_functions"] = step_functions
         __props__["tags"] = tags
         return TopicRule(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the topic rule
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="cloudwatchAlarm")
+    def cloudwatch_alarm(self) -> Optional['outputs.TopicRuleCloudwatchAlarm']:
+        return pulumi.get(self, "cloudwatch_alarm")
+
+    @property
+    @pulumi.getter(name="cloudwatchMetric")
+    def cloudwatch_metric(self) -> Optional['outputs.TopicRuleCloudwatchMetric']:
+        return pulumi.get(self, "cloudwatch_metric")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        The description of the rule.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def dynamodb(self) -> Optional['outputs.TopicRuleDynamodb']:
+        return pulumi.get(self, "dynamodb")
+
+    @property
+    @pulumi.getter
+    def dynamodbv2s(self) -> Optional[List['outputs.TopicRuleDynamodbv2']]:
+        return pulumi.get(self, "dynamodbv2s")
+
+    @property
+    @pulumi.getter
+    def elasticsearch(self) -> Optional['outputs.TopicRuleElasticsearch']:
+        return pulumi.get(self, "elasticsearch")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        Specifies whether the rule is enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="errorAction")
+    def error_action(self) -> Optional['outputs.TopicRuleErrorAction']:
+        """
+        Configuration block with error action to be associated with the rule. See the documentation for `cloudwatch_alarm`, `cloudwatch_metric`, `dynamodb`, `dynamodbv2`, `elasticsearch`, `firehose`, `iot_analytics`, `iot_events`, `kinesis`, `lambda`, `republish`, `s3`, `step_functions`, `sns`, `sqs` configuration blocks for further configuration details.
+        """
+        return pulumi.get(self, "error_action")
+
+    @property
+    @pulumi.getter
+    def firehose(self) -> Optional['outputs.TopicRuleFirehose']:
+        return pulumi.get(self, "firehose")
+
+    @property
+    @pulumi.getter(name="iotAnalytics")
+    def iot_analytics(self) -> Optional[List['outputs.TopicRuleIotAnalytic']]:
+        return pulumi.get(self, "iot_analytics")
+
+    @property
+    @pulumi.getter(name="iotEvents")
+    def iot_events(self) -> Optional[List['outputs.TopicRuleIotEvent']]:
+        return pulumi.get(self, "iot_events")
+
+    @property
+    @pulumi.getter
+    def kinesis(self) -> Optional['outputs.TopicRuleKinesis']:
+        return pulumi.get(self, "kinesis")
+
+    @property
+    @pulumi.getter(name="lambda")
+    def lambda_(self) -> Optional['outputs.TopicRuleLambda']:
+        return pulumi.get(self, "lambda_")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the rule.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def republish(self) -> Optional['outputs.TopicRuleRepublish']:
+        return pulumi.get(self, "republish")
+
+    @property
+    @pulumi.getter
+    def s3(self) -> Optional['outputs.TopicRuleS3']:
+        return pulumi.get(self, "s3")
+
+    @property
+    @pulumi.getter
+    def sns(self) -> Optional['outputs.TopicRuleSns']:
+        return pulumi.get(self, "sns")
+
+    @property
+    @pulumi.getter
+    def sql(self) -> str:
+        """
+        The SQL statement used to query the topic. For more information, see AWS IoT SQL Reference (http://docs.aws.amazon.com/iot/latest/developerguide/iot-rules.html#aws-iot-sql-reference) in the AWS IoT Developer Guide.
+        """
+        return pulumi.get(self, "sql")
+
+    @property
+    @pulumi.getter(name="sqlVersion")
+    def sql_version(self) -> str:
+        """
+        The version of the SQL rules engine to use when evaluating the rule.
+        """
+        return pulumi.get(self, "sql_version")
+
+    @property
+    @pulumi.getter
+    def sqs(self) -> Optional['outputs.TopicRuleSqs']:
+        return pulumi.get(self, "sqs")
+
+    @property
+    @pulumi.getter(name="stepFunctions")
+    def step_functions(self) -> Optional[List['outputs.TopicRuleStepFunction']]:
+        return pulumi.get(self, "step_functions")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of resource tags
+        """
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -14,58 +14,6 @@ __all__ = ['VpcPeeringConnectionAccepter']
 
 
 class VpcPeeringConnectionAccepter(pulumi.CustomResource):
-    accept_status: pulumi.Output[str] = pulumi.property("acceptStatus")
-    """
-    The status of the VPC Peering Connection request.
-    """
-
-    accepter: pulumi.Output['outputs.VpcPeeringConnectionAccepterAccepter'] = pulumi.property("accepter")
-    """
-    A configuration block that describes [VPC Peering Connection]
-    (https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) options set for the accepter VPC.
-    """
-
-    auto_accept: pulumi.Output[Optional[bool]] = pulumi.property("autoAccept")
-    """
-    Whether or not to accept the peering request. Defaults to `false`.
-    """
-
-    peer_owner_id: pulumi.Output[str] = pulumi.property("peerOwnerId")
-    """
-    The AWS account ID of the owner of the requester VPC.
-    """
-
-    peer_region: pulumi.Output[str] = pulumi.property("peerRegion")
-    """
-    The region of the accepter VPC.
-    """
-
-    peer_vpc_id: pulumi.Output[str] = pulumi.property("peerVpcId")
-    """
-    The ID of the requester VPC.
-    """
-
-    requester: pulumi.Output['outputs.VpcPeeringConnectionAccepterRequester'] = pulumi.property("requester")
-    """
-    A configuration block that describes [VPC Peering Connection]
-    (https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) options set for the requester VPC.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
-    vpc_id: pulumi.Output[str] = pulumi.property("vpcId")
-    """
-    The ID of the accepter VPC.
-    """
-
-    vpc_peering_connection_id: pulumi.Output[str] = pulumi.property("vpcPeeringConnectionId")
-    """
-    The VPC Peering Connection ID to manage.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -213,6 +161,88 @@ class VpcPeeringConnectionAccepter(pulumi.CustomResource):
         __props__["vpc_id"] = vpc_id
         __props__["vpc_peering_connection_id"] = vpc_peering_connection_id
         return VpcPeeringConnectionAccepter(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="acceptStatus")
+    def accept_status(self) -> str:
+        """
+        The status of the VPC Peering Connection request.
+        """
+        return pulumi.get(self, "accept_status")
+
+    @property
+    @pulumi.getter
+    def accepter(self) -> 'outputs.VpcPeeringConnectionAccepterAccepter':
+        """
+        A configuration block that describes [VPC Peering Connection]
+        (https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) options set for the accepter VPC.
+        """
+        return pulumi.get(self, "accepter")
+
+    @property
+    @pulumi.getter(name="autoAccept")
+    def auto_accept(self) -> Optional[bool]:
+        """
+        Whether or not to accept the peering request. Defaults to `false`.
+        """
+        return pulumi.get(self, "auto_accept")
+
+    @property
+    @pulumi.getter(name="peerOwnerId")
+    def peer_owner_id(self) -> str:
+        """
+        The AWS account ID of the owner of the requester VPC.
+        """
+        return pulumi.get(self, "peer_owner_id")
+
+    @property
+    @pulumi.getter(name="peerRegion")
+    def peer_region(self) -> str:
+        """
+        The region of the accepter VPC.
+        """
+        return pulumi.get(self, "peer_region")
+
+    @property
+    @pulumi.getter(name="peerVpcId")
+    def peer_vpc_id(self) -> str:
+        """
+        The ID of the requester VPC.
+        """
+        return pulumi.get(self, "peer_vpc_id")
+
+    @property
+    @pulumi.getter
+    def requester(self) -> 'outputs.VpcPeeringConnectionAccepterRequester':
+        """
+        A configuration block that describes [VPC Peering Connection]
+        (https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) options set for the requester VPC.
+        """
+        return pulumi.get(self, "requester")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The ID of the accepter VPC.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @property
+    @pulumi.getter(name="vpcPeeringConnectionId")
+    def vpc_peering_connection_id(self) -> str:
+        """
+        The VPC Peering Connection ID to manage.
+        """
+        return pulumi.get(self, "vpc_peering_connection_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

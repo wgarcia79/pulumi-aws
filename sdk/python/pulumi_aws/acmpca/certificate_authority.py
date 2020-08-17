@@ -14,76 +14,6 @@ __all__ = ['CertificateAuthority']
 
 
 class CertificateAuthority(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN) of the certificate authority.
-    """
-
-    certificate: pulumi.Output[str] = pulumi.property("certificate")
-    """
-    Base64-encoded certificate authority (CA) certificate. Only available after the certificate authority certificate has been imported.
-    """
-
-    certificate_authority_configuration: pulumi.Output['outputs.CertificateAuthorityCertificateAuthorityConfiguration'] = pulumi.property("certificateAuthorityConfiguration")
-    """
-    Nested argument containing algorithms and certificate subject information. Defined below.
-    """
-
-    certificate_chain: pulumi.Output[str] = pulumi.property("certificateChain")
-    """
-    Base64-encoded certificate chain that includes any intermediate certificates and chains up to root on-premises certificate that you used to sign your private CA certificate. The chain does not include your private CA certificate. Only available after the certificate authority certificate has been imported.
-    """
-
-    certificate_signing_request: pulumi.Output[str] = pulumi.property("certificateSigningRequest")
-    """
-    The base64 PEM-encoded certificate signing request (CSR) for your private CA certificate.
-    """
-
-    enabled: pulumi.Output[Optional[bool]] = pulumi.property("enabled")
-    """
-    Boolean value that specifies whether certificate revocation lists (CRLs) are enabled. Defaults to `false`.
-    """
-
-    not_after: pulumi.Output[str] = pulumi.property("notAfter")
-    """
-    Date and time after which the certificate authority is not valid. Only available after the certificate authority certificate has been imported.
-    """
-
-    not_before: pulumi.Output[str] = pulumi.property("notBefore")
-    """
-    Date and time before which the certificate authority is not valid. Only available after the certificate authority certificate has been imported.
-    """
-
-    permanent_deletion_time_in_days: pulumi.Output[Optional[float]] = pulumi.property("permanentDeletionTimeInDays")
-    """
-    The number of days to make a CA restorable after it has been deleted, must be between 7 to 30 days, with default to 30 days.
-    """
-
-    revocation_configuration: pulumi.Output[Optional['outputs.CertificateAuthorityRevocationConfiguration']] = pulumi.property("revocationConfiguration")
-    """
-    Nested argument containing revocation configuration. Defined below.
-    """
-
-    serial: pulumi.Output[str] = pulumi.property("serial")
-    """
-    Serial number of the certificate authority. Only available after the certificate authority certificate has been imported.
-    """
-
-    status: pulumi.Output[str] = pulumi.property("status")
-    """
-    Status of the certificate authority.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Specifies a key-value map of user-defined tags that are attached to the certificate authority.
-    """
-
-    type: pulumi.Output[Optional[str]] = pulumi.property("type")
-    """
-    The type of the certificate authority. Defaults to `SUBORDINATE`. Valid values: `ROOT` and `SUBORDINATE`.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -270,6 +200,118 @@ class CertificateAuthority(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["type"] = type
         return CertificateAuthority(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of the certificate authority.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def certificate(self) -> str:
+        """
+        Base64-encoded certificate authority (CA) certificate. Only available after the certificate authority certificate has been imported.
+        """
+        return pulumi.get(self, "certificate")
+
+    @property
+    @pulumi.getter(name="certificateAuthorityConfiguration")
+    def certificate_authority_configuration(self) -> 'outputs.CertificateAuthorityCertificateAuthorityConfiguration':
+        """
+        Nested argument containing algorithms and certificate subject information. Defined below.
+        """
+        return pulumi.get(self, "certificate_authority_configuration")
+
+    @property
+    @pulumi.getter(name="certificateChain")
+    def certificate_chain(self) -> str:
+        """
+        Base64-encoded certificate chain that includes any intermediate certificates and chains up to root on-premises certificate that you used to sign your private CA certificate. The chain does not include your private CA certificate. Only available after the certificate authority certificate has been imported.
+        """
+        return pulumi.get(self, "certificate_chain")
+
+    @property
+    @pulumi.getter(name="certificateSigningRequest")
+    def certificate_signing_request(self) -> str:
+        """
+        The base64 PEM-encoded certificate signing request (CSR) for your private CA certificate.
+        """
+        return pulumi.get(self, "certificate_signing_request")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Boolean value that specifies whether certificate revocation lists (CRLs) are enabled. Defaults to `false`.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="notAfter")
+    def not_after(self) -> str:
+        """
+        Date and time after which the certificate authority is not valid. Only available after the certificate authority certificate has been imported.
+        """
+        return pulumi.get(self, "not_after")
+
+    @property
+    @pulumi.getter(name="notBefore")
+    def not_before(self) -> str:
+        """
+        Date and time before which the certificate authority is not valid. Only available after the certificate authority certificate has been imported.
+        """
+        return pulumi.get(self, "not_before")
+
+    @property
+    @pulumi.getter(name="permanentDeletionTimeInDays")
+    def permanent_deletion_time_in_days(self) -> Optional[float]:
+        """
+        The number of days to make a CA restorable after it has been deleted, must be between 7 to 30 days, with default to 30 days.
+        """
+        return pulumi.get(self, "permanent_deletion_time_in_days")
+
+    @property
+    @pulumi.getter(name="revocationConfiguration")
+    def revocation_configuration(self) -> Optional['outputs.CertificateAuthorityRevocationConfiguration']:
+        """
+        Nested argument containing revocation configuration. Defined below.
+        """
+        return pulumi.get(self, "revocation_configuration")
+
+    @property
+    @pulumi.getter
+    def serial(self) -> str:
+        """
+        Serial number of the certificate authority. Only available after the certificate authority certificate has been imported.
+        """
+        return pulumi.get(self, "serial")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        Status of the certificate authority.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Specifies a key-value map of user-defined tags that are attached to the certificate authority.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        The type of the certificate authority. Defaults to `SUBORDINATE`. Valid values: `ROOT` and `SUBORDINATE`.
+        """
+        return pulumi.get(self, "type")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

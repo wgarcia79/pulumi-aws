@@ -12,26 +12,6 @@ __all__ = ['ApiKey']
 
 
 class ApiKey(pulumi.CustomResource):
-    api_id: pulumi.Output[str] = pulumi.property("apiId")
-    """
-    The ID of the associated AppSync API
-    """
-
-    description: pulumi.Output[str] = pulumi.property("description")
-    """
-    The API key description. Defaults to "Managed by Pulumi".
-    """
-
-    expires: pulumi.Output[Optional[str]] = pulumi.property("expires")
-    """
-    RFC3339 string representation of the expiry date. Rounded down to nearest hour. By default, it is 7 days from the date of creation.
-    """
-
-    key: pulumi.Output[str] = pulumi.property("key")
-    """
-    The API key
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -122,6 +102,38 @@ class ApiKey(pulumi.CustomResource):
         __props__["expires"] = expires
         __props__["key"] = key
         return ApiKey(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="apiId")
+    def api_id(self) -> str:
+        """
+        The ID of the associated AppSync API
+        """
+        return pulumi.get(self, "api_id")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The API key description. Defaults to "Managed by Pulumi".
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def expires(self) -> Optional[str]:
+        """
+        RFC3339 string representation of the expiry date. Rounded down to nearest hour. By default, it is 7 days from the date of creation.
+        """
+        return pulumi.get(self, "expires")
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The API key
+        """
+        return pulumi.get(self, "key")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

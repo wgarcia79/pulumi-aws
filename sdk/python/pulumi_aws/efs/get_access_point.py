@@ -16,19 +16,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetAccessPointResult:
-    access_point_id: str = pulumi.property("accessPointId")
-    arn: str = pulumi.property("arn")
-    file_system_arn: str = pulumi.property("fileSystemArn")
-    file_system_id: str = pulumi.property("fileSystemId")
-    id: str = pulumi.property("id")
-    owner_id: str = pulumi.property("ownerId")
-    posix_users: List['outputs.GetAccessPointPosixUserResult'] = pulumi.property("posixUsers")
-    root_directories: List['outputs.GetAccessPointRootDirectoryResult'] = pulumi.property("rootDirectories")
-    tags: Optional[Mapping[str, str]] = pulumi.property("tags")
-
-
 class GetAccessPointResult:
     """
     A collection of values returned by getAccessPoint.
@@ -36,49 +25,95 @@ class GetAccessPointResult:
     def __init__(__self__, access_point_id=None, arn=None, file_system_arn=None, file_system_id=None, id=None, owner_id=None, posix_users=None, root_directories=None, tags=None):
         if access_point_id and not isinstance(access_point_id, str):
             raise TypeError("Expected argument 'access_point_id' to be a str")
-        __self__.access_point_id = access_point_id
+        pulumi.set(__self__, "access_point_id", access_point_id)
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
-        """
-        Amazon Resource Name of the file system.
-        """
+        pulumi.set(__self__, "arn", arn)
         if file_system_arn and not isinstance(file_system_arn, str):
             raise TypeError("Expected argument 'file_system_arn' to be a str")
-        __self__.file_system_arn = file_system_arn
+        pulumi.set(__self__, "file_system_arn", file_system_arn)
+        if file_system_id and not isinstance(file_system_id, str):
+            raise TypeError("Expected argument 'file_system_id' to be a str")
+        pulumi.set(__self__, "file_system_id", file_system_id)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if owner_id and not isinstance(owner_id, str):
+            raise TypeError("Expected argument 'owner_id' to be a str")
+        pulumi.set(__self__, "owner_id", owner_id)
+        if posix_users and not isinstance(posix_users, list):
+            raise TypeError("Expected argument 'posix_users' to be a list")
+        pulumi.set(__self__, "posix_users", posix_users)
+        if root_directories and not isinstance(root_directories, list):
+            raise TypeError("Expected argument 'root_directories' to be a list")
+        pulumi.set(__self__, "root_directories", root_directories)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter(name="accessPointId")
+    def access_point_id(self) -> str:
+        return pulumi.get(self, "access_point_id")
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         Amazon Resource Name of the file system.
         """
-        if file_system_id and not isinstance(file_system_id, str):
-            raise TypeError("Expected argument 'file_system_id' to be a str")
-        __self__.file_system_id = file_system_id
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="fileSystemArn")
+    def file_system_arn(self) -> str:
+        """
+        Amazon Resource Name of the file system.
+        """
+        return pulumi.get(self, "file_system_arn")
+
+    @property
+    @pulumi.getter(name="fileSystemId")
+    def file_system_id(self) -> str:
         """
         The ID of the file system for which the access point is intended.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "file_system_id")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if owner_id and not isinstance(owner_id, str):
-            raise TypeError("Expected argument 'owner_id' to be a str")
-        __self__.owner_id = owner_id
-        if posix_users and not isinstance(posix_users, list):
-            raise TypeError("Expected argument 'posix_users' to be a list")
-        __self__.posix_users = posix_users
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
+        return pulumi.get(self, "owner_id")
+
+    @property
+    @pulumi.getter(name="posixUsers")
+    def posix_users(self) -> List['outputs.GetAccessPointPosixUserResult']:
         """
         Single element list containing operating system user and group applied to all file system requests made using the access point.
         """
-        if root_directories and not isinstance(root_directories, list):
-            raise TypeError("Expected argument 'root_directories' to be a list")
-        __self__.root_directories = root_directories
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        return pulumi.get(self, "posix_users")
+
+    @property
+    @pulumi.getter(name="rootDirectories")
+    def root_directories(self) -> List['outputs.GetAccessPointRootDirectoryResult']:
+        return pulumi.get(self, "root_directories")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
         """
         Key-value mapping of resource tags.
         """
+        return pulumi.get(self, "tags")
+
 
 
 class AwaitableGetAccessPointResult(GetAccessPointResult):
@@ -124,7 +159,7 @@ def get_access_point(access_point_id: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:efs/getAccessPoint:getAccessPoint', __args__, opts=opts, typ=_GetAccessPointResult).value
+    __ret__ = pulumi.runtime.invoke('aws:efs/getAccessPoint:getAccessPoint', __args__, opts=opts, typ=GetAccessPointResult).value
 
     return AwaitableGetAccessPointResult(
         access_point_id=__ret__.access_point_id,

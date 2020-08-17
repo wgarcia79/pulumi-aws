@@ -17,15 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetRouteTablesResult:
-    filters: Optional[List['outputs.GetRouteTablesFilterResult']] = pulumi.property("filters")
-    id: str = pulumi.property("id")
-    ids: List[str] = pulumi.property("ids")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    vpc_id: Optional[str] = pulumi.property("vpcId")
-
-
 class GetRouteTablesResult:
     """
     A collection of values returned by getRouteTables.
@@ -33,25 +26,51 @@ class GetRouteTablesResult:
     def __init__(__self__, filters=None, id=None, ids=None, tags=None, vpc_id=None):
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
+        pulumi.set(__self__, "filters", filters)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if ids and not isinstance(ids, list):
+            raise TypeError("Expected argument 'ids' to be a list")
+        pulumi.set(__self__, "ids", ids)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if vpc_id and not isinstance(vpc_id, str):
+            raise TypeError("Expected argument 'vpc_id' to be a str")
+        pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetRouteTablesFilterResult']]:
+        return pulumi.get(self, "filters")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if ids and not isinstance(ids, list):
-            raise TypeError("Expected argument 'ids' to be a list")
-        __self__.ids = ids
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def ids(self) -> List[str]:
         """
         A set of all the route table ids found. This data source will fail if none are found.
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
-        if vpc_id and not isinstance(vpc_id, str):
-            raise TypeError("Expected argument 'vpc_id' to be a str")
-        __self__.vpc_id = vpc_id
+        return pulumi.get(self, "ids")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[str]:
+        return pulumi.get(self, "vpc_id")
+
 
 
 class AwaitableGetRouteTablesResult(GetRouteTablesResult):
@@ -111,7 +130,7 @@ def get_route_tables(filters: Optional[List[pulumi.InputType['GetRouteTablesFilt
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getRouteTables:getRouteTables', __args__, opts=opts, typ=_GetRouteTablesResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getRouteTables:getRouteTables', __args__, opts=opts, typ=GetRouteTablesResult).value
 
     return AwaitableGetRouteTablesResult(
         filters=__ret__.filters,

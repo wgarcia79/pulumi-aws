@@ -12,16 +12,6 @@ __all__ = ['Association']
 
 
 class Association(pulumi.CustomResource):
-    license_configuration_arn: pulumi.Output[str] = pulumi.property("licenseConfigurationArn")
-    """
-    ARN of the license configuration.
-    """
-
-    resource_arn: pulumi.Output[str] = pulumi.property("resourceArn")
-    """
-    ARN of the resource associated with the license configuration.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -92,6 +82,22 @@ class Association(pulumi.CustomResource):
         __props__["license_configuration_arn"] = license_configuration_arn
         __props__["resource_arn"] = resource_arn
         return Association(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="licenseConfigurationArn")
+    def license_configuration_arn(self) -> str:
+        """
+        ARN of the license configuration.
+        """
+        return pulumi.get(self, "license_configuration_arn")
+
+    @property
+    @pulumi.getter(name="resourceArn")
+    def resource_arn(self) -> str:
+        """
+        ARN of the resource associated with the license configuration.
+        """
+        return pulumi.get(self, "resource_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

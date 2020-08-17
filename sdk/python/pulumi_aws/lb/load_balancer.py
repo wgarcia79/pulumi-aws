@@ -14,109 +14,6 @@ __all__ = ['LoadBalancer']
 
 
 class LoadBalancer(pulumi.CustomResource):
-    access_logs: pulumi.Output[Optional['outputs.LoadBalancerAccessLogs']] = pulumi.property("accessLogs")
-    """
-    An Access Logs block. Access Logs documented below.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the load balancer (matches `id`).
-    """
-
-    arn_suffix: pulumi.Output[str] = pulumi.property("arnSuffix")
-    """
-    The ARN suffix for use with CloudWatch Metrics.
-    """
-
-    dns_name: pulumi.Output[str] = pulumi.property("dnsName")
-    """
-    The DNS name of the load balancer.
-    """
-
-    drop_invalid_header_fields: pulumi.Output[Optional[bool]] = pulumi.property("dropInvalidHeaderFields")
-    """
-    Indicates whether HTTP headers with header fields that are not valid are removed by the load balancer (true) or routed to targets (false). The default is false. Elastic Load Balancing requires that message header names contain only alphanumeric characters and hyphens. Only valid for Load Balancers of type `application`.
-    """
-
-    enable_cross_zone_load_balancing: pulumi.Output[Optional[bool]] = pulumi.property("enableCrossZoneLoadBalancing")
-    """
-    If true, cross-zone load balancing of the load balancer will be enabled.
-    This is a `network` load balancer feature. Defaults to `false`.
-    """
-
-    enable_deletion_protection: pulumi.Output[Optional[bool]] = pulumi.property("enableDeletionProtection")
-    """
-    If true, deletion of the load balancer will be disabled via
-    the AWS API. This will prevent this provider from deleting the load balancer. Defaults to `false`.
-    """
-
-    enable_http2: pulumi.Output[Optional[bool]] = pulumi.property("enableHttp2")
-    """
-    Indicates whether HTTP/2 is enabled in `application` load balancers. Defaults to `true`.
-    """
-
-    idle_timeout: pulumi.Output[Optional[float]] = pulumi.property("idleTimeout")
-    """
-    The time in seconds that the connection is allowed to be idle. Only valid for Load Balancers of type `application`. Default: 60.
-    """
-
-    internal: pulumi.Output[bool] = pulumi.property("internal")
-    """
-    If true, the LB will be internal.
-    """
-
-    ip_address_type: pulumi.Output[str] = pulumi.property("ipAddressType")
-    """
-    The type of IP addresses used by the subnets for your load balancer. The possible values are `ipv4` and `dualstack`
-    """
-
-    load_balancer_type: pulumi.Output[Optional[str]] = pulumi.property("loadBalancerType")
-    """
-    The type of load balancer to create. Possible values are `application` or `network`. The default value is `application`.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the LB. This name must be unique within your AWS account, can have a maximum of 32 characters,
-    must contain only alphanumeric characters or hyphens, and must not begin or end with a hyphen. If not specified,
-    this provider will autogenerate a name beginning with `tf-lb`.
-    """
-
-    name_prefix: pulumi.Output[Optional[str]] = pulumi.property("namePrefix")
-    """
-    Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-    """
-
-    security_groups: pulumi.Output[List[str]] = pulumi.property("securityGroups")
-    """
-    A list of security group IDs to assign to the LB. Only valid for Load Balancers of type `application`.
-    """
-
-    subnet_mappings: pulumi.Output[List['outputs.LoadBalancerSubnetMapping']] = pulumi.property("subnetMappings")
-    """
-    A subnet mapping block as documented below.
-    """
-
-    subnets: pulumi.Output[List[str]] = pulumi.property("subnets")
-    """
-    A list of subnet IDs to attach to the LB. Subnets
-    cannot be updated for Load Balancers of type `network`. Changing this value
-    for load balancers of type `network` will force a recreation of the resource.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
-    vpc_id: pulumi.Output[str] = pulumi.property("vpcId")
-
-    zone_id: pulumi.Output[str] = pulumi.property("zoneId")
-    """
-    The canonical hosted zone ID of the load balancer (to be used in a Route 53 Alias record).
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -351,6 +248,169 @@ class LoadBalancer(pulumi.CustomResource):
         __props__["vpc_id"] = vpc_id
         __props__["zone_id"] = zone_id
         return LoadBalancer(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="accessLogs")
+    def access_logs(self) -> Optional['outputs.LoadBalancerAccessLogs']:
+        """
+        An Access Logs block. Access Logs documented below.
+        """
+        return pulumi.get(self, "access_logs")
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the load balancer (matches `id`).
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="arnSuffix")
+    def arn_suffix(self) -> str:
+        """
+        The ARN suffix for use with CloudWatch Metrics.
+        """
+        return pulumi.get(self, "arn_suffix")
+
+    @property
+    @pulumi.getter(name="dnsName")
+    def dns_name(self) -> str:
+        """
+        The DNS name of the load balancer.
+        """
+        return pulumi.get(self, "dns_name")
+
+    @property
+    @pulumi.getter(name="dropInvalidHeaderFields")
+    def drop_invalid_header_fields(self) -> Optional[bool]:
+        """
+        Indicates whether HTTP headers with header fields that are not valid are removed by the load balancer (true) or routed to targets (false). The default is false. Elastic Load Balancing requires that message header names contain only alphanumeric characters and hyphens. Only valid for Load Balancers of type `application`.
+        """
+        return pulumi.get(self, "drop_invalid_header_fields")
+
+    @property
+    @pulumi.getter(name="enableCrossZoneLoadBalancing")
+    def enable_cross_zone_load_balancing(self) -> Optional[bool]:
+        """
+        If true, cross-zone load balancing of the load balancer will be enabled.
+        This is a `network` load balancer feature. Defaults to `false`.
+        """
+        return pulumi.get(self, "enable_cross_zone_load_balancing")
+
+    @property
+    @pulumi.getter(name="enableDeletionProtection")
+    def enable_deletion_protection(self) -> Optional[bool]:
+        """
+        If true, deletion of the load balancer will be disabled via
+        the AWS API. This will prevent this provider from deleting the load balancer. Defaults to `false`.
+        """
+        return pulumi.get(self, "enable_deletion_protection")
+
+    @property
+    @pulumi.getter(name="enableHttp2")
+    def enable_http2(self) -> Optional[bool]:
+        """
+        Indicates whether HTTP/2 is enabled in `application` load balancers. Defaults to `true`.
+        """
+        return pulumi.get(self, "enable_http2")
+
+    @property
+    @pulumi.getter(name="idleTimeout")
+    def idle_timeout(self) -> Optional[float]:
+        """
+        The time in seconds that the connection is allowed to be idle. Only valid for Load Balancers of type `application`. Default: 60.
+        """
+        return pulumi.get(self, "idle_timeout")
+
+    @property
+    @pulumi.getter
+    def internal(self) -> bool:
+        """
+        If true, the LB will be internal.
+        """
+        return pulumi.get(self, "internal")
+
+    @property
+    @pulumi.getter(name="ipAddressType")
+    def ip_address_type(self) -> str:
+        """
+        The type of IP addresses used by the subnets for your load balancer. The possible values are `ipv4` and `dualstack`
+        """
+        return pulumi.get(self, "ip_address_type")
+
+    @property
+    @pulumi.getter(name="loadBalancerType")
+    def load_balancer_type(self) -> Optional[str]:
+        """
+        The type of load balancer to create. Possible values are `application` or `network`. The default value is `application`.
+        """
+        return pulumi.get(self, "load_balancer_type")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the LB. This name must be unique within your AWS account, can have a maximum of 32 characters,
+        must contain only alphanumeric characters or hyphens, and must not begin or end with a hyphen. If not specified,
+        this provider will autogenerate a name beginning with `tf-lb`.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> Optional[str]:
+        """
+        Creates a unique name beginning with the specified prefix. Conflicts with `name`.
+        """
+        return pulumi.get(self, "name_prefix")
+
+    @property
+    @pulumi.getter(name="securityGroups")
+    def security_groups(self) -> List[str]:
+        """
+        A list of security group IDs to assign to the LB. Only valid for Load Balancers of type `application`.
+        """
+        return pulumi.get(self, "security_groups")
+
+    @property
+    @pulumi.getter(name="subnetMappings")
+    def subnet_mappings(self) -> List['outputs.LoadBalancerSubnetMapping']:
+        """
+        A subnet mapping block as documented below.
+        """
+        return pulumi.get(self, "subnet_mappings")
+
+    @property
+    @pulumi.getter
+    def subnets(self) -> List[str]:
+        """
+        A list of subnet IDs to attach to the LB. Subnets
+        cannot be updated for Load Balancers of type `network`. Changing this value
+        for load balancers of type `network` will force a recreation of the resource.
+        """
+        return pulumi.get(self, "subnets")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        return pulumi.get(self, "vpc_id")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The canonical hosted zone ID of the load balancer (to be used in a Route 53 Alias record).
+        """
+        return pulumi.get(self, "zone_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

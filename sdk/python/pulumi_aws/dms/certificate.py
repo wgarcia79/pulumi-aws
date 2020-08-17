@@ -12,26 +12,6 @@ __all__ = ['Certificate']
 
 
 class Certificate(pulumi.CustomResource):
-    certificate_arn: pulumi.Output[str] = pulumi.property("certificateArn")
-    """
-    The Amazon Resource Name (ARN) for the certificate.
-    """
-
-    certificate_id: pulumi.Output[str] = pulumi.property("certificateId")
-    """
-    The certificate identifier.
-    """
-
-    certificate_pem: pulumi.Output[Optional[str]] = pulumi.property("certificatePem")
-    """
-    The contents of the .pem X.509 certificate file for the certificate. Either `certificate_pem` or `certificate_wallet` must be set.
-    """
-
-    certificate_wallet: pulumi.Output[Optional[str]] = pulumi.property("certificateWallet")
-    """
-    The contents of the Oracle Wallet certificate for use with SSL. Either `certificate_pem` or `certificate_wallet` must be set.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -122,6 +102,38 @@ class Certificate(pulumi.CustomResource):
         __props__["certificate_pem"] = certificate_pem
         __props__["certificate_wallet"] = certificate_wallet
         return Certificate(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="certificateArn")
+    def certificate_arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) for the certificate.
+        """
+        return pulumi.get(self, "certificate_arn")
+
+    @property
+    @pulumi.getter(name="certificateId")
+    def certificate_id(self) -> str:
+        """
+        The certificate identifier.
+        """
+        return pulumi.get(self, "certificate_id")
+
+    @property
+    @pulumi.getter(name="certificatePem")
+    def certificate_pem(self) -> Optional[str]:
+        """
+        The contents of the .pem X.509 certificate file for the certificate. Either `certificate_pem` or `certificate_wallet` must be set.
+        """
+        return pulumi.get(self, "certificate_pem")
+
+    @property
+    @pulumi.getter(name="certificateWallet")
+    def certificate_wallet(self) -> Optional[str]:
+        """
+        The contents of the Oracle Wallet certificate for use with SSL. Either `certificate_pem` or `certificate_wallet` must be set.
+        """
+        return pulumi.get(self, "certificate_wallet")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

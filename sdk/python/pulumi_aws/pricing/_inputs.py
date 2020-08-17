@@ -30,11 +30,11 @@ class GetProductFilterArgs:
         """
         The product attribute name that you want to filter on.
         """
-        ...
+        return pulumi.get(self, "field")
 
     @field.setter
     def field(self, value: str):
-        ...
+        pulumi.set(self, "field", value)
 
     @property
     @pulumi.getter
@@ -42,10 +42,10 @@ class GetProductFilterArgs:
         """
         The product attribute value that you want to filter on.
         """
-        ...
+        return pulumi.get(self, "value")
 
     @value.setter
     def value(self, value: str):
-        ...
+        pulumi.set(self, "value", value)
 
 

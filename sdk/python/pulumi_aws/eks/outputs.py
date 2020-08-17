@@ -29,13 +29,21 @@ __all__ = [
 
 @pulumi.output_type
 class ClusterCertificateAuthority(dict):
+    def __init__(__self__, *,
+                 data: Optional[str] = None):
+        """
+        :param str data: The base64 encoded certificate data required to communicate with your cluster. Add this to the `certificate-authority-data` section of the `kubeconfig` file for your cluster.
+        """
+        if data is not None:
+            pulumi.set(__self__, "data", data)
+
     @property
     @pulumi.getter
     def data(self) -> Optional[str]:
         """
         The base64 encoded certificate data required to communicate with your cluster. Add this to the `certificate-authority-data` section of the `kubeconfig` file for your cluster.
         """
-        ...
+        return pulumi.get(self, "data")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -43,13 +51,23 @@ class ClusterCertificateAuthority(dict):
 
 @pulumi.output_type
 class ClusterEncryptionConfig(dict):
+    def __init__(__self__, *,
+                 provider: 'outputs.ClusterEncryptionConfigProvider',
+                 resources: List[str]):
+        """
+        :param 'ClusterEncryptionConfigProviderArgs' provider: Configuration block with provider for encryption. Detailed below.
+        :param List[str] resources: List of strings with resources to be encrypted. Valid values: `secrets`
+        """
+        pulumi.set(__self__, "provider", provider)
+        pulumi.set(__self__, "resources", resources)
+
     @property
     @pulumi.getter
     def provider(self) -> 'outputs.ClusterEncryptionConfigProvider':
         """
         Configuration block with provider for encryption. Detailed below.
         """
-        ...
+        return pulumi.get(self, "provider")
 
     @property
     @pulumi.getter
@@ -57,7 +75,7 @@ class ClusterEncryptionConfig(dict):
         """
         List of strings with resources to be encrypted. Valid values: `secrets`
         """
-        ...
+        return pulumi.get(self, "resources")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -65,13 +83,20 @@ class ClusterEncryptionConfig(dict):
 
 @pulumi.output_type
 class ClusterEncryptionConfigProvider(dict):
+    def __init__(__self__, *,
+                 key_arn: str):
+        """
+        :param str key_arn: Amazon Resource Name (ARN) of the Key Management Service (KMS) customer master key (CMK). The CMK must be symmetric, created in the same region as the cluster, and if the CMK was created in a different account, the user must have access to the CMK. For more information, see [Allowing Users in Other Accounts to Use a CMK in the AWS Key Management Service Developer Guide](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html).
+        """
+        pulumi.set(__self__, "key_arn", key_arn)
+
     @property
     @pulumi.getter(name="keyArn")
     def key_arn(self) -> str:
         """
         Amazon Resource Name (ARN) of the Key Management Service (KMS) customer master key (CMK). The CMK must be symmetric, created in the same region as the cluster, and if the CMK was created in a different account, the user must have access to the CMK. For more information, see [Allowing Users in Other Accounts to Use a CMK in the AWS Key Management Service Developer Guide](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html).
         """
-        ...
+        return pulumi.get(self, "key_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -79,13 +104,21 @@ class ClusterEncryptionConfigProvider(dict):
 
 @pulumi.output_type
 class ClusterIdentity(dict):
+    def __init__(__self__, *,
+                 oidcs: Optional[List['outputs.ClusterIdentityOidc']] = None):
+        """
+        :param List['ClusterIdentityOidcArgs'] oidcs: Nested attribute containing [OpenID Connect](https://openid.net/connect/) identity provider information for the cluster.
+        """
+        if oidcs is not None:
+            pulumi.set(__self__, "oidcs", oidcs)
+
     @property
     @pulumi.getter
     def oidcs(self) -> Optional[List['outputs.ClusterIdentityOidc']]:
         """
         Nested attribute containing [OpenID Connect](https://openid.net/connect/) identity provider information for the cluster.
         """
-        ...
+        return pulumi.get(self, "oidcs")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -93,13 +126,21 @@ class ClusterIdentity(dict):
 
 @pulumi.output_type
 class ClusterIdentityOidc(dict):
+    def __init__(__self__, *,
+                 issuer: Optional[str] = None):
+        """
+        :param str issuer: Issuer URL for the OpenID Connect identity provider.
+        """
+        if issuer is not None:
+            pulumi.set(__self__, "issuer", issuer)
+
     @property
     @pulumi.getter
     def issuer(self) -> Optional[str]:
         """
         Issuer URL for the OpenID Connect identity provider.
         """
-        ...
+        return pulumi.get(self, "issuer")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -107,45 +148,36 @@ class ClusterIdentityOidc(dict):
 
 @pulumi.output_type
 class ClusterVpcConfig(dict):
-    @property
-    @pulumi.getter(name="clusterSecurityGroupId")
-    def cluster_security_group_id(self) -> Optional[str]:
+    def __init__(__self__, *,
+                 subnet_ids: List[str],
+                 cluster_security_group_id: Optional[str] = None,
+                 endpoint_private_access: Optional[bool] = None,
+                 endpoint_public_access: Optional[bool] = None,
+                 public_access_cidrs: Optional[List[str]] = None,
+                 security_group_ids: Optional[List[str]] = None,
+                 vpc_id: Optional[str] = None):
         """
-        The cluster security group that was created by Amazon EKS for the cluster.
+        :param List[str] subnet_ids: List of subnet IDs. Must be in at least two different availability zones. Amazon EKS creates cross-account elastic network interfaces in these subnets to allow communication between your worker nodes and the Kubernetes control plane.
+        :param str cluster_security_group_id: The cluster security group that was created by Amazon EKS for the cluster.
+        :param bool endpoint_private_access: Indicates whether or not the Amazon EKS private API server endpoint is enabled. Default is `false`.
+        :param bool endpoint_public_access: Indicates whether or not the Amazon EKS public API server endpoint is enabled. Default is `true`.
+        :param List[str] public_access_cidrs: List of CIDR blocks. Indicates which CIDR blocks can access the Amazon EKS public API server endpoint when enabled. EKS defaults this to a list with `0.0.0.0/0`. This provider will only perform drift detection of its value when present in a configuration.
+        :param List[str] security_group_ids: List of security group IDs for the cross-account elastic network interfaces that Amazon EKS creates to use to allow communication between your worker nodes and the Kubernetes control plane.
+        :param str vpc_id: The VPC associated with your cluster.
         """
-        ...
-
-    @property
-    @pulumi.getter(name="endpointPrivateAccess")
-    def endpoint_private_access(self) -> Optional[bool]:
-        """
-        Indicates whether or not the Amazon EKS private API server endpoint is enabled. Default is `false`.
-        """
-        ...
-
-    @property
-    @pulumi.getter(name="endpointPublicAccess")
-    def endpoint_public_access(self) -> Optional[bool]:
-        """
-        Indicates whether or not the Amazon EKS public API server endpoint is enabled. Default is `true`.
-        """
-        ...
-
-    @property
-    @pulumi.getter(name="publicAccessCidrs")
-    def public_access_cidrs(self) -> Optional[List[str]]:
-        """
-        List of CIDR blocks. Indicates which CIDR blocks can access the Amazon EKS public API server endpoint when enabled. EKS defaults this to a list with `0.0.0.0/0`. This provider will only perform drift detection of its value when present in a configuration.
-        """
-        ...
-
-    @property
-    @pulumi.getter(name="securityGroupIds")
-    def security_group_ids(self) -> Optional[List[str]]:
-        """
-        List of security group IDs for the cross-account elastic network interfaces that Amazon EKS creates to use to allow communication between your worker nodes and the Kubernetes control plane.
-        """
-        ...
+        pulumi.set(__self__, "subnet_ids", subnet_ids)
+        if cluster_security_group_id is not None:
+            pulumi.set(__self__, "cluster_security_group_id", cluster_security_group_id)
+        if endpoint_private_access is not None:
+            pulumi.set(__self__, "endpoint_private_access", endpoint_private_access)
+        if endpoint_public_access is not None:
+            pulumi.set(__self__, "endpoint_public_access", endpoint_public_access)
+        if public_access_cidrs is not None:
+            pulumi.set(__self__, "public_access_cidrs", public_access_cidrs)
+        if security_group_ids is not None:
+            pulumi.set(__self__, "security_group_ids", security_group_ids)
+        if vpc_id is not None:
+            pulumi.set(__self__, "vpc_id", vpc_id)
 
     @property
     @pulumi.getter(name="subnetIds")
@@ -153,7 +185,47 @@ class ClusterVpcConfig(dict):
         """
         List of subnet IDs. Must be in at least two different availability zones. Amazon EKS creates cross-account elastic network interfaces in these subnets to allow communication between your worker nodes and the Kubernetes control plane.
         """
-        ...
+        return pulumi.get(self, "subnet_ids")
+
+    @property
+    @pulumi.getter(name="clusterSecurityGroupId")
+    def cluster_security_group_id(self) -> Optional[str]:
+        """
+        The cluster security group that was created by Amazon EKS for the cluster.
+        """
+        return pulumi.get(self, "cluster_security_group_id")
+
+    @property
+    @pulumi.getter(name="endpointPrivateAccess")
+    def endpoint_private_access(self) -> Optional[bool]:
+        """
+        Indicates whether or not the Amazon EKS private API server endpoint is enabled. Default is `false`.
+        """
+        return pulumi.get(self, "endpoint_private_access")
+
+    @property
+    @pulumi.getter(name="endpointPublicAccess")
+    def endpoint_public_access(self) -> Optional[bool]:
+        """
+        Indicates whether or not the Amazon EKS public API server endpoint is enabled. Default is `true`.
+        """
+        return pulumi.get(self, "endpoint_public_access")
+
+    @property
+    @pulumi.getter(name="publicAccessCidrs")
+    def public_access_cidrs(self) -> Optional[List[str]]:
+        """
+        List of CIDR blocks. Indicates which CIDR blocks can access the Amazon EKS public API server endpoint when enabled. EKS defaults this to a list with `0.0.0.0/0`. This provider will only perform drift detection of its value when present in a configuration.
+        """
+        return pulumi.get(self, "public_access_cidrs")
+
+    @property
+    @pulumi.getter(name="securityGroupIds")
+    def security_group_ids(self) -> Optional[List[str]]:
+        """
+        List of security group IDs for the cross-account elastic network interfaces that Amazon EKS creates to use to allow communication between your worker nodes and the Kubernetes control plane.
+        """
+        return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -161,7 +233,7 @@ class ClusterVpcConfig(dict):
         """
         The VPC associated with your cluster.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -169,13 +241,16 @@ class ClusterVpcConfig(dict):
 
 @pulumi.output_type
 class FargateProfileSelector(dict):
-    @property
-    @pulumi.getter
-    def labels(self) -> Optional[Mapping[str, str]]:
+    def __init__(__self__, *,
+                 namespace: str,
+                 labels: Optional[Mapping[str, str]] = None):
         """
-        Key-value map of Kubernetes labels for selection.
+        :param str namespace: Kubernetes namespace for selection.
+        :param Mapping[str, str] labels: Key-value map of Kubernetes labels for selection.
         """
-        ...
+        pulumi.set(__self__, "namespace", namespace)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
 
     @property
     @pulumi.getter
@@ -183,7 +258,15 @@ class FargateProfileSelector(dict):
         """
         Kubernetes namespace for selection.
         """
-        ...
+        return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of Kubernetes labels for selection.
+        """
+        return pulumi.get(self, "labels")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -191,13 +274,25 @@ class FargateProfileSelector(dict):
 
 @pulumi.output_type
 class NodeGroupRemoteAccess(dict):
+    def __init__(__self__, *,
+                 ec2_ssh_key: Optional[str] = None,
+                 source_security_group_ids: Optional[List[str]] = None):
+        """
+        :param str ec2_ssh_key: EC2 Key Pair name that provides access for SSH communication with the worker nodes in the EKS Node Group. If you specify this configuration, but do not specify `source_security_group_ids` when you create an EKS Node Group, port 22 on the worker nodes is opened to the Internet (0.0.0.0/0).
+        :param List[str] source_security_group_ids: Set of EC2 Security Group IDs to allow SSH access (port 22) from on the worker nodes. If you specify `ec2_ssh_key`, but do not specify this configuration when you create an EKS Node Group, port 22 on the worker nodes is opened to the Internet (0.0.0.0/0).
+        """
+        if ec2_ssh_key is not None:
+            pulumi.set(__self__, "ec2_ssh_key", ec2_ssh_key)
+        if source_security_group_ids is not None:
+            pulumi.set(__self__, "source_security_group_ids", source_security_group_ids)
+
     @property
     @pulumi.getter(name="ec2SshKey")
     def ec2_ssh_key(self) -> Optional[str]:
         """
         EC2 Key Pair name that provides access for SSH communication with the worker nodes in the EKS Node Group. If you specify this configuration, but do not specify `source_security_group_ids` when you create an EKS Node Group, port 22 on the worker nodes is opened to the Internet (0.0.0.0/0).
         """
-        ...
+        return pulumi.get(self, "ec2_ssh_key")
 
     @property
     @pulumi.getter(name="sourceSecurityGroupIds")
@@ -205,7 +300,7 @@ class NodeGroupRemoteAccess(dict):
         """
         Set of EC2 Security Group IDs to allow SSH access (port 22) from on the worker nodes. If you specify `ec2_ssh_key`, but do not specify this configuration when you create an EKS Node Group, port 22 on the worker nodes is opened to the Internet (0.0.0.0/0).
         """
-        ...
+        return pulumi.get(self, "source_security_group_ids")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -213,13 +308,25 @@ class NodeGroupRemoteAccess(dict):
 
 @pulumi.output_type
 class NodeGroupResource(dict):
+    def __init__(__self__, *,
+                 autoscaling_groups: Optional[List['outputs.NodeGroupResourceAutoscalingGroup']] = None,
+                 remote_access_security_group_id: Optional[str] = None):
+        """
+        :param List['NodeGroupResourceAutoscalingGroupArgs'] autoscaling_groups: List of objects containing information about AutoScaling Groups.
+        :param str remote_access_security_group_id: Identifier of the remote access EC2 Security Group.
+        """
+        if autoscaling_groups is not None:
+            pulumi.set(__self__, "autoscaling_groups", autoscaling_groups)
+        if remote_access_security_group_id is not None:
+            pulumi.set(__self__, "remote_access_security_group_id", remote_access_security_group_id)
+
     @property
     @pulumi.getter(name="autoscalingGroups")
     def autoscaling_groups(self) -> Optional[List['outputs.NodeGroupResourceAutoscalingGroup']]:
         """
         List of objects containing information about AutoScaling Groups.
         """
-        ...
+        return pulumi.get(self, "autoscaling_groups")
 
     @property
     @pulumi.getter(name="remoteAccessSecurityGroupId")
@@ -227,7 +334,7 @@ class NodeGroupResource(dict):
         """
         Identifier of the remote access EC2 Security Group.
         """
-        ...
+        return pulumi.get(self, "remote_access_security_group_id")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -235,13 +342,21 @@ class NodeGroupResource(dict):
 
 @pulumi.output_type
 class NodeGroupResourceAutoscalingGroup(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Name of the AutoScaling Group.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
         Name of the AutoScaling Group.
         """
-        ...
+        return pulumi.get(self, "name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -249,13 +364,26 @@ class NodeGroupResourceAutoscalingGroup(dict):
 
 @pulumi.output_type
 class NodeGroupScalingConfig(dict):
+    def __init__(__self__, *,
+                 desired_size: float,
+                 max_size: float,
+                 min_size: float):
+        """
+        :param float desired_size: Desired number of worker nodes.
+        :param float max_size: Maximum number of worker nodes.
+        :param float min_size: Minimum number of worker nodes.
+        """
+        pulumi.set(__self__, "desired_size", desired_size)
+        pulumi.set(__self__, "max_size", max_size)
+        pulumi.set(__self__, "min_size", min_size)
+
     @property
     @pulumi.getter(name="desiredSize")
     def desired_size(self) -> float:
         """
         Desired number of worker nodes.
         """
-        ...
+        return pulumi.get(self, "desired_size")
 
     @property
     @pulumi.getter(name="maxSize")
@@ -263,7 +391,7 @@ class NodeGroupScalingConfig(dict):
         """
         Maximum number of worker nodes.
         """
-        ...
+        return pulumi.get(self, "max_size")
 
     @property
     @pulumi.getter(name="minSize")
@@ -271,7 +399,7 @@ class NodeGroupScalingConfig(dict):
         """
         Minimum number of worker nodes.
         """
-        ...
+        return pulumi.get(self, "min_size")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -279,46 +407,92 @@ class NodeGroupScalingConfig(dict):
 
 @pulumi.output_type
 class GetClusterCertificateAuthorityResult(dict):
+    def __init__(__self__, *,
+                 data: str):
+        """
+        :param str data: The base64 encoded certificate data required to communicate with your cluster. Add this to the `certificate-authority-data` section of the `kubeconfig` file for your cluster.
+        """
+        pulumi.set(__self__, "data", data)
+
     @property
     @pulumi.getter
     def data(self) -> str:
         """
         The base64 encoded certificate data required to communicate with your cluster. Add this to the `certificate-authority-data` section of the `kubeconfig` file for your cluster.
         """
-        ...
+        return pulumi.get(self, "data")
 
 
 @pulumi.output_type
 class GetClusterIdentityResult(dict):
+    def __init__(__self__, *,
+                 oidcs: List['outputs.GetClusterIdentityOidcResult']):
+        """
+        :param List['GetClusterIdentityOidcArgs'] oidcs: Nested attribute containing [OpenID Connect](https://openid.net/connect/) identity provider information for the cluster.
+        """
+        pulumi.set(__self__, "oidcs", oidcs)
+
     @property
     @pulumi.getter
     def oidcs(self) -> List['outputs.GetClusterIdentityOidcResult']:
         """
         Nested attribute containing [OpenID Connect](https://openid.net/connect/) identity provider information for the cluster.
         """
-        ...
+        return pulumi.get(self, "oidcs")
 
 
 @pulumi.output_type
 class GetClusterIdentityOidcResult(dict):
+    def __init__(__self__, *,
+                 issuer: str):
+        """
+        :param str issuer: Issuer URL for the OpenID Connect identity provider.
+        """
+        pulumi.set(__self__, "issuer", issuer)
+
     @property
     @pulumi.getter
     def issuer(self) -> str:
         """
         Issuer URL for the OpenID Connect identity provider.
         """
-        ...
+        return pulumi.get(self, "issuer")
 
 
 @pulumi.output_type
 class GetClusterVpcConfigResult(dict):
+    def __init__(__self__, *,
+                 cluster_security_group_id: str,
+                 endpoint_private_access: bool,
+                 endpoint_public_access: bool,
+                 public_access_cidrs: List[str],
+                 security_group_ids: List[str],
+                 subnet_ids: List[str],
+                 vpc_id: str):
+        """
+        :param str cluster_security_group_id: The cluster security group that was created by Amazon EKS for the cluster.
+        :param bool endpoint_private_access: Indicates whether or not the Amazon EKS private API server endpoint is enabled.
+        :param bool endpoint_public_access: Indicates whether or not the Amazon EKS public API server endpoint is enabled.
+        :param List[str] public_access_cidrs: List of CIDR blocks. Indicates which CIDR blocks can access the Amazon EKS public API server endpoint.
+        :param List[str] security_group_ids: List of security group IDs
+        :param List[str] subnet_ids: List of subnet IDs
+        :param str vpc_id: The VPC associated with your cluster.
+        """
+        pulumi.set(__self__, "cluster_security_group_id", cluster_security_group_id)
+        pulumi.set(__self__, "endpoint_private_access", endpoint_private_access)
+        pulumi.set(__self__, "endpoint_public_access", endpoint_public_access)
+        pulumi.set(__self__, "public_access_cidrs", public_access_cidrs)
+        pulumi.set(__self__, "security_group_ids", security_group_ids)
+        pulumi.set(__self__, "subnet_ids", subnet_ids)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+
     @property
     @pulumi.getter(name="clusterSecurityGroupId")
     def cluster_security_group_id(self) -> str:
         """
         The cluster security group that was created by Amazon EKS for the cluster.
         """
-        ...
+        return pulumi.get(self, "cluster_security_group_id")
 
     @property
     @pulumi.getter(name="endpointPrivateAccess")
@@ -326,7 +500,7 @@ class GetClusterVpcConfigResult(dict):
         """
         Indicates whether or not the Amazon EKS private API server endpoint is enabled.
         """
-        ...
+        return pulumi.get(self, "endpoint_private_access")
 
     @property
     @pulumi.getter(name="endpointPublicAccess")
@@ -334,7 +508,7 @@ class GetClusterVpcConfigResult(dict):
         """
         Indicates whether or not the Amazon EKS public API server endpoint is enabled.
         """
-        ...
+        return pulumi.get(self, "endpoint_public_access")
 
     @property
     @pulumi.getter(name="publicAccessCidrs")
@@ -342,7 +516,7 @@ class GetClusterVpcConfigResult(dict):
         """
         List of CIDR blocks. Indicates which CIDR blocks can access the Amazon EKS public API server endpoint.
         """
-        ...
+        return pulumi.get(self, "public_access_cidrs")
 
     @property
     @pulumi.getter(name="securityGroupIds")
@@ -350,7 +524,7 @@ class GetClusterVpcConfigResult(dict):
         """
         List of security group IDs
         """
-        ...
+        return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter(name="subnetIds")
@@ -358,7 +532,7 @@ class GetClusterVpcConfigResult(dict):
         """
         List of subnet IDs
         """
-        ...
+        return pulumi.get(self, "subnet_ids")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -366,6 +540,6 @@ class GetClusterVpcConfigResult(dict):
         """
         The VPC associated with your cluster.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
 

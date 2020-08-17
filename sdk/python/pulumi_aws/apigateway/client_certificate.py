@@ -12,36 +12,6 @@ __all__ = ['ClientCertificate']
 
 
 class ClientCertificate(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN)
-    """
-
-    created_date: pulumi.Output[str] = pulumi.property("createdDate")
-    """
-    The date when the client certificate was created.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    The description of the client certificate.
-    """
-
-    expiration_date: pulumi.Output[str] = pulumi.property("expirationDate")
-    """
-    The date when the client certificate will expire.
-    """
-
-    pem_encoded_certificate: pulumi.Output[str] = pulumi.property("pemEncodedCertificate")
-    """
-    The PEM-encoded public key of the client certificate.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of resource tags
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -131,6 +101,54 @@ class ClientCertificate(pulumi.CustomResource):
         __props__["pem_encoded_certificate"] = pem_encoded_certificate
         __props__["tags"] = tags
         return ClientCertificate(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN)
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="createdDate")
+    def created_date(self) -> str:
+        """
+        The date when the client certificate was created.
+        """
+        return pulumi.get(self, "created_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        The description of the client certificate.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="expirationDate")
+    def expiration_date(self) -> str:
+        """
+        The date when the client certificate will expire.
+        """
+        return pulumi.get(self, "expiration_date")
+
+    @property
+    @pulumi.getter(name="pemEncodedCertificate")
+    def pem_encoded_certificate(self) -> str:
+        """
+        The PEM-encoded public key of the client certificate.
+        """
+        return pulumi.get(self, "pem_encoded_certificate")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of resource tags
+        """
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

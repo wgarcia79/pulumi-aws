@@ -14,66 +14,6 @@ __all__ = ['Budget']
 
 
 class Budget(pulumi.CustomResource):
-    account_id: pulumi.Output[str] = pulumi.property("accountId")
-    """
-    The ID of the target account for budget. Will use current user's account_id by default if omitted.
-    """
-
-    budget_type: pulumi.Output[str] = pulumi.property("budgetType")
-    """
-    Whether this budget tracks monetary cost or usage.
-    """
-
-    cost_filters: pulumi.Output[Mapping[str, str]] = pulumi.property("costFilters")
-    """
-    Map of CostFilters key/value pairs to apply to the budget.
-    """
-
-    cost_types: pulumi.Output['outputs.BudgetCostTypes'] = pulumi.property("costTypes")
-    """
-    Object containing CostTypes The types of cost included in a budget, such as tax and subscriptions..
-    """
-
-    limit_amount: pulumi.Output[str] = pulumi.property("limitAmount")
-    """
-    The amount of cost or usage being measured for a budget.
-    """
-
-    limit_unit: pulumi.Output[str] = pulumi.property("limitUnit")
-    """
-    The unit of measurement used for the budget forecast, actual spend, or budget threshold, such as dollars or GB. See [Spend](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/data-type-spend.html) documentation.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of a budget. Unique within accounts.
-    """
-
-    name_prefix: pulumi.Output[str] = pulumi.property("namePrefix")
-    """
-    The prefix of the name of a budget. Unique within accounts.
-    """
-
-    notifications: pulumi.Output[Optional[List['outputs.BudgetNotification']]] = pulumi.property("notifications")
-    """
-    Object containing Budget Notifications. Can be used multiple times to define more than one budget notification
-    """
-
-    time_period_end: pulumi.Output[Optional[str]] = pulumi.property("timePeriodEnd")
-    """
-    The end of the time period covered by the budget. There are no restrictions on the end date. Format: `2017-01-01_12:00`.
-    """
-
-    time_period_start: pulumi.Output[str] = pulumi.property("timePeriodStart")
-    """
-    The start of the time period covered by the budget. The start date must come before the end date. Format: `2017-01-01_12:00`.
-    """
-
-    time_unit: pulumi.Output[str] = pulumi.property("timeUnit")
-    """
-    The length of time until a budget resets the actual and forecasted spend. Valid values: `MONTHLY`, `QUARTERLY`, `ANNUALLY`.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -308,6 +248,102 @@ class Budget(pulumi.CustomResource):
         __props__["time_period_start"] = time_period_start
         __props__["time_unit"] = time_unit
         return Budget(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
+        """
+        The ID of the target account for budget. Will use current user's account_id by default if omitted.
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter(name="budgetType")
+    def budget_type(self) -> str:
+        """
+        Whether this budget tracks monetary cost or usage.
+        """
+        return pulumi.get(self, "budget_type")
+
+    @property
+    @pulumi.getter(name="costFilters")
+    def cost_filters(self) -> Mapping[str, str]:
+        """
+        Map of CostFilters key/value pairs to apply to the budget.
+        """
+        return pulumi.get(self, "cost_filters")
+
+    @property
+    @pulumi.getter(name="costTypes")
+    def cost_types(self) -> 'outputs.BudgetCostTypes':
+        """
+        Object containing CostTypes The types of cost included in a budget, such as tax and subscriptions..
+        """
+        return pulumi.get(self, "cost_types")
+
+    @property
+    @pulumi.getter(name="limitAmount")
+    def limit_amount(self) -> str:
+        """
+        The amount of cost or usage being measured for a budget.
+        """
+        return pulumi.get(self, "limit_amount")
+
+    @property
+    @pulumi.getter(name="limitUnit")
+    def limit_unit(self) -> str:
+        """
+        The unit of measurement used for the budget forecast, actual spend, or budget threshold, such as dollars or GB. See [Spend](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/data-type-spend.html) documentation.
+        """
+        return pulumi.get(self, "limit_unit")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of a budget. Unique within accounts.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> str:
+        """
+        The prefix of the name of a budget. Unique within accounts.
+        """
+        return pulumi.get(self, "name_prefix")
+
+    @property
+    @pulumi.getter
+    def notifications(self) -> Optional[List['outputs.BudgetNotification']]:
+        """
+        Object containing Budget Notifications. Can be used multiple times to define more than one budget notification
+        """
+        return pulumi.get(self, "notifications")
+
+    @property
+    @pulumi.getter(name="timePeriodEnd")
+    def time_period_end(self) -> Optional[str]:
+        """
+        The end of the time period covered by the budget. There are no restrictions on the end date. Format: `2017-01-01_12:00`.
+        """
+        return pulumi.get(self, "time_period_end")
+
+    @property
+    @pulumi.getter(name="timePeriodStart")
+    def time_period_start(self) -> str:
+        """
+        The start of the time period covered by the budget. The start date must come before the end date. Format: `2017-01-01_12:00`.
+        """
+        return pulumi.get(self, "time_period_start")
+
+    @property
+    @pulumi.getter(name="timeUnit")
+    def time_unit(self) -> str:
+        """
+        The length of time until a budget resets the actual and forecasted spend. Valid values: `MONTHLY`, `QUARTERLY`, `ANNUALLY`.
+        """
+        return pulumi.get(self, "time_unit")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

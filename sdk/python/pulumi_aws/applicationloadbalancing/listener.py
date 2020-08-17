@@ -16,41 +16,6 @@ warnings.warn("aws.applicationloadbalancing.Listener has been deprecated in favo
 
 
 class Listener(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The Amazon Resource Name (ARN) of the target group.
-    """
-
-    certificate_arn: pulumi.Output[Optional[str]] = pulumi.property("certificateArn")
-    """
-    The ARN of the default SSL server certificate. Exactly one certificate is required if the protocol is HTTPS. For adding additional SSL certificates, see the `lb.ListenerCertificate` resource.
-    """
-
-    default_actions: pulumi.Output[List['outputs.ListenerDefaultAction']] = pulumi.property("defaultActions")
-    """
-    An Action block. Action blocks are documented below.
-    """
-
-    load_balancer_arn: pulumi.Output[str] = pulumi.property("loadBalancerArn")
-    """
-    The ARN of the load balancer.
-    """
-
-    port: pulumi.Output[float] = pulumi.property("port")
-    """
-    The port on which the load balancer is listening.
-    """
-
-    protocol: pulumi.Output[Optional[str]] = pulumi.property("protocol")
-    """
-    The protocol for connections from clients to the load balancer. Valid values are `TCP`, `TLS`, `UDP`, `TCP_UDP`, `HTTP` and `HTTPS`. Defaults to `HTTP`.
-    """
-
-    ssl_policy: pulumi.Output[str] = pulumi.property("sslPolicy")
-    """
-    The name of the SSL Policy for the listener. Required if `protocol` is `HTTPS` or `TLS`.
-    """
-
     warnings.warn("aws.applicationloadbalancing.Listener has been deprecated in favor of aws.alb.Listener", DeprecationWarning)
 
     def __init__(__self__,
@@ -275,6 +240,62 @@ class Listener(pulumi.CustomResource):
         __props__["protocol"] = protocol
         __props__["ssl_policy"] = ssl_policy
         return Listener(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) of the target group.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="certificateArn")
+    def certificate_arn(self) -> Optional[str]:
+        """
+        The ARN of the default SSL server certificate. Exactly one certificate is required if the protocol is HTTPS. For adding additional SSL certificates, see the `lb.ListenerCertificate` resource.
+        """
+        return pulumi.get(self, "certificate_arn")
+
+    @property
+    @pulumi.getter(name="defaultActions")
+    def default_actions(self) -> List['outputs.ListenerDefaultAction']:
+        """
+        An Action block. Action blocks are documented below.
+        """
+        return pulumi.get(self, "default_actions")
+
+    @property
+    @pulumi.getter(name="loadBalancerArn")
+    def load_balancer_arn(self) -> str:
+        """
+        The ARN of the load balancer.
+        """
+        return pulumi.get(self, "load_balancer_arn")
+
+    @property
+    @pulumi.getter
+    def port(self) -> float:
+        """
+        The port on which the load balancer is listening.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> Optional[str]:
+        """
+        The protocol for connections from clients to the load balancer. Valid values are `TCP`, `TLS`, `UDP`, `TCP_UDP`, `HTTP` and `HTTPS`. Defaults to `HTTP`.
+        """
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="sslPolicy")
+    def ssl_policy(self) -> str:
+        """
+        The name of the SSL Policy for the listener. Required if `protocol` is `HTTPS` or `TLS`.
+        """
+        return pulumi.get(self, "ssl_policy")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

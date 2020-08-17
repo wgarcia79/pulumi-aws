@@ -14,31 +14,6 @@ __all__ = ['Channel']
 
 
 class Channel(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the channel
-    """
-
-    channel_id: pulumi.Output[str] = pulumi.property("channelId")
-    """
-    A unique identifier describing the channel
-    """
-
-    description: pulumi.Output[str] = pulumi.property("description")
-    """
-    A description of the channel
-    """
-
-    hls_ingests: pulumi.Output[List['outputs.ChannelHlsIngest']] = pulumi.property("hlsIngests")
-    """
-    A single item list of HLS ingest information
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -132,6 +107,46 @@ class Channel(pulumi.CustomResource):
         __props__["hls_ingests"] = hls_ingests
         __props__["tags"] = tags
         return Channel(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the channel
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="channelId")
+    def channel_id(self) -> str:
+        """
+        A unique identifier describing the channel
+        """
+        return pulumi.get(self, "channel_id")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        A description of the channel
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="hlsIngests")
+    def hls_ingests(self) -> List['outputs.ChannelHlsIngest']:
+        """
+        A single item list of HLS ingest information
+        """
+        return pulumi.get(self, "hls_ingests")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

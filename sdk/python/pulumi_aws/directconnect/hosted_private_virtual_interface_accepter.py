@@ -12,31 +12,6 @@ __all__ = ['HostedPrivateVirtualInterfaceAccepter']
 
 
 class HostedPrivateVirtualInterfaceAccepter(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the virtual interface.
-    """
-
-    dx_gateway_id: pulumi.Output[Optional[str]] = pulumi.property("dxGatewayId")
-    """
-    The ID of the Direct Connect gateway to which to connect the virtual interface.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
-    virtual_interface_id: pulumi.Output[str] = pulumi.property("virtualInterfaceId")
-    """
-    The ID of the Direct Connect virtual interface to accept.
-    """
-
-    vpn_gateway_id: pulumi.Output[Optional[str]] = pulumi.property("vpnGatewayId")
-    """
-    The ID of the virtual private gateway to which to connect the virtual interface.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -148,6 +123,46 @@ class HostedPrivateVirtualInterfaceAccepter(pulumi.CustomResource):
         __props__["virtual_interface_id"] = virtual_interface_id
         __props__["vpn_gateway_id"] = vpn_gateway_id
         return HostedPrivateVirtualInterfaceAccepter(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the virtual interface.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="dxGatewayId")
+    def dx_gateway_id(self) -> Optional[str]:
+        """
+        The ID of the Direct Connect gateway to which to connect the virtual interface.
+        """
+        return pulumi.get(self, "dx_gateway_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="virtualInterfaceId")
+    def virtual_interface_id(self) -> str:
+        """
+        The ID of the Direct Connect virtual interface to accept.
+        """
+        return pulumi.get(self, "virtual_interface_id")
+
+    @property
+    @pulumi.getter(name="vpnGatewayId")
+    def vpn_gateway_id(self) -> Optional[str]:
+        """
+        The ID of the virtual private gateway to which to connect the virtual interface.
+        """
+        return pulumi.get(self, "vpn_gateway_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

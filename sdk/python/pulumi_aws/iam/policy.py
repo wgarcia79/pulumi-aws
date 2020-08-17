@@ -12,37 +12,6 @@ __all__ = ['Policy']
 
 
 class Policy(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN assigned by AWS to this policy.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    Description of the IAM policy.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the policy. If omitted, this provider will assign a random, unique name.
-    """
-
-    name_prefix: pulumi.Output[Optional[str]] = pulumi.property("namePrefix")
-    """
-    Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-    """
-
-    path: pulumi.Output[Optional[str]] = pulumi.property("path")
-    """
-    Path in which to create the policy.
-    See [IAM Identifiers](https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html) for more information.
-    """
-
-    policy: pulumi.Output[str] = pulumi.property("policy")
-    """
-    The policy document. This is a JSON formatted string.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -158,6 +127,55 @@ class Policy(pulumi.CustomResource):
         __props__["path"] = path
         __props__["policy"] = policy
         return Policy(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN assigned by AWS to this policy.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Description of the IAM policy.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the policy. If omitted, this provider will assign a random, unique name.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> Optional[str]:
+        """
+        Creates a unique name beginning with the specified prefix. Conflicts with `name`.
+        """
+        return pulumi.get(self, "name_prefix")
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[str]:
+        """
+        Path in which to create the policy.
+        See [IAM Identifiers](https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html) for more information.
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter
+    def policy(self) -> str:
+        """
+        The policy document. This is a JSON formatted string.
+        """
+        return pulumi.get(self, "policy")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

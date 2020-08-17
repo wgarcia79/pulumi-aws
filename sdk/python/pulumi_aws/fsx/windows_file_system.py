@@ -14,96 +14,6 @@ __all__ = ['WindowsFileSystem']
 
 
 class WindowsFileSystem(pulumi.CustomResource):
-    active_directory_id: pulumi.Output[Optional[str]] = pulumi.property("activeDirectoryId")
-    """
-    The ID for an existing Microsoft Active Directory instance that the file system should join when it's created. Cannot be specified with `self_managed_active_directory`.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name of the file system.
-    """
-
-    automatic_backup_retention_days: pulumi.Output[Optional[float]] = pulumi.property("automaticBackupRetentionDays")
-    """
-    The number of days to retain automatic backups. Minimum of `0` and maximum of `35`. Defaults to `7`. Set to `0` to disable.
-    """
-
-    copy_tags_to_backups: pulumi.Output[Optional[bool]] = pulumi.property("copyTagsToBackups")
-    """
-    A boolean flag indicating whether tags on the file system should be copied to backups. Defaults to `false`.
-    """
-
-    daily_automatic_backup_start_time: pulumi.Output[str] = pulumi.property("dailyAutomaticBackupStartTime")
-    """
-    The preferred time (in `HH:MM` format) to take daily automatic backups, in the UTC time zone.
-    """
-
-    dns_name: pulumi.Output[str] = pulumi.property("dnsName")
-    """
-    DNS name for the file system, e.g. `fs-12345678.corp.example.com` (domain name matching the Active Directory domain name)
-    """
-
-    kms_key_id: pulumi.Output[str] = pulumi.property("kmsKeyId")
-    """
-    ARN for the KMS Key to encrypt the file system at rest. Defaults to an AWS managed KMS Key.
-    """
-
-    network_interface_ids: pulumi.Output[List[str]] = pulumi.property("networkInterfaceIds")
-    """
-    Set of Elastic Network Interface identifiers from which the file system is accessible.
-    """
-
-    owner_id: pulumi.Output[str] = pulumi.property("ownerId")
-    """
-    AWS account identifier that created the file system.
-    """
-
-    security_group_ids: pulumi.Output[Optional[List[str]]] = pulumi.property("securityGroupIds")
-    """
-    A list of IDs for the security groups that apply to the specified network interfaces created for file system access. These security groups will apply to all network interfaces.
-    """
-
-    self_managed_active_directory: pulumi.Output[Optional['outputs.WindowsFileSystemSelfManagedActiveDirectory']] = pulumi.property("selfManagedActiveDirectory")
-    """
-    Configuration block that Amazon FSx uses to join the Windows File Server instance to your self-managed (including on-premises) Microsoft Active Directory (AD) directory. Cannot be specified with `active_directory_id`. Detailed below.
-    """
-
-    skip_final_backup: pulumi.Output[Optional[bool]] = pulumi.property("skipFinalBackup")
-    """
-    When enabled, will skip the default final backup taken when the file system is deleted. This configuration must be applied separately before attempting to delete the resource to have the desired behavior. Defaults to `false`.
-    """
-
-    storage_capacity: pulumi.Output[float] = pulumi.property("storageCapacity")
-    """
-    Storage capacity (GiB) of the file system. Minimum of 32 and maximum of 65536.
-    """
-
-    subnet_ids: pulumi.Output[str] = pulumi.property("subnetIds")
-    """
-    A list of IDs for the subnets that the file system will be accessible from. File systems support only one subnet. The file server is also launched in that subnet's Availability Zone.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the file system.
-    """
-
-    throughput_capacity: pulumi.Output[float] = pulumi.property("throughputCapacity")
-    """
-    Throughput (megabytes per second) of the file system in power of 2 increments. Minimum of `8` and maximum of `2048`.
-    """
-
-    vpc_id: pulumi.Output[str] = pulumi.property("vpcId")
-    """
-    Identifier of the Virtual Private Cloud for the file system.
-    """
-
-    weekly_maintenance_start_time: pulumi.Output[str] = pulumi.property("weeklyMaintenanceStartTime")
-    """
-    The preferred start time (in `d:HH:MM` format) to perform weekly maintenance, in the UTC time zone.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -302,6 +212,150 @@ class WindowsFileSystem(pulumi.CustomResource):
         __props__["vpc_id"] = vpc_id
         __props__["weekly_maintenance_start_time"] = weekly_maintenance_start_time
         return WindowsFileSystem(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="activeDirectoryId")
+    def active_directory_id(self) -> Optional[str]:
+        """
+        The ID for an existing Microsoft Active Directory instance that the file system should join when it's created. Cannot be specified with `self_managed_active_directory`.
+        """
+        return pulumi.get(self, "active_directory_id")
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name of the file system.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="automaticBackupRetentionDays")
+    def automatic_backup_retention_days(self) -> Optional[float]:
+        """
+        The number of days to retain automatic backups. Minimum of `0` and maximum of `35`. Defaults to `7`. Set to `0` to disable.
+        """
+        return pulumi.get(self, "automatic_backup_retention_days")
+
+    @property
+    @pulumi.getter(name="copyTagsToBackups")
+    def copy_tags_to_backups(self) -> Optional[bool]:
+        """
+        A boolean flag indicating whether tags on the file system should be copied to backups. Defaults to `false`.
+        """
+        return pulumi.get(self, "copy_tags_to_backups")
+
+    @property
+    @pulumi.getter(name="dailyAutomaticBackupStartTime")
+    def daily_automatic_backup_start_time(self) -> str:
+        """
+        The preferred time (in `HH:MM` format) to take daily automatic backups, in the UTC time zone.
+        """
+        return pulumi.get(self, "daily_automatic_backup_start_time")
+
+    @property
+    @pulumi.getter(name="dnsName")
+    def dns_name(self) -> str:
+        """
+        DNS name for the file system, e.g. `fs-12345678.corp.example.com` (domain name matching the Active Directory domain name)
+        """
+        return pulumi.get(self, "dns_name")
+
+    @property
+    @pulumi.getter(name="kmsKeyId")
+    def kms_key_id(self) -> str:
+        """
+        ARN for the KMS Key to encrypt the file system at rest. Defaults to an AWS managed KMS Key.
+        """
+        return pulumi.get(self, "kms_key_id")
+
+    @property
+    @pulumi.getter(name="networkInterfaceIds")
+    def network_interface_ids(self) -> List[str]:
+        """
+        Set of Elastic Network Interface identifiers from which the file system is accessible.
+        """
+        return pulumi.get(self, "network_interface_ids")
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
+        """
+        AWS account identifier that created the file system.
+        """
+        return pulumi.get(self, "owner_id")
+
+    @property
+    @pulumi.getter(name="securityGroupIds")
+    def security_group_ids(self) -> Optional[List[str]]:
+        """
+        A list of IDs for the security groups that apply to the specified network interfaces created for file system access. These security groups will apply to all network interfaces.
+        """
+        return pulumi.get(self, "security_group_ids")
+
+    @property
+    @pulumi.getter(name="selfManagedActiveDirectory")
+    def self_managed_active_directory(self) -> Optional['outputs.WindowsFileSystemSelfManagedActiveDirectory']:
+        """
+        Configuration block that Amazon FSx uses to join the Windows File Server instance to your self-managed (including on-premises) Microsoft Active Directory (AD) directory. Cannot be specified with `active_directory_id`. Detailed below.
+        """
+        return pulumi.get(self, "self_managed_active_directory")
+
+    @property
+    @pulumi.getter(name="skipFinalBackup")
+    def skip_final_backup(self) -> Optional[bool]:
+        """
+        When enabled, will skip the default final backup taken when the file system is deleted. This configuration must be applied separately before attempting to delete the resource to have the desired behavior. Defaults to `false`.
+        """
+        return pulumi.get(self, "skip_final_backup")
+
+    @property
+    @pulumi.getter(name="storageCapacity")
+    def storage_capacity(self) -> float:
+        """
+        Storage capacity (GiB) of the file system. Minimum of 32 and maximum of 65536.
+        """
+        return pulumi.get(self, "storage_capacity")
+
+    @property
+    @pulumi.getter(name="subnetIds")
+    def subnet_ids(self) -> str:
+        """
+        A list of IDs for the subnets that the file system will be accessible from. File systems support only one subnet. The file server is also launched in that subnet's Availability Zone.
+        """
+        return pulumi.get(self, "subnet_ids")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the file system.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="throughputCapacity")
+    def throughput_capacity(self) -> float:
+        """
+        Throughput (megabytes per second) of the file system in power of 2 increments. Minimum of `8` and maximum of `2048`.
+        """
+        return pulumi.get(self, "throughput_capacity")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        Identifier of the Virtual Private Cloud for the file system.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @property
+    @pulumi.getter(name="weeklyMaintenanceStartTime")
+    def weekly_maintenance_start_time(self) -> str:
+        """
+        The preferred start time (in `d:HH:MM` format) to perform weekly maintenance, in the UTC time zone.
+        """
+        return pulumi.get(self, "weekly_maintenance_start_time")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

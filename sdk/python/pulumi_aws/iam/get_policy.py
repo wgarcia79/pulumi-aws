@@ -15,16 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetPolicyResult:
-    arn: str = pulumi.property("arn")
-    description: str = pulumi.property("description")
-    id: str = pulumi.property("id")
-    name: str = pulumi.property("name")
-    path: str = pulumi.property("path")
-    policy: str = pulumi.property("policy")
-
-
 class GetPolicyResult:
     """
     A collection of values returned by getPolicy.
@@ -32,40 +24,71 @@ class GetPolicyResult:
     def __init__(__self__, arn=None, description=None, id=None, name=None, path=None, policy=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if path and not isinstance(path, str):
+            raise TypeError("Expected argument 'path' to be a str")
+        pulumi.set(__self__, "path", path)
+        if policy and not isinstance(policy, str):
+            raise TypeError("Expected argument 'policy' to be a str")
+        pulumi.set(__self__, "policy", policy)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The Amazon Resource Name (ARN) specifying the policy.
         """
-        if description and not isinstance(description, str):
-            raise TypeError("Expected argument 'description' to be a str")
-        __self__.description = description
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
         """
         The description of the policy.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
         """
         The name of the IAM policy.
         """
-        if path and not isinstance(path, str):
-            raise TypeError("Expected argument 'path' to be a str")
-        __self__.path = path
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def path(self) -> str:
         """
         The path to the policy.
         """
-        if policy and not isinstance(policy, str):
-            raise TypeError("Expected argument 'policy' to be a str")
-        __self__.policy = policy
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter
+    def policy(self) -> str:
         """
         The policy document of the policy.
         """
+        return pulumi.get(self, "policy")
+
 
 
 class AwaitableGetPolicyResult(GetPolicyResult):
@@ -106,7 +129,7 @@ def get_policy(arn: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:iam/getPolicy:getPolicy', __args__, opts=opts, typ=_GetPolicyResult).value
+    __ret__ = pulumi.runtime.invoke('aws:iam/getPolicy:getPolicy', __args__, opts=opts, typ=GetPolicyResult).value
 
     return AwaitableGetPolicyResult(
         arn=__ret__.arn,

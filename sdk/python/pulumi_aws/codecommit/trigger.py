@@ -14,15 +14,6 @@ __all__ = ['Trigger']
 
 
 class Trigger(pulumi.CustomResource):
-    configuration_id: pulumi.Output[str] = pulumi.property("configurationId")
-
-    repository_name: pulumi.Output[str] = pulumi.property("repositoryName")
-    """
-    The name for the repository. This needs to be less than 100 characters.
-    """
-
-    triggers: pulumi.Output[List['outputs.TriggerTrigger']] = pulumi.property("triggers")
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -108,6 +99,24 @@ class Trigger(pulumi.CustomResource):
         __props__["repository_name"] = repository_name
         __props__["triggers"] = triggers
         return Trigger(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="configurationId")
+    def configuration_id(self) -> str:
+        return pulumi.get(self, "configuration_id")
+
+    @property
+    @pulumi.getter(name="repositoryName")
+    def repository_name(self) -> str:
+        """
+        The name for the repository. This needs to be less than 100 characters.
+        """
+        return pulumi.get(self, "repository_name")
+
+    @property
+    @pulumi.getter
+    def triggers(self) -> List['outputs.TriggerTrigger']:
+        return pulumi.get(self, "triggers")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -16,32 +16,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetDomainResult:
-    access_policies: str = pulumi.property("accessPolicies")
-    advanced_options: Mapping[str, str] = pulumi.property("advancedOptions")
-    advanced_security_options: List['outputs.GetDomainAdvancedSecurityOptionResult'] = pulumi.property("advancedSecurityOptions")
-    arn: str = pulumi.property("arn")
-    cluster_configs: List['outputs.GetDomainClusterConfigResult'] = pulumi.property("clusterConfigs")
-    cognito_options: List['outputs.GetDomainCognitoOptionResult'] = pulumi.property("cognitoOptions")
-    created: bool = pulumi.property("created")
-    deleted: bool = pulumi.property("deleted")
-    domain_id: str = pulumi.property("domainId")
-    domain_name: str = pulumi.property("domainName")
-    ebs_options: List['outputs.GetDomainEbsOptionResult'] = pulumi.property("ebsOptions")
-    elasticsearch_version: str = pulumi.property("elasticsearchVersion")
-    encryption_at_rests: List['outputs.GetDomainEncryptionAtRestResult'] = pulumi.property("encryptionAtRests")
-    endpoint: str = pulumi.property("endpoint")
-    id: str = pulumi.property("id")
-    kibana_endpoint: str = pulumi.property("kibanaEndpoint")
-    log_publishing_options: List['outputs.GetDomainLogPublishingOptionResult'] = pulumi.property("logPublishingOptions")
-    node_to_node_encryptions: List['outputs.GetDomainNodeToNodeEncryptionResult'] = pulumi.property("nodeToNodeEncryptions")
-    processing: bool = pulumi.property("processing")
-    snapshot_options: List['outputs.GetDomainSnapshotOptionResult'] = pulumi.property("snapshotOptions")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    vpc_options: List['outputs.GetDomainVpcOptionResult'] = pulumi.property("vpcOptions")
-
-
 class GetDomainResult:
     """
     A collection of values returned by getDomain.
@@ -49,131 +25,242 @@ class GetDomainResult:
     def __init__(__self__, access_policies=None, advanced_options=None, advanced_security_options=None, arn=None, cluster_configs=None, cognito_options=None, created=None, deleted=None, domain_id=None, domain_name=None, ebs_options=None, elasticsearch_version=None, encryption_at_rests=None, endpoint=None, id=None, kibana_endpoint=None, log_publishing_options=None, node_to_node_encryptions=None, processing=None, snapshot_options=None, tags=None, vpc_options=None):
         if access_policies and not isinstance(access_policies, str):
             raise TypeError("Expected argument 'access_policies' to be a str")
-        __self__.access_policies = access_policies
+        pulumi.set(__self__, "access_policies", access_policies)
+        if advanced_options and not isinstance(advanced_options, dict):
+            raise TypeError("Expected argument 'advanced_options' to be a dict")
+        pulumi.set(__self__, "advanced_options", advanced_options)
+        if advanced_security_options and not isinstance(advanced_security_options, list):
+            raise TypeError("Expected argument 'advanced_security_options' to be a list")
+        pulumi.set(__self__, "advanced_security_options", advanced_security_options)
+        if arn and not isinstance(arn, str):
+            raise TypeError("Expected argument 'arn' to be a str")
+        pulumi.set(__self__, "arn", arn)
+        if cluster_configs and not isinstance(cluster_configs, list):
+            raise TypeError("Expected argument 'cluster_configs' to be a list")
+        pulumi.set(__self__, "cluster_configs", cluster_configs)
+        if cognito_options and not isinstance(cognito_options, list):
+            raise TypeError("Expected argument 'cognito_options' to be a list")
+        pulumi.set(__self__, "cognito_options", cognito_options)
+        if created and not isinstance(created, bool):
+            raise TypeError("Expected argument 'created' to be a bool")
+        pulumi.set(__self__, "created", created)
+        if deleted and not isinstance(deleted, bool):
+            raise TypeError("Expected argument 'deleted' to be a bool")
+        pulumi.set(__self__, "deleted", deleted)
+        if domain_id and not isinstance(domain_id, str):
+            raise TypeError("Expected argument 'domain_id' to be a str")
+        pulumi.set(__self__, "domain_id", domain_id)
+        if domain_name and not isinstance(domain_name, str):
+            raise TypeError("Expected argument 'domain_name' to be a str")
+        pulumi.set(__self__, "domain_name", domain_name)
+        if ebs_options and not isinstance(ebs_options, list):
+            raise TypeError("Expected argument 'ebs_options' to be a list")
+        pulumi.set(__self__, "ebs_options", ebs_options)
+        if elasticsearch_version and not isinstance(elasticsearch_version, str):
+            raise TypeError("Expected argument 'elasticsearch_version' to be a str")
+        pulumi.set(__self__, "elasticsearch_version", elasticsearch_version)
+        if encryption_at_rests and not isinstance(encryption_at_rests, list):
+            raise TypeError("Expected argument 'encryption_at_rests' to be a list")
+        pulumi.set(__self__, "encryption_at_rests", encryption_at_rests)
+        if endpoint and not isinstance(endpoint, str):
+            raise TypeError("Expected argument 'endpoint' to be a str")
+        pulumi.set(__self__, "endpoint", endpoint)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if kibana_endpoint and not isinstance(kibana_endpoint, str):
+            raise TypeError("Expected argument 'kibana_endpoint' to be a str")
+        pulumi.set(__self__, "kibana_endpoint", kibana_endpoint)
+        if log_publishing_options and not isinstance(log_publishing_options, list):
+            raise TypeError("Expected argument 'log_publishing_options' to be a list")
+        pulumi.set(__self__, "log_publishing_options", log_publishing_options)
+        if node_to_node_encryptions and not isinstance(node_to_node_encryptions, list):
+            raise TypeError("Expected argument 'node_to_node_encryptions' to be a list")
+        pulumi.set(__self__, "node_to_node_encryptions", node_to_node_encryptions)
+        if processing and not isinstance(processing, bool):
+            raise TypeError("Expected argument 'processing' to be a bool")
+        pulumi.set(__self__, "processing", processing)
+        if snapshot_options and not isinstance(snapshot_options, list):
+            raise TypeError("Expected argument 'snapshot_options' to be a list")
+        pulumi.set(__self__, "snapshot_options", snapshot_options)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if vpc_options and not isinstance(vpc_options, list):
+            raise TypeError("Expected argument 'vpc_options' to be a list")
+        pulumi.set(__self__, "vpc_options", vpc_options)
+
+    @property
+    @pulumi.getter(name="accessPolicies")
+    def access_policies(self) -> str:
         """
         The policy document attached to the domain.
         """
-        if advanced_options and not isinstance(advanced_options, dict):
-            raise TypeError("Expected argument 'advanced_options' to be a dict")
-        __self__.advanced_options = advanced_options
+        return pulumi.get(self, "access_policies")
+
+    @property
+    @pulumi.getter(name="advancedOptions")
+    def advanced_options(self) -> Mapping[str, str]:
         """
         Key-value string pairs to specify advanced configuration options.
         """
-        if advanced_security_options and not isinstance(advanced_security_options, list):
-            raise TypeError("Expected argument 'advanced_security_options' to be a list")
-        __self__.advanced_security_options = advanced_security_options
+        return pulumi.get(self, "advanced_options")
+
+    @property
+    @pulumi.getter(name="advancedSecurityOptions")
+    def advanced_security_options(self) -> List['outputs.GetDomainAdvancedSecurityOptionResult']:
         """
         Status of the Elasticsearch domain's advanced security options. The block consists of the following attributes:
         """
-        if arn and not isinstance(arn, str):
-            raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        return pulumi.get(self, "advanced_security_options")
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The Amazon Resource Name (ARN) of the domain.
         """
-        if cluster_configs and not isinstance(cluster_configs, list):
-            raise TypeError("Expected argument 'cluster_configs' to be a list")
-        __self__.cluster_configs = cluster_configs
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="clusterConfigs")
+    def cluster_configs(self) -> List['outputs.GetDomainClusterConfigResult']:
         """
         Cluster configuration of the domain.
         """
-        if cognito_options and not isinstance(cognito_options, list):
-            raise TypeError("Expected argument 'cognito_options' to be a list")
-        __self__.cognito_options = cognito_options
+        return pulumi.get(self, "cluster_configs")
+
+    @property
+    @pulumi.getter(name="cognitoOptions")
+    def cognito_options(self) -> List['outputs.GetDomainCognitoOptionResult']:
         """
         Domain Amazon Cognito Authentication options for Kibana.
         """
-        if created and not isinstance(created, bool):
-            raise TypeError("Expected argument 'created' to be a bool")
-        __self__.created = created
+        return pulumi.get(self, "cognito_options")
+
+    @property
+    @pulumi.getter
+    def created(self) -> bool:
         """
         Status of the creation of the domain.
         """
-        if deleted and not isinstance(deleted, bool):
-            raise TypeError("Expected argument 'deleted' to be a bool")
-        __self__.deleted = deleted
+        return pulumi.get(self, "created")
+
+    @property
+    @pulumi.getter
+    def deleted(self) -> bool:
         """
         Status of the deletion of the domain.
         """
-        if domain_id and not isinstance(domain_id, str):
-            raise TypeError("Expected argument 'domain_id' to be a str")
-        __self__.domain_id = domain_id
+        return pulumi.get(self, "deleted")
+
+    @property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> str:
         """
         Unique identifier for the domain.
         """
-        if domain_name and not isinstance(domain_name, str):
-            raise TypeError("Expected argument 'domain_name' to be a str")
-        __self__.domain_name = domain_name
-        if ebs_options and not isinstance(ebs_options, list):
-            raise TypeError("Expected argument 'ebs_options' to be a list")
-        __self__.ebs_options = ebs_options
+        return pulumi.get(self, "domain_id")
+
+    @property
+    @pulumi.getter(name="domainName")
+    def domain_name(self) -> str:
+        return pulumi.get(self, "domain_name")
+
+    @property
+    @pulumi.getter(name="ebsOptions")
+    def ebs_options(self) -> List['outputs.GetDomainEbsOptionResult']:
         """
         EBS Options for the instances in the domain.
         """
-        if elasticsearch_version and not isinstance(elasticsearch_version, str):
-            raise TypeError("Expected argument 'elasticsearch_version' to be a str")
-        __self__.elasticsearch_version = elasticsearch_version
+        return pulumi.get(self, "ebs_options")
+
+    @property
+    @pulumi.getter(name="elasticsearchVersion")
+    def elasticsearch_version(self) -> str:
         """
         ElasticSearch version for the domain.
         """
-        if encryption_at_rests and not isinstance(encryption_at_rests, list):
-            raise TypeError("Expected argument 'encryption_at_rests' to be a list")
-        __self__.encryption_at_rests = encryption_at_rests
+        return pulumi.get(self, "elasticsearch_version")
+
+    @property
+    @pulumi.getter(name="encryptionAtRests")
+    def encryption_at_rests(self) -> List['outputs.GetDomainEncryptionAtRestResult']:
         """
         Domain encryption at rest related options.
         """
-        if endpoint and not isinstance(endpoint, str):
-            raise TypeError("Expected argument 'endpoint' to be a str")
-        __self__.endpoint = endpoint
+        return pulumi.get(self, "encryption_at_rests")
+
+    @property
+    @pulumi.getter
+    def endpoint(self) -> str:
         """
         Domain-specific endpoint used to submit index, search, and data upload requests.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "endpoint")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if kibana_endpoint and not isinstance(kibana_endpoint, str):
-            raise TypeError("Expected argument 'kibana_endpoint' to be a str")
-        __self__.kibana_endpoint = kibana_endpoint
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="kibanaEndpoint")
+    def kibana_endpoint(self) -> str:
         """
         Domain-specific endpoint used to access the Kibana application.
         """
-        if log_publishing_options and not isinstance(log_publishing_options, list):
-            raise TypeError("Expected argument 'log_publishing_options' to be a list")
-        __self__.log_publishing_options = log_publishing_options
+        return pulumi.get(self, "kibana_endpoint")
+
+    @property
+    @pulumi.getter(name="logPublishingOptions")
+    def log_publishing_options(self) -> List['outputs.GetDomainLogPublishingOptionResult']:
         """
         Domain log publishing related options.
         """
-        if node_to_node_encryptions and not isinstance(node_to_node_encryptions, list):
-            raise TypeError("Expected argument 'node_to_node_encryptions' to be a list")
-        __self__.node_to_node_encryptions = node_to_node_encryptions
+        return pulumi.get(self, "log_publishing_options")
+
+    @property
+    @pulumi.getter(name="nodeToNodeEncryptions")
+    def node_to_node_encryptions(self) -> List['outputs.GetDomainNodeToNodeEncryptionResult']:
         """
         Domain in transit encryption related options.
         """
-        if processing and not isinstance(processing, bool):
-            raise TypeError("Expected argument 'processing' to be a bool")
-        __self__.processing = processing
+        return pulumi.get(self, "node_to_node_encryptions")
+
+    @property
+    @pulumi.getter
+    def processing(self) -> bool:
         """
         Status of a configuration change in the domain.
         * `snapshot_options` – Domain snapshot related options.
         """
-        if snapshot_options and not isinstance(snapshot_options, list):
-            raise TypeError("Expected argument 'snapshot_options' to be a list")
-        __self__.snapshot_options = snapshot_options
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        return pulumi.get(self, "processing")
+
+    @property
+    @pulumi.getter(name="snapshotOptions")
+    def snapshot_options(self) -> List['outputs.GetDomainSnapshotOptionResult']:
+        return pulumi.get(self, "snapshot_options")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
         """
         The tags assigned to the domain.
         """
-        if vpc_options and not isinstance(vpc_options, list):
-            raise TypeError("Expected argument 'vpc_options' to be a list")
-        __self__.vpc_options = vpc_options
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="vpcOptions")
+    def vpc_options(self) -> List['outputs.GetDomainVpcOptionResult']:
         """
         VPC Options for private Elasticsearch domains.
         """
+        return pulumi.get(self, "vpc_options")
+
 
 
 class AwaitableGetDomainResult(GetDomainResult):
@@ -232,7 +319,7 @@ def get_domain(domain_name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:elasticsearch/getDomain:getDomain', __args__, opts=opts, typ=_GetDomainResult).value
+    __ret__ = pulumi.runtime.invoke('aws:elasticsearch/getDomain:getDomain', __args__, opts=opts, typ=GetDomainResult).value
 
     return AwaitableGetDomainResult(
         access_policies=__ret__.access_policies,

@@ -15,13 +15,61 @@ __all__ = [
 
 @pulumi.output_type
 class BudgetCostTypes(dict):
+    def __init__(__self__, *,
+                 include_credit: Optional[bool] = None,
+                 include_discount: Optional[bool] = None,
+                 include_other_subscription: Optional[bool] = None,
+                 include_recurring: Optional[bool] = None,
+                 include_refund: Optional[bool] = None,
+                 include_subscription: Optional[bool] = None,
+                 include_support: Optional[bool] = None,
+                 include_tax: Optional[bool] = None,
+                 include_upfront: Optional[bool] = None,
+                 use_amortized: Optional[bool] = None,
+                 use_blended: Optional[bool] = None):
+        """
+        :param bool include_credit: A boolean value whether to include credits in the cost budget. Defaults to `true`
+        :param bool include_discount: Specifies whether a budget includes discounts. Defaults to `true`
+        :param bool include_other_subscription: A boolean value whether to include other subscription costs in the cost budget. Defaults to `true`
+        :param bool include_recurring: A boolean value whether to include recurring costs in the cost budget. Defaults to `true`
+        :param bool include_refund: A boolean value whether to include refunds in the cost budget. Defaults to `true`
+        :param bool include_subscription: A boolean value whether to include subscriptions in the cost budget. Defaults to `true`
+        :param bool include_support: A boolean value whether to include support costs in the cost budget. Defaults to `true`
+        :param bool include_tax: A boolean value whether to include tax in the cost budget. Defaults to `true`
+        :param bool include_upfront: A boolean value whether to include upfront costs in the cost budget. Defaults to `true`
+        :param bool use_amortized: Specifies whether a budget uses the amortized rate. Defaults to `false`
+        :param bool use_blended: A boolean value whether to use blended costs in the cost budget. Defaults to `false`
+        """
+        if include_credit is not None:
+            pulumi.set(__self__, "include_credit", include_credit)
+        if include_discount is not None:
+            pulumi.set(__self__, "include_discount", include_discount)
+        if include_other_subscription is not None:
+            pulumi.set(__self__, "include_other_subscription", include_other_subscription)
+        if include_recurring is not None:
+            pulumi.set(__self__, "include_recurring", include_recurring)
+        if include_refund is not None:
+            pulumi.set(__self__, "include_refund", include_refund)
+        if include_subscription is not None:
+            pulumi.set(__self__, "include_subscription", include_subscription)
+        if include_support is not None:
+            pulumi.set(__self__, "include_support", include_support)
+        if include_tax is not None:
+            pulumi.set(__self__, "include_tax", include_tax)
+        if include_upfront is not None:
+            pulumi.set(__self__, "include_upfront", include_upfront)
+        if use_amortized is not None:
+            pulumi.set(__self__, "use_amortized", use_amortized)
+        if use_blended is not None:
+            pulumi.set(__self__, "use_blended", use_blended)
+
     @property
     @pulumi.getter(name="includeCredit")
     def include_credit(self) -> Optional[bool]:
         """
         A boolean value whether to include credits in the cost budget. Defaults to `true`
         """
-        ...
+        return pulumi.get(self, "include_credit")
 
     @property
     @pulumi.getter(name="includeDiscount")
@@ -29,7 +77,7 @@ class BudgetCostTypes(dict):
         """
         Specifies whether a budget includes discounts. Defaults to `true`
         """
-        ...
+        return pulumi.get(self, "include_discount")
 
     @property
     @pulumi.getter(name="includeOtherSubscription")
@@ -37,7 +85,7 @@ class BudgetCostTypes(dict):
         """
         A boolean value whether to include other subscription costs in the cost budget. Defaults to `true`
         """
-        ...
+        return pulumi.get(self, "include_other_subscription")
 
     @property
     @pulumi.getter(name="includeRecurring")
@@ -45,7 +93,7 @@ class BudgetCostTypes(dict):
         """
         A boolean value whether to include recurring costs in the cost budget. Defaults to `true`
         """
-        ...
+        return pulumi.get(self, "include_recurring")
 
     @property
     @pulumi.getter(name="includeRefund")
@@ -53,7 +101,7 @@ class BudgetCostTypes(dict):
         """
         A boolean value whether to include refunds in the cost budget. Defaults to `true`
         """
-        ...
+        return pulumi.get(self, "include_refund")
 
     @property
     @pulumi.getter(name="includeSubscription")
@@ -61,7 +109,7 @@ class BudgetCostTypes(dict):
         """
         A boolean value whether to include subscriptions in the cost budget. Defaults to `true`
         """
-        ...
+        return pulumi.get(self, "include_subscription")
 
     @property
     @pulumi.getter(name="includeSupport")
@@ -69,7 +117,7 @@ class BudgetCostTypes(dict):
         """
         A boolean value whether to include support costs in the cost budget. Defaults to `true`
         """
-        ...
+        return pulumi.get(self, "include_support")
 
     @property
     @pulumi.getter(name="includeTax")
@@ -77,7 +125,7 @@ class BudgetCostTypes(dict):
         """
         A boolean value whether to include tax in the cost budget. Defaults to `true`
         """
-        ...
+        return pulumi.get(self, "include_tax")
 
     @property
     @pulumi.getter(name="includeUpfront")
@@ -85,7 +133,7 @@ class BudgetCostTypes(dict):
         """
         A boolean value whether to include upfront costs in the cost budget. Defaults to `true`
         """
-        ...
+        return pulumi.get(self, "include_upfront")
 
     @property
     @pulumi.getter(name="useAmortized")
@@ -93,7 +141,7 @@ class BudgetCostTypes(dict):
         """
         Specifies whether a budget uses the amortized rate. Defaults to `false`
         """
-        ...
+        return pulumi.get(self, "use_amortized")
 
     @property
     @pulumi.getter(name="useBlended")
@@ -101,7 +149,7 @@ class BudgetCostTypes(dict):
         """
         A boolean value whether to use blended costs in the cost budget. Defaults to `false`
         """
-        ...
+        return pulumi.get(self, "use_blended")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -109,13 +157,37 @@ class BudgetCostTypes(dict):
 
 @pulumi.output_type
 class BudgetNotification(dict):
+    def __init__(__self__, *,
+                 comparison_operator: str,
+                 notification_type: str,
+                 threshold: float,
+                 threshold_type: str,
+                 subscriber_email_addresses: Optional[List[str]] = None,
+                 subscriber_sns_topic_arns: Optional[List[str]] = None):
+        """
+        :param str comparison_operator: (Required) Comparison operator to use to evaluate the condition. Can be `LESS_THAN`, `EQUAL_TO` or `GREATER_THAN`.
+        :param str notification_type: (Required) What kind of budget value to notify on. Can be `ACTUAL` or `FORECASTED`
+        :param float threshold: (Required) Threshold when the notification should be sent.
+        :param str threshold_type: (Required) What kind of threshold is defined. Can be `PERCENTAGE` OR `ABSOLUTE_VALUE`.
+        :param List[str] subscriber_email_addresses: (Optional) E-Mail addresses to notify. Either this or `subscriber_sns_topic_arns` is required.
+        :param List[str] subscriber_sns_topic_arns: (Optional) SNS topics to notify. Either this or `subscriber_email_addresses` is required.
+        """
+        pulumi.set(__self__, "comparison_operator", comparison_operator)
+        pulumi.set(__self__, "notification_type", notification_type)
+        pulumi.set(__self__, "threshold", threshold)
+        pulumi.set(__self__, "threshold_type", threshold_type)
+        if subscriber_email_addresses is not None:
+            pulumi.set(__self__, "subscriber_email_addresses", subscriber_email_addresses)
+        if subscriber_sns_topic_arns is not None:
+            pulumi.set(__self__, "subscriber_sns_topic_arns", subscriber_sns_topic_arns)
+
     @property
     @pulumi.getter(name="comparisonOperator")
     def comparison_operator(self) -> str:
         """
         (Required) Comparison operator to use to evaluate the condition. Can be `LESS_THAN`, `EQUAL_TO` or `GREATER_THAN`.
         """
-        ...
+        return pulumi.get(self, "comparison_operator")
 
     @property
     @pulumi.getter(name="notificationType")
@@ -123,23 +195,7 @@ class BudgetNotification(dict):
         """
         (Required) What kind of budget value to notify on. Can be `ACTUAL` or `FORECASTED`
         """
-        ...
-
-    @property
-    @pulumi.getter(name="subscriberEmailAddresses")
-    def subscriber_email_addresses(self) -> Optional[List[str]]:
-        """
-        (Optional) E-Mail addresses to notify. Either this or `subscriber_sns_topic_arns` is required.
-        """
-        ...
-
-    @property
-    @pulumi.getter(name="subscriberSnsTopicArns")
-    def subscriber_sns_topic_arns(self) -> Optional[List[str]]:
-        """
-        (Optional) SNS topics to notify. Either this or `subscriber_email_addresses` is required.
-        """
-        ...
+        return pulumi.get(self, "notification_type")
 
     @property
     @pulumi.getter
@@ -147,7 +203,7 @@ class BudgetNotification(dict):
         """
         (Required) Threshold when the notification should be sent.
         """
-        ...
+        return pulumi.get(self, "threshold")
 
     @property
     @pulumi.getter(name="thresholdType")
@@ -155,7 +211,23 @@ class BudgetNotification(dict):
         """
         (Required) What kind of threshold is defined. Can be `PERCENTAGE` OR `ABSOLUTE_VALUE`.
         """
-        ...
+        return pulumi.get(self, "threshold_type")
+
+    @property
+    @pulumi.getter(name="subscriberEmailAddresses")
+    def subscriber_email_addresses(self) -> Optional[List[str]]:
+        """
+        (Optional) E-Mail addresses to notify. Either this or `subscriber_sns_topic_arns` is required.
+        """
+        return pulumi.get(self, "subscriber_email_addresses")
+
+    @property
+    @pulumi.getter(name="subscriberSnsTopicArns")
+    def subscriber_sns_topic_arns(self) -> Optional[List[str]]:
+        """
+        (Optional) SNS topics to notify. Either this or `subscriber_email_addresses` is required.
+        """
+        return pulumi.get(self, "subscriber_sns_topic_arns")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

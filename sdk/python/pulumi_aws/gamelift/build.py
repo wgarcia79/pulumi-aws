@@ -14,36 +14,6 @@ __all__ = ['Build']
 
 
 class Build(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Gamelift Build ARN.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    Name of the build
-    """
-
-    operating_system: pulumi.Output[str] = pulumi.property("operatingSystem")
-    """
-    Operating system that the game server binaries are built to run on. e.g. `WINDOWS_2012` or `AMAZON_LINUX`.
-    """
-
-    storage_location: pulumi.Output['outputs.BuildStorageLocation'] = pulumi.property("storageLocation")
-    """
-    Information indicating where your game build files are stored. See below.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of resource tags
-    """
-
-    version: pulumi.Output[Optional[str]] = pulumi.property("version")
-    """
-    Version that is associated with this build.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -150,6 +120,54 @@ class Build(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["version"] = version
         return Build(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Gamelift Build ARN.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the build
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="operatingSystem")
+    def operating_system(self) -> str:
+        """
+        Operating system that the game server binaries are built to run on. e.g. `WINDOWS_2012` or `AMAZON_LINUX`.
+        """
+        return pulumi.get(self, "operating_system")
+
+    @property
+    @pulumi.getter(name="storageLocation")
+    def storage_location(self) -> 'outputs.BuildStorageLocation':
+        """
+        Information indicating where your game build files are stored. See below.
+        """
+        return pulumi.get(self, "storage_location")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of resource tags
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[str]:
+        """
+        Version that is associated with this build.
+        """
+        return pulumi.get(self, "version")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -14,16 +14,6 @@ __all__ = ['SecurityConfiguration']
 
 
 class SecurityConfiguration(pulumi.CustomResource):
-    encryption_configuration: pulumi.Output['outputs.SecurityConfigurationEncryptionConfiguration'] = pulumi.property("encryptionConfiguration")
-    """
-    Configuration block containing encryption configuration. Detailed below.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    Name of the security configuration.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -110,6 +100,22 @@ class SecurityConfiguration(pulumi.CustomResource):
         __props__["encryption_configuration"] = encryption_configuration
         __props__["name"] = name
         return SecurityConfiguration(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="encryptionConfiguration")
+    def encryption_configuration(self) -> 'outputs.SecurityConfigurationEncryptionConfiguration':
+        """
+        Configuration block containing encryption configuration. Detailed below.
+        """
+        return pulumi.get(self, "encryption_configuration")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the security configuration.
+        """
+        return pulumi.get(self, "name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

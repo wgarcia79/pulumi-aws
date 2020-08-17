@@ -12,59 +12,6 @@ __all__ = ['AccessKey']
 
 
 class AccessKey(pulumi.CustomResource):
-    encrypted_secret: pulumi.Output[str] = pulumi.property("encryptedSecret")
-    """
-    The encrypted secret, base64 encoded, if `pgp_key` was specified.
-    > **NOTE:** The encrypted secret may be decrypted using the command line,
-    """
-
-    key_fingerprint: pulumi.Output[str] = pulumi.property("keyFingerprint")
-    """
-    The fingerprint of the PGP key used to encrypt
-    the secret
-    """
-
-    pgp_key: pulumi.Output[Optional[str]] = pulumi.property("pgpKey")
-    """
-    Either a base-64 encoded PGP public key, or a
-    keybase username in the form `keybase:some_person_that_exists`, for use
-    in the `encrypted_secret` output attribute.
-    """
-
-    secret: pulumi.Output[str] = pulumi.property("secret")
-    """
-    The secret access key. Note that this will be written
-    to the state file. If you use this, please protect your backend state file
-    judiciously. Alternatively, you may supply a `pgp_key` instead, which will
-    prevent the secret from being stored in plaintext, at the cost of preventing
-    the use of the secret key in automation.
-    """
-
-    ses_smtp_password: pulumi.Output[str] = pulumi.property("sesSmtpPassword")
-    """
-    **DEPRECATED** The secret access key converted into an SES SMTP
-    password by applying [AWS's documented conversion
-    """
-
-    ses_smtp_password_v4: pulumi.Output[str] = pulumi.property("sesSmtpPasswordV4")
-    """
-    The secret access key converted into an SES SMTP
-    password by applying [AWS's documented Sigv4 conversion
-    algorithm](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/smtp-credentials.html#smtp-credentials-convert).
-    As SigV4 is region specific, valid Provider regions are `ap-south-1`, `ap-southeast-2`, `eu-central-1`, `eu-west-1`, `us-east-1` and `us-west-2`. See current [AWS SES regions](https://docs.aws.amazon.com/general/latest/gr/rande.html#ses_region)
-    """
-
-    status: pulumi.Output[str] = pulumi.property("status")
-    """
-    The access key status to apply. Defaults to `Active`.
-    Valid values are `Active` and `Inactive`.
-    """
-
-    user: pulumi.Output[str] = pulumi.property("user")
-    """
-    The IAM user to associate with this access key.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -211,6 +158,83 @@ class AccessKey(pulumi.CustomResource):
         __props__["status"] = status
         __props__["user"] = user
         return AccessKey(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="encryptedSecret")
+    def encrypted_secret(self) -> str:
+        """
+        The encrypted secret, base64 encoded, if `pgp_key` was specified.
+        > **NOTE:** The encrypted secret may be decrypted using the command line,
+        """
+        return pulumi.get(self, "encrypted_secret")
+
+    @property
+    @pulumi.getter(name="keyFingerprint")
+    def key_fingerprint(self) -> str:
+        """
+        The fingerprint of the PGP key used to encrypt
+        the secret
+        """
+        return pulumi.get(self, "key_fingerprint")
+
+    @property
+    @pulumi.getter(name="pgpKey")
+    def pgp_key(self) -> Optional[str]:
+        """
+        Either a base-64 encoded PGP public key, or a
+        keybase username in the form `keybase:some_person_that_exists`, for use
+        in the `encrypted_secret` output attribute.
+        """
+        return pulumi.get(self, "pgp_key")
+
+    @property
+    @pulumi.getter
+    def secret(self) -> str:
+        """
+        The secret access key. Note that this will be written
+        to the state file. If you use this, please protect your backend state file
+        judiciously. Alternatively, you may supply a `pgp_key` instead, which will
+        prevent the secret from being stored in plaintext, at the cost of preventing
+        the use of the secret key in automation.
+        """
+        return pulumi.get(self, "secret")
+
+    @property
+    @pulumi.getter(name="sesSmtpPassword")
+    def ses_smtp_password(self) -> str:
+        """
+        **DEPRECATED** The secret access key converted into an SES SMTP
+        password by applying [AWS's documented conversion
+        """
+        return pulumi.get(self, "ses_smtp_password")
+
+    @property
+    @pulumi.getter(name="sesSmtpPasswordV4")
+    def ses_smtp_password_v4(self) -> str:
+        """
+        The secret access key converted into an SES SMTP
+        password by applying [AWS's documented Sigv4 conversion
+        algorithm](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/smtp-credentials.html#smtp-credentials-convert).
+        As SigV4 is region specific, valid Provider regions are `ap-south-1`, `ap-southeast-2`, `eu-central-1`, `eu-west-1`, `us-east-1` and `us-west-2`. See current [AWS SES regions](https://docs.aws.amazon.com/general/latest/gr/rande.html#ses_region)
+        """
+        return pulumi.get(self, "ses_smtp_password_v4")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The access key status to apply. Defaults to `Active`.
+        Valid values are `Active` and `Inactive`.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def user(self) -> str:
+        """
+        The IAM user to associate with this access key.
+        """
+        return pulumi.get(self, "user")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

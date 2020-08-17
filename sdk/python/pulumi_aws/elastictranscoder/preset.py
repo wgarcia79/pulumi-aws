@@ -14,55 +14,6 @@ __all__ = ['Preset']
 
 
 class Preset(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-
-    audio: pulumi.Output[Optional['outputs.PresetAudio']] = pulumi.property("audio")
-    """
-    Audio parameters object (documented below).
-    """
-
-    audio_codec_options: pulumi.Output[Optional['outputs.PresetAudioCodecOptions']] = pulumi.property("audioCodecOptions")
-    """
-    Codec options for the audio parameters (documented below)
-    """
-
-    container: pulumi.Output[str] = pulumi.property("container")
-    """
-    The container type for the output file. Valid values are `flac`, `flv`, `fmp4`, `gif`, `mp3`, `mp4`, `mpg`, `mxf`, `oga`, `ogg`, `ts`, and `webm`.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    A description of the preset (maximum 255 characters)
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the preset. (maximum 40 characters)
-    """
-
-    thumbnails: pulumi.Output[Optional['outputs.PresetThumbnails']] = pulumi.property("thumbnails")
-    """
-    Thumbnail parameters object (documented below)
-    """
-
-    type: pulumi.Output[str] = pulumi.property("type")
-
-    video: pulumi.Output[Optional['outputs.PresetVideo']] = pulumi.property("video")
-    """
-    Video parameters object (documented below)
-    """
-
-    video_codec_options: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("videoCodecOptions")
-    """
-    Codec options for the video parameters
-    """
-
-    video_watermarks: pulumi.Output[Optional[List['outputs.PresetVideoWatermark']]] = pulumi.property("videoWatermarks")
-    """
-    Watermark parameters for the video parameters (documented below)
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -239,6 +190,88 @@ class Preset(pulumi.CustomResource):
         __props__["video_codec_options"] = video_codec_options
         __props__["video_watermarks"] = video_watermarks
         return Preset(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def audio(self) -> Optional['outputs.PresetAudio']:
+        """
+        Audio parameters object (documented below).
+        """
+        return pulumi.get(self, "audio")
+
+    @property
+    @pulumi.getter(name="audioCodecOptions")
+    def audio_codec_options(self) -> Optional['outputs.PresetAudioCodecOptions']:
+        """
+        Codec options for the audio parameters (documented below)
+        """
+        return pulumi.get(self, "audio_codec_options")
+
+    @property
+    @pulumi.getter
+    def container(self) -> str:
+        """
+        The container type for the output file. Valid values are `flac`, `flv`, `fmp4`, `gif`, `mp3`, `mp4`, `mpg`, `mxf`, `oga`, `ogg`, `ts`, and `webm`.
+        """
+        return pulumi.get(self, "container")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        A description of the preset (maximum 255 characters)
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the preset. (maximum 40 characters)
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def thumbnails(self) -> Optional['outputs.PresetThumbnails']:
+        """
+        Thumbnail parameters object (documented below)
+        """
+        return pulumi.get(self, "thumbnails")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def video(self) -> Optional['outputs.PresetVideo']:
+        """
+        Video parameters object (documented below)
+        """
+        return pulumi.get(self, "video")
+
+    @property
+    @pulumi.getter(name="videoCodecOptions")
+    def video_codec_options(self) -> Optional[Mapping[str, str]]:
+        """
+        Codec options for the video parameters
+        """
+        return pulumi.get(self, "video_codec_options")
+
+    @property
+    @pulumi.getter(name="videoWatermarks")
+    def video_watermarks(self) -> Optional[List['outputs.PresetVideoWatermark']]:
+        """
+        Watermark parameters for the video parameters (documented below)
+        """
+        return pulumi.get(self, "video_watermarks")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

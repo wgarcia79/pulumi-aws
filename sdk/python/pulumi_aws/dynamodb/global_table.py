@@ -14,21 +14,6 @@ __all__ = ['GlobalTable']
 
 
 class GlobalTable(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the DynamoDB Global Table
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the global table. Must match underlying DynamoDB Table names in all regions.
-    """
-
-    replicas: pulumi.Output[List['outputs.GlobalTableReplica']] = pulumi.property("replicas")
-    """
-    Underlying DynamoDB Table. At least 1 replica must be defined. See below.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -149,6 +134,30 @@ class GlobalTable(pulumi.CustomResource):
         __props__["name"] = name
         __props__["replicas"] = replicas
         return GlobalTable(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the DynamoDB Global Table
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the global table. Must match underlying DynamoDB Table names in all regions.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def replicas(self) -> List['outputs.GlobalTableReplica']:
+        """
+        Underlying DynamoDB Table. At least 1 replica must be defined. See below.
+        """
+        return pulumi.get(self, "replicas")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

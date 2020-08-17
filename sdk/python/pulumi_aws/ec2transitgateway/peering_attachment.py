@@ -12,31 +12,6 @@ __all__ = ['PeeringAttachment']
 
 
 class PeeringAttachment(pulumi.CustomResource):
-    peer_account_id: pulumi.Output[str] = pulumi.property("peerAccountId")
-    """
-    Account ID of EC2 Transit Gateway to peer with. Defaults to the account ID the current provider is currently connected to.
-    """
-
-    peer_region: pulumi.Output[str] = pulumi.property("peerRegion")
-    """
-    Region of EC2 Transit Gateway to peer with.
-    """
-
-    peer_transit_gateway_id: pulumi.Output[str] = pulumi.property("peerTransitGatewayId")
-    """
-    Identifier of EC2 Transit Gateway to peer with.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value tags for the EC2 Transit Gateway Peering Attachment.
-    """
-
-    transit_gateway_id: pulumi.Output[str] = pulumi.property("transitGatewayId")
-    """
-    Identifier of EC2 Transit Gateway.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -154,6 +129,46 @@ class PeeringAttachment(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["transit_gateway_id"] = transit_gateway_id
         return PeeringAttachment(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="peerAccountId")
+    def peer_account_id(self) -> str:
+        """
+        Account ID of EC2 Transit Gateway to peer with. Defaults to the account ID the current provider is currently connected to.
+        """
+        return pulumi.get(self, "peer_account_id")
+
+    @property
+    @pulumi.getter(name="peerRegion")
+    def peer_region(self) -> str:
+        """
+        Region of EC2 Transit Gateway to peer with.
+        """
+        return pulumi.get(self, "peer_region")
+
+    @property
+    @pulumi.getter(name="peerTransitGatewayId")
+    def peer_transit_gateway_id(self) -> str:
+        """
+        Identifier of EC2 Transit Gateway to peer with.
+        """
+        return pulumi.get(self, "peer_transit_gateway_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value tags for the EC2 Transit Gateway Peering Attachment.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="transitGatewayId")
+    def transit_gateway_id(self) -> str:
+        """
+        Identifier of EC2 Transit Gateway.
+        """
+        return pulumi.get(self, "transit_gateway_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

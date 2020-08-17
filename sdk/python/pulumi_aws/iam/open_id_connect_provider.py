@@ -12,26 +12,6 @@ __all__ = ['OpenIdConnectProvider']
 
 
 class OpenIdConnectProvider(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN assigned by AWS for this provider.
-    """
-
-    client_id_lists: pulumi.Output[List[str]] = pulumi.property("clientIdLists")
-    """
-    A list of client IDs (also known as audiences). When a mobile or web app registers with an OpenID Connect provider, they establish a value that identifies the application. (This is the value that's sent as the client_id parameter on OAuth requests.)
-    """
-
-    thumbprint_lists: pulumi.Output[List[str]] = pulumi.property("thumbprintLists")
-    """
-    A list of server certificate thumbprints for the OpenID Connect (OIDC) identity provider's server certificate(s).
-    """
-
-    url: pulumi.Output[str] = pulumi.property("url")
-    """
-    The URL of the identity provider. Corresponds to the _iss_ claim.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -124,6 +104,38 @@ class OpenIdConnectProvider(pulumi.CustomResource):
         __props__["thumbprint_lists"] = thumbprint_lists
         __props__["url"] = url
         return OpenIdConnectProvider(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN assigned by AWS for this provider.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="clientIdLists")
+    def client_id_lists(self) -> List[str]:
+        """
+        A list of client IDs (also known as audiences). When a mobile or web app registers with an OpenID Connect provider, they establish a value that identifies the application. (This is the value that's sent as the client_id parameter on OAuth requests.)
+        """
+        return pulumi.get(self, "client_id_lists")
+
+    @property
+    @pulumi.getter(name="thumbprintLists")
+    def thumbprint_lists(self) -> List[str]:
+        """
+        A list of server certificate thumbprints for the OpenID Connect (OIDC) identity provider's server certificate(s).
+        """
+        return pulumi.get(self, "thumbprint_lists")
+
+    @property
+    @pulumi.getter
+    def url(self) -> str:
+        """
+        The URL of the identity provider. Corresponds to the _iss_ claim.
+        """
+        return pulumi.get(self, "url")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -15,17 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetVpcLinkResult:
-    description: str = pulumi.property("description")
-    id: str = pulumi.property("id")
-    name: str = pulumi.property("name")
-    status: str = pulumi.property("status")
-    status_message: str = pulumi.property("statusMessage")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    target_arns: List[str] = pulumi.property("targetArns")
-
-
 class GetVpcLinkResult:
     """
     A collection of values returned by getVpcLink.
@@ -33,43 +24,79 @@ class GetVpcLinkResult:
     def __init__(__self__, description=None, id=None, name=None, status=None, status_message=None, tags=None, target_arns=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
-        __self__.description = description
+        pulumi.set(__self__, "description", description)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if status and not isinstance(status, str):
+            raise TypeError("Expected argument 'status' to be a str")
+        pulumi.set(__self__, "status", status)
+        if status_message and not isinstance(status_message, str):
+            raise TypeError("Expected argument 'status_message' to be a str")
+        pulumi.set(__self__, "status_message", status_message)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if target_arns and not isinstance(target_arns, list):
+            raise TypeError("Expected argument 'target_arns' to be a list")
+        pulumi.set(__self__, "target_arns", target_arns)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
         """
         The description of the VPC link.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         Set to the ID of the found API Gateway VPC Link.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if status and not isinstance(status, str):
-            raise TypeError("Expected argument 'status' to be a str")
-        __self__.status = status
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
         """
         The status of the VPC link.
         """
-        if status_message and not isinstance(status_message, str):
-            raise TypeError("Expected argument 'status_message' to be a str")
-        __self__.status_message = status_message
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="statusMessage")
+    def status_message(self) -> str:
         """
         The status message of the VPC link.
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        return pulumi.get(self, "status_message")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
         """
         Key-value map of resource tags
         """
-        if target_arns and not isinstance(target_arns, list):
-            raise TypeError("Expected argument 'target_arns' to be a list")
-        __self__.target_arns = target_arns
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="targetArns")
+    def target_arns(self) -> List[str]:
         """
         The list of network load balancer arns in the VPC targeted by the VPC link. Currently AWS only supports 1 target.
         """
+        return pulumi.get(self, "target_arns")
+
 
 
 class AwaitableGetVpcLinkResult(GetVpcLinkResult):
@@ -117,7 +144,7 @@ def get_vpc_link(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:apigateway/getVpcLink:getVpcLink', __args__, opts=opts, typ=_GetVpcLinkResult).value
+    __ret__ = pulumi.runtime.invoke('aws:apigateway/getVpcLink:getVpcLink', __args__, opts=opts, typ=GetVpcLinkResult).value
 
     return AwaitableGetVpcLinkResult(
         description=__ret__.description,

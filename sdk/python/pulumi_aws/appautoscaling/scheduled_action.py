@@ -14,51 +14,6 @@ __all__ = ['ScheduledAction']
 
 
 class ScheduledAction(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The Amazon Resource Name (ARN) of the scheduled action.
-    """
-
-    end_time: pulumi.Output[Optional[str]] = pulumi.property("endTime")
-    """
-    The date and time for the scheduled action to end. Specify the following format: 2006-01-02T15:04:05Z
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the scheduled action.
-    """
-
-    resource_id: pulumi.Output[str] = pulumi.property("resourceId")
-    """
-    The identifier of the resource associated with the scheduled action. Documentation can be found in the parameter at: [AWS Application Auto Scaling API Reference](https://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_PutScheduledAction.html#ApplicationAutoScaling-PutScheduledAction-request-ResourceId)
-    """
-
-    scalable_dimension: pulumi.Output[Optional[str]] = pulumi.property("scalableDimension")
-    """
-    The scalable dimension. Documentation can be found in the parameter at: [AWS Application Auto Scaling API Reference](https://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_PutScheduledAction.html#ApplicationAutoScaling-PutScheduledAction-request-ScalableDimension) Example: ecs:service:DesiredCount
-    """
-
-    scalable_target_action: pulumi.Output[Optional['outputs.ScheduledActionScalableTargetAction']] = pulumi.property("scalableTargetAction")
-    """
-    The new minimum and maximum capacity. You can set both values or just one. See below
-    """
-
-    schedule: pulumi.Output[Optional[str]] = pulumi.property("schedule")
-    """
-    The schedule for this action. The following formats are supported: At expressions - at(yyyy-mm-ddThh:mm:ss), Rate expressions - rate(valueunit), Cron expressions - cron(fields). In UTC. Documentation can be found in the parameter at: [AWS Application Auto Scaling API Reference](https://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_PutScheduledAction.html#ApplicationAutoScaling-PutScheduledAction-request-Schedule)
-    """
-
-    service_namespace: pulumi.Output[str] = pulumi.property("serviceNamespace")
-    """
-    The namespace of the AWS service. Documentation can be found in the parameter at: [AWS Application Auto Scaling API Reference](https://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_PutScheduledAction.html#ApplicationAutoScaling-PutScheduledAction-request-ServiceNamespace) Example: ecs
-    """
-
-    start_time: pulumi.Output[Optional[str]] = pulumi.property("startTime")
-    """
-    The date and time for the scheduled action to start. Specify the following format: 2006-01-02T15:04:05Z
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -213,6 +168,78 @@ class ScheduledAction(pulumi.CustomResource):
         __props__["service_namespace"] = service_namespace
         __props__["start_time"] = start_time
         return ScheduledAction(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) of the scheduled action.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> Optional[str]:
+        """
+        The date and time for the scheduled action to end. Specify the following format: 2006-01-02T15:04:05Z
+        """
+        return pulumi.get(self, "end_time")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the scheduled action.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> str:
+        """
+        The identifier of the resource associated with the scheduled action. Documentation can be found in the parameter at: [AWS Application Auto Scaling API Reference](https://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_PutScheduledAction.html#ApplicationAutoScaling-PutScheduledAction-request-ResourceId)
+        """
+        return pulumi.get(self, "resource_id")
+
+    @property
+    @pulumi.getter(name="scalableDimension")
+    def scalable_dimension(self) -> Optional[str]:
+        """
+        The scalable dimension. Documentation can be found in the parameter at: [AWS Application Auto Scaling API Reference](https://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_PutScheduledAction.html#ApplicationAutoScaling-PutScheduledAction-request-ScalableDimension) Example: ecs:service:DesiredCount
+        """
+        return pulumi.get(self, "scalable_dimension")
+
+    @property
+    @pulumi.getter(name="scalableTargetAction")
+    def scalable_target_action(self) -> Optional['outputs.ScheduledActionScalableTargetAction']:
+        """
+        The new minimum and maximum capacity. You can set both values or just one. See below
+        """
+        return pulumi.get(self, "scalable_target_action")
+
+    @property
+    @pulumi.getter
+    def schedule(self) -> Optional[str]:
+        """
+        The schedule for this action. The following formats are supported: At expressions - at(yyyy-mm-ddThh:mm:ss), Rate expressions - rate(valueunit), Cron expressions - cron(fields). In UTC. Documentation can be found in the parameter at: [AWS Application Auto Scaling API Reference](https://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_PutScheduledAction.html#ApplicationAutoScaling-PutScheduledAction-request-Schedule)
+        """
+        return pulumi.get(self, "schedule")
+
+    @property
+    @pulumi.getter(name="serviceNamespace")
+    def service_namespace(self) -> str:
+        """
+        The namespace of the AWS service. Documentation can be found in the parameter at: [AWS Application Auto Scaling API Reference](https://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_PutScheduledAction.html#ApplicationAutoScaling-PutScheduledAction-request-ServiceNamespace) Example: ecs
+        """
+        return pulumi.get(self, "service_namespace")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> Optional[str]:
+        """
+        The date and time for the scheduled action to start. Specify the following format: 2006-01-02T15:04:05Z
+        """
+        return pulumi.get(self, "start_time")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

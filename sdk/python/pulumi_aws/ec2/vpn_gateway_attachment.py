@@ -12,16 +12,6 @@ __all__ = ['VpnGatewayAttachment']
 
 
 class VpnGatewayAttachment(pulumi.CustomResource):
-    vpc_id: pulumi.Output[str] = pulumi.property("vpcId")
-    """
-    The ID of the VPC.
-    """
-
-    vpn_gateway_id: pulumi.Output[str] = pulumi.property("vpnGatewayId")
-    """
-    The ID of the Virtual Private Gateway.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -114,6 +104,22 @@ class VpnGatewayAttachment(pulumi.CustomResource):
         __props__["vpc_id"] = vpc_id
         __props__["vpn_gateway_id"] = vpn_gateway_id
         return VpnGatewayAttachment(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The ID of the VPC.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @property
+    @pulumi.getter(name="vpnGatewayId")
+    def vpn_gateway_id(self) -> str:
+        """
+        The ID of the Virtual Private Gateway.
+        """
+        return pulumi.get(self, "vpn_gateway_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

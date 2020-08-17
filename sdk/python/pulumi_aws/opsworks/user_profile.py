@@ -12,26 +12,6 @@ __all__ = ['UserProfile']
 
 
 class UserProfile(pulumi.CustomResource):
-    allow_self_management: pulumi.Output[Optional[bool]] = pulumi.property("allowSelfManagement")
-    """
-    Whether users can specify their own SSH public key through the My Settings page
-    """
-
-    ssh_public_key: pulumi.Output[Optional[str]] = pulumi.property("sshPublicKey")
-    """
-    The users public key
-    """
-
-    ssh_username: pulumi.Output[str] = pulumi.property("sshUsername")
-    """
-    The ssh username, with witch this user wants to log in
-    """
-
-    user_arn: pulumi.Output[str] = pulumi.property("userArn")
-    """
-    The user's IAM ARN
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -123,6 +103,38 @@ class UserProfile(pulumi.CustomResource):
         __props__["ssh_username"] = ssh_username
         __props__["user_arn"] = user_arn
         return UserProfile(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="allowSelfManagement")
+    def allow_self_management(self) -> Optional[bool]:
+        """
+        Whether users can specify their own SSH public key through the My Settings page
+        """
+        return pulumi.get(self, "allow_self_management")
+
+    @property
+    @pulumi.getter(name="sshPublicKey")
+    def ssh_public_key(self) -> Optional[str]:
+        """
+        The users public key
+        """
+        return pulumi.get(self, "ssh_public_key")
+
+    @property
+    @pulumi.getter(name="sshUsername")
+    def ssh_username(self) -> str:
+        """
+        The ssh username, with witch this user wants to log in
+        """
+        return pulumi.get(self, "ssh_username")
+
+    @property
+    @pulumi.getter(name="userArn")
+    def user_arn(self) -> str:
+        """
+        The user's IAM ARN
+        """
+        return pulumi.get(self, "user_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

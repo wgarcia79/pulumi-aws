@@ -15,20 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetStreamResult:
-    arn: str = pulumi.property("arn")
-    closed_shards: List[str] = pulumi.property("closedShards")
-    creation_timestamp: float = pulumi.property("creationTimestamp")
-    id: str = pulumi.property("id")
-    name: str = pulumi.property("name")
-    open_shards: List[str] = pulumi.property("openShards")
-    retention_period: float = pulumi.property("retentionPeriod")
-    shard_level_metrics: List[str] = pulumi.property("shardLevelMetrics")
-    status: str = pulumi.property("status")
-    tags: Mapping[str, str] = pulumi.property("tags")
-
-
 class GetStreamResult:
     """
     A collection of values returned by getStream.
@@ -36,64 +24,115 @@ class GetStreamResult:
     def __init__(__self__, arn=None, closed_shards=None, creation_timestamp=None, id=None, name=None, open_shards=None, retention_period=None, shard_level_metrics=None, status=None, tags=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if closed_shards and not isinstance(closed_shards, list):
+            raise TypeError("Expected argument 'closed_shards' to be a list")
+        pulumi.set(__self__, "closed_shards", closed_shards)
+        if creation_timestamp and not isinstance(creation_timestamp, float):
+            raise TypeError("Expected argument 'creation_timestamp' to be a float")
+        pulumi.set(__self__, "creation_timestamp", creation_timestamp)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if open_shards and not isinstance(open_shards, list):
+            raise TypeError("Expected argument 'open_shards' to be a list")
+        pulumi.set(__self__, "open_shards", open_shards)
+        if retention_period and not isinstance(retention_period, float):
+            raise TypeError("Expected argument 'retention_period' to be a float")
+        pulumi.set(__self__, "retention_period", retention_period)
+        if shard_level_metrics and not isinstance(shard_level_metrics, list):
+            raise TypeError("Expected argument 'shard_level_metrics' to be a list")
+        pulumi.set(__self__, "shard_level_metrics", shard_level_metrics)
+        if status and not isinstance(status, str):
+            raise TypeError("Expected argument 'status' to be a str")
+        pulumi.set(__self__, "status", status)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The Amazon Resource Name (ARN) of the Kinesis Stream (same as id).
         """
-        if closed_shards and not isinstance(closed_shards, list):
-            raise TypeError("Expected argument 'closed_shards' to be a list")
-        __self__.closed_shards = closed_shards
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="closedShards")
+    def closed_shards(self) -> List[str]:
         """
         The list of shard ids in the CLOSED state. See [Shard State](https://docs.aws.amazon.com/streams/latest/dev/kinesis-using-sdk-java-after-resharding.html#kinesis-using-sdk-java-resharding-data-routing) for more.
         """
-        if creation_timestamp and not isinstance(creation_timestamp, float):
-            raise TypeError("Expected argument 'creation_timestamp' to be a float")
-        __self__.creation_timestamp = creation_timestamp
+        return pulumi.get(self, "closed_shards")
+
+    @property
+    @pulumi.getter(name="creationTimestamp")
+    def creation_timestamp(self) -> float:
         """
         The approximate UNIX timestamp that the stream was created.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "creation_timestamp")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
         """
         The name of the Kinesis Stream.
         """
-        if open_shards and not isinstance(open_shards, list):
-            raise TypeError("Expected argument 'open_shards' to be a list")
-        __self__.open_shards = open_shards
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="openShards")
+    def open_shards(self) -> List[str]:
         """
         The list of shard ids in the OPEN state. See [Shard State](https://docs.aws.amazon.com/streams/latest/dev/kinesis-using-sdk-java-after-resharding.html#kinesis-using-sdk-java-resharding-data-routing) for more.
         """
-        if retention_period and not isinstance(retention_period, float):
-            raise TypeError("Expected argument 'retention_period' to be a float")
-        __self__.retention_period = retention_period
+        return pulumi.get(self, "open_shards")
+
+    @property
+    @pulumi.getter(name="retentionPeriod")
+    def retention_period(self) -> float:
         """
         Length of time (in hours) data records are accessible after they are added to the stream.
         """
-        if shard_level_metrics and not isinstance(shard_level_metrics, list):
-            raise TypeError("Expected argument 'shard_level_metrics' to be a list")
-        __self__.shard_level_metrics = shard_level_metrics
+        return pulumi.get(self, "retention_period")
+
+    @property
+    @pulumi.getter(name="shardLevelMetrics")
+    def shard_level_metrics(self) -> List[str]:
         """
         A list of shard-level CloudWatch metrics which are enabled for the stream. See [Monitoring with CloudWatch](https://docs.aws.amazon.com/streams/latest/dev/monitoring-with-cloudwatch.html) for more.
         """
-        if status and not isinstance(status, str):
-            raise TypeError("Expected argument 'status' to be a str")
-        __self__.status = status
+        return pulumi.get(self, "shard_level_metrics")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
         """
         The current status of the stream. The stream status is one of CREATING, DELETING, ACTIVE, or UPDATING.
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
         """
         A map of tags to assigned to the stream.
         """
+        return pulumi.get(self, "tags")
+
 
 
 class AwaitableGetStreamResult(GetStreamResult):
@@ -143,7 +182,7 @@ def get_stream(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:kinesis/getStream:getStream', __args__, opts=opts, typ=_GetStreamResult).value
+    __ret__ = pulumi.runtime.invoke('aws:kinesis/getStream:getStream', __args__, opts=opts, typ=GetStreamResult).value
 
     return AwaitableGetStreamResult(
         arn=__ret__.arn,

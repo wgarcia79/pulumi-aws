@@ -12,31 +12,6 @@ __all__ = ['PlacementGroup']
 
 
 class PlacementGroup(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN) of the placement group.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the placement group.
-    """
-
-    placement_group_id: pulumi.Output[str] = pulumi.property("placementGroupId")
-    """
-    The ID of the placement group.
-    """
-
-    strategy: pulumi.Output[str] = pulumi.property("strategy")
-    """
-    The placement strategy. Can be `"cluster"`, `"partition"` or `"spread"`.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of resource tags.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -127,6 +102,46 @@ class PlacementGroup(pulumi.CustomResource):
         __props__["strategy"] = strategy
         __props__["tags"] = tags
         return PlacementGroup(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of the placement group.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the placement group.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="placementGroupId")
+    def placement_group_id(self) -> str:
+        """
+        The ID of the placement group.
+        """
+        return pulumi.get(self, "placement_group_id")
+
+    @property
+    @pulumi.getter
+    def strategy(self) -> str:
+        """
+        The placement strategy. Can be `"cluster"`, `"partition"` or `"spread"`.
+        """
+        return pulumi.get(self, "strategy")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of resource tags.
+        """
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -12,31 +12,6 @@ __all__ = ['PolicyAttachment']
 
 
 class PolicyAttachment(pulumi.CustomResource):
-    groups: pulumi.Output[Optional[List[str]]] = pulumi.property("groups")
-    """
-    The group(s) the policy should be applied to
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the attachment. This cannot be an empty string.
-    """
-
-    policy_arn: pulumi.Output[str] = pulumi.property("policyArn")
-    """
-    The ARN of the policy you want to apply
-    """
-
-    roles: pulumi.Output[Optional[List[str]]] = pulumi.property("roles")
-    """
-    The role(s) the policy should be applied to
-    """
-
-    users: pulumi.Output[Optional[List[str]]] = pulumi.property("users")
-    """
-    The user(s) the policy should be applied to
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -171,6 +146,46 @@ class PolicyAttachment(pulumi.CustomResource):
         __props__["roles"] = roles
         __props__["users"] = users
         return PolicyAttachment(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def groups(self) -> Optional[List[str]]:
+        """
+        The group(s) the policy should be applied to
+        """
+        return pulumi.get(self, "groups")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the attachment. This cannot be an empty string.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="policyArn")
+    def policy_arn(self) -> str:
+        """
+        The ARN of the policy you want to apply
+        """
+        return pulumi.get(self, "policy_arn")
+
+    @property
+    @pulumi.getter
+    def roles(self) -> Optional[List[str]]:
+        """
+        The role(s) the policy should be applied to
+        """
+        return pulumi.get(self, "roles")
+
+    @property
+    @pulumi.getter
+    def users(self) -> Optional[List[str]]:
+        """
+        The user(s) the policy should be applied to
+        """
+        return pulumi.get(self, "users")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

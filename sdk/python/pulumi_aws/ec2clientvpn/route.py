@@ -12,30 +12,6 @@ __all__ = ['Route']
 
 
 class Route(pulumi.CustomResource):
-    client_vpn_endpoint_id: pulumi.Output[str] = pulumi.property("clientVpnEndpointId")
-    """
-    The ID of the Client VPN endpoint.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    A brief description of the authorization rule.
-    """
-
-    destination_cidr_block: pulumi.Output[str] = pulumi.property("destinationCidrBlock")
-    """
-    The IPv4 address range, in CIDR notation, of the route destination.
-    """
-
-    origin: pulumi.Output[str] = pulumi.property("origin")
-
-    target_vpc_subnet_id: pulumi.Output[str] = pulumi.property("targetVpcSubnetId")
-    """
-    The ID of the Subnet to route the traffic through. It must already be attached to the Client VPN.
-    """
-
-    type: pulumi.Output[str] = pulumi.property("type")
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -158,6 +134,48 @@ class Route(pulumi.CustomResource):
         __props__["target_vpc_subnet_id"] = target_vpc_subnet_id
         __props__["type"] = type
         return Route(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="clientVpnEndpointId")
+    def client_vpn_endpoint_id(self) -> str:
+        """
+        The ID of the Client VPN endpoint.
+        """
+        return pulumi.get(self, "client_vpn_endpoint_id")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        A brief description of the authorization rule.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="destinationCidrBlock")
+    def destination_cidr_block(self) -> str:
+        """
+        The IPv4 address range, in CIDR notation, of the route destination.
+        """
+        return pulumi.get(self, "destination_cidr_block")
+
+    @property
+    @pulumi.getter
+    def origin(self) -> str:
+        return pulumi.get(self, "origin")
+
+    @property
+    @pulumi.getter(name="targetVpcSubnetId")
+    def target_vpc_subnet_id(self) -> str:
+        """
+        The ID of the Subnet to route the traffic through. It must already be attached to the Client VPN.
+        """
+        return pulumi.get(self, "target_vpc_subnet_id")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

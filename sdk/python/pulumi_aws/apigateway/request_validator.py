@@ -12,26 +12,6 @@ __all__ = ['RequestValidator']
 
 
 class RequestValidator(pulumi.CustomResource):
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the request validator
-    """
-
-    rest_api: pulumi.Output[str] = pulumi.property("restApi")
-    """
-    The ID of the associated Rest API
-    """
-
-    validate_request_body: pulumi.Output[Optional[bool]] = pulumi.property("validateRequestBody")
-    """
-    Boolean whether to validate request body. Defaults to `false`.
-    """
-
-    validate_request_parameters: pulumi.Output[Optional[bool]] = pulumi.property("validateRequestParameters")
-    """
-    Boolean whether to validate request parameters. Defaults to `false`.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -122,6 +102,38 @@ class RequestValidator(pulumi.CustomResource):
         __props__["validate_request_body"] = validate_request_body
         __props__["validate_request_parameters"] = validate_request_parameters
         return RequestValidator(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the request validator
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="restApi")
+    def rest_api(self) -> str:
+        """
+        The ID of the associated Rest API
+        """
+        return pulumi.get(self, "rest_api")
+
+    @property
+    @pulumi.getter(name="validateRequestBody")
+    def validate_request_body(self) -> Optional[bool]:
+        """
+        Boolean whether to validate request body. Defaults to `false`.
+        """
+        return pulumi.get(self, "validate_request_body")
+
+    @property
+    @pulumi.getter(name="validateRequestParameters")
+    def validate_request_parameters(self) -> Optional[bool]:
+        """
+        Boolean whether to validate request parameters. Defaults to `false`.
+        """
+        return pulumi.get(self, "validate_request_parameters")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

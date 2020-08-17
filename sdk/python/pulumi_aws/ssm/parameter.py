@@ -12,61 +12,6 @@ __all__ = ['Parameter']
 
 
 class Parameter(pulumi.CustomResource):
-    allowed_pattern: pulumi.Output[Optional[str]] = pulumi.property("allowedPattern")
-    """
-    A regular expression used to validate the parameter value.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the parameter.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    The description of the parameter.
-    """
-
-    key_id: pulumi.Output[str] = pulumi.property("keyId")
-    """
-    The KMS key id or arn for encrypting a SecureString.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the parameter. If the name contains a path (e.g. any forward slashes (`/`)), it must be fully qualified with a leading forward slash (`/`). For additional requirements and constraints, see the [AWS SSM User Guide](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-parameter-name-constraints.html).
-    """
-
-    overwrite: pulumi.Output[Optional[bool]] = pulumi.property("overwrite")
-    """
-    Overwrite an existing parameter. If not specified, will default to `false` if the resource has not been created by this provider to avoid overwrite of existing resource and will default to `true` otherwise (lifecycle rules should then be used to manage the update behavior).
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the object.
-    """
-
-    tier: pulumi.Output[Optional[str]] = pulumi.property("tier")
-    """
-    The tier of the parameter. If not specified, will default to `Standard`. Valid tiers are `Standard` and `Advanced`. For more information on parameter tiers, see the [AWS SSM Parameter tier comparison and guide](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-advanced-parameters.html).
-    """
-
-    type: pulumi.Output[str] = pulumi.property("type")
-    """
-    The type of the parameter. Valid types are `String`, `StringList` and `SecureString`.
-    """
-
-    value: pulumi.Output[str] = pulumi.property("value")
-    """
-    The value of the parameter.
-    """
-
-    version: pulumi.Output[float] = pulumi.property("version")
-    """
-    The version of the parameter.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -228,6 +173,94 @@ class Parameter(pulumi.CustomResource):
         __props__["value"] = value
         __props__["version"] = version
         return Parameter(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="allowedPattern")
+    def allowed_pattern(self) -> Optional[str]:
+        """
+        A regular expression used to validate the parameter value.
+        """
+        return pulumi.get(self, "allowed_pattern")
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the parameter.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        The description of the parameter.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> str:
+        """
+        The KMS key id or arn for encrypting a SecureString.
+        """
+        return pulumi.get(self, "key_id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the parameter. If the name contains a path (e.g. any forward slashes (`/`)), it must be fully qualified with a leading forward slash (`/`). For additional requirements and constraints, see the [AWS SSM User Guide](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-parameter-name-constraints.html).
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def overwrite(self) -> Optional[bool]:
+        """
+        Overwrite an existing parameter. If not specified, will default to `false` if the resource has not been created by this provider to avoid overwrite of existing resource and will default to `true` otherwise (lifecycle rules should then be used to manage the update behavior).
+        """
+        return pulumi.get(self, "overwrite")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the object.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
+    def tier(self) -> Optional[str]:
+        """
+        The tier of the parameter. If not specified, will default to `Standard`. Valid tiers are `Standard` and `Advanced`. For more information on parameter tiers, see the [AWS SSM Parameter tier comparison and guide](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-advanced-parameters.html).
+        """
+        return pulumi.get(self, "tier")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the parameter. Valid types are `String`, `StringList` and `SecureString`.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of the parameter.
+        """
+        return pulumi.get(self, "value")
+
+    @property
+    @pulumi.getter
+    def version(self) -> float:
+        """
+        The version of the parameter.
+        """
+        return pulumi.get(self, "version")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

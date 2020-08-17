@@ -17,16 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetLocalGatewayResult:
-    filters: Optional[List['outputs.GetLocalGatewayFilterResult']] = pulumi.property("filters")
-    id: str = pulumi.property("id")
-    outpost_arn: str = pulumi.property("outpostArn")
-    owner_id: str = pulumi.property("ownerId")
-    state: str = pulumi.property("state")
-    tags: Mapping[str, str] = pulumi.property("tags")
-
-
 class GetLocalGatewayResult:
     """
     A collection of values returned by getLocalGateway.
@@ -34,31 +26,62 @@ class GetLocalGatewayResult:
     def __init__(__self__, filters=None, id=None, outpost_arn=None, owner_id=None, state=None, tags=None):
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
+        pulumi.set(__self__, "filters", filters)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
         if outpost_arn and not isinstance(outpost_arn, str):
             raise TypeError("Expected argument 'outpost_arn' to be a str")
-        __self__.outpost_arn = outpost_arn
+        pulumi.set(__self__, "outpost_arn", outpost_arn)
+        if owner_id and not isinstance(owner_id, str):
+            raise TypeError("Expected argument 'owner_id' to be a str")
+        pulumi.set(__self__, "owner_id", owner_id)
+        if state and not isinstance(state, str):
+            raise TypeError("Expected argument 'state' to be a str")
+        pulumi.set(__self__, "state", state)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetLocalGatewayFilterResult']]:
+        return pulumi.get(self, "filters")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="outpostArn")
+    def outpost_arn(self) -> str:
         """
         Amazon Resource Name (ARN) of Outpost
         """
-        if owner_id and not isinstance(owner_id, str):
-            raise TypeError("Expected argument 'owner_id' to be a str")
-        __self__.owner_id = owner_id
+        return pulumi.get(self, "outpost_arn")
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
         """
         AWS account identifier that owns the Local Gateway.
         """
-        if state and not isinstance(state, str):
-            raise TypeError("Expected argument 'state' to be a str")
-        __self__.state = state
+        return pulumi.get(self, "owner_id")
+
+    @property
+    @pulumi.getter
+    def state(self) -> str:
         """
         State of the local gateway.
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        return pulumi.get(self, "state")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
+        return pulumi.get(self, "tags")
+
 
 
 class AwaitableGetLocalGatewayResult(GetLocalGatewayResult):
@@ -113,7 +136,7 @@ def get_local_gateway(filters: Optional[List[pulumi.InputType['GetLocalGatewayFi
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getLocalGateway:getLocalGateway', __args__, opts=opts, typ=_GetLocalGatewayResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getLocalGateway:getLocalGateway', __args__, opts=opts, typ=GetLocalGatewayResult).value
 
     return AwaitableGetLocalGatewayResult(
         filters=__ret__.filters,

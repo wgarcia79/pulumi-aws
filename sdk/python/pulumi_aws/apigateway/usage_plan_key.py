@@ -12,31 +12,6 @@ __all__ = ['UsagePlanKey']
 
 
 class UsagePlanKey(pulumi.CustomResource):
-    key_id: pulumi.Output[str] = pulumi.property("keyId")
-    """
-    The identifier of the API key resource.
-    """
-
-    key_type: pulumi.Output[str] = pulumi.property("keyType")
-    """
-    The type of the API key resource. Currently, the valid key type is API_KEY.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of a usage plan key.
-    """
-
-    usage_plan_id: pulumi.Output[str] = pulumi.property("usagePlanId")
-    """
-    The Id of the usage plan resource representing to associate the key to.
-    """
-
-    value: pulumi.Output[str] = pulumi.property("value")
-    """
-    The value of a usage plan key.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -139,6 +114,46 @@ class UsagePlanKey(pulumi.CustomResource):
         __props__["usage_plan_id"] = usage_plan_id
         __props__["value"] = value
         return UsagePlanKey(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> str:
+        """
+        The identifier of the API key resource.
+        """
+        return pulumi.get(self, "key_id")
+
+    @property
+    @pulumi.getter(name="keyType")
+    def key_type(self) -> str:
+        """
+        The type of the API key resource. Currently, the valid key type is API_KEY.
+        """
+        return pulumi.get(self, "key_type")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of a usage plan key.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="usagePlanId")
+    def usage_plan_id(self) -> str:
+        """
+        The Id of the usage plan resource representing to associate the key to.
+        """
+        return pulumi.get(self, "usage_plan_id")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of a usage plan key.
+        """
+        return pulumi.get(self, "value")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -15,18 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetCertificateResult:
-    arn: str = pulumi.property("arn")
-    domain: str = pulumi.property("domain")
-    id: str = pulumi.property("id")
-    key_types: Optional[List[str]] = pulumi.property("keyTypes")
-    most_recent: Optional[bool] = pulumi.property("mostRecent")
-    statuses: Optional[List[str]] = pulumi.property("statuses")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    types: Optional[List[str]] = pulumi.property("types")
-
-
 class GetCertificateResult:
     """
     A collection of values returned by getCertificate.
@@ -34,37 +24,78 @@ class GetCertificateResult:
     def __init__(__self__, arn=None, domain=None, id=None, key_types=None, most_recent=None, statuses=None, tags=None, types=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if domain and not isinstance(domain, str):
+            raise TypeError("Expected argument 'domain' to be a str")
+        pulumi.set(__self__, "domain", domain)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if key_types and not isinstance(key_types, list):
+            raise TypeError("Expected argument 'key_types' to be a list")
+        pulumi.set(__self__, "key_types", key_types)
+        if most_recent and not isinstance(most_recent, bool):
+            raise TypeError("Expected argument 'most_recent' to be a bool")
+        pulumi.set(__self__, "most_recent", most_recent)
+        if statuses and not isinstance(statuses, list):
+            raise TypeError("Expected argument 'statuses' to be a list")
+        pulumi.set(__self__, "statuses", statuses)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if types and not isinstance(types, list):
+            raise TypeError("Expected argument 'types' to be a list")
+        pulumi.set(__self__, "types", types)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         Set to the ARN of the found certificate, suitable for referencing in other resources that support ACM certificates.
         """
-        if domain and not isinstance(domain, str):
-            raise TypeError("Expected argument 'domain' to be a str")
-        __self__.domain = domain
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def domain(self) -> str:
+        return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if key_types and not isinstance(key_types, list):
-            raise TypeError("Expected argument 'key_types' to be a list")
-        __self__.key_types = key_types
-        if most_recent and not isinstance(most_recent, bool):
-            raise TypeError("Expected argument 'most_recent' to be a bool")
-        __self__.most_recent = most_recent
-        if statuses and not isinstance(statuses, list):
-            raise TypeError("Expected argument 'statuses' to be a list")
-        __self__.statuses = statuses
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="keyTypes")
+    def key_types(self) -> Optional[List[str]]:
+        return pulumi.get(self, "key_types")
+
+    @property
+    @pulumi.getter(name="mostRecent")
+    def most_recent(self) -> Optional[bool]:
+        return pulumi.get(self, "most_recent")
+
+    @property
+    @pulumi.getter
+    def statuses(self) -> Optional[List[str]]:
+        return pulumi.get(self, "statuses")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
         """
         A mapping of tags for the resource.
         """
-        if types and not isinstance(types, list):
-            raise TypeError("Expected argument 'types' to be a list")
-        __self__.types = types
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
+    def types(self) -> Optional[List[str]]:
+        return pulumi.get(self, "types")
+
 
 
 class AwaitableGetCertificateResult(GetCertificateResult):
@@ -126,7 +157,7 @@ def get_certificate(domain: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:acm/getCertificate:getCertificate', __args__, opts=opts, typ=_GetCertificateResult).value
+    __ret__ = pulumi.runtime.invoke('aws:acm/getCertificate:getCertificate', __args__, opts=opts, typ=GetCertificateResult).value
 
     return AwaitableGetCertificateResult(
         arn=__ret__.arn,

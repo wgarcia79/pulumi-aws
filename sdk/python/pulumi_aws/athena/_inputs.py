@@ -24,8 +24,9 @@ class DatabaseEncryptionConfigurationArgs:
         :param pulumi.Input[str] encryption_option: The type of key; one of `SSE_S3`, `SSE_KMS`, `CSE_KMS`
         :param pulumi.Input[str] kms_key: The KMS key ARN or ID; required for key types `SSE_KMS` and `CSE_KMS`.
         """
-        pulumi.set(__self__, "encryptionOption", encryption_option)
-        pulumi.set(__self__, "kmsKey", kms_key)
+        pulumi.set(__self__, "encryption_option", encryption_option)
+        if kms_key is not None:
+            pulumi.set(__self__, "kms_key", kms_key)
 
     @property
     @pulumi.getter(name="encryptionOption")
@@ -33,11 +34,11 @@ class DatabaseEncryptionConfigurationArgs:
         """
         The type of key; one of `SSE_S3`, `SSE_KMS`, `CSE_KMS`
         """
-        ...
+        return pulumi.get(self, "encryption_option")
 
     @encryption_option.setter
     def encryption_option(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "encryption_option", value)
 
     @property
     @pulumi.getter(name="kmsKey")
@@ -45,11 +46,11 @@ class DatabaseEncryptionConfigurationArgs:
         """
         The KMS key ARN or ID; required for key types `SSE_KMS` and `CSE_KMS`.
         """
-        ...
+        return pulumi.get(self, "kms_key")
 
     @kms_key.setter
     def kms_key(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kms_key", value)
 
 
 @pulumi.input_type
@@ -65,10 +66,14 @@ class WorkgroupConfigurationArgs:
         :param pulumi.Input[bool] publish_cloudwatch_metrics_enabled: Boolean whether Amazon CloudWatch metrics are enabled for the workgroup. Defaults to `true`.
         :param pulumi.Input['WorkgroupConfigurationResultConfigurationArgs'] result_configuration: Configuration block with result settings. Documented below.
         """
-        pulumi.set(__self__, "bytesScannedCutoffPerQuery", bytes_scanned_cutoff_per_query)
-        pulumi.set(__self__, "enforceWorkgroupConfiguration", enforce_workgroup_configuration)
-        pulumi.set(__self__, "publishCloudwatchMetricsEnabled", publish_cloudwatch_metrics_enabled)
-        pulumi.set(__self__, "resultConfiguration", result_configuration)
+        if bytes_scanned_cutoff_per_query is not None:
+            pulumi.set(__self__, "bytes_scanned_cutoff_per_query", bytes_scanned_cutoff_per_query)
+        if enforce_workgroup_configuration is not None:
+            pulumi.set(__self__, "enforce_workgroup_configuration", enforce_workgroup_configuration)
+        if publish_cloudwatch_metrics_enabled is not None:
+            pulumi.set(__self__, "publish_cloudwatch_metrics_enabled", publish_cloudwatch_metrics_enabled)
+        if result_configuration is not None:
+            pulumi.set(__self__, "result_configuration", result_configuration)
 
     @property
     @pulumi.getter(name="bytesScannedCutoffPerQuery")
@@ -76,11 +81,11 @@ class WorkgroupConfigurationArgs:
         """
         Integer for the upper data usage limit (cutoff) for the amount of bytes a single query in a workgroup is allowed to scan. Must be at least `10485760`.
         """
-        ...
+        return pulumi.get(self, "bytes_scanned_cutoff_per_query")
 
     @bytes_scanned_cutoff_per_query.setter
     def bytes_scanned_cutoff_per_query(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "bytes_scanned_cutoff_per_query", value)
 
     @property
     @pulumi.getter(name="enforceWorkgroupConfiguration")
@@ -88,11 +93,11 @@ class WorkgroupConfigurationArgs:
         """
         Boolean whether the settings for the workgroup override client-side settings. For more information, see [Workgroup Settings Override Client-Side Settings](https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html). Defaults to `true`.
         """
-        ...
+        return pulumi.get(self, "enforce_workgroup_configuration")
 
     @enforce_workgroup_configuration.setter
     def enforce_workgroup_configuration(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "enforce_workgroup_configuration", value)
 
     @property
     @pulumi.getter(name="publishCloudwatchMetricsEnabled")
@@ -100,11 +105,11 @@ class WorkgroupConfigurationArgs:
         """
         Boolean whether Amazon CloudWatch metrics are enabled for the workgroup. Defaults to `true`.
         """
-        ...
+        return pulumi.get(self, "publish_cloudwatch_metrics_enabled")
 
     @publish_cloudwatch_metrics_enabled.setter
     def publish_cloudwatch_metrics_enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "publish_cloudwatch_metrics_enabled", value)
 
     @property
     @pulumi.getter(name="resultConfiguration")
@@ -112,11 +117,11 @@ class WorkgroupConfigurationArgs:
         """
         Configuration block with result settings. Documented below.
         """
-        ...
+        return pulumi.get(self, "result_configuration")
 
     @result_configuration.setter
     def result_configuration(self, value: Optional[pulumi.Input['WorkgroupConfigurationResultConfigurationArgs']]):
-        ...
+        pulumi.set(self, "result_configuration", value)
 
 
 @pulumi.input_type
@@ -128,8 +133,10 @@ class WorkgroupConfigurationResultConfigurationArgs:
         :param pulumi.Input['WorkgroupConfigurationResultConfigurationEncryptionConfigurationArgs'] encryption_configuration: Configuration block with encryption settings. Documented below.
         :param pulumi.Input[str] output_location: The location in Amazon S3 where your query results are stored, such as `s3://path/to/query/bucket/`. For more information, see [Queries and Query Result Files](https://docs.aws.amazon.com/athena/latest/ug/querying.html).
         """
-        pulumi.set(__self__, "encryptionConfiguration", encryption_configuration)
-        pulumi.set(__self__, "outputLocation", output_location)
+        if encryption_configuration is not None:
+            pulumi.set(__self__, "encryption_configuration", encryption_configuration)
+        if output_location is not None:
+            pulumi.set(__self__, "output_location", output_location)
 
     @property
     @pulumi.getter(name="encryptionConfiguration")
@@ -137,11 +144,11 @@ class WorkgroupConfigurationResultConfigurationArgs:
         """
         Configuration block with encryption settings. Documented below.
         """
-        ...
+        return pulumi.get(self, "encryption_configuration")
 
     @encryption_configuration.setter
     def encryption_configuration(self, value: Optional[pulumi.Input['WorkgroupConfigurationResultConfigurationEncryptionConfigurationArgs']]):
-        ...
+        pulumi.set(self, "encryption_configuration", value)
 
     @property
     @pulumi.getter(name="outputLocation")
@@ -149,11 +156,11 @@ class WorkgroupConfigurationResultConfigurationArgs:
         """
         The location in Amazon S3 where your query results are stored, such as `s3://path/to/query/bucket/`. For more information, see [Queries and Query Result Files](https://docs.aws.amazon.com/athena/latest/ug/querying.html).
         """
-        ...
+        return pulumi.get(self, "output_location")
 
     @output_location.setter
     def output_location(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "output_location", value)
 
 
 @pulumi.input_type
@@ -165,8 +172,10 @@ class WorkgroupConfigurationResultConfigurationEncryptionConfigurationArgs:
         :param pulumi.Input[str] encryption_option: Indicates whether Amazon S3 server-side encryption with Amazon S3-managed keys (`SSE_S3`), server-side encryption with KMS-managed keys (`SSE_KMS`), or client-side encryption with KMS-managed keys (`CSE_KMS`) is used. If a query runs in a workgroup and the workgroup overrides client-side settings, then the workgroup's setting for encryption is used. It specifies whether query results must be encrypted, for all queries that run in this workgroup.
         :param pulumi.Input[str] kms_key_arn: For `SSE_KMS` and `CSE_KMS`, this is the KMS key Amazon Resource Name (ARN).
         """
-        pulumi.set(__self__, "encryptionOption", encryption_option)
-        pulumi.set(__self__, "kmsKeyArn", kms_key_arn)
+        if encryption_option is not None:
+            pulumi.set(__self__, "encryption_option", encryption_option)
+        if kms_key_arn is not None:
+            pulumi.set(__self__, "kms_key_arn", kms_key_arn)
 
     @property
     @pulumi.getter(name="encryptionOption")
@@ -174,11 +183,11 @@ class WorkgroupConfigurationResultConfigurationEncryptionConfigurationArgs:
         """
         Indicates whether Amazon S3 server-side encryption with Amazon S3-managed keys (`SSE_S3`), server-side encryption with KMS-managed keys (`SSE_KMS`), or client-side encryption with KMS-managed keys (`CSE_KMS`) is used. If a query runs in a workgroup and the workgroup overrides client-side settings, then the workgroup's setting for encryption is used. It specifies whether query results must be encrypted, for all queries that run in this workgroup.
         """
-        ...
+        return pulumi.get(self, "encryption_option")
 
     @encryption_option.setter
     def encryption_option(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "encryption_option", value)
 
     @property
     @pulumi.getter(name="kmsKeyArn")
@@ -186,10 +195,10 @@ class WorkgroupConfigurationResultConfigurationEncryptionConfigurationArgs:
         """
         For `SSE_KMS` and `CSE_KMS`, this is the KMS key Amazon Resource Name (ARN).
         """
-        ...
+        return pulumi.get(self, "kms_key_arn")
 
     @kms_key_arn.setter
     def kms_key_arn(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kms_key_arn", value)
 
 

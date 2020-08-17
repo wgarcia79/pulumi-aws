@@ -12,16 +12,6 @@ __all__ = ['ResourceGroup']
 
 
 class ResourceGroup(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The resource group ARN.
-    """
-
-    tags: pulumi.Output[Mapping[str, str]] = pulumi.property("tags")
-    """
-    Key-value map of tags that are used to select the EC2 instances to be included in an `Amazon Inspector assessment target` resource.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -98,6 +88,22 @@ class ResourceGroup(pulumi.CustomResource):
         __props__["arn"] = arn
         __props__["tags"] = tags
         return ResourceGroup(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The resource group ARN.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
+        """
+        Key-value map of tags that are used to select the EC2 instances to be included in an `Amazon Inspector assessment target` resource.
+        """
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

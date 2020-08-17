@@ -12,16 +12,6 @@ __all__ = ['ConnectionAssociation']
 
 
 class ConnectionAssociation(pulumi.CustomResource):
-    connection_id: pulumi.Output[str] = pulumi.property("connectionId")
-    """
-    The ID of the connection.
-    """
-
-    lag_id: pulumi.Output[str] = pulumi.property("lagId")
-    """
-    The ID of the LAG with which to associate the connection.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -107,6 +97,22 @@ class ConnectionAssociation(pulumi.CustomResource):
         __props__["connection_id"] = connection_id
         __props__["lag_id"] = lag_id
         return ConnectionAssociation(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="connectionId")
+    def connection_id(self) -> str:
+        """
+        The ID of the connection.
+        """
+        return pulumi.get(self, "connection_id")
+
+    @property
+    @pulumi.getter(name="lagId")
+    def lag_id(self) -> str:
+        """
+        The ID of the LAG with which to associate the connection.
+        """
+        return pulumi.get(self, "lag_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

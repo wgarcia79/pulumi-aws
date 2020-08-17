@@ -35,11 +35,11 @@ class GetDirectConnectGatewayAttachmentFilterArgs:
         """
         The name of the filter field. Valid values can be found in the [EC2 DescribeTransitGatewayAttachments API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeTransitGatewayAttachments.html).
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: str):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -47,11 +47,11 @@ class GetDirectConnectGatewayAttachmentFilterArgs:
         """
         Set of values that are accepted for the given filter field. Results will be selected if any given value matches.
         """
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: List[str]):
-        ...
+        pulumi.set(self, "values", value)
 
 
 @pulumi.input_type
@@ -75,11 +75,11 @@ class GetPeeringAttachmentFilterArgs:
         The name of the field to filter by, as defined by
         [the underlying AWS API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeTransitGatewayPeeringAttachments.html).
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: str):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -88,11 +88,11 @@ class GetPeeringAttachmentFilterArgs:
         Set of values that are accepted for the given field.
         An EC2 Transit Gateway Peering Attachment be selected if any one of the given values matches.
         """
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: List[str]):
-        ...
+        pulumi.set(self, "values", value)
 
 
 @pulumi.input_type
@@ -113,11 +113,11 @@ class GetRouteTableFilterArgs:
         """
         Name of the filter.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: str):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -125,11 +125,11 @@ class GetRouteTableFilterArgs:
         """
         List of one or more values for the filter.
         """
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: List[str]):
-        ...
+        pulumi.set(self, "values", value)
 
 
 @pulumi.input_type
@@ -150,11 +150,11 @@ class GetTransitGatewayFilterArgs:
         """
         Name of the filter.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: str):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -162,11 +162,11 @@ class GetTransitGatewayFilterArgs:
         """
         List of one or more values for the filter.
         """
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: List[str]):
-        ...
+        pulumi.set(self, "values", value)
 
 
 @pulumi.input_type
@@ -187,11 +187,11 @@ class GetVpcAttachmentFilterArgs:
         """
         Name of the filter.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: str):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -199,11 +199,11 @@ class GetVpcAttachmentFilterArgs:
         """
         List of one or more values for the filter.
         """
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: List[str]):
-        ...
+        pulumi.set(self, "values", value)
 
 
 @pulumi.input_type
@@ -224,11 +224,11 @@ class GetVpnAttachmentFilterArgs:
         """
         The name of the filter field. Valid values can be found in the [EC2 DescribeTransitGatewayAttachments API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeTransitGatewayAttachments.html).
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: str):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -236,10 +236,10 @@ class GetVpnAttachmentFilterArgs:
         """
         Set of values that are accepted for the given filter field. Results will be selected if any given value matches.
         """
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: List[str]):
-        ...
+        pulumi.set(self, "values", value)
 
 

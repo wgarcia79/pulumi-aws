@@ -12,16 +12,6 @@ __all__ = ['LogService']
 
 
 class LogService(pulumi.CustomResource):
-    directory_id: pulumi.Output[str] = pulumi.property("directoryId")
-    """
-    The id of directory.
-    """
-
-    log_group_name: pulumi.Output[str] = pulumi.property("logGroupName")
-    """
-    Name of the cloudwatch log group to which the logs should be published. The log group should be already created and the directory service principal should be provided with required permission to create stream and publish logs. Changing this value would delete the current subscription and create a new one. A directory can only have one log subscription at a time.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -117,6 +107,22 @@ class LogService(pulumi.CustomResource):
         __props__["directory_id"] = directory_id
         __props__["log_group_name"] = log_group_name
         return LogService(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="directoryId")
+    def directory_id(self) -> str:
+        """
+        The id of directory.
+        """
+        return pulumi.get(self, "directory_id")
+
+    @property
+    @pulumi.getter(name="logGroupName")
+    def log_group_name(self) -> str:
+        """
+        Name of the cloudwatch log group to which the logs should be published. The log group should be already created and the directory service principal should be provided with required permission to create stream and publish logs. Changing this value would delete the current subscription and create a new one. A directory can only have one log subscription at a time.
+        """
+        return pulumi.get(self, "log_group_name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

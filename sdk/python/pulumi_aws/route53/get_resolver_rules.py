@@ -15,16 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetResolverRulesResult:
-    id: str = pulumi.property("id")
-    owner_id: Optional[str] = pulumi.property("ownerId")
-    resolver_endpoint_id: Optional[str] = pulumi.property("resolverEndpointId")
-    resolver_rule_ids: List[str] = pulumi.property("resolverRuleIds")
-    rule_type: Optional[str] = pulumi.property("ruleType")
-    share_status: Optional[str] = pulumi.property("shareStatus")
-
-
 class GetResolverRulesResult:
     """
     A collection of values returned by getResolverRules.
@@ -32,28 +24,59 @@ class GetResolverRulesResult:
     def __init__(__self__, id=None, owner_id=None, resolver_endpoint_id=None, resolver_rule_ids=None, rule_type=None, share_status=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if owner_id and not isinstance(owner_id, str):
+            raise TypeError("Expected argument 'owner_id' to be a str")
+        pulumi.set(__self__, "owner_id", owner_id)
+        if resolver_endpoint_id and not isinstance(resolver_endpoint_id, str):
+            raise TypeError("Expected argument 'resolver_endpoint_id' to be a str")
+        pulumi.set(__self__, "resolver_endpoint_id", resolver_endpoint_id)
+        if resolver_rule_ids and not isinstance(resolver_rule_ids, list):
+            raise TypeError("Expected argument 'resolver_rule_ids' to be a list")
+        pulumi.set(__self__, "resolver_rule_ids", resolver_rule_ids)
+        if rule_type and not isinstance(rule_type, str):
+            raise TypeError("Expected argument 'rule_type' to be a str")
+        pulumi.set(__self__, "rule_type", rule_type)
+        if share_status and not isinstance(share_status, str):
+            raise TypeError("Expected argument 'share_status' to be a str")
+        pulumi.set(__self__, "share_status", share_status)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if owner_id and not isinstance(owner_id, str):
-            raise TypeError("Expected argument 'owner_id' to be a str")
-        __self__.owner_id = owner_id
-        if resolver_endpoint_id and not isinstance(resolver_endpoint_id, str):
-            raise TypeError("Expected argument 'resolver_endpoint_id' to be a str")
-        __self__.resolver_endpoint_id = resolver_endpoint_id
-        if resolver_rule_ids and not isinstance(resolver_rule_ids, list):
-            raise TypeError("Expected argument 'resolver_rule_ids' to be a list")
-        __self__.resolver_rule_ids = resolver_rule_ids
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> Optional[str]:
+        return pulumi.get(self, "owner_id")
+
+    @property
+    @pulumi.getter(name="resolverEndpointId")
+    def resolver_endpoint_id(self) -> Optional[str]:
+        return pulumi.get(self, "resolver_endpoint_id")
+
+    @property
+    @pulumi.getter(name="resolverRuleIds")
+    def resolver_rule_ids(self) -> List[str]:
         """
         The IDs of the matched resolver rules.
         """
-        if rule_type and not isinstance(rule_type, str):
-            raise TypeError("Expected argument 'rule_type' to be a str")
-        __self__.rule_type = rule_type
-        if share_status and not isinstance(share_status, str):
-            raise TypeError("Expected argument 'share_status' to be a str")
-        __self__.share_status = share_status
+        return pulumi.get(self, "resolver_rule_ids")
+
+    @property
+    @pulumi.getter(name="ruleType")
+    def rule_type(self) -> Optional[str]:
+        return pulumi.get(self, "rule_type")
+
+    @property
+    @pulumi.getter(name="shareStatus")
+    def share_status(self) -> Optional[str]:
+        return pulumi.get(self, "share_status")
+
 
 
 class AwaitableGetResolverRulesResult(GetResolverRulesResult):
@@ -107,7 +130,7 @@ def get_resolver_rules(owner_id: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:route53/getResolverRules:getResolverRules', __args__, opts=opts, typ=_GetResolverRulesResult).value
+    __ret__ = pulumi.runtime.invoke('aws:route53/getResolverRules:getResolverRules', __args__, opts=opts, typ=GetResolverRulesResult).value
 
     return AwaitableGetResolverRulesResult(
         id=__ret__.id,

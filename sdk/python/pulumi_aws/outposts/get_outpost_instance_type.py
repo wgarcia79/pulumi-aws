@@ -15,14 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetOutpostInstanceTypeResult:
-    arn: str = pulumi.property("arn")
-    id: str = pulumi.property("id")
-    instance_type: str = pulumi.property("instanceType")
-    preferred_instance_types: Optional[List[str]] = pulumi.property("preferredInstanceTypes")
-
-
 class GetOutpostInstanceTypeResult:
     """
     A collection of values returned by getOutpostInstanceType.
@@ -30,19 +24,40 @@ class GetOutpostInstanceTypeResult:
     def __init__(__self__, arn=None, id=None, instance_type=None, preferred_instance_types=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if instance_type and not isinstance(instance_type, str):
+            raise TypeError("Expected argument 'instance_type' to be a str")
+        pulumi.set(__self__, "instance_type", instance_type)
+        if preferred_instance_types and not isinstance(preferred_instance_types, list):
+            raise TypeError("Expected argument 'preferred_instance_types' to be a list")
+        pulumi.set(__self__, "preferred_instance_types", preferred_instance_types)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if instance_type and not isinstance(instance_type, str):
-            raise TypeError("Expected argument 'instance_type' to be a str")
-        __self__.instance_type = instance_type
-        if preferred_instance_types and not isinstance(preferred_instance_types, list):
-            raise TypeError("Expected argument 'preferred_instance_types' to be a list")
-        __self__.preferred_instance_types = preferred_instance_types
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="instanceType")
+    def instance_type(self) -> str:
+        return pulumi.get(self, "instance_type")
+
+    @property
+    @pulumi.getter(name="preferredInstanceTypes")
+    def preferred_instance_types(self) -> Optional[List[str]]:
+        return pulumi.get(self, "preferred_instance_types")
+
 
 
 class AwaitableGetOutpostInstanceTypeResult(GetOutpostInstanceTypeResult):
@@ -77,7 +92,7 @@ def get_outpost_instance_type(arn: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:outposts/getOutpostInstanceType:getOutpostInstanceType', __args__, opts=opts, typ=_GetOutpostInstanceTypeResult).value
+    __ret__ = pulumi.runtime.invoke('aws:outposts/getOutpostInstanceType:getOutpostInstanceType', __args__, opts=opts, typ=GetOutpostInstanceTypeResult).value
 
     return AwaitableGetOutpostInstanceTypeResult(
         arn=__ret__.arn,

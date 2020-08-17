@@ -12,21 +12,6 @@ __all__ = ['DocumentationVersion']
 
 
 class DocumentationVersion(pulumi.CustomResource):
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    The description of the API documentation version.
-    """
-
-    rest_api_id: pulumi.Output[str] = pulumi.property("restApiId")
-    """
-    The ID of the associated Rest API
-    """
-
-    version: pulumi.Output[str] = pulumi.property("version")
-    """
-    The version identifier of the API documentation snapshot.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -121,6 +106,30 @@ class DocumentationVersion(pulumi.CustomResource):
         __props__["rest_api_id"] = rest_api_id
         __props__["version"] = version
         return DocumentationVersion(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        The description of the API documentation version.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="restApiId")
+    def rest_api_id(self) -> str:
+        """
+        The ID of the associated Rest API
+        """
+        return pulumi.get(self, "rest_api_id")
+
+    @property
+    @pulumi.getter
+    def version(self) -> str:
+        """
+        The version identifier of the API documentation snapshot.
+        """
+        return pulumi.get(self, "version")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

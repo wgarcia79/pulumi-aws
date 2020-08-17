@@ -12,21 +12,6 @@ __all__ = ['StaticIpAttachment']
 
 
 class StaticIpAttachment(pulumi.CustomResource):
-    instance_name: pulumi.Output[str] = pulumi.property("instanceName")
-    """
-    The name of the Lightsail instance to attach the IP to
-    """
-
-    ip_address: pulumi.Output[str] = pulumi.property("ipAddress")
-    """
-    The allocated static IP address
-    """
-
-    static_ip_name: pulumi.Output[str] = pulumi.property("staticIpName")
-    """
-    The name of the allocated static IP
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -118,6 +103,30 @@ class StaticIpAttachment(pulumi.CustomResource):
         __props__["ip_address"] = ip_address
         __props__["static_ip_name"] = static_ip_name
         return StaticIpAttachment(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> str:
+        """
+        The name of the Lightsail instance to attach the IP to
+        """
+        return pulumi.get(self, "instance_name")
+
+    @property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> str:
+        """
+        The allocated static IP address
+        """
+        return pulumi.get(self, "ip_address")
+
+    @property
+    @pulumi.getter(name="staticIpName")
+    def static_ip_name(self) -> str:
+        """
+        The name of the allocated static IP
+        """
+        return pulumi.get(self, "static_ip_name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

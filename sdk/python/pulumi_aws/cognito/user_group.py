@@ -12,31 +12,6 @@ __all__ = ['UserGroup']
 
 
 class UserGroup(pulumi.CustomResource):
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    The description of the user group.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the user group.
-    """
-
-    precedence: pulumi.Output[Optional[float]] = pulumi.property("precedence")
-    """
-    The precedence of the user group.
-    """
-
-    role_arn: pulumi.Output[Optional[str]] = pulumi.property("roleArn")
-    """
-    The ARN of the IAM role to be associated with the user group.
-    """
-
-    user_pool_id: pulumi.Output[str] = pulumi.property("userPoolId")
-    """
-    The user pool ID.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -158,6 +133,46 @@ class UserGroup(pulumi.CustomResource):
         __props__["role_arn"] = role_arn
         __props__["user_pool_id"] = user_pool_id
         return UserGroup(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        The description of the user group.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the user group.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def precedence(self) -> Optional[float]:
+        """
+        The precedence of the user group.
+        """
+        return pulumi.get(self, "precedence")
+
+    @property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> Optional[str]:
+        """
+        The ARN of the IAM role to be associated with the user group.
+        """
+        return pulumi.get(self, "role_arn")
+
+    @property
+    @pulumi.getter(name="userPoolId")
+    def user_pool_id(self) -> str:
+        """
+        The user pool ID.
+        """
+        return pulumi.get(self, "user_pool_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

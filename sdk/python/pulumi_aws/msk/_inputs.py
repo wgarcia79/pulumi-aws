@@ -41,11 +41,12 @@ class ClusterBrokerNodeGroupInfoArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] security_groups: A list of the security groups to associate with the elastic network interfaces to control who can communicate with the cluster.
         :param pulumi.Input[str] az_distribution: The distribution of broker nodes across availability zones ([documentation](https://docs.aws.amazon.com/msk/1.0/apireference/clusters.html#clusters-model-brokerazdistribution)). Currently the only valid value is `DEFAULT`.
         """
-        pulumi.set(__self__, "clientSubnets", client_subnets)
-        pulumi.set(__self__, "ebsVolumeSize", ebs_volume_size)
-        pulumi.set(__self__, "instanceType", instance_type)
-        pulumi.set(__self__, "securityGroups", security_groups)
-        pulumi.set(__self__, "azDistribution", az_distribution)
+        pulumi.set(__self__, "client_subnets", client_subnets)
+        pulumi.set(__self__, "ebs_volume_size", ebs_volume_size)
+        pulumi.set(__self__, "instance_type", instance_type)
+        pulumi.set(__self__, "security_groups", security_groups)
+        if az_distribution is not None:
+            pulumi.set(__self__, "az_distribution", az_distribution)
 
     @property
     @pulumi.getter(name="clientSubnets")
@@ -53,11 +54,11 @@ class ClusterBrokerNodeGroupInfoArgs:
         """
         A list of subnets to connect to in client VPC ([documentation](https://docs.aws.amazon.com/msk/1.0/apireference/clusters.html#clusters-prop-brokernodegroupinfo-clientsubnets)).
         """
-        ...
+        return pulumi.get(self, "client_subnets")
 
     @client_subnets.setter
     def client_subnets(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "client_subnets", value)
 
     @property
     @pulumi.getter(name="ebsVolumeSize")
@@ -65,11 +66,11 @@ class ClusterBrokerNodeGroupInfoArgs:
         """
         The size in GiB of the EBS volume for the data drive on each broker node.
         """
-        ...
+        return pulumi.get(self, "ebs_volume_size")
 
     @ebs_volume_size.setter
     def ebs_volume_size(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "ebs_volume_size", value)
 
     @property
     @pulumi.getter(name="instanceType")
@@ -77,11 +78,11 @@ class ClusterBrokerNodeGroupInfoArgs:
         """
         Specify the instance type to use for the kafka brokers. e.g. kafka.m5.large. ([Pricing info](https://aws.amazon.com/msk/pricing/))
         """
-        ...
+        return pulumi.get(self, "instance_type")
 
     @instance_type.setter
     def instance_type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "instance_type", value)
 
     @property
     @pulumi.getter(name="securityGroups")
@@ -89,11 +90,11 @@ class ClusterBrokerNodeGroupInfoArgs:
         """
         A list of the security groups to associate with the elastic network interfaces to control who can communicate with the cluster.
         """
-        ...
+        return pulumi.get(self, "security_groups")
 
     @security_groups.setter
     def security_groups(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "security_groups", value)
 
     @property
     @pulumi.getter(name="azDistribution")
@@ -101,11 +102,11 @@ class ClusterBrokerNodeGroupInfoArgs:
         """
         The distribution of broker nodes across availability zones ([documentation](https://docs.aws.amazon.com/msk/1.0/apireference/clusters.html#clusters-model-brokerazdistribution)). Currently the only valid value is `DEFAULT`.
         """
-        ...
+        return pulumi.get(self, "az_distribution")
 
     @az_distribution.setter
     def az_distribution(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "az_distribution", value)
 
 
 @pulumi.input_type
@@ -115,7 +116,8 @@ class ClusterClientAuthenticationArgs:
         """
         :param pulumi.Input['ClusterClientAuthenticationTlsArgs'] tls: Configuration block for specifying TLS client authentication. See below.
         """
-        pulumi.set(__self__, "tls", tls)
+        if tls is not None:
+            pulumi.set(__self__, "tls", tls)
 
     @property
     @pulumi.getter
@@ -123,11 +125,11 @@ class ClusterClientAuthenticationArgs:
         """
         Configuration block for specifying TLS client authentication. See below.
         """
-        ...
+        return pulumi.get(self, "tls")
 
     @tls.setter
     def tls(self, value: Optional[pulumi.Input['ClusterClientAuthenticationTlsArgs']]):
-        ...
+        pulumi.set(self, "tls", value)
 
 
 @pulumi.input_type
@@ -137,7 +139,8 @@ class ClusterClientAuthenticationTlsArgs:
         """
         :param pulumi.Input[List[pulumi.Input[str]]] certificate_authority_arns: List of ACM Certificate Authority Amazon Resource Names (ARNs).
         """
-        pulumi.set(__self__, "certificateAuthorityArns", certificate_authority_arns)
+        if certificate_authority_arns is not None:
+            pulumi.set(__self__, "certificate_authority_arns", certificate_authority_arns)
 
     @property
     @pulumi.getter(name="certificateAuthorityArns")
@@ -145,11 +148,11 @@ class ClusterClientAuthenticationTlsArgs:
         """
         List of ACM Certificate Authority Amazon Resource Names (ARNs).
         """
-        ...
+        return pulumi.get(self, "certificate_authority_arns")
 
     @certificate_authority_arns.setter
     def certificate_authority_arns(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "certificate_authority_arns", value)
 
 
 @pulumi.input_type
@@ -170,11 +173,11 @@ class ClusterConfigurationInfoArgs:
         """
         Amazon Resource Name (ARN) of the MSK Configuration to use in the cluster.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @arn.setter
     def arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "arn", value)
 
     @property
     @pulumi.getter
@@ -182,11 +185,11 @@ class ClusterConfigurationInfoArgs:
         """
         Revision of the MSK Configuration to use in the cluster.
         """
-        ...
+        return pulumi.get(self, "revision")
 
     @revision.setter
     def revision(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "revision", value)
 
 
 @pulumi.input_type
@@ -198,8 +201,10 @@ class ClusterEncryptionInfoArgs:
         :param pulumi.Input[str] encryption_at_rest_kms_key_arn: You may specify a KMS key short ID or ARN (it will always output an ARN) to use for encrypting your data at rest.  If no key is specified, an AWS managed KMS ('aws/msk' managed service) key will be used for encrypting the data at rest.
         :param pulumi.Input['ClusterEncryptionInfoEncryptionInTransitArgs'] encryption_in_transit: Configuration block to specify encryption in transit. See below.
         """
-        pulumi.set(__self__, "encryptionAtRestKmsKeyArn", encryption_at_rest_kms_key_arn)
-        pulumi.set(__self__, "encryptionInTransit", encryption_in_transit)
+        if encryption_at_rest_kms_key_arn is not None:
+            pulumi.set(__self__, "encryption_at_rest_kms_key_arn", encryption_at_rest_kms_key_arn)
+        if encryption_in_transit is not None:
+            pulumi.set(__self__, "encryption_in_transit", encryption_in_transit)
 
     @property
     @pulumi.getter(name="encryptionAtRestKmsKeyArn")
@@ -207,11 +212,11 @@ class ClusterEncryptionInfoArgs:
         """
         You may specify a KMS key short ID or ARN (it will always output an ARN) to use for encrypting your data at rest.  If no key is specified, an AWS managed KMS ('aws/msk' managed service) key will be used for encrypting the data at rest.
         """
-        ...
+        return pulumi.get(self, "encryption_at_rest_kms_key_arn")
 
     @encryption_at_rest_kms_key_arn.setter
     def encryption_at_rest_kms_key_arn(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "encryption_at_rest_kms_key_arn", value)
 
     @property
     @pulumi.getter(name="encryptionInTransit")
@@ -219,11 +224,11 @@ class ClusterEncryptionInfoArgs:
         """
         Configuration block to specify encryption in transit. See below.
         """
-        ...
+        return pulumi.get(self, "encryption_in_transit")
 
     @encryption_in_transit.setter
     def encryption_in_transit(self, value: Optional[pulumi.Input['ClusterEncryptionInfoEncryptionInTransitArgs']]):
-        ...
+        pulumi.set(self, "encryption_in_transit", value)
 
 
 @pulumi.input_type
@@ -235,8 +240,10 @@ class ClusterEncryptionInfoEncryptionInTransitArgs:
         :param pulumi.Input[str] client_broker: Encryption setting for data in transit between clients and brokers. Valid values: `TLS`, `TLS_PLAINTEXT`, and `PLAINTEXT`. Default value is `TLS_PLAINTEXT` when `encryption_in_transit` block defined, but `TLS` when `encryption_in_transit` block omitted.
         :param pulumi.Input[bool] in_cluster: Whether data communication among broker nodes is encrypted. Default value: `true`.
         """
-        pulumi.set(__self__, "clientBroker", client_broker)
-        pulumi.set(__self__, "inCluster", in_cluster)
+        if client_broker is not None:
+            pulumi.set(__self__, "client_broker", client_broker)
+        if in_cluster is not None:
+            pulumi.set(__self__, "in_cluster", in_cluster)
 
     @property
     @pulumi.getter(name="clientBroker")
@@ -244,11 +251,11 @@ class ClusterEncryptionInfoEncryptionInTransitArgs:
         """
         Encryption setting for data in transit between clients and brokers. Valid values: `TLS`, `TLS_PLAINTEXT`, and `PLAINTEXT`. Default value is `TLS_PLAINTEXT` when `encryption_in_transit` block defined, but `TLS` when `encryption_in_transit` block omitted.
         """
-        ...
+        return pulumi.get(self, "client_broker")
 
     @client_broker.setter
     def client_broker(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "client_broker", value)
 
     @property
     @pulumi.getter(name="inCluster")
@@ -256,11 +263,11 @@ class ClusterEncryptionInfoEncryptionInTransitArgs:
         """
         Whether data communication among broker nodes is encrypted. Default value: `true`.
         """
-        ...
+        return pulumi.get(self, "in_cluster")
 
     @in_cluster.setter
     def in_cluster(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "in_cluster", value)
 
 
 @pulumi.input_type
@@ -270,7 +277,7 @@ class ClusterLoggingInfoArgs:
         """
         :param pulumi.Input['ClusterLoggingInfoBrokerLogsArgs'] broker_logs: Configuration block for Broker Logs settings for logging info. See below.
         """
-        pulumi.set(__self__, "brokerLogs", broker_logs)
+        pulumi.set(__self__, "broker_logs", broker_logs)
 
     @property
     @pulumi.getter(name="brokerLogs")
@@ -278,11 +285,11 @@ class ClusterLoggingInfoArgs:
         """
         Configuration block for Broker Logs settings for logging info. See below.
         """
-        ...
+        return pulumi.get(self, "broker_logs")
 
     @broker_logs.setter
     def broker_logs(self, value: pulumi.Input['ClusterLoggingInfoBrokerLogsArgs']):
-        ...
+        pulumi.set(self, "broker_logs", value)
 
 
 @pulumi.input_type
@@ -291,36 +298,39 @@ class ClusterLoggingInfoBrokerLogsArgs:
                  cloudwatch_logs: Optional[pulumi.Input['ClusterLoggingInfoBrokerLogsCloudwatchLogsArgs']] = None,
                  firehose: Optional[pulumi.Input['ClusterLoggingInfoBrokerLogsFirehoseArgs']] = None,
                  s3: Optional[pulumi.Input['ClusterLoggingInfoBrokerLogsS3Args']] = None):
-        pulumi.set(__self__, "cloudwatchLogs", cloudwatch_logs)
-        pulumi.set(__self__, "firehose", firehose)
-        pulumi.set(__self__, "s3", s3)
+        if cloudwatch_logs is not None:
+            pulumi.set(__self__, "cloudwatch_logs", cloudwatch_logs)
+        if firehose is not None:
+            pulumi.set(__self__, "firehose", firehose)
+        if s3 is not None:
+            pulumi.set(__self__, "s3", s3)
 
     @property
     @pulumi.getter(name="cloudwatchLogs")
     def cloudwatch_logs(self) -> Optional[pulumi.Input['ClusterLoggingInfoBrokerLogsCloudwatchLogsArgs']]:
-        ...
+        return pulumi.get(self, "cloudwatch_logs")
 
     @cloudwatch_logs.setter
     def cloudwatch_logs(self, value: Optional[pulumi.Input['ClusterLoggingInfoBrokerLogsCloudwatchLogsArgs']]):
-        ...
+        pulumi.set(self, "cloudwatch_logs", value)
 
     @property
     @pulumi.getter
     def firehose(self) -> Optional[pulumi.Input['ClusterLoggingInfoBrokerLogsFirehoseArgs']]:
-        ...
+        return pulumi.get(self, "firehose")
 
     @firehose.setter
     def firehose(self, value: Optional[pulumi.Input['ClusterLoggingInfoBrokerLogsFirehoseArgs']]):
-        ...
+        pulumi.set(self, "firehose", value)
 
     @property
     @pulumi.getter
     def s3(self) -> Optional[pulumi.Input['ClusterLoggingInfoBrokerLogsS3Args']]:
-        ...
+        return pulumi.get(self, "s3")
 
     @s3.setter
     def s3(self, value: Optional[pulumi.Input['ClusterLoggingInfoBrokerLogsS3Args']]):
-        ...
+        pulumi.set(self, "s3", value)
 
 
 @pulumi.input_type
@@ -333,7 +343,8 @@ class ClusterLoggingInfoBrokerLogsCloudwatchLogsArgs:
         :param pulumi.Input[str] log_group: Name of the Cloudwatch Log Group to deliver logs to.
         """
         pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "logGroup", log_group)
+        if log_group is not None:
+            pulumi.set(__self__, "log_group", log_group)
 
     @property
     @pulumi.getter
@@ -341,11 +352,11 @@ class ClusterLoggingInfoBrokerLogsCloudwatchLogsArgs:
         """
         Indicates whether you want to enable or disable streaming broker logs to Cloudwatch Logs.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: pulumi.Input[bool]):
-        ...
+        pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter(name="logGroup")
@@ -353,11 +364,11 @@ class ClusterLoggingInfoBrokerLogsCloudwatchLogsArgs:
         """
         Name of the Cloudwatch Log Group to deliver logs to.
         """
-        ...
+        return pulumi.get(self, "log_group")
 
     @log_group.setter
     def log_group(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "log_group", value)
 
 
 @pulumi.input_type
@@ -370,7 +381,8 @@ class ClusterLoggingInfoBrokerLogsFirehoseArgs:
         :param pulumi.Input[str] delivery_stream: Name of the Kinesis Data Firehose delivery stream to deliver logs to.
         """
         pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "deliveryStream", delivery_stream)
+        if delivery_stream is not None:
+            pulumi.set(__self__, "delivery_stream", delivery_stream)
 
     @property
     @pulumi.getter
@@ -378,11 +390,11 @@ class ClusterLoggingInfoBrokerLogsFirehoseArgs:
         """
         Indicates whether you want to enable or disable streaming broker logs to Cloudwatch Logs.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: pulumi.Input[bool]):
-        ...
+        pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter(name="deliveryStream")
@@ -390,11 +402,11 @@ class ClusterLoggingInfoBrokerLogsFirehoseArgs:
         """
         Name of the Kinesis Data Firehose delivery stream to deliver logs to.
         """
-        ...
+        return pulumi.get(self, "delivery_stream")
 
     @delivery_stream.setter
     def delivery_stream(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "delivery_stream", value)
 
 
 @pulumi.input_type
@@ -409,8 +421,10 @@ class ClusterLoggingInfoBrokerLogsS3Args:
         :param pulumi.Input[str] prefix: Prefix to append to the folder name.
         """
         pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "bucket", bucket)
-        pulumi.set(__self__, "prefix", prefix)
+        if bucket is not None:
+            pulumi.set(__self__, "bucket", bucket)
+        if prefix is not None:
+            pulumi.set(__self__, "prefix", prefix)
 
     @property
     @pulumi.getter
@@ -418,11 +432,11 @@ class ClusterLoggingInfoBrokerLogsS3Args:
         """
         Indicates whether you want to enable or disable streaming broker logs to Cloudwatch Logs.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: pulumi.Input[bool]):
-        ...
+        pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter
@@ -430,11 +444,11 @@ class ClusterLoggingInfoBrokerLogsS3Args:
         """
         Name of the S3 bucket to deliver logs to.
         """
-        ...
+        return pulumi.get(self, "bucket")
 
     @bucket.setter
     def bucket(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "bucket", value)
 
     @property
     @pulumi.getter
@@ -442,11 +456,11 @@ class ClusterLoggingInfoBrokerLogsS3Args:
         """
         Prefix to append to the folder name.
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     @prefix.setter
     def prefix(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "prefix", value)
 
 
 @pulumi.input_type
@@ -464,11 +478,11 @@ class ClusterOpenMonitoringArgs:
         """
         Configuration block for Prometheus settings for open monitoring. See below.
         """
-        ...
+        return pulumi.get(self, "prometheus")
 
     @prometheus.setter
     def prometheus(self, value: pulumi.Input['ClusterOpenMonitoringPrometheusArgs']):
-        ...
+        pulumi.set(self, "prometheus", value)
 
 
 @pulumi.input_type
@@ -480,8 +494,10 @@ class ClusterOpenMonitoringPrometheusArgs:
         :param pulumi.Input['ClusterOpenMonitoringPrometheusJmxExporterArgs'] jmx_exporter: Configuration block for JMX Exporter. See below.
         :param pulumi.Input['ClusterOpenMonitoringPrometheusNodeExporterArgs'] node_exporter: Configuration block for Node Exporter. See below.
         """
-        pulumi.set(__self__, "jmxExporter", jmx_exporter)
-        pulumi.set(__self__, "nodeExporter", node_exporter)
+        if jmx_exporter is not None:
+            pulumi.set(__self__, "jmx_exporter", jmx_exporter)
+        if node_exporter is not None:
+            pulumi.set(__self__, "node_exporter", node_exporter)
 
     @property
     @pulumi.getter(name="jmxExporter")
@@ -489,11 +505,11 @@ class ClusterOpenMonitoringPrometheusArgs:
         """
         Configuration block for JMX Exporter. See below.
         """
-        ...
+        return pulumi.get(self, "jmx_exporter")
 
     @jmx_exporter.setter
     def jmx_exporter(self, value: Optional[pulumi.Input['ClusterOpenMonitoringPrometheusJmxExporterArgs']]):
-        ...
+        pulumi.set(self, "jmx_exporter", value)
 
     @property
     @pulumi.getter(name="nodeExporter")
@@ -501,11 +517,11 @@ class ClusterOpenMonitoringPrometheusArgs:
         """
         Configuration block for Node Exporter. See below.
         """
-        ...
+        return pulumi.get(self, "node_exporter")
 
     @node_exporter.setter
     def node_exporter(self, value: Optional[pulumi.Input['ClusterOpenMonitoringPrometheusNodeExporterArgs']]):
-        ...
+        pulumi.set(self, "node_exporter", value)
 
 
 @pulumi.input_type
@@ -515,7 +531,7 @@ class ClusterOpenMonitoringPrometheusJmxExporterArgs:
         """
         :param pulumi.Input[bool] enabled_in_broker: Indicates whether you want to enable or disable the JMX Exporter.
         """
-        pulumi.set(__self__, "enabledInBroker", enabled_in_broker)
+        pulumi.set(__self__, "enabled_in_broker", enabled_in_broker)
 
     @property
     @pulumi.getter(name="enabledInBroker")
@@ -523,11 +539,11 @@ class ClusterOpenMonitoringPrometheusJmxExporterArgs:
         """
         Indicates whether you want to enable or disable the JMX Exporter.
         """
-        ...
+        return pulumi.get(self, "enabled_in_broker")
 
     @enabled_in_broker.setter
     def enabled_in_broker(self, value: pulumi.Input[bool]):
-        ...
+        pulumi.set(self, "enabled_in_broker", value)
 
 
 @pulumi.input_type
@@ -537,7 +553,7 @@ class ClusterOpenMonitoringPrometheusNodeExporterArgs:
         """
         :param pulumi.Input[bool] enabled_in_broker: Indicates whether you want to enable or disable the JMX Exporter.
         """
-        pulumi.set(__self__, "enabledInBroker", enabled_in_broker)
+        pulumi.set(__self__, "enabled_in_broker", enabled_in_broker)
 
     @property
     @pulumi.getter(name="enabledInBroker")
@@ -545,10 +561,10 @@ class ClusterOpenMonitoringPrometheusNodeExporterArgs:
         """
         Indicates whether you want to enable or disable the JMX Exporter.
         """
-        ...
+        return pulumi.get(self, "enabled_in_broker")
 
     @enabled_in_broker.setter
     def enabled_in_broker(self, value: pulumi.Input[bool]):
-        ...
+        pulumi.set(self, "enabled_in_broker", value)
 
 

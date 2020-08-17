@@ -12,31 +12,6 @@ __all__ = ['Permission']
 
 
 class Permission(pulumi.CustomResource):
-    allow_ssh: pulumi.Output[bool] = pulumi.property("allowSsh")
-    """
-    Whether the user is allowed to use SSH to communicate with the instance
-    """
-
-    allow_sudo: pulumi.Output[bool] = pulumi.property("allowSudo")
-    """
-    Whether the user is allowed to use sudo to elevate privileges
-    """
-
-    level: pulumi.Output[str] = pulumi.property("level")
-    """
-    The users permission level. Mus be one of `deny`, `show`, `deploy`, `manage`, `iam_only`
-    """
-
-    stack_id: pulumi.Output[str] = pulumi.property("stackId")
-    """
-    The stack to set the permissions for
-    """
-
-    user_arn: pulumi.Output[str] = pulumi.property("userArn")
-    """
-    The user's IAM ARN to set permissions for
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -135,6 +110,46 @@ class Permission(pulumi.CustomResource):
         __props__["stack_id"] = stack_id
         __props__["user_arn"] = user_arn
         return Permission(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="allowSsh")
+    def allow_ssh(self) -> bool:
+        """
+        Whether the user is allowed to use SSH to communicate with the instance
+        """
+        return pulumi.get(self, "allow_ssh")
+
+    @property
+    @pulumi.getter(name="allowSudo")
+    def allow_sudo(self) -> bool:
+        """
+        Whether the user is allowed to use sudo to elevate privileges
+        """
+        return pulumi.get(self, "allow_sudo")
+
+    @property
+    @pulumi.getter
+    def level(self) -> str:
+        """
+        The users permission level. Mus be one of `deny`, `show`, `deploy`, `manage`, `iam_only`
+        """
+        return pulumi.get(self, "level")
+
+    @property
+    @pulumi.getter(name="stackId")
+    def stack_id(self) -> str:
+        """
+        The stack to set the permissions for
+        """
+        return pulumi.get(self, "stack_id")
+
+    @property
+    @pulumi.getter(name="userArn")
+    def user_arn(self) -> str:
+        """
+        The user's IAM ARN to set permissions for
+        """
+        return pulumi.get(self, "user_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

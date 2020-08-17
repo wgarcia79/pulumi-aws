@@ -17,17 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetPeeringAttachmentResult:
-    filters: Optional[List['outputs.GetPeeringAttachmentFilterResult']] = pulumi.property("filters")
-    id: Optional[str] = pulumi.property("id")
-    peer_account_id: str = pulumi.property("peerAccountId")
-    peer_region: str = pulumi.property("peerRegion")
-    peer_transit_gateway_id: str = pulumi.property("peerTransitGatewayId")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    transit_gateway_id: str = pulumi.property("transitGatewayId")
-
-
 class GetPeeringAttachmentResult:
     """
     A collection of values returned by getPeeringAttachment.
@@ -35,37 +26,73 @@ class GetPeeringAttachmentResult:
     def __init__(__self__, filters=None, id=None, peer_account_id=None, peer_region=None, peer_transit_gateway_id=None, tags=None, transit_gateway_id=None):
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
+        pulumi.set(__self__, "filters", filters)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
         if peer_account_id and not isinstance(peer_account_id, str):
             raise TypeError("Expected argument 'peer_account_id' to be a str")
-        __self__.peer_account_id = peer_account_id
+        pulumi.set(__self__, "peer_account_id", peer_account_id)
+        if peer_region and not isinstance(peer_region, str):
+            raise TypeError("Expected argument 'peer_region' to be a str")
+        pulumi.set(__self__, "peer_region", peer_region)
+        if peer_transit_gateway_id and not isinstance(peer_transit_gateway_id, str):
+            raise TypeError("Expected argument 'peer_transit_gateway_id' to be a str")
+        pulumi.set(__self__, "peer_transit_gateway_id", peer_transit_gateway_id)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if transit_gateway_id and not isinstance(transit_gateway_id, str):
+            raise TypeError("Expected argument 'transit_gateway_id' to be a str")
+        pulumi.set(__self__, "transit_gateway_id", transit_gateway_id)
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetPeeringAttachmentFilterResult']]:
+        return pulumi.get(self, "filters")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="peerAccountId")
+    def peer_account_id(self) -> str:
         """
         Identifier of the peer AWS account
         """
-        if peer_region and not isinstance(peer_region, str):
-            raise TypeError("Expected argument 'peer_region' to be a str")
-        __self__.peer_region = peer_region
+        return pulumi.get(self, "peer_account_id")
+
+    @property
+    @pulumi.getter(name="peerRegion")
+    def peer_region(self) -> str:
         """
         Identifier of the peer AWS region
         """
-        if peer_transit_gateway_id and not isinstance(peer_transit_gateway_id, str):
-            raise TypeError("Expected argument 'peer_transit_gateway_id' to be a str")
-        __self__.peer_transit_gateway_id = peer_transit_gateway_id
+        return pulumi.get(self, "peer_region")
+
+    @property
+    @pulumi.getter(name="peerTransitGatewayId")
+    def peer_transit_gateway_id(self) -> str:
         """
         Identifier of the peer EC2 Transit Gateway
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
-        if transit_gateway_id and not isinstance(transit_gateway_id, str):
-            raise TypeError("Expected argument 'transit_gateway_id' to be a str")
-        __self__.transit_gateway_id = transit_gateway_id
+        return pulumi.get(self, "peer_transit_gateway_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="transitGatewayId")
+    def transit_gateway_id(self) -> str:
         """
         Identifier of the local EC2 Transit Gateway
         """
+        return pulumi.get(self, "transit_gateway_id")
+
 
 
 class AwaitableGetPeeringAttachmentResult(GetPeeringAttachmentResult):
@@ -125,7 +152,7 @@ def get_peering_attachment(filters: Optional[List[pulumi.InputType['GetPeeringAt
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2transitgateway/getPeeringAttachment:getPeeringAttachment', __args__, opts=opts, typ=_GetPeeringAttachmentResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2transitgateway/getPeeringAttachment:getPeeringAttachment', __args__, opts=opts, typ=GetPeeringAttachmentResult).value
 
     return AwaitableGetPeeringAttachmentResult(
         filters=__ret__.filters,

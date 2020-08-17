@@ -12,74 +12,6 @@ __all__ = ['Eip']
 
 
 class Eip(pulumi.CustomResource):
-    allocation_id: pulumi.Output[str] = pulumi.property("allocationId")
-
-    associate_with_private_ip: pulumi.Output[Optional[str]] = pulumi.property("associateWithPrivateIp")
-    """
-    A user specified primary or secondary private IP address to
-    associate with the Elastic IP address. If no private IP address is specified,
-    the Elastic IP address is associated with the primary private IP address.
-    """
-
-    association_id: pulumi.Output[str] = pulumi.property("associationId")
-
-    customer_owned_ip: pulumi.Output[str] = pulumi.property("customerOwnedIp")
-    """
-    Customer owned IP.
-    """
-
-    customer_owned_ipv4_pool: pulumi.Output[Optional[str]] = pulumi.property("customerOwnedIpv4Pool")
-    """
-    The  ID  of a customer-owned address pool. For more on customer owned IP addressed check out [Customer-owned IP addresses guide](https://docs.aws.amazon.com/outposts/latest/userguide/outposts-networking-components.html#ip-addressing)
-    """
-
-    domain: pulumi.Output[str] = pulumi.property("domain")
-
-    instance: pulumi.Output[str] = pulumi.property("instance")
-    """
-    EC2 instance ID.
-    """
-
-    network_interface: pulumi.Output[str] = pulumi.property("networkInterface")
-    """
-    Network interface ID to associate with.
-    """
-
-    private_dns: pulumi.Output[str] = pulumi.property("privateDns")
-    """
-    The Private DNS associated with the Elastic IP address (if in VPC).
-    """
-
-    private_ip: pulumi.Output[str] = pulumi.property("privateIp")
-    """
-    Contains the private IP address (if in VPC).
-    """
-
-    public_dns: pulumi.Output[str] = pulumi.property("publicDns")
-    """
-    Public DNS associated with the Elastic IP address.
-    """
-
-    public_ip: pulumi.Output[str] = pulumi.property("publicIp")
-    """
-    Contains the public IP address.
-    """
-
-    public_ipv4_pool: pulumi.Output[str] = pulumi.property("publicIpv4Pool")
-    """
-    EC2 IPv4 address pool identifier or `amazon`. This option is only available for VPC EIPs.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
-    vpc: pulumi.Output[bool] = pulumi.property("vpc")
-    """
-    Boolean if the EIP is in a VPC or not.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -284,6 +216,119 @@ class Eip(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["vpc"] = vpc
         return Eip(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="allocationId")
+    def allocation_id(self) -> str:
+        return pulumi.get(self, "allocation_id")
+
+    @property
+    @pulumi.getter(name="associateWithPrivateIp")
+    def associate_with_private_ip(self) -> Optional[str]:
+        """
+        A user specified primary or secondary private IP address to
+        associate with the Elastic IP address. If no private IP address is specified,
+        the Elastic IP address is associated with the primary private IP address.
+        """
+        return pulumi.get(self, "associate_with_private_ip")
+
+    @property
+    @pulumi.getter(name="associationId")
+    def association_id(self) -> str:
+        return pulumi.get(self, "association_id")
+
+    @property
+    @pulumi.getter(name="customerOwnedIp")
+    def customer_owned_ip(self) -> str:
+        """
+        Customer owned IP.
+        """
+        return pulumi.get(self, "customer_owned_ip")
+
+    @property
+    @pulumi.getter(name="customerOwnedIpv4Pool")
+    def customer_owned_ipv4_pool(self) -> Optional[str]:
+        """
+        The  ID  of a customer-owned address pool. For more on customer owned IP addressed check out [Customer-owned IP addresses guide](https://docs.aws.amazon.com/outposts/latest/userguide/outposts-networking-components.html#ip-addressing)
+        """
+        return pulumi.get(self, "customer_owned_ipv4_pool")
+
+    @property
+    @pulumi.getter
+    def domain(self) -> str:
+        return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter
+    def instance(self) -> str:
+        """
+        EC2 instance ID.
+        """
+        return pulumi.get(self, "instance")
+
+    @property
+    @pulumi.getter(name="networkInterface")
+    def network_interface(self) -> str:
+        """
+        Network interface ID to associate with.
+        """
+        return pulumi.get(self, "network_interface")
+
+    @property
+    @pulumi.getter(name="privateDns")
+    def private_dns(self) -> str:
+        """
+        The Private DNS associated with the Elastic IP address (if in VPC).
+        """
+        return pulumi.get(self, "private_dns")
+
+    @property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> str:
+        """
+        Contains the private IP address (if in VPC).
+        """
+        return pulumi.get(self, "private_ip")
+
+    @property
+    @pulumi.getter(name="publicDns")
+    def public_dns(self) -> str:
+        """
+        Public DNS associated with the Elastic IP address.
+        """
+        return pulumi.get(self, "public_dns")
+
+    @property
+    @pulumi.getter(name="publicIp")
+    def public_ip(self) -> str:
+        """
+        Contains the public IP address.
+        """
+        return pulumi.get(self, "public_ip")
+
+    @property
+    @pulumi.getter(name="publicIpv4Pool")
+    def public_ipv4_pool(self) -> str:
+        """
+        EC2 IPv4 address pool identifier or `amazon`. This option is only available for VPC EIPs.
+        """
+        return pulumi.get(self, "public_ipv4_pool")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
+    def vpc(self) -> bool:
+        """
+        Boolean if the EIP is in a VPC or not.
+        """
+        return pulumi.get(self, "vpc")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -17,17 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetSecurityGroupResult:
-    arn: str = pulumi.property("arn")
-    description: str = pulumi.property("description")
-    filters: Optional[List['outputs.GetSecurityGroupFilterResult']] = pulumi.property("filters")
-    id: str = pulumi.property("id")
-    name: str = pulumi.property("name")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    vpc_id: str = pulumi.property("vpcId")
-
-
 class GetSecurityGroupResult:
     """
     A collection of values returned by getSecurityGroup.
@@ -35,31 +26,67 @@ class GetSecurityGroupResult:
     def __init__(__self__, arn=None, description=None, filters=None, id=None, name=None, tags=None, vpc_id=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
+        if filters and not isinstance(filters, list):
+            raise TypeError("Expected argument 'filters' to be a list")
+        pulumi.set(__self__, "filters", filters)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if vpc_id and not isinstance(vpc_id, str):
+            raise TypeError("Expected argument 'vpc_id' to be a str")
+        pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The computed ARN of the security group.
         """
-        if description and not isinstance(description, str):
-            raise TypeError("Expected argument 'description' to be a str")
-        __self__.description = description
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
         """
         The description of the security group.
         """
-        if filters and not isinstance(filters, list):
-            raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
-        if vpc_id and not isinstance(vpc_id, str):
-            raise TypeError("Expected argument 'vpc_id' to be a str")
-        __self__.vpc_id = vpc_id
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetSecurityGroupFilterResult']]:
+        return pulumi.get(self, "filters")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        return pulumi.get(self, "vpc_id")
+
 
 
 class AwaitableGetSecurityGroupResult(GetSecurityGroupResult):
@@ -126,7 +153,7 @@ def get_security_group(filters: Optional[List[pulumi.InputType['GetSecurityGroup
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getSecurityGroup:getSecurityGroup', __args__, opts=opts, typ=_GetSecurityGroupResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getSecurityGroup:getSecurityGroup', __args__, opts=opts, typ=GetSecurityGroupResult).value
 
     return AwaitableGetSecurityGroupResult(
         arn=__ret__.arn,

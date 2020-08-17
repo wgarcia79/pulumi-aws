@@ -14,26 +14,6 @@ warnings.warn("aws.elasticloadbalancingv2.TargetGroupAttachment has been depreca
 
 
 class TargetGroupAttachment(pulumi.CustomResource):
-    availability_zone: pulumi.Output[Optional[str]] = pulumi.property("availabilityZone")
-    """
-    The Availability Zone where the IP address of the target is to be registered. If the private ip address is outside of the VPC scope, this value must be set to 'all'.
-    """
-
-    port: pulumi.Output[Optional[float]] = pulumi.property("port")
-    """
-    The port on which targets receive traffic.
-    """
-
-    target_group_arn: pulumi.Output[str] = pulumi.property("targetGroupArn")
-    """
-    The ARN of the target group with which to register targets
-    """
-
-    target_id: pulumi.Output[str] = pulumi.property("targetId")
-    """
-    The ID of the target. This is the Instance ID for an instance, or the container ID for an ECS container. If the target type is ip, specify an IP address. If the target type is lambda, specify the arn of lambda.
-    """
-
     warnings.warn("aws.elasticloadbalancingv2.TargetGroupAttachment has been deprecated in favor of aws.lb.TargetGroupAttachment", DeprecationWarning)
 
     def __init__(__self__,
@@ -151,6 +131,38 @@ class TargetGroupAttachment(pulumi.CustomResource):
         __props__["target_group_arn"] = target_group_arn
         __props__["target_id"] = target_id
         return TargetGroupAttachment(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> Optional[str]:
+        """
+        The Availability Zone where the IP address of the target is to be registered. If the private ip address is outside of the VPC scope, this value must be set to 'all'.
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[float]:
+        """
+        The port on which targets receive traffic.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="targetGroupArn")
+    def target_group_arn(self) -> str:
+        """
+        The ARN of the target group with which to register targets
+        """
+        return pulumi.get(self, "target_group_arn")
+
+    @property
+    @pulumi.getter(name="targetId")
+    def target_id(self) -> str:
+        """
+        The ID of the target. This is the Instance ID for an instance, or the container ID for an ECS container. If the target type is ip, specify an IP address. If the target type is lambda, specify the arn of lambda.
+        """
+        return pulumi.get(self, "target_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

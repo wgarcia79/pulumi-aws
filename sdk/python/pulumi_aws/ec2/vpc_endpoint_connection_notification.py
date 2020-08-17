@@ -12,36 +12,6 @@ __all__ = ['VpcEndpointConnectionNotification']
 
 
 class VpcEndpointConnectionNotification(pulumi.CustomResource):
-    connection_events: pulumi.Output[List[str]] = pulumi.property("connectionEvents")
-    """
-    One or more endpoint [events](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVpcEndpointConnectionNotification.html#API_CreateVpcEndpointConnectionNotification_RequestParameters) for which to receive notifications.
-    """
-
-    connection_notification_arn: pulumi.Output[str] = pulumi.property("connectionNotificationArn")
-    """
-    The ARN of the SNS topic for the notifications.
-    """
-
-    notification_type: pulumi.Output[str] = pulumi.property("notificationType")
-    """
-    The type of notification.
-    """
-
-    state: pulumi.Output[str] = pulumi.property("state")
-    """
-    The state of the notification.
-    """
-
-    vpc_endpoint_id: pulumi.Output[Optional[str]] = pulumi.property("vpcEndpointId")
-    """
-    The ID of the VPC Endpoint to receive notifications for.
-    """
-
-    vpc_endpoint_service_id: pulumi.Output[Optional[str]] = pulumi.property("vpcEndpointServiceId")
-    """
-    The ID of the VPC Endpoint Service to receive notifications for.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -162,6 +132,54 @@ class VpcEndpointConnectionNotification(pulumi.CustomResource):
         __props__["vpc_endpoint_id"] = vpc_endpoint_id
         __props__["vpc_endpoint_service_id"] = vpc_endpoint_service_id
         return VpcEndpointConnectionNotification(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="connectionEvents")
+    def connection_events(self) -> List[str]:
+        """
+        One or more endpoint [events](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVpcEndpointConnectionNotification.html#API_CreateVpcEndpointConnectionNotification_RequestParameters) for which to receive notifications.
+        """
+        return pulumi.get(self, "connection_events")
+
+    @property
+    @pulumi.getter(name="connectionNotificationArn")
+    def connection_notification_arn(self) -> str:
+        """
+        The ARN of the SNS topic for the notifications.
+        """
+        return pulumi.get(self, "connection_notification_arn")
+
+    @property
+    @pulumi.getter(name="notificationType")
+    def notification_type(self) -> str:
+        """
+        The type of notification.
+        """
+        return pulumi.get(self, "notification_type")
+
+    @property
+    @pulumi.getter
+    def state(self) -> str:
+        """
+        The state of the notification.
+        """
+        return pulumi.get(self, "state")
+
+    @property
+    @pulumi.getter(name="vpcEndpointId")
+    def vpc_endpoint_id(self) -> Optional[str]:
+        """
+        The ID of the VPC Endpoint to receive notifications for.
+        """
+        return pulumi.get(self, "vpc_endpoint_id")
+
+    @property
+    @pulumi.getter(name="vpcEndpointServiceId")
+    def vpc_endpoint_service_id(self) -> Optional[str]:
+        """
+        The ID of the VPC Endpoint Service to receive notifications for.
+        """
+        return pulumi.get(self, "vpc_endpoint_service_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

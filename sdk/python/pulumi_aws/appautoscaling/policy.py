@@ -14,46 +14,6 @@ __all__ = ['Policy']
 
 
 class Policy(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN assigned by AWS to the scaling policy.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the policy.
-    """
-
-    policy_type: pulumi.Output[Optional[str]] = pulumi.property("policyType")
-    """
-    The policy type. Valid values are `StepScaling` and `TargetTrackingScaling`. Defaults to `StepScaling`. Certain services only support only one policy type. For more information see the [Target Tracking Scaling Policies](https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking.html) and [Step Scaling Policies](https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-step-scaling-policies.html) documentation.
-    """
-
-    resource_id: pulumi.Output[str] = pulumi.property("resourceId")
-    """
-    The resource type and unique identifier string for the resource associated with the scaling policy. Documentation can be found in the `ResourceId` parameter at: [AWS Application Auto Scaling API Reference](http://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
-    """
-
-    scalable_dimension: pulumi.Output[str] = pulumi.property("scalableDimension")
-    """
-    The scalable dimension of the scalable target. Documentation can be found in the `ScalableDimension` parameter at: [AWS Application Auto Scaling API Reference](http://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
-    """
-
-    service_namespace: pulumi.Output[str] = pulumi.property("serviceNamespace")
-    """
-    The AWS service namespace of the scalable target. Documentation can be found in the `ServiceNamespace` parameter at: [AWS Application Auto Scaling API Reference](http://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
-    """
-
-    step_scaling_policy_configuration: pulumi.Output[Optional['outputs.PolicyStepScalingPolicyConfiguration']] = pulumi.property("stepScalingPolicyConfiguration")
-    """
-    Step scaling policy configuration, requires `policy_type = "StepScaling"` (default). See supported fields below.
-    """
-
-    target_tracking_scaling_policy_configuration: pulumi.Output[Optional['outputs.PolicyTargetTrackingScalingPolicyConfiguration']] = pulumi.property("targetTrackingScalingPolicyConfiguration")
-    """
-    A target tracking policy, requires `policy_type = "TargetTrackingScaling"`. See supported fields below.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -237,6 +197,70 @@ class Policy(pulumi.CustomResource):
         __props__["step_scaling_policy_configuration"] = step_scaling_policy_configuration
         __props__["target_tracking_scaling_policy_configuration"] = target_tracking_scaling_policy_configuration
         return Policy(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN assigned by AWS to the scaling policy.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the policy.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="policyType")
+    def policy_type(self) -> Optional[str]:
+        """
+        The policy type. Valid values are `StepScaling` and `TargetTrackingScaling`. Defaults to `StepScaling`. Certain services only support only one policy type. For more information see the [Target Tracking Scaling Policies](https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking.html) and [Step Scaling Policies](https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-step-scaling-policies.html) documentation.
+        """
+        return pulumi.get(self, "policy_type")
+
+    @property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> str:
+        """
+        The resource type and unique identifier string for the resource associated with the scaling policy. Documentation can be found in the `ResourceId` parameter at: [AWS Application Auto Scaling API Reference](http://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
+        """
+        return pulumi.get(self, "resource_id")
+
+    @property
+    @pulumi.getter(name="scalableDimension")
+    def scalable_dimension(self) -> str:
+        """
+        The scalable dimension of the scalable target. Documentation can be found in the `ScalableDimension` parameter at: [AWS Application Auto Scaling API Reference](http://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
+        """
+        return pulumi.get(self, "scalable_dimension")
+
+    @property
+    @pulumi.getter(name="serviceNamespace")
+    def service_namespace(self) -> str:
+        """
+        The AWS service namespace of the scalable target. Documentation can be found in the `ServiceNamespace` parameter at: [AWS Application Auto Scaling API Reference](http://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
+        """
+        return pulumi.get(self, "service_namespace")
+
+    @property
+    @pulumi.getter(name="stepScalingPolicyConfiguration")
+    def step_scaling_policy_configuration(self) -> Optional['outputs.PolicyStepScalingPolicyConfiguration']:
+        """
+        Step scaling policy configuration, requires `policy_type = "StepScaling"` (default). See supported fields below.
+        """
+        return pulumi.get(self, "step_scaling_policy_configuration")
+
+    @property
+    @pulumi.getter(name="targetTrackingScalingPolicyConfiguration")
+    def target_tracking_scaling_policy_configuration(self) -> Optional['outputs.PolicyTargetTrackingScalingPolicyConfiguration']:
+        """
+        A target tracking policy, requires `policy_type = "TargetTrackingScaling"`. See supported fields below.
+        """
+        return pulumi.get(self, "target_tracking_scaling_policy_configuration")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

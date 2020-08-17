@@ -14,94 +14,6 @@ __all__ = ['Trail']
 
 
 class Trail(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The Amazon Resource Name of the trail.
-    """
-
-    cloud_watch_logs_group_arn: pulumi.Output[Optional[str]] = pulumi.property("cloudWatchLogsGroupArn")
-    """
-    Specifies a log group name using an Amazon Resource Name (ARN),
-    that represents the log group to which CloudTrail logs will be delivered.
-    """
-
-    cloud_watch_logs_role_arn: pulumi.Output[Optional[str]] = pulumi.property("cloudWatchLogsRoleArn")
-    """
-    Specifies the role for the CloudWatch Logs
-    endpoint to assume to write to a user’s log group.
-    """
-
-    enable_log_file_validation: pulumi.Output[Optional[bool]] = pulumi.property("enableLogFileValidation")
-    """
-    Specifies whether log file integrity validation is enabled.
-    Defaults to `false`.
-    """
-
-    enable_logging: pulumi.Output[Optional[bool]] = pulumi.property("enableLogging")
-    """
-    Enables logging for the trail. Defaults to `true`.
-    Setting this to `false` will pause logging.
-    """
-
-    event_selectors: pulumi.Output[Optional[List['outputs.TrailEventSelector']]] = pulumi.property("eventSelectors")
-    """
-    Specifies an event selector for enabling data event logging. Fields documented below. Please note the [CloudTrail limits](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/WhatIsCloudTrail-Limits.html) when configuring these.
-    """
-
-    home_region: pulumi.Output[str] = pulumi.property("homeRegion")
-    """
-    The region in which the trail was created.
-    """
-
-    include_global_service_events: pulumi.Output[Optional[bool]] = pulumi.property("includeGlobalServiceEvents")
-    """
-    Specifies whether the trail is publishing events
-    from global services such as IAM to the log files. Defaults to `true`.
-    """
-
-    is_multi_region_trail: pulumi.Output[Optional[bool]] = pulumi.property("isMultiRegionTrail")
-    """
-    Specifies whether the trail is created in the current
-    region or in all regions. Defaults to `false`.
-    """
-
-    is_organization_trail: pulumi.Output[Optional[bool]] = pulumi.property("isOrganizationTrail")
-    """
-    Specifies whether the trail is an AWS Organizations trail. Organization trails log events for the master account and all member accounts. Can only be created in the organization master account. Defaults to `false`.
-    """
-
-    kms_key_id: pulumi.Output[Optional[str]] = pulumi.property("kmsKeyId")
-    """
-    Specifies the KMS key ARN to use to encrypt the logs delivered by CloudTrail.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    Specifies the name of the trail.
-    """
-
-    s3_bucket_name: pulumi.Output[str] = pulumi.property("s3BucketName")
-    """
-    Specifies the name of the S3 bucket designated for publishing log files.
-    """
-
-    s3_key_prefix: pulumi.Output[Optional[str]] = pulumi.property("s3KeyPrefix")
-    """
-    Specifies the S3 key prefix that follows
-    the name of the bucket you have designated for log file delivery.
-    """
-
-    sns_topic_name: pulumi.Output[Optional[str]] = pulumi.property("snsTopicName")
-    """
-    Specifies the name of the Amazon SNS topic
-    defined for notification of log file delivery.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the trail
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -366,6 +278,142 @@ class Trail(pulumi.CustomResource):
         __props__["sns_topic_name"] = sns_topic_name
         __props__["tags"] = tags
         return Trail(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The Amazon Resource Name of the trail.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="cloudWatchLogsGroupArn")
+    def cloud_watch_logs_group_arn(self) -> Optional[str]:
+        """
+        Specifies a log group name using an Amazon Resource Name (ARN),
+        that represents the log group to which CloudTrail logs will be delivered.
+        """
+        return pulumi.get(self, "cloud_watch_logs_group_arn")
+
+    @property
+    @pulumi.getter(name="cloudWatchLogsRoleArn")
+    def cloud_watch_logs_role_arn(self) -> Optional[str]:
+        """
+        Specifies the role for the CloudWatch Logs
+        endpoint to assume to write to a user’s log group.
+        """
+        return pulumi.get(self, "cloud_watch_logs_role_arn")
+
+    @property
+    @pulumi.getter(name="enableLogFileValidation")
+    def enable_log_file_validation(self) -> Optional[bool]:
+        """
+        Specifies whether log file integrity validation is enabled.
+        Defaults to `false`.
+        """
+        return pulumi.get(self, "enable_log_file_validation")
+
+    @property
+    @pulumi.getter(name="enableLogging")
+    def enable_logging(self) -> Optional[bool]:
+        """
+        Enables logging for the trail. Defaults to `true`.
+        Setting this to `false` will pause logging.
+        """
+        return pulumi.get(self, "enable_logging")
+
+    @property
+    @pulumi.getter(name="eventSelectors")
+    def event_selectors(self) -> Optional[List['outputs.TrailEventSelector']]:
+        """
+        Specifies an event selector for enabling data event logging. Fields documented below. Please note the [CloudTrail limits](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/WhatIsCloudTrail-Limits.html) when configuring these.
+        """
+        return pulumi.get(self, "event_selectors")
+
+    @property
+    @pulumi.getter(name="homeRegion")
+    def home_region(self) -> str:
+        """
+        The region in which the trail was created.
+        """
+        return pulumi.get(self, "home_region")
+
+    @property
+    @pulumi.getter(name="includeGlobalServiceEvents")
+    def include_global_service_events(self) -> Optional[bool]:
+        """
+        Specifies whether the trail is publishing events
+        from global services such as IAM to the log files. Defaults to `true`.
+        """
+        return pulumi.get(self, "include_global_service_events")
+
+    @property
+    @pulumi.getter(name="isMultiRegionTrail")
+    def is_multi_region_trail(self) -> Optional[bool]:
+        """
+        Specifies whether the trail is created in the current
+        region or in all regions. Defaults to `false`.
+        """
+        return pulumi.get(self, "is_multi_region_trail")
+
+    @property
+    @pulumi.getter(name="isOrganizationTrail")
+    def is_organization_trail(self) -> Optional[bool]:
+        """
+        Specifies whether the trail is an AWS Organizations trail. Organization trails log events for the master account and all member accounts. Can only be created in the organization master account. Defaults to `false`.
+        """
+        return pulumi.get(self, "is_organization_trail")
+
+    @property
+    @pulumi.getter(name="kmsKeyId")
+    def kms_key_id(self) -> Optional[str]:
+        """
+        Specifies the KMS key ARN to use to encrypt the logs delivered by CloudTrail.
+        """
+        return pulumi.get(self, "kms_key_id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Specifies the name of the trail.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="s3BucketName")
+    def s3_bucket_name(self) -> str:
+        """
+        Specifies the name of the S3 bucket designated for publishing log files.
+        """
+        return pulumi.get(self, "s3_bucket_name")
+
+    @property
+    @pulumi.getter(name="s3KeyPrefix")
+    def s3_key_prefix(self) -> Optional[str]:
+        """
+        Specifies the S3 key prefix that follows
+        the name of the bucket you have designated for log file delivery.
+        """
+        return pulumi.get(self, "s3_key_prefix")
+
+    @property
+    @pulumi.getter(name="snsTopicName")
+    def sns_topic_name(self) -> Optional[str]:
+        """
+        Specifies the name of the Amazon SNS topic
+        defined for notification of log file delivery.
+        """
+        return pulumi.get(self, "sns_topic_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the trail
+        """
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

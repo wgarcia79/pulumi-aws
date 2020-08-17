@@ -12,41 +12,6 @@ __all__ = ['IPSet']
 
 
 class IPSet(pulumi.CustomResource):
-    activate: pulumi.Output[bool] = pulumi.property("activate")
-    """
-    Specifies whether GuardDuty is to start using the uploaded IPSet.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN) of the GuardDuty IPSet.
-    """
-
-    detector_id: pulumi.Output[str] = pulumi.property("detectorId")
-    """
-    The detector ID of the GuardDuty.
-    """
-
-    format: pulumi.Output[str] = pulumi.property("format")
-    """
-    The format of the file that contains the IPSet. Valid values: `TXT` | `STIX` | `OTX_CSV` | `ALIEN_VAULT` | `PROOF_POINT` | `FIRE_EYE`
-    """
-
-    location: pulumi.Output[str] = pulumi.property("location")
-    """
-    The URI of the file that contains the IPSet.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The friendly name to identify the IPSet.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of resource tags.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -171,6 +136,62 @@ class IPSet(pulumi.CustomResource):
         __props__["name"] = name
         __props__["tags"] = tags
         return IPSet(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def activate(self) -> bool:
+        """
+        Specifies whether GuardDuty is to start using the uploaded IPSet.
+        """
+        return pulumi.get(self, "activate")
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of the GuardDuty IPSet.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="detectorId")
+    def detector_id(self) -> str:
+        """
+        The detector ID of the GuardDuty.
+        """
+        return pulumi.get(self, "detector_id")
+
+    @property
+    @pulumi.getter
+    def format(self) -> str:
+        """
+        The format of the file that contains the IPSet. Valid values: `TXT` | `STIX` | `OTX_CSV` | `ALIEN_VAULT` | `PROOF_POINT` | `FIRE_EYE`
+        """
+        return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter
+    def location(self) -> str:
+        """
+        The URI of the file that contains the IPSet.
+        """
+        return pulumi.get(self, "location")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The friendly name to identify the IPSet.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of resource tags.
+        """
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

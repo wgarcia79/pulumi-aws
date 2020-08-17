@@ -12,26 +12,6 @@ __all__ = ['HostedTransitVirtualInterfaceAcceptor']
 
 
 class HostedTransitVirtualInterfaceAcceptor(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the virtual interface.
-    """
-
-    dx_gateway_id: pulumi.Output[str] = pulumi.property("dxGatewayId")
-    """
-    The ID of the Direct Connect gateway to which to connect the virtual interface.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
-    virtual_interface_id: pulumi.Output[str] = pulumi.property("virtualInterfaceId")
-    """
-    The ID of the Direct Connect virtual interface to accept.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -142,6 +122,38 @@ class HostedTransitVirtualInterfaceAcceptor(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["virtual_interface_id"] = virtual_interface_id
         return HostedTransitVirtualInterfaceAcceptor(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the virtual interface.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="dxGatewayId")
+    def dx_gateway_id(self) -> str:
+        """
+        The ID of the Direct Connect gateway to which to connect the virtual interface.
+        """
+        return pulumi.get(self, "dx_gateway_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="virtualInterfaceId")
+    def virtual_interface_id(self) -> str:
+        """
+        The ID of the Direct Connect virtual interface to accept.
+        """
+        return pulumi.get(self, "virtual_interface_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -24,9 +24,12 @@ class TrailEventSelectorArgs:
         :param pulumi.Input[bool] include_management_events: Specify if you want your event selector to include management events for your trail.
         :param pulumi.Input[str] read_write_type: Specify if you want your trail to log read-only events, write-only events, or all. By default, the value is All. You can specify only the following value: "ReadOnly", "WriteOnly", "All". Defaults to `All`.
         """
-        pulumi.set(__self__, "dataResources", data_resources)
-        pulumi.set(__self__, "includeManagementEvents", include_management_events)
-        pulumi.set(__self__, "readWriteType", read_write_type)
+        if data_resources is not None:
+            pulumi.set(__self__, "data_resources", data_resources)
+        if include_management_events is not None:
+            pulumi.set(__self__, "include_management_events", include_management_events)
+        if read_write_type is not None:
+            pulumi.set(__self__, "read_write_type", read_write_type)
 
     @property
     @pulumi.getter(name="dataResources")
@@ -34,11 +37,11 @@ class TrailEventSelectorArgs:
         """
         Specifies logging data events. Fields documented below.
         """
-        ...
+        return pulumi.get(self, "data_resources")
 
     @data_resources.setter
     def data_resources(self, value: Optional[pulumi.Input[List[pulumi.Input['TrailEventSelectorDataResourceArgs']]]]):
-        ...
+        pulumi.set(self, "data_resources", value)
 
     @property
     @pulumi.getter(name="includeManagementEvents")
@@ -46,11 +49,11 @@ class TrailEventSelectorArgs:
         """
         Specify if you want your event selector to include management events for your trail.
         """
-        ...
+        return pulumi.get(self, "include_management_events")
 
     @include_management_events.setter
     def include_management_events(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "include_management_events", value)
 
     @property
     @pulumi.getter(name="readWriteType")
@@ -58,11 +61,11 @@ class TrailEventSelectorArgs:
         """
         Specify if you want your trail to log read-only events, write-only events, or all. By default, the value is All. You can specify only the following value: "ReadOnly", "WriteOnly", "All". Defaults to `All`.
         """
-        ...
+        return pulumi.get(self, "read_write_type")
 
     @read_write_type.setter
     def read_write_type(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "read_write_type", value)
 
 
 @pulumi.input_type
@@ -83,11 +86,11 @@ class TrailEventSelectorDataResourceArgs:
         """
         The resource type in which you want to log data events. You can specify only the following value: "AWS::S3::Object", "AWS::Lambda::Function"
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter
@@ -95,10 +98,10 @@ class TrailEventSelectorDataResourceArgs:
         """
         A list of ARN for the specified S3 buckets and object prefixes..
         """
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "values", value)
 
 

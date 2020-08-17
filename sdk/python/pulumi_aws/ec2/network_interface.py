@@ -14,60 +14,6 @@ __all__ = ['NetworkInterface']
 
 
 class NetworkInterface(pulumi.CustomResource):
-    attachments: pulumi.Output[List['outputs.NetworkInterfaceAttachment']] = pulumi.property("attachments")
-    """
-    Block to define the attachment of the ENI. Documented below.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    A description for the network interface.
-    """
-
-    mac_address: pulumi.Output[str] = pulumi.property("macAddress")
-    """
-    The MAC address of the network interface.
-    """
-
-    outpost_arn: pulumi.Output[str] = pulumi.property("outpostArn")
-
-    private_dns_name: pulumi.Output[str] = pulumi.property("privateDnsName")
-    """
-    The private DNS name of the network interface (IPv4).
-    """
-
-    private_ip: pulumi.Output[str] = pulumi.property("privateIp")
-
-    private_ips: pulumi.Output[List[str]] = pulumi.property("privateIps")
-    """
-    List of private IPs to assign to the ENI.
-    """
-
-    private_ips_count: pulumi.Output[float] = pulumi.property("privateIpsCount")
-    """
-    Number of secondary private IPs to assign to the ENI. The total number of private IPs will be 1 + private_ips_count, as a primary private IP will be assiged to an ENI by default.
-    """
-
-    security_groups: pulumi.Output[List[str]] = pulumi.property("securityGroups")
-    """
-    List of security group IDs to assign to the ENI.
-    """
-
-    source_dest_check: pulumi.Output[Optional[bool]] = pulumi.property("sourceDestCheck")
-    """
-    Whether to enable source destination checking for the ENI. Default true.
-    """
-
-    subnet_id: pulumi.Output[str] = pulumi.property("subnetId")
-    """
-    Subnet ID to create the ENI in.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -201,6 +147,96 @@ class NetworkInterface(pulumi.CustomResource):
         __props__["subnet_id"] = subnet_id
         __props__["tags"] = tags
         return NetworkInterface(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def attachments(self) -> List['outputs.NetworkInterfaceAttachment']:
+        """
+        Block to define the attachment of the ENI. Documented below.
+        """
+        return pulumi.get(self, "attachments")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        A description for the network interface.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="macAddress")
+    def mac_address(self) -> str:
+        """
+        The MAC address of the network interface.
+        """
+        return pulumi.get(self, "mac_address")
+
+    @property
+    @pulumi.getter(name="outpostArn")
+    def outpost_arn(self) -> str:
+        return pulumi.get(self, "outpost_arn")
+
+    @property
+    @pulumi.getter(name="privateDnsName")
+    def private_dns_name(self) -> str:
+        """
+        The private DNS name of the network interface (IPv4).
+        """
+        return pulumi.get(self, "private_dns_name")
+
+    @property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> str:
+        return pulumi.get(self, "private_ip")
+
+    @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> List[str]:
+        """
+        List of private IPs to assign to the ENI.
+        """
+        return pulumi.get(self, "private_ips")
+
+    @property
+    @pulumi.getter(name="privateIpsCount")
+    def private_ips_count(self) -> float:
+        """
+        Number of secondary private IPs to assign to the ENI. The total number of private IPs will be 1 + private_ips_count, as a primary private IP will be assiged to an ENI by default.
+        """
+        return pulumi.get(self, "private_ips_count")
+
+    @property
+    @pulumi.getter(name="securityGroups")
+    def security_groups(self) -> List[str]:
+        """
+        List of security group IDs to assign to the ENI.
+        """
+        return pulumi.get(self, "security_groups")
+
+    @property
+    @pulumi.getter(name="sourceDestCheck")
+    def source_dest_check(self) -> Optional[bool]:
+        """
+        Whether to enable source destination checking for the ENI. Default true.
+        """
+        return pulumi.get(self, "source_dest_check")
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> str:
+        """
+        Subnet ID to create the ENI in.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

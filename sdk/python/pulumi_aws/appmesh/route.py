@@ -14,46 +14,6 @@ __all__ = ['Route']
 
 
 class Route(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the route.
-    """
-
-    created_date: pulumi.Output[str] = pulumi.property("createdDate")
-    """
-    The creation date of the route.
-    """
-
-    last_updated_date: pulumi.Output[str] = pulumi.property("lastUpdatedDate")
-    """
-    The last update date of the route.
-    """
-
-    mesh_name: pulumi.Output[str] = pulumi.property("meshName")
-    """
-    The name of the service mesh in which to create the route.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name to use for the route.
-    """
-
-    spec: pulumi.Output['outputs.RouteSpec'] = pulumi.property("spec")
-    """
-    The route specification to apply.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
-    virtual_router_name: pulumi.Output[str] = pulumi.property("virtualRouterName")
-    """
-    The name of the virtual router in which to create the route.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -236,6 +196,70 @@ class Route(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["virtual_router_name"] = virtual_router_name
         return Route(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the route.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="createdDate")
+    def created_date(self) -> str:
+        """
+        The creation date of the route.
+        """
+        return pulumi.get(self, "created_date")
+
+    @property
+    @pulumi.getter(name="lastUpdatedDate")
+    def last_updated_date(self) -> str:
+        """
+        The last update date of the route.
+        """
+        return pulumi.get(self, "last_updated_date")
+
+    @property
+    @pulumi.getter(name="meshName")
+    def mesh_name(self) -> str:
+        """
+        The name of the service mesh in which to create the route.
+        """
+        return pulumi.get(self, "mesh_name")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name to use for the route.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def spec(self) -> 'outputs.RouteSpec':
+        """
+        The route specification to apply.
+        """
+        return pulumi.get(self, "spec")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="virtualRouterName")
+    def virtual_router_name(self) -> str:
+        """
+        The name of the virtual router in which to create the route.
+        """
+        return pulumi.get(self, "virtual_router_name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -17,18 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetVpnGatewayResult:
-    amazon_side_asn: str = pulumi.property("amazonSideAsn")
-    arn: str = pulumi.property("arn")
-    attached_vpc_id: str = pulumi.property("attachedVpcId")
-    availability_zone: str = pulumi.property("availabilityZone")
-    filters: Optional[List['outputs.GetVpnGatewayFilterResult']] = pulumi.property("filters")
-    id: str = pulumi.property("id")
-    state: str = pulumi.property("state")
-    tags: Mapping[str, str] = pulumi.property("tags")
-
-
 class GetVpnGatewayResult:
     """
     A collection of values returned by getVpnGateway.
@@ -36,28 +26,69 @@ class GetVpnGatewayResult:
     def __init__(__self__, amazon_side_asn=None, arn=None, attached_vpc_id=None, availability_zone=None, filters=None, id=None, state=None, tags=None):
         if amazon_side_asn and not isinstance(amazon_side_asn, str):
             raise TypeError("Expected argument 'amazon_side_asn' to be a str")
-        __self__.amazon_side_asn = amazon_side_asn
+        pulumi.set(__self__, "amazon_side_asn", amazon_side_asn)
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
         if attached_vpc_id and not isinstance(attached_vpc_id, str):
             raise TypeError("Expected argument 'attached_vpc_id' to be a str")
-        __self__.attached_vpc_id = attached_vpc_id
+        pulumi.set(__self__, "attached_vpc_id", attached_vpc_id)
         if availability_zone and not isinstance(availability_zone, str):
             raise TypeError("Expected argument 'availability_zone' to be a str")
-        __self__.availability_zone = availability_zone
+        pulumi.set(__self__, "availability_zone", availability_zone)
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
+        pulumi.set(__self__, "filters", filters)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
         if state and not isinstance(state, str):
             raise TypeError("Expected argument 'state' to be a str")
-        __self__.state = state
+        pulumi.set(__self__, "state", state)
         if tags and not isinstance(tags, dict):
             raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter(name="amazonSideAsn")
+    def amazon_side_asn(self) -> str:
+        return pulumi.get(self, "amazon_side_asn")
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="attachedVpcId")
+    def attached_vpc_id(self) -> str:
+        return pulumi.get(self, "attached_vpc_id")
+
+    @property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> str:
+        return pulumi.get(self, "availability_zone")
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetVpnGatewayFilterResult']]:
+        return pulumi.get(self, "filters")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def state(self) -> str:
+        return pulumi.get(self, "state")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
+        return pulumi.get(self, "tags")
+
 
 
 class AwaitableGetVpnGatewayResult(GetVpnGatewayResult):
@@ -123,7 +154,7 @@ def get_vpn_gateway(amazon_side_asn: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getVpnGateway:getVpnGateway', __args__, opts=opts, typ=_GetVpnGatewayResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getVpnGateway:getVpnGateway', __args__, opts=opts, typ=GetVpnGatewayResult).value
 
     return AwaitableGetVpnGatewayResult(
         amazon_side_asn=__ret__.amazon_side_asn,

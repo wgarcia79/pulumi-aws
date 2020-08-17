@@ -12,21 +12,6 @@ __all__ = ['TrafficMirrorFilter']
 
 
 class TrafficMirrorFilter(pulumi.CustomResource):
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    A description of the filter.
-    """
-
-    network_services: pulumi.Output[Optional[List[str]]] = pulumi.property("networkServices")
-    """
-    List of amazon network services that should be mirrored. Valid values: `amazon-dns`.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of resource tags.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -111,6 +96,30 @@ class TrafficMirrorFilter(pulumi.CustomResource):
         __props__["network_services"] = network_services
         __props__["tags"] = tags
         return TrafficMirrorFilter(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        A description of the filter.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="networkServices")
+    def network_services(self) -> Optional[List[str]]:
+        """
+        List of amazon network services that should be mirrored. Valid values: `amazon-dns`.
+        """
+        return pulumi.get(self, "network_services")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of resource tags.
+        """
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

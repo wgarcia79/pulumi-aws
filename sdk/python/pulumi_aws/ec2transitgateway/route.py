@@ -12,26 +12,6 @@ __all__ = ['Route']
 
 
 class Route(pulumi.CustomResource):
-    blackhole: pulumi.Output[Optional[bool]] = pulumi.property("blackhole")
-    """
-    Indicates whether to drop traffic that matches this route (default to `false`).
-    """
-
-    destination_cidr_block: pulumi.Output[str] = pulumi.property("destinationCidrBlock")
-    """
-    IPv4 CIDR range used for destination matches. Routing decisions are based on the most specific match.
-    """
-
-    transit_gateway_attachment_id: pulumi.Output[Optional[str]] = pulumi.property("transitGatewayAttachmentId")
-    """
-    Identifier of EC2 Transit Gateway Attachment (required if `blackhole` is set to false).
-    """
-
-    transit_gateway_route_table_id: pulumi.Output[str] = pulumi.property("transitGatewayRouteTableId")
-    """
-    Identifier of EC2 Transit Gateway Route Table.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -136,6 +116,38 @@ class Route(pulumi.CustomResource):
         __props__["transit_gateway_attachment_id"] = transit_gateway_attachment_id
         __props__["transit_gateway_route_table_id"] = transit_gateway_route_table_id
         return Route(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def blackhole(self) -> Optional[bool]:
+        """
+        Indicates whether to drop traffic that matches this route (default to `false`).
+        """
+        return pulumi.get(self, "blackhole")
+
+    @property
+    @pulumi.getter(name="destinationCidrBlock")
+    def destination_cidr_block(self) -> str:
+        """
+        IPv4 CIDR range used for destination matches. Routing decisions are based on the most specific match.
+        """
+        return pulumi.get(self, "destination_cidr_block")
+
+    @property
+    @pulumi.getter(name="transitGatewayAttachmentId")
+    def transit_gateway_attachment_id(self) -> Optional[str]:
+        """
+        Identifier of EC2 Transit Gateway Attachment (required if `blackhole` is set to false).
+        """
+        return pulumi.get(self, "transit_gateway_attachment_id")
+
+    @property
+    @pulumi.getter(name="transitGatewayRouteTableId")
+    def transit_gateway_route_table_id(self) -> str:
+        """
+        Identifier of EC2 Transit Gateway Route Table.
+        """
+        return pulumi.get(self, "transit_gateway_route_table_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

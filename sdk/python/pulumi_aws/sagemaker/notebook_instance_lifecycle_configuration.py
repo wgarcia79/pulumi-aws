@@ -12,26 +12,6 @@ __all__ = ['NotebookInstanceLifecycleConfiguration']
 
 
 class NotebookInstanceLifecycleConfiguration(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The Amazon Resource Name (ARN) assigned by AWS to this lifecycle configuration.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the lifecycle configuration (must be unique). If omitted, this provider will assign a random, unique name.
-    """
-
-    on_create: pulumi.Output[Optional[str]] = pulumi.property("onCreate")
-    """
-    A shell script (base64-encoded) that runs only once when the SageMaker Notebook Instance is created.
-    """
-
-    on_start: pulumi.Output[Optional[str]] = pulumi.property("onStart")
-    """
-    A shell script (base64-encoded) that runs every time the SageMaker Notebook Instance is started including the time it's created.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -106,6 +86,38 @@ class NotebookInstanceLifecycleConfiguration(pulumi.CustomResource):
         __props__["on_create"] = on_create
         __props__["on_start"] = on_start
         return NotebookInstanceLifecycleConfiguration(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) assigned by AWS to this lifecycle configuration.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the lifecycle configuration (must be unique). If omitted, this provider will assign a random, unique name.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="onCreate")
+    def on_create(self) -> Optional[str]:
+        """
+        A shell script (base64-encoded) that runs only once when the SageMaker Notebook Instance is created.
+        """
+        return pulumi.get(self, "on_create")
+
+    @property
+    @pulumi.getter(name="onStart")
+    def on_start(self) -> Optional[str]:
+        """
+        A shell script (base64-encoded) that runs every time the SageMaker Notebook Instance is started including the time it's created.
+        """
+        return pulumi.get(self, "on_start")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

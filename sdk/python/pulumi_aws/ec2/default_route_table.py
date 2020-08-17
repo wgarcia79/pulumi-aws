@@ -14,33 +14,6 @@ __all__ = ['DefaultRouteTable']
 
 
 class DefaultRouteTable(pulumi.CustomResource):
-    default_route_table_id: pulumi.Output[str] = pulumi.property("defaultRouteTableId")
-    """
-    The ID of the Default Routing Table.
-    """
-
-    owner_id: pulumi.Output[str] = pulumi.property("ownerId")
-    """
-    The ID of the AWS account that owns the route table
-    """
-
-    propagating_vgws: pulumi.Output[Optional[List[str]]] = pulumi.property("propagatingVgws")
-    """
-    A list of virtual gateways for propagation.
-    """
-
-    routes: pulumi.Output[List['outputs.DefaultRouteTableRoute']] = pulumi.property("routes")
-    """
-    A list of route objects. Their keys are documented below.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A mapping of tags to assign to the resource.
-    """
-
-    vpc_id: pulumi.Output[str] = pulumi.property("vpcId")
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -170,6 +143,51 @@ class DefaultRouteTable(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["vpc_id"] = vpc_id
         return DefaultRouteTable(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="defaultRouteTableId")
+    def default_route_table_id(self) -> str:
+        """
+        The ID of the Default Routing Table.
+        """
+        return pulumi.get(self, "default_route_table_id")
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
+        """
+        The ID of the AWS account that owns the route table
+        """
+        return pulumi.get(self, "owner_id")
+
+    @property
+    @pulumi.getter(name="propagatingVgws")
+    def propagating_vgws(self) -> Optional[List[str]]:
+        """
+        A list of virtual gateways for propagation.
+        """
+        return pulumi.get(self, "propagating_vgws")
+
+    @property
+    @pulumi.getter
+    def routes(self) -> List['outputs.DefaultRouteTableRoute']:
+        """
+        A list of route objects. Their keys are documented below.
+        """
+        return pulumi.get(self, "routes")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A mapping of tags to assign to the resource.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        return pulumi.get(self, "vpc_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -12,21 +12,6 @@ __all__ = ['SshKey']
 
 
 class SshKey(pulumi.CustomResource):
-    body: pulumi.Output[str] = pulumi.property("body")
-    """
-    The public key portion of an SSH key pair.
-    """
-
-    server_id: pulumi.Output[str] = pulumi.property("serverId")
-    """
-    The Server ID of the Transfer Server (e.g. `s-12345678`)
-    """
-
-    user_name: pulumi.Output[str] = pulumi.property("userName")
-    """
-    The name of the user account that is assigned to one or more servers.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -156,6 +141,30 @@ class SshKey(pulumi.CustomResource):
         __props__["server_id"] = server_id
         __props__["user_name"] = user_name
         return SshKey(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def body(self) -> str:
+        """
+        The public key portion of an SSH key pair.
+        """
+        return pulumi.get(self, "body")
+
+    @property
+    @pulumi.getter(name="serverId")
+    def server_id(self) -> str:
+        """
+        The Server ID of the Transfer Server (e.g. `s-12345678`)
+        """
+        return pulumi.get(self, "server_id")
+
+    @property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> str:
+        """
+        The name of the user account that is assigned to one or more servers.
+        """
+        return pulumi.get(self, "user_name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

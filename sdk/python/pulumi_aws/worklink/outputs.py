@@ -15,13 +15,23 @@ __all__ = [
 
 @pulumi.output_type
 class FleetIdentityProvider(dict):
+    def __init__(__self__, *,
+                 saml_metadata: str,
+                 type: str):
+        """
+        :param str saml_metadata: The SAML metadata document provided by the customer’s identity provider.
+        :param str type: The type of identity provider.
+        """
+        pulumi.set(__self__, "saml_metadata", saml_metadata)
+        pulumi.set(__self__, "type", type)
+
     @property
     @pulumi.getter(name="samlMetadata")
     def saml_metadata(self) -> str:
         """
         The SAML metadata document provided by the customer’s identity provider.
         """
-        ...
+        return pulumi.get(self, "saml_metadata")
 
     @property
     @pulumi.getter
@@ -29,7 +39,7 @@ class FleetIdentityProvider(dict):
         """
         The type of identity provider.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -37,13 +47,26 @@ class FleetIdentityProvider(dict):
 
 @pulumi.output_type
 class FleetNetwork(dict):
+    def __init__(__self__, *,
+                 security_group_ids: List[str],
+                 subnet_ids: List[str],
+                 vpc_id: str):
+        """
+        :param List[str] security_group_ids: A list of security group IDs associated with access to the provided subnets.
+        :param List[str] subnet_ids: A list of subnet IDs used for X-ENI connections from Amazon WorkLink rendering containers.
+        :param str vpc_id: The VPC ID with connectivity to associated websites.
+        """
+        pulumi.set(__self__, "security_group_ids", security_group_ids)
+        pulumi.set(__self__, "subnet_ids", subnet_ids)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> List[str]:
         """
         A list of security group IDs associated with access to the provided subnets.
         """
-        ...
+        return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter(name="subnetIds")
@@ -51,7 +74,7 @@ class FleetNetwork(dict):
         """
         A list of subnet IDs used for X-ENI connections from Amazon WorkLink rendering containers.
         """
-        ...
+        return pulumi.get(self, "subnet_ids")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -59,7 +82,7 @@ class FleetNetwork(dict):
         """
         The VPC ID with connectivity to associated websites.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

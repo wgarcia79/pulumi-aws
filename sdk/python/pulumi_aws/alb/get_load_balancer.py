@@ -16,28 +16,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetLoadBalancerResult:
-    access_logs: 'outputs.GetLoadBalancerAccessLogsResult' = pulumi.property("accessLogs")
-    arn: str = pulumi.property("arn")
-    arn_suffix: str = pulumi.property("arnSuffix")
-    dns_name: str = pulumi.property("dnsName")
-    drop_invalid_header_fields: bool = pulumi.property("dropInvalidHeaderFields")
-    enable_deletion_protection: bool = pulumi.property("enableDeletionProtection")
-    id: str = pulumi.property("id")
-    idle_timeout: float = pulumi.property("idleTimeout")
-    internal: bool = pulumi.property("internal")
-    ip_address_type: str = pulumi.property("ipAddressType")
-    load_balancer_type: str = pulumi.property("loadBalancerType")
-    name: str = pulumi.property("name")
-    security_groups: List[str] = pulumi.property("securityGroups")
-    subnet_mappings: List['outputs.GetLoadBalancerSubnetMappingResult'] = pulumi.property("subnetMappings")
-    subnets: List[str] = pulumi.property("subnets")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    vpc_id: str = pulumi.property("vpcId")
-    zone_id: str = pulumi.property("zoneId")
-
-
 class GetLoadBalancerResult:
     """
     A collection of values returned by getLoadBalancer.
@@ -45,61 +25,152 @@ class GetLoadBalancerResult:
     def __init__(__self__, access_logs=None, arn=None, arn_suffix=None, dns_name=None, drop_invalid_header_fields=None, enable_deletion_protection=None, id=None, idle_timeout=None, internal=None, ip_address_type=None, load_balancer_type=None, name=None, security_groups=None, subnet_mappings=None, subnets=None, tags=None, vpc_id=None, zone_id=None):
         if access_logs and not isinstance(access_logs, dict):
             raise TypeError("Expected argument 'access_logs' to be a dict")
-        __self__.access_logs = access_logs
+        pulumi.set(__self__, "access_logs", access_logs)
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
         if arn_suffix and not isinstance(arn_suffix, str):
             raise TypeError("Expected argument 'arn_suffix' to be a str")
-        __self__.arn_suffix = arn_suffix
+        pulumi.set(__self__, "arn_suffix", arn_suffix)
         if dns_name and not isinstance(dns_name, str):
             raise TypeError("Expected argument 'dns_name' to be a str")
-        __self__.dns_name = dns_name
+        pulumi.set(__self__, "dns_name", dns_name)
         if drop_invalid_header_fields and not isinstance(drop_invalid_header_fields, bool):
             raise TypeError("Expected argument 'drop_invalid_header_fields' to be a bool")
-        __self__.drop_invalid_header_fields = drop_invalid_header_fields
+        pulumi.set(__self__, "drop_invalid_header_fields", drop_invalid_header_fields)
         if enable_deletion_protection and not isinstance(enable_deletion_protection, bool):
             raise TypeError("Expected argument 'enable_deletion_protection' to be a bool")
-        __self__.enable_deletion_protection = enable_deletion_protection
+        pulumi.set(__self__, "enable_deletion_protection", enable_deletion_protection)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if idle_timeout and not isinstance(idle_timeout, float):
+            raise TypeError("Expected argument 'idle_timeout' to be a float")
+        pulumi.set(__self__, "idle_timeout", idle_timeout)
+        if internal and not isinstance(internal, bool):
+            raise TypeError("Expected argument 'internal' to be a bool")
+        pulumi.set(__self__, "internal", internal)
+        if ip_address_type and not isinstance(ip_address_type, str):
+            raise TypeError("Expected argument 'ip_address_type' to be a str")
+        pulumi.set(__self__, "ip_address_type", ip_address_type)
+        if load_balancer_type and not isinstance(load_balancer_type, str):
+            raise TypeError("Expected argument 'load_balancer_type' to be a str")
+        pulumi.set(__self__, "load_balancer_type", load_balancer_type)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if security_groups and not isinstance(security_groups, list):
+            raise TypeError("Expected argument 'security_groups' to be a list")
+        pulumi.set(__self__, "security_groups", security_groups)
+        if subnet_mappings and not isinstance(subnet_mappings, list):
+            raise TypeError("Expected argument 'subnet_mappings' to be a list")
+        pulumi.set(__self__, "subnet_mappings", subnet_mappings)
+        if subnets and not isinstance(subnets, list):
+            raise TypeError("Expected argument 'subnets' to be a list")
+        pulumi.set(__self__, "subnets", subnets)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if vpc_id and not isinstance(vpc_id, str):
+            raise TypeError("Expected argument 'vpc_id' to be a str")
+        pulumi.set(__self__, "vpc_id", vpc_id)
+        if zone_id and not isinstance(zone_id, str):
+            raise TypeError("Expected argument 'zone_id' to be a str")
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter(name="accessLogs")
+    def access_logs(self) -> 'outputs.GetLoadBalancerAccessLogsResult':
+        return pulumi.get(self, "access_logs")
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="arnSuffix")
+    def arn_suffix(self) -> str:
+        return pulumi.get(self, "arn_suffix")
+
+    @property
+    @pulumi.getter(name="dnsName")
+    def dns_name(self) -> str:
+        return pulumi.get(self, "dns_name")
+
+    @property
+    @pulumi.getter(name="dropInvalidHeaderFields")
+    def drop_invalid_header_fields(self) -> bool:
+        return pulumi.get(self, "drop_invalid_header_fields")
+
+    @property
+    @pulumi.getter(name="enableDeletionProtection")
+    def enable_deletion_protection(self) -> bool:
+        return pulumi.get(self, "enable_deletion_protection")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if idle_timeout and not isinstance(idle_timeout, float):
-            raise TypeError("Expected argument 'idle_timeout' to be a float")
-        __self__.idle_timeout = idle_timeout
-        if internal and not isinstance(internal, bool):
-            raise TypeError("Expected argument 'internal' to be a bool")
-        __self__.internal = internal
-        if ip_address_type and not isinstance(ip_address_type, str):
-            raise TypeError("Expected argument 'ip_address_type' to be a str")
-        __self__.ip_address_type = ip_address_type
-        if load_balancer_type and not isinstance(load_balancer_type, str):
-            raise TypeError("Expected argument 'load_balancer_type' to be a str")
-        __self__.load_balancer_type = load_balancer_type
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if security_groups and not isinstance(security_groups, list):
-            raise TypeError("Expected argument 'security_groups' to be a list")
-        __self__.security_groups = security_groups
-        if subnet_mappings and not isinstance(subnet_mappings, list):
-            raise TypeError("Expected argument 'subnet_mappings' to be a list")
-        __self__.subnet_mappings = subnet_mappings
-        if subnets and not isinstance(subnets, list):
-            raise TypeError("Expected argument 'subnets' to be a list")
-        __self__.subnets = subnets
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
-        if vpc_id and not isinstance(vpc_id, str):
-            raise TypeError("Expected argument 'vpc_id' to be a str")
-        __self__.vpc_id = vpc_id
-        if zone_id and not isinstance(zone_id, str):
-            raise TypeError("Expected argument 'zone_id' to be a str")
-        __self__.zone_id = zone_id
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="idleTimeout")
+    def idle_timeout(self) -> float:
+        return pulumi.get(self, "idle_timeout")
+
+    @property
+    @pulumi.getter
+    def internal(self) -> bool:
+        return pulumi.get(self, "internal")
+
+    @property
+    @pulumi.getter(name="ipAddressType")
+    def ip_address_type(self) -> str:
+        return pulumi.get(self, "ip_address_type")
+
+    @property
+    @pulumi.getter(name="loadBalancerType")
+    def load_balancer_type(self) -> str:
+        return pulumi.get(self, "load_balancer_type")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="securityGroups")
+    def security_groups(self) -> List[str]:
+        return pulumi.get(self, "security_groups")
+
+    @property
+    @pulumi.getter(name="subnetMappings")
+    def subnet_mappings(self) -> List['outputs.GetLoadBalancerSubnetMappingResult']:
+        return pulumi.get(self, "subnet_mappings")
+
+    @property
+    @pulumi.getter
+    def subnets(self) -> List[str]:
+        return pulumi.get(self, "subnets")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        return pulumi.get(self, "vpc_id")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        return pulumi.get(self, "zone_id")
+
 
 
 class AwaitableGetLoadBalancerResult(GetLoadBalancerResult):
@@ -170,7 +241,7 @@ def get_load_balancer(arn: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:alb/getLoadBalancer:getLoadBalancer', __args__, opts=opts, typ=_GetLoadBalancerResult).value
+    __ret__ = pulumi.runtime.invoke('aws:alb/getLoadBalancer:getLoadBalancer', __args__, opts=opts, typ=GetLoadBalancerResult).value
 
     return AwaitableGetLoadBalancerResult(
         access_logs=__ret__.access_logs,

@@ -15,16 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetInvocationResult:
-    function_name: str = pulumi.property("functionName")
-    id: str = pulumi.property("id")
-    input: str = pulumi.property("input")
-    qualifier: Optional[str] = pulumi.property("qualifier")
-    result: str = pulumi.property("result")
-    result_map: Mapping[str, str] = pulumi.property("resultMap")
-
-
 class GetInvocationResult:
     """
     A collection of values returned by getInvocation.
@@ -32,35 +24,66 @@ class GetInvocationResult:
     def __init__(__self__, function_name=None, id=None, input=None, qualifier=None, result=None, result_map=None):
         if function_name and not isinstance(function_name, str):
             raise TypeError("Expected argument 'function_name' to be a str")
-        __self__.function_name = function_name
+        pulumi.set(__self__, "function_name", function_name)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
+        pulumi.set(__self__, "id", id)
         if input and not isinstance(input, str):
             raise TypeError("Expected argument 'input' to be a str")
-        __self__.input = input
+        pulumi.set(__self__, "input", input)
         if qualifier and not isinstance(qualifier, str):
             raise TypeError("Expected argument 'qualifier' to be a str")
-        __self__.qualifier = qualifier
+        pulumi.set(__self__, "qualifier", qualifier)
         if result and not isinstance(result, str):
             raise TypeError("Expected argument 'result' to be a str")
-        __self__.result = result
-        """
-        String result of the lambda function invocation.
-        """
+        pulumi.set(__self__, "result", result)
         if result_map and not isinstance(result_map, dict):
             raise TypeError("Expected argument 'result_map' to be a dict")
         if result_map is not None:
             warnings.warn("use `result` attribute with jsondecode() function", DeprecationWarning)
             pulumi.log.warn("result_map is deprecated: use `result` attribute with jsondecode() function")
 
-        __self__.result_map = result_map
+        pulumi.set(__self__, "result_map", result_map)
+
+    @property
+    @pulumi.getter(name="functionName")
+    def function_name(self) -> str:
+        return pulumi.get(self, "function_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The provider-assigned unique ID for this managed resource.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def input(self) -> str:
+        return pulumi.get(self, "input")
+
+    @property
+    @pulumi.getter
+    def qualifier(self) -> Optional[str]:
+        return pulumi.get(self, "qualifier")
+
+    @property
+    @pulumi.getter
+    def result(self) -> str:
+        """
+        String result of the lambda function invocation.
+        """
+        return pulumi.get(self, "result")
+
+    @property
+    @pulumi.getter(name="resultMap")
+    def result_map(self) -> Mapping[str, str]:
         """
         (**DEPRECATED**) This field is set only if result is a map of primitive types, where the map is string keys and string values.
         """
+        return pulumi.get(self, "result_map")
+
 
 
 class AwaitableGetInvocationResult(GetInvocationResult):
@@ -100,7 +123,7 @@ def get_invocation(function_name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:lambda/getInvocation:getInvocation', __args__, opts=opts, typ=_GetInvocationResult).value
+    __ret__ = pulumi.runtime.invoke('aws:lambda/getInvocation:getInvocation', __args__, opts=opts, typ=GetInvocationResult).value
 
     return AwaitableGetInvocationResult(
         function_name=__ret__.function_name,

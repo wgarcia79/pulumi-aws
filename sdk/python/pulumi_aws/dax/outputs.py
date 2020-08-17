@@ -16,20 +16,37 @@ __all__ = [
 
 @pulumi.output_type
 class ClusterNode(dict):
+    def __init__(__self__, *,
+                 address: Optional[str] = None,
+                 availability_zone: Optional[str] = None,
+                 id: Optional[str] = None,
+                 port: Optional[float] = None):
+        """
+        :param float port: The port used by the configuration endpoint
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+
     @property
     @pulumi.getter
     def address(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "address")
 
     @property
     @pulumi.getter(name="availabilityZone")
     def availability_zone(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -37,7 +54,7 @@ class ClusterNode(dict):
         """
         The port used by the configuration endpoint
         """
-        ...
+        return pulumi.get(self, "port")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -45,13 +62,21 @@ class ClusterNode(dict):
 
 @pulumi.output_type
 class ClusterServerSideEncryption(dict):
+    def __init__(__self__, *,
+                 enabled: Optional[bool] = None):
+        """
+        :param bool enabled: Whether to enable encryption at rest. Defaults to `false`.
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
     @property
     @pulumi.getter
     def enabled(self) -> Optional[bool]:
         """
         Whether to enable encryption at rest. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -59,13 +84,23 @@ class ClusterServerSideEncryption(dict):
 
 @pulumi.output_type
 class ParameterGroupParameter(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 value: str):
+        """
+        :param str name: The name of the parameter.
+        :param str value: The value for the parameter.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
     @property
     @pulumi.getter
     def name(self) -> str:
         """
         The name of the parameter.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -73,7 +108,7 @@ class ParameterGroupParameter(dict):
         """
         The value for the parameter.
         """
-        ...
+        return pulumi.get(self, "value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

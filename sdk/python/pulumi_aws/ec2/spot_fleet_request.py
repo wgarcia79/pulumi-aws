@@ -14,123 +14,6 @@ __all__ = ['SpotFleetRequest']
 
 
 class SpotFleetRequest(pulumi.CustomResource):
-    allocation_strategy: pulumi.Output[Optional[str]] = pulumi.property("allocationStrategy")
-    """
-    Indicates how to allocate the target capacity across
-    the Spot pools specified by the Spot fleet request. The default is
-    `lowestPrice`.
-    """
-
-    client_token: pulumi.Output[str] = pulumi.property("clientToken")
-
-    excess_capacity_termination_policy: pulumi.Output[Optional[str]] = pulumi.property("excessCapacityTerminationPolicy")
-    """
-    Indicates whether running Spot
-    instances should be terminated if the target capacity of the Spot fleet
-    request is decreased below the current size of the Spot fleet.
-    """
-
-    fleet_type: pulumi.Output[Optional[str]] = pulumi.property("fleetType")
-    """
-    The type of fleet request. Indicates whether the Spot Fleet only requests the target
-    capacity or also attempts to maintain it. Default is `maintain`.
-    """
-
-    iam_fleet_role: pulumi.Output[str] = pulumi.property("iamFleetRole")
-    """
-    Grants the Spot fleet permission to terminate
-    Spot instances on your behalf when you cancel its Spot fleet request using
-    CancelSpotFleetRequests or when the Spot fleet request expires, if you set
-    terminateInstancesWithExpiration.
-    """
-
-    instance_interruption_behaviour: pulumi.Output[Optional[str]] = pulumi.property("instanceInterruptionBehaviour")
-    """
-    Indicates whether a Spot
-    instance stops or terminates when it is interrupted. Default is
-    `terminate`.
-    """
-
-    instance_pools_to_use_count: pulumi.Output[Optional[float]] = pulumi.property("instancePoolsToUseCount")
-    """
-    The number of Spot pools across which to allocate your target Spot capacity.
-    Valid only when `allocation_strategy` is set to `lowestPrice`. Spot Fleet selects
-    the cheapest Spot pools and evenly allocates your target Spot capacity across
-    the number of Spot pools that you specify.
-    """
-
-    launch_specifications: pulumi.Output[Optional[List['outputs.SpotFleetRequestLaunchSpecification']]] = pulumi.property("launchSpecifications")
-    """
-    Used to define the launch configuration of the
-    spot-fleet request. Can be specified multiple times to define different bids
-    across different markets and instance types. Conflicts with `launch_template_config`. At least one of `launch_specification` or `launch_template_config` is required.
-    """
-
-    launch_template_configs: pulumi.Output[Optional[List['outputs.SpotFleetRequestLaunchTemplateConfig']]] = pulumi.property("launchTemplateConfigs")
-    """
-    Launch template configuration block. See Launch Template Configs below for more details. Conflicts with `launch_specification`. At least one of `launch_specification` or `launch_template_config` is required.
-    """
-
-    load_balancers: pulumi.Output[List[str]] = pulumi.property("loadBalancers")
-    """
-    A list of elastic load balancer names to add to the Spot fleet.
-    """
-
-    replace_unhealthy_instances: pulumi.Output[Optional[bool]] = pulumi.property("replaceUnhealthyInstances")
-    """
-    Indicates whether Spot fleet should replace unhealthy instances. Default `false`.
-    """
-
-    spot_price: pulumi.Output[Optional[str]] = pulumi.property("spotPrice")
-    """
-    The maximum spot bid for this override request.
-    """
-
-    spot_request_state: pulumi.Output[str] = pulumi.property("spotRequestState")
-    """
-    The state of the Spot fleet request.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
-    target_capacity: pulumi.Output[float] = pulumi.property("targetCapacity")
-    """
-    The number of units to request. You can choose to set the
-    target capacity in terms of instances or a performance characteristic that is
-    important to your application workload, such as vCPUs, memory, or I/O.
-    """
-
-    target_group_arns: pulumi.Output[List[str]] = pulumi.property("targetGroupArns")
-    """
-    A list of `alb.TargetGroup` ARNs, for use with Application Load Balancing.
-    """
-
-    terminate_instances_with_expiration: pulumi.Output[Optional[bool]] = pulumi.property("terminateInstancesWithExpiration")
-    """
-    Indicates whether running Spot
-    instances should be terminated when the Spot fleet request expires.
-    """
-
-    valid_from: pulumi.Output[Optional[str]] = pulumi.property("validFrom")
-    """
-    The start date and time of the request, in UTC [RFC3339](https://tools.ietf.org/html/rfc3339#section-5.8) format(for example, YYYY-MM-DDTHH:MM:SSZ). The default is to start fulfilling the request immediately.
-    """
-
-    valid_until: pulumi.Output[Optional[str]] = pulumi.property("validUntil")
-    """
-    The end date and time of the request, in UTC [RFC3339](https://tools.ietf.org/html/rfc3339#section-5.8) format(for example, YYYY-MM-DDTHH:MM:SSZ). At this point, no new Spot instance requests are placed or enabled to fulfill the request. Defaults to 24 hours.
-    """
-
-    wait_for_fulfillment: pulumi.Output[Optional[bool]] = pulumi.property("waitForFulfillment")
-    """
-    If set, this provider will
-    wait for the Spot Request to be fulfilled, and will throw an error if the
-    timeout of 10m is reached.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -411,6 +294,183 @@ class SpotFleetRequest(pulumi.CustomResource):
         __props__["valid_until"] = valid_until
         __props__["wait_for_fulfillment"] = wait_for_fulfillment
         return SpotFleetRequest(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="allocationStrategy")
+    def allocation_strategy(self) -> Optional[str]:
+        """
+        Indicates how to allocate the target capacity across
+        the Spot pools specified by the Spot fleet request. The default is
+        `lowestPrice`.
+        """
+        return pulumi.get(self, "allocation_strategy")
+
+    @property
+    @pulumi.getter(name="clientToken")
+    def client_token(self) -> str:
+        return pulumi.get(self, "client_token")
+
+    @property
+    @pulumi.getter(name="excessCapacityTerminationPolicy")
+    def excess_capacity_termination_policy(self) -> Optional[str]:
+        """
+        Indicates whether running Spot
+        instances should be terminated if the target capacity of the Spot fleet
+        request is decreased below the current size of the Spot fleet.
+        """
+        return pulumi.get(self, "excess_capacity_termination_policy")
+
+    @property
+    @pulumi.getter(name="fleetType")
+    def fleet_type(self) -> Optional[str]:
+        """
+        The type of fleet request. Indicates whether the Spot Fleet only requests the target
+        capacity or also attempts to maintain it. Default is `maintain`.
+        """
+        return pulumi.get(self, "fleet_type")
+
+    @property
+    @pulumi.getter(name="iamFleetRole")
+    def iam_fleet_role(self) -> str:
+        """
+        Grants the Spot fleet permission to terminate
+        Spot instances on your behalf when you cancel its Spot fleet request using
+        CancelSpotFleetRequests or when the Spot fleet request expires, if you set
+        terminateInstancesWithExpiration.
+        """
+        return pulumi.get(self, "iam_fleet_role")
+
+    @property
+    @pulumi.getter(name="instanceInterruptionBehaviour")
+    def instance_interruption_behaviour(self) -> Optional[str]:
+        """
+        Indicates whether a Spot
+        instance stops or terminates when it is interrupted. Default is
+        `terminate`.
+        """
+        return pulumi.get(self, "instance_interruption_behaviour")
+
+    @property
+    @pulumi.getter(name="instancePoolsToUseCount")
+    def instance_pools_to_use_count(self) -> Optional[float]:
+        """
+        The number of Spot pools across which to allocate your target Spot capacity.
+        Valid only when `allocation_strategy` is set to `lowestPrice`. Spot Fleet selects
+        the cheapest Spot pools and evenly allocates your target Spot capacity across
+        the number of Spot pools that you specify.
+        """
+        return pulumi.get(self, "instance_pools_to_use_count")
+
+    @property
+    @pulumi.getter(name="launchSpecifications")
+    def launch_specifications(self) -> Optional[List['outputs.SpotFleetRequestLaunchSpecification']]:
+        """
+        Used to define the launch configuration of the
+        spot-fleet request. Can be specified multiple times to define different bids
+        across different markets and instance types. Conflicts with `launch_template_config`. At least one of `launch_specification` or `launch_template_config` is required.
+        """
+        return pulumi.get(self, "launch_specifications")
+
+    @property
+    @pulumi.getter(name="launchTemplateConfigs")
+    def launch_template_configs(self) -> Optional[List['outputs.SpotFleetRequestLaunchTemplateConfig']]:
+        """
+        Launch template configuration block. See Launch Template Configs below for more details. Conflicts with `launch_specification`. At least one of `launch_specification` or `launch_template_config` is required.
+        """
+        return pulumi.get(self, "launch_template_configs")
+
+    @property
+    @pulumi.getter(name="loadBalancers")
+    def load_balancers(self) -> List[str]:
+        """
+        A list of elastic load balancer names to add to the Spot fleet.
+        """
+        return pulumi.get(self, "load_balancers")
+
+    @property
+    @pulumi.getter(name="replaceUnhealthyInstances")
+    def replace_unhealthy_instances(self) -> Optional[bool]:
+        """
+        Indicates whether Spot fleet should replace unhealthy instances. Default `false`.
+        """
+        return pulumi.get(self, "replace_unhealthy_instances")
+
+    @property
+    @pulumi.getter(name="spotPrice")
+    def spot_price(self) -> Optional[str]:
+        """
+        The maximum spot bid for this override request.
+        """
+        return pulumi.get(self, "spot_price")
+
+    @property
+    @pulumi.getter(name="spotRequestState")
+    def spot_request_state(self) -> str:
+        """
+        The state of the Spot fleet request.
+        """
+        return pulumi.get(self, "spot_request_state")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="targetCapacity")
+    def target_capacity(self) -> float:
+        """
+        The number of units to request. You can choose to set the
+        target capacity in terms of instances or a performance characteristic that is
+        important to your application workload, such as vCPUs, memory, or I/O.
+        """
+        return pulumi.get(self, "target_capacity")
+
+    @property
+    @pulumi.getter(name="targetGroupArns")
+    def target_group_arns(self) -> List[str]:
+        """
+        A list of `alb.TargetGroup` ARNs, for use with Application Load Balancing.
+        """
+        return pulumi.get(self, "target_group_arns")
+
+    @property
+    @pulumi.getter(name="terminateInstancesWithExpiration")
+    def terminate_instances_with_expiration(self) -> Optional[bool]:
+        """
+        Indicates whether running Spot
+        instances should be terminated when the Spot fleet request expires.
+        """
+        return pulumi.get(self, "terminate_instances_with_expiration")
+
+    @property
+    @pulumi.getter(name="validFrom")
+    def valid_from(self) -> Optional[str]:
+        """
+        The start date and time of the request, in UTC [RFC3339](https://tools.ietf.org/html/rfc3339#section-5.8) format(for example, YYYY-MM-DDTHH:MM:SSZ). The default is to start fulfilling the request immediately.
+        """
+        return pulumi.get(self, "valid_from")
+
+    @property
+    @pulumi.getter(name="validUntil")
+    def valid_until(self) -> Optional[str]:
+        """
+        The end date and time of the request, in UTC [RFC3339](https://tools.ietf.org/html/rfc3339#section-5.8) format(for example, YYYY-MM-DDTHH:MM:SSZ). At this point, no new Spot instance requests are placed or enabled to fulfill the request. Defaults to 24 hours.
+        """
+        return pulumi.get(self, "valid_until")
+
+    @property
+    @pulumi.getter(name="waitForFulfillment")
+    def wait_for_fulfillment(self) -> Optional[bool]:
+        """
+        If set, this provider will
+        wait for the Spot Request to be fulfilled, and will throw an error if the
+        timeout of 10m is reached.
+        """
+        return pulumi.get(self, "wait_for_fulfillment")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

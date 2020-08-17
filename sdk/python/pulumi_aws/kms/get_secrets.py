@@ -17,13 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetSecretsResult:
-    id: str = pulumi.property("id")
-    plaintext: Mapping[str, str] = pulumi.property("plaintext")
-    secrets: List['outputs.GetSecretsSecretResult'] = pulumi.property("secrets")
-
-
 class GetSecretsResult:
     """
     A collection of values returned by getSecrets.
@@ -31,19 +26,35 @@ class GetSecretsResult:
     def __init__(__self__, id=None, plaintext=None, secrets=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if plaintext and not isinstance(plaintext, dict):
+            raise TypeError("Expected argument 'plaintext' to be a dict")
+        pulumi.set(__self__, "plaintext", plaintext)
+        if secrets and not isinstance(secrets, list):
+            raise TypeError("Expected argument 'secrets' to be a list")
+        pulumi.set(__self__, "secrets", secrets)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if plaintext and not isinstance(plaintext, dict):
-            raise TypeError("Expected argument 'plaintext' to be a dict")
-        __self__.plaintext = plaintext
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def plaintext(self) -> Mapping[str, str]:
         """
         Map containing each `secret` `name` as the key with its decrypted plaintext value
         """
-        if secrets and not isinstance(secrets, list):
-            raise TypeError("Expected argument 'secrets' to be a list")
-        __self__.secrets = secrets
+        return pulumi.get(self, "plaintext")
+
+    @property
+    @pulumi.getter
+    def secrets(self) -> List['outputs.GetSecretsSecretResult']:
+        return pulumi.get(self, "secrets")
+
 
 
 class AwaitableGetSecretsResult(GetSecretsResult):
@@ -71,7 +82,7 @@ def get_secrets(secrets: Optional[List[pulumi.InputType['GetSecretsSecretArgs']]
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:kms/getSecrets:getSecrets', __args__, opts=opts, typ=_GetSecretsResult).value
+    __ret__ = pulumi.runtime.invoke('aws:kms/getSecrets:getSecrets', __args__, opts=opts, typ=GetSecretsResult).value
 
     return AwaitableGetSecretsResult(
         id=__ret__.id,

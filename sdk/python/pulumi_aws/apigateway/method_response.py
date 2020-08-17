@@ -12,38 +12,6 @@ __all__ = ['MethodResponse']
 
 
 class MethodResponse(pulumi.CustomResource):
-    http_method: pulumi.Output[str] = pulumi.property("httpMethod")
-    """
-    The HTTP Method (`GET`, `POST`, `PUT`, `DELETE`, `HEAD`, `OPTIONS`, `ANY`)
-    """
-
-    resource_id: pulumi.Output[str] = pulumi.property("resourceId")
-    """
-    The API resource ID
-    """
-
-    response_models: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("responseModels")
-    """
-    A map of the API models used for the response's content type
-    """
-
-    response_parameters: pulumi.Output[Optional[Mapping[str, bool]]] = pulumi.property("responseParameters")
-    """
-    A map of response parameters that can be sent to the caller.
-    For example: `response_parameters = { "method.response.header.X-Some-Header" = true }`
-    would define that the header `X-Some-Header` can be provided on the response.
-    """
-
-    rest_api: pulumi.Output[str] = pulumi.property("restApi")
-    """
-    The ID of the associated REST API
-    """
-
-    status_code: pulumi.Output[str] = pulumi.property("statusCode")
-    """
-    The HTTP status code
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -172,6 +140,56 @@ class MethodResponse(pulumi.CustomResource):
         __props__["rest_api"] = rest_api
         __props__["status_code"] = status_code
         return MethodResponse(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="httpMethod")
+    def http_method(self) -> str:
+        """
+        The HTTP Method (`GET`, `POST`, `PUT`, `DELETE`, `HEAD`, `OPTIONS`, `ANY`)
+        """
+        return pulumi.get(self, "http_method")
+
+    @property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> str:
+        """
+        The API resource ID
+        """
+        return pulumi.get(self, "resource_id")
+
+    @property
+    @pulumi.getter(name="responseModels")
+    def response_models(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of the API models used for the response's content type
+        """
+        return pulumi.get(self, "response_models")
+
+    @property
+    @pulumi.getter(name="responseParameters")
+    def response_parameters(self) -> Optional[Mapping[str, bool]]:
+        """
+        A map of response parameters that can be sent to the caller.
+        For example: `response_parameters = { "method.response.header.X-Some-Header" = true }`
+        would define that the header `X-Some-Header` can be provided on the response.
+        """
+        return pulumi.get(self, "response_parameters")
+
+    @property
+    @pulumi.getter(name="restApi")
+    def rest_api(self) -> str:
+        """
+        The ID of the associated REST API
+        """
+        return pulumi.get(self, "rest_api")
+
+    @property
+    @pulumi.getter(name="statusCode")
+    def status_code(self) -> str:
+        """
+        The HTTP status code
+        """
+        return pulumi.get(self, "status_code")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -14,31 +14,6 @@ __all__ = ['ConfigurationAggregator']
 
 
 class ConfigurationAggregator(pulumi.CustomResource):
-    account_aggregation_source: pulumi.Output[Optional['outputs.ConfigurationAggregatorAccountAggregationSource']] = pulumi.property("accountAggregationSource")
-    """
-    The account(s) to aggregate config data from as documented below.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the aggregator
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the configuration aggregator.
-    """
-
-    organization_aggregation_source: pulumi.Output[Optional['outputs.ConfigurationAggregatorOrganizationAggregationSource']] = pulumi.property("organizationAggregationSource")
-    """
-    The organization to aggregate config data from as documented below.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -162,6 +137,46 @@ class ConfigurationAggregator(pulumi.CustomResource):
         __props__["organization_aggregation_source"] = organization_aggregation_source
         __props__["tags"] = tags
         return ConfigurationAggregator(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="accountAggregationSource")
+    def account_aggregation_source(self) -> Optional['outputs.ConfigurationAggregatorAccountAggregationSource']:
+        """
+        The account(s) to aggregate config data from as documented below.
+        """
+        return pulumi.get(self, "account_aggregation_source")
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the aggregator
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the configuration aggregator.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="organizationAggregationSource")
+    def organization_aggregation_source(self) -> Optional['outputs.ConfigurationAggregatorOrganizationAggregationSource']:
+        """
+        The organization to aggregate config data from as documented below.
+        """
+        return pulumi.get(self, "organization_aggregation_source")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -14,17 +14,6 @@ __all__ = ['RegexMatchSet']
 
 
 class RegexMatchSet(pulumi.CustomResource):
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name or description of the Regex Match Set.
-    """
-
-    regex_match_tuples: pulumi.Output[Optional[List['outputs.RegexMatchSetRegexMatchTuple']]] = pulumi.property("regexMatchTuples")
-    """
-    The regular expression pattern that you want AWS WAF to search for in web requests,
-    the location in requests that you want AWS WAF to search, and other settings. See below.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -111,6 +100,23 @@ class RegexMatchSet(pulumi.CustomResource):
         __props__["name"] = name
         __props__["regex_match_tuples"] = regex_match_tuples
         return RegexMatchSet(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name or description of the Regex Match Set.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="regexMatchTuples")
+    def regex_match_tuples(self) -> Optional[List['outputs.RegexMatchSetRegexMatchTuple']]:
+        """
+        The regular expression pattern that you want AWS WAF to search for in web requests,
+        the location in requests that you want AWS WAF to search, and other settings. See below.
+        """
+        return pulumi.get(self, "regex_match_tuples")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

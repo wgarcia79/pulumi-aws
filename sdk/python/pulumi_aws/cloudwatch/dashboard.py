@@ -12,21 +12,6 @@ __all__ = ['Dashboard']
 
 
 class Dashboard(pulumi.CustomResource):
-    dashboard_arn: pulumi.Output[str] = pulumi.property("dashboardArn")
-    """
-    The Amazon Resource Name (ARN) of the dashboard.
-    """
-
-    dashboard_body: pulumi.Output[str] = pulumi.property("dashboardBody")
-    """
-    The detailed information about the dashboard, including what widgets are included and their location on the dashboard. You can read more about the body structure in the [documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/CloudWatch-Dashboard-Body-Structure.html).
-    """
-
-    dashboard_name: pulumi.Output[str] = pulumi.property("dashboardName")
-    """
-    The name of the dashboard.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -146,6 +131,30 @@ class Dashboard(pulumi.CustomResource):
         __props__["dashboard_body"] = dashboard_body
         __props__["dashboard_name"] = dashboard_name
         return Dashboard(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="dashboardArn")
+    def dashboard_arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) of the dashboard.
+        """
+        return pulumi.get(self, "dashboard_arn")
+
+    @property
+    @pulumi.getter(name="dashboardBody")
+    def dashboard_body(self) -> str:
+        """
+        The detailed information about the dashboard, including what widgets are included and their location on the dashboard. You can read more about the body structure in the [documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/CloudWatch-Dashboard-Body-Structure.html).
+        """
+        return pulumi.get(self, "dashboard_body")
+
+    @property
+    @pulumi.getter(name="dashboardName")
+    def dashboard_name(self) -> str:
+        """
+        The name of the dashboard.
+        """
+        return pulumi.get(self, "dashboard_name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

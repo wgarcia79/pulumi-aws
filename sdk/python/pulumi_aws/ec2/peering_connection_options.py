@@ -14,25 +14,6 @@ __all__ = ['PeeringConnectionOptions']
 
 
 class PeeringConnectionOptions(pulumi.CustomResource):
-    accepter: pulumi.Output['outputs.PeeringConnectionOptionsAccepter'] = pulumi.property("accepter")
-    """
-    An optional configuration block that allows for [VPC Peering Connection]
-    (https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) options to be set for the VPC that accepts
-    the peering connection (a maximum of one).
-    """
-
-    requester: pulumi.Output['outputs.PeeringConnectionOptionsRequester'] = pulumi.property("requester")
-    """
-    A optional configuration block that allows for [VPC Peering Connection]
-    (https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) options to be set for the VPC that requests
-    the peering connection (a maximum of one).
-    """
-
-    vpc_peering_connection_id: pulumi.Output[str] = pulumi.property("vpcPeeringConnectionId")
-    """
-    The ID of the requester VPC peering connection.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -195,6 +176,34 @@ class PeeringConnectionOptions(pulumi.CustomResource):
         __props__["requester"] = requester
         __props__["vpc_peering_connection_id"] = vpc_peering_connection_id
         return PeeringConnectionOptions(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def accepter(self) -> 'outputs.PeeringConnectionOptionsAccepter':
+        """
+        An optional configuration block that allows for [VPC Peering Connection]
+        (https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) options to be set for the VPC that accepts
+        the peering connection (a maximum of one).
+        """
+        return pulumi.get(self, "accepter")
+
+    @property
+    @pulumi.getter
+    def requester(self) -> 'outputs.PeeringConnectionOptionsRequester':
+        """
+        A optional configuration block that allows for [VPC Peering Connection]
+        (https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) options to be set for the VPC that requests
+        the peering connection (a maximum of one).
+        """
+        return pulumi.get(self, "requester")
+
+    @property
+    @pulumi.getter(name="vpcPeeringConnectionId")
+    def vpc_peering_connection_id(self) -> str:
+        """
+        The ID of the requester VPC peering connection.
+        """
+        return pulumi.get(self, "vpc_peering_connection_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

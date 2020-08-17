@@ -12,11 +12,6 @@ __all__ = ['MemberAccountAssociation']
 
 
 class MemberAccountAssociation(pulumi.CustomResource):
-    member_account_id: pulumi.Output[str] = pulumi.property("memberAccountId")
-    """
-    The ID of the AWS account that you want to associate with Amazon Macie as a member account.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -90,6 +85,14 @@ class MemberAccountAssociation(pulumi.CustomResource):
 
         __props__["member_account_id"] = member_account_id
         return MemberAccountAssociation(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="memberAccountId")
+    def member_account_id(self) -> str:
+        """
+        The ID of the AWS account that you want to associate with Amazon Macie as a member account.
+        """
+        return pulumi.get(self, "member_account_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

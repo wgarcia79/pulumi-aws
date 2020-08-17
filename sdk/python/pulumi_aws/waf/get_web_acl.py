@@ -15,12 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetWebAclResult:
-    id: str = pulumi.property("id")
-    name: str = pulumi.property("name")
-
-
 class GetWebAclResult:
     """
     A collection of values returned by getWebAcl.
@@ -28,13 +24,24 @@ class GetWebAclResult:
     def __init__(__self__, id=None, name=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
 
 
 class AwaitableGetWebAclResult(GetWebAclResult):
@@ -70,7 +77,7 @@ def get_web_acl(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:waf/getWebAcl:getWebAcl', __args__, opts=opts, typ=_GetWebAclResult).value
+    __ret__ = pulumi.runtime.invoke('aws:waf/getWebAcl:getWebAcl', __args__, opts=opts, typ=GetWebAclResult).value
 
     return AwaitableGetWebAclResult(
         id=__ret__.id,

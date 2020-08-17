@@ -16,18 +16,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetBundleResult:
-    bundle_id: Optional[str] = pulumi.property("bundleId")
-    compute_types: List['outputs.GetBundleComputeTypeResult'] = pulumi.property("computeTypes")
-    description: str = pulumi.property("description")
-    id: str = pulumi.property("id")
-    name: Optional[str] = pulumi.property("name")
-    owner: Optional[str] = pulumi.property("owner")
-    root_storages: List['outputs.GetBundleRootStorageResult'] = pulumi.property("rootStorages")
-    user_storages: List['outputs.GetBundleUserStorageResult'] = pulumi.property("userStorages")
-
-
 class GetBundleResult:
     """
     A collection of values returned by getBundle.
@@ -35,52 +25,93 @@ class GetBundleResult:
     def __init__(__self__, bundle_id=None, compute_types=None, description=None, id=None, name=None, owner=None, root_storages=None, user_storages=None):
         if bundle_id and not isinstance(bundle_id, str):
             raise TypeError("Expected argument 'bundle_id' to be a str")
-        __self__.bundle_id = bundle_id
+        pulumi.set(__self__, "bundle_id", bundle_id)
+        if compute_types and not isinstance(compute_types, list):
+            raise TypeError("Expected argument 'compute_types' to be a list")
+        pulumi.set(__self__, "compute_types", compute_types)
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if owner and not isinstance(owner, str):
+            raise TypeError("Expected argument 'owner' to be a str")
+        pulumi.set(__self__, "owner", owner)
+        if root_storages and not isinstance(root_storages, list):
+            raise TypeError("Expected argument 'root_storages' to be a list")
+        pulumi.set(__self__, "root_storages", root_storages)
+        if user_storages and not isinstance(user_storages, list):
+            raise TypeError("Expected argument 'user_storages' to be a list")
+        pulumi.set(__self__, "user_storages", user_storages)
+
+    @property
+    @pulumi.getter(name="bundleId")
+    def bundle_id(self) -> Optional[str]:
         """
         The ID of the bundle.
         """
-        if compute_types and not isinstance(compute_types, list):
-            raise TypeError("Expected argument 'compute_types' to be a list")
-        __self__.compute_types = compute_types
+        return pulumi.get(self, "bundle_id")
+
+    @property
+    @pulumi.getter(name="computeTypes")
+    def compute_types(self) -> List['outputs.GetBundleComputeTypeResult']:
         """
         The compute type. See supported fields below.
         """
-        if description and not isinstance(description, str):
-            raise TypeError("Expected argument 'description' to be a str")
-        __self__.description = description
+        return pulumi.get(self, "compute_types")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
         """
         The description of the bundle.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
         """
         The name of the compute type.
         """
-        if owner and not isinstance(owner, str):
-            raise TypeError("Expected argument 'owner' to be a str")
-        __self__.owner = owner
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def owner(self) -> Optional[str]:
         """
         The owner of the bundle.
         """
-        if root_storages and not isinstance(root_storages, list):
-            raise TypeError("Expected argument 'root_storages' to be a list")
-        __self__.root_storages = root_storages
+        return pulumi.get(self, "owner")
+
+    @property
+    @pulumi.getter(name="rootStorages")
+    def root_storages(self) -> List['outputs.GetBundleRootStorageResult']:
         """
         The root volume. See supported fields below.
         """
-        if user_storages and not isinstance(user_storages, list):
-            raise TypeError("Expected argument 'user_storages' to be a list")
-        __self__.user_storages = user_storages
+        return pulumi.get(self, "root_storages")
+
+    @property
+    @pulumi.getter(name="userStorages")
+    def user_storages(self) -> List['outputs.GetBundleUserStorageResult']:
         """
         The user storage. See supported fields below.
         """
+        return pulumi.get(self, "user_storages")
+
 
 
 class AwaitableGetBundleResult(GetBundleResult):
@@ -129,7 +160,7 @@ def get_bundle(bundle_id: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:workspaces/getBundle:getBundle', __args__, opts=opts, typ=_GetBundleResult).value
+    __ret__ = pulumi.runtime.invoke('aws:workspaces/getBundle:getBundle', __args__, opts=opts, typ=GetBundleResult).value
 
     return AwaitableGetBundleResult(
         bundle_id=__ret__.bundle_id,

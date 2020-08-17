@@ -12,16 +12,6 @@ __all__ = ['ListenerCertificate']
 
 
 class ListenerCertificate(pulumi.CustomResource):
-    certificate_arn: pulumi.Output[str] = pulumi.property("certificateArn")
-    """
-    The ARN of the certificate to attach to the listener.
-    """
-
-    listener_arn: pulumi.Output[str] = pulumi.property("listenerArn")
-    """
-    The ARN of the listener to which to attach the certificate.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -110,6 +100,22 @@ class ListenerCertificate(pulumi.CustomResource):
         __props__["certificate_arn"] = certificate_arn
         __props__["listener_arn"] = listener_arn
         return ListenerCertificate(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="certificateArn")
+    def certificate_arn(self) -> str:
+        """
+        The ARN of the certificate to attach to the listener.
+        """
+        return pulumi.get(self, "certificate_arn")
+
+    @property
+    @pulumi.getter(name="listenerArn")
+    def listener_arn(self) -> str:
+        """
+        The ARN of the listener to which to attach the certificate.
+        """
+        return pulumi.get(self, "listener_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

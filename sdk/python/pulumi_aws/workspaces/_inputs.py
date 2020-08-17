@@ -29,11 +29,16 @@ class DirectorySelfServicePermissionsArgs:
         :param pulumi.Input[bool] restart_workspace: Whether WorkSpaces directory users can restart their workspace. Default `true`.
         :param pulumi.Input[bool] switch_running_mode: Whether WorkSpaces directory users can switch the running mode of their workspace. Default `false`.
         """
-        pulumi.set(__self__, "changeComputeType", change_compute_type)
-        pulumi.set(__self__, "increaseVolumeSize", increase_volume_size)
-        pulumi.set(__self__, "rebuildWorkspace", rebuild_workspace)
-        pulumi.set(__self__, "restartWorkspace", restart_workspace)
-        pulumi.set(__self__, "switchRunningMode", switch_running_mode)
+        if change_compute_type is not None:
+            pulumi.set(__self__, "change_compute_type", change_compute_type)
+        if increase_volume_size is not None:
+            pulumi.set(__self__, "increase_volume_size", increase_volume_size)
+        if rebuild_workspace is not None:
+            pulumi.set(__self__, "rebuild_workspace", rebuild_workspace)
+        if restart_workspace is not None:
+            pulumi.set(__self__, "restart_workspace", restart_workspace)
+        if switch_running_mode is not None:
+            pulumi.set(__self__, "switch_running_mode", switch_running_mode)
 
     @property
     @pulumi.getter(name="changeComputeType")
@@ -41,11 +46,11 @@ class DirectorySelfServicePermissionsArgs:
         """
         Whether WorkSpaces directory users can change the compute type (bundle) for their workspace. Default `false`.
         """
-        ...
+        return pulumi.get(self, "change_compute_type")
 
     @change_compute_type.setter
     def change_compute_type(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "change_compute_type", value)
 
     @property
     @pulumi.getter(name="increaseVolumeSize")
@@ -53,11 +58,11 @@ class DirectorySelfServicePermissionsArgs:
         """
         Whether WorkSpaces directory users can increase the volume size of the drives on their workspace. Default `false`.
         """
-        ...
+        return pulumi.get(self, "increase_volume_size")
 
     @increase_volume_size.setter
     def increase_volume_size(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "increase_volume_size", value)
 
     @property
     @pulumi.getter(name="rebuildWorkspace")
@@ -65,11 +70,11 @@ class DirectorySelfServicePermissionsArgs:
         """
         Whether WorkSpaces directory users can rebuild the operating system of a workspace to its original state. Default `false`.
         """
-        ...
+        return pulumi.get(self, "rebuild_workspace")
 
     @rebuild_workspace.setter
     def rebuild_workspace(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "rebuild_workspace", value)
 
     @property
     @pulumi.getter(name="restartWorkspace")
@@ -77,11 +82,11 @@ class DirectorySelfServicePermissionsArgs:
         """
         Whether WorkSpaces directory users can restart their workspace. Default `true`.
         """
-        ...
+        return pulumi.get(self, "restart_workspace")
 
     @restart_workspace.setter
     def restart_workspace(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "restart_workspace", value)
 
     @property
     @pulumi.getter(name="switchRunningMode")
@@ -89,11 +94,11 @@ class DirectorySelfServicePermissionsArgs:
         """
         Whether WorkSpaces directory users can switch the running mode of their workspace. Default `false`.
         """
-        ...
+        return pulumi.get(self, "switch_running_mode")
 
     @switch_running_mode.setter
     def switch_running_mode(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "switch_running_mode", value)
 
 
 @pulumi.input_type
@@ -106,7 +111,8 @@ class IpGroupRuleArgs:
         :param pulumi.Input[str] description: The description.
         """
         pulumi.set(__self__, "source", source)
-        pulumi.set(__self__, "description", description)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
 
     @property
     @pulumi.getter
@@ -114,11 +120,11 @@ class IpGroupRuleArgs:
         """
         The IP address range, in CIDR notation, e.g. `10.0.0.0/16`
         """
-        ...
+        return pulumi.get(self, "source")
 
     @source.setter
     def source(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "source", value)
 
     @property
     @pulumi.getter
@@ -126,11 +132,11 @@ class IpGroupRuleArgs:
         """
         The description.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "description", value)
 
 
 @pulumi.input_type
@@ -148,11 +154,16 @@ class WorkspaceWorkspacePropertiesArgs:
         :param pulumi.Input[float] running_mode_auto_stop_timeout_in_minutes: The time after a user logs off when WorkSpaces are automatically stopped. Configured in 60-minute intervals.
         :param pulumi.Input[float] user_volume_size_gib: The size of the user storage.
         """
-        pulumi.set(__self__, "computeTypeName", compute_type_name)
-        pulumi.set(__self__, "rootVolumeSizeGib", root_volume_size_gib)
-        pulumi.set(__self__, "runningMode", running_mode)
-        pulumi.set(__self__, "runningModeAutoStopTimeoutInMinutes", running_mode_auto_stop_timeout_in_minutes)
-        pulumi.set(__self__, "userVolumeSizeGib", user_volume_size_gib)
+        if compute_type_name is not None:
+            pulumi.set(__self__, "compute_type_name", compute_type_name)
+        if root_volume_size_gib is not None:
+            pulumi.set(__self__, "root_volume_size_gib", root_volume_size_gib)
+        if running_mode is not None:
+            pulumi.set(__self__, "running_mode", running_mode)
+        if running_mode_auto_stop_timeout_in_minutes is not None:
+            pulumi.set(__self__, "running_mode_auto_stop_timeout_in_minutes", running_mode_auto_stop_timeout_in_minutes)
+        if user_volume_size_gib is not None:
+            pulumi.set(__self__, "user_volume_size_gib", user_volume_size_gib)
 
     @property
     @pulumi.getter(name="computeTypeName")
@@ -160,11 +171,11 @@ class WorkspaceWorkspacePropertiesArgs:
         """
         The compute type. For more information, see [Amazon WorkSpaces Bundles](http://aws.amazon.com/workspaces/details/#Amazon_WorkSpaces_Bundles). Valid values are `VALUE`, `STANDARD`, `PERFORMANCE`, `POWER`, `GRAPHICS`, `POWERPRO` and `GRAPHICSPRO`.
         """
-        ...
+        return pulumi.get(self, "compute_type_name")
 
     @compute_type_name.setter
     def compute_type_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "compute_type_name", value)
 
     @property
     @pulumi.getter(name="rootVolumeSizeGib")
@@ -172,11 +183,11 @@ class WorkspaceWorkspacePropertiesArgs:
         """
         The size of the root volume.
         """
-        ...
+        return pulumi.get(self, "root_volume_size_gib")
 
     @root_volume_size_gib.setter
     def root_volume_size_gib(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "root_volume_size_gib", value)
 
     @property
     @pulumi.getter(name="runningMode")
@@ -184,11 +195,11 @@ class WorkspaceWorkspacePropertiesArgs:
         """
         The running mode. For more information, see [Manage the WorkSpace Running Mode](https://docs.aws.amazon.com/workspaces/latest/adminguide/running-mode.html). Valid values are `AUTO_STOP` and `ALWAYS_ON`.
         """
-        ...
+        return pulumi.get(self, "running_mode")
 
     @running_mode.setter
     def running_mode(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "running_mode", value)
 
     @property
     @pulumi.getter(name="runningModeAutoStopTimeoutInMinutes")
@@ -196,11 +207,11 @@ class WorkspaceWorkspacePropertiesArgs:
         """
         The time after a user logs off when WorkSpaces are automatically stopped. Configured in 60-minute intervals.
         """
-        ...
+        return pulumi.get(self, "running_mode_auto_stop_timeout_in_minutes")
 
     @running_mode_auto_stop_timeout_in_minutes.setter
     def running_mode_auto_stop_timeout_in_minutes(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "running_mode_auto_stop_timeout_in_minutes", value)
 
     @property
     @pulumi.getter(name="userVolumeSizeGib")
@@ -208,10 +219,10 @@ class WorkspaceWorkspacePropertiesArgs:
         """
         The size of the user storage.
         """
-        ...
+        return pulumi.get(self, "user_volume_size_gib")
 
     @user_volume_size_gib.setter
     def user_volume_size_gib(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "user_volume_size_gib", value)
 
 

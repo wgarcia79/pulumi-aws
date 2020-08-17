@@ -28,8 +28,8 @@ class CertificateAuthorityCertificateAuthorityConfigurationArgs:
         :param pulumi.Input[str] signing_algorithm: Name of the algorithm your private CA uses to sign certificate requests. Valid values can be found in the [ACM PCA Documentation](https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_CertificateAuthorityConfiguration.html).
         :param pulumi.Input['CertificateAuthorityCertificateAuthorityConfigurationSubjectArgs'] subject: Nested argument that contains X.500 distinguished name information. At least one nested attribute must be specified.
         """
-        pulumi.set(__self__, "keyAlgorithm", key_algorithm)
-        pulumi.set(__self__, "signingAlgorithm", signing_algorithm)
+        pulumi.set(__self__, "key_algorithm", key_algorithm)
+        pulumi.set(__self__, "signing_algorithm", signing_algorithm)
         pulumi.set(__self__, "subject", subject)
 
     @property
@@ -38,11 +38,11 @@ class CertificateAuthorityCertificateAuthorityConfigurationArgs:
         """
         Type of the public key algorithm and size, in bits, of the key pair that your key pair creates when it issues a certificate. Valid values can be found in the [ACM PCA Documentation](https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_CertificateAuthorityConfiguration.html).
         """
-        ...
+        return pulumi.get(self, "key_algorithm")
 
     @key_algorithm.setter
     def key_algorithm(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "key_algorithm", value)
 
     @property
     @pulumi.getter(name="signingAlgorithm")
@@ -50,11 +50,11 @@ class CertificateAuthorityCertificateAuthorityConfigurationArgs:
         """
         Name of the algorithm your private CA uses to sign certificate requests. Valid values can be found in the [ACM PCA Documentation](https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_CertificateAuthorityConfiguration.html).
         """
-        ...
+        return pulumi.get(self, "signing_algorithm")
 
     @signing_algorithm.setter
     def signing_algorithm(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "signing_algorithm", value)
 
     @property
     @pulumi.getter
@@ -62,11 +62,11 @@ class CertificateAuthorityCertificateAuthorityConfigurationArgs:
         """
         Nested argument that contains X.500 distinguished name information. At least one nested attribute must be specified.
         """
-        ...
+        return pulumi.get(self, "subject")
 
     @subject.setter
     def subject(self, value: pulumi.Input['CertificateAuthorityCertificateAuthorityConfigurationSubjectArgs']):
-        ...
+        pulumi.set(self, "subject", value)
 
 
 @pulumi.input_type
@@ -100,19 +100,32 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubjectArgs:
         :param pulumi.Input[str] surname: Family name. In the US and the UK for example, the surname of an individual is ordered last. In Asian cultures the surname is typically ordered first.
         :param pulumi.Input[str] title: A title such as Mr. or Ms. which is pre-pended to the name to refer formally to the certificate subject.
         """
-        pulumi.set(__self__, "commonName", common_name)
-        pulumi.set(__self__, "country", country)
-        pulumi.set(__self__, "distinguishedNameQualifier", distinguished_name_qualifier)
-        pulumi.set(__self__, "generationQualifier", generation_qualifier)
-        pulumi.set(__self__, "givenName", given_name)
-        pulumi.set(__self__, "initials", initials)
-        pulumi.set(__self__, "locality", locality)
-        pulumi.set(__self__, "organization", organization)
-        pulumi.set(__self__, "organizationalUnit", organizational_unit)
-        pulumi.set(__self__, "pseudonym", pseudonym)
-        pulumi.set(__self__, "state", state)
-        pulumi.set(__self__, "surname", surname)
-        pulumi.set(__self__, "title", title)
+        if common_name is not None:
+            pulumi.set(__self__, "common_name", common_name)
+        if country is not None:
+            pulumi.set(__self__, "country", country)
+        if distinguished_name_qualifier is not None:
+            pulumi.set(__self__, "distinguished_name_qualifier", distinguished_name_qualifier)
+        if generation_qualifier is not None:
+            pulumi.set(__self__, "generation_qualifier", generation_qualifier)
+        if given_name is not None:
+            pulumi.set(__self__, "given_name", given_name)
+        if initials is not None:
+            pulumi.set(__self__, "initials", initials)
+        if locality is not None:
+            pulumi.set(__self__, "locality", locality)
+        if organization is not None:
+            pulumi.set(__self__, "organization", organization)
+        if organizational_unit is not None:
+            pulumi.set(__self__, "organizational_unit", organizational_unit)
+        if pseudonym is not None:
+            pulumi.set(__self__, "pseudonym", pseudonym)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
+        if surname is not None:
+            pulumi.set(__self__, "surname", surname)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
 
     @property
     @pulumi.getter(name="commonName")
@@ -120,11 +133,11 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubjectArgs:
         """
         Fully qualified domain name (FQDN) associated with the certificate subject.
         """
-        ...
+        return pulumi.get(self, "common_name")
 
     @common_name.setter
     def common_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "common_name", value)
 
     @property
     @pulumi.getter
@@ -132,11 +145,11 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubjectArgs:
         """
         Two digit code that specifies the country in which the certificate subject located.
         """
-        ...
+        return pulumi.get(self, "country")
 
     @country.setter
     def country(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "country", value)
 
     @property
     @pulumi.getter(name="distinguishedNameQualifier")
@@ -144,11 +157,11 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubjectArgs:
         """
         Disambiguating information for the certificate subject.
         """
-        ...
+        return pulumi.get(self, "distinguished_name_qualifier")
 
     @distinguished_name_qualifier.setter
     def distinguished_name_qualifier(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "distinguished_name_qualifier", value)
 
     @property
     @pulumi.getter(name="generationQualifier")
@@ -156,11 +169,11 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubjectArgs:
         """
         Typically a qualifier appended to the name of an individual. Examples include Jr. for junior, Sr. for senior, and III for third.
         """
-        ...
+        return pulumi.get(self, "generation_qualifier")
 
     @generation_qualifier.setter
     def generation_qualifier(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "generation_qualifier", value)
 
     @property
     @pulumi.getter(name="givenName")
@@ -168,11 +181,11 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubjectArgs:
         """
         First name.
         """
-        ...
+        return pulumi.get(self, "given_name")
 
     @given_name.setter
     def given_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "given_name", value)
 
     @property
     @pulumi.getter
@@ -180,11 +193,11 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubjectArgs:
         """
         Concatenation that typically contains the first letter of the `given_name`, the first letter of the middle name if one exists, and the first letter of the `surname`.
         """
-        ...
+        return pulumi.get(self, "initials")
 
     @initials.setter
     def initials(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "initials", value)
 
     @property
     @pulumi.getter
@@ -192,11 +205,11 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubjectArgs:
         """
         The locality (such as a city or town) in which the certificate subject is located.
         """
-        ...
+        return pulumi.get(self, "locality")
 
     @locality.setter
     def locality(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "locality", value)
 
     @property
     @pulumi.getter
@@ -204,11 +217,11 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubjectArgs:
         """
         Legal name of the organization with which the certificate subject is affiliated.
         """
-        ...
+        return pulumi.get(self, "organization")
 
     @organization.setter
     def organization(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "organization", value)
 
     @property
     @pulumi.getter(name="organizationalUnit")
@@ -216,11 +229,11 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubjectArgs:
         """
         A subdivision or unit of the organization (such as sales or finance) with which the certificate subject is affiliated.
         """
-        ...
+        return pulumi.get(self, "organizational_unit")
 
     @organizational_unit.setter
     def organizational_unit(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "organizational_unit", value)
 
     @property
     @pulumi.getter
@@ -228,11 +241,11 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubjectArgs:
         """
         Typically a shortened version of a longer `given_name`. For example, Jonathan is often shortened to John. Elizabeth is often shortened to Beth, Liz, or Eliza.
         """
-        ...
+        return pulumi.get(self, "pseudonym")
 
     @pseudonym.setter
     def pseudonym(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "pseudonym", value)
 
     @property
     @pulumi.getter
@@ -240,11 +253,11 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubjectArgs:
         """
         State in which the subject of the certificate is located.
         """
-        ...
+        return pulumi.get(self, "state")
 
     @state.setter
     def state(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "state", value)
 
     @property
     @pulumi.getter
@@ -252,11 +265,11 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubjectArgs:
         """
         Family name. In the US and the UK for example, the surname of an individual is ordered last. In Asian cultures the surname is typically ordered first.
         """
-        ...
+        return pulumi.get(self, "surname")
 
     @surname.setter
     def surname(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "surname", value)
 
     @property
     @pulumi.getter
@@ -264,11 +277,11 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubjectArgs:
         """
         A title such as Mr. or Ms. which is pre-pended to the name to refer formally to the certificate subject.
         """
-        ...
+        return pulumi.get(self, "title")
 
     @title.setter
     def title(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "title", value)
 
 
 @pulumi.input_type
@@ -278,7 +291,8 @@ class CertificateAuthorityRevocationConfigurationArgs:
         """
         :param pulumi.Input['CertificateAuthorityRevocationConfigurationCrlConfigurationArgs'] crl_configuration: Nested argument containing configuration of the certificate revocation list (CRL), if any, maintained by the certificate authority. Defined below.
         """
-        pulumi.set(__self__, "crlConfiguration", crl_configuration)
+        if crl_configuration is not None:
+            pulumi.set(__self__, "crl_configuration", crl_configuration)
 
     @property
     @pulumi.getter(name="crlConfiguration")
@@ -286,11 +300,11 @@ class CertificateAuthorityRevocationConfigurationArgs:
         """
         Nested argument containing configuration of the certificate revocation list (CRL), if any, maintained by the certificate authority. Defined below.
         """
-        ...
+        return pulumi.get(self, "crl_configuration")
 
     @crl_configuration.setter
     def crl_configuration(self, value: Optional[pulumi.Input['CertificateAuthorityRevocationConfigurationCrlConfigurationArgs']]):
-        ...
+        pulumi.set(self, "crl_configuration", value)
 
 
 @pulumi.input_type
@@ -306,10 +320,13 @@ class CertificateAuthorityRevocationConfigurationCrlConfigurationArgs:
         :param pulumi.Input[bool] enabled: Boolean value that specifies whether certificate revocation lists (CRLs) are enabled. Defaults to `false`.
         :param pulumi.Input[str] s3_bucket_name: Name of the S3 bucket that contains the CRL. If you do not provide a value for the `custom_cname` argument, the name of your S3 bucket is placed into the CRL Distribution Points extension of the issued certificate. You must specify a bucket policy that allows ACM PCA to write the CRL to your bucket.
         """
-        pulumi.set(__self__, "expirationInDays", expiration_in_days)
-        pulumi.set(__self__, "customCname", custom_cname)
-        pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "s3BucketName", s3_bucket_name)
+        pulumi.set(__self__, "expiration_in_days", expiration_in_days)
+        if custom_cname is not None:
+            pulumi.set(__self__, "custom_cname", custom_cname)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if s3_bucket_name is not None:
+            pulumi.set(__self__, "s3_bucket_name", s3_bucket_name)
 
     @property
     @pulumi.getter(name="expirationInDays")
@@ -317,11 +334,11 @@ class CertificateAuthorityRevocationConfigurationCrlConfigurationArgs:
         """
         Number of days until a certificate expires. Must be between 1 and 5000.
         """
-        ...
+        return pulumi.get(self, "expiration_in_days")
 
     @expiration_in_days.setter
     def expiration_in_days(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "expiration_in_days", value)
 
     @property
     @pulumi.getter(name="customCname")
@@ -329,11 +346,11 @@ class CertificateAuthorityRevocationConfigurationCrlConfigurationArgs:
         """
         Name inserted into the certificate CRL Distribution Points extension that enables the use of an alias for the CRL distribution point. Use this value if you don't want the name of your S3 bucket to be public.
         """
-        ...
+        return pulumi.get(self, "custom_cname")
 
     @custom_cname.setter
     def custom_cname(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "custom_cname", value)
 
     @property
     @pulumi.getter
@@ -341,11 +358,11 @@ class CertificateAuthorityRevocationConfigurationCrlConfigurationArgs:
         """
         Boolean value that specifies whether certificate revocation lists (CRLs) are enabled. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter(name="s3BucketName")
@@ -353,27 +370,27 @@ class CertificateAuthorityRevocationConfigurationCrlConfigurationArgs:
         """
         Name of the S3 bucket that contains the CRL. If you do not provide a value for the `custom_cname` argument, the name of your S3 bucket is placed into the CRL Distribution Points extension of the issued certificate. You must specify a bucket policy that allows ACM PCA to write the CRL to your bucket.
         """
-        ...
+        return pulumi.get(self, "s3_bucket_name")
 
     @s3_bucket_name.setter
     def s3_bucket_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "s3_bucket_name", value)
 
 
 @pulumi.input_type
 class GetCertificateAuthorityRevocationConfigurationArgs:
     def __init__(__self__, *,
                  crl_configurations: List['GetCertificateAuthorityRevocationConfigurationCrlConfigurationArgs']):
-        pulumi.set(__self__, "crlConfigurations", crl_configurations)
+        pulumi.set(__self__, "crl_configurations", crl_configurations)
 
     @property
     @pulumi.getter(name="crlConfigurations")
     def crl_configurations(self) -> List['GetCertificateAuthorityRevocationConfigurationCrlConfigurationArgs']:
-        ...
+        return pulumi.get(self, "crl_configurations")
 
     @crl_configurations.setter
     def crl_configurations(self, value: List['GetCertificateAuthorityRevocationConfigurationCrlConfigurationArgs']):
-        ...
+        pulumi.set(self, "crl_configurations", value)
 
 
 @pulumi.input_type
@@ -383,45 +400,45 @@ class GetCertificateAuthorityRevocationConfigurationCrlConfigurationArgs:
                  enabled: bool,
                  expiration_in_days: float,
                  s3_bucket_name: str):
-        pulumi.set(__self__, "customCname", custom_cname)
+        pulumi.set(__self__, "custom_cname", custom_cname)
         pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "expirationInDays", expiration_in_days)
-        pulumi.set(__self__, "s3BucketName", s3_bucket_name)
+        pulumi.set(__self__, "expiration_in_days", expiration_in_days)
+        pulumi.set(__self__, "s3_bucket_name", s3_bucket_name)
 
     @property
     @pulumi.getter(name="customCname")
     def custom_cname(self) -> str:
-        ...
+        return pulumi.get(self, "custom_cname")
 
     @custom_cname.setter
     def custom_cname(self, value: str):
-        ...
+        pulumi.set(self, "custom_cname", value)
 
     @property
     @pulumi.getter
     def enabled(self) -> bool:
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: bool):
-        ...
+        pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter(name="expirationInDays")
     def expiration_in_days(self) -> float:
-        ...
+        return pulumi.get(self, "expiration_in_days")
 
     @expiration_in_days.setter
     def expiration_in_days(self, value: float):
-        ...
+        pulumi.set(self, "expiration_in_days", value)
 
     @property
     @pulumi.getter(name="s3BucketName")
     def s3_bucket_name(self) -> str:
-        ...
+        return pulumi.get(self, "s3_bucket_name")
 
     @s3_bucket_name.setter
     def s3_bucket_name(self, value: str):
-        ...
+        pulumi.set(self, "s3_bucket_name", value)
 
 

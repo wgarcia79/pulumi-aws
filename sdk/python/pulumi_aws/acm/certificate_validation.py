@@ -12,16 +12,6 @@ __all__ = ['CertificateValidation']
 
 
 class CertificateValidation(pulumi.CustomResource):
-    certificate_arn: pulumi.Output[str] = pulumi.property("certificateArn")
-    """
-    The ARN of the certificate that is being validated.
-    """
-
-    validation_record_fqdns: pulumi.Output[Optional[List[str]]] = pulumi.property("validationRecordFqdns")
-    """
-    List of FQDNs that implement the validation. Only valid for DNS validation method ACM certificates. If this is set, the resource can implement additional sanity checks and has an explicit dependency on the resource that is implementing the validation
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -176,6 +166,22 @@ class CertificateValidation(pulumi.CustomResource):
         __props__["certificate_arn"] = certificate_arn
         __props__["validation_record_fqdns"] = validation_record_fqdns
         return CertificateValidation(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="certificateArn")
+    def certificate_arn(self) -> str:
+        """
+        The ARN of the certificate that is being validated.
+        """
+        return pulumi.get(self, "certificate_arn")
+
+    @property
+    @pulumi.getter(name="validationRecordFqdns")
+    def validation_record_fqdns(self) -> Optional[List[str]]:
+        """
+        List of FQDNs that implement the validation. Only valid for DNS validation method ACM certificates. If this is set, the resource can implement additional sanity checks and has an explicit dependency on the resource that is implementing the validation
+        """
+        return pulumi.get(self, "validation_record_fqdns")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

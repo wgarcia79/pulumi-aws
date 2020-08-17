@@ -12,56 +12,6 @@ __all__ = ['VpcAttachmentAccepter']
 
 
 class VpcAttachmentAccepter(pulumi.CustomResource):
-    dns_support: pulumi.Output[str] = pulumi.property("dnsSupport")
-    """
-    Whether DNS support is enabled. Valid values: `disable`, `enable`.
-    """
-
-    ipv6_support: pulumi.Output[str] = pulumi.property("ipv6Support")
-    """
-    Whether IPv6 support is enabled. Valid values: `disable`, `enable`.
-    """
-
-    subnet_ids: pulumi.Output[List[str]] = pulumi.property("subnetIds")
-    """
-    Identifiers of EC2 Subnets.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value tags for the EC2 Transit Gateway VPC Attachment.
-    """
-
-    transit_gateway_attachment_id: pulumi.Output[str] = pulumi.property("transitGatewayAttachmentId")
-    """
-    The ID of the EC2 Transit Gateway Attachment to manage.
-    """
-
-    transit_gateway_default_route_table_association: pulumi.Output[Optional[bool]] = pulumi.property("transitGatewayDefaultRouteTableAssociation")
-    """
-    Boolean whether the VPC Attachment should be associated with the EC2 Transit Gateway association default route table. Default value: `true`.
-    """
-
-    transit_gateway_default_route_table_propagation: pulumi.Output[Optional[bool]] = pulumi.property("transitGatewayDefaultRouteTablePropagation")
-    """
-    Boolean whether the VPC Attachment should propagate routes with the EC2 Transit Gateway propagation default route table. Default value: `true`.
-    """
-
-    transit_gateway_id: pulumi.Output[str] = pulumi.property("transitGatewayId")
-    """
-    Identifier of EC2 Transit Gateway.
-    """
-
-    vpc_id: pulumi.Output[str] = pulumi.property("vpcId")
-    """
-    Identifier of EC2 VPC.
-    """
-
-    vpc_owner_id: pulumi.Output[str] = pulumi.property("vpcOwnerId")
-    """
-    Identifier of the AWS account that owns the EC2 VPC.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -185,6 +135,86 @@ class VpcAttachmentAccepter(pulumi.CustomResource):
         __props__["vpc_id"] = vpc_id
         __props__["vpc_owner_id"] = vpc_owner_id
         return VpcAttachmentAccepter(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="dnsSupport")
+    def dns_support(self) -> str:
+        """
+        Whether DNS support is enabled. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "dns_support")
+
+    @property
+    @pulumi.getter(name="ipv6Support")
+    def ipv6_support(self) -> str:
+        """
+        Whether IPv6 support is enabled. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ipv6_support")
+
+    @property
+    @pulumi.getter(name="subnetIds")
+    def subnet_ids(self) -> List[str]:
+        """
+        Identifiers of EC2 Subnets.
+        """
+        return pulumi.get(self, "subnet_ids")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value tags for the EC2 Transit Gateway VPC Attachment.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="transitGatewayAttachmentId")
+    def transit_gateway_attachment_id(self) -> str:
+        """
+        The ID of the EC2 Transit Gateway Attachment to manage.
+        """
+        return pulumi.get(self, "transit_gateway_attachment_id")
+
+    @property
+    @pulumi.getter(name="transitGatewayDefaultRouteTableAssociation")
+    def transit_gateway_default_route_table_association(self) -> Optional[bool]:
+        """
+        Boolean whether the VPC Attachment should be associated with the EC2 Transit Gateway association default route table. Default value: `true`.
+        """
+        return pulumi.get(self, "transit_gateway_default_route_table_association")
+
+    @property
+    @pulumi.getter(name="transitGatewayDefaultRouteTablePropagation")
+    def transit_gateway_default_route_table_propagation(self) -> Optional[bool]:
+        """
+        Boolean whether the VPC Attachment should propagate routes with the EC2 Transit Gateway propagation default route table. Default value: `true`.
+        """
+        return pulumi.get(self, "transit_gateway_default_route_table_propagation")
+
+    @property
+    @pulumi.getter(name="transitGatewayId")
+    def transit_gateway_id(self) -> str:
+        """
+        Identifier of EC2 Transit Gateway.
+        """
+        return pulumi.get(self, "transit_gateway_id")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        Identifier of EC2 VPC.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @property
+    @pulumi.getter(name="vpcOwnerId")
+    def vpc_owner_id(self) -> str:
+        """
+        Identifier of the AWS account that owns the EC2 VPC.
+        """
+        return pulumi.get(self, "vpc_owner_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

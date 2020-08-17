@@ -12,36 +12,6 @@ __all__ = ['Thing']
 
 
 class Thing(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the thing.
-    """
-
-    attributes: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("attributes")
-    """
-    Map of attributes of the thing.
-    """
-
-    default_client_id: pulumi.Output[str] = pulumi.property("defaultClientId")
-    """
-    The default client ID.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the thing.
-    """
-
-    thing_type_name: pulumi.Output[Optional[str]] = pulumi.property("thingTypeName")
-    """
-    The thing type name.
-    """
-
-    version: pulumi.Output[float] = pulumi.property("version")
-    """
-    The current version of the thing record in the registry.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -135,6 +105,54 @@ class Thing(pulumi.CustomResource):
         __props__["thing_type_name"] = thing_type_name
         __props__["version"] = version
         return Thing(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the thing.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def attributes(self) -> Optional[Mapping[str, str]]:
+        """
+        Map of attributes of the thing.
+        """
+        return pulumi.get(self, "attributes")
+
+    @property
+    @pulumi.getter(name="defaultClientId")
+    def default_client_id(self) -> str:
+        """
+        The default client ID.
+        """
+        return pulumi.get(self, "default_client_id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the thing.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="thingTypeName")
+    def thing_type_name(self) -> Optional[str]:
+        """
+        The thing type name.
+        """
+        return pulumi.get(self, "thing_type_name")
+
+    @property
+    @pulumi.getter
+    def version(self) -> float:
+        """
+        The current version of the thing record in the registry.
+        """
+        return pulumi.get(self, "version")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

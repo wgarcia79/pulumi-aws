@@ -12,26 +12,6 @@ __all__ = ['ReceiptFilter']
 
 
 class ReceiptFilter(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The SES receipt filter ARN.
-    """
-
-    cidr: pulumi.Output[str] = pulumi.property("cidr")
-    """
-    The IP address or address range to filter, in CIDR notation
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the filter
-    """
-
-    policy: pulumi.Output[str] = pulumi.property("policy")
-    """
-    Block or Allow
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -121,6 +101,38 @@ class ReceiptFilter(pulumi.CustomResource):
         __props__["name"] = name
         __props__["policy"] = policy
         return ReceiptFilter(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The SES receipt filter ARN.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def cidr(self) -> str:
+        """
+        The IP address or address range to filter, in CIDR notation
+        """
+        return pulumi.get(self, "cidr")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the filter
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def policy(self) -> str:
+        """
+        Block or Allow
+        """
+        return pulumi.get(self, "policy")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

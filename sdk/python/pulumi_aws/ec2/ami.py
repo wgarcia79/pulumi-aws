@@ -14,91 +14,6 @@ __all__ = ['Ami']
 
 
 class Ami(pulumi.CustomResource):
-    architecture: pulumi.Output[Optional[str]] = pulumi.property("architecture")
-    """
-    Machine architecture for created instances. Defaults to "x86_64".
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the AMI.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    A longer, human-readable description for the AMI.
-    """
-
-    ebs_block_devices: pulumi.Output[List['outputs.AmiEbsBlockDevice']] = pulumi.property("ebsBlockDevices")
-    """
-    Nested block describing an EBS block device that should be
-    attached to created instances. The structure of this block is described below.
-    """
-
-    ena_support: pulumi.Output[Optional[bool]] = pulumi.property("enaSupport")
-    """
-    Specifies whether enhanced networking with ENA is enabled. Defaults to `false`.
-    """
-
-    ephemeral_block_devices: pulumi.Output[List['outputs.AmiEphemeralBlockDevice']] = pulumi.property("ephemeralBlockDevices")
-    """
-    Nested block describing an ephemeral block device that
-    should be attached to created instances. The structure of this block is described below.
-    """
-
-    image_location: pulumi.Output[str] = pulumi.property("imageLocation")
-    """
-    Path to an S3 object containing an image manifest, e.g. created
-    by the `ec2-upload-bundle` command in the EC2 command line tools.
-    """
-
-    kernel_id: pulumi.Output[Optional[str]] = pulumi.property("kernelId")
-    """
-    The id of the kernel image (AKI) that will be used as the paravirtual
-    kernel in created instances.
-    """
-
-    manage_ebs_snapshots: pulumi.Output[bool] = pulumi.property("manageEbsSnapshots")
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    A region-unique name for the AMI.
-    """
-
-    ramdisk_id: pulumi.Output[Optional[str]] = pulumi.property("ramdiskId")
-    """
-    The id of an initrd image (ARI) that will be used when booting the
-    created instances.
-    """
-
-    root_device_name: pulumi.Output[Optional[str]] = pulumi.property("rootDeviceName")
-    """
-    The name of the root device (for example, `/dev/sda1`, or `/dev/xvda`).
-    """
-
-    root_snapshot_id: pulumi.Output[str] = pulumi.property("rootSnapshotId")
-    """
-    The Snapshot ID for the root volume (for EBS-backed AMIs)
-    """
-
-    sriov_net_support: pulumi.Output[Optional[str]] = pulumi.property("sriovNetSupport")
-    """
-    When set to "simple" (the default), enables enhanced networking
-    for created instances. No other value is supported at this time.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
-    virtualization_type: pulumi.Output[Optional[str]] = pulumi.property("virtualizationType")
-    """
-    Keyword to choose what virtualization mode created instances
-    will use. Can be either "paravirtual" (the default) or "hvm". The choice of virtualization type
-    changes the set of further arguments that are required, as described below.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -282,6 +197,139 @@ class Ami(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["virtualization_type"] = virtualization_type
         return Ami(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def architecture(self) -> Optional[str]:
+        """
+        Machine architecture for created instances. Defaults to "x86_64".
+        """
+        return pulumi.get(self, "architecture")
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the AMI.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        A longer, human-readable description for the AMI.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="ebsBlockDevices")
+    def ebs_block_devices(self) -> List['outputs.AmiEbsBlockDevice']:
+        """
+        Nested block describing an EBS block device that should be
+        attached to created instances. The structure of this block is described below.
+        """
+        return pulumi.get(self, "ebs_block_devices")
+
+    @property
+    @pulumi.getter(name="enaSupport")
+    def ena_support(self) -> Optional[bool]:
+        """
+        Specifies whether enhanced networking with ENA is enabled. Defaults to `false`.
+        """
+        return pulumi.get(self, "ena_support")
+
+    @property
+    @pulumi.getter(name="ephemeralBlockDevices")
+    def ephemeral_block_devices(self) -> List['outputs.AmiEphemeralBlockDevice']:
+        """
+        Nested block describing an ephemeral block device that
+        should be attached to created instances. The structure of this block is described below.
+        """
+        return pulumi.get(self, "ephemeral_block_devices")
+
+    @property
+    @pulumi.getter(name="imageLocation")
+    def image_location(self) -> str:
+        """
+        Path to an S3 object containing an image manifest, e.g. created
+        by the `ec2-upload-bundle` command in the EC2 command line tools.
+        """
+        return pulumi.get(self, "image_location")
+
+    @property
+    @pulumi.getter(name="kernelId")
+    def kernel_id(self) -> Optional[str]:
+        """
+        The id of the kernel image (AKI) that will be used as the paravirtual
+        kernel in created instances.
+        """
+        return pulumi.get(self, "kernel_id")
+
+    @property
+    @pulumi.getter(name="manageEbsSnapshots")
+    def manage_ebs_snapshots(self) -> bool:
+        return pulumi.get(self, "manage_ebs_snapshots")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A region-unique name for the AMI.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="ramdiskId")
+    def ramdisk_id(self) -> Optional[str]:
+        """
+        The id of an initrd image (ARI) that will be used when booting the
+        created instances.
+        """
+        return pulumi.get(self, "ramdisk_id")
+
+    @property
+    @pulumi.getter(name="rootDeviceName")
+    def root_device_name(self) -> Optional[str]:
+        """
+        The name of the root device (for example, `/dev/sda1`, or `/dev/xvda`).
+        """
+        return pulumi.get(self, "root_device_name")
+
+    @property
+    @pulumi.getter(name="rootSnapshotId")
+    def root_snapshot_id(self) -> str:
+        """
+        The Snapshot ID for the root volume (for EBS-backed AMIs)
+        """
+        return pulumi.get(self, "root_snapshot_id")
+
+    @property
+    @pulumi.getter(name="sriovNetSupport")
+    def sriov_net_support(self) -> Optional[str]:
+        """
+        When set to "simple" (the default), enables enhanced networking
+        for created instances. No other value is supported at this time.
+        """
+        return pulumi.get(self, "sriov_net_support")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="virtualizationType")
+    def virtualization_type(self) -> Optional[str]:
+        """
+        Keyword to choose what virtualization mode created instances
+        will use. Can be either "paravirtual" (the default) or "hvm". The choice of virtualization type
+        changes the set of further arguments that are required, as described below.
+        """
+        return pulumi.get(self, "virtualization_type")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

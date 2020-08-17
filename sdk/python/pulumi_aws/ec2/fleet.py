@@ -14,56 +14,6 @@ __all__ = ['Fleet']
 
 
 class Fleet(pulumi.CustomResource):
-    excess_capacity_termination_policy: pulumi.Output[Optional[str]] = pulumi.property("excessCapacityTerminationPolicy")
-    """
-    Whether running instances should be terminated if the total target capacity of the EC2 Fleet is decreased below the current size of the EC2. Valid values: `no-termination`, `termination`. Defaults to `termination`.
-    """
-
-    launch_template_config: pulumi.Output['outputs.FleetLaunchTemplateConfig'] = pulumi.property("launchTemplateConfig")
-    """
-    Nested argument containing EC2 Launch Template configurations. Defined below.
-    """
-
-    on_demand_options: pulumi.Output[Optional['outputs.FleetOnDemandOptions']] = pulumi.property("onDemandOptions")
-    """
-    Nested argument containing On-Demand configurations. Defined below.
-    """
-
-    replace_unhealthy_instances: pulumi.Output[Optional[bool]] = pulumi.property("replaceUnhealthyInstances")
-    """
-    Whether EC2 Fleet should replace unhealthy instances. Defaults to `false`.
-    """
-
-    spot_options: pulumi.Output[Optional['outputs.FleetSpotOptions']] = pulumi.property("spotOptions")
-    """
-    Nested argument containing Spot configurations. Defined below.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Map of Fleet tags. To tag instances at launch, specify the tags in the Launch Template.
-    """
-
-    target_capacity_specification: pulumi.Output['outputs.FleetTargetCapacitySpecification'] = pulumi.property("targetCapacitySpecification")
-    """
-    Nested argument containing target capacity configurations. Defined below.
-    """
-
-    terminate_instances: pulumi.Output[Optional[bool]] = pulumi.property("terminateInstances")
-    """
-    Whether to terminate instances for an EC2 Fleet if it is deleted successfully. Defaults to `false`.
-    """
-
-    terminate_instances_with_expiration: pulumi.Output[Optional[bool]] = pulumi.property("terminateInstancesWithExpiration")
-    """
-    Whether running instances should be terminated when the EC2 Fleet expires. Defaults to `false`.
-    """
-
-    type: pulumi.Output[Optional[str]] = pulumi.property("type")
-    """
-    The type of request. Indicates whether the EC2 Fleet only requests the target capacity, or also attempts to maintain it. Valid values: `maintain`, `request`. Defaults to `maintain`.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -199,6 +149,86 @@ class Fleet(pulumi.CustomResource):
         __props__["terminate_instances_with_expiration"] = terminate_instances_with_expiration
         __props__["type"] = type
         return Fleet(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="excessCapacityTerminationPolicy")
+    def excess_capacity_termination_policy(self) -> Optional[str]:
+        """
+        Whether running instances should be terminated if the total target capacity of the EC2 Fleet is decreased below the current size of the EC2. Valid values: `no-termination`, `termination`. Defaults to `termination`.
+        """
+        return pulumi.get(self, "excess_capacity_termination_policy")
+
+    @property
+    @pulumi.getter(name="launchTemplateConfig")
+    def launch_template_config(self) -> 'outputs.FleetLaunchTemplateConfig':
+        """
+        Nested argument containing EC2 Launch Template configurations. Defined below.
+        """
+        return pulumi.get(self, "launch_template_config")
+
+    @property
+    @pulumi.getter(name="onDemandOptions")
+    def on_demand_options(self) -> Optional['outputs.FleetOnDemandOptions']:
+        """
+        Nested argument containing On-Demand configurations. Defined below.
+        """
+        return pulumi.get(self, "on_demand_options")
+
+    @property
+    @pulumi.getter(name="replaceUnhealthyInstances")
+    def replace_unhealthy_instances(self) -> Optional[bool]:
+        """
+        Whether EC2 Fleet should replace unhealthy instances. Defaults to `false`.
+        """
+        return pulumi.get(self, "replace_unhealthy_instances")
+
+    @property
+    @pulumi.getter(name="spotOptions")
+    def spot_options(self) -> Optional['outputs.FleetSpotOptions']:
+        """
+        Nested argument containing Spot configurations. Defined below.
+        """
+        return pulumi.get(self, "spot_options")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Map of Fleet tags. To tag instances at launch, specify the tags in the Launch Template.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="targetCapacitySpecification")
+    def target_capacity_specification(self) -> 'outputs.FleetTargetCapacitySpecification':
+        """
+        Nested argument containing target capacity configurations. Defined below.
+        """
+        return pulumi.get(self, "target_capacity_specification")
+
+    @property
+    @pulumi.getter(name="terminateInstances")
+    def terminate_instances(self) -> Optional[bool]:
+        """
+        Whether to terminate instances for an EC2 Fleet if it is deleted successfully. Defaults to `false`.
+        """
+        return pulumi.get(self, "terminate_instances")
+
+    @property
+    @pulumi.getter(name="terminateInstancesWithExpiration")
+    def terminate_instances_with_expiration(self) -> Optional[bool]:
+        """
+        Whether running instances should be terminated when the EC2 Fleet expires. Defaults to `false`.
+        """
+        return pulumi.get(self, "terminate_instances_with_expiration")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        The type of request. Indicates whether the EC2 Fleet only requests the target capacity, or also attempts to maintain it. Valid values: `maintain`, `request`. Defaults to `maintain`.
+        """
+        return pulumi.get(self, "type")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

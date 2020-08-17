@@ -17,15 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetPrefixListResult:
-    cidr_blocks: List[str] = pulumi.property("cidrBlocks")
-    filters: Optional[List['outputs.GetPrefixListFilterResult']] = pulumi.property("filters")
-    id: str = pulumi.property("id")
-    name: str = pulumi.property("name")
-    prefix_list_id: Optional[str] = pulumi.property("prefixListId")
-
-
 class GetPrefixListResult:
     """
     A collection of values returned by getPrefixList.
@@ -33,28 +26,54 @@ class GetPrefixListResult:
     def __init__(__self__, cidr_blocks=None, filters=None, id=None, name=None, prefix_list_id=None):
         if cidr_blocks and not isinstance(cidr_blocks, list):
             raise TypeError("Expected argument 'cidr_blocks' to be a list")
-        __self__.cidr_blocks = cidr_blocks
+        pulumi.set(__self__, "cidr_blocks", cidr_blocks)
+        if filters and not isinstance(filters, list):
+            raise TypeError("Expected argument 'filters' to be a list")
+        pulumi.set(__self__, "filters", filters)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if prefix_list_id and not isinstance(prefix_list_id, str):
+            raise TypeError("Expected argument 'prefix_list_id' to be a str")
+        pulumi.set(__self__, "prefix_list_id", prefix_list_id)
+
+    @property
+    @pulumi.getter(name="cidrBlocks")
+    def cidr_blocks(self) -> List[str]:
         """
         The list of CIDR blocks for the AWS service associated with the prefix list.
         """
-        if filters and not isinstance(filters, list):
-            raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "cidr_blocks")
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetPrefixListFilterResult']]:
+        return pulumi.get(self, "filters")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
         """
         The name of the selected prefix list.
         """
-        if prefix_list_id and not isinstance(prefix_list_id, str):
-            raise TypeError("Expected argument 'prefix_list_id' to be a str")
-        __self__.prefix_list_id = prefix_list_id
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="prefixListId")
+    def prefix_list_id(self) -> Optional[str]:
+        return pulumi.get(self, "prefix_list_id")
+
 
 
 class AwaitableGetPrefixListResult(GetPrefixListResult):
@@ -129,7 +148,7 @@ def get_prefix_list(filters: Optional[List[pulumi.InputType['GetPrefixListFilter
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:index/getPrefixList:getPrefixList', __args__, opts=opts, typ=_GetPrefixListResult).value
+    __ret__ = pulumi.runtime.invoke('aws:index/getPrefixList:getPrefixList', __args__, opts=opts, typ=GetPrefixListResult).value
 
     return AwaitableGetPrefixListResult(
         cidr_blocks=__ret__.cidr_blocks,

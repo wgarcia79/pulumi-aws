@@ -14,70 +14,6 @@ __all__ = ['FirehoseDeliveryStream']
 
 
 class FirehoseDeliveryStream(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The Amazon Resource Name (ARN) specifying the Stream
-    """
-
-    destination: pulumi.Output[str] = pulumi.property("destination")
-    """
-    This is the destination to where the data is delivered. The only options are `s3` (Deprecated, use `extended_s3` instead), `extended_s3`, `redshift`, `elasticsearch`, and `splunk`.
-    """
-
-    destination_id: pulumi.Output[str] = pulumi.property("destinationId")
-
-    elasticsearch_configuration: pulumi.Output[Optional['outputs.FirehoseDeliveryStreamElasticsearchConfiguration']] = pulumi.property("elasticsearchConfiguration")
-    """
-    Configuration options if elasticsearch is the destination. More details are given below.
-    """
-
-    extended_s3_configuration: pulumi.Output[Optional['outputs.FirehoseDeliveryStreamExtendedS3Configuration']] = pulumi.property("extendedS3Configuration")
-    """
-    Enhanced configuration options for the s3 destination. More details are given below.
-    """
-
-    kinesis_source_configuration: pulumi.Output[Optional['outputs.FirehoseDeliveryStreamKinesisSourceConfiguration']] = pulumi.property("kinesisSourceConfiguration")
-    """
-    Allows the ability to specify the kinesis stream that is used as the source of the firehose delivery stream.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    A name to identify the stream. This is unique to the
-    AWS account and region the Stream is created in.
-    """
-
-    redshift_configuration: pulumi.Output[Optional['outputs.FirehoseDeliveryStreamRedshiftConfiguration']] = pulumi.property("redshiftConfiguration")
-    """
-    Configuration options if redshift is the destination.
-    Using `redshift_configuration` requires the user to also specify a
-    `s3_configuration` block. More details are given below.
-    """
-
-    s3_configuration: pulumi.Output[Optional['outputs.FirehoseDeliveryStreamS3Configuration']] = pulumi.property("s3Configuration")
-    """
-    Required for non-S3 destinations. For S3 destination, use `extended_s3_configuration` instead. Configuration options for the s3 destination (or the intermediate bucket if the destination
-    is redshift). More details are given below.
-    """
-
-    server_side_encryption: pulumi.Output[Optional['outputs.FirehoseDeliveryStreamServerSideEncryption']] = pulumi.property("serverSideEncryption")
-    """
-    Encrypt at rest options.
-    Server-side encryption should not be enabled when a kinesis stream is configured as the source of the firehose delivery stream.
-    """
-
-    splunk_configuration: pulumi.Output[Optional['outputs.FirehoseDeliveryStreamSplunkConfiguration']] = pulumi.property("splunkConfiguration")
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
-    version_id: pulumi.Output[str] = pulumi.property("versionId")
-    """
-    Specifies the table version for the output data schema. Defaults to `LATEST`.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -404,6 +340,109 @@ class FirehoseDeliveryStream(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["version_id"] = version_id
         return FirehoseDeliveryStream(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) specifying the Stream
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def destination(self) -> str:
+        """
+        This is the destination to where the data is delivered. The only options are `s3` (Deprecated, use `extended_s3` instead), `extended_s3`, `redshift`, `elasticsearch`, and `splunk`.
+        """
+        return pulumi.get(self, "destination")
+
+    @property
+    @pulumi.getter(name="destinationId")
+    def destination_id(self) -> str:
+        return pulumi.get(self, "destination_id")
+
+    @property
+    @pulumi.getter(name="elasticsearchConfiguration")
+    def elasticsearch_configuration(self) -> Optional['outputs.FirehoseDeliveryStreamElasticsearchConfiguration']:
+        """
+        Configuration options if elasticsearch is the destination. More details are given below.
+        """
+        return pulumi.get(self, "elasticsearch_configuration")
+
+    @property
+    @pulumi.getter(name="extendedS3Configuration")
+    def extended_s3_configuration(self) -> Optional['outputs.FirehoseDeliveryStreamExtendedS3Configuration']:
+        """
+        Enhanced configuration options for the s3 destination. More details are given below.
+        """
+        return pulumi.get(self, "extended_s3_configuration")
+
+    @property
+    @pulumi.getter(name="kinesisSourceConfiguration")
+    def kinesis_source_configuration(self) -> Optional['outputs.FirehoseDeliveryStreamKinesisSourceConfiguration']:
+        """
+        Allows the ability to specify the kinesis stream that is used as the source of the firehose delivery stream.
+        """
+        return pulumi.get(self, "kinesis_source_configuration")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A name to identify the stream. This is unique to the
+        AWS account and region the Stream is created in.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="redshiftConfiguration")
+    def redshift_configuration(self) -> Optional['outputs.FirehoseDeliveryStreamRedshiftConfiguration']:
+        """
+        Configuration options if redshift is the destination.
+        Using `redshift_configuration` requires the user to also specify a
+        `s3_configuration` block. More details are given below.
+        """
+        return pulumi.get(self, "redshift_configuration")
+
+    @property
+    @pulumi.getter(name="s3Configuration")
+    def s3_configuration(self) -> Optional['outputs.FirehoseDeliveryStreamS3Configuration']:
+        """
+        Required for non-S3 destinations. For S3 destination, use `extended_s3_configuration` instead. Configuration options for the s3 destination (or the intermediate bucket if the destination
+        is redshift). More details are given below.
+        """
+        return pulumi.get(self, "s3_configuration")
+
+    @property
+    @pulumi.getter(name="serverSideEncryption")
+    def server_side_encryption(self) -> Optional['outputs.FirehoseDeliveryStreamServerSideEncryption']:
+        """
+        Encrypt at rest options.
+        Server-side encryption should not be enabled when a kinesis stream is configured as the source of the firehose delivery stream.
+        """
+        return pulumi.get(self, "server_side_encryption")
+
+    @property
+    @pulumi.getter(name="splunkConfiguration")
+    def splunk_configuration(self) -> Optional['outputs.FirehoseDeliveryStreamSplunkConfiguration']:
+        return pulumi.get(self, "splunk_configuration")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="versionId")
+    def version_id(self) -> str:
+        """
+        Specifies the table version for the output data schema. Defaults to `LATEST`.
+        """
+        return pulumi.get(self, "version_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -12,26 +12,6 @@ __all__ = ['RoleAlias']
 
 
 class RoleAlias(pulumi.CustomResource):
-    alias: pulumi.Output[str] = pulumi.property("alias")
-    """
-    The name of the role alias.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN assigned by AWS to this role alias.
-    """
-
-    credential_duration: pulumi.Output[Optional[float]] = pulumi.property("credentialDuration")
-    """
-    The duration of the credential, in seconds. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 900 seconds (15 minutes) to 3600 seconds (60 minutes).
-    """
-
-    role_arn: pulumi.Output[str] = pulumi.property("roleArn")
-    """
-    The identity of the role to which the alias refers.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -110,6 +90,38 @@ class RoleAlias(pulumi.CustomResource):
         __props__["credential_duration"] = credential_duration
         __props__["role_arn"] = role_arn
         return RoleAlias(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def alias(self) -> str:
+        """
+        The name of the role alias.
+        """
+        return pulumi.get(self, "alias")
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN assigned by AWS to this role alias.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="credentialDuration")
+    def credential_duration(self) -> Optional[float]:
+        """
+        The duration of the credential, in seconds. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 900 seconds (15 minutes) to 3600 seconds (60 minutes).
+        """
+        return pulumi.get(self, "credential_duration")
+
+    @property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> str:
+        """
+        The identity of the role to which the alias refers.
+        """
+        return pulumi.get(self, "role_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

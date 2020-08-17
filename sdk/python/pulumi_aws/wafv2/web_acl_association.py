@@ -12,16 +12,6 @@ __all__ = ['WebAclAssociation']
 
 
 class WebAclAssociation(pulumi.CustomResource):
-    resource_arn: pulumi.Output[str] = pulumi.property("resourceArn")
-    """
-    The Amazon Resource Name (ARN) of the resource to associate with the web ACL. This must be an ARN of an Application Load Balancer or an Amazon API Gateway stage.
-    """
-
-    web_acl_arn: pulumi.Output[str] = pulumi.property("webAclArn")
-    """
-    The Amazon Resource Name (ARN) of the Web ACL that you want to associate with the resource.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -90,6 +80,22 @@ class WebAclAssociation(pulumi.CustomResource):
         __props__["resource_arn"] = resource_arn
         __props__["web_acl_arn"] = web_acl_arn
         return WebAclAssociation(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="resourceArn")
+    def resource_arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) of the resource to associate with the web ACL. This must be an ARN of an Application Load Balancer or an Amazon API Gateway stage.
+        """
+        return pulumi.get(self, "resource_arn")
+
+    @property
+    @pulumi.getter(name="webAclArn")
+    def web_acl_arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) of the Web ACL that you want to associate with the resource.
+        """
+        return pulumi.get(self, "web_acl_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -14,41 +14,6 @@ __all__ = ['Queue']
 
 
 class Queue(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The Arn of the queue
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    A description of the queue
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    A unique identifier describing the queue
-    """
-
-    pricing_plan: pulumi.Output[Optional[str]] = pulumi.property("pricingPlan")
-    """
-    Specifies whether the pricing plan for the queue is on-demand or reserved. Valid values are `ON_DEMAND` or `RESERVED`. Default to `ON_DEMAND`.
-    """
-
-    reservation_plan_settings: pulumi.Output['outputs.QueueReservationPlanSettings'] = pulumi.property("reservationPlanSettings")
-    """
-    A detail pricing plan of the  reserved queue. See below.
-    """
-
-    status: pulumi.Output[Optional[str]] = pulumi.property("status")
-    """
-    A status of the queue. Valid values are `ACTIVE` or `RESERVED`. Default to `PAUSED`.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -150,6 +115,62 @@ class Queue(pulumi.CustomResource):
         __props__["status"] = status
         __props__["tags"] = tags
         return Queue(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The Arn of the queue
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        A description of the queue
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A unique identifier describing the queue
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="pricingPlan")
+    def pricing_plan(self) -> Optional[str]:
+        """
+        Specifies whether the pricing plan for the queue is on-demand or reserved. Valid values are `ON_DEMAND` or `RESERVED`. Default to `ON_DEMAND`.
+        """
+        return pulumi.get(self, "pricing_plan")
+
+    @property
+    @pulumi.getter(name="reservationPlanSettings")
+    def reservation_plan_settings(self) -> 'outputs.QueueReservationPlanSettings':
+        """
+        A detail pricing plan of the  reserved queue. See below.
+        """
+        return pulumi.get(self, "reservation_plan_settings")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        A status of the queue. Valid values are `ACTIVE` or `RESERVED`. Default to `PAUSED`.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

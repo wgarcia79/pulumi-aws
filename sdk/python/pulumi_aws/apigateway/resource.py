@@ -12,26 +12,6 @@ __all__ = ['Resource']
 
 
 class Resource(pulumi.CustomResource):
-    parent_id: pulumi.Output[str] = pulumi.property("parentId")
-    """
-    The ID of the parent API resource
-    """
-
-    path: pulumi.Output[str] = pulumi.property("path")
-    """
-    The complete path for this API resource, including all parent paths.
-    """
-
-    path_part: pulumi.Output[str] = pulumi.property("pathPart")
-    """
-    The last path segment of this API resource.
-    """
-
-    rest_api: pulumi.Output[str] = pulumi.property("restApi")
-    """
-    The ID of the associated REST API
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -125,6 +105,38 @@ class Resource(pulumi.CustomResource):
         __props__["path_part"] = path_part
         __props__["rest_api"] = rest_api
         return Resource(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="parentId")
+    def parent_id(self) -> str:
+        """
+        The ID of the parent API resource
+        """
+        return pulumi.get(self, "parent_id")
+
+    @property
+    @pulumi.getter
+    def path(self) -> str:
+        """
+        The complete path for this API resource, including all parent paths.
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter(name="pathPart")
+    def path_part(self) -> str:
+        """
+        The last path segment of this API resource.
+        """
+        return pulumi.get(self, "path_part")
+
+    @property
+    @pulumi.getter(name="restApi")
+    def rest_api(self) -> str:
+        """
+        The ID of the associated REST API
+        """
+        return pulumi.get(self, "rest_api")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

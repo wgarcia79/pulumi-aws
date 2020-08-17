@@ -14,26 +14,6 @@ __all__ = ['Listener']
 
 
 class Listener(pulumi.CustomResource):
-    accelerator_arn: pulumi.Output[str] = pulumi.property("acceleratorArn")
-    """
-    The Amazon Resource Name (ARN) of your accelerator.
-    """
-
-    client_affinity: pulumi.Output[Optional[str]] = pulumi.property("clientAffinity")
-    """
-    Direct all requests from a user to the same endpoint. Valid values are `NONE`, `SOURCE_IP`. Default: `NONE`. If `NONE`, Global Accelerator uses the "five-tuple" properties of source IP address, source port, destination IP address, destination port, and protocol to select the hash value. If `SOURCE_IP`, Global Accelerator uses the "two-tuple" properties of source (client) IP address and destination IP address to select the hash value.
-    """
-
-    port_ranges: pulumi.Output[List['outputs.ListenerPortRange']] = pulumi.property("portRanges")
-    """
-    The list of port ranges for the connections from clients to the accelerator. Fields documented below.
-    """
-
-    protocol: pulumi.Output[str] = pulumi.property("protocol")
-    """
-    The protocol for the connections from clients to the accelerator. Valid values are `TCP`, `UDP`.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -140,6 +120,38 @@ class Listener(pulumi.CustomResource):
         __props__["port_ranges"] = port_ranges
         __props__["protocol"] = protocol
         return Listener(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="acceleratorArn")
+    def accelerator_arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) of your accelerator.
+        """
+        return pulumi.get(self, "accelerator_arn")
+
+    @property
+    @pulumi.getter(name="clientAffinity")
+    def client_affinity(self) -> Optional[str]:
+        """
+        Direct all requests from a user to the same endpoint. Valid values are `NONE`, `SOURCE_IP`. Default: `NONE`. If `NONE`, Global Accelerator uses the "five-tuple" properties of source IP address, source port, destination IP address, destination port, and protocol to select the hash value. If `SOURCE_IP`, Global Accelerator uses the "two-tuple" properties of source (client) IP address and destination IP address to select the hash value.
+        """
+        return pulumi.get(self, "client_affinity")
+
+    @property
+    @pulumi.getter(name="portRanges")
+    def port_ranges(self) -> List['outputs.ListenerPortRange']:
+        """
+        The list of port ranges for the connections from clients to the accelerator. Fields documented below.
+        """
+        return pulumi.get(self, "port_ranges")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        """
+        The protocol for the connections from clients to the accelerator. Valid values are `TCP`, `UDP`.
+        """
+        return pulumi.get(self, "protocol")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -14,193 +14,6 @@ __all__ = ['Cluster']
 
 
 class Cluster(pulumi.CustomResource):
-    allow_version_upgrade: pulumi.Output[Optional[bool]] = pulumi.property("allowVersionUpgrade")
-    """
-    If true , major version upgrades can be applied during the maintenance window to the Amazon Redshift engine that is running on the cluster. Default is true
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN) of cluster
-    """
-
-    automated_snapshot_retention_period: pulumi.Output[Optional[float]] = pulumi.property("automatedSnapshotRetentionPeriod")
-    """
-    The number of days that automated snapshots are retained. If the value is 0, automated snapshots are disabled. Even if automated snapshots are disabled, you can still create manual snapshots when you want with create-cluster-snapshot. Default is 1.
-    """
-
-    availability_zone: pulumi.Output[str] = pulumi.property("availabilityZone")
-    """
-    The EC2 Availability Zone (AZ) in which you want Amazon Redshift to provision the cluster. For example, if you have several EC2 instances running in a specific Availability Zone, then you might want the cluster to be provisioned in the same zone in order to decrease network latency.
-    """
-
-    cluster_identifier: pulumi.Output[str] = pulumi.property("clusterIdentifier")
-    """
-    The Cluster Identifier. Must be a lower case
-    string.
-    """
-
-    cluster_parameter_group_name: pulumi.Output[str] = pulumi.property("clusterParameterGroupName")
-    """
-    The name of the parameter group to be associated with this cluster.
-    """
-
-    cluster_public_key: pulumi.Output[str] = pulumi.property("clusterPublicKey")
-    """
-    The public key for the cluster
-    """
-
-    cluster_revision_number: pulumi.Output[str] = pulumi.property("clusterRevisionNumber")
-    """
-    The specific revision number of the database in the cluster
-    """
-
-    cluster_security_groups: pulumi.Output[List[str]] = pulumi.property("clusterSecurityGroups")
-    """
-    A list of security groups to be associated with this cluster.
-    """
-
-    cluster_subnet_group_name: pulumi.Output[str] = pulumi.property("clusterSubnetGroupName")
-    """
-    The name of a cluster subnet group to be associated with this cluster. If this parameter is not provided the resulting cluster will be deployed outside virtual private cloud (VPC).
-    """
-
-    cluster_type: pulumi.Output[str] = pulumi.property("clusterType")
-    """
-    The cluster type to use. Either `single-node` or `multi-node`.
-    """
-
-    cluster_version: pulumi.Output[Optional[str]] = pulumi.property("clusterVersion")
-    """
-    The version of the Amazon Redshift engine software that you want to deploy on the cluster.
-    The version selected runs on all the nodes in the cluster.
-    """
-
-    database_name: pulumi.Output[str] = pulumi.property("databaseName")
-    """
-    The name of the first database to be created when the cluster is created.
-    If you do not provide a name, Amazon Redshift will create a default database called `dev`.
-    """
-
-    dns_name: pulumi.Output[str] = pulumi.property("dnsName")
-    """
-    The DNS name of the cluster
-    """
-
-    elastic_ip: pulumi.Output[Optional[str]] = pulumi.property("elasticIp")
-    """
-    The Elastic IP (EIP) address for the cluster.
-    """
-
-    encrypted: pulumi.Output[Optional[bool]] = pulumi.property("encrypted")
-    """
-    If true , the data in the cluster is encrypted at rest.
-    """
-
-    endpoint: pulumi.Output[str] = pulumi.property("endpoint")
-    """
-    The connection endpoint
-    """
-
-    enhanced_vpc_routing: pulumi.Output[bool] = pulumi.property("enhancedVpcRouting")
-    """
-    If true , enhanced VPC routing is enabled.
-    """
-
-    final_snapshot_identifier: pulumi.Output[Optional[str]] = pulumi.property("finalSnapshotIdentifier")
-    """
-    The identifier of the final snapshot that is to be created immediately before deleting the cluster. If this parameter is provided, `skip_final_snapshot` must be false.
-    """
-
-    iam_roles: pulumi.Output[List[str]] = pulumi.property("iamRoles")
-    """
-    A list of IAM Role ARNs to associate with the cluster. A Maximum of 10 can be associated to the cluster at any time.
-    """
-
-    kms_key_id: pulumi.Output[str] = pulumi.property("kmsKeyId")
-    """
-    The ARN for the KMS encryption key. When specifying `kms_key_id`, `encrypted` needs to be set to true.
-    """
-
-    logging: pulumi.Output[Optional['outputs.ClusterLogging']] = pulumi.property("logging")
-    """
-    Logging, documented below.
-    """
-
-    master_password: pulumi.Output[Optional[str]] = pulumi.property("masterPassword")
-    """
-    Password for the master DB user.
-    Note that this may show up in logs, and it will be stored in the state file. Password must contain at least 8 chars and
-    contain at least one uppercase letter, one lowercase letter, and one number.
-    """
-
-    master_username: pulumi.Output[Optional[str]] = pulumi.property("masterUsername")
-    """
-    Username for the master DB user.
-    """
-
-    node_type: pulumi.Output[str] = pulumi.property("nodeType")
-    """
-    The node type to be provisioned for the cluster.
-    """
-
-    number_of_nodes: pulumi.Output[Optional[float]] = pulumi.property("numberOfNodes")
-    """
-    The number of compute nodes in the cluster. This parameter is required when the ClusterType parameter is specified as multi-node. Default is 1.
-    """
-
-    owner_account: pulumi.Output[Optional[str]] = pulumi.property("ownerAccount")
-    """
-    The AWS customer account used to create or copy the snapshot. Required if you are restoring a snapshot you do not own, optional if you own the snapshot.
-    """
-
-    port: pulumi.Output[Optional[float]] = pulumi.property("port")
-    """
-    The port number on which the cluster accepts incoming connections.
-    The cluster is accessible only via the JDBC and ODBC connection strings. Part of the connection string requires the port on which the cluster will listen for incoming connections. Default port is 5439.
-    """
-
-    preferred_maintenance_window: pulumi.Output[str] = pulumi.property("preferredMaintenanceWindow")
-    """
-    The weekly time range (in UTC) during which automated cluster maintenance can occur.
-    Format: ddd:hh24:mi-ddd:hh24:mi
-    """
-
-    publicly_accessible: pulumi.Output[Optional[bool]] = pulumi.property("publiclyAccessible")
-    """
-    If true, the cluster can be accessed from a public network. Default is `true`.
-    """
-
-    skip_final_snapshot: pulumi.Output[Optional[bool]] = pulumi.property("skipFinalSnapshot")
-    """
-    Determines whether a final snapshot of the cluster is created before Amazon Redshift deletes the cluster. If true , a final cluster snapshot is not created. If false , a final cluster snapshot is created before the cluster is deleted. Default is false.
-    """
-
-    snapshot_cluster_identifier: pulumi.Output[Optional[str]] = pulumi.property("snapshotClusterIdentifier")
-    """
-    The name of the cluster the source snapshot was created from.
-    """
-
-    snapshot_copy: pulumi.Output[Optional['outputs.ClusterSnapshotCopy']] = pulumi.property("snapshotCopy")
-    """
-    Configuration of automatic copy of snapshots from one region to another. Documented below.
-    """
-
-    snapshot_identifier: pulumi.Output[Optional[str]] = pulumi.property("snapshotIdentifier")
-    """
-    The name of the snapshot from which to create the new cluster.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
-    vpc_security_group_ids: pulumi.Output[List[str]] = pulumi.property("vpcSecurityGroupIds")
-    """
-    A list of Virtual Private Cloud (VPC) security groups to be associated with the cluster.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -500,6 +313,301 @@ class Cluster(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["vpc_security_group_ids"] = vpc_security_group_ids
         return Cluster(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="allowVersionUpgrade")
+    def allow_version_upgrade(self) -> Optional[bool]:
+        """
+        If true , major version upgrades can be applied during the maintenance window to the Amazon Redshift engine that is running on the cluster. Default is true
+        """
+        return pulumi.get(self, "allow_version_upgrade")
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of cluster
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="automatedSnapshotRetentionPeriod")
+    def automated_snapshot_retention_period(self) -> Optional[float]:
+        """
+        The number of days that automated snapshots are retained. If the value is 0, automated snapshots are disabled. Even if automated snapshots are disabled, you can still create manual snapshots when you want with create-cluster-snapshot. Default is 1.
+        """
+        return pulumi.get(self, "automated_snapshot_retention_period")
+
+    @property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> str:
+        """
+        The EC2 Availability Zone (AZ) in which you want Amazon Redshift to provision the cluster. For example, if you have several EC2 instances running in a specific Availability Zone, then you might want the cluster to be provisioned in the same zone in order to decrease network latency.
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @property
+    @pulumi.getter(name="clusterIdentifier")
+    def cluster_identifier(self) -> str:
+        """
+        The Cluster Identifier. Must be a lower case
+        string.
+        """
+        return pulumi.get(self, "cluster_identifier")
+
+    @property
+    @pulumi.getter(name="clusterParameterGroupName")
+    def cluster_parameter_group_name(self) -> str:
+        """
+        The name of the parameter group to be associated with this cluster.
+        """
+        return pulumi.get(self, "cluster_parameter_group_name")
+
+    @property
+    @pulumi.getter(name="clusterPublicKey")
+    def cluster_public_key(self) -> str:
+        """
+        The public key for the cluster
+        """
+        return pulumi.get(self, "cluster_public_key")
+
+    @property
+    @pulumi.getter(name="clusterRevisionNumber")
+    def cluster_revision_number(self) -> str:
+        """
+        The specific revision number of the database in the cluster
+        """
+        return pulumi.get(self, "cluster_revision_number")
+
+    @property
+    @pulumi.getter(name="clusterSecurityGroups")
+    def cluster_security_groups(self) -> List[str]:
+        """
+        A list of security groups to be associated with this cluster.
+        """
+        return pulumi.get(self, "cluster_security_groups")
+
+    @property
+    @pulumi.getter(name="clusterSubnetGroupName")
+    def cluster_subnet_group_name(self) -> str:
+        """
+        The name of a cluster subnet group to be associated with this cluster. If this parameter is not provided the resulting cluster will be deployed outside virtual private cloud (VPC).
+        """
+        return pulumi.get(self, "cluster_subnet_group_name")
+
+    @property
+    @pulumi.getter(name="clusterType")
+    def cluster_type(self) -> str:
+        """
+        The cluster type to use. Either `single-node` or `multi-node`.
+        """
+        return pulumi.get(self, "cluster_type")
+
+    @property
+    @pulumi.getter(name="clusterVersion")
+    def cluster_version(self) -> Optional[str]:
+        """
+        The version of the Amazon Redshift engine software that you want to deploy on the cluster.
+        The version selected runs on all the nodes in the cluster.
+        """
+        return pulumi.get(self, "cluster_version")
+
+    @property
+    @pulumi.getter(name="databaseName")
+    def database_name(self) -> str:
+        """
+        The name of the first database to be created when the cluster is created.
+        If you do not provide a name, Amazon Redshift will create a default database called `dev`.
+        """
+        return pulumi.get(self, "database_name")
+
+    @property
+    @pulumi.getter(name="dnsName")
+    def dns_name(self) -> str:
+        """
+        The DNS name of the cluster
+        """
+        return pulumi.get(self, "dns_name")
+
+    @property
+    @pulumi.getter(name="elasticIp")
+    def elastic_ip(self) -> Optional[str]:
+        """
+        The Elastic IP (EIP) address for the cluster.
+        """
+        return pulumi.get(self, "elastic_ip")
+
+    @property
+    @pulumi.getter
+    def encrypted(self) -> Optional[bool]:
+        """
+        If true , the data in the cluster is encrypted at rest.
+        """
+        return pulumi.get(self, "encrypted")
+
+    @property
+    @pulumi.getter
+    def endpoint(self) -> str:
+        """
+        The connection endpoint
+        """
+        return pulumi.get(self, "endpoint")
+
+    @property
+    @pulumi.getter(name="enhancedVpcRouting")
+    def enhanced_vpc_routing(self) -> bool:
+        """
+        If true , enhanced VPC routing is enabled.
+        """
+        return pulumi.get(self, "enhanced_vpc_routing")
+
+    @property
+    @pulumi.getter(name="finalSnapshotIdentifier")
+    def final_snapshot_identifier(self) -> Optional[str]:
+        """
+        The identifier of the final snapshot that is to be created immediately before deleting the cluster. If this parameter is provided, `skip_final_snapshot` must be false.
+        """
+        return pulumi.get(self, "final_snapshot_identifier")
+
+    @property
+    @pulumi.getter(name="iamRoles")
+    def iam_roles(self) -> List[str]:
+        """
+        A list of IAM Role ARNs to associate with the cluster. A Maximum of 10 can be associated to the cluster at any time.
+        """
+        return pulumi.get(self, "iam_roles")
+
+    @property
+    @pulumi.getter(name="kmsKeyId")
+    def kms_key_id(self) -> str:
+        """
+        The ARN for the KMS encryption key. When specifying `kms_key_id`, `encrypted` needs to be set to true.
+        """
+        return pulumi.get(self, "kms_key_id")
+
+    @property
+    @pulumi.getter
+    def logging(self) -> Optional['outputs.ClusterLogging']:
+        """
+        Logging, documented below.
+        """
+        return pulumi.get(self, "logging")
+
+    @property
+    @pulumi.getter(name="masterPassword")
+    def master_password(self) -> Optional[str]:
+        """
+        Password for the master DB user.
+        Note that this may show up in logs, and it will be stored in the state file. Password must contain at least 8 chars and
+        contain at least one uppercase letter, one lowercase letter, and one number.
+        """
+        return pulumi.get(self, "master_password")
+
+    @property
+    @pulumi.getter(name="masterUsername")
+    def master_username(self) -> Optional[str]:
+        """
+        Username for the master DB user.
+        """
+        return pulumi.get(self, "master_username")
+
+    @property
+    @pulumi.getter(name="nodeType")
+    def node_type(self) -> str:
+        """
+        The node type to be provisioned for the cluster.
+        """
+        return pulumi.get(self, "node_type")
+
+    @property
+    @pulumi.getter(name="numberOfNodes")
+    def number_of_nodes(self) -> Optional[float]:
+        """
+        The number of compute nodes in the cluster. This parameter is required when the ClusterType parameter is specified as multi-node. Default is 1.
+        """
+        return pulumi.get(self, "number_of_nodes")
+
+    @property
+    @pulumi.getter(name="ownerAccount")
+    def owner_account(self) -> Optional[str]:
+        """
+        The AWS customer account used to create or copy the snapshot. Required if you are restoring a snapshot you do not own, optional if you own the snapshot.
+        """
+        return pulumi.get(self, "owner_account")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[float]:
+        """
+        The port number on which the cluster accepts incoming connections.
+        The cluster is accessible only via the JDBC and ODBC connection strings. Part of the connection string requires the port on which the cluster will listen for incoming connections. Default port is 5439.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="preferredMaintenanceWindow")
+    def preferred_maintenance_window(self) -> str:
+        """
+        The weekly time range (in UTC) during which automated cluster maintenance can occur.
+        Format: ddd:hh24:mi-ddd:hh24:mi
+        """
+        return pulumi.get(self, "preferred_maintenance_window")
+
+    @property
+    @pulumi.getter(name="publiclyAccessible")
+    def publicly_accessible(self) -> Optional[bool]:
+        """
+        If true, the cluster can be accessed from a public network. Default is `true`.
+        """
+        return pulumi.get(self, "publicly_accessible")
+
+    @property
+    @pulumi.getter(name="skipFinalSnapshot")
+    def skip_final_snapshot(self) -> Optional[bool]:
+        """
+        Determines whether a final snapshot of the cluster is created before Amazon Redshift deletes the cluster. If true , a final cluster snapshot is not created. If false , a final cluster snapshot is created before the cluster is deleted. Default is false.
+        """
+        return pulumi.get(self, "skip_final_snapshot")
+
+    @property
+    @pulumi.getter(name="snapshotClusterIdentifier")
+    def snapshot_cluster_identifier(self) -> Optional[str]:
+        """
+        The name of the cluster the source snapshot was created from.
+        """
+        return pulumi.get(self, "snapshot_cluster_identifier")
+
+    @property
+    @pulumi.getter(name="snapshotCopy")
+    def snapshot_copy(self) -> Optional['outputs.ClusterSnapshotCopy']:
+        """
+        Configuration of automatic copy of snapshots from one region to another. Documented below.
+        """
+        return pulumi.get(self, "snapshot_copy")
+
+    @property
+    @pulumi.getter(name="snapshotIdentifier")
+    def snapshot_identifier(self) -> Optional[str]:
+        """
+        The name of the snapshot from which to create the new cluster.
+        """
+        return pulumi.get(self, "snapshot_identifier")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="vpcSecurityGroupIds")
+    def vpc_security_group_ids(self) -> List[str]:
+        """
+        A list of Virtual Private Cloud (VPC) security groups to be associated with the cluster.
+        """
+        return pulumi.get(self, "vpc_security_group_ids")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

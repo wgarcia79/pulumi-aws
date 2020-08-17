@@ -15,12 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetEncryptionByDefaultResult:
-    enabled: bool = pulumi.property("enabled")
-    id: str = pulumi.property("id")
-
-
 class GetEncryptionByDefaultResult:
     """
     A collection of values returned by getEncryptionByDefault.
@@ -28,16 +24,27 @@ class GetEncryptionByDefaultResult:
     def __init__(__self__, enabled=None, id=None):
         if enabled and not isinstance(enabled, bool):
             raise TypeError("Expected argument 'enabled' to be a bool")
-        __self__.enabled = enabled
+        pulumi.set(__self__, "enabled", enabled)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
         """
         Whether or not default EBS encryption is enabled. Returns as `true` or `false`.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
+        return pulumi.get(self, "id")
+
 
 
 class AwaitableGetEncryptionByDefaultResult(GetEncryptionByDefaultResult):
@@ -68,7 +75,7 @@ def get_encryption_by_default(                              opts: Optional[pulum
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ebs/getEncryptionByDefault:getEncryptionByDefault', __args__, opts=opts, typ=_GetEncryptionByDefaultResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ebs/getEncryptionByDefault:getEncryptionByDefault', __args__, opts=opts, typ=GetEncryptionByDefaultResult).value
 
     return AwaitableGetEncryptionByDefaultResult(
         enabled=__ret__.enabled,

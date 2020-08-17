@@ -14,21 +14,6 @@ warnings.warn("aws.elasticloadbalancing.LoadBalancerBackendServerPolicy has been
 
 
 class LoadBalancerBackendServerPolicy(pulumi.CustomResource):
-    instance_port: pulumi.Output[float] = pulumi.property("instancePort")
-    """
-    The instance port to apply the policy to.
-    """
-
-    load_balancer_name: pulumi.Output[str] = pulumi.property("loadBalancerName")
-    """
-    The load balancer to attach the policy to.
-    """
-
-    policy_names: pulumi.Output[Optional[List[str]]] = pulumi.property("policyNames")
-    """
-    List of Policy Names to apply to the backend server.
-    """
-
     warnings.warn("aws.elasticloadbalancing.LoadBalancerBackendServerPolicy has been deprecated in favor of aws.elb.LoadBalancerBackendServerPolicy", DeprecationWarning)
 
     def __init__(__self__,
@@ -154,6 +139,30 @@ class LoadBalancerBackendServerPolicy(pulumi.CustomResource):
         __props__["load_balancer_name"] = load_balancer_name
         __props__["policy_names"] = policy_names
         return LoadBalancerBackendServerPolicy(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="instancePort")
+    def instance_port(self) -> float:
+        """
+        The instance port to apply the policy to.
+        """
+        return pulumi.get(self, "instance_port")
+
+    @property
+    @pulumi.getter(name="loadBalancerName")
+    def load_balancer_name(self) -> str:
+        """
+        The load balancer to attach the policy to.
+        """
+        return pulumi.get(self, "load_balancer_name")
+
+    @property
+    @pulumi.getter(name="policyNames")
+    def policy_names(self) -> Optional[List[str]]:
+        """
+        List of Policy Names to apply to the backend server.
+        """
+        return pulumi.get(self, "policy_names")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

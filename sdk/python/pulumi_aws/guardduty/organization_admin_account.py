@@ -12,11 +12,6 @@ __all__ = ['OrganizationAdminAccount']
 
 
 class OrganizationAdminAccount(pulumi.CustomResource):
-    admin_account_id: pulumi.Output[str] = pulumi.property("adminAccountId")
-    """
-    AWS account identifier to designate as a delegated administrator for GuardDuty.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -91,6 +86,14 @@ class OrganizationAdminAccount(pulumi.CustomResource):
 
         __props__["admin_account_id"] = admin_account_id
         return OrganizationAdminAccount(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="adminAccountId")
+    def admin_account_id(self) -> str:
+        """
+        AWS account identifier to designate as a delegated administrator for GuardDuty.
+        """
+        return pulumi.get(self, "admin_account_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

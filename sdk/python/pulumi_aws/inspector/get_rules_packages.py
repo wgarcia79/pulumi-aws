@@ -15,12 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetRulesPackagesResult:
-    arns: List[str] = pulumi.property("arns")
-    id: str = pulumi.property("id")
-
-
 class GetRulesPackagesResult:
     """
     A collection of values returned by getRulesPackages.
@@ -28,16 +24,27 @@ class GetRulesPackagesResult:
     def __init__(__self__, arns=None, id=None):
         if arns and not isinstance(arns, list):
             raise TypeError("Expected argument 'arns' to be a list")
-        __self__.arns = arns
+        pulumi.set(__self__, "arns", arns)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def arns(self) -> List[str]:
         """
         A list of the AWS Inspector Rules Packages arns available in the AWS region.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "arns")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
+        return pulumi.get(self, "id")
+
 
 
 class AwaitableGetRulesPackagesResult(GetRulesPackagesResult):
@@ -79,7 +86,7 @@ def get_rules_packages(                       opts: Optional[pulumi.InvokeOption
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:inspector/getRulesPackages:getRulesPackages', __args__, opts=opts, typ=_GetRulesPackagesResult).value
+    __ret__ = pulumi.runtime.invoke('aws:inspector/getRulesPackages:getRulesPackages', __args__, opts=opts, typ=GetRulesPackagesResult).value
 
     return AwaitableGetRulesPackagesResult(
         arns=__ret__.arns,

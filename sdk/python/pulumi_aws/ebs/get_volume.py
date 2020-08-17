@@ -17,25 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetVolumeResult:
-    arn: str = pulumi.property("arn")
-    availability_zone: str = pulumi.property("availabilityZone")
-    encrypted: bool = pulumi.property("encrypted")
-    filters: Optional[List['outputs.GetVolumeFilterResult']] = pulumi.property("filters")
-    id: str = pulumi.property("id")
-    iops: float = pulumi.property("iops")
-    kms_key_id: str = pulumi.property("kmsKeyId")
-    most_recent: Optional[bool] = pulumi.property("mostRecent")
-    multi_attach_enabled: bool = pulumi.property("multiAttachEnabled")
-    outpost_arn: str = pulumi.property("outpostArn")
-    size: float = pulumi.property("size")
-    snapshot_id: str = pulumi.property("snapshotId")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    volume_id: str = pulumi.property("volumeId")
-    volume_type: str = pulumi.property("volumeType")
-
-
 class GetVolumeResult:
     """
     A collection of values returned by getVolume.
@@ -43,88 +26,164 @@ class GetVolumeResult:
     def __init__(__self__, arn=None, availability_zone=None, encrypted=None, filters=None, id=None, iops=None, kms_key_id=None, most_recent=None, multi_attach_enabled=None, outpost_arn=None, size=None, snapshot_id=None, tags=None, volume_id=None, volume_type=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if availability_zone and not isinstance(availability_zone, str):
+            raise TypeError("Expected argument 'availability_zone' to be a str")
+        pulumi.set(__self__, "availability_zone", availability_zone)
+        if encrypted and not isinstance(encrypted, bool):
+            raise TypeError("Expected argument 'encrypted' to be a bool")
+        pulumi.set(__self__, "encrypted", encrypted)
+        if filters and not isinstance(filters, list):
+            raise TypeError("Expected argument 'filters' to be a list")
+        pulumi.set(__self__, "filters", filters)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if iops and not isinstance(iops, float):
+            raise TypeError("Expected argument 'iops' to be a float")
+        pulumi.set(__self__, "iops", iops)
+        if kms_key_id and not isinstance(kms_key_id, str):
+            raise TypeError("Expected argument 'kms_key_id' to be a str")
+        pulumi.set(__self__, "kms_key_id", kms_key_id)
+        if most_recent and not isinstance(most_recent, bool):
+            raise TypeError("Expected argument 'most_recent' to be a bool")
+        pulumi.set(__self__, "most_recent", most_recent)
+        if multi_attach_enabled and not isinstance(multi_attach_enabled, bool):
+            raise TypeError("Expected argument 'multi_attach_enabled' to be a bool")
+        pulumi.set(__self__, "multi_attach_enabled", multi_attach_enabled)
+        if outpost_arn and not isinstance(outpost_arn, str):
+            raise TypeError("Expected argument 'outpost_arn' to be a str")
+        pulumi.set(__self__, "outpost_arn", outpost_arn)
+        if size and not isinstance(size, float):
+            raise TypeError("Expected argument 'size' to be a float")
+        pulumi.set(__self__, "size", size)
+        if snapshot_id and not isinstance(snapshot_id, str):
+            raise TypeError("Expected argument 'snapshot_id' to be a str")
+        pulumi.set(__self__, "snapshot_id", snapshot_id)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if volume_id and not isinstance(volume_id, str):
+            raise TypeError("Expected argument 'volume_id' to be a str")
+        pulumi.set(__self__, "volume_id", volume_id)
+        if volume_type and not isinstance(volume_type, str):
+            raise TypeError("Expected argument 'volume_type' to be a str")
+        pulumi.set(__self__, "volume_type", volume_type)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The volume ARN (e.g. arn:aws:ec2:us-east-1:0123456789012:volume/vol-59fcb34e).
         """
-        if availability_zone and not isinstance(availability_zone, str):
-            raise TypeError("Expected argument 'availability_zone' to be a str")
-        __self__.availability_zone = availability_zone
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> str:
         """
         The AZ where the EBS volume exists.
         """
-        if encrypted and not isinstance(encrypted, bool):
-            raise TypeError("Expected argument 'encrypted' to be a bool")
-        __self__.encrypted = encrypted
+        return pulumi.get(self, "availability_zone")
+
+    @property
+    @pulumi.getter
+    def encrypted(self) -> bool:
         """
         Whether the disk is encrypted.
         """
-        if filters and not isinstance(filters, list):
-            raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "encrypted")
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetVolumeFilterResult']]:
+        return pulumi.get(self, "filters")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if iops and not isinstance(iops, float):
-            raise TypeError("Expected argument 'iops' to be a float")
-        __self__.iops = iops
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def iops(self) -> float:
         """
         The amount of IOPS for the disk.
         """
-        if kms_key_id and not isinstance(kms_key_id, str):
-            raise TypeError("Expected argument 'kms_key_id' to be a str")
-        __self__.kms_key_id = kms_key_id
+        return pulumi.get(self, "iops")
+
+    @property
+    @pulumi.getter(name="kmsKeyId")
+    def kms_key_id(self) -> str:
         """
         The ARN for the KMS encryption key.
         """
-        if most_recent and not isinstance(most_recent, bool):
-            raise TypeError("Expected argument 'most_recent' to be a bool")
-        __self__.most_recent = most_recent
-        if multi_attach_enabled and not isinstance(multi_attach_enabled, bool):
-            raise TypeError("Expected argument 'multi_attach_enabled' to be a bool")
-        __self__.multi_attach_enabled = multi_attach_enabled
+        return pulumi.get(self, "kms_key_id")
+
+    @property
+    @pulumi.getter(name="mostRecent")
+    def most_recent(self) -> Optional[bool]:
+        return pulumi.get(self, "most_recent")
+
+    @property
+    @pulumi.getter(name="multiAttachEnabled")
+    def multi_attach_enabled(self) -> bool:
         """
         (Optional) Specifies whether Amazon EBS Multi-Attach is enabled.
         """
-        if outpost_arn and not isinstance(outpost_arn, str):
-            raise TypeError("Expected argument 'outpost_arn' to be a str")
-        __self__.outpost_arn = outpost_arn
+        return pulumi.get(self, "multi_attach_enabled")
+
+    @property
+    @pulumi.getter(name="outpostArn")
+    def outpost_arn(self) -> str:
         """
         The Amazon Resource Name (ARN) of the Outpost.
         """
-        if size and not isinstance(size, float):
-            raise TypeError("Expected argument 'size' to be a float")
-        __self__.size = size
+        return pulumi.get(self, "outpost_arn")
+
+    @property
+    @pulumi.getter
+    def size(self) -> float:
         """
         The size of the drive in GiBs.
         """
-        if snapshot_id and not isinstance(snapshot_id, str):
-            raise TypeError("Expected argument 'snapshot_id' to be a str")
-        __self__.snapshot_id = snapshot_id
+        return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> str:
         """
         The snapshot_id the EBS volume is based off.
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        return pulumi.get(self, "snapshot_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
         """
         A map of tags for the resource.
         """
-        if volume_id and not isinstance(volume_id, str):
-            raise TypeError("Expected argument 'volume_id' to be a str")
-        __self__.volume_id = volume_id
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="volumeId")
+    def volume_id(self) -> str:
         """
         The volume ID (e.g. vol-59fcb34e).
         """
-        if volume_type and not isinstance(volume_type, str):
-            raise TypeError("Expected argument 'volume_type' to be a str")
-        __self__.volume_type = volume_type
+        return pulumi.get(self, "volume_id")
+
+    @property
+    @pulumi.getter(name="volumeType")
+    def volume_type(self) -> str:
         """
         The type of EBS volume.
         """
+        return pulumi.get(self, "volume_type")
+
 
 
 class AwaitableGetVolumeResult(GetVolumeResult):
@@ -193,7 +252,7 @@ def get_volume(filters: Optional[List[pulumi.InputType['GetVolumeFilterArgs']]] 
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ebs/getVolume:getVolume', __args__, opts=opts, typ=_GetVolumeResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ebs/getVolume:getVolume', __args__, opts=opts, typ=GetVolumeResult).value
 
     return AwaitableGetVolumeResult(
         arn=__ret__.arn,

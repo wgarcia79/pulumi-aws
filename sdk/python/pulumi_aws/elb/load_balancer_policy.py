@@ -14,26 +14,6 @@ __all__ = ['LoadBalancerPolicy']
 
 
 class LoadBalancerPolicy(pulumi.CustomResource):
-    load_balancer_name: pulumi.Output[str] = pulumi.property("loadBalancerName")
-    """
-    The load balancer on which the policy is defined.
-    """
-
-    policy_attributes: pulumi.Output[Optional[List['outputs.LoadBalancerPolicyPolicyAttribute']]] = pulumi.property("policyAttributes")
-    """
-    Policy attribute to apply to the policy.
-    """
-
-    policy_name: pulumi.Output[str] = pulumi.property("policyName")
-    """
-    The name of the load balancer policy.
-    """
-
-    policy_type_name: pulumi.Output[str] = pulumi.property("policyTypeName")
-    """
-    The policy type.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -192,6 +172,38 @@ class LoadBalancerPolicy(pulumi.CustomResource):
         __props__["policy_name"] = policy_name
         __props__["policy_type_name"] = policy_type_name
         return LoadBalancerPolicy(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="loadBalancerName")
+    def load_balancer_name(self) -> str:
+        """
+        The load balancer on which the policy is defined.
+        """
+        return pulumi.get(self, "load_balancer_name")
+
+    @property
+    @pulumi.getter(name="policyAttributes")
+    def policy_attributes(self) -> Optional[List['outputs.LoadBalancerPolicyPolicyAttribute']]:
+        """
+        Policy attribute to apply to the policy.
+        """
+        return pulumi.get(self, "policy_attributes")
+
+    @property
+    @pulumi.getter(name="policyName")
+    def policy_name(self) -> str:
+        """
+        The name of the load balancer policy.
+        """
+        return pulumi.get(self, "policy_name")
+
+    @property
+    @pulumi.getter(name="policyTypeName")
+    def policy_type_name(self) -> str:
+        """
+        The policy type.
+        """
+        return pulumi.get(self, "policy_type_name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

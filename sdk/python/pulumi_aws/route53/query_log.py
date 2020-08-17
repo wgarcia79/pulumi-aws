@@ -12,16 +12,6 @@ __all__ = ['QueryLog']
 
 
 class QueryLog(pulumi.CustomResource):
-    cloudwatch_log_group_arn: pulumi.Output[str] = pulumi.property("cloudwatchLogGroupArn")
-    """
-    CloudWatch log group ARN to send query logs.
-    """
-
-    zone_id: pulumi.Output[str] = pulumi.property("zoneId")
-    """
-    Route53 hosted zone ID to enable query logs.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -128,6 +118,22 @@ class QueryLog(pulumi.CustomResource):
         __props__["cloudwatch_log_group_arn"] = cloudwatch_log_group_arn
         __props__["zone_id"] = zone_id
         return QueryLog(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="cloudwatchLogGroupArn")
+    def cloudwatch_log_group_arn(self) -> str:
+        """
+        CloudWatch log group ARN to send query logs.
+        """
+        return pulumi.get(self, "cloudwatch_log_group_arn")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        Route53 hosted zone ID to enable query logs.
+        """
+        return pulumi.get(self, "zone_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -17,14 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetCoipPoolsResult:
-    filters: Optional[List['outputs.GetCoipPoolsFilterResult']] = pulumi.property("filters")
-    id: str = pulumi.property("id")
-    pool_ids: List[str] = pulumi.property("poolIds")
-    tags: Mapping[str, str] = pulumi.property("tags")
-
-
 class GetCoipPoolsResult:
     """
     A collection of values returned by getCoipPools.
@@ -32,22 +26,43 @@ class GetCoipPoolsResult:
     def __init__(__self__, filters=None, id=None, pool_ids=None, tags=None):
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
+        pulumi.set(__self__, "filters", filters)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if pool_ids and not isinstance(pool_ids, list):
+            raise TypeError("Expected argument 'pool_ids' to be a list")
+        pulumi.set(__self__, "pool_ids", pool_ids)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetCoipPoolsFilterResult']]:
+        return pulumi.get(self, "filters")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if pool_ids and not isinstance(pool_ids, list):
-            raise TypeError("Expected argument 'pool_ids' to be a list")
-        __self__.pool_ids = pool_ids
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="poolIds")
+    def pool_ids(self) -> List[str]:
         """
         Set of COIP Pool Identifiers
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        return pulumi.get(self, "pool_ids")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
+        return pulumi.get(self, "tags")
+
 
 
 class AwaitableGetCoipPoolsResult(GetCoipPoolsResult):
@@ -80,7 +95,7 @@ def get_coip_pools(filters: Optional[List[pulumi.InputType['GetCoipPoolsFilterAr
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getCoipPools:getCoipPools', __args__, opts=opts, typ=_GetCoipPoolsResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getCoipPools:getCoipPools', __args__, opts=opts, typ=GetCoipPoolsResult).value
 
     return AwaitableGetCoipPoolsResult(
         filters=__ret__.filters,

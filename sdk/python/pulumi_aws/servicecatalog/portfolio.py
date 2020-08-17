@@ -12,30 +12,6 @@ __all__ = ['Portfolio']
 
 
 class Portfolio(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-
-    created_time: pulumi.Output[str] = pulumi.property("createdTime")
-
-    description: pulumi.Output[str] = pulumi.property("description")
-    """
-    Description of the portfolio
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the portfolio.
-    """
-
-    provider_name: pulumi.Output[Optional[str]] = pulumi.property("providerName")
-    """
-    Name of the person or organization who owns the portfolio.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Tags to apply to the connection.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -129,6 +105,48 @@ class Portfolio(pulumi.CustomResource):
         __props__["provider_name"] = provider_name
         __props__["tags"] = tags
         return Portfolio(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="createdTime")
+    def created_time(self) -> str:
+        return pulumi.get(self, "created_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Description of the portfolio
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the portfolio.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> Optional[str]:
+        """
+        Name of the person or organization who owns the portfolio.
+        """
+        return pulumi.get(self, "provider_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Tags to apply to the connection.
+        """
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

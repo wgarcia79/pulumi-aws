@@ -14,13 +14,26 @@ __all__ = [
 
 @pulumi.output_type
 class QueueReservationPlanSettings(dict):
+    def __init__(__self__, *,
+                 commitment: str,
+                 renewal_type: str,
+                 reserved_slots: float):
+        """
+        :param str commitment: The length of the term of your reserved queue pricing plan commitment. Valid value is `ONE_YEAR`.
+        :param str renewal_type: Specifies whether the term of your reserved queue pricing plan. Valid values are `AUTO_RENEW` or `EXPIRE`.
+        :param float reserved_slots: Specifies the number of reserved transcode slots (RTS) for queue.
+        """
+        pulumi.set(__self__, "commitment", commitment)
+        pulumi.set(__self__, "renewal_type", renewal_type)
+        pulumi.set(__self__, "reserved_slots", reserved_slots)
+
     @property
     @pulumi.getter
     def commitment(self) -> str:
         """
         The length of the term of your reserved queue pricing plan commitment. Valid value is `ONE_YEAR`.
         """
-        ...
+        return pulumi.get(self, "commitment")
 
     @property
     @pulumi.getter(name="renewalType")
@@ -28,7 +41,7 @@ class QueueReservationPlanSettings(dict):
         """
         Specifies whether the term of your reserved queue pricing plan. Valid values are `AUTO_RENEW` or `EXPIRE`.
         """
-        ...
+        return pulumi.get(self, "renewal_type")
 
     @property
     @pulumi.getter(name="reservedSlots")
@@ -36,7 +49,7 @@ class QueueReservationPlanSettings(dict):
         """
         Specifies the number of reserved transcode slots (RTS) for queue.
         """
-        ...
+        return pulumi.get(self, "reserved_slots")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

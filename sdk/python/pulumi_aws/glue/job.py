@@ -14,96 +14,6 @@ __all__ = ['Job']
 
 
 class Job(pulumi.CustomResource):
-    allocated_capacity: pulumi.Output[float] = pulumi.property("allocatedCapacity")
-    """
-    **DEPRECATED** (Optional) The number of AWS Glue data processing units (DPUs) to allocate to this Job. At least 2 DPUs need to be allocated; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN) of Glue Job
-    """
-
-    command: pulumi.Output['outputs.JobCommand'] = pulumi.property("command")
-    """
-    The command of the job. Defined below.
-    """
-
-    connections: pulumi.Output[Optional[List[str]]] = pulumi.property("connections")
-    """
-    The list of connections used for this job.
-    """
-
-    default_arguments: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("defaultArguments")
-    """
-    The map of default arguments for this job. You can specify arguments here that your own job-execution script consumes, as well as arguments that AWS Glue itself consumes. For information about how to specify and consume your own Job arguments, see the [Calling AWS Glue APIs in Python](http://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-python-calling.html) topic in the developer guide. For information about the key-value pairs that AWS Glue consumes to set up your job, see the [Special Parameters Used by AWS Glue](http://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-python-glue-arguments.html) topic in the developer guide.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    Description of the job.
-    """
-
-    execution_property: pulumi.Output['outputs.JobExecutionProperty'] = pulumi.property("executionProperty")
-    """
-    Execution property of the job. Defined below.
-    """
-
-    glue_version: pulumi.Output[str] = pulumi.property("glueVersion")
-    """
-    The version of glue to use, for example "1.0". For information about available versions, see the [AWS Glue Release Notes](https://docs.aws.amazon.com/glue/latest/dg/release-notes.html).
-    """
-
-    max_capacity: pulumi.Output[float] = pulumi.property("maxCapacity")
-    """
-    The maximum number of AWS Glue data processing units (DPUs) that can be allocated when this job runs. `Required` when `pythonshell` is set, accept either `0.0625` or `1.0`.
-    """
-
-    max_retries: pulumi.Output[Optional[float]] = pulumi.property("maxRetries")
-    """
-    The maximum number of times to retry this job if it fails.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name you assign to this job. It must be unique in your account.
-    """
-
-    notification_property: pulumi.Output['outputs.JobNotificationProperty'] = pulumi.property("notificationProperty")
-    """
-    Notification property of the job. Defined below.
-    """
-
-    number_of_workers: pulumi.Output[Optional[float]] = pulumi.property("numberOfWorkers")
-    """
-    The number of workers of a defined workerType that are allocated when a job runs.
-    """
-
-    role_arn: pulumi.Output[str] = pulumi.property("roleArn")
-    """
-    The ARN of the IAM role associated with this job.
-    """
-
-    security_configuration: pulumi.Output[Optional[str]] = pulumi.property("securityConfiguration")
-    """
-    The name of the Security Configuration to be associated with the job.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of resource tags
-    """
-
-    timeout: pulumi.Output[Optional[float]] = pulumi.property("timeout")
-    """
-    The job timeout in minutes. The default is 2880 minutes (48 hours).
-    """
-
-    worker_type: pulumi.Output[Optional[str]] = pulumi.property("workerType")
-    """
-    The type of predefined worker that is allocated when a job runs. Accepts a value of Standard, G.1X, or G.2X.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -314,6 +224,150 @@ class Job(pulumi.CustomResource):
         __props__["timeout"] = timeout
         __props__["worker_type"] = worker_type
         return Job(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="allocatedCapacity")
+    def allocated_capacity(self) -> float:
+        """
+        **DEPRECATED** (Optional) The number of AWS Glue data processing units (DPUs) to allocate to this Job. At least 2 DPUs need to be allocated; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory.
+        """
+        return pulumi.get(self, "allocated_capacity")
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of Glue Job
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def command(self) -> 'outputs.JobCommand':
+        """
+        The command of the job. Defined below.
+        """
+        return pulumi.get(self, "command")
+
+    @property
+    @pulumi.getter
+    def connections(self) -> Optional[List[str]]:
+        """
+        The list of connections used for this job.
+        """
+        return pulumi.get(self, "connections")
+
+    @property
+    @pulumi.getter(name="defaultArguments")
+    def default_arguments(self) -> Optional[Mapping[str, str]]:
+        """
+        The map of default arguments for this job. You can specify arguments here that your own job-execution script consumes, as well as arguments that AWS Glue itself consumes. For information about how to specify and consume your own Job arguments, see the [Calling AWS Glue APIs in Python](http://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-python-calling.html) topic in the developer guide. For information about the key-value pairs that AWS Glue consumes to set up your job, see the [Special Parameters Used by AWS Glue](http://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-python-glue-arguments.html) topic in the developer guide.
+        """
+        return pulumi.get(self, "default_arguments")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Description of the job.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="executionProperty")
+    def execution_property(self) -> 'outputs.JobExecutionProperty':
+        """
+        Execution property of the job. Defined below.
+        """
+        return pulumi.get(self, "execution_property")
+
+    @property
+    @pulumi.getter(name="glueVersion")
+    def glue_version(self) -> str:
+        """
+        The version of glue to use, for example "1.0". For information about available versions, see the [AWS Glue Release Notes](https://docs.aws.amazon.com/glue/latest/dg/release-notes.html).
+        """
+        return pulumi.get(self, "glue_version")
+
+    @property
+    @pulumi.getter(name="maxCapacity")
+    def max_capacity(self) -> float:
+        """
+        The maximum number of AWS Glue data processing units (DPUs) that can be allocated when this job runs. `Required` when `pythonshell` is set, accept either `0.0625` or `1.0`.
+        """
+        return pulumi.get(self, "max_capacity")
+
+    @property
+    @pulumi.getter(name="maxRetries")
+    def max_retries(self) -> Optional[float]:
+        """
+        The maximum number of times to retry this job if it fails.
+        """
+        return pulumi.get(self, "max_retries")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name you assign to this job. It must be unique in your account.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="notificationProperty")
+    def notification_property(self) -> 'outputs.JobNotificationProperty':
+        """
+        Notification property of the job. Defined below.
+        """
+        return pulumi.get(self, "notification_property")
+
+    @property
+    @pulumi.getter(name="numberOfWorkers")
+    def number_of_workers(self) -> Optional[float]:
+        """
+        The number of workers of a defined workerType that are allocated when a job runs.
+        """
+        return pulumi.get(self, "number_of_workers")
+
+    @property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> str:
+        """
+        The ARN of the IAM role associated with this job.
+        """
+        return pulumi.get(self, "role_arn")
+
+    @property
+    @pulumi.getter(name="securityConfiguration")
+    def security_configuration(self) -> Optional[str]:
+        """
+        The name of the Security Configuration to be associated with the job.
+        """
+        return pulumi.get(self, "security_configuration")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of resource tags
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> Optional[float]:
+        """
+        The job timeout in minutes. The default is 2880 minutes (48 hours).
+        """
+        return pulumi.get(self, "timeout")
+
+    @property
+    @pulumi.getter(name="workerType")
+    def worker_type(self) -> Optional[str]:
+        """
+        The type of predefined worker that is allocated when a job runs. Accepts a value of Standard, G.1X, or G.2X.
+        """
+        return pulumi.get(self, "worker_type")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

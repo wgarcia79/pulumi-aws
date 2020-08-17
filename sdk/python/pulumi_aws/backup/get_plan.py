@@ -15,16 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetPlanResult:
-    arn: str = pulumi.property("arn")
-    id: str = pulumi.property("id")
-    name: str = pulumi.property("name")
-    plan_id: str = pulumi.property("planId")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    version: str = pulumi.property("version")
-
-
 class GetPlanResult:
     """
     A collection of values returned by getPlan.
@@ -32,37 +24,68 @@ class GetPlanResult:
     def __init__(__self__, arn=None, id=None, name=None, plan_id=None, tags=None, version=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if plan_id and not isinstance(plan_id, str):
+            raise TypeError("Expected argument 'plan_id' to be a str")
+        pulumi.set(__self__, "plan_id", plan_id)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if version and not isinstance(version, str):
+            raise TypeError("Expected argument 'version' to be a str")
+        pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The ARN of the backup plan.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
         """
         The display name of a backup plan.
         """
-        if plan_id and not isinstance(plan_id, str):
-            raise TypeError("Expected argument 'plan_id' to be a str")
-        __self__.plan_id = plan_id
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="planId")
+    def plan_id(self) -> str:
+        return pulumi.get(self, "plan_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
         """
         Metadata that you can assign to help organize the plans you create.
         """
-        if version and not isinstance(version, str):
-            raise TypeError("Expected argument 'version' to be a str")
-        __self__.version = version
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
+    def version(self) -> str:
         """
         Unique, randomly generated, Unicode, UTF-8 encoded string that serves as the version ID of the backup plan.
         """
+        return pulumi.get(self, "version")
+
 
 
 class AwaitableGetPlanResult(GetPlanResult):
@@ -105,7 +128,7 @@ def get_plan(plan_id: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:backup/getPlan:getPlan', __args__, opts=opts, typ=_GetPlanResult).value
+    __ret__ = pulumi.runtime.invoke('aws:backup/getPlan:getPlan', __args__, opts=opts, typ=GetPlanResult).value
 
     return AwaitableGetPlanResult(
         arn=__ret__.arn,

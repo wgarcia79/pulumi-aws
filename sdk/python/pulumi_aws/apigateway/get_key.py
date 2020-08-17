@@ -15,18 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetKeyResult:
-    created_date: str = pulumi.property("createdDate")
-    description: str = pulumi.property("description")
-    enabled: bool = pulumi.property("enabled")
-    id: str = pulumi.property("id")
-    last_updated_date: str = pulumi.property("lastUpdatedDate")
-    name: str = pulumi.property("name")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    value: str = pulumi.property("value")
-
-
 class GetKeyResult:
     """
     A collection of values returned by getKey.
@@ -34,52 +24,93 @@ class GetKeyResult:
     def __init__(__self__, created_date=None, description=None, enabled=None, id=None, last_updated_date=None, name=None, tags=None, value=None):
         if created_date and not isinstance(created_date, str):
             raise TypeError("Expected argument 'created_date' to be a str")
-        __self__.created_date = created_date
+        pulumi.set(__self__, "created_date", created_date)
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
+        if enabled and not isinstance(enabled, bool):
+            raise TypeError("Expected argument 'enabled' to be a bool")
+        pulumi.set(__self__, "enabled", enabled)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if last_updated_date and not isinstance(last_updated_date, str):
+            raise TypeError("Expected argument 'last_updated_date' to be a str")
+        pulumi.set(__self__, "last_updated_date", last_updated_date)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if value and not isinstance(value, str):
+            raise TypeError("Expected argument 'value' to be a str")
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="createdDate")
+    def created_date(self) -> str:
         """
         The date and time when the API Key was created.
         """
-        if description and not isinstance(description, str):
-            raise TypeError("Expected argument 'description' to be a str")
-        __self__.description = description
+        return pulumi.get(self, "created_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
         """
         The description of the API Key.
         """
-        if enabled and not isinstance(enabled, bool):
-            raise TypeError("Expected argument 'enabled' to be a bool")
-        __self__.enabled = enabled
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
         """
         Specifies whether the API Key is enabled.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         Set to the ID of the API Key.
         """
-        if last_updated_date and not isinstance(last_updated_date, str):
-            raise TypeError("Expected argument 'last_updated_date' to be a str")
-        __self__.last_updated_date = last_updated_date
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="lastUpdatedDate")
+    def last_updated_date(self) -> str:
         """
         The date and time when the API Key was last updated.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
+        return pulumi.get(self, "last_updated_date")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
         """
         Set to the name of the API Key.
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
         """
         A map of tags for the resource.
         """
-        if value and not isinstance(value, str):
-            raise TypeError("Expected argument 'value' to be a str")
-        __self__.value = value
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
         """
         Set to the value of the API Key.
         """
+        return pulumi.get(self, "value")
+
 
 
 class AwaitableGetKeyResult(GetKeyResult):
@@ -125,7 +156,7 @@ def get_key(id: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:apigateway/getKey:getKey', __args__, opts=opts, typ=_GetKeyResult).value
+    __ret__ = pulumi.runtime.invoke('aws:apigateway/getKey:getKey', __args__, opts=opts, typ=GetKeyResult).value
 
     return AwaitableGetKeyResult(
         created_date=__ret__.created_date,

@@ -12,26 +12,6 @@ __all__ = ['Ciphertext']
 
 
 class Ciphertext(pulumi.CustomResource):
-    ciphertext_blob: pulumi.Output[str] = pulumi.property("ciphertextBlob")
-    """
-    Base64 encoded ciphertext
-    """
-
-    context: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("context")
-    """
-    An optional mapping that makes up the encryption context.
-    """
-
-    key_id: pulumi.Output[str] = pulumi.property("keyId")
-    """
-    Globally unique key ID for the customer master key.
-    """
-
-    plaintext: pulumi.Output[str] = pulumi.property("plaintext")
-    """
-    Data to be encrypted. Note that this may show up in logs, and it will be stored in the state file.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -134,6 +114,38 @@ class Ciphertext(pulumi.CustomResource):
         __props__["key_id"] = key_id
         __props__["plaintext"] = plaintext
         return Ciphertext(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="ciphertextBlob")
+    def ciphertext_blob(self) -> str:
+        """
+        Base64 encoded ciphertext
+        """
+        return pulumi.get(self, "ciphertext_blob")
+
+    @property
+    @pulumi.getter
+    def context(self) -> Optional[Mapping[str, str]]:
+        """
+        An optional mapping that makes up the encryption context.
+        """
+        return pulumi.get(self, "context")
+
+    @property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> str:
+        """
+        Globally unique key ID for the customer master key.
+        """
+        return pulumi.get(self, "key_id")
+
+    @property
+    @pulumi.getter
+    def plaintext(self) -> str:
+        """
+        Data to be encrypted. Note that this may show up in logs, and it will be stored in the state file.
+        """
+        return pulumi.get(self, "plaintext")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

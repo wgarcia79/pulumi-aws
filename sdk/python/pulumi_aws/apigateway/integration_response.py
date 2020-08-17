@@ -12,50 +12,6 @@ __all__ = ['IntegrationResponse']
 
 
 class IntegrationResponse(pulumi.CustomResource):
-    content_handling: pulumi.Output[Optional[str]] = pulumi.property("contentHandling")
-    """
-    Specifies how to handle request payload content type conversions. Supported values are `CONVERT_TO_BINARY` and `CONVERT_TO_TEXT`. If this property is not defined, the response payload will be passed through from the integration response to the method response without modification.
-    """
-
-    http_method: pulumi.Output[str] = pulumi.property("httpMethod")
-    """
-    The HTTP method (`GET`, `POST`, `PUT`, `DELETE`, `HEAD`, `OPTIONS`, `ANY`)
-    """
-
-    resource_id: pulumi.Output[str] = pulumi.property("resourceId")
-    """
-    The API resource ID
-    """
-
-    response_parameters: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("responseParameters")
-    """
-    A map of response parameters that can be read from the backend response.
-    For example: `response_parameters = { "method.response.header.X-Some-Header" = "integration.response.header.X-Some-Other-Header" }`
-    """
-
-    response_templates: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("responseTemplates")
-    """
-    A map specifying the templates used to transform the integration response body
-    """
-
-    rest_api: pulumi.Output[str] = pulumi.property("restApi")
-    """
-    The ID of the associated REST API
-    """
-
-    selection_pattern: pulumi.Output[Optional[str]] = pulumi.property("selectionPattern")
-    """
-    Specifies the regular expression pattern used to choose
-    an integration response based on the response from the backend. Setting this to `-` makes the integration the default one.
-    If the backend is an `AWS` Lambda function, the AWS Lambda function error header is matched.
-    For all other `HTTP` and `AWS` backends, the HTTP status code is matched.
-    """
-
-    status_code: pulumi.Output[str] = pulumi.property("statusCode")
-    """
-    The HTTP status code
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -217,6 +173,74 @@ class IntegrationResponse(pulumi.CustomResource):
         __props__["selection_pattern"] = selection_pattern
         __props__["status_code"] = status_code
         return IntegrationResponse(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="contentHandling")
+    def content_handling(self) -> Optional[str]:
+        """
+        Specifies how to handle request payload content type conversions. Supported values are `CONVERT_TO_BINARY` and `CONVERT_TO_TEXT`. If this property is not defined, the response payload will be passed through from the integration response to the method response without modification.
+        """
+        return pulumi.get(self, "content_handling")
+
+    @property
+    @pulumi.getter(name="httpMethod")
+    def http_method(self) -> str:
+        """
+        The HTTP method (`GET`, `POST`, `PUT`, `DELETE`, `HEAD`, `OPTIONS`, `ANY`)
+        """
+        return pulumi.get(self, "http_method")
+
+    @property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> str:
+        """
+        The API resource ID
+        """
+        return pulumi.get(self, "resource_id")
+
+    @property
+    @pulumi.getter(name="responseParameters")
+    def response_parameters(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of response parameters that can be read from the backend response.
+        For example: `response_parameters = { "method.response.header.X-Some-Header" = "integration.response.header.X-Some-Other-Header" }`
+        """
+        return pulumi.get(self, "response_parameters")
+
+    @property
+    @pulumi.getter(name="responseTemplates")
+    def response_templates(self) -> Optional[Mapping[str, str]]:
+        """
+        A map specifying the templates used to transform the integration response body
+        """
+        return pulumi.get(self, "response_templates")
+
+    @property
+    @pulumi.getter(name="restApi")
+    def rest_api(self) -> str:
+        """
+        The ID of the associated REST API
+        """
+        return pulumi.get(self, "rest_api")
+
+    @property
+    @pulumi.getter(name="selectionPattern")
+    def selection_pattern(self) -> Optional[str]:
+        """
+        Specifies the regular expression pattern used to choose
+        an integration response based on the response from the backend. Setting this to `-` makes the integration the default one.
+        If the backend is an `AWS` Lambda function, the AWS Lambda function error header is matched.
+        For all other `HTTP` and `AWS` backends, the HTTP status code is matched.
+        """
+        return pulumi.get(self, "selection_pattern")
+
+    @property
+    @pulumi.getter(name="statusCode")
+    def status_code(self) -> str:
+        """
+        The HTTP status code
+        """
+        return pulumi.get(self, "status_code")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

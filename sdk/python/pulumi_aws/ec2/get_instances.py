@@ -17,17 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetInstancesResult:
-    filters: Optional[List['outputs.GetInstancesFilterResult']] = pulumi.property("filters")
-    id: str = pulumi.property("id")
-    ids: List[str] = pulumi.property("ids")
-    instance_state_names: Optional[List[str]] = pulumi.property("instanceStateNames")
-    instance_tags: Mapping[str, str] = pulumi.property("instanceTags")
-    private_ips: List[str] = pulumi.property("privateIps")
-    public_ips: List[str] = pulumi.property("publicIps")
-
-
 class GetInstancesResult:
     """
     A collection of values returned by getInstances.
@@ -35,37 +26,73 @@ class GetInstancesResult:
     def __init__(__self__, filters=None, id=None, ids=None, instance_state_names=None, instance_tags=None, private_ips=None, public_ips=None):
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
+        pulumi.set(__self__, "filters", filters)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if ids and not isinstance(ids, list):
+            raise TypeError("Expected argument 'ids' to be a list")
+        pulumi.set(__self__, "ids", ids)
+        if instance_state_names and not isinstance(instance_state_names, list):
+            raise TypeError("Expected argument 'instance_state_names' to be a list")
+        pulumi.set(__self__, "instance_state_names", instance_state_names)
+        if instance_tags and not isinstance(instance_tags, dict):
+            raise TypeError("Expected argument 'instance_tags' to be a dict")
+        pulumi.set(__self__, "instance_tags", instance_tags)
+        if private_ips and not isinstance(private_ips, list):
+            raise TypeError("Expected argument 'private_ips' to be a list")
+        pulumi.set(__self__, "private_ips", private_ips)
+        if public_ips and not isinstance(public_ips, list):
+            raise TypeError("Expected argument 'public_ips' to be a list")
+        pulumi.set(__self__, "public_ips", public_ips)
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetInstancesFilterResult']]:
+        return pulumi.get(self, "filters")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if ids and not isinstance(ids, list):
-            raise TypeError("Expected argument 'ids' to be a list")
-        __self__.ids = ids
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def ids(self) -> List[str]:
         """
         IDs of instances found through the filter
         """
-        if instance_state_names and not isinstance(instance_state_names, list):
-            raise TypeError("Expected argument 'instance_state_names' to be a list")
-        __self__.instance_state_names = instance_state_names
-        if instance_tags and not isinstance(instance_tags, dict):
-            raise TypeError("Expected argument 'instance_tags' to be a dict")
-        __self__.instance_tags = instance_tags
-        if private_ips and not isinstance(private_ips, list):
-            raise TypeError("Expected argument 'private_ips' to be a list")
-        __self__.private_ips = private_ips
+        return pulumi.get(self, "ids")
+
+    @property
+    @pulumi.getter(name="instanceStateNames")
+    def instance_state_names(self) -> Optional[List[str]]:
+        return pulumi.get(self, "instance_state_names")
+
+    @property
+    @pulumi.getter(name="instanceTags")
+    def instance_tags(self) -> Mapping[str, str]:
+        return pulumi.get(self, "instance_tags")
+
+    @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> List[str]:
         """
         Private IP addresses of instances found through the filter
         """
-        if public_ips and not isinstance(public_ips, list):
-            raise TypeError("Expected argument 'public_ips' to be a list")
-        __self__.public_ips = public_ips
+        return pulumi.get(self, "private_ips")
+
+    @property
+    @pulumi.getter(name="publicIps")
+    def public_ips(self) -> List[str]:
         """
         Public IP addresses of instances found through the filter
         """
+        return pulumi.get(self, "public_ips")
+
 
 
 class AwaitableGetInstancesResult(GetInstancesResult):
@@ -134,7 +161,7 @@ def get_instances(filters: Optional[List[pulumi.InputType['GetInstancesFilterArg
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getInstances:getInstances', __args__, opts=opts, typ=_GetInstancesResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getInstances:getInstances', __args__, opts=opts, typ=GetInstancesResult).value
 
     return AwaitableGetInstancesResult(
         filters=__ret__.filters,

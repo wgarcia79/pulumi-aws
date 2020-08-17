@@ -12,100 +12,6 @@ __all__ = ['Snapshot']
 
 
 class Snapshot(pulumi.CustomResource):
-    allocated_storage: pulumi.Output[float] = pulumi.property("allocatedStorage")
-    """
-    Specifies the allocated storage size in gigabytes (GB).
-    """
-
-    availability_zone: pulumi.Output[str] = pulumi.property("availabilityZone")
-    """
-    Specifies the name of the Availability Zone the DB instance was located in at the time of the DB snapshot.
-    """
-
-    db_instance_identifier: pulumi.Output[str] = pulumi.property("dbInstanceIdentifier")
-    """
-    The DB Instance Identifier from which to take the snapshot.
-    """
-
-    db_snapshot_arn: pulumi.Output[str] = pulumi.property("dbSnapshotArn")
-    """
-    The Amazon Resource Name (ARN) for the DB snapshot.
-    """
-
-    db_snapshot_identifier: pulumi.Output[str] = pulumi.property("dbSnapshotIdentifier")
-    """
-    The Identifier for the snapshot.
-    """
-
-    encrypted: pulumi.Output[bool] = pulumi.property("encrypted")
-    """
-    Specifies whether the DB snapshot is encrypted.
-    """
-
-    engine: pulumi.Output[str] = pulumi.property("engine")
-    """
-    Specifies the name of the database engine.
-    """
-
-    engine_version: pulumi.Output[str] = pulumi.property("engineVersion")
-    """
-    Specifies the version of the database engine.
-    """
-
-    iops: pulumi.Output[float] = pulumi.property("iops")
-    """
-    Specifies the Provisioned IOPS (I/O operations per second) value of the DB instance at the time of the snapshot.
-    """
-
-    kms_key_id: pulumi.Output[str] = pulumi.property("kmsKeyId")
-    """
-    The ARN for the KMS encryption key.
-    """
-
-    license_model: pulumi.Output[str] = pulumi.property("licenseModel")
-    """
-    License model information for the restored DB instance.
-    """
-
-    option_group_name: pulumi.Output[str] = pulumi.property("optionGroupName")
-    """
-    Provides the option group name for the DB snapshot.
-    """
-
-    port: pulumi.Output[float] = pulumi.property("port")
-
-    snapshot_type: pulumi.Output[str] = pulumi.property("snapshotType")
-
-    source_db_snapshot_identifier: pulumi.Output[str] = pulumi.property("sourceDbSnapshotIdentifier")
-    """
-    The DB snapshot Arn that the DB snapshot was copied from. It only has value in case of cross customer or cross region copy.
-    """
-
-    source_region: pulumi.Output[str] = pulumi.property("sourceRegion")
-    """
-    The region that the DB snapshot was created in or copied from.
-    """
-
-    status: pulumi.Output[str] = pulumi.property("status")
-    """
-    Specifies the status of this DB snapshot.
-    """
-
-    storage_type: pulumi.Output[str] = pulumi.property("storageType")
-    """
-    Specifies the storage type associated with DB snapshot.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of resource tags
-    """
-
-    vpc_id: pulumi.Output[str] = pulumi.property("vpcId")
-    """
-    Specifies the storage type associated with DB snapshot.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -268,6 +174,160 @@ class Snapshot(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["vpc_id"] = vpc_id
         return Snapshot(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="allocatedStorage")
+    def allocated_storage(self) -> float:
+        """
+        Specifies the allocated storage size in gigabytes (GB).
+        """
+        return pulumi.get(self, "allocated_storage")
+
+    @property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> str:
+        """
+        Specifies the name of the Availability Zone the DB instance was located in at the time of the DB snapshot.
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @property
+    @pulumi.getter(name="dbInstanceIdentifier")
+    def db_instance_identifier(self) -> str:
+        """
+        The DB Instance Identifier from which to take the snapshot.
+        """
+        return pulumi.get(self, "db_instance_identifier")
+
+    @property
+    @pulumi.getter(name="dbSnapshotArn")
+    def db_snapshot_arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) for the DB snapshot.
+        """
+        return pulumi.get(self, "db_snapshot_arn")
+
+    @property
+    @pulumi.getter(name="dbSnapshotIdentifier")
+    def db_snapshot_identifier(self) -> str:
+        """
+        The Identifier for the snapshot.
+        """
+        return pulumi.get(self, "db_snapshot_identifier")
+
+    @property
+    @pulumi.getter
+    def encrypted(self) -> bool:
+        """
+        Specifies whether the DB snapshot is encrypted.
+        """
+        return pulumi.get(self, "encrypted")
+
+    @property
+    @pulumi.getter
+    def engine(self) -> str:
+        """
+        Specifies the name of the database engine.
+        """
+        return pulumi.get(self, "engine")
+
+    @property
+    @pulumi.getter(name="engineVersion")
+    def engine_version(self) -> str:
+        """
+        Specifies the version of the database engine.
+        """
+        return pulumi.get(self, "engine_version")
+
+    @property
+    @pulumi.getter
+    def iops(self) -> float:
+        """
+        Specifies the Provisioned IOPS (I/O operations per second) value of the DB instance at the time of the snapshot.
+        """
+        return pulumi.get(self, "iops")
+
+    @property
+    @pulumi.getter(name="kmsKeyId")
+    def kms_key_id(self) -> str:
+        """
+        The ARN for the KMS encryption key.
+        """
+        return pulumi.get(self, "kms_key_id")
+
+    @property
+    @pulumi.getter(name="licenseModel")
+    def license_model(self) -> str:
+        """
+        License model information for the restored DB instance.
+        """
+        return pulumi.get(self, "license_model")
+
+    @property
+    @pulumi.getter(name="optionGroupName")
+    def option_group_name(self) -> str:
+        """
+        Provides the option group name for the DB snapshot.
+        """
+        return pulumi.get(self, "option_group_name")
+
+    @property
+    @pulumi.getter
+    def port(self) -> float:
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="snapshotType")
+    def snapshot_type(self) -> str:
+        return pulumi.get(self, "snapshot_type")
+
+    @property
+    @pulumi.getter(name="sourceDbSnapshotIdentifier")
+    def source_db_snapshot_identifier(self) -> str:
+        """
+        The DB snapshot Arn that the DB snapshot was copied from. It only has value in case of cross customer or cross region copy.
+        """
+        return pulumi.get(self, "source_db_snapshot_identifier")
+
+    @property
+    @pulumi.getter(name="sourceRegion")
+    def source_region(self) -> str:
+        """
+        The region that the DB snapshot was created in or copied from.
+        """
+        return pulumi.get(self, "source_region")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        Specifies the status of this DB snapshot.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="storageType")
+    def storage_type(self) -> str:
+        """
+        Specifies the storage type associated with DB snapshot.
+        """
+        return pulumi.get(self, "storage_type")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of resource tags
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        Specifies the storage type associated with DB snapshot.
+        """
+        return pulumi.get(self, "vpc_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

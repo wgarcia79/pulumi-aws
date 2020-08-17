@@ -12,16 +12,6 @@ __all__ = ['LogDestinationPolicy']
 
 
 class LogDestinationPolicy(pulumi.CustomResource):
-    access_policy: pulumi.Output[str] = pulumi.property("accessPolicy")
-    """
-    The policy document. This is a JSON formatted string.
-    """
-
-    destination_name: pulumi.Output[str] = pulumi.property("destinationName")
-    """
-    A name for the subscription filter
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -113,6 +103,22 @@ class LogDestinationPolicy(pulumi.CustomResource):
         __props__["access_policy"] = access_policy
         __props__["destination_name"] = destination_name
         return LogDestinationPolicy(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="accessPolicy")
+    def access_policy(self) -> str:
+        """
+        The policy document. This is a JSON formatted string.
+        """
+        return pulumi.get(self, "access_policy")
+
+    @property
+    @pulumi.getter(name="destinationName")
+    def destination_name(self) -> str:
+        """
+        A name for the subscription filter
+        """
+        return pulumi.get(self, "destination_name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

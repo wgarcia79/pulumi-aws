@@ -25,7 +25,8 @@ class ClusterParameterGroupParameterArgs:
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "value", value)
-        pulumi.set(__self__, "applyMethod", apply_method)
+        if apply_method is not None:
+            pulumi.set(__self__, "apply_method", apply_method)
 
     @property
     @pulumi.getter
@@ -33,11 +34,11 @@ class ClusterParameterGroupParameterArgs:
         """
         The name of the documentDB parameter.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -45,11 +46,11 @@ class ClusterParameterGroupParameterArgs:
         """
         The value of the documentDB parameter.
         """
-        ...
+        return pulumi.get(self, "value")
 
     @value.setter
     def value(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "value", value)
 
     @property
     @pulumi.getter(name="applyMethod")
@@ -57,10 +58,10 @@ class ClusterParameterGroupParameterArgs:
         """
         Valid values are `immediate` and `pending-reboot`. Defaults to `pending-reboot`.
         """
-        ...
+        return pulumi.get(self, "apply_method")
 
     @apply_method.setter
     def apply_method(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "apply_method", value)
 
 

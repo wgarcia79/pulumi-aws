@@ -17,15 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetLocalGatewayVirtualInterfaceGroupResult:
-    filters: Optional[List['outputs.GetLocalGatewayVirtualInterfaceGroupFilterResult']] = pulumi.property("filters")
-    id: str = pulumi.property("id")
-    local_gateway_id: str = pulumi.property("localGatewayId")
-    local_gateway_virtual_interface_ids: List[str] = pulumi.property("localGatewayVirtualInterfaceIds")
-    tags: Mapping[str, str] = pulumi.property("tags")
-
-
 class GetLocalGatewayVirtualInterfaceGroupResult:
     """
     A collection of values returned by getLocalGatewayVirtualInterfaceGroup.
@@ -33,22 +26,48 @@ class GetLocalGatewayVirtualInterfaceGroupResult:
     def __init__(__self__, filters=None, id=None, local_gateway_id=None, local_gateway_virtual_interface_ids=None, tags=None):
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
+        pulumi.set(__self__, "filters", filters)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
         if local_gateway_id and not isinstance(local_gateway_id, str):
             raise TypeError("Expected argument 'local_gateway_id' to be a str")
-        __self__.local_gateway_id = local_gateway_id
+        pulumi.set(__self__, "local_gateway_id", local_gateway_id)
         if local_gateway_virtual_interface_ids and not isinstance(local_gateway_virtual_interface_ids, list):
             raise TypeError("Expected argument 'local_gateway_virtual_interface_ids' to be a list")
-        __self__.local_gateway_virtual_interface_ids = local_gateway_virtual_interface_ids
+        pulumi.set(__self__, "local_gateway_virtual_interface_ids", local_gateway_virtual_interface_ids)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetLocalGatewayVirtualInterfaceGroupFilterResult']]:
+        return pulumi.get(self, "filters")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="localGatewayId")
+    def local_gateway_id(self) -> str:
+        return pulumi.get(self, "local_gateway_id")
+
+    @property
+    @pulumi.getter(name="localGatewayVirtualInterfaceIds")
+    def local_gateway_virtual_interface_ids(self) -> List[str]:
         """
         Set of EC2 Local Gateway Virtual Interface identifiers.
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        return pulumi.get(self, "local_gateway_virtual_interface_ids")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
+        return pulumi.get(self, "tags")
+
 
 
 class AwaitableGetLocalGatewayVirtualInterfaceGroupResult(GetLocalGatewayVirtualInterfaceGroupResult):
@@ -96,7 +115,7 @@ def get_local_gateway_virtual_interface_group(filters: Optional[List[pulumi.Inpu
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getLocalGatewayVirtualInterfaceGroup:getLocalGatewayVirtualInterfaceGroup', __args__, opts=opts, typ=_GetLocalGatewayVirtualInterfaceGroupResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getLocalGatewayVirtualInterfaceGroup:getLocalGatewayVirtualInterfaceGroup', __args__, opts=opts, typ=GetLocalGatewayVirtualInterfaceGroupResult).value
 
     return AwaitableGetLocalGatewayVirtualInterfaceGroupResult(
         filters=__ret__.filters,

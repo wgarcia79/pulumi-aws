@@ -15,14 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetCallerIdentityResult:
-    account_id: str = pulumi.property("accountId")
-    arn: str = pulumi.property("arn")
-    id: str = pulumi.property("id")
-    user_id: str = pulumi.property("userId")
-
-
 class GetCallerIdentityResult:
     """
     A collection of values returned by getCallerIdentity.
@@ -30,28 +24,49 @@ class GetCallerIdentityResult:
     def __init__(__self__, account_id=None, arn=None, id=None, user_id=None):
         if account_id and not isinstance(account_id, str):
             raise TypeError("Expected argument 'account_id' to be a str")
-        __self__.account_id = account_id
+        pulumi.set(__self__, "account_id", account_id)
+        if arn and not isinstance(arn, str):
+            raise TypeError("Expected argument 'arn' to be a str")
+        pulumi.set(__self__, "arn", arn)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if user_id and not isinstance(user_id, str):
+            raise TypeError("Expected argument 'user_id' to be a str")
+        pulumi.set(__self__, "user_id", user_id)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
         """
         The AWS Account ID number of the account that owns or contains the calling entity.
         """
-        if arn and not isinstance(arn, str):
-            raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The AWS ARN associated with the calling entity.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if user_id and not isinstance(user_id, str):
-            raise TypeError("Expected argument 'user_id' to be a str")
-        __self__.user_id = user_id
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> str:
         """
         The unique identifier of the calling entity.
         """
+        return pulumi.get(self, "user_id")
+
 
 
 class AwaitableGetCallerIdentityResult(GetCallerIdentityResult):
@@ -88,7 +103,7 @@ def get_caller_identity(                        opts: Optional[pulumi.InvokeOpti
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:index/getCallerIdentity:getCallerIdentity', __args__, opts=opts, typ=_GetCallerIdentityResult).value
+    __ret__ = pulumi.runtime.invoke('aws:index/getCallerIdentity:getCallerIdentity', __args__, opts=opts, typ=GetCallerIdentityResult).value
 
     return AwaitableGetCallerIdentityResult(
         account_id=__ret__.account_id,

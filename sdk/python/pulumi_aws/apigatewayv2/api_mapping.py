@@ -12,26 +12,6 @@ __all__ = ['ApiMapping']
 
 
 class ApiMapping(pulumi.CustomResource):
-    api_id: pulumi.Output[str] = pulumi.property("apiId")
-    """
-    The API identifier.
-    """
-
-    api_mapping_key: pulumi.Output[Optional[str]] = pulumi.property("apiMappingKey")
-    """
-    The [API mapping key](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-mapping-template-reference.html).
-    """
-
-    domain_name: pulumi.Output[str] = pulumi.property("domainName")
-    """
-    The domain name. Use the `apigatewayv2.DomainName` resource to configure a domain name.
-    """
-
-    stage: pulumi.Output[str] = pulumi.property("stage")
-    """
-    The API stage. Use the `apigatewayv2.Stage` resource to configure an API stage.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -128,6 +108,38 @@ class ApiMapping(pulumi.CustomResource):
         __props__["domain_name"] = domain_name
         __props__["stage"] = stage
         return ApiMapping(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="apiId")
+    def api_id(self) -> str:
+        """
+        The API identifier.
+        """
+        return pulumi.get(self, "api_id")
+
+    @property
+    @pulumi.getter(name="apiMappingKey")
+    def api_mapping_key(self) -> Optional[str]:
+        """
+        The [API mapping key](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-mapping-template-reference.html).
+        """
+        return pulumi.get(self, "api_mapping_key")
+
+    @property
+    @pulumi.getter(name="domainName")
+    def domain_name(self) -> str:
+        """
+        The domain name. Use the `apigatewayv2.DomainName` resource to configure a domain name.
+        """
+        return pulumi.get(self, "domain_name")
+
+    @property
+    @pulumi.getter
+    def stage(self) -> str:
+        """
+        The API stage. Use the `apigatewayv2.Stage` resource to configure an API stage.
+        """
+        return pulumi.get(self, "stage")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

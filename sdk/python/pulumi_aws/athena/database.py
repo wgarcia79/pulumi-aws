@@ -14,26 +14,6 @@ __all__ = ['Database']
 
 
 class Database(pulumi.CustomResource):
-    bucket: pulumi.Output[str] = pulumi.property("bucket")
-    """
-    Name of s3 bucket to save the results of the query execution.
-    """
-
-    encryption_configuration: pulumi.Output[Optional['outputs.DatabaseEncryptionConfiguration']] = pulumi.property("encryptionConfiguration")
-    """
-    The encryption key block AWS Athena uses to decrypt the data in S3, such as an AWS Key Management Service (AWS KMS) key. An `encryption_configuration` block is documented below.
-    """
-
-    force_destroy: pulumi.Output[Optional[bool]] = pulumi.property("forceDestroy")
-    """
-    A boolean that indicates all tables should be deleted from the database so that the database can be destroyed without error. The tables are *not* recoverable.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    Name of the database to create.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -124,6 +104,38 @@ class Database(pulumi.CustomResource):
         __props__["force_destroy"] = force_destroy
         __props__["name"] = name
         return Database(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> str:
+        """
+        Name of s3 bucket to save the results of the query execution.
+        """
+        return pulumi.get(self, "bucket")
+
+    @property
+    @pulumi.getter(name="encryptionConfiguration")
+    def encryption_configuration(self) -> Optional['outputs.DatabaseEncryptionConfiguration']:
+        """
+        The encryption key block AWS Athena uses to decrypt the data in S3, such as an AWS Key Management Service (AWS KMS) key. An `encryption_configuration` block is documented below.
+        """
+        return pulumi.get(self, "encryption_configuration")
+
+    @property
+    @pulumi.getter(name="forceDestroy")
+    def force_destroy(self) -> Optional[bool]:
+        """
+        A boolean that indicates all tables should be deleted from the database so that the database can be destroyed without error. The tables are *not* recoverable.
+        """
+        return pulumi.get(self, "force_destroy")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the database to create.
+        """
+        return pulumi.get(self, "name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

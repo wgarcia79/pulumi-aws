@@ -14,23 +14,6 @@ __all__ = ['Recorder']
 
 
 class Recorder(pulumi.CustomResource):
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the recorder. Defaults to `default`. Changing it recreates the resource.
-    """
-
-    recording_group: pulumi.Output['outputs.RecorderRecordingGroup'] = pulumi.property("recordingGroup")
-    """
-    Recording group - see below.
-    """
-
-    role_arn: pulumi.Output[str] = pulumi.property("roleArn")
-    """
-    Amazon Resource Name (ARN) of the IAM role.
-    used to make read or write requests to the delivery channel and to describe the AWS resources associated with the account.
-    See [AWS Docs](http://docs.aws.amazon.com/config/latest/developerguide/iamrole-permissions.html) for more details.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -133,6 +116,32 @@ class Recorder(pulumi.CustomResource):
         __props__["recording_group"] = recording_group
         __props__["role_arn"] = role_arn
         return Recorder(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the recorder. Defaults to `default`. Changing it recreates the resource.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="recordingGroup")
+    def recording_group(self) -> 'outputs.RecorderRecordingGroup':
+        """
+        Recording group - see below.
+        """
+        return pulumi.get(self, "recording_group")
+
+    @property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of the IAM role.
+        used to make read or write requests to the delivery channel and to describe the AWS resources associated with the account.
+        See [AWS Docs](http://docs.aws.amazon.com/config/latest/developerguide/iamrole-permissions.html) for more details.
+        """
+        return pulumi.get(self, "role_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

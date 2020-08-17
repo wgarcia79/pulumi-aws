@@ -12,16 +12,6 @@ __all__ = ['VpcEndpointSubnetAssociation']
 
 
 class VpcEndpointSubnetAssociation(pulumi.CustomResource):
-    subnet_id: pulumi.Output[str] = pulumi.property("subnetId")
-    """
-    The ID of the subnet to be associated with the VPC endpoint.
-    """
-
-    vpc_endpoint_id: pulumi.Output[str] = pulumi.property("vpcEndpointId")
-    """
-    The ID of the VPC endpoint with which the subnet will be associated.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -109,6 +99,22 @@ class VpcEndpointSubnetAssociation(pulumi.CustomResource):
         __props__["subnet_id"] = subnet_id
         __props__["vpc_endpoint_id"] = vpc_endpoint_id
         return VpcEndpointSubnetAssociation(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> str:
+        """
+        The ID of the subnet to be associated with the VPC endpoint.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @property
+    @pulumi.getter(name="vpcEndpointId")
+    def vpc_endpoint_id(self) -> str:
+        """
+        The ID of the VPC endpoint with which the subnet will be associated.
+        """
+        return pulumi.get(self, "vpc_endpoint_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -12,69 +12,6 @@ __all__ = ['FlowLog']
 
 
 class FlowLog(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the Flow Log.
-    """
-
-    eni_id: pulumi.Output[Optional[str]] = pulumi.property("eniId")
-    """
-    Elastic Network Interface ID to attach to
-    """
-
-    iam_role_arn: pulumi.Output[Optional[str]] = pulumi.property("iamRoleArn")
-    """
-    The ARN for the IAM role that's used to post flow logs to a CloudWatch Logs log group
-    """
-
-    log_destination: pulumi.Output[str] = pulumi.property("logDestination")
-    """
-    The ARN of the logging destination.
-    """
-
-    log_destination_type: pulumi.Output[Optional[str]] = pulumi.property("logDestinationType")
-    """
-    The type of the logging destination. Valid values: `cloud-watch-logs`, `s3`. Default: `cloud-watch-logs`.
-    """
-
-    log_format: pulumi.Output[str] = pulumi.property("logFormat")
-    """
-    The fields to include in the flow log record, in the order in which they should appear.
-    """
-
-    log_group_name: pulumi.Output[str] = pulumi.property("logGroupName")
-    """
-    *Deprecated:* Use `log_destination` instead. The name of the CloudWatch log group.
-    """
-
-    max_aggregation_interval: pulumi.Output[Optional[float]] = pulumi.property("maxAggregationInterval")
-    """
-    The maximum interval of time
-    during which a flow of packets is captured and aggregated into a flow
-    log record. Valid Values: `60` seconds (1 minute) or `600` seconds (10
-    minutes). Default: `600`.
-    """
-
-    subnet_id: pulumi.Output[Optional[str]] = pulumi.property("subnetId")
-    """
-    Subnet ID to attach to
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of resource tags
-    """
-
-    traffic_type: pulumi.Output[str] = pulumi.property("trafficType")
-    """
-    The type of traffic to capture. Valid values: `ACCEPT`,`REJECT`, `ALL`.
-    """
-
-    vpc_id: pulumi.Output[Optional[str]] = pulumi.property("vpcId")
-    """
-    VPC ID to attach to
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -272,6 +209,105 @@ class FlowLog(pulumi.CustomResource):
         __props__["traffic_type"] = traffic_type
         __props__["vpc_id"] = vpc_id
         return FlowLog(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the Flow Log.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="eniId")
+    def eni_id(self) -> Optional[str]:
+        """
+        Elastic Network Interface ID to attach to
+        """
+        return pulumi.get(self, "eni_id")
+
+    @property
+    @pulumi.getter(name="iamRoleArn")
+    def iam_role_arn(self) -> Optional[str]:
+        """
+        The ARN for the IAM role that's used to post flow logs to a CloudWatch Logs log group
+        """
+        return pulumi.get(self, "iam_role_arn")
+
+    @property
+    @pulumi.getter(name="logDestination")
+    def log_destination(self) -> str:
+        """
+        The ARN of the logging destination.
+        """
+        return pulumi.get(self, "log_destination")
+
+    @property
+    @pulumi.getter(name="logDestinationType")
+    def log_destination_type(self) -> Optional[str]:
+        """
+        The type of the logging destination. Valid values: `cloud-watch-logs`, `s3`. Default: `cloud-watch-logs`.
+        """
+        return pulumi.get(self, "log_destination_type")
+
+    @property
+    @pulumi.getter(name="logFormat")
+    def log_format(self) -> str:
+        """
+        The fields to include in the flow log record, in the order in which they should appear.
+        """
+        return pulumi.get(self, "log_format")
+
+    @property
+    @pulumi.getter(name="logGroupName")
+    def log_group_name(self) -> str:
+        """
+        *Deprecated:* Use `log_destination` instead. The name of the CloudWatch log group.
+        """
+        return pulumi.get(self, "log_group_name")
+
+    @property
+    @pulumi.getter(name="maxAggregationInterval")
+    def max_aggregation_interval(self) -> Optional[float]:
+        """
+        The maximum interval of time
+        during which a flow of packets is captured and aggregated into a flow
+        log record. Valid Values: `60` seconds (1 minute) or `600` seconds (10
+        minutes). Default: `600`.
+        """
+        return pulumi.get(self, "max_aggregation_interval")
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> Optional[str]:
+        """
+        Subnet ID to attach to
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of resource tags
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="trafficType")
+    def traffic_type(self) -> str:
+        """
+        The type of traffic to capture. Valid values: `ACCEPT`,`REJECT`, `ALL`.
+        """
+        return pulumi.get(self, "traffic_type")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[str]:
+        """
+        VPC ID to attach to
+        """
+        return pulumi.get(self, "vpc_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

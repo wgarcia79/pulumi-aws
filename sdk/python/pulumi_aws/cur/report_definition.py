@@ -12,51 +12,6 @@ __all__ = ['ReportDefinition']
 
 
 class ReportDefinition(pulumi.CustomResource):
-    additional_artifacts: pulumi.Output[Optional[List[str]]] = pulumi.property("additionalArtifacts")
-    """
-    A list of additional artifacts. Valid values are: REDSHIFT, QUICKSIGHT.
-    """
-
-    additional_schema_elements: pulumi.Output[List[str]] = pulumi.property("additionalSchemaElements")
-    """
-    A list of schema elements. Valid values are: RESOURCES.
-    """
-
-    compression: pulumi.Output[str] = pulumi.property("compression")
-    """
-    Compression format for report. Valid values are: GZIP, ZIP.
-    """
-
-    format: pulumi.Output[str] = pulumi.property("format")
-    """
-    Format for report. Valid values are: textORcsv.
-    """
-
-    report_name: pulumi.Output[str] = pulumi.property("reportName")
-    """
-    Unique name for the report. Must start with a number/letter and is case sensitive. Limited to 256 characters.
-    """
-
-    s3_bucket: pulumi.Output[str] = pulumi.property("s3Bucket")
-    """
-    Name of the existing S3 bucket to hold generated reports.
-    """
-
-    s3_prefix: pulumi.Output[Optional[str]] = pulumi.property("s3Prefix")
-    """
-    Report path prefix. Limited to 256 characters.
-    """
-
-    s3_region: pulumi.Output[str] = pulumi.property("s3Region")
-    """
-    Region of the existing S3 bucket to hold generated reports.
-    """
-
-    time_unit: pulumi.Output[str] = pulumi.property("timeUnit")
-    """
-    The frequency on which report data are measured and displayed.  Valid values are: HOURLY, DAILY.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -201,6 +156,78 @@ class ReportDefinition(pulumi.CustomResource):
         __props__["s3_region"] = s3_region
         __props__["time_unit"] = time_unit
         return ReportDefinition(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="additionalArtifacts")
+    def additional_artifacts(self) -> Optional[List[str]]:
+        """
+        A list of additional artifacts. Valid values are: REDSHIFT, QUICKSIGHT.
+        """
+        return pulumi.get(self, "additional_artifacts")
+
+    @property
+    @pulumi.getter(name="additionalSchemaElements")
+    def additional_schema_elements(self) -> List[str]:
+        """
+        A list of schema elements. Valid values are: RESOURCES.
+        """
+        return pulumi.get(self, "additional_schema_elements")
+
+    @property
+    @pulumi.getter
+    def compression(self) -> str:
+        """
+        Compression format for report. Valid values are: GZIP, ZIP.
+        """
+        return pulumi.get(self, "compression")
+
+    @property
+    @pulumi.getter
+    def format(self) -> str:
+        """
+        Format for report. Valid values are: textORcsv.
+        """
+        return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter(name="reportName")
+    def report_name(self) -> str:
+        """
+        Unique name for the report. Must start with a number/letter and is case sensitive. Limited to 256 characters.
+        """
+        return pulumi.get(self, "report_name")
+
+    @property
+    @pulumi.getter(name="s3Bucket")
+    def s3_bucket(self) -> str:
+        """
+        Name of the existing S3 bucket to hold generated reports.
+        """
+        return pulumi.get(self, "s3_bucket")
+
+    @property
+    @pulumi.getter(name="s3Prefix")
+    def s3_prefix(self) -> Optional[str]:
+        """
+        Report path prefix. Limited to 256 characters.
+        """
+        return pulumi.get(self, "s3_prefix")
+
+    @property
+    @pulumi.getter(name="s3Region")
+    def s3_region(self) -> str:
+        """
+        Region of the existing S3 bucket to hold generated reports.
+        """
+        return pulumi.get(self, "s3_region")
+
+    @property
+    @pulumi.getter(name="timeUnit")
+    def time_unit(self) -> str:
+        """
+        The frequency on which report data are measured and displayed.  Valid values are: HOURLY, DAILY.
+        """
+        return pulumi.get(self, "time_unit")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

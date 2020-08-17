@@ -12,66 +12,6 @@ __all__ = ['PlatformApplication']
 
 
 class PlatformApplication(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the SNS platform application
-    """
-
-    event_delivery_failure_topic_arn: pulumi.Output[Optional[str]] = pulumi.property("eventDeliveryFailureTopicArn")
-    """
-    SNS Topic triggered when a delivery to any of the platform endpoints associated with your platform application encounters a permanent failure.
-    """
-
-    event_endpoint_created_topic_arn: pulumi.Output[Optional[str]] = pulumi.property("eventEndpointCreatedTopicArn")
-    """
-    SNS Topic triggered when a new platform endpoint is added to your platform application.
-    """
-
-    event_endpoint_deleted_topic_arn: pulumi.Output[Optional[str]] = pulumi.property("eventEndpointDeletedTopicArn")
-    """
-    SNS Topic triggered when an existing platform endpoint is deleted from your platform application.
-    """
-
-    event_endpoint_updated_topic_arn: pulumi.Output[Optional[str]] = pulumi.property("eventEndpointUpdatedTopicArn")
-    """
-    SNS Topic triggered when an existing platform endpoint is changed from your platform application.
-    """
-
-    failure_feedback_role_arn: pulumi.Output[Optional[str]] = pulumi.property("failureFeedbackRoleArn")
-    """
-    The IAM role permitted to receive failure feedback for this application.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The friendly name for the SNS platform application
-    """
-
-    platform: pulumi.Output[str] = pulumi.property("platform")
-    """
-    The platform that the app is registered with. See [Platform](http://docs.aws.amazon.com/sns/latest/dg/mobile-push-send-register.html) for supported platforms.
-    """
-
-    platform_credential: pulumi.Output[str] = pulumi.property("platformCredential")
-    """
-    Application Platform credential. See [Credential](http://docs.aws.amazon.com/sns/latest/dg/mobile-push-send-register.html) for type of credential required for platform. The value of this attribute when stored into the state is only a hash of the real value, so therefore it is not practical to use this as an attribute for other resources.
-    """
-
-    platform_principal: pulumi.Output[Optional[str]] = pulumi.property("platformPrincipal")
-    """
-    Application Platform principal. See [Principal](http://docs.aws.amazon.com/sns/latest/api/API_CreatePlatformApplication.html) for type of principal required for platform. The value of this attribute when stored into the state is only a hash of the real value, so therefore it is not practical to use this as an attribute for other resources.
-    """
-
-    success_feedback_role_arn: pulumi.Output[Optional[str]] = pulumi.property("successFeedbackRoleArn")
-    """
-    The IAM role permitted to receive success feedback for this application.
-    """
-
-    success_feedback_sample_rate: pulumi.Output[Optional[str]] = pulumi.property("successFeedbackSampleRate")
-    """
-    The percentage of success to sample (0-100)
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -221,6 +161,102 @@ class PlatformApplication(pulumi.CustomResource):
         __props__["success_feedback_role_arn"] = success_feedback_role_arn
         __props__["success_feedback_sample_rate"] = success_feedback_sample_rate
         return PlatformApplication(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the SNS platform application
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="eventDeliveryFailureTopicArn")
+    def event_delivery_failure_topic_arn(self) -> Optional[str]:
+        """
+        SNS Topic triggered when a delivery to any of the platform endpoints associated with your platform application encounters a permanent failure.
+        """
+        return pulumi.get(self, "event_delivery_failure_topic_arn")
+
+    @property
+    @pulumi.getter(name="eventEndpointCreatedTopicArn")
+    def event_endpoint_created_topic_arn(self) -> Optional[str]:
+        """
+        SNS Topic triggered when a new platform endpoint is added to your platform application.
+        """
+        return pulumi.get(self, "event_endpoint_created_topic_arn")
+
+    @property
+    @pulumi.getter(name="eventEndpointDeletedTopicArn")
+    def event_endpoint_deleted_topic_arn(self) -> Optional[str]:
+        """
+        SNS Topic triggered when an existing platform endpoint is deleted from your platform application.
+        """
+        return pulumi.get(self, "event_endpoint_deleted_topic_arn")
+
+    @property
+    @pulumi.getter(name="eventEndpointUpdatedTopicArn")
+    def event_endpoint_updated_topic_arn(self) -> Optional[str]:
+        """
+        SNS Topic triggered when an existing platform endpoint is changed from your platform application.
+        """
+        return pulumi.get(self, "event_endpoint_updated_topic_arn")
+
+    @property
+    @pulumi.getter(name="failureFeedbackRoleArn")
+    def failure_feedback_role_arn(self) -> Optional[str]:
+        """
+        The IAM role permitted to receive failure feedback for this application.
+        """
+        return pulumi.get(self, "failure_feedback_role_arn")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The friendly name for the SNS platform application
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def platform(self) -> str:
+        """
+        The platform that the app is registered with. See [Platform](http://docs.aws.amazon.com/sns/latest/dg/mobile-push-send-register.html) for supported platforms.
+        """
+        return pulumi.get(self, "platform")
+
+    @property
+    @pulumi.getter(name="platformCredential")
+    def platform_credential(self) -> str:
+        """
+        Application Platform credential. See [Credential](http://docs.aws.amazon.com/sns/latest/dg/mobile-push-send-register.html) for type of credential required for platform. The value of this attribute when stored into the state is only a hash of the real value, so therefore it is not practical to use this as an attribute for other resources.
+        """
+        return pulumi.get(self, "platform_credential")
+
+    @property
+    @pulumi.getter(name="platformPrincipal")
+    def platform_principal(self) -> Optional[str]:
+        """
+        Application Platform principal. See [Principal](http://docs.aws.amazon.com/sns/latest/api/API_CreatePlatformApplication.html) for type of principal required for platform. The value of this attribute when stored into the state is only a hash of the real value, so therefore it is not practical to use this as an attribute for other resources.
+        """
+        return pulumi.get(self, "platform_principal")
+
+    @property
+    @pulumi.getter(name="successFeedbackRoleArn")
+    def success_feedback_role_arn(self) -> Optional[str]:
+        """
+        The IAM role permitted to receive success feedback for this application.
+        """
+        return pulumi.get(self, "success_feedback_role_arn")
+
+    @property
+    @pulumi.getter(name="successFeedbackSampleRate")
+    def success_feedback_sample_rate(self) -> Optional[str]:
+        """
+        The percentage of success to sample (0-100)
+        """
+        return pulumi.get(self, "success_feedback_sample_rate")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

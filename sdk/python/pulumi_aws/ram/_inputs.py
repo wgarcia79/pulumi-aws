@@ -30,11 +30,11 @@ class GetResourceShareFilterArgs:
         """
         The name of the tag key to filter on.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: str):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -42,10 +42,10 @@ class GetResourceShareFilterArgs:
         """
         The value of the tag key.
         """
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: List[str]):
-        ...
+        pulumi.set(self, "values", value)
 
 

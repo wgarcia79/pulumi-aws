@@ -12,16 +12,6 @@ __all__ = ['ResourceAssociation']
 
 
 class ResourceAssociation(pulumi.CustomResource):
-    resource_arn: pulumi.Output[str] = pulumi.property("resourceArn")
-    """
-    Amazon Resource Name (ARN) of the resource to associate with the RAM Resource Share.
-    """
-
-    resource_share_arn: pulumi.Output[str] = pulumi.property("resourceShareArn")
-    """
-    Amazon Resource Name (ARN) of the RAM Resource Share.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -103,6 +93,22 @@ class ResourceAssociation(pulumi.CustomResource):
         __props__["resource_arn"] = resource_arn
         __props__["resource_share_arn"] = resource_share_arn
         return ResourceAssociation(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="resourceArn")
+    def resource_arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of the resource to associate with the RAM Resource Share.
+        """
+        return pulumi.get(self, "resource_arn")
+
+    @property
+    @pulumi.getter(name="resourceShareArn")
+    def resource_share_arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of the RAM Resource Share.
+        """
+        return pulumi.get(self, "resource_share_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -12,23 +12,6 @@ __all__ = ['Analyzer']
 
 
 class Analyzer(pulumi.CustomResource):
-    analyzer_name: pulumi.Output[str] = pulumi.property("analyzerName")
-    """
-    Name of the Analyzer.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of resource tags.
-    """
-
-    type: pulumi.Output[Optional[str]] = pulumi.property("type")
-    """
-    Type of Analyzer. Valid value is currently only `ACCOUNT`. Defaults to `ACCOUNT`.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -113,6 +96,35 @@ class Analyzer(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["type"] = type
         return Analyzer(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="analyzerName")
+    def analyzer_name(self) -> str:
+        """
+        Name of the Analyzer.
+        """
+        return pulumi.get(self, "analyzer_name")
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of resource tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        Type of Analyzer. Valid value is currently only `ACCOUNT`. Defaults to `ACCOUNT`.
+        """
+        return pulumi.get(self, "type")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

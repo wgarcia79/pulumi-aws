@@ -14,185 +14,6 @@ __all__ = ['LaunchTemplate']
 
 
 class LaunchTemplate(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The Amazon Resource Name (ARN) of the instance profile.
-    """
-
-    block_device_mappings: pulumi.Output[Optional[List['outputs.LaunchTemplateBlockDeviceMapping']]] = pulumi.property("blockDeviceMappings")
-    """
-    Specify volumes to attach to the instance besides the volumes specified by the AMI.
-    See Block Devices below for details.
-    """
-
-    capacity_reservation_specification: pulumi.Output[Optional['outputs.LaunchTemplateCapacityReservationSpecification']] = pulumi.property("capacityReservationSpecification")
-    """
-    Targeting for EC2 capacity reservations. See Capacity Reservation Specification below for more details.
-    """
-
-    cpu_options: pulumi.Output[Optional['outputs.LaunchTemplateCpuOptions']] = pulumi.property("cpuOptions")
-    """
-    The CPU options for the instance. See CPU Options below for more details.
-    """
-
-    credit_specification: pulumi.Output[Optional['outputs.LaunchTemplateCreditSpecification']] = pulumi.property("creditSpecification")
-    """
-    Customize the credit specification of the instance. See Credit
-    Specification below for more details.
-    """
-
-    default_version: pulumi.Output[float] = pulumi.property("defaultVersion")
-    """
-    Default Version of the launch template.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    Description of the launch template.
-    """
-
-    disable_api_termination: pulumi.Output[Optional[bool]] = pulumi.property("disableApiTermination")
-    """
-    If `true`, enables [EC2 Instance
-    Termination Protection](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingDisableAPITermination)
-    """
-
-    ebs_optimized: pulumi.Output[Optional[str]] = pulumi.property("ebsOptimized")
-    """
-    If `true`, the launched EC2 instance will be EBS-optimized.
-    """
-
-    elastic_gpu_specifications: pulumi.Output[Optional[List['outputs.LaunchTemplateElasticGpuSpecification']]] = pulumi.property("elasticGpuSpecifications")
-    """
-    The elastic GPU to attach to the instance. See Elastic GPU
-    below for more details.
-    """
-
-    elastic_inference_accelerator: pulumi.Output[Optional['outputs.LaunchTemplateElasticInferenceAccelerator']] = pulumi.property("elasticInferenceAccelerator")
-    """
-    Configuration block containing an Elastic Inference Accelerator to attach to the instance. See Elastic Inference Accelerator below for more details.
-    """
-
-    hibernation_options: pulumi.Output[Optional['outputs.LaunchTemplateHibernationOptions']] = pulumi.property("hibernationOptions")
-    """
-    The hibernation options for the instance. See Hibernation Options below for more details.
-    """
-
-    iam_instance_profile: pulumi.Output[Optional['outputs.LaunchTemplateIamInstanceProfile']] = pulumi.property("iamInstanceProfile")
-    """
-    The IAM Instance Profile to launch the instance with. See Instance Profile
-    below for more details.
-    """
-
-    image_id: pulumi.Output[Optional[str]] = pulumi.property("imageId")
-    """
-    The AMI from which to launch the instance.
-    """
-
-    instance_initiated_shutdown_behavior: pulumi.Output[Optional[str]] = pulumi.property("instanceInitiatedShutdownBehavior")
-    """
-    Shutdown behavior for the instance. Can be `stop` or `terminate`.
-    (Default: `stop`).
-    """
-
-    instance_market_options: pulumi.Output[Optional['outputs.LaunchTemplateInstanceMarketOptions']] = pulumi.property("instanceMarketOptions")
-    """
-    The market (purchasing) option for the instance. See Market Options
-    below for details.
-    """
-
-    instance_type: pulumi.Output[Optional[str]] = pulumi.property("instanceType")
-    """
-    The type of the instance.
-    """
-
-    kernel_id: pulumi.Output[Optional[str]] = pulumi.property("kernelId")
-    """
-    The kernel ID.
-    """
-
-    key_name: pulumi.Output[Optional[str]] = pulumi.property("keyName")
-    """
-    The key name to use for the instance.
-    """
-
-    latest_version: pulumi.Output[float] = pulumi.property("latestVersion")
-    """
-    The latest version of the launch template.
-    """
-
-    license_specifications: pulumi.Output[Optional[List['outputs.LaunchTemplateLicenseSpecification']]] = pulumi.property("licenseSpecifications")
-    """
-    A list of license specifications to associate with. See License Specification below for more details.
-    """
-
-    metadata_options: pulumi.Output['outputs.LaunchTemplateMetadataOptions'] = pulumi.property("metadataOptions")
-    """
-    Customize the metadata options for the instance. See Metadata Options below for more details.
-    """
-
-    monitoring: pulumi.Output[Optional['outputs.LaunchTemplateMonitoring']] = pulumi.property("monitoring")
-    """
-    The monitoring option for the instance. See Monitoring below for more details.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the launch template. If you leave this blank, this provider will auto-generate a unique name.
-    """
-
-    name_prefix: pulumi.Output[Optional[str]] = pulumi.property("namePrefix")
-    """
-    Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-    """
-
-    network_interfaces: pulumi.Output[Optional[List['outputs.LaunchTemplateNetworkInterface']]] = pulumi.property("networkInterfaces")
-    """
-    Customize network interfaces to be attached at instance boot time. See Network
-    Interfaces below for more details.
-    """
-
-    placement: pulumi.Output[Optional['outputs.LaunchTemplatePlacement']] = pulumi.property("placement")
-    """
-    The placement of the instance. See Placement below for more details.
-    """
-
-    ram_disk_id: pulumi.Output[Optional[str]] = pulumi.property("ramDiskId")
-    """
-    The ID of the RAM disk.
-    """
-
-    security_group_names: pulumi.Output[Optional[List[str]]] = pulumi.property("securityGroupNames")
-    """
-    A list of security group names to associate with. If you are creating Instances in a VPC, use
-    `vpc_security_group_ids` instead.
-    """
-
-    tag_specifications: pulumi.Output[Optional[List['outputs.LaunchTemplateTagSpecification']]] = pulumi.property("tagSpecifications")
-    """
-    The tags to apply to the resources during launch. See Tag Specifications below for more details.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the launch template.
-    """
-
-    update_default_version: pulumi.Output[Optional[bool]] = pulumi.property("updateDefaultVersion")
-    """
-    Whether to update Default Version each update. Conflicts with `default_version`.
-    """
-
-    user_data: pulumi.Output[Optional[str]] = pulumi.property("userData")
-    """
-    The Base64-encoded user data to provide when launching the instance.
-    """
-
-    vpc_security_group_ids: pulumi.Output[Optional[List[str]]] = pulumi.property("vpcSecurityGroupIds")
-    """
-    A list of security group IDs to associate with.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -463,6 +284,287 @@ class LaunchTemplate(pulumi.CustomResource):
         __props__["user_data"] = user_data
         __props__["vpc_security_group_ids"] = vpc_security_group_ids
         return LaunchTemplate(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) of the instance profile.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="blockDeviceMappings")
+    def block_device_mappings(self) -> Optional[List['outputs.LaunchTemplateBlockDeviceMapping']]:
+        """
+        Specify volumes to attach to the instance besides the volumes specified by the AMI.
+        See Block Devices below for details.
+        """
+        return pulumi.get(self, "block_device_mappings")
+
+    @property
+    @pulumi.getter(name="capacityReservationSpecification")
+    def capacity_reservation_specification(self) -> Optional['outputs.LaunchTemplateCapacityReservationSpecification']:
+        """
+        Targeting for EC2 capacity reservations. See Capacity Reservation Specification below for more details.
+        """
+        return pulumi.get(self, "capacity_reservation_specification")
+
+    @property
+    @pulumi.getter(name="cpuOptions")
+    def cpu_options(self) -> Optional['outputs.LaunchTemplateCpuOptions']:
+        """
+        The CPU options for the instance. See CPU Options below for more details.
+        """
+        return pulumi.get(self, "cpu_options")
+
+    @property
+    @pulumi.getter(name="creditSpecification")
+    def credit_specification(self) -> Optional['outputs.LaunchTemplateCreditSpecification']:
+        """
+        Customize the credit specification of the instance. See Credit
+        Specification below for more details.
+        """
+        return pulumi.get(self, "credit_specification")
+
+    @property
+    @pulumi.getter(name="defaultVersion")
+    def default_version(self) -> float:
+        """
+        Default Version of the launch template.
+        """
+        return pulumi.get(self, "default_version")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Description of the launch template.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="disableApiTermination")
+    def disable_api_termination(self) -> Optional[bool]:
+        """
+        If `true`, enables [EC2 Instance
+        Termination Protection](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingDisableAPITermination)
+        """
+        return pulumi.get(self, "disable_api_termination")
+
+    @property
+    @pulumi.getter(name="ebsOptimized")
+    def ebs_optimized(self) -> Optional[str]:
+        """
+        If `true`, the launched EC2 instance will be EBS-optimized.
+        """
+        return pulumi.get(self, "ebs_optimized")
+
+    @property
+    @pulumi.getter(name="elasticGpuSpecifications")
+    def elastic_gpu_specifications(self) -> Optional[List['outputs.LaunchTemplateElasticGpuSpecification']]:
+        """
+        The elastic GPU to attach to the instance. See Elastic GPU
+        below for more details.
+        """
+        return pulumi.get(self, "elastic_gpu_specifications")
+
+    @property
+    @pulumi.getter(name="elasticInferenceAccelerator")
+    def elastic_inference_accelerator(self) -> Optional['outputs.LaunchTemplateElasticInferenceAccelerator']:
+        """
+        Configuration block containing an Elastic Inference Accelerator to attach to the instance. See Elastic Inference Accelerator below for more details.
+        """
+        return pulumi.get(self, "elastic_inference_accelerator")
+
+    @property
+    @pulumi.getter(name="hibernationOptions")
+    def hibernation_options(self) -> Optional['outputs.LaunchTemplateHibernationOptions']:
+        """
+        The hibernation options for the instance. See Hibernation Options below for more details.
+        """
+        return pulumi.get(self, "hibernation_options")
+
+    @property
+    @pulumi.getter(name="iamInstanceProfile")
+    def iam_instance_profile(self) -> Optional['outputs.LaunchTemplateIamInstanceProfile']:
+        """
+        The IAM Instance Profile to launch the instance with. See Instance Profile
+        below for more details.
+        """
+        return pulumi.get(self, "iam_instance_profile")
+
+    @property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> Optional[str]:
+        """
+        The AMI from which to launch the instance.
+        """
+        return pulumi.get(self, "image_id")
+
+    @property
+    @pulumi.getter(name="instanceInitiatedShutdownBehavior")
+    def instance_initiated_shutdown_behavior(self) -> Optional[str]:
+        """
+        Shutdown behavior for the instance. Can be `stop` or `terminate`.
+        (Default: `stop`).
+        """
+        return pulumi.get(self, "instance_initiated_shutdown_behavior")
+
+    @property
+    @pulumi.getter(name="instanceMarketOptions")
+    def instance_market_options(self) -> Optional['outputs.LaunchTemplateInstanceMarketOptions']:
+        """
+        The market (purchasing) option for the instance. See Market Options
+        below for details.
+        """
+        return pulumi.get(self, "instance_market_options")
+
+    @property
+    @pulumi.getter(name="instanceType")
+    def instance_type(self) -> Optional[str]:
+        """
+        The type of the instance.
+        """
+        return pulumi.get(self, "instance_type")
+
+    @property
+    @pulumi.getter(name="kernelId")
+    def kernel_id(self) -> Optional[str]:
+        """
+        The kernel ID.
+        """
+        return pulumi.get(self, "kernel_id")
+
+    @property
+    @pulumi.getter(name="keyName")
+    def key_name(self) -> Optional[str]:
+        """
+        The key name to use for the instance.
+        """
+        return pulumi.get(self, "key_name")
+
+    @property
+    @pulumi.getter(name="latestVersion")
+    def latest_version(self) -> float:
+        """
+        The latest version of the launch template.
+        """
+        return pulumi.get(self, "latest_version")
+
+    @property
+    @pulumi.getter(name="licenseSpecifications")
+    def license_specifications(self) -> Optional[List['outputs.LaunchTemplateLicenseSpecification']]:
+        """
+        A list of license specifications to associate with. See License Specification below for more details.
+        """
+        return pulumi.get(self, "license_specifications")
+
+    @property
+    @pulumi.getter(name="metadataOptions")
+    def metadata_options(self) -> 'outputs.LaunchTemplateMetadataOptions':
+        """
+        Customize the metadata options for the instance. See Metadata Options below for more details.
+        """
+        return pulumi.get(self, "metadata_options")
+
+    @property
+    @pulumi.getter
+    def monitoring(self) -> Optional['outputs.LaunchTemplateMonitoring']:
+        """
+        The monitoring option for the instance. See Monitoring below for more details.
+        """
+        return pulumi.get(self, "monitoring")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the launch template. If you leave this blank, this provider will auto-generate a unique name.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> Optional[str]:
+        """
+        Creates a unique name beginning with the specified prefix. Conflicts with `name`.
+        """
+        return pulumi.get(self, "name_prefix")
+
+    @property
+    @pulumi.getter(name="networkInterfaces")
+    def network_interfaces(self) -> Optional[List['outputs.LaunchTemplateNetworkInterface']]:
+        """
+        Customize network interfaces to be attached at instance boot time. See Network
+        Interfaces below for more details.
+        """
+        return pulumi.get(self, "network_interfaces")
+
+    @property
+    @pulumi.getter
+    def placement(self) -> Optional['outputs.LaunchTemplatePlacement']:
+        """
+        The placement of the instance. See Placement below for more details.
+        """
+        return pulumi.get(self, "placement")
+
+    @property
+    @pulumi.getter(name="ramDiskId")
+    def ram_disk_id(self) -> Optional[str]:
+        """
+        The ID of the RAM disk.
+        """
+        return pulumi.get(self, "ram_disk_id")
+
+    @property
+    @pulumi.getter(name="securityGroupNames")
+    def security_group_names(self) -> Optional[List[str]]:
+        """
+        A list of security group names to associate with. If you are creating Instances in a VPC, use
+        `vpc_security_group_ids` instead.
+        """
+        return pulumi.get(self, "security_group_names")
+
+    @property
+    @pulumi.getter(name="tagSpecifications")
+    def tag_specifications(self) -> Optional[List['outputs.LaunchTemplateTagSpecification']]:
+        """
+        The tags to apply to the resources during launch. See Tag Specifications below for more details.
+        """
+        return pulumi.get(self, "tag_specifications")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the launch template.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="updateDefaultVersion")
+    def update_default_version(self) -> Optional[bool]:
+        """
+        Whether to update Default Version each update. Conflicts with `default_version`.
+        """
+        return pulumi.get(self, "update_default_version")
+
+    @property
+    @pulumi.getter(name="userData")
+    def user_data(self) -> Optional[str]:
+        """
+        The Base64-encoded user data to provide when launching the instance.
+        """
+        return pulumi.get(self, "user_data")
+
+    @property
+    @pulumi.getter(name="vpcSecurityGroupIds")
+    def vpc_security_group_ids(self) -> Optional[List[str]]:
+        """
+        A list of security group IDs to associate with.
+        """
+        return pulumi.get(self, "vpc_security_group_ids")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

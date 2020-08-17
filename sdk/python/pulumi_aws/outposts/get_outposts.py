@@ -15,16 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetOutpostsResult:
-    arns: List[str] = pulumi.property("arns")
-    availability_zone: str = pulumi.property("availabilityZone")
-    availability_zone_id: str = pulumi.property("availabilityZoneId")
-    id: str = pulumi.property("id")
-    ids: List[str] = pulumi.property("ids")
-    site_id: str = pulumi.property("siteId")
-
-
 class GetOutpostsResult:
     """
     A collection of values returned by getOutposts.
@@ -32,31 +24,62 @@ class GetOutpostsResult:
     def __init__(__self__, arns=None, availability_zone=None, availability_zone_id=None, id=None, ids=None, site_id=None):
         if arns and not isinstance(arns, list):
             raise TypeError("Expected argument 'arns' to be a list")
-        __self__.arns = arns
+        pulumi.set(__self__, "arns", arns)
+        if availability_zone and not isinstance(availability_zone, str):
+            raise TypeError("Expected argument 'availability_zone' to be a str")
+        pulumi.set(__self__, "availability_zone", availability_zone)
+        if availability_zone_id and not isinstance(availability_zone_id, str):
+            raise TypeError("Expected argument 'availability_zone_id' to be a str")
+        pulumi.set(__self__, "availability_zone_id", availability_zone_id)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if ids and not isinstance(ids, list):
+            raise TypeError("Expected argument 'ids' to be a list")
+        pulumi.set(__self__, "ids", ids)
+        if site_id and not isinstance(site_id, str):
+            raise TypeError("Expected argument 'site_id' to be a str")
+        pulumi.set(__self__, "site_id", site_id)
+
+    @property
+    @pulumi.getter
+    def arns(self) -> List[str]:
         """
         Set of Amazon Resource Names (ARNs).
         """
-        if availability_zone and not isinstance(availability_zone, str):
-            raise TypeError("Expected argument 'availability_zone' to be a str")
-        __self__.availability_zone = availability_zone
-        if availability_zone_id and not isinstance(availability_zone_id, str):
-            raise TypeError("Expected argument 'availability_zone_id' to be a str")
-        __self__.availability_zone_id = availability_zone_id
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "arns")
+
+    @property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> str:
+        return pulumi.get(self, "availability_zone")
+
+    @property
+    @pulumi.getter(name="availabilityZoneId")
+    def availability_zone_id(self) -> str:
+        return pulumi.get(self, "availability_zone_id")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if ids and not isinstance(ids, list):
-            raise TypeError("Expected argument 'ids' to be a list")
-        __self__.ids = ids
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def ids(self) -> List[str]:
         """
         Set of identifiers.
         """
-        if site_id and not isinstance(site_id, str):
-            raise TypeError("Expected argument 'site_id' to be a str")
-        __self__.site_id = site_id
+        return pulumi.get(self, "ids")
+
+    @property
+    @pulumi.getter(name="siteId")
+    def site_id(self) -> str:
+        return pulumi.get(self, "site_id")
+
 
 
 class AwaitableGetOutpostsResult(GetOutpostsResult):
@@ -102,7 +125,7 @@ def get_outposts(availability_zone: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:outposts/getOutposts:getOutposts', __args__, opts=opts, typ=_GetOutpostsResult).value
+    __ret__ = pulumi.runtime.invoke('aws:outposts/getOutposts:getOutposts', __args__, opts=opts, typ=GetOutpostsResult).value
 
     return AwaitableGetOutpostsResult(
         arns=__ret__.arns,

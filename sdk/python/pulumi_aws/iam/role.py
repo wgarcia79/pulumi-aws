@@ -12,67 +12,6 @@ __all__ = ['Role']
 
 
 class Role(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The Amazon Resource Name (ARN) specifying the role.
-    """
-
-    assume_role_policy: pulumi.Output[str] = pulumi.property("assumeRolePolicy")
-    """
-    The policy that grants an entity permission to assume the role.
-    """
-
-    create_date: pulumi.Output[str] = pulumi.property("createDate")
-    """
-    The creation date of the IAM role.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    The description of the role.
-    """
-
-    force_detach_policies: pulumi.Output[Optional[bool]] = pulumi.property("forceDetachPolicies")
-    """
-    Specifies to force detaching any policies the role has before destroying it. Defaults to `false`.
-    """
-
-    max_session_duration: pulumi.Output[Optional[float]] = pulumi.property("maxSessionDuration")
-    """
-    The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the role. If omitted, this provider will assign a random, unique name.
-    """
-
-    name_prefix: pulumi.Output[Optional[str]] = pulumi.property("namePrefix")
-    """
-    Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-    """
-
-    path: pulumi.Output[Optional[str]] = pulumi.property("path")
-    """
-    The path to the role.
-    See [IAM Identifiers](https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html) for more information.
-    """
-
-    permissions_boundary: pulumi.Output[Optional[str]] = pulumi.property("permissionsBoundary")
-    """
-    The ARN of the policy that is used to set the permissions boundary for the role.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of tags for the IAM role
-    """
-
-    unique_id: pulumi.Output[str] = pulumi.property("uniqueId")
-    """
-    The stable and unique string identifying the role.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -241,6 +180,103 @@ class Role(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["unique_id"] = unique_id
         return Role(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) specifying the role.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="assumeRolePolicy")
+    def assume_role_policy(self) -> str:
+        """
+        The policy that grants an entity permission to assume the role.
+        """
+        return pulumi.get(self, "assume_role_policy")
+
+    @property
+    @pulumi.getter(name="createDate")
+    def create_date(self) -> str:
+        """
+        The creation date of the IAM role.
+        """
+        return pulumi.get(self, "create_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        The description of the role.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="forceDetachPolicies")
+    def force_detach_policies(self) -> Optional[bool]:
+        """
+        Specifies to force detaching any policies the role has before destroying it. Defaults to `false`.
+        """
+        return pulumi.get(self, "force_detach_policies")
+
+    @property
+    @pulumi.getter(name="maxSessionDuration")
+    def max_session_duration(self) -> Optional[float]:
+        """
+        The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours.
+        """
+        return pulumi.get(self, "max_session_duration")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the role. If omitted, this provider will assign a random, unique name.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> Optional[str]:
+        """
+        Creates a unique name beginning with the specified prefix. Conflicts with `name`.
+        """
+        return pulumi.get(self, "name_prefix")
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[str]:
+        """
+        The path to the role.
+        See [IAM Identifiers](https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html) for more information.
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter(name="permissionsBoundary")
+    def permissions_boundary(self) -> Optional[str]:
+        """
+        The ARN of the policy that is used to set the permissions boundary for the role.
+        """
+        return pulumi.get(self, "permissions_boundary")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of tags for the IAM role
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="uniqueId")
+    def unique_id(self) -> str:
+        """
+        The stable and unique string identifying the role.
+        """
+        return pulumi.get(self, "unique_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -17,14 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetRegionsResult:
-    all_regions: Optional[bool] = pulumi.property("allRegions")
-    filters: Optional[List['outputs.GetRegionsFilterResult']] = pulumi.property("filters")
-    id: str = pulumi.property("id")
-    names: List[str] = pulumi.property("names")
-
-
 class GetRegionsResult:
     """
     A collection of values returned by getRegions.
@@ -32,22 +26,43 @@ class GetRegionsResult:
     def __init__(__self__, all_regions=None, filters=None, id=None, names=None):
         if all_regions and not isinstance(all_regions, bool):
             raise TypeError("Expected argument 'all_regions' to be a bool")
-        __self__.all_regions = all_regions
+        pulumi.set(__self__, "all_regions", all_regions)
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
+        pulumi.set(__self__, "filters", filters)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if names and not isinstance(names, list):
+            raise TypeError("Expected argument 'names' to be a list")
+        pulumi.set(__self__, "names", names)
+
+    @property
+    @pulumi.getter(name="allRegions")
+    def all_regions(self) -> Optional[bool]:
+        return pulumi.get(self, "all_regions")
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetRegionsFilterResult']]:
+        return pulumi.get(self, "filters")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if names and not isinstance(names, list):
-            raise TypeError("Expected argument 'names' to be a list")
-        __self__.names = names
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def names(self) -> List[str]:
         """
         Names of regions that meets the criteria.
         """
+        return pulumi.get(self, "names")
+
 
 
 class AwaitableGetRegionsResult(GetRegionsResult):
@@ -112,7 +127,7 @@ def get_regions(all_regions: Optional[bool] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:index/getRegions:getRegions', __args__, opts=opts, typ=_GetRegionsResult).value
+    __ret__ = pulumi.runtime.invoke('aws:index/getRegions:getRegions', __args__, opts=opts, typ=GetRegionsResult).value
 
     return AwaitableGetRegionsResult(
         all_regions=__ret__.all_regions,

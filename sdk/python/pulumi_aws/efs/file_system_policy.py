@@ -12,16 +12,6 @@ __all__ = ['FileSystemPolicy']
 
 
 class FileSystemPolicy(pulumi.CustomResource):
-    file_system_id: pulumi.Output[str] = pulumi.property("fileSystemId")
-    """
-    The ID of the EFS file system.
-    """
-
-    policy: pulumi.Output[str] = pulumi.property("policy")
-    """
-    The JSON formatted file system policy for the EFS file system. see [Docs](https://docs.aws.amazon.com/efs/latest/ug/access-control-overview.html#access-control-manage-access-intro-resource-policies) for more info.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -126,6 +116,22 @@ class FileSystemPolicy(pulumi.CustomResource):
         __props__["file_system_id"] = file_system_id
         __props__["policy"] = policy
         return FileSystemPolicy(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="fileSystemId")
+    def file_system_id(self) -> str:
+        """
+        The ID of the EFS file system.
+        """
+        return pulumi.get(self, "file_system_id")
+
+    @property
+    @pulumi.getter
+    def policy(self) -> str:
+        """
+        The JSON formatted file system policy for the EFS file system. see [Docs](https://docs.aws.amazon.com/efs/latest/ug/access-control-overview.html#access-control-manage-access-intro-resource-policies) for more info.
+        """
+        return pulumi.get(self, "policy")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

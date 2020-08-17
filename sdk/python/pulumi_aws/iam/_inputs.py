@@ -49,15 +49,24 @@ class GetPolicyDocumentStatementArgs:
                to. This is required by AWS if used for an IAM policy.
         :param str sid: An ID for the policy statement.
         """
-        pulumi.set(__self__, "actions", actions)
-        pulumi.set(__self__, "conditions", conditions)
-        pulumi.set(__self__, "effect", effect)
-        pulumi.set(__self__, "notActions", not_actions)
-        pulumi.set(__self__, "notPrincipals", not_principals)
-        pulumi.set(__self__, "notResources", not_resources)
-        pulumi.set(__self__, "principals", principals)
-        pulumi.set(__self__, "resources", resources)
-        pulumi.set(__self__, "sid", sid)
+        if actions is not None:
+            pulumi.set(__self__, "actions", actions)
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
+        if effect is not None:
+            pulumi.set(__self__, "effect", effect)
+        if not_actions is not None:
+            pulumi.set(__self__, "not_actions", not_actions)
+        if not_principals is not None:
+            pulumi.set(__self__, "not_principals", not_principals)
+        if not_resources is not None:
+            pulumi.set(__self__, "not_resources", not_resources)
+        if principals is not None:
+            pulumi.set(__self__, "principals", principals)
+        if resources is not None:
+            pulumi.set(__self__, "resources", resources)
+        if sid is not None:
+            pulumi.set(__self__, "sid", sid)
 
     @property
     @pulumi.getter
@@ -66,11 +75,11 @@ class GetPolicyDocumentStatementArgs:
         A list of actions that this statement either allows
         or denies. For example, ``["ec2:RunInstances", "s3:*"]``.
         """
-        ...
+        return pulumi.get(self, "actions")
 
     @actions.setter
     def actions(self, value: Optional[List[str]]):
-        ...
+        pulumi.set(self, "actions", value)
 
     @property
     @pulumi.getter
@@ -80,11 +89,11 @@ class GetPolicyDocumentStatementArgs:
         that defines a further, possibly-service-specific condition that constrains
         whether this statement applies.
         """
-        ...
+        return pulumi.get(self, "conditions")
 
     @conditions.setter
     def conditions(self, value: Optional[List['GetPolicyDocumentStatementConditionArgs']]):
-        ...
+        pulumi.set(self, "conditions", value)
 
     @property
     @pulumi.getter
@@ -93,11 +102,11 @@ class GetPolicyDocumentStatementArgs:
         Either "Allow" or "Deny", to specify whether this
         statement allows or denies the given actions. The default is "Allow".
         """
-        ...
+        return pulumi.get(self, "effect")
 
     @effect.setter
     def effect(self, value: Optional[str]):
-        ...
+        pulumi.set(self, "effect", value)
 
     @property
     @pulumi.getter(name="notActions")
@@ -107,11 +116,11 @@ class GetPolicyDocumentStatementArgs:
         apply to. Used to apply a policy statement to all actions *except* those
         listed.
         """
-        ...
+        return pulumi.get(self, "not_actions")
 
     @not_actions.setter
     def not_actions(self, value: Optional[List[str]]):
-        ...
+        pulumi.set(self, "not_actions", value)
 
     @property
     @pulumi.getter(name="notPrincipals")
@@ -120,11 +129,11 @@ class GetPolicyDocumentStatementArgs:
         Like `principals` except gives resources that
         the statement does *not* apply to.
         """
-        ...
+        return pulumi.get(self, "not_principals")
 
     @not_principals.setter
     def not_principals(self, value: Optional[List['GetPolicyDocumentStatementNotPrincipalArgs']]):
-        ...
+        pulumi.set(self, "not_principals", value)
 
     @property
     @pulumi.getter(name="notResources")
@@ -134,11 +143,11 @@ class GetPolicyDocumentStatementArgs:
         does *not* apply to. Used to apply a policy statement to all resources
         *except* those listed.
         """
-        ...
+        return pulumi.get(self, "not_resources")
 
     @not_resources.setter
     def not_resources(self, value: Optional[List[str]]):
-        ...
+        pulumi.set(self, "not_resources", value)
 
     @property
     @pulumi.getter
@@ -147,11 +156,11 @@ class GetPolicyDocumentStatementArgs:
         A nested configuration block (described below)
         specifying a resource (or resource pattern) to which this statement applies.
         """
-        ...
+        return pulumi.get(self, "principals")
 
     @principals.setter
     def principals(self, value: Optional[List['GetPolicyDocumentStatementPrincipalArgs']]):
-        ...
+        pulumi.set(self, "principals", value)
 
     @property
     @pulumi.getter
@@ -160,11 +169,11 @@ class GetPolicyDocumentStatementArgs:
         A list of resource ARNs that this statement applies
         to. This is required by AWS if used for an IAM policy.
         """
-        ...
+        return pulumi.get(self, "resources")
 
     @resources.setter
     def resources(self, value: Optional[List[str]]):
-        ...
+        pulumi.set(self, "resources", value)
 
     @property
     @pulumi.getter
@@ -172,11 +181,11 @@ class GetPolicyDocumentStatementArgs:
         """
         An ID for the policy statement.
         """
-        ...
+        return pulumi.get(self, "sid")
 
     @sid.setter
     def sid(self, value: Optional[str]):
-        ...
+        pulumi.set(self, "sid", value)
 
 
 @pulumi.input_type
@@ -210,11 +219,11 @@ class GetPolicyDocumentStatementConditionArgs:
         [IAM condition operator](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition_operators.html)
         to evaluate.
         """
-        ...
+        return pulumi.get(self, "test")
 
     @test.setter
     def test(self, value: str):
-        ...
+        pulumi.set(self, "test", value)
 
     @property
     @pulumi.getter
@@ -224,11 +233,11 @@ class GetPolicyDocumentStatementConditionArgs:
         values are provided, the condition matches if at least one of them applies.
         (That is, the tests are combined with the "OR" boolean operation.)
         """
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: List[str]):
-        ...
+        pulumi.set(self, "values", value)
 
     @property
     @pulumi.getter
@@ -240,11 +249,11 @@ class GetPolicyDocumentStatementConditionArgs:
         variables starting with `aws:`, or service-specific variables prefixed with
         the service name.
         """
-        ...
+        return pulumi.get(self, "variable")
 
     @variable.setter
     def variable(self, value: str):
-        ...
+        pulumi.set(self, "variable", value)
 
 
 @pulumi.input_type
@@ -267,11 +276,11 @@ class GetPolicyDocumentStatementNotPrincipalArgs:
         List of identifiers for principals. When `type`
         is "AWS", these are IAM user or role ARNs.  When `type` is "Service", these are AWS Service roles e.g. `lambda.amazonaws.com`. When `type` is "Federated", these are web identity users or SAML provider ARNs.
         """
-        ...
+        return pulumi.get(self, "identifiers")
 
     @identifiers.setter
     def identifiers(self, value: List[str]):
-        ...
+        pulumi.set(self, "identifiers", value)
 
     @property
     @pulumi.getter
@@ -279,11 +288,11 @@ class GetPolicyDocumentStatementNotPrincipalArgs:
         """
         The type of principal. For AWS ARNs this is "AWS".  For AWS services (e.g. Lambda), this is "Service". For Federated access the type is "Federated".
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: str):
-        ...
+        pulumi.set(self, "type", value)
 
 
 @pulumi.input_type
@@ -306,11 +315,11 @@ class GetPolicyDocumentStatementPrincipalArgs:
         List of identifiers for principals. When `type`
         is "AWS", these are IAM user or role ARNs.  When `type` is "Service", these are AWS Service roles e.g. `lambda.amazonaws.com`. When `type` is "Federated", these are web identity users or SAML provider ARNs.
         """
-        ...
+        return pulumi.get(self, "identifiers")
 
     @identifiers.setter
     def identifiers(self, value: List[str]):
-        ...
+        pulumi.set(self, "identifiers", value)
 
     @property
     @pulumi.getter
@@ -318,10 +327,10 @@ class GetPolicyDocumentStatementPrincipalArgs:
         """
         The type of principal. For AWS ARNs this is "AWS".  For AWS services (e.g. Lambda), this is "Service". For Federated access the type is "Federated".
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: str):
-        ...
+        pulumi.set(self, "type", value)
 
 

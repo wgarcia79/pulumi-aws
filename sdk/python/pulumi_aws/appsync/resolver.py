@@ -14,56 +14,6 @@ __all__ = ['Resolver']
 
 
 class Resolver(pulumi.CustomResource):
-    api_id: pulumi.Output[str] = pulumi.property("apiId")
-    """
-    The API ID for the GraphQL API.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN
-    """
-
-    caching_config: pulumi.Output[Optional['outputs.ResolverCachingConfig']] = pulumi.property("cachingConfig")
-    """
-    The CachingConfig.
-    """
-
-    data_source: pulumi.Output[Optional[str]] = pulumi.property("dataSource")
-    """
-    The DataSource name.
-    """
-
-    field: pulumi.Output[str] = pulumi.property("field")
-    """
-    The field name from the schema defined in the GraphQL API.
-    """
-
-    kind: pulumi.Output[Optional[str]] = pulumi.property("kind")
-    """
-    The resolver type. Valid values are `UNIT` and `PIPELINE`.
-    """
-
-    pipeline_config: pulumi.Output[Optional['outputs.ResolverPipelineConfig']] = pulumi.property("pipelineConfig")
-    """
-    The PipelineConfig.
-    """
-
-    request_template: pulumi.Output[str] = pulumi.property("requestTemplate")
-    """
-    The request mapping template for UNIT resolver or 'before mapping template' for PIPELINE resolver.
-    """
-
-    response_template: pulumi.Output[str] = pulumi.property("responseTemplate")
-    """
-    The response mapping template for UNIT resolver or 'after mapping template' for PIPELINE resolver.
-    """
-
-    type: pulumi.Output[str] = pulumi.property("type")
-    """
-    The type name from the schema defined in the GraphQL API.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -264,6 +214,86 @@ class Resolver(pulumi.CustomResource):
         __props__["response_template"] = response_template
         __props__["type"] = type
         return Resolver(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="apiId")
+    def api_id(self) -> str:
+        """
+        The API ID for the GraphQL API.
+        """
+        return pulumi.get(self, "api_id")
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="cachingConfig")
+    def caching_config(self) -> Optional['outputs.ResolverCachingConfig']:
+        """
+        The CachingConfig.
+        """
+        return pulumi.get(self, "caching_config")
+
+    @property
+    @pulumi.getter(name="dataSource")
+    def data_source(self) -> Optional[str]:
+        """
+        The DataSource name.
+        """
+        return pulumi.get(self, "data_source")
+
+    @property
+    @pulumi.getter
+    def field(self) -> str:
+        """
+        The field name from the schema defined in the GraphQL API.
+        """
+        return pulumi.get(self, "field")
+
+    @property
+    @pulumi.getter
+    def kind(self) -> Optional[str]:
+        """
+        The resolver type. Valid values are `UNIT` and `PIPELINE`.
+        """
+        return pulumi.get(self, "kind")
+
+    @property
+    @pulumi.getter(name="pipelineConfig")
+    def pipeline_config(self) -> Optional['outputs.ResolverPipelineConfig']:
+        """
+        The PipelineConfig.
+        """
+        return pulumi.get(self, "pipeline_config")
+
+    @property
+    @pulumi.getter(name="requestTemplate")
+    def request_template(self) -> str:
+        """
+        The request mapping template for UNIT resolver or 'before mapping template' for PIPELINE resolver.
+        """
+        return pulumi.get(self, "request_template")
+
+    @property
+    @pulumi.getter(name="responseTemplate")
+    def response_template(self) -> str:
+        """
+        The response mapping template for UNIT resolver or 'after mapping template' for PIPELINE resolver.
+        """
+        return pulumi.get(self, "response_template")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type name from the schema defined in the GraphQL API.
+        """
+        return pulumi.get(self, "type")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

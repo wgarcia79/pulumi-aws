@@ -15,15 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetLocalDiskResult:
-    disk_id: str = pulumi.property("diskId")
-    disk_node: Optional[str] = pulumi.property("diskNode")
-    disk_path: Optional[str] = pulumi.property("diskPath")
-    gateway_arn: str = pulumi.property("gatewayArn")
-    id: str = pulumi.property("id")
-
-
 class GetLocalDiskResult:
     """
     A collection of values returned by getLocalDisk.
@@ -31,25 +24,51 @@ class GetLocalDiskResult:
     def __init__(__self__, disk_id=None, disk_node=None, disk_path=None, gateway_arn=None, id=None):
         if disk_id and not isinstance(disk_id, str):
             raise TypeError("Expected argument 'disk_id' to be a str")
-        __self__.disk_id = disk_id
+        pulumi.set(__self__, "disk_id", disk_id)
+        if disk_node and not isinstance(disk_node, str):
+            raise TypeError("Expected argument 'disk_node' to be a str")
+        pulumi.set(__self__, "disk_node", disk_node)
+        if disk_path and not isinstance(disk_path, str):
+            raise TypeError("Expected argument 'disk_path' to be a str")
+        pulumi.set(__self__, "disk_path", disk_path)
+        if gateway_arn and not isinstance(gateway_arn, str):
+            raise TypeError("Expected argument 'gateway_arn' to be a str")
+        pulumi.set(__self__, "gateway_arn", gateway_arn)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter(name="diskId")
+    def disk_id(self) -> str:
         """
         The disk identifier. e.g. `pci-0000:03:00.0-scsi-0:0:0:0`
         """
-        if disk_node and not isinstance(disk_node, str):
-            raise TypeError("Expected argument 'disk_node' to be a str")
-        __self__.disk_node = disk_node
-        if disk_path and not isinstance(disk_path, str):
-            raise TypeError("Expected argument 'disk_path' to be a str")
-        __self__.disk_path = disk_path
-        if gateway_arn and not isinstance(gateway_arn, str):
-            raise TypeError("Expected argument 'gateway_arn' to be a str")
-        __self__.gateway_arn = gateway_arn
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "disk_id")
+
+    @property
+    @pulumi.getter(name="diskNode")
+    def disk_node(self) -> Optional[str]:
+        return pulumi.get(self, "disk_node")
+
+    @property
+    @pulumi.getter(name="diskPath")
+    def disk_path(self) -> Optional[str]:
+        return pulumi.get(self, "disk_path")
+
+    @property
+    @pulumi.getter(name="gatewayArn")
+    def gateway_arn(self) -> str:
+        return pulumi.get(self, "gateway_arn")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
+        return pulumi.get(self, "id")
+
 
 
 class AwaitableGetLocalDiskResult(GetLocalDiskResult):
@@ -95,7 +114,7 @@ def get_local_disk(disk_node: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:storagegateway/getLocalDisk:getLocalDisk', __args__, opts=opts, typ=_GetLocalDiskResult).value
+    __ret__ = pulumi.runtime.invoke('aws:storagegateway/getLocalDisk:getLocalDisk', __args__, opts=opts, typ=GetLocalDiskResult).value
 
     return AwaitableGetLocalDiskResult(
         disk_id=__ret__.disk_id,

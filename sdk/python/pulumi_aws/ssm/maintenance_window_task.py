@@ -14,71 +14,6 @@ __all__ = ['MaintenanceWindowTask']
 
 
 class MaintenanceWindowTask(pulumi.CustomResource):
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    The description of the maintenance window task.
-    """
-
-    logging_info: pulumi.Output[Optional['outputs.MaintenanceWindowTaskLoggingInfo']] = pulumi.property("loggingInfo")
-    """
-    A structure containing information about an Amazon S3 bucket to write instance-level logs to. Use `task_invocation_parameters` configuration block `run_command_parameters` configuration block `output_s3_*` arguments instead. Conflicts with `task_invocation_parameters`. Documented below.
-    """
-
-    max_concurrency: pulumi.Output[str] = pulumi.property("maxConcurrency")
-    """
-    The maximum number of targets this task can be run for in parallel.
-    """
-
-    max_errors: pulumi.Output[str] = pulumi.property("maxErrors")
-    """
-    The maximum number of errors allowed before this task stops being scheduled.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the maintenance window task.
-    """
-
-    priority: pulumi.Output[Optional[float]] = pulumi.property("priority")
-    """
-    The priority of the task in the Maintenance Window, the lower the number the higher the priority. Tasks in a Maintenance Window are scheduled in priority order with tasks that have the same priority scheduled in parallel.
-    """
-
-    service_role_arn: pulumi.Output[str] = pulumi.property("serviceRoleArn")
-    """
-    The role that should be assumed when executing the task.
-    """
-
-    targets: pulumi.Output[List['outputs.MaintenanceWindowTaskTarget']] = pulumi.property("targets")
-    """
-    The targets (either instances or window target ids). Instances are specified using Key=InstanceIds,Values=instanceid1,instanceid2. Window target ids are specified using Key=WindowTargetIds,Values=window target id1, window target id2.
-    """
-
-    task_arn: pulumi.Output[str] = pulumi.property("taskArn")
-    """
-    The ARN of the task to execute.
-    """
-
-    task_invocation_parameters: pulumi.Output[Optional['outputs.MaintenanceWindowTaskTaskInvocationParameters']] = pulumi.property("taskInvocationParameters")
-    """
-    The parameters for task execution. This argument is conflict with `task_parameters` and `logging_info`.
-    """
-
-    task_parameters: pulumi.Output[Optional[List['outputs.MaintenanceWindowTaskTaskParameter']]] = pulumi.property("taskParameters")
-    """
-    A structure containing information about parameters required by the particular `task_arn`. Use `parameter` configuration blocks under the `task_invocation_parameters` configuration block instead. Conflicts with `task_invocation_parameters`. Documented below.
-    """
-
-    task_type: pulumi.Output[str] = pulumi.property("taskType")
-    """
-    The type of task being registered. The only allowed value is `RUN_COMMAND`.
-    """
-
-    window_id: pulumi.Output[str] = pulumi.property("windowId")
-    """
-    The Id of the maintenance window to register the task with.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -320,6 +255,110 @@ class MaintenanceWindowTask(pulumi.CustomResource):
         __props__["task_type"] = task_type
         __props__["window_id"] = window_id
         return MaintenanceWindowTask(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        The description of the maintenance window task.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="loggingInfo")
+    def logging_info(self) -> Optional['outputs.MaintenanceWindowTaskLoggingInfo']:
+        """
+        A structure containing information about an Amazon S3 bucket to write instance-level logs to. Use `task_invocation_parameters` configuration block `run_command_parameters` configuration block `output_s3_*` arguments instead. Conflicts with `task_invocation_parameters`. Documented below.
+        """
+        return pulumi.get(self, "logging_info")
+
+    @property
+    @pulumi.getter(name="maxConcurrency")
+    def max_concurrency(self) -> str:
+        """
+        The maximum number of targets this task can be run for in parallel.
+        """
+        return pulumi.get(self, "max_concurrency")
+
+    @property
+    @pulumi.getter(name="maxErrors")
+    def max_errors(self) -> str:
+        """
+        The maximum number of errors allowed before this task stops being scheduled.
+        """
+        return pulumi.get(self, "max_errors")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the maintenance window task.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> Optional[float]:
+        """
+        The priority of the task in the Maintenance Window, the lower the number the higher the priority. Tasks in a Maintenance Window are scheduled in priority order with tasks that have the same priority scheduled in parallel.
+        """
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter(name="serviceRoleArn")
+    def service_role_arn(self) -> str:
+        """
+        The role that should be assumed when executing the task.
+        """
+        return pulumi.get(self, "service_role_arn")
+
+    @property
+    @pulumi.getter
+    def targets(self) -> List['outputs.MaintenanceWindowTaskTarget']:
+        """
+        The targets (either instances or window target ids). Instances are specified using Key=InstanceIds,Values=instanceid1,instanceid2. Window target ids are specified using Key=WindowTargetIds,Values=window target id1, window target id2.
+        """
+        return pulumi.get(self, "targets")
+
+    @property
+    @pulumi.getter(name="taskArn")
+    def task_arn(self) -> str:
+        """
+        The ARN of the task to execute.
+        """
+        return pulumi.get(self, "task_arn")
+
+    @property
+    @pulumi.getter(name="taskInvocationParameters")
+    def task_invocation_parameters(self) -> Optional['outputs.MaintenanceWindowTaskTaskInvocationParameters']:
+        """
+        The parameters for task execution. This argument is conflict with `task_parameters` and `logging_info`.
+        """
+        return pulumi.get(self, "task_invocation_parameters")
+
+    @property
+    @pulumi.getter(name="taskParameters")
+    def task_parameters(self) -> Optional[List['outputs.MaintenanceWindowTaskTaskParameter']]:
+        """
+        A structure containing information about parameters required by the particular `task_arn`. Use `parameter` configuration blocks under the `task_invocation_parameters` configuration block instead. Conflicts with `task_invocation_parameters`. Documented below.
+        """
+        return pulumi.get(self, "task_parameters")
+
+    @property
+    @pulumi.getter(name="taskType")
+    def task_type(self) -> str:
+        """
+        The type of task being registered. The only allowed value is `RUN_COMMAND`.
+        """
+        return pulumi.get(self, "task_type")
+
+    @property
+    @pulumi.getter(name="windowId")
+    def window_id(self) -> str:
+        """
+        The Id of the maintenance window to register the task with.
+        """
+        return pulumi.get(self, "window_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

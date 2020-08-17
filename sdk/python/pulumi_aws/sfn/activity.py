@@ -12,21 +12,6 @@ __all__ = ['Activity']
 
 
 class Activity(pulumi.CustomResource):
-    creation_date: pulumi.Output[str] = pulumi.property("creationDate")
-    """
-    The date the activity was created.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the activity to create.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of resource tags
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -104,6 +89,30 @@ class Activity(pulumi.CustomResource):
         __props__["name"] = name
         __props__["tags"] = tags
         return Activity(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="creationDate")
+    def creation_date(self) -> str:
+        """
+        The date the activity was created.
+        """
+        return pulumi.get(self, "creation_date")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the activity to create.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of resource tags
+        """
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

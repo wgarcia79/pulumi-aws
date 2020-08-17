@@ -16,12 +16,8 @@ __all__ = [
 
 warnings.warn("aws.elasticloadbalancing.getHostedZoneId has been deprecated in favor of aws.elb.getHostedZoneId", DeprecationWarning)
 
+
 @pulumi.output_type
-class _GetHostedZoneIdResult:
-    id: str = pulumi.property("id")
-    region: Optional[str] = pulumi.property("region")
-
-
 class GetHostedZoneIdResult:
     """
     A collection of values returned by getHostedZoneId.
@@ -29,13 +25,24 @@ class GetHostedZoneIdResult:
     def __init__(__self__, id=None, region=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if region and not isinstance(region, str):
+            raise TypeError("Expected argument 'region' to be a str")
+        pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if region and not isinstance(region, str):
-            raise TypeError("Expected argument 'region' to be a str")
-        __self__.region = region
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        return pulumi.get(self, "region")
+
 
 
 class AwaitableGetHostedZoneIdResult(GetHostedZoneIdResult):
@@ -83,7 +90,7 @@ def get_hosted_zone_id(region: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:elasticloadbalancing/getHostedZoneId:getHostedZoneId', __args__, opts=opts, typ=_GetHostedZoneIdResult).value
+    __ret__ = pulumi.runtime.invoke('aws:elasticloadbalancing/getHostedZoneId:getHostedZoneId', __args__, opts=opts, typ=GetHostedZoneIdResult).value
 
     return AwaitableGetHostedZoneIdResult(
         id=__ret__.id,

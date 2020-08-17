@@ -17,26 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetSubnetResult:
-    arn: str = pulumi.property("arn")
-    assign_ipv6_address_on_creation: bool = pulumi.property("assignIpv6AddressOnCreation")
-    availability_zone: str = pulumi.property("availabilityZone")
-    availability_zone_id: str = pulumi.property("availabilityZoneId")
-    cidr_block: str = pulumi.property("cidrBlock")
-    default_for_az: bool = pulumi.property("defaultForAz")
-    filters: Optional[List['outputs.GetSubnetFilterResult']] = pulumi.property("filters")
-    id: str = pulumi.property("id")
-    ipv6_cidr_block: str = pulumi.property("ipv6CidrBlock")
-    ipv6_cidr_block_association_id: str = pulumi.property("ipv6CidrBlockAssociationId")
-    map_public_ip_on_launch: bool = pulumi.property("mapPublicIpOnLaunch")
-    outpost_arn: str = pulumi.property("outpostArn")
-    owner_id: str = pulumi.property("ownerId")
-    state: str = pulumi.property("state")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    vpc_id: str = pulumi.property("vpcId")
-
-
 class GetSubnetResult:
     """
     A collection of values returned by getSubnet.
@@ -44,61 +26,142 @@ class GetSubnetResult:
     def __init__(__self__, arn=None, assign_ipv6_address_on_creation=None, availability_zone=None, availability_zone_id=None, cidr_block=None, default_for_az=None, filters=None, id=None, ipv6_cidr_block=None, ipv6_cidr_block_association_id=None, map_public_ip_on_launch=None, outpost_arn=None, owner_id=None, state=None, tags=None, vpc_id=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if assign_ipv6_address_on_creation and not isinstance(assign_ipv6_address_on_creation, bool):
+            raise TypeError("Expected argument 'assign_ipv6_address_on_creation' to be a bool")
+        pulumi.set(__self__, "assign_ipv6_address_on_creation", assign_ipv6_address_on_creation)
+        if availability_zone and not isinstance(availability_zone, str):
+            raise TypeError("Expected argument 'availability_zone' to be a str")
+        pulumi.set(__self__, "availability_zone", availability_zone)
+        if availability_zone_id and not isinstance(availability_zone_id, str):
+            raise TypeError("Expected argument 'availability_zone_id' to be a str")
+        pulumi.set(__self__, "availability_zone_id", availability_zone_id)
+        if cidr_block and not isinstance(cidr_block, str):
+            raise TypeError("Expected argument 'cidr_block' to be a str")
+        pulumi.set(__self__, "cidr_block", cidr_block)
+        if default_for_az and not isinstance(default_for_az, bool):
+            raise TypeError("Expected argument 'default_for_az' to be a bool")
+        pulumi.set(__self__, "default_for_az", default_for_az)
+        if filters and not isinstance(filters, list):
+            raise TypeError("Expected argument 'filters' to be a list")
+        pulumi.set(__self__, "filters", filters)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if ipv6_cidr_block and not isinstance(ipv6_cidr_block, str):
+            raise TypeError("Expected argument 'ipv6_cidr_block' to be a str")
+        pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
+        if ipv6_cidr_block_association_id and not isinstance(ipv6_cidr_block_association_id, str):
+            raise TypeError("Expected argument 'ipv6_cidr_block_association_id' to be a str")
+        pulumi.set(__self__, "ipv6_cidr_block_association_id", ipv6_cidr_block_association_id)
+        if map_public_ip_on_launch and not isinstance(map_public_ip_on_launch, bool):
+            raise TypeError("Expected argument 'map_public_ip_on_launch' to be a bool")
+        pulumi.set(__self__, "map_public_ip_on_launch", map_public_ip_on_launch)
+        if outpost_arn and not isinstance(outpost_arn, str):
+            raise TypeError("Expected argument 'outpost_arn' to be a str")
+        pulumi.set(__self__, "outpost_arn", outpost_arn)
+        if owner_id and not isinstance(owner_id, str):
+            raise TypeError("Expected argument 'owner_id' to be a str")
+        pulumi.set(__self__, "owner_id", owner_id)
+        if state and not isinstance(state, str):
+            raise TypeError("Expected argument 'state' to be a str")
+        pulumi.set(__self__, "state", state)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if vpc_id and not isinstance(vpc_id, str):
+            raise TypeError("Expected argument 'vpc_id' to be a str")
+        pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The ARN of the subnet.
         """
-        if assign_ipv6_address_on_creation and not isinstance(assign_ipv6_address_on_creation, bool):
-            raise TypeError("Expected argument 'assign_ipv6_address_on_creation' to be a bool")
-        __self__.assign_ipv6_address_on_creation = assign_ipv6_address_on_creation
-        if availability_zone and not isinstance(availability_zone, str):
-            raise TypeError("Expected argument 'availability_zone' to be a str")
-        __self__.availability_zone = availability_zone
-        if availability_zone_id and not isinstance(availability_zone_id, str):
-            raise TypeError("Expected argument 'availability_zone_id' to be a str")
-        __self__.availability_zone_id = availability_zone_id
-        if cidr_block and not isinstance(cidr_block, str):
-            raise TypeError("Expected argument 'cidr_block' to be a str")
-        __self__.cidr_block = cidr_block
-        if default_for_az and not isinstance(default_for_az, bool):
-            raise TypeError("Expected argument 'default_for_az' to be a bool")
-        __self__.default_for_az = default_for_az
-        if filters and not isinstance(filters, list):
-            raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        if ipv6_cidr_block and not isinstance(ipv6_cidr_block, str):
-            raise TypeError("Expected argument 'ipv6_cidr_block' to be a str")
-        __self__.ipv6_cidr_block = ipv6_cidr_block
-        if ipv6_cidr_block_association_id and not isinstance(ipv6_cidr_block_association_id, str):
-            raise TypeError("Expected argument 'ipv6_cidr_block_association_id' to be a str")
-        __self__.ipv6_cidr_block_association_id = ipv6_cidr_block_association_id
-        if map_public_ip_on_launch and not isinstance(map_public_ip_on_launch, bool):
-            raise TypeError("Expected argument 'map_public_ip_on_launch' to be a bool")
-        __self__.map_public_ip_on_launch = map_public_ip_on_launch
-        if outpost_arn and not isinstance(outpost_arn, str):
-            raise TypeError("Expected argument 'outpost_arn' to be a str")
-        __self__.outpost_arn = outpost_arn
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="assignIpv6AddressOnCreation")
+    def assign_ipv6_address_on_creation(self) -> bool:
+        return pulumi.get(self, "assign_ipv6_address_on_creation")
+
+    @property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> str:
+        return pulumi.get(self, "availability_zone")
+
+    @property
+    @pulumi.getter(name="availabilityZoneId")
+    def availability_zone_id(self) -> str:
+        return pulumi.get(self, "availability_zone_id")
+
+    @property
+    @pulumi.getter(name="cidrBlock")
+    def cidr_block(self) -> str:
+        return pulumi.get(self, "cidr_block")
+
+    @property
+    @pulumi.getter(name="defaultForAz")
+    def default_for_az(self) -> bool:
+        return pulumi.get(self, "default_for_az")
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetSubnetFilterResult']]:
+        return pulumi.get(self, "filters")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ipv6CidrBlock")
+    def ipv6_cidr_block(self) -> str:
+        return pulumi.get(self, "ipv6_cidr_block")
+
+    @property
+    @pulumi.getter(name="ipv6CidrBlockAssociationId")
+    def ipv6_cidr_block_association_id(self) -> str:
+        return pulumi.get(self, "ipv6_cidr_block_association_id")
+
+    @property
+    @pulumi.getter(name="mapPublicIpOnLaunch")
+    def map_public_ip_on_launch(self) -> bool:
+        return pulumi.get(self, "map_public_ip_on_launch")
+
+    @property
+    @pulumi.getter(name="outpostArn")
+    def outpost_arn(self) -> str:
         """
         The Amazon Resource Name (ARN) of the Outpost.
         """
-        if owner_id and not isinstance(owner_id, str):
-            raise TypeError("Expected argument 'owner_id' to be a str")
-        __self__.owner_id = owner_id
+        return pulumi.get(self, "outpost_arn")
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
         """
         The ID of the AWS account that owns the subnet.
         """
-        if state and not isinstance(state, str):
-            raise TypeError("Expected argument 'state' to be a str")
-        __self__.state = state
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
-        if vpc_id and not isinstance(vpc_id, str):
-            raise TypeError("Expected argument 'vpc_id' to be a str")
-        __self__.vpc_id = vpc_id
+        return pulumi.get(self, "owner_id")
+
+    @property
+    @pulumi.getter
+    def state(self) -> str:
+        return pulumi.get(self, "state")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        return pulumi.get(self, "vpc_id")
+
 
 
 class AwaitableGetSubnetResult(GetSubnetResult):
@@ -196,7 +259,7 @@ def get_subnet(availability_zone: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getSubnet:getSubnet', __args__, opts=opts, typ=_GetSubnetResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getSubnet:getSubnet', __args__, opts=opts, typ=GetSubnetResult).value
 
     return AwaitableGetSubnetResult(
         arn=__ret__.arn,

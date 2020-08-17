@@ -12,16 +12,6 @@ __all__ = ['VpnConnectionRoute']
 
 
 class VpnConnectionRoute(pulumi.CustomResource):
-    destination_cidr_block: pulumi.Output[str] = pulumi.property("destinationCidrBlock")
-    """
-    The CIDR block associated with the local subnet of the customer network.
-    """
-
-    vpn_connection_id: pulumi.Output[str] = pulumi.property("vpnConnectionId")
-    """
-    The ID of the VPN connection.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -112,6 +102,22 @@ class VpnConnectionRoute(pulumi.CustomResource):
         __props__["destination_cidr_block"] = destination_cidr_block
         __props__["vpn_connection_id"] = vpn_connection_id
         return VpnConnectionRoute(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="destinationCidrBlock")
+    def destination_cidr_block(self) -> str:
+        """
+        The CIDR block associated with the local subnet of the customer network.
+        """
+        return pulumi.get(self, "destination_cidr_block")
+
+    @property
+    @pulumi.getter(name="vpnConnectionId")
+    def vpn_connection_id(self) -> str:
+        """
+        The ID of the VPN connection.
+        """
+        return pulumi.get(self, "vpn_connection_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

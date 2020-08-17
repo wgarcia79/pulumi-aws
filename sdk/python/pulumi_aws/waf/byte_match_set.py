@@ -14,18 +14,6 @@ __all__ = ['ByteMatchSet']
 
 
 class ByteMatchSet(pulumi.CustomResource):
-    byte_match_tuples: pulumi.Output[Optional[List['outputs.ByteMatchSetByteMatchTuple']]] = pulumi.property("byteMatchTuples")
-    """
-    Specifies the bytes (typically a string that corresponds
-    with ASCII characters) that you want to search for in web requests,
-    the location in requests that you want to search, and other settings.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name or description of the Byte Match Set.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -111,6 +99,24 @@ class ByteMatchSet(pulumi.CustomResource):
         __props__["byte_match_tuples"] = byte_match_tuples
         __props__["name"] = name
         return ByteMatchSet(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="byteMatchTuples")
+    def byte_match_tuples(self) -> Optional[List['outputs.ByteMatchSetByteMatchTuple']]:
+        """
+        Specifies the bytes (typically a string that corresponds
+        with ASCII characters) that you want to search for in web requests,
+        the location in requests that you want to search, and other settings.
+        """
+        return pulumi.get(self, "byte_match_tuples")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name or description of the Byte Match Set.
+        """
+        return pulumi.get(self, "name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

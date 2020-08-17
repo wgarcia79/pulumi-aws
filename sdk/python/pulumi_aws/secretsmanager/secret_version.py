@@ -12,36 +12,6 @@ __all__ = ['SecretVersion']
 
 
 class SecretVersion(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the secret.
-    """
-
-    secret_binary: pulumi.Output[Optional[str]] = pulumi.property("secretBinary")
-    """
-    Specifies binary data that you want to encrypt and store in this version of the secret. This is required if secret_string is not set. Needs to be encoded to base64.
-    """
-
-    secret_id: pulumi.Output[str] = pulumi.property("secretId")
-    """
-    Specifies the secret to which you want to add a new version. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret. The secret must already exist.
-    """
-
-    secret_string: pulumi.Output[Optional[str]] = pulumi.property("secretString")
-    """
-    Specifies text data that you want to encrypt and store in this version of the secret. This is required if secret_binary is not set.
-    """
-
-    version_id: pulumi.Output[str] = pulumi.property("versionId")
-    """
-    The unique identifier of the version of the secret.
-    """
-
-    version_stages: pulumi.Output[List[str]] = pulumi.property("versionStages")
-    """
-    Specifies a list of staging labels that are attached to this version of the secret. A staging label must be unique to a single version of the secret. If you specify a staging label that's already associated with a different version of the same secret then that staging label is automatically removed from the other version and attached to this version. If you do not specify a value, then AWS Secrets Manager automatically moves the staging label `AWSCURRENT` to this new version on creation.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -142,6 +112,54 @@ class SecretVersion(pulumi.CustomResource):
         __props__["version_id"] = version_id
         __props__["version_stages"] = version_stages
         return SecretVersion(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the secret.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="secretBinary")
+    def secret_binary(self) -> Optional[str]:
+        """
+        Specifies binary data that you want to encrypt and store in this version of the secret. This is required if secret_string is not set. Needs to be encoded to base64.
+        """
+        return pulumi.get(self, "secret_binary")
+
+    @property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> str:
+        """
+        Specifies the secret to which you want to add a new version. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret. The secret must already exist.
+        """
+        return pulumi.get(self, "secret_id")
+
+    @property
+    @pulumi.getter(name="secretString")
+    def secret_string(self) -> Optional[str]:
+        """
+        Specifies text data that you want to encrypt and store in this version of the secret. This is required if secret_binary is not set.
+        """
+        return pulumi.get(self, "secret_string")
+
+    @property
+    @pulumi.getter(name="versionId")
+    def version_id(self) -> str:
+        """
+        The unique identifier of the version of the secret.
+        """
+        return pulumi.get(self, "version_id")
+
+    @property
+    @pulumi.getter(name="versionStages")
+    def version_stages(self) -> List[str]:
+        """
+        Specifies a list of staging labels that are attached to this version of the secret. A staging label must be unique to a single version of the secret. If you specify a staging label that's already associated with a different version of the same secret then that staging label is automatically removed from the other version and attached to this version. If you do not specify a value, then AWS Secrets Manager automatically moves the staging label `AWSCURRENT` to this new version on creation.
+        """
+        return pulumi.get(self, "version_stages")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

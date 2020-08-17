@@ -12,18 +12,6 @@ __all__ = ['DelegationSet']
 
 
 class DelegationSet(pulumi.CustomResource):
-    name_servers: pulumi.Output[List[str]] = pulumi.property("nameServers")
-    """
-    A list of authoritative name servers for the hosted zone
-    (effectively a list of NS records).
-    """
-
-    reference_name: pulumi.Output[Optional[str]] = pulumi.property("referenceName")
-    """
-    This is a reference name used in Caller Reference
-    (helpful for identifying single delegation set amongst others)
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -100,6 +88,24 @@ class DelegationSet(pulumi.CustomResource):
         __props__["name_servers"] = name_servers
         __props__["reference_name"] = reference_name
         return DelegationSet(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="nameServers")
+    def name_servers(self) -> List[str]:
+        """
+        A list of authoritative name servers for the hosted zone
+        (effectively a list of NS records).
+        """
+        return pulumi.get(self, "name_servers")
+
+    @property
+    @pulumi.getter(name="referenceName")
+    def reference_name(self) -> Optional[str]:
+        """
+        This is a reference name used in Caller Reference
+        (helpful for identifying single delegation set amongst others)
+        """
+        return pulumi.get(self, "reference_name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -12,31 +12,6 @@ __all__ = ['Vault']
 
 
 class Vault(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the vault.
-    """
-
-    kms_key_arn: pulumi.Output[str] = pulumi.property("kmsKeyArn")
-    """
-    The server-side encryption key that is used to protect your backups.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    Name of the backup vault to create.
-    """
-
-    recovery_points: pulumi.Output[float] = pulumi.property("recoveryPoints")
-    """
-    The number of recovery points that are stored in a backup vault.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Metadata that you can assign to help organize the resources that you create.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -124,6 +99,46 @@ class Vault(pulumi.CustomResource):
         __props__["recovery_points"] = recovery_points
         __props__["tags"] = tags
         return Vault(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the vault.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="kmsKeyArn")
+    def kms_key_arn(self) -> str:
+        """
+        The server-side encryption key that is used to protect your backups.
+        """
+        return pulumi.get(self, "kms_key_arn")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the backup vault to create.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="recoveryPoints")
+    def recovery_points(self) -> float:
+        """
+        The number of recovery points that are stored in a backup vault.
+        """
+        return pulumi.get(self, "recovery_points")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Metadata that you can assign to help organize the resources that you create.
+        """
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

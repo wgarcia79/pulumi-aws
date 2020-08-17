@@ -12,16 +12,6 @@ __all__ = ['UploadBuffer']
 
 
 class UploadBuffer(pulumi.CustomResource):
-    disk_id: pulumi.Output[str] = pulumi.property("diskId")
-    """
-    Local disk identifier. For example, `pci-0000:03:00.0-scsi-0:0:0:0`.
-    """
-
-    gateway_arn: pulumi.Output[str] = pulumi.property("gatewayArn")
-    """
-    The Amazon Resource Name (ARN) of the gateway.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -103,6 +93,22 @@ class UploadBuffer(pulumi.CustomResource):
         __props__["disk_id"] = disk_id
         __props__["gateway_arn"] = gateway_arn
         return UploadBuffer(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="diskId")
+    def disk_id(self) -> str:
+        """
+        Local disk identifier. For example, `pci-0000:03:00.0-scsi-0:0:0:0`.
+        """
+        return pulumi.get(self, "disk_id")
+
+    @property
+    @pulumi.getter(name="gatewayArn")
+    def gateway_arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) of the gateway.
+        """
+        return pulumi.get(self, "gateway_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

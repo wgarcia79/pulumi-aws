@@ -12,36 +12,6 @@ __all__ = ['SmsChannel']
 
 
 class SmsChannel(pulumi.CustomResource):
-    application_id: pulumi.Output[str] = pulumi.property("applicationId")
-    """
-    The application ID.
-    """
-
-    enabled: pulumi.Output[Optional[bool]] = pulumi.property("enabled")
-    """
-    Whether the channel is enabled or disabled. Defaults to `true`.
-    """
-
-    promotional_messages_per_second: pulumi.Output[float] = pulumi.property("promotionalMessagesPerSecond")
-    """
-    Promotional messages per second that can be sent.
-    """
-
-    sender_id: pulumi.Output[Optional[str]] = pulumi.property("senderId")
-    """
-    Sender identifier of your messages.
-    """
-
-    short_code: pulumi.Output[Optional[str]] = pulumi.property("shortCode")
-    """
-    The Short Code registered with the phone provider.
-    """
-
-    transactional_messages_per_second: pulumi.Output[float] = pulumi.property("transactionalMessagesPerSecond")
-    """
-    Transactional messages per second that can be sent.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -138,6 +108,54 @@ class SmsChannel(pulumi.CustomResource):
         __props__["short_code"] = short_code
         __props__["transactional_messages_per_second"] = transactional_messages_per_second
         return SmsChannel(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="applicationId")
+    def application_id(self) -> str:
+        """
+        The application ID.
+        """
+        return pulumi.get(self, "application_id")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Whether the channel is enabled or disabled. Defaults to `true`.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="promotionalMessagesPerSecond")
+    def promotional_messages_per_second(self) -> float:
+        """
+        Promotional messages per second that can be sent.
+        """
+        return pulumi.get(self, "promotional_messages_per_second")
+
+    @property
+    @pulumi.getter(name="senderId")
+    def sender_id(self) -> Optional[str]:
+        """
+        Sender identifier of your messages.
+        """
+        return pulumi.get(self, "sender_id")
+
+    @property
+    @pulumi.getter(name="shortCode")
+    def short_code(self) -> Optional[str]:
+        """
+        The Short Code registered with the phone provider.
+        """
+        return pulumi.get(self, "short_code")
+
+    @property
+    @pulumi.getter(name="transactionalMessagesPerSecond")
+    def transactional_messages_per_second(self) -> float:
+        """
+        Transactional messages per second that can be sent.
+        """
+        return pulumi.get(self, "transactional_messages_per_second")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

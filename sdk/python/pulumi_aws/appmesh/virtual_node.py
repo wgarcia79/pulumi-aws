@@ -14,41 +14,6 @@ __all__ = ['VirtualNode']
 
 
 class VirtualNode(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the virtual node.
-    """
-
-    created_date: pulumi.Output[str] = pulumi.property("createdDate")
-    """
-    The creation date of the virtual node.
-    """
-
-    last_updated_date: pulumi.Output[str] = pulumi.property("lastUpdatedDate")
-    """
-    The last update date of the virtual node.
-    """
-
-    mesh_name: pulumi.Output[str] = pulumi.property("meshName")
-    """
-    The name of the service mesh in which to create the virtual node.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name to use for the virtual node.
-    """
-
-    spec: pulumi.Output['outputs.VirtualNodeSpec'] = pulumi.property("spec")
-    """
-    The virtual node specification to apply.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -282,6 +247,62 @@ class VirtualNode(pulumi.CustomResource):
         __props__["spec"] = spec
         __props__["tags"] = tags
         return VirtualNode(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the virtual node.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="createdDate")
+    def created_date(self) -> str:
+        """
+        The creation date of the virtual node.
+        """
+        return pulumi.get(self, "created_date")
+
+    @property
+    @pulumi.getter(name="lastUpdatedDate")
+    def last_updated_date(self) -> str:
+        """
+        The last update date of the virtual node.
+        """
+        return pulumi.get(self, "last_updated_date")
+
+    @property
+    @pulumi.getter(name="meshName")
+    def mesh_name(self) -> str:
+        """
+        The name of the service mesh in which to create the virtual node.
+        """
+        return pulumi.get(self, "mesh_name")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name to use for the virtual node.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def spec(self) -> 'outputs.VirtualNodeSpec':
+        """
+        The virtual node specification to apply.
+        """
+        return pulumi.get(self, "spec")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

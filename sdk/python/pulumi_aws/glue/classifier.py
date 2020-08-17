@@ -14,31 +14,6 @@ __all__ = ['Classifier']
 
 
 class Classifier(pulumi.CustomResource):
-    csv_classifier: pulumi.Output[Optional['outputs.ClassifierCsvClassifier']] = pulumi.property("csvClassifier")
-    """
-    A classifier for Csv content. Defined below.
-    """
-
-    grok_classifier: pulumi.Output[Optional['outputs.ClassifierGrokClassifier']] = pulumi.property("grokClassifier")
-    """
-    A classifier that uses grok patterns. Defined below.
-    """
-
-    json_classifier: pulumi.Output[Optional['outputs.ClassifierJsonClassifier']] = pulumi.property("jsonClassifier")
-    """
-    A classifier for JSON content. Defined below.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the classifier.
-    """
-
-    xml_classifier: pulumi.Output[Optional['outputs.ClassifierXmlClassifier']] = pulumi.property("xmlClassifier")
-    """
-    A classifier for XML content. Defined below.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -175,6 +150,46 @@ class Classifier(pulumi.CustomResource):
         __props__["name"] = name
         __props__["xml_classifier"] = xml_classifier
         return Classifier(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="csvClassifier")
+    def csv_classifier(self) -> Optional['outputs.ClassifierCsvClassifier']:
+        """
+        A classifier for Csv content. Defined below.
+        """
+        return pulumi.get(self, "csv_classifier")
+
+    @property
+    @pulumi.getter(name="grokClassifier")
+    def grok_classifier(self) -> Optional['outputs.ClassifierGrokClassifier']:
+        """
+        A classifier that uses grok patterns. Defined below.
+        """
+        return pulumi.get(self, "grok_classifier")
+
+    @property
+    @pulumi.getter(name="jsonClassifier")
+    def json_classifier(self) -> Optional['outputs.ClassifierJsonClassifier']:
+        """
+        A classifier for JSON content. Defined below.
+        """
+        return pulumi.get(self, "json_classifier")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the classifier.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="xmlClassifier")
+    def xml_classifier(self) -> Optional['outputs.ClassifierXmlClassifier']:
+        """
+        A classifier for XML content. Defined below.
+        """
+        return pulumi.get(self, "xml_classifier")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -24,37 +24,41 @@ class ClusterNodeArgs:
         """
         :param pulumi.Input[float] port: The port used by the configuration endpoint
         """
-        pulumi.set(__self__, "address", address)
-        pulumi.set(__self__, "availabilityZone", availability_zone)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "port", port)
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
 
     @property
     @pulumi.getter
     def address(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "address")
 
     @address.setter
     def address(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "address", value)
 
     @property
     @pulumi.getter(name="availabilityZone")
     def availability_zone(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @availability_zone.setter
     def availability_zone(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "availability_zone", value)
 
     @property
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "id")
 
     @id.setter
     def id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter
@@ -62,11 +66,11 @@ class ClusterNodeArgs:
         """
         The port used by the configuration endpoint
         """
-        ...
+        return pulumi.get(self, "port")
 
     @port.setter
     def port(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "port", value)
 
 
 @pulumi.input_type
@@ -76,7 +80,8 @@ class ClusterServerSideEncryptionArgs:
         """
         :param pulumi.Input[bool] enabled: Whether to enable encryption at rest. Defaults to `false`.
         """
-        pulumi.set(__self__, "enabled", enabled)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
 
     @property
     @pulumi.getter
@@ -84,11 +89,11 @@ class ClusterServerSideEncryptionArgs:
         """
         Whether to enable encryption at rest. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "enabled", value)
 
 
 @pulumi.input_type
@@ -109,11 +114,11 @@ class ParameterGroupParameterArgs:
         """
         The name of the parameter.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -121,10 +126,10 @@ class ParameterGroupParameterArgs:
         """
         The value for the parameter.
         """
-        ...
+        return pulumi.get(self, "value")
 
     @value.setter
     def value(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "value", value)
 
 

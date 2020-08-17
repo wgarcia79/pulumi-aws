@@ -15,19 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetClusterResult:
-    arn: str = pulumi.property("arn")
-    bootstrap_brokers: str = pulumi.property("bootstrapBrokers")
-    bootstrap_brokers_tls: str = pulumi.property("bootstrapBrokersTls")
-    cluster_name: str = pulumi.property("clusterName")
-    id: str = pulumi.property("id")
-    kafka_version: str = pulumi.property("kafkaVersion")
-    number_of_broker_nodes: float = pulumi.property("numberOfBrokerNodes")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    zookeeper_connect_string: str = pulumi.property("zookeeperConnectString")
-
-
 class GetClusterResult:
     """
     A collection of values returned by getCluster.
@@ -35,55 +24,101 @@ class GetClusterResult:
     def __init__(__self__, arn=None, bootstrap_brokers=None, bootstrap_brokers_tls=None, cluster_name=None, id=None, kafka_version=None, number_of_broker_nodes=None, tags=None, zookeeper_connect_string=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if bootstrap_brokers and not isinstance(bootstrap_brokers, str):
+            raise TypeError("Expected argument 'bootstrap_brokers' to be a str")
+        pulumi.set(__self__, "bootstrap_brokers", bootstrap_brokers)
+        if bootstrap_brokers_tls and not isinstance(bootstrap_brokers_tls, str):
+            raise TypeError("Expected argument 'bootstrap_brokers_tls' to be a str")
+        pulumi.set(__self__, "bootstrap_brokers_tls", bootstrap_brokers_tls)
+        if cluster_name and not isinstance(cluster_name, str):
+            raise TypeError("Expected argument 'cluster_name' to be a str")
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if kafka_version and not isinstance(kafka_version, str):
+            raise TypeError("Expected argument 'kafka_version' to be a str")
+        pulumi.set(__self__, "kafka_version", kafka_version)
+        if number_of_broker_nodes and not isinstance(number_of_broker_nodes, float):
+            raise TypeError("Expected argument 'number_of_broker_nodes' to be a float")
+        pulumi.set(__self__, "number_of_broker_nodes", number_of_broker_nodes)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if zookeeper_connect_string and not isinstance(zookeeper_connect_string, str):
+            raise TypeError("Expected argument 'zookeeper_connect_string' to be a str")
+        pulumi.set(__self__, "zookeeper_connect_string", zookeeper_connect_string)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         Amazon Resource Name (ARN) of the MSK cluster.
         """
-        if bootstrap_brokers and not isinstance(bootstrap_brokers, str):
-            raise TypeError("Expected argument 'bootstrap_brokers' to be a str")
-        __self__.bootstrap_brokers = bootstrap_brokers
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="bootstrapBrokers")
+    def bootstrap_brokers(self) -> str:
         """
         A comma separated list of one or more hostname:port pairs of Kafka brokers suitable to boostrap connectivity to the Kafka cluster.
         """
-        if bootstrap_brokers_tls and not isinstance(bootstrap_brokers_tls, str):
-            raise TypeError("Expected argument 'bootstrap_brokers_tls' to be a str")
-        __self__.bootstrap_brokers_tls = bootstrap_brokers_tls
+        return pulumi.get(self, "bootstrap_brokers")
+
+    @property
+    @pulumi.getter(name="bootstrapBrokersTls")
+    def bootstrap_brokers_tls(self) -> str:
         """
         A comma separated list of one or more DNS names (or IPs) and TLS port pairs kafka brokers suitable to boostrap connectivity to the kafka cluster.
         """
-        if cluster_name and not isinstance(cluster_name, str):
-            raise TypeError("Expected argument 'cluster_name' to be a str")
-        __self__.cluster_name = cluster_name
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "bootstrap_brokers_tls")
+
+    @property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> str:
+        return pulumi.get(self, "cluster_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if kafka_version and not isinstance(kafka_version, str):
-            raise TypeError("Expected argument 'kafka_version' to be a str")
-        __self__.kafka_version = kafka_version
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="kafkaVersion")
+    def kafka_version(self) -> str:
         """
         Apache Kafka version.
         """
-        if number_of_broker_nodes and not isinstance(number_of_broker_nodes, float):
-            raise TypeError("Expected argument 'number_of_broker_nodes' to be a float")
-        __self__.number_of_broker_nodes = number_of_broker_nodes
+        return pulumi.get(self, "kafka_version")
+
+    @property
+    @pulumi.getter(name="numberOfBrokerNodes")
+    def number_of_broker_nodes(self) -> float:
         """
         Number of broker nodes in the cluster.
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        return pulumi.get(self, "number_of_broker_nodes")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
         """
         Map of key-value pairs assigned to the cluster.
         """
-        if zookeeper_connect_string and not isinstance(zookeeper_connect_string, str):
-            raise TypeError("Expected argument 'zookeeper_connect_string' to be a str")
-        __self__.zookeeper_connect_string = zookeeper_connect_string
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="zookeeperConnectString")
+    def zookeeper_connect_string(self) -> str:
         """
         A comma separated list of one or more hostname:port pairs to use to connect to the Apache Zookeeper cluster.
         """
+        return pulumi.get(self, "zookeeper_connect_string")
+
 
 
 class AwaitableGetClusterResult(GetClusterResult):
@@ -129,7 +164,7 @@ def get_cluster(cluster_name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:msk/getCluster:getCluster', __args__, opts=opts, typ=_GetClusterResult).value
+    __ret__ = pulumi.runtime.invoke('aws:msk/getCluster:getCluster', __args__, opts=opts, typ=GetClusterResult).value
 
     return AwaitableGetClusterResult(
         arn=__ret__.arn,

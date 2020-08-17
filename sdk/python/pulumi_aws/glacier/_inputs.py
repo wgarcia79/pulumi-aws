@@ -22,7 +22,7 @@ class VaultNotificationArgs:
         :param pulumi.Input[str] sns_topic: The SNS Topic ARN.
         """
         pulumi.set(__self__, "events", events)
-        pulumi.set(__self__, "snsTopic", sns_topic)
+        pulumi.set(__self__, "sns_topic", sns_topic)
 
     @property
     @pulumi.getter
@@ -30,11 +30,11 @@ class VaultNotificationArgs:
         """
         You can configure a vault to publish a notification for `ArchiveRetrievalCompleted` and `InventoryRetrievalCompleted` events.
         """
-        ...
+        return pulumi.get(self, "events")
 
     @events.setter
     def events(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "events", value)
 
     @property
     @pulumi.getter(name="snsTopic")
@@ -42,10 +42,10 @@ class VaultNotificationArgs:
         """
         The SNS Topic ARN.
         """
-        ...
+        return pulumi.get(self, "sns_topic")
 
     @sns_topic.setter
     def sns_topic(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "sns_topic", value)
 
 

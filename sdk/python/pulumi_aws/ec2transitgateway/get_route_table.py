@@ -17,16 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetRouteTableResult:
-    default_association_route_table: bool = pulumi.property("defaultAssociationRouteTable")
-    default_propagation_route_table: bool = pulumi.property("defaultPropagationRouteTable")
-    filters: Optional[List['outputs.GetRouteTableFilterResult']] = pulumi.property("filters")
-    id: Optional[str] = pulumi.property("id")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    transit_gateway_id: str = pulumi.property("transitGatewayId")
-
-
 class GetRouteTableResult:
     """
     A collection of values returned by getRouteTable.
@@ -34,37 +26,68 @@ class GetRouteTableResult:
     def __init__(__self__, default_association_route_table=None, default_propagation_route_table=None, filters=None, id=None, tags=None, transit_gateway_id=None):
         if default_association_route_table and not isinstance(default_association_route_table, bool):
             raise TypeError("Expected argument 'default_association_route_table' to be a bool")
-        __self__.default_association_route_table = default_association_route_table
+        pulumi.set(__self__, "default_association_route_table", default_association_route_table)
+        if default_propagation_route_table and not isinstance(default_propagation_route_table, bool):
+            raise TypeError("Expected argument 'default_propagation_route_table' to be a bool")
+        pulumi.set(__self__, "default_propagation_route_table", default_propagation_route_table)
+        if filters and not isinstance(filters, list):
+            raise TypeError("Expected argument 'filters' to be a list")
+        pulumi.set(__self__, "filters", filters)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if transit_gateway_id and not isinstance(transit_gateway_id, str):
+            raise TypeError("Expected argument 'transit_gateway_id' to be a str")
+        pulumi.set(__self__, "transit_gateway_id", transit_gateway_id)
+
+    @property
+    @pulumi.getter(name="defaultAssociationRouteTable")
+    def default_association_route_table(self) -> bool:
         """
         Boolean whether this is the default association route table for the EC2 Transit Gateway
         """
-        if default_propagation_route_table and not isinstance(default_propagation_route_table, bool):
-            raise TypeError("Expected argument 'default_propagation_route_table' to be a bool")
-        __self__.default_propagation_route_table = default_propagation_route_table
+        return pulumi.get(self, "default_association_route_table")
+
+    @property
+    @pulumi.getter(name="defaultPropagationRouteTable")
+    def default_propagation_route_table(self) -> bool:
         """
         Boolean whether this is the default propagation route table for the EC2 Transit Gateway
         """
-        if filters and not isinstance(filters, list):
-            raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "default_propagation_route_table")
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetRouteTableFilterResult']]:
+        return pulumi.get(self, "filters")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
         """
         EC2 Transit Gateway Route Table identifier
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
         """
         Key-value tags for the EC2 Transit Gateway Route Table
         """
-        if transit_gateway_id and not isinstance(transit_gateway_id, str):
-            raise TypeError("Expected argument 'transit_gateway_id' to be a str")
-        __self__.transit_gateway_id = transit_gateway_id
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="transitGatewayId")
+    def transit_gateway_id(self) -> str:
         """
         EC2 Transit Gateway identifier
         """
+        return pulumi.get(self, "transit_gateway_id")
+
 
 
 class AwaitableGetRouteTableResult(GetRouteTableResult):
@@ -128,7 +151,7 @@ def get_route_table(filters: Optional[List[pulumi.InputType['GetRouteTableFilter
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2transitgateway/getRouteTable:getRouteTable', __args__, opts=opts, typ=_GetRouteTableResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2transitgateway/getRouteTable:getRouteTable', __args__, opts=opts, typ=GetRouteTableResult).value
 
     return AwaitableGetRouteTableResult(
         default_association_route_table=__ret__.default_association_route_table,

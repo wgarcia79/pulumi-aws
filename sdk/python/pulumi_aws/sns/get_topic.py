@@ -15,13 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetTopicResult:
-    arn: str = pulumi.property("arn")
-    id: str = pulumi.property("id")
-    name: str = pulumi.property("name")
-
-
 class GetTopicResult:
     """
     A collection of values returned by getTopic.
@@ -29,19 +24,35 @@ class GetTopicResult:
     def __init__(__self__, arn=None, id=None, name=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         Set to the ARN of the found topic, suitable for referencing in other resources that support SNS topics.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
 
 
 class AwaitableGetTopicResult(GetTopicResult):
@@ -80,7 +91,7 @@ def get_topic(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:sns/getTopic:getTopic', __args__, opts=opts, typ=_GetTopicResult).value
+    __ret__ = pulumi.runtime.invoke('aws:sns/getTopic:getTopic', __args__, opts=opts, typ=GetTopicResult).value
 
     return AwaitableGetTopicResult(
         arn=__ret__.arn,

@@ -14,13 +14,23 @@ __all__ = [
 
 @pulumi.output_type
 class VaultNotification(dict):
+    def __init__(__self__, *,
+                 events: List[str],
+                 sns_topic: str):
+        """
+        :param List[str] events: You can configure a vault to publish a notification for `ArchiveRetrievalCompleted` and `InventoryRetrievalCompleted` events.
+        :param str sns_topic: The SNS Topic ARN.
+        """
+        pulumi.set(__self__, "events", events)
+        pulumi.set(__self__, "sns_topic", sns_topic)
+
     @property
     @pulumi.getter
     def events(self) -> List[str]:
         """
         You can configure a vault to publish a notification for `ArchiveRetrievalCompleted` and `InventoryRetrievalCompleted` events.
         """
-        ...
+        return pulumi.get(self, "events")
 
     @property
     @pulumi.getter(name="snsTopic")
@@ -28,7 +38,7 @@ class VaultNotification(dict):
         """
         The SNS Topic ARN.
         """
-        ...
+        return pulumi.get(self, "sns_topic")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

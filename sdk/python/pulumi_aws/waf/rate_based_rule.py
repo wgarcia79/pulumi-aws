@@ -14,41 +14,6 @@ __all__ = ['RateBasedRule']
 
 
 class RateBasedRule(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN)
-    """
-
-    metric_name: pulumi.Output[str] = pulumi.property("metricName")
-    """
-    The name or description for the Amazon CloudWatch metric of this rule.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name or description of the rule.
-    """
-
-    predicates: pulumi.Output[Optional[List['outputs.RateBasedRulePredicate']]] = pulumi.property("predicates")
-    """
-    The objects to include in a rule (documented below).
-    """
-
-    rate_key: pulumi.Output[str] = pulumi.property("rateKey")
-    """
-    Valid value is IP.
-    """
-
-    rate_limit: pulumi.Output[float] = pulumi.property("rateLimit")
-    """
-    The maximum number of requests, which have an identical value in the field specified by the RateKey, allowed in a five-minute period. Minimum value is 100.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of resource tags
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -169,6 +134,62 @@ class RateBasedRule(pulumi.CustomResource):
         __props__["rate_limit"] = rate_limit
         __props__["tags"] = tags
         return RateBasedRule(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN)
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="metricName")
+    def metric_name(self) -> str:
+        """
+        The name or description for the Amazon CloudWatch metric of this rule.
+        """
+        return pulumi.get(self, "metric_name")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name or description of the rule.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def predicates(self) -> Optional[List['outputs.RateBasedRulePredicate']]:
+        """
+        The objects to include in a rule (documented below).
+        """
+        return pulumi.get(self, "predicates")
+
+    @property
+    @pulumi.getter(name="rateKey")
+    def rate_key(self) -> str:
+        """
+        Valid value is IP.
+        """
+        return pulumi.get(self, "rate_key")
+
+    @property
+    @pulumi.getter(name="rateLimit")
+    def rate_limit(self) -> float:
+        """
+        The maximum number of requests, which have an identical value in the field specified by the RateKey, allowed in a five-minute period. Minimum value is 100.
+        """
+        return pulumi.get(self, "rate_limit")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of resource tags
+        """
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

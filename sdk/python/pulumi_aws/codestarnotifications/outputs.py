@@ -14,13 +14,28 @@ __all__ = [
 
 @pulumi.output_type
 class NotificationRuleTarget(dict):
+    def __init__(__self__, *,
+                 address: str,
+                 status: Optional[str] = None,
+                 type: Optional[str] = None):
+        """
+        :param str address: The ARN of notification rule target. For example, a SNS Topic ARN.
+        :param str status: The status of the notification rule. Possible values are `ENABLED` and `DISABLED`, default is `ENABLED`.
+        :param str type: The type of the notification target. Default value is `SNS`.
+        """
+        pulumi.set(__self__, "address", address)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
     @property
     @pulumi.getter
     def address(self) -> str:
         """
         The ARN of notification rule target. For example, a SNS Topic ARN.
         """
-        ...
+        return pulumi.get(self, "address")
 
     @property
     @pulumi.getter
@@ -28,7 +43,7 @@ class NotificationRuleTarget(dict):
         """
         The status of the notification rule. Possible values are `ENABLED` and `DISABLED`, default is `ENABLED`.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
@@ -36,7 +51,7 @@ class NotificationRuleTarget(dict):
         """
         The type of the notification target. Default value is `SNS`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

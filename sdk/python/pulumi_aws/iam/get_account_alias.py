@@ -15,12 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetAccountAliasResult:
-    account_alias: str = pulumi.property("accountAlias")
-    id: str = pulumi.property("id")
-
-
 class GetAccountAliasResult:
     """
     A collection of values returned by getAccountAlias.
@@ -28,16 +24,27 @@ class GetAccountAliasResult:
     def __init__(__self__, account_alias=None, id=None):
         if account_alias and not isinstance(account_alias, str):
             raise TypeError("Expected argument 'account_alias' to be a str")
-        __self__.account_alias = account_alias
+        pulumi.set(__self__, "account_alias", account_alias)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter(name="accountAlias")
+    def account_alias(self) -> str:
         """
         The alias associated with the AWS account.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "account_alias")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
+        return pulumi.get(self, "id")
+
 
 
 class AwaitableGetAccountAliasResult(GetAccountAliasResult):
@@ -70,7 +77,7 @@ def get_account_alias(                      opts: Optional[pulumi.InvokeOptions]
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:iam/getAccountAlias:getAccountAlias', __args__, opts=opts, typ=_GetAccountAliasResult).value
+    __ret__ = pulumi.runtime.invoke('aws:iam/getAccountAlias:getAccountAlias', __args__, opts=opts, typ=GetAccountAliasResult).value
 
     return AwaitableGetAccountAliasResult(
         account_alias=__ret__.account_alias,

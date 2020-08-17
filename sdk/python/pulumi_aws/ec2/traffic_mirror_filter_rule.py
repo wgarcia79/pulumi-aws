@@ -14,56 +14,6 @@ __all__ = ['TrafficMirrorFilterRule']
 
 
 class TrafficMirrorFilterRule(pulumi.CustomResource):
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    A description of the traffic mirror filter rule.
-    """
-
-    destination_cidr_block: pulumi.Output[str] = pulumi.property("destinationCidrBlock")
-    """
-    The destination CIDR block to assign to the Traffic Mirror rule.
-    """
-
-    destination_port_range: pulumi.Output[Optional['outputs.TrafficMirrorFilterRuleDestinationPortRange']] = pulumi.property("destinationPortRange")
-    """
-    The destination port range. Supported only when the protocol is set to TCP(6) or UDP(17). See Traffic mirror port range documented below
-    """
-
-    protocol: pulumi.Output[Optional[float]] = pulumi.property("protocol")
-    """
-    The protocol number, for example 17 (UDP), to assign to the Traffic Mirror rule. For information about the protocol value, see [Protocol Numbers](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml) on the Internet Assigned Numbers Authority (IANA) website.
-    """
-
-    rule_action: pulumi.Output[str] = pulumi.property("ruleAction")
-    """
-    The action to take (accept | reject) on the filtered traffic. Valid values are `accept` and `reject`
-    """
-
-    rule_number: pulumi.Output[float] = pulumi.property("ruleNumber")
-    """
-    The number of the Traffic Mirror rule. This number must be unique for each Traffic Mirror rule in a given direction. The rules are processed in ascending order by rule number.
-    """
-
-    source_cidr_block: pulumi.Output[str] = pulumi.property("sourceCidrBlock")
-    """
-    The source CIDR block to assign to the Traffic Mirror rule.
-    """
-
-    source_port_range: pulumi.Output[Optional['outputs.TrafficMirrorFilterRuleSourcePortRange']] = pulumi.property("sourcePortRange")
-    """
-    The source port range. Supported only when the protocol is set to TCP(6) or UDP(17). See Traffic mirror port range documented below
-    """
-
-    traffic_direction: pulumi.Output[str] = pulumi.property("trafficDirection")
-    """
-    The direction of traffic to be captured. Valid values are `ingress` and `egress`
-    """
-
-    traffic_mirror_filter_id: pulumi.Output[str] = pulumi.property("trafficMirrorFilterId")
-    """
-    ID of the traffic mirror filter to which this rule should be added
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -227,6 +177,86 @@ class TrafficMirrorFilterRule(pulumi.CustomResource):
         __props__["traffic_direction"] = traffic_direction
         __props__["traffic_mirror_filter_id"] = traffic_mirror_filter_id
         return TrafficMirrorFilterRule(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        A description of the traffic mirror filter rule.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="destinationCidrBlock")
+    def destination_cidr_block(self) -> str:
+        """
+        The destination CIDR block to assign to the Traffic Mirror rule.
+        """
+        return pulumi.get(self, "destination_cidr_block")
+
+    @property
+    @pulumi.getter(name="destinationPortRange")
+    def destination_port_range(self) -> Optional['outputs.TrafficMirrorFilterRuleDestinationPortRange']:
+        """
+        The destination port range. Supported only when the protocol is set to TCP(6) or UDP(17). See Traffic mirror port range documented below
+        """
+        return pulumi.get(self, "destination_port_range")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> Optional[float]:
+        """
+        The protocol number, for example 17 (UDP), to assign to the Traffic Mirror rule. For information about the protocol value, see [Protocol Numbers](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml) on the Internet Assigned Numbers Authority (IANA) website.
+        """
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="ruleAction")
+    def rule_action(self) -> str:
+        """
+        The action to take (accept | reject) on the filtered traffic. Valid values are `accept` and `reject`
+        """
+        return pulumi.get(self, "rule_action")
+
+    @property
+    @pulumi.getter(name="ruleNumber")
+    def rule_number(self) -> float:
+        """
+        The number of the Traffic Mirror rule. This number must be unique for each Traffic Mirror rule in a given direction. The rules are processed in ascending order by rule number.
+        """
+        return pulumi.get(self, "rule_number")
+
+    @property
+    @pulumi.getter(name="sourceCidrBlock")
+    def source_cidr_block(self) -> str:
+        """
+        The source CIDR block to assign to the Traffic Mirror rule.
+        """
+        return pulumi.get(self, "source_cidr_block")
+
+    @property
+    @pulumi.getter(name="sourcePortRange")
+    def source_port_range(self) -> Optional['outputs.TrafficMirrorFilterRuleSourcePortRange']:
+        """
+        The source port range. Supported only when the protocol is set to TCP(6) or UDP(17). See Traffic mirror port range documented below
+        """
+        return pulumi.get(self, "source_port_range")
+
+    @property
+    @pulumi.getter(name="trafficDirection")
+    def traffic_direction(self) -> str:
+        """
+        The direction of traffic to be captured. Valid values are `ingress` and `egress`
+        """
+        return pulumi.get(self, "traffic_direction")
+
+    @property
+    @pulumi.getter(name="trafficMirrorFilterId")
+    def traffic_mirror_filter_id(self) -> str:
+        """
+        ID of the traffic mirror filter to which this rule should be added
+        """
+        return pulumi.get(self, "traffic_mirror_filter_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -12,40 +12,6 @@ __all__ = ['EventSubscription']
 
 
 class EventSubscription(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-
-    enabled: pulumi.Output[Optional[bool]] = pulumi.property("enabled")
-    """
-    Whether the event subscription should be enabled.
-    """
-
-    event_categories: pulumi.Output[List[str]] = pulumi.property("eventCategories")
-    """
-    List of event categories to listen for, see `DescribeEventCategories` for a canonical list.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    Name of event subscription.
-    """
-
-    sns_topic_arn: pulumi.Output[str] = pulumi.property("snsTopicArn")
-    """
-    SNS topic arn to send events on.
-    """
-
-    source_ids: pulumi.Output[Optional[List[str]]] = pulumi.property("sourceIds")
-    """
-    Ids of sources to listen to.
-    """
-
-    source_type: pulumi.Output[Optional[str]] = pulumi.property("sourceType")
-    """
-    Type of source for events. Valid values: `replication-instance` or `replication-task`
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -165,6 +131,64 @@ class EventSubscription(pulumi.CustomResource):
         __props__["source_type"] = source_type
         __props__["tags"] = tags
         return EventSubscription(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Whether the event subscription should be enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="eventCategories")
+    def event_categories(self) -> List[str]:
+        """
+        List of event categories to listen for, see `DescribeEventCategories` for a canonical list.
+        """
+        return pulumi.get(self, "event_categories")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of event subscription.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="snsTopicArn")
+    def sns_topic_arn(self) -> str:
+        """
+        SNS topic arn to send events on.
+        """
+        return pulumi.get(self, "sns_topic_arn")
+
+    @property
+    @pulumi.getter(name="sourceIds")
+    def source_ids(self) -> Optional[List[str]]:
+        """
+        Ids of sources to listen to.
+        """
+        return pulumi.get(self, "source_ids")
+
+    @property
+    @pulumi.getter(name="sourceType")
+    def source_type(self) -> Optional[str]:
+        """
+        Type of source for events. Valid values: `replication-instance` or `replication-task`
+        """
+        return pulumi.get(self, "source_type")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

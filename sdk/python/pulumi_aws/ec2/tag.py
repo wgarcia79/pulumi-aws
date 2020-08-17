@@ -12,21 +12,6 @@ __all__ = ['Tag']
 
 
 class Tag(pulumi.CustomResource):
-    key: pulumi.Output[str] = pulumi.property("key")
-    """
-    The tag name.
-    """
-
-    resource_id: pulumi.Output[str] = pulumi.property("resourceId")
-    """
-    The ID of the EC2 resource to manage the tag for.
-    """
-
-    value: pulumi.Output[str] = pulumi.property("value")
-    """
-    The value of the tag.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -102,6 +87,30 @@ class Tag(pulumi.CustomResource):
         __props__["resource_id"] = resource_id
         __props__["value"] = value
         return Tag(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The tag name.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> str:
+        """
+        The ID of the EC2 resource to manage the tag for.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of the tag.
+        """
+        return pulumi.get(self, "value")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

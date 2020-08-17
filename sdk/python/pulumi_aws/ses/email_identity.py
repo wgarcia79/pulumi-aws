@@ -12,16 +12,6 @@ __all__ = ['EmailIdentity']
 
 
 class EmailIdentity(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the email identity.
-    """
-
-    email: pulumi.Output[str] = pulumi.property("email")
-    """
-    The email address to assign to SES
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -95,6 +85,22 @@ class EmailIdentity(pulumi.CustomResource):
         __props__["arn"] = arn
         __props__["email"] = email
         return EmailIdentity(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the email identity.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def email(self) -> str:
+        """
+        The email address to assign to SES
+        """
+        return pulumi.get(self, "email")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

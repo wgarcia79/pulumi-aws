@@ -12,36 +12,6 @@ __all__ = ['EmailChannel']
 
 
 class EmailChannel(pulumi.CustomResource):
-    application_id: pulumi.Output[str] = pulumi.property("applicationId")
-    """
-    The application ID.
-    """
-
-    enabled: pulumi.Output[Optional[bool]] = pulumi.property("enabled")
-    """
-    Whether the channel is enabled or disabled. Defaults to `true`.
-    """
-
-    from_address: pulumi.Output[str] = pulumi.property("fromAddress")
-    """
-    The email address used to send emails from.
-    """
-
-    identity: pulumi.Output[str] = pulumi.property("identity")
-    """
-    The ARN of an identity verified with SES.
-    """
-
-    messages_per_second: pulumi.Output[float] = pulumi.property("messagesPerSecond")
-    """
-    Messages per second that can be sent.
-    """
-
-    role_arn: pulumi.Output[str] = pulumi.property("roleArn")
-    """
-    The ARN of an IAM Role used to submit events to Mobile Analytics' event ingestion service.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -183,6 +153,54 @@ class EmailChannel(pulumi.CustomResource):
         __props__["messages_per_second"] = messages_per_second
         __props__["role_arn"] = role_arn
         return EmailChannel(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="applicationId")
+    def application_id(self) -> str:
+        """
+        The application ID.
+        """
+        return pulumi.get(self, "application_id")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Whether the channel is enabled or disabled. Defaults to `true`.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="fromAddress")
+    def from_address(self) -> str:
+        """
+        The email address used to send emails from.
+        """
+        return pulumi.get(self, "from_address")
+
+    @property
+    @pulumi.getter
+    def identity(self) -> str:
+        """
+        The ARN of an identity verified with SES.
+        """
+        return pulumi.get(self, "identity")
+
+    @property
+    @pulumi.getter(name="messagesPerSecond")
+    def messages_per_second(self) -> float:
+        """
+        Messages per second that can be sent.
+        """
+        return pulumi.get(self, "messages_per_second")
+
+    @property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> str:
+        """
+        The ARN of an IAM Role used to submit events to Mobile Analytics' event ingestion service.
+        """
+        return pulumi.get(self, "role_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

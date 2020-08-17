@@ -12,16 +12,6 @@ __all__ = ['Attachment']
 
 
 class Attachment(pulumi.CustomResource):
-    elb: pulumi.Output[str] = pulumi.property("elb")
-    """
-    The name of the ELB.
-    """
-
-    instance: pulumi.Output[str] = pulumi.property("instance")
-    """
-    Instance ID to place in the ELB pool.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -111,6 +101,22 @@ class Attachment(pulumi.CustomResource):
         __props__["elb"] = elb
         __props__["instance"] = instance
         return Attachment(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def elb(self) -> str:
+        """
+        The name of the ELB.
+        """
+        return pulumi.get(self, "elb")
+
+    @property
+    @pulumi.getter
+    def instance(self) -> str:
+        """
+        Instance ID to place in the ELB pool.
+        """
+        return pulumi.get(self, "instance")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

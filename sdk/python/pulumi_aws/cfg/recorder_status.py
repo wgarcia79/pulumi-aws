@@ -12,16 +12,6 @@ __all__ = ['RecorderStatus']
 
 
 class RecorderStatus(pulumi.CustomResource):
-    is_enabled: pulumi.Output[bool] = pulumi.property("isEnabled")
-    """
-    Whether the configuration recorder should be enabled or disabled.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the recorder
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -140,6 +130,22 @@ class RecorderStatus(pulumi.CustomResource):
         __props__["is_enabled"] = is_enabled
         __props__["name"] = name
         return RecorderStatus(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="isEnabled")
+    def is_enabled(self) -> bool:
+        """
+        Whether the configuration recorder should be enabled or disabled.
+        """
+        return pulumi.get(self, "is_enabled")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the recorder
+        """
+        return pulumi.get(self, "name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

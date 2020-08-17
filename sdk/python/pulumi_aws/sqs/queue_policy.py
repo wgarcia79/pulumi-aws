@@ -12,16 +12,6 @@ __all__ = ['QueuePolicy']
 
 
 class QueuePolicy(pulumi.CustomResource):
-    policy: pulumi.Output[str] = pulumi.property("policy")
-    """
-    The JSON policy for the SQS queue.
-    """
-
-    queue_url: pulumi.Output[str] = pulumi.property("queueUrl")
-    """
-    The URL of the SQS Queue to which to attach the policy
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -122,6 +112,22 @@ class QueuePolicy(pulumi.CustomResource):
         __props__["policy"] = policy
         __props__["queue_url"] = queue_url
         return QueuePolicy(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def policy(self) -> str:
+        """
+        The JSON policy for the SQS queue.
+        """
+        return pulumi.get(self, "policy")
+
+    @property
+    @pulumi.getter(name="queueUrl")
+    def queue_url(self) -> str:
+        """
+        The URL of the SQS Queue to which to attach the policy
+        """
+        return pulumi.get(self, "queue_url")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

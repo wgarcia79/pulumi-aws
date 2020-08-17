@@ -12,31 +12,6 @@ __all__ = ['Member']
 
 
 class Member(pulumi.CustomResource):
-    account_id: pulumi.Output[str] = pulumi.property("accountId")
-    """
-    The ID of the member AWS account.
-    """
-
-    email: pulumi.Output[str] = pulumi.property("email")
-    """
-    The email of the member AWS account.
-    """
-
-    invite: pulumi.Output[Optional[bool]] = pulumi.property("invite")
-    """
-    Boolean whether to invite the account to Security Hub as a member. Defaults to `false`.
-    """
-
-    master_id: pulumi.Output[str] = pulumi.property("masterId")
-    """
-    The ID of the master Security Hub AWS account.
-    """
-
-    member_status: pulumi.Output[str] = pulumi.property("memberStatus")
-    """
-    The status of the member account relationship.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -133,6 +108,46 @@ class Member(pulumi.CustomResource):
         __props__["master_id"] = master_id
         __props__["member_status"] = member_status
         return Member(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
+        """
+        The ID of the member AWS account.
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter
+    def email(self) -> str:
+        """
+        The email of the member AWS account.
+        """
+        return pulumi.get(self, "email")
+
+    @property
+    @pulumi.getter
+    def invite(self) -> Optional[bool]:
+        """
+        Boolean whether to invite the account to Security Hub as a member. Defaults to `false`.
+        """
+        return pulumi.get(self, "invite")
+
+    @property
+    @pulumi.getter(name="masterId")
+    def master_id(self) -> str:
+        """
+        The ID of the master Security Hub AWS account.
+        """
+        return pulumi.get(self, "master_id")
+
+    @property
+    @pulumi.getter(name="memberStatus")
+    def member_status(self) -> str:
+        """
+        The status of the member account relationship.
+        """
+        return pulumi.get(self, "member_status")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -50,21 +50,29 @@ class ComputeEnvironmentComputeResourcesArgs:
         :param pulumi.Input[str] spot_iam_fleet_role: The Amazon Resource Name (ARN) of the Amazon EC2 Spot Fleet IAM role applied to a SPOT compute environment. This parameter is required for SPOT compute environments.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Key-value pair tags to be applied to resources that are launched in the compute environment.
         """
-        pulumi.set(__self__, "instanceRole", instance_role)
-        pulumi.set(__self__, "instanceTypes", instance_types)
-        pulumi.set(__self__, "maxVcpus", max_vcpus)
-        pulumi.set(__self__, "minVcpus", min_vcpus)
-        pulumi.set(__self__, "securityGroupIds", security_group_ids)
+        pulumi.set(__self__, "instance_role", instance_role)
+        pulumi.set(__self__, "instance_types", instance_types)
+        pulumi.set(__self__, "max_vcpus", max_vcpus)
+        pulumi.set(__self__, "min_vcpus", min_vcpus)
+        pulumi.set(__self__, "security_group_ids", security_group_ids)
         pulumi.set(__self__, "subnets", subnets)
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "allocationStrategy", allocation_strategy)
-        pulumi.set(__self__, "bidPercentage", bid_percentage)
-        pulumi.set(__self__, "desiredVcpus", desired_vcpus)
-        pulumi.set(__self__, "ec2KeyPair", ec2_key_pair)
-        pulumi.set(__self__, "imageId", image_id)
-        pulumi.set(__self__, "launchTemplate", launch_template)
-        pulumi.set(__self__, "spotIamFleetRole", spot_iam_fleet_role)
-        pulumi.set(__self__, "tags", tags)
+        if allocation_strategy is not None:
+            pulumi.set(__self__, "allocation_strategy", allocation_strategy)
+        if bid_percentage is not None:
+            pulumi.set(__self__, "bid_percentage", bid_percentage)
+        if desired_vcpus is not None:
+            pulumi.set(__self__, "desired_vcpus", desired_vcpus)
+        if ec2_key_pair is not None:
+            pulumi.set(__self__, "ec2_key_pair", ec2_key_pair)
+        if image_id is not None:
+            pulumi.set(__self__, "image_id", image_id)
+        if launch_template is not None:
+            pulumi.set(__self__, "launch_template", launch_template)
+        if spot_iam_fleet_role is not None:
+            pulumi.set(__self__, "spot_iam_fleet_role", spot_iam_fleet_role)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="instanceRole")
@@ -72,11 +80,11 @@ class ComputeEnvironmentComputeResourcesArgs:
         """
         The Amazon ECS instance role applied to Amazon EC2 instances in a compute environment.
         """
-        ...
+        return pulumi.get(self, "instance_role")
 
     @instance_role.setter
     def instance_role(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "instance_role", value)
 
     @property
     @pulumi.getter(name="instanceTypes")
@@ -84,11 +92,11 @@ class ComputeEnvironmentComputeResourcesArgs:
         """
         A list of instance types that may be launched.
         """
-        ...
+        return pulumi.get(self, "instance_types")
 
     @instance_types.setter
     def instance_types(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "instance_types", value)
 
     @property
     @pulumi.getter(name="maxVcpus")
@@ -96,11 +104,11 @@ class ComputeEnvironmentComputeResourcesArgs:
         """
         The maximum number of EC2 vCPUs that an environment can reach.
         """
-        ...
+        return pulumi.get(self, "max_vcpus")
 
     @max_vcpus.setter
     def max_vcpus(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "max_vcpus", value)
 
     @property
     @pulumi.getter(name="minVcpus")
@@ -108,11 +116,11 @@ class ComputeEnvironmentComputeResourcesArgs:
         """
         The minimum number of EC2 vCPUs that an environment should maintain.
         """
-        ...
+        return pulumi.get(self, "min_vcpus")
 
     @min_vcpus.setter
     def min_vcpus(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "min_vcpus", value)
 
     @property
     @pulumi.getter(name="securityGroupIds")
@@ -120,11 +128,11 @@ class ComputeEnvironmentComputeResourcesArgs:
         """
         A list of EC2 security group that are associated with instances launched in the compute environment.
         """
-        ...
+        return pulumi.get(self, "security_group_ids")
 
     @security_group_ids.setter
     def security_group_ids(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "security_group_ids", value)
 
     @property
     @pulumi.getter
@@ -132,11 +140,11 @@ class ComputeEnvironmentComputeResourcesArgs:
         """
         A list of VPC subnets into which the compute resources are launched.
         """
-        ...
+        return pulumi.get(self, "subnets")
 
     @subnets.setter
     def subnets(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "subnets", value)
 
     @property
     @pulumi.getter
@@ -144,11 +152,11 @@ class ComputeEnvironmentComputeResourcesArgs:
         """
         The type of compute environment. Valid items are `EC2` or `SPOT`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter(name="allocationStrategy")
@@ -156,11 +164,11 @@ class ComputeEnvironmentComputeResourcesArgs:
         """
         The allocation strategy to use for the compute resource in case not enough instances of the best fitting instance type can be allocated. Valid items are `BEST_FIT_PROGRESSIVE`, `SPOT_CAPACITY_OPTIMIZED` or `BEST_FIT`. Defaults to `BEST_FIT`. See [AWS docs](https://docs.aws.amazon.com/batch/latest/userguide/allocation-strategies.html) for details.
         """
-        ...
+        return pulumi.get(self, "allocation_strategy")
 
     @allocation_strategy.setter
     def allocation_strategy(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "allocation_strategy", value)
 
     @property
     @pulumi.getter(name="bidPercentage")
@@ -168,11 +176,11 @@ class ComputeEnvironmentComputeResourcesArgs:
         """
         Integer of minimum percentage that a Spot Instance price must be when compared with the On-Demand price for that instance type before instances are launched. For example, if your bid percentage is 20% (`20`), then the Spot price must be below 20% of the current On-Demand price for that EC2 instance. This parameter is required for SPOT compute environments.
         """
-        ...
+        return pulumi.get(self, "bid_percentage")
 
     @bid_percentage.setter
     def bid_percentage(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "bid_percentage", value)
 
     @property
     @pulumi.getter(name="desiredVcpus")
@@ -180,11 +188,11 @@ class ComputeEnvironmentComputeResourcesArgs:
         """
         The desired number of EC2 vCPUS in the compute environment.
         """
-        ...
+        return pulumi.get(self, "desired_vcpus")
 
     @desired_vcpus.setter
     def desired_vcpus(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "desired_vcpus", value)
 
     @property
     @pulumi.getter(name="ec2KeyPair")
@@ -192,11 +200,11 @@ class ComputeEnvironmentComputeResourcesArgs:
         """
         The EC2 key pair that is used for instances launched in the compute environment.
         """
-        ...
+        return pulumi.get(self, "ec2_key_pair")
 
     @ec2_key_pair.setter
     def ec2_key_pair(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "ec2_key_pair", value)
 
     @property
     @pulumi.getter(name="imageId")
@@ -204,11 +212,11 @@ class ComputeEnvironmentComputeResourcesArgs:
         """
         The Amazon Machine Image (AMI) ID used for instances launched in the compute environment.
         """
-        ...
+        return pulumi.get(self, "image_id")
 
     @image_id.setter
     def image_id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "image_id", value)
 
     @property
     @pulumi.getter(name="launchTemplate")
@@ -216,11 +224,11 @@ class ComputeEnvironmentComputeResourcesArgs:
         """
         The launch template to use for your compute resources. See details below.
         """
-        ...
+        return pulumi.get(self, "launch_template")
 
     @launch_template.setter
     def launch_template(self, value: Optional[pulumi.Input['ComputeEnvironmentComputeResourcesLaunchTemplateArgs']]):
-        ...
+        pulumi.set(self, "launch_template", value)
 
     @property
     @pulumi.getter(name="spotIamFleetRole")
@@ -228,11 +236,11 @@ class ComputeEnvironmentComputeResourcesArgs:
         """
         The Amazon Resource Name (ARN) of the Amazon EC2 Spot Fleet IAM role applied to a SPOT compute environment. This parameter is required for SPOT compute environments.
         """
-        ...
+        return pulumi.get(self, "spot_iam_fleet_role")
 
     @spot_iam_fleet_role.setter
     def spot_iam_fleet_role(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "spot_iam_fleet_role", value)
 
     @property
     @pulumi.getter
@@ -240,11 +248,11 @@ class ComputeEnvironmentComputeResourcesArgs:
         """
         Key-value pair tags to be applied to resources that are launched in the compute environment.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @tags.setter
     def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "tags", value)
 
 
 @pulumi.input_type
@@ -258,9 +266,12 @@ class ComputeEnvironmentComputeResourcesLaunchTemplateArgs:
         :param pulumi.Input[str] launch_template_name: Name of the launch template.
         :param pulumi.Input[str] version: The version number of the launch template. Default: The default version of the launch template.
         """
-        pulumi.set(__self__, "launchTemplateId", launch_template_id)
-        pulumi.set(__self__, "launchTemplateName", launch_template_name)
-        pulumi.set(__self__, "version", version)
+        if launch_template_id is not None:
+            pulumi.set(__self__, "launch_template_id", launch_template_id)
+        if launch_template_name is not None:
+            pulumi.set(__self__, "launch_template_name", launch_template_name)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
 
     @property
     @pulumi.getter(name="launchTemplateId")
@@ -268,11 +279,11 @@ class ComputeEnvironmentComputeResourcesLaunchTemplateArgs:
         """
         ID of the launch template. You must specify either the launch template ID or launch template name in the request, but not both.
         """
-        ...
+        return pulumi.get(self, "launch_template_id")
 
     @launch_template_id.setter
     def launch_template_id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "launch_template_id", value)
 
     @property
     @pulumi.getter(name="launchTemplateName")
@@ -280,11 +291,11 @@ class ComputeEnvironmentComputeResourcesLaunchTemplateArgs:
         """
         Name of the launch template.
         """
-        ...
+        return pulumi.get(self, "launch_template_name")
 
     @launch_template_name.setter
     def launch_template_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "launch_template_name", value)
 
     @property
     @pulumi.getter
@@ -292,11 +303,11 @@ class ComputeEnvironmentComputeResourcesLaunchTemplateArgs:
         """
         The version number of the launch template. Default: The default version of the launch template.
         """
-        ...
+        return pulumi.get(self, "version")
 
     @version.setter
     def version(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "version", value)
 
 
 @pulumi.input_type
@@ -306,7 +317,8 @@ class JobDefinitionRetryStrategyArgs:
         """
         :param pulumi.Input[float] attempts: The number of times to move a job to the `RUNNABLE` status. You may specify between `1` and `10` attempts.
         """
-        pulumi.set(__self__, "attempts", attempts)
+        if attempts is not None:
+            pulumi.set(__self__, "attempts", attempts)
 
     @property
     @pulumi.getter
@@ -314,11 +326,11 @@ class JobDefinitionRetryStrategyArgs:
         """
         The number of times to move a job to the `RUNNABLE` status. You may specify between `1` and `10` attempts.
         """
-        ...
+        return pulumi.get(self, "attempts")
 
     @attempts.setter
     def attempts(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "attempts", value)
 
 
 @pulumi.input_type
@@ -328,7 +340,8 @@ class JobDefinitionTimeoutArgs:
         """
         :param pulumi.Input[float] attempt_duration_seconds: The time duration in seconds after which AWS Batch terminates your jobs if they have not finished. The minimum value for the timeout is `60` seconds.
         """
-        pulumi.set(__self__, "attemptDurationSeconds", attempt_duration_seconds)
+        if attempt_duration_seconds is not None:
+            pulumi.set(__self__, "attempt_duration_seconds", attempt_duration_seconds)
 
     @property
     @pulumi.getter(name="attemptDurationSeconds")
@@ -336,10 +349,10 @@ class JobDefinitionTimeoutArgs:
         """
         The time duration in seconds after which AWS Batch terminates your jobs if they have not finished. The minimum value for the timeout is `60` seconds.
         """
-        ...
+        return pulumi.get(self, "attempt_duration_seconds")
 
     @attempt_duration_seconds.setter
     def attempt_duration_seconds(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "attempt_duration_seconds", value)
 
 

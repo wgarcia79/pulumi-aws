@@ -12,26 +12,6 @@ __all__ = ['AggregateAuthorization']
 
 
 class AggregateAuthorization(pulumi.CustomResource):
-    account_id: pulumi.Output[str] = pulumi.property("accountId")
-    """
-    Account ID
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the authorization
-    """
-
-    region: pulumi.Output[str] = pulumi.property("region")
-    """
-    Region
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -121,6 +101,38 @@ class AggregateAuthorization(pulumi.CustomResource):
         __props__["region"] = region
         __props__["tags"] = tags
         return AggregateAuthorization(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
+        """
+        Account ID
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the authorization
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        Region
+        """
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

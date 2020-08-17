@@ -15,13 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetServiceResult:
-    id: str = pulumi.property("id")
-    service_code: str = pulumi.property("serviceCode")
-    service_name: str = pulumi.property("serviceName")
-
-
 class GetServiceResult:
     """
     A collection of values returned by getService.
@@ -29,19 +24,35 @@ class GetServiceResult:
     def __init__(__self__, id=None, service_code=None, service_name=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if service_code and not isinstance(service_code, str):
+            raise TypeError("Expected argument 'service_code' to be a str")
+        pulumi.set(__self__, "service_code", service_code)
+        if service_name and not isinstance(service_name, str):
+            raise TypeError("Expected argument 'service_name' to be a str")
+        pulumi.set(__self__, "service_name", service_name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if service_code and not isinstance(service_code, str):
-            raise TypeError("Expected argument 'service_code' to be a str")
-        __self__.service_code = service_code
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="serviceCode")
+    def service_code(self) -> str:
         """
         Code of the service.
         """
-        if service_name and not isinstance(service_name, str):
-            raise TypeError("Expected argument 'service_name' to be a str")
-        __self__.service_name = service_name
+        return pulumi.get(self, "service_code")
+
+    @property
+    @pulumi.getter(name="serviceName")
+    def service_name(self) -> str:
+        return pulumi.get(self, "service_name")
+
 
 
 class AwaitableGetServiceResult(GetServiceResult):
@@ -78,7 +89,7 @@ def get_service(service_name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:servicequotas/getService:getService', __args__, opts=opts, typ=_GetServiceResult).value
+    __ret__ = pulumi.runtime.invoke('aws:servicequotas/getService:getService', __args__, opts=opts, typ=GetServiceResult).value
 
     return AwaitableGetServiceResult(
         id=__ret__.id,

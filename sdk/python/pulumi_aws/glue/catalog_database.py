@@ -12,36 +12,6 @@ __all__ = ['CatalogDatabase']
 
 
 class CatalogDatabase(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the Glue Catalog Database.
-    """
-
-    catalog_id: pulumi.Output[str] = pulumi.property("catalogId")
-    """
-    ID of the Glue Catalog to create the database in. If omitted, this defaults to the AWS Account ID.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    Description of the database.
-    """
-
-    location_uri: pulumi.Output[Optional[str]] = pulumi.property("locationUri")
-    """
-    The location of the database (for example, an HDFS path).
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the database.
-    """
-
-    parameters: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("parameters")
-    """
-    A list of key-value pairs that define parameters and properties of the database.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -137,6 +107,54 @@ class CatalogDatabase(pulumi.CustomResource):
         __props__["name"] = name
         __props__["parameters"] = parameters
         return CatalogDatabase(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the Glue Catalog Database.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="catalogId")
+    def catalog_id(self) -> str:
+        """
+        ID of the Glue Catalog to create the database in. If omitted, this defaults to the AWS Account ID.
+        """
+        return pulumi.get(self, "catalog_id")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Description of the database.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="locationUri")
+    def location_uri(self) -> Optional[str]:
+        """
+        The location of the database (for example, an HDFS path).
+        """
+        return pulumi.get(self, "location_uri")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the database.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[Mapping[str, str]]:
+        """
+        A list of key-value pairs that define parameters and properties of the database.
+        """
+        return pulumi.get(self, "parameters")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

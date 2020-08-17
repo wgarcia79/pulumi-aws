@@ -12,21 +12,6 @@ __all__ = ['EventStream']
 
 
 class EventStream(pulumi.CustomResource):
-    application_id: pulumi.Output[str] = pulumi.property("applicationId")
-    """
-    The application ID.
-    """
-
-    destination_stream_arn: pulumi.Output[str] = pulumi.property("destinationStreamArn")
-    """
-    The Amazon Resource Name (ARN) of the Amazon Kinesis stream or Firehose delivery stream to which you want to publish events.
-    """
-
-    role_arn: pulumi.Output[str] = pulumi.property("roleArn")
-    """
-    The IAM role that authorizes Amazon Pinpoint to publish events to the stream in your account.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -149,6 +134,30 @@ class EventStream(pulumi.CustomResource):
         __props__["destination_stream_arn"] = destination_stream_arn
         __props__["role_arn"] = role_arn
         return EventStream(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="applicationId")
+    def application_id(self) -> str:
+        """
+        The application ID.
+        """
+        return pulumi.get(self, "application_id")
+
+    @property
+    @pulumi.getter(name="destinationStreamArn")
+    def destination_stream_arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) of the Amazon Kinesis stream or Firehose delivery stream to which you want to publish events.
+        """
+        return pulumi.get(self, "destination_stream_arn")
+
+    @property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> str:
+        """
+        The IAM role that authorizes Amazon Pinpoint to publish events to the stream in your account.
+        """
+        return pulumi.get(self, "role_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

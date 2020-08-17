@@ -17,17 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetCustomerGatewayResult:
-    arn: str = pulumi.property("arn")
-    bgp_asn: float = pulumi.property("bgpAsn")
-    filters: Optional[List['outputs.GetCustomerGatewayFilterResult']] = pulumi.property("filters")
-    id: Optional[str] = pulumi.property("id")
-    ip_address: str = pulumi.property("ipAddress")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    type: str = pulumi.property("type")
-
-
 class GetCustomerGatewayResult:
     """
     A collection of values returned by getCustomerGateway.
@@ -35,40 +26,76 @@ class GetCustomerGatewayResult:
     def __init__(__self__, arn=None, bgp_asn=None, filters=None, id=None, ip_address=None, tags=None, type=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if bgp_asn and not isinstance(bgp_asn, float):
+            raise TypeError("Expected argument 'bgp_asn' to be a float")
+        pulumi.set(__self__, "bgp_asn", bgp_asn)
+        if filters and not isinstance(filters, list):
+            raise TypeError("Expected argument 'filters' to be a list")
+        pulumi.set(__self__, "filters", filters)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if ip_address and not isinstance(ip_address, str):
+            raise TypeError("Expected argument 'ip_address' to be a str")
+        pulumi.set(__self__, "ip_address", ip_address)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if type and not isinstance(type, str):
+            raise TypeError("Expected argument 'type' to be a str")
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The ARN of the customer gateway.
         """
-        if bgp_asn and not isinstance(bgp_asn, float):
-            raise TypeError("Expected argument 'bgp_asn' to be a float")
-        __self__.bgp_asn = bgp_asn
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="bgpAsn")
+    def bgp_asn(self) -> float:
         """
         (Optional) The gateway's Border Gateway Protocol (BGP) Autonomous System Number (ASN).
         """
-        if filters and not isinstance(filters, list):
-            raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        if ip_address and not isinstance(ip_address, str):
-            raise TypeError("Expected argument 'ip_address' to be a str")
-        __self__.ip_address = ip_address
+        return pulumi.get(self, "bgp_asn")
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetCustomerGatewayFilterResult']]:
+        return pulumi.get(self, "filters")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> str:
         """
         (Optional) The IP address of the gateway's Internet-routable external interface.
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        return pulumi.get(self, "ip_address")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
         """
         Map of key-value pairs assigned to the gateway.
         """
-        if type and not isinstance(type, str):
-            raise TypeError("Expected argument 'type' to be a str")
-        __self__.type = type
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
         """
         (Optional) The type of customer gateway. The only type AWS supports at this time is "ipsec.1".
         """
+        return pulumi.get(self, "type")
+
 
 
 class AwaitableGetCustomerGatewayResult(GetCustomerGatewayResult):
@@ -126,7 +153,7 @@ def get_customer_gateway(filters: Optional[List[pulumi.InputType['GetCustomerGat
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getCustomerGateway:getCustomerGateway', __args__, opts=opts, typ=_GetCustomerGatewayResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getCustomerGateway:getCustomerGateway', __args__, opts=opts, typ=GetCustomerGatewayResult).value
 
     return AwaitableGetCustomerGatewayResult(
         arn=__ret__.arn,

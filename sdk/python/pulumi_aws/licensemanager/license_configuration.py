@@ -12,41 +12,6 @@ __all__ = ['LicenseConfiguration']
 
 
 class LicenseConfiguration(pulumi.CustomResource):
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    Description of the license configuration.
-    """
-
-    license_count: pulumi.Output[Optional[float]] = pulumi.property("licenseCount")
-    """
-    Number of licenses managed by the license configuration.
-    """
-
-    license_count_hard_limit: pulumi.Output[Optional[bool]] = pulumi.property("licenseCountHardLimit")
-    """
-    Sets the number of available licenses as a hard limit.
-    """
-
-    license_counting_type: pulumi.Output[str] = pulumi.property("licenseCountingType")
-    """
-    Dimension to use to track license inventory. Specify either `vCPU`, `Instance`, `Core` or `Socket`.
-    """
-
-    license_rules: pulumi.Output[Optional[List[str]]] = pulumi.property("licenseRules")
-    """
-    Array of configured License Manager rules.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    Name of the license configuration.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -173,6 +138,62 @@ class LicenseConfiguration(pulumi.CustomResource):
         __props__["name"] = name
         __props__["tags"] = tags
         return LicenseConfiguration(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Description of the license configuration.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="licenseCount")
+    def license_count(self) -> Optional[float]:
+        """
+        Number of licenses managed by the license configuration.
+        """
+        return pulumi.get(self, "license_count")
+
+    @property
+    @pulumi.getter(name="licenseCountHardLimit")
+    def license_count_hard_limit(self) -> Optional[bool]:
+        """
+        Sets the number of available licenses as a hard limit.
+        """
+        return pulumi.get(self, "license_count_hard_limit")
+
+    @property
+    @pulumi.getter(name="licenseCountingType")
+    def license_counting_type(self) -> str:
+        """
+        Dimension to use to track license inventory. Specify either `vCPU`, `Instance`, `Core` or `Socket`.
+        """
+        return pulumi.get(self, "license_counting_type")
+
+    @property
+    @pulumi.getter(name="licenseRules")
+    def license_rules(self) -> Optional[List[str]]:
+        """
+        Array of configured License Manager rules.
+        """
+        return pulumi.get(self, "license_rules")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the license configuration.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

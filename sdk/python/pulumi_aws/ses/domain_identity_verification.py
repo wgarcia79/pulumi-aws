@@ -12,16 +12,6 @@ __all__ = ['DomainIdentityVerification']
 
 
 class DomainIdentityVerification(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the domain identity.
-    """
-
-    domain: pulumi.Output[str] = pulumi.property("domain")
-    """
-    The domain name of the SES domain identity to verify.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -109,6 +99,22 @@ class DomainIdentityVerification(pulumi.CustomResource):
         __props__["arn"] = arn
         __props__["domain"] = domain
         return DomainIdentityVerification(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the domain identity.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def domain(self) -> str:
+        """
+        The domain name of the SES domain identity to verify.
+        """
+        return pulumi.get(self, "domain")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

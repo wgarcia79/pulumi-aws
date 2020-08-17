@@ -12,36 +12,6 @@ __all__ = ['AssessmentTemplate']
 
 
 class AssessmentTemplate(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The template assessment ARN.
-    """
-
-    duration: pulumi.Output[float] = pulumi.property("duration")
-    """
-    The duration of the inspector run.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the assessment template.
-    """
-
-    rules_package_arns: pulumi.Output[List[str]] = pulumi.property("rulesPackageArns")
-    """
-    The rules to be used during the run.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of tags for the Inspector assessment template.
-    """
-
-    target_arn: pulumi.Output[str] = pulumi.property("targetArn")
-    """
-    The assessment target ARN to attach the template to.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -151,6 +121,54 @@ class AssessmentTemplate(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["target_arn"] = target_arn
         return AssessmentTemplate(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The template assessment ARN.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def duration(self) -> float:
+        """
+        The duration of the inspector run.
+        """
+        return pulumi.get(self, "duration")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the assessment template.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="rulesPackageArns")
+    def rules_package_arns(self) -> List[str]:
+        """
+        The rules to be used during the run.
+        """
+        return pulumi.get(self, "rules_package_arns")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of tags for the Inspector assessment template.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="targetArn")
+    def target_arn(self) -> str:
+        """
+        The assessment target ARN to attach the template to.
+        """
+        return pulumi.get(self, "target_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

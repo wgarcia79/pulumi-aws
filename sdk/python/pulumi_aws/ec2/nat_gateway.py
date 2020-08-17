@@ -12,36 +12,6 @@ __all__ = ['NatGateway']
 
 
 class NatGateway(pulumi.CustomResource):
-    allocation_id: pulumi.Output[str] = pulumi.property("allocationId")
-    """
-    The Allocation ID of the Elastic IP address for the gateway.
-    """
-
-    network_interface_id: pulumi.Output[str] = pulumi.property("networkInterfaceId")
-    """
-    The ENI ID of the network interface created by the NAT gateway.
-    """
-
-    private_ip: pulumi.Output[str] = pulumi.property("privateIp")
-    """
-    The private IP address of the NAT Gateway.
-    """
-
-    public_ip: pulumi.Output[str] = pulumi.property("publicIp")
-    """
-    The public IP address of the NAT Gateway.
-    """
-
-    subnet_id: pulumi.Output[str] = pulumi.property("subnetId")
-    """
-    The Subnet ID of the subnet in which to place the gateway.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -153,6 +123,54 @@ class NatGateway(pulumi.CustomResource):
         __props__["subnet_id"] = subnet_id
         __props__["tags"] = tags
         return NatGateway(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="allocationId")
+    def allocation_id(self) -> str:
+        """
+        The Allocation ID of the Elastic IP address for the gateway.
+        """
+        return pulumi.get(self, "allocation_id")
+
+    @property
+    @pulumi.getter(name="networkInterfaceId")
+    def network_interface_id(self) -> str:
+        """
+        The ENI ID of the network interface created by the NAT gateway.
+        """
+        return pulumi.get(self, "network_interface_id")
+
+    @property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> str:
+        """
+        The private IP address of the NAT Gateway.
+        """
+        return pulumi.get(self, "private_ip")
+
+    @property
+    @pulumi.getter(name="publicIp")
+    def public_ip(self) -> str:
+        """
+        The public IP address of the NAT Gateway.
+        """
+        return pulumi.get(self, "public_ip")
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> str:
+        """
+        The Subnet ID of the subnet in which to place the gateway.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

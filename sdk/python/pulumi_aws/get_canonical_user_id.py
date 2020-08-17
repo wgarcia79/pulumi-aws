@@ -15,12 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetCanonicalUserIdResult:
-    display_name: str = pulumi.property("displayName")
-    id: str = pulumi.property("id")
-
-
 class GetCanonicalUserIdResult:
     """
     A collection of values returned by getCanonicalUserId.
@@ -28,16 +24,27 @@ class GetCanonicalUserIdResult:
     def __init__(__self__, display_name=None, id=None):
         if display_name and not isinstance(display_name, str):
             raise TypeError("Expected argument 'display_name' to be a str")
-        __self__.display_name = display_name
+        pulumi.set(__self__, "display_name", display_name)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
         """
         The human-friendly name linked to the canonical user ID. The bucket owner's display name. **NOTE:** [This value](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTServiceGET.html) is only included in the response in the US East (N. Virginia), US West (N. California), US West (Oregon), Asia Pacific (Singapore), Asia Pacific (Sydney), Asia Pacific (Tokyo), EU (Ireland), and South America (São Paulo) regions.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
+        return pulumi.get(self, "id")
+
 
 
 class AwaitableGetCanonicalUserIdResult(GetCanonicalUserIdResult):
@@ -70,7 +77,7 @@ def get_canonical_user_id(                          opts: Optional[pulumi.Invoke
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:index/getCanonicalUserId:getCanonicalUserId', __args__, opts=opts, typ=_GetCanonicalUserIdResult).value
+    __ret__ = pulumi.runtime.invoke('aws:index/getCanonicalUserId:getCanonicalUserId', __args__, opts=opts, typ=GetCanonicalUserIdResult).value
 
     return AwaitableGetCanonicalUserIdResult(
         display_name=__ret__.display_name,

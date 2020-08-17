@@ -34,12 +34,18 @@ class ApiCorsConfigurationArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] expose_headers: The set of exposed HTTP headers.
         :param pulumi.Input[float] max_age: The number of seconds that the browser should cache preflight request results.
         """
-        pulumi.set(__self__, "allowCredentials", allow_credentials)
-        pulumi.set(__self__, "allowHeaders", allow_headers)
-        pulumi.set(__self__, "allowMethods", allow_methods)
-        pulumi.set(__self__, "allowOrigins", allow_origins)
-        pulumi.set(__self__, "exposeHeaders", expose_headers)
-        pulumi.set(__self__, "maxAge", max_age)
+        if allow_credentials is not None:
+            pulumi.set(__self__, "allow_credentials", allow_credentials)
+        if allow_headers is not None:
+            pulumi.set(__self__, "allow_headers", allow_headers)
+        if allow_methods is not None:
+            pulumi.set(__self__, "allow_methods", allow_methods)
+        if allow_origins is not None:
+            pulumi.set(__self__, "allow_origins", allow_origins)
+        if expose_headers is not None:
+            pulumi.set(__self__, "expose_headers", expose_headers)
+        if max_age is not None:
+            pulumi.set(__self__, "max_age", max_age)
 
     @property
     @pulumi.getter(name="allowCredentials")
@@ -47,11 +53,11 @@ class ApiCorsConfigurationArgs:
         """
         Whether credentials are included in the CORS request.
         """
-        ...
+        return pulumi.get(self, "allow_credentials")
 
     @allow_credentials.setter
     def allow_credentials(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "allow_credentials", value)
 
     @property
     @pulumi.getter(name="allowHeaders")
@@ -59,11 +65,11 @@ class ApiCorsConfigurationArgs:
         """
         The set of allowed HTTP headers.
         """
-        ...
+        return pulumi.get(self, "allow_headers")
 
     @allow_headers.setter
     def allow_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "allow_headers", value)
 
     @property
     @pulumi.getter(name="allowMethods")
@@ -71,11 +77,11 @@ class ApiCorsConfigurationArgs:
         """
         The set of allowed HTTP methods.
         """
-        ...
+        return pulumi.get(self, "allow_methods")
 
     @allow_methods.setter
     def allow_methods(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "allow_methods", value)
 
     @property
     @pulumi.getter(name="allowOrigins")
@@ -83,11 +89,11 @@ class ApiCorsConfigurationArgs:
         """
         The set of allowed origins.
         """
-        ...
+        return pulumi.get(self, "allow_origins")
 
     @allow_origins.setter
     def allow_origins(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "allow_origins", value)
 
     @property
     @pulumi.getter(name="exposeHeaders")
@@ -95,11 +101,11 @@ class ApiCorsConfigurationArgs:
         """
         The set of exposed HTTP headers.
         """
-        ...
+        return pulumi.get(self, "expose_headers")
 
     @expose_headers.setter
     def expose_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "expose_headers", value)
 
     @property
     @pulumi.getter(name="maxAge")
@@ -107,11 +113,11 @@ class ApiCorsConfigurationArgs:
         """
         The number of seconds that the browser should cache preflight request results.
         """
-        ...
+        return pulumi.get(self, "max_age")
 
     @max_age.setter
     def max_age(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "max_age", value)
 
 
 @pulumi.input_type
@@ -123,8 +129,10 @@ class AuthorizerJwtConfigurationArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] audiences: A list of the intended recipients of the JWT. A valid JWT must provide an aud that matches at least one entry in this list.
         :param pulumi.Input[str] issuer: The base domain of the identity provider that issues JSON Web Tokens, such as the `endpoint` attribute of the `cognito.UserPool` resource.
         """
-        pulumi.set(__self__, "audiences", audiences)
-        pulumi.set(__self__, "issuer", issuer)
+        if audiences is not None:
+            pulumi.set(__self__, "audiences", audiences)
+        if issuer is not None:
+            pulumi.set(__self__, "issuer", issuer)
 
     @property
     @pulumi.getter
@@ -132,11 +140,11 @@ class AuthorizerJwtConfigurationArgs:
         """
         A list of the intended recipients of the JWT. A valid JWT must provide an aud that matches at least one entry in this list.
         """
-        ...
+        return pulumi.get(self, "audiences")
 
     @audiences.setter
     def audiences(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "audiences", value)
 
     @property
     @pulumi.getter
@@ -144,11 +152,11 @@ class AuthorizerJwtConfigurationArgs:
         """
         The base domain of the identity provider that issues JSON Web Tokens, such as the `endpoint` attribute of the `cognito.UserPool` resource.
         """
-        ...
+        return pulumi.get(self, "issuer")
 
     @issuer.setter
     def issuer(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "issuer", value)
 
 
 @pulumi.input_type
@@ -167,11 +175,13 @@ class DomainNameDomainNameConfigurationArgs:
         :param pulumi.Input[str] hosted_zone_id: The Amazon Route 53 Hosted Zone ID of the endpoint.
         :param pulumi.Input[str] target_domain_name: The target domain name.
         """
-        pulumi.set(__self__, "certificateArn", certificate_arn)
-        pulumi.set(__self__, "endpointType", endpoint_type)
-        pulumi.set(__self__, "securityPolicy", security_policy)
-        pulumi.set(__self__, "hostedZoneId", hosted_zone_id)
-        pulumi.set(__self__, "targetDomainName", target_domain_name)
+        pulumi.set(__self__, "certificate_arn", certificate_arn)
+        pulumi.set(__self__, "endpoint_type", endpoint_type)
+        pulumi.set(__self__, "security_policy", security_policy)
+        if hosted_zone_id is not None:
+            pulumi.set(__self__, "hosted_zone_id", hosted_zone_id)
+        if target_domain_name is not None:
+            pulumi.set(__self__, "target_domain_name", target_domain_name)
 
     @property
     @pulumi.getter(name="certificateArn")
@@ -180,11 +190,11 @@ class DomainNameDomainNameConfigurationArgs:
         The ARN of an AWS-managed certificate that will be used by the endpoint for the domain name. AWS Certificate Manager is the only supported source.
         Use the `acm.Certificate` resource to configure an ACM certificate.
         """
-        ...
+        return pulumi.get(self, "certificate_arn")
 
     @certificate_arn.setter
     def certificate_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "certificate_arn", value)
 
     @property
     @pulumi.getter(name="endpointType")
@@ -192,11 +202,11 @@ class DomainNameDomainNameConfigurationArgs:
         """
         The endpoint type. Valid values: `REGIONAL`.
         """
-        ...
+        return pulumi.get(self, "endpoint_type")
 
     @endpoint_type.setter
     def endpoint_type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "endpoint_type", value)
 
     @property
     @pulumi.getter(name="securityPolicy")
@@ -204,11 +214,11 @@ class DomainNameDomainNameConfigurationArgs:
         """
         The Transport Layer Security (TLS) version of the [security policy](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-custom-domain-tls-version.html) for the domain name. Valid values: `TLS_1_2`.
         """
-        ...
+        return pulumi.get(self, "security_policy")
 
     @security_policy.setter
     def security_policy(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "security_policy", value)
 
     @property
     @pulumi.getter(name="hostedZoneId")
@@ -216,11 +226,11 @@ class DomainNameDomainNameConfigurationArgs:
         """
         The Amazon Route 53 Hosted Zone ID of the endpoint.
         """
-        ...
+        return pulumi.get(self, "hosted_zone_id")
 
     @hosted_zone_id.setter
     def hosted_zone_id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "hosted_zone_id", value)
 
     @property
     @pulumi.getter(name="targetDomainName")
@@ -228,11 +238,11 @@ class DomainNameDomainNameConfigurationArgs:
         """
         The target domain name.
         """
-        ...
+        return pulumi.get(self, "target_domain_name")
 
     @target_domain_name.setter
     def target_domain_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "target_domain_name", value)
 
 
 @pulumi.input_type
@@ -244,7 +254,7 @@ class StageAccessLogSettingsArgs:
         :param pulumi.Input[str] destination_arn: The ARN of the CloudWatch Logs log group to receive access logs. Any trailing `:*` is trimmed from the ARN.
         :param pulumi.Input[str] format: A single line [format](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html#apigateway-cloudwatch-log-formats) of the access logs of data, as specified by [selected $context variables](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-logging.html).
         """
-        pulumi.set(__self__, "destinationArn", destination_arn)
+        pulumi.set(__self__, "destination_arn", destination_arn)
         pulumi.set(__self__, "format", format)
 
     @property
@@ -253,11 +263,11 @@ class StageAccessLogSettingsArgs:
         """
         The ARN of the CloudWatch Logs log group to receive access logs. Any trailing `:*` is trimmed from the ARN.
         """
-        ...
+        return pulumi.get(self, "destination_arn")
 
     @destination_arn.setter
     def destination_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "destination_arn", value)
 
     @property
     @pulumi.getter
@@ -265,11 +275,11 @@ class StageAccessLogSettingsArgs:
         """
         A single line [format](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html#apigateway-cloudwatch-log-formats) of the access logs of data, as specified by [selected $context variables](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-logging.html).
         """
-        ...
+        return pulumi.get(self, "format")
 
     @format.setter
     def format(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "format", value)
 
 
 @pulumi.input_type
@@ -289,11 +299,16 @@ class StageDefaultRouteSettingsArgs:
         :param pulumi.Input[float] throttling_burst_limit: The throttling burst limit for the default route.
         :param pulumi.Input[float] throttling_rate_limit: The throttling rate limit for the default route.
         """
-        pulumi.set(__self__, "dataTraceEnabled", data_trace_enabled)
-        pulumi.set(__self__, "detailedMetricsEnabled", detailed_metrics_enabled)
-        pulumi.set(__self__, "loggingLevel", logging_level)
-        pulumi.set(__self__, "throttlingBurstLimit", throttling_burst_limit)
-        pulumi.set(__self__, "throttlingRateLimit", throttling_rate_limit)
+        if data_trace_enabled is not None:
+            pulumi.set(__self__, "data_trace_enabled", data_trace_enabled)
+        if detailed_metrics_enabled is not None:
+            pulumi.set(__self__, "detailed_metrics_enabled", detailed_metrics_enabled)
+        if logging_level is not None:
+            pulumi.set(__self__, "logging_level", logging_level)
+        if throttling_burst_limit is not None:
+            pulumi.set(__self__, "throttling_burst_limit", throttling_burst_limit)
+        if throttling_rate_limit is not None:
+            pulumi.set(__self__, "throttling_rate_limit", throttling_rate_limit)
 
     @property
     @pulumi.getter(name="dataTraceEnabled")
@@ -302,11 +317,11 @@ class StageDefaultRouteSettingsArgs:
         Whether data trace logging is enabled for the default route. Affects the log entries pushed to Amazon CloudWatch Logs.
         Defaults to `false`. Supported only for WebSocket APIs.
         """
-        ...
+        return pulumi.get(self, "data_trace_enabled")
 
     @data_trace_enabled.setter
     def data_trace_enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "data_trace_enabled", value)
 
     @property
     @pulumi.getter(name="detailedMetricsEnabled")
@@ -314,11 +329,11 @@ class StageDefaultRouteSettingsArgs:
         """
         Whether detailed metrics are enabled for the default route. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "detailed_metrics_enabled")
 
     @detailed_metrics_enabled.setter
     def detailed_metrics_enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "detailed_metrics_enabled", value)
 
     @property
     @pulumi.getter(name="loggingLevel")
@@ -327,11 +342,11 @@ class StageDefaultRouteSettingsArgs:
         The logging level for the default route. Affects the log entries pushed to Amazon CloudWatch Logs.
         Valid values: `ERROR`, `INFO`, `OFF`. Defaults to `OFF`. Supported only for WebSocket APIs.
         """
-        ...
+        return pulumi.get(self, "logging_level")
 
     @logging_level.setter
     def logging_level(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "logging_level", value)
 
     @property
     @pulumi.getter(name="throttlingBurstLimit")
@@ -339,11 +354,11 @@ class StageDefaultRouteSettingsArgs:
         """
         The throttling burst limit for the default route.
         """
-        ...
+        return pulumi.get(self, "throttling_burst_limit")
 
     @throttling_burst_limit.setter
     def throttling_burst_limit(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "throttling_burst_limit", value)
 
     @property
     @pulumi.getter(name="throttlingRateLimit")
@@ -351,11 +366,11 @@ class StageDefaultRouteSettingsArgs:
         """
         The throttling rate limit for the default route.
         """
-        ...
+        return pulumi.get(self, "throttling_rate_limit")
 
     @throttling_rate_limit.setter
     def throttling_rate_limit(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "throttling_rate_limit", value)
 
 
 @pulumi.input_type
@@ -377,12 +392,17 @@ class StageRouteSettingArgs:
         :param pulumi.Input[float] throttling_burst_limit: The throttling burst limit for the route.
         :param pulumi.Input[float] throttling_rate_limit: The throttling rate limit for the route.
         """
-        pulumi.set(__self__, "routeKey", route_key)
-        pulumi.set(__self__, "dataTraceEnabled", data_trace_enabled)
-        pulumi.set(__self__, "detailedMetricsEnabled", detailed_metrics_enabled)
-        pulumi.set(__self__, "loggingLevel", logging_level)
-        pulumi.set(__self__, "throttlingBurstLimit", throttling_burst_limit)
-        pulumi.set(__self__, "throttlingRateLimit", throttling_rate_limit)
+        pulumi.set(__self__, "route_key", route_key)
+        if data_trace_enabled is not None:
+            pulumi.set(__self__, "data_trace_enabled", data_trace_enabled)
+        if detailed_metrics_enabled is not None:
+            pulumi.set(__self__, "detailed_metrics_enabled", detailed_metrics_enabled)
+        if logging_level is not None:
+            pulumi.set(__self__, "logging_level", logging_level)
+        if throttling_burst_limit is not None:
+            pulumi.set(__self__, "throttling_burst_limit", throttling_burst_limit)
+        if throttling_rate_limit is not None:
+            pulumi.set(__self__, "throttling_rate_limit", throttling_rate_limit)
 
     @property
     @pulumi.getter(name="routeKey")
@@ -390,11 +410,11 @@ class StageRouteSettingArgs:
         """
         Route key.
         """
-        ...
+        return pulumi.get(self, "route_key")
 
     @route_key.setter
     def route_key(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "route_key", value)
 
     @property
     @pulumi.getter(name="dataTraceEnabled")
@@ -403,11 +423,11 @@ class StageRouteSettingArgs:
         Whether data trace logging is enabled for the route. Affects the log entries pushed to Amazon CloudWatch Logs.
         Defaults to `false`. Supported only for WebSocket APIs.
         """
-        ...
+        return pulumi.get(self, "data_trace_enabled")
 
     @data_trace_enabled.setter
     def data_trace_enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "data_trace_enabled", value)
 
     @property
     @pulumi.getter(name="detailedMetricsEnabled")
@@ -415,11 +435,11 @@ class StageRouteSettingArgs:
         """
         Whether detailed metrics are enabled for the route. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "detailed_metrics_enabled")
 
     @detailed_metrics_enabled.setter
     def detailed_metrics_enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "detailed_metrics_enabled", value)
 
     @property
     @pulumi.getter(name="loggingLevel")
@@ -428,11 +448,11 @@ class StageRouteSettingArgs:
         The logging level for the route. Affects the log entries pushed to Amazon CloudWatch Logs.
         Valid values: `ERROR`, `INFO`, `OFF`. Defaults to `OFF`. Supported only for WebSocket APIs.
         """
-        ...
+        return pulumi.get(self, "logging_level")
 
     @logging_level.setter
     def logging_level(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "logging_level", value)
 
     @property
     @pulumi.getter(name="throttlingBurstLimit")
@@ -440,11 +460,11 @@ class StageRouteSettingArgs:
         """
         The throttling burst limit for the route.
         """
-        ...
+        return pulumi.get(self, "throttling_burst_limit")
 
     @throttling_burst_limit.setter
     def throttling_burst_limit(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "throttling_burst_limit", value)
 
     @property
     @pulumi.getter(name="throttlingRateLimit")
@@ -452,10 +472,10 @@ class StageRouteSettingArgs:
         """
         The throttling rate limit for the route.
         """
-        ...
+        return pulumi.get(self, "throttling_rate_limit")
 
     @throttling_rate_limit.setter
     def throttling_rate_limit(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "throttling_rate_limit", value)
 
 

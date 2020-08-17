@@ -12,54 +12,6 @@ __all__ = ['Deployment']
 
 
 class Deployment(pulumi.CustomResource):
-    created_date: pulumi.Output[str] = pulumi.property("createdDate")
-    """
-    The creation date of the deployment
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    The description of the deployment
-    """
-
-    execution_arn: pulumi.Output[str] = pulumi.property("executionArn")
-    """
-    The execution ARN to be used in `lambda_permission` resource's `source_arn`
-    when allowing API Gateway to invoke a Lambda function,
-    e.g. `arn:aws:execute-api:eu-west-2:123456789012:z4675bid1j/prod`
-    """
-
-    invoke_url: pulumi.Output[str] = pulumi.property("invokeUrl")
-    """
-    The URL to invoke the API pointing to the stage,
-    e.g. `https://z4675bid1j.execute-api.eu-west-2.amazonaws.com/prod`
-    """
-
-    rest_api: pulumi.Output[str] = pulumi.property("restApi")
-    """
-    The ID of the associated REST API
-    """
-
-    stage_description: pulumi.Output[Optional[str]] = pulumi.property("stageDescription")
-    """
-    The description of the stage
-    """
-
-    stage_name: pulumi.Output[Optional[str]] = pulumi.property("stageName")
-    """
-    The name of the stage. If the specified stage already exists, it will be updated to point to the new deployment. If the stage does not exist, a new one will be created and point to this deployment.
-    """
-
-    triggers: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("triggers")
-    """
-    A map of arbitrary keys and values that, when changed, will trigger a redeployment.
-    """
-
-    variables: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("variables")
-    """
-    A map that defines variables for the stage
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -200,6 +152,81 @@ class Deployment(pulumi.CustomResource):
         __props__["triggers"] = triggers
         __props__["variables"] = variables
         return Deployment(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="createdDate")
+    def created_date(self) -> str:
+        """
+        The creation date of the deployment
+        """
+        return pulumi.get(self, "created_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        The description of the deployment
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="executionArn")
+    def execution_arn(self) -> str:
+        """
+        The execution ARN to be used in `lambda_permission` resource's `source_arn`
+        when allowing API Gateway to invoke a Lambda function,
+        e.g. `arn:aws:execute-api:eu-west-2:123456789012:z4675bid1j/prod`
+        """
+        return pulumi.get(self, "execution_arn")
+
+    @property
+    @pulumi.getter(name="invokeUrl")
+    def invoke_url(self) -> str:
+        """
+        The URL to invoke the API pointing to the stage,
+        e.g. `https://z4675bid1j.execute-api.eu-west-2.amazonaws.com/prod`
+        """
+        return pulumi.get(self, "invoke_url")
+
+    @property
+    @pulumi.getter(name="restApi")
+    def rest_api(self) -> str:
+        """
+        The ID of the associated REST API
+        """
+        return pulumi.get(self, "rest_api")
+
+    @property
+    @pulumi.getter(name="stageDescription")
+    def stage_description(self) -> Optional[str]:
+        """
+        The description of the stage
+        """
+        return pulumi.get(self, "stage_description")
+
+    @property
+    @pulumi.getter(name="stageName")
+    def stage_name(self) -> Optional[str]:
+        """
+        The name of the stage. If the specified stage already exists, it will be updated to point to the new deployment. If the stage does not exist, a new one will be created and point to this deployment.
+        """
+        return pulumi.get(self, "stage_name")
+
+    @property
+    @pulumi.getter
+    def triggers(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of arbitrary keys and values that, when changed, will trigger a redeployment.
+        """
+        return pulumi.get(self, "triggers")
+
+    @property
+    @pulumi.getter
+    def variables(self) -> Optional[Mapping[str, str]]:
+        """
+        A map that defines variables for the stage
+        """
+        return pulumi.get(self, "variables")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

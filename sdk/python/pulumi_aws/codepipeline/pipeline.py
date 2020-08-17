@@ -14,36 +14,6 @@ __all__ = ['Pipeline']
 
 
 class Pipeline(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The codepipeline ARN.
-    """
-
-    artifact_store: pulumi.Output['outputs.PipelineArtifactStore'] = pulumi.property("artifactStore")
-    """
-    One or more artifact_store blocks. Artifact stores are documented below.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the pipeline.
-    """
-
-    role_arn: pulumi.Output[str] = pulumi.property("roleArn")
-    """
-    A service role Amazon Resource Name (ARN) that grants AWS CodePipeline permission to make calls to AWS services on your behalf.
-    """
-
-    stages: pulumi.Output[List['outputs.PipelineStage']] = pulumi.property("stages")
-    """
-    A stage block. Stages are documented below.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -253,6 +223,54 @@ class Pipeline(pulumi.CustomResource):
         __props__["stages"] = stages
         __props__["tags"] = tags
         return Pipeline(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The codepipeline ARN.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="artifactStore")
+    def artifact_store(self) -> 'outputs.PipelineArtifactStore':
+        """
+        One or more artifact_store blocks. Artifact stores are documented below.
+        """
+        return pulumi.get(self, "artifact_store")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the pipeline.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> str:
+        """
+        A service role Amazon Resource Name (ARN) that grants AWS CodePipeline permission to make calls to AWS services on your behalf.
+        """
+        return pulumi.get(self, "role_arn")
+
+    @property
+    @pulumi.getter
+    def stages(self) -> List['outputs.PipelineStage']:
+        """
+        A stage block. Stages are documented below.
+        """
+        return pulumi.get(self, "stages")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

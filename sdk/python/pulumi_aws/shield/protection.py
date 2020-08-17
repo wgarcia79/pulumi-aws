@@ -12,16 +12,6 @@ __all__ = ['Protection']
 
 
 class Protection(pulumi.CustomResource):
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    A friendly name for the Protection you are creating.
-    """
-
-    resource_arn: pulumi.Output[str] = pulumi.property("resourceArn")
-    """
-    The ARN (Amazon Resource Name) of the resource to be protected.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -103,6 +93,22 @@ class Protection(pulumi.CustomResource):
         __props__["name"] = name
         __props__["resource_arn"] = resource_arn
         return Protection(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A friendly name for the Protection you are creating.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="resourceArn")
+    def resource_arn(self) -> str:
+        """
+        The ARN (Amazon Resource Name) of the resource to be protected.
+        """
+        return pulumi.get(self, "resource_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

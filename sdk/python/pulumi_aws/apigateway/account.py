@@ -14,18 +14,6 @@ __all__ = ['Account']
 
 
 class Account(pulumi.CustomResource):
-    cloudwatch_role_arn: pulumi.Output[Optional[str]] = pulumi.property("cloudwatchRoleArn")
-    """
-    The ARN of an IAM role for CloudWatch (to allow logging & monitoring).
-    See more [in AWS Docs](https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-stage-settings.html#how-to-stage-settings-console).
-    Logging & monitoring can be enabled/disabled and otherwise tuned on the API Gateway Stage level.
-    """
-
-    throttle_settings: pulumi.Output['outputs.AccountThrottleSettings'] = pulumi.property("throttleSettings")
-    """
-    Account-Level throttle settings. See exported fields below.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -140,6 +128,24 @@ class Account(pulumi.CustomResource):
         __props__["cloudwatch_role_arn"] = cloudwatch_role_arn
         __props__["throttle_settings"] = throttle_settings
         return Account(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="cloudwatchRoleArn")
+    def cloudwatch_role_arn(self) -> Optional[str]:
+        """
+        The ARN of an IAM role for CloudWatch (to allow logging & monitoring).
+        See more [in AWS Docs](https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-stage-settings.html#how-to-stage-settings-console).
+        Logging & monitoring can be enabled/disabled and otherwise tuned on the API Gateway Stage level.
+        """
+        return pulumi.get(self, "cloudwatch_role_arn")
+
+    @property
+    @pulumi.getter(name="throttleSettings")
+    def throttle_settings(self) -> 'outputs.AccountThrottleSettings':
+        """
+        Account-Level throttle settings. See exported fields below.
+        """
+        return pulumi.get(self, "throttle_settings")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

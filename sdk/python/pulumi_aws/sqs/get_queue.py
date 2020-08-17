@@ -15,15 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetQueueResult:
-    arn: str = pulumi.property("arn")
-    id: str = pulumi.property("id")
-    name: str = pulumi.property("name")
-    tags: Mapping[str, str] = pulumi.property("tags")
-    url: str = pulumi.property("url")
-
-
 class GetQueueResult:
     """
     A collection of values returned by getQueue.
@@ -31,31 +24,57 @@ class GetQueueResult:
     def __init__(__self__, arn=None, id=None, name=None, tags=None, url=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+        if url and not isinstance(url, str):
+            raise TypeError("Expected argument 'url' to be a str")
+        pulumi.set(__self__, "url", url)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The Amazon Resource Name (ARN) of the queue.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
         """
         A map of tags for the resource.
         """
-        if url and not isinstance(url, str):
-            raise TypeError("Expected argument 'url' to be a str")
-        __self__.url = url
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
+    def url(self) -> str:
         """
         The URL of the queue.
         """
+        return pulumi.get(self, "url")
+
 
 
 class AwaitableGetQueueResult(GetQueueResult):
@@ -99,7 +118,7 @@ def get_queue(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:sqs/getQueue:getQueue', __args__, opts=opts, typ=_GetQueueResult).value
+    __ret__ = pulumi.runtime.invoke('aws:sqs/getQueue:getQueue', __args__, opts=opts, typ=GetQueueResult).value
 
     return AwaitableGetQueueResult(
         arn=__ret__.arn,

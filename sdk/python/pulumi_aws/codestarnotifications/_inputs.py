@@ -24,8 +24,10 @@ class NotificationRuleTargetArgs:
         :param pulumi.Input[str] type: The type of the notification target. Default value is `SNS`.
         """
         pulumi.set(__self__, "address", address)
-        pulumi.set(__self__, "status", status)
-        pulumi.set(__self__, "type", type)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -33,11 +35,11 @@ class NotificationRuleTargetArgs:
         """
         The ARN of notification rule target. For example, a SNS Topic ARN.
         """
-        ...
+        return pulumi.get(self, "address")
 
     @address.setter
     def address(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "address", value)
 
     @property
     @pulumi.getter
@@ -45,11 +47,11 @@ class NotificationRuleTargetArgs:
         """
         The status of the notification rule. Possible values are `ENABLED` and `DISABLED`, default is `ENABLED`.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @status.setter
     def status(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "status", value)
 
     @property
     @pulumi.getter
@@ -57,10 +59,10 @@ class NotificationRuleTargetArgs:
         """
         The type of the notification target. Default value is `SNS`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "type", value)
 
 

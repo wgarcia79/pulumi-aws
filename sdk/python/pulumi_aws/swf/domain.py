@@ -12,36 +12,6 @@ __all__ = ['Domain']
 
 
 class Domain(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN)
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    The domain description.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the domain. If omitted, this provider will assign a random, unique name.
-    """
-
-    name_prefix: pulumi.Output[Optional[str]] = pulumi.property("namePrefix")
-    """
-    Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of resource tags
-    """
-
-    workflow_execution_retention_period_in_days: pulumi.Output[str] = pulumi.property("workflowExecutionRetentionPeriodInDays")
-    """
-    Length of time that SWF will continue to retain information about the workflow execution after the workflow execution is complete, must be between 0 and 90 days.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -143,6 +113,54 @@ class Domain(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["workflow_execution_retention_period_in_days"] = workflow_execution_retention_period_in_days
         return Domain(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN)
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        The domain description.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the domain. If omitted, this provider will assign a random, unique name.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> Optional[str]:
+        """
+        Creates a unique name beginning with the specified prefix. Conflicts with `name`.
+        """
+        return pulumi.get(self, "name_prefix")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of resource tags
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="workflowExecutionRetentionPeriodInDays")
+    def workflow_execution_retention_period_in_days(self) -> str:
+        """
+        Length of time that SWF will continue to retain information about the workflow execution after the workflow execution is complete, must be between 0 and 90 days.
+        """
+        return pulumi.get(self, "workflow_execution_retention_period_in_days")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

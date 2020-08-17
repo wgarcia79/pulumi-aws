@@ -15,14 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetSolutionStackResult:
-    id: str = pulumi.property("id")
-    most_recent: Optional[bool] = pulumi.property("mostRecent")
-    name: str = pulumi.property("name")
-    name_regex: str = pulumi.property("nameRegex")
-
-
 class GetSolutionStackResult:
     """
     A collection of values returned by getSolutionStack.
@@ -30,22 +24,43 @@ class GetSolutionStackResult:
     def __init__(__self__, id=None, most_recent=None, name=None, name_regex=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if most_recent and not isinstance(most_recent, bool):
+            raise TypeError("Expected argument 'most_recent' to be a bool")
+        pulumi.set(__self__, "most_recent", most_recent)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if name_regex and not isinstance(name_regex, str):
+            raise TypeError("Expected argument 'name_regex' to be a str")
+        pulumi.set(__self__, "name_regex", name_regex)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if most_recent and not isinstance(most_recent, bool):
-            raise TypeError("Expected argument 'most_recent' to be a bool")
-        __self__.most_recent = most_recent
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="mostRecent")
+    def most_recent(self) -> Optional[bool]:
+        return pulumi.get(self, "most_recent")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
         """
         The name of the solution stack.
         """
-        if name_regex and not isinstance(name_regex, str):
-            raise TypeError("Expected argument 'name_regex' to be a str")
-        __self__.name_regex = name_regex
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="nameRegex")
+    def name_regex(self) -> str:
+        return pulumi.get(self, "name_regex")
+
 
 
 class AwaitableGetSolutionStackResult(GetSolutionStackResult):
@@ -90,7 +105,7 @@ def get_solution_stack(most_recent: Optional[bool] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:elasticbeanstalk/getSolutionStack:getSolutionStack', __args__, opts=opts, typ=_GetSolutionStackResult).value
+    __ret__ = pulumi.runtime.invoke('aws:elasticbeanstalk/getSolutionStack:getSolutionStack', __args__, opts=opts, typ=GetSolutionStackResult).value
 
     return AwaitableGetSolutionStackResult(
         id=__ret__.id,

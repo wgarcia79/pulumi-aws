@@ -14,36 +14,6 @@ __all__ = ['LifecyclePolicy']
 
 
 class LifecyclePolicy(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    Amazon Resource Name (ARN) of the DLM Lifecycle Policy.
-    """
-
-    description: pulumi.Output[str] = pulumi.property("description")
-    """
-    A description for the DLM lifecycle policy.
-    """
-
-    execution_role_arn: pulumi.Output[str] = pulumi.property("executionRoleArn")
-    """
-    The ARN of an IAM role that is able to be assumed by the DLM service.
-    """
-
-    policy_details: pulumi.Output['outputs.LifecyclePolicyPolicyDetails'] = pulumi.property("policyDetails")
-    """
-    See the `policy_details` configuration block. Max of 1.
-    """
-
-    state: pulumi.Output[Optional[str]] = pulumi.property("state")
-    """
-    Whether the lifecycle policy should be enabled or disabled. `ENABLED` or `DISABLED` are valid values. Defaults to `ENABLED`.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of resource tags.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -210,6 +180,54 @@ class LifecyclePolicy(pulumi.CustomResource):
         __props__["state"] = state
         __props__["tags"] = tags
         return LifecyclePolicy(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        Amazon Resource Name (ARN) of the DLM Lifecycle Policy.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        A description for the DLM lifecycle policy.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="executionRoleArn")
+    def execution_role_arn(self) -> str:
+        """
+        The ARN of an IAM role that is able to be assumed by the DLM service.
+        """
+        return pulumi.get(self, "execution_role_arn")
+
+    @property
+    @pulumi.getter(name="policyDetails")
+    def policy_details(self) -> 'outputs.LifecyclePolicyPolicyDetails':
+        """
+        See the `policy_details` configuration block. Max of 1.
+        """
+        return pulumi.get(self, "policy_details")
+
+    @property
+    @pulumi.getter
+    def state(self) -> Optional[str]:
+        """
+        Whether the lifecycle policy should be enabled or disabled. `ENABLED` or `DISABLED` are valid values. Defaults to `ENABLED`.
+        """
+        return pulumi.get(self, "state")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of resource tags.
+        """
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -12,21 +12,6 @@ __all__ = ['RouteTableAssociation']
 
 
 class RouteTableAssociation(pulumi.CustomResource):
-    gateway_id: pulumi.Output[Optional[str]] = pulumi.property("gatewayId")
-    """
-    The gateway ID to create an association. Conflicts with `subnet_id`.
-    """
-
-    route_table_id: pulumi.Output[str] = pulumi.property("routeTableId")
-    """
-    The ID of the routing table to associate with.
-    """
-
-    subnet_id: pulumi.Output[Optional[str]] = pulumi.property("subnetId")
-    """
-    The subnet ID to create an association. Conflicts with `gateway_id`.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -120,6 +105,30 @@ class RouteTableAssociation(pulumi.CustomResource):
         __props__["route_table_id"] = route_table_id
         __props__["subnet_id"] = subnet_id
         return RouteTableAssociation(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="gatewayId")
+    def gateway_id(self) -> Optional[str]:
+        """
+        The gateway ID to create an association. Conflicts with `subnet_id`.
+        """
+        return pulumi.get(self, "gateway_id")
+
+    @property
+    @pulumi.getter(name="routeTableId")
+    def route_table_id(self) -> str:
+        """
+        The ID of the routing table to associate with.
+        """
+        return pulumi.get(self, "route_table_id")
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> Optional[str]:
+        """
+        The subnet ID to create an association. Conflicts with `gateway_id`.
+        """
+        return pulumi.get(self, "subnet_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

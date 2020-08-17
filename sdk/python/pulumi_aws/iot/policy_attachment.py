@@ -12,16 +12,6 @@ __all__ = ['PolicyAttachment']
 
 
 class PolicyAttachment(pulumi.CustomResource):
-    policy: pulumi.Output[str] = pulumi.property("policy")
-    """
-    The name of the policy to attach.
-    """
-
-    target: pulumi.Output[str] = pulumi.property("target")
-    """
-    The identity to which the policy is attached.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -118,6 +108,22 @@ class PolicyAttachment(pulumi.CustomResource):
         __props__["policy"] = policy
         __props__["target"] = target
         return PolicyAttachment(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def policy(self) -> str:
+        """
+        The name of the policy to attach.
+        """
+        return pulumi.get(self, "policy")
+
+    @property
+    @pulumi.getter
+    def target(self) -> str:
+        """
+        The identity to which the policy is attached.
+        """
+        return pulumi.get(self, "target")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

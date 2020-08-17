@@ -14,49 +14,6 @@ __all__ = ['Authorizer']
 
 
 class Authorizer(pulumi.CustomResource):
-    api_id: pulumi.Output[str] = pulumi.property("apiId")
-    """
-    The API identifier.
-    """
-
-    authorizer_credentials_arn: pulumi.Output[Optional[str]] = pulumi.property("authorizerCredentialsArn")
-    """
-    The required credentials as an IAM role for API Gateway to invoke the authorizer.
-    Supported only for `REQUEST` authorizers.
-    """
-
-    authorizer_type: pulumi.Output[str] = pulumi.property("authorizerType")
-    """
-    The authorizer type. Valid values: `JWT`, `REQUEST`.
-    For WebSocket APIs, specify `REQUEST` for a Lambda function using incoming request parameters.
-    For HTTP APIs, specify `JWT` to use JSON Web Tokens.
-    """
-
-    authorizer_uri: pulumi.Output[Optional[str]] = pulumi.property("authorizerUri")
-    """
-    The authorizer's Uniform Resource Identifier (URI).
-    For `REQUEST` authorizers this must be a well-formed Lambda function URI, such as the `invoke_arn` attribute of the `lambda.Function` resource.
-    Supported only for `REQUEST` authorizers.
-    """
-
-    identity_sources: pulumi.Output[List[str]] = pulumi.property("identitySources")
-    """
-    The identity sources for which authorization is requested.
-    For `REQUEST` authorizers the value is a list of one or more mapping expressions of the specified request parameters.
-    For `JWT` authorizers the single entry specifies where to extract the JSON Web Token (JWT) from inbound requests.
-    """
-
-    jwt_configuration: pulumi.Output[Optional['outputs.AuthorizerJwtConfiguration']] = pulumi.property("jwtConfiguration")
-    """
-    The configuration of a JWT authorizer. Required for the `JWT` authorizer type.
-    Supported only for HTTP APIs.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the authorizer.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -203,6 +160,70 @@ class Authorizer(pulumi.CustomResource):
         __props__["jwt_configuration"] = jwt_configuration
         __props__["name"] = name
         return Authorizer(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="apiId")
+    def api_id(self) -> str:
+        """
+        The API identifier.
+        """
+        return pulumi.get(self, "api_id")
+
+    @property
+    @pulumi.getter(name="authorizerCredentialsArn")
+    def authorizer_credentials_arn(self) -> Optional[str]:
+        """
+        The required credentials as an IAM role for API Gateway to invoke the authorizer.
+        Supported only for `REQUEST` authorizers.
+        """
+        return pulumi.get(self, "authorizer_credentials_arn")
+
+    @property
+    @pulumi.getter(name="authorizerType")
+    def authorizer_type(self) -> str:
+        """
+        The authorizer type. Valid values: `JWT`, `REQUEST`.
+        For WebSocket APIs, specify `REQUEST` for a Lambda function using incoming request parameters.
+        For HTTP APIs, specify `JWT` to use JSON Web Tokens.
+        """
+        return pulumi.get(self, "authorizer_type")
+
+    @property
+    @pulumi.getter(name="authorizerUri")
+    def authorizer_uri(self) -> Optional[str]:
+        """
+        The authorizer's Uniform Resource Identifier (URI).
+        For `REQUEST` authorizers this must be a well-formed Lambda function URI, such as the `invoke_arn` attribute of the `lambda.Function` resource.
+        Supported only for `REQUEST` authorizers.
+        """
+        return pulumi.get(self, "authorizer_uri")
+
+    @property
+    @pulumi.getter(name="identitySources")
+    def identity_sources(self) -> List[str]:
+        """
+        The identity sources for which authorization is requested.
+        For `REQUEST` authorizers the value is a list of one or more mapping expressions of the specified request parameters.
+        For `JWT` authorizers the single entry specifies where to extract the JSON Web Token (JWT) from inbound requests.
+        """
+        return pulumi.get(self, "identity_sources")
+
+    @property
+    @pulumi.getter(name="jwtConfiguration")
+    def jwt_configuration(self) -> Optional['outputs.AuthorizerJwtConfiguration']:
+        """
+        The configuration of a JWT authorizer. Required for the `JWT` authorizer type.
+        Supported only for HTTP APIs.
+        """
+        return pulumi.get(self, "jwt_configuration")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the authorizer.
+        """
+        return pulumi.get(self, "name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

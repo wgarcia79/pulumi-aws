@@ -12,26 +12,6 @@ __all__ = ['Container']
 
 
 class Container(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the container.
-    """
-
-    endpoint: pulumi.Output[str] = pulumi.property("endpoint")
-    """
-    The DNS endpoint of the container.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the container. Must contain alphanumeric characters or underscores.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -113,6 +93,38 @@ class Container(pulumi.CustomResource):
         __props__["name"] = name
         __props__["tags"] = tags
         return Container(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the container.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def endpoint(self) -> str:
+        """
+        The DNS endpoint of the container.
+        """
+        return pulumi.get(self, "endpoint")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the container. Must contain alphanumeric characters or underscores.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

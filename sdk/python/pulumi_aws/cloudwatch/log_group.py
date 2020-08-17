@@ -12,39 +12,6 @@ __all__ = ['LogGroup']
 
 
 class LogGroup(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The Amazon Resource Name (ARN) specifying the log group.
-    """
-
-    kms_key_id: pulumi.Output[Optional[str]] = pulumi.property("kmsKeyId")
-    """
-    The ARN of the KMS Key to use when encrypting log data. Please note, after the AWS KMS CMK is disassociated from the log group,
-    AWS CloudWatch Logs stops encrypting newly ingested data for the log group. All previously ingested data remains encrypted, and AWS CloudWatch Logs requires
-    permissions for the CMK whenever the encrypted data is requested.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the log group. If omitted, this provider will assign a random, unique name.
-    """
-
-    name_prefix: pulumi.Output[Optional[str]] = pulumi.property("namePrefix")
-    """
-    Creates a unique name beginning with the specified prefix. Conflicts with `name`.
-    """
-
-    retention_in_days: pulumi.Output[Optional[float]] = pulumi.property("retentionInDays")
-    """
-    Specifies the number of days
-    you want to retain log events in the specified log group.  Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -149,6 +116,57 @@ class LogGroup(pulumi.CustomResource):
         __props__["retention_in_days"] = retention_in_days
         __props__["tags"] = tags
         return LogGroup(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) specifying the log group.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="kmsKeyId")
+    def kms_key_id(self) -> Optional[str]:
+        """
+        The ARN of the KMS Key to use when encrypting log data. Please note, after the AWS KMS CMK is disassociated from the log group,
+        AWS CloudWatch Logs stops encrypting newly ingested data for the log group. All previously ingested data remains encrypted, and AWS CloudWatch Logs requires
+        permissions for the CMK whenever the encrypted data is requested.
+        """
+        return pulumi.get(self, "kms_key_id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the log group. If omitted, this provider will assign a random, unique name.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> Optional[str]:
+        """
+        Creates a unique name beginning with the specified prefix. Conflicts with `name`.
+        """
+        return pulumi.get(self, "name_prefix")
+
+    @property
+    @pulumi.getter(name="retentionInDays")
+    def retention_in_days(self) -> Optional[float]:
+        """
+        Specifies the number of days
+        you want to retain log events in the specified log group.  Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653.
+        """
+        return pulumi.get(self, "retention_in_days")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

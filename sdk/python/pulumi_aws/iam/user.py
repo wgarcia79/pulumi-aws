@@ -12,43 +12,6 @@ __all__ = ['User']
 
 
 class User(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN assigned by AWS for this user.
-    """
-
-    force_destroy: pulumi.Output[Optional[bool]] = pulumi.property("forceDestroy")
-    """
-    When destroying this user, destroy even if it
-    has non-provider-managed IAM access keys, login profile or MFA devices. Without `force_destroy`
-    a user with non-provider-managed access keys and login profile will fail to be destroyed.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The user's name. The name must consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: `=,.@-_.`. User names are not distinguished by case. For example, you cannot create users named both "TESTUSER" and "testuser".
-    """
-
-    path: pulumi.Output[Optional[str]] = pulumi.property("path")
-    """
-    Path in which to create the user.
-    """
-
-    permissions_boundary: pulumi.Output[Optional[str]] = pulumi.property("permissionsBoundary")
-    """
-    The ARN of the policy that is used to set the permissions boundary for the user.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value mapping of tags for the IAM user
-    """
-
-    unique_id: pulumi.Output[str] = pulumi.property("uniqueId")
-    """
-    The [unique ID][1] assigned by AWS.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -175,6 +138,64 @@ class User(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["unique_id"] = unique_id
         return User(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN assigned by AWS for this user.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="forceDestroy")
+    def force_destroy(self) -> Optional[bool]:
+        """
+        When destroying this user, destroy even if it
+        has non-provider-managed IAM access keys, login profile or MFA devices. Without `force_destroy`
+        a user with non-provider-managed access keys and login profile will fail to be destroyed.
+        """
+        return pulumi.get(self, "force_destroy")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The user's name. The name must consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: `=,.@-_.`. User names are not distinguished by case. For example, you cannot create users named both "TESTUSER" and "testuser".
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[str]:
+        """
+        Path in which to create the user.
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter(name="permissionsBoundary")
+    def permissions_boundary(self) -> Optional[str]:
+        """
+        The ARN of the policy that is used to set the permissions boundary for the user.
+        """
+        return pulumi.get(self, "permissions_boundary")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value mapping of tags for the IAM user
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="uniqueId")
+    def unique_id(self) -> str:
+        """
+        The [unique ID][1] assigned by AWS.
+        """
+        return pulumi.get(self, "unique_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -14,21 +14,6 @@ __all__ = ['DocumentationPart']
 
 
 class DocumentationPart(pulumi.CustomResource):
-    location: pulumi.Output['outputs.DocumentationPartLocation'] = pulumi.property("location")
-    """
-    The location of the targeted API entity of the to-be-created documentation part. See below.
-    """
-
-    properties: pulumi.Output[str] = pulumi.property("properties")
-    """
-    A content map of API-specific key-value pairs describing the targeted API entity. The map must be encoded as a JSON string, e.g., "{ \"description\": \"The API does ...\" }". Only Swagger-compliant key-value pairs can be exported and, hence, published.
-    """
-
-    rest_api_id: pulumi.Output[str] = pulumi.property("restApiId")
-    """
-    The ID of the associated Rest API
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -122,6 +107,30 @@ class DocumentationPart(pulumi.CustomResource):
         __props__["properties"] = properties
         __props__["rest_api_id"] = rest_api_id
         return DocumentationPart(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def location(self) -> 'outputs.DocumentationPartLocation':
+        """
+        The location of the targeted API entity of the to-be-created documentation part. See below.
+        """
+        return pulumi.get(self, "location")
+
+    @property
+    @pulumi.getter
+    def properties(self) -> str:
+        """
+        A content map of API-specific key-value pairs describing the targeted API entity. The map must be encoded as a JSON string, e.g., "{ \"description\": \"The API does ...\" }". Only Swagger-compliant key-value pairs can be exported and, hence, published.
+        """
+        return pulumi.get(self, "properties")
+
+    @property
+    @pulumi.getter(name="restApiId")
+    def rest_api_id(self) -> str:
+        """
+        The ID of the associated Rest API
+        """
+        return pulumi.get(self, "rest_api_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

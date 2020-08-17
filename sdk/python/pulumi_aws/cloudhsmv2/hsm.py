@@ -12,41 +12,6 @@ __all__ = ['Hsm']
 
 
 class Hsm(pulumi.CustomResource):
-    availability_zone: pulumi.Output[str] = pulumi.property("availabilityZone")
-    """
-    The IDs of AZ in which HSM module will be located. Do not use together with subnet_id.
-    """
-
-    cluster_id: pulumi.Output[str] = pulumi.property("clusterId")
-    """
-    The ID of Cloud HSM v2 cluster to which HSM will be added.
-    """
-
-    hsm_eni_id: pulumi.Output[str] = pulumi.property("hsmEniId")
-    """
-    The id of the ENI interface allocated for HSM module.
-    """
-
-    hsm_id: pulumi.Output[str] = pulumi.property("hsmId")
-    """
-    The id of the HSM module.
-    """
-
-    hsm_state: pulumi.Output[str] = pulumi.property("hsmState")
-    """
-    The state of the HSM module.
-    """
-
-    ip_address: pulumi.Output[str] = pulumi.property("ipAddress")
-    """
-    The IP address of HSM module. Must be within the CIDR of selected subnet.
-    """
-
-    subnet_id: pulumi.Output[str] = pulumi.property("subnetId")
-    """
-    The ID of subnet in which HSM module will be located.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -151,6 +116,62 @@ class Hsm(pulumi.CustomResource):
         __props__["ip_address"] = ip_address
         __props__["subnet_id"] = subnet_id
         return Hsm(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> str:
+        """
+        The IDs of AZ in which HSM module will be located. Do not use together with subnet_id.
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> str:
+        """
+        The ID of Cloud HSM v2 cluster to which HSM will be added.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @property
+    @pulumi.getter(name="hsmEniId")
+    def hsm_eni_id(self) -> str:
+        """
+        The id of the ENI interface allocated for HSM module.
+        """
+        return pulumi.get(self, "hsm_eni_id")
+
+    @property
+    @pulumi.getter(name="hsmId")
+    def hsm_id(self) -> str:
+        """
+        The id of the HSM module.
+        """
+        return pulumi.get(self, "hsm_id")
+
+    @property
+    @pulumi.getter(name="hsmState")
+    def hsm_state(self) -> str:
+        """
+        The state of the HSM module.
+        """
+        return pulumi.get(self, "hsm_state")
+
+    @property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> str:
+        """
+        The IP address of HSM module. Must be within the CIDR of selected subnet.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> str:
+        """
+        The ID of subnet in which HSM module will be located.
+        """
+        return pulumi.get(self, "subnet_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

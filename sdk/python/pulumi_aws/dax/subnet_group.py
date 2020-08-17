@@ -12,26 +12,6 @@ __all__ = ['SubnetGroup']
 
 
 class SubnetGroup(pulumi.CustomResource):
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    A description of the subnet group.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the subnet group.
-    """
-
-    subnet_ids: pulumi.Output[List[str]] = pulumi.property("subnetIds")
-    """
-    A list of VPC subnet IDs for the subnet group.
-    """
-
-    vpc_id: pulumi.Output[str] = pulumi.property("vpcId")
-    """
-    VPC ID of the subnet group.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -120,6 +100,38 @@ class SubnetGroup(pulumi.CustomResource):
         __props__["subnet_ids"] = subnet_ids
         __props__["vpc_id"] = vpc_id
         return SubnetGroup(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        A description of the subnet group.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the subnet group.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="subnetIds")
+    def subnet_ids(self) -> List[str]:
+        """
+        A list of VPC subnet IDs for the subnet group.
+        """
+        return pulumi.get(self, "subnet_ids")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        VPC ID of the subnet group.
+        """
+        return pulumi.get(self, "vpc_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

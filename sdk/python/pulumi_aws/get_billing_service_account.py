@@ -15,12 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetBillingServiceAccountResult:
-    arn: str = pulumi.property("arn")
-    id: str = pulumi.property("id")
-
-
 class GetBillingServiceAccountResult:
     """
     A collection of values returned by getBillingServiceAccount.
@@ -28,16 +24,27 @@ class GetBillingServiceAccountResult:
     def __init__(__self__, arn=None, id=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The ARN of the AWS billing service account.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
+        return pulumi.get(self, "id")
+
 
 
 class AwaitableGetBillingServiceAccountResult(GetBillingServiceAccountResult):
@@ -102,7 +109,7 @@ def get_billing_service_account(                                opts: Optional[p
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:index/getBillingServiceAccount:getBillingServiceAccount', __args__, opts=opts, typ=_GetBillingServiceAccountResult).value
+    __ret__ = pulumi.runtime.invoke('aws:index/getBillingServiceAccount:getBillingServiceAccount', __args__, opts=opts, typ=GetBillingServiceAccountResult).value
 
     return AwaitableGetBillingServiceAccountResult(
         arn=__ret__.arn,

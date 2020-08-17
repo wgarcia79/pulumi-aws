@@ -12,26 +12,6 @@ __all__ = ['BasePathMapping']
 
 
 class BasePathMapping(pulumi.CustomResource):
-    base_path: pulumi.Output[Optional[str]] = pulumi.property("basePath")
-    """
-    Path segment that must be prepended to the path when accessing the API via this mapping. If omitted, the API is exposed at the root of the given domain.
-    """
-
-    domain_name: pulumi.Output[str] = pulumi.property("domainName")
-    """
-    The already-registered domain name to connect the API to.
-    """
-
-    rest_api: pulumi.Output[str] = pulumi.property("restApi")
-    """
-    The id of the API to connect.
-    """
-
-    stage_name: pulumi.Output[Optional[str]] = pulumi.property("stageName")
-    """
-    The name of a specific deployment stage to expose at the given path. If omitted, callers may select any stage by including its name as a path element after the base path.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -135,6 +115,38 @@ class BasePathMapping(pulumi.CustomResource):
         __props__["rest_api"] = rest_api
         __props__["stage_name"] = stage_name
         return BasePathMapping(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="basePath")
+    def base_path(self) -> Optional[str]:
+        """
+        Path segment that must be prepended to the path when accessing the API via this mapping. If omitted, the API is exposed at the root of the given domain.
+        """
+        return pulumi.get(self, "base_path")
+
+    @property
+    @pulumi.getter(name="domainName")
+    def domain_name(self) -> str:
+        """
+        The already-registered domain name to connect the API to.
+        """
+        return pulumi.get(self, "domain_name")
+
+    @property
+    @pulumi.getter(name="restApi")
+    def rest_api(self) -> str:
+        """
+        The id of the API to connect.
+        """
+        return pulumi.get(self, "rest_api")
+
+    @property
+    @pulumi.getter(name="stageName")
+    def stage_name(self) -> Optional[str]:
+        """
+        The name of a specific deployment stage to expose at the given path. If omitted, callers may select any stage by including its name as a path element after the base path.
+        """
+        return pulumi.get(self, "stage_name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

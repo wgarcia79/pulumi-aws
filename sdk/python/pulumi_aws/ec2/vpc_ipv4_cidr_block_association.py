@@ -12,16 +12,6 @@ __all__ = ['VpcIpv4CidrBlockAssociation']
 
 
 class VpcIpv4CidrBlockAssociation(pulumi.CustomResource):
-    cidr_block: pulumi.Output[str] = pulumi.property("cidrBlock")
-    """
-    The additional IPv4 CIDR block to associate with the VPC.
-    """
-
-    vpc_id: pulumi.Output[str] = pulumi.property("vpcId")
-    """
-    The ID of the VPC to make the association with.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -105,6 +95,22 @@ class VpcIpv4CidrBlockAssociation(pulumi.CustomResource):
         __props__["cidr_block"] = cidr_block
         __props__["vpc_id"] = vpc_id
         return VpcIpv4CidrBlockAssociation(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="cidrBlock")
+    def cidr_block(self) -> str:
+        """
+        The additional IPv4 CIDR block to associate with the VPC.
+        """
+        return pulumi.get(self, "cidr_block")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The ID of the VPC to make the association with.
+        """
+        return pulumi.get(self, "vpc_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

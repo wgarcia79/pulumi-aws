@@ -28,10 +28,13 @@ class ApplicationAppversionLifecycleArgs:
         :param pulumi.Input[float] max_age_in_days: The number of days to retain an application version ('max_age_in_days' and 'max_count' cannot be enabled simultaneously.).
         :param pulumi.Input[float] max_count: The maximum number of application versions to retain ('max_age_in_days' and 'max_count' cannot be enabled simultaneously.).
         """
-        pulumi.set(__self__, "serviceRole", service_role)
-        pulumi.set(__self__, "deleteSourceFromS3", delete_source_from_s3)
-        pulumi.set(__self__, "maxAgeInDays", max_age_in_days)
-        pulumi.set(__self__, "maxCount", max_count)
+        pulumi.set(__self__, "service_role", service_role)
+        if delete_source_from_s3 is not None:
+            pulumi.set(__self__, "delete_source_from_s3", delete_source_from_s3)
+        if max_age_in_days is not None:
+            pulumi.set(__self__, "max_age_in_days", max_age_in_days)
+        if max_count is not None:
+            pulumi.set(__self__, "max_count", max_count)
 
     @property
     @pulumi.getter(name="serviceRole")
@@ -39,11 +42,11 @@ class ApplicationAppversionLifecycleArgs:
         """
         The ARN of an IAM service role under which the application version is deleted.  Elastic Beanstalk must have permission to assume this role.
         """
-        ...
+        return pulumi.get(self, "service_role")
 
     @service_role.setter
     def service_role(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "service_role", value)
 
     @property
     @pulumi.getter(name="deleteSourceFromS3")
@@ -51,11 +54,11 @@ class ApplicationAppversionLifecycleArgs:
         """
         Set to `true` to delete a version's source bundle from S3 when the application version is deleted.
         """
-        ...
+        return pulumi.get(self, "delete_source_from_s3")
 
     @delete_source_from_s3.setter
     def delete_source_from_s3(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "delete_source_from_s3", value)
 
     @property
     @pulumi.getter(name="maxAgeInDays")
@@ -63,11 +66,11 @@ class ApplicationAppversionLifecycleArgs:
         """
         The number of days to retain an application version ('max_age_in_days' and 'max_count' cannot be enabled simultaneously.).
         """
-        ...
+        return pulumi.get(self, "max_age_in_days")
 
     @max_age_in_days.setter
     def max_age_in_days(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "max_age_in_days", value)
 
     @property
     @pulumi.getter(name="maxCount")
@@ -75,11 +78,11 @@ class ApplicationAppversionLifecycleArgs:
         """
         The maximum number of application versions to retain ('max_age_in_days' and 'max_count' cannot be enabled simultaneously.).
         """
-        ...
+        return pulumi.get(self, "max_count")
 
     @max_count.setter
     def max_count(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "max_count", value)
 
 
 @pulumi.input_type
@@ -95,7 +98,8 @@ class ConfigurationTemplateSettingArgs:
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "namespace", namespace)
         pulumi.set(__self__, "value", value)
-        pulumi.set(__self__, "resource", resource)
+        if resource is not None:
+            pulumi.set(__self__, "resource", resource)
 
     @property
     @pulumi.getter
@@ -103,38 +107,38 @@ class ConfigurationTemplateSettingArgs:
         """
         A unique name for this Template.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
     def namespace(self) -> pulumi.Input[str]:
-        ...
+        return pulumi.get(self, "namespace")
 
     @namespace.setter
     def namespace(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
     def value(self) -> pulumi.Input[str]:
-        ...
+        return pulumi.get(self, "value")
 
     @value.setter
     def value(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "value", value)
 
     @property
     @pulumi.getter
     def resource(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "resource")
 
     @resource.setter
     def resource(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "resource", value)
 
 
 @pulumi.input_type
@@ -151,7 +155,8 @@ class EnvironmentAllSettingArgs:
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "namespace", namespace)
         pulumi.set(__self__, "value", value)
-        pulumi.set(__self__, "resource", resource)
+        if resource is not None:
+            pulumi.set(__self__, "resource", resource)
 
     @property
     @pulumi.getter
@@ -160,38 +165,38 @@ class EnvironmentAllSettingArgs:
         A unique name for this Environment. This name is used
         in the application URL
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
     def namespace(self) -> pulumi.Input[str]:
-        ...
+        return pulumi.get(self, "namespace")
 
     @namespace.setter
     def namespace(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
     def value(self) -> pulumi.Input[str]:
-        ...
+        return pulumi.get(self, "value")
 
     @value.setter
     def value(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "value", value)
 
     @property
     @pulumi.getter
     def resource(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "resource")
 
     @resource.setter
     def resource(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "resource", value)
 
 
 @pulumi.input_type
@@ -208,7 +213,8 @@ class EnvironmentSettingArgs:
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "namespace", namespace)
         pulumi.set(__self__, "value", value)
-        pulumi.set(__self__, "resource", resource)
+        if resource is not None:
+            pulumi.set(__self__, "resource", resource)
 
     @property
     @pulumi.getter
@@ -217,37 +223,37 @@ class EnvironmentSettingArgs:
         A unique name for this Environment. This name is used
         in the application URL
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
     def namespace(self) -> pulumi.Input[str]:
-        ...
+        return pulumi.get(self, "namespace")
 
     @namespace.setter
     def namespace(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
     def value(self) -> pulumi.Input[str]:
-        ...
+        return pulumi.get(self, "value")
 
     @value.setter
     def value(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "value", value)
 
     @property
     @pulumi.getter
     def resource(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "resource")
 
     @resource.setter
     def resource(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "resource", value)
 
 

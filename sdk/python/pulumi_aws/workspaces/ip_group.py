@@ -14,23 +14,6 @@ __all__ = ['IpGroup']
 
 
 class IpGroup(pulumi.CustomResource):
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    The description.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the IP group.
-    """
-
-    rules: pulumi.Output[Optional[List['outputs.IpGroupRule']]] = pulumi.property("rules")
-    """
-    One or more pairs specifying the IP group rule (in CIDR format) from which web requests originate.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -114,6 +97,35 @@ class IpGroup(pulumi.CustomResource):
         __props__["rules"] = rules
         __props__["tags"] = tags
         return IpGroup(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        The description.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the IP group.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def rules(self) -> Optional[List['outputs.IpGroupRule']]:
+        """
+        One or more pairs specifying the IP group rule (in CIDR format) from which web requests originate.
+        """
+        return pulumi.get(self, "rules")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

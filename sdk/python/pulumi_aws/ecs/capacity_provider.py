@@ -14,26 +14,6 @@ __all__ = ['CapacityProvider']
 
 
 class CapacityProvider(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The Amazon Resource Name (ARN) that identifies the capacity provider.
-    """
-
-    auto_scaling_group_provider: pulumi.Output['outputs.CapacityProviderAutoScalingGroupProvider'] = pulumi.property("autoScalingGroupProvider")
-    """
-    Nested argument defining the provider for the ECS auto scaling group. Defined below.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the capacity provider.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value map of resource tags.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -128,6 +108,38 @@ class CapacityProvider(pulumi.CustomResource):
         __props__["name"] = name
         __props__["tags"] = tags
         return CapacityProvider(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) that identifies the capacity provider.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="autoScalingGroupProvider")
+    def auto_scaling_group_provider(self) -> 'outputs.CapacityProviderAutoScalingGroupProvider':
+        """
+        Nested argument defining the provider for the ECS auto scaling group. Defined below.
+        """
+        return pulumi.get(self, "auto_scaling_group_provider")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the capacity provider.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value map of resource tags.
+        """
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

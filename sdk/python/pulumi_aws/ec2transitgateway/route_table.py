@@ -12,26 +12,6 @@ __all__ = ['RouteTable']
 
 
 class RouteTable(pulumi.CustomResource):
-    default_association_route_table: pulumi.Output[bool] = pulumi.property("defaultAssociationRouteTable")
-    """
-    Boolean whether this is the default association route table for the EC2 Transit Gateway.
-    """
-
-    default_propagation_route_table: pulumi.Output[bool] = pulumi.property("defaultPropagationRouteTable")
-    """
-    Boolean whether this is the default propagation route table for the EC2 Transit Gateway.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    Key-value tags for the EC2 Transit Gateway Route Table.
-    """
-
-    transit_gateway_id: pulumi.Output[str] = pulumi.property("transitGatewayId")
-    """
-    Identifier of EC2 Transit Gateway.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -115,6 +95,38 @@ class RouteTable(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["transit_gateway_id"] = transit_gateway_id
         return RouteTable(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="defaultAssociationRouteTable")
+    def default_association_route_table(self) -> bool:
+        """
+        Boolean whether this is the default association route table for the EC2 Transit Gateway.
+        """
+        return pulumi.get(self, "default_association_route_table")
+
+    @property
+    @pulumi.getter(name="defaultPropagationRouteTable")
+    def default_propagation_route_table(self) -> bool:
+        """
+        Boolean whether this is the default propagation route table for the EC2 Transit Gateway.
+        """
+        return pulumi.get(self, "default_propagation_route_table")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Key-value tags for the EC2 Transit Gateway Route Table.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="transitGatewayId")
+    def transit_gateway_id(self) -> str:
+        """
+        Identifier of EC2 Transit Gateway.
+        """
+        return pulumi.get(self, "transit_gateway_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

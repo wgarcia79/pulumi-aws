@@ -12,43 +12,6 @@ __all__ = ['IpSet']
 
 
 class IpSet(pulumi.CustomResource):
-    addresses: pulumi.Output[Optional[List[str]]] = pulumi.property("addresses")
-    """
-    Contains an array of strings that specify one or more IP addresses or blocks of IP addresses in Classless Inter-Domain Routing (CIDR) notation. AWS WAF supports all address ranges for IP versions IPv4 and IPv6.
-    """
-
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The Amazon Resource Name (ARN) that identifies the cluster.
-    """
-
-    description: pulumi.Output[Optional[str]] = pulumi.property("description")
-    """
-    A friendly description of the IP set.
-    """
-
-    ip_address_version: pulumi.Output[str] = pulumi.property("ipAddressVersion")
-    """
-    Specify IPV4 or IPV6. Valid values are `IPV4` or `IPV6`.
-    """
-
-    lock_token: pulumi.Output[str] = pulumi.property("lockToken")
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    A friendly name of the IP set.
-    """
-
-    scope: pulumi.Output[str] = pulumi.property("scope")
-    """
-    Specifies whether this is for an AWS CloudFront distribution or for a regional application. Valid values are `CLOUDFRONT` or `REGIONAL`. To work with CloudFront, you must also specify the Region US East (N. Virginia).
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    An array of key:value pairs to associate with the resource.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -168,6 +131,67 @@ class IpSet(pulumi.CustomResource):
         __props__["scope"] = scope
         __props__["tags"] = tags
         return IpSet(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def addresses(self) -> Optional[List[str]]:
+        """
+        Contains an array of strings that specify one or more IP addresses or blocks of IP addresses in Classless Inter-Domain Routing (CIDR) notation. AWS WAF supports all address ranges for IP versions IPv4 and IPv6.
+        """
+        return pulumi.get(self, "addresses")
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The Amazon Resource Name (ARN) that identifies the cluster.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        A friendly description of the IP set.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="ipAddressVersion")
+    def ip_address_version(self) -> str:
+        """
+        Specify IPV4 or IPV6. Valid values are `IPV4` or `IPV6`.
+        """
+        return pulumi.get(self, "ip_address_version")
+
+    @property
+    @pulumi.getter(name="lockToken")
+    def lock_token(self) -> str:
+        return pulumi.get(self, "lock_token")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A friendly name of the IP set.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def scope(self) -> str:
+        """
+        Specifies whether this is for an AWS CloudFront distribution or for a regional application. Valid values are `CLOUDFRONT` or `REGIONAL`. To work with CloudFront, you must also specify the Region US East (N. Virginia).
+        """
+        return pulumi.get(self, "scope")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        An array of key:value pairs to associate with the resource.
+        """
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

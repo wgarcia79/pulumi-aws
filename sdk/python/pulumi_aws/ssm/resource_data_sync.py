@@ -14,16 +14,6 @@ __all__ = ['ResourceDataSync']
 
 
 class ResourceDataSync(pulumi.CustomResource):
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    Name for the configuration.
-    """
-
-    s3_destination: pulumi.Output['outputs.ResourceDataSyncS3Destination'] = pulumi.property("s3Destination")
-    """
-    Amazon S3 configuration details for the sync.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -135,6 +125,22 @@ class ResourceDataSync(pulumi.CustomResource):
         __props__["name"] = name
         __props__["s3_destination"] = s3_destination
         return ResourceDataSync(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name for the configuration.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="s3Destination")
+    def s3_destination(self) -> 'outputs.ResourceDataSyncS3Destination':
+        """
+        Amazon S3 configuration details for the sync.
+        """
+        return pulumi.get(self, "s3_destination")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

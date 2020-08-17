@@ -12,16 +12,6 @@ __all__ = ['ThingPrincipalAttachment']
 
 
 class ThingPrincipalAttachment(pulumi.CustomResource):
-    principal: pulumi.Output[str] = pulumi.property("principal")
-    """
-    The AWS IoT Certificate ARN or Amazon Cognito Identity ID.
-    """
-
-    thing: pulumi.Output[str] = pulumi.property("thing")
-    """
-    The name of the thing.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -105,6 +95,22 @@ class ThingPrincipalAttachment(pulumi.CustomResource):
         __props__["principal"] = principal
         __props__["thing"] = thing
         return ThingPrincipalAttachment(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def principal(self) -> str:
+        """
+        The AWS IoT Certificate ARN or Amazon Cognito Identity ID.
+        """
+        return pulumi.get(self, "principal")
+
+    @property
+    @pulumi.getter
+    def thing(self) -> str:
+        """
+        The name of the thing.
+        """
+        return pulumi.get(self, "thing")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -15,15 +15,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetCipherTextResult:
-    ciphertext_blob: str = pulumi.property("ciphertextBlob")
-    context: Optional[Mapping[str, str]] = pulumi.property("context")
-    id: str = pulumi.property("id")
-    key_id: str = pulumi.property("keyId")
-    plaintext: str = pulumi.property("plaintext")
-
-
 class GetCipherTextResult:
     """
     A collection of values returned by getCipherText.
@@ -31,25 +24,51 @@ class GetCipherTextResult:
     def __init__(__self__, ciphertext_blob=None, context=None, id=None, key_id=None, plaintext=None):
         if ciphertext_blob and not isinstance(ciphertext_blob, str):
             raise TypeError("Expected argument 'ciphertext_blob' to be a str")
-        __self__.ciphertext_blob = ciphertext_blob
+        pulumi.set(__self__, "ciphertext_blob", ciphertext_blob)
+        if context and not isinstance(context, dict):
+            raise TypeError("Expected argument 'context' to be a dict")
+        pulumi.set(__self__, "context", context)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if key_id and not isinstance(key_id, str):
+            raise TypeError("Expected argument 'key_id' to be a str")
+        pulumi.set(__self__, "key_id", key_id)
+        if plaintext and not isinstance(plaintext, str):
+            raise TypeError("Expected argument 'plaintext' to be a str")
+        pulumi.set(__self__, "plaintext", plaintext)
+
+    @property
+    @pulumi.getter(name="ciphertextBlob")
+    def ciphertext_blob(self) -> str:
         """
         Base64 encoded ciphertext
         """
-        if context and not isinstance(context, dict):
-            raise TypeError("Expected argument 'context' to be a dict")
-        __self__.context = context
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "ciphertext_blob")
+
+    @property
+    @pulumi.getter
+    def context(self) -> Optional[Mapping[str, str]]:
+        return pulumi.get(self, "context")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if key_id and not isinstance(key_id, str):
-            raise TypeError("Expected argument 'key_id' to be a str")
-        __self__.key_id = key_id
-        if plaintext and not isinstance(plaintext, str):
-            raise TypeError("Expected argument 'plaintext' to be a str")
-        __self__.plaintext = plaintext
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> str:
+        return pulumi.get(self, "key_id")
+
+    @property
+    @pulumi.getter
+    def plaintext(self) -> str:
+        return pulumi.get(self, "plaintext")
+
 
 
 class AwaitableGetCipherTextResult(GetCipherTextResult):
@@ -106,7 +125,7 @@ def get_cipher_text(context: Optional[Mapping[str, str]] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:kms/getCipherText:getCipherText', __args__, opts=opts, typ=_GetCipherTextResult).value
+    __ret__ = pulumi.runtime.invoke('aws:kms/getCipherText:getCipherText', __args__, opts=opts, typ=GetCipherTextResult).value
 
     return AwaitableGetCipherTextResult(
         ciphertext_blob=__ret__.ciphertext_blob,

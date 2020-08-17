@@ -17,14 +17,21 @@ __all__ = [
 
 @pulumi.output_type
 class ClusterLogging(dict):
-    @property
-    @pulumi.getter(name="bucketName")
-    def bucket_name(self) -> Optional[str]:
+    def __init__(__self__, *,
+                 enable: bool,
+                 bucket_name: Optional[str] = None,
+                 s3_key_prefix: Optional[str] = None):
         """
-        The name of an existing S3 bucket where the log files are to be stored. Must be in the same region as the cluster and the cluster must have read bucket and put object permissions.
-        For more information on the permissions required for the bucket, please read the AWS [documentation](http://docs.aws.amazon.com/redshift/latest/mgmt/db-auditing.html#db-auditing-enable-logging)
+        :param bool enable: Enables logging information such as queries and connection attempts, for the specified Amazon Redshift cluster.
+        :param str bucket_name: The name of an existing S3 bucket where the log files are to be stored. Must be in the same region as the cluster and the cluster must have read bucket and put object permissions.
+               For more information on the permissions required for the bucket, please read the AWS [documentation](http://docs.aws.amazon.com/redshift/latest/mgmt/db-auditing.html#db-auditing-enable-logging)
+        :param str s3_key_prefix: The prefix applied to the log file names.
         """
-        ...
+        pulumi.set(__self__, "enable", enable)
+        if bucket_name is not None:
+            pulumi.set(__self__, "bucket_name", bucket_name)
+        if s3_key_prefix is not None:
+            pulumi.set(__self__, "s3_key_prefix", s3_key_prefix)
 
     @property
     @pulumi.getter
@@ -32,7 +39,16 @@ class ClusterLogging(dict):
         """
         Enables logging information such as queries and connection attempts, for the specified Amazon Redshift cluster.
         """
-        ...
+        return pulumi.get(self, "enable")
+
+    @property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> Optional[str]:
+        """
+        The name of an existing S3 bucket where the log files are to be stored. Must be in the same region as the cluster and the cluster must have read bucket and put object permissions.
+        For more information on the permissions required for the bucket, please read the AWS [documentation](http://docs.aws.amazon.com/redshift/latest/mgmt/db-auditing.html#db-auditing-enable-logging)
+        """
+        return pulumi.get(self, "bucket_name")
 
     @property
     @pulumi.getter(name="s3KeyPrefix")
@@ -40,7 +56,7 @@ class ClusterLogging(dict):
         """
         The prefix applied to the log file names.
         """
-        ...
+        return pulumi.get(self, "s3_key_prefix")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -48,13 +64,28 @@ class ClusterLogging(dict):
 
 @pulumi.output_type
 class ClusterSnapshotCopy(dict):
+    def __init__(__self__, *,
+                 destination_region: str,
+                 grant_name: Optional[str] = None,
+                 retention_period: Optional[float] = None):
+        """
+        :param str destination_region: The destination region that you want to copy snapshots to.
+        :param str grant_name: The name of the snapshot copy grant to use when snapshots of an AWS KMS-encrypted cluster are copied to the destination region.
+        :param float retention_period: The number of days to retain automated snapshots in the destination region after they are copied from the source region. Defaults to `7`.
+        """
+        pulumi.set(__self__, "destination_region", destination_region)
+        if grant_name is not None:
+            pulumi.set(__self__, "grant_name", grant_name)
+        if retention_period is not None:
+            pulumi.set(__self__, "retention_period", retention_period)
+
     @property
     @pulumi.getter(name="destinationRegion")
     def destination_region(self) -> str:
         """
         The destination region that you want to copy snapshots to.
         """
-        ...
+        return pulumi.get(self, "destination_region")
 
     @property
     @pulumi.getter(name="grantName")
@@ -62,7 +93,7 @@ class ClusterSnapshotCopy(dict):
         """
         The name of the snapshot copy grant to use when snapshots of an AWS KMS-encrypted cluster are copied to the destination region.
         """
-        ...
+        return pulumi.get(self, "grant_name")
 
     @property
     @pulumi.getter(name="retentionPeriod")
@@ -70,7 +101,7 @@ class ClusterSnapshotCopy(dict):
         """
         The number of days to retain automated snapshots in the destination region after they are copied from the source region. Defaults to `7`.
         """
-        ...
+        return pulumi.get(self, "retention_period")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -78,13 +109,23 @@ class ClusterSnapshotCopy(dict):
 
 @pulumi.output_type
 class ParameterGroupParameter(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 value: str):
+        """
+        :param str name: The name of the Redshift parameter.
+        :param str value: The value of the Redshift parameter.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
     @property
     @pulumi.getter
     def name(self) -> str:
         """
         The name of the Redshift parameter.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -92,7 +133,7 @@ class ParameterGroupParameter(dict):
         """
         The value of the Redshift parameter.
         """
-        ...
+        return pulumi.get(self, "value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -100,13 +141,30 @@ class ParameterGroupParameter(dict):
 
 @pulumi.output_type
 class SecurityGroupIngress(dict):
+    def __init__(__self__, *,
+                 cidr: Optional[str] = None,
+                 security_group_name: Optional[str] = None,
+                 security_group_owner_id: Optional[str] = None):
+        """
+        :param str cidr: The CIDR block to accept
+        :param str security_group_name: The name of the security group to authorize
+        :param str security_group_owner_id: The owner Id of the security group provided
+               by `security_group_name`.
+        """
+        if cidr is not None:
+            pulumi.set(__self__, "cidr", cidr)
+        if security_group_name is not None:
+            pulumi.set(__self__, "security_group_name", security_group_name)
+        if security_group_owner_id is not None:
+            pulumi.set(__self__, "security_group_owner_id", security_group_owner_id)
+
     @property
     @pulumi.getter
     def cidr(self) -> Optional[str]:
         """
         The CIDR block to accept
         """
-        ...
+        return pulumi.get(self, "cidr")
 
     @property
     @pulumi.getter(name="securityGroupName")
@@ -114,7 +172,7 @@ class SecurityGroupIngress(dict):
         """
         The name of the security group to authorize
         """
-        ...
+        return pulumi.get(self, "security_group_name")
 
     @property
     @pulumi.getter(name="securityGroupOwnerId")
@@ -123,7 +181,7 @@ class SecurityGroupIngress(dict):
         The owner Id of the security group provided
         by `security_group_name`.
         """
-        ...
+        return pulumi.get(self, "security_group_owner_id")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

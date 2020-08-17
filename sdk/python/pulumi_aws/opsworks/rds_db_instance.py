@@ -12,26 +12,6 @@ __all__ = ['RdsDbInstance']
 
 
 class RdsDbInstance(pulumi.CustomResource):
-    db_password: pulumi.Output[str] = pulumi.property("dbPassword")
-    """
-    A db password
-    """
-
-    db_user: pulumi.Output[str] = pulumi.property("dbUser")
-    """
-    A db username
-    """
-
-    rds_db_instance_arn: pulumi.Output[str] = pulumi.property("rdsDbInstanceArn")
-    """
-    The db instance to register for this stack. Changing this will force a new resource.
-    """
-
-    stack_id: pulumi.Output[str] = pulumi.property("stackId")
-    """
-    The stack to register a db instance for. Changing this will force a new resource.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -131,6 +111,38 @@ class RdsDbInstance(pulumi.CustomResource):
         __props__["rds_db_instance_arn"] = rds_db_instance_arn
         __props__["stack_id"] = stack_id
         return RdsDbInstance(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="dbPassword")
+    def db_password(self) -> str:
+        """
+        A db password
+        """
+        return pulumi.get(self, "db_password")
+
+    @property
+    @pulumi.getter(name="dbUser")
+    def db_user(self) -> str:
+        """
+        A db username
+        """
+        return pulumi.get(self, "db_user")
+
+    @property
+    @pulumi.getter(name="rdsDbInstanceArn")
+    def rds_db_instance_arn(self) -> str:
+        """
+        The db instance to register for this stack. Changing this will force a new resource.
+        """
+        return pulumi.get(self, "rds_db_instance_arn")
+
+    @property
+    @pulumi.getter(name="stackId")
+    def stack_id(self) -> str:
+        """
+        The stack to register a db instance for. Changing this will force a new resource.
+        """
+        return pulumi.get(self, "stack_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

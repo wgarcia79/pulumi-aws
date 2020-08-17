@@ -14,106 +14,6 @@ __all__ = ['CustomLayer']
 
 
 class CustomLayer(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The Amazon Resource Name(ARN) of the layer.
-    """
-
-    auto_assign_elastic_ips: pulumi.Output[Optional[bool]] = pulumi.property("autoAssignElasticIps")
-    """
-    Whether to automatically assign an elastic IP address to the layer's instances.
-    """
-
-    auto_assign_public_ips: pulumi.Output[Optional[bool]] = pulumi.property("autoAssignPublicIps")
-    """
-    For stacks belonging to a VPC, whether to automatically assign a public IP address to each of the layer's instances.
-    """
-
-    auto_healing: pulumi.Output[Optional[bool]] = pulumi.property("autoHealing")
-    """
-    Whether to enable auto-healing for the layer.
-    """
-
-    custom_configure_recipes: pulumi.Output[Optional[List[str]]] = pulumi.property("customConfigureRecipes")
-
-    custom_deploy_recipes: pulumi.Output[Optional[List[str]]] = pulumi.property("customDeployRecipes")
-
-    custom_instance_profile_arn: pulumi.Output[Optional[str]] = pulumi.property("customInstanceProfileArn")
-    """
-    The ARN of an IAM profile that will be used for the layer's instances.
-    """
-
-    custom_json: pulumi.Output[Optional[str]] = pulumi.property("customJson")
-    """
-    Custom JSON attributes to apply to the layer.
-    """
-
-    custom_security_group_ids: pulumi.Output[Optional[List[str]]] = pulumi.property("customSecurityGroupIds")
-    """
-    Ids for a set of security groups to apply to the layer's instances.
-    """
-
-    custom_setup_recipes: pulumi.Output[Optional[List[str]]] = pulumi.property("customSetupRecipes")
-
-    custom_shutdown_recipes: pulumi.Output[Optional[List[str]]] = pulumi.property("customShutdownRecipes")
-
-    custom_undeploy_recipes: pulumi.Output[Optional[List[str]]] = pulumi.property("customUndeployRecipes")
-
-    drain_elb_on_shutdown: pulumi.Output[Optional[bool]] = pulumi.property("drainElbOnShutdown")
-    """
-    Whether to enable Elastic Load Balancing connection draining.
-    """
-
-    ebs_volumes: pulumi.Output[Optional[List['outputs.CustomLayerEbsVolume']]] = pulumi.property("ebsVolumes")
-    """
-    `ebs_volume` blocks, as described below, will each create an EBS volume and connect it to the layer's instances.
-    """
-
-    elastic_load_balancer: pulumi.Output[Optional[str]] = pulumi.property("elasticLoadBalancer")
-    """
-    Name of an Elastic Load Balancer to attach to this layer
-    """
-
-    install_updates_on_boot: pulumi.Output[Optional[bool]] = pulumi.property("installUpdatesOnBoot")
-    """
-    Whether to install OS and package updates on each instance when it boots.
-    """
-
-    instance_shutdown_timeout: pulumi.Output[Optional[float]] = pulumi.property("instanceShutdownTimeout")
-    """
-    The time, in seconds, that OpsWorks will wait for Chef to complete after triggering the Shutdown event.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    A human-readable name for the layer.
-    """
-
-    short_name: pulumi.Output[str] = pulumi.property("shortName")
-    """
-    A short, machine-readable name for the layer, which will be used to identify it in the Chef node JSON.
-    """
-
-    stack_id: pulumi.Output[str] = pulumi.property("stackId")
-    """
-    The id of the stack the layer will belong to.
-    """
-
-    system_packages: pulumi.Output[Optional[List[str]]] = pulumi.property("systemPackages")
-    """
-    Names of a set of system packages to install on the layer's instances.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
-    use_ebs_optimized_instances: pulumi.Output[Optional[bool]] = pulumi.property("useEbsOptimizedInstances")
-    """
-    Whether to use EBS-optimized instances.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -307,6 +207,175 @@ class CustomLayer(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["use_ebs_optimized_instances"] = use_ebs_optimized_instances
         return CustomLayer(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The Amazon Resource Name(ARN) of the layer.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="autoAssignElasticIps")
+    def auto_assign_elastic_ips(self) -> Optional[bool]:
+        """
+        Whether to automatically assign an elastic IP address to the layer's instances.
+        """
+        return pulumi.get(self, "auto_assign_elastic_ips")
+
+    @property
+    @pulumi.getter(name="autoAssignPublicIps")
+    def auto_assign_public_ips(self) -> Optional[bool]:
+        """
+        For stacks belonging to a VPC, whether to automatically assign a public IP address to each of the layer's instances.
+        """
+        return pulumi.get(self, "auto_assign_public_ips")
+
+    @property
+    @pulumi.getter(name="autoHealing")
+    def auto_healing(self) -> Optional[bool]:
+        """
+        Whether to enable auto-healing for the layer.
+        """
+        return pulumi.get(self, "auto_healing")
+
+    @property
+    @pulumi.getter(name="customConfigureRecipes")
+    def custom_configure_recipes(self) -> Optional[List[str]]:
+        return pulumi.get(self, "custom_configure_recipes")
+
+    @property
+    @pulumi.getter(name="customDeployRecipes")
+    def custom_deploy_recipes(self) -> Optional[List[str]]:
+        return pulumi.get(self, "custom_deploy_recipes")
+
+    @property
+    @pulumi.getter(name="customInstanceProfileArn")
+    def custom_instance_profile_arn(self) -> Optional[str]:
+        """
+        The ARN of an IAM profile that will be used for the layer's instances.
+        """
+        return pulumi.get(self, "custom_instance_profile_arn")
+
+    @property
+    @pulumi.getter(name="customJson")
+    def custom_json(self) -> Optional[str]:
+        """
+        Custom JSON attributes to apply to the layer.
+        """
+        return pulumi.get(self, "custom_json")
+
+    @property
+    @pulumi.getter(name="customSecurityGroupIds")
+    def custom_security_group_ids(self) -> Optional[List[str]]:
+        """
+        Ids for a set of security groups to apply to the layer's instances.
+        """
+        return pulumi.get(self, "custom_security_group_ids")
+
+    @property
+    @pulumi.getter(name="customSetupRecipes")
+    def custom_setup_recipes(self) -> Optional[List[str]]:
+        return pulumi.get(self, "custom_setup_recipes")
+
+    @property
+    @pulumi.getter(name="customShutdownRecipes")
+    def custom_shutdown_recipes(self) -> Optional[List[str]]:
+        return pulumi.get(self, "custom_shutdown_recipes")
+
+    @property
+    @pulumi.getter(name="customUndeployRecipes")
+    def custom_undeploy_recipes(self) -> Optional[List[str]]:
+        return pulumi.get(self, "custom_undeploy_recipes")
+
+    @property
+    @pulumi.getter(name="drainElbOnShutdown")
+    def drain_elb_on_shutdown(self) -> Optional[bool]:
+        """
+        Whether to enable Elastic Load Balancing connection draining.
+        """
+        return pulumi.get(self, "drain_elb_on_shutdown")
+
+    @property
+    @pulumi.getter(name="ebsVolumes")
+    def ebs_volumes(self) -> Optional[List['outputs.CustomLayerEbsVolume']]:
+        """
+        `ebs_volume` blocks, as described below, will each create an EBS volume and connect it to the layer's instances.
+        """
+        return pulumi.get(self, "ebs_volumes")
+
+    @property
+    @pulumi.getter(name="elasticLoadBalancer")
+    def elastic_load_balancer(self) -> Optional[str]:
+        """
+        Name of an Elastic Load Balancer to attach to this layer
+        """
+        return pulumi.get(self, "elastic_load_balancer")
+
+    @property
+    @pulumi.getter(name="installUpdatesOnBoot")
+    def install_updates_on_boot(self) -> Optional[bool]:
+        """
+        Whether to install OS and package updates on each instance when it boots.
+        """
+        return pulumi.get(self, "install_updates_on_boot")
+
+    @property
+    @pulumi.getter(name="instanceShutdownTimeout")
+    def instance_shutdown_timeout(self) -> Optional[float]:
+        """
+        The time, in seconds, that OpsWorks will wait for Chef to complete after triggering the Shutdown event.
+        """
+        return pulumi.get(self, "instance_shutdown_timeout")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A human-readable name for the layer.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="shortName")
+    def short_name(self) -> str:
+        """
+        A short, machine-readable name for the layer, which will be used to identify it in the Chef node JSON.
+        """
+        return pulumi.get(self, "short_name")
+
+    @property
+    @pulumi.getter(name="stackId")
+    def stack_id(self) -> str:
+        """
+        The id of the stack the layer will belong to.
+        """
+        return pulumi.get(self, "stack_id")
+
+    @property
+    @pulumi.getter(name="systemPackages")
+    def system_packages(self) -> Optional[List[str]]:
+        """
+        Names of a set of system packages to install on the layer's instances.
+        """
+        return pulumi.get(self, "system_packages")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="useEbsOptimizedInstances")
+    def use_ebs_optimized_instances(self) -> Optional[bool]:
+        """
+        Whether to use EBS-optimized instances.
+        """
+        return pulumi.get(self, "use_ebs_optimized_instances")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

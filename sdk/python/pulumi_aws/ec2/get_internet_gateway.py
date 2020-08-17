@@ -17,17 +17,8 @@ __all__ = [
 ]
 
 
+
 @pulumi.output_type
-class _GetInternetGatewayResult:
-    arn: str = pulumi.property("arn")
-    attachments: List['outputs.GetInternetGatewayAttachmentResult'] = pulumi.property("attachments")
-    filters: Optional[List['outputs.GetInternetGatewayFilterResult']] = pulumi.property("filters")
-    id: str = pulumi.property("id")
-    internet_gateway_id: str = pulumi.property("internetGatewayId")
-    owner_id: str = pulumi.property("ownerId")
-    tags: Mapping[str, str] = pulumi.property("tags")
-
-
 class GetInternetGatewayResult:
     """
     A collection of values returned by getInternetGateway.
@@ -35,34 +26,70 @@ class GetInternetGatewayResult:
     def __init__(__self__, arn=None, attachments=None, filters=None, id=None, internet_gateway_id=None, owner_id=None, tags=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
-        __self__.arn = arn
+        pulumi.set(__self__, "arn", arn)
+        if attachments and not isinstance(attachments, list):
+            raise TypeError("Expected argument 'attachments' to be a list")
+        pulumi.set(__self__, "attachments", attachments)
+        if filters and not isinstance(filters, list):
+            raise TypeError("Expected argument 'filters' to be a list")
+        pulumi.set(__self__, "filters", filters)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if internet_gateway_id and not isinstance(internet_gateway_id, str):
+            raise TypeError("Expected argument 'internet_gateway_id' to be a str")
+        pulumi.set(__self__, "internet_gateway_id", internet_gateway_id)
+        if owner_id and not isinstance(owner_id, str):
+            raise TypeError("Expected argument 'owner_id' to be a str")
+        pulumi.set(__self__, "owner_id", owner_id)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
         """
         The ARN of the Internet Gateway.
         """
-        if attachments and not isinstance(attachments, list):
-            raise TypeError("Expected argument 'attachments' to be a list")
-        __self__.attachments = attachments
-        if filters and not isinstance(filters, list):
-            raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter
+    def attachments(self) -> List['outputs.GetInternetGatewayAttachmentResult']:
+        return pulumi.get(self, "attachments")
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetInternetGatewayFilterResult']]:
+        return pulumi.get(self, "filters")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if internet_gateway_id and not isinstance(internet_gateway_id, str):
-            raise TypeError("Expected argument 'internet_gateway_id' to be a str")
-        __self__.internet_gateway_id = internet_gateway_id
-        if owner_id and not isinstance(owner_id, str):
-            raise TypeError("Expected argument 'owner_id' to be a str")
-        __self__.owner_id = owner_id
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="internetGatewayId")
+    def internet_gateway_id(self) -> str:
+        return pulumi.get(self, "internet_gateway_id")
+
+    @property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> str:
         """
         The ID of the AWS account that owns the internet gateway.
         """
-        if tags and not isinstance(tags, dict):
-            raise TypeError("Expected argument 'tags' to be a dict")
-        __self__.tags = tags
+        return pulumi.get(self, "owner_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
+        return pulumi.get(self, "tags")
+
 
 
 class AwaitableGetInternetGatewayResult(GetInternetGatewayResult):
@@ -115,7 +142,7 @@ def get_internet_gateway(filters: Optional[List[pulumi.InputType['GetInternetGat
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('aws:ec2/getInternetGateway:getInternetGateway', __args__, opts=opts, typ=_GetInternetGatewayResult).value
+    __ret__ = pulumi.runtime.invoke('aws:ec2/getInternetGateway:getInternetGateway', __args__, opts=opts, typ=GetInternetGatewayResult).value
 
     return AwaitableGetInternetGatewayResult(
         arn=__ret__.arn,

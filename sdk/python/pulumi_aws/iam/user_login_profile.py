@@ -12,36 +12,6 @@ __all__ = ['UserLoginProfile']
 
 
 class UserLoginProfile(pulumi.CustomResource):
-    encrypted_password: pulumi.Output[str] = pulumi.property("encryptedPassword")
-    """
-    The encrypted password, base64 encoded. Only available if password was handled on this provider resource creation, not import.
-    """
-
-    key_fingerprint: pulumi.Output[str] = pulumi.property("keyFingerprint")
-    """
-    The fingerprint of the PGP key used to encrypt the password. Only available if password was handled on this provider resource creation, not import.
-    """
-
-    password_length: pulumi.Output[Optional[float]] = pulumi.property("passwordLength")
-    """
-    The length of the generated password on resource creation. Only applies on resource creation. Drift detection is not possible with this argument.
-    """
-
-    password_reset_required: pulumi.Output[Optional[bool]] = pulumi.property("passwordResetRequired")
-    """
-    Whether the user should be forced to reset the generated password on resource creation. Only applies on resource creation. Drift detection is not possible with this argument.
-    """
-
-    pgp_key: pulumi.Output[str] = pulumi.property("pgpKey")
-    """
-    Either a base-64 encoded PGP public key, or a keybase username in the form `keybase:username`. Only applies on resource creation. Drift detection is not possible with this argument.
-    """
-
-    user: pulumi.Output[str] = pulumi.property("user")
-    """
-    The IAM user's name.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -147,6 +117,54 @@ class UserLoginProfile(pulumi.CustomResource):
         __props__["pgp_key"] = pgp_key
         __props__["user"] = user
         return UserLoginProfile(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="encryptedPassword")
+    def encrypted_password(self) -> str:
+        """
+        The encrypted password, base64 encoded. Only available if password was handled on this provider resource creation, not import.
+        """
+        return pulumi.get(self, "encrypted_password")
+
+    @property
+    @pulumi.getter(name="keyFingerprint")
+    def key_fingerprint(self) -> str:
+        """
+        The fingerprint of the PGP key used to encrypt the password. Only available if password was handled on this provider resource creation, not import.
+        """
+        return pulumi.get(self, "key_fingerprint")
+
+    @property
+    @pulumi.getter(name="passwordLength")
+    def password_length(self) -> Optional[float]:
+        """
+        The length of the generated password on resource creation. Only applies on resource creation. Drift detection is not possible with this argument.
+        """
+        return pulumi.get(self, "password_length")
+
+    @property
+    @pulumi.getter(name="passwordResetRequired")
+    def password_reset_required(self) -> Optional[bool]:
+        """
+        Whether the user should be forced to reset the generated password on resource creation. Only applies on resource creation. Drift detection is not possible with this argument.
+        """
+        return pulumi.get(self, "password_reset_required")
+
+    @property
+    @pulumi.getter(name="pgpKey")
+    def pgp_key(self) -> str:
+        """
+        Either a base-64 encoded PGP public key, or a keybase username in the form `keybase:username`. Only applies on resource creation. Drift detection is not possible with this argument.
+        """
+        return pulumi.get(self, "pgp_key")
+
+    @property
+    @pulumi.getter
+    def user(self) -> str:
+        """
+        The IAM user's name.
+        """
+        return pulumi.get(self, "user")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

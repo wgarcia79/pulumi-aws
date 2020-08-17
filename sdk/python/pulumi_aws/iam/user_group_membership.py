@@ -12,16 +12,6 @@ __all__ = ['UserGroupMembership']
 
 
 class UserGroupMembership(pulumi.CustomResource):
-    groups: pulumi.Output[List[str]] = pulumi.property("groups")
-    """
-    A list of [IAM Groups](https://www.terraform.io/docs/providers/aws/r/iam_group.html) to add the user to
-    """
-
-    user: pulumi.Output[str] = pulumi.property("user")
-    """
-    The name of the [IAM User](https://www.terraform.io/docs/providers/aws/r/iam_user.html) to add to groups
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -116,6 +106,22 @@ class UserGroupMembership(pulumi.CustomResource):
         __props__["groups"] = groups
         __props__["user"] = user
         return UserGroupMembership(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def groups(self) -> List[str]:
+        """
+        A list of [IAM Groups](https://www.terraform.io/docs/providers/aws/r/iam_group.html) to add the user to
+        """
+        return pulumi.get(self, "groups")
+
+    @property
+    @pulumi.getter
+    def user(self) -> str:
+        """
+        The name of the [IAM User](https://www.terraform.io/docs/providers/aws/r/iam_user.html) to add to groups
+        """
+        return pulumi.get(self, "user")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

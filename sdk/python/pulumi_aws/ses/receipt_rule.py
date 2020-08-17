@@ -14,76 +14,6 @@ __all__ = ['ReceiptRule']
 
 
 class ReceiptRule(pulumi.CustomResource):
-    add_header_actions: pulumi.Output[Optional[List['outputs.ReceiptRuleAddHeaderAction']]] = pulumi.property("addHeaderActions")
-    """
-    A list of Add Header Action blocks. Documented below.
-    """
-
-    after: pulumi.Output[Optional[str]] = pulumi.property("after")
-    """
-    The name of the rule to place this rule after
-    """
-
-    bounce_actions: pulumi.Output[Optional[List['outputs.ReceiptRuleBounceAction']]] = pulumi.property("bounceActions")
-    """
-    A list of Bounce Action blocks. Documented below.
-    """
-
-    enabled: pulumi.Output[bool] = pulumi.property("enabled")
-    """
-    If true, the rule will be enabled
-    """
-
-    lambda_actions: pulumi.Output[Optional[List['outputs.ReceiptRuleLambdaAction']]] = pulumi.property("lambdaActions")
-    """
-    A list of Lambda Action blocks. Documented below.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The name of the rule
-    """
-
-    recipients: pulumi.Output[Optional[List[str]]] = pulumi.property("recipients")
-    """
-    A list of email addresses
-    """
-
-    rule_set_name: pulumi.Output[str] = pulumi.property("ruleSetName")
-    """
-    The name of the rule set
-    """
-
-    s3_actions: pulumi.Output[Optional[List['outputs.ReceiptRuleS3Action']]] = pulumi.property("s3Actions")
-    """
-    A list of S3 Action blocks. Documented below.
-    """
-
-    scan_enabled: pulumi.Output[bool] = pulumi.property("scanEnabled")
-    """
-    If true, incoming emails will be scanned for spam and viruses
-    """
-
-    sns_actions: pulumi.Output[Optional[List['outputs.ReceiptRuleSnsAction']]] = pulumi.property("snsActions")
-    """
-    A list of SNS Action blocks. Documented below.
-    """
-
-    stop_actions: pulumi.Output[Optional[List['outputs.ReceiptRuleStopAction']]] = pulumi.property("stopActions")
-    """
-    A list of Stop Action blocks. Documented below.
-    """
-
-    tls_policy: pulumi.Output[str] = pulumi.property("tlsPolicy")
-    """
-    Require or Optional
-    """
-
-    workmail_actions: pulumi.Output[Optional[List['outputs.ReceiptRuleWorkmailAction']]] = pulumi.property("workmailActions")
-    """
-    A list of WorkMail Action blocks. Documented below.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -245,6 +175,118 @@ class ReceiptRule(pulumi.CustomResource):
         __props__["tls_policy"] = tls_policy
         __props__["workmail_actions"] = workmail_actions
         return ReceiptRule(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="addHeaderActions")
+    def add_header_actions(self) -> Optional[List['outputs.ReceiptRuleAddHeaderAction']]:
+        """
+        A list of Add Header Action blocks. Documented below.
+        """
+        return pulumi.get(self, "add_header_actions")
+
+    @property
+    @pulumi.getter
+    def after(self) -> Optional[str]:
+        """
+        The name of the rule to place this rule after
+        """
+        return pulumi.get(self, "after")
+
+    @property
+    @pulumi.getter(name="bounceActions")
+    def bounce_actions(self) -> Optional[List['outputs.ReceiptRuleBounceAction']]:
+        """
+        A list of Bounce Action blocks. Documented below.
+        """
+        return pulumi.get(self, "bounce_actions")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        If true, the rule will be enabled
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="lambdaActions")
+    def lambda_actions(self) -> Optional[List['outputs.ReceiptRuleLambdaAction']]:
+        """
+        A list of Lambda Action blocks. Documented below.
+        """
+        return pulumi.get(self, "lambda_actions")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the rule
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def recipients(self) -> Optional[List[str]]:
+        """
+        A list of email addresses
+        """
+        return pulumi.get(self, "recipients")
+
+    @property
+    @pulumi.getter(name="ruleSetName")
+    def rule_set_name(self) -> str:
+        """
+        The name of the rule set
+        """
+        return pulumi.get(self, "rule_set_name")
+
+    @property
+    @pulumi.getter(name="s3Actions")
+    def s3_actions(self) -> Optional[List['outputs.ReceiptRuleS3Action']]:
+        """
+        A list of S3 Action blocks. Documented below.
+        """
+        return pulumi.get(self, "s3_actions")
+
+    @property
+    @pulumi.getter(name="scanEnabled")
+    def scan_enabled(self) -> bool:
+        """
+        If true, incoming emails will be scanned for spam and viruses
+        """
+        return pulumi.get(self, "scan_enabled")
+
+    @property
+    @pulumi.getter(name="snsActions")
+    def sns_actions(self) -> Optional[List['outputs.ReceiptRuleSnsAction']]:
+        """
+        A list of SNS Action blocks. Documented below.
+        """
+        return pulumi.get(self, "sns_actions")
+
+    @property
+    @pulumi.getter(name="stopActions")
+    def stop_actions(self) -> Optional[List['outputs.ReceiptRuleStopAction']]:
+        """
+        A list of Stop Action blocks. Documented below.
+        """
+        return pulumi.get(self, "stop_actions")
+
+    @property
+    @pulumi.getter(name="tlsPolicy")
+    def tls_policy(self) -> str:
+        """
+        Require or Optional
+        """
+        return pulumi.get(self, "tls_policy")
+
+    @property
+    @pulumi.getter(name="workmailActions")
+    def workmail_actions(self) -> Optional[List['outputs.ReceiptRuleWorkmailAction']]:
+        """
+        A list of WorkMail Action blocks. Documented below.
+        """
+        return pulumi.get(self, "workmail_actions")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

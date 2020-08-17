@@ -14,46 +14,6 @@ __all__ = ['OptionGroup']
 
 
 class OptionGroup(pulumi.CustomResource):
-    arn: pulumi.Output[str] = pulumi.property("arn")
-    """
-    The ARN of the db option group.
-    """
-
-    engine_name: pulumi.Output[str] = pulumi.property("engineName")
-    """
-    Specifies the name of the engine that this option group should be associated with.
-    """
-
-    major_engine_version: pulumi.Output[str] = pulumi.property("majorEngineVersion")
-    """
-    Specifies the major version of the engine that this option group should be associated with.
-    """
-
-    name: pulumi.Output[str] = pulumi.property("name")
-    """
-    The Name of the setting.
-    """
-
-    name_prefix: pulumi.Output[str] = pulumi.property("namePrefix")
-    """
-    Creates a unique name beginning with the specified prefix. Conflicts with `name`. Must be lowercase, to match as it is stored in AWS.
-    """
-
-    option_group_description: pulumi.Output[str] = pulumi.property("optionGroupDescription")
-    """
-    The description of the option group. Defaults to "Managed by Pulumi".
-    """
-
-    options: pulumi.Output[Optional[List['outputs.OptionGroupOption']]] = pulumi.property("options")
-    """
-    A list of Options to apply.
-    """
-
-    tags: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("tags")
-    """
-    A map of tags to assign to the resource.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -196,6 +156,70 @@ class OptionGroup(pulumi.CustomResource):
         __props__["options"] = options
         __props__["tags"] = tags
         return OptionGroup(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def arn(self) -> str:
+        """
+        The ARN of the db option group.
+        """
+        return pulumi.get(self, "arn")
+
+    @property
+    @pulumi.getter(name="engineName")
+    def engine_name(self) -> str:
+        """
+        Specifies the name of the engine that this option group should be associated with.
+        """
+        return pulumi.get(self, "engine_name")
+
+    @property
+    @pulumi.getter(name="majorEngineVersion")
+    def major_engine_version(self) -> str:
+        """
+        Specifies the major version of the engine that this option group should be associated with.
+        """
+        return pulumi.get(self, "major_engine_version")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The Name of the setting.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> str:
+        """
+        Creates a unique name beginning with the specified prefix. Conflicts with `name`. Must be lowercase, to match as it is stored in AWS.
+        """
+        return pulumi.get(self, "name_prefix")
+
+    @property
+    @pulumi.getter(name="optionGroupDescription")
+    def option_group_description(self) -> str:
+        """
+        The description of the option group. Defaults to "Managed by Pulumi".
+        """
+        return pulumi.get(self, "option_group_description")
+
+    @property
+    @pulumi.getter
+    def options(self) -> Optional[List['outputs.OptionGroupOption']]:
+        """
+        A list of Options to apply.
+        """
+        return pulumi.get(self, "options")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of tags to assign to the resource.
+        """
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

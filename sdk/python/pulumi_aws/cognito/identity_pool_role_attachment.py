@@ -14,21 +14,6 @@ __all__ = ['IdentityPoolRoleAttachment']
 
 
 class IdentityPoolRoleAttachment(pulumi.CustomResource):
-    identity_pool_id: pulumi.Output[str] = pulumi.property("identityPoolId")
-    """
-    An identity pool ID in the format REGION:GUID.
-    """
-
-    role_mappings: pulumi.Output[Optional[List['outputs.IdentityPoolRoleAttachmentRoleMapping']]] = pulumi.property("roleMappings")
-    """
-    A List of Role Mapping.
-    """
-
-    roles: pulumi.Output[Mapping[str, str]] = pulumi.property("roles")
-    """
-    The map of roles associated with this pool. For a given role, the key will be either "authenticated" or "unauthenticated" and the value will be the Role ARN.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -175,6 +160,30 @@ class IdentityPoolRoleAttachment(pulumi.CustomResource):
         __props__["role_mappings"] = role_mappings
         __props__["roles"] = roles
         return IdentityPoolRoleAttachment(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="identityPoolId")
+    def identity_pool_id(self) -> str:
+        """
+        An identity pool ID in the format REGION:GUID.
+        """
+        return pulumi.get(self, "identity_pool_id")
+
+    @property
+    @pulumi.getter(name="roleMappings")
+    def role_mappings(self) -> Optional[List['outputs.IdentityPoolRoleAttachmentRoleMapping']]:
+        """
+        A List of Role Mapping.
+        """
+        return pulumi.get(self, "role_mappings")
+
+    @property
+    @pulumi.getter
+    def roles(self) -> Mapping[str, str]:
+        """
+        The map of roles associated with this pool. For a given role, the key will be either "authenticated" or "unauthenticated" and the value will be the Role ARN.
+        """
+        return pulumi.get(self, "roles")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

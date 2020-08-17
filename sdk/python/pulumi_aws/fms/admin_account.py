@@ -12,11 +12,6 @@ __all__ = ['AdminAccount']
 
 
 class AdminAccount(pulumi.CustomResource):
-    account_id: pulumi.Output[str] = pulumi.property("accountId")
-    """
-    The AWS account ID to associate with AWS Firewall Manager as the AWS Firewall Manager administrator account. This can be an AWS Organizations master account or a member account. Defaults to the current account. Must be configured to perform drift detection.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -84,6 +79,14 @@ class AdminAccount(pulumi.CustomResource):
 
         __props__["account_id"] = account_id
         return AdminAccount(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
+        """
+        The AWS account ID to associate with AWS Firewall Manager as the AWS Firewall Manager administrator account. This can be an AWS Organizations master account or a member account. Defaults to the current account. Must be configured to perform drift detection.
+        """
+        return pulumi.get(self, "account_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
