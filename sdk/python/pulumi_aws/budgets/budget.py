@@ -255,7 +255,7 @@ class Budget(pulumi.CustomResource):
         """
         The ID of the target account for budget. Will use current user's account_id by default if omitted.
         """
-        ...
+        return pulumi.get(self, "account_id")
 
     @property
     @pulumi.getter(name="budgetType")
@@ -263,7 +263,7 @@ class Budget(pulumi.CustomResource):
         """
         Whether this budget tracks monetary cost or usage.
         """
-        ...
+        return pulumi.get(self, "budget_type")
 
     @property
     @pulumi.getter(name="costFilters")
@@ -271,7 +271,7 @@ class Budget(pulumi.CustomResource):
         """
         Map of CostFilters key/value pairs to apply to the budget.
         """
-        ...
+        return pulumi.get(self, "cost_filters")
 
     @property
     @pulumi.getter(name="costTypes")
@@ -279,7 +279,7 @@ class Budget(pulumi.CustomResource):
         """
         Object containing CostTypes The types of cost included in a budget, such as tax and subscriptions..
         """
-        ...
+        return pulumi.get(self, "cost_types")
 
     @property
     @pulumi.getter(name="limitAmount")
@@ -287,7 +287,7 @@ class Budget(pulumi.CustomResource):
         """
         The amount of cost or usage being measured for a budget.
         """
-        ...
+        return pulumi.get(self, "limit_amount")
 
     @property
     @pulumi.getter(name="limitUnit")
@@ -295,7 +295,7 @@ class Budget(pulumi.CustomResource):
         """
         The unit of measurement used for the budget forecast, actual spend, or budget threshold, such as dollars or GB. See [Spend](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/data-type-spend.html) documentation.
         """
-        ...
+        return pulumi.get(self, "limit_unit")
 
     @property
     @pulumi.getter
@@ -303,7 +303,7 @@ class Budget(pulumi.CustomResource):
         """
         The name of a budget. Unique within accounts.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="namePrefix")
@@ -311,7 +311,7 @@ class Budget(pulumi.CustomResource):
         """
         The prefix of the name of a budget. Unique within accounts.
         """
-        ...
+        return pulumi.get(self, "name_prefix")
 
     @property
     @pulumi.getter
@@ -319,7 +319,7 @@ class Budget(pulumi.CustomResource):
         """
         Object containing Budget Notifications. Can be used multiple times to define more than one budget notification
         """
-        ...
+        return pulumi.get(self, "notifications")
 
     @property
     @pulumi.getter(name="timePeriodEnd")
@@ -327,7 +327,7 @@ class Budget(pulumi.CustomResource):
         """
         The end of the time period covered by the budget. There are no restrictions on the end date. Format: `2017-01-01_12:00`.
         """
-        ...
+        return pulumi.get(self, "time_period_end")
 
     @property
     @pulumi.getter(name="timePeriodStart")
@@ -335,7 +335,7 @@ class Budget(pulumi.CustomResource):
         """
         The start of the time period covered by the budget. The start date must come before the end date. Format: `2017-01-01_12:00`.
         """
-        ...
+        return pulumi.get(self, "time_period_start")
 
     @property
     @pulumi.getter(name="timeUnit")
@@ -343,7 +343,7 @@ class Budget(pulumi.CustomResource):
         """
         The length of time until a budget resets the actual and forecasted spend. Valid values: `MONTHLY`, `QUARTERLY`, `ANNUALLY`.
         """
-        ...
+        return pulumi.get(self, "time_unit")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

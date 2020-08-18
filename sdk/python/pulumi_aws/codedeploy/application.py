@@ -113,7 +113,7 @@ class Application(pulumi.CustomResource):
         """
         The compute platform can either be `ECS`, `Lambda`, or `Server`. Default is `Server`.
         """
-        ...
+        return pulumi.get(self, "compute_platform")
 
     @property
     @pulumi.getter
@@ -121,12 +121,12 @@ class Application(pulumi.CustomResource):
         """
         The name of the application.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="uniqueId")
     def unique_id(self) -> str:
-        ...
+        return pulumi.get(self, "unique_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

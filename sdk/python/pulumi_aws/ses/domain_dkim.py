@@ -113,7 +113,7 @@ class DomainDkim(pulumi.CustomResource):
         Find out more about verifying domains in Amazon SES
         in the [AWS SES docs](http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html).
         """
-        ...
+        return pulumi.get(self, "dkim_tokens")
 
     @property
     @pulumi.getter
@@ -121,7 +121,7 @@ class DomainDkim(pulumi.CustomResource):
         """
         Verified domain name to generate DKIM tokens for.
         """
-        ...
+        return pulumi.get(self, "domain")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

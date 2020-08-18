@@ -155,7 +155,7 @@ class NotificationRule(pulumi.CustomResource):
         """
         The codestar notification rule ARN.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="detailType")
@@ -163,7 +163,7 @@ class NotificationRule(pulumi.CustomResource):
         """
         The level of detail to include in the notifications for this resource. Possible values are `BASIC` and `FULL`.
         """
-        ...
+        return pulumi.get(self, "detail_type")
 
     @property
     @pulumi.getter(name="eventTypeIds")
@@ -172,7 +172,7 @@ class NotificationRule(pulumi.CustomResource):
         A list of event types associated with this notification rule.
         For list of allowed events see [here](https://docs.aws.amazon.com/codestar-notifications/latest/userguide/concepts.html#concepts-api).
         """
-        ...
+        return pulumi.get(self, "event_type_ids")
 
     @property
     @pulumi.getter
@@ -180,7 +180,7 @@ class NotificationRule(pulumi.CustomResource):
         """
         The name of notification rule.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -188,7 +188,7 @@ class NotificationRule(pulumi.CustomResource):
         """
         The ARN of the resource to associate with the notification rule.
         """
-        ...
+        return pulumi.get(self, "resource")
 
     @property
     @pulumi.getter
@@ -196,7 +196,7 @@ class NotificationRule(pulumi.CustomResource):
         """
         The status of the notification rule. Possible values are `ENABLED` and `DISABLED`, default is `ENABLED`.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
@@ -204,7 +204,7 @@ class NotificationRule(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -212,7 +212,7 @@ class NotificationRule(pulumi.CustomResource):
         """
         Configuration blocks containing notification target information. Can be specified multiple times. At least one target must be specified on creation.
         """
-        ...
+        return pulumi.get(self, "targets")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

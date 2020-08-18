@@ -109,12 +109,12 @@ class Portfolio(pulumi.CustomResource):
     @property
     @pulumi.getter
     def arn(self) -> str:
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="createdTime")
     def created_time(self) -> str:
-        ...
+        return pulumi.get(self, "created_time")
 
     @property
     @pulumi.getter
@@ -122,7 +122,7 @@ class Portfolio(pulumi.CustomResource):
         """
         Description of the portfolio
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -130,7 +130,7 @@ class Portfolio(pulumi.CustomResource):
         """
         The name of the portfolio.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="providerName")
@@ -138,7 +138,7 @@ class Portfolio(pulumi.CustomResource):
         """
         Name of the person or organization who owns the portfolio.
         """
-        ...
+        return pulumi.get(self, "provider_name")
 
     @property
     @pulumi.getter
@@ -146,7 +146,7 @@ class Portfolio(pulumi.CustomResource):
         """
         Tags to apply to the connection.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -156,7 +156,7 @@ class UsagePlan(pulumi.CustomResource):
         """
         The associated API stages of the usage plan.
         """
-        ...
+        return pulumi.get(self, "api_stages")
 
     @property
     @pulumi.getter
@@ -164,7 +164,7 @@ class UsagePlan(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN)
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -172,7 +172,7 @@ class UsagePlan(pulumi.CustomResource):
         """
         The description of a usage plan.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -180,7 +180,7 @@ class UsagePlan(pulumi.CustomResource):
         """
         The name of the usage plan.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="productCode")
@@ -188,7 +188,7 @@ class UsagePlan(pulumi.CustomResource):
         """
         The AWS Markeplace product identifier to associate with the usage plan as a SaaS product on AWS Marketplace.
         """
-        ...
+        return pulumi.get(self, "product_code")
 
     @property
     @pulumi.getter(name="quotaSettings")
@@ -196,7 +196,7 @@ class UsagePlan(pulumi.CustomResource):
         """
         The quota settings of the usage plan.
         """
-        ...
+        return pulumi.get(self, "quota_settings")
 
     @property
     @pulumi.getter
@@ -204,7 +204,7 @@ class UsagePlan(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="throttleSettings")
@@ -212,7 +212,7 @@ class UsagePlan(pulumi.CustomResource):
         """
         The throttling limits of the usage plan.
         """
-        ...
+        return pulumi.get(self, "throttle_settings")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

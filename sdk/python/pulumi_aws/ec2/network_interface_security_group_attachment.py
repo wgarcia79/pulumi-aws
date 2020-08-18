@@ -151,7 +151,7 @@ class NetworkInterfaceSecurityGroupAttachment(pulumi.CustomResource):
         """
         The ID of the network interface to attach to.
         """
-        ...
+        return pulumi.get(self, "network_interface_id")
 
     @property
     @pulumi.getter(name="securityGroupId")
@@ -159,7 +159,7 @@ class NetworkInterfaceSecurityGroupAttachment(pulumi.CustomResource):
         """
         The ID of the security group.
         """
-        ...
+        return pulumi.get(self, "security_group_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

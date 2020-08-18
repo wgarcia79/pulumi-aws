@@ -65,7 +65,7 @@ class GetZoneResult:
         """
         Caller Reference of the Hosted Zone.
         """
-        ...
+        return pulumi.get(self, "caller_reference")
 
     @property
     @pulumi.getter
@@ -73,7 +73,7 @@ class GetZoneResult:
         """
         The comment field of the Hosted Zone.
         """
-        ...
+        return pulumi.get(self, "comment")
 
     @property
     @pulumi.getter
@@ -81,7 +81,7 @@ class GetZoneResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="linkedServiceDescription")
@@ -89,7 +89,7 @@ class GetZoneResult:
         """
         The description provided by the service that created the Hosted Zone (e.g. `arn:aws:servicediscovery:us-east-1:1234567890:namespace/ns-xxxxxxxxxxxxxxxx`).
         """
-        ...
+        return pulumi.get(self, "linked_service_description")
 
     @property
     @pulumi.getter(name="linkedServicePrincipal")
@@ -97,12 +97,12 @@ class GetZoneResult:
         """
         The service that created the Hosted Zone (e.g. `servicediscovery.amazonaws.com`).
         """
-        ...
+        return pulumi.get(self, "linked_service_principal")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="nameServers")
@@ -110,12 +110,12 @@ class GetZoneResult:
         """
         The list of DNS name servers for the Hosted Zone.
         """
-        ...
+        return pulumi.get(self, "name_servers")
 
     @property
     @pulumi.getter(name="privateZone")
     def private_zone(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "private_zone")
 
     @property
     @pulumi.getter(name="resourceRecordSetCount")
@@ -123,22 +123,22 @@ class GetZoneResult:
         """
         The number of Record Set in the Hosted Zone.
         """
-        ...
+        return pulumi.get(self, "resource_record_set_count")
 
     @property
     @pulumi.getter
     def tags(self) -> Mapping[str, str]:
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> str:
-        ...
+        return pulumi.get(self, "vpc_id")
 
     @property
     @pulumi.getter(name="zoneId")
     def zone_id(self) -> str:
-        ...
+        return pulumi.get(self, "zone_id")
 
 
 

@@ -97,7 +97,7 @@ class RoleAlias(pulumi.CustomResource):
         """
         The name of the role alias.
         """
-        ...
+        return pulumi.get(self, "alias")
 
     @property
     @pulumi.getter
@@ -105,7 +105,7 @@ class RoleAlias(pulumi.CustomResource):
         """
         The ARN assigned by AWS to this role alias.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="credentialDuration")
@@ -113,7 +113,7 @@ class RoleAlias(pulumi.CustomResource):
         """
         The duration of the credential, in seconds. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 900 seconds (15 minutes) to 3600 seconds (60 minutes).
         """
-        ...
+        return pulumi.get(self, "credential_duration")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -121,7 +121,7 @@ class RoleAlias(pulumi.CustomResource):
         """
         The identity of the role to which the alias refers.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

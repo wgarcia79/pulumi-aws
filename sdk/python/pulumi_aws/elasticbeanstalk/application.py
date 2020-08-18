@@ -116,7 +116,7 @@ class Application(pulumi.CustomResource):
     @property
     @pulumi.getter(name="appversionLifecycle")
     def appversion_lifecycle(self) -> Optional['outputs.ApplicationAppversionLifecycle']:
-        ...
+        return pulumi.get(self, "appversion_lifecycle")
 
     @property
     @pulumi.getter
@@ -124,7 +124,7 @@ class Application(pulumi.CustomResource):
         """
         The ARN assigned by AWS for this Elastic Beanstalk Application.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -132,7 +132,7 @@ class Application(pulumi.CustomResource):
         """
         Short description of the application
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -140,7 +140,7 @@ class Application(pulumi.CustomResource):
         """
         The name of the application, must be unique within your account
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -148,7 +148,7 @@ class Application(pulumi.CustomResource):
         """
         Key-value map of tags for the Elastic Beanstalk Application.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -258,7 +258,7 @@ class HealthCheck(pulumi.CustomResource):
         """
         The minimum number of child health checks that must be healthy for Route 53 to consider the parent health check to be healthy. Valid values are integers between 0 and 256, inclusive
         """
-        ...
+        return pulumi.get(self, "child_health_threshold")
 
     @property
     @pulumi.getter(name="childHealthchecks")
@@ -266,7 +266,7 @@ class HealthCheck(pulumi.CustomResource):
         """
         For a specified parent health check, a list of HealthCheckId values for the associated child health checks.
         """
-        ...
+        return pulumi.get(self, "child_healthchecks")
 
     @property
     @pulumi.getter(name="cloudwatchAlarmName")
@@ -274,7 +274,7 @@ class HealthCheck(pulumi.CustomResource):
         """
         The name of the CloudWatch alarm.
         """
-        ...
+        return pulumi.get(self, "cloudwatch_alarm_name")
 
     @property
     @pulumi.getter(name="cloudwatchAlarmRegion")
@@ -282,7 +282,7 @@ class HealthCheck(pulumi.CustomResource):
         """
         The CloudWatchRegion that the CloudWatch alarm was created in.
         """
-        ...
+        return pulumi.get(self, "cloudwatch_alarm_region")
 
     @property
     @pulumi.getter(name="enableSni")
@@ -290,7 +290,7 @@ class HealthCheck(pulumi.CustomResource):
         """
         A boolean value that indicates whether Route53 should send the `fqdn` to the endpoint when performing the health check. This defaults to AWS' defaults: when the `type` is "HTTPS" `enable_sni` defaults to `true`, when `type` is anything else `enable_sni` defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "enable_sni")
 
     @property
     @pulumi.getter(name="failureThreshold")
@@ -298,7 +298,7 @@ class HealthCheck(pulumi.CustomResource):
         """
         The number of consecutive health checks that an endpoint must pass or fail.
         """
-        ...
+        return pulumi.get(self, "failure_threshold")
 
     @property
     @pulumi.getter
@@ -306,7 +306,7 @@ class HealthCheck(pulumi.CustomResource):
         """
         The fully qualified domain name of the endpoint to be checked.
         """
-        ...
+        return pulumi.get(self, "fqdn")
 
     @property
     @pulumi.getter(name="insufficientDataHealthStatus")
@@ -314,7 +314,7 @@ class HealthCheck(pulumi.CustomResource):
         """
         The status of the health check when CloudWatch has insufficient data about the state of associated alarm. Valid values are `Healthy` , `Unhealthy` and `LastKnownStatus`.
         """
-        ...
+        return pulumi.get(self, "insufficient_data_health_status")
 
     @property
     @pulumi.getter(name="invertHealthcheck")
@@ -322,7 +322,7 @@ class HealthCheck(pulumi.CustomResource):
         """
         A boolean value that indicates whether the status of health check should be inverted. For example, if a health check is healthy but Inverted is True , then Route 53 considers the health check to be unhealthy.
         """
-        ...
+        return pulumi.get(self, "invert_healthcheck")
 
     @property
     @pulumi.getter(name="ipAddress")
@@ -330,7 +330,7 @@ class HealthCheck(pulumi.CustomResource):
         """
         The IP address of the endpoint to be checked.
         """
-        ...
+        return pulumi.get(self, "ip_address")
 
     @property
     @pulumi.getter(name="measureLatency")
@@ -338,7 +338,7 @@ class HealthCheck(pulumi.CustomResource):
         """
         A Boolean value that indicates whether you want Route 53 to measure the latency between health checkers in multiple AWS regions and your endpoint and to display CloudWatch latency graphs in the Route 53 console.
         """
-        ...
+        return pulumi.get(self, "measure_latency")
 
     @property
     @pulumi.getter
@@ -346,7 +346,7 @@ class HealthCheck(pulumi.CustomResource):
         """
         The port of the endpoint to be checked.
         """
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter(name="referenceName")
@@ -355,7 +355,7 @@ class HealthCheck(pulumi.CustomResource):
         This is a reference name used in Caller Reference
         (helpful for identifying single health_check set amongst others)
         """
-        ...
+        return pulumi.get(self, "reference_name")
 
     @property
     @pulumi.getter
@@ -363,7 +363,7 @@ class HealthCheck(pulumi.CustomResource):
         """
         A list of AWS regions that you want Amazon Route 53 health checkers to check the specified endpoint from.
         """
-        ...
+        return pulumi.get(self, "regions")
 
     @property
     @pulumi.getter(name="requestInterval")
@@ -371,7 +371,7 @@ class HealthCheck(pulumi.CustomResource):
         """
         The number of seconds between the time that Amazon Route 53 gets a response from your endpoint and the time that it sends the next health-check request.
         """
-        ...
+        return pulumi.get(self, "request_interval")
 
     @property
     @pulumi.getter(name="resourcePath")
@@ -379,7 +379,7 @@ class HealthCheck(pulumi.CustomResource):
         """
         The path that you want Amazon Route 53 to request when performing health checks.
         """
-        ...
+        return pulumi.get(self, "resource_path")
 
     @property
     @pulumi.getter(name="searchString")
@@ -387,7 +387,7 @@ class HealthCheck(pulumi.CustomResource):
         """
         String searched in the first 5120 bytes of the response body for check to be considered healthy. Only valid with `HTTP_STR_MATCH` and `HTTPS_STR_MATCH`.
         """
-        ...
+        return pulumi.get(self, "search_string")
 
     @property
     @pulumi.getter
@@ -395,7 +395,7 @@ class HealthCheck(pulumi.CustomResource):
         """
         A map of tags to assign to the health check.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -403,7 +403,7 @@ class HealthCheck(pulumi.CustomResource):
         """
         The protocol to use when performing health checks. Valid values are `HTTP`, `HTTPS`, `HTTP_STR_MATCH`, `HTTPS_STR_MATCH`, `TCP`, `CALCULATED` and `CLOUDWATCH_METRIC`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

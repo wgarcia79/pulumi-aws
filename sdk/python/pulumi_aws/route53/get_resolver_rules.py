@@ -47,17 +47,17 @@ class GetResolverRulesResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="ownerId")
     def owner_id(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter(name="resolverEndpointId")
     def resolver_endpoint_id(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "resolver_endpoint_id")
 
     @property
     @pulumi.getter(name="resolverRuleIds")
@@ -65,17 +65,17 @@ class GetResolverRulesResult:
         """
         The IDs of the matched resolver rules.
         """
-        ...
+        return pulumi.get(self, "resolver_rule_ids")
 
     @property
     @pulumi.getter(name="ruleType")
     def rule_type(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "rule_type")
 
     @property
     @pulumi.getter(name="shareStatus")
     def share_status(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "share_status")
 
 
 

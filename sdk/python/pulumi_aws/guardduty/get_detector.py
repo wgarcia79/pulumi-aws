@@ -41,12 +41,12 @@ class GetDetectorResult:
         """
         The frequency of notifications sent about subsequent finding occurrences.
         """
-        ...
+        return pulumi.get(self, "finding_publishing_frequency")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="serviceRoleArn")
@@ -54,7 +54,7 @@ class GetDetectorResult:
         """
         The service-linked role that grants GuardDuty access to the resources in the AWS account.
         """
-        ...
+        return pulumi.get(self, "service_role_arn")
 
     @property
     @pulumi.getter
@@ -62,7 +62,7 @@ class GetDetectorResult:
         """
         The current status of the detector.
         """
-        ...
+        return pulumi.get(self, "status")
 
 
 

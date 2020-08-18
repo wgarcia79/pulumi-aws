@@ -104,7 +104,7 @@ class OrganizationalUnit(pulumi.CustomResource):
         """
         List of child accounts for this Organizational Unit. Does not return account information for child Organizational Units. All elements have these attributes:
         """
-        ...
+        return pulumi.get(self, "accounts")
 
     @property
     @pulumi.getter
@@ -112,7 +112,7 @@ class OrganizationalUnit(pulumi.CustomResource):
         """
         ARN of the organizational unit
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -120,7 +120,7 @@ class OrganizationalUnit(pulumi.CustomResource):
         """
         The name for the organizational unit
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="parentId")
@@ -128,7 +128,7 @@ class OrganizationalUnit(pulumi.CustomResource):
         """
         ID of the parent organizational unit, which may be the root
         """
-        ...
+        return pulumi.get(self, "parent_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

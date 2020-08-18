@@ -127,7 +127,7 @@ class Listener(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) of your accelerator.
         """
-        ...
+        return pulumi.get(self, "accelerator_arn")
 
     @property
     @pulumi.getter(name="clientAffinity")
@@ -135,7 +135,7 @@ class Listener(pulumi.CustomResource):
         """
         Direct all requests from a user to the same endpoint. Valid values are `NONE`, `SOURCE_IP`. Default: `NONE`. If `NONE`, Global Accelerator uses the "five-tuple" properties of source IP address, source port, destination IP address, destination port, and protocol to select the hash value. If `SOURCE_IP`, Global Accelerator uses the "two-tuple" properties of source (client) IP address and destination IP address to select the hash value.
         """
-        ...
+        return pulumi.get(self, "client_affinity")
 
     @property
     @pulumi.getter(name="portRanges")
@@ -143,7 +143,7 @@ class Listener(pulumi.CustomResource):
         """
         The list of port ranges for the connections from clients to the accelerator. Fields documented below.
         """
-        ...
+        return pulumi.get(self, "port_ranges")
 
     @property
     @pulumi.getter
@@ -151,7 +151,7 @@ class Listener(pulumi.CustomResource):
         """
         The protocol for the connections from clients to the accelerator. Valid values are `TCP`, `UDP`.
         """
-        ...
+        return pulumi.get(self, "protocol")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

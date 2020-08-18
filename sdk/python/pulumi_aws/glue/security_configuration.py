@@ -107,7 +107,7 @@ class SecurityConfiguration(pulumi.CustomResource):
         """
         Configuration block containing encryption configuration. Detailed below.
         """
-        ...
+        return pulumi.get(self, "encryption_configuration")
 
     @property
     @pulumi.getter
@@ -115,7 +115,7 @@ class SecurityConfiguration(pulumi.CustomResource):
         """
         Name of the security configuration.
         """
-        ...
+        return pulumi.get(self, "name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

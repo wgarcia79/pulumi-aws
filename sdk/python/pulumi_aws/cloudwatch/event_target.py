@@ -273,7 +273,7 @@ class EventTarget(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) associated of the target.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="batchTarget")
@@ -281,7 +281,7 @@ class EventTarget(pulumi.CustomResource):
         """
         Parameters used when you are using the rule to invoke an Amazon Batch Job. Documented below. A maximum of 1 are allowed.
         """
-        ...
+        return pulumi.get(self, "batch_target")
 
     @property
     @pulumi.getter(name="ecsTarget")
@@ -289,7 +289,7 @@ class EventTarget(pulumi.CustomResource):
         """
         Parameters used when you are using the rule to invoke Amazon ECS Task. Documented below. A maximum of 1 are allowed.
         """
-        ...
+        return pulumi.get(self, "ecs_target")
 
     @property
     @pulumi.getter
@@ -297,7 +297,7 @@ class EventTarget(pulumi.CustomResource):
         """
         Valid JSON text passed to the target.
         """
-        ...
+        return pulumi.get(self, "input")
 
     @property
     @pulumi.getter(name="inputPath")
@@ -306,7 +306,7 @@ class EventTarget(pulumi.CustomResource):
         The value of the [JSONPath](http://goessner.net/articles/JsonPath/)
         that is used for extracting part of the matched event when passing it to the target.
         """
-        ...
+        return pulumi.get(self, "input_path")
 
     @property
     @pulumi.getter(name="inputTransformer")
@@ -314,7 +314,7 @@ class EventTarget(pulumi.CustomResource):
         """
         Parameters used when you are providing a custom input to a target based on certain event data.
         """
-        ...
+        return pulumi.get(self, "input_transformer")
 
     @property
     @pulumi.getter(name="kinesisTarget")
@@ -322,7 +322,7 @@ class EventTarget(pulumi.CustomResource):
         """
         Parameters used when you are using the rule to invoke an Amazon Kinesis Stream. Documented below. A maximum of 1 are allowed.
         """
-        ...
+        return pulumi.get(self, "kinesis_target")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -330,7 +330,7 @@ class EventTarget(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) of the IAM role to be used for this target when the rule is triggered. Required if `ecs_target` is used.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter
@@ -338,7 +338,7 @@ class EventTarget(pulumi.CustomResource):
         """
         The name of the rule you want to add targets to.
         """
-        ...
+        return pulumi.get(self, "rule")
 
     @property
     @pulumi.getter(name="runCommandTargets")
@@ -346,7 +346,7 @@ class EventTarget(pulumi.CustomResource):
         """
         Parameters used when you are using the rule to invoke Amazon EC2 Run Command. Documented below. A maximum of 5 are allowed.
         """
-        ...
+        return pulumi.get(self, "run_command_targets")
 
     @property
     @pulumi.getter(name="sqsTarget")
@@ -354,7 +354,7 @@ class EventTarget(pulumi.CustomResource):
         """
         Parameters used when you are using the rule to invoke an Amazon SQS Queue. Documented below. A maximum of 1 are allowed.
         """
-        ...
+        return pulumi.get(self, "sqs_target")
 
     @property
     @pulumi.getter(name="targetId")
@@ -362,7 +362,7 @@ class EventTarget(pulumi.CustomResource):
         """
         The unique target assignment ID.  If missing, will generate a random, unique id.
         """
-        ...
+        return pulumi.get(self, "target_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -34,11 +34,11 @@ class GatewaySmbActiveDirectorySettingsArgs:
         """
         The name of the domain that you want the gateway to join.
         """
-        ...
+        return pulumi.get(self, "domain_name")
 
     @domain_name.setter
     def domain_name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "domain_name", value)
 
     @property
     @pulumi.getter
@@ -46,11 +46,11 @@ class GatewaySmbActiveDirectorySettingsArgs:
         """
         The password of the user who has permission to add the gateway to the Active Directory domain.
         """
-        ...
+        return pulumi.get(self, "password")
 
     @password.setter
     def password(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "password", value)
 
     @property
     @pulumi.getter
@@ -58,11 +58,11 @@ class GatewaySmbActiveDirectorySettingsArgs:
         """
         The user name of user who has permission to add the gateway to the Active Directory domain.
         """
-        ...
+        return pulumi.get(self, "username")
 
     @username.setter
     def username(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "username", value)
 
 
 @pulumi.input_type
@@ -93,11 +93,11 @@ class NfsFileShareNfsFileShareDefaultsArgs:
         """
         The Unix directory mode in the string form "nnnn". Defaults to `"0777"`.
         """
-        ...
+        return pulumi.get(self, "directory_mode")
 
     @directory_mode.setter
     def directory_mode(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "directory_mode", value)
 
     @property
     @pulumi.getter(name="fileMode")
@@ -105,11 +105,11 @@ class NfsFileShareNfsFileShareDefaultsArgs:
         """
         The Unix file mode in the string form "nnnn". Defaults to `"0666"`.
         """
-        ...
+        return pulumi.get(self, "file_mode")
 
     @file_mode.setter
     def file_mode(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "file_mode", value)
 
     @property
     @pulumi.getter(name="groupId")
@@ -117,11 +117,11 @@ class NfsFileShareNfsFileShareDefaultsArgs:
         """
         The default group ID for the file share (unless the files have another group ID specified). Defaults to `65534` (`nfsnobody`). Valid values: `0` through `4294967294`.
         """
-        ...
+        return pulumi.get(self, "group_id")
 
     @group_id.setter
     def group_id(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "group_id", value)
 
     @property
     @pulumi.getter(name="ownerId")
@@ -129,10 +129,10 @@ class NfsFileShareNfsFileShareDefaultsArgs:
         """
         The default owner ID for the file share (unless the files have another owner ID specified). Defaults to `65534` (`nfsnobody`). Valid values: `0` through `4294967294`.
         """
-        ...
+        return pulumi.get(self, "owner_id")
 
     @owner_id.setter
     def owner_id(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "owner_id", value)
 
 

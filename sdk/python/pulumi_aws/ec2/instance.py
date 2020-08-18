@@ -382,7 +382,7 @@ class Instance(pulumi.CustomResource):
         """
         The AMI to use for the instance.
         """
-        ...
+        return pulumi.get(self, "ami")
 
     @property
     @pulumi.getter
@@ -390,7 +390,7 @@ class Instance(pulumi.CustomResource):
         """
         The ARN of the instance.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="associatePublicIpAddress")
@@ -398,7 +398,7 @@ class Instance(pulumi.CustomResource):
         """
         Associate a public ip address with an instance in a VPC.  Boolean value.
         """
-        ...
+        return pulumi.get(self, "associate_public_ip_address")
 
     @property
     @pulumi.getter(name="availabilityZone")
@@ -406,7 +406,7 @@ class Instance(pulumi.CustomResource):
         """
         The AZ to start the instance in.
         """
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter(name="cpuCoreCount")
@@ -416,7 +416,7 @@ class Instance(pulumi.CustomResource):
         only supported on creation of instance type that support CPU Options
         [CPU Cores and Threads Per CPU Core Per Instance Type](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html#cpu-options-supported-instances-values) - specifying this option for unsupported instance types will return an error from the EC2 API.
         """
-        ...
+        return pulumi.get(self, "cpu_core_count")
 
     @property
     @pulumi.getter(name="cpuThreadsPerCore")
@@ -424,7 +424,7 @@ class Instance(pulumi.CustomResource):
         """
         If set to to 1, hyperthreading is disabled on the launched instance. Defaults to 2 if not set. See [Optimizing CPU Options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html) for more information.
         """
-        ...
+        return pulumi.get(self, "cpu_threads_per_core")
 
     @property
     @pulumi.getter(name="creditSpecification")
@@ -432,7 +432,7 @@ class Instance(pulumi.CustomResource):
         """
         Customize the credit specification of the instance. See Credit Specification below for more details.
         """
-        ...
+        return pulumi.get(self, "credit_specification")
 
     @property
     @pulumi.getter(name="disableApiTermination")
@@ -441,7 +441,7 @@ class Instance(pulumi.CustomResource):
         If true, enables [EC2 Instance
         Termination Protection](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingDisableAPITermination)
         """
-        ...
+        return pulumi.get(self, "disable_api_termination")
 
     @property
     @pulumi.getter(name="ebsBlockDevices")
@@ -450,7 +450,7 @@ class Instance(pulumi.CustomResource):
         Additional EBS block devices to attach to the
         instance.  Block device configurations only apply on resource creation. See Block Devices below for details on attributes and drift detection.
         """
-        ...
+        return pulumi.get(self, "ebs_block_devices")
 
     @property
     @pulumi.getter(name="ebsOptimized")
@@ -462,7 +462,7 @@ class Instance(pulumi.CustomResource):
         there is no need to set this and there is no effect to disabling it.
         See the [EBS Optimized section](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html) of the AWS User Guide for more information.
         """
-        ...
+        return pulumi.get(self, "ebs_optimized")
 
     @property
     @pulumi.getter(name="ephemeralBlockDevices")
@@ -471,7 +471,7 @@ class Instance(pulumi.CustomResource):
         Customize Ephemeral (also known as
         "Instance Store") volumes on the instance. See Block Devices below for details.
         """
-        ...
+        return pulumi.get(self, "ephemeral_block_devices")
 
     @property
     @pulumi.getter(name="getPasswordData")
@@ -479,7 +479,7 @@ class Instance(pulumi.CustomResource):
         """
         If true, wait for password data to become available and retrieve it. Useful for getting the administrator password for instances running Microsoft Windows. The password data is exported to the `password_data` attribute. See [GetPasswordData](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetPasswordData.html) for more information.
         """
-        ...
+        return pulumi.get(self, "get_password_data")
 
     @property
     @pulumi.getter
@@ -487,7 +487,7 @@ class Instance(pulumi.CustomResource):
         """
         If true, the launched EC2 instance will support hibernation.
         """
-        ...
+        return pulumi.get(self, "hibernation")
 
     @property
     @pulumi.getter(name="hostId")
@@ -495,7 +495,7 @@ class Instance(pulumi.CustomResource):
         """
         The Id of a dedicated host that the instance will be assigned to. Use when an instance is to be launched on a specific dedicated host.
         """
-        ...
+        return pulumi.get(self, "host_id")
 
     @property
     @pulumi.getter(name="iamInstanceProfile")
@@ -504,7 +504,7 @@ class Instance(pulumi.CustomResource):
         The IAM Instance Profile to
         launch the instance with. Specified as the name of the Instance Profile. Ensure your credentials have the correct permission to assign the instance profile according to the [EC2 documentation](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html#roles-usingrole-ec2instance-permissions), notably `iam:PassRole`.
         """
-        ...
+        return pulumi.get(self, "iam_instance_profile")
 
     @property
     @pulumi.getter(name="instanceInitiatedShutdownBehavior")
@@ -515,7 +515,7 @@ class Instance(pulumi.CustomResource):
         `terminate` for instance-store instances. Cannot be set on instance-store
         instances. See [Shutdown Behavior](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingInstanceInitiatedShutdownBehavior) for more information.
         """
-        ...
+        return pulumi.get(self, "instance_initiated_shutdown_behavior")
 
     @property
     @pulumi.getter(name="instanceState")
@@ -523,7 +523,7 @@ class Instance(pulumi.CustomResource):
         """
         The state of the instance. One of: `pending`, `running`, `shutting-down`, `terminated`, `stopping`, `stopped`. See [Instance Lifecycle](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html) for more information.
         """
-        ...
+        return pulumi.get(self, "instance_state")
 
     @property
     @pulumi.getter(name="instanceType")
@@ -531,7 +531,7 @@ class Instance(pulumi.CustomResource):
         """
         The type of instance to start. Updates to this field will trigger a stop/start of the EC2 instance.
         """
-        ...
+        return pulumi.get(self, "instance_type")
 
     @property
     @pulumi.getter(name="ipv6AddressCount")
@@ -539,7 +539,7 @@ class Instance(pulumi.CustomResource):
         """
         A number of IPv6 addresses to associate with the primary network interface. Amazon EC2 chooses the IPv6 addresses from the range of your subnet.
         """
-        ...
+        return pulumi.get(self, "ipv6_address_count")
 
     @property
     @pulumi.getter(name="ipv6Addresses")
@@ -547,7 +547,7 @@ class Instance(pulumi.CustomResource):
         """
         Specify one or more IPv6 addresses from the range of the subnet to associate with the primary network interface
         """
-        ...
+        return pulumi.get(self, "ipv6_addresses")
 
     @property
     @pulumi.getter(name="keyName")
@@ -555,7 +555,7 @@ class Instance(pulumi.CustomResource):
         """
         The key name of the Key Pair to use for the instance; which can be managed using the `ec2.KeyPair` resource.
         """
-        ...
+        return pulumi.get(self, "key_name")
 
     @property
     @pulumi.getter(name="metadataOptions")
@@ -563,7 +563,7 @@ class Instance(pulumi.CustomResource):
         """
         Customize the metadata options of the instance. See Metadata Options below for more details.
         """
-        ...
+        return pulumi.get(self, "metadata_options")
 
     @property
     @pulumi.getter
@@ -571,7 +571,7 @@ class Instance(pulumi.CustomResource):
         """
         If true, the launched EC2 instance will have detailed monitoring enabled. (Available since v0.6.0)
         """
-        ...
+        return pulumi.get(self, "monitoring")
 
     @property
     @pulumi.getter(name="networkInterfaces")
@@ -579,7 +579,7 @@ class Instance(pulumi.CustomResource):
         """
         Customize network interfaces to be attached at instance boot time. See Network Interfaces below for more details.
         """
-        ...
+        return pulumi.get(self, "network_interfaces")
 
     @property
     @pulumi.getter(name="outpostArn")
@@ -587,7 +587,7 @@ class Instance(pulumi.CustomResource):
         """
         The ARN of the Outpost the instance is assigned to.
         """
-        ...
+        return pulumi.get(self, "outpost_arn")
 
     @property
     @pulumi.getter(name="passwordData")
@@ -599,7 +599,7 @@ class Instance(pulumi.CustomResource):
         Note that this encrypted value will be stored in the state file, as with all exported attributes.
         See [GetPasswordData](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetPasswordData.html) for more information.
         """
-        ...
+        return pulumi.get(self, "password_data")
 
     @property
     @pulumi.getter(name="placementGroup")
@@ -607,7 +607,7 @@ class Instance(pulumi.CustomResource):
         """
         The Placement Group to start the instance in.
         """
-        ...
+        return pulumi.get(self, "placement_group")
 
     @property
     @pulumi.getter(name="primaryNetworkInterfaceId")
@@ -615,7 +615,7 @@ class Instance(pulumi.CustomResource):
         """
         The ID of the instance's primary network interface.
         """
-        ...
+        return pulumi.get(self, "primary_network_interface_id")
 
     @property
     @pulumi.getter(name="privateDns")
@@ -625,7 +625,7 @@ class Instance(pulumi.CustomResource):
         used inside the Amazon EC2, and only available if you've enabled DNS hostnames
         for your VPC
         """
-        ...
+        return pulumi.get(self, "private_dns")
 
     @property
     @pulumi.getter(name="privateIp")
@@ -634,7 +634,7 @@ class Instance(pulumi.CustomResource):
         Private IP address to associate with the
         instance in a VPC.
         """
-        ...
+        return pulumi.get(self, "private_ip")
 
     @property
     @pulumi.getter(name="publicDns")
@@ -643,7 +643,7 @@ class Instance(pulumi.CustomResource):
         The public DNS name assigned to the instance. For EC2-VPC, this
         is only available if you've enabled DNS hostnames for your VPC
         """
-        ...
+        return pulumi.get(self, "public_dns")
 
     @property
     @pulumi.getter(name="publicIp")
@@ -651,7 +651,7 @@ class Instance(pulumi.CustomResource):
         """
         The public IP address assigned to the instance, if applicable. **NOTE**: If you are using an `ec2.Eip` with your instance, you should refer to the EIP's address directly and not use `public_ip`, as this field will change after the EIP is attached.
         """
-        ...
+        return pulumi.get(self, "public_ip")
 
     @property
     @pulumi.getter(name="rootBlockDevice")
@@ -660,7 +660,7 @@ class Instance(pulumi.CustomResource):
         Customize details about the root block
         device of the instance. See Block Devices below for details.
         """
-        ...
+        return pulumi.get(self, "root_block_device")
 
     @property
     @pulumi.getter(name="securityGroups")
@@ -668,7 +668,7 @@ class Instance(pulumi.CustomResource):
         """
         A list of security group names (EC2-Classic) or IDs (default VPC) to associate with.
         """
-        ...
+        return pulumi.get(self, "security_groups")
 
     @property
     @pulumi.getter(name="sourceDestCheck")
@@ -677,7 +677,7 @@ class Instance(pulumi.CustomResource):
         Controls if traffic is routed to the instance when
         the destination address does not match the instance. Used for NAT or VPNs. Defaults true.
         """
-        ...
+        return pulumi.get(self, "source_dest_check")
 
     @property
     @pulumi.getter(name="subnetId")
@@ -685,7 +685,7 @@ class Instance(pulumi.CustomResource):
         """
         The VPC Subnet ID to launch in.
         """
-        ...
+        return pulumi.get(self, "subnet_id")
 
     @property
     @pulumi.getter
@@ -693,7 +693,7 @@ class Instance(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -701,7 +701,7 @@ class Instance(pulumi.CustomResource):
         """
         The tenancy of the instance (if the instance is running in a VPC). An instance with a tenancy of dedicated runs on single-tenant hardware. The host tenancy is not supported for the import-instance command.
         """
-        ...
+        return pulumi.get(self, "tenancy")
 
     @property
     @pulumi.getter(name="userData")
@@ -709,7 +709,7 @@ class Instance(pulumi.CustomResource):
         """
         The user data to provide when launching the instance. Do not pass gzip-compressed data via this argument; see `user_data_base64` instead.
         """
-        ...
+        return pulumi.get(self, "user_data")
 
     @property
     @pulumi.getter(name="userDataBase64")
@@ -717,7 +717,7 @@ class Instance(pulumi.CustomResource):
         """
         Can be used instead of `user_data` to pass base64-encoded binary data directly. Use this instead of `user_data` whenever the value is not a valid UTF-8 string. For example, gzip-encoded user data must be base64-encoded and passed via this argument to avoid corruption.
         """
-        ...
+        return pulumi.get(self, "user_data_base64")
 
     @property
     @pulumi.getter(name="volumeTags")
@@ -725,7 +725,7 @@ class Instance(pulumi.CustomResource):
         """
         A map of tags to assign to the devices created by the instance at launch time.
         """
-        ...
+        return pulumi.get(self, "volume_tags")
 
     @property
     @pulumi.getter(name="vpcSecurityGroupIds")
@@ -733,7 +733,7 @@ class Instance(pulumi.CustomResource):
         """
         A list of security group IDs to associate with.
         """
-        ...
+        return pulumi.get(self, "vpc_security_group_ids")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

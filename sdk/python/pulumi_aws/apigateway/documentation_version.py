@@ -113,7 +113,7 @@ class DocumentationVersion(pulumi.CustomResource):
         """
         The description of the API documentation version.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="restApiId")
@@ -121,7 +121,7 @@ class DocumentationVersion(pulumi.CustomResource):
         """
         The ID of the associated Rest API
         """
-        ...
+        return pulumi.get(self, "rest_api_id")
 
     @property
     @pulumi.getter
@@ -129,7 +129,7 @@ class DocumentationVersion(pulumi.CustomResource):
         """
         The version identifier of the API documentation snapshot.
         """
-        ...
+        return pulumi.get(self, "version")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

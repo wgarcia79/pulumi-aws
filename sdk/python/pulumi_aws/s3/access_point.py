@@ -153,7 +153,7 @@ class AccessPoint(pulumi.CustomResource):
         """
         The AWS account ID for the owner of the bucket for which you want to create an access point. Defaults to automatically determined account ID of the provider.
         """
-        ...
+        return pulumi.get(self, "account_id")
 
     @property
     @pulumi.getter
@@ -161,7 +161,7 @@ class AccessPoint(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the S3 Access Point.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -169,7 +169,7 @@ class AccessPoint(pulumi.CustomResource):
         """
         The name of the bucket that you want to associate this access point with.
         """
-        ...
+        return pulumi.get(self, "bucket")
 
     @property
     @pulumi.getter(name="domainName")
@@ -178,7 +178,7 @@ class AccessPoint(pulumi.CustomResource):
         The DNS domain name of the S3 Access Point in the format _`name`_-_`account_id`_.s3-accesspoint._region_.amazonaws.com.
         Note: S3 access points only support secure access by HTTPS. HTTP isn't supported.
         """
-        ...
+        return pulumi.get(self, "domain_name")
 
     @property
     @pulumi.getter(name="hasPublicAccessPolicy")
@@ -186,7 +186,7 @@ class AccessPoint(pulumi.CustomResource):
         """
         Indicates whether this access point currently has a policy that allows public access.
         """
-        ...
+        return pulumi.get(self, "has_public_access_policy")
 
     @property
     @pulumi.getter
@@ -194,7 +194,7 @@ class AccessPoint(pulumi.CustomResource):
         """
         The name you want to assign to this access point.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="networkOrigin")
@@ -202,7 +202,7 @@ class AccessPoint(pulumi.CustomResource):
         """
         Indicates whether this access point allows access from the public Internet. Values are `VPC` (the access point doesn't allow access from the public Internet) and `Internet` (the access point allows access from the public Internet, subject to the access point and bucket access policies).
         """
-        ...
+        return pulumi.get(self, "network_origin")
 
     @property
     @pulumi.getter
@@ -210,7 +210,7 @@ class AccessPoint(pulumi.CustomResource):
         """
         A valid JSON document that specifies the policy that you want to apply to this access point.
         """
-        ...
+        return pulumi.get(self, "policy")
 
     @property
     @pulumi.getter(name="publicAccessBlockConfiguration")
@@ -218,7 +218,7 @@ class AccessPoint(pulumi.CustomResource):
         """
         Configuration block to manage the `PublicAccessBlock` configuration that you want to apply to this Amazon S3 bucket. You can enable the configuration options in any combination. Detailed below.
         """
-        ...
+        return pulumi.get(self, "public_access_block_configuration")
 
     @property
     @pulumi.getter(name="vpcConfiguration")
@@ -226,7 +226,7 @@ class AccessPoint(pulumi.CustomResource):
         """
         Configuration block to restrict access to this access point to requests from the specified Virtual Private Cloud (VPC). Detailed below.
         """
-        ...
+        return pulumi.get(self, "vpc_configuration")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

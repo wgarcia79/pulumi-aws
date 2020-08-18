@@ -70,7 +70,7 @@ class ByteMatchSetByteMatchTuple(dict):
         """
         The part of a web request that you want to search, such as a specified header or a query string.
         """
-        ...
+        return pulumi.get(self, "field_to_match")
 
     @property
     @pulumi.getter(name="positionalConstraint")
@@ -82,7 +82,7 @@ class ByteMatchSetByteMatchTuple(dict):
         See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_ByteMatchTuple.html#WAF-Type-ByteMatchTuple-PositionalConstraint)
         for all supported values.
         """
-        ...
+        return pulumi.get(self, "positional_constraint")
 
     @property
     @pulumi.getter(name="textTransformation")
@@ -94,7 +94,7 @@ class ByteMatchSetByteMatchTuple(dict):
         See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_ByteMatchTuple.html#WAF-Type-ByteMatchTuple-TextTransformation)
         for all supported values.
         """
-        ...
+        return pulumi.get(self, "text_transformation")
 
     @property
     @pulumi.getter(name="targetString")
@@ -104,7 +104,7 @@ class ByteMatchSetByteMatchTuple(dict):
         See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_ByteMatchTuple.html#WAF-Type-ByteMatchTuple-TargetString)
         for all supported values.
         """
-        ...
+        return pulumi.get(self, "target_string")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -136,7 +136,7 @@ class ByteMatchSetByteMatchTupleFieldToMatch(dict):
         See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_FieldToMatch.html)
         for all supported values.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -145,7 +145,7 @@ class ByteMatchSetByteMatchTupleFieldToMatch(dict):
         When `type` is `HEADER`, enter the name of the header that you want to search, e.g. `User-Agent` or `Referer`.
         If `type` is any other value, omit this field.
         """
-        ...
+        return pulumi.get(self, "data")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -171,7 +171,7 @@ class GeoMatchSetGeoMatchConstraint(dict):
         """
         The type of geographical area you want AWS WAF to search for. Currently Country is the only valid value.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -181,7 +181,7 @@ class GeoMatchSetGeoMatchConstraint(dict):
         This is the two-letter country code, e.g. `US`, `CA`, `RU`, `CN`, etc.
         See [docs](https://docs.aws.amazon.com/waf/latest/APIReference/API_GeoMatchConstraint.html) for all supported values.
         """
-        ...
+        return pulumi.get(self, "value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -206,7 +206,7 @@ class IpSetIpSetDescriptor(dict):
         """
         Type of the IP address - `IPV4` or `IPV6`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -215,7 +215,7 @@ class IpSetIpSetDescriptor(dict):
         An IPv4 or IPv6 address specified via CIDR notation.
         e.g. `192.0.2.44/32` or `1111:0000:0000:0000:0000:0000:0000:0000/64`
         """
-        ...
+        return pulumi.get(self, "value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -245,7 +245,7 @@ class RateBasedRulePredicate(dict):
         """
         A unique identifier for a predicate in the rule, such as Byte Match Set ID or IPSet ID.
         """
-        ...
+        return pulumi.get(self, "data_id")
 
     @property
     @pulumi.getter
@@ -256,7 +256,7 @@ class RateBasedRulePredicate(dict):
         For example, if an IPSet includes the IP address `192.0.2.44`, AWS WAF will allow or block requests based on that IP address.
         If set to `true`, AWS WAF will allow, block, or count requests based on all IP addresses _except_ `192.0.2.44`.
         """
-        ...
+        return pulumi.get(self, "negated")
 
     @property
     @pulumi.getter
@@ -264,7 +264,7 @@ class RateBasedRulePredicate(dict):
         """
         The type of predicate in a rule. Valid values: `ByteMatch`, `GeoMatch`, `IPMatch`, `RegexMatch`, `SizeConstraint`, `SqlInjectionMatch`, or `XssMatch`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -294,7 +294,7 @@ class RegexMatchSetRegexMatchTuple(dict):
         """
         The part of a web request that you want to search, such as a specified header or a query string.
         """
-        ...
+        return pulumi.get(self, "field_to_match")
 
     @property
     @pulumi.getter(name="regexPatternSetId")
@@ -302,7 +302,7 @@ class RegexMatchSetRegexMatchTuple(dict):
         """
         The ID of a `WAF Regex Pattern Set`.
         """
-        ...
+        return pulumi.get(self, "regex_pattern_set_id")
 
     @property
     @pulumi.getter(name="textTransformation")
@@ -313,7 +313,7 @@ class RegexMatchSetRegexMatchTuple(dict):
         See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_ByteMatchTuple.html#WAF-Type-ByteMatchTuple-TextTransformation)
         for all supported values.
         """
-        ...
+        return pulumi.get(self, "text_transformation")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -345,7 +345,7 @@ class RegexMatchSetRegexMatchTupleFieldToMatch(dict):
         See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_FieldToMatch.html)
         for all supported values.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -354,7 +354,7 @@ class RegexMatchSetRegexMatchTupleFieldToMatch(dict):
         When `type` is `HEADER`, enter the name of the header that you want to search, e.g. `User-Agent` or `Referer`.
         If `type` is any other value, omit this field.
         """
-        ...
+        return pulumi.get(self, "data")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -385,7 +385,7 @@ class RuleGroupActivatedRule(dict):
         """
         Specifies the action that CloudFront or AWS WAF takes when a web request matches the conditions in the rule.
         """
-        ...
+        return pulumi.get(self, "action")
 
     @property
     @pulumi.getter
@@ -393,7 +393,7 @@ class RuleGroupActivatedRule(dict):
         """
         Specifies the order in which the rules are evaluated. Rules with a lower value are evaluated before rules with a higher value.
         """
-        ...
+        return pulumi.get(self, "priority")
 
     @property
     @pulumi.getter(name="ruleId")
@@ -401,7 +401,7 @@ class RuleGroupActivatedRule(dict):
         """
         The ID of a `waf_rule`
         """
-        ...
+        return pulumi.get(self, "rule_id")
 
     @property
     @pulumi.getter
@@ -409,7 +409,7 @@ class RuleGroupActivatedRule(dict):
         """
         The rule type, either `REGULAR`, `RATE_BASED`, or `GROUP`. Defaults to `REGULAR`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -430,7 +430,7 @@ class RuleGroupActivatedRuleAction(dict):
         """
         The rule type, either `REGULAR`, `RATE_BASED`, or `GROUP`. Defaults to `REGULAR`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -460,7 +460,7 @@ class RulePredicate(dict):
         """
         A unique identifier for a predicate in the rule, such as Byte Match Set ID or IPSet ID.
         """
-        ...
+        return pulumi.get(self, "data_id")
 
     @property
     @pulumi.getter
@@ -471,7 +471,7 @@ class RulePredicate(dict):
         For example, if an IPSet includes the IP address `192.0.2.44`, AWS WAF will allow or block requests based on that IP address.
         If set to `true`, AWS WAF will allow, block, or count requests based on all IP addresses except `192.0.2.44`.
         """
-        ...
+        return pulumi.get(self, "negated")
 
     @property
     @pulumi.getter
@@ -479,7 +479,7 @@ class RulePredicate(dict):
         """
         The type of predicate in a rule. Valid values: `ByteMatch`, `GeoMatch`, `IPMatch`, `RegexMatch`, `SizeConstraint`, `SqlInjectionMatch`, or `XssMatch`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -519,7 +519,7 @@ class SizeConstraintSetSizeConstraint(dict):
         e.g. `EQ`, `NE`, `LT`, `GT`.
         See [docs](https://docs.aws.amazon.com/waf/latest/APIReference/API_wafRegional_SizeConstraint.html) for all supported values.
         """
-        ...
+        return pulumi.get(self, "comparison_operator")
 
     @property
     @pulumi.getter(name="fieldToMatch")
@@ -527,7 +527,7 @@ class SizeConstraintSetSizeConstraint(dict):
         """
         Specifies where in a web request to look for the size constraint.
         """
-        ...
+        return pulumi.get(self, "field_to_match")
 
     @property
     @pulumi.getter
@@ -536,7 +536,7 @@ class SizeConstraintSetSizeConstraint(dict):
         The size in bytes that you want to compare against the size of the specified `field_to_match`.
         Valid values are between 0 - 21474836480 bytes (0 - 20 GB).
         """
-        ...
+        return pulumi.get(self, "size")
 
     @property
     @pulumi.getter(name="textTransformation")
@@ -549,7 +549,7 @@ class SizeConstraintSetSizeConstraint(dict):
         for all supported values.
         **Note:** if you choose `BODY` as `type`, you must choose `NONE` because CloudFront forwards only the first 8192 bytes for inspection.
         """
-        ...
+        return pulumi.get(self, "text_transformation")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -581,7 +581,7 @@ class SizeConstraintSetSizeConstraintFieldToMatch(dict):
         See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_FieldToMatch.html)
         for all supported values.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -590,7 +590,7 @@ class SizeConstraintSetSizeConstraintFieldToMatch(dict):
         When `type` is `HEADER`, enter the name of the header that you want to search, e.g. `User-Agent` or `Referer`.
         If `type` is any other value, omit this field.
         """
-        ...
+        return pulumi.get(self, "data")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -618,7 +618,7 @@ class SqlInjectionMatchSetSqlInjectionMatchTuple(dict):
         """
         Specifies where in a web request to look for snippets of malicious SQL code.
         """
-        ...
+        return pulumi.get(self, "field_to_match")
 
     @property
     @pulumi.getter(name="textTransformation")
@@ -630,7 +630,7 @@ class SqlInjectionMatchSetSqlInjectionMatchTuple(dict):
         See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_SqlInjectionMatchTuple.html#WAF-Type-SqlInjectionMatchTuple-TextTransformation)
         for all supported values.
         """
-        ...
+        return pulumi.get(self, "text_transformation")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -662,7 +662,7 @@ class SqlInjectionMatchSetSqlInjectionMatchTupleFieldToMatch(dict):
         See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_FieldToMatch.html)
         for all supported values.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -671,7 +671,7 @@ class SqlInjectionMatchSetSqlInjectionMatchTupleFieldToMatch(dict):
         When `type` is `HEADER`, enter the name of the header that you want to search, e.g. `User-Agent` or `Referer`.
         If `type` is any other value, omit this field.
         """
-        ...
+        return pulumi.get(self, "data")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -692,7 +692,7 @@ class WebAclDefaultAction(dict):
         """
         The rule type, either `REGULAR`, as defined by [Rule](http://docs.aws.amazon.com/waf/latest/APIReference/API_Rule.html), `RATE_BASED`, as defined by [RateBasedRule](http://docs.aws.amazon.com/waf/latest/APIReference/API_RateBasedRule.html), or `GROUP`, as defined by [RuleGroup](https://docs.aws.amazon.com/waf/latest/APIReference/API_RuleGroup.html). The default is REGULAR. If you add a RATE_BASED rule, you need to set `type` as `RATE_BASED`. If you add a GROUP rule, you need to set `type` as `GROUP`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -717,7 +717,7 @@ class WebAclLoggingConfiguration(dict):
         """
         Amazon Resource Name (ARN) of Kinesis Firehose Delivery Stream
         """
-        ...
+        return pulumi.get(self, "log_destination")
 
     @property
     @pulumi.getter(name="redactedFields")
@@ -725,7 +725,7 @@ class WebAclLoggingConfiguration(dict):
         """
         Configuration block containing parts of the request that you want redacted from the logs. Detailed below.
         """
-        ...
+        return pulumi.get(self, "redacted_fields")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -746,7 +746,7 @@ class WebAclLoggingConfigurationRedactedFields(dict):
         """
         Set of configuration blocks for fields to redact. Detailed below.
         """
-        ...
+        return pulumi.get(self, "field_to_matches")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -771,7 +771,7 @@ class WebAclLoggingConfigurationRedactedFieldsFieldToMatch(dict):
         """
         The rule type, either `REGULAR`, as defined by [Rule](http://docs.aws.amazon.com/waf/latest/APIReference/API_Rule.html), `RATE_BASED`, as defined by [RateBasedRule](http://docs.aws.amazon.com/waf/latest/APIReference/API_RateBasedRule.html), or `GROUP`, as defined by [RuleGroup](https://docs.aws.amazon.com/waf/latest/APIReference/API_RuleGroup.html). The default is REGULAR. If you add a RATE_BASED rule, you need to set `type` as `RATE_BASED`. If you add a GROUP rule, you need to set `type` as `GROUP`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -779,7 +779,7 @@ class WebAclLoggingConfigurationRedactedFieldsFieldToMatch(dict):
         """
         When the value of `type` is `HEADER`, enter the name of the header that you want the WAF to search, for example, `User-Agent` or `Referer`. If the value of `type` is any other value, omit `data`.
         """
-        ...
+        return pulumi.get(self, "data")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -817,7 +817,7 @@ class WebAclRule(dict):
         Specifies the order in which the rules in a WebACL are evaluated.
         Rules with a lower value are evaluated before rules with a higher value.
         """
-        ...
+        return pulumi.get(self, "priority")
 
     @property
     @pulumi.getter(name="ruleId")
@@ -825,7 +825,7 @@ class WebAclRule(dict):
         """
         ID of the associated WAF (Global) rule (e.g. `waf.Rule`). WAF (Regional) rules cannot be used.
         """
-        ...
+        return pulumi.get(self, "rule_id")
 
     @property
     @pulumi.getter
@@ -833,7 +833,7 @@ class WebAclRule(dict):
         """
         The action that CloudFront or AWS WAF takes when a web request matches the conditions in the rule. Not used if `type` is `GROUP`.
         """
-        ...
+        return pulumi.get(self, "action")
 
     @property
     @pulumi.getter(name="overrideAction")
@@ -841,7 +841,7 @@ class WebAclRule(dict):
         """
         Override the action that a group requests CloudFront or AWS WAF takes when a web request matches the conditions in the rule. Only used if `type` is `GROUP`.
         """
-        ...
+        return pulumi.get(self, "override_action")
 
     @property
     @pulumi.getter
@@ -849,7 +849,7 @@ class WebAclRule(dict):
         """
         The rule type, either `REGULAR`, as defined by [Rule](http://docs.aws.amazon.com/waf/latest/APIReference/API_Rule.html), `RATE_BASED`, as defined by [RateBasedRule](http://docs.aws.amazon.com/waf/latest/APIReference/API_RateBasedRule.html), or `GROUP`, as defined by [RuleGroup](https://docs.aws.amazon.com/waf/latest/APIReference/API_RuleGroup.html). The default is REGULAR. If you add a RATE_BASED rule, you need to set `type` as `RATE_BASED`. If you add a GROUP rule, you need to set `type` as `GROUP`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -870,7 +870,7 @@ class WebAclRuleAction(dict):
         """
         The rule type, either `REGULAR`, as defined by [Rule](http://docs.aws.amazon.com/waf/latest/APIReference/API_Rule.html), `RATE_BASED`, as defined by [RateBasedRule](http://docs.aws.amazon.com/waf/latest/APIReference/API_RateBasedRule.html), or `GROUP`, as defined by [RuleGroup](https://docs.aws.amazon.com/waf/latest/APIReference/API_RuleGroup.html). The default is REGULAR. If you add a RATE_BASED rule, you need to set `type` as `RATE_BASED`. If you add a GROUP rule, you need to set `type` as `GROUP`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -891,7 +891,7 @@ class WebAclRuleOverrideAction(dict):
         """
         The rule type, either `REGULAR`, as defined by [Rule](http://docs.aws.amazon.com/waf/latest/APIReference/API_Rule.html), `RATE_BASED`, as defined by [RateBasedRule](http://docs.aws.amazon.com/waf/latest/APIReference/API_RateBasedRule.html), or `GROUP`, as defined by [RuleGroup](https://docs.aws.amazon.com/waf/latest/APIReference/API_RuleGroup.html). The default is REGULAR. If you add a RATE_BASED rule, you need to set `type` as `RATE_BASED`. If you add a GROUP rule, you need to set `type` as `GROUP`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -919,7 +919,7 @@ class XssMatchSetXssMatchTuple(dict):
         """
         Specifies where in a web request to look for cross-site scripting attacks.
         """
-        ...
+        return pulumi.get(self, "field_to_match")
 
     @property
     @pulumi.getter(name="textTransformation")
@@ -931,7 +931,7 @@ class XssMatchSetXssMatchTuple(dict):
         See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_XssMatchTuple.html#WAF-Type-XssMatchTuple-TextTransformation)
         for all supported values.
         """
-        ...
+        return pulumi.get(self, "text_transformation")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -963,7 +963,7 @@ class XssMatchSetXssMatchTupleFieldToMatch(dict):
         See [docs](http://docs.aws.amazon.com/waf/latest/APIReference/API_FieldToMatch.html)
         for all supported values.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -972,7 +972,7 @@ class XssMatchSetXssMatchTupleFieldToMatch(dict):
         When `type` is `HEADER`, enter the name of the header that you want to search, e.g. `User-Agent` or `Referer`.
         If `type` is any other value, omit this field.
         """
-        ...
+        return pulumi.get(self, "data")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

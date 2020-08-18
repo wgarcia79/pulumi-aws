@@ -143,7 +143,7 @@ class EndpointGroup(pulumi.CustomResource):
         """
         The list of endpoint objects. Fields documented below.
         """
-        ...
+        return pulumi.get(self, "endpoint_configurations")
 
     @property
     @pulumi.getter(name="endpointGroupRegion")
@@ -151,7 +151,7 @@ class EndpointGroup(pulumi.CustomResource):
         """
         The name of the AWS Region where the endpoint group is located.
         """
-        ...
+        return pulumi.get(self, "endpoint_group_region")
 
     @property
     @pulumi.getter(name="healthCheckIntervalSeconds")
@@ -159,7 +159,7 @@ class EndpointGroup(pulumi.CustomResource):
         """
         The time—10 seconds or 30 seconds—between each health check for an endpoint. The default value is 30.
         """
-        ...
+        return pulumi.get(self, "health_check_interval_seconds")
 
     @property
     @pulumi.getter(name="healthCheckPath")
@@ -167,7 +167,7 @@ class EndpointGroup(pulumi.CustomResource):
         """
         If the protocol is HTTP/S, then this specifies the path that is the destination for health check targets. The default value is slash (/).
         """
-        ...
+        return pulumi.get(self, "health_check_path")
 
     @property
     @pulumi.getter(name="healthCheckPort")
@@ -175,7 +175,7 @@ class EndpointGroup(pulumi.CustomResource):
         """
         The port that AWS Global Accelerator uses to check the health of endpoints that are part of this endpoint group. The default port is the listener port that this endpoint group is associated with. If listener port is a list of ports, Global Accelerator uses the first port in the list.
         """
-        ...
+        return pulumi.get(self, "health_check_port")
 
     @property
     @pulumi.getter(name="healthCheckProtocol")
@@ -183,7 +183,7 @@ class EndpointGroup(pulumi.CustomResource):
         """
         The protocol that AWS Global Accelerator uses to check the health of endpoints that are part of this endpoint group. The default value is TCP.
         """
-        ...
+        return pulumi.get(self, "health_check_protocol")
 
     @property
     @pulumi.getter(name="listenerArn")
@@ -191,7 +191,7 @@ class EndpointGroup(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) of the listener.
         """
-        ...
+        return pulumi.get(self, "listener_arn")
 
     @property
     @pulumi.getter(name="thresholdCount")
@@ -199,7 +199,7 @@ class EndpointGroup(pulumi.CustomResource):
         """
         The number of consecutive health checks required to set the state of a healthy endpoint to unhealthy, or to set an unhealthy endpoint to healthy. The default value is 3.
         """
-        ...
+        return pulumi.get(self, "threshold_count")
 
     @property
     @pulumi.getter(name="trafficDialPercentage")
@@ -207,7 +207,7 @@ class EndpointGroup(pulumi.CustomResource):
         """
         The percentage of traffic to send to an AWS Region. Additional traffic is distributed to other endpoint groups for this listener. The default value is 100.
         """
-        ...
+        return pulumi.get(self, "traffic_dial_percentage")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

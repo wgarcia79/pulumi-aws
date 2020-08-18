@@ -41,11 +41,11 @@ class TriggerTriggerArgs:
         """
         The ARN of the resource that is the target for a trigger. For example, the ARN of a topic in Amazon Simple Notification Service (SNS).
         """
-        ...
+        return pulumi.get(self, "destination_arn")
 
     @destination_arn.setter
     def destination_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "destination_arn", value)
 
     @property
     @pulumi.getter
@@ -53,11 +53,11 @@ class TriggerTriggerArgs:
         """
         The repository events that will cause the trigger to run actions in another service, such as sending a notification through Amazon Simple Notification Service (SNS). If no events are specified, the trigger will run for all repository events. Event types include: `all`, `updateReference`, `createReference`, `deleteReference`.
         """
-        ...
+        return pulumi.get(self, "events")
 
     @events.setter
     def events(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "events", value)
 
     @property
     @pulumi.getter
@@ -65,11 +65,11 @@ class TriggerTriggerArgs:
         """
         The name of the trigger.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -77,11 +77,11 @@ class TriggerTriggerArgs:
         """
         The branches that will be included in the trigger configuration. If no branches are specified, the trigger will apply to all branches.
         """
-        ...
+        return pulumi.get(self, "branches")
 
     @branches.setter
     def branches(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "branches", value)
 
     @property
     @pulumi.getter(name="customData")
@@ -89,10 +89,10 @@ class TriggerTriggerArgs:
         """
         Any custom data associated with the trigger that will be included in the information sent to the target of the trigger.
         """
-        ...
+        return pulumi.get(self, "custom_data")
 
     @custom_data.setter
     def custom_data(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "custom_data", value)
 
 

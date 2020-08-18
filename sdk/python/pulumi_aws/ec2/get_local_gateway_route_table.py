@@ -49,7 +49,7 @@ class GetLocalGatewayRouteTableResult:
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetLocalGatewayRouteTableFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
@@ -57,32 +57,32 @@ class GetLocalGatewayRouteTableResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="localGatewayId")
     def local_gateway_id(self) -> str:
-        ...
+        return pulumi.get(self, "local_gateway_id")
 
     @property
     @pulumi.getter(name="localGatewayRouteTableId")
     def local_gateway_route_table_id(self) -> str:
-        ...
+        return pulumi.get(self, "local_gateway_route_table_id")
 
     @property
     @pulumi.getter(name="outpostArn")
     def outpost_arn(self) -> str:
-        ...
+        return pulumi.get(self, "outpost_arn")
 
     @property
     @pulumi.getter
     def state(self) -> str:
-        ...
+        return pulumi.get(self, "state")
 
     @property
     @pulumi.getter
     def tags(self) -> Mapping[str, str]:
-        ...
+        return pulumi.get(self, "tags")
 
 
 

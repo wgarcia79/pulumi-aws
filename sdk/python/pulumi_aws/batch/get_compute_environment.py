@@ -56,12 +56,12 @@ class GetComputeEnvironmentResult:
         """
         The ARN of the compute environment.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="computeEnvironmentName")
     def compute_environment_name(self) -> str:
-        ...
+        return pulumi.get(self, "compute_environment_name")
 
     @property
     @pulumi.getter(name="ecsClusterArn")
@@ -69,7 +69,7 @@ class GetComputeEnvironmentResult:
         """
         The ARN of the underlying Amazon ECS cluster used by the compute environment.
         """
-        ...
+        return pulumi.get(self, "ecs_cluster_arn")
 
     @property
     @pulumi.getter
@@ -77,7 +77,7 @@ class GetComputeEnvironmentResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="serviceRole")
@@ -85,7 +85,7 @@ class GetComputeEnvironmentResult:
         """
         The ARN of the IAM role that allows AWS Batch to make calls to other AWS services on your behalf.
         """
-        ...
+        return pulumi.get(self, "service_role")
 
     @property
     @pulumi.getter
@@ -93,7 +93,7 @@ class GetComputeEnvironmentResult:
         """
         The state of the compute environment (for example, `ENABLED` or `DISABLED`). If the state is `ENABLED`, then the compute environment accepts jobs from a queue and can scale out automatically based on queues.
         """
-        ...
+        return pulumi.get(self, "state")
 
     @property
     @pulumi.getter
@@ -101,7 +101,7 @@ class GetComputeEnvironmentResult:
         """
         The current status of the compute environment (for example, `CREATING` or `VALID`).
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter(name="statusReason")
@@ -109,7 +109,7 @@ class GetComputeEnvironmentResult:
         """
         A short, human-readable string to provide additional details about the current status of the compute environment.
         """
-        ...
+        return pulumi.get(self, "status_reason")
 
     @property
     @pulumi.getter
@@ -117,7 +117,7 @@ class GetComputeEnvironmentResult:
         """
         The type of the compute environment (for example, `MANAGED` or `UNMANAGED`).
         """
-        ...
+        return pulumi.get(self, "type")
 
 
 

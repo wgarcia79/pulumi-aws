@@ -89,11 +89,11 @@ class AccessPointPublicAccessBlockConfigurationArgs:
         * PUT Object calls fail if the request includes a public ACL.
         * PUT Bucket calls fail if the request includes a public ACL.
         """
-        ...
+        return pulumi.get(self, "block_public_acls")
 
     @block_public_acls.setter
     def block_public_acls(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "block_public_acls", value)
 
     @property
     @pulumi.getter(name="blockPublicPolicy")
@@ -102,11 +102,11 @@ class AccessPointPublicAccessBlockConfigurationArgs:
         Whether Amazon S3 should block public bucket policies for buckets in this account. Defaults to `true`. Enabling this setting does not affect existing bucket policies. When set to `true` causes Amazon S3 to:
         * Reject calls to PUT Bucket policy if the specified bucket policy allows public access.
         """
-        ...
+        return pulumi.get(self, "block_public_policy")
 
     @block_public_policy.setter
     def block_public_policy(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "block_public_policy", value)
 
     @property
     @pulumi.getter(name="ignorePublicAcls")
@@ -115,11 +115,11 @@ class AccessPointPublicAccessBlockConfigurationArgs:
         Whether Amazon S3 should ignore public ACLs for buckets in this account. Defaults to `true`. Enabling this setting does not affect the persistence of any existing ACLs and doesn't prevent new public ACLs from being set. When set to `true` causes Amazon S3 to:
         * Ignore all public ACLs on buckets in this account and any objects that they contain.
         """
-        ...
+        return pulumi.get(self, "ignore_public_acls")
 
     @ignore_public_acls.setter
     def ignore_public_acls(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "ignore_public_acls", value)
 
     @property
     @pulumi.getter(name="restrictPublicBuckets")
@@ -128,11 +128,11 @@ class AccessPointPublicAccessBlockConfigurationArgs:
         Whether Amazon S3 should restrict public bucket policies for buckets in this account. Defaults to `true`. Enabling this setting does not affect previously stored bucket policies, except that public and cross-account access within any public bucket policy, including non-public delegation to specific accounts, is blocked. When set to `true`:
         * Only the bucket owner and AWS Services can access buckets with public policies.
         """
-        ...
+        return pulumi.get(self, "restrict_public_buckets")
 
     @restrict_public_buckets.setter
     def restrict_public_buckets(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "restrict_public_buckets", value)
 
 
 @pulumi.input_type
@@ -150,11 +150,11 @@ class AccessPointVpcConfigurationArgs:
         """
         This access point will only allow connections from the specified VPC ID.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     @vpc_id.setter
     def vpc_id(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "vpc_id", value)
 
 
 @pulumi.input_type
@@ -177,11 +177,11 @@ class AnalyticsConfigurationFilterArgs:
         """
         Object prefix for filtering.
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     @prefix.setter
     def prefix(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "prefix", value)
 
     @property
     @pulumi.getter
@@ -189,11 +189,11 @@ class AnalyticsConfigurationFilterArgs:
         """
         Set of object tags for filtering.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @tags.setter
     def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "tags", value)
 
 
 @pulumi.input_type
@@ -211,11 +211,11 @@ class AnalyticsConfigurationStorageClassAnalysisArgs:
         """
         Data export configuration (documented below).
         """
-        ...
+        return pulumi.get(self, "data_export")
 
     @data_export.setter
     def data_export(self, value: pulumi.Input['AnalyticsConfigurationStorageClassAnalysisDataExportArgs']):
-        ...
+        pulumi.set(self, "data_export", value)
 
 
 @pulumi.input_type
@@ -237,11 +237,11 @@ class AnalyticsConfigurationStorageClassAnalysisDataExportArgs:
         """
         Specifies the destination for the exported analytics data (documented below).
         """
-        ...
+        return pulumi.get(self, "destination")
 
     @destination.setter
     def destination(self, value: pulumi.Input['AnalyticsConfigurationStorageClassAnalysisDataExportDestinationArgs']):
-        ...
+        pulumi.set(self, "destination", value)
 
     @property
     @pulumi.getter(name="outputSchemaVersion")
@@ -249,11 +249,11 @@ class AnalyticsConfigurationStorageClassAnalysisDataExportArgs:
         """
         The schema version of exported analytics data. Allowed values: `V_1`. Default value: `V_1`.
         """
-        ...
+        return pulumi.get(self, "output_schema_version")
 
     @output_schema_version.setter
     def output_schema_version(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "output_schema_version", value)
 
 
 @pulumi.input_type
@@ -271,11 +271,11 @@ class AnalyticsConfigurationStorageClassAnalysisDataExportDestinationArgs:
         """
         Analytics data export currently only supports an S3 bucket destination (documented below).
         """
-        ...
+        return pulumi.get(self, "s3_bucket_destination")
 
     @s3_bucket_destination.setter
     def s3_bucket_destination(self, value: pulumi.Input['AnalyticsConfigurationStorageClassAnalysisDataExportDestinationS3BucketDestinationArgs']):
-        ...
+        pulumi.set(self, "s3_bucket_destination", value)
 
 
 @pulumi.input_type
@@ -305,11 +305,11 @@ class AnalyticsConfigurationStorageClassAnalysisDataExportDestinationS3BucketDes
         """
         The ARN of the destination bucket.
         """
-        ...
+        return pulumi.get(self, "bucket_arn")
 
     @bucket_arn.setter
     def bucket_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "bucket_arn", value)
 
     @property
     @pulumi.getter(name="bucketAccountId")
@@ -317,11 +317,11 @@ class AnalyticsConfigurationStorageClassAnalysisDataExportDestinationS3BucketDes
         """
         The account ID that owns the destination bucket.
         """
-        ...
+        return pulumi.get(self, "bucket_account_id")
 
     @bucket_account_id.setter
     def bucket_account_id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "bucket_account_id", value)
 
     @property
     @pulumi.getter
@@ -329,11 +329,11 @@ class AnalyticsConfigurationStorageClassAnalysisDataExportDestinationS3BucketDes
         """
         The output format of exported analytics data. Allowed values: `CSV`. Default value: `CSV`.
         """
-        ...
+        return pulumi.get(self, "format")
 
     @format.setter
     def format(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "format", value)
 
     @property
     @pulumi.getter
@@ -341,11 +341,11 @@ class AnalyticsConfigurationStorageClassAnalysisDataExportDestinationS3BucketDes
         """
         Object prefix for filtering.
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     @prefix.setter
     def prefix(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "prefix", value)
 
 
 @pulumi.input_type
@@ -378,11 +378,11 @@ class BucketCorsRuleArgs:
         """
         Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
         """
-        ...
+        return pulumi.get(self, "allowed_methods")
 
     @allowed_methods.setter
     def allowed_methods(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "allowed_methods", value)
 
     @property
     @pulumi.getter(name="allowedOrigins")
@@ -390,11 +390,11 @@ class BucketCorsRuleArgs:
         """
         Specifies which origins are allowed.
         """
-        ...
+        return pulumi.get(self, "allowed_origins")
 
     @allowed_origins.setter
     def allowed_origins(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "allowed_origins", value)
 
     @property
     @pulumi.getter(name="allowedHeaders")
@@ -402,11 +402,11 @@ class BucketCorsRuleArgs:
         """
         Specifies which headers are allowed.
         """
-        ...
+        return pulumi.get(self, "allowed_headers")
 
     @allowed_headers.setter
     def allowed_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "allowed_headers", value)
 
     @property
     @pulumi.getter(name="exposeHeaders")
@@ -414,11 +414,11 @@ class BucketCorsRuleArgs:
         """
         Specifies expose header in the response.
         """
-        ...
+        return pulumi.get(self, "expose_headers")
 
     @expose_headers.setter
     def expose_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "expose_headers", value)
 
     @property
     @pulumi.getter(name="maxAgeSeconds")
@@ -426,11 +426,11 @@ class BucketCorsRuleArgs:
         """
         Specifies time in seconds that browser can cache the response for a preflight request.
         """
-        ...
+        return pulumi.get(self, "max_age_seconds")
 
     @max_age_seconds.setter
     def max_age_seconds(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "max_age_seconds", value)
 
 
 @pulumi.input_type
@@ -459,11 +459,11 @@ class BucketGrantArgs:
         """
         List of permissions to apply for grantee. Valid values are `READ`, `WRITE`, `READ_ACP`, `WRITE_ACP`, `FULL_CONTROL`.
         """
-        ...
+        return pulumi.get(self, "permissions")
 
     @permissions.setter
     def permissions(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "permissions", value)
 
     @property
     @pulumi.getter
@@ -471,11 +471,11 @@ class BucketGrantArgs:
         """
         - Type of grantee to apply for. Valid values are `CanonicalUser` and `Group`. `AmazonCustomerByEmail` is not supported.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter
@@ -483,11 +483,11 @@ class BucketGrantArgs:
         """
         Canonical user id to grant for. Used only when `type` is `CanonicalUser`.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @id.setter
     def id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter
@@ -495,11 +495,11 @@ class BucketGrantArgs:
         """
         Uri address to grant for. Used only when `type` is `Group`.
         """
-        ...
+        return pulumi.get(self, "uri")
 
     @uri.setter
     def uri(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "uri", value)
 
 
 @pulumi.input_type
@@ -549,11 +549,11 @@ class BucketLifecycleRuleArgs:
         """
         Specifies lifecycle rule status.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: pulumi.Input[bool]):
-        ...
+        pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter(name="abortIncompleteMultipartUploadDays")
@@ -561,11 +561,11 @@ class BucketLifecycleRuleArgs:
         """
         Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
         """
-        ...
+        return pulumi.get(self, "abort_incomplete_multipart_upload_days")
 
     @abort_incomplete_multipart_upload_days.setter
     def abort_incomplete_multipart_upload_days(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "abort_incomplete_multipart_upload_days", value)
 
     @property
     @pulumi.getter
@@ -573,11 +573,11 @@ class BucketLifecycleRuleArgs:
         """
         Specifies a period in the object's expire (documented below).
         """
-        ...
+        return pulumi.get(self, "expiration")
 
     @expiration.setter
     def expiration(self, value: Optional[pulumi.Input['BucketLifecycleRuleExpirationArgs']]):
-        ...
+        pulumi.set(self, "expiration", value)
 
     @property
     @pulumi.getter
@@ -585,11 +585,11 @@ class BucketLifecycleRuleArgs:
         """
         Unique identifier for the rule.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @id.setter
     def id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter(name="noncurrentVersionExpiration")
@@ -597,11 +597,11 @@ class BucketLifecycleRuleArgs:
         """
         Specifies when noncurrent object versions expire (documented below).
         """
-        ...
+        return pulumi.get(self, "noncurrent_version_expiration")
 
     @noncurrent_version_expiration.setter
     def noncurrent_version_expiration(self, value: Optional[pulumi.Input['BucketLifecycleRuleNoncurrentVersionExpirationArgs']]):
-        ...
+        pulumi.set(self, "noncurrent_version_expiration", value)
 
     @property
     @pulumi.getter(name="noncurrentVersionTransitions")
@@ -609,11 +609,11 @@ class BucketLifecycleRuleArgs:
         """
         Specifies when noncurrent object versions transitions (documented below).
         """
-        ...
+        return pulumi.get(self, "noncurrent_version_transitions")
 
     @noncurrent_version_transitions.setter
     def noncurrent_version_transitions(self, value: Optional[pulumi.Input[List[pulumi.Input['BucketLifecycleRuleNoncurrentVersionTransitionArgs']]]]):
-        ...
+        pulumi.set(self, "noncurrent_version_transitions", value)
 
     @property
     @pulumi.getter
@@ -621,11 +621,11 @@ class BucketLifecycleRuleArgs:
         """
         Object key prefix identifying one or more objects to which the rule applies.
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     @prefix.setter
     def prefix(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "prefix", value)
 
     @property
     @pulumi.getter
@@ -633,11 +633,11 @@ class BucketLifecycleRuleArgs:
         """
         Specifies object tags key and value.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @tags.setter
     def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "tags", value)
 
     @property
     @pulumi.getter
@@ -645,11 +645,11 @@ class BucketLifecycleRuleArgs:
         """
         Specifies a period in the object's transitions (documented below).
         """
-        ...
+        return pulumi.get(self, "transitions")
 
     @transitions.setter
     def transitions(self, value: Optional[pulumi.Input[List[pulumi.Input['BucketLifecycleRuleTransitionArgs']]]]):
-        ...
+        pulumi.set(self, "transitions", value)
 
 
 @pulumi.input_type
@@ -676,11 +676,11 @@ class BucketLifecycleRuleExpirationArgs:
         """
         Specifies the date after which you want the corresponding action to take effect.
         """
-        ...
+        return pulumi.get(self, "date")
 
     @date.setter
     def date(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "date", value)
 
     @property
     @pulumi.getter
@@ -688,11 +688,11 @@ class BucketLifecycleRuleExpirationArgs:
         """
         Specifies the number of days after object creation when the specific rule action takes effect.
         """
-        ...
+        return pulumi.get(self, "days")
 
     @days.setter
     def days(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "days", value)
 
     @property
     @pulumi.getter(name="expiredObjectDeleteMarker")
@@ -700,11 +700,11 @@ class BucketLifecycleRuleExpirationArgs:
         """
         On a versioned bucket (versioning-enabled or versioning-suspended bucket), you can add this element in the lifecycle configuration to direct Amazon S3 to delete expired object delete markers.
         """
-        ...
+        return pulumi.get(self, "expired_object_delete_marker")
 
     @expired_object_delete_marker.setter
     def expired_object_delete_marker(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "expired_object_delete_marker", value)
 
 
 @pulumi.input_type
@@ -723,11 +723,11 @@ class BucketLifecycleRuleNoncurrentVersionExpirationArgs:
         """
         Specifies the number of days noncurrent object versions expire.
         """
-        ...
+        return pulumi.get(self, "days")
 
     @days.setter
     def days(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "days", value)
 
 
 @pulumi.input_type
@@ -749,11 +749,11 @@ class BucketLifecycleRuleNoncurrentVersionTransitionArgs:
         """
         Specifies the Amazon S3 storage class to which you want the noncurrent object versions to transition. Can be `ONEZONE_IA`, `STANDARD_IA`, `INTELLIGENT_TIERING`, `GLACIER`, or `DEEP_ARCHIVE`.
         """
-        ...
+        return pulumi.get(self, "storage_class")
 
     @storage_class.setter
     def storage_class(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "storage_class", value)
 
     @property
     @pulumi.getter
@@ -761,11 +761,11 @@ class BucketLifecycleRuleNoncurrentVersionTransitionArgs:
         """
         Specifies the number of days noncurrent object versions transition.
         """
-        ...
+        return pulumi.get(self, "days")
 
     @days.setter
     def days(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "days", value)
 
 
 @pulumi.input_type
@@ -791,11 +791,11 @@ class BucketLifecycleRuleTransitionArgs:
         """
         Specifies the Amazon S3 storage class to which you want the object to transition. Can be `ONEZONE_IA`, `STANDARD_IA`, `INTELLIGENT_TIERING`, `GLACIER`, or `DEEP_ARCHIVE`.
         """
-        ...
+        return pulumi.get(self, "storage_class")
 
     @storage_class.setter
     def storage_class(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "storage_class", value)
 
     @property
     @pulumi.getter
@@ -803,11 +803,11 @@ class BucketLifecycleRuleTransitionArgs:
         """
         Specifies the date after which you want the corresponding action to take effect.
         """
-        ...
+        return pulumi.get(self, "date")
 
     @date.setter
     def date(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "date", value)
 
     @property
     @pulumi.getter
@@ -815,11 +815,11 @@ class BucketLifecycleRuleTransitionArgs:
         """
         Specifies the number of days after object creation when the specific rule action takes effect.
         """
-        ...
+        return pulumi.get(self, "days")
 
     @days.setter
     def days(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "days", value)
 
 
 @pulumi.input_type
@@ -841,11 +841,11 @@ class BucketLoggingArgs:
         """
         The name of the bucket that will receive the log objects.
         """
-        ...
+        return pulumi.get(self, "target_bucket")
 
     @target_bucket.setter
     def target_bucket(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "target_bucket", value)
 
     @property
     @pulumi.getter(name="targetPrefix")
@@ -853,11 +853,11 @@ class BucketLoggingArgs:
         """
         To specify a key prefix for log objects.
         """
-        ...
+        return pulumi.get(self, "target_prefix")
 
     @target_prefix.setter
     def target_prefix(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "target_prefix", value)
 
 
 @pulumi.input_type
@@ -880,11 +880,11 @@ class BucketMetricFilterArgs:
         """
         Object prefix for filtering (singular).
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     @prefix.setter
     def prefix(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "prefix", value)
 
     @property
     @pulumi.getter
@@ -892,11 +892,11 @@ class BucketMetricFilterArgs:
         """
         Object tags for filtering (up to 10).
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @tags.setter
     def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "tags", value)
 
 
 @pulumi.input_type
@@ -930,11 +930,11 @@ class BucketNotificationLambdaFunctionArgs:
         """
         Specifies [event](http://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html#notification-how-to-event-types-and-destinations) for which to send notifications.
         """
-        ...
+        return pulumi.get(self, "events")
 
     @events.setter
     def events(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "events", value)
 
     @property
     @pulumi.getter(name="filterPrefix")
@@ -942,11 +942,11 @@ class BucketNotificationLambdaFunctionArgs:
         """
         Specifies object key name prefix.
         """
-        ...
+        return pulumi.get(self, "filter_prefix")
 
     @filter_prefix.setter
     def filter_prefix(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "filter_prefix", value)
 
     @property
     @pulumi.getter(name="filterSuffix")
@@ -954,11 +954,11 @@ class BucketNotificationLambdaFunctionArgs:
         """
         Specifies object key name suffix.
         """
-        ...
+        return pulumi.get(self, "filter_suffix")
 
     @filter_suffix.setter
     def filter_suffix(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "filter_suffix", value)
 
     @property
     @pulumi.getter
@@ -966,11 +966,11 @@ class BucketNotificationLambdaFunctionArgs:
         """
         Specifies unique identifier for each of the notification configurations.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @id.setter
     def id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter(name="lambdaFunctionArn")
@@ -978,11 +978,11 @@ class BucketNotificationLambdaFunctionArgs:
         """
         Specifies Amazon Lambda function ARN.
         """
-        ...
+        return pulumi.get(self, "lambda_function_arn")
 
     @lambda_function_arn.setter
     def lambda_function_arn(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "lambda_function_arn", value)
 
 
 @pulumi.input_type
@@ -1015,11 +1015,11 @@ class BucketNotificationQueueArgs:
         """
         Specifies [event](http://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html#notification-how-to-event-types-and-destinations) for which to send notifications.
         """
-        ...
+        return pulumi.get(self, "events")
 
     @events.setter
     def events(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "events", value)
 
     @property
     @pulumi.getter(name="queueArn")
@@ -1027,11 +1027,11 @@ class BucketNotificationQueueArgs:
         """
         Specifies Amazon SQS queue ARN.
         """
-        ...
+        return pulumi.get(self, "queue_arn")
 
     @queue_arn.setter
     def queue_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "queue_arn", value)
 
     @property
     @pulumi.getter(name="filterPrefix")
@@ -1039,11 +1039,11 @@ class BucketNotificationQueueArgs:
         """
         Specifies object key name prefix.
         """
-        ...
+        return pulumi.get(self, "filter_prefix")
 
     @filter_prefix.setter
     def filter_prefix(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "filter_prefix", value)
 
     @property
     @pulumi.getter(name="filterSuffix")
@@ -1051,11 +1051,11 @@ class BucketNotificationQueueArgs:
         """
         Specifies object key name suffix.
         """
-        ...
+        return pulumi.get(self, "filter_suffix")
 
     @filter_suffix.setter
     def filter_suffix(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "filter_suffix", value)
 
     @property
     @pulumi.getter
@@ -1063,11 +1063,11 @@ class BucketNotificationQueueArgs:
         """
         Specifies unique identifier for each of the notification configurations.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @id.setter
     def id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "id", value)
 
 
 @pulumi.input_type
@@ -1100,11 +1100,11 @@ class BucketNotificationTopicArgs:
         """
         Specifies [event](http://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html#notification-how-to-event-types-and-destinations) for which to send notifications.
         """
-        ...
+        return pulumi.get(self, "events")
 
     @events.setter
     def events(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "events", value)
 
     @property
     @pulumi.getter(name="topicArn")
@@ -1112,11 +1112,11 @@ class BucketNotificationTopicArgs:
         """
         Specifies Amazon SNS topic ARN.
         """
-        ...
+        return pulumi.get(self, "topic_arn")
 
     @topic_arn.setter
     def topic_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "topic_arn", value)
 
     @property
     @pulumi.getter(name="filterPrefix")
@@ -1124,11 +1124,11 @@ class BucketNotificationTopicArgs:
         """
         Specifies object key name prefix.
         """
-        ...
+        return pulumi.get(self, "filter_prefix")
 
     @filter_prefix.setter
     def filter_prefix(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "filter_prefix", value)
 
     @property
     @pulumi.getter(name="filterSuffix")
@@ -1136,11 +1136,11 @@ class BucketNotificationTopicArgs:
         """
         Specifies object key name suffix.
         """
-        ...
+        return pulumi.get(self, "filter_suffix")
 
     @filter_suffix.setter
     def filter_suffix(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "filter_suffix", value)
 
     @property
     @pulumi.getter
@@ -1148,11 +1148,11 @@ class BucketNotificationTopicArgs:
         """
         Specifies unique identifier for each of the notification configurations.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @id.setter
     def id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "id", value)
 
 
 @pulumi.input_type
@@ -1174,11 +1174,11 @@ class BucketObjectLockConfigurationArgs:
         """
         Indicates whether this bucket has an Object Lock configuration enabled. Valid value is `Enabled`.
         """
-        ...
+        return pulumi.get(self, "object_lock_enabled")
 
     @object_lock_enabled.setter
     def object_lock_enabled(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "object_lock_enabled", value)
 
     @property
     @pulumi.getter
@@ -1186,11 +1186,11 @@ class BucketObjectLockConfigurationArgs:
         """
         The Object Lock rule in place for this bucket.
         """
-        ...
+        return pulumi.get(self, "rule")
 
     @rule.setter
     def rule(self, value: Optional[pulumi.Input['BucketObjectLockConfigurationRuleArgs']]):
-        ...
+        pulumi.set(self, "rule", value)
 
 
 @pulumi.input_type
@@ -1208,11 +1208,11 @@ class BucketObjectLockConfigurationRuleArgs:
         """
         The default retention period that you want to apply to new objects placed in this bucket.
         """
-        ...
+        return pulumi.get(self, "default_retention")
 
     @default_retention.setter
     def default_retention(self, value: pulumi.Input['BucketObjectLockConfigurationRuleDefaultRetentionArgs']):
-        ...
+        pulumi.set(self, "default_retention", value)
 
 
 @pulumi.input_type
@@ -1238,11 +1238,11 @@ class BucketObjectLockConfigurationRuleDefaultRetentionArgs:
         """
         The default Object Lock retention mode you want to apply to new objects placed in this bucket. Valid values are `GOVERNANCE` and `COMPLIANCE`.
         """
-        ...
+        return pulumi.get(self, "mode")
 
     @mode.setter
     def mode(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "mode", value)
 
     @property
     @pulumi.getter
@@ -1250,11 +1250,11 @@ class BucketObjectLockConfigurationRuleDefaultRetentionArgs:
         """
         The number of days that you want to specify for the default retention period.
         """
-        ...
+        return pulumi.get(self, "days")
 
     @days.setter
     def days(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "days", value)
 
     @property
     @pulumi.getter
@@ -1262,11 +1262,11 @@ class BucketObjectLockConfigurationRuleDefaultRetentionArgs:
         """
         The number of years that you want to specify for the default retention period.
         """
-        ...
+        return pulumi.get(self, "years")
 
     @years.setter
     def years(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "years", value)
 
 
 @pulumi.input_type
@@ -1287,11 +1287,11 @@ class BucketReplicationConfigurationArgs:
         """
         The ARN of the IAM role for Amazon S3 to assume when replicating the objects.
         """
-        ...
+        return pulumi.get(self, "role")
 
     @role.setter
     def role(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "role", value)
 
     @property
     @pulumi.getter
@@ -1299,11 +1299,11 @@ class BucketReplicationConfigurationArgs:
         """
         Specifies the rules managing the replication (documented below).
         """
-        ...
+        return pulumi.get(self, "rules")
 
     @rules.setter
     def rules(self, value: pulumi.Input[List[pulumi.Input['BucketReplicationConfigurationRuleArgs']]]):
-        ...
+        pulumi.set(self, "rules", value)
 
 
 @pulumi.input_type
@@ -1344,11 +1344,11 @@ class BucketReplicationConfigurationRuleArgs:
         """
         Specifies the destination for the rule (documented below).
         """
-        ...
+        return pulumi.get(self, "destination")
 
     @destination.setter
     def destination(self, value: pulumi.Input['BucketReplicationConfigurationRuleDestinationArgs']):
-        ...
+        pulumi.set(self, "destination", value)
 
     @property
     @pulumi.getter
@@ -1356,11 +1356,11 @@ class BucketReplicationConfigurationRuleArgs:
         """
         The status of the rule. Either `Enabled` or `Disabled`. The rule is ignored if status is not Enabled.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @status.setter
     def status(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "status", value)
 
     @property
     @pulumi.getter
@@ -1368,11 +1368,11 @@ class BucketReplicationConfigurationRuleArgs:
         """
         Filter that identifies subset of objects to which the replication rule applies (documented below).
         """
-        ...
+        return pulumi.get(self, "filter")
 
     @filter.setter
     def filter(self, value: Optional[pulumi.Input['BucketReplicationConfigurationRuleFilterArgs']]):
-        ...
+        pulumi.set(self, "filter", value)
 
     @property
     @pulumi.getter
@@ -1380,11 +1380,11 @@ class BucketReplicationConfigurationRuleArgs:
         """
         Unique identifier for the rule.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @id.setter
     def id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter
@@ -1392,11 +1392,11 @@ class BucketReplicationConfigurationRuleArgs:
         """
         Object keyname prefix identifying one or more objects to which the rule applies.
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     @prefix.setter
     def prefix(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "prefix", value)
 
     @property
     @pulumi.getter
@@ -1404,11 +1404,11 @@ class BucketReplicationConfigurationRuleArgs:
         """
         is optional (with a default value of `0`) but must be unique between multiple rules
         """
-        ...
+        return pulumi.get(self, "priority")
 
     @priority.setter
     def priority(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "priority", value)
 
     @property
     @pulumi.getter(name="sourceSelectionCriteria")
@@ -1416,11 +1416,11 @@ class BucketReplicationConfigurationRuleArgs:
         """
         Specifies special object selection criteria (documented below).
         """
-        ...
+        return pulumi.get(self, "source_selection_criteria")
 
     @source_selection_criteria.setter
     def source_selection_criteria(self, value: Optional[pulumi.Input['BucketReplicationConfigurationRuleSourceSelectionCriteriaArgs']]):
-        ...
+        pulumi.set(self, "source_selection_criteria", value)
 
 
 @pulumi.input_type
@@ -1455,11 +1455,11 @@ class BucketReplicationConfigurationRuleDestinationArgs:
         """
         The ARN of the S3 bucket where you want Amazon S3 to store replicas of the object identified by the rule.
         """
-        ...
+        return pulumi.get(self, "bucket")
 
     @bucket.setter
     def bucket(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "bucket", value)
 
     @property
     @pulumi.getter(name="accessControlTranslation")
@@ -1467,11 +1467,11 @@ class BucketReplicationConfigurationRuleDestinationArgs:
         """
         Specifies the overrides to use for object owners on replication. Must be used in conjunction with `account_id` owner override configuration.
         """
-        ...
+        return pulumi.get(self, "access_control_translation")
 
     @access_control_translation.setter
     def access_control_translation(self, value: Optional[pulumi.Input['BucketReplicationConfigurationRuleDestinationAccessControlTranslationArgs']]):
-        ...
+        pulumi.set(self, "access_control_translation", value)
 
     @property
     @pulumi.getter(name="accountId")
@@ -1479,11 +1479,11 @@ class BucketReplicationConfigurationRuleDestinationArgs:
         """
         The Account ID to use for overriding the object owner on replication. Must be used in conjunction with `access_control_translation` override configuration.
         """
-        ...
+        return pulumi.get(self, "account_id")
 
     @account_id.setter
     def account_id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "account_id", value)
 
     @property
     @pulumi.getter(name="replicaKmsKeyId")
@@ -1492,11 +1492,11 @@ class BucketReplicationConfigurationRuleDestinationArgs:
         Destination KMS encryption key ARN for SSE-KMS replication. Must be used in conjunction with
         `sse_kms_encrypted_objects` source selection criteria.
         """
-        ...
+        return pulumi.get(self, "replica_kms_key_id")
 
     @replica_kms_key_id.setter
     def replica_kms_key_id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "replica_kms_key_id", value)
 
     @property
     @pulumi.getter(name="storageClass")
@@ -1504,11 +1504,11 @@ class BucketReplicationConfigurationRuleDestinationArgs:
         """
         The class of storage used to store the object. Can be `STANDARD`, `REDUCED_REDUNDANCY`, `STANDARD_IA`, `ONEZONE_IA`, `INTELLIGENT_TIERING`, `GLACIER`, or `DEEP_ARCHIVE`.
         """
-        ...
+        return pulumi.get(self, "storage_class")
 
     @storage_class.setter
     def storage_class(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "storage_class", value)
 
 
 @pulumi.input_type
@@ -1526,11 +1526,11 @@ class BucketReplicationConfigurationRuleDestinationAccessControlTranslationArgs:
         """
         The override value for the owner on replicated objects. Currently only `Destination` is supported.
         """
-        ...
+        return pulumi.get(self, "owner")
 
     @owner.setter
     def owner(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "owner", value)
 
 
 @pulumi.input_type
@@ -1554,11 +1554,11 @@ class BucketReplicationConfigurationRuleFilterArgs:
         """
         Object keyname prefix that identifies subset of objects to which the rule applies.
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     @prefix.setter
     def prefix(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "prefix", value)
 
     @property
     @pulumi.getter
@@ -1567,11 +1567,11 @@ class BucketReplicationConfigurationRuleFilterArgs:
         A map of tags that identifies subset of objects to which the rule applies.
         The rule applies only to objects having all the tags in its tagset.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @tags.setter
     def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "tags", value)
 
 
 @pulumi.input_type
@@ -1592,11 +1592,11 @@ class BucketReplicationConfigurationRuleSourceSelectionCriteriaArgs:
         Match SSE-KMS encrypted objects (documented below). If specified, `replica_kms_key_id`
         in `destination` must be specified as well.
         """
-        ...
+        return pulumi.get(self, "sse_kms_encrypted_objects")
 
     @sse_kms_encrypted_objects.setter
     def sse_kms_encrypted_objects(self, value: Optional[pulumi.Input['BucketReplicationConfigurationRuleSourceSelectionCriteriaSseKmsEncryptedObjectsArgs']]):
-        ...
+        pulumi.set(self, "sse_kms_encrypted_objects", value)
 
 
 @pulumi.input_type
@@ -1614,11 +1614,11 @@ class BucketReplicationConfigurationRuleSourceSelectionCriteriaSseKmsEncryptedOb
         """
         Boolean which indicates if this criteria is enabled.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: pulumi.Input[bool]):
-        ...
+        pulumi.set(self, "enabled", value)
 
 
 @pulumi.input_type
@@ -1636,11 +1636,11 @@ class BucketServerSideEncryptionConfigurationArgs:
         """
         A single object for server-side encryption by default configuration. (documented below)
         """
-        ...
+        return pulumi.get(self, "rule")
 
     @rule.setter
     def rule(self, value: pulumi.Input['BucketServerSideEncryptionConfigurationRuleArgs']):
-        ...
+        pulumi.set(self, "rule", value)
 
 
 @pulumi.input_type
@@ -1658,11 +1658,11 @@ class BucketServerSideEncryptionConfigurationRuleArgs:
         """
         A single object for setting server-side encryption by default. (documented below)
         """
-        ...
+        return pulumi.get(self, "apply_server_side_encryption_by_default")
 
     @apply_server_side_encryption_by_default.setter
     def apply_server_side_encryption_by_default(self, value: pulumi.Input['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs']):
-        ...
+        pulumi.set(self, "apply_server_side_encryption_by_default", value)
 
 
 @pulumi.input_type
@@ -1684,11 +1684,11 @@ class BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefa
         """
         The server-side encryption algorithm to use. Valid values are `AES256` and `aws:kms`
         """
-        ...
+        return pulumi.get(self, "sse_algorithm")
 
     @sse_algorithm.setter
     def sse_algorithm(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "sse_algorithm", value)
 
     @property
     @pulumi.getter(name="kmsMasterKeyId")
@@ -1696,11 +1696,11 @@ class BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefa
         """
         The AWS KMS master key ID used for the SSE-KMS encryption. This can only be used when you set the value of `sse_algorithm` as `aws:kms`. The default `aws/s3` AWS KMS master key is used if this element is absent while the `sse_algorithm` is `aws:kms`.
         """
-        ...
+        return pulumi.get(self, "kms_master_key_id")
 
     @kms_master_key_id.setter
     def kms_master_key_id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kms_master_key_id", value)
 
 
 @pulumi.input_type
@@ -1723,11 +1723,11 @@ class BucketVersioningArgs:
         """
         Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter(name="mfaDelete")
@@ -1735,11 +1735,11 @@ class BucketVersioningArgs:
         """
         Enable MFA delete for either `Change the versioning state of your bucket` or `Permanently delete an object version`. Default is `false`. This cannot be used to toggle this setting but is available to allow managed buckets to reflect the state in AWS
         """
-        ...
+        return pulumi.get(self, "mfa_delete")
 
     @mfa_delete.setter
     def mfa_delete(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "mfa_delete", value)
 
 
 @pulumi.input_type
@@ -1771,11 +1771,11 @@ class BucketWebsiteArgs:
         """
         An absolute path to the document to return in case of a 4XX error.
         """
-        ...
+        return pulumi.get(self, "error_document")
 
     @error_document.setter
     def error_document(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "error_document", value)
 
     @property
     @pulumi.getter(name="indexDocument")
@@ -1783,11 +1783,11 @@ class BucketWebsiteArgs:
         """
         Amazon S3 returns this index document when requests are made to the root domain or any of the subfolders.
         """
-        ...
+        return pulumi.get(self, "index_document")
 
     @index_document.setter
     def index_document(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "index_document", value)
 
     @property
     @pulumi.getter(name="redirectAllRequestsTo")
@@ -1795,11 +1795,11 @@ class BucketWebsiteArgs:
         """
         A hostname to redirect all website requests for this bucket to. Hostname can optionally be prefixed with a protocol (`http://` or `https://`) to use when redirecting requests. The default is the protocol that is used in the original request.
         """
-        ...
+        return pulumi.get(self, "redirect_all_requests_to")
 
     @redirect_all_requests_to.setter
     def redirect_all_requests_to(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "redirect_all_requests_to", value)
 
     @property
     @pulumi.getter(name="routingRules")
@@ -1808,11 +1808,11 @@ class BucketWebsiteArgs:
         A json array containing [routing rules](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration-routingrules.html)
         describing redirect behavior and when redirects are applied.
         """
-        ...
+        return pulumi.get(self, "routing_rules")
 
     @routing_rules.setter
     def routing_rules(self, value: Optional[pulumi.Input[Union[str, List[pulumi.Input[str]]]]]):
-        ...
+        pulumi.set(self, "routing_rules", value)
 
 
 @pulumi.input_type
@@ -1830,11 +1830,11 @@ class InventoryDestinationArgs:
         """
         The S3 bucket configuration where inventory results are published (documented below).
         """
-        ...
+        return pulumi.get(self, "bucket")
 
     @bucket.setter
     def bucket(self, value: pulumi.Input['InventoryDestinationBucketArgs']):
-        ...
+        pulumi.set(self, "bucket", value)
 
 
 @pulumi.input_type
@@ -1867,11 +1867,11 @@ class InventoryDestinationBucketArgs:
         """
         The Amazon S3 bucket ARN of the destination.
         """
-        ...
+        return pulumi.get(self, "bucket_arn")
 
     @bucket_arn.setter
     def bucket_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "bucket_arn", value)
 
     @property
     @pulumi.getter
@@ -1879,11 +1879,11 @@ class InventoryDestinationBucketArgs:
         """
         Specifies the output format of the inventory results. Can be `CSV`, [`ORC`](https://orc.apache.org/) or [`Parquet`](https://parquet.apache.org/).
         """
-        ...
+        return pulumi.get(self, "format")
 
     @format.setter
     def format(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "format", value)
 
     @property
     @pulumi.getter(name="accountId")
@@ -1891,11 +1891,11 @@ class InventoryDestinationBucketArgs:
         """
         The ID of the account that owns the destination bucket. Recommended to be set to prevent problems if the destination bucket ownership changes.
         """
-        ...
+        return pulumi.get(self, "account_id")
 
     @account_id.setter
     def account_id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "account_id", value)
 
     @property
     @pulumi.getter
@@ -1903,11 +1903,11 @@ class InventoryDestinationBucketArgs:
         """
         Contains the type of server-side encryption to use to encrypt the inventory (documented below).
         """
-        ...
+        return pulumi.get(self, "encryption")
 
     @encryption.setter
     def encryption(self, value: Optional[pulumi.Input['InventoryDestinationBucketEncryptionArgs']]):
-        ...
+        pulumi.set(self, "encryption", value)
 
     @property
     @pulumi.getter
@@ -1915,11 +1915,11 @@ class InventoryDestinationBucketArgs:
         """
         The prefix that is prepended to all inventory results.
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     @prefix.setter
     def prefix(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "prefix", value)
 
 
 @pulumi.input_type
@@ -1942,11 +1942,11 @@ class InventoryDestinationBucketEncryptionArgs:
         """
         Specifies to use server-side encryption with AWS KMS-managed keys to encrypt the inventory file (documented below).
         """
-        ...
+        return pulumi.get(self, "sse_kms")
 
     @sse_kms.setter
     def sse_kms(self, value: Optional[pulumi.Input['InventoryDestinationBucketEncryptionSseKmsArgs']]):
-        ...
+        pulumi.set(self, "sse_kms", value)
 
     @property
     @pulumi.getter(name="sseS3")
@@ -1954,11 +1954,11 @@ class InventoryDestinationBucketEncryptionArgs:
         """
         Specifies to use server-side encryption with Amazon S3-managed keys (SSE-S3) to encrypt the inventory file.
         """
-        ...
+        return pulumi.get(self, "sse_s3")
 
     @sse_s3.setter
     def sse_s3(self, value: Optional[pulumi.Input['InventoryDestinationBucketEncryptionSseS3Args']]):
-        ...
+        pulumi.set(self, "sse_s3", value)
 
 
 @pulumi.input_type
@@ -1976,11 +1976,11 @@ class InventoryDestinationBucketEncryptionSseKmsArgs:
         """
         The ARN of the KMS customer master key (CMK) used to encrypt the inventory file.
         """
-        ...
+        return pulumi.get(self, "key_id")
 
     @key_id.setter
     def key_id(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "key_id", value)
 
 
 @pulumi.input_type
@@ -2005,11 +2005,11 @@ class InventoryFilterArgs:
         """
         The prefix that an object must have to be included in the inventory results.
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     @prefix.setter
     def prefix(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "prefix", value)
 
 
 @pulumi.input_type
@@ -2027,10 +2027,10 @@ class InventoryScheduleArgs:
         """
         Specifies how frequently inventory results are produced. Valid values: `Daily`, `Weekly`.
         """
-        ...
+        return pulumi.get(self, "frequency")
 
     @frequency.setter
     def frequency(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "frequency", value)
 
 

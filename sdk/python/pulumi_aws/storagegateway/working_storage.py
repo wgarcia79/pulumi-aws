@@ -100,7 +100,7 @@ class WorkingStorage(pulumi.CustomResource):
         """
         Local disk identifier. For example, `pci-0000:03:00.0-scsi-0:0:0:0`.
         """
-        ...
+        return pulumi.get(self, "disk_id")
 
     @property
     @pulumi.getter(name="gatewayArn")
@@ -108,7 +108,7 @@ class WorkingStorage(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) of the gateway.
         """
-        ...
+        return pulumi.get(self, "gateway_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -159,7 +159,7 @@ class Deployment(pulumi.CustomResource):
         """
         The creation date of the deployment
         """
-        ...
+        return pulumi.get(self, "created_date")
 
     @property
     @pulumi.getter
@@ -167,7 +167,7 @@ class Deployment(pulumi.CustomResource):
         """
         The description of the deployment
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="executionArn")
@@ -177,7 +177,7 @@ class Deployment(pulumi.CustomResource):
         when allowing API Gateway to invoke a Lambda function,
         e.g. `arn:aws:execute-api:eu-west-2:123456789012:z4675bid1j/prod`
         """
-        ...
+        return pulumi.get(self, "execution_arn")
 
     @property
     @pulumi.getter(name="invokeUrl")
@@ -186,7 +186,7 @@ class Deployment(pulumi.CustomResource):
         The URL to invoke the API pointing to the stage,
         e.g. `https://z4675bid1j.execute-api.eu-west-2.amazonaws.com/prod`
         """
-        ...
+        return pulumi.get(self, "invoke_url")
 
     @property
     @pulumi.getter(name="restApi")
@@ -194,7 +194,7 @@ class Deployment(pulumi.CustomResource):
         """
         The ID of the associated REST API
         """
-        ...
+        return pulumi.get(self, "rest_api")
 
     @property
     @pulumi.getter(name="stageDescription")
@@ -202,7 +202,7 @@ class Deployment(pulumi.CustomResource):
         """
         The description of the stage
         """
-        ...
+        return pulumi.get(self, "stage_description")
 
     @property
     @pulumi.getter(name="stageName")
@@ -210,7 +210,7 @@ class Deployment(pulumi.CustomResource):
         """
         The name of the stage. If the specified stage already exists, it will be updated to point to the new deployment. If the stage does not exist, a new one will be created and point to this deployment.
         """
-        ...
+        return pulumi.get(self, "stage_name")
 
     @property
     @pulumi.getter
@@ -218,7 +218,7 @@ class Deployment(pulumi.CustomResource):
         """
         A map of arbitrary keys and values that, when changed, will trigger a redeployment.
         """
-        ...
+        return pulumi.get(self, "triggers")
 
     @property
     @pulumi.getter
@@ -226,7 +226,7 @@ class Deployment(pulumi.CustomResource):
         """
         A map that defines variables for the stage
         """
-        ...
+        return pulumi.get(self, "variables")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

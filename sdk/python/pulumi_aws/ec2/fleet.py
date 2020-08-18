@@ -156,7 +156,7 @@ class Fleet(pulumi.CustomResource):
         """
         Whether running instances should be terminated if the total target capacity of the EC2 Fleet is decreased below the current size of the EC2. Valid values: `no-termination`, `termination`. Defaults to `termination`.
         """
-        ...
+        return pulumi.get(self, "excess_capacity_termination_policy")
 
     @property
     @pulumi.getter(name="launchTemplateConfig")
@@ -164,7 +164,7 @@ class Fleet(pulumi.CustomResource):
         """
         Nested argument containing EC2 Launch Template configurations. Defined below.
         """
-        ...
+        return pulumi.get(self, "launch_template_config")
 
     @property
     @pulumi.getter(name="onDemandOptions")
@@ -172,7 +172,7 @@ class Fleet(pulumi.CustomResource):
         """
         Nested argument containing On-Demand configurations. Defined below.
         """
-        ...
+        return pulumi.get(self, "on_demand_options")
 
     @property
     @pulumi.getter(name="replaceUnhealthyInstances")
@@ -180,7 +180,7 @@ class Fleet(pulumi.CustomResource):
         """
         Whether EC2 Fleet should replace unhealthy instances. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "replace_unhealthy_instances")
 
     @property
     @pulumi.getter(name="spotOptions")
@@ -188,7 +188,7 @@ class Fleet(pulumi.CustomResource):
         """
         Nested argument containing Spot configurations. Defined below.
         """
-        ...
+        return pulumi.get(self, "spot_options")
 
     @property
     @pulumi.getter
@@ -196,7 +196,7 @@ class Fleet(pulumi.CustomResource):
         """
         Map of Fleet tags. To tag instances at launch, specify the tags in the Launch Template.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="targetCapacitySpecification")
@@ -204,7 +204,7 @@ class Fleet(pulumi.CustomResource):
         """
         Nested argument containing target capacity configurations. Defined below.
         """
-        ...
+        return pulumi.get(self, "target_capacity_specification")
 
     @property
     @pulumi.getter(name="terminateInstances")
@@ -212,7 +212,7 @@ class Fleet(pulumi.CustomResource):
         """
         Whether to terminate instances for an EC2 Fleet if it is deleted successfully. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "terminate_instances")
 
     @property
     @pulumi.getter(name="terminateInstancesWithExpiration")
@@ -220,7 +220,7 @@ class Fleet(pulumi.CustomResource):
         """
         Whether running instances should be terminated when the EC2 Fleet expires. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "terminate_instances_with_expiration")
 
     @property
     @pulumi.getter
@@ -228,7 +228,7 @@ class Fleet(pulumi.CustomResource):
         """
         The type of request. Indicates whether the EC2 Fleet only requests the target capacity, or also attempts to maintain it. Valid values: `maintain`, `request`. Defaults to `maintain`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -149,7 +149,7 @@ class VolumeAttachment(pulumi.CustomResource):
         The device name to expose to the instance (for
         example, `/dev/sdh` or `xvdh`).  See [Device Naming on Linux Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/device_naming.html#available-ec2-device-names) and [Device Naming on Windows Instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/device_naming.html#available-ec2-device-names) for more information.
         """
-        ...
+        return pulumi.get(self, "device_name")
 
     @property
     @pulumi.getter(name="forceDetach")
@@ -160,7 +160,7 @@ class VolumeAttachment(pulumi.CustomResource):
         as a last resort, as this can result in **data loss**. See
         [Detaching an Amazon EBS Volume from an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-detaching-volume.html) for more information.
         """
-        ...
+        return pulumi.get(self, "force_detach")
 
     @property
     @pulumi.getter(name="instanceId")
@@ -168,7 +168,7 @@ class VolumeAttachment(pulumi.CustomResource):
         """
         ID of the Instance to attach to
         """
-        ...
+        return pulumi.get(self, "instance_id")
 
     @property
     @pulumi.getter(name="skipDestroy")
@@ -180,7 +180,7 @@ class VolumeAttachment(pulumi.CustomResource):
         useful when destroying an instance which has volumes created by some other
         means attached.
         """
-        ...
+        return pulumi.get(self, "skip_destroy")
 
     @property
     @pulumi.getter(name="volumeId")
@@ -188,7 +188,7 @@ class VolumeAttachment(pulumi.CustomResource):
         """
         ID of the Volume to be attached
         """
-        ...
+        return pulumi.get(self, "volume_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

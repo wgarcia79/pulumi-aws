@@ -157,7 +157,7 @@ class Webhook(pulumi.CustomResource):
         """
         A regular expression used to determine which branches get built. Default is all branches are built. It is recommended to use `filter_group` over `branch_filter`.
         """
-        ...
+        return pulumi.get(self, "branch_filter")
 
     @property
     @pulumi.getter(name="filterGroups")
@@ -165,7 +165,7 @@ class Webhook(pulumi.CustomResource):
         """
         Information about the webhook's trigger. Filter group blocks are documented below.
         """
-        ...
+        return pulumi.get(self, "filter_groups")
 
     @property
     @pulumi.getter(name="payloadUrl")
@@ -173,7 +173,7 @@ class Webhook(pulumi.CustomResource):
         """
         The CodeBuild endpoint where webhook events are sent.
         """
-        ...
+        return pulumi.get(self, "payload_url")
 
     @property
     @pulumi.getter(name="projectName")
@@ -181,7 +181,7 @@ class Webhook(pulumi.CustomResource):
         """
         The name of the build project.
         """
-        ...
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter
@@ -189,7 +189,7 @@ class Webhook(pulumi.CustomResource):
         """
         The secret token of the associated repository. Not returned by the CodeBuild API for all source types.
         """
-        ...
+        return pulumi.get(self, "secret")
 
     @property
     @pulumi.getter
@@ -197,7 +197,7 @@ class Webhook(pulumi.CustomResource):
         """
         The URL to the webhook.
         """
-        ...
+        return pulumi.get(self, "url")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

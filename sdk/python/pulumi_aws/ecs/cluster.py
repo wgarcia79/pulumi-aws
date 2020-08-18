@@ -116,7 +116,7 @@ class Cluster(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) that identifies the cluster
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="capacityProviders")
@@ -124,7 +124,7 @@ class Cluster(pulumi.CustomResource):
         """
         List of short names of one or more capacity providers to associate with the cluster. Valid values also include `FARGATE` and `FARGATE_SPOT`.
         """
-        ...
+        return pulumi.get(self, "capacity_providers")
 
     @property
     @pulumi.getter(name="defaultCapacityProviderStrategies")
@@ -132,7 +132,7 @@ class Cluster(pulumi.CustomResource):
         """
         The capacity provider strategy to use by default for the cluster. Can be one or more.  Defined below.
         """
-        ...
+        return pulumi.get(self, "default_capacity_provider_strategies")
 
     @property
     @pulumi.getter
@@ -140,7 +140,7 @@ class Cluster(pulumi.CustomResource):
         """
         The name of the cluster (up to 255 letters, numbers, hyphens, and underscores)
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -148,7 +148,7 @@ class Cluster(pulumi.CustomResource):
         """
         Configuration block(s) with cluster settings. For example, this can be used to enable CloudWatch Container Insights for a cluster. Defined below.
         """
-        ...
+        return pulumi.get(self, "settings")
 
     @property
     @pulumi.getter
@@ -156,7 +156,7 @@ class Cluster(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

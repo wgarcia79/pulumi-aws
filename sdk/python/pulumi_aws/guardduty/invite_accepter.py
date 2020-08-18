@@ -107,7 +107,7 @@ class InviteAccepter(pulumi.CustomResource):
         """
         The detector ID of the member GuardDuty account.
         """
-        ...
+        return pulumi.get(self, "detector_id")
 
     @property
     @pulumi.getter(name="masterAccountId")
@@ -115,7 +115,7 @@ class InviteAccepter(pulumi.CustomResource):
         """
         AWS account ID for master account.
         """
-        ...
+        return pulumi.get(self, "master_account_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

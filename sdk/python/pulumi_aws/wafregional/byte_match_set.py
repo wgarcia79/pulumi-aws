@@ -102,7 +102,7 @@ class ByteMatchSet(pulumi.CustomResource):
         """
         Settings for the ByteMatchSet, such as the bytes (typically a string that corresponds with ASCII characters) that you want AWS WAF to search for in web requests. ByteMatchTuple documented below.
         """
-        ...
+        return pulumi.get(self, "byte_match_tuples")
 
     @property
     @pulumi.getter
@@ -110,7 +110,7 @@ class ByteMatchSet(pulumi.CustomResource):
         """
         The name or description of the ByteMatchSet.
         """
-        ...
+        return pulumi.get(self, "name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

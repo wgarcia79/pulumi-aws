@@ -117,7 +117,7 @@ class VpcLink(pulumi.CustomResource):
     @property
     @pulumi.getter
     def arn(self) -> str:
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -125,7 +125,7 @@ class VpcLink(pulumi.CustomResource):
         """
         The description of the VPC link.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -133,7 +133,7 @@ class VpcLink(pulumi.CustomResource):
         """
         The name used to label and identify the VPC link.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -141,7 +141,7 @@ class VpcLink(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="targetArn")
@@ -149,7 +149,7 @@ class VpcLink(pulumi.CustomResource):
         """
         The list of network load balancer arns in the VPC targeted by the VPC link. Currently AWS only supports 1 target.
         """
-        ...
+        return pulumi.get(self, "target_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

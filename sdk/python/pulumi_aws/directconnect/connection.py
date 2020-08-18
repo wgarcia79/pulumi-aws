@@ -126,7 +126,7 @@ class Connection(pulumi.CustomResource):
         """
         The ARN of the connection.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="awsDevice")
@@ -134,7 +134,7 @@ class Connection(pulumi.CustomResource):
         """
         The Direct Connect endpoint on which the physical connection terminates.
         """
-        ...
+        return pulumi.get(self, "aws_device")
 
     @property
     @pulumi.getter
@@ -142,7 +142,7 @@ class Connection(pulumi.CustomResource):
         """
         The bandwidth of the connection. Valid values for dedicated connections: 1Gbps, 10Gbps. Valid values for hosted connections: 50Mbps, 100Mbps, 200Mbps, 300Mbps, 400Mbps, 500Mbps, 1Gbps, 2Gbps, 5Gbps and 10Gbps. Case sensitive.
         """
-        ...
+        return pulumi.get(self, "bandwidth")
 
     @property
     @pulumi.getter(name="hasLogicalRedundancy")
@@ -150,7 +150,7 @@ class Connection(pulumi.CustomResource):
         """
         Indicates whether the connection supports a secondary BGP peer in the same address family (IPv4/IPv6).
         """
-        ...
+        return pulumi.get(self, "has_logical_redundancy")
 
     @property
     @pulumi.getter(name="jumboFrameCapable")
@@ -158,7 +158,7 @@ class Connection(pulumi.CustomResource):
         """
         Boolean value representing if jumbo frames have been enabled for this connection.
         """
-        ...
+        return pulumi.get(self, "jumbo_frame_capable")
 
     @property
     @pulumi.getter
@@ -166,7 +166,7 @@ class Connection(pulumi.CustomResource):
         """
         The AWS Direct Connect location where the connection is located. See [DescribeLocations](https://docs.aws.amazon.com/directconnect/latest/APIReference/API_DescribeLocations.html) for the list of AWS Direct Connect locations. Use `locationCode`.
         """
-        ...
+        return pulumi.get(self, "location")
 
     @property
     @pulumi.getter
@@ -174,7 +174,7 @@ class Connection(pulumi.CustomResource):
         """
         The name of the connection.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -182,7 +182,7 @@ class Connection(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

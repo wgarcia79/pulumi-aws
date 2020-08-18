@@ -221,7 +221,7 @@ class Resolver(pulumi.CustomResource):
         """
         The API ID for the GraphQL API.
         """
-        ...
+        return pulumi.get(self, "api_id")
 
     @property
     @pulumi.getter
@@ -229,7 +229,7 @@ class Resolver(pulumi.CustomResource):
         """
         The ARN
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="cachingConfig")
@@ -237,7 +237,7 @@ class Resolver(pulumi.CustomResource):
         """
         The CachingConfig.
         """
-        ...
+        return pulumi.get(self, "caching_config")
 
     @property
     @pulumi.getter(name="dataSource")
@@ -245,7 +245,7 @@ class Resolver(pulumi.CustomResource):
         """
         The DataSource name.
         """
-        ...
+        return pulumi.get(self, "data_source")
 
     @property
     @pulumi.getter
@@ -253,7 +253,7 @@ class Resolver(pulumi.CustomResource):
         """
         The field name from the schema defined in the GraphQL API.
         """
-        ...
+        return pulumi.get(self, "field")
 
     @property
     @pulumi.getter
@@ -261,7 +261,7 @@ class Resolver(pulumi.CustomResource):
         """
         The resolver type. Valid values are `UNIT` and `PIPELINE`.
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter(name="pipelineConfig")
@@ -269,7 +269,7 @@ class Resolver(pulumi.CustomResource):
         """
         The PipelineConfig.
         """
-        ...
+        return pulumi.get(self, "pipeline_config")
 
     @property
     @pulumi.getter(name="requestTemplate")
@@ -277,7 +277,7 @@ class Resolver(pulumi.CustomResource):
         """
         The request mapping template for UNIT resolver or 'before mapping template' for PIPELINE resolver.
         """
-        ...
+        return pulumi.get(self, "request_template")
 
     @property
     @pulumi.getter(name="responseTemplate")
@@ -285,7 +285,7 @@ class Resolver(pulumi.CustomResource):
         """
         The response mapping template for UNIT resolver or 'after mapping template' for PIPELINE resolver.
         """
-        ...
+        return pulumi.get(self, "response_template")
 
     @property
     @pulumi.getter
@@ -293,7 +293,7 @@ class Resolver(pulumi.CustomResource):
         """
         The type name from the schema defined in the GraphQL API.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

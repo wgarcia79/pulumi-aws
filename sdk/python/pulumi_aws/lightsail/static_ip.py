@@ -100,7 +100,7 @@ class StaticIp(pulumi.CustomResource):
         """
         The ARN of the Lightsail static IP
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="ipAddress")
@@ -108,7 +108,7 @@ class StaticIp(pulumi.CustomResource):
         """
         The allocated static IP address
         """
-        ...
+        return pulumi.get(self, "ip_address")
 
     @property
     @pulumi.getter
@@ -116,7 +116,7 @@ class StaticIp(pulumi.CustomResource):
         """
         The name for the allocated static IP
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="supportCode")
@@ -124,7 +124,7 @@ class StaticIp(pulumi.CustomResource):
         """
         The support code.
         """
-        ...
+        return pulumi.get(self, "support_code")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

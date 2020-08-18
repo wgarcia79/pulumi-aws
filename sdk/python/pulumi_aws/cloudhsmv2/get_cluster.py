@@ -57,17 +57,17 @@ class GetClusterResult:
         * `cluster_certificates.0.manufacturer_hardware_certificate` - The HSM hardware certificate issued (signed) by the hardware manufacturer.
         The number of available cluster certificates may vary depending on state of the cluster.
         """
-        ...
+        return pulumi.get(self, "cluster_certificates")
 
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> str:
-        ...
+        return pulumi.get(self, "cluster_id")
 
     @property
     @pulumi.getter(name="clusterState")
     def cluster_state(self) -> str:
-        ...
+        return pulumi.get(self, "cluster_state")
 
     @property
     @pulumi.getter
@@ -75,7 +75,7 @@ class GetClusterResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="securityGroupId")
@@ -83,7 +83,7 @@ class GetClusterResult:
         """
         The ID of the security group associated with the CloudHSM cluster.
         """
-        ...
+        return pulumi.get(self, "security_group_id")
 
     @property
     @pulumi.getter(name="subnetIds")
@@ -91,7 +91,7 @@ class GetClusterResult:
         """
         The IDs of subnets in which cluster operates.
         """
-        ...
+        return pulumi.get(self, "subnet_ids")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -99,7 +99,7 @@ class GetClusterResult:
         """
         The id of the VPC that the CloudHSM cluster resides in.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
 
 

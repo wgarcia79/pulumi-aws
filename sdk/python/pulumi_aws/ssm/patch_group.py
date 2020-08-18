@@ -99,7 +99,7 @@ class PatchGroup(pulumi.CustomResource):
         """
         The ID of the patch baseline to register the patch group with.
         """
-        ...
+        return pulumi.get(self, "baseline_id")
 
     @property
     @pulumi.getter(name="patchGroup")
@@ -107,7 +107,7 @@ class PatchGroup(pulumi.CustomResource):
         """
         The name of the patch group that should be registered with the patch baseline.
         """
-        ...
+        return pulumi.get(self, "patch_group")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

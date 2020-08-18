@@ -156,7 +156,7 @@ class VpcDhcpOptions(pulumi.CustomResource):
         """
         The ARN of the DHCP Options Set.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="domainName")
@@ -164,7 +164,7 @@ class VpcDhcpOptions(pulumi.CustomResource):
         """
         the suffix domain name to use by default when resolving non Fully Qualified Domain Names. In other words, this is what ends up being the `search` value in the `/etc/resolv.conf` file.
         """
-        ...
+        return pulumi.get(self, "domain_name")
 
     @property
     @pulumi.getter(name="domainNameServers")
@@ -172,7 +172,7 @@ class VpcDhcpOptions(pulumi.CustomResource):
         """
         List of name servers to configure in `/etc/resolv.conf`. If you want to use the default AWS nameservers you should set this to `AmazonProvidedDNS`.
         """
-        ...
+        return pulumi.get(self, "domain_name_servers")
 
     @property
     @pulumi.getter(name="netbiosNameServers")
@@ -180,7 +180,7 @@ class VpcDhcpOptions(pulumi.CustomResource):
         """
         List of NETBIOS name servers.
         """
-        ...
+        return pulumi.get(self, "netbios_name_servers")
 
     @property
     @pulumi.getter(name="netbiosNodeType")
@@ -188,7 +188,7 @@ class VpcDhcpOptions(pulumi.CustomResource):
         """
         The NetBIOS node type (1, 2, 4, or 8). AWS recommends to specify 2 since broadcast and multicast are not supported in their network. For more information about these node types, see [RFC 2132](http://www.ietf.org/rfc/rfc2132.txt).
         """
-        ...
+        return pulumi.get(self, "netbios_node_type")
 
     @property
     @pulumi.getter(name="ntpServers")
@@ -196,7 +196,7 @@ class VpcDhcpOptions(pulumi.CustomResource):
         """
         List of NTP servers to configure.
         """
-        ...
+        return pulumi.get(self, "ntp_servers")
 
     @property
     @pulumi.getter(name="ownerId")
@@ -204,7 +204,7 @@ class VpcDhcpOptions(pulumi.CustomResource):
         """
         The ID of the AWS account that owns the DHCP options set.
         """
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter
@@ -212,7 +212,7 @@ class VpcDhcpOptions(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

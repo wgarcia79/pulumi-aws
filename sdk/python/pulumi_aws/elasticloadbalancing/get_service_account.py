@@ -39,7 +39,7 @@ class GetServiceAccountResult:
         """
         The ARN of the AWS ELB service account in the selected region.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -47,12 +47,12 @@ class GetServiceAccountResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def region(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "region")
 
 
 

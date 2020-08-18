@@ -135,7 +135,7 @@ class RegexPatternSet(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) that identifies the cluster.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -143,12 +143,12 @@ class RegexPatternSet(pulumi.CustomResource):
         """
         A friendly description of the regular expression pattern set.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="lockToken")
     def lock_token(self) -> str:
-        ...
+        return pulumi.get(self, "lock_token")
 
     @property
     @pulumi.getter
@@ -156,7 +156,7 @@ class RegexPatternSet(pulumi.CustomResource):
         """
         A friendly name of the regular expression pattern set.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="regularExpressions")
@@ -164,7 +164,7 @@ class RegexPatternSet(pulumi.CustomResource):
         """
         One or more blocks of regular expression patterns that you want AWS WAF to search for, such as `B[a@]dB[o0]t`. See Regular Expression below for details.
         """
-        ...
+        return pulumi.get(self, "regular_expressions")
 
     @property
     @pulumi.getter
@@ -172,7 +172,7 @@ class RegexPatternSet(pulumi.CustomResource):
         """
         Specifies whether this is for an AWS CloudFront distribution or for a regional application. Valid values are `CLOUDFRONT` or `REGIONAL`. To work with CloudFront, you must also specify the region `us-east-1` (N. Virginia) on the AWS provider.
         """
-        ...
+        return pulumi.get(self, "scope")
 
     @property
     @pulumi.getter
@@ -180,7 +180,7 @@ class RegexPatternSet(pulumi.CustomResource):
         """
         An array of key:value pairs to associate with the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

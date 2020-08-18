@@ -35,12 +35,12 @@ class GetRateBasedModResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
 
 

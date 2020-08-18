@@ -118,7 +118,7 @@ class SubnetGroup(pulumi.CustomResource):
         """
         Description for the cache subnet group. Defaults to "Managed by Pulumi".
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -126,7 +126,7 @@ class SubnetGroup(pulumi.CustomResource):
         """
         Name for the cache subnet group. Elasticache converts this name to lowercase.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="subnetIds")
@@ -134,7 +134,7 @@ class SubnetGroup(pulumi.CustomResource):
         """
         List of VPC Subnet IDs for the cache subnet group
         """
-        ...
+        return pulumi.get(self, "subnet_ids")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

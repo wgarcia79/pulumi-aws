@@ -203,7 +203,7 @@ class SmbFileShare(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the SMB File Share.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -211,7 +211,7 @@ class SmbFileShare(pulumi.CustomResource):
         """
         The authentication method that users use to access the file share. Defaults to `ActiveDirectory`. Valid values: `ActiveDirectory`, `GuestAccess`.
         """
-        ...
+        return pulumi.get(self, "authentication")
 
     @property
     @pulumi.getter(name="defaultStorageClass")
@@ -219,7 +219,7 @@ class SmbFileShare(pulumi.CustomResource):
         """
         The default storage class for objects put into an Amazon S3 bucket by the file gateway. Defaults to `S3_STANDARD`. Valid values: `S3_STANDARD`, `S3_STANDARD_IA`, `S3_ONEZONE_IA`.
         """
-        ...
+        return pulumi.get(self, "default_storage_class")
 
     @property
     @pulumi.getter(name="fileshareId")
@@ -227,7 +227,7 @@ class SmbFileShare(pulumi.CustomResource):
         """
         ID of the SMB File Share.
         """
-        ...
+        return pulumi.get(self, "fileshare_id")
 
     @property
     @pulumi.getter(name="gatewayArn")
@@ -235,7 +235,7 @@ class SmbFileShare(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the file gateway.
         """
-        ...
+        return pulumi.get(self, "gateway_arn")
 
     @property
     @pulumi.getter(name="guessMimeTypeEnabled")
@@ -243,7 +243,7 @@ class SmbFileShare(pulumi.CustomResource):
         """
         Boolean value that enables guessing of the MIME type for uploaded objects based on file extensions. Defaults to `true`.
         """
-        ...
+        return pulumi.get(self, "guess_mime_type_enabled")
 
     @property
     @pulumi.getter(name="invalidUserLists")
@@ -251,7 +251,7 @@ class SmbFileShare(pulumi.CustomResource):
         """
         A list of users in the Active Directory that are not allowed to access the file share. Only valid if `authentication` is set to `ActiveDirectory`.
         """
-        ...
+        return pulumi.get(self, "invalid_user_lists")
 
     @property
     @pulumi.getter(name="kmsEncrypted")
@@ -259,7 +259,7 @@ class SmbFileShare(pulumi.CustomResource):
         """
         Boolean value if `true` to use Amazon S3 server side encryption with your own AWS KMS key, or `false` to use a key managed by Amazon S3. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "kms_encrypted")
 
     @property
     @pulumi.getter(name="kmsKeyArn")
@@ -267,7 +267,7 @@ class SmbFileShare(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) for KMS key used for Amazon S3 server side encryption. This value can only be set when `kms_encrypted` is true.
         """
-        ...
+        return pulumi.get(self, "kms_key_arn")
 
     @property
     @pulumi.getter(name="locationArn")
@@ -275,7 +275,7 @@ class SmbFileShare(pulumi.CustomResource):
         """
         The ARN of the backed storage used for storing file data.
         """
-        ...
+        return pulumi.get(self, "location_arn")
 
     @property
     @pulumi.getter(name="objectAcl")
@@ -283,7 +283,7 @@ class SmbFileShare(pulumi.CustomResource):
         """
         Access Control List permission for S3 bucket objects. Defaults to `private`.
         """
-        ...
+        return pulumi.get(self, "object_acl")
 
     @property
     @pulumi.getter
@@ -291,7 +291,7 @@ class SmbFileShare(pulumi.CustomResource):
         """
         File share path used by the NFS client to identify the mount point.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -299,7 +299,7 @@ class SmbFileShare(pulumi.CustomResource):
         """
         Boolean to indicate write status of file share. File share does not accept writes if `true`. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     @property
     @pulumi.getter(name="requesterPays")
@@ -307,7 +307,7 @@ class SmbFileShare(pulumi.CustomResource):
         """
         Boolean who pays the cost of the request and the data download from the Amazon S3 bucket. Set this value to `true` if you want the requester to pay instead of the bucket owner. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "requester_pays")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -315,7 +315,7 @@ class SmbFileShare(pulumi.CustomResource):
         """
         The ARN of the AWS Identity and Access Management (IAM) role that a file gateway assumes when it accesses the underlying storage.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter
@@ -323,7 +323,7 @@ class SmbFileShare(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="validUserLists")
@@ -331,7 +331,7 @@ class SmbFileShare(pulumi.CustomResource):
         """
         A list of users in the Active Directory that are allowed to access the file share. Only valid if `authentication` is set to `ActiveDirectory`.
         """
-        ...
+        return pulumi.get(self, "valid_user_lists")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

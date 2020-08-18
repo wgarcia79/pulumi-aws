@@ -97,7 +97,7 @@ class ZoneAssociation(pulumi.CustomResource):
         """
         The VPC to associate with the private hosted zone.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     @property
     @pulumi.getter(name="vpcRegion")
@@ -105,7 +105,7 @@ class ZoneAssociation(pulumi.CustomResource):
         """
         The VPC's region. Defaults to the region of the AWS provider.
         """
-        ...
+        return pulumi.get(self, "vpc_region")
 
     @property
     @pulumi.getter(name="zoneId")
@@ -113,7 +113,7 @@ class ZoneAssociation(pulumi.CustomResource):
         """
         The private hosted zone to associate.
         """
-        ...
+        return pulumi.get(self, "zone_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

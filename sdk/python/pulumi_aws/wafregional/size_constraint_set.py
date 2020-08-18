@@ -101,7 +101,7 @@ class SizeConstraintSet(pulumi.CustomResource):
     @property
     @pulumi.getter
     def arn(self) -> str:
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -109,7 +109,7 @@ class SizeConstraintSet(pulumi.CustomResource):
         """
         The name or description of the Size Constraint Set.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="sizeConstraints")
@@ -117,7 +117,7 @@ class SizeConstraintSet(pulumi.CustomResource):
         """
         Specifies the parts of web requests that you want to inspect the size of.
         """
-        ...
+        return pulumi.get(self, "size_constraints")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

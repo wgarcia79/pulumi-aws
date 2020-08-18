@@ -28,7 +28,7 @@ class RegexPatternSetRegularExpression(dict):
         """
         The string representing the regular expression, see the AWS WAF [documentation](https://docs.aws.amazon.com/waf/latest/developerguide/waf-regex-pattern-set-creating.html) for more information.
         """
-        ...
+        return pulumi.get(self, "regex_string")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -49,6 +49,6 @@ class GetRegexPatternSetRegularExpressionResult(dict):
         """
         (Required) The string representing the regular expression, see the AWS WAF [documentation](https://docs.aws.amazon.com/waf/latest/developerguide/waf-regex-pattern-set-creating.html) for more information.
         """
-        ...
+        return pulumi.get(self, "regex_string")
 
 

@@ -54,7 +54,7 @@ class GetAccessPointResult:
     @property
     @pulumi.getter(name="accessPointId")
     def access_point_id(self) -> str:
-        ...
+        return pulumi.get(self, "access_point_id")
 
     @property
     @pulumi.getter
@@ -62,7 +62,7 @@ class GetAccessPointResult:
         """
         Amazon Resource Name of the file system.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="fileSystemArn")
@@ -70,7 +70,7 @@ class GetAccessPointResult:
         """
         Amazon Resource Name of the file system.
         """
-        ...
+        return pulumi.get(self, "file_system_arn")
 
     @property
     @pulumi.getter(name="fileSystemId")
@@ -78,7 +78,7 @@ class GetAccessPointResult:
         """
         The ID of the file system for which the access point is intended.
         """
-        ...
+        return pulumi.get(self, "file_system_id")
 
     @property
     @pulumi.getter
@@ -86,12 +86,12 @@ class GetAccessPointResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="ownerId")
     def owner_id(self) -> str:
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter(name="posixUsers")
@@ -99,12 +99,12 @@ class GetAccessPointResult:
         """
         Single element list containing operating system user and group applied to all file system requests made using the access point.
         """
-        ...
+        return pulumi.get(self, "posix_users")
 
     @property
     @pulumi.getter(name="rootDirectories")
     def root_directories(self) -> List['outputs.GetAccessPointRootDirectoryResult']:
-        ...
+        return pulumi.get(self, "root_directories")
 
     @property
     @pulumi.getter
@@ -112,7 +112,7 @@ class GetAccessPointResult:
         """
         Key-value mapping of resource tags.
         """
-        ...
+        return pulumi.get(self, "tags")
 
 
 

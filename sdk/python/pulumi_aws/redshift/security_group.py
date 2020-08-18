@@ -106,7 +106,7 @@ class SecurityGroup(pulumi.CustomResource):
         """
         The description of the Redshift security group. Defaults to "Managed by Pulumi".
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -114,7 +114,7 @@ class SecurityGroup(pulumi.CustomResource):
         """
         A list of ingress rules.
         """
-        ...
+        return pulumi.get(self, "ingress")
 
     @property
     @pulumi.getter
@@ -122,7 +122,7 @@ class SecurityGroup(pulumi.CustomResource):
         """
         The name of the Redshift security group.
         """
-        ...
+        return pulumi.get(self, "name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

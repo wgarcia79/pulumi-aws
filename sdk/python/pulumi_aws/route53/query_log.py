@@ -125,7 +125,7 @@ class QueryLog(pulumi.CustomResource):
         """
         CloudWatch log group ARN to send query logs.
         """
-        ...
+        return pulumi.get(self, "cloudwatch_log_group_arn")
 
     @property
     @pulumi.getter(name="zoneId")
@@ -133,7 +133,7 @@ class QueryLog(pulumi.CustomResource):
         """
         Route53 hosted zone ID to enable query logs.
         """
-        ...
+        return pulumi.get(self, "zone_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

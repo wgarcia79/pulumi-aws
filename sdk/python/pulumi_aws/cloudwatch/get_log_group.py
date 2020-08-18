@@ -50,7 +50,7 @@ class GetLogGroupResult:
         """
         The ARN of the Cloudwatch log group
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="creationTime")
@@ -58,7 +58,7 @@ class GetLogGroupResult:
         """
         The creation time of the log group, expressed as the number of milliseconds after Jan 1, 1970 00:00:00 UTC.
         """
-        ...
+        return pulumi.get(self, "creation_time")
 
     @property
     @pulumi.getter
@@ -66,7 +66,7 @@ class GetLogGroupResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="kmsKeyId")
@@ -74,12 +74,12 @@ class GetLogGroupResult:
         """
         The ARN of the KMS Key to use when encrypting log data.
         """
-        ...
+        return pulumi.get(self, "kms_key_id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="retentionInDays")
@@ -87,7 +87,7 @@ class GetLogGroupResult:
         """
         The number of days log events retained in the specified log group.
         """
-        ...
+        return pulumi.get(self, "retention_in_days")
 
     @property
     @pulumi.getter
@@ -95,7 +95,7 @@ class GetLogGroupResult:
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
 
 

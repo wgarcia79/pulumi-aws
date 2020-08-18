@@ -41,12 +41,12 @@ class GetAccessPointsResult:
         """
         Set of Amazon Resource Names (ARNs).
         """
-        ...
+        return pulumi.get(self, "arns")
 
     @property
     @pulumi.getter(name="fileSystemId")
     def file_system_id(self) -> str:
-        ...
+        return pulumi.get(self, "file_system_id")
 
     @property
     @pulumi.getter
@@ -54,7 +54,7 @@ class GetAccessPointsResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -62,7 +62,7 @@ class GetAccessPointsResult:
         """
         Set of identifiers.
         """
-        ...
+        return pulumi.get(self, "ids")
 
 
 

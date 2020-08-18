@@ -240,17 +240,17 @@ class TopicRule(pulumi.CustomResource):
         """
         The ARN of the topic rule
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="cloudwatchAlarm")
     def cloudwatch_alarm(self) -> Optional['outputs.TopicRuleCloudwatchAlarm']:
-        ...
+        return pulumi.get(self, "cloudwatch_alarm")
 
     @property
     @pulumi.getter(name="cloudwatchMetric")
     def cloudwatch_metric(self) -> Optional['outputs.TopicRuleCloudwatchMetric']:
-        ...
+        return pulumi.get(self, "cloudwatch_metric")
 
     @property
     @pulumi.getter
@@ -258,22 +258,22 @@ class TopicRule(pulumi.CustomResource):
         """
         The description of the rule.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def dynamodb(self) -> Optional['outputs.TopicRuleDynamodb']:
-        ...
+        return pulumi.get(self, "dynamodb")
 
     @property
     @pulumi.getter
     def dynamodbv2s(self) -> Optional[List['outputs.TopicRuleDynamodbv2']]:
-        ...
+        return pulumi.get(self, "dynamodbv2s")
 
     @property
     @pulumi.getter
     def elasticsearch(self) -> Optional['outputs.TopicRuleElasticsearch']:
-        ...
+        return pulumi.get(self, "elasticsearch")
 
     @property
     @pulumi.getter
@@ -281,7 +281,7 @@ class TopicRule(pulumi.CustomResource):
         """
         Specifies whether the rule is enabled.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="errorAction")
@@ -289,32 +289,32 @@ class TopicRule(pulumi.CustomResource):
         """
         Configuration block with error action to be associated with the rule. See the documentation for `cloudwatch_alarm`, `cloudwatch_metric`, `dynamodb`, `dynamodbv2`, `elasticsearch`, `firehose`, `iot_analytics`, `iot_events`, `kinesis`, `lambda`, `republish`, `s3`, `step_functions`, `sns`, `sqs` configuration blocks for further configuration details.
         """
-        ...
+        return pulumi.get(self, "error_action")
 
     @property
     @pulumi.getter
     def firehose(self) -> Optional['outputs.TopicRuleFirehose']:
-        ...
+        return pulumi.get(self, "firehose")
 
     @property
     @pulumi.getter(name="iotAnalytics")
     def iot_analytics(self) -> Optional[List['outputs.TopicRuleIotAnalytic']]:
-        ...
+        return pulumi.get(self, "iot_analytics")
 
     @property
     @pulumi.getter(name="iotEvents")
     def iot_events(self) -> Optional[List['outputs.TopicRuleIotEvent']]:
-        ...
+        return pulumi.get(self, "iot_events")
 
     @property
     @pulumi.getter
     def kinesis(self) -> Optional['outputs.TopicRuleKinesis']:
-        ...
+        return pulumi.get(self, "kinesis")
 
     @property
     @pulumi.getter(name="lambda")
     def lambda_(self) -> Optional['outputs.TopicRuleLambda']:
-        ...
+        return pulumi.get(self, "lambda_")
 
     @property
     @pulumi.getter
@@ -322,22 +322,22 @@ class TopicRule(pulumi.CustomResource):
         """
         The name of the rule.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def republish(self) -> Optional['outputs.TopicRuleRepublish']:
-        ...
+        return pulumi.get(self, "republish")
 
     @property
     @pulumi.getter
     def s3(self) -> Optional['outputs.TopicRuleS3']:
-        ...
+        return pulumi.get(self, "s3")
 
     @property
     @pulumi.getter
     def sns(self) -> Optional['outputs.TopicRuleSns']:
-        ...
+        return pulumi.get(self, "sns")
 
     @property
     @pulumi.getter
@@ -345,7 +345,7 @@ class TopicRule(pulumi.CustomResource):
         """
         The SQL statement used to query the topic. For more information, see AWS IoT SQL Reference (http://docs.aws.amazon.com/iot/latest/developerguide/iot-rules.html#aws-iot-sql-reference) in the AWS IoT Developer Guide.
         """
-        ...
+        return pulumi.get(self, "sql")
 
     @property
     @pulumi.getter(name="sqlVersion")
@@ -353,17 +353,17 @@ class TopicRule(pulumi.CustomResource):
         """
         The version of the SQL rules engine to use when evaluating the rule.
         """
-        ...
+        return pulumi.get(self, "sql_version")
 
     @property
     @pulumi.getter
     def sqs(self) -> Optional['outputs.TopicRuleSqs']:
-        ...
+        return pulumi.get(self, "sqs")
 
     @property
     @pulumi.getter(name="stepFunctions")
     def step_functions(self) -> Optional[List['outputs.TopicRuleStepFunction']]:
-        ...
+        return pulumi.get(self, "step_functions")
 
     @property
     @pulumi.getter
@@ -371,7 +371,7 @@ class TopicRule(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

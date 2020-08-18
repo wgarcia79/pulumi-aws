@@ -149,7 +149,7 @@ class GetInstanceResult:
         """
         The hostname of the RDS instance. See also `endpoint` and `port`.
         """
-        ...
+        return pulumi.get(self, "address")
 
     @property
     @pulumi.getter(name="allocatedStorage")
@@ -157,7 +157,7 @@ class GetInstanceResult:
         """
         Specifies the allocated storage size specified in gigabytes.
         """
-        ...
+        return pulumi.get(self, "allocated_storage")
 
     @property
     @pulumi.getter(name="autoMinorVersionUpgrade")
@@ -165,7 +165,7 @@ class GetInstanceResult:
         """
         Indicates that minor version patches are applied automatically.
         """
-        ...
+        return pulumi.get(self, "auto_minor_version_upgrade")
 
     @property
     @pulumi.getter(name="availabilityZone")
@@ -173,7 +173,7 @@ class GetInstanceResult:
         """
         Specifies the name of the Availability Zone the DB instance is located in.
         """
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter(name="backupRetentionPeriod")
@@ -181,7 +181,7 @@ class GetInstanceResult:
         """
         Specifies the number of days for which automatic DB snapshots are retained.
         """
-        ...
+        return pulumi.get(self, "backup_retention_period")
 
     @property
     @pulumi.getter(name="caCertIdentifier")
@@ -189,7 +189,7 @@ class GetInstanceResult:
         """
         Specifies the identifier of the CA certificate for the DB instance.
         """
-        ...
+        return pulumi.get(self, "ca_cert_identifier")
 
     @property
     @pulumi.getter(name="dbClusterIdentifier")
@@ -197,7 +197,7 @@ class GetInstanceResult:
         """
         If the DB instance is a member of a DB cluster, contains the name of the DB cluster that the DB instance is a member of.
         """
-        ...
+        return pulumi.get(self, "db_cluster_identifier")
 
     @property
     @pulumi.getter(name="dbInstanceArn")
@@ -205,7 +205,7 @@ class GetInstanceResult:
         """
         The Amazon Resource Name (ARN) for the DB instance.
         """
-        ...
+        return pulumi.get(self, "db_instance_arn")
 
     @property
     @pulumi.getter(name="dbInstanceClass")
@@ -213,12 +213,12 @@ class GetInstanceResult:
         """
         Contains the name of the compute and memory capacity class of the DB instance.
         """
-        ...
+        return pulumi.get(self, "db_instance_class")
 
     @property
     @pulumi.getter(name="dbInstanceIdentifier")
     def db_instance_identifier(self) -> str:
-        ...
+        return pulumi.get(self, "db_instance_identifier")
 
     @property
     @pulumi.getter(name="dbInstancePort")
@@ -226,7 +226,7 @@ class GetInstanceResult:
         """
         Specifies the port that the DB instance listens on.
         """
-        ...
+        return pulumi.get(self, "db_instance_port")
 
     @property
     @pulumi.getter(name="dbName")
@@ -234,7 +234,7 @@ class GetInstanceResult:
         """
         Contains the name of the initial database of this instance that was provided at create time, if one was specified when the DB instance was created. This same name is returned for the life of the DB instance.
         """
-        ...
+        return pulumi.get(self, "db_name")
 
     @property
     @pulumi.getter(name="dbParameterGroups")
@@ -242,7 +242,7 @@ class GetInstanceResult:
         """
         Provides the list of DB parameter groups applied to this DB instance.
         """
-        ...
+        return pulumi.get(self, "db_parameter_groups")
 
     @property
     @pulumi.getter(name="dbSecurityGroups")
@@ -250,7 +250,7 @@ class GetInstanceResult:
         """
         Provides List of DB security groups associated to this DB instance.
         """
-        ...
+        return pulumi.get(self, "db_security_groups")
 
     @property
     @pulumi.getter(name="dbSubnetGroup")
@@ -258,7 +258,7 @@ class GetInstanceResult:
         """
         Specifies the name of the subnet group associated with the DB instance.
         """
-        ...
+        return pulumi.get(self, "db_subnet_group")
 
     @property
     @pulumi.getter(name="enabledCloudwatchLogsExports")
@@ -266,7 +266,7 @@ class GetInstanceResult:
         """
         List of log types to export to cloudwatch.
         """
-        ...
+        return pulumi.get(self, "enabled_cloudwatch_logs_exports")
 
     @property
     @pulumi.getter
@@ -274,7 +274,7 @@ class GetInstanceResult:
         """
         The connection endpoint in `address:port` format.
         """
-        ...
+        return pulumi.get(self, "endpoint")
 
     @property
     @pulumi.getter
@@ -282,7 +282,7 @@ class GetInstanceResult:
         """
         Provides the name of the database engine to be used for this DB instance.
         """
-        ...
+        return pulumi.get(self, "engine")
 
     @property
     @pulumi.getter(name="engineVersion")
@@ -290,7 +290,7 @@ class GetInstanceResult:
         """
         Indicates the database engine version.
         """
-        ...
+        return pulumi.get(self, "engine_version")
 
     @property
     @pulumi.getter(name="hostedZoneId")
@@ -298,7 +298,7 @@ class GetInstanceResult:
         """
         The canonical hosted zone ID of the DB instance (to be used in a Route 53 Alias record).
         """
-        ...
+        return pulumi.get(self, "hosted_zone_id")
 
     @property
     @pulumi.getter
@@ -306,7 +306,7 @@ class GetInstanceResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -314,7 +314,7 @@ class GetInstanceResult:
         """
         Specifies the Provisioned IOPS (I/O operations per second) value.
         """
-        ...
+        return pulumi.get(self, "iops")
 
     @property
     @pulumi.getter(name="kmsKeyId")
@@ -322,7 +322,7 @@ class GetInstanceResult:
         """
         If StorageEncrypted is true, the KMS key identifier for the encrypted DB instance.
         """
-        ...
+        return pulumi.get(self, "kms_key_id")
 
     @property
     @pulumi.getter(name="licenseModel")
@@ -330,7 +330,7 @@ class GetInstanceResult:
         """
         License model information for this DB instance.
         """
-        ...
+        return pulumi.get(self, "license_model")
 
     @property
     @pulumi.getter(name="masterUsername")
@@ -338,7 +338,7 @@ class GetInstanceResult:
         """
         Contains the master username for the DB instance.
         """
-        ...
+        return pulumi.get(self, "master_username")
 
     @property
     @pulumi.getter(name="monitoringInterval")
@@ -346,7 +346,7 @@ class GetInstanceResult:
         """
         The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance.
         """
-        ...
+        return pulumi.get(self, "monitoring_interval")
 
     @property
     @pulumi.getter(name="monitoringRoleArn")
@@ -354,7 +354,7 @@ class GetInstanceResult:
         """
         The ARN for the IAM role that permits RDS to send Enhanced Monitoring metrics to CloudWatch Logs.
         """
-        ...
+        return pulumi.get(self, "monitoring_role_arn")
 
     @property
     @pulumi.getter(name="multiAz")
@@ -362,7 +362,7 @@ class GetInstanceResult:
         """
         Specifies if the DB instance is a Multi-AZ deployment.
         """
-        ...
+        return pulumi.get(self, "multi_az")
 
     @property
     @pulumi.getter(name="optionGroupMemberships")
@@ -370,7 +370,7 @@ class GetInstanceResult:
         """
         Provides the list of option group memberships for this DB instance.
         """
-        ...
+        return pulumi.get(self, "option_group_memberships")
 
     @property
     @pulumi.getter
@@ -378,7 +378,7 @@ class GetInstanceResult:
         """
         The database port.
         """
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter(name="preferredBackupWindow")
@@ -386,7 +386,7 @@ class GetInstanceResult:
         """
         Specifies the daily time range during which automated backups are created.
         """
-        ...
+        return pulumi.get(self, "preferred_backup_window")
 
     @property
     @pulumi.getter(name="preferredMaintenanceWindow")
@@ -394,7 +394,7 @@ class GetInstanceResult:
         """
         Specifies the weekly time range during which system maintenance can occur in UTC.
         """
-        ...
+        return pulumi.get(self, "preferred_maintenance_window")
 
     @property
     @pulumi.getter(name="publiclyAccessible")
@@ -402,7 +402,7 @@ class GetInstanceResult:
         """
         Specifies the accessibility options for the DB instance.
         """
-        ...
+        return pulumi.get(self, "publicly_accessible")
 
     @property
     @pulumi.getter(name="replicateSourceDb")
@@ -410,7 +410,7 @@ class GetInstanceResult:
         """
         The identifier of the source DB that this is a replica of.
         """
-        ...
+        return pulumi.get(self, "replicate_source_db")
 
     @property
     @pulumi.getter(name="resourceId")
@@ -418,7 +418,7 @@ class GetInstanceResult:
         """
         The RDS Resource ID of this instance.
         """
-        ...
+        return pulumi.get(self, "resource_id")
 
     @property
     @pulumi.getter(name="storageEncrypted")
@@ -426,7 +426,7 @@ class GetInstanceResult:
         """
         Specifies whether the DB instance is encrypted.
         """
-        ...
+        return pulumi.get(self, "storage_encrypted")
 
     @property
     @pulumi.getter(name="storageType")
@@ -434,12 +434,12 @@ class GetInstanceResult:
         """
         Specifies the storage type associated with DB instance.
         """
-        ...
+        return pulumi.get(self, "storage_type")
 
     @property
     @pulumi.getter
     def tags(self) -> Mapping[str, str]:
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -447,7 +447,7 @@ class GetInstanceResult:
         """
         The time zone of the DB instance.
         """
-        ...
+        return pulumi.get(self, "timezone")
 
     @property
     @pulumi.getter(name="vpcSecurityGroups")
@@ -455,7 +455,7 @@ class GetInstanceResult:
         """
         Provides a list of VPC security group elements that the DB instance belongs to.
         """
-        ...
+        return pulumi.get(self, "vpc_security_groups")
 
 
 

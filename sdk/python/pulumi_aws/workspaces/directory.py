@@ -168,7 +168,7 @@ class Directory(pulumi.CustomResource):
         """
         The directory alias.
         """
-        ...
+        return pulumi.get(self, "alias")
 
     @property
     @pulumi.getter(name="customerUserName")
@@ -176,7 +176,7 @@ class Directory(pulumi.CustomResource):
         """
         The user name for the service account.
         """
-        ...
+        return pulumi.get(self, "customer_user_name")
 
     @property
     @pulumi.getter(name="directoryId")
@@ -184,7 +184,7 @@ class Directory(pulumi.CustomResource):
         """
         The directory identifier for registration in WorkSpaces service.
         """
-        ...
+        return pulumi.get(self, "directory_id")
 
     @property
     @pulumi.getter(name="directoryName")
@@ -192,7 +192,7 @@ class Directory(pulumi.CustomResource):
         """
         The name of the directory.
         """
-        ...
+        return pulumi.get(self, "directory_name")
 
     @property
     @pulumi.getter(name="directoryType")
@@ -200,7 +200,7 @@ class Directory(pulumi.CustomResource):
         """
         The directory type.
         """
-        ...
+        return pulumi.get(self, "directory_type")
 
     @property
     @pulumi.getter(name="dnsIpAddresses")
@@ -208,7 +208,7 @@ class Directory(pulumi.CustomResource):
         """
         The IP addresses of the DNS servers for the directory.
         """
-        ...
+        return pulumi.get(self, "dns_ip_addresses")
 
     @property
     @pulumi.getter(name="iamRoleId")
@@ -216,7 +216,7 @@ class Directory(pulumi.CustomResource):
         """
         The identifier of the IAM role. This is the role that allows Amazon WorkSpaces to make calls to other services, such as Amazon EC2, on your behalf.
         """
-        ...
+        return pulumi.get(self, "iam_role_id")
 
     @property
     @pulumi.getter(name="ipGroupIds")
@@ -224,7 +224,7 @@ class Directory(pulumi.CustomResource):
         """
         The identifiers of the IP access control groups associated with the directory.
         """
-        ...
+        return pulumi.get(self, "ip_group_ids")
 
     @property
     @pulumi.getter(name="registrationCode")
@@ -232,7 +232,7 @@ class Directory(pulumi.CustomResource):
         """
         The registration code for the directory. This is the code that users enter in their Amazon WorkSpaces client application to connect to the directory.
         """
-        ...
+        return pulumi.get(self, "registration_code")
 
     @property
     @pulumi.getter(name="selfServicePermissions")
@@ -240,7 +240,7 @@ class Directory(pulumi.CustomResource):
         """
         The permissions to enable or disable self-service capabilities.
         """
-        ...
+        return pulumi.get(self, "self_service_permissions")
 
     @property
     @pulumi.getter(name="subnetIds")
@@ -248,7 +248,7 @@ class Directory(pulumi.CustomResource):
         """
         The identifiers of the subnets where the directory resides.
         """
-        ...
+        return pulumi.get(self, "subnet_ids")
 
     @property
     @pulumi.getter
@@ -256,7 +256,7 @@ class Directory(pulumi.CustomResource):
         """
         A map of tags assigned to the WorkSpaces directory.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="workspaceSecurityGroupId")
@@ -264,7 +264,7 @@ class Directory(pulumi.CustomResource):
         """
         The identifier of the security group that is assigned to new WorkSpaces.
         """
-        ...
+        return pulumi.get(self, "workspace_security_group_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -125,7 +125,7 @@ class Mesh(pulumi.CustomResource):
         """
         The ARN of the service mesh.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="createdDate")
@@ -133,7 +133,7 @@ class Mesh(pulumi.CustomResource):
         """
         The creation date of the service mesh.
         """
-        ...
+        return pulumi.get(self, "created_date")
 
     @property
     @pulumi.getter(name="lastUpdatedDate")
@@ -141,7 +141,7 @@ class Mesh(pulumi.CustomResource):
         """
         The last update date of the service mesh.
         """
-        ...
+        return pulumi.get(self, "last_updated_date")
 
     @property
     @pulumi.getter
@@ -149,7 +149,7 @@ class Mesh(pulumi.CustomResource):
         """
         The name to use for the service mesh.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -157,7 +157,7 @@ class Mesh(pulumi.CustomResource):
         """
         The service mesh specification to apply.
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @property
     @pulumi.getter
@@ -165,7 +165,7 @@ class Mesh(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

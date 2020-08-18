@@ -132,7 +132,7 @@ class RepositoryPolicy(pulumi.CustomResource):
         """
         The policy document. This is a JSON formatted string.
         """
-        ...
+        return pulumi.get(self, "policy")
 
     @property
     @pulumi.getter(name="registryId")
@@ -140,7 +140,7 @@ class RepositoryPolicy(pulumi.CustomResource):
         """
         The registry ID where the repository was created.
         """
-        ...
+        return pulumi.get(self, "registry_id")
 
     @property
     @pulumi.getter
@@ -148,7 +148,7 @@ class RepositoryPolicy(pulumi.CustomResource):
         """
         Name of the repository to apply the policy.
         """
-        ...
+        return pulumi.get(self, "repository")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

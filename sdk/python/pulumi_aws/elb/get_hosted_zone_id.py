@@ -35,12 +35,12 @@ class GetHostedZoneIdResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def region(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "region")
 
 
 

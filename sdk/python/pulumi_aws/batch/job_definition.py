@@ -166,7 +166,7 @@ class JobDefinition(pulumi.CustomResource):
         """
         The Amazon Resource Name of the job definition.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="containerProperties")
@@ -175,7 +175,7 @@ class JobDefinition(pulumi.CustomResource):
         A valid [container properties](http://docs.aws.amazon.com/batch/latest/APIReference/API_RegisterJobDefinition.html)
         provided as a single valid JSON document. This parameter is required if the `type` parameter is `container`.
         """
-        ...
+        return pulumi.get(self, "container_properties")
 
     @property
     @pulumi.getter
@@ -183,7 +183,7 @@ class JobDefinition(pulumi.CustomResource):
         """
         Specifies the name of the job definition.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -191,7 +191,7 @@ class JobDefinition(pulumi.CustomResource):
         """
         Specifies the parameter substitution placeholders to set in the job definition.
         """
-        ...
+        return pulumi.get(self, "parameters")
 
     @property
     @pulumi.getter(name="retryStrategy")
@@ -200,7 +200,7 @@ class JobDefinition(pulumi.CustomResource):
         Specifies the retry strategy to use for failed jobs that are submitted with this job definition.
         Maximum number of `retry_strategy` is `1`.  Defined below.
         """
-        ...
+        return pulumi.get(self, "retry_strategy")
 
     @property
     @pulumi.getter
@@ -208,7 +208,7 @@ class JobDefinition(pulumi.CustomResource):
         """
         The revision of the job definition.
         """
-        ...
+        return pulumi.get(self, "revision")
 
     @property
     @pulumi.getter
@@ -216,7 +216,7 @@ class JobDefinition(pulumi.CustomResource):
         """
         Specifies the timeout for jobs so that if a job runs longer, AWS Batch terminates the job. Maximum number of `timeout` is `1`. Defined below.
         """
-        ...
+        return pulumi.get(self, "timeout")
 
     @property
     @pulumi.getter
@@ -224,7 +224,7 @@ class JobDefinition(pulumi.CustomResource):
         """
         The type of job definition.  Must be `container`
         """
-        ...
+        return pulumi.get(self, "type")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

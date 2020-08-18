@@ -167,7 +167,7 @@ class RestApi(pulumi.CustomResource):
         """
         The source of the API key for requests. Valid values are HEADER (default) and AUTHORIZER.
         """
-        ...
+        return pulumi.get(self, "api_key_source")
 
     @property
     @pulumi.getter
@@ -175,7 +175,7 @@ class RestApi(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN)
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="binaryMediaTypes")
@@ -183,7 +183,7 @@ class RestApi(pulumi.CustomResource):
         """
         The list of binary media types supported by the RestApi. By default, the RestApi supports only UTF-8-encoded text payloads.
         """
-        ...
+        return pulumi.get(self, "binary_media_types")
 
     @property
     @pulumi.getter
@@ -191,7 +191,7 @@ class RestApi(pulumi.CustomResource):
         """
         An OpenAPI specification that defines the set of routes and integrations to create as part of the REST API.
         """
-        ...
+        return pulumi.get(self, "body")
 
     @property
     @pulumi.getter(name="createdDate")
@@ -199,7 +199,7 @@ class RestApi(pulumi.CustomResource):
         """
         The creation date of the REST API
         """
-        ...
+        return pulumi.get(self, "created_date")
 
     @property
     @pulumi.getter
@@ -207,7 +207,7 @@ class RestApi(pulumi.CustomResource):
         """
         The description of the REST API
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="endpointConfiguration")
@@ -215,7 +215,7 @@ class RestApi(pulumi.CustomResource):
         """
         Nested argument defining API endpoint configuration including endpoint type. Defined below.
         """
-        ...
+        return pulumi.get(self, "endpoint_configuration")
 
     @property
     @pulumi.getter(name="executionArn")
@@ -225,7 +225,7 @@ class RestApi(pulumi.CustomResource):
         when allowing API Gateway to invoke a Lambda function,
         e.g. `arn:aws:execute-api:eu-west-2:123456789012:z4675bid1j`, which can be concatenated with allowed stage, method and resource path.
         """
-        ...
+        return pulumi.get(self, "execution_arn")
 
     @property
     @pulumi.getter(name="minimumCompressionSize")
@@ -233,7 +233,7 @@ class RestApi(pulumi.CustomResource):
         """
         Minimum response size to compress for the REST API. Integer between -1 and 10485760 (10MB). Setting a value greater than -1 will enable compression, -1 disables compression (default).
         """
-        ...
+        return pulumi.get(self, "minimum_compression_size")
 
     @property
     @pulumi.getter
@@ -241,7 +241,7 @@ class RestApi(pulumi.CustomResource):
         """
         The name of the REST API
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -249,7 +249,7 @@ class RestApi(pulumi.CustomResource):
         """
         JSON formatted policy document that controls access to the API Gateway.
         """
-        ...
+        return pulumi.get(self, "policy")
 
     @property
     @pulumi.getter(name="rootResourceId")
@@ -257,7 +257,7 @@ class RestApi(pulumi.CustomResource):
         """
         The resource ID of the REST API's root
         """
-        ...
+        return pulumi.get(self, "root_resource_id")
 
     @property
     @pulumi.getter
@@ -265,7 +265,7 @@ class RestApi(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

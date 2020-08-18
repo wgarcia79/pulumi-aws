@@ -151,7 +151,7 @@ class TrafficMirrorSession(pulumi.CustomResource):
         """
         The ARN of the traffic mirror session.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -159,7 +159,7 @@ class TrafficMirrorSession(pulumi.CustomResource):
         """
         A description of the traffic mirror session.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="networkInterfaceId")
@@ -167,7 +167,7 @@ class TrafficMirrorSession(pulumi.CustomResource):
         """
         ID of the source network interface. Not all network interfaces are eligible as mirror sources. On EC2 instances only nitro based instances support mirroring.
         """
-        ...
+        return pulumi.get(self, "network_interface_id")
 
     @property
     @pulumi.getter(name="packetLength")
@@ -175,7 +175,7 @@ class TrafficMirrorSession(pulumi.CustomResource):
         """
         The number of bytes in each packet to mirror. These are bytes after the VXLAN header. Do not specify this parameter when you want to mirror the entire packet. To mirror a subset of the packet, set this to the length (in bytes) that you want to mirror.
         """
-        ...
+        return pulumi.get(self, "packet_length")
 
     @property
     @pulumi.getter(name="sessionNumber")
@@ -183,7 +183,7 @@ class TrafficMirrorSession(pulumi.CustomResource):
         """
         - The session number determines the order in which sessions are evaluated when an interface is used by multiple sessions. The first session with a matching filter is the one that mirrors the packets.
         """
-        ...
+        return pulumi.get(self, "session_number")
 
     @property
     @pulumi.getter
@@ -191,7 +191,7 @@ class TrafficMirrorSession(pulumi.CustomResource):
         """
         Key-value map of resource tags.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="trafficMirrorFilterId")
@@ -199,7 +199,7 @@ class TrafficMirrorSession(pulumi.CustomResource):
         """
         ID of the traffic mirror filter to be used
         """
-        ...
+        return pulumi.get(self, "traffic_mirror_filter_id")
 
     @property
     @pulumi.getter(name="trafficMirrorTargetId")
@@ -207,7 +207,7 @@ class TrafficMirrorSession(pulumi.CustomResource):
         """
         ID of the traffic mirror target to be used
         """
-        ...
+        return pulumi.get(self, "traffic_mirror_target_id")
 
     @property
     @pulumi.getter(name="virtualNetworkId")
@@ -215,7 +215,7 @@ class TrafficMirrorSession(pulumi.CustomResource):
         """
         - The VXLAN ID for the Traffic Mirror session. For more information about the VXLAN protocol, see RFC 7348. If you do not specify a VirtualNetworkId, an account-wide unique id is chosen at random.
         """
-        ...
+        return pulumi.get(self, "virtual_network_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

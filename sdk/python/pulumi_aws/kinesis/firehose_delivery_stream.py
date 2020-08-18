@@ -347,7 +347,7 @@ class FirehoseDeliveryStream(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) specifying the Stream
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -355,12 +355,12 @@ class FirehoseDeliveryStream(pulumi.CustomResource):
         """
         This is the destination to where the data is delivered. The only options are `s3` (Deprecated, use `extended_s3` instead), `extended_s3`, `redshift`, `elasticsearch`, and `splunk`.
         """
-        ...
+        return pulumi.get(self, "destination")
 
     @property
     @pulumi.getter(name="destinationId")
     def destination_id(self) -> str:
-        ...
+        return pulumi.get(self, "destination_id")
 
     @property
     @pulumi.getter(name="elasticsearchConfiguration")
@@ -368,7 +368,7 @@ class FirehoseDeliveryStream(pulumi.CustomResource):
         """
         Configuration options if elasticsearch is the destination. More details are given below.
         """
-        ...
+        return pulumi.get(self, "elasticsearch_configuration")
 
     @property
     @pulumi.getter(name="extendedS3Configuration")
@@ -376,7 +376,7 @@ class FirehoseDeliveryStream(pulumi.CustomResource):
         """
         Enhanced configuration options for the s3 destination. More details are given below.
         """
-        ...
+        return pulumi.get(self, "extended_s3_configuration")
 
     @property
     @pulumi.getter(name="kinesisSourceConfiguration")
@@ -384,7 +384,7 @@ class FirehoseDeliveryStream(pulumi.CustomResource):
         """
         Allows the ability to specify the kinesis stream that is used as the source of the firehose delivery stream.
         """
-        ...
+        return pulumi.get(self, "kinesis_source_configuration")
 
     @property
     @pulumi.getter
@@ -393,7 +393,7 @@ class FirehoseDeliveryStream(pulumi.CustomResource):
         A name to identify the stream. This is unique to the
         AWS account and region the Stream is created in.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="redshiftConfiguration")
@@ -403,7 +403,7 @@ class FirehoseDeliveryStream(pulumi.CustomResource):
         Using `redshift_configuration` requires the user to also specify a
         `s3_configuration` block. More details are given below.
         """
-        ...
+        return pulumi.get(self, "redshift_configuration")
 
     @property
     @pulumi.getter(name="s3Configuration")
@@ -412,7 +412,7 @@ class FirehoseDeliveryStream(pulumi.CustomResource):
         Required for non-S3 destinations. For S3 destination, use `extended_s3_configuration` instead. Configuration options for the s3 destination (or the intermediate bucket if the destination
         is redshift). More details are given below.
         """
-        ...
+        return pulumi.get(self, "s3_configuration")
 
     @property
     @pulumi.getter(name="serverSideEncryption")
@@ -421,12 +421,12 @@ class FirehoseDeliveryStream(pulumi.CustomResource):
         Encrypt at rest options.
         Server-side encryption should not be enabled when a kinesis stream is configured as the source of the firehose delivery stream.
         """
-        ...
+        return pulumi.get(self, "server_side_encryption")
 
     @property
     @pulumi.getter(name="splunkConfiguration")
     def splunk_configuration(self) -> Optional['outputs.FirehoseDeliveryStreamSplunkConfiguration']:
-        ...
+        return pulumi.get(self, "splunk_configuration")
 
     @property
     @pulumi.getter
@@ -434,7 +434,7 @@ class FirehoseDeliveryStream(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="versionId")
@@ -442,7 +442,7 @@ class FirehoseDeliveryStream(pulumi.CustomResource):
         """
         Specifies the table version for the output data schema. Defaults to `LATEST`.
         """
-        ...
+        return pulumi.get(self, "version_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

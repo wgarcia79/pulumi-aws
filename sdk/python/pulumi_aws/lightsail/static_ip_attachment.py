@@ -110,7 +110,7 @@ class StaticIpAttachment(pulumi.CustomResource):
         """
         The name of the Lightsail instance to attach the IP to
         """
-        ...
+        return pulumi.get(self, "instance_name")
 
     @property
     @pulumi.getter(name="ipAddress")
@@ -118,7 +118,7 @@ class StaticIpAttachment(pulumi.CustomResource):
         """
         The allocated static IP address
         """
-        ...
+        return pulumi.get(self, "ip_address")
 
     @property
     @pulumi.getter(name="staticIpName")
@@ -126,7 +126,7 @@ class StaticIpAttachment(pulumi.CustomResource):
         """
         The name of the allocated static IP
         """
-        ...
+        return pulumi.get(self, "static_ip_name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -88,12 +88,12 @@ class GetNetworkInterfaceResult:
         """
         The association information for an Elastic IP address (IPv4) associated with the network interface. See supported fields below.
         """
-        ...
+        return pulumi.get(self, "associations")
 
     @property
     @pulumi.getter
     def attachments(self) -> List['outputs.GetNetworkInterfaceAttachmentResult']:
-        ...
+        return pulumi.get(self, "attachments")
 
     @property
     @pulumi.getter(name="availabilityZone")
@@ -101,7 +101,7 @@ class GetNetworkInterfaceResult:
         """
         The Availability Zone.
         """
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter
@@ -109,17 +109,17 @@ class GetNetworkInterfaceResult:
         """
         Description of the network interface.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetNetworkInterfaceFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
     def id(self) -> str:
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="interfaceType")
@@ -127,7 +127,7 @@ class GetNetworkInterfaceResult:
         """
         The type of interface.
         """
-        ...
+        return pulumi.get(self, "interface_type")
 
     @property
     @pulumi.getter(name="ipv6Addresses")
@@ -135,7 +135,7 @@ class GetNetworkInterfaceResult:
         """
         List of IPv6 addresses to assign to the ENI.
         """
-        ...
+        return pulumi.get(self, "ipv6_addresses")
 
     @property
     @pulumi.getter(name="macAddress")
@@ -143,7 +143,7 @@ class GetNetworkInterfaceResult:
         """
         The MAC address.
         """
-        ...
+        return pulumi.get(self, "mac_address")
 
     @property
     @pulumi.getter(name="outpostArn")
@@ -151,7 +151,7 @@ class GetNetworkInterfaceResult:
         """
         The Amazon Resource Name (ARN) of the Outpost.
         """
-        ...
+        return pulumi.get(self, "outpost_arn")
 
     @property
     @pulumi.getter(name="ownerId")
@@ -159,7 +159,7 @@ class GetNetworkInterfaceResult:
         """
         The AWS account ID of the owner of the network interface.
         """
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter(name="privateDnsName")
@@ -167,7 +167,7 @@ class GetNetworkInterfaceResult:
         """
         The private DNS name.
         """
-        ...
+        return pulumi.get(self, "private_dns_name")
 
     @property
     @pulumi.getter(name="privateIp")
@@ -175,7 +175,7 @@ class GetNetworkInterfaceResult:
         """
         The private IPv4 address of the network interface within the subnet.
         """
-        ...
+        return pulumi.get(self, "private_ip")
 
     @property
     @pulumi.getter(name="privateIps")
@@ -183,7 +183,7 @@ class GetNetworkInterfaceResult:
         """
         The private IPv4 addresses associated with the network interface.
         """
-        ...
+        return pulumi.get(self, "private_ips")
 
     @property
     @pulumi.getter(name="requesterId")
@@ -191,7 +191,7 @@ class GetNetworkInterfaceResult:
         """
         The ID of the entity that launched the instance on your behalf.
         """
-        ...
+        return pulumi.get(self, "requester_id")
 
     @property
     @pulumi.getter(name="securityGroups")
@@ -199,7 +199,7 @@ class GetNetworkInterfaceResult:
         """
         The list of security groups for the network interface.
         """
-        ...
+        return pulumi.get(self, "security_groups")
 
     @property
     @pulumi.getter(name="subnetId")
@@ -207,7 +207,7 @@ class GetNetworkInterfaceResult:
         """
         The ID of the subnet.
         """
-        ...
+        return pulumi.get(self, "subnet_id")
 
     @property
     @pulumi.getter
@@ -215,7 +215,7 @@ class GetNetworkInterfaceResult:
         """
         Any tags assigned to the network interface.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -223,7 +223,7 @@ class GetNetworkInterfaceResult:
         """
         The ID of the VPC.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
 
 

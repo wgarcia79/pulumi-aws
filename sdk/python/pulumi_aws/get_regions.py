@@ -40,12 +40,12 @@ class GetRegionsResult:
     @property
     @pulumi.getter(name="allRegions")
     def all_regions(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "all_regions")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetRegionsFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
@@ -53,7 +53,7 @@ class GetRegionsResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -61,7 +61,7 @@ class GetRegionsResult:
         """
         Names of regions that meets the criteria.
         """
-        ...
+        return pulumi.get(self, "names")
 
 
 

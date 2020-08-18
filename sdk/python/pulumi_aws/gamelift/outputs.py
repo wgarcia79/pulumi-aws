@@ -42,7 +42,7 @@ class AliasRoutingStrategy(dict):
         """
         Type of routing strategy. e.g. `SIMPLE` or `TERMINAL`
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="fleetId")
@@ -50,7 +50,7 @@ class AliasRoutingStrategy(dict):
         """
         ID of the Gamelift Fleet to point the alias to.
         """
-        ...
+        return pulumi.get(self, "fleet_id")
 
     @property
     @pulumi.getter
@@ -58,7 +58,7 @@ class AliasRoutingStrategy(dict):
         """
         Message text to be used with the `TERMINAL` routing strategy.
         """
-        ...
+        return pulumi.get(self, "message")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -85,7 +85,7 @@ class BuildStorageLocation(dict):
         """
         Name of your S3 bucket.
         """
-        ...
+        return pulumi.get(self, "bucket")
 
     @property
     @pulumi.getter
@@ -93,7 +93,7 @@ class BuildStorageLocation(dict):
         """
         Name of the zip file containing your build files.
         """
-        ...
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -101,7 +101,7 @@ class BuildStorageLocation(dict):
         """
         ARN of the access role that allows Amazon GameLift to access your S3 bucket.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -131,7 +131,7 @@ class FleetEc2InboundPermission(dict):
         """
         Starting value for a range of allowed port numbers.
         """
-        ...
+        return pulumi.get(self, "from_port")
 
     @property
     @pulumi.getter(name="ipRange")
@@ -139,7 +139,7 @@ class FleetEc2InboundPermission(dict):
         """
         Range of allowed IP addresses expressed in CIDR notation. e.g. `000.000.000.000/[subnet mask]` or `0.0.0.0/[subnet mask]`.
         """
-        ...
+        return pulumi.get(self, "ip_range")
 
     @property
     @pulumi.getter
@@ -147,7 +147,7 @@ class FleetEc2InboundPermission(dict):
         """
         Network communication protocol used by the fleet. e.g. `TCP` or `UDP`
         """
-        ...
+        return pulumi.get(self, "protocol")
 
     @property
     @pulumi.getter(name="toPort")
@@ -155,7 +155,7 @@ class FleetEc2InboundPermission(dict):
         """
         Ending value for a range of allowed port numbers. Port numbers are end-inclusive. This value must be higher than `from_port`.
         """
-        ...
+        return pulumi.get(self, "to_port")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -181,7 +181,7 @@ class FleetResourceCreationLimitPolicy(dict):
         """
         Maximum number of game sessions that an individual can create during the policy period.
         """
-        ...
+        return pulumi.get(self, "new_game_sessions_per_creator")
 
     @property
     @pulumi.getter(name="policyPeriodInMinutes")
@@ -189,7 +189,7 @@ class FleetResourceCreationLimitPolicy(dict):
         """
         Time span used in evaluating the resource creation limit policy.
         """
-        ...
+        return pulumi.get(self, "policy_period_in_minutes")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -219,7 +219,7 @@ class FleetRuntimeConfiguration(dict):
         """
         Maximum amount of time (in seconds) that a game session can remain in status `ACTIVATING`.
         """
-        ...
+        return pulumi.get(self, "game_session_activation_timeout_seconds")
 
     @property
     @pulumi.getter(name="maxConcurrentGameSessionActivations")
@@ -227,7 +227,7 @@ class FleetRuntimeConfiguration(dict):
         """
         Maximum number of game sessions with status `ACTIVATING` to allow on an instance simultaneously.
         """
-        ...
+        return pulumi.get(self, "max_concurrent_game_session_activations")
 
     @property
     @pulumi.getter(name="serverProcesses")
@@ -235,7 +235,7 @@ class FleetRuntimeConfiguration(dict):
         """
         Collection of server process configurations that describe which server processes to run on each instance in a fleet. See below.
         """
-        ...
+        return pulumi.get(self, "server_processes")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -263,7 +263,7 @@ class FleetRuntimeConfigurationServerProcess(dict):
         """
         Number of server processes using this configuration to run concurrently on an instance.
         """
-        ...
+        return pulumi.get(self, "concurrent_executions")
 
     @property
     @pulumi.getter(name="launchPath")
@@ -271,7 +271,7 @@ class FleetRuntimeConfigurationServerProcess(dict):
         """
         Location of the server executable in a game build. All game builds are installed on instances at the root : for Windows instances `C:\game`, and for Linux instances `/local/game`.
         """
-        ...
+        return pulumi.get(self, "launch_path")
 
     @property
     @pulumi.getter
@@ -279,7 +279,7 @@ class FleetRuntimeConfigurationServerProcess(dict):
         """
         Optional list of parameters to pass to the server executable on launch.
         """
-        ...
+        return pulumi.get(self, "parameters")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -304,7 +304,7 @@ class GameSessionQueuePlayerLatencyPolicy(dict):
         """
         Maximum latency value that is allowed for any player.
         """
-        ...
+        return pulumi.get(self, "maximum_individual_player_latency_milliseconds")
 
     @property
     @pulumi.getter(name="policyDurationSeconds")
@@ -312,7 +312,7 @@ class GameSessionQueuePlayerLatencyPolicy(dict):
         """
         Length of time that the policy is enforced while placing a new game session. Absence of value for this attribute means that the policy is enforced until the queue times out.
         """
-        ...
+        return pulumi.get(self, "policy_duration_seconds")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

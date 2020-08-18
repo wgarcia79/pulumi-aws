@@ -46,7 +46,7 @@ class GetCoipPoolResult:
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetCoipPoolFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
@@ -54,12 +54,12 @@ class GetCoipPoolResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="localGatewayRouteTableId")
     def local_gateway_route_table_id(self) -> str:
-        ...
+        return pulumi.get(self, "local_gateway_route_table_id")
 
     @property
     @pulumi.getter(name="poolCidrs")
@@ -67,17 +67,17 @@ class GetCoipPoolResult:
         """
         Set of CIDR blocks in pool
         """
-        ...
+        return pulumi.get(self, "pool_cidrs")
 
     @property
     @pulumi.getter(name="poolId")
     def pool_id(self) -> str:
-        ...
+        return pulumi.get(self, "pool_id")
 
     @property
     @pulumi.getter
     def tags(self) -> Mapping[str, str]:
-        ...
+        return pulumi.get(self, "tags")
 
 
 

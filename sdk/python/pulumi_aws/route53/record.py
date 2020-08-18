@@ -264,7 +264,7 @@ class Record(pulumi.CustomResource):
         An alias block. Conflicts with `ttl` & `records`.
         Alias record documented below.
         """
-        ...
+        return pulumi.get(self, "aliases")
 
     @property
     @pulumi.getter(name="allowOverwrite")
@@ -272,7 +272,7 @@ class Record(pulumi.CustomResource):
         """
         Allow creation of this record to overwrite an existing record, if any. This does not affect the ability to update the record using this provider and does not prevent other resources within this provider or manual Route 53 changes outside this provider from overwriting this record. `false` by default. This configuration is not recommended for most environments.
         """
-        ...
+        return pulumi.get(self, "allow_overwrite")
 
     @property
     @pulumi.getter(name="failoverRoutingPolicies")
@@ -280,7 +280,7 @@ class Record(pulumi.CustomResource):
         """
         A block indicating the routing behavior when associated health check fails. Conflicts with any other routing policy. Documented below.
         """
-        ...
+        return pulumi.get(self, "failover_routing_policies")
 
     @property
     @pulumi.getter
@@ -288,7 +288,7 @@ class Record(pulumi.CustomResource):
         """
         [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) built using the zone domain and `name`.
         """
-        ...
+        return pulumi.get(self, "fqdn")
 
     @property
     @pulumi.getter(name="geolocationRoutingPolicies")
@@ -296,7 +296,7 @@ class Record(pulumi.CustomResource):
         """
         A block indicating a routing policy based on the geolocation of the requestor. Conflicts with any other routing policy. Documented below.
         """
-        ...
+        return pulumi.get(self, "geolocation_routing_policies")
 
     @property
     @pulumi.getter(name="healthCheckId")
@@ -304,7 +304,7 @@ class Record(pulumi.CustomResource):
         """
         The health check the record should be associated with.
         """
-        ...
+        return pulumi.get(self, "health_check_id")
 
     @property
     @pulumi.getter(name="latencyRoutingPolicies")
@@ -312,7 +312,7 @@ class Record(pulumi.CustomResource):
         """
         A block indicating a routing policy based on the latency between the requestor and an AWS region. Conflicts with any other routing policy. Documented below.
         """
-        ...
+        return pulumi.get(self, "latency_routing_policies")
 
     @property
     @pulumi.getter(name="multivalueAnswerRoutingPolicy")
@@ -320,7 +320,7 @@ class Record(pulumi.CustomResource):
         """
         Set to `true` to indicate a multivalue answer routing policy. Conflicts with any other routing policy.
         """
-        ...
+        return pulumi.get(self, "multivalue_answer_routing_policy")
 
     @property
     @pulumi.getter
@@ -328,7 +328,7 @@ class Record(pulumi.CustomResource):
         """
         DNS domain name for a CloudFront distribution, S3 bucket, ELB, or another resource record set in this hosted zone.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -336,7 +336,7 @@ class Record(pulumi.CustomResource):
         """
         A string list of records. To specify a single record value longer than 255 characters such as a TXT record for DKIM, add `\"\"` inside the configuration string (e.g. `"first255characters\"\"morecharacters"`).
         """
-        ...
+        return pulumi.get(self, "records")
 
     @property
     @pulumi.getter(name="setIdentifier")
@@ -344,7 +344,7 @@ class Record(pulumi.CustomResource):
         """
         Unique identifier to differentiate records with routing policies from one another. Required if using `failover`, `geolocation`, `latency`, or `weighted` routing policies documented below.
         """
-        ...
+        return pulumi.get(self, "set_identifier")
 
     @property
     @pulumi.getter
@@ -352,7 +352,7 @@ class Record(pulumi.CustomResource):
         """
         The TTL of the record.
         """
-        ...
+        return pulumi.get(self, "ttl")
 
     @property
     @pulumi.getter
@@ -360,7 +360,7 @@ class Record(pulumi.CustomResource):
         """
         `PRIMARY` or `SECONDARY`. A `PRIMARY` record will be served if its healthcheck is passing, otherwise the `SECONDARY` will be served. See http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-configuring-options.html#dns-failover-failover-rrsets
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="weightedRoutingPolicies")
@@ -368,7 +368,7 @@ class Record(pulumi.CustomResource):
         """
         A block indicating a weighted routing policy. Conflicts with any other routing policy. Documented below.
         """
-        ...
+        return pulumi.get(self, "weighted_routing_policies")
 
     @property
     @pulumi.getter(name="zoneId")
@@ -376,7 +376,7 @@ class Record(pulumi.CustomResource):
         """
         Hosted zone ID for a CloudFront distribution, S3 bucket, ELB, or Route 53 hosted zone. See `resource_elb.zone_id` for example.
         """
-        ...
+        return pulumi.get(self, "zone_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

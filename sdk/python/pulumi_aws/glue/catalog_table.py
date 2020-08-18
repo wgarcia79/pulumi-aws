@@ -215,7 +215,7 @@ class CatalogTable(pulumi.CustomResource):
         """
         The ARN of the Glue Table.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="catalogId")
@@ -223,7 +223,7 @@ class CatalogTable(pulumi.CustomResource):
         """
         ID of the Glue Catalog and database to create the table in. If omitted, this defaults to the AWS Account ID plus the database name.
         """
-        ...
+        return pulumi.get(self, "catalog_id")
 
     @property
     @pulumi.getter(name="databaseName")
@@ -231,7 +231,7 @@ class CatalogTable(pulumi.CustomResource):
         """
         Name of the metadata database where the table metadata resides. For Hive compatibility, this must be all lowercase.
         """
-        ...
+        return pulumi.get(self, "database_name")
 
     @property
     @pulumi.getter
@@ -239,7 +239,7 @@ class CatalogTable(pulumi.CustomResource):
         """
         Description of the table.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -247,7 +247,7 @@ class CatalogTable(pulumi.CustomResource):
         """
         Name of the SerDe.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -255,7 +255,7 @@ class CatalogTable(pulumi.CustomResource):
         """
         Owner of the table.
         """
-        ...
+        return pulumi.get(self, "owner")
 
     @property
     @pulumi.getter
@@ -263,7 +263,7 @@ class CatalogTable(pulumi.CustomResource):
         """
         A map of initialization parameters for the SerDe, in key-value form.
         """
-        ...
+        return pulumi.get(self, "parameters")
 
     @property
     @pulumi.getter(name="partitionKeys")
@@ -271,7 +271,7 @@ class CatalogTable(pulumi.CustomResource):
         """
         A list of columns by which the table is partitioned. Only primitive types are supported as partition keys.
         """
-        ...
+        return pulumi.get(self, "partition_keys")
 
     @property
     @pulumi.getter
@@ -279,7 +279,7 @@ class CatalogTable(pulumi.CustomResource):
         """
         Retention time for this table.
         """
-        ...
+        return pulumi.get(self, "retention")
 
     @property
     @pulumi.getter(name="storageDescriptor")
@@ -287,7 +287,7 @@ class CatalogTable(pulumi.CustomResource):
         """
         A storage descriptor object containing information about the physical storage of this table. You can refer to the [Glue Developer Guide](https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-catalog-tables.html#aws-glue-api-catalog-tables-StorageDescriptor) for a full explanation of this object.
         """
-        ...
+        return pulumi.get(self, "storage_descriptor")
 
     @property
     @pulumi.getter(name="tableType")
@@ -295,7 +295,7 @@ class CatalogTable(pulumi.CustomResource):
         """
         The type of this table (EXTERNAL_TABLE, VIRTUAL_VIEW, etc.).
         """
-        ...
+        return pulumi.get(self, "table_type")
 
     @property
     @pulumi.getter(name="viewExpandedText")
@@ -303,7 +303,7 @@ class CatalogTable(pulumi.CustomResource):
         """
         If the table is a view, the expanded text of the view; otherwise null.
         """
-        ...
+        return pulumi.get(self, "view_expanded_text")
 
     @property
     @pulumi.getter(name="viewOriginalText")
@@ -311,7 +311,7 @@ class CatalogTable(pulumi.CustomResource):
         """
         If the table is a view, the original text of the view; otherwise null.
         """
-        ...
+        return pulumi.get(self, "view_original_text")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

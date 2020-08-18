@@ -149,7 +149,7 @@ class Configuration(pulumi.CustomResource):
         """
         The ARN of the configuration.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -159,7 +159,7 @@ class Configuration(pulumi.CustomResource):
         See [official docs](https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/amazon-mq-broker-configuration-parameters.html)
         for supported parameters and format of the XML.
         """
-        ...
+        return pulumi.get(self, "data")
 
     @property
     @pulumi.getter
@@ -167,7 +167,7 @@ class Configuration(pulumi.CustomResource):
         """
         The description of the configuration.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="engineType")
@@ -175,7 +175,7 @@ class Configuration(pulumi.CustomResource):
         """
         The type of broker engine.
         """
-        ...
+        return pulumi.get(self, "engine_type")
 
     @property
     @pulumi.getter(name="engineVersion")
@@ -183,7 +183,7 @@ class Configuration(pulumi.CustomResource):
         """
         The version of the broker engine.
         """
-        ...
+        return pulumi.get(self, "engine_version")
 
     @property
     @pulumi.getter(name="latestRevision")
@@ -191,7 +191,7 @@ class Configuration(pulumi.CustomResource):
         """
         The latest revision of the configuration.
         """
-        ...
+        return pulumi.get(self, "latest_revision")
 
     @property
     @pulumi.getter
@@ -199,7 +199,7 @@ class Configuration(pulumi.CustomResource):
         """
         The name of the configuration
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -207,7 +207,7 @@ class Configuration(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

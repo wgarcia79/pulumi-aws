@@ -115,7 +115,7 @@ class ApiMapping(pulumi.CustomResource):
         """
         The API identifier.
         """
-        ...
+        return pulumi.get(self, "api_id")
 
     @property
     @pulumi.getter(name="apiMappingKey")
@@ -123,7 +123,7 @@ class ApiMapping(pulumi.CustomResource):
         """
         The [API mapping key](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-mapping-template-reference.html).
         """
-        ...
+        return pulumi.get(self, "api_mapping_key")
 
     @property
     @pulumi.getter(name="domainName")
@@ -131,7 +131,7 @@ class ApiMapping(pulumi.CustomResource):
         """
         The domain name. Use the `apigatewayv2.DomainName` resource to configure a domain name.
         """
-        ...
+        return pulumi.get(self, "domain_name")
 
     @property
     @pulumi.getter
@@ -139,7 +139,7 @@ class ApiMapping(pulumi.CustomResource):
         """
         The API stage. Use the `apigatewayv2.Stage` resource to configure an API stage.
         """
-        ...
+        return pulumi.get(self, "stage")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

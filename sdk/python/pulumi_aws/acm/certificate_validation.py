@@ -173,7 +173,7 @@ class CertificateValidation(pulumi.CustomResource):
         """
         The ARN of the certificate that is being validated.
         """
-        ...
+        return pulumi.get(self, "certificate_arn")
 
     @property
     @pulumi.getter(name="validationRecordFqdns")
@@ -181,7 +181,7 @@ class CertificateValidation(pulumi.CustomResource):
         """
         List of FQDNs that implement the validation. Only valid for DNS validation method ACM certificates. If this is set, the resource can implement additional sanity checks and has an explicit dependency on the resource that is implementing the validation
         """
-        ...
+        return pulumi.get(self, "validation_record_fqdns")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

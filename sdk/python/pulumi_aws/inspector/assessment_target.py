@@ -100,7 +100,7 @@ class AssessmentTarget(pulumi.CustomResource):
         """
         The target assessment ARN.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -108,7 +108,7 @@ class AssessmentTarget(pulumi.CustomResource):
         """
         The name of the assessment target.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="resourceGroupArn")
@@ -116,7 +116,7 @@ class AssessmentTarget(pulumi.CustomResource):
         """
         Inspector Resource Group Amazon Resource Name (ARN) stating tags for instance matching. If not specified, all EC2 instances in the current AWS account and region are included in the assessment target.
         """
-        ...
+        return pulumi.get(self, "resource_group_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

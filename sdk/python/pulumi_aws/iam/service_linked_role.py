@@ -120,7 +120,7 @@ class ServiceLinkedRole(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) specifying the role.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="awsServiceName")
@@ -128,7 +128,7 @@ class ServiceLinkedRole(pulumi.CustomResource):
         """
         The AWS service to which this role is attached. You use a string similar to a URL but without the `http://` in front. For example: `elasticbeanstalk.amazonaws.com`. To find the full list of services that support service-linked roles, check [the docs](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-services-that-work-with-iam.html).
         """
-        ...
+        return pulumi.get(self, "aws_service_name")
 
     @property
     @pulumi.getter(name="createDate")
@@ -136,7 +136,7 @@ class ServiceLinkedRole(pulumi.CustomResource):
         """
         The creation date of the IAM role.
         """
-        ...
+        return pulumi.get(self, "create_date")
 
     @property
     @pulumi.getter(name="customSuffix")
@@ -144,7 +144,7 @@ class ServiceLinkedRole(pulumi.CustomResource):
         """
         Additional string appended to the role name. Not all AWS services support custom suffixes.
         """
-        ...
+        return pulumi.get(self, "custom_suffix")
 
     @property
     @pulumi.getter
@@ -152,7 +152,7 @@ class ServiceLinkedRole(pulumi.CustomResource):
         """
         The description of the role.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -160,7 +160,7 @@ class ServiceLinkedRole(pulumi.CustomResource):
         """
         The name of the role.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -168,7 +168,7 @@ class ServiceLinkedRole(pulumi.CustomResource):
         """
         The path of the role.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter(name="uniqueId")
@@ -176,7 +176,7 @@ class ServiceLinkedRole(pulumi.CustomResource):
         """
         The stable and unique string identifying the role.
         """
-        ...
+        return pulumi.get(self, "unique_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

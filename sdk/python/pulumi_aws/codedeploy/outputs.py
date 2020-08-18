@@ -59,7 +59,7 @@ class DeploymentConfigMinimumHealthyHosts(dict):
         """
         The type can either be `FLEET_PERCENT` or `HOST_COUNT`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -70,7 +70,7 @@ class DeploymentConfigMinimumHealthyHosts(dict):
         deployment, AWS CodeDeploy converts the percentage to the equivalent number of instance and rounds up fractional instances.
         When the type is `HOST_COUNT`, the value represents the minimum number of healthy instances as an absolute value.
         """
-        ...
+        return pulumi.get(self, "value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -100,7 +100,7 @@ class DeploymentConfigTrafficRoutingConfig(dict):
         """
         The time based canary configuration information. If `type` is `TimeBasedLinear`, use `time_based_linear` instead.
         """
-        ...
+        return pulumi.get(self, "time_based_canary")
 
     @property
     @pulumi.getter(name="timeBasedLinear")
@@ -108,7 +108,7 @@ class DeploymentConfigTrafficRoutingConfig(dict):
         """
         The time based linear configuration information. If `type` is `TimeBasedCanary`, use `time_based_canary` instead.
         """
-        ...
+        return pulumi.get(self, "time_based_linear")
 
     @property
     @pulumi.getter
@@ -116,7 +116,7 @@ class DeploymentConfigTrafficRoutingConfig(dict):
         """
         Type of traffic routing config. One of `TimeBasedCanary`, `TimeBasedLinear`, `AllAtOnce`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -142,7 +142,7 @@ class DeploymentConfigTrafficRoutingConfigTimeBasedCanary(dict):
         """
         The number of minutes between the first and second traffic shifts of a `TimeBasedCanary` deployment.
         """
-        ...
+        return pulumi.get(self, "interval")
 
     @property
     @pulumi.getter
@@ -150,7 +150,7 @@ class DeploymentConfigTrafficRoutingConfigTimeBasedCanary(dict):
         """
         The percentage of traffic to shift in the first increment of a `TimeBasedCanary` deployment.
         """
-        ...
+        return pulumi.get(self, "percentage")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -176,7 +176,7 @@ class DeploymentConfigTrafficRoutingConfigTimeBasedLinear(dict):
         """
         The number of minutes between each incremental traffic shift of a `TimeBasedLinear` deployment.
         """
-        ...
+        return pulumi.get(self, "interval")
 
     @property
     @pulumi.getter
@@ -184,7 +184,7 @@ class DeploymentConfigTrafficRoutingConfigTimeBasedLinear(dict):
         """
         The percentage of traffic that is shifted at the start of each increment of a `TimeBasedLinear` deployment.
         """
-        ...
+        return pulumi.get(self, "percentage")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -216,7 +216,7 @@ class DeploymentGroupAlarmConfiguration(dict):
         """
         A list of alarms configured for the deployment group. _A maximum of 10 alarms can be added to a deployment group_.
         """
-        ...
+        return pulumi.get(self, "alarms")
 
     @property
     @pulumi.getter
@@ -224,7 +224,7 @@ class DeploymentGroupAlarmConfiguration(dict):
         """
         Indicates whether the alarm configuration is enabled. This option is useful when you want to temporarily deactivate alarm monitoring for a deployment group without having to add the same alarms again later.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="ignorePollAlarmFailure")
@@ -234,7 +234,7 @@ class DeploymentGroupAlarmConfiguration(dict):
         * `true`: The deployment will proceed even if alarm status information can't be retrieved.
         * `false`: The deployment will stop if alarm status information can't be retrieved.
         """
-        ...
+        return pulumi.get(self, "ignore_poll_alarm_failure")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -260,7 +260,7 @@ class DeploymentGroupAutoRollbackConfiguration(dict):
         """
         Indicates whether a defined automatic rollback configuration is currently enabled for this Deployment Group. If you enable automatic rollback, you must specify at least one event type.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter
@@ -268,7 +268,7 @@ class DeploymentGroupAutoRollbackConfiguration(dict):
         """
         The event type or types that trigger a rollback. Supported types are `DEPLOYMENT_FAILURE` and `DEPLOYMENT_STOP_ON_ALARM`.
         """
-        ...
+        return pulumi.get(self, "events")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -298,7 +298,7 @@ class DeploymentGroupBlueGreenDeploymentConfig(dict):
         """
         Information about the action to take when newly provisioned instances are ready to receive traffic in a blue/green deployment (documented below).
         """
-        ...
+        return pulumi.get(self, "deployment_ready_option")
 
     @property
     @pulumi.getter(name="greenFleetProvisioningOption")
@@ -306,7 +306,7 @@ class DeploymentGroupBlueGreenDeploymentConfig(dict):
         """
         Information about how instances are provisioned for a replacement environment in a blue/green deployment (documented below).
         """
-        ...
+        return pulumi.get(self, "green_fleet_provisioning_option")
 
     @property
     @pulumi.getter(name="terminateBlueInstancesOnDeploymentSuccess")
@@ -314,7 +314,7 @@ class DeploymentGroupBlueGreenDeploymentConfig(dict):
         """
         Information about whether to terminate instances in the original fleet during a blue/green deployment (documented below).
         """
-        ...
+        return pulumi.get(self, "terminate_blue_instances_on_deployment_success")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -344,7 +344,7 @@ class DeploymentGroupBlueGreenDeploymentConfigDeploymentReadyOption(dict):
         * `CONTINUE_DEPLOYMENT`: Register new instances with the load balancer immediately after the new application revision is installed on the instances in the replacement environment.
         * `STOP_DEPLOYMENT`: Do not register new instances with load balancer unless traffic is rerouted manually. If traffic is not rerouted manually before the end of the specified wait period, the deployment status is changed to Stopped.
         """
-        ...
+        return pulumi.get(self, "action_on_timeout")
 
     @property
     @pulumi.getter(name="waitTimeInMinutes")
@@ -352,7 +352,7 @@ class DeploymentGroupBlueGreenDeploymentConfigDeploymentReadyOption(dict):
         """
         The number of minutes to wait before the status of a blue/green deployment changed to Stopped if rerouting is not started manually. Applies only to the `STOP_DEPLOYMENT` option for `action_on_timeout`.
         """
-        ...
+        return pulumi.get(self, "wait_time_in_minutes")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -378,7 +378,7 @@ class DeploymentGroupBlueGreenDeploymentConfigGreenFleetProvisioningOption(dict)
         * `DISCOVER_EXISTING`: Use instances that already exist or will be created manually.
         * `COPY_AUTO_SCALING_GROUP`: Use settings from a specified **Auto Scaling** group to define and create instances in a new Auto Scaling group. _Exactly one Auto Scaling group must be specified_ when selecting `COPY_AUTO_SCALING_GROUP`. Use `autoscaling_groups` to specify the Auto Scaling group.
         """
-        ...
+        return pulumi.get(self, "action")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -408,7 +408,7 @@ class DeploymentGroupBlueGreenDeploymentConfigTerminateBlueInstancesOnDeployment
         * `TERMINATE`: Instances are terminated after a specified wait time.
         * `KEEP_ALIVE`: Instances are left running after they are deregistered from the load balancer and removed from the deployment group.
         """
-        ...
+        return pulumi.get(self, "action")
 
     @property
     @pulumi.getter(name="terminationWaitTimeInMinutes")
@@ -416,7 +416,7 @@ class DeploymentGroupBlueGreenDeploymentConfigTerminateBlueInstancesOnDeployment
         """
         The number of minutes to wait after a successful blue/green deployment before terminating instances from the original environment.
         """
-        ...
+        return pulumi.get(self, "termination_wait_time_in_minutes")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -442,7 +442,7 @@ class DeploymentGroupDeploymentStyle(dict):
         """
         Indicates whether to route deployment traffic behind a load balancer. Valid Values are `WITH_TRAFFIC_CONTROL` or `WITHOUT_TRAFFIC_CONTROL`. Default is `WITHOUT_TRAFFIC_CONTROL`.
         """
-        ...
+        return pulumi.get(self, "deployment_option")
 
     @property
     @pulumi.getter(name="deploymentType")
@@ -450,7 +450,7 @@ class DeploymentGroupDeploymentStyle(dict):
         """
         Indicates whether to run an in-place deployment or a blue/green deployment. Valid Values are `IN_PLACE` or `BLUE_GREEN`. Default is `IN_PLACE`.
         """
-        ...
+        return pulumi.get(self, "deployment_type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -480,7 +480,7 @@ class DeploymentGroupEc2TagFilter(dict):
         """
         The key of the tag filter.
         """
-        ...
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
@@ -488,7 +488,7 @@ class DeploymentGroupEc2TagFilter(dict):
         """
         The type of the tag filter, either `KEY_ONLY`, `VALUE_ONLY`, or `KEY_AND_VALUE`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -496,7 +496,7 @@ class DeploymentGroupEc2TagFilter(dict):
         """
         The value of the tag filter.
         """
-        ...
+        return pulumi.get(self, "value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -518,7 +518,7 @@ class DeploymentGroupEc2TagSet(dict):
         """
         Tag filters associated with the deployment group. See the AWS docs for details.
         """
-        ...
+        return pulumi.get(self, "ec2_tag_filters")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -548,7 +548,7 @@ class DeploymentGroupEc2TagSetEc2TagFilter(dict):
         """
         The key of the tag filter.
         """
-        ...
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
@@ -556,7 +556,7 @@ class DeploymentGroupEc2TagSetEc2TagFilter(dict):
         """
         The type of the tag filter, either `KEY_ONLY`, `VALUE_ONLY`, or `KEY_AND_VALUE`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -564,7 +564,7 @@ class DeploymentGroupEc2TagSetEc2TagFilter(dict):
         """
         The value of the tag filter.
         """
-        ...
+        return pulumi.get(self, "value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -588,7 +588,7 @@ class DeploymentGroupEcsService(dict):
         """
         The name of the ECS cluster.
         """
-        ...
+        return pulumi.get(self, "cluster_name")
 
     @property
     @pulumi.getter(name="serviceName")
@@ -596,7 +596,7 @@ class DeploymentGroupEcsService(dict):
         """
         The name of the ECS service.
         """
-        ...
+        return pulumi.get(self, "service_name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -626,7 +626,7 @@ class DeploymentGroupLoadBalancerInfo(dict):
         """
         The Classic Elastic Load Balancer to use in a deployment. Conflicts with `target_group_info` and `target_group_pair_info`.
         """
-        ...
+        return pulumi.get(self, "elb_infos")
 
     @property
     @pulumi.getter(name="targetGroupInfos")
@@ -634,7 +634,7 @@ class DeploymentGroupLoadBalancerInfo(dict):
         """
         The (Application/Network Load Balancer) target group to use in a deployment. Conflicts with `elb_info` and `target_group_pair_info`.
         """
-        ...
+        return pulumi.get(self, "target_group_infos")
 
     @property
     @pulumi.getter(name="targetGroupPairInfo")
@@ -642,7 +642,7 @@ class DeploymentGroupLoadBalancerInfo(dict):
         """
         The (Application/Network Load Balancer) target group pair to use in a deployment. Conflicts with `elb_info` and `target_group_info`.
         """
-        ...
+        return pulumi.get(self, "target_group_pair_info")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -664,7 +664,7 @@ class DeploymentGroupLoadBalancerInfoElbInfo(dict):
         """
         The name of the load balancer that will be used to route traffic from original instances to replacement instances in a blue/green deployment. For in-place deployments, the name of the load balancer that instances are deregistered from so they are not serving traffic during a deployment, and then re-registered with after the deployment completes.
         """
-        ...
+        return pulumi.get(self, "name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -686,7 +686,7 @@ class DeploymentGroupLoadBalancerInfoTargetGroupInfo(dict):
         """
         The name of the target group that instances in the original environment are deregistered from, and instances in the replacement environment registered with. For in-place deployments, the name of the target group that instances are deregistered from, so they are not serving traffic during a deployment, and then re-registered with after the deployment completes.
         """
-        ...
+        return pulumi.get(self, "name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -714,7 +714,7 @@ class DeploymentGroupLoadBalancerInfoTargetGroupPairInfo(dict):
         """
         Configuration block for the production traffic route (documented below).
         """
-        ...
+        return pulumi.get(self, "prod_traffic_route")
 
     @property
     @pulumi.getter(name="targetGroups")
@@ -722,7 +722,7 @@ class DeploymentGroupLoadBalancerInfoTargetGroupPairInfo(dict):
         """
         Configuration blocks for a target group within a target group pair (documented below).
         """
-        ...
+        return pulumi.get(self, "target_groups")
 
     @property
     @pulumi.getter(name="testTrafficRoute")
@@ -730,7 +730,7 @@ class DeploymentGroupLoadBalancerInfoTargetGroupPairInfo(dict):
         """
         Configuration block for the test traffic route (documented below).
         """
-        ...
+        return pulumi.get(self, "test_traffic_route")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -751,7 +751,7 @@ class DeploymentGroupLoadBalancerInfoTargetGroupPairInfoProdTrafficRoute(dict):
         """
         List of Amazon Resource Names (ARNs) of the load balancer listeners.
         """
-        ...
+        return pulumi.get(self, "listener_arns")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -772,7 +772,7 @@ class DeploymentGroupLoadBalancerInfoTargetGroupPairInfoTargetGroup(dict):
         """
         Name of the target group.
         """
-        ...
+        return pulumi.get(self, "name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -793,7 +793,7 @@ class DeploymentGroupLoadBalancerInfoTargetGroupPairInfoTestTrafficRoute(dict):
         """
         List of Amazon Resource Names (ARNs) of the load balancer listeners.
         """
-        ...
+        return pulumi.get(self, "listener_arns")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -823,7 +823,7 @@ class DeploymentGroupOnPremisesInstanceTagFilter(dict):
         """
         The key of the tag filter.
         """
-        ...
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
@@ -831,7 +831,7 @@ class DeploymentGroupOnPremisesInstanceTagFilter(dict):
         """
         The type of the tag filter, either `KEY_ONLY`, `VALUE_ONLY`, or `KEY_AND_VALUE`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -839,7 +839,7 @@ class DeploymentGroupOnPremisesInstanceTagFilter(dict):
         """
         The value of the tag filter.
         """
-        ...
+        return pulumi.get(self, "value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -866,7 +866,7 @@ class DeploymentGroupTriggerConfiguration(dict):
         """
         The event type or types for which notifications are triggered. Some values that are supported: `DeploymentStart`, `DeploymentSuccess`, `DeploymentFailure`, `DeploymentStop`, `DeploymentRollback`, `InstanceStart`, `InstanceSuccess`, `InstanceFailure`.  See [the CodeDeploy documentation](http://docs.aws.amazon.com/codedeploy/latest/userguide/monitoring-sns-event-notifications-create-trigger.html) for all possible values.
         """
-        ...
+        return pulumi.get(self, "trigger_events")
 
     @property
     @pulumi.getter(name="triggerName")
@@ -874,7 +874,7 @@ class DeploymentGroupTriggerConfiguration(dict):
         """
         The name of the notification trigger.
         """
-        ...
+        return pulumi.get(self, "trigger_name")
 
     @property
     @pulumi.getter(name="triggerTargetArn")
@@ -882,7 +882,7 @@ class DeploymentGroupTriggerConfiguration(dict):
         """
         The ARN of the SNS topic through which notifications are sent.
         """
-        ...
+        return pulumi.get(self, "trigger_target_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -76,7 +76,7 @@ class GetVolumeResult:
         """
         The volume ARN (e.g. arn:aws:ec2:us-east-1:0123456789012:volume/vol-59fcb34e).
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="availabilityZone")
@@ -84,7 +84,7 @@ class GetVolumeResult:
         """
         The AZ where the EBS volume exists.
         """
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter
@@ -92,12 +92,12 @@ class GetVolumeResult:
         """
         Whether the disk is encrypted.
         """
-        ...
+        return pulumi.get(self, "encrypted")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetVolumeFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
@@ -105,7 +105,7 @@ class GetVolumeResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -113,7 +113,7 @@ class GetVolumeResult:
         """
         The amount of IOPS for the disk.
         """
-        ...
+        return pulumi.get(self, "iops")
 
     @property
     @pulumi.getter(name="kmsKeyId")
@@ -121,12 +121,12 @@ class GetVolumeResult:
         """
         The ARN for the KMS encryption key.
         """
-        ...
+        return pulumi.get(self, "kms_key_id")
 
     @property
     @pulumi.getter(name="mostRecent")
     def most_recent(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "most_recent")
 
     @property
     @pulumi.getter(name="multiAttachEnabled")
@@ -134,7 +134,7 @@ class GetVolumeResult:
         """
         (Optional) Specifies whether Amazon EBS Multi-Attach is enabled.
         """
-        ...
+        return pulumi.get(self, "multi_attach_enabled")
 
     @property
     @pulumi.getter(name="outpostArn")
@@ -142,7 +142,7 @@ class GetVolumeResult:
         """
         The Amazon Resource Name (ARN) of the Outpost.
         """
-        ...
+        return pulumi.get(self, "outpost_arn")
 
     @property
     @pulumi.getter
@@ -150,7 +150,7 @@ class GetVolumeResult:
         """
         The size of the drive in GiBs.
         """
-        ...
+        return pulumi.get(self, "size")
 
     @property
     @pulumi.getter(name="snapshotId")
@@ -158,7 +158,7 @@ class GetVolumeResult:
         """
         The snapshot_id the EBS volume is based off.
         """
-        ...
+        return pulumi.get(self, "snapshot_id")
 
     @property
     @pulumi.getter
@@ -166,7 +166,7 @@ class GetVolumeResult:
         """
         A map of tags for the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="volumeId")
@@ -174,7 +174,7 @@ class GetVolumeResult:
         """
         The volume ID (e.g. vol-59fcb34e).
         """
-        ...
+        return pulumi.get(self, "volume_id")
 
     @property
     @pulumi.getter(name="volumeType")
@@ -182,7 +182,7 @@ class GetVolumeResult:
         """
         The type of EBS volume.
         """
-        ...
+        return pulumi.get(self, "volume_type")
 
 
 

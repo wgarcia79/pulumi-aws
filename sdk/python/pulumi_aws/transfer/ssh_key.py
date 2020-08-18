@@ -148,7 +148,7 @@ class SshKey(pulumi.CustomResource):
         """
         The public key portion of an SSH key pair.
         """
-        ...
+        return pulumi.get(self, "body")
 
     @property
     @pulumi.getter(name="serverId")
@@ -156,7 +156,7 @@ class SshKey(pulumi.CustomResource):
         """
         The Server ID of the Transfer Server (e.g. `s-12345678`)
         """
-        ...
+        return pulumi.get(self, "server_id")
 
     @property
     @pulumi.getter(name="userName")
@@ -164,7 +164,7 @@ class SshKey(pulumi.CustomResource):
         """
         The name of the user account that is assigned to one or more servers.
         """
-        ...
+        return pulumi.get(self, "user_name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

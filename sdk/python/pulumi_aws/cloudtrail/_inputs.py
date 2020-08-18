@@ -37,11 +37,11 @@ class TrailEventSelectorArgs:
         """
         Specifies logging data events. Fields documented below.
         """
-        ...
+        return pulumi.get(self, "data_resources")
 
     @data_resources.setter
     def data_resources(self, value: Optional[pulumi.Input[List[pulumi.Input['TrailEventSelectorDataResourceArgs']]]]):
-        ...
+        pulumi.set(self, "data_resources", value)
 
     @property
     @pulumi.getter(name="includeManagementEvents")
@@ -49,11 +49,11 @@ class TrailEventSelectorArgs:
         """
         Specify if you want your event selector to include management events for your trail.
         """
-        ...
+        return pulumi.get(self, "include_management_events")
 
     @include_management_events.setter
     def include_management_events(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "include_management_events", value)
 
     @property
     @pulumi.getter(name="readWriteType")
@@ -61,11 +61,11 @@ class TrailEventSelectorArgs:
         """
         Specify if you want your trail to log read-only events, write-only events, or all. By default, the value is All. You can specify only the following value: "ReadOnly", "WriteOnly", "All". Defaults to `All`.
         """
-        ...
+        return pulumi.get(self, "read_write_type")
 
     @read_write_type.setter
     def read_write_type(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "read_write_type", value)
 
 
 @pulumi.input_type
@@ -86,11 +86,11 @@ class TrailEventSelectorDataResourceArgs:
         """
         The resource type in which you want to log data events. You can specify only the following value: "AWS::S3::Object", "AWS::Lambda::Function"
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter
@@ -98,10 +98,10 @@ class TrailEventSelectorDataResourceArgs:
         """
         A list of ARN for the specified S3 buckets and object prefixes..
         """
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "values", value)
 
 

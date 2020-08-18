@@ -119,7 +119,7 @@ class PolicyAttachment(pulumi.CustomResource):
         """
         The unique identifier (ID) of the policy that you want to attach to the target.
         """
-        ...
+        return pulumi.get(self, "policy_id")
 
     @property
     @pulumi.getter(name="targetId")
@@ -127,7 +127,7 @@ class PolicyAttachment(pulumi.CustomResource):
         """
         The unique identifier (ID) of the root, organizational unit, or account number that you want to attach the policy to.
         """
-        ...
+        return pulumi.get(self, "target_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

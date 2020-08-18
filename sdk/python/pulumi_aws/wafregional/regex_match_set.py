@@ -107,7 +107,7 @@ class RegexMatchSet(pulumi.CustomResource):
         """
         The name or description of the Regex Match Set.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="regexMatchTuples")
@@ -116,7 +116,7 @@ class RegexMatchSet(pulumi.CustomResource):
         The regular expression pattern that you want AWS WAF to search for in web requests,
         the location in requests that you want AWS WAF to search, and other settings. See below.
         """
-        ...
+        return pulumi.get(self, "regex_match_tuples")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

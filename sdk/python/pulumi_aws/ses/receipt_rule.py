@@ -182,7 +182,7 @@ class ReceiptRule(pulumi.CustomResource):
         """
         A list of Add Header Action blocks. Documented below.
         """
-        ...
+        return pulumi.get(self, "add_header_actions")
 
     @property
     @pulumi.getter
@@ -190,7 +190,7 @@ class ReceiptRule(pulumi.CustomResource):
         """
         The name of the rule to place this rule after
         """
-        ...
+        return pulumi.get(self, "after")
 
     @property
     @pulumi.getter(name="bounceActions")
@@ -198,7 +198,7 @@ class ReceiptRule(pulumi.CustomResource):
         """
         A list of Bounce Action blocks. Documented below.
         """
-        ...
+        return pulumi.get(self, "bounce_actions")
 
     @property
     @pulumi.getter
@@ -206,7 +206,7 @@ class ReceiptRule(pulumi.CustomResource):
         """
         If true, the rule will be enabled
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="lambdaActions")
@@ -214,7 +214,7 @@ class ReceiptRule(pulumi.CustomResource):
         """
         A list of Lambda Action blocks. Documented below.
         """
-        ...
+        return pulumi.get(self, "lambda_actions")
 
     @property
     @pulumi.getter
@@ -222,7 +222,7 @@ class ReceiptRule(pulumi.CustomResource):
         """
         The name of the rule
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -230,7 +230,7 @@ class ReceiptRule(pulumi.CustomResource):
         """
         A list of email addresses
         """
-        ...
+        return pulumi.get(self, "recipients")
 
     @property
     @pulumi.getter(name="ruleSetName")
@@ -238,7 +238,7 @@ class ReceiptRule(pulumi.CustomResource):
         """
         The name of the rule set
         """
-        ...
+        return pulumi.get(self, "rule_set_name")
 
     @property
     @pulumi.getter(name="s3Actions")
@@ -246,7 +246,7 @@ class ReceiptRule(pulumi.CustomResource):
         """
         A list of S3 Action blocks. Documented below.
         """
-        ...
+        return pulumi.get(self, "s3_actions")
 
     @property
     @pulumi.getter(name="scanEnabled")
@@ -254,7 +254,7 @@ class ReceiptRule(pulumi.CustomResource):
         """
         If true, incoming emails will be scanned for spam and viruses
         """
-        ...
+        return pulumi.get(self, "scan_enabled")
 
     @property
     @pulumi.getter(name="snsActions")
@@ -262,7 +262,7 @@ class ReceiptRule(pulumi.CustomResource):
         """
         A list of SNS Action blocks. Documented below.
         """
-        ...
+        return pulumi.get(self, "sns_actions")
 
     @property
     @pulumi.getter(name="stopActions")
@@ -270,7 +270,7 @@ class ReceiptRule(pulumi.CustomResource):
         """
         A list of Stop Action blocks. Documented below.
         """
-        ...
+        return pulumi.get(self, "stop_actions")
 
     @property
     @pulumi.getter(name="tlsPolicy")
@@ -278,7 +278,7 @@ class ReceiptRule(pulumi.CustomResource):
         """
         Require or Optional
         """
-        ...
+        return pulumi.get(self, "tls_policy")
 
     @property
     @pulumi.getter(name="workmailActions")
@@ -286,7 +286,7 @@ class ReceiptRule(pulumi.CustomResource):
         """
         A list of WorkMail Action blocks. Documented below.
         """
-        ...
+        return pulumi.get(self, "workmail_actions")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

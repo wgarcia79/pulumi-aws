@@ -205,7 +205,7 @@ class ServerCertificate(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) specifying the server certificate.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="certificateBody")
@@ -214,7 +214,7 @@ class ServerCertificate(pulumi.CustomResource):
         The contents of the public key certificate in
         PEM-encoded format.
         """
-        ...
+        return pulumi.get(self, "certificate_body")
 
     @property
     @pulumi.getter(name="certificateChain")
@@ -224,7 +224,7 @@ class ServerCertificate(pulumi.CustomResource):
         This is typically a concatenation of the PEM-encoded public key certificates
         of the chain.
         """
-        ...
+        return pulumi.get(self, "certificate_chain")
 
     @property
     @pulumi.getter
@@ -233,7 +233,7 @@ class ServerCertificate(pulumi.CustomResource):
         The name of the Server Certificate. Do not include the
         path in this value. If omitted, this provider will assign a random, unique name.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="namePrefix")
@@ -242,7 +242,7 @@ class ServerCertificate(pulumi.CustomResource):
         Creates a unique name beginning with the specified
         prefix. Conflicts with `name`.
         """
-        ...
+        return pulumi.get(self, "name_prefix")
 
     @property
     @pulumi.getter
@@ -253,7 +253,7 @@ class ServerCertificate(pulumi.CustomResource):
         AWS CloudFront, the path must be in format `/cloudfront/your_path_here`.
         See [IAM Identifiers](https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html) for more details on IAM Paths.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter(name="privateKey")
@@ -261,7 +261,7 @@ class ServerCertificate(pulumi.CustomResource):
         """
         The contents of the private key in PEM-encoded format.
         """
-        ...
+        return pulumi.get(self, "private_key")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -122,7 +122,7 @@ class SshKey(pulumi.CustomResource):
         """
         Specifies the public key encoding format to use in the response. To retrieve the public key in ssh-rsa format, use `SSH`. To retrieve the public key in PEM format, use `PEM`.
         """
-        ...
+        return pulumi.get(self, "encoding")
 
     @property
     @pulumi.getter
@@ -130,7 +130,7 @@ class SshKey(pulumi.CustomResource):
         """
         The MD5 message digest of the SSH public key.
         """
-        ...
+        return pulumi.get(self, "fingerprint")
 
     @property
     @pulumi.getter(name="publicKey")
@@ -138,7 +138,7 @@ class SshKey(pulumi.CustomResource):
         """
         The SSH public key. The public key must be encoded in ssh-rsa format or PEM format.
         """
-        ...
+        return pulumi.get(self, "public_key")
 
     @property
     @pulumi.getter(name="sshPublicKeyId")
@@ -146,7 +146,7 @@ class SshKey(pulumi.CustomResource):
         """
         The unique identifier for the SSH public key.
         """
-        ...
+        return pulumi.get(self, "ssh_public_key_id")
 
     @property
     @pulumi.getter
@@ -154,7 +154,7 @@ class SshKey(pulumi.CustomResource):
         """
         The status to assign to the SSH public key. Active means the key can be used for authentication with an AWS CodeCommit repository. Inactive means the key cannot be used. Default is `active`.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
@@ -162,7 +162,7 @@ class SshKey(pulumi.CustomResource):
         """
         The name of the IAM user to associate the SSH public key with.
         """
-        ...
+        return pulumi.get(self, "username")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -225,7 +225,7 @@ class Cluster(pulumi.CustomResource):
         """
         The ARN of the DAX cluster
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="availabilityZones")
@@ -234,7 +234,7 @@ class Cluster(pulumi.CustomResource):
         List of Availability Zones in which the
         nodes will be created
         """
-        ...
+        return pulumi.get(self, "availability_zones")
 
     @property
     @pulumi.getter(name="clusterAddress")
@@ -242,7 +242,7 @@ class Cluster(pulumi.CustomResource):
         """
         The DNS name of the DAX cluster without the port appended
         """
-        ...
+        return pulumi.get(self, "cluster_address")
 
     @property
     @pulumi.getter(name="clusterName")
@@ -251,7 +251,7 @@ class Cluster(pulumi.CustomResource):
         Group identifier. DAX converts this name to
         lowercase
         """
-        ...
+        return pulumi.get(self, "cluster_name")
 
     @property
     @pulumi.getter(name="configurationEndpoint")
@@ -260,7 +260,7 @@ class Cluster(pulumi.CustomResource):
         The configuration endpoint for this DAX cluster,
         consisting of a DNS name and a port number
         """
-        ...
+        return pulumi.get(self, "configuration_endpoint")
 
     @property
     @pulumi.getter
@@ -268,7 +268,7 @@ class Cluster(pulumi.CustomResource):
         """
         Description for the cluster
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="iamRoleArn")
@@ -278,7 +278,7 @@ class Cluster(pulumi.CustomResource):
         an IAM role. At runtime, DAX will assume this role and use the role's
         permissions to access DynamoDB on your behalf
         """
-        ...
+        return pulumi.get(self, "iam_role_arn")
 
     @property
     @pulumi.getter(name="maintenanceWindow")
@@ -289,7 +289,7 @@ class Cluster(pulumi.CustomResource):
         (24H Clock UTC). The minimum maintenance window is a 60 minute period. Example:
         `sun:05:00-sun:09:00`
         """
-        ...
+        return pulumi.get(self, "maintenance_window")
 
     @property
     @pulumi.getter(name="nodeType")
@@ -298,7 +298,7 @@ class Cluster(pulumi.CustomResource):
         The compute and memory capacity of the nodes. See
         [Nodes](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.concepts.cluster.html#DAX.concepts.nodes) for supported node types
         """
-        ...
+        return pulumi.get(self, "node_type")
 
     @property
     @pulumi.getter
@@ -308,7 +308,7 @@ class Cluster(pulumi.CustomResource):
         `availability_zone`. Referenceable e.g. as
         `${aws_dax_cluster.test.nodes.0.address}`
         """
-        ...
+        return pulumi.get(self, "nodes")
 
     @property
     @pulumi.getter(name="notificationTopicArn")
@@ -318,7 +318,7 @@ class Cluster(pulumi.CustomResource):
         SNS topic to send DAX notifications to. Example:
         `arn:aws:sns:us-east-1:012345678999:my_sns_topic`
         """
-        ...
+        return pulumi.get(self, "notification_topic_arn")
 
     @property
     @pulumi.getter(name="parameterGroupName")
@@ -327,7 +327,7 @@ class Cluster(pulumi.CustomResource):
         Name of the parameter group to associate
         with this DAX cluster
         """
-        ...
+        return pulumi.get(self, "parameter_group_name")
 
     @property
     @pulumi.getter
@@ -335,7 +335,7 @@ class Cluster(pulumi.CustomResource):
         """
         The port used by the configuration endpoint
         """
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter(name="replicationFactor")
@@ -345,7 +345,7 @@ class Cluster(pulumi.CustomResource):
         replication factor of 1 will create a single-node cluster, without any read
         replicas
         """
-        ...
+        return pulumi.get(self, "replication_factor")
 
     @property
     @pulumi.getter(name="securityGroupIds")
@@ -354,7 +354,7 @@ class Cluster(pulumi.CustomResource):
         One or more VPC security groups associated
         with the cluster
         """
-        ...
+        return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter(name="serverSideEncryption")
@@ -362,7 +362,7 @@ class Cluster(pulumi.CustomResource):
         """
         Encrypt at rest options
         """
-        ...
+        return pulumi.get(self, "server_side_encryption")
 
     @property
     @pulumi.getter(name="subnetGroupName")
@@ -371,7 +371,7 @@ class Cluster(pulumi.CustomResource):
         Name of the subnet group to be used for the
         cluster
         """
-        ...
+        return pulumi.get(self, "subnet_group_name")
 
     @property
     @pulumi.getter
@@ -379,7 +379,7 @@ class Cluster(pulumi.CustomResource):
         """
         A map of tags to assign to the resource
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -482,7 +482,7 @@ class Group(pulumi.CustomResource):
         """
         The ARN for this AutoScaling Group
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="availabilityZones")
@@ -490,7 +490,7 @@ class Group(pulumi.CustomResource):
         """
         A list of one or more availability zones for the group. This parameter should not be specified when using `vpc_zone_identifier`.
         """
-        ...
+        return pulumi.get(self, "availability_zones")
 
     @property
     @pulumi.getter(name="defaultCooldown")
@@ -498,7 +498,7 @@ class Group(pulumi.CustomResource):
         """
         The amount of time, in seconds, after a scaling activity completes before another scaling activity can start.
         """
-        ...
+        return pulumi.get(self, "default_cooldown")
 
     @property
     @pulumi.getter(name="desiredCapacity")
@@ -508,7 +508,7 @@ class Group(pulumi.CustomResource):
         should be running in the group. (See also Waiting for
         Capacity below.)
         """
-        ...
+        return pulumi.get(self, "desired_capacity")
 
     @property
     @pulumi.getter(name="enabledMetrics")
@@ -516,7 +516,7 @@ class Group(pulumi.CustomResource):
         """
         A list of metrics to collect. The allowed values are `GroupDesiredCapacity`, `GroupInServiceCapacity`, `GroupPendingCapacity`, `GroupMinSize`, `GroupMaxSize`, `GroupInServiceInstances`, `GroupPendingInstances`, `GroupStandbyInstances`, `GroupStandbyCapacity`, `GroupTerminatingCapacity`, `GroupTerminatingInstances`, `GroupTotalCapacity`, `GroupTotalInstances`.
         """
-        ...
+        return pulumi.get(self, "enabled_metrics")
 
     @property
     @pulumi.getter(name="forceDelete")
@@ -528,7 +528,7 @@ class Group(pulumi.CustomResource):
         drains all the instances before deleting the group.  This bypasses that
         behavior and potentially leaves resources dangling.
         """
-        ...
+        return pulumi.get(self, "force_delete")
 
     @property
     @pulumi.getter(name="healthCheckGracePeriod")
@@ -536,7 +536,7 @@ class Group(pulumi.CustomResource):
         """
         Time (in seconds) after instance comes into service before checking health.
         """
-        ...
+        return pulumi.get(self, "health_check_grace_period")
 
     @property
     @pulumi.getter(name="healthCheckType")
@@ -544,7 +544,7 @@ class Group(pulumi.CustomResource):
         """
         "EC2" or "ELB". Controls how health checking is done.
         """
-        ...
+        return pulumi.get(self, "health_check_type")
 
     @property
     @pulumi.getter(name="initialLifecycleHooks")
@@ -558,7 +558,7 @@ class Group(pulumi.CustomResource):
         resource, without the `autoscaling_group_name` attribute. Please note that this will only work when creating
         a new autoscaling group. For all other use-cases, please use `autoscaling.LifecycleHook` resource.
         """
-        ...
+        return pulumi.get(self, "initial_lifecycle_hooks")
 
     @property
     @pulumi.getter(name="launchConfiguration")
@@ -566,7 +566,7 @@ class Group(pulumi.CustomResource):
         """
         The name of the launch configuration to use.
         """
-        ...
+        return pulumi.get(self, "launch_configuration")
 
     @property
     @pulumi.getter(name="launchTemplate")
@@ -574,7 +574,7 @@ class Group(pulumi.CustomResource):
         """
         Nested argument containing launch template settings along with the overrides to specify multiple instance types and weights. Defined below.
         """
-        ...
+        return pulumi.get(self, "launch_template")
 
     @property
     @pulumi.getter(name="loadBalancers")
@@ -583,7 +583,7 @@ class Group(pulumi.CustomResource):
         A list of elastic load balancer names to add to the autoscaling
         group names. Only valid for classic load balancers. For ALBs, use `target_group_arns` instead.
         """
-        ...
+        return pulumi.get(self, "load_balancers")
 
     @property
     @pulumi.getter(name="maxInstanceLifetime")
@@ -591,7 +591,7 @@ class Group(pulumi.CustomResource):
         """
         The maximum amount of time, in seconds, that an instance can be in service, values must be either equal to 0 or between 604800 and 31536000 seconds.
         """
-        ...
+        return pulumi.get(self, "max_instance_lifetime")
 
     @property
     @pulumi.getter(name="maxSize")
@@ -599,7 +599,7 @@ class Group(pulumi.CustomResource):
         """
         The maximum size of the auto scale group.
         """
-        ...
+        return pulumi.get(self, "max_size")
 
     @property
     @pulumi.getter(name="metricsGranularity")
@@ -607,7 +607,7 @@ class Group(pulumi.CustomResource):
         """
         The granularity to associate with the metrics to collect. The only valid value is `1Minute`. Default is `1Minute`.
         """
-        ...
+        return pulumi.get(self, "metrics_granularity")
 
     @property
     @pulumi.getter(name="minElbCapacity")
@@ -618,7 +618,7 @@ class Group(pulumi.CustomResource):
         ELB only on creation. Updates will not wait on ELB instance number changes.
         (See also Waiting for Capacity below.)
         """
-        ...
+        return pulumi.get(self, "min_elb_capacity")
 
     @property
     @pulumi.getter(name="minSize")
@@ -627,7 +627,7 @@ class Group(pulumi.CustomResource):
         The minimum size of the auto scale group.
         (See also Waiting for Capacity below.)
         """
-        ...
+        return pulumi.get(self, "min_size")
 
     @property
     @pulumi.getter(name="mixedInstancesPolicy")
@@ -635,7 +635,7 @@ class Group(pulumi.CustomResource):
         """
         Configuration block containing settings to define launch targets for Auto Scaling groups. Defined below.
         """
-        ...
+        return pulumi.get(self, "mixed_instances_policy")
 
     @property
     @pulumi.getter
@@ -643,7 +643,7 @@ class Group(pulumi.CustomResource):
         """
         The name of the auto scaling group. By default generated by this provider.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="namePrefix")
@@ -652,7 +652,7 @@ class Group(pulumi.CustomResource):
         Creates a unique name beginning with the specified
         prefix. Conflicts with `name`.
         """
-        ...
+        return pulumi.get(self, "name_prefix")
 
     @property
     @pulumi.getter(name="placementGroup")
@@ -660,7 +660,7 @@ class Group(pulumi.CustomResource):
         """
         The name of the placement group into which you'll launch your instances, if any.
         """
-        ...
+        return pulumi.get(self, "placement_group")
 
     @property
     @pulumi.getter(name="protectFromScaleIn")
@@ -670,7 +670,7 @@ class Group(pulumi.CustomResource):
         autoscaling group will not select instances with this setting for termination
         during scale in events.
         """
-        ...
+        return pulumi.get(self, "protect_from_scale_in")
 
     @property
     @pulumi.getter(name="serviceLinkedRoleArn")
@@ -678,7 +678,7 @@ class Group(pulumi.CustomResource):
         """
         The ARN of the service-linked role that the ASG will use to call other AWS services
         """
-        ...
+        return pulumi.get(self, "service_linked_role_arn")
 
     @property
     @pulumi.getter(name="suspendedProcesses")
@@ -687,7 +687,7 @@ class Group(pulumi.CustomResource):
         A list of processes to suspend for the AutoScaling Group. The allowed values are `Launch`, `Terminate`, `HealthCheck`, `ReplaceUnhealthy`, `AZRebalance`, `AlarmNotification`, `ScheduledActions`, `AddToLoadBalancer`.
         Note that if you suspend either the `Launch` or `Terminate` process types, it can prevent your autoscaling group from functioning properly.
         """
-        ...
+        return pulumi.get(self, "suspended_processes")
 
     @property
     @pulumi.getter
@@ -695,7 +695,7 @@ class Group(pulumi.CustomResource):
         """
         Configuration block(s) containing resource tags. Conflicts with `tags`. Documented below.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="tagsCollection")
@@ -703,7 +703,7 @@ class Group(pulumi.CustomResource):
         """
         Set of maps containing resource tags. Conflicts with `tag`. Documented below.
         """
-        ...
+        return pulumi.get(self, "tags_collection")
 
     @property
     @pulumi.getter(name="targetGroupArns")
@@ -711,7 +711,7 @@ class Group(pulumi.CustomResource):
         """
         A list of `alb.TargetGroup` ARNs, for use with Application or Network Load Balancing.
         """
-        ...
+        return pulumi.get(self, "target_group_arns")
 
     @property
     @pulumi.getter(name="terminationPolicies")
@@ -719,7 +719,7 @@ class Group(pulumi.CustomResource):
         """
         A list of policies to decide how the instances in the auto scale group should be terminated. The allowed values are `OldestInstance`, `NewestInstance`, `OldestLaunchConfiguration`, `ClosestToNextInstanceHour`, `OldestLaunchTemplate`, `AllocationStrategy`, `Default`.
         """
-        ...
+        return pulumi.get(self, "termination_policies")
 
     @property
     @pulumi.getter(name="vpcZoneIdentifiers")
@@ -727,7 +727,7 @@ class Group(pulumi.CustomResource):
         """
         A list of subnet IDs to launch resources in.
         """
-        ...
+        return pulumi.get(self, "vpc_zone_identifiers")
 
     @property
     @pulumi.getter(name="waitForCapacityTimeout")
@@ -739,7 +739,7 @@ class Group(pulumi.CustomResource):
         for Capacity below.) Setting this to "0" causes
         this provider to skip all Capacity Waiting behavior.
         """
-        ...
+        return pulumi.get(self, "wait_for_capacity_timeout")
 
     @property
     @pulumi.getter(name="waitForElbCapacity")
@@ -751,7 +751,7 @@ class Group(pulumi.CustomResource):
         precedence over `min_elb_capacity` behavior.)
         (See also Waiting for Capacity below.)
         """
-        ...
+        return pulumi.get(self, "wait_for_elb_capacity")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

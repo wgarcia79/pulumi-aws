@@ -143,7 +143,7 @@ class VpcAttachment(pulumi.CustomResource):
         """
         Whether DNS support is enabled. Valid values: `disable`, `enable`. Default value: `enable`.
         """
-        ...
+        return pulumi.get(self, "dns_support")
 
     @property
     @pulumi.getter(name="ipv6Support")
@@ -151,7 +151,7 @@ class VpcAttachment(pulumi.CustomResource):
         """
         Whether IPv6 support is enabled. Valid values: `disable`, `enable`. Default value: `disable`.
         """
-        ...
+        return pulumi.get(self, "ipv6_support")
 
     @property
     @pulumi.getter(name="subnetIds")
@@ -159,7 +159,7 @@ class VpcAttachment(pulumi.CustomResource):
         """
         Identifiers of EC2 Subnets.
         """
-        ...
+        return pulumi.get(self, "subnet_ids")
 
     @property
     @pulumi.getter
@@ -167,7 +167,7 @@ class VpcAttachment(pulumi.CustomResource):
         """
         Key-value tags for the EC2 Transit Gateway VPC Attachment.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="transitGatewayDefaultRouteTableAssociation")
@@ -175,7 +175,7 @@ class VpcAttachment(pulumi.CustomResource):
         """
         Boolean whether the VPC Attachment should be associated with the EC2 Transit Gateway association default route table. This cannot be configured or perform drift detection with Resource Access Manager shared EC2 Transit Gateways. Default value: `true`.
         """
-        ...
+        return pulumi.get(self, "transit_gateway_default_route_table_association")
 
     @property
     @pulumi.getter(name="transitGatewayDefaultRouteTablePropagation")
@@ -183,7 +183,7 @@ class VpcAttachment(pulumi.CustomResource):
         """
         Boolean whether the VPC Attachment should propagate routes with the EC2 Transit Gateway propagation default route table. This cannot be configured or perform drift detection with Resource Access Manager shared EC2 Transit Gateways. Default value: `true`.
         """
-        ...
+        return pulumi.get(self, "transit_gateway_default_route_table_propagation")
 
     @property
     @pulumi.getter(name="transitGatewayId")
@@ -191,7 +191,7 @@ class VpcAttachment(pulumi.CustomResource):
         """
         Identifier of EC2 Transit Gateway.
         """
-        ...
+        return pulumi.get(self, "transit_gateway_id")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -199,7 +199,7 @@ class VpcAttachment(pulumi.CustomResource):
         """
         Identifier of EC2 VPC.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     @property
     @pulumi.getter(name="vpcOwnerId")
@@ -207,7 +207,7 @@ class VpcAttachment(pulumi.CustomResource):
         """
         Identifier of the AWS account that owns the EC2 VPC.
         """
-        ...
+        return pulumi.get(self, "vpc_owner_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

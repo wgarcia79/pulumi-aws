@@ -123,7 +123,7 @@ class ParameterGroup(pulumi.CustomResource):
         """
         The description of the ElastiCache parameter group. Defaults to "Managed by Pulumi".
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -131,7 +131,7 @@ class ParameterGroup(pulumi.CustomResource):
         """
         The family of the ElastiCache parameter group.
         """
-        ...
+        return pulumi.get(self, "family")
 
     @property
     @pulumi.getter
@@ -139,7 +139,7 @@ class ParameterGroup(pulumi.CustomResource):
         """
         The name of the ElastiCache parameter.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -147,7 +147,7 @@ class ParameterGroup(pulumi.CustomResource):
         """
         A list of ElastiCache parameters to apply.
         """
-        ...
+        return pulumi.get(self, "parameters")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

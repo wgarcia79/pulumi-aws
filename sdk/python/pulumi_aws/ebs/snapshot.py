@@ -138,7 +138,7 @@ class Snapshot(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the EBS Snapshot.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="dataEncryptionKeyId")
@@ -146,7 +146,7 @@ class Snapshot(pulumi.CustomResource):
         """
         The data encryption key identifier for the snapshot.
         """
-        ...
+        return pulumi.get(self, "data_encryption_key_id")
 
     @property
     @pulumi.getter
@@ -154,7 +154,7 @@ class Snapshot(pulumi.CustomResource):
         """
         A description of what the snapshot is.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -162,7 +162,7 @@ class Snapshot(pulumi.CustomResource):
         """
         Whether the snapshot is encrypted.
         """
-        ...
+        return pulumi.get(self, "encrypted")
 
     @property
     @pulumi.getter(name="kmsKeyId")
@@ -170,7 +170,7 @@ class Snapshot(pulumi.CustomResource):
         """
         The ARN for the KMS encryption key.
         """
-        ...
+        return pulumi.get(self, "kms_key_id")
 
     @property
     @pulumi.getter(name="ownerAlias")
@@ -178,7 +178,7 @@ class Snapshot(pulumi.CustomResource):
         """
         Value from an Amazon-maintained list (`amazon`, `aws-marketplace`, `microsoft`) of snapshot owners.
         """
-        ...
+        return pulumi.get(self, "owner_alias")
 
     @property
     @pulumi.getter(name="ownerId")
@@ -186,7 +186,7 @@ class Snapshot(pulumi.CustomResource):
         """
         The AWS account ID of the EBS snapshot owner.
         """
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter
@@ -194,7 +194,7 @@ class Snapshot(pulumi.CustomResource):
         """
         A map of tags to assign to the snapshot
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="volumeId")
@@ -202,7 +202,7 @@ class Snapshot(pulumi.CustomResource):
         """
         The Volume ID of which to make a snapshot.
         """
-        ...
+        return pulumi.get(self, "volume_id")
 
     @property
     @pulumi.getter(name="volumeSize")
@@ -210,7 +210,7 @@ class Snapshot(pulumi.CustomResource):
         """
         The size of the drive in GiBs.
         """
-        ...
+        return pulumi.get(self, "volume_size")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -43,12 +43,12 @@ class GetEndpointResult:
         * `iot:Data-ATS`: `IDENTIFIER-ats.iot.REGION.amazonaws.com`
         * `iot:Job`: `IDENTIFIER.jobs.iot.REGION.amazonaws.com`
         """
-        ...
+        return pulumi.get(self, "endpoint_address")
 
     @property
     @pulumi.getter(name="endpointType")
     def endpoint_type(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "endpoint_type")
 
     @property
     @pulumi.getter
@@ -56,7 +56,7 @@ class GetEndpointResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
 
 

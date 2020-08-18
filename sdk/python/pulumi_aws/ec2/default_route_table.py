@@ -150,7 +150,7 @@ class DefaultRouteTable(pulumi.CustomResource):
         """
         The ID of the Default Routing Table.
         """
-        ...
+        return pulumi.get(self, "default_route_table_id")
 
     @property
     @pulumi.getter(name="ownerId")
@@ -158,7 +158,7 @@ class DefaultRouteTable(pulumi.CustomResource):
         """
         The ID of the AWS account that owns the route table
         """
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter(name="propagatingVgws")
@@ -166,7 +166,7 @@ class DefaultRouteTable(pulumi.CustomResource):
         """
         A list of virtual gateways for propagation.
         """
-        ...
+        return pulumi.get(self, "propagating_vgws")
 
     @property
     @pulumi.getter
@@ -174,7 +174,7 @@ class DefaultRouteTable(pulumi.CustomResource):
         """
         A list of route objects. Their keys are documented below.
         """
-        ...
+        return pulumi.get(self, "routes")
 
     @property
     @pulumi.getter
@@ -182,12 +182,12 @@ class DefaultRouteTable(pulumi.CustomResource):
         """
         A mapping of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> str:
-        ...
+        return pulumi.get(self, "vpc_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

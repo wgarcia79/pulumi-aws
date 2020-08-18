@@ -115,7 +115,7 @@ class PolicyAttachment(pulumi.CustomResource):
         """
         The name of the policy to attach.
         """
-        ...
+        return pulumi.get(self, "policy")
 
     @property
     @pulumi.getter
@@ -123,7 +123,7 @@ class PolicyAttachment(pulumi.CustomResource):
         """
         The identity to which the policy is attached.
         """
-        ...
+        return pulumi.get(self, "target")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

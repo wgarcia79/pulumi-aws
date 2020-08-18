@@ -53,12 +53,12 @@ class GetImageResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="imageDigest")
     def image_digest(self) -> str:
-        ...
+        return pulumi.get(self, "image_digest")
 
     @property
     @pulumi.getter(name="imagePushedAt")
@@ -66,7 +66,7 @@ class GetImageResult:
         """
         The date and time, expressed as a unix timestamp, at which the current image was pushed to the repository.
         """
-        ...
+        return pulumi.get(self, "image_pushed_at")
 
     @property
     @pulumi.getter(name="imageSizeInBytes")
@@ -74,12 +74,12 @@ class GetImageResult:
         """
         The size, in bytes, of the image in the repository.
         """
-        ...
+        return pulumi.get(self, "image_size_in_bytes")
 
     @property
     @pulumi.getter(name="imageTag")
     def image_tag(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "image_tag")
 
     @property
     @pulumi.getter(name="imageTags")
@@ -87,17 +87,17 @@ class GetImageResult:
         """
         The list of tags associated with this image.
         """
-        ...
+        return pulumi.get(self, "image_tags")
 
     @property
     @pulumi.getter(name="registryId")
     def registry_id(self) -> str:
-        ...
+        return pulumi.get(self, "registry_id")
 
     @property
     @pulumi.getter(name="repositoryName")
     def repository_name(self) -> str:
-        ...
+        return pulumi.get(self, "repository_name")
 
 
 

@@ -37,12 +37,12 @@ class GetSecretResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def secrets(self) -> List['outputs.GetSecretSecretResult']:
-        ...
+        return pulumi.get(self, "secrets")
 
 
 

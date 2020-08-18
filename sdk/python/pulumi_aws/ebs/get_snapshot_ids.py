@@ -43,7 +43,7 @@ class GetSnapshotIdsResult:
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetSnapshotIdsFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
@@ -51,22 +51,22 @@ class GetSnapshotIdsResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def ids(self) -> List[str]:
-        ...
+        return pulumi.get(self, "ids")
 
     @property
     @pulumi.getter
     def owners(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "owners")
 
     @property
     @pulumi.getter(name="restorableByUserIds")
     def restorable_by_user_ids(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "restorable_by_user_ids")
 
 
 

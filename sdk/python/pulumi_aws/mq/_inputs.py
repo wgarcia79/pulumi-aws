@@ -38,11 +38,11 @@ class BrokerConfigurationArgs:
         """
         The Configuration ID.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @id.setter
     def id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter
@@ -50,11 +50,11 @@ class BrokerConfigurationArgs:
         """
         Revision of the Configuration.
         """
-        ...
+        return pulumi.get(self, "revision")
 
     @revision.setter
     def revision(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "revision", value)
 
 
 @pulumi.input_type
@@ -77,11 +77,11 @@ class BrokerEncryptionOptionsArgs:
         """
         Amazon Resource Name (ARN) of Key Management Service (KMS) Customer Master Key (CMK) to use for encryption at rest. Requires setting `use_aws_owned_key` to `false`. To perform drift detection when AWS managed CMKs or customer managed CMKs are in use, this value must be configured.
         """
-        ...
+        return pulumi.get(self, "kms_key_id")
 
     @kms_key_id.setter
     def kms_key_id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kms_key_id", value)
 
     @property
     @pulumi.getter(name="useAwsOwnedKey")
@@ -89,11 +89,11 @@ class BrokerEncryptionOptionsArgs:
         """
         Boolean to enable an AWS owned Key Management Service (KMS) Customer Master Key (CMK) that is not in your account. Defaults to `true`. Setting to `false` without configuring `kms_key_id` will create an AWS managed Customer Master Key (CMK) aliased to `aws/mq` in your account.
         """
-        ...
+        return pulumi.get(self, "use_aws_owned_key")
 
     @use_aws_owned_key.setter
     def use_aws_owned_key(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "use_aws_owned_key", value)
 
 
 @pulumi.input_type
@@ -112,29 +112,29 @@ class BrokerInstanceArgs:
     @property
     @pulumi.getter(name="consoleUrl")
     def console_url(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "console_url")
 
     @console_url.setter
     def console_url(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "console_url", value)
 
     @property
     @pulumi.getter
     def endpoints(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
-        ...
+        return pulumi.get(self, "endpoints")
 
     @endpoints.setter
     def endpoints(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "endpoints", value)
 
     @property
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "ip_address")
 
     @ip_address.setter
     def ip_address(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "ip_address", value)
 
 
 @pulumi.input_type
@@ -157,11 +157,11 @@ class BrokerLogsArgs:
         """
         Enables audit logging. User management action made using JMX or the ActiveMQ Web Console is logged. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "audit")
 
     @audit.setter
     def audit(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "audit", value)
 
     @property
     @pulumi.getter
@@ -169,11 +169,11 @@ class BrokerLogsArgs:
         """
         Enables general logging via CloudWatch. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "general")
 
     @general.setter
     def general(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "general", value)
 
 
 @pulumi.input_type
@@ -197,11 +197,11 @@ class BrokerMaintenanceWindowStartTimeArgs:
         """
         The day of the week. e.g. `MONDAY`, `TUESDAY`, or `WEDNESDAY`
         """
-        ...
+        return pulumi.get(self, "day_of_week")
 
     @day_of_week.setter
     def day_of_week(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "day_of_week", value)
 
     @property
     @pulumi.getter(name="timeOfDay")
@@ -209,11 +209,11 @@ class BrokerMaintenanceWindowStartTimeArgs:
         """
         The time, in 24-hour format. e.g. `02:00`
         """
-        ...
+        return pulumi.get(self, "time_of_day")
 
     @time_of_day.setter
     def time_of_day(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "time_of_day", value)
 
     @property
     @pulumi.getter(name="timeZone")
@@ -221,11 +221,11 @@ class BrokerMaintenanceWindowStartTimeArgs:
         """
         The time zone, UTC by default, in either the Country/City format, or the UTC offset format. e.g. `CET`
         """
-        ...
+        return pulumi.get(self, "time_zone")
 
     @time_zone.setter
     def time_zone(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "time_zone", value)
 
 
 @pulumi.input_type
@@ -254,11 +254,11 @@ class BrokerUserArgs:
         """
         The password of the user. It must be 12 to 250 characters long, at least 4 unique characters, and must not contain commas.
         """
-        ...
+        return pulumi.get(self, "password")
 
     @password.setter
     def password(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "password", value)
 
     @property
     @pulumi.getter
@@ -266,11 +266,11 @@ class BrokerUserArgs:
         """
         The username of the user.
         """
-        ...
+        return pulumi.get(self, "username")
 
     @username.setter
     def username(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "username", value)
 
     @property
     @pulumi.getter(name="consoleAccess")
@@ -278,11 +278,11 @@ class BrokerUserArgs:
         """
         Whether to enable access to the [ActiveMQ Web Console](http://activemq.apache.org/web-console.html) for the user.
         """
-        ...
+        return pulumi.get(self, "console_access")
 
     @console_access.setter
     def console_access(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "console_access", value)
 
     @property
     @pulumi.getter
@@ -290,11 +290,11 @@ class BrokerUserArgs:
         """
         The list of groups (20 maximum) to which the ActiveMQ user belongs.
         """
-        ...
+        return pulumi.get(self, "groups")
 
     @groups.setter
     def groups(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "groups", value)
 
 
 @pulumi.input_type
@@ -308,19 +308,19 @@ class GetBrokerLogsArgs:
     @property
     @pulumi.getter
     def audit(self) -> bool:
-        ...
+        return pulumi.get(self, "audit")
 
     @audit.setter
     def audit(self, value: bool):
-        ...
+        pulumi.set(self, "audit", value)
 
     @property
     @pulumi.getter
     def general(self) -> bool:
-        ...
+        return pulumi.get(self, "general")
 
     @general.setter
     def general(self, value: bool):
-        ...
+        pulumi.set(self, "general", value)
 
 

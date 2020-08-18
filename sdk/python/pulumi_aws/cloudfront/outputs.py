@@ -65,7 +65,7 @@ class DistributionCustomErrorResponse(dict):
         The 4xx or 5xx HTTP status code that you want to
         customize.
         """
-        ...
+        return pulumi.get(self, "error_code")
 
     @property
     @pulumi.getter(name="errorCachingMinTtl")
@@ -75,7 +75,7 @@ class DistributionCustomErrorResponse(dict):
         HTTP error codes to stay in CloudFront caches before CloudFront queries your
         origin to see whether the object has been updated.
         """
-        ...
+        return pulumi.get(self, "error_caching_min_ttl")
 
     @property
     @pulumi.getter(name="responseCode")
@@ -84,7 +84,7 @@ class DistributionCustomErrorResponse(dict):
         The HTTP status code that you want CloudFront
         to return with the custom error page to the viewer.
         """
-        ...
+        return pulumi.get(self, "response_code")
 
     @property
     @pulumi.getter(name="responsePagePath")
@@ -93,7 +93,7 @@ class DistributionCustomErrorResponse(dict):
         The path of the custom error page (for
         example, `/custom_404.html`).
         """
-        ...
+        return pulumi.get(self, "response_page_path")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -182,7 +182,7 @@ class DistributionDefaultCacheBehavior(dict):
         Controls which HTTP methods CloudFront
         processes and forwards to your Amazon S3 bucket or your custom origin.
         """
-        ...
+        return pulumi.get(self, "allowed_methods")
 
     @property
     @pulumi.getter(name="cachedMethods")
@@ -191,7 +191,7 @@ class DistributionDefaultCacheBehavior(dict):
         Controls whether CloudFront caches the
         response to requests using the specified HTTP methods.
         """
-        ...
+        return pulumi.get(self, "cached_methods")
 
     @property
     @pulumi.getter(name="forwardedValues")
@@ -200,7 +200,7 @@ class DistributionDefaultCacheBehavior(dict):
         The forwarded values configuration that specifies how CloudFront
         handles query strings, cookies and headers (maximum one).
         """
-        ...
+        return pulumi.get(self, "forwarded_values")
 
     @property
     @pulumi.getter(name="targetOriginId")
@@ -210,7 +210,7 @@ class DistributionDefaultCacheBehavior(dict):
         CloudFront to route requests to when a request matches the path pattern
         either for a cache behavior or for the default cache behavior.
         """
-        ...
+        return pulumi.get(self, "target_origin_id")
 
     @property
     @pulumi.getter(name="viewerProtocolPolicy")
@@ -221,7 +221,7 @@ class DistributionDefaultCacheBehavior(dict):
         TargetOriginId when a request matches the path pattern in PathPattern. One
         of `allow-all`, `https-only`, or `redirect-to-https`.
         """
-        ...
+        return pulumi.get(self, "viewer_protocol_policy")
 
     @property
     @pulumi.getter
@@ -231,7 +231,7 @@ class DistributionDefaultCacheBehavior(dict):
         compress content for web requests that include `Accept-Encoding: gzip` in
         the request header (default: `false`).
         """
-        ...
+        return pulumi.get(self, "compress")
 
     @property
     @pulumi.getter(name="defaultTtl")
@@ -242,7 +242,7 @@ class DistributionDefaultCacheBehavior(dict):
         in the absence of an `Cache-Control max-age` or `Expires` header. Defaults to
         1 day.
         """
-        ...
+        return pulumi.get(self, "default_ttl")
 
     @property
     @pulumi.getter(name="fieldLevelEncryptionId")
@@ -250,7 +250,7 @@ class DistributionDefaultCacheBehavior(dict):
         """
         Field level encryption configuration ID
         """
-        ...
+        return pulumi.get(self, "field_level_encryption_id")
 
     @property
     @pulumi.getter(name="lambdaFunctionAssociations")
@@ -259,7 +259,7 @@ class DistributionDefaultCacheBehavior(dict):
         A config block that triggers a lambda function with
         specific actions. Defined below, maximum 4.
         """
-        ...
+        return pulumi.get(self, "lambda_function_associations")
 
     @property
     @pulumi.getter(name="maxTtl")
@@ -271,7 +271,7 @@ class DistributionDefaultCacheBehavior(dict):
         effective in the presence of `Cache-Control max-age`, `Cache-Control
         s-maxage`, and `Expires` headers. Defaults to 365 days.
         """
-        ...
+        return pulumi.get(self, "max_ttl")
 
     @property
     @pulumi.getter(name="minTtl")
@@ -281,7 +281,7 @@ class DistributionDefaultCacheBehavior(dict):
         stay in CloudFront caches before CloudFront queries your origin to see
         whether the object has been updated. Defaults to 0 seconds.
         """
-        ...
+        return pulumi.get(self, "min_ttl")
 
     @property
     @pulumi.getter(name="smoothStreaming")
@@ -291,7 +291,7 @@ class DistributionDefaultCacheBehavior(dict):
         media files in Microsoft Smooth Streaming format using the origin that is
         associated with this cache behavior.
         """
-        ...
+        return pulumi.get(self, "smooth_streaming")
 
     @property
     @pulumi.getter(name="trustedSigners")
@@ -300,7 +300,7 @@ class DistributionDefaultCacheBehavior(dict):
         The AWS accounts, if any, that you want to
         allow to create signed URLs for private content.
         """
-        ...
+        return pulumi.get(self, "trusted_signers")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -340,7 +340,7 @@ class DistributionDefaultCacheBehaviorForwardedValues(dict):
         The forwarded values cookies
         that specifies how CloudFront handles cookies (maximum one).
         """
-        ...
+        return pulumi.get(self, "cookies")
 
     @property
     @pulumi.getter(name="queryString")
@@ -349,7 +349,7 @@ class DistributionDefaultCacheBehaviorForwardedValues(dict):
         Indicates whether you want CloudFront to forward
         query strings to the origin that is associated with this cache behavior.
         """
-        ...
+        return pulumi.get(self, "query_string")
 
     @property
     @pulumi.getter
@@ -359,7 +359,7 @@ class DistributionDefaultCacheBehaviorForwardedValues(dict):
         CloudFront to vary upon for this cache behavior. Specify `*` to include all
         headers.
         """
-        ...
+        return pulumi.get(self, "headers")
 
     @property
     @pulumi.getter(name="queryStringCacheKeys")
@@ -370,7 +370,7 @@ class DistributionDefaultCacheBehaviorForwardedValues(dict):
         query string keys listed in this argument are cached. When omitted with a
         value of `true` for `query_string`, all query string keys are cached.
         """
-        ...
+        return pulumi.get(self, "query_string_cache_keys")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -403,7 +403,7 @@ class DistributionDefaultCacheBehaviorForwardedValuesCookies(dict):
         specify `all`, `none` or `whitelist`. If `whitelist`, you must include the
         subsequent `whitelisted_names`
         """
-        ...
+        return pulumi.get(self, "forward")
 
     @property
     @pulumi.getter(name="whitelistedNames")
@@ -413,7 +413,7 @@ class DistributionDefaultCacheBehaviorForwardedValuesCookies(dict):
         `forward`, the whitelisted cookies that you want CloudFront to forward to
         your origin.
         """
-        ...
+        return pulumi.get(self, "whitelisted_names")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -445,7 +445,7 @@ class DistributionDefaultCacheBehaviorLambdaFunctionAssociation(dict):
         Valid values: `viewer-request`, `origin-request`, `viewer-response`,
         `origin-response`
         """
-        ...
+        return pulumi.get(self, "event_type")
 
     @property
     @pulumi.getter(name="lambdaArn")
@@ -453,7 +453,7 @@ class DistributionDefaultCacheBehaviorLambdaFunctionAssociation(dict):
         """
         ARN of the Lambda function.
         """
-        ...
+        return pulumi.get(self, "lambda_arn")
 
     @property
     @pulumi.getter(name="includeBody")
@@ -461,7 +461,7 @@ class DistributionDefaultCacheBehaviorLambdaFunctionAssociation(dict):
         """
         When set to true it exposes the request body to the lambda function. Defaults to false. Valid values: `true`, `false`.
         """
-        ...
+        return pulumi.get(self, "include_body")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -494,7 +494,7 @@ class DistributionLoggingConfig(dict):
         The Amazon S3 bucket to store the access logs in, for
         example, `myawslogbucket.s3.amazonaws.com`.
         """
-        ...
+        return pulumi.get(self, "bucket")
 
     @property
     @pulumi.getter(name="includeCookies")
@@ -503,7 +503,7 @@ class DistributionLoggingConfig(dict):
         Specifies whether you want CloudFront to
         include cookies in access logs (default: `false`).
         """
-        ...
+        return pulumi.get(self, "include_cookies")
 
     @property
     @pulumi.getter
@@ -512,7 +512,7 @@ class DistributionLoggingConfig(dict):
         An optional string that you want CloudFront to prefix
         to the access log filenames for this distribution, for example, `myprefix/`.
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -605,7 +605,7 @@ class DistributionOrderedCacheBehavior(dict):
         Controls which HTTP methods CloudFront
         processes and forwards to your Amazon S3 bucket or your custom origin.
         """
-        ...
+        return pulumi.get(self, "allowed_methods")
 
     @property
     @pulumi.getter(name="cachedMethods")
@@ -614,7 +614,7 @@ class DistributionOrderedCacheBehavior(dict):
         Controls whether CloudFront caches the
         response to requests using the specified HTTP methods.
         """
-        ...
+        return pulumi.get(self, "cached_methods")
 
     @property
     @pulumi.getter(name="forwardedValues")
@@ -623,7 +623,7 @@ class DistributionOrderedCacheBehavior(dict):
         The forwarded values configuration that specifies how CloudFront
         handles query strings, cookies and headers (maximum one).
         """
-        ...
+        return pulumi.get(self, "forwarded_values")
 
     @property
     @pulumi.getter(name="pathPattern")
@@ -632,7 +632,7 @@ class DistributionOrderedCacheBehavior(dict):
         The pattern (for example, `images/*.jpg)` that
         specifies which requests you want this cache behavior to apply to.
         """
-        ...
+        return pulumi.get(self, "path_pattern")
 
     @property
     @pulumi.getter(name="targetOriginId")
@@ -642,7 +642,7 @@ class DistributionOrderedCacheBehavior(dict):
         CloudFront to route requests to when a request matches the path pattern
         either for a cache behavior or for the default cache behavior.
         """
-        ...
+        return pulumi.get(self, "target_origin_id")
 
     @property
     @pulumi.getter(name="viewerProtocolPolicy")
@@ -653,7 +653,7 @@ class DistributionOrderedCacheBehavior(dict):
         TargetOriginId when a request matches the path pattern in PathPattern. One
         of `allow-all`, `https-only`, or `redirect-to-https`.
         """
-        ...
+        return pulumi.get(self, "viewer_protocol_policy")
 
     @property
     @pulumi.getter
@@ -663,7 +663,7 @@ class DistributionOrderedCacheBehavior(dict):
         compress content for web requests that include `Accept-Encoding: gzip` in
         the request header (default: `false`).
         """
-        ...
+        return pulumi.get(self, "compress")
 
     @property
     @pulumi.getter(name="defaultTtl")
@@ -674,7 +674,7 @@ class DistributionOrderedCacheBehavior(dict):
         in the absence of an `Cache-Control max-age` or `Expires` header. Defaults to
         1 day.
         """
-        ...
+        return pulumi.get(self, "default_ttl")
 
     @property
     @pulumi.getter(name="fieldLevelEncryptionId")
@@ -682,7 +682,7 @@ class DistributionOrderedCacheBehavior(dict):
         """
         Field level encryption configuration ID
         """
-        ...
+        return pulumi.get(self, "field_level_encryption_id")
 
     @property
     @pulumi.getter(name="lambdaFunctionAssociations")
@@ -691,7 +691,7 @@ class DistributionOrderedCacheBehavior(dict):
         A config block that triggers a lambda function with
         specific actions. Defined below, maximum 4.
         """
-        ...
+        return pulumi.get(self, "lambda_function_associations")
 
     @property
     @pulumi.getter(name="maxTtl")
@@ -703,7 +703,7 @@ class DistributionOrderedCacheBehavior(dict):
         effective in the presence of `Cache-Control max-age`, `Cache-Control
         s-maxage`, and `Expires` headers. Defaults to 365 days.
         """
-        ...
+        return pulumi.get(self, "max_ttl")
 
     @property
     @pulumi.getter(name="minTtl")
@@ -713,7 +713,7 @@ class DistributionOrderedCacheBehavior(dict):
         stay in CloudFront caches before CloudFront queries your origin to see
         whether the object has been updated. Defaults to 0 seconds.
         """
-        ...
+        return pulumi.get(self, "min_ttl")
 
     @property
     @pulumi.getter(name="smoothStreaming")
@@ -723,7 +723,7 @@ class DistributionOrderedCacheBehavior(dict):
         media files in Microsoft Smooth Streaming format using the origin that is
         associated with this cache behavior.
         """
-        ...
+        return pulumi.get(self, "smooth_streaming")
 
     @property
     @pulumi.getter(name="trustedSigners")
@@ -732,7 +732,7 @@ class DistributionOrderedCacheBehavior(dict):
         The AWS accounts, if any, that you want to
         allow to create signed URLs for private content.
         """
-        ...
+        return pulumi.get(self, "trusted_signers")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -772,7 +772,7 @@ class DistributionOrderedCacheBehaviorForwardedValues(dict):
         The forwarded values cookies
         that specifies how CloudFront handles cookies (maximum one).
         """
-        ...
+        return pulumi.get(self, "cookies")
 
     @property
     @pulumi.getter(name="queryString")
@@ -781,7 +781,7 @@ class DistributionOrderedCacheBehaviorForwardedValues(dict):
         Indicates whether you want CloudFront to forward
         query strings to the origin that is associated with this cache behavior.
         """
-        ...
+        return pulumi.get(self, "query_string")
 
     @property
     @pulumi.getter
@@ -791,7 +791,7 @@ class DistributionOrderedCacheBehaviorForwardedValues(dict):
         CloudFront to vary upon for this cache behavior. Specify `*` to include all
         headers.
         """
-        ...
+        return pulumi.get(self, "headers")
 
     @property
     @pulumi.getter(name="queryStringCacheKeys")
@@ -802,7 +802,7 @@ class DistributionOrderedCacheBehaviorForwardedValues(dict):
         query string keys listed in this argument are cached. When omitted with a
         value of `true` for `query_string`, all query string keys are cached.
         """
-        ...
+        return pulumi.get(self, "query_string_cache_keys")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -835,7 +835,7 @@ class DistributionOrderedCacheBehaviorForwardedValuesCookies(dict):
         specify `all`, `none` or `whitelist`. If `whitelist`, you must include the
         subsequent `whitelisted_names`
         """
-        ...
+        return pulumi.get(self, "forward")
 
     @property
     @pulumi.getter(name="whitelistedNames")
@@ -845,7 +845,7 @@ class DistributionOrderedCacheBehaviorForwardedValuesCookies(dict):
         `forward`, the whitelisted cookies that you want CloudFront to forward to
         your origin.
         """
-        ...
+        return pulumi.get(self, "whitelisted_names")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -877,7 +877,7 @@ class DistributionOrderedCacheBehaviorLambdaFunctionAssociation(dict):
         Valid values: `viewer-request`, `origin-request`, `viewer-response`,
         `origin-response`
         """
-        ...
+        return pulumi.get(self, "event_type")
 
     @property
     @pulumi.getter(name="lambdaArn")
@@ -885,7 +885,7 @@ class DistributionOrderedCacheBehaviorLambdaFunctionAssociation(dict):
         """
         ARN of the Lambda function.
         """
-        ...
+        return pulumi.get(self, "lambda_arn")
 
     @property
     @pulumi.getter(name="includeBody")
@@ -893,7 +893,7 @@ class DistributionOrderedCacheBehaviorLambdaFunctionAssociation(dict):
         """
         When set to true it exposes the request body to the lambda function. Defaults to false. Valid values: `true`, `false`.
         """
-        ...
+        return pulumi.get(self, "include_body")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -943,7 +943,7 @@ class DistributionOrigin(dict):
         The DNS domain name of either the S3 bucket, or
         web site of your custom origin.
         """
-        ...
+        return pulumi.get(self, "domain_name")
 
     @property
     @pulumi.getter(name="originId")
@@ -951,7 +951,7 @@ class DistributionOrigin(dict):
         """
         The unique identifier of the member origin
         """
-        ...
+        return pulumi.get(self, "origin_id")
 
     @property
     @pulumi.getter(name="customHeaders")
@@ -961,7 +961,7 @@ class DistributionOrigin(dict):
         `value` parameters that specify header data that will be sent to the origin
         (multiples allowed).
         """
-        ...
+        return pulumi.get(self, "custom_headers")
 
     @property
     @pulumi.getter(name="customOriginConfig")
@@ -971,7 +971,7 @@ class DistributionOrigin(dict):
         origin configuration information. If an S3
         origin is required, use `s3_origin_config` instead.
         """
-        ...
+        return pulumi.get(self, "custom_origin_config")
 
     @property
     @pulumi.getter(name="originPath")
@@ -981,7 +981,7 @@ class DistributionOrigin(dict):
         request your content from a directory in your Amazon S3 bucket or your
         custom origin.
         """
-        ...
+        return pulumi.get(self, "origin_path")
 
     @property
     @pulumi.getter(name="s3OriginConfig")
@@ -991,7 +991,7 @@ class DistributionOrigin(dict):
         configuration information. If a custom origin is required, use
         `custom_origin_config` instead.
         """
-        ...
+        return pulumi.get(self, "s3_origin_config")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1008,12 +1008,12 @@ class DistributionOriginCustomHeader(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def value(self) -> str:
-        ...
+        return pulumi.get(self, "value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1054,7 +1054,7 @@ class DistributionOriginCustomOriginConfig(dict):
         """
         The HTTP port the custom origin listens on.
         """
-        ...
+        return pulumi.get(self, "http_port")
 
     @property
     @pulumi.getter(name="httpsPort")
@@ -1062,7 +1062,7 @@ class DistributionOriginCustomOriginConfig(dict):
         """
         The HTTPS port the custom origin listens on.
         """
-        ...
+        return pulumi.get(self, "https_port")
 
     @property
     @pulumi.getter(name="originProtocolPolicy")
@@ -1071,7 +1071,7 @@ class DistributionOriginCustomOriginConfig(dict):
         The origin protocol policy to apply to
         your origin. One of `http-only`, `https-only`, or `match-viewer`.
         """
-        ...
+        return pulumi.get(self, "origin_protocol_policy")
 
     @property
     @pulumi.getter(name="originSslProtocols")
@@ -1081,7 +1081,7 @@ class DistributionOriginCustomOriginConfig(dict):
         CloudFront to use when communicating with your origin over HTTPS. A list of
         one or more of `SSLv3`, `TLSv1`, `TLSv1.1`, and `TLSv1.2`.
         """
-        ...
+        return pulumi.get(self, "origin_ssl_protocols")
 
     @property
     @pulumi.getter(name="originKeepaliveTimeout")
@@ -1089,7 +1089,7 @@ class DistributionOriginCustomOriginConfig(dict):
         """
         The Custom KeepAlive timeout, in seconds. By default, AWS enforces a limit of `60`. But you can request an [increase](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/RequestAndResponseBehaviorCustomOrigin.html#request-custom-request-timeout).
         """
-        ...
+        return pulumi.get(self, "origin_keepalive_timeout")
 
     @property
     @pulumi.getter(name="originReadTimeout")
@@ -1097,7 +1097,7 @@ class DistributionOriginCustomOriginConfig(dict):
         """
         The Custom Read timeout, in seconds. By default, AWS enforces a limit of `60`. But you can request an [increase](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/RequestAndResponseBehaviorCustomOrigin.html#request-custom-request-timeout).
         """
-        ...
+        return pulumi.get(self, "origin_read_timeout")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1124,7 +1124,7 @@ class DistributionOriginGroup(dict):
         """
         The failover criteria for when to failover to the secondary origin
         """
-        ...
+        return pulumi.get(self, "failover_criteria")
 
     @property
     @pulumi.getter
@@ -1132,7 +1132,7 @@ class DistributionOriginGroup(dict):
         """
         Ordered member configuration blocks assigned to the origin group, where the first member is the primary origin. You must specify two members.
         """
-        ...
+        return pulumi.get(self, "members")
 
     @property
     @pulumi.getter(name="originId")
@@ -1140,7 +1140,7 @@ class DistributionOriginGroup(dict):
         """
         The unique identifier of the member origin
         """
-        ...
+        return pulumi.get(self, "origin_id")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1161,7 +1161,7 @@ class DistributionOriginGroupFailoverCriteria(dict):
         """
         A list of HTTP status codes for the origin group
         """
-        ...
+        return pulumi.get(self, "status_codes")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1182,7 +1182,7 @@ class DistributionOriginGroupMember(dict):
         """
         The unique identifier of the member origin
         """
-        ...
+        return pulumi.get(self, "origin_id")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1205,7 +1205,7 @@ class DistributionOriginS3OriginConfig(dict):
         The [CloudFront origin access
         identity][5] to associate with the origin.
         """
-        ...
+        return pulumi.get(self, "origin_access_identity")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1220,7 +1220,7 @@ class DistributionRestrictions(dict):
     @property
     @pulumi.getter(name="geoRestriction")
     def geo_restriction(self) -> 'outputs.DistributionRestrictionsGeoRestriction':
-        ...
+        return pulumi.get(self, "geo_restriction")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1251,7 +1251,7 @@ class DistributionRestrictionsGeoRestriction(dict):
         distribution of your content by country: `none`, `whitelist`, or
         `blacklist`.
         """
-        ...
+        return pulumi.get(self, "restriction_type")
 
     @property
     @pulumi.getter
@@ -1261,7 +1261,7 @@ class DistributionRestrictionsGeoRestriction(dict):
         want CloudFront either to distribute your content (`whitelist`) or not
         distribute your content (`blacklist`).
         """
-        ...
+        return pulumi.get(self, "locations")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1317,7 +1317,7 @@ class DistributionViewerCertificate(dict):
         `cloudfront_default_certificate`, or `iam_certificate_id`.  The ACM
         certificate must be in  US-EAST-1.
         """
-        ...
+        return pulumi.get(self, "acm_certificate_arn")
 
     @property
     @pulumi.getter(name="cloudfrontDefaultCertificate")
@@ -1327,7 +1327,7 @@ class DistributionViewerCertificate(dict):
         to request your objects and you're using the CloudFront domain name for your
         distribution. Specify this, `acm_certificate_arn`, or `iam_certificate_id`.
         """
-        ...
+        return pulumi.get(self, "cloudfront_default_certificate")
 
     @property
     @pulumi.getter(name="iamCertificateId")
@@ -1337,7 +1337,7 @@ class DistributionViewerCertificate(dict):
         certificate for this distribution if you are using a custom domain. Specify
         this, `acm_certificate_arn`, or `cloudfront_default_certificate`.
         """
-        ...
+        return pulumi.get(self, "iam_certificate_id")
 
     @property
     @pulumi.getter(name="minimumProtocolVersion")
@@ -1354,12 +1354,12 @@ class DistributionViewerCertificate(dict):
         specified. If you have specified `cloudfront_default_certificate`, `TLSv1`
         must be specified.
         """
-        ...
+        return pulumi.get(self, "minimum_protocol_version")
 
     @property
     @pulumi.getter(name="sslSupportMethod")
     def ssl_support_method(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "ssl_support_method")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -93,7 +93,7 @@ class OrganizationAdminAccount(pulumi.CustomResource):
         """
         AWS account identifier to designate as a delegated administrator for GuardDuty.
         """
-        ...
+        return pulumi.get(self, "admin_account_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

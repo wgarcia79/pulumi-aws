@@ -121,7 +121,7 @@ class RouteResponse(pulumi.CustomResource):
         """
         The API identifier.
         """
-        ...
+        return pulumi.get(self, "api_id")
 
     @property
     @pulumi.getter(name="modelSelectionExpression")
@@ -129,7 +129,7 @@ class RouteResponse(pulumi.CustomResource):
         """
         The [model selection expression](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-model-selection-expressions) for the route response.
         """
-        ...
+        return pulumi.get(self, "model_selection_expression")
 
     @property
     @pulumi.getter(name="responseModels")
@@ -137,7 +137,7 @@ class RouteResponse(pulumi.CustomResource):
         """
         The response models for the route response.
         """
-        ...
+        return pulumi.get(self, "response_models")
 
     @property
     @pulumi.getter(name="routeId")
@@ -145,7 +145,7 @@ class RouteResponse(pulumi.CustomResource):
         """
         The identifier of the `apigatewayv2.Route`.
         """
-        ...
+        return pulumi.get(self, "route_id")
 
     @property
     @pulumi.getter(name="routeResponseKey")
@@ -153,7 +153,7 @@ class RouteResponse(pulumi.CustomResource):
         """
         The route response key.
         """
-        ...
+        return pulumi.get(self, "route_response_key")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -109,7 +109,7 @@ class RequestValidator(pulumi.CustomResource):
         """
         The name of the request validator
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="restApi")
@@ -117,7 +117,7 @@ class RequestValidator(pulumi.CustomResource):
         """
         The ID of the associated Rest API
         """
-        ...
+        return pulumi.get(self, "rest_api")
 
     @property
     @pulumi.getter(name="validateRequestBody")
@@ -125,7 +125,7 @@ class RequestValidator(pulumi.CustomResource):
         """
         Boolean whether to validate request body. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "validate_request_body")
 
     @property
     @pulumi.getter(name="validateRequestParameters")
@@ -133,7 +133,7 @@ class RequestValidator(pulumi.CustomResource):
         """
         Boolean whether to validate request parameters. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "validate_request_parameters")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

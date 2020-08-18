@@ -64,7 +64,7 @@ class GetVpcDhcpOptionsResult:
         """
         The ARN of the DHCP Options Set.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="dhcpOptionsId")
@@ -72,7 +72,7 @@ class GetVpcDhcpOptionsResult:
         """
         EC2 DHCP Options ID
         """
-        ...
+        return pulumi.get(self, "dhcp_options_id")
 
     @property
     @pulumi.getter(name="domainName")
@@ -80,7 +80,7 @@ class GetVpcDhcpOptionsResult:
         """
         The suffix domain name to used when resolving non Fully Qualified Domain Names. e.g. the `search` value in the `/etc/resolv.conf` file.
         """
-        ...
+        return pulumi.get(self, "domain_name")
 
     @property
     @pulumi.getter(name="domainNameServers")
@@ -88,12 +88,12 @@ class GetVpcDhcpOptionsResult:
         """
         List of name servers.
         """
-        ...
+        return pulumi.get(self, "domain_name_servers")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetVpcDhcpOptionsFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
@@ -101,7 +101,7 @@ class GetVpcDhcpOptionsResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="netbiosNameServers")
@@ -109,7 +109,7 @@ class GetVpcDhcpOptionsResult:
         """
         List of NETBIOS name servers.
         """
-        ...
+        return pulumi.get(self, "netbios_name_servers")
 
     @property
     @pulumi.getter(name="netbiosNodeType")
@@ -117,7 +117,7 @@ class GetVpcDhcpOptionsResult:
         """
         The NetBIOS node type (1, 2, 4, or 8). For more information about these node types, see [RFC 2132](http://www.ietf.org/rfc/rfc2132.txt).
         """
-        ...
+        return pulumi.get(self, "netbios_node_type")
 
     @property
     @pulumi.getter(name="ntpServers")
@@ -125,7 +125,7 @@ class GetVpcDhcpOptionsResult:
         """
         List of NTP servers.
         """
-        ...
+        return pulumi.get(self, "ntp_servers")
 
     @property
     @pulumi.getter(name="ownerId")
@@ -133,7 +133,7 @@ class GetVpcDhcpOptionsResult:
         """
         The ID of the AWS account that owns the DHCP options set.
         """
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter
@@ -141,7 +141,7 @@ class GetVpcDhcpOptionsResult:
         """
         A map of tags assigned to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
 
 

@@ -49,12 +49,12 @@ class GetAmiIdsResult:
     @property
     @pulumi.getter(name="executableUsers")
     def executable_users(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "executable_users")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetAmiIdsFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
@@ -62,27 +62,27 @@ class GetAmiIdsResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def ids(self) -> List[str]:
-        ...
+        return pulumi.get(self, "ids")
 
     @property
     @pulumi.getter(name="nameRegex")
     def name_regex(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "name_regex")
 
     @property
     @pulumi.getter
     def owners(self) -> List[str]:
-        ...
+        return pulumi.get(self, "owners")
 
     @property
     @pulumi.getter(name="sortAscending")
     def sort_ascending(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "sort_ascending")
 
 
 

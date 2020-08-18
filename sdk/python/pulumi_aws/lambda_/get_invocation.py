@@ -48,7 +48,7 @@ class GetInvocationResult:
     @property
     @pulumi.getter(name="functionName")
     def function_name(self) -> str:
-        ...
+        return pulumi.get(self, "function_name")
 
     @property
     @pulumi.getter
@@ -56,17 +56,17 @@ class GetInvocationResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def input(self) -> str:
-        ...
+        return pulumi.get(self, "input")
 
     @property
     @pulumi.getter
     def qualifier(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "qualifier")
 
     @property
     @pulumi.getter
@@ -74,7 +74,7 @@ class GetInvocationResult:
         """
         String result of the lambda function invocation.
         """
-        ...
+        return pulumi.get(self, "result")
 
     @property
     @pulumi.getter(name="resultMap")
@@ -82,7 +82,7 @@ class GetInvocationResult:
         """
         (**DEPRECATED**) This field is set only if result is a map of primitive types, where the map is string keys and string values.
         """
-        ...
+        return pulumi.get(self, "result_map")
 
 
 

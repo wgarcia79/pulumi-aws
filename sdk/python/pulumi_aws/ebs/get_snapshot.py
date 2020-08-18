@@ -85,7 +85,7 @@ class GetSnapshotResult:
         """
         Amazon Resource Name (ARN) of the EBS Snapshot.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="dataEncryptionKeyId")
@@ -93,7 +93,7 @@ class GetSnapshotResult:
         """
         The data encryption key identifier for the snapshot.
         """
-        ...
+        return pulumi.get(self, "data_encryption_key_id")
 
     @property
     @pulumi.getter
@@ -101,7 +101,7 @@ class GetSnapshotResult:
         """
         A description for the snapshot
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -109,12 +109,12 @@ class GetSnapshotResult:
         """
         Whether the snapshot is encrypted.
         """
-        ...
+        return pulumi.get(self, "encrypted")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetSnapshotFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
@@ -122,7 +122,7 @@ class GetSnapshotResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="kmsKeyId")
@@ -130,12 +130,12 @@ class GetSnapshotResult:
         """
         The ARN for the KMS encryption key.
         """
-        ...
+        return pulumi.get(self, "kms_key_id")
 
     @property
     @pulumi.getter(name="mostRecent")
     def most_recent(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "most_recent")
 
     @property
     @pulumi.getter(name="ownerAlias")
@@ -143,7 +143,7 @@ class GetSnapshotResult:
         """
         Value from an Amazon-maintained list (`amazon`, `aws-marketplace`, `microsoft`) of snapshot owners.
         """
-        ...
+        return pulumi.get(self, "owner_alias")
 
     @property
     @pulumi.getter(name="ownerId")
@@ -151,17 +151,17 @@ class GetSnapshotResult:
         """
         The AWS account ID of the EBS snapshot owner.
         """
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter
     def owners(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "owners")
 
     @property
     @pulumi.getter(name="restorableByUserIds")
     def restorable_by_user_ids(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "restorable_by_user_ids")
 
     @property
     @pulumi.getter(name="snapshotId")
@@ -169,12 +169,12 @@ class GetSnapshotResult:
         """
         The snapshot ID (e.g. snap-59fcb34e).
         """
-        ...
+        return pulumi.get(self, "snapshot_id")
 
     @property
     @pulumi.getter(name="snapshotIds")
     def snapshot_ids(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "snapshot_ids")
 
     @property
     @pulumi.getter
@@ -182,7 +182,7 @@ class GetSnapshotResult:
         """
         The snapshot state.
         """
-        ...
+        return pulumi.get(self, "state")
 
     @property
     @pulumi.getter
@@ -190,7 +190,7 @@ class GetSnapshotResult:
         """
         A map of tags for the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="volumeId")
@@ -198,7 +198,7 @@ class GetSnapshotResult:
         """
         The volume ID (e.g. vol-59fcb34e).
         """
-        ...
+        return pulumi.get(self, "volume_id")
 
     @property
     @pulumi.getter(name="volumeSize")
@@ -206,7 +206,7 @@ class GetSnapshotResult:
         """
         The size of the drive in GiBs.
         """
-        ...
+        return pulumi.get(self, "volume_size")
 
 
 

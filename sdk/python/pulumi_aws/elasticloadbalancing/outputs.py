@@ -46,7 +46,7 @@ class LoadBalancerAccessLogs(dict):
         """
         The S3 bucket name to store the logs in.
         """
-        ...
+        return pulumi.get(self, "bucket")
 
     @property
     @pulumi.getter(name="bucketPrefix")
@@ -54,7 +54,7 @@ class LoadBalancerAccessLogs(dict):
         """
         The S3 bucket prefix. Logs are stored in the root if not configured.
         """
-        ...
+        return pulumi.get(self, "bucket_prefix")
 
     @property
     @pulumi.getter
@@ -62,7 +62,7 @@ class LoadBalancerAccessLogs(dict):
         """
         Boolean to enable / disable `access_logs`. Default is `true`
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter
@@ -70,7 +70,7 @@ class LoadBalancerAccessLogs(dict):
         """
         The publishing interval in minutes. Default: 60 minutes.
         """
-        ...
+        return pulumi.get(self, "interval")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -106,7 +106,7 @@ class LoadBalancerHealthCheck(dict):
         """
         The number of checks before the instance is declared healthy.
         """
-        ...
+        return pulumi.get(self, "healthy_threshold")
 
     @property
     @pulumi.getter
@@ -114,7 +114,7 @@ class LoadBalancerHealthCheck(dict):
         """
         The interval between checks.
         """
-        ...
+        return pulumi.get(self, "interval")
 
     @property
     @pulumi.getter
@@ -125,7 +125,7 @@ class LoadBalancerHealthCheck(dict):
         * `HTTP`, `HTTPS` - PORT and PATH are required
         * `TCP`, `SSL` - PORT is required, PATH is not supported
         """
-        ...
+        return pulumi.get(self, "target")
 
     @property
     @pulumi.getter
@@ -133,7 +133,7 @@ class LoadBalancerHealthCheck(dict):
         """
         The length of time before the check times out.
         """
-        ...
+        return pulumi.get(self, "timeout")
 
     @property
     @pulumi.getter(name="unhealthyThreshold")
@@ -141,7 +141,7 @@ class LoadBalancerHealthCheck(dict):
         """
         The number of checks before the instance is declared unhealthy.
         """
-        ...
+        return pulumi.get(self, "unhealthy_threshold")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -178,7 +178,7 @@ class LoadBalancerListener(dict):
         """
         The port on the instance to route to
         """
-        ...
+        return pulumi.get(self, "instance_port")
 
     @property
     @pulumi.getter(name="instanceProtocol")
@@ -187,7 +187,7 @@ class LoadBalancerListener(dict):
         The protocol to use to the instance. Valid
         values are `HTTP`, `HTTPS`, `TCP`, or `SSL`
         """
-        ...
+        return pulumi.get(self, "instance_protocol")
 
     @property
     @pulumi.getter(name="lbPort")
@@ -195,7 +195,7 @@ class LoadBalancerListener(dict):
         """
         The port to listen on for the load balancer
         """
-        ...
+        return pulumi.get(self, "lb_port")
 
     @property
     @pulumi.getter(name="lbProtocol")
@@ -204,7 +204,7 @@ class LoadBalancerListener(dict):
         The protocol to listen on. Valid values are `HTTP`,
         `HTTPS`, `TCP`, or `SSL`
         """
-        ...
+        return pulumi.get(self, "lb_protocol")
 
     @property
     @pulumi.getter(name="sslCertificateId")
@@ -213,7 +213,7 @@ class LoadBalancerListener(dict):
         The ARN of an SSL certificate you have
         uploaded to AWS IAM. **Note ECDSA-specific restrictions below.  Only valid when `lb_protocol` is either HTTPS or SSL**
         """
-        ...
+        return pulumi.get(self, "ssl_certificate_id")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -232,12 +232,12 @@ class LoadBalancerPolicyPolicyAttribute(dict):
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -261,7 +261,7 @@ class SslNegotiationPolicyAttribute(dict):
         """
         The name of the attribute
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -269,7 +269,7 @@ class SslNegotiationPolicyAttribute(dict):
         """
         The value of the attribute
         """
-        ...
+        return pulumi.get(self, "value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -290,22 +290,22 @@ class GetLoadBalancerAccessLogsResult(dict):
     @property
     @pulumi.getter
     def bucket(self) -> str:
-        ...
+        return pulumi.get(self, "bucket")
 
     @property
     @pulumi.getter(name="bucketPrefix")
     def bucket_prefix(self) -> str:
-        ...
+        return pulumi.get(self, "bucket_prefix")
 
     @property
     @pulumi.getter
     def enabled(self) -> bool:
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter
     def interval(self) -> float:
-        ...
+        return pulumi.get(self, "interval")
 
 
 @pulumi.output_type
@@ -325,27 +325,27 @@ class GetLoadBalancerHealthCheckResult(dict):
     @property
     @pulumi.getter(name="healthyThreshold")
     def healthy_threshold(self) -> float:
-        ...
+        return pulumi.get(self, "healthy_threshold")
 
     @property
     @pulumi.getter
     def interval(self) -> float:
-        ...
+        return pulumi.get(self, "interval")
 
     @property
     @pulumi.getter
     def target(self) -> str:
-        ...
+        return pulumi.get(self, "target")
 
     @property
     @pulumi.getter
     def timeout(self) -> float:
-        ...
+        return pulumi.get(self, "timeout")
 
     @property
     @pulumi.getter(name="unhealthyThreshold")
     def unhealthy_threshold(self) -> float:
-        ...
+        return pulumi.get(self, "unhealthy_threshold")
 
 
 @pulumi.output_type
@@ -365,26 +365,26 @@ class GetLoadBalancerListenerResult(dict):
     @property
     @pulumi.getter(name="instancePort")
     def instance_port(self) -> float:
-        ...
+        return pulumi.get(self, "instance_port")
 
     @property
     @pulumi.getter(name="instanceProtocol")
     def instance_protocol(self) -> str:
-        ...
+        return pulumi.get(self, "instance_protocol")
 
     @property
     @pulumi.getter(name="lbPort")
     def lb_port(self) -> float:
-        ...
+        return pulumi.get(self, "lb_port")
 
     @property
     @pulumi.getter(name="lbProtocol")
     def lb_protocol(self) -> str:
-        ...
+        return pulumi.get(self, "lb_protocol")
 
     @property
     @pulumi.getter(name="sslCertificateId")
     def ssl_certificate_id(self) -> str:
-        ...
+        return pulumi.get(self, "ssl_certificate_id")
 
 

@@ -170,7 +170,7 @@ class Zone(pulumi.CustomResource):
         """
         A comment for the hosted zone. Defaults to 'Managed by Pulumi'.
         """
-        ...
+        return pulumi.get(self, "comment")
 
     @property
     @pulumi.getter(name="delegationSetId")
@@ -178,7 +178,7 @@ class Zone(pulumi.CustomResource):
         """
         The ID of the reusable delegation set whose NS records you want to assign to the hosted zone. Conflicts with `vpc` as delegation sets can only be used for public zones.
         """
-        ...
+        return pulumi.get(self, "delegation_set_id")
 
     @property
     @pulumi.getter(name="forceDestroy")
@@ -186,7 +186,7 @@ class Zone(pulumi.CustomResource):
         """
         Whether to destroy all records (possibly managed outside of this provider) in the zone when destroying the zone.
         """
-        ...
+        return pulumi.get(self, "force_destroy")
 
     @property
     @pulumi.getter
@@ -194,7 +194,7 @@ class Zone(pulumi.CustomResource):
         """
         This is the name of the hosted zone.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="nameServers")
@@ -203,7 +203,7 @@ class Zone(pulumi.CustomResource):
         A list of name servers in associated (or default) delegation set.
         Find more about delegation sets in [AWS docs](https://docs.aws.amazon.com/Route53/latest/APIReference/actions-on-reusable-delegation-sets.html).
         """
-        ...
+        return pulumi.get(self, "name_servers")
 
     @property
     @pulumi.getter
@@ -211,7 +211,7 @@ class Zone(pulumi.CustomResource):
         """
         A mapping of tags to assign to the zone.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -219,7 +219,7 @@ class Zone(pulumi.CustomResource):
         """
         Configuration block(s) specifying VPC(s) to associate with a private hosted zone. Conflicts with the `delegation_set_id` argument in this resource and any `route53.ZoneAssociation` resource specifying the same zone ID. Detailed below.
         """
-        ...
+        return pulumi.get(self, "vpcs")
 
     @property
     @pulumi.getter(name="zoneId")
@@ -227,7 +227,7 @@ class Zone(pulumi.CustomResource):
         """
         The Hosted Zone ID. This can be referenced by zone records.
         """
-        ...
+        return pulumi.get(self, "zone_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -56,12 +56,12 @@ class GetBucketResult:
         """
         The ARN of the bucket. Will be of format `arn:aws:s3:::bucketname`.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
     def bucket(self) -> str:
-        ...
+        return pulumi.get(self, "bucket")
 
     @property
     @pulumi.getter(name="bucketDomainName")
@@ -69,7 +69,7 @@ class GetBucketResult:
         """
         The bucket domain name. Will be of format `bucketname.s3.amazonaws.com`.
         """
-        ...
+        return pulumi.get(self, "bucket_domain_name")
 
     @property
     @pulumi.getter(name="bucketRegionalDomainName")
@@ -77,7 +77,7 @@ class GetBucketResult:
         """
         The bucket region-specific domain name. The bucket domain name including the region name, please refer [here](https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region) for format. Note: The AWS CloudFront allows specifying S3 region-specific endpoint when creating S3 origin, it will prevent [redirect issues](https://forums.aws.amazon.com/thread.jspa?threadID=216814) from CloudFront to S3 Origin URL.
         """
-        ...
+        return pulumi.get(self, "bucket_regional_domain_name")
 
     @property
     @pulumi.getter(name="hostedZoneId")
@@ -85,7 +85,7 @@ class GetBucketResult:
         """
         The [Route 53 Hosted Zone ID](https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_website_region_endpoints) for this bucket's region.
         """
-        ...
+        return pulumi.get(self, "hosted_zone_id")
 
     @property
     @pulumi.getter
@@ -93,7 +93,7 @@ class GetBucketResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -101,7 +101,7 @@ class GetBucketResult:
         """
         The AWS region this bucket resides in.
         """
-        ...
+        return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="websiteDomain")
@@ -109,7 +109,7 @@ class GetBucketResult:
         """
         The domain of the website endpoint, if the bucket is configured with a website. If not, this will be an empty string. This is used to create Route 53 alias records.
         """
-        ...
+        return pulumi.get(self, "website_domain")
 
     @property
     @pulumi.getter(name="websiteEndpoint")
@@ -117,7 +117,7 @@ class GetBucketResult:
         """
         The website endpoint, if the bucket is configured with a website. If not, this will be an empty string.
         """
-        ...
+        return pulumi.get(self, "website_endpoint")
 
 
 

@@ -61,12 +61,12 @@ class GetAvailabilityZoneResult:
     @property
     @pulumi.getter(name="allAvailabilityZones")
     def all_availability_zones(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "all_availability_zones")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetAvailabilityZoneFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter(name="groupName")
@@ -74,7 +74,7 @@ class GetAvailabilityZoneResult:
         """
         For Availability Zones, this is the same value as the Region name. For Local Zones, the name of the associated group, for example `us-west-2-lax-1`.
         """
-        ...
+        return pulumi.get(self, "group_name")
 
     @property
     @pulumi.getter
@@ -82,12 +82,12 @@ class GetAvailabilityZoneResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="nameSuffix")
@@ -95,7 +95,7 @@ class GetAvailabilityZoneResult:
         """
         The part of the AZ name that appears after the region name, uniquely identifying the AZ within its region.
         """
-        ...
+        return pulumi.get(self, "name_suffix")
 
     @property
     @pulumi.getter(name="networkBorderGroup")
@@ -103,7 +103,7 @@ class GetAvailabilityZoneResult:
         """
         The name of the location from which the address is advertised.
         """
-        ...
+        return pulumi.get(self, "network_border_group")
 
     @property
     @pulumi.getter(name="optInStatus")
@@ -111,7 +111,7 @@ class GetAvailabilityZoneResult:
         """
         For Availability Zones, this always has the value of `opt-in-not-required`. For Local Zones, this is the opt in status. The possible values are `opted-in` and `not-opted-in`.
         """
-        ...
+        return pulumi.get(self, "opt_in_status")
 
     @property
     @pulumi.getter
@@ -119,17 +119,17 @@ class GetAvailabilityZoneResult:
         """
         The region where the selected availability zone resides. This is always the region selected on the provider, since this data source searches only within that region.
         """
-        ...
+        return pulumi.get(self, "region")
 
     @property
     @pulumi.getter
     def state(self) -> str:
-        ...
+        return pulumi.get(self, "state")
 
     @property
     @pulumi.getter(name="zoneId")
     def zone_id(self) -> str:
-        ...
+        return pulumi.get(self, "zone_id")
 
 
 

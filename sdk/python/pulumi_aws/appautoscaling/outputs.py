@@ -51,7 +51,7 @@ class PolicyStepScalingPolicyConfiguration(dict):
         """
         Specifies whether the adjustment is an absolute number or a percentage of the current capacity. Valid values are `ChangeInCapacity`, `ExactCapacity`, and `PercentChangeInCapacity`.
         """
-        ...
+        return pulumi.get(self, "adjustment_type")
 
     @property
     @pulumi.getter
@@ -59,7 +59,7 @@ class PolicyStepScalingPolicyConfiguration(dict):
         """
         The amount of time, in seconds, after a scaling activity completes and before the next scaling activity can start.
         """
-        ...
+        return pulumi.get(self, "cooldown")
 
     @property
     @pulumi.getter(name="metricAggregationType")
@@ -67,7 +67,7 @@ class PolicyStepScalingPolicyConfiguration(dict):
         """
         The aggregation type for the policy's metrics. Valid values are "Minimum", "Maximum", and "Average". Without a value, AWS will treat the aggregation type as "Average".
         """
-        ...
+        return pulumi.get(self, "metric_aggregation_type")
 
     @property
     @pulumi.getter(name="minAdjustmentMagnitude")
@@ -75,7 +75,7 @@ class PolicyStepScalingPolicyConfiguration(dict):
         """
         The minimum number to adjust your scalable dimension as a result of a scaling activity. If the adjustment type is PercentChangeInCapacity, the scaling policy changes the scalable dimension of the scalable target by this amount.
         """
-        ...
+        return pulumi.get(self, "min_adjustment_magnitude")
 
     @property
     @pulumi.getter(name="stepAdjustments")
@@ -83,7 +83,7 @@ class PolicyStepScalingPolicyConfiguration(dict):
         """
         A set of adjustments that manage scaling. These have the following structure:
         """
-        ...
+        return pulumi.get(self, "step_adjustments")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -112,7 +112,7 @@ class PolicyStepScalingPolicyConfigurationStepAdjustment(dict):
         """
         The number of members by which to scale, when the adjustment bounds are breached. A positive value scales up. A negative value scales down.
         """
-        ...
+        return pulumi.get(self, "scaling_adjustment")
 
     @property
     @pulumi.getter(name="metricIntervalLowerBound")
@@ -120,7 +120,7 @@ class PolicyStepScalingPolicyConfigurationStepAdjustment(dict):
         """
         The lower bound for the difference between the alarm threshold and the CloudWatch metric. Without a value, AWS will treat this bound as negative infinity.
         """
-        ...
+        return pulumi.get(self, "metric_interval_lower_bound")
 
     @property
     @pulumi.getter(name="metricIntervalUpperBound")
@@ -128,7 +128,7 @@ class PolicyStepScalingPolicyConfigurationStepAdjustment(dict):
         """
         The upper bound for the difference between the alarm threshold and the CloudWatch metric. Without a value, AWS will treat this bound as infinity. The upper bound must be greater than the lower bound.
         """
-        ...
+        return pulumi.get(self, "metric_interval_upper_bound")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -169,7 +169,7 @@ class PolicyTargetTrackingScalingPolicyConfiguration(dict):
         """
         The target value for the metric.
         """
-        ...
+        return pulumi.get(self, "target_value")
 
     @property
     @pulumi.getter(name="customizedMetricSpecification")
@@ -177,7 +177,7 @@ class PolicyTargetTrackingScalingPolicyConfiguration(dict):
         """
         A custom CloudWatch metric. Documentation can be found  at: [AWS Customized Metric Specification](https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_CustomizedMetricSpecification.html). See supported fields below.
         """
-        ...
+        return pulumi.get(self, "customized_metric_specification")
 
     @property
     @pulumi.getter(name="disableScaleIn")
@@ -185,7 +185,7 @@ class PolicyTargetTrackingScalingPolicyConfiguration(dict):
         """
         Indicates whether scale in by the target tracking policy is disabled. If the value is true, scale in is disabled and the target tracking policy won't remove capacity from the scalable resource. Otherwise, scale in is enabled and the target tracking policy can remove capacity from the scalable resource. The default value is `false`.
         """
-        ...
+        return pulumi.get(self, "disable_scale_in")
 
     @property
     @pulumi.getter(name="predefinedMetricSpecification")
@@ -193,7 +193,7 @@ class PolicyTargetTrackingScalingPolicyConfiguration(dict):
         """
         A predefined metric. See supported fields below.
         """
-        ...
+        return pulumi.get(self, "predefined_metric_specification")
 
     @property
     @pulumi.getter(name="scaleInCooldown")
@@ -201,7 +201,7 @@ class PolicyTargetTrackingScalingPolicyConfiguration(dict):
         """
         The amount of time, in seconds, after a scale in activity completes before another scale in activity can start.
         """
-        ...
+        return pulumi.get(self, "scale_in_cooldown")
 
     @property
     @pulumi.getter(name="scaleOutCooldown")
@@ -209,7 +209,7 @@ class PolicyTargetTrackingScalingPolicyConfiguration(dict):
         """
         The amount of time, in seconds, after a scale out activity completes before another scale out activity can start.
         """
-        ...
+        return pulumi.get(self, "scale_out_cooldown")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -244,7 +244,7 @@ class PolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificatio
         """
         The name of the metric.
         """
-        ...
+        return pulumi.get(self, "metric_name")
 
     @property
     @pulumi.getter
@@ -252,7 +252,7 @@ class PolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificatio
         """
         The namespace of the metric.
         """
-        ...
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter
@@ -260,7 +260,7 @@ class PolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificatio
         """
         The statistic of the metric. Valid values: `Average`, `Minimum`, `Maximum`, `SampleCount`, and `Sum`.
         """
-        ...
+        return pulumi.get(self, "statistic")
 
     @property
     @pulumi.getter
@@ -268,7 +268,7 @@ class PolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificatio
         """
         Configuration block(s) with the dimensions of the metric if the metric was published with dimensions. Detailed below.
         """
-        ...
+        return pulumi.get(self, "dimensions")
 
     @property
     @pulumi.getter
@@ -276,7 +276,7 @@ class PolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificatio
         """
         The unit of the metric.
         """
-        ...
+        return pulumi.get(self, "unit")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -300,7 +300,7 @@ class PolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificatio
         """
         The name of the policy.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -308,7 +308,7 @@ class PolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificatio
         """
         Value of the dimension.
         """
-        ...
+        return pulumi.get(self, "value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -333,7 +333,7 @@ class PolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecificatio
         """
         The metric type.
         """
-        ...
+        return pulumi.get(self, "predefined_metric_type")
 
     @property
     @pulumi.getter(name="resourceLabel")
@@ -341,7 +341,7 @@ class PolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecificatio
         """
         Reserved for future use.
         """
-        ...
+        return pulumi.get(self, "resource_label")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -367,7 +367,7 @@ class ScheduledActionScalableTargetAction(dict):
         """
         The maximum capacity.
         """
-        ...
+        return pulumi.get(self, "max_capacity")
 
     @property
     @pulumi.getter(name="minCapacity")
@@ -375,7 +375,7 @@ class ScheduledActionScalableTargetAction(dict):
         """
         The minimum capacity.
         """
-        ...
+        return pulumi.get(self, "min_capacity")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

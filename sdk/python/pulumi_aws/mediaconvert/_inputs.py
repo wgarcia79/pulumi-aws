@@ -33,11 +33,11 @@ class QueueReservationPlanSettingsArgs:
         """
         The length of the term of your reserved queue pricing plan commitment. Valid value is `ONE_YEAR`.
         """
-        ...
+        return pulumi.get(self, "commitment")
 
     @commitment.setter
     def commitment(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "commitment", value)
 
     @property
     @pulumi.getter(name="renewalType")
@@ -45,11 +45,11 @@ class QueueReservationPlanSettingsArgs:
         """
         Specifies whether the term of your reserved queue pricing plan. Valid values are `AUTO_RENEW` or `EXPIRE`.
         """
-        ...
+        return pulumi.get(self, "renewal_type")
 
     @renewal_type.setter
     def renewal_type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "renewal_type", value)
 
     @property
     @pulumi.getter(name="reservedSlots")
@@ -57,10 +57,10 @@ class QueueReservationPlanSettingsArgs:
         """
         Specifies the number of reserved transcode slots (RTS) for queue.
         """
-        ...
+        return pulumi.get(self, "reserved_slots")
 
     @reserved_slots.setter
     def reserved_slots(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "reserved_slots", value)
 
 

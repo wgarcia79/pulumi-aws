@@ -51,7 +51,7 @@ class AssociationOutputLocation(dict):
         """
         The S3 bucket name.
         """
-        ...
+        return pulumi.get(self, "s3_bucket_name")
 
     @property
     @pulumi.getter(name="s3KeyPrefix")
@@ -59,7 +59,7 @@ class AssociationOutputLocation(dict):
         """
         The S3 bucket prefix. Results stored in the root if not configured.
         """
-        ...
+        return pulumi.get(self, "s3_key_prefix")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -83,7 +83,7 @@ class AssociationTarget(dict):
         """
         Either `InstanceIds` or `tag:Tag Name` to specify an EC2 tag.
         """
-        ...
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
@@ -91,7 +91,7 @@ class AssociationTarget(dict):
         """
         A list of instance IDs or tag values. AWS currently limits this list size to one value.
         """
-        ...
+        return pulumi.get(self, "values")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -119,7 +119,7 @@ class DocumentAttachmentsSource(dict):
         """
         The key describing the location of an attachment to a document. Valid key types include: `SourceUrl` and `S3FileUrl`
         """
-        ...
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
@@ -127,7 +127,7 @@ class DocumentAttachmentsSource(dict):
         """
         The value describing the location of an attachment to a document
         """
-        ...
+        return pulumi.get(self, "values")
 
     @property
     @pulumi.getter
@@ -135,7 +135,7 @@ class DocumentAttachmentsSource(dict):
         """
         The name of the document attachment file
         """
-        ...
+        return pulumi.get(self, "name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -164,7 +164,7 @@ class DocumentParameter(dict):
     @property
     @pulumi.getter(name="defaultValue")
     def default_value(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "default_value")
 
     @property
     @pulumi.getter
@@ -172,7 +172,7 @@ class DocumentParameter(dict):
         """
         The description of the document.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -180,12 +180,12 @@ class DocumentParameter(dict):
         """
         The name of the document.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def type(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -202,12 +202,12 @@ class MaintenanceWindowTargetTarget(dict):
     @property
     @pulumi.getter
     def key(self) -> str:
-        ...
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def values(self) -> List[str]:
-        ...
+        return pulumi.get(self, "values")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -227,17 +227,17 @@ class MaintenanceWindowTaskLoggingInfo(dict):
     @property
     @pulumi.getter(name="s3BucketName")
     def s3_bucket_name(self) -> str:
-        ...
+        return pulumi.get(self, "s3_bucket_name")
 
     @property
     @pulumi.getter(name="s3Region")
     def s3_region(self) -> str:
-        ...
+        return pulumi.get(self, "s3_region")
 
     @property
     @pulumi.getter(name="s3BucketPrefix")
     def s3_bucket_prefix(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "s3_bucket_prefix")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -254,12 +254,12 @@ class MaintenanceWindowTaskTarget(dict):
     @property
     @pulumi.getter
     def key(self) -> str:
-        ...
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def values(self) -> List[str]:
-        ...
+        return pulumi.get(self, "values")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -293,7 +293,7 @@ class MaintenanceWindowTaskTaskInvocationParameters(dict):
         """
         The parameters for an AUTOMATION task type. Documented below.
         """
-        ...
+        return pulumi.get(self, "automation_parameters")
 
     @property
     @pulumi.getter(name="lambdaParameters")
@@ -301,7 +301,7 @@ class MaintenanceWindowTaskTaskInvocationParameters(dict):
         """
         The parameters for a LAMBDA task type. Documented below.
         """
-        ...
+        return pulumi.get(self, "lambda_parameters")
 
     @property
     @pulumi.getter(name="runCommandParameters")
@@ -309,7 +309,7 @@ class MaintenanceWindowTaskTaskInvocationParameters(dict):
         """
         The parameters for a RUN_COMMAND task type. Documented below.
         """
-        ...
+        return pulumi.get(self, "run_command_parameters")
 
     @property
     @pulumi.getter(name="stepFunctionsParameters")
@@ -317,7 +317,7 @@ class MaintenanceWindowTaskTaskInvocationParameters(dict):
         """
         The parameters for a STEP_FUNCTIONS task type. Documented below.
         """
-        ...
+        return pulumi.get(self, "step_functions_parameters")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -343,7 +343,7 @@ class MaintenanceWindowTaskTaskInvocationParametersAutomationParameters(dict):
         """
         The version of an Automation document to use during task execution.
         """
-        ...
+        return pulumi.get(self, "document_version")
 
     @property
     @pulumi.getter
@@ -351,7 +351,7 @@ class MaintenanceWindowTaskTaskInvocationParametersAutomationParameters(dict):
         """
         The parameters for the RUN_COMMAND task execution. Documented below.
         """
-        ...
+        return pulumi.get(self, "parameters")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -375,7 +375,7 @@ class MaintenanceWindowTaskTaskInvocationParametersAutomationParametersParameter
         """
         The parameter name.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -383,7 +383,7 @@ class MaintenanceWindowTaskTaskInvocationParametersAutomationParametersParameter
         """
         The array of strings.
         """
-        ...
+        return pulumi.get(self, "values")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -413,7 +413,7 @@ class MaintenanceWindowTaskTaskInvocationParametersLambdaParameters(dict):
         """
         Pass client-specific information to the Lambda function that you are invoking.
         """
-        ...
+        return pulumi.get(self, "client_context")
 
     @property
     @pulumi.getter
@@ -421,7 +421,7 @@ class MaintenanceWindowTaskTaskInvocationParametersLambdaParameters(dict):
         """
         JSON to provide to your Lambda function as input.
         """
-        ...
+        return pulumi.get(self, "payload")
 
     @property
     @pulumi.getter
@@ -429,7 +429,7 @@ class MaintenanceWindowTaskTaskInvocationParametersLambdaParameters(dict):
         """
         Specify a Lambda function version or alias name.
         """
-        ...
+        return pulumi.get(self, "qualifier")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -483,7 +483,7 @@ class MaintenanceWindowTaskTaskInvocationParametersRunCommandParameters(dict):
         """
         Information about the command(s) to execute.
         """
-        ...
+        return pulumi.get(self, "comment")
 
     @property
     @pulumi.getter(name="documentHash")
@@ -491,7 +491,7 @@ class MaintenanceWindowTaskTaskInvocationParametersRunCommandParameters(dict):
         """
         The SHA-256 or SHA-1 hash created by the system when the document was created. SHA-1 hashes have been deprecated.
         """
-        ...
+        return pulumi.get(self, "document_hash")
 
     @property
     @pulumi.getter(name="documentHashType")
@@ -499,7 +499,7 @@ class MaintenanceWindowTaskTaskInvocationParametersRunCommandParameters(dict):
         """
         SHA-256 or SHA-1. SHA-1 hashes have been deprecated. Valid values: `Sha256` and `Sha1`
         """
-        ...
+        return pulumi.get(self, "document_hash_type")
 
     @property
     @pulumi.getter(name="notificationConfig")
@@ -507,7 +507,7 @@ class MaintenanceWindowTaskTaskInvocationParametersRunCommandParameters(dict):
         """
         Configurations for sending notifications about command status changes on a per-instance basis. Documented below.
         """
-        ...
+        return pulumi.get(self, "notification_config")
 
     @property
     @pulumi.getter(name="outputS3Bucket")
@@ -515,7 +515,7 @@ class MaintenanceWindowTaskTaskInvocationParametersRunCommandParameters(dict):
         """
         The name of the Amazon S3 bucket.
         """
-        ...
+        return pulumi.get(self, "output_s3_bucket")
 
     @property
     @pulumi.getter(name="outputS3KeyPrefix")
@@ -523,7 +523,7 @@ class MaintenanceWindowTaskTaskInvocationParametersRunCommandParameters(dict):
         """
         The Amazon S3 bucket subfolder.
         """
-        ...
+        return pulumi.get(self, "output_s3_key_prefix")
 
     @property
     @pulumi.getter
@@ -531,7 +531,7 @@ class MaintenanceWindowTaskTaskInvocationParametersRunCommandParameters(dict):
         """
         The parameters for the RUN_COMMAND task execution. Documented below.
         """
-        ...
+        return pulumi.get(self, "parameters")
 
     @property
     @pulumi.getter(name="serviceRoleArn")
@@ -539,7 +539,7 @@ class MaintenanceWindowTaskTaskInvocationParametersRunCommandParameters(dict):
         """
         The IAM service role to assume during task execution.
         """
-        ...
+        return pulumi.get(self, "service_role_arn")
 
     @property
     @pulumi.getter(name="timeoutSeconds")
@@ -547,7 +547,7 @@ class MaintenanceWindowTaskTaskInvocationParametersRunCommandParameters(dict):
         """
         If this time is reached and the command has not already started executing, it doesn't run.
         """
-        ...
+        return pulumi.get(self, "timeout_seconds")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -577,7 +577,7 @@ class MaintenanceWindowTaskTaskInvocationParametersRunCommandParametersNotificat
         """
         An Amazon Resource Name (ARN) for a Simple Notification Service (SNS) topic. Run Command pushes notifications about command status changes to this topic.
         """
-        ...
+        return pulumi.get(self, "notification_arn")
 
     @property
     @pulumi.getter(name="notificationEvents")
@@ -585,7 +585,7 @@ class MaintenanceWindowTaskTaskInvocationParametersRunCommandParametersNotificat
         """
         The different events for which you can receive notifications. Valid values: `All`, `InProgress`, `Success`, `TimedOut`, `Cancelled`, and `Failed`
         """
-        ...
+        return pulumi.get(self, "notification_events")
 
     @property
     @pulumi.getter(name="notificationType")
@@ -593,7 +593,7 @@ class MaintenanceWindowTaskTaskInvocationParametersRunCommandParametersNotificat
         """
         When specified with `Command`, receive notification when the status of a command changes. When specified with `Invocation`, for commands sent to multiple instances, receive notification on a per-instance basis when the status of a command changes. Valid values: `Command` and `Invocation`
         """
-        ...
+        return pulumi.get(self, "notification_type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -617,7 +617,7 @@ class MaintenanceWindowTaskTaskInvocationParametersRunCommandParametersParameter
         """
         The parameter name.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -625,7 +625,7 @@ class MaintenanceWindowTaskTaskInvocationParametersRunCommandParametersParameter
         """
         The array of strings.
         """
-        ...
+        return pulumi.get(self, "values")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -651,7 +651,7 @@ class MaintenanceWindowTaskTaskInvocationParametersStepFunctionsParameters(dict)
         """
         The inputs for the STEP_FUNCTION task.
         """
-        ...
+        return pulumi.get(self, "input")
 
     @property
     @pulumi.getter
@@ -659,7 +659,7 @@ class MaintenanceWindowTaskTaskInvocationParametersStepFunctionsParameters(dict)
         """
         The name of the STEP_FUNCTION task.
         """
-        ...
+        return pulumi.get(self, "name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -682,12 +682,12 @@ class MaintenanceWindowTaskTaskParameter(dict):
         """
         The name of the maintenance window task.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def values(self) -> List[str]:
-        ...
+        return pulumi.get(self, "values")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -719,7 +719,7 @@ class PatchBaselineApprovalRule(dict):
         """
         The number of days after the release date of each patch matched by the rule the patch is marked as approved in the patch baseline. Valid Range: 0 to 100.
         """
-        ...
+        return pulumi.get(self, "approve_after_days")
 
     @property
     @pulumi.getter(name="patchFilters")
@@ -727,7 +727,7 @@ class PatchBaselineApprovalRule(dict):
         """
         The patch filter group that defines the criteria for the rule. Up to 5 patch filters can be specified per approval rule using Key/Value pairs. Valid Keys are `PATCH_SET | PRODUCT | CLASSIFICATION | MSRC_SEVERITY | PATCH_ID`.
         """
-        ...
+        return pulumi.get(self, "patch_filters")
 
     @property
     @pulumi.getter(name="complianceLevel")
@@ -735,7 +735,7 @@ class PatchBaselineApprovalRule(dict):
         """
         Defines the compliance level for patches approved by this rule. Valid compliance levels include the following: `CRITICAL`, `HIGH`, `MEDIUM`, `LOW`, `INFORMATIONAL`, `UNSPECIFIED`. The default value is `UNSPECIFIED`.
         """
-        ...
+        return pulumi.get(self, "compliance_level")
 
     @property
     @pulumi.getter(name="enableNonSecurity")
@@ -743,7 +743,7 @@ class PatchBaselineApprovalRule(dict):
         """
         Boolean enabling the application of non-security updates. The default value is 'false'. Valid for Linux instances only.
         """
-        ...
+        return pulumi.get(self, "enable_non_security")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -760,12 +760,12 @@ class PatchBaselineApprovalRulePatchFilter(dict):
     @property
     @pulumi.getter
     def key(self) -> str:
-        ...
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def values(self) -> List[str]:
-        ...
+        return pulumi.get(self, "values")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -782,12 +782,12 @@ class PatchBaselineGlobalFilter(dict):
     @property
     @pulumi.getter
     def key(self) -> str:
-        ...
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def values(self) -> List[str]:
-        ...
+        return pulumi.get(self, "values")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -823,7 +823,7 @@ class ResourceDataSyncS3Destination(dict):
         """
         Name of S3 bucket where the aggregated data is stored.
         """
-        ...
+        return pulumi.get(self, "bucket_name")
 
     @property
     @pulumi.getter
@@ -831,7 +831,7 @@ class ResourceDataSyncS3Destination(dict):
         """
         Region with the bucket targeted by the Resource Data Sync.
         """
-        ...
+        return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="kmsKeyArn")
@@ -839,7 +839,7 @@ class ResourceDataSyncS3Destination(dict):
         """
         ARN of an encryption key for a destination in Amazon S3.
         """
-        ...
+        return pulumi.get(self, "kms_key_arn")
 
     @property
     @pulumi.getter
@@ -847,7 +847,7 @@ class ResourceDataSyncS3Destination(dict):
         """
         Prefix for the bucket.
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     @property
     @pulumi.getter(name="syncFormat")
@@ -855,7 +855,7 @@ class ResourceDataSyncS3Destination(dict):
         """
         A supported sync format. Only JsonSerDe is currently supported. Defaults to JsonSerDe.
         """
-        ...
+        return pulumi.get(self, "sync_format")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

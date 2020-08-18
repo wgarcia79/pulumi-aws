@@ -106,7 +106,7 @@ class SnapshotScheduleAssociation(pulumi.CustomResource):
         """
         The cluster identifier.
         """
-        ...
+        return pulumi.get(self, "cluster_identifier")
 
     @property
     @pulumi.getter(name="scheduleIdentifier")
@@ -114,7 +114,7 @@ class SnapshotScheduleAssociation(pulumi.CustomResource):
         """
         The snapshot schedule identifier.
         """
-        ...
+        return pulumi.get(self, "schedule_identifier")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

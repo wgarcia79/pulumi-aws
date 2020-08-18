@@ -47,7 +47,7 @@ class DataSourceDynamodbConfig(dict):
         """
         Name of the DynamoDB table.
         """
-        ...
+        return pulumi.get(self, "table_name")
 
     @property
     @pulumi.getter
@@ -55,7 +55,7 @@ class DataSourceDynamodbConfig(dict):
         """
         AWS region of Elasticsearch domain. Defaults to current region.
         """
-        ...
+        return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="useCallerCredentials")
@@ -63,7 +63,7 @@ class DataSourceDynamodbConfig(dict):
         """
         Set to `true` to use Amazon Cognito credentials with this data source.
         """
-        ...
+        return pulumi.get(self, "use_caller_credentials")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -88,7 +88,7 @@ class DataSourceElasticsearchConfig(dict):
         """
         HTTP URL.
         """
-        ...
+        return pulumi.get(self, "endpoint")
 
     @property
     @pulumi.getter
@@ -96,7 +96,7 @@ class DataSourceElasticsearchConfig(dict):
         """
         AWS region of Elasticsearch domain. Defaults to current region.
         """
-        ...
+        return pulumi.get(self, "region")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -117,7 +117,7 @@ class DataSourceHttpConfig(dict):
         """
         HTTP URL.
         """
-        ...
+        return pulumi.get(self, "endpoint")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -138,7 +138,7 @@ class DataSourceLambdaConfig(dict):
         """
         The ARN for the Lambda function.
         """
-        ...
+        return pulumi.get(self, "function_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -167,7 +167,7 @@ class GraphQLApiAdditionalAuthenticationProvider(dict):
         """
         The authentication type. Valid values: `API_KEY`, `AWS_IAM`, `AMAZON_COGNITO_USER_POOLS`, `OPENID_CONNECT`
         """
-        ...
+        return pulumi.get(self, "authentication_type")
 
     @property
     @pulumi.getter(name="openidConnectConfig")
@@ -175,7 +175,7 @@ class GraphQLApiAdditionalAuthenticationProvider(dict):
         """
         Nested argument containing OpenID Connect configuration. Defined below.
         """
-        ...
+        return pulumi.get(self, "openid_connect_config")
 
     @property
     @pulumi.getter(name="userPoolConfig")
@@ -183,7 +183,7 @@ class GraphQLApiAdditionalAuthenticationProvider(dict):
         """
         The Amazon Cognito User Pool configuration. Defined below.
         """
-        ...
+        return pulumi.get(self, "user_pool_config")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -216,7 +216,7 @@ class GraphQLApiAdditionalAuthenticationProviderOpenidConnectConfig(dict):
         """
         Issuer for the OpenID Connect configuration. The issuer returned by discovery MUST exactly match the value of iss in the ID Token.
         """
-        ...
+        return pulumi.get(self, "issuer")
 
     @property
     @pulumi.getter(name="authTtl")
@@ -224,7 +224,7 @@ class GraphQLApiAdditionalAuthenticationProviderOpenidConnectConfig(dict):
         """
         Number of milliseconds a token is valid after being authenticated.
         """
-        ...
+        return pulumi.get(self, "auth_ttl")
 
     @property
     @pulumi.getter(name="clientId")
@@ -232,7 +232,7 @@ class GraphQLApiAdditionalAuthenticationProviderOpenidConnectConfig(dict):
         """
         Client identifier of the Relying party at the OpenID identity provider. This identifier is typically obtained when the Relying party is registered with the OpenID identity provider. You can specify a regular expression so the AWS AppSync can validate against multiple client identifiers at a time.
         """
-        ...
+        return pulumi.get(self, "client_id")
 
     @property
     @pulumi.getter(name="iatTtl")
@@ -240,7 +240,7 @@ class GraphQLApiAdditionalAuthenticationProviderOpenidConnectConfig(dict):
         """
         Number of milliseconds a token is valid after being issued to a user.
         """
-        ...
+        return pulumi.get(self, "iat_ttl")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -269,7 +269,7 @@ class GraphQLApiAdditionalAuthenticationProviderUserPoolConfig(dict):
         """
         The user pool ID.
         """
-        ...
+        return pulumi.get(self, "user_pool_id")
 
     @property
     @pulumi.getter(name="appIdClientRegex")
@@ -277,7 +277,7 @@ class GraphQLApiAdditionalAuthenticationProviderUserPoolConfig(dict):
         """
         A regular expression for validating the incoming Amazon Cognito User Pool app client ID.
         """
-        ...
+        return pulumi.get(self, "app_id_client_regex")
 
     @property
     @pulumi.getter(name="awsRegion")
@@ -285,7 +285,7 @@ class GraphQLApiAdditionalAuthenticationProviderUserPoolConfig(dict):
         """
         The AWS region in which the user pool was created.
         """
-        ...
+        return pulumi.get(self, "aws_region")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -313,7 +313,7 @@ class GraphQLApiLogConfig(dict):
         """
         Amazon Resource Name of the service role that AWS AppSync will assume to publish to Amazon CloudWatch logs in your account.
         """
-        ...
+        return pulumi.get(self, "cloudwatch_logs_role_arn")
 
     @property
     @pulumi.getter(name="fieldLogLevel")
@@ -321,7 +321,7 @@ class GraphQLApiLogConfig(dict):
         """
         Field logging level. Valid values: `ALL`, `ERROR`, `NONE`.
         """
-        ...
+        return pulumi.get(self, "field_log_level")
 
     @property
     @pulumi.getter(name="excludeVerboseContent")
@@ -329,7 +329,7 @@ class GraphQLApiLogConfig(dict):
         """
         Set to TRUE to exclude sections that contain information such as headers, context, and evaluated mapping templates, regardless of logging  level. Valid values: `true`, `false`. Default value: `false`
         """
-        ...
+        return pulumi.get(self, "exclude_verbose_content")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -362,7 +362,7 @@ class GraphQLApiOpenidConnectConfig(dict):
         """
         Issuer for the OpenID Connect configuration. The issuer returned by discovery MUST exactly match the value of iss in the ID Token.
         """
-        ...
+        return pulumi.get(self, "issuer")
 
     @property
     @pulumi.getter(name="authTtl")
@@ -370,7 +370,7 @@ class GraphQLApiOpenidConnectConfig(dict):
         """
         Number of milliseconds a token is valid after being authenticated.
         """
-        ...
+        return pulumi.get(self, "auth_ttl")
 
     @property
     @pulumi.getter(name="clientId")
@@ -378,7 +378,7 @@ class GraphQLApiOpenidConnectConfig(dict):
         """
         Client identifier of the Relying party at the OpenID identity provider. This identifier is typically obtained when the Relying party is registered with the OpenID identity provider. You can specify a regular expression so the AWS AppSync can validate against multiple client identifiers at a time.
         """
-        ...
+        return pulumi.get(self, "client_id")
 
     @property
     @pulumi.getter(name="iatTtl")
@@ -386,7 +386,7 @@ class GraphQLApiOpenidConnectConfig(dict):
         """
         Number of milliseconds a token is valid after being issued to a user.
         """
-        ...
+        return pulumi.get(self, "iat_ttl")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -418,7 +418,7 @@ class GraphQLApiUserPoolConfig(dict):
         """
         The action that you want your GraphQL API to take when a request that uses Amazon Cognito User Pool authentication doesn't match the Amazon Cognito User Pool configuration. Valid: `ALLOW` and `DENY`
         """
-        ...
+        return pulumi.get(self, "default_action")
 
     @property
     @pulumi.getter(name="userPoolId")
@@ -426,7 +426,7 @@ class GraphQLApiUserPoolConfig(dict):
         """
         The user pool ID.
         """
-        ...
+        return pulumi.get(self, "user_pool_id")
 
     @property
     @pulumi.getter(name="appIdClientRegex")
@@ -434,7 +434,7 @@ class GraphQLApiUserPoolConfig(dict):
         """
         A regular expression for validating the incoming Amazon Cognito User Pool app client ID.
         """
-        ...
+        return pulumi.get(self, "app_id_client_regex")
 
     @property
     @pulumi.getter(name="awsRegion")
@@ -442,7 +442,7 @@ class GraphQLApiUserPoolConfig(dict):
         """
         The AWS region in which the user pool was created.
         """
-        ...
+        return pulumi.get(self, "aws_region")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -468,7 +468,7 @@ class ResolverCachingConfig(dict):
         """
         The list of caching key.
         """
-        ...
+        return pulumi.get(self, "caching_keys")
 
     @property
     @pulumi.getter
@@ -476,7 +476,7 @@ class ResolverCachingConfig(dict):
         """
         The TTL in seconds.
         """
-        ...
+        return pulumi.get(self, "ttl")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -498,7 +498,7 @@ class ResolverPipelineConfig(dict):
         """
         The list of Function ID.
         """
-        ...
+        return pulumi.get(self, "functions")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

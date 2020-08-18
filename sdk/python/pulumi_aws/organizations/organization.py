@@ -133,7 +133,7 @@ class Organization(pulumi.CustomResource):
         """
         List of organization accounts including the master account. For a list excluding the master account, see the `non_master_accounts` attribute. All elements have these attributes:
         """
-        ...
+        return pulumi.get(self, "accounts")
 
     @property
     @pulumi.getter
@@ -141,7 +141,7 @@ class Organization(pulumi.CustomResource):
         """
         ARN of the root
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="awsServiceAccessPrincipals")
@@ -149,7 +149,7 @@ class Organization(pulumi.CustomResource):
         """
         List of AWS service principal names for which you want to enable integration with your organization. This is typically in the form of a URL, such as service-abbreviation.amazonaws.com. Organization must have `feature_set` set to `ALL`. For additional information, see the [AWS Organizations User Guide](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html).
         """
-        ...
+        return pulumi.get(self, "aws_service_access_principals")
 
     @property
     @pulumi.getter(name="enabledPolicyTypes")
@@ -157,7 +157,7 @@ class Organization(pulumi.CustomResource):
         """
         List of Organizations policy types to enable in the Organization Root. Organization must have `feature_set` set to `ALL`. For additional information about valid policy types (e.g. `BACKUP_POLICY`, `SERVICE_CONTROL_POLICY`, and `TAG_POLICY`), see the [AWS Organizations API Reference](https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnablePolicyType.html).
         """
-        ...
+        return pulumi.get(self, "enabled_policy_types")
 
     @property
     @pulumi.getter(name="featureSet")
@@ -165,7 +165,7 @@ class Organization(pulumi.CustomResource):
         """
         Specify "ALL" (default) or "CONSOLIDATED_BILLING".
         """
-        ...
+        return pulumi.get(self, "feature_set")
 
     @property
     @pulumi.getter(name="masterAccountArn")
@@ -173,7 +173,7 @@ class Organization(pulumi.CustomResource):
         """
         ARN of the master account
         """
-        ...
+        return pulumi.get(self, "master_account_arn")
 
     @property
     @pulumi.getter(name="masterAccountEmail")
@@ -181,7 +181,7 @@ class Organization(pulumi.CustomResource):
         """
         Email address of the master account
         """
-        ...
+        return pulumi.get(self, "master_account_email")
 
     @property
     @pulumi.getter(name="masterAccountId")
@@ -189,7 +189,7 @@ class Organization(pulumi.CustomResource):
         """
         Identifier of the master account
         """
-        ...
+        return pulumi.get(self, "master_account_id")
 
     @property
     @pulumi.getter(name="nonMasterAccounts")
@@ -197,7 +197,7 @@ class Organization(pulumi.CustomResource):
         """
         List of organization accounts excluding the master account. For a list including the master account, see the `accounts` attribute. All elements have these attributes:
         """
-        ...
+        return pulumi.get(self, "non_master_accounts")
 
     @property
     @pulumi.getter
@@ -205,7 +205,7 @@ class Organization(pulumi.CustomResource):
         """
         List of organization roots. All elements have these attributes:
         """
-        ...
+        return pulumi.get(self, "roots")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

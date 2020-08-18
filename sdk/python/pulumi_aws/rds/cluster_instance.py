@@ -297,7 +297,7 @@ class ClusterInstance(pulumi.CustomResource):
         Specifies whether any database modifications
         are applied immediately, or during the next maintenance window. Default is`false`.
         """
-        ...
+        return pulumi.get(self, "apply_immediately")
 
     @property
     @pulumi.getter
@@ -305,7 +305,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of cluster instance
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="autoMinorVersionUpgrade")
@@ -313,7 +313,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         Indicates that minor engine upgrades will be applied automatically to the DB instance during the maintenance window. Default `true`.
         """
-        ...
+        return pulumi.get(self, "auto_minor_version_upgrade")
 
     @property
     @pulumi.getter(name="availabilityZone")
@@ -321,7 +321,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         The EC2 Availability Zone that the DB instance is created in. See [docs](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBInstance.html) about the details.
         """
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter(name="caCertIdentifier")
@@ -329,7 +329,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         The identifier of the CA certificate for the DB instance.
         """
-        ...
+        return pulumi.get(self, "ca_cert_identifier")
 
     @property
     @pulumi.getter(name="clusterIdentifier")
@@ -337,7 +337,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         The identifier of the `rds.Cluster` in which to launch this instance.
         """
-        ...
+        return pulumi.get(self, "cluster_identifier")
 
     @property
     @pulumi.getter(name="copyTagsToSnapshot")
@@ -345,7 +345,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         Indicates whether to copy all of the user-defined tags from the DB instance to snapshots of the DB instance. Default `false`.
         """
-        ...
+        return pulumi.get(self, "copy_tags_to_snapshot")
 
     @property
     @pulumi.getter(name="dbParameterGroupName")
@@ -353,7 +353,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         The name of the DB parameter group to associate with this instance.
         """
-        ...
+        return pulumi.get(self, "db_parameter_group_name")
 
     @property
     @pulumi.getter(name="dbSubnetGroupName")
@@ -361,7 +361,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         A DB subnet group to associate with this DB instance. **NOTE:** This must match the `db_subnet_group_name` of the attached `rds.Cluster`.
         """
-        ...
+        return pulumi.get(self, "db_subnet_group_name")
 
     @property
     @pulumi.getter(name="dbiResourceId")
@@ -369,7 +369,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         The region-unique, immutable identifier for the DB instance.
         """
-        ...
+        return pulumi.get(self, "dbi_resource_id")
 
     @property
     @pulumi.getter
@@ -377,7 +377,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         The DNS address for this instance. May not be writable
         """
-        ...
+        return pulumi.get(self, "endpoint")
 
     @property
     @pulumi.getter
@@ -388,7 +388,7 @@ class ClusterInstance(pulumi.CustomResource):
         see [Comparison between Aurora MySQL 1 and Aurora MySQL 2](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/AuroraMySQL.Updates.20180206.html)
         in the Amazon RDS User Guide.
         """
-        ...
+        return pulumi.get(self, "engine")
 
     @property
     @pulumi.getter(name="engineVersion")
@@ -396,7 +396,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         The database engine version.
         """
-        ...
+        return pulumi.get(self, "engine_version")
 
     @property
     @pulumi.getter
@@ -404,7 +404,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         The indentifier for the RDS instance, if omitted, this provider will assign a random, unique identifier.
         """
-        ...
+        return pulumi.get(self, "identifier")
 
     @property
     @pulumi.getter(name="identifierPrefix")
@@ -412,7 +412,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         Creates a unique identifier beginning with the specified prefix. Conflicts with `identifier`.
         """
-        ...
+        return pulumi.get(self, "identifier_prefix")
 
     @property
     @pulumi.getter(name="instanceClass")
@@ -421,7 +421,7 @@ class ClusterInstance(pulumi.CustomResource):
         The instance class to use. For details on CPU
         and memory, see [Scaling Aurora DB Instances](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Aurora.Managing.html). Aurora uses `db.*` instance classes/types. Please see [AWS Documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html) for currently available instance classes and complete details.
         """
-        ...
+        return pulumi.get(self, "instance_class")
 
     @property
     @pulumi.getter(name="kmsKeyId")
@@ -429,7 +429,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         The ARN for the KMS encryption key if one is set to the cluster.
         """
-        ...
+        return pulumi.get(self, "kms_key_id")
 
     @property
     @pulumi.getter(name="monitoringInterval")
@@ -437,7 +437,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance. To disable collecting Enhanced Monitoring metrics, specify 0. The default is 0. Valid Values: 0, 1, 5, 10, 15, 30, 60.
         """
-        ...
+        return pulumi.get(self, "monitoring_interval")
 
     @property
     @pulumi.getter(name="monitoringRoleArn")
@@ -447,7 +447,7 @@ class ClusterInstance(pulumi.CustomResource):
         enhanced monitoring metrics to CloudWatch Logs. You can find more information on the [AWS Documentation](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.html)
         what IAM permissions are needed to allow Enhanced Monitoring for RDS Instances.
         """
-        ...
+        return pulumi.get(self, "monitoring_role_arn")
 
     @property
     @pulumi.getter(name="performanceInsightsEnabled")
@@ -455,7 +455,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         Specifies whether Performance Insights is enabled or not.
         """
-        ...
+        return pulumi.get(self, "performance_insights_enabled")
 
     @property
     @pulumi.getter(name="performanceInsightsKmsKeyId")
@@ -463,7 +463,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         The ARN for the KMS key to encrypt Performance Insights data. When specifying `performance_insights_kms_key_id`, `performance_insights_enabled` needs to be set to true.
         """
-        ...
+        return pulumi.get(self, "performance_insights_kms_key_id")
 
     @property
     @pulumi.getter
@@ -471,7 +471,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         The database port
         """
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter(name="preferredBackupWindow")
@@ -480,7 +480,7 @@ class ClusterInstance(pulumi.CustomResource):
         The daily time range during which automated backups are created if automated backups are enabled.
         Eg: "04:00-09:00"
         """
-        ...
+        return pulumi.get(self, "preferred_backup_window")
 
     @property
     @pulumi.getter(name="preferredMaintenanceWindow")
@@ -489,7 +489,7 @@ class ClusterInstance(pulumi.CustomResource):
         The window to perform maintenance in.
         Syntax: "ddd:hh24:mi-ddd:hh24:mi". Eg: "Mon:00:00-Mon:03:00".
         """
-        ...
+        return pulumi.get(self, "preferred_maintenance_window")
 
     @property
     @pulumi.getter(name="promotionTier")
@@ -497,7 +497,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         Default 0. Failover Priority setting on instance level. The reader who has lower tier has higher priority to get promoted to writer.
         """
-        ...
+        return pulumi.get(self, "promotion_tier")
 
     @property
     @pulumi.getter(name="publiclyAccessible")
@@ -507,7 +507,7 @@ class ClusterInstance(pulumi.CustomResource):
         Default `false`. See the documentation on [Creating DB Instances](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBInstance.html) for more
         details on controlling this property.
         """
-        ...
+        return pulumi.get(self, "publicly_accessible")
 
     @property
     @pulumi.getter(name="storageEncrypted")
@@ -515,7 +515,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         Specifies whether the DB cluster is encrypted.
         """
-        ...
+        return pulumi.get(self, "storage_encrypted")
 
     @property
     @pulumi.getter
@@ -523,7 +523,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         A map of tags to assign to the instance.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -531,7 +531,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         Boolean indicating if this instance is writable. `False` indicates this instance is a read replica.
         """
-        ...
+        return pulumi.get(self, "writer")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

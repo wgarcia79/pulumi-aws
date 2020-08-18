@@ -93,7 +93,7 @@ class GetClusterResult:
     @property
     @pulumi.getter
     def arn(self) -> str:
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="availabilityZone")
@@ -101,7 +101,7 @@ class GetClusterResult:
         """
         The Availability Zone for the cache cluster.
         """
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter(name="cacheNodes")
@@ -110,7 +110,7 @@ class GetClusterResult:
         List of node objects including `id`, `address`, `port` and `availability_zone`.
         Referenceable e.g. as `${data.aws_elasticache_cluster.bar.cache_nodes.0.address}`
         """
-        ...
+        return pulumi.get(self, "cache_nodes")
 
     @property
     @pulumi.getter(name="clusterAddress")
@@ -118,12 +118,12 @@ class GetClusterResult:
         """
         (Memcached only) The DNS name of the cache cluster without the port appended.
         """
-        ...
+        return pulumi.get(self, "cluster_address")
 
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> str:
-        ...
+        return pulumi.get(self, "cluster_id")
 
     @property
     @pulumi.getter(name="configurationEndpoint")
@@ -131,7 +131,7 @@ class GetClusterResult:
         """
         (Memcached only) The configuration endpoint to allow host discovery.
         """
-        ...
+        return pulumi.get(self, "configuration_endpoint")
 
     @property
     @pulumi.getter
@@ -139,7 +139,7 @@ class GetClusterResult:
         """
         Name of the cache engine.
         """
-        ...
+        return pulumi.get(self, "engine")
 
     @property
     @pulumi.getter(name="engineVersion")
@@ -147,7 +147,7 @@ class GetClusterResult:
         """
         Version number of the cache engine.
         """
-        ...
+        return pulumi.get(self, "engine_version")
 
     @property
     @pulumi.getter
@@ -155,7 +155,7 @@ class GetClusterResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="maintenanceWindow")
@@ -164,7 +164,7 @@ class GetClusterResult:
         Specifies the weekly time range for when maintenance
         on the cache cluster is performed.
         """
-        ...
+        return pulumi.get(self, "maintenance_window")
 
     @property
     @pulumi.getter(name="nodeType")
@@ -172,7 +172,7 @@ class GetClusterResult:
         """
         The cluster node type.
         """
-        ...
+        return pulumi.get(self, "node_type")
 
     @property
     @pulumi.getter(name="notificationTopicArn")
@@ -181,7 +181,7 @@ class GetClusterResult:
         An Amazon Resource Name (ARN) of an
         SNS topic that ElastiCache notifications get sent to.
         """
-        ...
+        return pulumi.get(self, "notification_topic_arn")
 
     @property
     @pulumi.getter(name="numCacheNodes")
@@ -189,7 +189,7 @@ class GetClusterResult:
         """
         The number of cache nodes that the cache cluster has.
         """
-        ...
+        return pulumi.get(self, "num_cache_nodes")
 
     @property
     @pulumi.getter(name="parameterGroupName")
@@ -197,7 +197,7 @@ class GetClusterResult:
         """
         Name of the parameter group associated with this cache cluster.
         """
-        ...
+        return pulumi.get(self, "parameter_group_name")
 
     @property
     @pulumi.getter
@@ -206,7 +206,7 @@ class GetClusterResult:
         The port number on which each of the cache nodes will
         accept connections.
         """
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter(name="replicationGroupId")
@@ -214,7 +214,7 @@ class GetClusterResult:
         """
         The replication group to which this cache cluster belongs.
         """
-        ...
+        return pulumi.get(self, "replication_group_id")
 
     @property
     @pulumi.getter(name="securityGroupIds")
@@ -222,7 +222,7 @@ class GetClusterResult:
         """
         List VPC security groups associated with the cache cluster.
         """
-        ...
+        return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter(name="securityGroupNames")
@@ -230,7 +230,7 @@ class GetClusterResult:
         """
         List of security group names associated with this cache cluster.
         """
-        ...
+        return pulumi.get(self, "security_group_names")
 
     @property
     @pulumi.getter(name="snapshotRetentionLimit")
@@ -239,7 +239,7 @@ class GetClusterResult:
         The number of days for which ElastiCache will
         retain automatic cache cluster snapshots before deleting them.
         """
-        ...
+        return pulumi.get(self, "snapshot_retention_limit")
 
     @property
     @pulumi.getter(name="snapshotWindow")
@@ -248,7 +248,7 @@ class GetClusterResult:
         The daily time range (in UTC) during which ElastiCache will
         begin taking a daily snapshot of the cache cluster.
         """
-        ...
+        return pulumi.get(self, "snapshot_window")
 
     @property
     @pulumi.getter(name="subnetGroupName")
@@ -256,7 +256,7 @@ class GetClusterResult:
         """
         Name of the subnet group associated to the cache cluster.
         """
-        ...
+        return pulumi.get(self, "subnet_group_name")
 
     @property
     @pulumi.getter
@@ -264,7 +264,7 @@ class GetClusterResult:
         """
         The tags assigned to the resource
         """
-        ...
+        return pulumi.get(self, "tags")
 
 
 

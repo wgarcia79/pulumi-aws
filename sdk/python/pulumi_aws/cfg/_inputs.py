@@ -41,11 +41,11 @@ class ConfigurationAggregatorAccountAggregationSourceArgs:
         """
         List of 12-digit account IDs of the account(s) being aggregated.
         """
-        ...
+        return pulumi.get(self, "account_ids")
 
     @account_ids.setter
     def account_ids(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "account_ids", value)
 
     @property
     @pulumi.getter(name="allRegions")
@@ -53,11 +53,11 @@ class ConfigurationAggregatorAccountAggregationSourceArgs:
         """
         If true, aggregate existing AWS Config regions and future regions.
         """
-        ...
+        return pulumi.get(self, "all_regions")
 
     @all_regions.setter
     def all_regions(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "all_regions", value)
 
     @property
     @pulumi.getter
@@ -65,11 +65,11 @@ class ConfigurationAggregatorAccountAggregationSourceArgs:
         """
         List of source regions being aggregated.
         """
-        ...
+        return pulumi.get(self, "regions")
 
     @regions.setter
     def regions(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "regions", value)
 
 
 @pulumi.input_type
@@ -95,11 +95,11 @@ class ConfigurationAggregatorOrganizationAggregationSourceArgs:
         """
         ARN of the IAM role used to retrieve AWS Organization details associated with the aggregator account.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @role_arn.setter
     def role_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "role_arn", value)
 
     @property
     @pulumi.getter(name="allRegions")
@@ -107,11 +107,11 @@ class ConfigurationAggregatorOrganizationAggregationSourceArgs:
         """
         If true, aggregate existing AWS Config regions and future regions.
         """
-        ...
+        return pulumi.get(self, "all_regions")
 
     @all_regions.setter
     def all_regions(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "all_regions", value)
 
     @property
     @pulumi.getter
@@ -119,11 +119,11 @@ class ConfigurationAggregatorOrganizationAggregationSourceArgs:
         """
         List of source regions being aggregated.
         """
-        ...
+        return pulumi.get(self, "regions")
 
     @regions.setter
     def regions(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "regions", value)
 
 
 @pulumi.input_type
@@ -146,11 +146,11 @@ class DeliveryChannelSnapshotDeliveryPropertiesArgs:
         e.g. `One_Hour` or `Three_Hours`.
         Valid values are listed [here](https://docs.aws.amazon.com/config/latest/APIReference/API_ConfigSnapshotDeliveryProperties.html#API_ConfigSnapshotDeliveryProperties_Contents).
         """
-        ...
+        return pulumi.get(self, "delivery_frequency")
 
     @delivery_frequency.setter
     def delivery_frequency(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "delivery_frequency", value)
 
 
 @pulumi.input_type
@@ -184,11 +184,11 @@ class RecorderRecordingGroupArgs:
         for every supported type of regional resource (which includes any new type that will become supported in the future).
         Conflicts with `resource_types`. Defaults to `true`.
         """
-        ...
+        return pulumi.get(self, "all_supported")
 
     @all_supported.setter
     def all_supported(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "all_supported", value)
 
     @property
     @pulumi.getter(name="includeGlobalResourceTypes")
@@ -197,11 +197,11 @@ class RecorderRecordingGroupArgs:
         Specifies whether AWS Config includes all supported types of *global resources*
         with the resources that it records. Requires `all_supported = true`. Conflicts with `resource_types`.
         """
-        ...
+        return pulumi.get(self, "include_global_resource_types")
 
     @include_global_resource_types.setter
     def include_global_resource_types(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "include_global_resource_types", value)
 
     @property
     @pulumi.getter(name="resourceTypes")
@@ -211,11 +211,11 @@ class RecorderRecordingGroupArgs:
         AWS Config records configuration changes (for example, `AWS::EC2::Instance` or `AWS::CloudTrail::Trail`).
         See [relevant part of AWS Docs](http://docs.aws.amazon.com/config/latest/APIReference/API_ResourceIdentifier.html#config-Type-ResourceIdentifier-resourceType) for available types.
         """
-        ...
+        return pulumi.get(self, "resource_types")
 
     @resource_types.setter
     def resource_types(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "resource_types", value)
 
 
 @pulumi.input_type
@@ -251,11 +251,11 @@ class RuleScopeArgs:
         The IDs of the only AWS resource that you want to trigger an evaluation for the rule.
         If you specify a resource ID, you must specify one resource type for `compliance_resource_types`.
         """
-        ...
+        return pulumi.get(self, "compliance_resource_id")
 
     @compliance_resource_id.setter
     def compliance_resource_id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "compliance_resource_id", value)
 
     @property
     @pulumi.getter(name="complianceResourceTypes")
@@ -265,11 +265,11 @@ class RuleScopeArgs:
         evaluation for the rule. e.g. `AWS::EC2::Instance`. You can only specify one type if you also specify
         a resource ID for `compliance_resource_id`. See [relevant part of AWS Docs](http://docs.aws.amazon.com/config/latest/APIReference/API_ResourceIdentifier.html#config-Type-ResourceIdentifier-resourceType) for available types.
         """
-        ...
+        return pulumi.get(self, "compliance_resource_types")
 
     @compliance_resource_types.setter
     def compliance_resource_types(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "compliance_resource_types", value)
 
     @property
     @pulumi.getter(name="tagKey")
@@ -278,11 +278,11 @@ class RuleScopeArgs:
         The tag key that is applied to only those AWS resources that you want you
         want to trigger an evaluation for the rule.
         """
-        ...
+        return pulumi.get(self, "tag_key")
 
     @tag_key.setter
     def tag_key(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "tag_key", value)
 
     @property
     @pulumi.getter(name="tagValue")
@@ -290,11 +290,11 @@ class RuleScopeArgs:
         """
         The tag value applied to only those AWS resources that you want to trigger an evaluation for the rule.
         """
-        ...
+        return pulumi.get(self, "tag_value")
 
     @tag_value.setter
     def tag_value(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "tag_value", value)
 
 
 @pulumi.input_type
@@ -319,11 +319,11 @@ class RuleSourceArgs:
         """
         Indicates whether AWS or the customer owns and manages the AWS Config rule. Valid values are `AWS` or `CUSTOM_LAMBDA`. For more information about managed rules, see the [AWS Config Managed Rules documentation](https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html). For more information about custom rules, see the [AWS Config Custom Rules documentation](https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_develop-rules.html). Custom Lambda Functions require permissions to allow the AWS Config service to invoke them, e.g. via the `lambda.Permission` resource.
         """
-        ...
+        return pulumi.get(self, "owner")
 
     @owner.setter
     def owner(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "owner", value)
 
     @property
     @pulumi.getter(name="sourceIdentifier")
@@ -331,11 +331,11 @@ class RuleSourceArgs:
         """
         For AWS Config managed rules, a predefined identifier, e.g `IAM_PASSWORD_POLICY`. For custom Lambda rules, the identifier is the ARN of the Lambda Function, such as `arn:aws:lambda:us-east-1:123456789012:function:custom_rule_name` or the `arn` attribute of the `lambda.Function` resource.
         """
-        ...
+        return pulumi.get(self, "source_identifier")
 
     @source_identifier.setter
     def source_identifier(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "source_identifier", value)
 
     @property
     @pulumi.getter(name="sourceDetails")
@@ -343,11 +343,11 @@ class RuleSourceArgs:
         """
         Provides the source and type of the event that causes AWS Config to evaluate your AWS resources. Only valid if `owner` is `CUSTOM_LAMBDA`.
         """
-        ...
+        return pulumi.get(self, "source_details")
 
     @source_details.setter
     def source_details(self, value: Optional[pulumi.Input[List[pulumi.Input['RuleSourceSourceDetailArgs']]]]):
-        ...
+        pulumi.set(self, "source_details", value)
 
 
 @pulumi.input_type
@@ -377,11 +377,11 @@ class RuleSourceSourceDetailArgs:
         The source of the event, such as an AWS service, that triggers AWS Config
         to evaluate your AWS resources. This defaults to `aws.config` and is the only valid value.
         """
-        ...
+        return pulumi.get(self, "event_source")
 
     @event_source.setter
     def event_source(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "event_source", value)
 
     @property
     @pulumi.getter(name="maximumExecutionFrequency")
@@ -390,11 +390,11 @@ class RuleSourceSourceDetailArgs:
         The frequency that you want AWS Config to run evaluations for a rule that
         is triggered periodically. If specified, requires `message_type` to be `ScheduledNotification`.
         """
-        ...
+        return pulumi.get(self, "maximum_execution_frequency")
 
     @maximum_execution_frequency.setter
     def maximum_execution_frequency(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "maximum_execution_frequency", value)
 
     @property
     @pulumi.getter(name="messageType")
@@ -402,10 +402,10 @@ class RuleSourceSourceDetailArgs:
         """
         The type of notification that triggers AWS Config to run an evaluation for a rule. You can specify the following notification types:
         """
-        ...
+        return pulumi.get(self, "message_type")
 
     @message_type.setter
     def message_type(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "message_type", value)
 
 

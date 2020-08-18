@@ -109,7 +109,7 @@ class PlacementGroup(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the placement group.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -117,7 +117,7 @@ class PlacementGroup(pulumi.CustomResource):
         """
         The name of the placement group.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="placementGroupId")
@@ -125,7 +125,7 @@ class PlacementGroup(pulumi.CustomResource):
         """
         The ID of the placement group.
         """
-        ...
+        return pulumi.get(self, "placement_group_id")
 
     @property
     @pulumi.getter
@@ -133,7 +133,7 @@ class PlacementGroup(pulumi.CustomResource):
         """
         The placement strategy. Can be `"cluster"`, `"partition"` or `"spread"`.
         """
-        ...
+        return pulumi.get(self, "strategy")
 
     @property
     @pulumi.getter
@@ -141,7 +141,7 @@ class PlacementGroup(pulumi.CustomResource):
         """
         Key-value map of resource tags.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

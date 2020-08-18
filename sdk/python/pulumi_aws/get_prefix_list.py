@@ -46,12 +46,12 @@ class GetPrefixListResult:
         """
         The list of CIDR blocks for the AWS service associated with the prefix list.
         """
-        ...
+        return pulumi.get(self, "cidr_blocks")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetPrefixListFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
@@ -59,7 +59,7 @@ class GetPrefixListResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -67,12 +67,12 @@ class GetPrefixListResult:
         """
         The name of the selected prefix list.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="prefixListId")
     def prefix_list_id(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "prefix_list_id")
 
 
 

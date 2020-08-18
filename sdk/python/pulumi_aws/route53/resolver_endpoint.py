@@ -149,7 +149,7 @@ class ResolverEndpoint(pulumi.CustomResource):
         """
         The ARN of the Route 53 Resolver endpoint.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -159,7 +159,7 @@ class ResolverEndpoint(pulumi.CustomResource):
         Valid values are `INBOUND` (resolver forwards DNS queries to the DNS service for a VPC from your network or another VPC)
         or `OUTBOUND` (resolver forwards DNS queries from the DNS service for a VPC to your network or another VPC).
         """
-        ...
+        return pulumi.get(self, "direction")
 
     @property
     @pulumi.getter(name="hostVpcId")
@@ -167,7 +167,7 @@ class ResolverEndpoint(pulumi.CustomResource):
         """
         The ID of the VPC that you want to create the resolver endpoint in.
         """
-        ...
+        return pulumi.get(self, "host_vpc_id")
 
     @property
     @pulumi.getter(name="ipAddresses")
@@ -176,7 +176,7 @@ class ResolverEndpoint(pulumi.CustomResource):
         The subnets and IP addresses in your VPC that you want DNS queries to pass through on the way from your VPCs
         to your network (for outbound endpoints) or on the way from your network to your VPCs (for inbound endpoints). Described below.
         """
-        ...
+        return pulumi.get(self, "ip_addresses")
 
     @property
     @pulumi.getter
@@ -184,7 +184,7 @@ class ResolverEndpoint(pulumi.CustomResource):
         """
         The friendly name of the Route 53 Resolver endpoint.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="securityGroupIds")
@@ -192,7 +192,7 @@ class ResolverEndpoint(pulumi.CustomResource):
         """
         The ID of one or more security groups that you want to use to control access to this VPC.
         """
-        ...
+        return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter
@@ -200,7 +200,7 @@ class ResolverEndpoint(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

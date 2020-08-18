@@ -123,7 +123,7 @@ class Recorder(pulumi.CustomResource):
         """
         The name of the recorder. Defaults to `default`. Changing it recreates the resource.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="recordingGroup")
@@ -131,7 +131,7 @@ class Recorder(pulumi.CustomResource):
         """
         Recording group - see below.
         """
-        ...
+        return pulumi.get(self, "recording_group")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -141,7 +141,7 @@ class Recorder(pulumi.CustomResource):
         used to make read or write requests to the delivery channel and to describe the AWS resources associated with the account.
         See [AWS Docs](http://docs.aws.amazon.com/config/latest/developerguide/iamrole-permissions.html) for more details.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

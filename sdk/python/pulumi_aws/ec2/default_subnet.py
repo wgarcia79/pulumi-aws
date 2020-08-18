@@ -142,22 +142,22 @@ class DefaultSubnet(pulumi.CustomResource):
     @property
     @pulumi.getter
     def arn(self) -> str:
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="assignIpv6AddressOnCreation")
     def assign_ipv6_address_on_creation(self) -> bool:
-        ...
+        return pulumi.get(self, "assign_ipv6_address_on_creation")
 
     @property
     @pulumi.getter(name="availabilityZone")
     def availability_zone(self) -> str:
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter(name="availabilityZoneId")
     def availability_zone_id(self) -> str:
-        ...
+        return pulumi.get(self, "availability_zone_id")
 
     @property
     @pulumi.getter(name="cidrBlock")
@@ -165,7 +165,7 @@ class DefaultSubnet(pulumi.CustomResource):
         """
         The CIDR block for the subnet.
         """
-        ...
+        return pulumi.get(self, "cidr_block")
 
     @property
     @pulumi.getter(name="ipv6CidrBlock")
@@ -173,12 +173,12 @@ class DefaultSubnet(pulumi.CustomResource):
         """
         The IPv6 CIDR block.
         """
-        ...
+        return pulumi.get(self, "ipv6_cidr_block")
 
     @property
     @pulumi.getter(name="ipv6CidrBlockAssociationId")
     def ipv6_cidr_block_association_id(self) -> str:
-        ...
+        return pulumi.get(self, "ipv6_cidr_block_association_id")
 
     @property
     @pulumi.getter(name="mapPublicIpOnLaunch")
@@ -188,12 +188,12 @@ class DefaultSubnet(pulumi.CustomResource):
         that instances launched into the subnet should be assigned
         a public IP address.
         """
-        ...
+        return pulumi.get(self, "map_public_ip_on_launch")
 
     @property
     @pulumi.getter(name="outpostArn")
     def outpost_arn(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "outpost_arn")
 
     @property
     @pulumi.getter(name="ownerId")
@@ -201,7 +201,7 @@ class DefaultSubnet(pulumi.CustomResource):
         """
         The ID of the AWS account that owns the subnet.
         """
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter
@@ -209,7 +209,7 @@ class DefaultSubnet(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -217,7 +217,7 @@ class DefaultSubnet(pulumi.CustomResource):
         """
         The VPC ID.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

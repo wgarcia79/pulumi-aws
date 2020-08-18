@@ -42,7 +42,7 @@ class EndpointElasticsearchSettings(dict):
         """
         Endpoint for the Elasticsearch cluster.
         """
-        ...
+        return pulumi.get(self, "endpoint_uri")
 
     @property
     @pulumi.getter(name="serviceAccessRoleArn")
@@ -50,7 +50,7 @@ class EndpointElasticsearchSettings(dict):
         """
         Amazon Resource Name (ARN) of the IAM Role with permissions to write to the Elasticsearch cluster.
         """
-        ...
+        return pulumi.get(self, "service_access_role_arn")
 
     @property
     @pulumi.getter(name="errorRetryDuration")
@@ -58,7 +58,7 @@ class EndpointElasticsearchSettings(dict):
         """
         Maximum number of seconds for which DMS retries failed API requests to the Elasticsearch cluster. Defaults to `300`.
         """
-        ...
+        return pulumi.get(self, "error_retry_duration")
 
     @property
     @pulumi.getter(name="fullLoadErrorPercentage")
@@ -66,7 +66,7 @@ class EndpointElasticsearchSettings(dict):
         """
         Maximum percentage of records that can fail to be written before a full load operation stops. Defaults to `10`.
         """
-        ...
+        return pulumi.get(self, "full_load_error_percentage")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -91,7 +91,7 @@ class EndpointKafkaSettings(dict):
         """
         Kafka broker location. Specify in the form broker-hostname-or-ip:port.
         """
-        ...
+        return pulumi.get(self, "broker")
 
     @property
     @pulumi.getter
@@ -99,7 +99,7 @@ class EndpointKafkaSettings(dict):
         """
         Kafka topic for migration. Defaults to `kafka-default-topic`.
         """
-        ...
+        return pulumi.get(self, "topic")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -129,7 +129,7 @@ class EndpointKinesisSettings(dict):
         """
         Output format for the records created. Defaults to `json`. Valid values are `json` and `json_unformatted` (a single line with no tab).
         """
-        ...
+        return pulumi.get(self, "message_format")
 
     @property
     @pulumi.getter(name="serviceAccessRoleArn")
@@ -137,7 +137,7 @@ class EndpointKinesisSettings(dict):
         """
         Amazon Resource Name (ARN) of the IAM Role with permissions to write to the Kinesis data stream.
         """
-        ...
+        return pulumi.get(self, "service_access_role_arn")
 
     @property
     @pulumi.getter(name="streamArn")
@@ -145,7 +145,7 @@ class EndpointKinesisSettings(dict):
         """
         Amazon Resource Name (ARN) of the Kinesis data stream.
         """
-        ...
+        return pulumi.get(self, "stream_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -187,7 +187,7 @@ class EndpointMongodbSettings(dict):
         """
         Authentication mechanism to access the MongoDB source endpoint. Defaults to `default`.
         """
-        ...
+        return pulumi.get(self, "auth_mechanism")
 
     @property
     @pulumi.getter(name="authSource")
@@ -195,7 +195,7 @@ class EndpointMongodbSettings(dict):
         """
         Authentication database name. Not used when `auth_type` is `no`. Defaults to `admin`.
         """
-        ...
+        return pulumi.get(self, "auth_source")
 
     @property
     @pulumi.getter(name="authType")
@@ -203,7 +203,7 @@ class EndpointMongodbSettings(dict):
         """
         Authentication type to access the MongoDB source endpoint. Defaults to `password`.
         """
-        ...
+        return pulumi.get(self, "auth_type")
 
     @property
     @pulumi.getter(name="docsToInvestigate")
@@ -211,7 +211,7 @@ class EndpointMongodbSettings(dict):
         """
         Number of documents to preview to determine the document organization. Use this setting when `nesting_level` is set to `one`. Defaults to `1000`.
         """
-        ...
+        return pulumi.get(self, "docs_to_investigate")
 
     @property
     @pulumi.getter(name="extractDocId")
@@ -219,7 +219,7 @@ class EndpointMongodbSettings(dict):
         """
         Document ID. Use this setting when `nesting_level` is set to `none`. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "extract_doc_id")
 
     @property
     @pulumi.getter(name="nestingLevel")
@@ -227,7 +227,7 @@ class EndpointMongodbSettings(dict):
         """
         Specifies either document or table mode. Defaults to `none`. Valid values are `one` (table mode) and `none` (document mode).
         """
-        ...
+        return pulumi.get(self, "nesting_level")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -273,7 +273,7 @@ class EndpointS3Settings(dict):
         """
         S3 Bucket Object prefix.
         """
-        ...
+        return pulumi.get(self, "bucket_folder")
 
     @property
     @pulumi.getter(name="bucketName")
@@ -281,7 +281,7 @@ class EndpointS3Settings(dict):
         """
         S3 Bucket name.
         """
-        ...
+        return pulumi.get(self, "bucket_name")
 
     @property
     @pulumi.getter(name="compressionType")
@@ -289,7 +289,7 @@ class EndpointS3Settings(dict):
         """
         Set to compress target files. Defaults to `NONE`. Valid values are `GZIP` and `NONE`.
         """
-        ...
+        return pulumi.get(self, "compression_type")
 
     @property
     @pulumi.getter(name="csvDelimiter")
@@ -297,7 +297,7 @@ class EndpointS3Settings(dict):
         """
         Delimiter used to separate columns in the source files. Defaults to `,`.
         """
-        ...
+        return pulumi.get(self, "csv_delimiter")
 
     @property
     @pulumi.getter(name="csvRowDelimiter")
@@ -305,7 +305,7 @@ class EndpointS3Settings(dict):
         """
         Delimiter used to separate rows in the source files. Defaults to `\n`.
         """
-        ...
+        return pulumi.get(self, "csv_row_delimiter")
 
     @property
     @pulumi.getter(name="externalTableDefinition")
@@ -313,7 +313,7 @@ class EndpointS3Settings(dict):
         """
         JSON document that describes how AWS DMS should interpret the data.
         """
-        ...
+        return pulumi.get(self, "external_table_definition")
 
     @property
     @pulumi.getter(name="serviceAccessRoleArn")
@@ -321,7 +321,7 @@ class EndpointS3Settings(dict):
         """
         Amazon Resource Name (ARN) of the IAM Role with permissions to read from or write to the S3 Bucket.
         """
-        ...
+        return pulumi.get(self, "service_access_role_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

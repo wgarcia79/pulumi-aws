@@ -262,7 +262,7 @@ class MaintenanceWindowTask(pulumi.CustomResource):
         """
         The description of the maintenance window task.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="loggingInfo")
@@ -270,7 +270,7 @@ class MaintenanceWindowTask(pulumi.CustomResource):
         """
         A structure containing information about an Amazon S3 bucket to write instance-level logs to. Use `task_invocation_parameters` configuration block `run_command_parameters` configuration block `output_s3_*` arguments instead. Conflicts with `task_invocation_parameters`. Documented below.
         """
-        ...
+        return pulumi.get(self, "logging_info")
 
     @property
     @pulumi.getter(name="maxConcurrency")
@@ -278,7 +278,7 @@ class MaintenanceWindowTask(pulumi.CustomResource):
         """
         The maximum number of targets this task can be run for in parallel.
         """
-        ...
+        return pulumi.get(self, "max_concurrency")
 
     @property
     @pulumi.getter(name="maxErrors")
@@ -286,7 +286,7 @@ class MaintenanceWindowTask(pulumi.CustomResource):
         """
         The maximum number of errors allowed before this task stops being scheduled.
         """
-        ...
+        return pulumi.get(self, "max_errors")
 
     @property
     @pulumi.getter
@@ -294,7 +294,7 @@ class MaintenanceWindowTask(pulumi.CustomResource):
         """
         The name of the maintenance window task.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -302,7 +302,7 @@ class MaintenanceWindowTask(pulumi.CustomResource):
         """
         The priority of the task in the Maintenance Window, the lower the number the higher the priority. Tasks in a Maintenance Window are scheduled in priority order with tasks that have the same priority scheduled in parallel.
         """
-        ...
+        return pulumi.get(self, "priority")
 
     @property
     @pulumi.getter(name="serviceRoleArn")
@@ -310,7 +310,7 @@ class MaintenanceWindowTask(pulumi.CustomResource):
         """
         The role that should be assumed when executing the task.
         """
-        ...
+        return pulumi.get(self, "service_role_arn")
 
     @property
     @pulumi.getter
@@ -318,7 +318,7 @@ class MaintenanceWindowTask(pulumi.CustomResource):
         """
         The targets (either instances or window target ids). Instances are specified using Key=InstanceIds,Values=instanceid1,instanceid2. Window target ids are specified using Key=WindowTargetIds,Values=window target id1, window target id2.
         """
-        ...
+        return pulumi.get(self, "targets")
 
     @property
     @pulumi.getter(name="taskArn")
@@ -326,7 +326,7 @@ class MaintenanceWindowTask(pulumi.CustomResource):
         """
         The ARN of the task to execute.
         """
-        ...
+        return pulumi.get(self, "task_arn")
 
     @property
     @pulumi.getter(name="taskInvocationParameters")
@@ -334,7 +334,7 @@ class MaintenanceWindowTask(pulumi.CustomResource):
         """
         The parameters for task execution. This argument is conflict with `task_parameters` and `logging_info`.
         """
-        ...
+        return pulumi.get(self, "task_invocation_parameters")
 
     @property
     @pulumi.getter(name="taskParameters")
@@ -342,7 +342,7 @@ class MaintenanceWindowTask(pulumi.CustomResource):
         """
         A structure containing information about parameters required by the particular `task_arn`. Use `parameter` configuration blocks under the `task_invocation_parameters` configuration block instead. Conflicts with `task_invocation_parameters`. Documented below.
         """
-        ...
+        return pulumi.get(self, "task_parameters")
 
     @property
     @pulumi.getter(name="taskType")
@@ -350,7 +350,7 @@ class MaintenanceWindowTask(pulumi.CustomResource):
         """
         The type of task being registered. The only allowed value is `RUN_COMMAND`.
         """
-        ...
+        return pulumi.get(self, "task_type")
 
     @property
     @pulumi.getter(name="windowId")
@@ -358,7 +358,7 @@ class MaintenanceWindowTask(pulumi.CustomResource):
         """
         The Id of the maintenance window to register the task with.
         """
-        ...
+        return pulumi.get(self, "window_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

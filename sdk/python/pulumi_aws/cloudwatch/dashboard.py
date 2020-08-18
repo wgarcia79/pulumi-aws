@@ -138,7 +138,7 @@ class Dashboard(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) of the dashboard.
         """
-        ...
+        return pulumi.get(self, "dashboard_arn")
 
     @property
     @pulumi.getter(name="dashboardBody")
@@ -146,7 +146,7 @@ class Dashboard(pulumi.CustomResource):
         """
         The detailed information about the dashboard, including what widgets are included and their location on the dashboard. You can read more about the body structure in the [documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/CloudWatch-Dashboard-Body-Structure.html).
         """
-        ...
+        return pulumi.get(self, "dashboard_body")
 
     @property
     @pulumi.getter(name="dashboardName")
@@ -154,7 +154,7 @@ class Dashboard(pulumi.CustomResource):
         """
         The name of the dashboard.
         """
-        ...
+        return pulumi.get(self, "dashboard_name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

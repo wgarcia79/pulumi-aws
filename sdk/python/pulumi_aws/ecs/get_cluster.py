@@ -54,12 +54,12 @@ class GetClusterResult:
         """
         The ARN of the ECS Cluster
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="clusterName")
     def cluster_name(self) -> str:
-        ...
+        return pulumi.get(self, "cluster_name")
 
     @property
     @pulumi.getter
@@ -67,7 +67,7 @@ class GetClusterResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="pendingTasksCount")
@@ -75,7 +75,7 @@ class GetClusterResult:
         """
         The number of pending tasks for the ECS Cluster
         """
-        ...
+        return pulumi.get(self, "pending_tasks_count")
 
     @property
     @pulumi.getter(name="registeredContainerInstancesCount")
@@ -83,7 +83,7 @@ class GetClusterResult:
         """
         The number of registered container instances for the ECS Cluster
         """
-        ...
+        return pulumi.get(self, "registered_container_instances_count")
 
     @property
     @pulumi.getter(name="runningTasksCount")
@@ -91,7 +91,7 @@ class GetClusterResult:
         """
         The number of running tasks for the ECS Cluster
         """
-        ...
+        return pulumi.get(self, "running_tasks_count")
 
     @property
     @pulumi.getter
@@ -99,7 +99,7 @@ class GetClusterResult:
         """
         The settings associated with the ECS Cluster.
         """
-        ...
+        return pulumi.get(self, "settings")
 
     @property
     @pulumi.getter
@@ -107,7 +107,7 @@ class GetClusterResult:
         """
         The status of the ECS Cluster
         """
-        ...
+        return pulumi.get(self, "status")
 
 
 

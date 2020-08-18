@@ -169,7 +169,7 @@ class Secret(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the secret.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -177,7 +177,7 @@ class Secret(pulumi.CustomResource):
         """
         A description of the secret.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="kmsKeyId")
@@ -185,7 +185,7 @@ class Secret(pulumi.CustomResource):
         """
         Specifies the ARN or alias of the AWS KMS customer master key (CMK) to be used to encrypt the secret values in the versions stored in this secret. If you don't specify this value, then Secrets Manager defaults to using the AWS account's default CMK (the one named `aws/secretsmanager`). If the default KMS CMK with that name doesn't yet exist, then AWS Secrets Manager creates it for you automatically the first time.
         """
-        ...
+        return pulumi.get(self, "kms_key_id")
 
     @property
     @pulumi.getter
@@ -193,7 +193,7 @@ class Secret(pulumi.CustomResource):
         """
         Specifies the friendly name of the new secret. The secret name can consist of uppercase letters, lowercase letters, digits, and any of the following characters: `/_+=.@-` Conflicts with `name_prefix`.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="namePrefix")
@@ -201,7 +201,7 @@ class Secret(pulumi.CustomResource):
         """
         Creates a unique name beginning with the specified prefix. Conflicts with `name`.
         """
-        ...
+        return pulumi.get(self, "name_prefix")
 
     @property
     @pulumi.getter
@@ -209,7 +209,7 @@ class Secret(pulumi.CustomResource):
         """
         A valid JSON document representing a [resource policy](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-based-policies.html).
         """
-        ...
+        return pulumi.get(self, "policy")
 
     @property
     @pulumi.getter(name="recoveryWindowInDays")
@@ -217,7 +217,7 @@ class Secret(pulumi.CustomResource):
         """
         Specifies the number of days that AWS Secrets Manager waits before it can delete the secret. This value can be `0` to force deletion without recovery or range from `7` to `30` days. The default value is `30`.
         """
-        ...
+        return pulumi.get(self, "recovery_window_in_days")
 
     @property
     @pulumi.getter(name="rotationEnabled")
@@ -225,7 +225,7 @@ class Secret(pulumi.CustomResource):
         """
         Specifies whether automatic rotation is enabled for this secret.
         """
-        ...
+        return pulumi.get(self, "rotation_enabled")
 
     @property
     @pulumi.getter(name="rotationLambdaArn")
@@ -233,7 +233,7 @@ class Secret(pulumi.CustomResource):
         """
         Specifies the ARN of the Lambda function that can rotate the secret. Use the `secretsmanager.SecretRotation` resource to manage this configuration instead. As of version 2.67.0, removal of this configuration will no longer remove rotation due to supporting the new resource. Either import the new resource and remove the configuration or manually remove rotation.
         """
-        ...
+        return pulumi.get(self, "rotation_lambda_arn")
 
     @property
     @pulumi.getter(name="rotationRules")
@@ -241,7 +241,7 @@ class Secret(pulumi.CustomResource):
         """
         A structure that defines the rotation configuration for this secret. Defined below. Use the `secretsmanager.SecretRotation` resource to manage this configuration instead. As of version 2.67.0, removal of this configuration will no longer remove rotation due to supporting the new resource. Either import the new resource and remove the configuration or manually remove rotation.
         """
-        ...
+        return pulumi.get(self, "rotation_rules")
 
     @property
     @pulumi.getter
@@ -249,7 +249,7 @@ class Secret(pulumi.CustomResource):
         """
         Specifies a key-value map of user-defined tags that are attached to the secret.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

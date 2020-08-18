@@ -311,7 +311,7 @@ class DomainName(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN)
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="certificateArn")
@@ -319,7 +319,7 @@ class DomainName(pulumi.CustomResource):
         """
         The ARN for an AWS-managed certificate. AWS Certificate Manager is the only supported source. Used when an edge-optimized domain name is desired. Conflicts with `certificate_name`, `certificate_body`, `certificate_chain`, `certificate_private_key`, `regional_certificate_arn`, and `regional_certificate_name`.
         """
-        ...
+        return pulumi.get(self, "certificate_arn")
 
     @property
     @pulumi.getter(name="certificateBody")
@@ -329,7 +329,7 @@ class DomainName(pulumi.CustomResource):
         being registered, in PEM format. Only valid for `EDGE` endpoint configuration type. Conflicts with `certificate_arn`, `regional_certificate_arn`, and
         `regional_certificate_name`.
         """
-        ...
+        return pulumi.get(self, "certificate_body")
 
     @property
     @pulumi.getter(name="certificateChain")
@@ -340,7 +340,7 @@ class DomainName(pulumi.CustomResource):
         create an unbroken chain to a certificate trusted by the intended API clients. Only valid for `EDGE` endpoint configuration type. Conflicts with `certificate_arn`,
         `regional_certificate_arn`, and `regional_certificate_name`.
         """
-        ...
+        return pulumi.get(self, "certificate_chain")
 
     @property
     @pulumi.getter(name="certificateName")
@@ -350,7 +350,7 @@ class DomainName(pulumi.CustomResource):
         certificate as an IAM server certificate. Conflicts with `certificate_arn`, `regional_certificate_arn`, and
         `regional_certificate_name`. Required if `certificate_arn` is not set.
         """
-        ...
+        return pulumi.get(self, "certificate_name")
 
     @property
     @pulumi.getter(name="certificatePrivateKey")
@@ -359,7 +359,7 @@ class DomainName(pulumi.CustomResource):
         The private key associated with the
         domain certificate given in `certificate_body`. Only valid for `EDGE` endpoint configuration type. Conflicts with `certificate_arn`, `regional_certificate_arn`, and `regional_certificate_name`.
         """
-        ...
+        return pulumi.get(self, "certificate_private_key")
 
     @property
     @pulumi.getter(name="certificateUploadDate")
@@ -367,7 +367,7 @@ class DomainName(pulumi.CustomResource):
         """
         The upload date associated with the domain certificate.
         """
-        ...
+        return pulumi.get(self, "certificate_upload_date")
 
     @property
     @pulumi.getter(name="cloudfrontDomainName")
@@ -376,7 +376,7 @@ class DomainName(pulumi.CustomResource):
         The hostname created by Cloudfront to represent
         the distribution that implements this domain name mapping.
         """
-        ...
+        return pulumi.get(self, "cloudfront_domain_name")
 
     @property
     @pulumi.getter(name="cloudfrontZoneId")
@@ -385,7 +385,7 @@ class DomainName(pulumi.CustomResource):
         For convenience, the hosted zone ID (`Z2FDTNDATAQYW2`)
         that can be used to create a Route53 alias record for the distribution.
         """
-        ...
+        return pulumi.get(self, "cloudfront_zone_id")
 
     @property
     @pulumi.getter(name="domainName")
@@ -393,7 +393,7 @@ class DomainName(pulumi.CustomResource):
         """
         The fully-qualified domain name to register
         """
-        ...
+        return pulumi.get(self, "domain_name")
 
     @property
     @pulumi.getter(name="endpointConfiguration")
@@ -401,7 +401,7 @@ class DomainName(pulumi.CustomResource):
         """
         Configuration block defining API endpoint information including type. Defined below.
         """
-        ...
+        return pulumi.get(self, "endpoint_configuration")
 
     @property
     @pulumi.getter(name="regionalCertificateArn")
@@ -409,7 +409,7 @@ class DomainName(pulumi.CustomResource):
         """
         The ARN for an AWS-managed certificate. AWS Certificate Manager is the only supported source. Used when a regional domain name is desired. Conflicts with `certificate_arn`, `certificate_name`, `certificate_body`, `certificate_chain`, and `certificate_private_key`.
         """
-        ...
+        return pulumi.get(self, "regional_certificate_arn")
 
     @property
     @pulumi.getter(name="regionalCertificateName")
@@ -418,7 +418,7 @@ class DomainName(pulumi.CustomResource):
         The user-friendly name of the certificate that will be used by regional endpoint for this domain name. Conflicts with `certificate_arn`, `certificate_name`, `certificate_body`, `certificate_chain`, and
         `certificate_private_key`.
         """
-        ...
+        return pulumi.get(self, "regional_certificate_name")
 
     @property
     @pulumi.getter(name="regionalDomainName")
@@ -426,7 +426,7 @@ class DomainName(pulumi.CustomResource):
         """
         The hostname for the custom domain's regional endpoint.
         """
-        ...
+        return pulumi.get(self, "regional_domain_name")
 
     @property
     @pulumi.getter(name="regionalZoneId")
@@ -434,7 +434,7 @@ class DomainName(pulumi.CustomResource):
         """
         The hosted zone ID that can be used to create a Route53 alias record for the regional endpoint.
         """
-        ...
+        return pulumi.get(self, "regional_zone_id")
 
     @property
     @pulumi.getter(name="securityPolicy")
@@ -442,7 +442,7 @@ class DomainName(pulumi.CustomResource):
         """
         The Transport Layer Security (TLS) version + cipher suite for this DomainName. The valid values are `TLS_1_0` and `TLS_1_2`. Must be configured to perform drift detection.
         """
-        ...
+        return pulumi.get(self, "security_policy")
 
     @property
     @pulumi.getter
@@ -450,7 +450,7 @@ class DomainName(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

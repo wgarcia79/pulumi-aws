@@ -123,7 +123,7 @@ class Rule(pulumi.CustomResource):
         """
         The ARN of the WAF rule.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="metricName")
@@ -131,7 +131,7 @@ class Rule(pulumi.CustomResource):
         """
         The name or description for the Amazon CloudWatch metric of this rule. The name can contain only alphanumeric characters (A-Z, a-z, 0-9); the name can't contain whitespace.
         """
-        ...
+        return pulumi.get(self, "metric_name")
 
     @property
     @pulumi.getter
@@ -139,7 +139,7 @@ class Rule(pulumi.CustomResource):
         """
         The name or description of the rule.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -147,7 +147,7 @@ class Rule(pulumi.CustomResource):
         """
         The objects to include in a rule (documented below).
         """
-        ...
+        return pulumi.get(self, "predicates")
 
     @property
     @pulumi.getter
@@ -155,7 +155,7 @@ class Rule(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

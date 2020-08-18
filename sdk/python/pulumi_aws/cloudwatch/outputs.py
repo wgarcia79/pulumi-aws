@@ -44,7 +44,7 @@ class EventPermissionCondition(dict):
         """
         Key for the condition. Valid values: `aws:PrincipalOrgID`.
         """
-        ...
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
@@ -52,7 +52,7 @@ class EventPermissionCondition(dict):
         """
         Type of condition. Value values: `StringEquals`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -60,7 +60,7 @@ class EventPermissionCondition(dict):
         """
         Value for the key.
         """
-        ...
+        return pulumi.get(self, "value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -92,7 +92,7 @@ class EventTargetBatchTarget(dict):
         """
         The ARN or name of the job definition to use if the event target is an AWS Batch job. This job definition must already exist.
         """
-        ...
+        return pulumi.get(self, "job_definition")
 
     @property
     @pulumi.getter(name="jobName")
@@ -100,7 +100,7 @@ class EventTargetBatchTarget(dict):
         """
         The name to use for this execution of the job, if the target is an AWS Batch job.
         """
-        ...
+        return pulumi.get(self, "job_name")
 
     @property
     @pulumi.getter(name="arraySize")
@@ -108,7 +108,7 @@ class EventTargetBatchTarget(dict):
         """
         The size of the array, if this is an array batch job. Valid values are integers between 2 and 10,000.
         """
-        ...
+        return pulumi.get(self, "array_size")
 
     @property
     @pulumi.getter(name="jobAttempts")
@@ -116,7 +116,7 @@ class EventTargetBatchTarget(dict):
         """
         The number of times to attempt to retry, if the job fails. Valid values are 1 to 10.
         """
-        ...
+        return pulumi.get(self, "job_attempts")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -157,7 +157,7 @@ class EventTargetEcsTarget(dict):
         """
         The ARN of the task definition to use if the event target is an Amazon ECS cluster.
         """
-        ...
+        return pulumi.get(self, "task_definition_arn")
 
     @property
     @pulumi.getter
@@ -165,7 +165,7 @@ class EventTargetEcsTarget(dict):
         """
         Specifies an ECS task group for the task. The maximum length is 255 characters.
         """
-        ...
+        return pulumi.get(self, "group")
 
     @property
     @pulumi.getter(name="launchType")
@@ -173,7 +173,7 @@ class EventTargetEcsTarget(dict):
         """
         Specifies the launch type on which your task is running. The launch type that you specify here must match one of the launch type (compatibilities) of the target task. Valid values are EC2 or FARGATE.
         """
-        ...
+        return pulumi.get(self, "launch_type")
 
     @property
     @pulumi.getter(name="networkConfiguration")
@@ -181,7 +181,7 @@ class EventTargetEcsTarget(dict):
         """
         Use this if the ECS task uses the awsvpc network mode. This specifies the VPC subnets and security groups associated with the task, and whether a public IP address is to be used. Required if launch_type is FARGATE because the awsvpc mode is required for Fargate tasks.
         """
-        ...
+        return pulumi.get(self, "network_configuration")
 
     @property
     @pulumi.getter(name="platformVersion")
@@ -189,7 +189,7 @@ class EventTargetEcsTarget(dict):
         """
         Specifies the platform version for the task. Specify only the numeric portion of the platform version, such as 1.1.0. This is used only if LaunchType is FARGATE. For more information about valid platform versions, see [AWS Fargate Platform Versions](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html).
         """
-        ...
+        return pulumi.get(self, "platform_version")
 
     @property
     @pulumi.getter(name="taskCount")
@@ -197,7 +197,7 @@ class EventTargetEcsTarget(dict):
         """
         The number of tasks to create based on the TaskDefinition. The default is 1.
         """
-        ...
+        return pulumi.get(self, "task_count")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -226,7 +226,7 @@ class EventTargetEcsTargetNetworkConfiguration(dict):
         """
         The subnets associated with the task or service.
         """
-        ...
+        return pulumi.get(self, "subnets")
 
     @property
     @pulumi.getter(name="assignPublicIp")
@@ -234,7 +234,7 @@ class EventTargetEcsTargetNetworkConfiguration(dict):
         """
         Assign a public IP address to the ENI (Fargate launch type only). Valid values are `true` or `false`. Default `false`.
         """
-        ...
+        return pulumi.get(self, "assign_public_ip")
 
     @property
     @pulumi.getter(name="securityGroups")
@@ -242,7 +242,7 @@ class EventTargetEcsTargetNetworkConfiguration(dict):
         """
         The security groups associated with the task or service. If you do not specify a security group, the default security group for the VPC is used.
         """
-        ...
+        return pulumi.get(self, "security_groups")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -267,7 +267,7 @@ class EventTargetInputTransformer(dict):
         """
         Structure containing the template body.
         """
-        ...
+        return pulumi.get(self, "input_template")
 
     @property
     @pulumi.getter(name="inputPaths")
@@ -275,7 +275,7 @@ class EventTargetInputTransformer(dict):
         """
         Key value pairs specified in the form of JSONPath (for example, time = $.time)
         """
-        ...
+        return pulumi.get(self, "input_paths")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -297,7 +297,7 @@ class EventTargetKinesisTarget(dict):
         """
         The JSON path to be extracted from the event and used as the partition key.
         """
-        ...
+        return pulumi.get(self, "partition_key_path")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -321,7 +321,7 @@ class EventTargetRunCommandTarget(dict):
         """
         Can be either `tag:tag-key` or `InstanceIds`.
         """
-        ...
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
@@ -329,7 +329,7 @@ class EventTargetRunCommandTarget(dict):
         """
         If Key is `tag:tag-key`, Values is a list of tag values. If Key is `InstanceIds`, Values is a list of Amazon EC2 instance IDs.
         """
-        ...
+        return pulumi.get(self, "values")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -351,7 +351,7 @@ class EventTargetSqsTarget(dict):
         """
         The FIFO message group ID to use as the target.
         """
-        ...
+        return pulumi.get(self, "message_group_id")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -382,7 +382,7 @@ class LogMetricFilterMetricTransformation(dict):
         """
         The name of the CloudWatch metric to which the monitored log information should be published (e.g. `ErrorCount`)
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -390,7 +390,7 @@ class LogMetricFilterMetricTransformation(dict):
         """
         The destination namespace of the CloudWatch metric.
         """
-        ...
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter
@@ -398,7 +398,7 @@ class LogMetricFilterMetricTransformation(dict):
         """
         What to publish to the metric. For example, if you're counting the occurrences of a particular term like "Error", the value will be "1" for each occurrence. If you're counting the bytes transferred the published value will be the value in the log event.
         """
-        ...
+        return pulumi.get(self, "value")
 
     @property
     @pulumi.getter(name="defaultValue")
@@ -406,7 +406,7 @@ class LogMetricFilterMetricTransformation(dict):
         """
         The value to emit when a filter pattern does not match a log event.
         """
-        ...
+        return pulumi.get(self, "default_value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -443,7 +443,7 @@ class MetricAlarmMetricQuery(dict):
         """
         A short name used to tie this object to the results in the response. If you are performing math expressions on this set of data, this name represents that data and can serve as a variable in the mathematical expression. The valid characters are letters, numbers, and underscore. The first character must be a lowercase letter.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -451,7 +451,7 @@ class MetricAlarmMetricQuery(dict):
         """
         The math expression to be performed on the returned data, if this object is performing a math expression. This expression can use the id of the other metrics to refer to those metrics, and can also use the id of other expressions to use the result of those expressions. For more information about metric math expressions, see Metric Math Syntax and Functions in the [Amazon CloudWatch User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html#metric-math-syntax).
         """
-        ...
+        return pulumi.get(self, "expression")
 
     @property
     @pulumi.getter
@@ -459,7 +459,7 @@ class MetricAlarmMetricQuery(dict):
         """
         A human-readable label for this metric or expression. This is especially useful if this is an expression, so that you know what the value represents.
         """
-        ...
+        return pulumi.get(self, "label")
 
     @property
     @pulumi.getter
@@ -467,7 +467,7 @@ class MetricAlarmMetricQuery(dict):
         """
         The metric to be returned, along with statistics, period, and units. Use this parameter only if this object is retrieving a metric and not performing a math expression on returned data.
         """
-        ...
+        return pulumi.get(self, "metric")
 
     @property
     @pulumi.getter(name="returnData")
@@ -475,7 +475,7 @@ class MetricAlarmMetricQuery(dict):
         """
         Specify exactly one `metric_query` to be `true` to use that `metric_query` result as the alarm.
         """
-        ...
+        return pulumi.get(self, "return_data")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -518,7 +518,7 @@ class MetricAlarmMetricQueryMetric(dict):
         The name for this metric.
         See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
         """
-        ...
+        return pulumi.get(self, "metric_name")
 
     @property
     @pulumi.getter
@@ -526,7 +526,7 @@ class MetricAlarmMetricQueryMetric(dict):
         """
         The period in seconds over which the specified `stat` is applied.
         """
-        ...
+        return pulumi.get(self, "period")
 
     @property
     @pulumi.getter
@@ -535,7 +535,7 @@ class MetricAlarmMetricQueryMetric(dict):
         The statistic to apply to this metric.
         Either of the following is supported: `SampleCount`, `Average`, `Sum`, `Minimum`, `Maximum`
         """
-        ...
+        return pulumi.get(self, "stat")
 
     @property
     @pulumi.getter
@@ -543,7 +543,7 @@ class MetricAlarmMetricQueryMetric(dict):
         """
         The dimensions for this metric.  For the list of available dimensions see the AWS documentation [here](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
         """
-        ...
+        return pulumi.get(self, "dimensions")
 
     @property
     @pulumi.getter
@@ -552,7 +552,7 @@ class MetricAlarmMetricQueryMetric(dict):
         The namespace for this metric. See docs for the [list of namespaces](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/aws-namespaces.html).
         See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
         """
-        ...
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter
@@ -560,7 +560,7 @@ class MetricAlarmMetricQueryMetric(dict):
         """
         The unit for this metric.
         """
-        ...
+        return pulumi.get(self, "unit")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -117,7 +117,7 @@ class AdmChannel(pulumi.CustomResource):
         """
         The application ID.
         """
-        ...
+        return pulumi.get(self, "application_id")
 
     @property
     @pulumi.getter(name="clientId")
@@ -125,7 +125,7 @@ class AdmChannel(pulumi.CustomResource):
         """
         Client ID (part of OAuth Credentials) obtained via Amazon Developer Account.
         """
-        ...
+        return pulumi.get(self, "client_id")
 
     @property
     @pulumi.getter(name="clientSecret")
@@ -133,7 +133,7 @@ class AdmChannel(pulumi.CustomResource):
         """
         Client Secret (part of OAuth Credentials) obtained via Amazon Developer Account.
         """
-        ...
+        return pulumi.get(self, "client_secret")
 
     @property
     @pulumi.getter
@@ -141,7 +141,7 @@ class AdmChannel(pulumi.CustomResource):
         """
         Specifies whether to enable the channel. Defaults to `true`.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

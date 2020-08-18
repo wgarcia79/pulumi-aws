@@ -113,12 +113,12 @@ class TransitGatewayPeeringAttachmentAccepter(pulumi.CustomResource):
         """
         Identifier of the AWS account that owns the EC2 TGW peering.
         """
-        ...
+        return pulumi.get(self, "peer_account_id")
 
     @property
     @pulumi.getter(name="peerRegion")
     def peer_region(self) -> str:
-        ...
+        return pulumi.get(self, "peer_region")
 
     @property
     @pulumi.getter(name="peerTransitGatewayId")
@@ -126,7 +126,7 @@ class TransitGatewayPeeringAttachmentAccepter(pulumi.CustomResource):
         """
         Identifier of EC2 Transit Gateway to peer with.
         """
-        ...
+        return pulumi.get(self, "peer_transit_gateway_id")
 
     @property
     @pulumi.getter
@@ -134,7 +134,7 @@ class TransitGatewayPeeringAttachmentAccepter(pulumi.CustomResource):
         """
         Key-value tags for the EC2 Transit Gateway Peering Attachment.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="transitGatewayAttachmentId")
@@ -142,7 +142,7 @@ class TransitGatewayPeeringAttachmentAccepter(pulumi.CustomResource):
         """
         The ID of the EC2 Transit Gateway Peering Attachment to manage.
         """
-        ...
+        return pulumi.get(self, "transit_gateway_attachment_id")
 
     @property
     @pulumi.getter(name="transitGatewayId")
@@ -150,7 +150,7 @@ class TransitGatewayPeeringAttachmentAccepter(pulumi.CustomResource):
         """
         Identifier of EC2 Transit Gateway.
         """
-        ...
+        return pulumi.get(self, "transit_gateway_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

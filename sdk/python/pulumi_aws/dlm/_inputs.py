@@ -36,11 +36,11 @@ class LifecyclePolicyPolicyDetailsArgs:
         """
         A list of resource types that should be targeted by the lifecycle policy. `VOLUME` is currently the only allowed value.
         """
-        ...
+        return pulumi.get(self, "resource_types")
 
     @resource_types.setter
     def resource_types(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "resource_types", value)
 
     @property
     @pulumi.getter
@@ -48,11 +48,11 @@ class LifecyclePolicyPolicyDetailsArgs:
         """
         See the `schedule` configuration block.
         """
-        ...
+        return pulumi.get(self, "schedules")
 
     @schedules.setter
     def schedules(self, value: pulumi.Input[List[pulumi.Input['LifecyclePolicyPolicyDetailsScheduleArgs']]]):
-        ...
+        pulumi.set(self, "schedules", value)
 
     @property
     @pulumi.getter(name="targetTags")
@@ -60,11 +60,11 @@ class LifecyclePolicyPolicyDetailsArgs:
         """
         A map of tag keys and their values. Any resources that match the `resource_types` and are tagged with _any_ of these tags will be targeted.
         """
-        ...
+        return pulumi.get(self, "target_tags")
 
     @target_tags.setter
     def target_tags(self, value: pulumi.Input[Mapping[str, pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "target_tags", value)
 
 
 @pulumi.input_type
@@ -96,11 +96,11 @@ class LifecyclePolicyPolicyDetailsScheduleArgs:
         """
         See the `create_rule` block. Max of 1 per schedule.
         """
-        ...
+        return pulumi.get(self, "create_rule")
 
     @create_rule.setter
     def create_rule(self, value: pulumi.Input['LifecyclePolicyPolicyDetailsScheduleCreateRuleArgs']):
-        ...
+        pulumi.set(self, "create_rule", value)
 
     @property
     @pulumi.getter
@@ -108,11 +108,11 @@ class LifecyclePolicyPolicyDetailsScheduleArgs:
         """
         A name for the schedule.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter(name="retainRule")
@@ -120,11 +120,11 @@ class LifecyclePolicyPolicyDetailsScheduleArgs:
         """
         See the `retain_rule` block. Max of 1 per schedule.
         """
-        ...
+        return pulumi.get(self, "retain_rule")
 
     @retain_rule.setter
     def retain_rule(self, value: pulumi.Input['LifecyclePolicyPolicyDetailsScheduleRetainRuleArgs']):
-        ...
+        pulumi.set(self, "retain_rule", value)
 
     @property
     @pulumi.getter(name="copyTags")
@@ -132,11 +132,11 @@ class LifecyclePolicyPolicyDetailsScheduleArgs:
         """
         Copy all user-defined tags on a source volume to snapshots of the volume created by this policy.
         """
-        ...
+        return pulumi.get(self, "copy_tags")
 
     @copy_tags.setter
     def copy_tags(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "copy_tags", value)
 
     @property
     @pulumi.getter(name="tagsToAdd")
@@ -144,11 +144,11 @@ class LifecyclePolicyPolicyDetailsScheduleArgs:
         """
         A map of tag keys and their values. DLM lifecycle policies will already tag the snapshot with the tags on the volume. This configuration adds extra tags on top of these.
         """
-        ...
+        return pulumi.get(self, "tags_to_add")
 
     @tags_to_add.setter
     def tags_to_add(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "tags_to_add", value)
 
 
 @pulumi.input_type
@@ -174,11 +174,11 @@ class LifecyclePolicyPolicyDetailsScheduleCreateRuleArgs:
         """
         How often this lifecycle policy should be evaluated. `1`, `2`,`3`,`4`,`6`,`8`,`12` or `24` are valid values.
         """
-        ...
+        return pulumi.get(self, "interval")
 
     @interval.setter
     def interval(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "interval", value)
 
     @property
     @pulumi.getter(name="intervalUnit")
@@ -186,11 +186,11 @@ class LifecyclePolicyPolicyDetailsScheduleCreateRuleArgs:
         """
         The unit for how often the lifecycle policy should be evaluated. `HOURS` is currently the only allowed value and also the default value.
         """
-        ...
+        return pulumi.get(self, "interval_unit")
 
     @interval_unit.setter
     def interval_unit(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "interval_unit", value)
 
     @property
     @pulumi.getter
@@ -198,11 +198,11 @@ class LifecyclePolicyPolicyDetailsScheduleCreateRuleArgs:
         """
         A list of times in 24 hour clock format that sets when the lifecycle policy should be evaluated. Max of 1.
         """
-        ...
+        return pulumi.get(self, "times")
 
     @times.setter
     def times(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "times", value)
 
 
 @pulumi.input_type
@@ -220,10 +220,10 @@ class LifecyclePolicyPolicyDetailsScheduleRetainRuleArgs:
         """
         How many snapshots to keep. Must be an integer between 1 and 1000.
         """
-        ...
+        return pulumi.get(self, "count")
 
     @count.setter
     def count(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "count", value)
 
 

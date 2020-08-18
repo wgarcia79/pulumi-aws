@@ -127,7 +127,7 @@ class LogSubscriptionFilter(pulumi.CustomResource):
         """
         The ARN of the destination to deliver matching log events to. Kinesis stream or Lambda function ARN.
         """
-        ...
+        return pulumi.get(self, "destination_arn")
 
     @property
     @pulumi.getter
@@ -135,7 +135,7 @@ class LogSubscriptionFilter(pulumi.CustomResource):
         """
         The method used to distribute log data to the destination. By default log data is grouped by log stream, but the grouping can be set to random for a more even distribution. This property is only applicable when the destination is an Amazon Kinesis stream. Valid values are "Random" and "ByLogStream".
         """
-        ...
+        return pulumi.get(self, "distribution")
 
     @property
     @pulumi.getter(name="filterPattern")
@@ -143,7 +143,7 @@ class LogSubscriptionFilter(pulumi.CustomResource):
         """
         A valid CloudWatch Logs filter pattern for subscribing to a filtered stream of log events.
         """
-        ...
+        return pulumi.get(self, "filter_pattern")
 
     @property
     @pulumi.getter(name="logGroup")
@@ -151,7 +151,7 @@ class LogSubscriptionFilter(pulumi.CustomResource):
         """
         The name of the log group to associate the subscription filter with
         """
-        ...
+        return pulumi.get(self, "log_group")
 
     @property
     @pulumi.getter
@@ -159,7 +159,7 @@ class LogSubscriptionFilter(pulumi.CustomResource):
         """
         A name for the subscription filter
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -167,7 +167,7 @@ class LogSubscriptionFilter(pulumi.CustomResource):
         """
         The ARN of an IAM role that grants Amazon CloudWatch Logs permissions to deliver ingested log events to the destination. If you use Lambda as a destination, you should skip this argument and use `lambda.Permission` resource for granting access from CloudWatch logs to the destination Lambda function.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

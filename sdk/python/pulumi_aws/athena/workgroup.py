@@ -132,7 +132,7 @@ class Workgroup(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the workgroup
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -140,7 +140,7 @@ class Workgroup(pulumi.CustomResource):
         """
         Configuration block with various settings for the workgroup. Documented below.
         """
-        ...
+        return pulumi.get(self, "configuration")
 
     @property
     @pulumi.getter
@@ -148,7 +148,7 @@ class Workgroup(pulumi.CustomResource):
         """
         Description of the workgroup.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="forceDestroy")
@@ -156,7 +156,7 @@ class Workgroup(pulumi.CustomResource):
         """
         The option to delete the workgroup and its contents even if the workgroup contains any named queries.
         """
-        ...
+        return pulumi.get(self, "force_destroy")
 
     @property
     @pulumi.getter
@@ -164,7 +164,7 @@ class Workgroup(pulumi.CustomResource):
         """
         Name of the workgroup.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -172,7 +172,7 @@ class Workgroup(pulumi.CustomResource):
         """
         State of the workgroup. Valid values are `DISABLED` or `ENABLED`. Defaults to `ENABLED`.
         """
-        ...
+        return pulumi.get(self, "state")
 
     @property
     @pulumi.getter
@@ -180,7 +180,7 @@ class Workgroup(pulumi.CustomResource):
         """
         Key-value map of resource tags for the workgroup.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

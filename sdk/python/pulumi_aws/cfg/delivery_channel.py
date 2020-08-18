@@ -153,7 +153,7 @@ class DeliveryChannel(pulumi.CustomResource):
         """
         The name of the delivery channel. Defaults to `default`. Changing it recreates the resource.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="s3BucketName")
@@ -161,7 +161,7 @@ class DeliveryChannel(pulumi.CustomResource):
         """
         The name of the S3 bucket used to store the configuration history.
         """
-        ...
+        return pulumi.get(self, "s3_bucket_name")
 
     @property
     @pulumi.getter(name="s3KeyPrefix")
@@ -169,7 +169,7 @@ class DeliveryChannel(pulumi.CustomResource):
         """
         The prefix for the specified S3 bucket.
         """
-        ...
+        return pulumi.get(self, "s3_key_prefix")
 
     @property
     @pulumi.getter(name="snapshotDeliveryProperties")
@@ -177,7 +177,7 @@ class DeliveryChannel(pulumi.CustomResource):
         """
         Options for how AWS Config delivers configuration snapshots. See below
         """
-        ...
+        return pulumi.get(self, "snapshot_delivery_properties")
 
     @property
     @pulumi.getter(name="snsTopicArn")
@@ -185,7 +185,7 @@ class DeliveryChannel(pulumi.CustomResource):
         """
         The ARN of the SNS topic that AWS Config delivers notifications to.
         """
-        ...
+        return pulumi.get(self, "sns_topic_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

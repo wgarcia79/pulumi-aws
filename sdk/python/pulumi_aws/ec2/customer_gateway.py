@@ -122,7 +122,7 @@ class CustomerGateway(pulumi.CustomResource):
         """
         The ARN of the customer gateway.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="bgpAsn")
@@ -130,7 +130,7 @@ class CustomerGateway(pulumi.CustomResource):
         """
         The gateway's Border Gateway Protocol (BGP) Autonomous System Number (ASN).
         """
-        ...
+        return pulumi.get(self, "bgp_asn")
 
     @property
     @pulumi.getter(name="ipAddress")
@@ -138,7 +138,7 @@ class CustomerGateway(pulumi.CustomResource):
         """
         The IP address of the gateway's Internet-routable external interface.
         """
-        ...
+        return pulumi.get(self, "ip_address")
 
     @property
     @pulumi.getter
@@ -146,7 +146,7 @@ class CustomerGateway(pulumi.CustomResource):
         """
         Tags to apply to the gateway.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -155,7 +155,7 @@ class CustomerGateway(pulumi.CustomResource):
         The type of customer gateway. The only type AWS
         supports at this time is "ipsec.1".
         """
-        ...
+        return pulumi.get(self, "type")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

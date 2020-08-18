@@ -37,11 +37,11 @@ class ClusterCacheNodeArgs:
     @property
     @pulumi.getter
     def address(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "address")
 
     @address.setter
     def address(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "address", value)
 
     @property
     @pulumi.getter(name="availabilityZone")
@@ -49,20 +49,20 @@ class ClusterCacheNodeArgs:
         """
         The Availability Zone for the cache cluster. If you want to create cache nodes in multi-az, use `preferred_availability_zones` instead. Default: System chosen Availability Zone.
         """
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @availability_zone.setter
     def availability_zone(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "availability_zone", value)
 
     @property
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "id")
 
     @id.setter
     def id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter
@@ -70,11 +70,11 @@ class ClusterCacheNodeArgs:
         """
         The port number on which each of the cache nodes will accept connections. For Memcache the default is 11211, and for Redis the default port is 6379. Cannot be provided with `replication_group_id`.
         """
-        ...
+        return pulumi.get(self, "port")
 
     @port.setter
     def port(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "port", value)
 
 
 @pulumi.input_type
@@ -95,11 +95,11 @@ class ParameterGroupParameterArgs:
         """
         The name of the ElastiCache parameter.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -107,11 +107,11 @@ class ParameterGroupParameterArgs:
         """
         The value of the ElastiCache parameter.
         """
-        ...
+        return pulumi.get(self, "value")
 
     @value.setter
     def value(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type
@@ -132,11 +132,11 @@ class ReplicationGroupClusterModeArgs:
         """
         Specify the number of node groups (shards) for this Redis replication group. Changing this number will trigger an online resizing operation before other settings modifications.
         """
-        ...
+        return pulumi.get(self, "num_node_groups")
 
     @num_node_groups.setter
     def num_node_groups(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "num_node_groups", value)
 
     @property
     @pulumi.getter(name="replicasPerNodeGroup")
@@ -144,10 +144,10 @@ class ReplicationGroupClusterModeArgs:
         """
         Specify the number of replica nodes in each node group. Valid values are 0 to 5. Changing this number will force a new resource.
         """
-        ...
+        return pulumi.get(self, "replicas_per_node_group")
 
     @replicas_per_node_group.setter
     def replicas_per_node_group(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "replicas_per_node_group", value)
 
 

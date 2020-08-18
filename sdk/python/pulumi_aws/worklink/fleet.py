@@ -165,7 +165,7 @@ class Fleet(pulumi.CustomResource):
         """
         The ARN of the created WorkLink Fleet.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="auditStreamArn")
@@ -173,7 +173,7 @@ class Fleet(pulumi.CustomResource):
         """
         The ARN of the Amazon Kinesis data stream that receives the audit events.
         """
-        ...
+        return pulumi.get(self, "audit_stream_arn")
 
     @property
     @pulumi.getter(name="companyCode")
@@ -181,7 +181,7 @@ class Fleet(pulumi.CustomResource):
         """
         The identifier used by users to sign in to the Amazon WorkLink app.
         """
-        ...
+        return pulumi.get(self, "company_code")
 
     @property
     @pulumi.getter(name="createdTime")
@@ -189,7 +189,7 @@ class Fleet(pulumi.CustomResource):
         """
         The time that the fleet was created.
         """
-        ...
+        return pulumi.get(self, "created_time")
 
     @property
     @pulumi.getter(name="deviceCaCertificate")
@@ -197,7 +197,7 @@ class Fleet(pulumi.CustomResource):
         """
         The certificate chain, including intermediate certificates and the root certificate authority certificate used to issue device certificates.
         """
-        ...
+        return pulumi.get(self, "device_ca_certificate")
 
     @property
     @pulumi.getter(name="displayName")
@@ -205,7 +205,7 @@ class Fleet(pulumi.CustomResource):
         """
         The name of the fleet.
         """
-        ...
+        return pulumi.get(self, "display_name")
 
     @property
     @pulumi.getter(name="identityProvider")
@@ -213,7 +213,7 @@ class Fleet(pulumi.CustomResource):
         """
         Provide this to allow manage the identity provider configuration for the fleet. Fields documented below.
         """
-        ...
+        return pulumi.get(self, "identity_provider")
 
     @property
     @pulumi.getter(name="lastUpdatedTime")
@@ -221,7 +221,7 @@ class Fleet(pulumi.CustomResource):
         """
         The time that the fleet was last updated.
         """
-        ...
+        return pulumi.get(self, "last_updated_time")
 
     @property
     @pulumi.getter
@@ -229,7 +229,7 @@ class Fleet(pulumi.CustomResource):
         """
         A region-unique name for the AMI.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -237,7 +237,7 @@ class Fleet(pulumi.CustomResource):
         """
         Provide this to allow manage the company network configuration for the fleet. Fields documented below.
         """
-        ...
+        return pulumi.get(self, "network")
 
     @property
     @pulumi.getter(name="optimizeForEndUserLocation")
@@ -245,7 +245,7 @@ class Fleet(pulumi.CustomResource):
         """
         The option to optimize for better performance by routing traffic through the closest AWS Region to users, which may be outside of your home Region. Defaults to `true`.
         """
-        ...
+        return pulumi.get(self, "optimize_for_end_user_location")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

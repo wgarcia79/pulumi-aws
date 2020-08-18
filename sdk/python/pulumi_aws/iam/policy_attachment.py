@@ -153,7 +153,7 @@ class PolicyAttachment(pulumi.CustomResource):
         """
         The group(s) the policy should be applied to
         """
-        ...
+        return pulumi.get(self, "groups")
 
     @property
     @pulumi.getter
@@ -161,7 +161,7 @@ class PolicyAttachment(pulumi.CustomResource):
         """
         The name of the attachment. This cannot be an empty string.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="policyArn")
@@ -169,7 +169,7 @@ class PolicyAttachment(pulumi.CustomResource):
         """
         The ARN of the policy you want to apply
         """
-        ...
+        return pulumi.get(self, "policy_arn")
 
     @property
     @pulumi.getter
@@ -177,7 +177,7 @@ class PolicyAttachment(pulumi.CustomResource):
         """
         The role(s) the policy should be applied to
         """
-        ...
+        return pulumi.get(self, "roles")
 
     @property
     @pulumi.getter
@@ -185,7 +185,7 @@ class PolicyAttachment(pulumi.CustomResource):
         """
         The user(s) the policy should be applied to
         """
-        ...
+        return pulumi.get(self, "users")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

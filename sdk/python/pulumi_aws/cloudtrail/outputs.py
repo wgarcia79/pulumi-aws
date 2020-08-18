@@ -38,7 +38,7 @@ class TrailEventSelector(dict):
         """
         Specifies logging data events. Fields documented below.
         """
-        ...
+        return pulumi.get(self, "data_resources")
 
     @property
     @pulumi.getter(name="includeManagementEvents")
@@ -46,7 +46,7 @@ class TrailEventSelector(dict):
         """
         Specify if you want your event selector to include management events for your trail.
         """
-        ...
+        return pulumi.get(self, "include_management_events")
 
     @property
     @pulumi.getter(name="readWriteType")
@@ -54,7 +54,7 @@ class TrailEventSelector(dict):
         """
         Specify if you want your trail to log read-only events, write-only events, or all. By default, the value is All. You can specify only the following value: "ReadOnly", "WriteOnly", "All". Defaults to `All`.
         """
-        ...
+        return pulumi.get(self, "read_write_type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -78,7 +78,7 @@ class TrailEventSelectorDataResource(dict):
         """
         The resource type in which you want to log data events. You can specify only the following value: "AWS::S3::Object", "AWS::Lambda::Function"
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -86,7 +86,7 @@ class TrailEventSelectorDataResource(dict):
         """
         A list of ARN for the specified S3 buckets and object prefixes..
         """
-        ...
+        return pulumi.get(self, "values")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

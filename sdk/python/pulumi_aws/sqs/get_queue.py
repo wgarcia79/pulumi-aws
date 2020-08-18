@@ -44,7 +44,7 @@ class GetQueueResult:
         """
         The Amazon Resource Name (ARN) of the queue.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -52,12 +52,12 @@ class GetQueueResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -65,7 +65,7 @@ class GetQueueResult:
         """
         A map of tags for the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -73,7 +73,7 @@ class GetQueueResult:
         """
         The URL of the queue.
         """
-        ...
+        return pulumi.get(self, "url")
 
 
 

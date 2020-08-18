@@ -114,7 +114,7 @@ class Channel(pulumi.CustomResource):
         """
         The ARN of the channel
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="channelId")
@@ -122,7 +122,7 @@ class Channel(pulumi.CustomResource):
         """
         A unique identifier describing the channel
         """
-        ...
+        return pulumi.get(self, "channel_id")
 
     @property
     @pulumi.getter
@@ -130,7 +130,7 @@ class Channel(pulumi.CustomResource):
         """
         A description of the channel
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="hlsIngests")
@@ -138,7 +138,7 @@ class Channel(pulumi.CustomResource):
         """
         A single item list of HLS ingest information
         """
-        ...
+        return pulumi.get(self, "hls_ingests")
 
     @property
     @pulumi.getter
@@ -146,7 +146,7 @@ class Channel(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

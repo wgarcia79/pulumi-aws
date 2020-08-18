@@ -194,7 +194,7 @@ class Preset(pulumi.CustomResource):
     @property
     @pulumi.getter
     def arn(self) -> str:
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -202,7 +202,7 @@ class Preset(pulumi.CustomResource):
         """
         Audio parameters object (documented below).
         """
-        ...
+        return pulumi.get(self, "audio")
 
     @property
     @pulumi.getter(name="audioCodecOptions")
@@ -210,7 +210,7 @@ class Preset(pulumi.CustomResource):
         """
         Codec options for the audio parameters (documented below)
         """
-        ...
+        return pulumi.get(self, "audio_codec_options")
 
     @property
     @pulumi.getter
@@ -218,7 +218,7 @@ class Preset(pulumi.CustomResource):
         """
         The container type for the output file. Valid values are `flac`, `flv`, `fmp4`, `gif`, `mp3`, `mp4`, `mpg`, `mxf`, `oga`, `ogg`, `ts`, and `webm`.
         """
-        ...
+        return pulumi.get(self, "container")
 
     @property
     @pulumi.getter
@@ -226,7 +226,7 @@ class Preset(pulumi.CustomResource):
         """
         A description of the preset (maximum 255 characters)
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -234,7 +234,7 @@ class Preset(pulumi.CustomResource):
         """
         The name of the preset. (maximum 40 characters)
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -242,12 +242,12 @@ class Preset(pulumi.CustomResource):
         """
         Thumbnail parameters object (documented below)
         """
-        ...
+        return pulumi.get(self, "thumbnails")
 
     @property
     @pulumi.getter
     def type(self) -> str:
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -255,7 +255,7 @@ class Preset(pulumi.CustomResource):
         """
         Video parameters object (documented below)
         """
-        ...
+        return pulumi.get(self, "video")
 
     @property
     @pulumi.getter(name="videoCodecOptions")
@@ -263,7 +263,7 @@ class Preset(pulumi.CustomResource):
         """
         Codec options for the video parameters
         """
-        ...
+        return pulumi.get(self, "video_codec_options")
 
     @property
     @pulumi.getter(name="videoWatermarks")
@@ -271,7 +271,7 @@ class Preset(pulumi.CustomResource):
         """
         Watermark parameters for the video parameters (documented below)
         """
-        ...
+        return pulumi.get(self, "video_watermarks")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

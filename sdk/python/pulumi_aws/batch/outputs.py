@@ -82,7 +82,7 @@ class ComputeEnvironmentComputeResources(dict):
         """
         The Amazon ECS instance role applied to Amazon EC2 instances in a compute environment.
         """
-        ...
+        return pulumi.get(self, "instance_role")
 
     @property
     @pulumi.getter(name="instanceTypes")
@@ -90,7 +90,7 @@ class ComputeEnvironmentComputeResources(dict):
         """
         A list of instance types that may be launched.
         """
-        ...
+        return pulumi.get(self, "instance_types")
 
     @property
     @pulumi.getter(name="maxVcpus")
@@ -98,7 +98,7 @@ class ComputeEnvironmentComputeResources(dict):
         """
         The maximum number of EC2 vCPUs that an environment can reach.
         """
-        ...
+        return pulumi.get(self, "max_vcpus")
 
     @property
     @pulumi.getter(name="minVcpus")
@@ -106,7 +106,7 @@ class ComputeEnvironmentComputeResources(dict):
         """
         The minimum number of EC2 vCPUs that an environment should maintain.
         """
-        ...
+        return pulumi.get(self, "min_vcpus")
 
     @property
     @pulumi.getter(name="securityGroupIds")
@@ -114,7 +114,7 @@ class ComputeEnvironmentComputeResources(dict):
         """
         A list of EC2 security group that are associated with instances launched in the compute environment.
         """
-        ...
+        return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter
@@ -122,7 +122,7 @@ class ComputeEnvironmentComputeResources(dict):
         """
         A list of VPC subnets into which the compute resources are launched.
         """
-        ...
+        return pulumi.get(self, "subnets")
 
     @property
     @pulumi.getter
@@ -130,7 +130,7 @@ class ComputeEnvironmentComputeResources(dict):
         """
         The type of compute environment. Valid items are `EC2` or `SPOT`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="allocationStrategy")
@@ -138,7 +138,7 @@ class ComputeEnvironmentComputeResources(dict):
         """
         The allocation strategy to use for the compute resource in case not enough instances of the best fitting instance type can be allocated. Valid items are `BEST_FIT_PROGRESSIVE`, `SPOT_CAPACITY_OPTIMIZED` or `BEST_FIT`. Defaults to `BEST_FIT`. See [AWS docs](https://docs.aws.amazon.com/batch/latest/userguide/allocation-strategies.html) for details.
         """
-        ...
+        return pulumi.get(self, "allocation_strategy")
 
     @property
     @pulumi.getter(name="bidPercentage")
@@ -146,7 +146,7 @@ class ComputeEnvironmentComputeResources(dict):
         """
         Integer of minimum percentage that a Spot Instance price must be when compared with the On-Demand price for that instance type before instances are launched. For example, if your bid percentage is 20% (`20`), then the Spot price must be below 20% of the current On-Demand price for that EC2 instance. This parameter is required for SPOT compute environments.
         """
-        ...
+        return pulumi.get(self, "bid_percentage")
 
     @property
     @pulumi.getter(name="desiredVcpus")
@@ -154,7 +154,7 @@ class ComputeEnvironmentComputeResources(dict):
         """
         The desired number of EC2 vCPUS in the compute environment.
         """
-        ...
+        return pulumi.get(self, "desired_vcpus")
 
     @property
     @pulumi.getter(name="ec2KeyPair")
@@ -162,7 +162,7 @@ class ComputeEnvironmentComputeResources(dict):
         """
         The EC2 key pair that is used for instances launched in the compute environment.
         """
-        ...
+        return pulumi.get(self, "ec2_key_pair")
 
     @property
     @pulumi.getter(name="imageId")
@@ -170,7 +170,7 @@ class ComputeEnvironmentComputeResources(dict):
         """
         The Amazon Machine Image (AMI) ID used for instances launched in the compute environment.
         """
-        ...
+        return pulumi.get(self, "image_id")
 
     @property
     @pulumi.getter(name="launchTemplate")
@@ -178,7 +178,7 @@ class ComputeEnvironmentComputeResources(dict):
         """
         The launch template to use for your compute resources. See details below.
         """
-        ...
+        return pulumi.get(self, "launch_template")
 
     @property
     @pulumi.getter(name="spotIamFleetRole")
@@ -186,7 +186,7 @@ class ComputeEnvironmentComputeResources(dict):
         """
         The Amazon Resource Name (ARN) of the Amazon EC2 Spot Fleet IAM role applied to a SPOT compute environment. This parameter is required for SPOT compute environments.
         """
-        ...
+        return pulumi.get(self, "spot_iam_fleet_role")
 
     @property
     @pulumi.getter
@@ -194,7 +194,7 @@ class ComputeEnvironmentComputeResources(dict):
         """
         Key-value pair tags to be applied to resources that are launched in the compute environment.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -224,7 +224,7 @@ class ComputeEnvironmentComputeResourcesLaunchTemplate(dict):
         """
         ID of the launch template. You must specify either the launch template ID or launch template name in the request, but not both.
         """
-        ...
+        return pulumi.get(self, "launch_template_id")
 
     @property
     @pulumi.getter(name="launchTemplateName")
@@ -232,7 +232,7 @@ class ComputeEnvironmentComputeResourcesLaunchTemplate(dict):
         """
         Name of the launch template.
         """
-        ...
+        return pulumi.get(self, "launch_template_name")
 
     @property
     @pulumi.getter
@@ -240,7 +240,7 @@ class ComputeEnvironmentComputeResourcesLaunchTemplate(dict):
         """
         The version number of the launch template. Default: The default version of the launch template.
         """
-        ...
+        return pulumi.get(self, "version")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -262,7 +262,7 @@ class JobDefinitionRetryStrategy(dict):
         """
         The number of times to move a job to the `RUNNABLE` status. You may specify between `1` and `10` attempts.
         """
-        ...
+        return pulumi.get(self, "attempts")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -284,7 +284,7 @@ class JobDefinitionTimeout(dict):
         """
         The time duration in seconds after which AWS Batch terminates your jobs if they have not finished. The minimum value for the timeout is `60` seconds.
         """
-        ...
+        return pulumi.get(self, "attempt_duration_seconds")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -301,11 +301,11 @@ class GetJobQueueComputeEnvironmentOrderResult(dict):
     @property
     @pulumi.getter(name="computeEnvironment")
     def compute_environment(self) -> str:
-        ...
+        return pulumi.get(self, "compute_environment")
 
     @property
     @pulumi.getter
     def order(self) -> float:
-        ...
+        return pulumi.get(self, "order")
 
 

@@ -37,11 +37,11 @@ class ServiceDnsConfigArgs:
         """
         An array that contains one DnsRecord object for each resource record set.
         """
-        ...
+        return pulumi.get(self, "dns_records")
 
     @dns_records.setter
     def dns_records(self, value: pulumi.Input[List[pulumi.Input['ServiceDnsConfigDnsRecordArgs']]]):
-        ...
+        pulumi.set(self, "dns_records", value)
 
     @property
     @pulumi.getter(name="namespaceId")
@@ -49,11 +49,11 @@ class ServiceDnsConfigArgs:
         """
         The ID of the namespace to use for DNS configuration.
         """
-        ...
+        return pulumi.get(self, "namespace_id")
 
     @namespace_id.setter
     def namespace_id(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "namespace_id", value)
 
     @property
     @pulumi.getter(name="routingPolicy")
@@ -61,11 +61,11 @@ class ServiceDnsConfigArgs:
         """
         The routing policy that you want to apply to all records that Route 53 creates when you register an instance and specify the service. Valid Values: MULTIVALUE, WEIGHTED
         """
-        ...
+        return pulumi.get(self, "routing_policy")
 
     @routing_policy.setter
     def routing_policy(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "routing_policy", value)
 
 
 @pulumi.input_type
@@ -86,11 +86,11 @@ class ServiceDnsConfigDnsRecordArgs:
         """
         The amount of time, in seconds, that you want DNS resolvers to cache the settings for this resource record set.
         """
-        ...
+        return pulumi.get(self, "ttl")
 
     @ttl.setter
     def ttl(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "ttl", value)
 
     @property
     @pulumi.getter
@@ -98,11 +98,11 @@ class ServiceDnsConfigDnsRecordArgs:
         """
         The type of health check that you want to create, which indicates how Route 53 determines whether an endpoint is healthy. Valid Values: HTTP, HTTPS, TCP
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "type", value)
 
 
 @pulumi.input_type
@@ -129,11 +129,11 @@ class ServiceHealthCheckConfigArgs:
         """
         The number of 30-second intervals that you want service discovery to wait before it changes the health status of a service instance.  Maximum value of 10.
         """
-        ...
+        return pulumi.get(self, "failure_threshold")
 
     @failure_threshold.setter
     def failure_threshold(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "failure_threshold", value)
 
     @property
     @pulumi.getter(name="resourcePath")
@@ -141,11 +141,11 @@ class ServiceHealthCheckConfigArgs:
         """
         The path that you want Route 53 to request when performing health checks. Route 53 automatically adds the DNS name for the service. If you don't specify a value, the default value is /.
         """
-        ...
+        return pulumi.get(self, "resource_path")
 
     @resource_path.setter
     def resource_path(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "resource_path", value)
 
     @property
     @pulumi.getter
@@ -153,11 +153,11 @@ class ServiceHealthCheckConfigArgs:
         """
         The type of health check that you want to create, which indicates how Route 53 determines whether an endpoint is healthy. Valid Values: HTTP, HTTPS, TCP
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "type", value)
 
 
 @pulumi.input_type
@@ -176,10 +176,10 @@ class ServiceHealthCheckCustomConfigArgs:
         """
         The number of 30-second intervals that you want service discovery to wait before it changes the health status of a service instance.  Maximum value of 10.
         """
-        ...
+        return pulumi.get(self, "failure_threshold")
 
     @failure_threshold.setter
     def failure_threshold(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "failure_threshold", value)
 
 

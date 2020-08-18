@@ -86,7 +86,7 @@ class GetGroupResult:
         """
         The Amazon Resource Name (ARN) of the Auto Scaling group.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="availabilityZones")
@@ -94,12 +94,12 @@ class GetGroupResult:
         """
         One or more Availability Zones for the group.
         """
-        ...
+        return pulumi.get(self, "availability_zones")
 
     @property
     @pulumi.getter(name="defaultCooldown")
     def default_cooldown(self) -> float:
-        ...
+        return pulumi.get(self, "default_cooldown")
 
     @property
     @pulumi.getter(name="desiredCapacity")
@@ -107,7 +107,7 @@ class GetGroupResult:
         """
         The desired size of the group.
         """
-        ...
+        return pulumi.get(self, "desired_capacity")
 
     @property
     @pulumi.getter(name="healthCheckGracePeriod")
@@ -115,7 +115,7 @@ class GetGroupResult:
         """
         The amount of time, in seconds, that Amazon EC2 Auto Scaling waits before checking the health status of an EC2 instance that has come into service.
         """
-        ...
+        return pulumi.get(self, "health_check_grace_period")
 
     @property
     @pulumi.getter(name="healthCheckType")
@@ -123,7 +123,7 @@ class GetGroupResult:
         """
         The service to use for the health checks. The valid values are EC2 and ELB.
         """
-        ...
+        return pulumi.get(self, "health_check_type")
 
     @property
     @pulumi.getter
@@ -131,7 +131,7 @@ class GetGroupResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="launchConfiguration")
@@ -139,7 +139,7 @@ class GetGroupResult:
         """
         The name of the associated launch configuration.
         """
-        ...
+        return pulumi.get(self, "launch_configuration")
 
     @property
     @pulumi.getter(name="loadBalancers")
@@ -147,7 +147,7 @@ class GetGroupResult:
         """
         One or more load balancers associated with the group.
         """
-        ...
+        return pulumi.get(self, "load_balancers")
 
     @property
     @pulumi.getter(name="maxSize")
@@ -155,7 +155,7 @@ class GetGroupResult:
         """
         The maximum size of the group.
         """
-        ...
+        return pulumi.get(self, "max_size")
 
     @property
     @pulumi.getter(name="minSize")
@@ -163,7 +163,7 @@ class GetGroupResult:
         """
         The minimum size of the group.
         """
-        ...
+        return pulumi.get(self, "min_size")
 
     @property
     @pulumi.getter
@@ -171,12 +171,12 @@ class GetGroupResult:
         """
         The name of the Auto Scaling group.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="newInstancesProtectedFromScaleIn")
     def new_instances_protected_from_scale_in(self) -> bool:
-        ...
+        return pulumi.get(self, "new_instances_protected_from_scale_in")
 
     @property
     @pulumi.getter(name="placementGroup")
@@ -184,7 +184,7 @@ class GetGroupResult:
         """
         The name of the placement group into which to launch your instances, if any. For more information, see Placement Groups (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html) in the Amazon Elastic Compute Cloud User Guide.
         """
-        ...
+        return pulumi.get(self, "placement_group")
 
     @property
     @pulumi.getter(name="serviceLinkedRoleArn")
@@ -192,7 +192,7 @@ class GetGroupResult:
         """
         The Amazon Resource Name (ARN) of the service-linked role that the Auto Scaling group uses to call other AWS services on your behalf.
         """
-        ...
+        return pulumi.get(self, "service_linked_role_arn")
 
     @property
     @pulumi.getter
@@ -200,7 +200,7 @@ class GetGroupResult:
         """
         The current state of the group when DeleteAutoScalingGroup is in progress.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter(name="targetGroupArns")
@@ -208,7 +208,7 @@ class GetGroupResult:
         """
         The Amazon Resource Names (ARN) of the target groups for your load balancer.
         """
-        ...
+        return pulumi.get(self, "target_group_arns")
 
     @property
     @pulumi.getter(name="terminationPolicies")
@@ -216,7 +216,7 @@ class GetGroupResult:
         """
         The termination policies for the group.
         """
-        ...
+        return pulumi.get(self, "termination_policies")
 
     @property
     @pulumi.getter(name="vpcZoneIdentifier")
@@ -224,7 +224,7 @@ class GetGroupResult:
         """
         VPC ID for the group.
         """
-        ...
+        return pulumi.get(self, "vpc_zone_identifier")
 
 
 

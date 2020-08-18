@@ -115,7 +115,7 @@ class Policy(pulumi.CustomResource):
         """
         The ARN assigned by AWS to this policy.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="defaultVersionId")
@@ -123,7 +123,7 @@ class Policy(pulumi.CustomResource):
         """
         The default version of this policy.
         """
-        ...
+        return pulumi.get(self, "default_version_id")
 
     @property
     @pulumi.getter
@@ -131,7 +131,7 @@ class Policy(pulumi.CustomResource):
         """
         The name of the policy.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -139,7 +139,7 @@ class Policy(pulumi.CustomResource):
         """
         The policy document. This is a JSON formatted string. Use the [IoT Developer Guide](http://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html) for more information on IoT Policies.
         """
-        ...
+        return pulumi.get(self, "policy")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

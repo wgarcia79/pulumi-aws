@@ -48,7 +48,7 @@ class EndpointConfigurationProductionVariant(dict):
         """
         Initial number of instances used for auto-scaling.
         """
-        ...
+        return pulumi.get(self, "initial_instance_count")
 
     @property
     @pulumi.getter(name="instanceType")
@@ -56,7 +56,7 @@ class EndpointConfigurationProductionVariant(dict):
         """
         The type of instance to start.
         """
-        ...
+        return pulumi.get(self, "instance_type")
 
     @property
     @pulumi.getter(name="modelName")
@@ -64,7 +64,7 @@ class EndpointConfigurationProductionVariant(dict):
         """
         The name of the model to use.
         """
-        ...
+        return pulumi.get(self, "model_name")
 
     @property
     @pulumi.getter(name="acceleratorType")
@@ -72,7 +72,7 @@ class EndpointConfigurationProductionVariant(dict):
         """
         The size of the Elastic Inference (EI) instance to use for the production variant.
         """
-        ...
+        return pulumi.get(self, "accelerator_type")
 
     @property
     @pulumi.getter(name="initialVariantWeight")
@@ -80,7 +80,7 @@ class EndpointConfigurationProductionVariant(dict):
         """
         Determines initial traffic distribution among all of the models that you specify in the endpoint configuration. If unspecified, it defaults to 1.0.
         """
-        ...
+        return pulumi.get(self, "initial_variant_weight")
 
     @property
     @pulumi.getter(name="variantName")
@@ -88,7 +88,7 @@ class EndpointConfigurationProductionVariant(dict):
         """
         The name of the variant. If omitted, this provider will assign a random, unique name.
         """
-        ...
+        return pulumi.get(self, "variant_name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -122,7 +122,7 @@ class ModelContainer(dict):
         """
         The registry path where the inference code image is stored in Amazon ECR.
         """
-        ...
+        return pulumi.get(self, "image")
 
     @property
     @pulumi.getter(name="containerHostname")
@@ -130,7 +130,7 @@ class ModelContainer(dict):
         """
         The DNS host name for the container.
         """
-        ...
+        return pulumi.get(self, "container_hostname")
 
     @property
     @pulumi.getter
@@ -139,7 +139,7 @@ class ModelContainer(dict):
         Environment variables for the Docker container.
         A list of key value pairs.
         """
-        ...
+        return pulumi.get(self, "environment")
 
     @property
     @pulumi.getter(name="modelDataUrl")
@@ -147,7 +147,7 @@ class ModelContainer(dict):
         """
         The URL for the S3 location where model artifacts are stored.
         """
-        ...
+        return pulumi.get(self, "model_data_url")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -181,7 +181,7 @@ class ModelPrimaryContainer(dict):
         """
         The registry path where the inference code image is stored in Amazon ECR.
         """
-        ...
+        return pulumi.get(self, "image")
 
     @property
     @pulumi.getter(name="containerHostname")
@@ -189,7 +189,7 @@ class ModelPrimaryContainer(dict):
         """
         The DNS host name for the container.
         """
-        ...
+        return pulumi.get(self, "container_hostname")
 
     @property
     @pulumi.getter
@@ -198,7 +198,7 @@ class ModelPrimaryContainer(dict):
         Environment variables for the Docker container.
         A list of key value pairs.
         """
-        ...
+        return pulumi.get(self, "environment")
 
     @property
     @pulumi.getter(name="modelDataUrl")
@@ -206,7 +206,7 @@ class ModelPrimaryContainer(dict):
         """
         The URL for the S3 location where model artifacts are stored.
         """
-        ...
+        return pulumi.get(self, "model_data_url")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -223,12 +223,12 @@ class ModelVpcConfig(dict):
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> List[str]:
-        ...
+        return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter
     def subnets(self) -> List[str]:
-        ...
+        return pulumi.get(self, "subnets")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -104,7 +104,7 @@ class ConnectionAssociation(pulumi.CustomResource):
         """
         The ID of the connection.
         """
-        ...
+        return pulumi.get(self, "connection_id")
 
     @property
     @pulumi.getter(name="lagId")
@@ -112,7 +112,7 @@ class ConnectionAssociation(pulumi.CustomResource):
         """
         The ID of the LAG with which to associate the connection.
         """
-        ...
+        return pulumi.get(self, "lag_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

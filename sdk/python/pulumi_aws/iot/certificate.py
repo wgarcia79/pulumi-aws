@@ -129,7 +129,7 @@ class Certificate(pulumi.CustomResource):
         """
         Boolean flag to indicate if the certificate should be active
         """
-        ...
+        return pulumi.get(self, "active")
 
     @property
     @pulumi.getter
@@ -137,7 +137,7 @@ class Certificate(pulumi.CustomResource):
         """
         The ARN of the created certificate.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="certificatePem")
@@ -145,7 +145,7 @@ class Certificate(pulumi.CustomResource):
         """
         The certificate data, in PEM format.
         """
-        ...
+        return pulumi.get(self, "certificate_pem")
 
     @property
     @pulumi.getter
@@ -157,7 +157,7 @@ class Certificate(pulumi.CustomResource):
         If none is specified both the certificate and keys will be generated, review [CreateKeysAndCertificate](https://docs.aws.amazon.com/iot/latest/apireference/API_CreateKeysAndCertificate.html)
         for more information on generating keys and a certificate.
         """
-        ...
+        return pulumi.get(self, "csr")
 
     @property
     @pulumi.getter(name="privateKey")
@@ -165,7 +165,7 @@ class Certificate(pulumi.CustomResource):
         """
         When no CSR is provided, the private key.
         """
-        ...
+        return pulumi.get(self, "private_key")
 
     @property
     @pulumi.getter(name="publicKey")
@@ -173,7 +173,7 @@ class Certificate(pulumi.CustomResource):
         """
         When no CSR is provided, the public key.
         """
-        ...
+        return pulumi.get(self, "public_key")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

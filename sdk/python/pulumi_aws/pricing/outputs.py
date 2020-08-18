@@ -30,7 +30,7 @@ class GetProductFilterResult(dict):
         """
         The product attribute name that you want to filter on.
         """
-        ...
+        return pulumi.get(self, "field")
 
     @property
     @pulumi.getter
@@ -38,6 +38,6 @@ class GetProductFilterResult(dict):
         """
         The product attribute value that you want to filter on.
         """
-        ...
+        return pulumi.get(self, "value")
 
 

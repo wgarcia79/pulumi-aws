@@ -179,7 +179,7 @@ class Route(pulumi.CustomResource):
         """
         The destination CIDR block.
         """
-        ...
+        return pulumi.get(self, "destination_cidr_block")
 
     @property
     @pulumi.getter(name="destinationIpv6CidrBlock")
@@ -187,12 +187,12 @@ class Route(pulumi.CustomResource):
         """
         The destination IPv6 CIDR block.
         """
-        ...
+        return pulumi.get(self, "destination_ipv6_cidr_block")
 
     @property
     @pulumi.getter(name="destinationPrefixListId")
     def destination_prefix_list_id(self) -> str:
-        ...
+        return pulumi.get(self, "destination_prefix_list_id")
 
     @property
     @pulumi.getter(name="egressOnlyGatewayId")
@@ -200,7 +200,7 @@ class Route(pulumi.CustomResource):
         """
         Identifier of a VPC Egress Only Internet Gateway.
         """
-        ...
+        return pulumi.get(self, "egress_only_gateway_id")
 
     @property
     @pulumi.getter(name="gatewayId")
@@ -208,7 +208,7 @@ class Route(pulumi.CustomResource):
         """
         Identifier of a VPC internet gateway or a virtual private gateway.
         """
-        ...
+        return pulumi.get(self, "gateway_id")
 
     @property
     @pulumi.getter(name="instanceId")
@@ -216,12 +216,12 @@ class Route(pulumi.CustomResource):
         """
         Identifier of an EC2 instance.
         """
-        ...
+        return pulumi.get(self, "instance_id")
 
     @property
     @pulumi.getter(name="instanceOwnerId")
     def instance_owner_id(self) -> str:
-        ...
+        return pulumi.get(self, "instance_owner_id")
 
     @property
     @pulumi.getter(name="natGatewayId")
@@ -229,7 +229,7 @@ class Route(pulumi.CustomResource):
         """
         Identifier of a VPC NAT gateway.
         """
-        ...
+        return pulumi.get(self, "nat_gateway_id")
 
     @property
     @pulumi.getter(name="networkInterfaceId")
@@ -237,12 +237,12 @@ class Route(pulumi.CustomResource):
         """
         Identifier of an EC2 network interface.
         """
-        ...
+        return pulumi.get(self, "network_interface_id")
 
     @property
     @pulumi.getter
     def origin(self) -> str:
-        ...
+        return pulumi.get(self, "origin")
 
     @property
     @pulumi.getter(name="routeTableId")
@@ -250,12 +250,12 @@ class Route(pulumi.CustomResource):
         """
         The ID of the routing table.
         """
-        ...
+        return pulumi.get(self, "route_table_id")
 
     @property
     @pulumi.getter
     def state(self) -> str:
-        ...
+        return pulumi.get(self, "state")
 
     @property
     @pulumi.getter(name="transitGatewayId")
@@ -263,7 +263,7 @@ class Route(pulumi.CustomResource):
         """
         Identifier of an EC2 Transit Gateway.
         """
-        ...
+        return pulumi.get(self, "transit_gateway_id")
 
     @property
     @pulumi.getter(name="vpcPeeringConnectionId")
@@ -271,7 +271,7 @@ class Route(pulumi.CustomResource):
         """
         Identifier of a VPC peering connection.
         """
-        ...
+        return pulumi.get(self, "vpc_peering_connection_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

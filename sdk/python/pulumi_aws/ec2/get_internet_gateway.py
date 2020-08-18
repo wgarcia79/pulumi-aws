@@ -52,17 +52,17 @@ class GetInternetGatewayResult:
         """
         The ARN of the Internet Gateway.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
     def attachments(self) -> List['outputs.GetInternetGatewayAttachmentResult']:
-        ...
+        return pulumi.get(self, "attachments")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetInternetGatewayFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
@@ -70,12 +70,12 @@ class GetInternetGatewayResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="internetGatewayId")
     def internet_gateway_id(self) -> str:
-        ...
+        return pulumi.get(self, "internet_gateway_id")
 
     @property
     @pulumi.getter(name="ownerId")
@@ -83,12 +83,12 @@ class GetInternetGatewayResult:
         """
         The ID of the AWS account that owns the internet gateway.
         """
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter
     def tags(self) -> Mapping[str, str]:
-        ...
+        return pulumi.get(self, "tags")
 
 
 

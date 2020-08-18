@@ -27,7 +27,7 @@ class RepositoryImageScanningConfiguration(dict):
         """
         Indicates whether images are scanned after being pushed to the repository (true) or not scanned (false).
         """
-        ...
+        return pulumi.get(self, "scan_on_push")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

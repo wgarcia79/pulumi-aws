@@ -178,7 +178,7 @@ class Fleet(pulumi.CustomResource):
         """
         Fleet ARN.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="buildId")
@@ -186,7 +186,7 @@ class Fleet(pulumi.CustomResource):
         """
         ID of the Gamelift Build to be deployed on the fleet.
         """
-        ...
+        return pulumi.get(self, "build_id")
 
     @property
     @pulumi.getter
@@ -194,7 +194,7 @@ class Fleet(pulumi.CustomResource):
         """
         Human-readable description of the fleet.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="ec2InboundPermissions")
@@ -202,7 +202,7 @@ class Fleet(pulumi.CustomResource):
         """
         Range of IP addresses and port settings that permit inbound traffic to access server processes running on the fleet. See below.
         """
-        ...
+        return pulumi.get(self, "ec2_inbound_permissions")
 
     @property
     @pulumi.getter(name="ec2InstanceType")
@@ -210,7 +210,7 @@ class Fleet(pulumi.CustomResource):
         """
         Name of an EC2 instance type. e.g. `t2.micro`
         """
-        ...
+        return pulumi.get(self, "ec2_instance_type")
 
     @property
     @pulumi.getter(name="fleetType")
@@ -218,7 +218,7 @@ class Fleet(pulumi.CustomResource):
         """
         Type of fleet. This value must be `ON_DEMAND` or `SPOT`. Defaults to `ON_DEMAND`.
         """
-        ...
+        return pulumi.get(self, "fleet_type")
 
     @property
     @pulumi.getter(name="instanceRoleArn")
@@ -226,12 +226,12 @@ class Fleet(pulumi.CustomResource):
         """
         ARN of an IAM role that instances in the fleet can assume.
         """
-        ...
+        return pulumi.get(self, "instance_role_arn")
 
     @property
     @pulumi.getter(name="logPaths")
     def log_paths(self) -> List[str]:
-        ...
+        return pulumi.get(self, "log_paths")
 
     @property
     @pulumi.getter(name="metricGroups")
@@ -239,7 +239,7 @@ class Fleet(pulumi.CustomResource):
         """
         List of names of metric groups to add this fleet to. A metric group tracks metrics across all fleets in the group. Defaults to `default`.
         """
-        ...
+        return pulumi.get(self, "metric_groups")
 
     @property
     @pulumi.getter
@@ -247,7 +247,7 @@ class Fleet(pulumi.CustomResource):
         """
         The name of the fleet.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="newGameSessionProtectionPolicy")
@@ -255,7 +255,7 @@ class Fleet(pulumi.CustomResource):
         """
         Game session protection policy to apply to all instances in this fleet. e.g. `FullProtection`. Defaults to `NoProtection`.
         """
-        ...
+        return pulumi.get(self, "new_game_session_protection_policy")
 
     @property
     @pulumi.getter(name="operatingSystem")
@@ -263,7 +263,7 @@ class Fleet(pulumi.CustomResource):
         """
         Operating system of the fleet's computing resources.
         """
-        ...
+        return pulumi.get(self, "operating_system")
 
     @property
     @pulumi.getter(name="resourceCreationLimitPolicy")
@@ -271,7 +271,7 @@ class Fleet(pulumi.CustomResource):
         """
         Policy that limits the number of game sessions an individual player can create over a span of time for this fleet. See below.
         """
-        ...
+        return pulumi.get(self, "resource_creation_limit_policy")
 
     @property
     @pulumi.getter(name="runtimeConfiguration")
@@ -279,7 +279,7 @@ class Fleet(pulumi.CustomResource):
         """
         Instructions for launching server processes on each instance in the fleet. See below.
         """
-        ...
+        return pulumi.get(self, "runtime_configuration")
 
     @property
     @pulumi.getter
@@ -287,7 +287,7 @@ class Fleet(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

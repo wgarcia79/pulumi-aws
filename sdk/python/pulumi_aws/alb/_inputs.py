@@ -78,29 +78,29 @@ class ListenerDefaultActionArgs:
         """
         The type of routing action. Valid values are `forward`, `redirect`, `fixed-response`, `authenticate-cognito` and `authenticate-oidc`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter(name="authenticateCognito")
     def authenticate_cognito(self) -> Optional[pulumi.Input['ListenerDefaultActionAuthenticateCognitoArgs']]:
-        ...
+        return pulumi.get(self, "authenticate_cognito")
 
     @authenticate_cognito.setter
     def authenticate_cognito(self, value: Optional[pulumi.Input['ListenerDefaultActionAuthenticateCognitoArgs']]):
-        ...
+        pulumi.set(self, "authenticate_cognito", value)
 
     @property
     @pulumi.getter(name="authenticateOidc")
     def authenticate_oidc(self) -> Optional[pulumi.Input['ListenerDefaultActionAuthenticateOidcArgs']]:
-        ...
+        return pulumi.get(self, "authenticate_oidc")
 
     @authenticate_oidc.setter
     def authenticate_oidc(self, value: Optional[pulumi.Input['ListenerDefaultActionAuthenticateOidcArgs']]):
-        ...
+        pulumi.set(self, "authenticate_oidc", value)
 
     @property
     @pulumi.getter(name="fixedResponse")
@@ -108,11 +108,11 @@ class ListenerDefaultActionArgs:
         """
         Information for creating an action that returns a custom HTTP response. Required if `type` is `fixed-response`.
         """
-        ...
+        return pulumi.get(self, "fixed_response")
 
     @fixed_response.setter
     def fixed_response(self, value: Optional[pulumi.Input['ListenerDefaultActionFixedResponseArgs']]):
-        ...
+        pulumi.set(self, "fixed_response", value)
 
     @property
     @pulumi.getter
@@ -120,20 +120,20 @@ class ListenerDefaultActionArgs:
         """
         Information for creating an action that distributes requests among one or more target groups. Specify only if `type` is `forward`. If you specify both `forward` block and `target_group_arn` attribute, you can specify only one target group using `forward` and it must be the same target group specified in `target_group_arn`.
         """
-        ...
+        return pulumi.get(self, "forward")
 
     @forward.setter
     def forward(self, value: Optional[pulumi.Input['ListenerDefaultActionForwardArgs']]):
-        ...
+        pulumi.set(self, "forward", value)
 
     @property
     @pulumi.getter
     def order(self) -> Optional[pulumi.Input[float]]:
-        ...
+        return pulumi.get(self, "order")
 
     @order.setter
     def order(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "order", value)
 
     @property
     @pulumi.getter
@@ -141,11 +141,11 @@ class ListenerDefaultActionArgs:
         """
         Information for creating a redirect action. Required if `type` is `redirect`.
         """
-        ...
+        return pulumi.get(self, "redirect")
 
     @redirect.setter
     def redirect(self, value: Optional[pulumi.Input['ListenerDefaultActionRedirectArgs']]):
-        ...
+        pulumi.set(self, "redirect", value)
 
     @property
     @pulumi.getter(name="targetGroupArn")
@@ -153,11 +153,11 @@ class ListenerDefaultActionArgs:
         """
         The ARN of the Target Group to which to route traffic. Specify only if `type` is `forward` and you want to route to a single target group. To route to one or more target groups, use a `forward` block instead.
         """
-        ...
+        return pulumi.get(self, "target_group_arn")
 
     @target_group_arn.setter
     def target_group_arn(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "target_group_arn", value)
 
 
 @pulumi.input_type
@@ -201,11 +201,11 @@ class ListenerDefaultActionAuthenticateCognitoArgs:
         """
         The ARN of the Cognito user pool.
         """
-        ...
+        return pulumi.get(self, "user_pool_arn")
 
     @user_pool_arn.setter
     def user_pool_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "user_pool_arn", value)
 
     @property
     @pulumi.getter(name="userPoolClientId")
@@ -213,11 +213,11 @@ class ListenerDefaultActionAuthenticateCognitoArgs:
         """
         The ID of the Cognito user pool client.
         """
-        ...
+        return pulumi.get(self, "user_pool_client_id")
 
     @user_pool_client_id.setter
     def user_pool_client_id(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "user_pool_client_id", value)
 
     @property
     @pulumi.getter(name="userPoolDomain")
@@ -225,11 +225,11 @@ class ListenerDefaultActionAuthenticateCognitoArgs:
         """
         The domain prefix or fully-qualified domain name of the Cognito user pool.
         """
-        ...
+        return pulumi.get(self, "user_pool_domain")
 
     @user_pool_domain.setter
     def user_pool_domain(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "user_pool_domain", value)
 
     @property
     @pulumi.getter(name="authenticationRequestExtraParams")
@@ -237,11 +237,11 @@ class ListenerDefaultActionAuthenticateCognitoArgs:
         """
         The query parameters to include in the redirect request to the authorization endpoint. Max: 10.
         """
-        ...
+        return pulumi.get(self, "authentication_request_extra_params")
 
     @authentication_request_extra_params.setter
     def authentication_request_extra_params(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "authentication_request_extra_params", value)
 
     @property
     @pulumi.getter(name="onUnauthenticatedRequest")
@@ -249,11 +249,11 @@ class ListenerDefaultActionAuthenticateCognitoArgs:
         """
         The behavior if the user is not authenticated. Valid values: `deny`, `allow` and `authenticate`
         """
-        ...
+        return pulumi.get(self, "on_unauthenticated_request")
 
     @on_unauthenticated_request.setter
     def on_unauthenticated_request(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "on_unauthenticated_request", value)
 
     @property
     @pulumi.getter
@@ -261,11 +261,11 @@ class ListenerDefaultActionAuthenticateCognitoArgs:
         """
         The set of user claims to be requested from the IdP.
         """
-        ...
+        return pulumi.get(self, "scope")
 
     @scope.setter
     def scope(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "scope", value)
 
     @property
     @pulumi.getter(name="sessionCookieName")
@@ -273,11 +273,11 @@ class ListenerDefaultActionAuthenticateCognitoArgs:
         """
         The name of the cookie used to maintain session information.
         """
-        ...
+        return pulumi.get(self, "session_cookie_name")
 
     @session_cookie_name.setter
     def session_cookie_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "session_cookie_name", value)
 
     @property
     @pulumi.getter(name="sessionTimeout")
@@ -285,11 +285,11 @@ class ListenerDefaultActionAuthenticateCognitoArgs:
         """
         The maximum duration of the authentication session, in seconds.
         """
-        ...
+        return pulumi.get(self, "session_timeout")
 
     @session_timeout.setter
     def session_timeout(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "session_timeout", value)
 
 
 @pulumi.input_type
@@ -342,11 +342,11 @@ class ListenerDefaultActionAuthenticateOidcArgs:
         """
         The authorization endpoint of the IdP.
         """
-        ...
+        return pulumi.get(self, "authorization_endpoint")
 
     @authorization_endpoint.setter
     def authorization_endpoint(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "authorization_endpoint", value)
 
     @property
     @pulumi.getter(name="clientId")
@@ -354,11 +354,11 @@ class ListenerDefaultActionAuthenticateOidcArgs:
         """
         The OAuth 2.0 client identifier.
         """
-        ...
+        return pulumi.get(self, "client_id")
 
     @client_id.setter
     def client_id(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "client_id", value)
 
     @property
     @pulumi.getter(name="clientSecret")
@@ -366,11 +366,11 @@ class ListenerDefaultActionAuthenticateOidcArgs:
         """
         The OAuth 2.0 client secret.
         """
-        ...
+        return pulumi.get(self, "client_secret")
 
     @client_secret.setter
     def client_secret(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "client_secret", value)
 
     @property
     @pulumi.getter
@@ -378,11 +378,11 @@ class ListenerDefaultActionAuthenticateOidcArgs:
         """
         The OIDC issuer identifier of the IdP.
         """
-        ...
+        return pulumi.get(self, "issuer")
 
     @issuer.setter
     def issuer(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "issuer", value)
 
     @property
     @pulumi.getter(name="tokenEndpoint")
@@ -390,11 +390,11 @@ class ListenerDefaultActionAuthenticateOidcArgs:
         """
         The token endpoint of the IdP.
         """
-        ...
+        return pulumi.get(self, "token_endpoint")
 
     @token_endpoint.setter
     def token_endpoint(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "token_endpoint", value)
 
     @property
     @pulumi.getter(name="userInfoEndpoint")
@@ -402,11 +402,11 @@ class ListenerDefaultActionAuthenticateOidcArgs:
         """
         The user info endpoint of the IdP.
         """
-        ...
+        return pulumi.get(self, "user_info_endpoint")
 
     @user_info_endpoint.setter
     def user_info_endpoint(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "user_info_endpoint", value)
 
     @property
     @pulumi.getter(name="authenticationRequestExtraParams")
@@ -414,11 +414,11 @@ class ListenerDefaultActionAuthenticateOidcArgs:
         """
         The query parameters to include in the redirect request to the authorization endpoint. Max: 10.
         """
-        ...
+        return pulumi.get(self, "authentication_request_extra_params")
 
     @authentication_request_extra_params.setter
     def authentication_request_extra_params(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "authentication_request_extra_params", value)
 
     @property
     @pulumi.getter(name="onUnauthenticatedRequest")
@@ -426,11 +426,11 @@ class ListenerDefaultActionAuthenticateOidcArgs:
         """
         The behavior if the user is not authenticated. Valid values: `deny`, `allow` and `authenticate`
         """
-        ...
+        return pulumi.get(self, "on_unauthenticated_request")
 
     @on_unauthenticated_request.setter
     def on_unauthenticated_request(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "on_unauthenticated_request", value)
 
     @property
     @pulumi.getter
@@ -438,11 +438,11 @@ class ListenerDefaultActionAuthenticateOidcArgs:
         """
         The set of user claims to be requested from the IdP.
         """
-        ...
+        return pulumi.get(self, "scope")
 
     @scope.setter
     def scope(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "scope", value)
 
     @property
     @pulumi.getter(name="sessionCookieName")
@@ -450,11 +450,11 @@ class ListenerDefaultActionAuthenticateOidcArgs:
         """
         The name of the cookie used to maintain session information.
         """
-        ...
+        return pulumi.get(self, "session_cookie_name")
 
     @session_cookie_name.setter
     def session_cookie_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "session_cookie_name", value)
 
     @property
     @pulumi.getter(name="sessionTimeout")
@@ -462,11 +462,11 @@ class ListenerDefaultActionAuthenticateOidcArgs:
         """
         The maximum duration of the authentication session, in seconds.
         """
-        ...
+        return pulumi.get(self, "session_timeout")
 
     @session_timeout.setter
     def session_timeout(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "session_timeout", value)
 
 
 @pulumi.input_type
@@ -492,11 +492,11 @@ class ListenerDefaultActionFixedResponseArgs:
         """
         The content type. Valid values are `text/plain`, `text/css`, `text/html`, `application/javascript` and `application/json`.
         """
-        ...
+        return pulumi.get(self, "content_type")
 
     @content_type.setter
     def content_type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "content_type", value)
 
     @property
     @pulumi.getter(name="messageBody")
@@ -504,11 +504,11 @@ class ListenerDefaultActionFixedResponseArgs:
         """
         The message body.
         """
-        ...
+        return pulumi.get(self, "message_body")
 
     @message_body.setter
     def message_body(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "message_body", value)
 
     @property
     @pulumi.getter(name="statusCode")
@@ -516,11 +516,11 @@ class ListenerDefaultActionFixedResponseArgs:
         """
         The HTTP response code. Valid values are `2XX`, `4XX`, or `5XX`.
         """
-        ...
+        return pulumi.get(self, "status_code")
 
     @status_code.setter
     def status_code(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "status_code", value)
 
 
 @pulumi.input_type
@@ -542,11 +542,11 @@ class ListenerDefaultActionForwardArgs:
         """
         One or more target groups block.
         """
-        ...
+        return pulumi.get(self, "target_groups")
 
     @target_groups.setter
     def target_groups(self, value: pulumi.Input[List[pulumi.Input['ListenerDefaultActionForwardTargetGroupArgs']]]):
-        ...
+        pulumi.set(self, "target_groups", value)
 
     @property
     @pulumi.getter
@@ -554,11 +554,11 @@ class ListenerDefaultActionForwardArgs:
         """
         The target group stickiness for the rule.
         """
-        ...
+        return pulumi.get(self, "stickiness")
 
     @stickiness.setter
     def stickiness(self, value: Optional[pulumi.Input['ListenerDefaultActionForwardStickinessArgs']]):
-        ...
+        pulumi.set(self, "stickiness", value)
 
 
 @pulumi.input_type
@@ -580,11 +580,11 @@ class ListenerDefaultActionForwardStickinessArgs:
         """
         The time period, in seconds, during which requests from a client should be routed to the same target group. The range is 1-604800 seconds (7 days).
         """
-        ...
+        return pulumi.get(self, "duration")
 
     @duration.setter
     def duration(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "duration", value)
 
     @property
     @pulumi.getter
@@ -592,11 +592,11 @@ class ListenerDefaultActionForwardStickinessArgs:
         """
         Indicates whether target group stickiness is enabled.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "enabled", value)
 
 
 @pulumi.input_type
@@ -618,11 +618,11 @@ class ListenerDefaultActionForwardTargetGroupArgs:
         """
         The Amazon Resource Name (ARN) of the target group.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @arn.setter
     def arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "arn", value)
 
     @property
     @pulumi.getter
@@ -630,11 +630,11 @@ class ListenerDefaultActionForwardTargetGroupArgs:
         """
         The weight. The range is 0 to 999.
         """
-        ...
+        return pulumi.get(self, "weight")
 
     @weight.setter
     def weight(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "weight", value)
 
 
 @pulumi.input_type
@@ -672,11 +672,11 @@ class ListenerDefaultActionRedirectArgs:
         """
         The HTTP redirect code. The redirect is either permanent (`HTTP_301`) or temporary (`HTTP_302`).
         """
-        ...
+        return pulumi.get(self, "status_code")
 
     @status_code.setter
     def status_code(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "status_code", value)
 
     @property
     @pulumi.getter
@@ -684,11 +684,11 @@ class ListenerDefaultActionRedirectArgs:
         """
         The hostname. This component is not percent-encoded. The hostname can contain `#{host}`. Defaults to `#{host}`.
         """
-        ...
+        return pulumi.get(self, "host")
 
     @host.setter
     def host(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "host", value)
 
     @property
     @pulumi.getter
@@ -696,11 +696,11 @@ class ListenerDefaultActionRedirectArgs:
         """
         The absolute path, starting with the leading "/". This component is not percent-encoded. The path can contain #{host}, #{path}, and #{port}. Defaults to `/#{path}`.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @path.setter
     def path(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "path", value)
 
     @property
     @pulumi.getter
@@ -708,11 +708,11 @@ class ListenerDefaultActionRedirectArgs:
         """
         The port. Specify a value from `1` to `65535` or `#{port}`. Defaults to `#{port}`.
         """
-        ...
+        return pulumi.get(self, "port")
 
     @port.setter
     def port(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "port", value)
 
     @property
     @pulumi.getter
@@ -720,11 +720,11 @@ class ListenerDefaultActionRedirectArgs:
         """
         The protocol. Valid values are `HTTP`, `HTTPS`, or `#{protocol}`. Defaults to `#{protocol}`.
         """
-        ...
+        return pulumi.get(self, "protocol")
 
     @protocol.setter
     def protocol(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "protocol", value)
 
     @property
     @pulumi.getter
@@ -732,11 +732,11 @@ class ListenerDefaultActionRedirectArgs:
         """
         The query parameters, URL-encoded when necessary, but not percent-encoded. Do not include the leading "?". Defaults to `#{query}`.
         """
-        ...
+        return pulumi.get(self, "query")
 
     @query.setter
     def query(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "query", value)
 
 
 @pulumi.input_type
@@ -781,11 +781,11 @@ class ListenerRuleActionArgs:
         """
         The type of routing action. Valid values are `forward`, `redirect`, `fixed-response`, `authenticate-cognito` and `authenticate-oidc`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter(name="authenticateCognito")
@@ -793,11 +793,11 @@ class ListenerRuleActionArgs:
         """
         Information for creating an authenticate action using Cognito. Required if `type` is `authenticate-cognito`.
         """
-        ...
+        return pulumi.get(self, "authenticate_cognito")
 
     @authenticate_cognito.setter
     def authenticate_cognito(self, value: Optional[pulumi.Input['ListenerRuleActionAuthenticateCognitoArgs']]):
-        ...
+        pulumi.set(self, "authenticate_cognito", value)
 
     @property
     @pulumi.getter(name="authenticateOidc")
@@ -805,11 +805,11 @@ class ListenerRuleActionArgs:
         """
         Information for creating an authenticate action using OIDC. Required if `type` is `authenticate-oidc`.
         """
-        ...
+        return pulumi.get(self, "authenticate_oidc")
 
     @authenticate_oidc.setter
     def authenticate_oidc(self, value: Optional[pulumi.Input['ListenerRuleActionAuthenticateOidcArgs']]):
-        ...
+        pulumi.set(self, "authenticate_oidc", value)
 
     @property
     @pulumi.getter(name="fixedResponse")
@@ -817,11 +817,11 @@ class ListenerRuleActionArgs:
         """
         Information for creating an action that returns a custom HTTP response. Required if `type` is `fixed-response`.
         """
-        ...
+        return pulumi.get(self, "fixed_response")
 
     @fixed_response.setter
     def fixed_response(self, value: Optional[pulumi.Input['ListenerRuleActionFixedResponseArgs']]):
-        ...
+        pulumi.set(self, "fixed_response", value)
 
     @property
     @pulumi.getter
@@ -829,20 +829,20 @@ class ListenerRuleActionArgs:
         """
         Information for creating an action that distributes requests among one or more target groups. Specify only if `type` is `forward`. If you specify both `forward` block and `target_group_arn` attribute, you can specify only one target group using `forward` and it must be the same target group specified in `target_group_arn`.
         """
-        ...
+        return pulumi.get(self, "forward")
 
     @forward.setter
     def forward(self, value: Optional[pulumi.Input['ListenerRuleActionForwardArgs']]):
-        ...
+        pulumi.set(self, "forward", value)
 
     @property
     @pulumi.getter
     def order(self) -> Optional[pulumi.Input[float]]:
-        ...
+        return pulumi.get(self, "order")
 
     @order.setter
     def order(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "order", value)
 
     @property
     @pulumi.getter
@@ -850,11 +850,11 @@ class ListenerRuleActionArgs:
         """
         Information for creating a redirect action. Required if `type` is `redirect`.
         """
-        ...
+        return pulumi.get(self, "redirect")
 
     @redirect.setter
     def redirect(self, value: Optional[pulumi.Input['ListenerRuleActionRedirectArgs']]):
-        ...
+        pulumi.set(self, "redirect", value)
 
     @property
     @pulumi.getter(name="targetGroupArn")
@@ -862,11 +862,11 @@ class ListenerRuleActionArgs:
         """
         The ARN of the Target Group to which to route traffic. Specify only if `type` is `forward` and you want to route to a single target group. To route to one or more target groups, use a `forward` block instead.
         """
-        ...
+        return pulumi.get(self, "target_group_arn")
 
     @target_group_arn.setter
     def target_group_arn(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "target_group_arn", value)
 
 
 @pulumi.input_type
@@ -910,11 +910,11 @@ class ListenerRuleActionAuthenticateCognitoArgs:
         """
         The ARN of the Cognito user pool.
         """
-        ...
+        return pulumi.get(self, "user_pool_arn")
 
     @user_pool_arn.setter
     def user_pool_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "user_pool_arn", value)
 
     @property
     @pulumi.getter(name="userPoolClientId")
@@ -922,11 +922,11 @@ class ListenerRuleActionAuthenticateCognitoArgs:
         """
         The ID of the Cognito user pool client.
         """
-        ...
+        return pulumi.get(self, "user_pool_client_id")
 
     @user_pool_client_id.setter
     def user_pool_client_id(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "user_pool_client_id", value)
 
     @property
     @pulumi.getter(name="userPoolDomain")
@@ -934,11 +934,11 @@ class ListenerRuleActionAuthenticateCognitoArgs:
         """
         The domain prefix or fully-qualified domain name of the Cognito user pool.
         """
-        ...
+        return pulumi.get(self, "user_pool_domain")
 
     @user_pool_domain.setter
     def user_pool_domain(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "user_pool_domain", value)
 
     @property
     @pulumi.getter(name="authenticationRequestExtraParams")
@@ -946,11 +946,11 @@ class ListenerRuleActionAuthenticateCognitoArgs:
         """
         The query parameters to include in the redirect request to the authorization endpoint. Max: 10.
         """
-        ...
+        return pulumi.get(self, "authentication_request_extra_params")
 
     @authentication_request_extra_params.setter
     def authentication_request_extra_params(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "authentication_request_extra_params", value)
 
     @property
     @pulumi.getter(name="onUnauthenticatedRequest")
@@ -958,11 +958,11 @@ class ListenerRuleActionAuthenticateCognitoArgs:
         """
         The behavior if the user is not authenticated. Valid values: `deny`, `allow` and `authenticate`
         """
-        ...
+        return pulumi.get(self, "on_unauthenticated_request")
 
     @on_unauthenticated_request.setter
     def on_unauthenticated_request(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "on_unauthenticated_request", value)
 
     @property
     @pulumi.getter
@@ -970,11 +970,11 @@ class ListenerRuleActionAuthenticateCognitoArgs:
         """
         The set of user claims to be requested from the IdP.
         """
-        ...
+        return pulumi.get(self, "scope")
 
     @scope.setter
     def scope(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "scope", value)
 
     @property
     @pulumi.getter(name="sessionCookieName")
@@ -982,11 +982,11 @@ class ListenerRuleActionAuthenticateCognitoArgs:
         """
         The name of the cookie used to maintain session information.
         """
-        ...
+        return pulumi.get(self, "session_cookie_name")
 
     @session_cookie_name.setter
     def session_cookie_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "session_cookie_name", value)
 
     @property
     @pulumi.getter(name="sessionTimeout")
@@ -994,11 +994,11 @@ class ListenerRuleActionAuthenticateCognitoArgs:
         """
         The maximum duration of the authentication session, in seconds.
         """
-        ...
+        return pulumi.get(self, "session_timeout")
 
     @session_timeout.setter
     def session_timeout(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "session_timeout", value)
 
 
 @pulumi.input_type
@@ -1051,11 +1051,11 @@ class ListenerRuleActionAuthenticateOidcArgs:
         """
         The authorization endpoint of the IdP.
         """
-        ...
+        return pulumi.get(self, "authorization_endpoint")
 
     @authorization_endpoint.setter
     def authorization_endpoint(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "authorization_endpoint", value)
 
     @property
     @pulumi.getter(name="clientId")
@@ -1063,11 +1063,11 @@ class ListenerRuleActionAuthenticateOidcArgs:
         """
         The OAuth 2.0 client identifier.
         """
-        ...
+        return pulumi.get(self, "client_id")
 
     @client_id.setter
     def client_id(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "client_id", value)
 
     @property
     @pulumi.getter(name="clientSecret")
@@ -1075,11 +1075,11 @@ class ListenerRuleActionAuthenticateOidcArgs:
         """
         The OAuth 2.0 client secret.
         """
-        ...
+        return pulumi.get(self, "client_secret")
 
     @client_secret.setter
     def client_secret(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "client_secret", value)
 
     @property
     @pulumi.getter
@@ -1087,11 +1087,11 @@ class ListenerRuleActionAuthenticateOidcArgs:
         """
         The OIDC issuer identifier of the IdP.
         """
-        ...
+        return pulumi.get(self, "issuer")
 
     @issuer.setter
     def issuer(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "issuer", value)
 
     @property
     @pulumi.getter(name="tokenEndpoint")
@@ -1099,11 +1099,11 @@ class ListenerRuleActionAuthenticateOidcArgs:
         """
         The token endpoint of the IdP.
         """
-        ...
+        return pulumi.get(self, "token_endpoint")
 
     @token_endpoint.setter
     def token_endpoint(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "token_endpoint", value)
 
     @property
     @pulumi.getter(name="userInfoEndpoint")
@@ -1111,11 +1111,11 @@ class ListenerRuleActionAuthenticateOidcArgs:
         """
         The user info endpoint of the IdP.
         """
-        ...
+        return pulumi.get(self, "user_info_endpoint")
 
     @user_info_endpoint.setter
     def user_info_endpoint(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "user_info_endpoint", value)
 
     @property
     @pulumi.getter(name="authenticationRequestExtraParams")
@@ -1123,11 +1123,11 @@ class ListenerRuleActionAuthenticateOidcArgs:
         """
         The query parameters to include in the redirect request to the authorization endpoint. Max: 10.
         """
-        ...
+        return pulumi.get(self, "authentication_request_extra_params")
 
     @authentication_request_extra_params.setter
     def authentication_request_extra_params(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "authentication_request_extra_params", value)
 
     @property
     @pulumi.getter(name="onUnauthenticatedRequest")
@@ -1135,11 +1135,11 @@ class ListenerRuleActionAuthenticateOidcArgs:
         """
         The behavior if the user is not authenticated. Valid values: `deny`, `allow` and `authenticate`
         """
-        ...
+        return pulumi.get(self, "on_unauthenticated_request")
 
     @on_unauthenticated_request.setter
     def on_unauthenticated_request(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "on_unauthenticated_request", value)
 
     @property
     @pulumi.getter
@@ -1147,11 +1147,11 @@ class ListenerRuleActionAuthenticateOidcArgs:
         """
         The set of user claims to be requested from the IdP.
         """
-        ...
+        return pulumi.get(self, "scope")
 
     @scope.setter
     def scope(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "scope", value)
 
     @property
     @pulumi.getter(name="sessionCookieName")
@@ -1159,11 +1159,11 @@ class ListenerRuleActionAuthenticateOidcArgs:
         """
         The name of the cookie used to maintain session information.
         """
-        ...
+        return pulumi.get(self, "session_cookie_name")
 
     @session_cookie_name.setter
     def session_cookie_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "session_cookie_name", value)
 
     @property
     @pulumi.getter(name="sessionTimeout")
@@ -1171,11 +1171,11 @@ class ListenerRuleActionAuthenticateOidcArgs:
         """
         The maximum duration of the authentication session, in seconds.
         """
-        ...
+        return pulumi.get(self, "session_timeout")
 
     @session_timeout.setter
     def session_timeout(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "session_timeout", value)
 
 
 @pulumi.input_type
@@ -1201,11 +1201,11 @@ class ListenerRuleActionFixedResponseArgs:
         """
         The content type. Valid values are `text/plain`, `text/css`, `text/html`, `application/javascript` and `application/json`.
         """
-        ...
+        return pulumi.get(self, "content_type")
 
     @content_type.setter
     def content_type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "content_type", value)
 
     @property
     @pulumi.getter(name="messageBody")
@@ -1213,11 +1213,11 @@ class ListenerRuleActionFixedResponseArgs:
         """
         The message body.
         """
-        ...
+        return pulumi.get(self, "message_body")
 
     @message_body.setter
     def message_body(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "message_body", value)
 
     @property
     @pulumi.getter(name="statusCode")
@@ -1225,11 +1225,11 @@ class ListenerRuleActionFixedResponseArgs:
         """
         The HTTP response code. Valid values are `2XX`, `4XX`, or `5XX`.
         """
-        ...
+        return pulumi.get(self, "status_code")
 
     @status_code.setter
     def status_code(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "status_code", value)
 
 
 @pulumi.input_type
@@ -1251,11 +1251,11 @@ class ListenerRuleActionForwardArgs:
         """
         One or more target groups block.
         """
-        ...
+        return pulumi.get(self, "target_groups")
 
     @target_groups.setter
     def target_groups(self, value: pulumi.Input[List[pulumi.Input['ListenerRuleActionForwardTargetGroupArgs']]]):
-        ...
+        pulumi.set(self, "target_groups", value)
 
     @property
     @pulumi.getter
@@ -1263,11 +1263,11 @@ class ListenerRuleActionForwardArgs:
         """
         The target group stickiness for the rule.
         """
-        ...
+        return pulumi.get(self, "stickiness")
 
     @stickiness.setter
     def stickiness(self, value: Optional[pulumi.Input['ListenerRuleActionForwardStickinessArgs']]):
-        ...
+        pulumi.set(self, "stickiness", value)
 
 
 @pulumi.input_type
@@ -1289,11 +1289,11 @@ class ListenerRuleActionForwardStickinessArgs:
         """
         The time period, in seconds, during which requests from a client should be routed to the same target group. The range is 1-604800 seconds (7 days).
         """
-        ...
+        return pulumi.get(self, "duration")
 
     @duration.setter
     def duration(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "duration", value)
 
     @property
     @pulumi.getter
@@ -1301,11 +1301,11 @@ class ListenerRuleActionForwardStickinessArgs:
         """
         Indicates whether target group stickiness is enabled.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "enabled", value)
 
 
 @pulumi.input_type
@@ -1327,11 +1327,11 @@ class ListenerRuleActionForwardTargetGroupArgs:
         """
         The Amazon Resource Name (ARN) of the target group.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @arn.setter
     def arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "arn", value)
 
     @property
     @pulumi.getter
@@ -1339,11 +1339,11 @@ class ListenerRuleActionForwardTargetGroupArgs:
         """
         The weight. The range is 0 to 999.
         """
-        ...
+        return pulumi.get(self, "weight")
 
     @weight.setter
     def weight(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "weight", value)
 
 
 @pulumi.input_type
@@ -1381,11 +1381,11 @@ class ListenerRuleActionRedirectArgs:
         """
         The HTTP redirect code. The redirect is either permanent (`HTTP_301`) or temporary (`HTTP_302`).
         """
-        ...
+        return pulumi.get(self, "status_code")
 
     @status_code.setter
     def status_code(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "status_code", value)
 
     @property
     @pulumi.getter
@@ -1393,11 +1393,11 @@ class ListenerRuleActionRedirectArgs:
         """
         The hostname. This component is not percent-encoded. The hostname can contain `#{host}`. Defaults to `#{host}`.
         """
-        ...
+        return pulumi.get(self, "host")
 
     @host.setter
     def host(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "host", value)
 
     @property
     @pulumi.getter
@@ -1405,11 +1405,11 @@ class ListenerRuleActionRedirectArgs:
         """
         The absolute path, starting with the leading "/". This component is not percent-encoded. The path can contain #{host}, #{path}, and #{port}. Defaults to `/#{path}`.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @path.setter
     def path(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "path", value)
 
     @property
     @pulumi.getter
@@ -1417,11 +1417,11 @@ class ListenerRuleActionRedirectArgs:
         """
         The port. Specify a value from `1` to `65535` or `#{port}`. Defaults to `#{port}`.
         """
-        ...
+        return pulumi.get(self, "port")
 
     @port.setter
     def port(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "port", value)
 
     @property
     @pulumi.getter
@@ -1429,11 +1429,11 @@ class ListenerRuleActionRedirectArgs:
         """
         The protocol. Valid values are `HTTP`, `HTTPS`, or `#{protocol}`. Defaults to `#{protocol}`.
         """
-        ...
+        return pulumi.get(self, "protocol")
 
     @protocol.setter
     def protocol(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "protocol", value)
 
     @property
     @pulumi.getter
@@ -1441,11 +1441,11 @@ class ListenerRuleActionRedirectArgs:
         """
         The query parameters, URL-encoded when necessary, but not percent-encoded. Do not include the leading "?". Defaults to `#{query}`.
         """
-        ...
+        return pulumi.get(self, "query")
 
     @query.setter
     def query(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "query", value)
 
 
 @pulumi.input_type
@@ -1498,11 +1498,11 @@ class ListenerRuleConditionArgs:
         """
         The type of condition. Valid values are `host-header` or `path-pattern`. Must also set `values`.
         """
-        ...
+        return pulumi.get(self, "field")
 
     @field.setter
     def field(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "field", value)
 
     @property
     @pulumi.getter(name="hostHeader")
@@ -1510,11 +1510,11 @@ class ListenerRuleConditionArgs:
         """
         Contains a single `values` item which is a list of host header patterns to match. The maximum size of each pattern is 128 characters. Comparison is case insensitive. Wildcard characters supported: * (matches 0 or more characters) and ? (matches exactly 1 character). Only one pattern needs to match for the condition to be satisfied.
         """
-        ...
+        return pulumi.get(self, "host_header")
 
     @host_header.setter
     def host_header(self, value: Optional[pulumi.Input['ListenerRuleConditionHostHeaderArgs']]):
-        ...
+        pulumi.set(self, "host_header", value)
 
     @property
     @pulumi.getter(name="httpHeader")
@@ -1522,11 +1522,11 @@ class ListenerRuleConditionArgs:
         """
         HTTP headers to match. HTTP Header block fields documented below.
         """
-        ...
+        return pulumi.get(self, "http_header")
 
     @http_header.setter
     def http_header(self, value: Optional[pulumi.Input['ListenerRuleConditionHttpHeaderArgs']]):
-        ...
+        pulumi.set(self, "http_header", value)
 
     @property
     @pulumi.getter(name="httpRequestMethod")
@@ -1534,11 +1534,11 @@ class ListenerRuleConditionArgs:
         """
         Contains a single `values` item which is a list of HTTP request methods or verbs to match. Maximum size is 40 characters. Only allowed characters are A-Z, hyphen (-) and underscore (\_). Comparison is case sensitive. Wildcards are not supported. Only one needs to match for the condition to be satisfied. AWS recommends that GET and HEAD requests are routed in the same way because the response to a HEAD request may be cached.
         """
-        ...
+        return pulumi.get(self, "http_request_method")
 
     @http_request_method.setter
     def http_request_method(self, value: Optional[pulumi.Input['ListenerRuleConditionHttpRequestMethodArgs']]):
-        ...
+        pulumi.set(self, "http_request_method", value)
 
     @property
     @pulumi.getter(name="pathPattern")
@@ -1546,11 +1546,11 @@ class ListenerRuleConditionArgs:
         """
         Contains a single `values` item which is a list of path patterns to match against the request URL. Maximum size of each pattern is 128 characters. Comparison is case sensitive. Wildcard characters supported: * (matches 0 or more characters) and ? (matches exactly 1 character). Only one pattern needs to match for the condition to be satisfied. Path pattern is compared only to the path of the URL, not to its query string. To compare against the query string, use a `query_string` condition.
         """
-        ...
+        return pulumi.get(self, "path_pattern")
 
     @path_pattern.setter
     def path_pattern(self, value: Optional[pulumi.Input['ListenerRuleConditionPathPatternArgs']]):
-        ...
+        pulumi.set(self, "path_pattern", value)
 
     @property
     @pulumi.getter(name="queryStrings")
@@ -1558,11 +1558,11 @@ class ListenerRuleConditionArgs:
         """
         Query strings to match. Query String block fields documented below.
         """
-        ...
+        return pulumi.get(self, "query_strings")
 
     @query_strings.setter
     def query_strings(self, value: Optional[pulumi.Input[List[pulumi.Input['ListenerRuleConditionQueryStringArgs']]]]):
-        ...
+        pulumi.set(self, "query_strings", value)
 
     @property
     @pulumi.getter(name="sourceIp")
@@ -1570,11 +1570,11 @@ class ListenerRuleConditionArgs:
         """
         Contains a single `values` item which is a list of source IP CIDR notations to match. You can use both IPv4 and IPv6 addresses. Wildcards are not supported. Condition is satisfied if the source IP address of the request matches one of the CIDR blocks. Condition is not satisfied by the addresses in the `X-Forwarded-For` header, use `http_header` condition instead.
         """
-        ...
+        return pulumi.get(self, "source_ip")
 
     @source_ip.setter
     def source_ip(self, value: Optional[pulumi.Input['ListenerRuleConditionSourceIpArgs']]):
-        ...
+        pulumi.set(self, "source_ip", value)
 
     @property
     @pulumi.getter
@@ -1582,11 +1582,11 @@ class ListenerRuleConditionArgs:
         """
         List of exactly one pattern to match. Required when `field` is set.
         """
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "values", value)
 
 
 @pulumi.input_type
@@ -1605,11 +1605,11 @@ class ListenerRuleConditionHostHeaderArgs:
         """
         List of exactly one pattern to match. Required when `field` is set.
         """
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "values", value)
 
 
 @pulumi.input_type
@@ -1630,11 +1630,11 @@ class ListenerRuleConditionHttpHeaderArgs:
         """
         Name of HTTP header to search. The maximum size is 40 characters. Comparison is case insensitive. Only RFC7240 characters are supported. Wildcards are not supported. You cannot use HTTP header condition to specify the host header, use a `host-header` condition instead.
         """
-        ...
+        return pulumi.get(self, "http_header_name")
 
     @http_header_name.setter
     def http_header_name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "http_header_name", value)
 
     @property
     @pulumi.getter
@@ -1642,11 +1642,11 @@ class ListenerRuleConditionHttpHeaderArgs:
         """
         List of header value patterns to match. Maximum size of each pattern is 128 characters. Comparison is case insensitive. Wildcard characters supported: * (matches 0 or more characters) and ? (matches exactly 1 character). If the same header appears multiple times in the request they will be searched in order until a match is found. Only one pattern needs to match for the condition to be satisfied. To require that all of the strings are a match, create one condition block per string.
         """
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "values", value)
 
 
 @pulumi.input_type
@@ -1664,11 +1664,11 @@ class ListenerRuleConditionHttpRequestMethodArgs:
         """
         List of exactly one pattern to match. Required when `field` is set.
         """
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "values", value)
 
 
 @pulumi.input_type
@@ -1687,11 +1687,11 @@ class ListenerRuleConditionPathPatternArgs:
         """
         List of exactly one pattern to match. Required when `field` is set.
         """
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "values", value)
 
 
 @pulumi.input_type
@@ -1713,11 +1713,11 @@ class ListenerRuleConditionQueryStringArgs:
         """
         Query string value pattern to match.
         """
-        ...
+        return pulumi.get(self, "value")
 
     @value.setter
     def value(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "value", value)
 
     @property
     @pulumi.getter
@@ -1725,11 +1725,11 @@ class ListenerRuleConditionQueryStringArgs:
         """
         Query string key pattern to match.
         """
-        ...
+        return pulumi.get(self, "key")
 
     @key.setter
     def key(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "key", value)
 
 
 @pulumi.input_type
@@ -1747,11 +1747,11 @@ class ListenerRuleConditionSourceIpArgs:
         """
         List of exactly one pattern to match. Required when `field` is set.
         """
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "values", value)
 
 
 @pulumi.input_type
@@ -1777,11 +1777,11 @@ class LoadBalancerAccessLogsArgs:
         """
         The S3 bucket name to store the logs in.
         """
-        ...
+        return pulumi.get(self, "bucket")
 
     @bucket.setter
     def bucket(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "bucket", value)
 
     @property
     @pulumi.getter
@@ -1789,11 +1789,11 @@ class LoadBalancerAccessLogsArgs:
         """
         Boolean to enable / disable `access_logs`. Defaults to `false`, even when `bucket` is specified.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter
@@ -1801,11 +1801,11 @@ class LoadBalancerAccessLogsArgs:
         """
         The S3 bucket prefix. Logs are stored in the root if not configured.
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     @prefix.setter
     def prefix(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "prefix", value)
 
 
 @pulumi.input_type
@@ -1827,11 +1827,11 @@ class LoadBalancerSubnetMappingArgs:
         """
         The id of the subnet of which to attach to the load balancer. You can specify only one subnet per Availability Zone.
         """
-        ...
+        return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
     def subnet_id(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "subnet_id", value)
 
     @property
     @pulumi.getter(name="allocationId")
@@ -1839,11 +1839,11 @@ class LoadBalancerSubnetMappingArgs:
         """
         The allocation ID of the Elastic IP address.
         """
-        ...
+        return pulumi.get(self, "allocation_id")
 
     @allocation_id.setter
     def allocation_id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "allocation_id", value)
 
 
 @pulumi.input_type
@@ -1894,11 +1894,11 @@ class TargetGroupHealthCheckArgs:
         """
         Boolean to enable / disable `stickiness`. Default is `true`
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter(name="healthyThreshold")
@@ -1906,11 +1906,11 @@ class TargetGroupHealthCheckArgs:
         """
         The number of consecutive health checks successes required before considering an unhealthy target healthy. Defaults to 3.
         """
-        ...
+        return pulumi.get(self, "healthy_threshold")
 
     @healthy_threshold.setter
     def healthy_threshold(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "healthy_threshold", value)
 
     @property
     @pulumi.getter
@@ -1918,11 +1918,11 @@ class TargetGroupHealthCheckArgs:
         """
         The approximate amount of time, in seconds, between health checks of an individual target. Minimum value 5 seconds, Maximum value 300 seconds. For `lambda` target groups, it needs to be greater as the `timeout` of the underlying `lambda`. Default 30 seconds.
         """
-        ...
+        return pulumi.get(self, "interval")
 
     @interval.setter
     def interval(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "interval", value)
 
     @property
     @pulumi.getter
@@ -1930,11 +1930,11 @@ class TargetGroupHealthCheckArgs:
         """
         The HTTP codes to use when checking for a successful response from a target. You can specify multiple values (for example, "200,202") or a range of values (for example, "200-299"). Applies to Application Load Balancers only (HTTP/HTTPS), not Network Load Balancers (TCP).
         """
-        ...
+        return pulumi.get(self, "matcher")
 
     @matcher.setter
     def matcher(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "matcher", value)
 
     @property
     @pulumi.getter
@@ -1942,11 +1942,11 @@ class TargetGroupHealthCheckArgs:
         """
         The destination for the health check request. Applies to Application Load Balancers only (HTTP/HTTPS), not Network Load Balancers (TCP).
         """
-        ...
+        return pulumi.get(self, "path")
 
     @path.setter
     def path(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "path", value)
 
     @property
     @pulumi.getter
@@ -1954,11 +1954,11 @@ class TargetGroupHealthCheckArgs:
         """
         The port on which targets receive traffic, unless overridden when registering a specific target. Required when `target_type` is `instance` or `ip`. Does not apply when `target_type` is `lambda`.
         """
-        ...
+        return pulumi.get(self, "port")
 
     @port.setter
     def port(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "port", value)
 
     @property
     @pulumi.getter
@@ -1966,11 +1966,11 @@ class TargetGroupHealthCheckArgs:
         """
         The protocol to use for routing traffic to the targets. Should be one of "TCP", "TLS", "UDP", "TCP_UDP", "HTTP" or "HTTPS". Required when `target_type` is `instance` or `ip`. Does not apply when `target_type` is `lambda`.
         """
-        ...
+        return pulumi.get(self, "protocol")
 
     @protocol.setter
     def protocol(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "protocol", value)
 
     @property
     @pulumi.getter
@@ -1978,11 +1978,11 @@ class TargetGroupHealthCheckArgs:
         """
         The amount of time, in seconds, during which no response means a failed health check. For Application Load Balancers, the range is 2 to 120 seconds, and the default is 5 seconds for the `instance` target type and 30 seconds for the `lambda` target type. For Network Load Balancers, you cannot set a custom value, and the default is 10 seconds for TCP and HTTPS health checks and 6 seconds for HTTP health checks.
         """
-        ...
+        return pulumi.get(self, "timeout")
 
     @timeout.setter
     def timeout(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "timeout", value)
 
     @property
     @pulumi.getter(name="unhealthyThreshold")
@@ -1990,11 +1990,11 @@ class TargetGroupHealthCheckArgs:
         """
         The number of consecutive health check failures required before considering the target unhealthy . For Network Load Balancers, this value must be the same as the `healthy_threshold`. Defaults to 3.
         """
-        ...
+        return pulumi.get(self, "unhealthy_threshold")
 
     @unhealthy_threshold.setter
     def unhealthy_threshold(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "unhealthy_threshold", value)
 
 
 @pulumi.input_type
@@ -2020,11 +2020,11 @@ class TargetGroupStickinessArgs:
         """
         The type of sticky sessions. The only current possible value is `lb_cookie`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter(name="cookieDuration")
@@ -2032,11 +2032,11 @@ class TargetGroupStickinessArgs:
         """
         The time period, in seconds, during which requests from a client should be routed to the same target. After this time period expires, the load balancer-generated cookie is considered stale. The range is 1 second to 1 week (604800 seconds). The default value is 1 day (86400 seconds).
         """
-        ...
+        return pulumi.get(self, "cookie_duration")
 
     @cookie_duration.setter
     def cookie_duration(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "cookie_duration", value)
 
     @property
     @pulumi.getter
@@ -2044,10 +2044,10 @@ class TargetGroupStickinessArgs:
         """
         Indicates whether  health checks are enabled. Defaults to true.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "enabled", value)
 
 

@@ -53,7 +53,7 @@ class GetServerResult:
         """
         Amazon Resource Name (ARN) of Transfer Server
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -61,7 +61,7 @@ class GetServerResult:
         """
         The endpoint of the Transfer Server (e.g. `s-12345678.server.transfer.REGION.amazonaws.com`)
         """
-        ...
+        return pulumi.get(self, "endpoint")
 
     @property
     @pulumi.getter
@@ -69,7 +69,7 @@ class GetServerResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="identityProviderType")
@@ -77,7 +77,7 @@ class GetServerResult:
         """
         The mode of authentication enabled for this service. The default value is `SERVICE_MANAGED`, which allows you to store and access SFTP user credentials within the service. `API_GATEWAY` indicates that user authentication requires a call to an API Gateway endpoint URL provided by you to integrate an identity provider of your choice.
         """
-        ...
+        return pulumi.get(self, "identity_provider_type")
 
     @property
     @pulumi.getter(name="invocationRole")
@@ -85,7 +85,7 @@ class GetServerResult:
         """
         Amazon Resource Name (ARN) of the IAM role used to authenticate the user account with an `identity_provider_type` of `API_GATEWAY`.
         """
-        ...
+        return pulumi.get(self, "invocation_role")
 
     @property
     @pulumi.getter(name="loggingRole")
@@ -93,12 +93,12 @@ class GetServerResult:
         """
         Amazon Resource Name (ARN) of an IAM role that allows the service to write your SFTP users’ activity to your Amazon CloudWatch logs for monitoring and auditing purposes.
         """
-        ...
+        return pulumi.get(self, "logging_role")
 
     @property
     @pulumi.getter(name="serverId")
     def server_id(self) -> str:
-        ...
+        return pulumi.get(self, "server_id")
 
     @property
     @pulumi.getter
@@ -106,7 +106,7 @@ class GetServerResult:
         """
         URL of the service endpoint used to authenticate users with an `identity_provider_type` of `API_GATEWAY`.
         """
-        ...
+        return pulumi.get(self, "url")
 
 
 

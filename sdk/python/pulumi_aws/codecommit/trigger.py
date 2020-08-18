@@ -103,7 +103,7 @@ class Trigger(pulumi.CustomResource):
     @property
     @pulumi.getter(name="configurationId")
     def configuration_id(self) -> str:
-        ...
+        return pulumi.get(self, "configuration_id")
 
     @property
     @pulumi.getter(name="repositoryName")
@@ -111,12 +111,12 @@ class Trigger(pulumi.CustomResource):
         """
         The name for the repository. This needs to be less than 100 characters.
         """
-        ...
+        return pulumi.get(self, "repository_name")
 
     @property
     @pulumi.getter
     def triggers(self) -> List['outputs.TriggerTrigger']:
-        ...
+        return pulumi.get(self, "triggers")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

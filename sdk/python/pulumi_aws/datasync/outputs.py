@@ -34,7 +34,7 @@ class EfsLocationEc2Config(dict):
         """
         List of Amazon Resource Names (ARNs) of the EC2 Security Groups that are associated with the EFS Mount Target.
         """
-        ...
+        return pulumi.get(self, "security_group_arns")
 
     @property
     @pulumi.getter(name="subnetArn")
@@ -42,7 +42,7 @@ class EfsLocationEc2Config(dict):
         """
         Amazon Resource Name (ARN) of the EC2 Subnet that is associated with the EFS Mount Target.
         """
-        ...
+        return pulumi.get(self, "subnet_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -64,7 +64,7 @@ class LocationSmbMountOptions(dict):
         """
         The specific SMB version that you want DataSync to use for mounting your SMB share. Valid values: `AUTOMATIC`, `SMB2`, and `SMB3`. Default: `AUTOMATIC`
         """
-        ...
+        return pulumi.get(self, "version")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -85,7 +85,7 @@ class NfsLocationOnPremConfig(dict):
         """
         List of Amazon Resource Names (ARNs) of the DataSync Agents used to connect to the NFS server.
         """
-        ...
+        return pulumi.get(self, "agent_arns")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -106,7 +106,7 @@ class S3LocationS3Config(dict):
         """
         Amazon Resource Names (ARN) of the IAM Role used to connect to the S3 Bucket.
         """
-        ...
+        return pulumi.get(self, "bucket_access_role_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -160,7 +160,7 @@ class TaskOptions(dict):
         """
         A file metadata that shows the last time a file was accessed (that is when the file was read or written to). If set to `BEST_EFFORT`, the DataSync Task attempts to preserve the original (that is, the version before sync `PREPARING` phase) `atime` attribute on all source files. Valid values: `BEST_EFFORT`, `NONE`. Default: `BEST_EFFORT`.
         """
-        ...
+        return pulumi.get(self, "atime")
 
     @property
     @pulumi.getter(name="bytesPerSecond")
@@ -168,7 +168,7 @@ class TaskOptions(dict):
         """
         Limits the bandwidth utilized. For example, to set a maximum of 1 MB, set this value to `1048576`. Value values: `-1` or greater. Default: `-1` (unlimited).
         """
-        ...
+        return pulumi.get(self, "bytes_per_second")
 
     @property
     @pulumi.getter
@@ -176,7 +176,7 @@ class TaskOptions(dict):
         """
         Group identifier of the file's owners. Valid values: `BOTH`, `INT_VALUE`, `NAME`, `NONE`. Default: `INT_VALUE` (preserve integer value of the ID).
         """
-        ...
+        return pulumi.get(self, "gid")
 
     @property
     @pulumi.getter
@@ -184,7 +184,7 @@ class TaskOptions(dict):
         """
         A file metadata that indicates the last time a file was modified (written to) before the sync `PREPARING` phase. Value values: `NONE`, `PRESERVE`. Default: `PRESERVE`.
         """
-        ...
+        return pulumi.get(self, "mtime")
 
     @property
     @pulumi.getter(name="posixPermissions")
@@ -192,7 +192,7 @@ class TaskOptions(dict):
         """
         Determines which users or groups can access a file for a specific purpose such as reading, writing, or execution of the file. Valid values: `NONE`, `PRESERVE`. Default: `PRESERVE`.
         """
-        ...
+        return pulumi.get(self, "posix_permissions")
 
     @property
     @pulumi.getter(name="preserveDeletedFiles")
@@ -200,7 +200,7 @@ class TaskOptions(dict):
         """
         Whether files deleted in the source should be removed or preserved in the destination file system. Valid values: `PRESERVE`, `REMOVE`. Default: `PRESERVE`.
         """
-        ...
+        return pulumi.get(self, "preserve_deleted_files")
 
     @property
     @pulumi.getter(name="preserveDevices")
@@ -208,7 +208,7 @@ class TaskOptions(dict):
         """
         Whether the DataSync Task should preserve the metadata of block and character devices in the source files system, and recreate the files with that device name and metadata on the destination. The DataSync Task can’t sync the actual contents of such devices, because many of the devices are non-terminal and don’t return an end of file (EOF) marker. Valid values: `NONE`, `PRESERVE`. Default: `NONE` (ignore special devices).
         """
-        ...
+        return pulumi.get(self, "preserve_devices")
 
     @property
     @pulumi.getter
@@ -216,7 +216,7 @@ class TaskOptions(dict):
         """
         User identifier of the file's owners. Valid values: `BOTH`, `INT_VALUE`, `NAME`, `NONE`. Default: `INT_VALUE` (preserve integer value of the ID).
         """
-        ...
+        return pulumi.get(self, "uid")
 
     @property
     @pulumi.getter(name="verifyMode")
@@ -224,7 +224,7 @@ class TaskOptions(dict):
         """
         Whether a data integrity verification should be performed at the end of a task execution after all data and metadata have been transferred. Valid values: `NONE`, `POINT_IN_TIME_CONSISTENT`, `ONLY_FILES_TRANSFERRED`. Default: `POINT_IN_TIME_CONSISTENT`.
         """
-        ...
+        return pulumi.get(self, "verify_mode")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

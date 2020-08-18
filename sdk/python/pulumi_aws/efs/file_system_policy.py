@@ -123,7 +123,7 @@ class FileSystemPolicy(pulumi.CustomResource):
         """
         The ID of the EFS file system.
         """
-        ...
+        return pulumi.get(self, "file_system_id")
 
     @property
     @pulumi.getter
@@ -131,7 +131,7 @@ class FileSystemPolicy(pulumi.CustomResource):
         """
         The JSON formatted file system policy for the EFS file system. see [Docs](https://docs.aws.amazon.com/efs/latest/ug/access-control-overview.html#access-control-manage-access-intro-resource-policies) for more info.
         """
-        ...
+        return pulumi.get(self, "policy")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

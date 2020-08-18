@@ -41,11 +41,11 @@ class CertificateDomainValidationOptionArgs:
         """
         A domain name for which the certificate should be issued
         """
-        ...
+        return pulumi.get(self, "domain_name")
 
     @domain_name.setter
     def domain_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "domain_name", value)
 
     @property
     @pulumi.getter(name="resourceRecordName")
@@ -53,11 +53,11 @@ class CertificateDomainValidationOptionArgs:
         """
         The name of the DNS record to create to validate the certificate
         """
-        ...
+        return pulumi.get(self, "resource_record_name")
 
     @resource_record_name.setter
     def resource_record_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "resource_record_name", value)
 
     @property
     @pulumi.getter(name="resourceRecordType")
@@ -65,11 +65,11 @@ class CertificateDomainValidationOptionArgs:
         """
         The type of DNS record to create
         """
-        ...
+        return pulumi.get(self, "resource_record_type")
 
     @resource_record_type.setter
     def resource_record_type(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "resource_record_type", value)
 
     @property
     @pulumi.getter(name="resourceRecordValue")
@@ -77,11 +77,11 @@ class CertificateDomainValidationOptionArgs:
         """
         The value the DNS record needs to have
         """
-        ...
+        return pulumi.get(self, "resource_record_value")
 
     @resource_record_value.setter
     def resource_record_value(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "resource_record_value", value)
 
 
 @pulumi.input_type
@@ -100,10 +100,10 @@ class CertificateOptionsArgs:
         """
         Specifies whether certificate details should be added to a certificate transparency log. Valid values are `ENABLED` or `DISABLED`. See https://docs.aws.amazon.com/acm/latest/userguide/acm-concepts.html#concept-transparency for more details.
         """
-        ...
+        return pulumi.get(self, "certificate_transparency_logging_preference")
 
     @certificate_transparency_logging_preference.setter
     def certificate_transparency_logging_preference(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "certificate_transparency_logging_preference", value)
 
 

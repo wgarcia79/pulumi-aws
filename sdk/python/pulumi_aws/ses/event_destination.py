@@ -175,7 +175,7 @@ class EventDestination(pulumi.CustomResource):
         """
         CloudWatch destination for the events
         """
-        ...
+        return pulumi.get(self, "cloudwatch_destinations")
 
     @property
     @pulumi.getter(name="configurationSetName")
@@ -183,7 +183,7 @@ class EventDestination(pulumi.CustomResource):
         """
         The name of the configuration set
         """
-        ...
+        return pulumi.get(self, "configuration_set_name")
 
     @property
     @pulumi.getter
@@ -191,7 +191,7 @@ class EventDestination(pulumi.CustomResource):
         """
         If true, the event destination will be enabled
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="kinesisDestination")
@@ -199,7 +199,7 @@ class EventDestination(pulumi.CustomResource):
         """
         Send the events to a kinesis firehose destination
         """
-        ...
+        return pulumi.get(self, "kinesis_destination")
 
     @property
     @pulumi.getter(name="matchingTypes")
@@ -207,7 +207,7 @@ class EventDestination(pulumi.CustomResource):
         """
         A list of matching types. May be any of `"send"`, `"reject"`, `"bounce"`, `"complaint"`, `"delivery"`, `"open"`, `"click"`, or `"renderingFailure"`.
         """
-        ...
+        return pulumi.get(self, "matching_types")
 
     @property
     @pulumi.getter
@@ -215,7 +215,7 @@ class EventDestination(pulumi.CustomResource):
         """
         The name of the event destination
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="snsDestination")
@@ -223,7 +223,7 @@ class EventDestination(pulumi.CustomResource):
         """
         Send the events to an SNS Topic destination
         """
-        ...
+        return pulumi.get(self, "sns_destination")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

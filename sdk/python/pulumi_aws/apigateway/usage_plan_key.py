@@ -121,7 +121,7 @@ class UsagePlanKey(pulumi.CustomResource):
         """
         The identifier of the API key resource.
         """
-        ...
+        return pulumi.get(self, "key_id")
 
     @property
     @pulumi.getter(name="keyType")
@@ -129,7 +129,7 @@ class UsagePlanKey(pulumi.CustomResource):
         """
         The type of the API key resource. Currently, the valid key type is API_KEY.
         """
-        ...
+        return pulumi.get(self, "key_type")
 
     @property
     @pulumi.getter
@@ -137,7 +137,7 @@ class UsagePlanKey(pulumi.CustomResource):
         """
         The name of a usage plan key.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="usagePlanId")
@@ -145,7 +145,7 @@ class UsagePlanKey(pulumi.CustomResource):
         """
         The Id of the usage plan resource representing to associate the key to.
         """
-        ...
+        return pulumi.get(self, "usage_plan_id")
 
     @property
     @pulumi.getter
@@ -153,7 +153,7 @@ class UsagePlanKey(pulumi.CustomResource):
         """
         The value of a usage plan key.
         """
-        ...
+        return pulumi.get(self, "value")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

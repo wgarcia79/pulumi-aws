@@ -43,12 +43,12 @@ class GetAutoscalingGroupsResult:
         """
         A list of the Autoscaling Groups Arns in the current region.
         """
-        ...
+        return pulumi.get(self, "arns")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetAutoscalingGroupsFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
@@ -56,7 +56,7 @@ class GetAutoscalingGroupsResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -64,7 +64,7 @@ class GetAutoscalingGroupsResult:
         """
         A list of the Autoscaling Groups in the current region.
         """
-        ...
+        return pulumi.get(self, "names")
 
 
 

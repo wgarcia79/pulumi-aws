@@ -107,7 +107,7 @@ class ListenerCertificate(pulumi.CustomResource):
         """
         The ARN of the certificate to attach to the listener.
         """
-        ...
+        return pulumi.get(self, "certificate_arn")
 
     @property
     @pulumi.getter(name="listenerArn")
@@ -115,7 +115,7 @@ class ListenerCertificate(pulumi.CustomResource):
         """
         The ARN of the listener to which to attach the certificate.
         """
-        ...
+        return pulumi.get(self, "listener_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

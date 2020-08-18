@@ -73,7 +73,7 @@ class GetTransitGatewayResult:
         """
         Private Autonomous System Number (ASN) for the Amazon side of a BGP session
         """
-        ...
+        return pulumi.get(self, "amazon_side_asn")
 
     @property
     @pulumi.getter
@@ -81,7 +81,7 @@ class GetTransitGatewayResult:
         """
         EC2 Transit Gateway Amazon Resource Name (ARN)
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="associationDefaultRouteTableId")
@@ -89,7 +89,7 @@ class GetTransitGatewayResult:
         """
         Identifier of the default association route table
         """
-        ...
+        return pulumi.get(self, "association_default_route_table_id")
 
     @property
     @pulumi.getter(name="autoAcceptSharedAttachments")
@@ -97,7 +97,7 @@ class GetTransitGatewayResult:
         """
         Whether resource attachment requests are automatically accepted.
         """
-        ...
+        return pulumi.get(self, "auto_accept_shared_attachments")
 
     @property
     @pulumi.getter(name="defaultRouteTableAssociation")
@@ -105,7 +105,7 @@ class GetTransitGatewayResult:
         """
         Whether resource attachments are automatically associated with the default association route table.
         """
-        ...
+        return pulumi.get(self, "default_route_table_association")
 
     @property
     @pulumi.getter(name="defaultRouteTablePropagation")
@@ -113,7 +113,7 @@ class GetTransitGatewayResult:
         """
         Whether resource attachments automatically propagate routes to the default propagation route table.
         """
-        ...
+        return pulumi.get(self, "default_route_table_propagation")
 
     @property
     @pulumi.getter
@@ -121,7 +121,7 @@ class GetTransitGatewayResult:
         """
         Description of the EC2 Transit Gateway
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="dnsSupport")
@@ -129,12 +129,12 @@ class GetTransitGatewayResult:
         """
         Whether DNS support is enabled.
         """
-        ...
+        return pulumi.get(self, "dns_support")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetTransitGatewayFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
@@ -142,7 +142,7 @@ class GetTransitGatewayResult:
         """
         EC2 Transit Gateway identifier
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="ownerId")
@@ -150,7 +150,7 @@ class GetTransitGatewayResult:
         """
         Identifier of the AWS account that owns the EC2 Transit Gateway
         """
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter(name="propagationDefaultRouteTableId")
@@ -158,7 +158,7 @@ class GetTransitGatewayResult:
         """
         Identifier of the default propagation route table.
         """
-        ...
+        return pulumi.get(self, "propagation_default_route_table_id")
 
     @property
     @pulumi.getter
@@ -166,7 +166,7 @@ class GetTransitGatewayResult:
         """
         Key-value tags for the EC2 Transit Gateway
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpnEcmpSupport")
@@ -174,7 +174,7 @@ class GetTransitGatewayResult:
         """
         Whether VPN Equal Cost Multipath Protocol support is enabled.
         """
-        ...
+        return pulumi.get(self, "vpn_ecmp_support")
 
 
 

@@ -180,7 +180,7 @@ class IntegrationResponse(pulumi.CustomResource):
         """
         Specifies how to handle request payload content type conversions. Supported values are `CONVERT_TO_BINARY` and `CONVERT_TO_TEXT`. If this property is not defined, the response payload will be passed through from the integration response to the method response without modification.
         """
-        ...
+        return pulumi.get(self, "content_handling")
 
     @property
     @pulumi.getter(name="httpMethod")
@@ -188,7 +188,7 @@ class IntegrationResponse(pulumi.CustomResource):
         """
         The HTTP method (`GET`, `POST`, `PUT`, `DELETE`, `HEAD`, `OPTIONS`, `ANY`)
         """
-        ...
+        return pulumi.get(self, "http_method")
 
     @property
     @pulumi.getter(name="resourceId")
@@ -196,7 +196,7 @@ class IntegrationResponse(pulumi.CustomResource):
         """
         The API resource ID
         """
-        ...
+        return pulumi.get(self, "resource_id")
 
     @property
     @pulumi.getter(name="responseParameters")
@@ -205,7 +205,7 @@ class IntegrationResponse(pulumi.CustomResource):
         A map of response parameters that can be read from the backend response.
         For example: `response_parameters = { "method.response.header.X-Some-Header" = "integration.response.header.X-Some-Other-Header" }`
         """
-        ...
+        return pulumi.get(self, "response_parameters")
 
     @property
     @pulumi.getter(name="responseTemplates")
@@ -213,7 +213,7 @@ class IntegrationResponse(pulumi.CustomResource):
         """
         A map specifying the templates used to transform the integration response body
         """
-        ...
+        return pulumi.get(self, "response_templates")
 
     @property
     @pulumi.getter(name="restApi")
@@ -221,7 +221,7 @@ class IntegrationResponse(pulumi.CustomResource):
         """
         The ID of the associated REST API
         """
-        ...
+        return pulumi.get(self, "rest_api")
 
     @property
     @pulumi.getter(name="selectionPattern")
@@ -232,7 +232,7 @@ class IntegrationResponse(pulumi.CustomResource):
         If the backend is an `AWS` Lambda function, the AWS Lambda function error header is matched.
         For all other `HTTP` and `AWS` backends, the HTTP status code is matched.
         """
-        ...
+        return pulumi.get(self, "selection_pattern")
 
     @property
     @pulumi.getter(name="statusCode")
@@ -240,7 +240,7 @@ class IntegrationResponse(pulumi.CustomResource):
         """
         The HTTP status code
         """
-        ...
+        return pulumi.get(self, "status_code")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

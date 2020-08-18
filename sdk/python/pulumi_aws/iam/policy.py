@@ -134,7 +134,7 @@ class Policy(pulumi.CustomResource):
         """
         The ARN assigned by AWS to this policy.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -142,7 +142,7 @@ class Policy(pulumi.CustomResource):
         """
         Description of the IAM policy.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -150,7 +150,7 @@ class Policy(pulumi.CustomResource):
         """
         The name of the policy. If omitted, this provider will assign a random, unique name.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="namePrefix")
@@ -158,7 +158,7 @@ class Policy(pulumi.CustomResource):
         """
         Creates a unique name beginning with the specified prefix. Conflicts with `name`.
         """
-        ...
+        return pulumi.get(self, "name_prefix")
 
     @property
     @pulumi.getter
@@ -167,7 +167,7 @@ class Policy(pulumi.CustomResource):
         Path in which to create the policy.
         See [IAM Identifiers](https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html) for more information.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter
@@ -175,7 +175,7 @@ class Policy(pulumi.CustomResource):
         """
         The policy document. This is a JSON formatted string.
         """
-        ...
+        return pulumi.get(self, "policy")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

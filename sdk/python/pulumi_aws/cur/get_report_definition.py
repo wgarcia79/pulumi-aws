@@ -59,7 +59,7 @@ class GetReportDefinitionResult:
         """
         A list of additional artifacts.
         """
-        ...
+        return pulumi.get(self, "additional_artifacts")
 
     @property
     @pulumi.getter(name="additionalSchemaElements")
@@ -67,7 +67,7 @@ class GetReportDefinitionResult:
         """
         A list of schema elements.
         """
-        ...
+        return pulumi.get(self, "additional_schema_elements")
 
     @property
     @pulumi.getter
@@ -75,7 +75,7 @@ class GetReportDefinitionResult:
         """
         Preferred format for report.
         """
-        ...
+        return pulumi.get(self, "compression")
 
     @property
     @pulumi.getter
@@ -83,7 +83,7 @@ class GetReportDefinitionResult:
         """
         Preferred compression format for report.
         """
-        ...
+        return pulumi.get(self, "format")
 
     @property
     @pulumi.getter
@@ -91,12 +91,12 @@ class GetReportDefinitionResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="reportName")
     def report_name(self) -> str:
-        ...
+        return pulumi.get(self, "report_name")
 
     @property
     @pulumi.getter(name="s3Bucket")
@@ -104,7 +104,7 @@ class GetReportDefinitionResult:
         """
         Name of customer S3 bucket.
         """
-        ...
+        return pulumi.get(self, "s3_bucket")
 
     @property
     @pulumi.getter(name="s3Prefix")
@@ -112,7 +112,7 @@ class GetReportDefinitionResult:
         """
         Preferred report path prefix.
         """
-        ...
+        return pulumi.get(self, "s3_prefix")
 
     @property
     @pulumi.getter(name="s3Region")
@@ -120,7 +120,7 @@ class GetReportDefinitionResult:
         """
         Region of customer S3 bucket.
         """
-        ...
+        return pulumi.get(self, "s3_region")
 
     @property
     @pulumi.getter(name="timeUnit")
@@ -128,7 +128,7 @@ class GetReportDefinitionResult:
         """
         The frequency on which report data are measured and displayed.
         """
-        ...
+        return pulumi.get(self, "time_unit")
 
 
 

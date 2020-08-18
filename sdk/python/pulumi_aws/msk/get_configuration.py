@@ -50,7 +50,7 @@ class GetConfigurationResult:
         """
         Amazon Resource Name (ARN) of the configuration.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -58,7 +58,7 @@ class GetConfigurationResult:
         """
         Description of the configuration.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -66,7 +66,7 @@ class GetConfigurationResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="kafkaVersions")
@@ -74,7 +74,7 @@ class GetConfigurationResult:
         """
         List of Apache Kafka versions which can use this configuration.
         """
-        ...
+        return pulumi.get(self, "kafka_versions")
 
     @property
     @pulumi.getter(name="latestRevision")
@@ -82,12 +82,12 @@ class GetConfigurationResult:
         """
         Latest revision of the configuration.
         """
-        ...
+        return pulumi.get(self, "latest_revision")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="serverProperties")
@@ -95,7 +95,7 @@ class GetConfigurationResult:
         """
         Contents of the server.properties file.
         """
-        ...
+        return pulumi.get(self, "server_properties")
 
 
 

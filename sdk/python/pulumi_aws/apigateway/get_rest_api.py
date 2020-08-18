@@ -66,7 +66,7 @@ class GetRestApiResult:
         """
         The source of the API key for requests.
         """
-        ...
+        return pulumi.get(self, "api_key_source")
 
     @property
     @pulumi.getter
@@ -74,7 +74,7 @@ class GetRestApiResult:
         """
         The ARN of the REST API.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="binaryMediaTypes")
@@ -82,7 +82,7 @@ class GetRestApiResult:
         """
         The list of binary media types supported by the REST API.
         """
-        ...
+        return pulumi.get(self, "binary_media_types")
 
     @property
     @pulumi.getter
@@ -90,7 +90,7 @@ class GetRestApiResult:
         """
         The description of the REST API.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="endpointConfigurations")
@@ -98,7 +98,7 @@ class GetRestApiResult:
         """
         The endpoint configuration of this RestApi showing the endpoint types of the API.
         """
-        ...
+        return pulumi.get(self, "endpoint_configurations")
 
     @property
     @pulumi.getter(name="executionArn")
@@ -106,7 +106,7 @@ class GetRestApiResult:
         """
         The execution ARN part to be used in `lambda_permission`'s `source_arn` when allowing API Gateway to invoke a Lambda function, e.g. `arn:aws:execute-api:eu-west-2:123456789012:z4675bid1j`, which can be concatenated with allowed stage, method and resource path.
         """
-        ...
+        return pulumi.get(self, "execution_arn")
 
     @property
     @pulumi.getter
@@ -114,7 +114,7 @@ class GetRestApiResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="minimumCompressionSize")
@@ -122,12 +122,12 @@ class GetRestApiResult:
         """
         Minimum response size to compress for the REST API.
         """
-        ...
+        return pulumi.get(self, "minimum_compression_size")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -135,7 +135,7 @@ class GetRestApiResult:
         """
         JSON formatted policy document that controls access to the API Gateway.
         """
-        ...
+        return pulumi.get(self, "policy")
 
     @property
     @pulumi.getter(name="rootResourceId")
@@ -143,7 +143,7 @@ class GetRestApiResult:
         """
         Set to the ID of the API Gateway Resource on the found REST API where the route matches '/'.
         """
-        ...
+        return pulumi.get(self, "root_resource_id")
 
     @property
     @pulumi.getter
@@ -151,7 +151,7 @@ class GetRestApiResult:
         """
         Key-value map of resource tags.
         """
-        ...
+        return pulumi.get(self, "tags")
 
 
 

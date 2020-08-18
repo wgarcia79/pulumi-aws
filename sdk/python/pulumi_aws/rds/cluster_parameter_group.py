@@ -141,7 +141,7 @@ class ClusterParameterGroup(pulumi.CustomResource):
         """
         The ARN of the db cluster parameter group.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -149,7 +149,7 @@ class ClusterParameterGroup(pulumi.CustomResource):
         """
         The description of the DB cluster parameter group. Defaults to "Managed by Pulumi".
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -157,7 +157,7 @@ class ClusterParameterGroup(pulumi.CustomResource):
         """
         The family of the DB cluster parameter group.
         """
-        ...
+        return pulumi.get(self, "family")
 
     @property
     @pulumi.getter
@@ -165,7 +165,7 @@ class ClusterParameterGroup(pulumi.CustomResource):
         """
         The name of the DB parameter.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="namePrefix")
@@ -173,7 +173,7 @@ class ClusterParameterGroup(pulumi.CustomResource):
         """
         Creates a unique name beginning with the specified prefix. Conflicts with `name`.
         """
-        ...
+        return pulumi.get(self, "name_prefix")
 
     @property
     @pulumi.getter
@@ -181,7 +181,7 @@ class ClusterParameterGroup(pulumi.CustomResource):
         """
         A list of DB parameters to apply. Note that parameters may differ from a family to an other. Full list of all parameters can be discovered via [`aws rds describe-db-cluster-parameters`](https://docs.aws.amazon.com/cli/latest/reference/rds/describe-db-cluster-parameters.html) after initial creation of the group.
         """
-        ...
+        return pulumi.get(self, "parameters")
 
     @property
     @pulumi.getter
@@ -189,7 +189,7 @@ class ClusterParameterGroup(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

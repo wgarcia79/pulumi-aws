@@ -59,22 +59,22 @@ class GetServerCertificateResult:
     @property
     @pulumi.getter
     def arn(self) -> str:
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="certificateBody")
     def certificate_body(self) -> str:
-        ...
+        return pulumi.get(self, "certificate_body")
 
     @property
     @pulumi.getter(name="certificateChain")
     def certificate_chain(self) -> str:
-        ...
+        return pulumi.get(self, "certificate_chain")
 
     @property
     @pulumi.getter(name="expirationDate")
     def expiration_date(self) -> str:
-        ...
+        return pulumi.get(self, "expiration_date")
 
     @property
     @pulumi.getter
@@ -82,37 +82,37 @@ class GetServerCertificateResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def latest(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "latest")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="namePrefix")
     def name_prefix(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "name_prefix")
 
     @property
     @pulumi.getter
     def path(self) -> str:
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter(name="pathPrefix")
     def path_prefix(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "path_prefix")
 
     @property
     @pulumi.getter(name="uploadDate")
     def upload_date(self) -> str:
-        ...
+        return pulumi.get(self, "upload_date")
 
 
 

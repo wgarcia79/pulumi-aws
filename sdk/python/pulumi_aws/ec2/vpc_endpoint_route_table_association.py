@@ -98,7 +98,7 @@ class VpcEndpointRouteTableAssociation(pulumi.CustomResource):
         """
         Identifier of the EC2 Route Table to be associated with the VPC Endpoint.
         """
-        ...
+        return pulumi.get(self, "route_table_id")
 
     @property
     @pulumi.getter(name="vpcEndpointId")
@@ -106,7 +106,7 @@ class VpcEndpointRouteTableAssociation(pulumi.CustomResource):
         """
         Identifier of the VPC Endpoint with which the EC2 Route Table will be associated.
         """
-        ...
+        return pulumi.get(self, "vpc_endpoint_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

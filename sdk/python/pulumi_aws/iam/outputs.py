@@ -41,7 +41,7 @@ class GetGroupUserResult(dict):
         """
         The Amazon Resource Name (ARN) specifying the iam user.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -49,7 +49,7 @@ class GetGroupUserResult(dict):
         """
         The path to the iam user.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter(name="userId")
@@ -57,7 +57,7 @@ class GetGroupUserResult(dict):
         """
         The stable and unique string identifying the iam user.
         """
-        ...
+        return pulumi.get(self, "user_id")
 
     @property
     @pulumi.getter(name="userName")
@@ -65,7 +65,7 @@ class GetGroupUserResult(dict):
         """
         The name of the iam user.
         """
-        ...
+        return pulumi.get(self, "user_name")
 
 
 @pulumi.output_type
@@ -128,7 +128,7 @@ class GetPolicyDocumentStatementResult(dict):
         A list of actions that this statement either allows
         or denies. For example, ``["ec2:RunInstances", "s3:*"]``.
         """
-        ...
+        return pulumi.get(self, "actions")
 
     @property
     @pulumi.getter
@@ -138,7 +138,7 @@ class GetPolicyDocumentStatementResult(dict):
         that defines a further, possibly-service-specific condition that constrains
         whether this statement applies.
         """
-        ...
+        return pulumi.get(self, "conditions")
 
     @property
     @pulumi.getter
@@ -147,7 +147,7 @@ class GetPolicyDocumentStatementResult(dict):
         Either "Allow" or "Deny", to specify whether this
         statement allows or denies the given actions. The default is "Allow".
         """
-        ...
+        return pulumi.get(self, "effect")
 
     @property
     @pulumi.getter(name="notActions")
@@ -157,7 +157,7 @@ class GetPolicyDocumentStatementResult(dict):
         apply to. Used to apply a policy statement to all actions *except* those
         listed.
         """
-        ...
+        return pulumi.get(self, "not_actions")
 
     @property
     @pulumi.getter(name="notPrincipals")
@@ -166,7 +166,7 @@ class GetPolicyDocumentStatementResult(dict):
         Like `principals` except gives resources that
         the statement does *not* apply to.
         """
-        ...
+        return pulumi.get(self, "not_principals")
 
     @property
     @pulumi.getter(name="notResources")
@@ -176,7 +176,7 @@ class GetPolicyDocumentStatementResult(dict):
         does *not* apply to. Used to apply a policy statement to all resources
         *except* those listed.
         """
-        ...
+        return pulumi.get(self, "not_resources")
 
     @property
     @pulumi.getter
@@ -185,7 +185,7 @@ class GetPolicyDocumentStatementResult(dict):
         A nested configuration block (described below)
         specifying a resource (or resource pattern) to which this statement applies.
         """
-        ...
+        return pulumi.get(self, "principals")
 
     @property
     @pulumi.getter
@@ -194,7 +194,7 @@ class GetPolicyDocumentStatementResult(dict):
         A list of resource ARNs that this statement applies
         to. This is required by AWS if used for an IAM policy.
         """
-        ...
+        return pulumi.get(self, "resources")
 
     @property
     @pulumi.getter
@@ -202,7 +202,7 @@ class GetPolicyDocumentStatementResult(dict):
         """
         An ID for the policy statement.
         """
-        ...
+        return pulumi.get(self, "sid")
 
 
 @pulumi.output_type
@@ -236,7 +236,7 @@ class GetPolicyDocumentStatementConditionResult(dict):
         [IAM condition operator](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition_operators.html)
         to evaluate.
         """
-        ...
+        return pulumi.get(self, "test")
 
     @property
     @pulumi.getter
@@ -246,7 +246,7 @@ class GetPolicyDocumentStatementConditionResult(dict):
         values are provided, the condition matches if at least one of them applies.
         (That is, the tests are combined with the "OR" boolean operation.)
         """
-        ...
+        return pulumi.get(self, "values")
 
     @property
     @pulumi.getter
@@ -258,7 +258,7 @@ class GetPolicyDocumentStatementConditionResult(dict):
         variables starting with `aws:`, or service-specific variables prefixed with
         the service name.
         """
-        ...
+        return pulumi.get(self, "variable")
 
 
 @pulumi.output_type
@@ -281,7 +281,7 @@ class GetPolicyDocumentStatementNotPrincipalResult(dict):
         List of identifiers for principals. When `type`
         is "AWS", these are IAM user or role ARNs.  When `type` is "Service", these are AWS Service roles e.g. `lambda.amazonaws.com`. When `type` is "Federated", these are web identity users or SAML provider ARNs.
         """
-        ...
+        return pulumi.get(self, "identifiers")
 
     @property
     @pulumi.getter
@@ -289,7 +289,7 @@ class GetPolicyDocumentStatementNotPrincipalResult(dict):
         """
         The type of principal. For AWS ARNs this is "AWS".  For AWS services (e.g. Lambda), this is "Service". For Federated access the type is "Federated".
         """
-        ...
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type
@@ -312,7 +312,7 @@ class GetPolicyDocumentStatementPrincipalResult(dict):
         List of identifiers for principals. When `type`
         is "AWS", these are IAM user or role ARNs.  When `type` is "Service", these are AWS Service roles e.g. `lambda.amazonaws.com`. When `type` is "Federated", these are web identity users or SAML provider ARNs.
         """
-        ...
+        return pulumi.get(self, "identifiers")
 
     @property
     @pulumi.getter
@@ -320,6 +320,6 @@ class GetPolicyDocumentStatementPrincipalResult(dict):
         """
         The type of principal. For AWS ARNs this is "AWS".  For AWS services (e.g. Lambda), this is "Service". For Federated access the type is "Federated".
         """
-        ...
+        return pulumi.get(self, "type")
 
 

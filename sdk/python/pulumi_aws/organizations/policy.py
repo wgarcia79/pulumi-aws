@@ -119,7 +119,7 @@ class Policy(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the policy.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -127,7 +127,7 @@ class Policy(pulumi.CustomResource):
         """
         The policy content to add to the new policy. For example, if you create a [service control policy (SCP)](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scp.html), this string must be JSON text that specifies the permissions that admins in attached accounts can delegate to their users, groups, and roles. For more information about the SCP syntax, see the [Service Control Policy Syntax documentation](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_scp-syntax.html) and for more information on the Tag Policy syntax, see the [Tag Policy Syntax documentation](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_example-tag-policies.html).
         """
-        ...
+        return pulumi.get(self, "content")
 
     @property
     @pulumi.getter
@@ -135,7 +135,7 @@ class Policy(pulumi.CustomResource):
         """
         A description to assign to the policy.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -143,7 +143,7 @@ class Policy(pulumi.CustomResource):
         """
         The friendly name to assign to the policy.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -151,7 +151,7 @@ class Policy(pulumi.CustomResource):
         """
         The type of policy to create. Valid values are `BACKUP_POLICY`, `SERVICE_CONTROL_POLICY` (SCP), and `TAG_POLICY`. Defaults to `SERVICE_CONTROL_POLICY`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

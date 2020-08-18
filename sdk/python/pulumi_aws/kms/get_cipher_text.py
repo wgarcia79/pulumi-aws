@@ -44,12 +44,12 @@ class GetCipherTextResult:
         """
         Base64 encoded ciphertext
         """
-        ...
+        return pulumi.get(self, "ciphertext_blob")
 
     @property
     @pulumi.getter
     def context(self) -> Optional[Mapping[str, str]]:
-        ...
+        return pulumi.get(self, "context")
 
     @property
     @pulumi.getter
@@ -57,17 +57,17 @@ class GetCipherTextResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="keyId")
     def key_id(self) -> str:
-        ...
+        return pulumi.get(self, "key_id")
 
     @property
     @pulumi.getter
     def plaintext(self) -> str:
-        ...
+        return pulumi.get(self, "plaintext")
 
 
 

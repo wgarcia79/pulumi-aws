@@ -202,7 +202,7 @@ class ComputeEnvironment(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) of the compute environment.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="computeEnvironmentName")
@@ -210,7 +210,7 @@ class ComputeEnvironment(pulumi.CustomResource):
         """
         The name for your compute environment. Up to 128 letters (uppercase and lowercase), numbers, and underscores are allowed. If omitted, this provider will assign a random, unique name.
         """
-        ...
+        return pulumi.get(self, "compute_environment_name")
 
     @property
     @pulumi.getter(name="computeEnvironmentNamePrefix")
@@ -218,7 +218,7 @@ class ComputeEnvironment(pulumi.CustomResource):
         """
         Creates a unique compute environment name beginning with the specified prefix. Conflicts with `compute_environment_name`.
         """
-        ...
+        return pulumi.get(self, "compute_environment_name_prefix")
 
     @property
     @pulumi.getter(name="computeResources")
@@ -226,7 +226,7 @@ class ComputeEnvironment(pulumi.CustomResource):
         """
         Details of the compute resources managed by the compute environment. This parameter is required for managed compute environments. See details below.
         """
-        ...
+        return pulumi.get(self, "compute_resources")
 
     @property
     @pulumi.getter(name="ecsClusterArn")
@@ -234,7 +234,7 @@ class ComputeEnvironment(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) of the underlying Amazon ECS cluster used by the compute environment.
         """
-        ...
+        return pulumi.get(self, "ecs_cluster_arn")
 
     @property
     @pulumi.getter(name="serviceRole")
@@ -242,7 +242,7 @@ class ComputeEnvironment(pulumi.CustomResource):
         """
         The full Amazon Resource Name (ARN) of the IAM role that allows AWS Batch to make calls to other AWS services on your behalf.
         """
-        ...
+        return pulumi.get(self, "service_role")
 
     @property
     @pulumi.getter
@@ -250,7 +250,7 @@ class ComputeEnvironment(pulumi.CustomResource):
         """
         The state of the compute environment. If the state is `ENABLED`, then the compute environment accepts jobs from a queue and can scale out automatically based on queues. Valid items are `ENABLED` or `DISABLED`. Defaults to `ENABLED`.
         """
-        ...
+        return pulumi.get(self, "state")
 
     @property
     @pulumi.getter
@@ -258,7 +258,7 @@ class ComputeEnvironment(pulumi.CustomResource):
         """
         The current status of the compute environment (for example, CREATING or VALID).
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter(name="statusReason")
@@ -266,7 +266,7 @@ class ComputeEnvironment(pulumi.CustomResource):
         """
         A short, human-readable string to provide additional details about the current status of the compute environment.
         """
-        ...
+        return pulumi.get(self, "status_reason")
 
     @property
     @pulumi.getter
@@ -274,7 +274,7 @@ class ComputeEnvironment(pulumi.CustomResource):
         """
         The type of compute environment. Valid items are `EC2` or `SPOT`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

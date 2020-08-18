@@ -143,7 +143,7 @@ class VirtualRouter(pulumi.CustomResource):
         """
         The ARN of the virtual router.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="createdDate")
@@ -151,7 +151,7 @@ class VirtualRouter(pulumi.CustomResource):
         """
         The creation date of the virtual router.
         """
-        ...
+        return pulumi.get(self, "created_date")
 
     @property
     @pulumi.getter(name="lastUpdatedDate")
@@ -159,7 +159,7 @@ class VirtualRouter(pulumi.CustomResource):
         """
         The last update date of the virtual router.
         """
-        ...
+        return pulumi.get(self, "last_updated_date")
 
     @property
     @pulumi.getter(name="meshName")
@@ -167,7 +167,7 @@ class VirtualRouter(pulumi.CustomResource):
         """
         The name of the service mesh in which to create the virtual router.
         """
-        ...
+        return pulumi.get(self, "mesh_name")
 
     @property
     @pulumi.getter
@@ -175,7 +175,7 @@ class VirtualRouter(pulumi.CustomResource):
         """
         The name to use for the virtual router.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -183,7 +183,7 @@ class VirtualRouter(pulumi.CustomResource):
         """
         The virtual router specification to apply.
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @property
     @pulumi.getter
@@ -191,7 +191,7 @@ class VirtualRouter(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

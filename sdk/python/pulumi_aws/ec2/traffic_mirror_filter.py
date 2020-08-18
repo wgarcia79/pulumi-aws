@@ -103,7 +103,7 @@ class TrafficMirrorFilter(pulumi.CustomResource):
         """
         A description of the filter.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="networkServices")
@@ -111,7 +111,7 @@ class TrafficMirrorFilter(pulumi.CustomResource):
         """
         List of amazon network services that should be mirrored. Valid values: `amazon-dns`.
         """
-        ...
+        return pulumi.get(self, "network_services")
 
     @property
     @pulumi.getter
@@ -119,7 +119,7 @@ class TrafficMirrorFilter(pulumi.CustomResource):
         """
         Key-value map of resource tags.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

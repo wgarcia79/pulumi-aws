@@ -308,7 +308,7 @@ class ReplicationGroup(pulumi.CustomResource):
         """
         Specifies whether any modifications are applied immediately, or during the next maintenance window. Default is `false`.
         """
-        ...
+        return pulumi.get(self, "apply_immediately")
 
     @property
     @pulumi.getter(name="atRestEncryptionEnabled")
@@ -316,7 +316,7 @@ class ReplicationGroup(pulumi.CustomResource):
         """
         Whether to enable encryption at rest.
         """
-        ...
+        return pulumi.get(self, "at_rest_encryption_enabled")
 
     @property
     @pulumi.getter(name="authToken")
@@ -324,7 +324,7 @@ class ReplicationGroup(pulumi.CustomResource):
         """
         The password used to access a password protected server. Can be specified only if `transit_encryption_enabled = true`.
         """
-        ...
+        return pulumi.get(self, "auth_token")
 
     @property
     @pulumi.getter(name="autoMinorVersionUpgrade")
@@ -332,7 +332,7 @@ class ReplicationGroup(pulumi.CustomResource):
         """
         Specifies whether a minor engine upgrades will be applied automatically to the underlying Cache Cluster instances during the maintenance window. Defaults to `true`.
         """
-        ...
+        return pulumi.get(self, "auto_minor_version_upgrade")
 
     @property
     @pulumi.getter(name="automaticFailoverEnabled")
@@ -340,7 +340,7 @@ class ReplicationGroup(pulumi.CustomResource):
         """
         Specifies whether a read-only replica will be automatically promoted to read/write primary if the existing primary fails. If true, Multi-AZ is enabled for this replication group. If false, Multi-AZ is disabled for this replication group. Must be enabled for Redis (cluster mode enabled) replication groups. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "automatic_failover_enabled")
 
     @property
     @pulumi.getter(name="availabilityZones")
@@ -348,7 +348,7 @@ class ReplicationGroup(pulumi.CustomResource):
         """
         A list of EC2 availability zones in which the replication group's cache clusters will be created. The order of the availability zones in the list is not important.
         """
-        ...
+        return pulumi.get(self, "availability_zones")
 
     @property
     @pulumi.getter(name="clusterMode")
@@ -356,7 +356,7 @@ class ReplicationGroup(pulumi.CustomResource):
         """
         Create a native redis cluster. `automatic_failover_enabled` must be set to true. Cluster Mode documented below. Only 1 `cluster_mode` block is allowed.
         """
-        ...
+        return pulumi.get(self, "cluster_mode")
 
     @property
     @pulumi.getter(name="configurationEndpointAddress")
@@ -364,7 +364,7 @@ class ReplicationGroup(pulumi.CustomResource):
         """
         The address of the replication group configuration endpoint when cluster mode is enabled.
         """
-        ...
+        return pulumi.get(self, "configuration_endpoint_address")
 
     @property
     @pulumi.getter
@@ -372,7 +372,7 @@ class ReplicationGroup(pulumi.CustomResource):
         """
         The name of the cache engine to be used for the clusters in this replication group. e.g. `redis`
         """
-        ...
+        return pulumi.get(self, "engine")
 
     @property
     @pulumi.getter(name="engineVersion")
@@ -380,7 +380,7 @@ class ReplicationGroup(pulumi.CustomResource):
         """
         The version number of the cache engine to be used for the cache clusters in this replication group.
         """
-        ...
+        return pulumi.get(self, "engine_version")
 
     @property
     @pulumi.getter(name="kmsKeyId")
@@ -388,7 +388,7 @@ class ReplicationGroup(pulumi.CustomResource):
         """
         The ARN of the key that you wish to use if encrypting at rest. If not supplied, uses service managed encryption. Can be specified only if `at_rest_encryption_enabled = true`.
         """
-        ...
+        return pulumi.get(self, "kms_key_id")
 
     @property
     @pulumi.getter(name="maintenanceWindow")
@@ -398,7 +398,7 @@ class ReplicationGroup(pulumi.CustomResource):
         on the cache cluster is performed. The format is `ddd:hh24:mi-ddd:hh24:mi` (24H Clock UTC).
         The minimum maintenance window is a 60 minute period. Example: `sun:05:00-sun:09:00`
         """
-        ...
+        return pulumi.get(self, "maintenance_window")
 
     @property
     @pulumi.getter(name="memberClusters")
@@ -406,7 +406,7 @@ class ReplicationGroup(pulumi.CustomResource):
         """
         The identifiers of all the nodes that are part of this replication group.
         """
-        ...
+        return pulumi.get(self, "member_clusters")
 
     @property
     @pulumi.getter(name="nodeType")
@@ -414,7 +414,7 @@ class ReplicationGroup(pulumi.CustomResource):
         """
         The compute and memory capacity of the nodes in the node group.
         """
-        ...
+        return pulumi.get(self, "node_type")
 
     @property
     @pulumi.getter(name="notificationTopicArn")
@@ -424,7 +424,7 @@ class ReplicationGroup(pulumi.CustomResource):
         SNS topic to send ElastiCache notifications to. Example:
         `arn:aws:sns:us-east-1:012345678999:my_sns_topic`
         """
-        ...
+        return pulumi.get(self, "notification_topic_arn")
 
     @property
     @pulumi.getter(name="numberCacheClusters")
@@ -432,7 +432,7 @@ class ReplicationGroup(pulumi.CustomResource):
         """
         The number of cache clusters (primary and replicas) this replication group will have. If Multi-AZ is enabled, the value of this parameter must be at least 2. Updates will occur before other modifications.
         """
-        ...
+        return pulumi.get(self, "number_cache_clusters")
 
     @property
     @pulumi.getter(name="parameterGroupName")
@@ -440,7 +440,7 @@ class ReplicationGroup(pulumi.CustomResource):
         """
         The name of the parameter group to associate with this replication group. If this argument is omitted, the default cache parameter group for the specified engine is used.
         """
-        ...
+        return pulumi.get(self, "parameter_group_name")
 
     @property
     @pulumi.getter
@@ -448,7 +448,7 @@ class ReplicationGroup(pulumi.CustomResource):
         """
         The port number on which each of the cache nodes will accept connections. For Memcache the default is 11211, and for Redis the default port is 6379.
         """
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter(name="primaryEndpointAddress")
@@ -456,7 +456,7 @@ class ReplicationGroup(pulumi.CustomResource):
         """
         (Redis only) The address of the endpoint for the primary node in the replication group, if the cluster mode is disabled.
         """
-        ...
+        return pulumi.get(self, "primary_endpoint_address")
 
     @property
     @pulumi.getter(name="replicationGroupDescription")
@@ -464,7 +464,7 @@ class ReplicationGroup(pulumi.CustomResource):
         """
         A user-created description for the replication group.
         """
-        ...
+        return pulumi.get(self, "replication_group_description")
 
     @property
     @pulumi.getter(name="replicationGroupId")
@@ -472,7 +472,7 @@ class ReplicationGroup(pulumi.CustomResource):
         """
         The replication group identifier. This parameter is stored as a lowercase string.
         """
-        ...
+        return pulumi.get(self, "replication_group_id")
 
     @property
     @pulumi.getter(name="securityGroupIds")
@@ -480,7 +480,7 @@ class ReplicationGroup(pulumi.CustomResource):
         """
         One or more Amazon VPC security groups associated with this replication group. Use this parameter only when you are creating a replication group in an Amazon Virtual Private Cloud
         """
-        ...
+        return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter(name="securityGroupNames")
@@ -488,7 +488,7 @@ class ReplicationGroup(pulumi.CustomResource):
         """
         A list of cache security group names to associate with this replication group.
         """
-        ...
+        return pulumi.get(self, "security_group_names")
 
     @property
     @pulumi.getter(name="snapshotArns")
@@ -498,7 +498,7 @@ class ReplicationGroup(pulumi.CustomResource):
         Amazon Resource Name (ARN) of a Redis RDB snapshot file stored in Amazon S3.
         Example: `arn:aws:s3:::my_bucket/snapshot1.rdb`
         """
-        ...
+        return pulumi.get(self, "snapshot_arns")
 
     @property
     @pulumi.getter(name="snapshotName")
@@ -506,7 +506,7 @@ class ReplicationGroup(pulumi.CustomResource):
         """
         The name of a snapshot from which to restore data into the new node group. Changing the `snapshot_name` forces a new resource.
         """
-        ...
+        return pulumi.get(self, "snapshot_name")
 
     @property
     @pulumi.getter(name="snapshotRetentionLimit")
@@ -518,7 +518,7 @@ class ReplicationGroup(pulumi.CustomResource):
         before being deleted. If the value of SnapshotRetentionLimit is set to zero (0), backups are turned off.
         Please note that setting a `snapshot_retention_limit` is not supported on cache.t1.micro or cache.t2.* cache nodes
         """
-        ...
+        return pulumi.get(self, "snapshot_retention_limit")
 
     @property
     @pulumi.getter(name="snapshotWindow")
@@ -527,7 +527,7 @@ class ReplicationGroup(pulumi.CustomResource):
         The daily time range (in UTC) during which ElastiCache will
         begin taking a daily snapshot of your cache cluster. The minimum snapshot window is a 60 minute period. Example: `05:00-09:00`
         """
-        ...
+        return pulumi.get(self, "snapshot_window")
 
     @property
     @pulumi.getter(name="subnetGroupName")
@@ -535,7 +535,7 @@ class ReplicationGroup(pulumi.CustomResource):
         """
         The name of the cache subnet group to be used for the replication group.
         """
-        ...
+        return pulumi.get(self, "subnet_group_name")
 
     @property
     @pulumi.getter
@@ -543,7 +543,7 @@ class ReplicationGroup(pulumi.CustomResource):
         """
         A map of tags to assign to the resource
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="transitEncryptionEnabled")
@@ -551,7 +551,7 @@ class ReplicationGroup(pulumi.CustomResource):
         """
         Whether to enable encryption in transit.
         """
-        ...
+        return pulumi.get(self, "transit_encryption_enabled")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

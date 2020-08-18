@@ -54,7 +54,7 @@ class GetBundleResult:
         """
         The ID of the bundle.
         """
-        ...
+        return pulumi.get(self, "bundle_id")
 
     @property
     @pulumi.getter(name="computeTypes")
@@ -62,7 +62,7 @@ class GetBundleResult:
         """
         The compute type. See supported fields below.
         """
-        ...
+        return pulumi.get(self, "compute_types")
 
     @property
     @pulumi.getter
@@ -70,7 +70,7 @@ class GetBundleResult:
         """
         The description of the bundle.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -78,7 +78,7 @@ class GetBundleResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -86,7 +86,7 @@ class GetBundleResult:
         """
         The name of the compute type.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -94,7 +94,7 @@ class GetBundleResult:
         """
         The owner of the bundle.
         """
-        ...
+        return pulumi.get(self, "owner")
 
     @property
     @pulumi.getter(name="rootStorages")
@@ -102,7 +102,7 @@ class GetBundleResult:
         """
         The root volume. See supported fields below.
         """
-        ...
+        return pulumi.get(self, "root_storages")
 
     @property
     @pulumi.getter(name="userStorages")
@@ -110,7 +110,7 @@ class GetBundleResult:
         """
         The user storage. See supported fields below.
         """
-        ...
+        return pulumi.get(self, "user_storages")
 
 
 

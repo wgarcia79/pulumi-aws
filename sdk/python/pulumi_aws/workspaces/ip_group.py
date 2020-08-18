@@ -104,7 +104,7 @@ class IpGroup(pulumi.CustomResource):
         """
         The description.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -112,7 +112,7 @@ class IpGroup(pulumi.CustomResource):
         """
         The name of the IP group.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -120,12 +120,12 @@ class IpGroup(pulumi.CustomResource):
         """
         One or more pairs specifying the IP group rule (in CIDR format) from which web requests originate.
         """
-        ...
+        return pulumi.get(self, "rules")
 
     @property
     @pulumi.getter
     def tags(self) -> Optional[Mapping[str, str]]:
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

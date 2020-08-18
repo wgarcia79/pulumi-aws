@@ -35,7 +35,7 @@ class GetSitesResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -43,7 +43,7 @@ class GetSitesResult:
         """
         Set of Outposts Site identifiers.
         """
-        ...
+        return pulumi.get(self, "ids")
 
 
 

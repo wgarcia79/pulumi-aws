@@ -103,12 +103,12 @@ class Analyzer(pulumi.CustomResource):
         """
         Name of the Analyzer.
         """
-        ...
+        return pulumi.get(self, "analyzer_name")
 
     @property
     @pulumi.getter
     def arn(self) -> str:
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -116,7 +116,7 @@ class Analyzer(pulumi.CustomResource):
         """
         Key-value map of resource tags.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -124,7 +124,7 @@ class Analyzer(pulumi.CustomResource):
         """
         Type of Analyzer. Valid value is currently only `ACCOUNT`. Defaults to `ACCOUNT`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

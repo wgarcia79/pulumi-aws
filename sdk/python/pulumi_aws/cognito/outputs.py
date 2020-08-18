@@ -55,7 +55,7 @@ class IdentityPoolCognitoIdentityProvider(dict):
         """
         The client ID for the Amazon Cognito Identity User Pool.
         """
-        ...
+        return pulumi.get(self, "client_id")
 
     @property
     @pulumi.getter(name="providerName")
@@ -63,7 +63,7 @@ class IdentityPoolCognitoIdentityProvider(dict):
         """
         The provider name for an Amazon Cognito Identity User Pool.
         """
-        ...
+        return pulumi.get(self, "provider_name")
 
     @property
     @pulumi.getter(name="serverSideTokenCheck")
@@ -71,7 +71,7 @@ class IdentityPoolCognitoIdentityProvider(dict):
         """
         Whether server-side token validation is enabled for the identity provider’s token or not.
         """
-        ...
+        return pulumi.get(self, "server_side_token_check")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -103,7 +103,7 @@ class IdentityPoolRoleAttachmentRoleMapping(dict):
         """
         A string identifying the identity provider, for example, "graph.facebook.com" or "cognito-idp.us-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id".
         """
-        ...
+        return pulumi.get(self, "identity_provider")
 
     @property
     @pulumi.getter
@@ -111,7 +111,7 @@ class IdentityPoolRoleAttachmentRoleMapping(dict):
         """
         The role mapping type.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="ambiguousRoleResolution")
@@ -119,7 +119,7 @@ class IdentityPoolRoleAttachmentRoleMapping(dict):
         """
         Specifies the action to be taken if either no rules match the claim value for the Rules type, or there is no cognito:preferred_role claim and there are multiple cognito:roles matches for the Token type. `Required` if you specify Token or Rules as the Type.
         """
-        ...
+        return pulumi.get(self, "ambiguous_role_resolution")
 
     @property
     @pulumi.getter(name="mappingRules")
@@ -127,7 +127,7 @@ class IdentityPoolRoleAttachmentRoleMapping(dict):
         """
         The Rules Configuration to be used for mapping users to roles. You can specify up to 25 rules per identity provider. Rules are evaluated in order. The first one to match specifies the role.
         """
-        ...
+        return pulumi.get(self, "mapping_rules")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -157,7 +157,7 @@ class IdentityPoolRoleAttachmentRoleMappingMappingRule(dict):
         """
         The claim name that must be present in the token, for example, "isAdmin" or "paid".
         """
-        ...
+        return pulumi.get(self, "claim")
 
     @property
     @pulumi.getter(name="matchType")
@@ -165,7 +165,7 @@ class IdentityPoolRoleAttachmentRoleMappingMappingRule(dict):
         """
         The match condition that specifies how closely the claim value in the IdP token must match Value.
         """
-        ...
+        return pulumi.get(self, "match_type")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -173,7 +173,7 @@ class IdentityPoolRoleAttachmentRoleMappingMappingRule(dict):
         """
         The role ARN.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter
@@ -181,7 +181,7 @@ class IdentityPoolRoleAttachmentRoleMappingMappingRule(dict):
         """
         A brief string that the claim must match, for example, "paid" or "yes".
         """
-        ...
+        return pulumi.get(self, "value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -205,7 +205,7 @@ class ResourceServerScope(dict):
         """
         The scope description.
         """
-        ...
+        return pulumi.get(self, "scope_description")
 
     @property
     @pulumi.getter(name="scopeName")
@@ -213,7 +213,7 @@ class ResourceServerScope(dict):
         """
         The scope name.
         """
-        ...
+        return pulumi.get(self, "scope_name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -243,7 +243,7 @@ class UserPoolAdminCreateUserConfig(dict):
         """
         Set to True if only the administrator is allowed to create user profiles. Set to False if users can sign themselves up via an app.
         """
-        ...
+        return pulumi.get(self, "allow_admin_create_user_only")
 
     @property
     @pulumi.getter(name="inviteMessageTemplate")
@@ -251,7 +251,7 @@ class UserPoolAdminCreateUserConfig(dict):
         """
         The invite message template structure.
         """
-        ...
+        return pulumi.get(self, "invite_message_template")
 
     @property
     @pulumi.getter(name="unusedAccountValidityDays")
@@ -259,7 +259,7 @@ class UserPoolAdminCreateUserConfig(dict):
         """
         **DEPRECATED** Use password_policy.temporary_password_validity_days instead - The user account expiration limit, in days, after which the account is no longer usable.
         """
-        ...
+        return pulumi.get(self, "unused_account_validity_days")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -289,7 +289,7 @@ class UserPoolAdminCreateUserConfigInviteMessageTemplate(dict):
         """
         The email message template. Must contain the `{####}` placeholder. Conflicts with `email_verification_message` argument.
         """
-        ...
+        return pulumi.get(self, "email_message")
 
     @property
     @pulumi.getter(name="emailSubject")
@@ -297,7 +297,7 @@ class UserPoolAdminCreateUserConfigInviteMessageTemplate(dict):
         """
         The subject line for the email message template. Conflicts with `email_verification_subject` argument.
         """
-        ...
+        return pulumi.get(self, "email_subject")
 
     @property
     @pulumi.getter(name="smsMessage")
@@ -305,7 +305,7 @@ class UserPoolAdminCreateUserConfigInviteMessageTemplate(dict):
         """
         The SMS message template. Must contain the `{####}` placeholder. Conflicts with `sms_verification_message` argument.
         """
-        ...
+        return pulumi.get(self, "sms_message")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -336,7 +336,7 @@ class UserPoolClientAnalyticsConfiguration(dict):
         """
         The application ID for an Amazon Pinpoint application.
         """
-        ...
+        return pulumi.get(self, "application_id")
 
     @property
     @pulumi.getter(name="externalId")
@@ -344,7 +344,7 @@ class UserPoolClientAnalyticsConfiguration(dict):
         """
         An ID for the Analytics Configuration.
         """
-        ...
+        return pulumi.get(self, "external_id")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -352,7 +352,7 @@ class UserPoolClientAnalyticsConfiguration(dict):
         """
         The ARN of an IAM role that authorizes Amazon Cognito to publish events to Amazon Pinpoint analytics.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="userDataShared")
@@ -360,7 +360,7 @@ class UserPoolClientAnalyticsConfiguration(dict):
         """
         If set to `true`, Amazon Cognito will include user data in the events it publishes to Amazon Pinpoint analytics.
         """
-        ...
+        return pulumi.get(self, "user_data_shared")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -386,7 +386,7 @@ class UserPoolDeviceConfiguration(dict):
         """
         Indicates whether a challenge is required on a new device. Only applicable to a new device.
         """
-        ...
+        return pulumi.get(self, "challenge_required_on_new_device")
 
     @property
     @pulumi.getter(name="deviceOnlyRememberedOnUserPrompt")
@@ -394,7 +394,7 @@ class UserPoolDeviceConfiguration(dict):
         """
         If true, a device is only remembered on user prompt.
         """
-        ...
+        return pulumi.get(self, "device_only_remembered_on_user_prompt")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -428,7 +428,7 @@ class UserPoolEmailConfiguration(dict):
         """
         The email delivery method to use. `COGNITO_DEFAULT` for the default email functionality built into Cognito or `DEVELOPER` to use your Amazon SES configuration.
         """
-        ...
+        return pulumi.get(self, "email_sending_account")
 
     @property
     @pulumi.getter(name="fromEmailAddress")
@@ -436,7 +436,7 @@ class UserPoolEmailConfiguration(dict):
         """
         Sender’s email address or sender’s display name with their email address (e.g. `john@example.com`, `John Smith <john@example.com>` or `\"John Smith Ph.D.\" <john@example.com>`). Escaped double quotes are required around display names that contain certain characters as specified in [RFC 5322](https://tools.ietf.org/html/rfc5322).
         """
-        ...
+        return pulumi.get(self, "from_email_address")
 
     @property
     @pulumi.getter(name="replyToEmailAddress")
@@ -444,7 +444,7 @@ class UserPoolEmailConfiguration(dict):
         """
         The REPLY-TO email address.
         """
-        ...
+        return pulumi.get(self, "reply_to_email_address")
 
     @property
     @pulumi.getter(name="sourceArn")
@@ -452,7 +452,7 @@ class UserPoolEmailConfiguration(dict):
         """
         The ARN of the SES verified email identity to to use. Required if `email_sending_account` is set to `DEVELOPER`.
         """
-        ...
+        return pulumi.get(self, "source_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -510,7 +510,7 @@ class UserPoolLambdaConfig(dict):
         """
         The ARN of the lambda creating an authentication challenge.
         """
-        ...
+        return pulumi.get(self, "create_auth_challenge")
 
     @property
     @pulumi.getter(name="customMessage")
@@ -518,7 +518,7 @@ class UserPoolLambdaConfig(dict):
         """
         A custom Message AWS Lambda trigger.
         """
-        ...
+        return pulumi.get(self, "custom_message")
 
     @property
     @pulumi.getter(name="defineAuthChallenge")
@@ -526,7 +526,7 @@ class UserPoolLambdaConfig(dict):
         """
         Defines the authentication challenge.
         """
-        ...
+        return pulumi.get(self, "define_auth_challenge")
 
     @property
     @pulumi.getter(name="postAuthentication")
@@ -534,7 +534,7 @@ class UserPoolLambdaConfig(dict):
         """
         A post-authentication AWS Lambda trigger.
         """
-        ...
+        return pulumi.get(self, "post_authentication")
 
     @property
     @pulumi.getter(name="postConfirmation")
@@ -542,7 +542,7 @@ class UserPoolLambdaConfig(dict):
         """
         A post-confirmation AWS Lambda trigger.
         """
-        ...
+        return pulumi.get(self, "post_confirmation")
 
     @property
     @pulumi.getter(name="preAuthentication")
@@ -550,7 +550,7 @@ class UserPoolLambdaConfig(dict):
         """
         A pre-authentication AWS Lambda trigger.
         """
-        ...
+        return pulumi.get(self, "pre_authentication")
 
     @property
     @pulumi.getter(name="preSignUp")
@@ -558,7 +558,7 @@ class UserPoolLambdaConfig(dict):
         """
         A pre-registration AWS Lambda trigger.
         """
-        ...
+        return pulumi.get(self, "pre_sign_up")
 
     @property
     @pulumi.getter(name="preTokenGeneration")
@@ -566,7 +566,7 @@ class UserPoolLambdaConfig(dict):
         """
         Allow to customize identity token claims before token generation.
         """
-        ...
+        return pulumi.get(self, "pre_token_generation")
 
     @property
     @pulumi.getter(name="userMigration")
@@ -574,7 +574,7 @@ class UserPoolLambdaConfig(dict):
         """
         The user migration Lambda config type.
         """
-        ...
+        return pulumi.get(self, "user_migration")
 
     @property
     @pulumi.getter(name="verifyAuthChallengeResponse")
@@ -582,7 +582,7 @@ class UserPoolLambdaConfig(dict):
         """
         Verifies the authentication challenge response.
         """
-        ...
+        return pulumi.get(self, "verify_auth_challenge_response")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -624,7 +624,7 @@ class UserPoolPasswordPolicy(dict):
         """
         The minimum length of the password policy that you have set.
         """
-        ...
+        return pulumi.get(self, "minimum_length")
 
     @property
     @pulumi.getter(name="requireLowercase")
@@ -632,7 +632,7 @@ class UserPoolPasswordPolicy(dict):
         """
         Whether you have required users to use at least one lowercase letter in their password.
         """
-        ...
+        return pulumi.get(self, "require_lowercase")
 
     @property
     @pulumi.getter(name="requireNumbers")
@@ -640,7 +640,7 @@ class UserPoolPasswordPolicy(dict):
         """
         Whether you have required users to use at least one number in their password.
         """
-        ...
+        return pulumi.get(self, "require_numbers")
 
     @property
     @pulumi.getter(name="requireSymbols")
@@ -648,7 +648,7 @@ class UserPoolPasswordPolicy(dict):
         """
         Whether you have required users to use at least one symbol in their password.
         """
-        ...
+        return pulumi.get(self, "require_symbols")
 
     @property
     @pulumi.getter(name="requireUppercase")
@@ -656,7 +656,7 @@ class UserPoolPasswordPolicy(dict):
         """
         Whether you have required users to use at least one uppercase letter in their password.
         """
-        ...
+        return pulumi.get(self, "require_uppercase")
 
     @property
     @pulumi.getter(name="temporaryPasswordValidityDays")
@@ -664,7 +664,7 @@ class UserPoolPasswordPolicy(dict):
         """
         In the password policy you have set, refers to the number of days a temporary password is valid. If the user does not sign-in during this time, their password will need to be reset by an administrator.
         """
-        ...
+        return pulumi.get(self, "temporary_password_validity_days")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -708,7 +708,7 @@ class UserPoolSchema(dict):
         """
         The attribute data type. Must be one of `Boolean`, `Number`, `String`, `DateTime`.
         """
-        ...
+        return pulumi.get(self, "attribute_data_type")
 
     @property
     @pulumi.getter
@@ -716,7 +716,7 @@ class UserPoolSchema(dict):
         """
         The name of the attribute.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="developerOnlyAttribute")
@@ -724,7 +724,7 @@ class UserPoolSchema(dict):
         """
         Specifies whether the attribute type is developer only.
         """
-        ...
+        return pulumi.get(self, "developer_only_attribute")
 
     @property
     @pulumi.getter
@@ -732,7 +732,7 @@ class UserPoolSchema(dict):
         """
         Specifies whether the attribute can be changed once it has been created.
         """
-        ...
+        return pulumi.get(self, "mutable")
 
     @property
     @pulumi.getter(name="numberAttributeConstraints")
@@ -740,7 +740,7 @@ class UserPoolSchema(dict):
         """
         Specifies the constraints for an attribute of the number type.
         """
-        ...
+        return pulumi.get(self, "number_attribute_constraints")
 
     @property
     @pulumi.getter
@@ -748,7 +748,7 @@ class UserPoolSchema(dict):
         """
         Specifies whether a user pool attribute is required. If the attribute is required and the user does not provide a value, registration or sign-in will fail.
         """
-        ...
+        return pulumi.get(self, "required")
 
     @property
     @pulumi.getter(name="stringAttributeConstraints")
@@ -756,7 +756,7 @@ class UserPoolSchema(dict):
         """
         -Specifies the constraints for an attribute of the string type.
         """
-        ...
+        return pulumi.get(self, "string_attribute_constraints")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -782,7 +782,7 @@ class UserPoolSchemaNumberAttributeConstraints(dict):
         """
         The maximum value of an attribute that is of the number data type.
         """
-        ...
+        return pulumi.get(self, "max_value")
 
     @property
     @pulumi.getter(name="minValue")
@@ -790,7 +790,7 @@ class UserPoolSchemaNumberAttributeConstraints(dict):
         """
         The minimum value of an attribute that is of the number data type.
         """
-        ...
+        return pulumi.get(self, "min_value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -816,7 +816,7 @@ class UserPoolSchemaStringAttributeConstraints(dict):
         """
         The maximum length of an attribute value of the string type.
         """
-        ...
+        return pulumi.get(self, "max_length")
 
     @property
     @pulumi.getter(name="minLength")
@@ -824,7 +824,7 @@ class UserPoolSchemaStringAttributeConstraints(dict):
         """
         The minimum length of an attribute value of the string type.
         """
-        ...
+        return pulumi.get(self, "min_length")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -848,7 +848,7 @@ class UserPoolSmsConfiguration(dict):
         """
         The external ID used in IAM role trust relationships. For more information about using external IDs, see [How to Use an External ID When Granting Access to Your AWS Resources to a Third Party](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html).
         """
-        ...
+        return pulumi.get(self, "external_id")
 
     @property
     @pulumi.getter(name="snsCallerArn")
@@ -856,7 +856,7 @@ class UserPoolSmsConfiguration(dict):
         """
         The ARN of the Amazon SNS caller. This is usually the IAM role that you've given Cognito permission to assume.
         """
-        ...
+        return pulumi.get(self, "sns_caller_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -877,7 +877,7 @@ class UserPoolSoftwareTokenMfaConfiguration(dict):
         """
         Boolean whether to enable software token Multi-Factor (MFA) tokens, such as Time-based One-Time Password (TOTP). To disable software token MFA when `sms_configuration` is not present, the `mfa_configuration` argument must be set to `OFF` and the `software_token_mfa_configuration` configuration block must be fully removed.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -898,7 +898,7 @@ class UserPoolUserPoolAddOns(dict):
         """
         The mode for advanced security, must be one of `OFF`, `AUDIT` or `ENFORCED`.
         """
-        ...
+        return pulumi.get(self, "advanced_security_mode")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -919,7 +919,7 @@ class UserPoolUsernameConfiguration(dict):
         """
         Specifies whether username case sensitivity will be applied for all users in the user pool through Cognito APIs.
         """
-        ...
+        return pulumi.get(self, "case_sensitive")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -961,7 +961,7 @@ class UserPoolVerificationMessageTemplate(dict):
         """
         The default email option. Must be either `CONFIRM_WITH_CODE` or `CONFIRM_WITH_LINK`. Defaults to `CONFIRM_WITH_CODE`.
         """
-        ...
+        return pulumi.get(self, "default_email_option")
 
     @property
     @pulumi.getter(name="emailMessage")
@@ -969,7 +969,7 @@ class UserPoolVerificationMessageTemplate(dict):
         """
         The email message template. Must contain the `{####}` placeholder. Conflicts with `email_verification_message` argument.
         """
-        ...
+        return pulumi.get(self, "email_message")
 
     @property
     @pulumi.getter(name="emailMessageByLink")
@@ -977,7 +977,7 @@ class UserPoolVerificationMessageTemplate(dict):
         """
         The email message template for sending a confirmation link to the user, it must contain the `{##Click Here##}` placeholder.
         """
-        ...
+        return pulumi.get(self, "email_message_by_link")
 
     @property
     @pulumi.getter(name="emailSubject")
@@ -985,7 +985,7 @@ class UserPoolVerificationMessageTemplate(dict):
         """
         The subject line for the email message template. Conflicts with `email_verification_subject` argument.
         """
-        ...
+        return pulumi.get(self, "email_subject")
 
     @property
     @pulumi.getter(name="emailSubjectByLink")
@@ -993,7 +993,7 @@ class UserPoolVerificationMessageTemplate(dict):
         """
         The subject line for the email message template for sending a confirmation link to the user.
         """
-        ...
+        return pulumi.get(self, "email_subject_by_link")
 
     @property
     @pulumi.getter(name="smsMessage")
@@ -1001,7 +1001,7 @@ class UserPoolVerificationMessageTemplate(dict):
         """
         The SMS message template. Must contain the `{####}` placeholder. Conflicts with `sms_verification_message` argument.
         """
-        ...
+        return pulumi.get(self, "sms_message")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

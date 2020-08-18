@@ -144,7 +144,7 @@ class UserPoolDomain(pulumi.CustomResource):
         """
         The AWS account ID for the user pool owner.
         """
-        ...
+        return pulumi.get(self, "aws_account_id")
 
     @property
     @pulumi.getter(name="certificateArn")
@@ -152,7 +152,7 @@ class UserPoolDomain(pulumi.CustomResource):
         """
         The ARN of an ISSUED ACM certificate in us-east-1 for a custom domain.
         """
-        ...
+        return pulumi.get(self, "certificate_arn")
 
     @property
     @pulumi.getter(name="cloudfrontDistributionArn")
@@ -160,7 +160,7 @@ class UserPoolDomain(pulumi.CustomResource):
         """
         The URL of the CloudFront distribution. This is required to generate the ALIAS `route53.Record`
         """
-        ...
+        return pulumi.get(self, "cloudfront_distribution_arn")
 
     @property
     @pulumi.getter
@@ -168,7 +168,7 @@ class UserPoolDomain(pulumi.CustomResource):
         """
         The domain string.
         """
-        ...
+        return pulumi.get(self, "domain")
 
     @property
     @pulumi.getter(name="s3Bucket")
@@ -176,7 +176,7 @@ class UserPoolDomain(pulumi.CustomResource):
         """
         The S3 bucket where the static files for this domain are stored.
         """
-        ...
+        return pulumi.get(self, "s3_bucket")
 
     @property
     @pulumi.getter(name="userPoolId")
@@ -184,7 +184,7 @@ class UserPoolDomain(pulumi.CustomResource):
         """
         The user pool ID.
         """
-        ...
+        return pulumi.get(self, "user_pool_id")
 
     @property
     @pulumi.getter
@@ -192,7 +192,7 @@ class UserPoolDomain(pulumi.CustomResource):
         """
         The app version.
         """
-        ...
+        return pulumi.get(self, "version")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

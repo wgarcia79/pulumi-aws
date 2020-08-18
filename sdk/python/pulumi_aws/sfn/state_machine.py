@@ -134,7 +134,7 @@ class StateMachine(pulumi.CustomResource):
         """
         The ARN of the state machine.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="creationDate")
@@ -142,7 +142,7 @@ class StateMachine(pulumi.CustomResource):
         """
         The date the state machine was created.
         """
-        ...
+        return pulumi.get(self, "creation_date")
 
     @property
     @pulumi.getter
@@ -150,7 +150,7 @@ class StateMachine(pulumi.CustomResource):
         """
         The Amazon States Language definition of the state machine.
         """
-        ...
+        return pulumi.get(self, "definition")
 
     @property
     @pulumi.getter
@@ -158,7 +158,7 @@ class StateMachine(pulumi.CustomResource):
         """
         The name of the state machine.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -166,7 +166,7 @@ class StateMachine(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) of the IAM role to use for this state machine.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter
@@ -174,7 +174,7 @@ class StateMachine(pulumi.CustomResource):
         """
         The current status of the state machine. Either "ACTIVE" or "DELETING".
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
@@ -182,7 +182,7 @@ class StateMachine(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

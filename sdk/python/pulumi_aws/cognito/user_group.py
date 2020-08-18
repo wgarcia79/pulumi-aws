@@ -140,7 +140,7 @@ class UserGroup(pulumi.CustomResource):
         """
         The description of the user group.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -148,7 +148,7 @@ class UserGroup(pulumi.CustomResource):
         """
         The name of the user group.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -156,7 +156,7 @@ class UserGroup(pulumi.CustomResource):
         """
         The precedence of the user group.
         """
-        ...
+        return pulumi.get(self, "precedence")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -164,7 +164,7 @@ class UserGroup(pulumi.CustomResource):
         """
         The ARN of the IAM role to be associated with the user group.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="userPoolId")
@@ -172,7 +172,7 @@ class UserGroup(pulumi.CustomResource):
         """
         The user pool ID.
         """
-        ...
+        return pulumi.get(self, "user_pool_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

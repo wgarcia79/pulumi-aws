@@ -47,7 +47,7 @@ class GetVaultResult:
         """
         The ARN of the vault.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -55,7 +55,7 @@ class GetVaultResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="kmsKeyArn")
@@ -63,12 +63,12 @@ class GetVaultResult:
         """
         The server-side encryption key that is used to protect your backups.
         """
-        ...
+        return pulumi.get(self, "kms_key_arn")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="recoveryPoints")
@@ -76,7 +76,7 @@ class GetVaultResult:
         """
         The number of recovery points that are stored in a backup vault.
         """
-        ...
+        return pulumi.get(self, "recovery_points")
 
     @property
     @pulumi.getter
@@ -84,7 +84,7 @@ class GetVaultResult:
         """
         Metadata that you can assign to help organize the resources that you create.
         """
-        ...
+        return pulumi.get(self, "tags")
 
 
 

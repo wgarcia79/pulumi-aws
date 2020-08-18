@@ -179,7 +179,7 @@ class ClusterEndpoint(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of cluster
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="clusterEndpointIdentifier")
@@ -187,7 +187,7 @@ class ClusterEndpoint(pulumi.CustomResource):
         """
         The identifier to use for the new endpoint. This parameter is stored as a lowercase string.
         """
-        ...
+        return pulumi.get(self, "cluster_endpoint_identifier")
 
     @property
     @pulumi.getter(name="clusterIdentifier")
@@ -195,7 +195,7 @@ class ClusterEndpoint(pulumi.CustomResource):
         """
         The cluster identifier.
         """
-        ...
+        return pulumi.get(self, "cluster_identifier")
 
     @property
     @pulumi.getter(name="customEndpointType")
@@ -203,7 +203,7 @@ class ClusterEndpoint(pulumi.CustomResource):
         """
         The type of the endpoint. One of: READER , ANY .
         """
-        ...
+        return pulumi.get(self, "custom_endpoint_type")
 
     @property
     @pulumi.getter
@@ -211,7 +211,7 @@ class ClusterEndpoint(pulumi.CustomResource):
         """
         A custom endpoint for the Aurora cluster
         """
-        ...
+        return pulumi.get(self, "endpoint")
 
     @property
     @pulumi.getter(name="excludedMembers")
@@ -219,7 +219,7 @@ class ClusterEndpoint(pulumi.CustomResource):
         """
         List of DB instance identifiers that aren't part of the custom endpoint group. All other eligible instances are reachable through the custom endpoint. Only relevant if the list of static members is empty. Conflicts with `static_members`.
         """
-        ...
+        return pulumi.get(self, "excluded_members")
 
     @property
     @pulumi.getter(name="staticMembers")
@@ -227,7 +227,7 @@ class ClusterEndpoint(pulumi.CustomResource):
         """
         List of DB instance identifiers that are part of the custom endpoint group. Conflicts with `excluded_members`.
         """
-        ...
+        return pulumi.get(self, "static_members")
 
     @property
     @pulumi.getter
@@ -235,7 +235,7 @@ class ClusterEndpoint(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

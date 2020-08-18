@@ -148,7 +148,7 @@ class GetInstanceResult:
         """
         The ID of the AMI used to launch the instance.
         """
-        ...
+        return pulumi.get(self, "ami")
 
     @property
     @pulumi.getter
@@ -156,7 +156,7 @@ class GetInstanceResult:
         """
         The ARN of the instance.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="associatePublicIpAddress")
@@ -164,7 +164,7 @@ class GetInstanceResult:
         """
         Whether or not the Instance is associated with a public IP address or not (Boolean).
         """
-        ...
+        return pulumi.get(self, "associate_public_ip_address")
 
     @property
     @pulumi.getter(name="availabilityZone")
@@ -172,7 +172,7 @@ class GetInstanceResult:
         """
         The availability zone of the Instance.
         """
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter(name="creditSpecifications")
@@ -180,12 +180,12 @@ class GetInstanceResult:
         """
         The credit specification of the Instance.
         """
-        ...
+        return pulumi.get(self, "credit_specifications")
 
     @property
     @pulumi.getter(name="disableApiTermination")
     def disable_api_termination(self) -> bool:
-        ...
+        return pulumi.get(self, "disable_api_termination")
 
     @property
     @pulumi.getter(name="ebsBlockDevices")
@@ -193,7 +193,7 @@ class GetInstanceResult:
         """
         The EBS block device mappings of the Instance.
         """
-        ...
+        return pulumi.get(self, "ebs_block_devices")
 
     @property
     @pulumi.getter(name="ebsOptimized")
@@ -201,7 +201,7 @@ class GetInstanceResult:
         """
         Whether the Instance is EBS optimized or not (Boolean).
         """
-        ...
+        return pulumi.get(self, "ebs_optimized")
 
     @property
     @pulumi.getter(name="ephemeralBlockDevices")
@@ -209,22 +209,22 @@ class GetInstanceResult:
         """
         The ephemeral block device mappings of the Instance.
         """
-        ...
+        return pulumi.get(self, "ephemeral_block_devices")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetInstanceFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter(name="getPasswordData")
     def get_password_data(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "get_password_data")
 
     @property
     @pulumi.getter(name="getUserData")
     def get_user_data(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "get_user_data")
 
     @property
     @pulumi.getter(name="hostId")
@@ -232,7 +232,7 @@ class GetInstanceResult:
         """
         The Id of the dedicated host the instance will be assigned to.
         """
-        ...
+        return pulumi.get(self, "host_id")
 
     @property
     @pulumi.getter(name="iamInstanceProfile")
@@ -240,7 +240,7 @@ class GetInstanceResult:
         """
         The name of the instance profile associated with the Instance.
         """
-        ...
+        return pulumi.get(self, "iam_instance_profile")
 
     @property
     @pulumi.getter
@@ -248,12 +248,12 @@ class GetInstanceResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "instance_id")
 
     @property
     @pulumi.getter(name="instanceState")
@@ -261,12 +261,12 @@ class GetInstanceResult:
         """
         The state of the instance. One of: `pending`, `running`, `shutting-down`, `terminated`, `stopping`, `stopped`. See [Instance Lifecycle](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html) for more information.
         """
-        ...
+        return pulumi.get(self, "instance_state")
 
     @property
     @pulumi.getter(name="instanceTags")
     def instance_tags(self) -> Mapping[str, str]:
-        ...
+        return pulumi.get(self, "instance_tags")
 
     @property
     @pulumi.getter(name="instanceType")
@@ -274,7 +274,7 @@ class GetInstanceResult:
         """
         The type of the Instance.
         """
-        ...
+        return pulumi.get(self, "instance_type")
 
     @property
     @pulumi.getter(name="keyName")
@@ -282,7 +282,7 @@ class GetInstanceResult:
         """
         The key name of the Instance.
         """
-        ...
+        return pulumi.get(self, "key_name")
 
     @property
     @pulumi.getter(name="metadataOptions")
@@ -290,7 +290,7 @@ class GetInstanceResult:
         """
         The metadata options of the Instance.
         """
-        ...
+        return pulumi.get(self, "metadata_options")
 
     @property
     @pulumi.getter
@@ -298,7 +298,7 @@ class GetInstanceResult:
         """
         Whether detailed monitoring is enabled or disabled for the Instance (Boolean).
         """
-        ...
+        return pulumi.get(self, "monitoring")
 
     @property
     @pulumi.getter(name="networkInterfaceId")
@@ -306,7 +306,7 @@ class GetInstanceResult:
         """
         The ID of the network interface that was created with the Instance.
         """
-        ...
+        return pulumi.get(self, "network_interface_id")
 
     @property
     @pulumi.getter(name="outpostArn")
@@ -314,7 +314,7 @@ class GetInstanceResult:
         """
         The Amazon Resource Name (ARN) of the Outpost.
         """
-        ...
+        return pulumi.get(self, "outpost_arn")
 
     @property
     @pulumi.getter(name="passwordData")
@@ -325,7 +325,7 @@ class GetInstanceResult:
         This attribute is only exported if `get_password_data` is true.
         See [GetPasswordData](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetPasswordData.html) for more information.
         """
-        ...
+        return pulumi.get(self, "password_data")
 
     @property
     @pulumi.getter(name="placementGroup")
@@ -333,7 +333,7 @@ class GetInstanceResult:
         """
         The placement group of the Instance.
         """
-        ...
+        return pulumi.get(self, "placement_group")
 
     @property
     @pulumi.getter(name="privateDns")
@@ -343,7 +343,7 @@ class GetInstanceResult:
         used inside the Amazon EC2, and only available if you've enabled DNS hostnames
         for your VPC.
         """
-        ...
+        return pulumi.get(self, "private_dns")
 
     @property
     @pulumi.getter(name="privateIp")
@@ -351,7 +351,7 @@ class GetInstanceResult:
         """
         The private IP address assigned to the Instance.
         """
-        ...
+        return pulumi.get(self, "private_ip")
 
     @property
     @pulumi.getter(name="publicDns")
@@ -360,7 +360,7 @@ class GetInstanceResult:
         The public DNS name assigned to the Instance. For EC2-VPC, this
         is only available if you've enabled DNS hostnames for your VPC.
         """
-        ...
+        return pulumi.get(self, "public_dns")
 
     @property
     @pulumi.getter(name="publicIp")
@@ -368,7 +368,7 @@ class GetInstanceResult:
         """
         The public IP address assigned to the Instance, if applicable. **NOTE**: If you are using an `ec2.Eip` with your instance, you should refer to the EIP's address directly and not use `public_ip`, as this field will change after the EIP is attached.
         """
-        ...
+        return pulumi.get(self, "public_ip")
 
     @property
     @pulumi.getter(name="rootBlockDevices")
@@ -376,7 +376,7 @@ class GetInstanceResult:
         """
         The root block device mappings of the Instance
         """
-        ...
+        return pulumi.get(self, "root_block_devices")
 
     @property
     @pulumi.getter(name="securityGroups")
@@ -384,7 +384,7 @@ class GetInstanceResult:
         """
         The associated security groups.
         """
-        ...
+        return pulumi.get(self, "security_groups")
 
     @property
     @pulumi.getter(name="sourceDestCheck")
@@ -392,7 +392,7 @@ class GetInstanceResult:
         """
         Whether the network interface performs source/destination checking (Boolean).
         """
-        ...
+        return pulumi.get(self, "source_dest_check")
 
     @property
     @pulumi.getter(name="subnetId")
@@ -400,7 +400,7 @@ class GetInstanceResult:
         """
         The VPC subnet ID.
         """
-        ...
+        return pulumi.get(self, "subnet_id")
 
     @property
     @pulumi.getter
@@ -408,7 +408,7 @@ class GetInstanceResult:
         """
         A mapping of tags assigned to the Instance.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -416,7 +416,7 @@ class GetInstanceResult:
         """
         The tenancy of the instance: `dedicated`, `default`, `host`.
         """
-        ...
+        return pulumi.get(self, "tenancy")
 
     @property
     @pulumi.getter(name="userData")
@@ -424,7 +424,7 @@ class GetInstanceResult:
         """
         SHA-1 hash of User Data supplied to the Instance.
         """
-        ...
+        return pulumi.get(self, "user_data")
 
     @property
     @pulumi.getter(name="userDataBase64")
@@ -432,7 +432,7 @@ class GetInstanceResult:
         """
         Base64 encoded contents of User Data supplied to the Instance. This attribute is only exported if `get_user_data` is true.
         """
-        ...
+        return pulumi.get(self, "user_data_base64")
 
     @property
     @pulumi.getter(name="vpcSecurityGroupIds")
@@ -440,7 +440,7 @@ class GetInstanceResult:
         """
         The associated security groups in a non-default VPC.
         """
-        ...
+        return pulumi.get(self, "vpc_security_group_ids")
 
 
 

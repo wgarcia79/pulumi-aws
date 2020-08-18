@@ -41,12 +41,12 @@ class GetSolutionStackResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="mostRecent")
     def most_recent(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "most_recent")
 
     @property
     @pulumi.getter
@@ -54,12 +54,12 @@ class GetSolutionStackResult:
         """
         The name of the solution stack.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="nameRegex")
     def name_regex(self) -> str:
-        ...
+        return pulumi.get(self, "name_regex")
 
 
 

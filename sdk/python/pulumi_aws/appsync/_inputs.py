@@ -46,11 +46,11 @@ class DataSourceDynamodbConfigArgs:
         """
         Name of the DynamoDB table.
         """
-        ...
+        return pulumi.get(self, "table_name")
 
     @table_name.setter
     def table_name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "table_name", value)
 
     @property
     @pulumi.getter
@@ -58,11 +58,11 @@ class DataSourceDynamodbConfigArgs:
         """
         AWS region of Elasticsearch domain. Defaults to current region.
         """
-        ...
+        return pulumi.get(self, "region")
 
     @region.setter
     def region(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "region", value)
 
     @property
     @pulumi.getter(name="useCallerCredentials")
@@ -70,11 +70,11 @@ class DataSourceDynamodbConfigArgs:
         """
         Set to `true` to use Amazon Cognito credentials with this data source.
         """
-        ...
+        return pulumi.get(self, "use_caller_credentials")
 
     @use_caller_credentials.setter
     def use_caller_credentials(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "use_caller_credentials", value)
 
 
 @pulumi.input_type
@@ -96,11 +96,11 @@ class DataSourceElasticsearchConfigArgs:
         """
         HTTP URL.
         """
-        ...
+        return pulumi.get(self, "endpoint")
 
     @endpoint.setter
     def endpoint(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "endpoint", value)
 
     @property
     @pulumi.getter
@@ -108,11 +108,11 @@ class DataSourceElasticsearchConfigArgs:
         """
         AWS region of Elasticsearch domain. Defaults to current region.
         """
-        ...
+        return pulumi.get(self, "region")
 
     @region.setter
     def region(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "region", value)
 
 
 @pulumi.input_type
@@ -130,11 +130,11 @@ class DataSourceHttpConfigArgs:
         """
         HTTP URL.
         """
-        ...
+        return pulumi.get(self, "endpoint")
 
     @endpoint.setter
     def endpoint(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "endpoint", value)
 
 
 @pulumi.input_type
@@ -152,11 +152,11 @@ class DataSourceLambdaConfigArgs:
         """
         The ARN for the Lambda function.
         """
-        ...
+        return pulumi.get(self, "function_arn")
 
     @function_arn.setter
     def function_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "function_arn", value)
 
 
 @pulumi.input_type
@@ -182,11 +182,11 @@ class GraphQLApiAdditionalAuthenticationProviderArgs:
         """
         The authentication type. Valid values: `API_KEY`, `AWS_IAM`, `AMAZON_COGNITO_USER_POOLS`, `OPENID_CONNECT`
         """
-        ...
+        return pulumi.get(self, "authentication_type")
 
     @authentication_type.setter
     def authentication_type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "authentication_type", value)
 
     @property
     @pulumi.getter(name="openidConnectConfig")
@@ -194,11 +194,11 @@ class GraphQLApiAdditionalAuthenticationProviderArgs:
         """
         Nested argument containing OpenID Connect configuration. Defined below.
         """
-        ...
+        return pulumi.get(self, "openid_connect_config")
 
     @openid_connect_config.setter
     def openid_connect_config(self, value: Optional[pulumi.Input['GraphQLApiAdditionalAuthenticationProviderOpenidConnectConfigArgs']]):
-        ...
+        pulumi.set(self, "openid_connect_config", value)
 
     @property
     @pulumi.getter(name="userPoolConfig")
@@ -206,11 +206,11 @@ class GraphQLApiAdditionalAuthenticationProviderArgs:
         """
         The Amazon Cognito User Pool configuration. Defined below.
         """
-        ...
+        return pulumi.get(self, "user_pool_config")
 
     @user_pool_config.setter
     def user_pool_config(self, value: Optional[pulumi.Input['GraphQLApiAdditionalAuthenticationProviderUserPoolConfigArgs']]):
-        ...
+        pulumi.set(self, "user_pool_config", value)
 
 
 @pulumi.input_type
@@ -240,11 +240,11 @@ class GraphQLApiAdditionalAuthenticationProviderOpenidConnectConfigArgs:
         """
         Issuer for the OpenID Connect configuration. The issuer returned by discovery MUST exactly match the value of iss in the ID Token.
         """
-        ...
+        return pulumi.get(self, "issuer")
 
     @issuer.setter
     def issuer(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "issuer", value)
 
     @property
     @pulumi.getter(name="authTtl")
@@ -252,11 +252,11 @@ class GraphQLApiAdditionalAuthenticationProviderOpenidConnectConfigArgs:
         """
         Number of milliseconds a token is valid after being authenticated.
         """
-        ...
+        return pulumi.get(self, "auth_ttl")
 
     @auth_ttl.setter
     def auth_ttl(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "auth_ttl", value)
 
     @property
     @pulumi.getter(name="clientId")
@@ -264,11 +264,11 @@ class GraphQLApiAdditionalAuthenticationProviderOpenidConnectConfigArgs:
         """
         Client identifier of the Relying party at the OpenID identity provider. This identifier is typically obtained when the Relying party is registered with the OpenID identity provider. You can specify a regular expression so the AWS AppSync can validate against multiple client identifiers at a time.
         """
-        ...
+        return pulumi.get(self, "client_id")
 
     @client_id.setter
     def client_id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "client_id", value)
 
     @property
     @pulumi.getter(name="iatTtl")
@@ -276,11 +276,11 @@ class GraphQLApiAdditionalAuthenticationProviderOpenidConnectConfigArgs:
         """
         Number of milliseconds a token is valid after being issued to a user.
         """
-        ...
+        return pulumi.get(self, "iat_ttl")
 
     @iat_ttl.setter
     def iat_ttl(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "iat_ttl", value)
 
 
 @pulumi.input_type
@@ -306,11 +306,11 @@ class GraphQLApiAdditionalAuthenticationProviderUserPoolConfigArgs:
         """
         The user pool ID.
         """
-        ...
+        return pulumi.get(self, "user_pool_id")
 
     @user_pool_id.setter
     def user_pool_id(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "user_pool_id", value)
 
     @property
     @pulumi.getter(name="appIdClientRegex")
@@ -318,11 +318,11 @@ class GraphQLApiAdditionalAuthenticationProviderUserPoolConfigArgs:
         """
         A regular expression for validating the incoming Amazon Cognito User Pool app client ID.
         """
-        ...
+        return pulumi.get(self, "app_id_client_regex")
 
     @app_id_client_regex.setter
     def app_id_client_regex(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "app_id_client_regex", value)
 
     @property
     @pulumi.getter(name="awsRegion")
@@ -330,11 +330,11 @@ class GraphQLApiAdditionalAuthenticationProviderUserPoolConfigArgs:
         """
         The AWS region in which the user pool was created.
         """
-        ...
+        return pulumi.get(self, "aws_region")
 
     @aws_region.setter
     def aws_region(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "aws_region", value)
 
 
 @pulumi.input_type
@@ -359,11 +359,11 @@ class GraphQLApiLogConfigArgs:
         """
         Amazon Resource Name of the service role that AWS AppSync will assume to publish to Amazon CloudWatch logs in your account.
         """
-        ...
+        return pulumi.get(self, "cloudwatch_logs_role_arn")
 
     @cloudwatch_logs_role_arn.setter
     def cloudwatch_logs_role_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "cloudwatch_logs_role_arn", value)
 
     @property
     @pulumi.getter(name="fieldLogLevel")
@@ -371,11 +371,11 @@ class GraphQLApiLogConfigArgs:
         """
         Field logging level. Valid values: `ALL`, `ERROR`, `NONE`.
         """
-        ...
+        return pulumi.get(self, "field_log_level")
 
     @field_log_level.setter
     def field_log_level(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "field_log_level", value)
 
     @property
     @pulumi.getter(name="excludeVerboseContent")
@@ -383,11 +383,11 @@ class GraphQLApiLogConfigArgs:
         """
         Set to TRUE to exclude sections that contain information such as headers, context, and evaluated mapping templates, regardless of logging  level. Valid values: `true`, `false`. Default value: `false`
         """
-        ...
+        return pulumi.get(self, "exclude_verbose_content")
 
     @exclude_verbose_content.setter
     def exclude_verbose_content(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "exclude_verbose_content", value)
 
 
 @pulumi.input_type
@@ -417,11 +417,11 @@ class GraphQLApiOpenidConnectConfigArgs:
         """
         Issuer for the OpenID Connect configuration. The issuer returned by discovery MUST exactly match the value of iss in the ID Token.
         """
-        ...
+        return pulumi.get(self, "issuer")
 
     @issuer.setter
     def issuer(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "issuer", value)
 
     @property
     @pulumi.getter(name="authTtl")
@@ -429,11 +429,11 @@ class GraphQLApiOpenidConnectConfigArgs:
         """
         Number of milliseconds a token is valid after being authenticated.
         """
-        ...
+        return pulumi.get(self, "auth_ttl")
 
     @auth_ttl.setter
     def auth_ttl(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "auth_ttl", value)
 
     @property
     @pulumi.getter(name="clientId")
@@ -441,11 +441,11 @@ class GraphQLApiOpenidConnectConfigArgs:
         """
         Client identifier of the Relying party at the OpenID identity provider. This identifier is typically obtained when the Relying party is registered with the OpenID identity provider. You can specify a regular expression so the AWS AppSync can validate against multiple client identifiers at a time.
         """
-        ...
+        return pulumi.get(self, "client_id")
 
     @client_id.setter
     def client_id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "client_id", value)
 
     @property
     @pulumi.getter(name="iatTtl")
@@ -453,11 +453,11 @@ class GraphQLApiOpenidConnectConfigArgs:
         """
         Number of milliseconds a token is valid after being issued to a user.
         """
-        ...
+        return pulumi.get(self, "iat_ttl")
 
     @iat_ttl.setter
     def iat_ttl(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "iat_ttl", value)
 
 
 @pulumi.input_type
@@ -486,11 +486,11 @@ class GraphQLApiUserPoolConfigArgs:
         """
         The action that you want your GraphQL API to take when a request that uses Amazon Cognito User Pool authentication doesn't match the Amazon Cognito User Pool configuration. Valid: `ALLOW` and `DENY`
         """
-        ...
+        return pulumi.get(self, "default_action")
 
     @default_action.setter
     def default_action(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "default_action", value)
 
     @property
     @pulumi.getter(name="userPoolId")
@@ -498,11 +498,11 @@ class GraphQLApiUserPoolConfigArgs:
         """
         The user pool ID.
         """
-        ...
+        return pulumi.get(self, "user_pool_id")
 
     @user_pool_id.setter
     def user_pool_id(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "user_pool_id", value)
 
     @property
     @pulumi.getter(name="appIdClientRegex")
@@ -510,11 +510,11 @@ class GraphQLApiUserPoolConfigArgs:
         """
         A regular expression for validating the incoming Amazon Cognito User Pool app client ID.
         """
-        ...
+        return pulumi.get(self, "app_id_client_regex")
 
     @app_id_client_regex.setter
     def app_id_client_regex(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "app_id_client_regex", value)
 
     @property
     @pulumi.getter(name="awsRegion")
@@ -522,11 +522,11 @@ class GraphQLApiUserPoolConfigArgs:
         """
         The AWS region in which the user pool was created.
         """
-        ...
+        return pulumi.get(self, "aws_region")
 
     @aws_region.setter
     def aws_region(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "aws_region", value)
 
 
 @pulumi.input_type
@@ -549,11 +549,11 @@ class ResolverCachingConfigArgs:
         """
         The list of caching key.
         """
-        ...
+        return pulumi.get(self, "caching_keys")
 
     @caching_keys.setter
     def caching_keys(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "caching_keys", value)
 
     @property
     @pulumi.getter
@@ -561,11 +561,11 @@ class ResolverCachingConfigArgs:
         """
         The TTL in seconds.
         """
-        ...
+        return pulumi.get(self, "ttl")
 
     @ttl.setter
     def ttl(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "ttl", value)
 
 
 @pulumi.input_type
@@ -584,10 +584,10 @@ class ResolverPipelineConfigArgs:
         """
         The list of Function ID.
         """
-        ...
+        return pulumi.get(self, "functions")
 
     @functions.setter
     def functions(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "functions", value)
 
 

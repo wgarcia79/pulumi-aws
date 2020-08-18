@@ -74,52 +74,52 @@ class GetVpcPeeringConnectionResult:
         A configuration block that describes [VPC Peering Connection]
         (https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) options set for the accepter VPC.
         """
-        ...
+        return pulumi.get(self, "accepter")
 
     @property
     @pulumi.getter(name="cidrBlock")
     def cidr_block(self) -> str:
-        ...
+        return pulumi.get(self, "cidr_block")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetVpcPeeringConnectionFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
     def id(self) -> str:
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="ownerId")
     def owner_id(self) -> str:
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter(name="peerCidrBlock")
     def peer_cidr_block(self) -> str:
-        ...
+        return pulumi.get(self, "peer_cidr_block")
 
     @property
     @pulumi.getter(name="peerOwnerId")
     def peer_owner_id(self) -> str:
-        ...
+        return pulumi.get(self, "peer_owner_id")
 
     @property
     @pulumi.getter(name="peerRegion")
     def peer_region(self) -> str:
-        ...
+        return pulumi.get(self, "peer_region")
 
     @property
     @pulumi.getter(name="peerVpcId")
     def peer_vpc_id(self) -> str:
-        ...
+        return pulumi.get(self, "peer_vpc_id")
 
     @property
     @pulumi.getter
     def region(self) -> str:
-        ...
+        return pulumi.get(self, "region")
 
     @property
     @pulumi.getter
@@ -128,22 +128,22 @@ class GetVpcPeeringConnectionResult:
         A configuration block that describes [VPC Peering Connection]
         (https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) options set for the requester VPC.
         """
-        ...
+        return pulumi.get(self, "requester")
 
     @property
     @pulumi.getter
     def status(self) -> str:
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def tags(self) -> Mapping[str, str]:
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> str:
-        ...
+        return pulumi.get(self, "vpc_id")
 
 
 

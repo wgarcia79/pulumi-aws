@@ -217,7 +217,7 @@ class TargetGroup(pulumi.CustomResource):
         """
         The ARN of the Target Group (matches `id`)
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="arnSuffix")
@@ -225,7 +225,7 @@ class TargetGroup(pulumi.CustomResource):
         """
         The ARN suffix for use with CloudWatch Metrics.
         """
-        ...
+        return pulumi.get(self, "arn_suffix")
 
     @property
     @pulumi.getter(name="deregistrationDelay")
@@ -233,7 +233,7 @@ class TargetGroup(pulumi.CustomResource):
         """
         The amount time for Elastic Load Balancing to wait before changing the state of a deregistering target from draining to unused. The range is 0-3600 seconds. The default value is 300 seconds.
         """
-        ...
+        return pulumi.get(self, "deregistration_delay")
 
     @property
     @pulumi.getter(name="healthCheck")
@@ -241,7 +241,7 @@ class TargetGroup(pulumi.CustomResource):
         """
         A Health Check block. Health Check blocks are documented below.
         """
-        ...
+        return pulumi.get(self, "health_check")
 
     @property
     @pulumi.getter(name="lambdaMultiValueHeadersEnabled")
@@ -249,7 +249,7 @@ class TargetGroup(pulumi.CustomResource):
         """
         Boolean whether the request and response headers exchanged between the load balancer and the Lambda function include arrays of values or strings. Only applies when `target_type` is `lambda`.
         """
-        ...
+        return pulumi.get(self, "lambda_multi_value_headers_enabled")
 
     @property
     @pulumi.getter(name="loadBalancingAlgorithmType")
@@ -257,7 +257,7 @@ class TargetGroup(pulumi.CustomResource):
         """
         Determines how the load balancer selects targets when routing requests. Only applicable for Application Load Balancer Target Groups. The value is `round_robin` or `least_outstanding_requests`. The default is `round_robin`.
         """
-        ...
+        return pulumi.get(self, "load_balancing_algorithm_type")
 
     @property
     @pulumi.getter
@@ -265,7 +265,7 @@ class TargetGroup(pulumi.CustomResource):
         """
         The name of the target group. If omitted, this provider will assign a random, unique name.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="namePrefix")
@@ -273,7 +273,7 @@ class TargetGroup(pulumi.CustomResource):
         """
         Creates a unique name beginning with the specified prefix. Conflicts with `name`. Cannot be longer than 6 characters.
         """
-        ...
+        return pulumi.get(self, "name_prefix")
 
     @property
     @pulumi.getter
@@ -281,7 +281,7 @@ class TargetGroup(pulumi.CustomResource):
         """
         The port on which targets receive traffic, unless overridden when registering a specific target. Required when `target_type` is `instance` or `ip`. Does not apply when `target_type` is `lambda`.
         """
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter
@@ -289,7 +289,7 @@ class TargetGroup(pulumi.CustomResource):
         """
         The protocol to use for routing traffic to the targets. Should be one of "TCP", "TLS", "UDP", "TCP_UDP", "HTTP" or "HTTPS". Required when `target_type` is `instance` or `ip`. Does not apply when `target_type` is `lambda`.
         """
-        ...
+        return pulumi.get(self, "protocol")
 
     @property
     @pulumi.getter(name="proxyProtocolV2")
@@ -297,7 +297,7 @@ class TargetGroup(pulumi.CustomResource):
         """
         Boolean to enable / disable support for proxy protocol v2 on Network Load Balancers. See [doc](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-target-groups.html#proxy-protocol) for more information.
         """
-        ...
+        return pulumi.get(self, "proxy_protocol_v2")
 
     @property
     @pulumi.getter(name="slowStart")
@@ -305,7 +305,7 @@ class TargetGroup(pulumi.CustomResource):
         """
         The amount time for targets to warm up before the load balancer sends them a full share of requests. The range is 30-900 seconds or 0 to disable. The default value is 0 seconds.
         """
-        ...
+        return pulumi.get(self, "slow_start")
 
     @property
     @pulumi.getter
@@ -313,7 +313,7 @@ class TargetGroup(pulumi.CustomResource):
         """
         A Stickiness block. Stickiness blocks are documented below. `stickiness` is only valid if used with Load Balancers of type `Application`
         """
-        ...
+        return pulumi.get(self, "stickiness")
 
     @property
     @pulumi.getter
@@ -321,7 +321,7 @@ class TargetGroup(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="targetType")
@@ -334,7 +334,7 @@ class TargetGroup(pulumi.CustomResource):
         the RFC 1918 range (10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16), and the RFC 6598 range (100.64.0.0/10).
         You can't specify publicly routable IP addresses.
         """
-        ...
+        return pulumi.get(self, "target_type")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -342,7 +342,7 @@ class TargetGroup(pulumi.CustomResource):
         """
         The identifier of the VPC in which to create the target group. Required when `target_type` is `instance` or `ip`. Does not apply when `target_type` is `lambda`.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

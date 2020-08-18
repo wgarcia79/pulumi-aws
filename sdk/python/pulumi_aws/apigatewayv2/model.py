@@ -129,7 +129,7 @@ class Model(pulumi.CustomResource):
         """
         The API identifier.
         """
-        ...
+        return pulumi.get(self, "api_id")
 
     @property
     @pulumi.getter(name="contentType")
@@ -137,7 +137,7 @@ class Model(pulumi.CustomResource):
         """
         The content-type for the model, for example, `application/json`.
         """
-        ...
+        return pulumi.get(self, "content_type")
 
     @property
     @pulumi.getter
@@ -145,7 +145,7 @@ class Model(pulumi.CustomResource):
         """
         The description of the model.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -153,7 +153,7 @@ class Model(pulumi.CustomResource):
         """
         The name of the model. Must be alphanumeric.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -161,7 +161,7 @@ class Model(pulumi.CustomResource):
         """
         The schema for the model. This should be a [JSON schema draft 4](https://tools.ietf.org/html/draft-zyp-json-schema-04) model.
         """
-        ...
+        return pulumi.get(self, "schema")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

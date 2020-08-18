@@ -53,12 +53,12 @@ class GetCertificateResult:
         """
         Set to the ARN of the found certificate, suitable for referencing in other resources that support ACM certificates.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
     def domain(self) -> str:
-        ...
+        return pulumi.get(self, "domain")
 
     @property
     @pulumi.getter
@@ -66,22 +66,22 @@ class GetCertificateResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="keyTypes")
     def key_types(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "key_types")
 
     @property
     @pulumi.getter(name="mostRecent")
     def most_recent(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "most_recent")
 
     @property
     @pulumi.getter
     def statuses(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "statuses")
 
     @property
     @pulumi.getter
@@ -89,12 +89,12 @@ class GetCertificateResult:
         """
         A mapping of tags for the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
     def types(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "types")
 
 
 

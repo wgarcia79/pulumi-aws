@@ -128,7 +128,7 @@ class BucketPublicAccessBlock(pulumi.CustomResource):
         * PUT Bucket acl and PUT Object acl calls will fail if the specified ACL allows public access.
         * PUT Object calls will fail if the request includes an object ACL.
         """
-        ...
+        return pulumi.get(self, "block_public_acls")
 
     @property
     @pulumi.getter(name="blockPublicPolicy")
@@ -137,7 +137,7 @@ class BucketPublicAccessBlock(pulumi.CustomResource):
         Whether Amazon S3 should block public bucket policies for this bucket. Defaults to `false`. Enabling this setting does not affect the existing bucket policy. When set to `true` causes Amazon S3 to:
         * Reject calls to PUT Bucket policy if the specified bucket policy allows public access.
         """
-        ...
+        return pulumi.get(self, "block_public_policy")
 
     @property
     @pulumi.getter
@@ -145,7 +145,7 @@ class BucketPublicAccessBlock(pulumi.CustomResource):
         """
         S3 Bucket to which this Public Access Block configuration should be applied.
         """
-        ...
+        return pulumi.get(self, "bucket")
 
     @property
     @pulumi.getter(name="ignorePublicAcls")
@@ -154,7 +154,7 @@ class BucketPublicAccessBlock(pulumi.CustomResource):
         Whether Amazon S3 should ignore public ACLs for this bucket. Defaults to `false`. Enabling this setting does not affect the persistence of any existing ACLs and doesn't prevent new public ACLs from being set. When set to `true` causes Amazon S3 to:
         * Ignore public ACLs on this bucket and any objects that it contains.
         """
-        ...
+        return pulumi.get(self, "ignore_public_acls")
 
     @property
     @pulumi.getter(name="restrictPublicBuckets")
@@ -163,7 +163,7 @@ class BucketPublicAccessBlock(pulumi.CustomResource):
         Whether Amazon S3 should restrict public bucket policies for this bucket. Defaults to `false`. Enabling this setting does not affect the previously stored bucket policy, except that public and cross-account access within the public bucket policy, including non-public delegation to specific accounts, is blocked. When set to `true`:
         * Only the bucket owner and AWS Services can access this buckets if it has a public policy.
         """
-        ...
+        return pulumi.get(self, "restrict_public_buckets")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

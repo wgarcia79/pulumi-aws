@@ -35,7 +35,7 @@ class GetRulesPackagesResult:
         """
         A list of the AWS Inspector Rules Packages arns available in the AWS region.
         """
-        ...
+        return pulumi.get(self, "arns")
 
     @property
     @pulumi.getter
@@ -43,7 +43,7 @@ class GetRulesPackagesResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
 
 

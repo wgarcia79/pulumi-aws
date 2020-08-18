@@ -118,7 +118,7 @@ class RdsDbInstance(pulumi.CustomResource):
         """
         A db password
         """
-        ...
+        return pulumi.get(self, "db_password")
 
     @property
     @pulumi.getter(name="dbUser")
@@ -126,7 +126,7 @@ class RdsDbInstance(pulumi.CustomResource):
         """
         A db username
         """
-        ...
+        return pulumi.get(self, "db_user")
 
     @property
     @pulumi.getter(name="rdsDbInstanceArn")
@@ -134,7 +134,7 @@ class RdsDbInstance(pulumi.CustomResource):
         """
         The db instance to register for this stack. Changing this will force a new resource.
         """
-        ...
+        return pulumi.get(self, "rds_db_instance_arn")
 
     @property
     @pulumi.getter(name="stackId")
@@ -142,7 +142,7 @@ class RdsDbInstance(pulumi.CustomResource):
         """
         The stack to register a db instance for. Changing this will force a new resource.
         """
-        ...
+        return pulumi.get(self, "stack_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -62,7 +62,7 @@ class GetRoleResult:
         """
         The Amazon Resource Name (ARN) specifying the role.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="assumeRolePolicy")
@@ -70,7 +70,7 @@ class GetRoleResult:
         """
         The policy document associated with the role.
         """
-        ...
+        return pulumi.get(self, "assume_role_policy")
 
     @property
     @pulumi.getter(name="createDate")
@@ -78,7 +78,7 @@ class GetRoleResult:
         """
         Creation date of the role in RFC 3339 format.
         """
-        ...
+        return pulumi.get(self, "create_date")
 
     @property
     @pulumi.getter
@@ -86,7 +86,7 @@ class GetRoleResult:
         """
         Description for the role.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -94,7 +94,7 @@ class GetRoleResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="maxSessionDuration")
@@ -102,12 +102,12 @@ class GetRoleResult:
         """
         Maximum session duration.
         """
-        ...
+        return pulumi.get(self, "max_session_duration")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -115,7 +115,7 @@ class GetRoleResult:
         """
         The path to the role.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter(name="permissionsBoundary")
@@ -123,7 +123,7 @@ class GetRoleResult:
         """
         The ARN of the policy that is used to set the permissions boundary for the role.
         """
-        ...
+        return pulumi.get(self, "permissions_boundary")
 
     @property
     @pulumi.getter
@@ -131,7 +131,7 @@ class GetRoleResult:
         """
         The tags attached to the role.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="uniqueId")
@@ -139,7 +139,7 @@ class GetRoleResult:
         """
         The stable and unique string identifying the role.
         """
-        ...
+        return pulumi.get(self, "unique_id")
 
 
 

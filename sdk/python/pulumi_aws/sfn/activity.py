@@ -96,7 +96,7 @@ class Activity(pulumi.CustomResource):
         """
         The date the activity was created.
         """
-        ...
+        return pulumi.get(self, "creation_date")
 
     @property
     @pulumi.getter
@@ -104,7 +104,7 @@ class Activity(pulumi.CustomResource):
         """
         The name of the activity to create.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -112,7 +112,7 @@ class Activity(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

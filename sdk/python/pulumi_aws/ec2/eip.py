@@ -220,7 +220,7 @@ class Eip(pulumi.CustomResource):
     @property
     @pulumi.getter(name="allocationId")
     def allocation_id(self) -> str:
-        ...
+        return pulumi.get(self, "allocation_id")
 
     @property
     @pulumi.getter(name="associateWithPrivateIp")
@@ -230,12 +230,12 @@ class Eip(pulumi.CustomResource):
         associate with the Elastic IP address. If no private IP address is specified,
         the Elastic IP address is associated with the primary private IP address.
         """
-        ...
+        return pulumi.get(self, "associate_with_private_ip")
 
     @property
     @pulumi.getter(name="associationId")
     def association_id(self) -> str:
-        ...
+        return pulumi.get(self, "association_id")
 
     @property
     @pulumi.getter(name="customerOwnedIp")
@@ -243,7 +243,7 @@ class Eip(pulumi.CustomResource):
         """
         Customer owned IP.
         """
-        ...
+        return pulumi.get(self, "customer_owned_ip")
 
     @property
     @pulumi.getter(name="customerOwnedIpv4Pool")
@@ -251,12 +251,12 @@ class Eip(pulumi.CustomResource):
         """
         The  ID  of a customer-owned address pool. For more on customer owned IP addressed check out [Customer-owned IP addresses guide](https://docs.aws.amazon.com/outposts/latest/userguide/outposts-networking-components.html#ip-addressing)
         """
-        ...
+        return pulumi.get(self, "customer_owned_ipv4_pool")
 
     @property
     @pulumi.getter
     def domain(self) -> str:
-        ...
+        return pulumi.get(self, "domain")
 
     @property
     @pulumi.getter
@@ -264,7 +264,7 @@ class Eip(pulumi.CustomResource):
         """
         EC2 instance ID.
         """
-        ...
+        return pulumi.get(self, "instance")
 
     @property
     @pulumi.getter(name="networkInterface")
@@ -272,7 +272,7 @@ class Eip(pulumi.CustomResource):
         """
         Network interface ID to associate with.
         """
-        ...
+        return pulumi.get(self, "network_interface")
 
     @property
     @pulumi.getter(name="privateDns")
@@ -280,7 +280,7 @@ class Eip(pulumi.CustomResource):
         """
         The Private DNS associated with the Elastic IP address (if in VPC).
         """
-        ...
+        return pulumi.get(self, "private_dns")
 
     @property
     @pulumi.getter(name="privateIp")
@@ -288,7 +288,7 @@ class Eip(pulumi.CustomResource):
         """
         Contains the private IP address (if in VPC).
         """
-        ...
+        return pulumi.get(self, "private_ip")
 
     @property
     @pulumi.getter(name="publicDns")
@@ -296,7 +296,7 @@ class Eip(pulumi.CustomResource):
         """
         Public DNS associated with the Elastic IP address.
         """
-        ...
+        return pulumi.get(self, "public_dns")
 
     @property
     @pulumi.getter(name="publicIp")
@@ -304,7 +304,7 @@ class Eip(pulumi.CustomResource):
         """
         Contains the public IP address.
         """
-        ...
+        return pulumi.get(self, "public_ip")
 
     @property
     @pulumi.getter(name="publicIpv4Pool")
@@ -312,7 +312,7 @@ class Eip(pulumi.CustomResource):
         """
         EC2 IPv4 address pool identifier or `amazon`. This option is only available for VPC EIPs.
         """
-        ...
+        return pulumi.get(self, "public_ipv4_pool")
 
     @property
     @pulumi.getter
@@ -320,7 +320,7 @@ class Eip(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -328,7 +328,7 @@ class Eip(pulumi.CustomResource):
         """
         Boolean if the EIP is in a VPC or not.
         """
-        ...
+        return pulumi.get(self, "vpc")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

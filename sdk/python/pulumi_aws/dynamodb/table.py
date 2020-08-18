@@ -274,7 +274,7 @@ class Table(pulumi.CustomResource):
         """
         The arn of the table
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -282,7 +282,7 @@ class Table(pulumi.CustomResource):
         """
         List of nested attribute definitions. Only required for `hash_key` and `range_key` attributes. Each attribute has two properties:
         """
-        ...
+        return pulumi.get(self, "attributes")
 
     @property
     @pulumi.getter(name="billingMode")
@@ -290,7 +290,7 @@ class Table(pulumi.CustomResource):
         """
         Controls how you are charged for read and write throughput and how you manage capacity. The valid values are `PROVISIONED` and `PAY_PER_REQUEST`. Defaults to `PROVISIONED`.
         """
-        ...
+        return pulumi.get(self, "billing_mode")
 
     @property
     @pulumi.getter(name="globalSecondaryIndexes")
@@ -300,7 +300,7 @@ class Table(pulumi.CustomResource):
         subject to the normal limits on the number of GSIs, projected
         attributes, etc.
         """
-        ...
+        return pulumi.get(self, "global_secondary_indexes")
 
     @property
     @pulumi.getter(name="hashKey")
@@ -309,7 +309,7 @@ class Table(pulumi.CustomResource):
         The name of the hash key in the index; must be
         defined as an attribute in the resource.
         """
-        ...
+        return pulumi.get(self, "hash_key")
 
     @property
     @pulumi.getter(name="localSecondaryIndexes")
@@ -319,7 +319,7 @@ class Table(pulumi.CustomResource):
         these can only be allocated *at creation* so you cannot change this
         definition after you have created the resource.
         """
-        ...
+        return pulumi.get(self, "local_secondary_indexes")
 
     @property
     @pulumi.getter
@@ -327,7 +327,7 @@ class Table(pulumi.CustomResource):
         """
         The name of the index
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="pointInTimeRecovery")
@@ -335,7 +335,7 @@ class Table(pulumi.CustomResource):
         """
         Point-in-time recovery options.
         """
-        ...
+        return pulumi.get(self, "point_in_time_recovery")
 
     @property
     @pulumi.getter(name="rangeKey")
@@ -343,7 +343,7 @@ class Table(pulumi.CustomResource):
         """
         The name of the range key; must be defined
         """
-        ...
+        return pulumi.get(self, "range_key")
 
     @property
     @pulumi.getter(name="readCapacity")
@@ -351,7 +351,7 @@ class Table(pulumi.CustomResource):
         """
         The number of read units for this index. Must be set if billing_mode is set to PROVISIONED.
         """
-        ...
+        return pulumi.get(self, "read_capacity")
 
     @property
     @pulumi.getter
@@ -359,7 +359,7 @@ class Table(pulumi.CustomResource):
         """
         Configuration block(s) with [DynamoDB Global Tables V2 (version 2019.11.21)](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.V2.html) replication configurations. Detailed below.
         """
-        ...
+        return pulumi.get(self, "replicas")
 
     @property
     @pulumi.getter(name="serverSideEncryption")
@@ -367,7 +367,7 @@ class Table(pulumi.CustomResource):
         """
         Encryption at rest options. AWS DynamoDB tables are automatically encrypted at rest with an AWS owned Customer Master Key if this argument isn't specified.
         """
-        ...
+        return pulumi.get(self, "server_side_encryption")
 
     @property
     @pulumi.getter(name="streamArn")
@@ -375,7 +375,7 @@ class Table(pulumi.CustomResource):
         """
         The ARN of the Table Stream. Only available when `stream_enabled = true`
         """
-        ...
+        return pulumi.get(self, "stream_arn")
 
     @property
     @pulumi.getter(name="streamEnabled")
@@ -383,7 +383,7 @@ class Table(pulumi.CustomResource):
         """
         Indicates whether Streams are to be enabled (true) or disabled (false).
         """
-        ...
+        return pulumi.get(self, "stream_enabled")
 
     @property
     @pulumi.getter(name="streamLabel")
@@ -394,7 +394,7 @@ class Table(pulumi.CustomResource):
         table name and this field is guaranteed to be unique.
         It can be used for creating CloudWatch Alarms. Only available when `stream_enabled = true`
         """
-        ...
+        return pulumi.get(self, "stream_label")
 
     @property
     @pulumi.getter(name="streamViewType")
@@ -402,7 +402,7 @@ class Table(pulumi.CustomResource):
         """
         When an item in the table is modified, StreamViewType determines what information is written to the table's stream. Valid values are `KEYS_ONLY`, `NEW_IMAGE`, `OLD_IMAGE`, `NEW_AND_OLD_IMAGES`.
         """
-        ...
+        return pulumi.get(self, "stream_view_type")
 
     @property
     @pulumi.getter
@@ -410,7 +410,7 @@ class Table(pulumi.CustomResource):
         """
         A map of tags to populate on the created table.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -418,7 +418,7 @@ class Table(pulumi.CustomResource):
         """
         Defines ttl, has two properties, and can only be specified once:
         """
-        ...
+        return pulumi.get(self, "ttl")
 
     @property
     @pulumi.getter(name="writeCapacity")
@@ -426,7 +426,7 @@ class Table(pulumi.CustomResource):
         """
         The number of write units for this index. Must be set if billing_mode is set to PROVISIONED.
         """
-        ...
+        return pulumi.get(self, "write_capacity")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

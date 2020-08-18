@@ -48,7 +48,7 @@ class GetRegexPatternSetResult:
         """
         The Amazon Resource Name (ARN) of the entity.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -56,7 +56,7 @@ class GetRegexPatternSetResult:
         """
         The description of the set that helps with identification.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -64,12 +64,12 @@ class GetRegexPatternSetResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="regularExpressions")
@@ -77,12 +77,12 @@ class GetRegexPatternSetResult:
         """
         One or more blocks of regular expression patterns that AWS WAF is searching for. See Regular Expression below for details.
         """
-        ...
+        return pulumi.get(self, "regular_expressions")
 
     @property
     @pulumi.getter
     def scope(self) -> str:
-        ...
+        return pulumi.get(self, "scope")
 
 
 

@@ -127,7 +127,7 @@ class IntegrationResponse(pulumi.CustomResource):
         """
         The API identifier.
         """
-        ...
+        return pulumi.get(self, "api_id")
 
     @property
     @pulumi.getter(name="contentHandlingStrategy")
@@ -135,7 +135,7 @@ class IntegrationResponse(pulumi.CustomResource):
         """
         How to handle response payload content type conversions. Valid values: `CONVERT_TO_BINARY`, `CONVERT_TO_TEXT`.
         """
-        ...
+        return pulumi.get(self, "content_handling_strategy")
 
     @property
     @pulumi.getter(name="integrationId")
@@ -143,7 +143,7 @@ class IntegrationResponse(pulumi.CustomResource):
         """
         The identifier of the `apigatewayv2.Integration`.
         """
-        ...
+        return pulumi.get(self, "integration_id")
 
     @property
     @pulumi.getter(name="integrationResponseKey")
@@ -151,7 +151,7 @@ class IntegrationResponse(pulumi.CustomResource):
         """
         The integration response key.
         """
-        ...
+        return pulumi.get(self, "integration_response_key")
 
     @property
     @pulumi.getter(name="responseTemplates")
@@ -159,7 +159,7 @@ class IntegrationResponse(pulumi.CustomResource):
         """
         A map of Velocity templates that are applied on the request payload based on the value of the Content-Type header sent by the client.
         """
-        ...
+        return pulumi.get(self, "response_templates")
 
     @property
     @pulumi.getter(name="templateSelectionExpression")
@@ -167,7 +167,7 @@ class IntegrationResponse(pulumi.CustomResource):
         """
         The [template selection expression](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-template-selection-expressions) for the integration response.
         """
-        ...
+        return pulumi.get(self, "template_selection_expression")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

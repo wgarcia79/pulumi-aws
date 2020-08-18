@@ -159,7 +159,7 @@ class IdentityPool(pulumi.CustomResource):
         """
         Whether the identity pool supports unauthenticated logins or not.
         """
-        ...
+        return pulumi.get(self, "allow_unauthenticated_identities")
 
     @property
     @pulumi.getter
@@ -167,7 +167,7 @@ class IdentityPool(pulumi.CustomResource):
         """
         The ARN of the identity pool.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="cognitoIdentityProviders")
@@ -175,7 +175,7 @@ class IdentityPool(pulumi.CustomResource):
         """
         An array of Amazon Cognito Identity user pools and their client IDs.
         """
-        ...
+        return pulumi.get(self, "cognito_identity_providers")
 
     @property
     @pulumi.getter(name="developerProviderName")
@@ -184,7 +184,7 @@ class IdentityPool(pulumi.CustomResource):
         The "domain" by which Cognito will refer to your users. This name acts as a placeholder that allows your
         backend and the Cognito service to communicate about the developer provider.
         """
-        ...
+        return pulumi.get(self, "developer_provider_name")
 
     @property
     @pulumi.getter(name="identityPoolName")
@@ -192,7 +192,7 @@ class IdentityPool(pulumi.CustomResource):
         """
         The Cognito Identity Pool name.
         """
-        ...
+        return pulumi.get(self, "identity_pool_name")
 
     @property
     @pulumi.getter(name="openidConnectProviderArns")
@@ -200,7 +200,7 @@ class IdentityPool(pulumi.CustomResource):
         """
         A list of OpendID Connect provider ARNs.
         """
-        ...
+        return pulumi.get(self, "openid_connect_provider_arns")
 
     @property
     @pulumi.getter(name="samlProviderArns")
@@ -208,7 +208,7 @@ class IdentityPool(pulumi.CustomResource):
         """
         An array of Amazon Resource Names (ARNs) of the SAML provider for your identity.
         """
-        ...
+        return pulumi.get(self, "saml_provider_arns")
 
     @property
     @pulumi.getter(name="supportedLoginProviders")
@@ -216,7 +216,7 @@ class IdentityPool(pulumi.CustomResource):
         """
         Key-Value pairs mapping provider names to provider app IDs.
         """
-        ...
+        return pulumi.get(self, "supported_login_providers")
 
     @property
     @pulumi.getter
@@ -224,7 +224,7 @@ class IdentityPool(pulumi.CustomResource):
         """
         A map of tags to assign to the Identity Pool.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

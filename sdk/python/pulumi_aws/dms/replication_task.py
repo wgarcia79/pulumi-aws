@@ -162,7 +162,7 @@ class ReplicationTask(pulumi.CustomResource):
         """
         The Unix timestamp integer for the start of the Change Data Capture (CDC) operation.
         """
-        ...
+        return pulumi.get(self, "cdc_start_time")
 
     @property
     @pulumi.getter(name="migrationType")
@@ -170,7 +170,7 @@ class ReplicationTask(pulumi.CustomResource):
         """
         The migration type. Can be one of `full-load | cdc | full-load-and-cdc`.
         """
-        ...
+        return pulumi.get(self, "migration_type")
 
     @property
     @pulumi.getter(name="replicationInstanceArn")
@@ -178,7 +178,7 @@ class ReplicationTask(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) of the replication instance.
         """
-        ...
+        return pulumi.get(self, "replication_instance_arn")
 
     @property
     @pulumi.getter(name="replicationTaskArn")
@@ -186,7 +186,7 @@ class ReplicationTask(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) for the replication task.
         """
-        ...
+        return pulumi.get(self, "replication_task_arn")
 
     @property
     @pulumi.getter(name="replicationTaskId")
@@ -194,7 +194,7 @@ class ReplicationTask(pulumi.CustomResource):
         """
         The replication task identifier.
         """
-        ...
+        return pulumi.get(self, "replication_task_id")
 
     @property
     @pulumi.getter(name="replicationTaskSettings")
@@ -202,7 +202,7 @@ class ReplicationTask(pulumi.CustomResource):
         """
         An escaped JSON string that contains the task settings. For a complete list of task settings, see [Task Settings for AWS Database Migration Service Tasks](http://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TaskSettings.html).
         """
-        ...
+        return pulumi.get(self, "replication_task_settings")
 
     @property
     @pulumi.getter(name="sourceEndpointArn")
@@ -210,7 +210,7 @@ class ReplicationTask(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) string that uniquely identifies the source endpoint.
         """
-        ...
+        return pulumi.get(self, "source_endpoint_arn")
 
     @property
     @pulumi.getter(name="tableMappings")
@@ -218,7 +218,7 @@ class ReplicationTask(pulumi.CustomResource):
         """
         An escaped JSON string that contains the table mappings. For information on table mapping see [Using Table Mapping with an AWS Database Migration Service Task to Select and Filter Data](http://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TableMapping.html)
         """
-        ...
+        return pulumi.get(self, "table_mappings")
 
     @property
     @pulumi.getter
@@ -226,7 +226,7 @@ class ReplicationTask(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="targetEndpointArn")
@@ -234,7 +234,7 @@ class ReplicationTask(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) string that uniquely identifies the target endpoint.
         """
-        ...
+        return pulumi.get(self, "target_endpoint_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

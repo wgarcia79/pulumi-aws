@@ -43,7 +43,7 @@ class GetVpnAttachmentResult:
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetVpnAttachmentFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
@@ -51,7 +51,7 @@ class GetVpnAttachmentResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -59,17 +59,17 @@ class GetVpnAttachmentResult:
         """
         Key-value tags for the EC2 Transit Gateway VPN Attachment
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="transitGatewayId")
     def transit_gateway_id(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "transit_gateway_id")
 
     @property
     @pulumi.getter(name="vpnConnectionId")
     def vpn_connection_id(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "vpn_connection_id")
 
 
 

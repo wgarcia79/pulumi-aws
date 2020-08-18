@@ -63,7 +63,7 @@ class ApplicationAppSource(dict):
         """
         The type of source to use. For example, "archive".
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -71,7 +71,7 @@ class ApplicationAppSource(dict):
         """
         Password to use when authenticating to the source. This provider cannot perform drift detection of this configuration.
         """
-        ...
+        return pulumi.get(self, "password")
 
     @property
     @pulumi.getter
@@ -79,7 +79,7 @@ class ApplicationAppSource(dict):
         """
         For sources that are version-aware, the revision to use.
         """
-        ...
+        return pulumi.get(self, "revision")
 
     @property
     @pulumi.getter(name="sshKey")
@@ -87,7 +87,7 @@ class ApplicationAppSource(dict):
         """
         SSH key to use when authenticating to the source. This provider cannot perform drift detection of this configuration.
         """
-        ...
+        return pulumi.get(self, "ssh_key")
 
     @property
     @pulumi.getter
@@ -95,7 +95,7 @@ class ApplicationAppSource(dict):
         """
         The URL where the app resource can be found.
         """
-        ...
+        return pulumi.get(self, "url")
 
     @property
     @pulumi.getter
@@ -103,7 +103,7 @@ class ApplicationAppSource(dict):
         """
         Username to use when authenticating to the source.
         """
-        ...
+        return pulumi.get(self, "username")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -131,7 +131,7 @@ class ApplicationEnvironment(dict):
         """
         Variable name.
         """
-        ...
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
@@ -139,7 +139,7 @@ class ApplicationEnvironment(dict):
         """
         Variable value.
         """
-        ...
+        return pulumi.get(self, "value")
 
     @property
     @pulumi.getter
@@ -147,7 +147,7 @@ class ApplicationEnvironment(dict):
         """
         Set visibility of the variable value to `true` or `false`.
         """
-        ...
+        return pulumi.get(self, "secure")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -175,7 +175,7 @@ class ApplicationSslConfiguration(dict):
         """
         The contents of the certificate's domain.crt file.
         """
-        ...
+        return pulumi.get(self, "certificate")
 
     @property
     @pulumi.getter(name="privateKey")
@@ -183,7 +183,7 @@ class ApplicationSslConfiguration(dict):
         """
         The private key; the contents of the certificate's domain.key file.
         """
-        ...
+        return pulumi.get(self, "private_key")
 
     @property
     @pulumi.getter
@@ -191,7 +191,7 @@ class ApplicationSslConfiguration(dict):
         """
         Can be used to specify an intermediate certificate authority key or client authentication.
         """
-        ...
+        return pulumi.get(self, "chain")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -234,7 +234,7 @@ class CustomLayerEbsVolume(dict):
         """
         The path to mount the EBS volume on the layer's instances.
         """
-        ...
+        return pulumi.get(self, "mount_point")
 
     @property
     @pulumi.getter(name="numberOfDisks")
@@ -242,7 +242,7 @@ class CustomLayerEbsVolume(dict):
         """
         The number of disks to use for the EBS volume.
         """
-        ...
+        return pulumi.get(self, "number_of_disks")
 
     @property
     @pulumi.getter
@@ -250,7 +250,7 @@ class CustomLayerEbsVolume(dict):
         """
         The size of the volume in gigabytes.
         """
-        ...
+        return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
@@ -258,7 +258,7 @@ class CustomLayerEbsVolume(dict):
         """
         Encrypt the volume.
         """
-        ...
+        return pulumi.get(self, "encrypted")
 
     @property
     @pulumi.getter
@@ -266,7 +266,7 @@ class CustomLayerEbsVolume(dict):
         """
         For PIOPS volumes, the IOPS per disk.
         """
-        ...
+        return pulumi.get(self, "iops")
 
     @property
     @pulumi.getter(name="raidLevel")
@@ -274,7 +274,7 @@ class CustomLayerEbsVolume(dict):
         """
         The RAID level to use for the volume.
         """
-        ...
+        return pulumi.get(self, "raid_level")
 
     @property
     @pulumi.getter
@@ -282,7 +282,7 @@ class CustomLayerEbsVolume(dict):
         """
         The type of volume to create. This may be `standard` (the default), `io1` or `gp2`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -324,7 +324,7 @@ class GangliaLayerEbsVolume(dict):
         """
         The path to mount the EBS volume on the layer's instances.
         """
-        ...
+        return pulumi.get(self, "mount_point")
 
     @property
     @pulumi.getter(name="numberOfDisks")
@@ -332,7 +332,7 @@ class GangliaLayerEbsVolume(dict):
         """
         The number of disks to use for the EBS volume.
         """
-        ...
+        return pulumi.get(self, "number_of_disks")
 
     @property
     @pulumi.getter
@@ -340,12 +340,12 @@ class GangliaLayerEbsVolume(dict):
         """
         The size of the volume in gigabytes.
         """
-        ...
+        return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
     def encrypted(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "encrypted")
 
     @property
     @pulumi.getter
@@ -353,7 +353,7 @@ class GangliaLayerEbsVolume(dict):
         """
         For PIOPS volumes, the IOPS per disk.
         """
-        ...
+        return pulumi.get(self, "iops")
 
     @property
     @pulumi.getter(name="raidLevel")
@@ -361,7 +361,7 @@ class GangliaLayerEbsVolume(dict):
         """
         The RAID level to use for the volume.
         """
-        ...
+        return pulumi.get(self, "raid_level")
 
     @property
     @pulumi.getter
@@ -369,7 +369,7 @@ class GangliaLayerEbsVolume(dict):
         """
         The type of volume to create. This may be `standard` (the default), `io1` or `gp2`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -411,7 +411,7 @@ class HaproxyLayerEbsVolume(dict):
         """
         The path to mount the EBS volume on the layer's instances.
         """
-        ...
+        return pulumi.get(self, "mount_point")
 
     @property
     @pulumi.getter(name="numberOfDisks")
@@ -419,7 +419,7 @@ class HaproxyLayerEbsVolume(dict):
         """
         The number of disks to use for the EBS volume.
         """
-        ...
+        return pulumi.get(self, "number_of_disks")
 
     @property
     @pulumi.getter
@@ -427,12 +427,12 @@ class HaproxyLayerEbsVolume(dict):
         """
         The size of the volume in gigabytes.
         """
-        ...
+        return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
     def encrypted(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "encrypted")
 
     @property
     @pulumi.getter
@@ -440,7 +440,7 @@ class HaproxyLayerEbsVolume(dict):
         """
         For PIOPS volumes, the IOPS per disk.
         """
-        ...
+        return pulumi.get(self, "iops")
 
     @property
     @pulumi.getter(name="raidLevel")
@@ -448,7 +448,7 @@ class HaproxyLayerEbsVolume(dict):
         """
         The RAID level to use for the volume.
         """
-        ...
+        return pulumi.get(self, "raid_level")
 
     @property
     @pulumi.getter
@@ -456,7 +456,7 @@ class HaproxyLayerEbsVolume(dict):
         """
         The type of volume to create. This may be `standard` (the default), `io1` or `gp2`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -486,32 +486,32 @@ class InstanceEbsBlockDevice(dict):
     @property
     @pulumi.getter(name="deviceName")
     def device_name(self) -> str:
-        ...
+        return pulumi.get(self, "device_name")
 
     @property
     @pulumi.getter(name="deleteOnTermination")
     def delete_on_termination(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "delete_on_termination")
 
     @property
     @pulumi.getter
     def iops(self) -> Optional[float]:
-        ...
+        return pulumi.get(self, "iops")
 
     @property
     @pulumi.getter(name="snapshotId")
     def snapshot_id(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "snapshot_id")
 
     @property
     @pulumi.getter(name="volumeSize")
     def volume_size(self) -> Optional[float]:
-        ...
+        return pulumi.get(self, "volume_size")
 
     @property
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "volume_type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -528,12 +528,12 @@ class InstanceEphemeralBlockDevice(dict):
     @property
     @pulumi.getter(name="deviceName")
     def device_name(self) -> str:
-        ...
+        return pulumi.get(self, "device_name")
 
     @property
     @pulumi.getter(name="virtualName")
     def virtual_name(self) -> str:
-        ...
+        return pulumi.get(self, "virtual_name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -558,22 +558,22 @@ class InstanceRootBlockDevice(dict):
     @property
     @pulumi.getter(name="deleteOnTermination")
     def delete_on_termination(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "delete_on_termination")
 
     @property
     @pulumi.getter
     def iops(self) -> Optional[float]:
-        ...
+        return pulumi.get(self, "iops")
 
     @property
     @pulumi.getter(name="volumeSize")
     def volume_size(self) -> Optional[float]:
-        ...
+        return pulumi.get(self, "volume_size")
 
     @property
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "volume_type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -615,7 +615,7 @@ class JavaAppLayerEbsVolume(dict):
         """
         The path to mount the EBS volume on the layer's instances.
         """
-        ...
+        return pulumi.get(self, "mount_point")
 
     @property
     @pulumi.getter(name="numberOfDisks")
@@ -623,7 +623,7 @@ class JavaAppLayerEbsVolume(dict):
         """
         The number of disks to use for the EBS volume.
         """
-        ...
+        return pulumi.get(self, "number_of_disks")
 
     @property
     @pulumi.getter
@@ -631,12 +631,12 @@ class JavaAppLayerEbsVolume(dict):
         """
         The size of the volume in gigabytes.
         """
-        ...
+        return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
     def encrypted(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "encrypted")
 
     @property
     @pulumi.getter
@@ -644,7 +644,7 @@ class JavaAppLayerEbsVolume(dict):
         """
         For PIOPS volumes, the IOPS per disk.
         """
-        ...
+        return pulumi.get(self, "iops")
 
     @property
     @pulumi.getter(name="raidLevel")
@@ -652,7 +652,7 @@ class JavaAppLayerEbsVolume(dict):
         """
         The RAID level to use for the volume.
         """
-        ...
+        return pulumi.get(self, "raid_level")
 
     @property
     @pulumi.getter
@@ -660,7 +660,7 @@ class JavaAppLayerEbsVolume(dict):
         """
         The type of volume to create. This may be `standard` (the default), `io1` or `gp2`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -702,7 +702,7 @@ class MemcachedLayerEbsVolume(dict):
         """
         The path to mount the EBS volume on the layer's instances.
         """
-        ...
+        return pulumi.get(self, "mount_point")
 
     @property
     @pulumi.getter(name="numberOfDisks")
@@ -710,7 +710,7 @@ class MemcachedLayerEbsVolume(dict):
         """
         The number of disks to use for the EBS volume.
         """
-        ...
+        return pulumi.get(self, "number_of_disks")
 
     @property
     @pulumi.getter
@@ -718,12 +718,12 @@ class MemcachedLayerEbsVolume(dict):
         """
         The size of the volume in gigabytes.
         """
-        ...
+        return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
     def encrypted(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "encrypted")
 
     @property
     @pulumi.getter
@@ -731,7 +731,7 @@ class MemcachedLayerEbsVolume(dict):
         """
         For PIOPS volumes, the IOPS per disk.
         """
-        ...
+        return pulumi.get(self, "iops")
 
     @property
     @pulumi.getter(name="raidLevel")
@@ -739,7 +739,7 @@ class MemcachedLayerEbsVolume(dict):
         """
         The RAID level to use for the volume.
         """
-        ...
+        return pulumi.get(self, "raid_level")
 
     @property
     @pulumi.getter
@@ -747,7 +747,7 @@ class MemcachedLayerEbsVolume(dict):
         """
         The type of volume to create. This may be `standard` (the default), `io1` or `gp2`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -789,7 +789,7 @@ class MysqlLayerEbsVolume(dict):
         """
         The path to mount the EBS volume on the layer's instances.
         """
-        ...
+        return pulumi.get(self, "mount_point")
 
     @property
     @pulumi.getter(name="numberOfDisks")
@@ -797,7 +797,7 @@ class MysqlLayerEbsVolume(dict):
         """
         The number of disks to use for the EBS volume.
         """
-        ...
+        return pulumi.get(self, "number_of_disks")
 
     @property
     @pulumi.getter
@@ -805,12 +805,12 @@ class MysqlLayerEbsVolume(dict):
         """
         The size of the volume in gigabytes.
         """
-        ...
+        return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
     def encrypted(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "encrypted")
 
     @property
     @pulumi.getter
@@ -818,7 +818,7 @@ class MysqlLayerEbsVolume(dict):
         """
         For PIOPS volumes, the IOPS per disk.
         """
-        ...
+        return pulumi.get(self, "iops")
 
     @property
     @pulumi.getter(name="raidLevel")
@@ -826,7 +826,7 @@ class MysqlLayerEbsVolume(dict):
         """
         The RAID level to use for the volume.
         """
-        ...
+        return pulumi.get(self, "raid_level")
 
     @property
     @pulumi.getter
@@ -834,7 +834,7 @@ class MysqlLayerEbsVolume(dict):
         """
         The type of volume to create. This may be `standard` (the default), `io1` or `gp2`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -876,7 +876,7 @@ class NodejsAppLayerEbsVolume(dict):
         """
         The path to mount the EBS volume on the layer's instances.
         """
-        ...
+        return pulumi.get(self, "mount_point")
 
     @property
     @pulumi.getter(name="numberOfDisks")
@@ -884,7 +884,7 @@ class NodejsAppLayerEbsVolume(dict):
         """
         The number of disks to use for the EBS volume.
         """
-        ...
+        return pulumi.get(self, "number_of_disks")
 
     @property
     @pulumi.getter
@@ -892,12 +892,12 @@ class NodejsAppLayerEbsVolume(dict):
         """
         The size of the volume in gigabytes.
         """
-        ...
+        return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
     def encrypted(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "encrypted")
 
     @property
     @pulumi.getter
@@ -905,7 +905,7 @@ class NodejsAppLayerEbsVolume(dict):
         """
         For PIOPS volumes, the IOPS per disk.
         """
-        ...
+        return pulumi.get(self, "iops")
 
     @property
     @pulumi.getter(name="raidLevel")
@@ -913,7 +913,7 @@ class NodejsAppLayerEbsVolume(dict):
         """
         The RAID level to use for the volume.
         """
-        ...
+        return pulumi.get(self, "raid_level")
 
     @property
     @pulumi.getter
@@ -921,7 +921,7 @@ class NodejsAppLayerEbsVolume(dict):
         """
         The type of volume to create. This may be `standard` (the default), `io1` or `gp2`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -963,7 +963,7 @@ class PhpAppLayerEbsVolume(dict):
         """
         The path to mount the EBS volume on the layer's instances.
         """
-        ...
+        return pulumi.get(self, "mount_point")
 
     @property
     @pulumi.getter(name="numberOfDisks")
@@ -971,7 +971,7 @@ class PhpAppLayerEbsVolume(dict):
         """
         The number of disks to use for the EBS volume.
         """
-        ...
+        return pulumi.get(self, "number_of_disks")
 
     @property
     @pulumi.getter
@@ -979,12 +979,12 @@ class PhpAppLayerEbsVolume(dict):
         """
         The size of the volume in gigabytes.
         """
-        ...
+        return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
     def encrypted(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "encrypted")
 
     @property
     @pulumi.getter
@@ -992,7 +992,7 @@ class PhpAppLayerEbsVolume(dict):
         """
         For PIOPS volumes, the IOPS per disk.
         """
-        ...
+        return pulumi.get(self, "iops")
 
     @property
     @pulumi.getter(name="raidLevel")
@@ -1000,7 +1000,7 @@ class PhpAppLayerEbsVolume(dict):
         """
         The RAID level to use for the volume.
         """
-        ...
+        return pulumi.get(self, "raid_level")
 
     @property
     @pulumi.getter
@@ -1008,7 +1008,7 @@ class PhpAppLayerEbsVolume(dict):
         """
         The type of volume to create. This may be `standard` (the default), `io1` or `gp2`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1050,7 +1050,7 @@ class RailsAppLayerEbsVolume(dict):
         """
         The path to mount the EBS volume on the layer's instances.
         """
-        ...
+        return pulumi.get(self, "mount_point")
 
     @property
     @pulumi.getter(name="numberOfDisks")
@@ -1058,7 +1058,7 @@ class RailsAppLayerEbsVolume(dict):
         """
         The number of disks to use for the EBS volume.
         """
-        ...
+        return pulumi.get(self, "number_of_disks")
 
     @property
     @pulumi.getter
@@ -1066,12 +1066,12 @@ class RailsAppLayerEbsVolume(dict):
         """
         The size of the volume in gigabytes.
         """
-        ...
+        return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
     def encrypted(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "encrypted")
 
     @property
     @pulumi.getter
@@ -1079,7 +1079,7 @@ class RailsAppLayerEbsVolume(dict):
         """
         For PIOPS volumes, the IOPS per disk.
         """
-        ...
+        return pulumi.get(self, "iops")
 
     @property
     @pulumi.getter(name="raidLevel")
@@ -1087,7 +1087,7 @@ class RailsAppLayerEbsVolume(dict):
         """
         The RAID level to use for the volume.
         """
-        ...
+        return pulumi.get(self, "raid_level")
 
     @property
     @pulumi.getter
@@ -1095,7 +1095,7 @@ class RailsAppLayerEbsVolume(dict):
         """
         The type of volume to create. This may be `standard` (the default), `io1` or `gp2`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1135,7 +1135,7 @@ class StackCustomCookbooksSource(dict):
         """
         The type of source to use. For example, "archive".
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -1143,7 +1143,7 @@ class StackCustomCookbooksSource(dict):
         """
         The URL where the cookbooks resource can be found.
         """
-        ...
+        return pulumi.get(self, "url")
 
     @property
     @pulumi.getter
@@ -1151,7 +1151,7 @@ class StackCustomCookbooksSource(dict):
         """
         Password to use when authenticating to the source. The provider cannot perform drift detection of this configuration.
         """
-        ...
+        return pulumi.get(self, "password")
 
     @property
     @pulumi.getter
@@ -1159,7 +1159,7 @@ class StackCustomCookbooksSource(dict):
         """
         For sources that are version-aware, the revision to use.
         """
-        ...
+        return pulumi.get(self, "revision")
 
     @property
     @pulumi.getter(name="sshKey")
@@ -1167,7 +1167,7 @@ class StackCustomCookbooksSource(dict):
         """
         SSH key to use when authenticating to the source. The provider cannot perform drift detection of this configuration.
         """
-        ...
+        return pulumi.get(self, "ssh_key")
 
     @property
     @pulumi.getter
@@ -1175,7 +1175,7 @@ class StackCustomCookbooksSource(dict):
         """
         Username to use when authenticating to the source.
         """
-        ...
+        return pulumi.get(self, "username")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1217,7 +1217,7 @@ class StaticWebLayerEbsVolume(dict):
         """
         The path to mount the EBS volume on the layer's instances.
         """
-        ...
+        return pulumi.get(self, "mount_point")
 
     @property
     @pulumi.getter(name="numberOfDisks")
@@ -1225,7 +1225,7 @@ class StaticWebLayerEbsVolume(dict):
         """
         The number of disks to use for the EBS volume.
         """
-        ...
+        return pulumi.get(self, "number_of_disks")
 
     @property
     @pulumi.getter
@@ -1233,12 +1233,12 @@ class StaticWebLayerEbsVolume(dict):
         """
         The size of the volume in gigabytes.
         """
-        ...
+        return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
     def encrypted(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "encrypted")
 
     @property
     @pulumi.getter
@@ -1246,7 +1246,7 @@ class StaticWebLayerEbsVolume(dict):
         """
         For PIOPS volumes, the IOPS per disk.
         """
-        ...
+        return pulumi.get(self, "iops")
 
     @property
     @pulumi.getter(name="raidLevel")
@@ -1254,7 +1254,7 @@ class StaticWebLayerEbsVolume(dict):
         """
         The RAID level to use for the volume.
         """
-        ...
+        return pulumi.get(self, "raid_level")
 
     @property
     @pulumi.getter
@@ -1262,7 +1262,7 @@ class StaticWebLayerEbsVolume(dict):
         """
         The type of volume to create. This may be `standard` (the default), `io1` or `gp2`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

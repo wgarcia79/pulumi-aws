@@ -55,12 +55,12 @@ class GetResourceShareResult:
         """
         The Amazon Resource Name (ARN) of the resource share.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetResourceShareFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
@@ -68,12 +68,12 @@ class GetResourceShareResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="owningAccountId")
@@ -81,12 +81,12 @@ class GetResourceShareResult:
         """
         The ID of the AWS account that owns the resource share.
         """
-        ...
+        return pulumi.get(self, "owning_account_id")
 
     @property
     @pulumi.getter(name="resourceOwner")
     def resource_owner(self) -> str:
-        ...
+        return pulumi.get(self, "resource_owner")
 
     @property
     @pulumi.getter
@@ -94,7 +94,7 @@ class GetResourceShareResult:
         """
         The Status of the RAM share.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
@@ -102,7 +102,7 @@ class GetResourceShareResult:
         """
         The Tags attached to the RAM share
         """
-        ...
+        return pulumi.get(self, "tags")
 
 
 

@@ -44,7 +44,7 @@ class GetWebAclResult:
         """
         The Amazon Resource Name (ARN) of the entity.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -52,7 +52,7 @@ class GetWebAclResult:
         """
         The description of the WebACL that helps with identification.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -60,17 +60,17 @@ class GetWebAclResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def scope(self) -> str:
-        ...
+        return pulumi.get(self, "scope")
 
 
 

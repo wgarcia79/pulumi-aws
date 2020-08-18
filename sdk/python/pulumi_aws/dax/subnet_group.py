@@ -107,7 +107,7 @@ class SubnetGroup(pulumi.CustomResource):
         """
         A description of the subnet group.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -115,7 +115,7 @@ class SubnetGroup(pulumi.CustomResource):
         """
         The name of the subnet group.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="subnetIds")
@@ -123,7 +123,7 @@ class SubnetGroup(pulumi.CustomResource):
         """
         A list of VPC subnet IDs for the subnet group.
         """
-        ...
+        return pulumi.get(self, "subnet_ids")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -131,7 +131,7 @@ class SubnetGroup(pulumi.CustomResource):
         """
         VPC ID of the subnet group.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

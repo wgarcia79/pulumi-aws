@@ -100,7 +100,7 @@ class Protection(pulumi.CustomResource):
         """
         A friendly name for the Protection you are creating.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="resourceArn")
@@ -108,7 +108,7 @@ class Protection(pulumi.CustomResource):
         """
         The ARN (Amazon Resource Name) of the resource to be protected.
         """
-        ...
+        return pulumi.get(self, "resource_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -53,12 +53,12 @@ class GetServiceResult:
         """
         The ARN of the ECS Service
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="clusterArn")
     def cluster_arn(self) -> str:
-        ...
+        return pulumi.get(self, "cluster_arn")
 
     @property
     @pulumi.getter(name="desiredCount")
@@ -66,7 +66,7 @@ class GetServiceResult:
         """
         The number of tasks for the ECS Service
         """
-        ...
+        return pulumi.get(self, "desired_count")
 
     @property
     @pulumi.getter
@@ -74,7 +74,7 @@ class GetServiceResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="launchType")
@@ -82,7 +82,7 @@ class GetServiceResult:
         """
         The launch type for the ECS Service
         """
-        ...
+        return pulumi.get(self, "launch_type")
 
     @property
     @pulumi.getter(name="schedulingStrategy")
@@ -90,12 +90,12 @@ class GetServiceResult:
         """
         The scheduling strategy for the ECS Service
         """
-        ...
+        return pulumi.get(self, "scheduling_strategy")
 
     @property
     @pulumi.getter(name="serviceName")
     def service_name(self) -> str:
-        ...
+        return pulumi.get(self, "service_name")
 
     @property
     @pulumi.getter(name="taskDefinition")
@@ -103,7 +103,7 @@ class GetServiceResult:
         """
         The family for the latest ACTIVE revision
         """
-        ...
+        return pulumi.get(self, "task_definition")
 
 
 

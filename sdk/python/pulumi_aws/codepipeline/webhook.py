@@ -200,7 +200,7 @@ class Webhook(pulumi.CustomResource):
         """
         The type of authentication  to use. One of `IP`, `GITHUB_HMAC`, or `UNAUTHENTICATED`.
         """
-        ...
+        return pulumi.get(self, "authentication")
 
     @property
     @pulumi.getter(name="authenticationConfiguration")
@@ -208,7 +208,7 @@ class Webhook(pulumi.CustomResource):
         """
         An `auth` block. Required for `IP` and `GITHUB_HMAC`. Auth blocks are documented below.
         """
-        ...
+        return pulumi.get(self, "authentication_configuration")
 
     @property
     @pulumi.getter
@@ -216,7 +216,7 @@ class Webhook(pulumi.CustomResource):
         """
         One or more `filter` blocks. Filter blocks are documented below.
         """
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
@@ -224,7 +224,7 @@ class Webhook(pulumi.CustomResource):
         """
         The name of the webhook.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -232,7 +232,7 @@ class Webhook(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="targetAction")
@@ -240,7 +240,7 @@ class Webhook(pulumi.CustomResource):
         """
         The name of the action in a pipeline you want to connect to the webhook. The action must be from the source (first) stage of the pipeline.
         """
-        ...
+        return pulumi.get(self, "target_action")
 
     @property
     @pulumi.getter(name="targetPipeline")
@@ -248,7 +248,7 @@ class Webhook(pulumi.CustomResource):
         """
         The name of the pipeline.
         """
-        ...
+        return pulumi.get(self, "target_pipeline")
 
     @property
     @pulumi.getter
@@ -256,7 +256,7 @@ class Webhook(pulumi.CustomResource):
         """
         The CodePipeline webhook's URL. POST events to this endpoint to trigger the target.
         """
-        ...
+        return pulumi.get(self, "url")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

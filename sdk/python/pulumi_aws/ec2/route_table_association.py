@@ -112,7 +112,7 @@ class RouteTableAssociation(pulumi.CustomResource):
         """
         The gateway ID to create an association. Conflicts with `subnet_id`.
         """
-        ...
+        return pulumi.get(self, "gateway_id")
 
     @property
     @pulumi.getter(name="routeTableId")
@@ -120,7 +120,7 @@ class RouteTableAssociation(pulumi.CustomResource):
         """
         The ID of the routing table to associate with.
         """
-        ...
+        return pulumi.get(self, "route_table_id")
 
     @property
     @pulumi.getter(name="subnetId")
@@ -128,7 +128,7 @@ class RouteTableAssociation(pulumi.CustomResource):
         """
         The subnet ID to create an association. Conflicts with `gateway_id`.
         """
-        ...
+        return pulumi.get(self, "subnet_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

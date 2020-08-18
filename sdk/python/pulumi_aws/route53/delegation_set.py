@@ -96,7 +96,7 @@ class DelegationSet(pulumi.CustomResource):
         A list of authoritative name servers for the hosted zone
         (effectively a list of NS records).
         """
-        ...
+        return pulumi.get(self, "name_servers")
 
     @property
     @pulumi.getter(name="referenceName")
@@ -105,7 +105,7 @@ class DelegationSet(pulumi.CustomResource):
         This is a reference name used in Caller Reference
         (helpful for identifying single delegation set amongst others)
         """
-        ...
+        return pulumi.get(self, "reference_name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

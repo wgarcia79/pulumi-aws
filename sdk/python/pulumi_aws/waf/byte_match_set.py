@@ -108,7 +108,7 @@ class ByteMatchSet(pulumi.CustomResource):
         with ASCII characters) that you want to search for in web requests,
         the location in requests that you want to search, and other settings.
         """
-        ...
+        return pulumi.get(self, "byte_match_tuples")
 
     @property
     @pulumi.getter
@@ -116,7 +116,7 @@ class ByteMatchSet(pulumi.CustomResource):
         """
         The name or description of the Byte Match Set.
         """
-        ...
+        return pulumi.get(self, "name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

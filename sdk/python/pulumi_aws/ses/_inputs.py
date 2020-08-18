@@ -42,11 +42,11 @@ class EventDestinationCloudwatchDestinationArgs:
         """
         The default value for the event
         """
-        ...
+        return pulumi.get(self, "default_value")
 
     @default_value.setter
     def default_value(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "default_value", value)
 
     @property
     @pulumi.getter(name="dimensionName")
@@ -54,11 +54,11 @@ class EventDestinationCloudwatchDestinationArgs:
         """
         The name for the dimension
         """
-        ...
+        return pulumi.get(self, "dimension_name")
 
     @dimension_name.setter
     def dimension_name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "dimension_name", value)
 
     @property
     @pulumi.getter(name="valueSource")
@@ -66,11 +66,11 @@ class EventDestinationCloudwatchDestinationArgs:
         """
         The source for the value. It can be either `"messageTag"` or `"emailHeader"`
         """
-        ...
+        return pulumi.get(self, "value_source")
 
     @value_source.setter
     def value_source(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "value_source", value)
 
 
 @pulumi.input_type
@@ -91,11 +91,11 @@ class EventDestinationKinesisDestinationArgs:
         """
         The ARN of the role that has permissions to access the Kinesis Stream
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @role_arn.setter
     def role_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "role_arn", value)
 
     @property
     @pulumi.getter(name="streamArn")
@@ -103,11 +103,11 @@ class EventDestinationKinesisDestinationArgs:
         """
         The ARN of the Kinesis Stream
         """
-        ...
+        return pulumi.get(self, "stream_arn")
 
     @stream_arn.setter
     def stream_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "stream_arn", value)
 
 
 @pulumi.input_type
@@ -125,11 +125,11 @@ class EventDestinationSnsDestinationArgs:
         """
         The ARN of the SNS topic
         """
-        ...
+        return pulumi.get(self, "topic_arn")
 
     @topic_arn.setter
     def topic_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "topic_arn", value)
 
 
 @pulumi.input_type
@@ -153,11 +153,11 @@ class ReceiptRuleAddHeaderActionArgs:
         """
         The name of the header to add
         """
-        ...
+        return pulumi.get(self, "header_name")
 
     @header_name.setter
     def header_name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "header_name", value)
 
     @property
     @pulumi.getter(name="headerValue")
@@ -165,11 +165,11 @@ class ReceiptRuleAddHeaderActionArgs:
         """
         The value of the header to add
         """
-        ...
+        return pulumi.get(self, "header_value")
 
     @header_value.setter
     def header_value(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "header_value", value)
 
     @property
     @pulumi.getter
@@ -177,11 +177,11 @@ class ReceiptRuleAddHeaderActionArgs:
         """
         The position of the action in the receipt rule
         """
-        ...
+        return pulumi.get(self, "position")
 
     @position.setter
     def position(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "position", value)
 
 
 @pulumi.input_type
@@ -216,11 +216,11 @@ class ReceiptRuleBounceActionArgs:
         """
         The message to send
         """
-        ...
+        return pulumi.get(self, "message")
 
     @message.setter
     def message(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "message", value)
 
     @property
     @pulumi.getter
@@ -228,11 +228,11 @@ class ReceiptRuleBounceActionArgs:
         """
         The position of the action in the receipt rule
         """
-        ...
+        return pulumi.get(self, "position")
 
     @position.setter
     def position(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "position", value)
 
     @property
     @pulumi.getter
@@ -240,11 +240,11 @@ class ReceiptRuleBounceActionArgs:
         """
         The email address of the sender
         """
-        ...
+        return pulumi.get(self, "sender")
 
     @sender.setter
     def sender(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "sender", value)
 
     @property
     @pulumi.getter(name="smtpReplyCode")
@@ -252,11 +252,11 @@ class ReceiptRuleBounceActionArgs:
         """
         The RFC 5321 SMTP reply code
         """
-        ...
+        return pulumi.get(self, "smtp_reply_code")
 
     @smtp_reply_code.setter
     def smtp_reply_code(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "smtp_reply_code", value)
 
     @property
     @pulumi.getter(name="statusCode")
@@ -264,11 +264,11 @@ class ReceiptRuleBounceActionArgs:
         """
         The RFC 3463 SMTP enhanced status code
         """
-        ...
+        return pulumi.get(self, "status_code")
 
     @status_code.setter
     def status_code(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "status_code", value)
 
     @property
     @pulumi.getter(name="topicArn")
@@ -276,11 +276,11 @@ class ReceiptRuleBounceActionArgs:
         """
         The ARN of an SNS topic to notify
         """
-        ...
+        return pulumi.get(self, "topic_arn")
 
     @topic_arn.setter
     def topic_arn(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "topic_arn", value)
 
 
 @pulumi.input_type
@@ -309,11 +309,11 @@ class ReceiptRuleLambdaActionArgs:
         """
         The ARN of the Lambda function to invoke
         """
-        ...
+        return pulumi.get(self, "function_arn")
 
     @function_arn.setter
     def function_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "function_arn", value)
 
     @property
     @pulumi.getter
@@ -321,11 +321,11 @@ class ReceiptRuleLambdaActionArgs:
         """
         The position of the action in the receipt rule
         """
-        ...
+        return pulumi.get(self, "position")
 
     @position.setter
     def position(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "position", value)
 
     @property
     @pulumi.getter(name="invocationType")
@@ -333,11 +333,11 @@ class ReceiptRuleLambdaActionArgs:
         """
         Event or RequestResponse
         """
-        ...
+        return pulumi.get(self, "invocation_type")
 
     @invocation_type.setter
     def invocation_type(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "invocation_type", value)
 
     @property
     @pulumi.getter(name="topicArn")
@@ -345,11 +345,11 @@ class ReceiptRuleLambdaActionArgs:
         """
         The ARN of an SNS topic to notify
         """
-        ...
+        return pulumi.get(self, "topic_arn")
 
     @topic_arn.setter
     def topic_arn(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "topic_arn", value)
 
 
 @pulumi.input_type
@@ -382,11 +382,11 @@ class ReceiptRuleS3ActionArgs:
         """
         The name of the S3 bucket
         """
-        ...
+        return pulumi.get(self, "bucket_name")
 
     @bucket_name.setter
     def bucket_name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "bucket_name", value)
 
     @property
     @pulumi.getter
@@ -394,11 +394,11 @@ class ReceiptRuleS3ActionArgs:
         """
         The position of the action in the receipt rule
         """
-        ...
+        return pulumi.get(self, "position")
 
     @position.setter
     def position(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "position", value)
 
     @property
     @pulumi.getter(name="kmsKeyArn")
@@ -406,11 +406,11 @@ class ReceiptRuleS3ActionArgs:
         """
         The ARN of the KMS key
         """
-        ...
+        return pulumi.get(self, "kms_key_arn")
 
     @kms_key_arn.setter
     def kms_key_arn(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kms_key_arn", value)
 
     @property
     @pulumi.getter(name="objectKeyPrefix")
@@ -418,11 +418,11 @@ class ReceiptRuleS3ActionArgs:
         """
         The key prefix of the S3 bucket
         """
-        ...
+        return pulumi.get(self, "object_key_prefix")
 
     @object_key_prefix.setter
     def object_key_prefix(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "object_key_prefix", value)
 
     @property
     @pulumi.getter(name="topicArn")
@@ -430,11 +430,11 @@ class ReceiptRuleS3ActionArgs:
         """
         The ARN of an SNS topic to notify
         """
-        ...
+        return pulumi.get(self, "topic_arn")
 
     @topic_arn.setter
     def topic_arn(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "topic_arn", value)
 
 
 @pulumi.input_type
@@ -455,11 +455,11 @@ class ReceiptRuleSnsActionArgs:
         """
         The position of the action in the receipt rule
         """
-        ...
+        return pulumi.get(self, "position")
 
     @position.setter
     def position(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "position", value)
 
     @property
     @pulumi.getter(name="topicArn")
@@ -467,11 +467,11 @@ class ReceiptRuleSnsActionArgs:
         """
         The ARN of an SNS topic to notify
         """
-        ...
+        return pulumi.get(self, "topic_arn")
 
     @topic_arn.setter
     def topic_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "topic_arn", value)
 
 
 @pulumi.input_type
@@ -496,11 +496,11 @@ class ReceiptRuleStopActionArgs:
         """
         The position of the action in the receipt rule
         """
-        ...
+        return pulumi.get(self, "position")
 
     @position.setter
     def position(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "position", value)
 
     @property
     @pulumi.getter
@@ -508,11 +508,11 @@ class ReceiptRuleStopActionArgs:
         """
         The scope to apply
         """
-        ...
+        return pulumi.get(self, "scope")
 
     @scope.setter
     def scope(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "scope", value)
 
     @property
     @pulumi.getter(name="topicArn")
@@ -520,11 +520,11 @@ class ReceiptRuleStopActionArgs:
         """
         The ARN of an SNS topic to notify
         """
-        ...
+        return pulumi.get(self, "topic_arn")
 
     @topic_arn.setter
     def topic_arn(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "topic_arn", value)
 
 
 @pulumi.input_type
@@ -549,11 +549,11 @@ class ReceiptRuleWorkmailActionArgs:
         """
         The ARN of the WorkMail organization
         """
-        ...
+        return pulumi.get(self, "organization_arn")
 
     @organization_arn.setter
     def organization_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "organization_arn", value)
 
     @property
     @pulumi.getter
@@ -561,11 +561,11 @@ class ReceiptRuleWorkmailActionArgs:
         """
         The position of the action in the receipt rule
         """
-        ...
+        return pulumi.get(self, "position")
 
     @position.setter
     def position(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "position", value)
 
     @property
     @pulumi.getter(name="topicArn")
@@ -573,10 +573,10 @@ class ReceiptRuleWorkmailActionArgs:
         """
         The ARN of an SNS topic to notify
         """
-        ...
+        return pulumi.get(self, "topic_arn")
 
     @topic_arn.setter
     def topic_arn(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "topic_arn", value)
 
 

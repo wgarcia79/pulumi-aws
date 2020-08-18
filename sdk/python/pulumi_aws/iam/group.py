@@ -100,7 +100,7 @@ class Group(pulumi.CustomResource):
         """
         The ARN assigned by AWS for this group.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -108,7 +108,7 @@ class Group(pulumi.CustomResource):
         """
         The group's name. The name must consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: `=,.@-_.`. Group names are not distinguished by case. For example, you cannot create groups named both "ADMINS" and "admins".
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -116,7 +116,7 @@ class Group(pulumi.CustomResource):
         """
         Path in which to create the group.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter(name="uniqueId")
@@ -124,7 +124,7 @@ class Group(pulumi.CustomResource):
         """
         The [unique ID][1] assigned by AWS.
         """
-        ...
+        return pulumi.get(self, "unique_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

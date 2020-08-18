@@ -280,7 +280,7 @@ class Environment(pulumi.CustomResource):
         are a combination of default settings and their overrides from `setting` in
         the configuration.
         """
-        ...
+        return pulumi.get(self, "all_settings")
 
     @property
     @pulumi.getter
@@ -289,12 +289,12 @@ class Environment(pulumi.CustomResource):
         Name of the application that contains the version
         to be deployed
         """
-        ...
+        return pulumi.get(self, "application")
 
     @property
     @pulumi.getter
     def arn(self) -> str:
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="autoscalingGroups")
@@ -302,7 +302,7 @@ class Environment(pulumi.CustomResource):
         """
         The autoscaling groups used by this Environment.
         """
-        ...
+        return pulumi.get(self, "autoscaling_groups")
 
     @property
     @pulumi.getter
@@ -310,7 +310,7 @@ class Environment(pulumi.CustomResource):
         """
         Fully qualified DNS name for this Environment.
         """
-        ...
+        return pulumi.get(self, "cname")
 
     @property
     @pulumi.getter(name="cnamePrefix")
@@ -319,7 +319,7 @@ class Environment(pulumi.CustomResource):
         Prefix to use for the fully qualified DNS name of
         the Environment.
         """
-        ...
+        return pulumi.get(self, "cname_prefix")
 
     @property
     @pulumi.getter
@@ -327,7 +327,7 @@ class Environment(pulumi.CustomResource):
         """
         Short description of the Environment
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="endpointUrl")
@@ -335,7 +335,7 @@ class Environment(pulumi.CustomResource):
         """
         The URL to the Load Balancer for this Environment
         """
-        ...
+        return pulumi.get(self, "endpoint_url")
 
     @property
     @pulumi.getter
@@ -343,7 +343,7 @@ class Environment(pulumi.CustomResource):
         """
         Instances used by this Environment.
         """
-        ...
+        return pulumi.get(self, "instances")
 
     @property
     @pulumi.getter(name="launchConfigurations")
@@ -351,7 +351,7 @@ class Environment(pulumi.CustomResource):
         """
         Launch configurations in use by this Environment.
         """
-        ...
+        return pulumi.get(self, "launch_configurations")
 
     @property
     @pulumi.getter(name="loadBalancers")
@@ -359,7 +359,7 @@ class Environment(pulumi.CustomResource):
         """
         Elastic load balancers in use by this Environment.
         """
-        ...
+        return pulumi.get(self, "load_balancers")
 
     @property
     @pulumi.getter
@@ -368,7 +368,7 @@ class Environment(pulumi.CustomResource):
         A unique name for this Environment. This name is used
         in the application URL
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="platformArn")
@@ -377,7 +377,7 @@ class Environment(pulumi.CustomResource):
         The [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of the Elastic Beanstalk [Platform](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-environment.html#cfn-beanstalk-environment-platformarn)
         to use in deployment
         """
-        ...
+        return pulumi.get(self, "platform_arn")
 
     @property
     @pulumi.getter(name="pollInterval")
@@ -388,7 +388,7 @@ class Environment(pulumi.CustomResource):
         for any `create` or `update` action. Minimum `10s`, maximum `180s`. Omit this to
         use the default behavior, which is an exponential backoff
         """
-        ...
+        return pulumi.get(self, "poll_interval")
 
     @property
     @pulumi.getter
@@ -396,7 +396,7 @@ class Environment(pulumi.CustomResource):
         """
         SQS queues in use by this Environment.
         """
-        ...
+        return pulumi.get(self, "queues")
 
     @property
     @pulumi.getter
@@ -406,7 +406,7 @@ class Environment(pulumi.CustomResource):
         override specific values that are set as defaults. The format is detailed
         below in Option Settings
         """
-        ...
+        return pulumi.get(self, "settings")
 
     @property
     @pulumi.getter(name="solutionStackName")
@@ -415,7 +415,7 @@ class Environment(pulumi.CustomResource):
         A solution stack to base your environment
         off of. Example stacks can be found in the [Amazon API documentation](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.platforms.html)
         """
-        ...
+        return pulumi.get(self, "solution_stack_name")
 
     @property
     @pulumi.getter
@@ -423,7 +423,7 @@ class Environment(pulumi.CustomResource):
         """
         A set of tags to apply to the Environment.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="templateName")
@@ -432,7 +432,7 @@ class Environment(pulumi.CustomResource):
         The name of the Elastic Beanstalk Configuration
         template to use in deployment
         """
-        ...
+        return pulumi.get(self, "template_name")
 
     @property
     @pulumi.getter
@@ -441,7 +441,7 @@ class Environment(pulumi.CustomResource):
         Elastic Beanstalk Environment tier. Valid values are `Worker`
         or `WebServer`. If tier is left blank `WebServer` will be used.
         """
-        ...
+        return pulumi.get(self, "tier")
 
     @property
     @pulumi.getter
@@ -449,7 +449,7 @@ class Environment(pulumi.CustomResource):
         """
         Autoscaling triggers in use by this Environment.
         """
-        ...
+        return pulumi.get(self, "triggers")
 
     @property
     @pulumi.getter
@@ -458,7 +458,7 @@ class Environment(pulumi.CustomResource):
         The name of the Elastic Beanstalk Application Version
         to use in deployment.
         """
-        ...
+        return pulumi.get(self, "version")
 
     @property
     @pulumi.getter(name="waitForReadyTimeout")
@@ -469,7 +469,7 @@ class Environment(pulumi.CustomResource):
         wait for an Elastic Beanstalk Environment to be in a ready state before timing
         out.
         """
-        ...
+        return pulumi.get(self, "wait_for_ready_timeout")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

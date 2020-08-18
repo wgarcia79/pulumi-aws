@@ -87,7 +87,7 @@ class WebAclAssociation(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) of the resource to associate with the web ACL. This must be an ARN of an Application Load Balancer or an Amazon API Gateway stage.
         """
-        ...
+        return pulumi.get(self, "resource_arn")
 
     @property
     @pulumi.getter(name="webAclArn")
@@ -95,7 +95,7 @@ class WebAclAssociation(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) of the Web ACL that you want to associate with the resource.
         """
-        ...
+        return pulumi.get(self, "web_acl_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

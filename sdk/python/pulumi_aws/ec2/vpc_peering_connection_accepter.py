@@ -168,7 +168,7 @@ class VpcPeeringConnectionAccepter(pulumi.CustomResource):
         """
         The status of the VPC Peering Connection request.
         """
-        ...
+        return pulumi.get(self, "accept_status")
 
     @property
     @pulumi.getter
@@ -177,7 +177,7 @@ class VpcPeeringConnectionAccepter(pulumi.CustomResource):
         A configuration block that describes [VPC Peering Connection]
         (https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) options set for the accepter VPC.
         """
-        ...
+        return pulumi.get(self, "accepter")
 
     @property
     @pulumi.getter(name="autoAccept")
@@ -185,7 +185,7 @@ class VpcPeeringConnectionAccepter(pulumi.CustomResource):
         """
         Whether or not to accept the peering request. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "auto_accept")
 
     @property
     @pulumi.getter(name="peerOwnerId")
@@ -193,7 +193,7 @@ class VpcPeeringConnectionAccepter(pulumi.CustomResource):
         """
         The AWS account ID of the owner of the requester VPC.
         """
-        ...
+        return pulumi.get(self, "peer_owner_id")
 
     @property
     @pulumi.getter(name="peerRegion")
@@ -201,7 +201,7 @@ class VpcPeeringConnectionAccepter(pulumi.CustomResource):
         """
         The region of the accepter VPC.
         """
-        ...
+        return pulumi.get(self, "peer_region")
 
     @property
     @pulumi.getter(name="peerVpcId")
@@ -209,7 +209,7 @@ class VpcPeeringConnectionAccepter(pulumi.CustomResource):
         """
         The ID of the requester VPC.
         """
-        ...
+        return pulumi.get(self, "peer_vpc_id")
 
     @property
     @pulumi.getter
@@ -218,7 +218,7 @@ class VpcPeeringConnectionAccepter(pulumi.CustomResource):
         A configuration block that describes [VPC Peering Connection]
         (https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) options set for the requester VPC.
         """
-        ...
+        return pulumi.get(self, "requester")
 
     @property
     @pulumi.getter
@@ -226,7 +226,7 @@ class VpcPeeringConnectionAccepter(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -234,7 +234,7 @@ class VpcPeeringConnectionAccepter(pulumi.CustomResource):
         """
         The ID of the accepter VPC.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     @property
     @pulumi.getter(name="vpcPeeringConnectionId")
@@ -242,7 +242,7 @@ class VpcPeeringConnectionAccepter(pulumi.CustomResource):
         """
         The VPC Peering Connection ID to manage.
         """
-        ...
+        return pulumi.get(self, "vpc_peering_connection_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

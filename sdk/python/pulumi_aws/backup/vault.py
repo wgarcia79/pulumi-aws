@@ -106,7 +106,7 @@ class Vault(pulumi.CustomResource):
         """
         The ARN of the vault.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="kmsKeyArn")
@@ -114,7 +114,7 @@ class Vault(pulumi.CustomResource):
         """
         The server-side encryption key that is used to protect your backups.
         """
-        ...
+        return pulumi.get(self, "kms_key_arn")
 
     @property
     @pulumi.getter
@@ -122,7 +122,7 @@ class Vault(pulumi.CustomResource):
         """
         Name of the backup vault to create.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="recoveryPoints")
@@ -130,7 +130,7 @@ class Vault(pulumi.CustomResource):
         """
         The number of recovery points that are stored in a backup vault.
         """
-        ...
+        return pulumi.get(self, "recovery_points")
 
     @property
     @pulumi.getter
@@ -138,7 +138,7 @@ class Vault(pulumi.CustomResource):
         """
         Metadata that you can assign to help organize the resources that you create.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

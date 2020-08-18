@@ -279,7 +279,7 @@ class Cluster(pulumi.CustomResource):
         are applied immediately, or during the next maintenance window. Default is
         `false`.
         """
-        ...
+        return pulumi.get(self, "apply_immediately")
 
     @property
     @pulumi.getter
@@ -287,7 +287,7 @@ class Cluster(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of cluster
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="availabilityZones")
@@ -296,7 +296,7 @@ class Cluster(pulumi.CustomResource):
         A list of EC2 Availability Zones that
         instances in the DB cluster can be created in.
         """
-        ...
+        return pulumi.get(self, "availability_zones")
 
     @property
     @pulumi.getter(name="backupRetentionPeriod")
@@ -304,7 +304,7 @@ class Cluster(pulumi.CustomResource):
         """
         The days to retain backups for. Default `1`
         """
-        ...
+        return pulumi.get(self, "backup_retention_period")
 
     @property
     @pulumi.getter(name="clusterIdentifier")
@@ -312,7 +312,7 @@ class Cluster(pulumi.CustomResource):
         """
         The cluster identifier. If omitted, this provider will assign a random, unique identifier.
         """
-        ...
+        return pulumi.get(self, "cluster_identifier")
 
     @property
     @pulumi.getter(name="clusterIdentifierPrefix")
@@ -320,7 +320,7 @@ class Cluster(pulumi.CustomResource):
         """
         Creates a unique cluster identifier beginning with the specified prefix. Conflicts with `cluster_identifer`.
         """
-        ...
+        return pulumi.get(self, "cluster_identifier_prefix")
 
     @property
     @pulumi.getter(name="clusterMembers")
@@ -328,7 +328,7 @@ class Cluster(pulumi.CustomResource):
         """
         List of DocDB Instances that are a part of this cluster
         """
-        ...
+        return pulumi.get(self, "cluster_members")
 
     @property
     @pulumi.getter(name="clusterResourceId")
@@ -336,7 +336,7 @@ class Cluster(pulumi.CustomResource):
         """
         The DocDB Cluster Resource ID
         """
-        ...
+        return pulumi.get(self, "cluster_resource_id")
 
     @property
     @pulumi.getter(name="dbClusterParameterGroupName")
@@ -344,7 +344,7 @@ class Cluster(pulumi.CustomResource):
         """
         A cluster parameter group to associate with the cluster.
         """
-        ...
+        return pulumi.get(self, "db_cluster_parameter_group_name")
 
     @property
     @pulumi.getter(name="dbSubnetGroupName")
@@ -352,7 +352,7 @@ class Cluster(pulumi.CustomResource):
         """
         A DB subnet group to associate with this DB instance.
         """
-        ...
+        return pulumi.get(self, "db_subnet_group_name")
 
     @property
     @pulumi.getter(name="deletionProtection")
@@ -360,7 +360,7 @@ class Cluster(pulumi.CustomResource):
         """
         A value that indicates whether the DB cluster has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is disabled.
         """
-        ...
+        return pulumi.get(self, "deletion_protection")
 
     @property
     @pulumi.getter(name="enabledCloudwatchLogsExports")
@@ -369,7 +369,7 @@ class Cluster(pulumi.CustomResource):
         List of log types to export to cloudwatch. If omitted, no logs will be exported.
         The following log types are supported: `audit`, `profiler`.
         """
-        ...
+        return pulumi.get(self, "enabled_cloudwatch_logs_exports")
 
     @property
     @pulumi.getter
@@ -377,7 +377,7 @@ class Cluster(pulumi.CustomResource):
         """
         The DNS address of the DocDB instance
         """
-        ...
+        return pulumi.get(self, "endpoint")
 
     @property
     @pulumi.getter
@@ -385,7 +385,7 @@ class Cluster(pulumi.CustomResource):
         """
         The name of the database engine to be used for this DB cluster. Defaults to `docdb`. Valid Values: `docdb`
         """
-        ...
+        return pulumi.get(self, "engine")
 
     @property
     @pulumi.getter(name="engineVersion")
@@ -393,7 +393,7 @@ class Cluster(pulumi.CustomResource):
         """
         The database engine version. Updating this argument results in an outage.
         """
-        ...
+        return pulumi.get(self, "engine_version")
 
     @property
     @pulumi.getter(name="finalSnapshotIdentifier")
@@ -403,7 +403,7 @@ class Cluster(pulumi.CustomResource):
         when this DB cluster is deleted. If omitted, no final snapshot will be
         made.
         """
-        ...
+        return pulumi.get(self, "final_snapshot_identifier")
 
     @property
     @pulumi.getter(name="hostedZoneId")
@@ -411,7 +411,7 @@ class Cluster(pulumi.CustomResource):
         """
         The Route53 Hosted Zone ID of the endpoint
         """
-        ...
+        return pulumi.get(self, "hosted_zone_id")
 
     @property
     @pulumi.getter(name="kmsKeyId")
@@ -419,7 +419,7 @@ class Cluster(pulumi.CustomResource):
         """
         The ARN for the KMS encryption key. When specifying `kms_key_id`, `storage_encrypted` needs to be set to true.
         """
-        ...
+        return pulumi.get(self, "kms_key_id")
 
     @property
     @pulumi.getter(name="masterPassword")
@@ -428,7 +428,7 @@ class Cluster(pulumi.CustomResource):
         Password for the master DB user. Note that this may
         show up in logs, and it will be stored in the state file. Please refer to the DocDB Naming Constraints.
         """
-        ...
+        return pulumi.get(self, "master_password")
 
     @property
     @pulumi.getter(name="masterUsername")
@@ -436,7 +436,7 @@ class Cluster(pulumi.CustomResource):
         """
         Username for the master DB user.
         """
-        ...
+        return pulumi.get(self, "master_username")
 
     @property
     @pulumi.getter
@@ -444,7 +444,7 @@ class Cluster(pulumi.CustomResource):
         """
         The port on which the DB accepts connections
         """
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter(name="preferredBackupWindow")
@@ -453,12 +453,12 @@ class Cluster(pulumi.CustomResource):
         The daily time range during which automated backups are created if automated backups are enabled using the BackupRetentionPeriod parameter.Time in UTC
         Default: A 30-minute window selected at random from an 8-hour block of time per region. e.g. 04:00-09:00
         """
-        ...
+        return pulumi.get(self, "preferred_backup_window")
 
     @property
     @pulumi.getter(name="preferredMaintenanceWindow")
     def preferred_maintenance_window(self) -> str:
-        ...
+        return pulumi.get(self, "preferred_maintenance_window")
 
     @property
     @pulumi.getter(name="readerEndpoint")
@@ -466,7 +466,7 @@ class Cluster(pulumi.CustomResource):
         """
         A read-only endpoint for the DocDB cluster, automatically load-balanced across replicas
         """
-        ...
+        return pulumi.get(self, "reader_endpoint")
 
     @property
     @pulumi.getter(name="skipFinalSnapshot")
@@ -474,7 +474,7 @@ class Cluster(pulumi.CustomResource):
         """
         Determines whether a final DB snapshot is created before the DB cluster is deleted. If true is specified, no DB snapshot is created. If false is specified, a DB snapshot is created before the DB cluster is deleted, using the value from `final_snapshot_identifier`. Default is `false`.
         """
-        ...
+        return pulumi.get(self, "skip_final_snapshot")
 
     @property
     @pulumi.getter(name="snapshotIdentifier")
@@ -482,7 +482,7 @@ class Cluster(pulumi.CustomResource):
         """
         Specifies whether or not to create this cluster from a snapshot. You can use either the name or ARN when specifying a DB cluster snapshot, or the ARN when specifying a DB snapshot.
         """
-        ...
+        return pulumi.get(self, "snapshot_identifier")
 
     @property
     @pulumi.getter(name="storageEncrypted")
@@ -490,7 +490,7 @@ class Cluster(pulumi.CustomResource):
         """
         Specifies whether the DB cluster is encrypted. The default is `false`.
         """
-        ...
+        return pulumi.get(self, "storage_encrypted")
 
     @property
     @pulumi.getter
@@ -498,7 +498,7 @@ class Cluster(pulumi.CustomResource):
         """
         A map of tags to assign to the DB cluster.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcSecurityGroupIds")
@@ -507,7 +507,7 @@ class Cluster(pulumi.CustomResource):
         List of VPC security groups to associate
         with the Cluster
         """
-        ...
+        return pulumi.get(self, "vpc_security_group_ids")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

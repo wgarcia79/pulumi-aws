@@ -173,7 +173,7 @@ class Stage(pulumi.CustomResource):
         Settings for logging access in this stage.
         Use the `apigateway.Account` resource to configure [permissions for CloudWatch Logging](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html#set-up-access-logging-permissions).
         """
-        ...
+        return pulumi.get(self, "access_log_settings")
 
     @property
     @pulumi.getter(name="apiId")
@@ -181,7 +181,7 @@ class Stage(pulumi.CustomResource):
         """
         The API identifier.
         """
-        ...
+        return pulumi.get(self, "api_id")
 
     @property
     @pulumi.getter
@@ -189,7 +189,7 @@ class Stage(pulumi.CustomResource):
         """
         The ARN of the stage.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="autoDeploy")
@@ -197,7 +197,7 @@ class Stage(pulumi.CustomResource):
         """
         Whether updates to an API automatically trigger a new deployment. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "auto_deploy")
 
     @property
     @pulumi.getter(name="clientCertificateId")
@@ -206,7 +206,7 @@ class Stage(pulumi.CustomResource):
         The identifier of a client certificate for the stage. Use the `apigateway.ClientCertificate` resource to configure a client certificate.
         Supported only for WebSocket APIs.
         """
-        ...
+        return pulumi.get(self, "client_certificate_id")
 
     @property
     @pulumi.getter(name="defaultRouteSettings")
@@ -214,7 +214,7 @@ class Stage(pulumi.CustomResource):
         """
         The default route settings for the stage.
         """
-        ...
+        return pulumi.get(self, "default_route_settings")
 
     @property
     @pulumi.getter(name="deploymentId")
@@ -222,7 +222,7 @@ class Stage(pulumi.CustomResource):
         """
         The deployment identifier of the stage. Use the `apigatewayv2.Deployment` resource to configure a deployment.
         """
-        ...
+        return pulumi.get(self, "deployment_id")
 
     @property
     @pulumi.getter
@@ -230,7 +230,7 @@ class Stage(pulumi.CustomResource):
         """
         The description for the stage.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="executionArn")
@@ -241,7 +241,7 @@ class Stage(pulumi.CustomResource):
         See the [Amazon API Gateway Developer Guide](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-control-access-iam.html) for details.
         Set only for WebSocket APIs.
         """
-        ...
+        return pulumi.get(self, "execution_arn")
 
     @property
     @pulumi.getter(name="invokeUrl")
@@ -250,7 +250,7 @@ class Stage(pulumi.CustomResource):
         The URL to invoke the API pointing to the stage,
         e.g. `wss://z4675bid1j.execute-api.eu-west-2.amazonaws.com/example-stage`, or `https://z4675bid1j.execute-api.eu-west-2.amazonaws.com/`
         """
-        ...
+        return pulumi.get(self, "invoke_url")
 
     @property
     @pulumi.getter
@@ -258,7 +258,7 @@ class Stage(pulumi.CustomResource):
         """
         The name of the stage.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="routeSettings")
@@ -266,7 +266,7 @@ class Stage(pulumi.CustomResource):
         """
         Route settings for the stage.
         """
-        ...
+        return pulumi.get(self, "route_settings")
 
     @property
     @pulumi.getter(name="stageVariables")
@@ -274,7 +274,7 @@ class Stage(pulumi.CustomResource):
         """
         A map that defines the stage variables for the stage.
         """
-        ...
+        return pulumi.get(self, "stage_variables")
 
     @property
     @pulumi.getter
@@ -282,7 +282,7 @@ class Stage(pulumi.CustomResource):
         """
         A map of tags to assign to the stage.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

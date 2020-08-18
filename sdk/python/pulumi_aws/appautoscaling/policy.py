@@ -204,7 +204,7 @@ class Policy(pulumi.CustomResource):
         """
         The ARN assigned by AWS to the scaling policy.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -212,7 +212,7 @@ class Policy(pulumi.CustomResource):
         """
         The name of the policy.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="policyType")
@@ -220,7 +220,7 @@ class Policy(pulumi.CustomResource):
         """
         The policy type. Valid values are `StepScaling` and `TargetTrackingScaling`. Defaults to `StepScaling`. Certain services only support only one policy type. For more information see the [Target Tracking Scaling Policies](https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking.html) and [Step Scaling Policies](https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-step-scaling-policies.html) documentation.
         """
-        ...
+        return pulumi.get(self, "policy_type")
 
     @property
     @pulumi.getter(name="resourceId")
@@ -228,7 +228,7 @@ class Policy(pulumi.CustomResource):
         """
         The resource type and unique identifier string for the resource associated with the scaling policy. Documentation can be found in the `ResourceId` parameter at: [AWS Application Auto Scaling API Reference](http://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
         """
-        ...
+        return pulumi.get(self, "resource_id")
 
     @property
     @pulumi.getter(name="scalableDimension")
@@ -236,7 +236,7 @@ class Policy(pulumi.CustomResource):
         """
         The scalable dimension of the scalable target. Documentation can be found in the `ScalableDimension` parameter at: [AWS Application Auto Scaling API Reference](http://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
         """
-        ...
+        return pulumi.get(self, "scalable_dimension")
 
     @property
     @pulumi.getter(name="serviceNamespace")
@@ -244,7 +244,7 @@ class Policy(pulumi.CustomResource):
         """
         The AWS service namespace of the scalable target. Documentation can be found in the `ServiceNamespace` parameter at: [AWS Application Auto Scaling API Reference](http://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters)
         """
-        ...
+        return pulumi.get(self, "service_namespace")
 
     @property
     @pulumi.getter(name="stepScalingPolicyConfiguration")
@@ -252,7 +252,7 @@ class Policy(pulumi.CustomResource):
         """
         Step scaling policy configuration, requires `policy_type = "StepScaling"` (default). See supported fields below.
         """
-        ...
+        return pulumi.get(self, "step_scaling_policy_configuration")
 
     @property
     @pulumi.getter(name="targetTrackingScalingPolicyConfiguration")
@@ -260,7 +260,7 @@ class Policy(pulumi.CustomResource):
         """
         A target tracking policy, requires `policy_type = "TargetTrackingScaling"`. See supported fields below.
         """
-        ...
+        return pulumi.get(self, "target_tracking_scaling_policy_configuration")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

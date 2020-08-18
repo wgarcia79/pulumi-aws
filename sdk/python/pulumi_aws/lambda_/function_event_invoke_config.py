@@ -170,7 +170,7 @@ class FunctionEventInvokeConfig(pulumi.CustomResource):
         """
         Configuration block with destination configuration. See below for details.
         """
-        ...
+        return pulumi.get(self, "destination_config")
 
     @property
     @pulumi.getter(name="functionName")
@@ -178,7 +178,7 @@ class FunctionEventInvokeConfig(pulumi.CustomResource):
         """
         Name or Amazon Resource Name (ARN) of the Lambda Function, omitting any version or alias qualifier.
         """
-        ...
+        return pulumi.get(self, "function_name")
 
     @property
     @pulumi.getter(name="maximumEventAgeInSeconds")
@@ -186,7 +186,7 @@ class FunctionEventInvokeConfig(pulumi.CustomResource):
         """
         Maximum age of a request that Lambda sends to a function for processing in seconds. Valid values between 60 and 21600.
         """
-        ...
+        return pulumi.get(self, "maximum_event_age_in_seconds")
 
     @property
     @pulumi.getter(name="maximumRetryAttempts")
@@ -194,7 +194,7 @@ class FunctionEventInvokeConfig(pulumi.CustomResource):
         """
         Maximum number of times to retry when the function returns an error. Valid values between 0 and 2. Defaults to 2.
         """
-        ...
+        return pulumi.get(self, "maximum_retry_attempts")
 
     @property
     @pulumi.getter
@@ -202,7 +202,7 @@ class FunctionEventInvokeConfig(pulumi.CustomResource):
         """
         Lambda Function published version, `$LATEST`, or Lambda Alias name.
         """
-        ...
+        return pulumi.get(self, "qualifier")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

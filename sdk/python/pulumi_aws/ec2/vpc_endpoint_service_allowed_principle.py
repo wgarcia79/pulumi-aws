@@ -107,7 +107,7 @@ class VpcEndpointServiceAllowedPrinciple(pulumi.CustomResource):
         """
         The ARN of the principal to allow permissions.
         """
-        ...
+        return pulumi.get(self, "principal_arn")
 
     @property
     @pulumi.getter(name="vpcEndpointServiceId")
@@ -115,7 +115,7 @@ class VpcEndpointServiceAllowedPrinciple(pulumi.CustomResource):
         """
         The ID of the VPC endpoint service to allow permission.
         """
-        ...
+        return pulumi.get(self, "vpc_endpoint_service_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

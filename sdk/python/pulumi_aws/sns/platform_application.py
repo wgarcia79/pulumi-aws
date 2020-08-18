@@ -168,7 +168,7 @@ class PlatformApplication(pulumi.CustomResource):
         """
         The ARN of the SNS platform application
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="eventDeliveryFailureTopicArn")
@@ -176,7 +176,7 @@ class PlatformApplication(pulumi.CustomResource):
         """
         SNS Topic triggered when a delivery to any of the platform endpoints associated with your platform application encounters a permanent failure.
         """
-        ...
+        return pulumi.get(self, "event_delivery_failure_topic_arn")
 
     @property
     @pulumi.getter(name="eventEndpointCreatedTopicArn")
@@ -184,7 +184,7 @@ class PlatformApplication(pulumi.CustomResource):
         """
         SNS Topic triggered when a new platform endpoint is added to your platform application.
         """
-        ...
+        return pulumi.get(self, "event_endpoint_created_topic_arn")
 
     @property
     @pulumi.getter(name="eventEndpointDeletedTopicArn")
@@ -192,7 +192,7 @@ class PlatformApplication(pulumi.CustomResource):
         """
         SNS Topic triggered when an existing platform endpoint is deleted from your platform application.
         """
-        ...
+        return pulumi.get(self, "event_endpoint_deleted_topic_arn")
 
     @property
     @pulumi.getter(name="eventEndpointUpdatedTopicArn")
@@ -200,7 +200,7 @@ class PlatformApplication(pulumi.CustomResource):
         """
         SNS Topic triggered when an existing platform endpoint is changed from your platform application.
         """
-        ...
+        return pulumi.get(self, "event_endpoint_updated_topic_arn")
 
     @property
     @pulumi.getter(name="failureFeedbackRoleArn")
@@ -208,7 +208,7 @@ class PlatformApplication(pulumi.CustomResource):
         """
         The IAM role permitted to receive failure feedback for this application.
         """
-        ...
+        return pulumi.get(self, "failure_feedback_role_arn")
 
     @property
     @pulumi.getter
@@ -216,7 +216,7 @@ class PlatformApplication(pulumi.CustomResource):
         """
         The friendly name for the SNS platform application
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -224,7 +224,7 @@ class PlatformApplication(pulumi.CustomResource):
         """
         The platform that the app is registered with. See [Platform](http://docs.aws.amazon.com/sns/latest/dg/mobile-push-send-register.html) for supported platforms.
         """
-        ...
+        return pulumi.get(self, "platform")
 
     @property
     @pulumi.getter(name="platformCredential")
@@ -232,7 +232,7 @@ class PlatformApplication(pulumi.CustomResource):
         """
         Application Platform credential. See [Credential](http://docs.aws.amazon.com/sns/latest/dg/mobile-push-send-register.html) for type of credential required for platform. The value of this attribute when stored into the state is only a hash of the real value, so therefore it is not practical to use this as an attribute for other resources.
         """
-        ...
+        return pulumi.get(self, "platform_credential")
 
     @property
     @pulumi.getter(name="platformPrincipal")
@@ -240,7 +240,7 @@ class PlatformApplication(pulumi.CustomResource):
         """
         Application Platform principal. See [Principal](http://docs.aws.amazon.com/sns/latest/api/API_CreatePlatformApplication.html) for type of principal required for platform. The value of this attribute when stored into the state is only a hash of the real value, so therefore it is not practical to use this as an attribute for other resources.
         """
-        ...
+        return pulumi.get(self, "platform_principal")
 
     @property
     @pulumi.getter(name="successFeedbackRoleArn")
@@ -248,7 +248,7 @@ class PlatformApplication(pulumi.CustomResource):
         """
         The IAM role permitted to receive success feedback for this application.
         """
-        ...
+        return pulumi.get(self, "success_feedback_role_arn")
 
     @property
     @pulumi.getter(name="successFeedbackSampleRate")
@@ -256,7 +256,7 @@ class PlatformApplication(pulumi.CustomResource):
         """
         The percentage of success to sample (0-100)
         """
-        ...
+        return pulumi.get(self, "success_feedback_sample_rate")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

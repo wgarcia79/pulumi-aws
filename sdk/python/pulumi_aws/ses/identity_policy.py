@@ -116,7 +116,7 @@ class IdentityPolicy(pulumi.CustomResource):
         """
         Name or Amazon Resource Name (ARN) of the SES Identity.
         """
-        ...
+        return pulumi.get(self, "identity")
 
     @property
     @pulumi.getter
@@ -124,7 +124,7 @@ class IdentityPolicy(pulumi.CustomResource):
         """
         Name of the policy.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -132,7 +132,7 @@ class IdentityPolicy(pulumi.CustomResource):
         """
         JSON string of the policy.
         """
-        ...
+        return pulumi.get(self, "policy")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -185,7 +185,7 @@ class Function(pulumi.CustomResource):
         """
         The ID of the associated AppSync API.
         """
-        ...
+        return pulumi.get(self, "api_id")
 
     @property
     @pulumi.getter
@@ -193,7 +193,7 @@ class Function(pulumi.CustomResource):
         """
         The ARN of the Function object.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="dataSource")
@@ -201,7 +201,7 @@ class Function(pulumi.CustomResource):
         """
         The Function DataSource name.
         """
-        ...
+        return pulumi.get(self, "data_source")
 
     @property
     @pulumi.getter
@@ -209,7 +209,7 @@ class Function(pulumi.CustomResource):
         """
         The Function description.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="functionId")
@@ -217,7 +217,7 @@ class Function(pulumi.CustomResource):
         """
         A unique ID representing the Function object.
         """
-        ...
+        return pulumi.get(self, "function_id")
 
     @property
     @pulumi.getter(name="functionVersion")
@@ -225,7 +225,7 @@ class Function(pulumi.CustomResource):
         """
         The version of the request mapping template. Currently the supported value is `2018-05-29`.
         """
-        ...
+        return pulumi.get(self, "function_version")
 
     @property
     @pulumi.getter
@@ -233,7 +233,7 @@ class Function(pulumi.CustomResource):
         """
         The Function name. The function name does not have to be unique.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="requestMappingTemplate")
@@ -241,7 +241,7 @@ class Function(pulumi.CustomResource):
         """
         The Function request mapping template. Functions support only the 2018-05-29 version of the request mapping template.
         """
-        ...
+        return pulumi.get(self, "request_mapping_template")
 
     @property
     @pulumi.getter(name="responseMappingTemplate")
@@ -249,7 +249,7 @@ class Function(pulumi.CustomResource):
         """
         The Function response mapping template.
         """
-        ...
+        return pulumi.get(self, "response_mapping_template")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -38,7 +38,7 @@ class GetUserPoolsResult:
     @property
     @pulumi.getter
     def arns(self) -> List[str]:
-        ...
+        return pulumi.get(self, "arns")
 
     @property
     @pulumi.getter
@@ -46,7 +46,7 @@ class GetUserPoolsResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -54,12 +54,12 @@ class GetUserPoolsResult:
         """
         The list of cognito user pool ids.
         """
-        ...
+        return pulumi.get(self, "ids")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
 
 

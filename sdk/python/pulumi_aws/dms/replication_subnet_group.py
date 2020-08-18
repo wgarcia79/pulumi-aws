@@ -121,7 +121,7 @@ class ReplicationSubnetGroup(pulumi.CustomResource):
     @property
     @pulumi.getter(name="replicationSubnetGroupArn")
     def replication_subnet_group_arn(self) -> str:
-        ...
+        return pulumi.get(self, "replication_subnet_group_arn")
 
     @property
     @pulumi.getter(name="replicationSubnetGroupDescription")
@@ -129,7 +129,7 @@ class ReplicationSubnetGroup(pulumi.CustomResource):
         """
         The description for the subnet group.
         """
-        ...
+        return pulumi.get(self, "replication_subnet_group_description")
 
     @property
     @pulumi.getter(name="replicationSubnetGroupId")
@@ -137,7 +137,7 @@ class ReplicationSubnetGroup(pulumi.CustomResource):
         """
         The name for the replication subnet group. This value is stored as a lowercase string.
         """
-        ...
+        return pulumi.get(self, "replication_subnet_group_id")
 
     @property
     @pulumi.getter(name="subnetIds")
@@ -145,7 +145,7 @@ class ReplicationSubnetGroup(pulumi.CustomResource):
         """
         A list of the EC2 subnet IDs for the subnet group.
         """
-        ...
+        return pulumi.get(self, "subnet_ids")
 
     @property
     @pulumi.getter
@@ -153,7 +153,7 @@ class ReplicationSubnetGroup(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -161,7 +161,7 @@ class ReplicationSubnetGroup(pulumi.CustomResource):
         """
         The ID of the VPC the subnet group is in.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

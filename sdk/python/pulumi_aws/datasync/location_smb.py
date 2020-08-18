@@ -154,7 +154,7 @@ class LocationSmb(pulumi.CustomResource):
         """
         A list of DataSync Agent ARNs with which this location will be associated.
         """
-        ...
+        return pulumi.get(self, "agent_arns")
 
     @property
     @pulumi.getter
@@ -162,7 +162,7 @@ class LocationSmb(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the DataSync Location.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -170,7 +170,7 @@ class LocationSmb(pulumi.CustomResource):
         """
         The name of the Windows domain the SMB server belongs to.
         """
-        ...
+        return pulumi.get(self, "domain")
 
     @property
     @pulumi.getter(name="mountOptions")
@@ -178,7 +178,7 @@ class LocationSmb(pulumi.CustomResource):
         """
         Configuration block containing mount options used by DataSync to access the SMB Server. Can be `AUTOMATIC`, `SMB2`, or `SMB3`.
         """
-        ...
+        return pulumi.get(self, "mount_options")
 
     @property
     @pulumi.getter
@@ -186,7 +186,7 @@ class LocationSmb(pulumi.CustomResource):
         """
         The password of the user who can mount the share and has file permissions in the SMB.
         """
-        ...
+        return pulumi.get(self, "password")
 
     @property
     @pulumi.getter(name="serverHostname")
@@ -194,7 +194,7 @@ class LocationSmb(pulumi.CustomResource):
         """
         Specifies the IP address or DNS name of the SMB server. The DataSync Agent(s) use this to mount the SMB share.
         """
-        ...
+        return pulumi.get(self, "server_hostname")
 
     @property
     @pulumi.getter
@@ -202,7 +202,7 @@ class LocationSmb(pulumi.CustomResource):
         """
         Subdirectory to perform actions as source or destination. Should be exported by the NFS server.
         """
-        ...
+        return pulumi.get(self, "subdirectory")
 
     @property
     @pulumi.getter
@@ -210,12 +210,12 @@ class LocationSmb(pulumi.CustomResource):
         """
         Key-value pairs of resource tags to assign to the DataSync Location.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
     def uri(self) -> str:
-        ...
+        return pulumi.get(self, "uri")
 
     @property
     @pulumi.getter
@@ -223,7 +223,7 @@ class LocationSmb(pulumi.CustomResource):
         """
         The user who can mount the share and has file and folder permissions in the SMB share.
         """
-        ...
+        return pulumi.get(self, "user")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

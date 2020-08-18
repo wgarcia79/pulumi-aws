@@ -108,7 +108,7 @@ class DomainIdentity(pulumi.CustomResource):
         """
         The ARN of the domain identity.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -116,7 +116,7 @@ class DomainIdentity(pulumi.CustomResource):
         """
         The domain name to assign to SES
         """
-        ...
+        return pulumi.get(self, "domain")
 
     @property
     @pulumi.getter(name="verificationToken")
@@ -130,7 +130,7 @@ class DomainIdentity(pulumi.CustomResource):
         more about verifying domains in Amazon SES in the [AWS SES
         docs](http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-domains.html).
         """
-        ...
+        return pulumi.get(self, "verification_token")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

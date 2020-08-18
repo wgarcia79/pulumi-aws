@@ -39,7 +39,7 @@ class AcceleratorAttributes(dict):
         """
         Indicates whether flow logs are enabled.
         """
-        ...
+        return pulumi.get(self, "flow_logs_enabled")
 
     @property
     @pulumi.getter(name="flowLogsS3Bucket")
@@ -47,7 +47,7 @@ class AcceleratorAttributes(dict):
         """
         The name of the Amazon S3 bucket for the flow logs.
         """
-        ...
+        return pulumi.get(self, "flow_logs_s3_bucket")
 
     @property
     @pulumi.getter(name="flowLogsS3Prefix")
@@ -55,7 +55,7 @@ class AcceleratorAttributes(dict):
         """
         The prefix for the location in the Amazon S3 bucket for the flow logs.
         """
-        ...
+        return pulumi.get(self, "flow_logs_s3_prefix")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -81,7 +81,7 @@ class AcceleratorIpSet(dict):
         """
         A list of IP addresses in the IP address set.
         """
-        ...
+        return pulumi.get(self, "ip_addresses")
 
     @property
     @pulumi.getter(name="ipFamily")
@@ -89,7 +89,7 @@ class AcceleratorIpSet(dict):
         """
         The types of IP addresses included in this IP set.
         """
-        ...
+        return pulumi.get(self, "ip_family")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -115,7 +115,7 @@ class EndpointGroupEndpointConfiguration(dict):
         """
         An ID for the endpoint. If the endpoint is a Network Load Balancer or Application Load Balancer, this is the Amazon Resource Name (ARN) of the resource. If the endpoint is an Elastic IP address, this is the Elastic IP address allocation ID.
         """
-        ...
+        return pulumi.get(self, "endpoint_id")
 
     @property
     @pulumi.getter
@@ -123,7 +123,7 @@ class EndpointGroupEndpointConfiguration(dict):
         """
         The weight associated with the endpoint. When you add weights to endpoints, you configure AWS Global Accelerator to route traffic based on proportions that you specify.
         """
-        ...
+        return pulumi.get(self, "weight")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -149,7 +149,7 @@ class ListenerPortRange(dict):
         """
         The first port in the range of ports, inclusive.
         """
-        ...
+        return pulumi.get(self, "from_port")
 
     @property
     @pulumi.getter(name="toPort")
@@ -157,7 +157,7 @@ class ListenerPortRange(dict):
         """
         The last port in the range of ports, inclusive.
         """
-        ...
+        return pulumi.get(self, "to_port")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

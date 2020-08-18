@@ -50,7 +50,7 @@ class GetAliasResult:
         """
         The Amazon Resource Name (ARN) identifying the Lambda function alias.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -58,12 +58,12 @@ class GetAliasResult:
         """
         Description of alias.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="functionName")
     def function_name(self) -> str:
-        ...
+        return pulumi.get(self, "function_name")
 
     @property
     @pulumi.getter(name="functionVersion")
@@ -71,7 +71,7 @@ class GetAliasResult:
         """
         Lambda function version which the alias uses.
         """
-        ...
+        return pulumi.get(self, "function_version")
 
     @property
     @pulumi.getter
@@ -79,7 +79,7 @@ class GetAliasResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="invokeArn")
@@ -87,12 +87,12 @@ class GetAliasResult:
         """
         The ARN to be used for invoking Lambda Function from API Gateway - to be used in aws_api_gateway_integration's `uri`.
         """
-        ...
+        return pulumi.get(self, "invoke_arn")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
 
 

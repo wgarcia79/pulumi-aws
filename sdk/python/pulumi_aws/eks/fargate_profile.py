@@ -159,7 +159,7 @@ class FargateProfile(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the EKS Fargate Profile.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="clusterName")
@@ -167,7 +167,7 @@ class FargateProfile(pulumi.CustomResource):
         """
         Name of the EKS Cluster.
         """
-        ...
+        return pulumi.get(self, "cluster_name")
 
     @property
     @pulumi.getter(name="fargateProfileName")
@@ -175,7 +175,7 @@ class FargateProfile(pulumi.CustomResource):
         """
         Name of the EKS Fargate Profile.
         """
-        ...
+        return pulumi.get(self, "fargate_profile_name")
 
     @property
     @pulumi.getter(name="podExecutionRoleArn")
@@ -183,7 +183,7 @@ class FargateProfile(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the IAM Role that provides permissions for the EKS Fargate Profile.
         """
-        ...
+        return pulumi.get(self, "pod_execution_role_arn")
 
     @property
     @pulumi.getter
@@ -191,7 +191,7 @@ class FargateProfile(pulumi.CustomResource):
         """
         Configuration block(s) for selecting Kubernetes Pods to execute with this EKS Fargate Profile. Detailed below.
         """
-        ...
+        return pulumi.get(self, "selectors")
 
     @property
     @pulumi.getter
@@ -199,7 +199,7 @@ class FargateProfile(pulumi.CustomResource):
         """
         Status of the EKS Fargate Profile.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter(name="subnetIds")
@@ -207,7 +207,7 @@ class FargateProfile(pulumi.CustomResource):
         """
         Identifiers of private EC2 Subnets to associate with the EKS Fargate Profile. These subnets must have the following resource tag: `kubernetes.io/cluster/CLUSTER_NAME` (where `CLUSTER_NAME` is replaced with the name of the EKS Cluster).
         """
-        ...
+        return pulumi.get(self, "subnet_ids")
 
     @property
     @pulumi.getter
@@ -215,7 +215,7 @@ class FargateProfile(pulumi.CustomResource):
         """
         Key-value map of resource tags.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

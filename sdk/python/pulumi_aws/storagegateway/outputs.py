@@ -34,7 +34,7 @@ class GatewaySmbActiveDirectorySettings(dict):
         """
         The name of the domain that you want the gateway to join.
         """
-        ...
+        return pulumi.get(self, "domain_name")
 
     @property
     @pulumi.getter
@@ -42,7 +42,7 @@ class GatewaySmbActiveDirectorySettings(dict):
         """
         The password of the user who has permission to add the gateway to the Active Directory domain.
         """
-        ...
+        return pulumi.get(self, "password")
 
     @property
     @pulumi.getter
@@ -50,7 +50,7 @@ class GatewaySmbActiveDirectorySettings(dict):
         """
         The user name of user who has permission to add the gateway to the Active Directory domain.
         """
-        ...
+        return pulumi.get(self, "username")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -84,7 +84,7 @@ class NfsFileShareNfsFileShareDefaults(dict):
         """
         The Unix directory mode in the string form "nnnn". Defaults to `"0777"`.
         """
-        ...
+        return pulumi.get(self, "directory_mode")
 
     @property
     @pulumi.getter(name="fileMode")
@@ -92,7 +92,7 @@ class NfsFileShareNfsFileShareDefaults(dict):
         """
         The Unix file mode in the string form "nnnn". Defaults to `"0666"`.
         """
-        ...
+        return pulumi.get(self, "file_mode")
 
     @property
     @pulumi.getter(name="groupId")
@@ -100,7 +100,7 @@ class NfsFileShareNfsFileShareDefaults(dict):
         """
         The default group ID for the file share (unless the files have another group ID specified). Defaults to `65534` (`nfsnobody`). Valid values: `0` through `4294967294`.
         """
-        ...
+        return pulumi.get(self, "group_id")
 
     @property
     @pulumi.getter(name="ownerId")
@@ -108,7 +108,7 @@ class NfsFileShareNfsFileShareDefaults(dict):
         """
         The default owner ID for the file share (unless the files have another owner ID specified). Defaults to `65534` (`nfsnobody`). Valid values: `0` through `4294967294`.
         """
-        ...
+        return pulumi.get(self, "owner_id")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

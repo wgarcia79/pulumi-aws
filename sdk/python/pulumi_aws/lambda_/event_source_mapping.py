@@ -210,17 +210,17 @@ class EventSourceMapping(pulumi.CustomResource):
         """
         The largest number of records that Lambda will retrieve from your event source at the time of invocation. Defaults to `100` for DynamoDB and Kinesis, `10` for SQS.
         """
-        ...
+        return pulumi.get(self, "batch_size")
 
     @property
     @pulumi.getter(name="bisectBatchOnFunctionError")
     def bisect_batch_on_function_error(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "bisect_batch_on_function_error")
 
     @property
     @pulumi.getter(name="destinationConfig")
     def destination_config(self) -> Optional['outputs.EventSourceMappingDestinationConfig']:
-        ...
+        return pulumi.get(self, "destination_config")
 
     @property
     @pulumi.getter
@@ -228,7 +228,7 @@ class EventSourceMapping(pulumi.CustomResource):
         """
         Determines if the mapping will be enabled on creation. Defaults to `true`.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="eventSourceArn")
@@ -236,7 +236,7 @@ class EventSourceMapping(pulumi.CustomResource):
         """
         The event source ARN - can be a Kinesis stream, DynamoDB stream, or SQS queue.
         """
-        ...
+        return pulumi.get(self, "event_source_arn")
 
     @property
     @pulumi.getter(name="functionArn")
@@ -244,7 +244,7 @@ class EventSourceMapping(pulumi.CustomResource):
         """
         The the ARN of the Lambda function the event source mapping is sending events to. (Note: this is a computed value that differs from `function_name` above.)
         """
-        ...
+        return pulumi.get(self, "function_arn")
 
     @property
     @pulumi.getter(name="functionName")
@@ -252,7 +252,7 @@ class EventSourceMapping(pulumi.CustomResource):
         """
         The name or the ARN of the Lambda function that will be subscribing to events.
         """
-        ...
+        return pulumi.get(self, "function_name")
 
     @property
     @pulumi.getter(name="lastModified")
@@ -260,7 +260,7 @@ class EventSourceMapping(pulumi.CustomResource):
         """
         The date this resource was last modified.
         """
-        ...
+        return pulumi.get(self, "last_modified")
 
     @property
     @pulumi.getter(name="lastProcessingResult")
@@ -268,7 +268,7 @@ class EventSourceMapping(pulumi.CustomResource):
         """
         The result of the last AWS Lambda invocation of your Lambda function.
         """
-        ...
+        return pulumi.get(self, "last_processing_result")
 
     @property
     @pulumi.getter(name="maximumBatchingWindowInSeconds")
@@ -276,22 +276,22 @@ class EventSourceMapping(pulumi.CustomResource):
         """
         The maximum amount of time to gather records before invoking the function, in seconds.  Records will continue to buffer until either `maximum_batching_window_in_seconds` expires or `batch_size` has been met. Defaults to as soon as records are available in the stream. If the batch it reads from the stream only has one record in it, Lambda only sends one record to the function.
         """
-        ...
+        return pulumi.get(self, "maximum_batching_window_in_seconds")
 
     @property
     @pulumi.getter(name="maximumRecordAgeInSeconds")
     def maximum_record_age_in_seconds(self) -> float:
-        ...
+        return pulumi.get(self, "maximum_record_age_in_seconds")
 
     @property
     @pulumi.getter(name="maximumRetryAttempts")
     def maximum_retry_attempts(self) -> float:
-        ...
+        return pulumi.get(self, "maximum_retry_attempts")
 
     @property
     @pulumi.getter(name="parallelizationFactor")
     def parallelization_factor(self) -> float:
-        ...
+        return pulumi.get(self, "parallelization_factor")
 
     @property
     @pulumi.getter(name="startingPosition")
@@ -299,7 +299,7 @@ class EventSourceMapping(pulumi.CustomResource):
         """
         The position in the stream where AWS Lambda should start reading. Must be one of `AT_TIMESTAMP` (Kinesis only), `LATEST` or `TRIM_HORIZON` if getting events from Kinesis or DynamoDB. Must not be provided if getting events from SQS. More information about these positions can be found in the [AWS DynamoDB Streams API Reference](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_streams_GetShardIterator.html) and [AWS Kinesis API Reference](https://docs.aws.amazon.com/kinesis/latest/APIReference/API_GetShardIterator.html#Kinesis-GetShardIterator-request-ShardIteratorType).
         """
-        ...
+        return pulumi.get(self, "starting_position")
 
     @property
     @pulumi.getter(name="startingPositionTimestamp")
@@ -312,7 +312,7 @@ class EventSourceMapping(pulumi.CustomResource):
         * `bisect_batch_on_function_error`: - (Optional) If the function returns an error, split the batch in two and retry. Only available for stream sources (DynamoDB and Kinesis). Defaults to `false`.
         * `destination_config`: - (Optional) An Amazon SQS queue or Amazon SNS topic destination for failed records. Only available for stream sources (DynamoDB and Kinesis). Detailed below.
         """
-        ...
+        return pulumi.get(self, "starting_position_timestamp")
 
     @property
     @pulumi.getter
@@ -320,7 +320,7 @@ class EventSourceMapping(pulumi.CustomResource):
         """
         The state of the event source mapping.
         """
-        ...
+        return pulumi.get(self, "state")
 
     @property
     @pulumi.getter(name="stateTransitionReason")
@@ -328,7 +328,7 @@ class EventSourceMapping(pulumi.CustomResource):
         """
         The reason the event source mapping is in its current state.
         """
-        ...
+        return pulumi.get(self, "state_transition_reason")
 
     @property
     @pulumi.getter
@@ -336,7 +336,7 @@ class EventSourceMapping(pulumi.CustomResource):
         """
         The UUID of the created event source mapping.
         """
-        ...
+        return pulumi.get(self, "uuid")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

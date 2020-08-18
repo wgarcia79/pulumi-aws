@@ -88,7 +88,7 @@ class GetVpcEndpointResult:
         """
         The Amazon Resource Name (ARN) of the VPC endpoint.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="cidrBlocks")
@@ -96,7 +96,7 @@ class GetVpcEndpointResult:
         """
         The list of CIDR blocks for the exposed AWS service. Applicable for endpoints of type `Gateway`.
         """
-        ...
+        return pulumi.get(self, "cidr_blocks")
 
     @property
     @pulumi.getter(name="dnsEntries")
@@ -104,17 +104,17 @@ class GetVpcEndpointResult:
         """
         The DNS entries for the VPC Endpoint. Applicable for endpoints of type `Interface`. DNS blocks are documented below.
         """
-        ...
+        return pulumi.get(self, "dns_entries")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetVpcEndpointFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
     def id(self) -> str:
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="networkInterfaceIds")
@@ -122,7 +122,7 @@ class GetVpcEndpointResult:
         """
         One or more network interfaces for the VPC Endpoint. Applicable for endpoints of type `Interface`.
         """
-        ...
+        return pulumi.get(self, "network_interface_ids")
 
     @property
     @pulumi.getter(name="ownerId")
@@ -130,7 +130,7 @@ class GetVpcEndpointResult:
         """
         The ID of the AWS account that owns the VPC endpoint.
         """
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter
@@ -138,7 +138,7 @@ class GetVpcEndpointResult:
         """
         The policy document associated with the VPC Endpoint. Applicable for endpoints of type `Gateway`.
         """
-        ...
+        return pulumi.get(self, "policy")
 
     @property
     @pulumi.getter(name="prefixListId")
@@ -146,7 +146,7 @@ class GetVpcEndpointResult:
         """
         The prefix list ID of the exposed AWS service. Applicable for endpoints of type `Gateway`.
         """
-        ...
+        return pulumi.get(self, "prefix_list_id")
 
     @property
     @pulumi.getter(name="privateDnsEnabled")
@@ -154,7 +154,7 @@ class GetVpcEndpointResult:
         """
         Whether or not the VPC is associated with a private hosted zone - `true` or `false`. Applicable for endpoints of type `Interface`.
         """
-        ...
+        return pulumi.get(self, "private_dns_enabled")
 
     @property
     @pulumi.getter(name="requesterManaged")
@@ -162,7 +162,7 @@ class GetVpcEndpointResult:
         """
         Whether or not the VPC Endpoint is being managed by its service - `true` or `false`.
         """
-        ...
+        return pulumi.get(self, "requester_managed")
 
     @property
     @pulumi.getter(name="routeTableIds")
@@ -170,7 +170,7 @@ class GetVpcEndpointResult:
         """
         One or more route tables associated with the VPC Endpoint. Applicable for endpoints of type `Gateway`.
         """
-        ...
+        return pulumi.get(self, "route_table_ids")
 
     @property
     @pulumi.getter(name="securityGroupIds")
@@ -178,17 +178,17 @@ class GetVpcEndpointResult:
         """
         One or more security groups associated with the network interfaces. Applicable for endpoints of type `Interface`.
         """
-        ...
+        return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter(name="serviceName")
     def service_name(self) -> str:
-        ...
+        return pulumi.get(self, "service_name")
 
     @property
     @pulumi.getter
     def state(self) -> str:
-        ...
+        return pulumi.get(self, "state")
 
     @property
     @pulumi.getter(name="subnetIds")
@@ -196,12 +196,12 @@ class GetVpcEndpointResult:
         """
         One or more subnets in which the VPC Endpoint is located. Applicable for endpoints of type `Interface`.
         """
-        ...
+        return pulumi.get(self, "subnet_ids")
 
     @property
     @pulumi.getter
     def tags(self) -> Mapping[str, str]:
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcEndpointType")
@@ -209,12 +209,12 @@ class GetVpcEndpointResult:
         """
         The VPC Endpoint type, `Gateway` or `Interface`.
         """
-        ...
+        return pulumi.get(self, "vpc_endpoint_type")
 
     @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> str:
-        ...
+        return pulumi.get(self, "vpc_id")
 
 
 

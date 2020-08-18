@@ -95,7 +95,7 @@ class Project(pulumi.CustomResource):
         """
         The Amazon Resource Name of this project
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -103,7 +103,7 @@ class Project(pulumi.CustomResource):
         """
         The name of the project
         """
-        ...
+        return pulumi.get(self, "name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -47,7 +47,7 @@ class GetSelectionResult:
         """
         The ARN of the IAM role that AWS Backup uses to authenticate when restoring and backing up the target resource. See the [AWS Backup Developer Guide](https://docs.aws.amazon.com/aws-backup/latest/devguide/access-control.html#managed-policies) for additional information about using AWS managed policies or creating custom policies attached to the IAM role.
         """
-        ...
+        return pulumi.get(self, "iam_role_arn")
 
     @property
     @pulumi.getter
@@ -55,7 +55,7 @@ class GetSelectionResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -63,12 +63,12 @@ class GetSelectionResult:
         """
         The display name of a resource selection document.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="planId")
     def plan_id(self) -> str:
-        ...
+        return pulumi.get(self, "plan_id")
 
     @property
     @pulumi.getter
@@ -76,12 +76,12 @@ class GetSelectionResult:
         """
         An array of strings that either contain Amazon Resource Names (ARNs) or match patterns of resources to assign to a backup plan..
         """
-        ...
+        return pulumi.get(self, "resources")
 
     @property
     @pulumi.getter(name="selectionId")
     def selection_id(self) -> str:
-        ...
+        return pulumi.get(self, "selection_id")
 
 
 

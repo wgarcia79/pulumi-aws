@@ -98,7 +98,7 @@ class Gateway(pulumi.CustomResource):
         """
         The ASN to be configured on the Amazon side of the connection. The ASN must be in the private range of 64,512 to 65,534 or 4,200,000,000 to 4,294,967,294.
         """
-        ...
+        return pulumi.get(self, "amazon_side_asn")
 
     @property
     @pulumi.getter
@@ -106,7 +106,7 @@ class Gateway(pulumi.CustomResource):
         """
         The name of the connection.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="ownerAccountId")
@@ -114,7 +114,7 @@ class Gateway(pulumi.CustomResource):
         """
         AWS Account ID of the gateway.
         """
-        ...
+        return pulumi.get(self, "owner_account_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -112,7 +112,7 @@ class RoleAssociation(pulumi.CustomResource):
         """
         DB Instance Identifier to associate with the IAM Role.
         """
-        ...
+        return pulumi.get(self, "db_instance_identifier")
 
     @property
     @pulumi.getter(name="featureName")
@@ -120,7 +120,7 @@ class RoleAssociation(pulumi.CustomResource):
         """
         Name of the feature for association. This can be found in the AWS documentation relevant to the integration or a full list is available in the `SupportedFeatureNames` list returned by [AWS CLI rds describe-db-engine-versions](https://docs.aws.amazon.com/cli/latest/reference/rds/describe-db-engine-versions.html).
         """
-        ...
+        return pulumi.get(self, "feature_name")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -128,7 +128,7 @@ class RoleAssociation(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the IAM Role to associate with the DB Instance.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

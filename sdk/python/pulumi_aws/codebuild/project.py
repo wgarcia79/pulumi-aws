@@ -369,7 +369,7 @@ class Project(pulumi.CustomResource):
         """
         The ARN of the CodeBuild project.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -377,7 +377,7 @@ class Project(pulumi.CustomResource):
         """
         Information about the project's build output artifacts. Artifact blocks are documented below.
         """
-        ...
+        return pulumi.get(self, "artifacts")
 
     @property
     @pulumi.getter(name="badgeEnabled")
@@ -385,7 +385,7 @@ class Project(pulumi.CustomResource):
         """
         Generates a publicly-accessible URL for the projects build badge. Available as `badge_url` attribute when enabled.
         """
-        ...
+        return pulumi.get(self, "badge_enabled")
 
     @property
     @pulumi.getter(name="badgeUrl")
@@ -393,7 +393,7 @@ class Project(pulumi.CustomResource):
         """
         The URL of the build badge when `badge_enabled` is enabled.
         """
-        ...
+        return pulumi.get(self, "badge_url")
 
     @property
     @pulumi.getter(name="buildTimeout")
@@ -401,7 +401,7 @@ class Project(pulumi.CustomResource):
         """
         How long in minutes, from 5 to 480 (8 hours), for AWS CodeBuild to wait until timing out any related build that does not get marked as completed. The default is 60 minutes.
         """
-        ...
+        return pulumi.get(self, "build_timeout")
 
     @property
     @pulumi.getter
@@ -409,7 +409,7 @@ class Project(pulumi.CustomResource):
         """
         Information about the cache storage for the project. Cache blocks are documented below.
         """
-        ...
+        return pulumi.get(self, "cache")
 
     @property
     @pulumi.getter
@@ -417,7 +417,7 @@ class Project(pulumi.CustomResource):
         """
         A short description of the project.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="encryptionKey")
@@ -425,7 +425,7 @@ class Project(pulumi.CustomResource):
         """
         The AWS Key Management Service (AWS KMS) customer master key (CMK) to be used for encrypting the build project's build output artifacts.
         """
-        ...
+        return pulumi.get(self, "encryption_key")
 
     @property
     @pulumi.getter
@@ -433,7 +433,7 @@ class Project(pulumi.CustomResource):
         """
         Information about the project's build environment. Environment blocks are documented below.
         """
-        ...
+        return pulumi.get(self, "environment")
 
     @property
     @pulumi.getter(name="logsConfig")
@@ -441,7 +441,7 @@ class Project(pulumi.CustomResource):
         """
         Configuration for the builds to store log data to CloudWatch or S3.
         """
-        ...
+        return pulumi.get(self, "logs_config")
 
     @property
     @pulumi.getter
@@ -449,7 +449,7 @@ class Project(pulumi.CustomResource):
         """
         The projects name.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="queuedTimeout")
@@ -457,7 +457,7 @@ class Project(pulumi.CustomResource):
         """
         How long in minutes, from 5 to 480 (8 hours), a build is allowed to be queued before it times out. The default is 8 hours.
         """
-        ...
+        return pulumi.get(self, "queued_timeout")
 
     @property
     @pulumi.getter(name="secondaryArtifacts")
@@ -465,7 +465,7 @@ class Project(pulumi.CustomResource):
         """
         A set of secondary artifacts to be used inside the build. Secondary artifacts blocks are documented below.
         """
-        ...
+        return pulumi.get(self, "secondary_artifacts")
 
     @property
     @pulumi.getter(name="secondarySources")
@@ -473,7 +473,7 @@ class Project(pulumi.CustomResource):
         """
         A set of secondary sources to be used inside the build. Secondary sources blocks are documented below.
         """
-        ...
+        return pulumi.get(self, "secondary_sources")
 
     @property
     @pulumi.getter(name="serviceRole")
@@ -481,7 +481,7 @@ class Project(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that enables AWS CodeBuild to interact with dependent AWS services on behalf of the AWS account.
         """
-        ...
+        return pulumi.get(self, "service_role")
 
     @property
     @pulumi.getter
@@ -489,7 +489,7 @@ class Project(pulumi.CustomResource):
         """
         Information about the project's input source code. Source blocks are documented below.
         """
-        ...
+        return pulumi.get(self, "source")
 
     @property
     @pulumi.getter(name="sourceVersion")
@@ -497,7 +497,7 @@ class Project(pulumi.CustomResource):
         """
         A version of the build input to be built for this project. If not specified, the latest version is used.
         """
-        ...
+        return pulumi.get(self, "source_version")
 
     @property
     @pulumi.getter
@@ -505,7 +505,7 @@ class Project(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcConfig")
@@ -513,7 +513,7 @@ class Project(pulumi.CustomResource):
         """
         Configuration for the builds to run inside a VPC. VPC config blocks are documented below.
         """
-        ...
+        return pulumi.get(self, "vpc_config")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -98,7 +98,7 @@ class Pipeline(pulumi.CustomResource):
         """
         The description of Pipeline.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -106,7 +106,7 @@ class Pipeline(pulumi.CustomResource):
         """
         The name of Pipeline.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -114,7 +114,7 @@ class Pipeline(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

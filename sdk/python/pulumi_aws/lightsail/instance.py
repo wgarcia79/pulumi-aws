@@ -262,7 +262,7 @@ class Instance(pulumi.CustomResource):
         """
         The ARN of the Lightsail instance (matches `id`).
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="availabilityZone")
@@ -271,7 +271,7 @@ class Instance(pulumi.CustomResource):
         The Availability Zone in which to create your
         instance (see list below)
         """
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter(name="blueprintId")
@@ -280,7 +280,7 @@ class Instance(pulumi.CustomResource):
         The ID for a virtual private server image
         (see list below)
         """
-        ...
+        return pulumi.get(self, "blueprint_id")
 
     @property
     @pulumi.getter(name="bundleId")
@@ -288,12 +288,12 @@ class Instance(pulumi.CustomResource):
         """
         The bundle of specification information (see list below)
         """
-        ...
+        return pulumi.get(self, "bundle_id")
 
     @property
     @pulumi.getter(name="cpuCount")
     def cpu_count(self) -> float:
-        ...
+        return pulumi.get(self, "cpu_count")
 
     @property
     @pulumi.getter(name="createdAt")
@@ -306,17 +306,17 @@ class Instance(pulumi.CustomResource):
         * `key_pair_name`
         * `user_data`
         """
-        ...
+        return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="ipv6Address")
     def ipv6_address(self) -> str:
-        ...
+        return pulumi.get(self, "ipv6_address")
 
     @property
     @pulumi.getter(name="isStaticIp")
     def is_static_ip(self) -> bool:
-        ...
+        return pulumi.get(self, "is_static_ip")
 
     @property
     @pulumi.getter(name="keyPairName")
@@ -325,7 +325,7 @@ class Instance(pulumi.CustomResource):
         The name of your key pair. Created in the
         Lightsail console (cannot use `ec2.KeyPair` at this time)
         """
-        ...
+        return pulumi.get(self, "key_pair_name")
 
     @property
     @pulumi.getter
@@ -333,22 +333,22 @@ class Instance(pulumi.CustomResource):
         """
         The name of the Lightsail Instance. Names be unique within each AWS Region in your Lightsail account.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="privateIpAddress")
     def private_ip_address(self) -> str:
-        ...
+        return pulumi.get(self, "private_ip_address")
 
     @property
     @pulumi.getter(name="publicIpAddress")
     def public_ip_address(self) -> str:
-        ...
+        return pulumi.get(self, "public_ip_address")
 
     @property
     @pulumi.getter(name="ramSize")
     def ram_size(self) -> float:
-        ...
+        return pulumi.get(self, "ram_size")
 
     @property
     @pulumi.getter
@@ -356,7 +356,7 @@ class Instance(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="userData")
@@ -364,12 +364,12 @@ class Instance(pulumi.CustomResource):
         """
         launch script to configure server with additional user data
         """
-        ...
+        return pulumi.get(self, "user_data")
 
     @property
     @pulumi.getter
     def username(self) -> str:
-        ...
+        return pulumi.get(self, "username")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

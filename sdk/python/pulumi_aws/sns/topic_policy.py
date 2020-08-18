@@ -127,7 +127,7 @@ class TopicPolicy(pulumi.CustomResource):
         """
         The ARN of the SNS topic
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -135,7 +135,7 @@ class TopicPolicy(pulumi.CustomResource):
         """
         The fully-formed AWS policy as JSON.
         """
-        ...
+        return pulumi.get(self, "policy")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

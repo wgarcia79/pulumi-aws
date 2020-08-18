@@ -138,7 +138,7 @@ class VideoStream(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) specifying the Stream (same as `id`)
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="creationTime")
@@ -146,7 +146,7 @@ class VideoStream(pulumi.CustomResource):
         """
         A time stamp that indicates when the stream was created.
         """
-        ...
+        return pulumi.get(self, "creation_time")
 
     @property
     @pulumi.getter(name="dataRetentionInHours")
@@ -154,7 +154,7 @@ class VideoStream(pulumi.CustomResource):
         """
         The number of hours that you want to retain the data in the stream. Kinesis Video Streams retains the data in a data store that is associated with the stream. The default value is `0`, indicating that the stream does not persist data.
         """
-        ...
+        return pulumi.get(self, "data_retention_in_hours")
 
     @property
     @pulumi.getter(name="deviceName")
@@ -162,7 +162,7 @@ class VideoStream(pulumi.CustomResource):
         """
         The name of the device that is writing to the stream. **In the current implementation, Kinesis Video Streams does not use this name.**
         """
-        ...
+        return pulumi.get(self, "device_name")
 
     @property
     @pulumi.getter(name="kmsKeyId")
@@ -170,7 +170,7 @@ class VideoStream(pulumi.CustomResource):
         """
         The ID of the AWS Key Management Service (AWS KMS) key that you want Kinesis Video Streams to use to encrypt stream data. If no key ID is specified, the default, Kinesis Video-managed key (`aws/kinesisvideo`) is used.
         """
-        ...
+        return pulumi.get(self, "kms_key_id")
 
     @property
     @pulumi.getter(name="mediaType")
@@ -178,7 +178,7 @@ class VideoStream(pulumi.CustomResource):
         """
         The media type of the stream. Consumers of the stream can use this information when processing the stream. For more information about media types, see [Media Types](http://www.iana.org/assignments/media-types/media-types.xhtml). If you choose to specify the MediaType, see [Naming Requirements](https://tools.ietf.org/html/rfc6838#section-4.2) for guidelines.
         """
-        ...
+        return pulumi.get(self, "media_type")
 
     @property
     @pulumi.getter
@@ -187,7 +187,7 @@ class VideoStream(pulumi.CustomResource):
         A name to identify the stream. This is unique to the
         AWS account and region the Stream is created in.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -195,7 +195,7 @@ class VideoStream(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -203,7 +203,7 @@ class VideoStream(pulumi.CustomResource):
         """
         The version of the stream.
         """
-        ...
+        return pulumi.get(self, "version")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

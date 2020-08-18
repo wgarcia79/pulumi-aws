@@ -58,12 +58,12 @@ class GetVpcAttachmentResult:
         """
         Whether DNS support is enabled.
         """
-        ...
+        return pulumi.get(self, "dns_support")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetVpcAttachmentFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
@@ -71,7 +71,7 @@ class GetVpcAttachmentResult:
         """
         EC2 Transit Gateway VPC Attachment identifier
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="ipv6Support")
@@ -79,7 +79,7 @@ class GetVpcAttachmentResult:
         """
         Whether IPv6 support is enabled.
         """
-        ...
+        return pulumi.get(self, "ipv6_support")
 
     @property
     @pulumi.getter(name="subnetIds")
@@ -87,7 +87,7 @@ class GetVpcAttachmentResult:
         """
         Identifiers of EC2 Subnets.
         """
-        ...
+        return pulumi.get(self, "subnet_ids")
 
     @property
     @pulumi.getter
@@ -95,7 +95,7 @@ class GetVpcAttachmentResult:
         """
         Key-value tags for the EC2 Transit Gateway VPC Attachment
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="transitGatewayId")
@@ -103,7 +103,7 @@ class GetVpcAttachmentResult:
         """
         EC2 Transit Gateway identifier
         """
-        ...
+        return pulumi.get(self, "transit_gateway_id")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -111,7 +111,7 @@ class GetVpcAttachmentResult:
         """
         Identifier of EC2 VPC.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     @property
     @pulumi.getter(name="vpcOwnerId")
@@ -119,7 +119,7 @@ class GetVpcAttachmentResult:
         """
         Identifier of the AWS account that owns the EC2 VPC.
         """
-        ...
+        return pulumi.get(self, "vpc_owner_id")
 
 
 

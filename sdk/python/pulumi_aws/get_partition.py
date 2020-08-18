@@ -35,7 +35,7 @@ class GetPartitionResult:
     @property
     @pulumi.getter(name="dnsSuffix")
     def dns_suffix(self) -> str:
-        ...
+        return pulumi.get(self, "dns_suffix")
 
     @property
     @pulumi.getter
@@ -43,12 +43,12 @@ class GetPartitionResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def partition(self) -> str:
-        ...
+        return pulumi.get(self, "partition")
 
 
 

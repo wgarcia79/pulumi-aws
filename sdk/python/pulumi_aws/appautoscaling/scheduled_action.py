@@ -175,7 +175,7 @@ class ScheduledAction(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) of the scheduled action.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="endTime")
@@ -183,7 +183,7 @@ class ScheduledAction(pulumi.CustomResource):
         """
         The date and time for the scheduled action to end. Specify the following format: 2006-01-02T15:04:05Z
         """
-        ...
+        return pulumi.get(self, "end_time")
 
     @property
     @pulumi.getter
@@ -191,7 +191,7 @@ class ScheduledAction(pulumi.CustomResource):
         """
         The name of the scheduled action.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="resourceId")
@@ -199,7 +199,7 @@ class ScheduledAction(pulumi.CustomResource):
         """
         The identifier of the resource associated with the scheduled action. Documentation can be found in the parameter at: [AWS Application Auto Scaling API Reference](https://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_PutScheduledAction.html#ApplicationAutoScaling-PutScheduledAction-request-ResourceId)
         """
-        ...
+        return pulumi.get(self, "resource_id")
 
     @property
     @pulumi.getter(name="scalableDimension")
@@ -207,7 +207,7 @@ class ScheduledAction(pulumi.CustomResource):
         """
         The scalable dimension. Documentation can be found in the parameter at: [AWS Application Auto Scaling API Reference](https://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_PutScheduledAction.html#ApplicationAutoScaling-PutScheduledAction-request-ScalableDimension) Example: ecs:service:DesiredCount
         """
-        ...
+        return pulumi.get(self, "scalable_dimension")
 
     @property
     @pulumi.getter(name="scalableTargetAction")
@@ -215,7 +215,7 @@ class ScheduledAction(pulumi.CustomResource):
         """
         The new minimum and maximum capacity. You can set both values or just one. See below
         """
-        ...
+        return pulumi.get(self, "scalable_target_action")
 
     @property
     @pulumi.getter
@@ -223,7 +223,7 @@ class ScheduledAction(pulumi.CustomResource):
         """
         The schedule for this action. The following formats are supported: At expressions - at(yyyy-mm-ddThh:mm:ss), Rate expressions - rate(valueunit), Cron expressions - cron(fields). In UTC. Documentation can be found in the parameter at: [AWS Application Auto Scaling API Reference](https://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_PutScheduledAction.html#ApplicationAutoScaling-PutScheduledAction-request-Schedule)
         """
-        ...
+        return pulumi.get(self, "schedule")
 
     @property
     @pulumi.getter(name="serviceNamespace")
@@ -231,7 +231,7 @@ class ScheduledAction(pulumi.CustomResource):
         """
         The namespace of the AWS service. Documentation can be found in the parameter at: [AWS Application Auto Scaling API Reference](https://docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_PutScheduledAction.html#ApplicationAutoScaling-PutScheduledAction-request-ServiceNamespace) Example: ecs
         """
-        ...
+        return pulumi.get(self, "service_namespace")
 
     @property
     @pulumi.getter(name="startTime")
@@ -239,7 +239,7 @@ class ScheduledAction(pulumi.CustomResource):
         """
         The date and time for the scheduled action to start. Specify the following format: 2006-01-02T15:04:05Z
         """
-        ...
+        return pulumi.get(self, "start_time")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

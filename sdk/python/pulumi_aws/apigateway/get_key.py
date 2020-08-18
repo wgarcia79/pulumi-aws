@@ -53,7 +53,7 @@ class GetKeyResult:
         """
         The date and time when the API Key was created.
         """
-        ...
+        return pulumi.get(self, "created_date")
 
     @property
     @pulumi.getter
@@ -61,7 +61,7 @@ class GetKeyResult:
         """
         The description of the API Key.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -69,7 +69,7 @@ class GetKeyResult:
         """
         Specifies whether the API Key is enabled.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter
@@ -77,7 +77,7 @@ class GetKeyResult:
         """
         Set to the ID of the API Key.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="lastUpdatedDate")
@@ -85,7 +85,7 @@ class GetKeyResult:
         """
         The date and time when the API Key was last updated.
         """
-        ...
+        return pulumi.get(self, "last_updated_date")
 
     @property
     @pulumi.getter
@@ -93,7 +93,7 @@ class GetKeyResult:
         """
         Set to the name of the API Key.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -101,7 +101,7 @@ class GetKeyResult:
         """
         A map of tags for the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -109,7 +109,7 @@ class GetKeyResult:
         """
         Set to the value of the API Key.
         """
-        ...
+        return pulumi.get(self, "value")
 
 
 

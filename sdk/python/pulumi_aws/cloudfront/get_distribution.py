@@ -59,7 +59,7 @@ class GetDistributionResult:
         """
         The ARN (Amazon Resource Name) for the distribution. For example: arn:aws:cloudfront::123456789012:distribution/EDFDVBD632BHDS5, where 123456789012 is your AWS account ID.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="domainName")
@@ -68,12 +68,12 @@ class GetDistributionResult:
         The domain name corresponding to the distribution. For
         example: `d604721fxaaqy9.cloudfront.net`.
         """
-        ...
+        return pulumi.get(self, "domain_name")
 
     @property
     @pulumi.getter
     def enabled(self) -> bool:
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter
@@ -82,7 +82,7 @@ class GetDistributionResult:
         The current version of the distribution's information. For example:
         `E2QWRUHAPOMQZL`.
         """
-        ...
+        return pulumi.get(self, "etag")
 
     @property
     @pulumi.getter(name="hostedZoneId")
@@ -92,7 +92,7 @@ class GetDistributionResult:
         route an [Alias Resource Record Set][7] to. This attribute is simply an
         alias for the zone ID `Z2FDTNDATAQYW2`.
         """
-        ...
+        return pulumi.get(self, "hosted_zone_id")
 
     @property
     @pulumi.getter
@@ -100,7 +100,7 @@ class GetDistributionResult:
         """
         The identifier for the distribution. For example: `EDFDVBD632BHDS5`.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="inProgressValidationBatches")
@@ -109,7 +109,7 @@ class GetDistributionResult:
         The number of invalidation batches
         currently in progress.
         """
-        ...
+        return pulumi.get(self, "in_progress_validation_batches")
 
     @property
     @pulumi.getter(name="lastModifiedTime")
@@ -117,7 +117,7 @@ class GetDistributionResult:
         """
         The date and time the distribution was last modified.
         """
-        ...
+        return pulumi.get(self, "last_modified_time")
 
     @property
     @pulumi.getter
@@ -127,12 +127,12 @@ class GetDistributionResult:
         distribution's information is fully propagated throughout the Amazon
         CloudFront system.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def tags(self) -> Optional[Mapping[str, str]]:
-        ...
+        return pulumi.get(self, "tags")
 
 
 

@@ -47,7 +47,7 @@ class GetPolicyResult:
         """
         The Amazon Resource Name (ARN) specifying the policy.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -55,7 +55,7 @@ class GetPolicyResult:
         """
         The description of the policy.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -63,7 +63,7 @@ class GetPolicyResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -71,7 +71,7 @@ class GetPolicyResult:
         """
         The name of the IAM policy.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -79,7 +79,7 @@ class GetPolicyResult:
         """
         The path to the policy.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter
@@ -87,7 +87,7 @@ class GetPolicyResult:
         """
         The policy document of the policy.
         """
-        ...
+        return pulumi.get(self, "policy")
 
 
 

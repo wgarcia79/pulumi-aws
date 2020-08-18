@@ -148,7 +148,7 @@ class ApnsSandboxChannel(pulumi.CustomResource):
         """
         The application ID.
         """
-        ...
+        return pulumi.get(self, "application_id")
 
     @property
     @pulumi.getter(name="bundleId")
@@ -156,7 +156,7 @@ class ApnsSandboxChannel(pulumi.CustomResource):
         """
         The ID assigned to your iOS app. To find this value, choose Certificates, IDs & Profiles, choose App IDs in the Identifiers section, and choose your app.
         """
-        ...
+        return pulumi.get(self, "bundle_id")
 
     @property
     @pulumi.getter
@@ -164,7 +164,7 @@ class ApnsSandboxChannel(pulumi.CustomResource):
         """
         The pem encoded TLS Certificate from Apple.
         """
-        ...
+        return pulumi.get(self, "certificate")
 
     @property
     @pulumi.getter(name="defaultAuthenticationMethod")
@@ -175,7 +175,7 @@ class ApnsSandboxChannel(pulumi.CustomResource):
         You can override the default when you send a message programmatically using the Amazon Pinpoint API, the AWS CLI, or an AWS SDK.
         If your default authentication type fails, Amazon Pinpoint doesn't attempt to use the other authentication type.
         """
-        ...
+        return pulumi.get(self, "default_authentication_method")
 
     @property
     @pulumi.getter
@@ -183,7 +183,7 @@ class ApnsSandboxChannel(pulumi.CustomResource):
         """
         Whether the channel is enabled or disabled. Defaults to `true`.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="privateKey")
@@ -191,7 +191,7 @@ class ApnsSandboxChannel(pulumi.CustomResource):
         """
         The Certificate Private Key file (ie. `.key` file).
         """
-        ...
+        return pulumi.get(self, "private_key")
 
     @property
     @pulumi.getter(name="teamId")
@@ -199,7 +199,7 @@ class ApnsSandboxChannel(pulumi.CustomResource):
         """
         The ID assigned to your Apple developer account team. This value is provided on the Membership page.
         """
-        ...
+        return pulumi.get(self, "team_id")
 
     @property
     @pulumi.getter(name="tokenKey")
@@ -207,7 +207,7 @@ class ApnsSandboxChannel(pulumi.CustomResource):
         """
         The `.p8` file that you download from your Apple developer account when you create an authentication key.
         """
-        ...
+        return pulumi.get(self, "token_key")
 
     @property
     @pulumi.getter(name="tokenKeyId")
@@ -215,7 +215,7 @@ class ApnsSandboxChannel(pulumi.CustomResource):
         """
         The ID assigned to your signing key. To find this value, choose Certificates, IDs & Profiles, and choose your key in the Keys section.
         """
-        ...
+        return pulumi.get(self, "token_key_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

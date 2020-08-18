@@ -109,7 +109,7 @@ class Certificate(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) for the certificate.
         """
-        ...
+        return pulumi.get(self, "certificate_arn")
 
     @property
     @pulumi.getter(name="certificateId")
@@ -117,7 +117,7 @@ class Certificate(pulumi.CustomResource):
         """
         The certificate identifier.
         """
-        ...
+        return pulumi.get(self, "certificate_id")
 
     @property
     @pulumi.getter(name="certificatePem")
@@ -125,7 +125,7 @@ class Certificate(pulumi.CustomResource):
         """
         The contents of the .pem X.509 certificate file for the certificate. Either `certificate_pem` or `certificate_wallet` must be set.
         """
-        ...
+        return pulumi.get(self, "certificate_pem")
 
     @property
     @pulumi.getter(name="certificateWallet")
@@ -133,7 +133,7 @@ class Certificate(pulumi.CustomResource):
         """
         The contents of the Oracle Wallet certificate for use with SSL. Either `certificate_pem` or `certificate_wallet` must be set.
         """
-        ...
+        return pulumi.get(self, "certificate_wallet")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

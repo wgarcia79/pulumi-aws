@@ -115,7 +115,7 @@ class CapacityProvider(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) that identifies the capacity provider.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="autoScalingGroupProvider")
@@ -123,7 +123,7 @@ class CapacityProvider(pulumi.CustomResource):
         """
         Nested argument defining the provider for the ECS auto scaling group. Defined below.
         """
-        ...
+        return pulumi.get(self, "auto_scaling_group_provider")
 
     @property
     @pulumi.getter
@@ -131,7 +131,7 @@ class CapacityProvider(pulumi.CustomResource):
         """
         The name of the capacity provider.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -139,7 +139,7 @@ class CapacityProvider(pulumi.CustomResource):
         """
         Key-value map of resource tags.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

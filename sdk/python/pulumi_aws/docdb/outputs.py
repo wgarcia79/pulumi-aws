@@ -34,7 +34,7 @@ class ClusterParameterGroupParameter(dict):
         """
         The name of the documentDB parameter.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -42,7 +42,7 @@ class ClusterParameterGroupParameter(dict):
         """
         The value of the documentDB parameter.
         """
-        ...
+        return pulumi.get(self, "value")
 
     @property
     @pulumi.getter(name="applyMethod")
@@ -50,7 +50,7 @@ class ClusterParameterGroupParameter(dict):
         """
         Valid values are `immediate` and `pending-reboot`. Defaults to `pending-reboot`.
         """
-        ...
+        return pulumi.get(self, "apply_method")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

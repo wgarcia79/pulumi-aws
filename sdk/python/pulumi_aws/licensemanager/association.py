@@ -89,7 +89,7 @@ class Association(pulumi.CustomResource):
         """
         ARN of the license configuration.
         """
-        ...
+        return pulumi.get(self, "license_configuration_arn")
 
     @property
     @pulumi.getter(name="resourceArn")
@@ -97,7 +97,7 @@ class Association(pulumi.CustomResource):
         """
         ARN of the resource associated with the license configuration.
         """
-        ...
+        return pulumi.get(self, "resource_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -107,7 +107,7 @@ class XssMatchSet(pulumi.CustomResource):
         """
         The name of the set
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="xssMatchTuples")
@@ -115,7 +115,7 @@ class XssMatchSet(pulumi.CustomResource):
         """
         The parts of web requests that you want to inspect for cross-site scripting attacks.
         """
-        ...
+        return pulumi.get(self, "xss_match_tuples")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

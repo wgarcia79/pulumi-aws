@@ -392,7 +392,7 @@ class Instance(pulumi.CustomResource):
         """
         The AWS OpsWorks agent to install.  Defaults to `"INHERIT"`.
         """
-        ...
+        return pulumi.get(self, "agent_version")
 
     @property
     @pulumi.getter(name="amiId")
@@ -400,7 +400,7 @@ class Instance(pulumi.CustomResource):
         """
         The AMI to use for the instance.  If an AMI is specified, `os` must be `"Custom"`.
         """
-        ...
+        return pulumi.get(self, "ami_id")
 
     @property
     @pulumi.getter
@@ -408,7 +408,7 @@ class Instance(pulumi.CustomResource):
         """
         Machine architecture for created instances.  Can be either `"x86_64"` (the default) or `"i386"`
         """
-        ...
+        return pulumi.get(self, "architecture")
 
     @property
     @pulumi.getter(name="autoScalingType")
@@ -416,7 +416,7 @@ class Instance(pulumi.CustomResource):
         """
         Creates load-based or time-based instances.  If set, can be either: `"load"` or `"timer"`.
         """
-        ...
+        return pulumi.get(self, "auto_scaling_type")
 
     @property
     @pulumi.getter(name="availabilityZone")
@@ -425,22 +425,22 @@ class Instance(pulumi.CustomResource):
         Name of the availability zone where instances will be created
         by default.
         """
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
-        ...
+        return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="deleteEbs")
     def delete_ebs(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "delete_ebs")
 
     @property
     @pulumi.getter(name="deleteEip")
     def delete_eip(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "delete_eip")
 
     @property
     @pulumi.getter(name="ebsBlockDevices")
@@ -449,7 +449,7 @@ class Instance(pulumi.CustomResource):
         Additional EBS block devices to attach to the
         instance.  See Block Devices below for details.
         """
-        ...
+        return pulumi.get(self, "ebs_block_devices")
 
     @property
     @pulumi.getter(name="ebsOptimized")
@@ -457,7 +457,7 @@ class Instance(pulumi.CustomResource):
         """
         If true, the launched EC2 instance will be EBS-optimized.
         """
-        ...
+        return pulumi.get(self, "ebs_optimized")
 
     @property
     @pulumi.getter(name="ec2InstanceId")
@@ -465,17 +465,17 @@ class Instance(pulumi.CustomResource):
         """
         EC2 instance ID
         """
-        ...
+        return pulumi.get(self, "ec2_instance_id")
 
     @property
     @pulumi.getter(name="ecsClusterArn")
     def ecs_cluster_arn(self) -> str:
-        ...
+        return pulumi.get(self, "ecs_cluster_arn")
 
     @property
     @pulumi.getter(name="elasticIp")
     def elastic_ip(self) -> str:
-        ...
+        return pulumi.get(self, "elastic_ip")
 
     @property
     @pulumi.getter(name="ephemeralBlockDevices")
@@ -484,7 +484,7 @@ class Instance(pulumi.CustomResource):
         Customize Ephemeral (also known as
         "Instance Store") volumes on the instance. See Block Devices below for details.
         """
-        ...
+        return pulumi.get(self, "ephemeral_block_devices")
 
     @property
     @pulumi.getter
@@ -492,12 +492,12 @@ class Instance(pulumi.CustomResource):
         """
         The instance's host name.
         """
-        ...
+        return pulumi.get(self, "hostname")
 
     @property
     @pulumi.getter(name="infrastructureClass")
     def infrastructure_class(self) -> str:
-        ...
+        return pulumi.get(self, "infrastructure_class")
 
     @property
     @pulumi.getter(name="installUpdatesOnBoot")
@@ -505,12 +505,12 @@ class Instance(pulumi.CustomResource):
         """
         Controls where to install OS and package updates when the instance boots.  Defaults to `true`.
         """
-        ...
+        return pulumi.get(self, "install_updates_on_boot")
 
     @property
     @pulumi.getter(name="instanceProfileArn")
     def instance_profile_arn(self) -> str:
-        ...
+        return pulumi.get(self, "instance_profile_arn")
 
     @property
     @pulumi.getter(name="instanceType")
@@ -518,12 +518,12 @@ class Instance(pulumi.CustomResource):
         """
         The type of instance to start
         """
-        ...
+        return pulumi.get(self, "instance_type")
 
     @property
     @pulumi.getter(name="lastServiceErrorId")
     def last_service_error_id(self) -> str:
-        ...
+        return pulumi.get(self, "last_service_error_id")
 
     @property
     @pulumi.getter(name="layerIds")
@@ -531,7 +531,7 @@ class Instance(pulumi.CustomResource):
         """
         The ids of the layers the instance will belong to.
         """
-        ...
+        return pulumi.get(self, "layer_ids")
 
     @property
     @pulumi.getter
@@ -539,12 +539,12 @@ class Instance(pulumi.CustomResource):
         """
         Name of operating system that will be installed.
         """
-        ...
+        return pulumi.get(self, "os")
 
     @property
     @pulumi.getter
     def platform(self) -> str:
-        ...
+        return pulumi.get(self, "platform")
 
     @property
     @pulumi.getter(name="privateDns")
@@ -554,7 +554,7 @@ class Instance(pulumi.CustomResource):
         used inside the Amazon EC2, and only available if you've enabled DNS hostnames
         for your VPC
         """
-        ...
+        return pulumi.get(self, "private_dns")
 
     @property
     @pulumi.getter(name="privateIp")
@@ -562,7 +562,7 @@ class Instance(pulumi.CustomResource):
         """
         The private IP address assigned to the instance
         """
-        ...
+        return pulumi.get(self, "private_ip")
 
     @property
     @pulumi.getter(name="publicDns")
@@ -571,7 +571,7 @@ class Instance(pulumi.CustomResource):
         The public DNS name assigned to the instance. For EC2-VPC, this
         is only available if you've enabled DNS hostnames for your VPC
         """
-        ...
+        return pulumi.get(self, "public_dns")
 
     @property
     @pulumi.getter(name="publicIp")
@@ -579,32 +579,32 @@ class Instance(pulumi.CustomResource):
         """
         The public IP address assigned to the instance, if applicable.
         """
-        ...
+        return pulumi.get(self, "public_ip")
 
     @property
     @pulumi.getter(name="registeredBy")
     def registered_by(self) -> str:
-        ...
+        return pulumi.get(self, "registered_by")
 
     @property
     @pulumi.getter(name="reportedAgentVersion")
     def reported_agent_version(self) -> str:
-        ...
+        return pulumi.get(self, "reported_agent_version")
 
     @property
     @pulumi.getter(name="reportedOsFamily")
     def reported_os_family(self) -> str:
-        ...
+        return pulumi.get(self, "reported_os_family")
 
     @property
     @pulumi.getter(name="reportedOsName")
     def reported_os_name(self) -> str:
-        ...
+        return pulumi.get(self, "reported_os_name")
 
     @property
     @pulumi.getter(name="reportedOsVersion")
     def reported_os_version(self) -> str:
-        ...
+        return pulumi.get(self, "reported_os_version")
 
     @property
     @pulumi.getter(name="rootBlockDevices")
@@ -613,7 +613,7 @@ class Instance(pulumi.CustomResource):
         Customize details about the root block
         device of the instance. See Block Devices below for details.
         """
-        ...
+        return pulumi.get(self, "root_block_devices")
 
     @property
     @pulumi.getter(name="rootDeviceType")
@@ -621,12 +621,12 @@ class Instance(pulumi.CustomResource):
         """
         Name of the type of root device instances will have by default.  Can be either `"ebs"` or `"instance-store"`
         """
-        ...
+        return pulumi.get(self, "root_device_type")
 
     @property
     @pulumi.getter(name="rootDeviceVolumeId")
     def root_device_volume_id(self) -> str:
-        ...
+        return pulumi.get(self, "root_device_volume_id")
 
     @property
     @pulumi.getter(name="securityGroupIds")
@@ -634,17 +634,17 @@ class Instance(pulumi.CustomResource):
         """
         The associated security groups.
         """
-        ...
+        return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter(name="sshHostDsaKeyFingerprint")
     def ssh_host_dsa_key_fingerprint(self) -> str:
-        ...
+        return pulumi.get(self, "ssh_host_dsa_key_fingerprint")
 
     @property
     @pulumi.getter(name="sshHostRsaKeyFingerprint")
     def ssh_host_rsa_key_fingerprint(self) -> str:
-        ...
+        return pulumi.get(self, "ssh_host_rsa_key_fingerprint")
 
     @property
     @pulumi.getter(name="sshKeyName")
@@ -652,7 +652,7 @@ class Instance(pulumi.CustomResource):
         """
         Name of the SSH keypair that instances will have by default.
         """
-        ...
+        return pulumi.get(self, "ssh_key_name")
 
     @property
     @pulumi.getter(name="stackId")
@@ -660,7 +660,7 @@ class Instance(pulumi.CustomResource):
         """
         The id of the stack the instance will belong to.
         """
-        ...
+        return pulumi.get(self, "stack_id")
 
     @property
     @pulumi.getter
@@ -668,12 +668,12 @@ class Instance(pulumi.CustomResource):
         """
         The desired state of the instance.  Can be either `"running"` or `"stopped"`.
         """
-        ...
+        return pulumi.get(self, "state")
 
     @property
     @pulumi.getter
     def status(self) -> str:
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter(name="subnetId")
@@ -681,7 +681,7 @@ class Instance(pulumi.CustomResource):
         """
         Subnet ID to attach to
         """
-        ...
+        return pulumi.get(self, "subnet_id")
 
     @property
     @pulumi.getter
@@ -689,7 +689,7 @@ class Instance(pulumi.CustomResource):
         """
         Instance tenancy to use. Can be one of `"default"`, `"dedicated"` or `"host"`
         """
-        ...
+        return pulumi.get(self, "tenancy")
 
     @property
     @pulumi.getter(name="virtualizationType")
@@ -698,7 +698,7 @@ class Instance(pulumi.CustomResource):
         Keyword to choose what virtualization mode created instances
         will use. Can be either `"paravirtual"` or `"hvm"`.
         """
-        ...
+        return pulumi.get(self, "virtualization_type")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

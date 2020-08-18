@@ -88,7 +88,7 @@ class ConfigurationSet(pulumi.CustomResource):
         """
         The name of the configuration set
         """
-        ...
+        return pulumi.get(self, "name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

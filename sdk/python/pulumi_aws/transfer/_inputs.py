@@ -27,10 +27,10 @@ class ServerEndpointDetailsArgs:
         """
         The ID of the VPC endpoint.
         """
-        ...
+        return pulumi.get(self, "vpc_endpoint_id")
 
     @vpc_endpoint_id.setter
     def vpc_endpoint_id(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "vpc_endpoint_id", value)
 
 

@@ -61,17 +61,17 @@ class GetNatGatewayResult:
         """
         The Id of the EIP allocated to the selected Nat Gateway.
         """
-        ...
+        return pulumi.get(self, "allocation_id")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetNatGatewayFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
     def id(self) -> str:
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="networkInterfaceId")
@@ -79,7 +79,7 @@ class GetNatGatewayResult:
         """
         The Id of the ENI allocated to the selected Nat Gateway.
         """
-        ...
+        return pulumi.get(self, "network_interface_id")
 
     @property
     @pulumi.getter(name="privateIp")
@@ -87,7 +87,7 @@ class GetNatGatewayResult:
         """
         The private Ip address of the selected Nat Gateway.
         """
-        ...
+        return pulumi.get(self, "private_ip")
 
     @property
     @pulumi.getter(name="publicIp")
@@ -95,27 +95,27 @@ class GetNatGatewayResult:
         """
         The public Ip (EIP) address of the selected Nat Gateway.
         """
-        ...
+        return pulumi.get(self, "public_ip")
 
     @property
     @pulumi.getter
     def state(self) -> str:
-        ...
+        return pulumi.get(self, "state")
 
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> str:
-        ...
+        return pulumi.get(self, "subnet_id")
 
     @property
     @pulumi.getter
     def tags(self) -> Mapping[str, str]:
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> str:
-        ...
+        return pulumi.get(self, "vpc_id")
 
 
 

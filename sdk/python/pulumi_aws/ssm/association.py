@@ -161,7 +161,7 @@ class Association(pulumi.CustomResource):
         """
         The ID of the SSM association.
         """
-        ...
+        return pulumi.get(self, "association_id")
 
     @property
     @pulumi.getter(name="associationName")
@@ -169,7 +169,7 @@ class Association(pulumi.CustomResource):
         """
         The descriptive name for the association.
         """
-        ...
+        return pulumi.get(self, "association_name")
 
     @property
     @pulumi.getter(name="automationTargetParameterName")
@@ -177,7 +177,7 @@ class Association(pulumi.CustomResource):
         """
         Specify the target for the association. This target is required for associations that use an `Automation` document and target resources by using rate controls.
         """
-        ...
+        return pulumi.get(self, "automation_target_parameter_name")
 
     @property
     @pulumi.getter(name="complianceSeverity")
@@ -185,7 +185,7 @@ class Association(pulumi.CustomResource):
         """
         The compliance severity for the association. Can be one of the following: `UNSPECIFIED`, `LOW`, `MEDIUM`, `HIGH` or `CRITICAL`
         """
-        ...
+        return pulumi.get(self, "compliance_severity")
 
     @property
     @pulumi.getter(name="documentVersion")
@@ -193,7 +193,7 @@ class Association(pulumi.CustomResource):
         """
         The document version you want to associate with the target(s). Can be a specific version or the default version.
         """
-        ...
+        return pulumi.get(self, "document_version")
 
     @property
     @pulumi.getter(name="instanceId")
@@ -201,7 +201,7 @@ class Association(pulumi.CustomResource):
         """
         The instance ID to apply an SSM document to. Use `targets` with key `InstanceIds` for document schema versions 2.0 and above.
         """
-        ...
+        return pulumi.get(self, "instance_id")
 
     @property
     @pulumi.getter(name="maxConcurrency")
@@ -209,7 +209,7 @@ class Association(pulumi.CustomResource):
         """
         The maximum number of targets allowed to run the association at the same time. You can specify a number, for example 10, or a percentage of the target set, for example 10%.
         """
-        ...
+        return pulumi.get(self, "max_concurrency")
 
     @property
     @pulumi.getter(name="maxErrors")
@@ -217,7 +217,7 @@ class Association(pulumi.CustomResource):
         """
         The number of errors that are allowed before the system stops sending requests to run the association on additional targets. You can specify a number, for example 10, or a percentage of the target set, for example 10%.
         """
-        ...
+        return pulumi.get(self, "max_errors")
 
     @property
     @pulumi.getter
@@ -225,7 +225,7 @@ class Association(pulumi.CustomResource):
         """
         The name of the SSM document to apply.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="outputLocation")
@@ -233,7 +233,7 @@ class Association(pulumi.CustomResource):
         """
         An output location block. Output Location is documented below.
         """
-        ...
+        return pulumi.get(self, "output_location")
 
     @property
     @pulumi.getter
@@ -241,7 +241,7 @@ class Association(pulumi.CustomResource):
         """
         A block of arbitrary string parameters to pass to the SSM document.
         """
-        ...
+        return pulumi.get(self, "parameters")
 
     @property
     @pulumi.getter(name="scheduleExpression")
@@ -249,7 +249,7 @@ class Association(pulumi.CustomResource):
         """
         A cron expression when the association will be applied to the target(s).
         """
-        ...
+        return pulumi.get(self, "schedule_expression")
 
     @property
     @pulumi.getter
@@ -257,7 +257,7 @@ class Association(pulumi.CustomResource):
         """
         A block containing the targets of the SSM association. Targets are documented below. AWS currently supports a maximum of 5 targets.
         """
-        ...
+        return pulumi.get(self, "targets")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

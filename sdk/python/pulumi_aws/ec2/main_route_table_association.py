@@ -112,7 +112,7 @@ class MainRouteTableAssociation(pulumi.CustomResource):
         """
         Used internally, see __Notes__ below
         """
-        ...
+        return pulumi.get(self, "original_route_table_id")
 
     @property
     @pulumi.getter(name="routeTableId")
@@ -121,7 +121,7 @@ class MainRouteTableAssociation(pulumi.CustomResource):
         The ID of the Route Table to set as the new
         main route table for the target VPC
         """
-        ...
+        return pulumi.get(self, "route_table_id")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -129,7 +129,7 @@ class MainRouteTableAssociation(pulumi.CustomResource):
         """
         The ID of the VPC whose main route table should be set
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -102,7 +102,7 @@ class ThingPrincipalAttachment(pulumi.CustomResource):
         """
         The AWS IoT Certificate ARN or Amazon Cognito Identity ID.
         """
-        ...
+        return pulumi.get(self, "principal")
 
     @property
     @pulumi.getter
@@ -110,7 +110,7 @@ class ThingPrincipalAttachment(pulumi.CustomResource):
         """
         The name of the thing.
         """
-        ...
+        return pulumi.get(self, "thing")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

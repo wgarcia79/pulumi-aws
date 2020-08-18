@@ -152,7 +152,7 @@ class AccountPasswordPolicy(pulumi.CustomResource):
         """
         Whether to allow users to change their own password
         """
-        ...
+        return pulumi.get(self, "allow_users_to_change_password")
 
     @property
     @pulumi.getter(name="expirePasswords")
@@ -162,7 +162,7 @@ class AccountPasswordPolicy(pulumi.CustomResource):
         Returns `true` if `max_password_age` contains a value greater than `0`.
         Returns `false` if it is `0` or _not present_.
         """
-        ...
+        return pulumi.get(self, "expire_passwords")
 
     @property
     @pulumi.getter(name="hardExpiry")
@@ -171,7 +171,7 @@ class AccountPasswordPolicy(pulumi.CustomResource):
         Whether users are prevented from setting a new password after their password has expired
         (i.e. require administrator reset)
         """
-        ...
+        return pulumi.get(self, "hard_expiry")
 
     @property
     @pulumi.getter(name="maxPasswordAge")
@@ -179,7 +179,7 @@ class AccountPasswordPolicy(pulumi.CustomResource):
         """
         The number of days that an user password is valid.
         """
-        ...
+        return pulumi.get(self, "max_password_age")
 
     @property
     @pulumi.getter(name="minimumPasswordLength")
@@ -187,7 +187,7 @@ class AccountPasswordPolicy(pulumi.CustomResource):
         """
         Minimum length to require for user passwords.
         """
-        ...
+        return pulumi.get(self, "minimum_password_length")
 
     @property
     @pulumi.getter(name="passwordReusePrevention")
@@ -195,7 +195,7 @@ class AccountPasswordPolicy(pulumi.CustomResource):
         """
         The number of previous passwords that users are prevented from reusing.
         """
-        ...
+        return pulumi.get(self, "password_reuse_prevention")
 
     @property
     @pulumi.getter(name="requireLowercaseCharacters")
@@ -203,7 +203,7 @@ class AccountPasswordPolicy(pulumi.CustomResource):
         """
         Whether to require lowercase characters for user passwords.
         """
-        ...
+        return pulumi.get(self, "require_lowercase_characters")
 
     @property
     @pulumi.getter(name="requireNumbers")
@@ -211,7 +211,7 @@ class AccountPasswordPolicy(pulumi.CustomResource):
         """
         Whether to require numbers for user passwords.
         """
-        ...
+        return pulumi.get(self, "require_numbers")
 
     @property
     @pulumi.getter(name="requireSymbols")
@@ -219,7 +219,7 @@ class AccountPasswordPolicy(pulumi.CustomResource):
         """
         Whether to require symbols for user passwords.
         """
-        ...
+        return pulumi.get(self, "require_symbols")
 
     @property
     @pulumi.getter(name="requireUppercaseCharacters")
@@ -227,7 +227,7 @@ class AccountPasswordPolicy(pulumi.CustomResource):
         """
         Whether to require uppercase characters for user passwords.
         """
-        ...
+        return pulumi.get(self, "require_uppercase_characters")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

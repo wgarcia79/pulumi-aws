@@ -119,7 +119,7 @@ class ProvisionedConcurrencyConfig(pulumi.CustomResource):
         """
         Name or Amazon Resource Name (ARN) of the Lambda Function.
         """
-        ...
+        return pulumi.get(self, "function_name")
 
     @property
     @pulumi.getter(name="provisionedConcurrentExecutions")
@@ -127,7 +127,7 @@ class ProvisionedConcurrencyConfig(pulumi.CustomResource):
         """
         Amount of capacity to allocate. Must be greater than or equal to `1`.
         """
-        ...
+        return pulumi.get(self, "provisioned_concurrent_executions")
 
     @property
     @pulumi.getter
@@ -135,7 +135,7 @@ class ProvisionedConcurrencyConfig(pulumi.CustomResource):
         """
         Lambda Function version or Lambda Alias name.
         """
-        ...
+        return pulumi.get(self, "qualifier")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

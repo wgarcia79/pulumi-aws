@@ -110,7 +110,7 @@ class ConditionalForwader(pulumi.CustomResource):
         """
         The id of directory.
         """
-        ...
+        return pulumi.get(self, "directory_id")
 
     @property
     @pulumi.getter(name="dnsIps")
@@ -118,7 +118,7 @@ class ConditionalForwader(pulumi.CustomResource):
         """
         A list of forwarder IP addresses.
         """
-        ...
+        return pulumi.get(self, "dns_ips")
 
     @property
     @pulumi.getter(name="remoteDomainName")
@@ -126,7 +126,7 @@ class ConditionalForwader(pulumi.CustomResource):
         """
         The fully qualified domain name of the remote domain for which forwarders will be used.
         """
-        ...
+        return pulumi.get(self, "remote_domain_name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

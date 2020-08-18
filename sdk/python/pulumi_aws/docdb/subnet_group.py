@@ -125,7 +125,7 @@ class SubnetGroup(pulumi.CustomResource):
         """
         The ARN of the docDB subnet group.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -133,7 +133,7 @@ class SubnetGroup(pulumi.CustomResource):
         """
         The description of the docDB subnet group. Defaults to "Managed by Pulumi".
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -141,7 +141,7 @@ class SubnetGroup(pulumi.CustomResource):
         """
         The name of the docDB subnet group. If omitted, this provider will assign a random, unique name.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="namePrefix")
@@ -149,7 +149,7 @@ class SubnetGroup(pulumi.CustomResource):
         """
         Creates a unique name beginning with the specified prefix. Conflicts with `name`.
         """
-        ...
+        return pulumi.get(self, "name_prefix")
 
     @property
     @pulumi.getter(name="subnetIds")
@@ -157,7 +157,7 @@ class SubnetGroup(pulumi.CustomResource):
         """
         A list of VPC subnet IDs.
         """
-        ...
+        return pulumi.get(self, "subnet_ids")
 
     @property
     @pulumi.getter
@@ -165,7 +165,7 @@ class SubnetGroup(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

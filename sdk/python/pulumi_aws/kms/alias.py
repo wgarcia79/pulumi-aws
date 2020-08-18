@@ -113,7 +113,7 @@ class Alias(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) of the key alias.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -121,7 +121,7 @@ class Alias(pulumi.CustomResource):
         """
         The display name of the alias. The name must start with the word "alias" followed by a forward slash (alias/)
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="namePrefix")
@@ -130,7 +130,7 @@ class Alias(pulumi.CustomResource):
         Creates an unique alias beginning with the specified prefix.
         The name must start with the word "alias" followed by a forward slash (alias/).  Conflicts with `name`.
         """
-        ...
+        return pulumi.get(self, "name_prefix")
 
     @property
     @pulumi.getter(name="targetKeyArn")
@@ -138,7 +138,7 @@ class Alias(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) of the target key identifier.
         """
-        ...
+        return pulumi.get(self, "target_key_arn")
 
     @property
     @pulumi.getter(name="targetKeyId")
@@ -146,7 +146,7 @@ class Alias(pulumi.CustomResource):
         """
         Identifier for the key for which the alias is for, can be either an ARN or key_id.
         """
-        ...
+        return pulumi.get(self, "target_key_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

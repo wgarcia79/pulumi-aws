@@ -134,7 +134,7 @@ class Member(pulumi.CustomResource):
         """
         AWS account ID for member account.
         """
-        ...
+        return pulumi.get(self, "account_id")
 
     @property
     @pulumi.getter(name="detectorId")
@@ -142,7 +142,7 @@ class Member(pulumi.CustomResource):
         """
         The detector ID of the GuardDuty account where you want to create member accounts.
         """
-        ...
+        return pulumi.get(self, "detector_id")
 
     @property
     @pulumi.getter(name="disableEmailNotification")
@@ -150,7 +150,7 @@ class Member(pulumi.CustomResource):
         """
         Boolean whether an email notification is sent to the accounts. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "disable_email_notification")
 
     @property
     @pulumi.getter
@@ -158,7 +158,7 @@ class Member(pulumi.CustomResource):
         """
         Email address for member account.
         """
-        ...
+        return pulumi.get(self, "email")
 
     @property
     @pulumi.getter(name="invitationMessage")
@@ -166,7 +166,7 @@ class Member(pulumi.CustomResource):
         """
         Message for invitation.
         """
-        ...
+        return pulumi.get(self, "invitation_message")
 
     @property
     @pulumi.getter
@@ -174,7 +174,7 @@ class Member(pulumi.CustomResource):
         """
         Boolean whether to invite the account to GuardDuty as a member. Defaults to `false`. To detect if an invitation needs to be (re-)sent, the this provider state value is `true` based on a `relationship_status` of `Disabled`, `Enabled`, `Invited`, or `EmailVerificationInProgress`.
         """
-        ...
+        return pulumi.get(self, "invite")
 
     @property
     @pulumi.getter(name="relationshipStatus")
@@ -182,7 +182,7 @@ class Member(pulumi.CustomResource):
         """
         The status of the relationship between the member account and its master account. More information can be found in [Amazon GuardDuty API Reference](https://docs.aws.amazon.com/guardduty/latest/ug/get-members.html).
         """
-        ...
+        return pulumi.get(self, "relationship_status")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

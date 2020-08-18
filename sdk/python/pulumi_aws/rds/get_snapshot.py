@@ -101,7 +101,7 @@ class GetSnapshotResult:
         """
         Specifies the allocated storage size in gigabytes (GB).
         """
-        ...
+        return pulumi.get(self, "allocated_storage")
 
     @property
     @pulumi.getter(name="availabilityZone")
@@ -109,12 +109,12 @@ class GetSnapshotResult:
         """
         Specifies the name of the Availability Zone the DB instance was located in at the time of the DB snapshot.
         """
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter(name="dbInstanceIdentifier")
     def db_instance_identifier(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "db_instance_identifier")
 
     @property
     @pulumi.getter(name="dbSnapshotArn")
@@ -122,12 +122,12 @@ class GetSnapshotResult:
         """
         The Amazon Resource Name (ARN) for the DB snapshot.
         """
-        ...
+        return pulumi.get(self, "db_snapshot_arn")
 
     @property
     @pulumi.getter(name="dbSnapshotIdentifier")
     def db_snapshot_identifier(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "db_snapshot_identifier")
 
     @property
     @pulumi.getter
@@ -135,7 +135,7 @@ class GetSnapshotResult:
         """
         Specifies whether the DB snapshot is encrypted.
         """
-        ...
+        return pulumi.get(self, "encrypted")
 
     @property
     @pulumi.getter
@@ -143,7 +143,7 @@ class GetSnapshotResult:
         """
         Specifies the name of the database engine.
         """
-        ...
+        return pulumi.get(self, "engine")
 
     @property
     @pulumi.getter(name="engineVersion")
@@ -151,7 +151,7 @@ class GetSnapshotResult:
         """
         Specifies the version of the database engine.
         """
-        ...
+        return pulumi.get(self, "engine_version")
 
     @property
     @pulumi.getter
@@ -159,17 +159,17 @@ class GetSnapshotResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="includePublic")
     def include_public(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "include_public")
 
     @property
     @pulumi.getter(name="includeShared")
     def include_shared(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "include_shared")
 
     @property
     @pulumi.getter
@@ -177,7 +177,7 @@ class GetSnapshotResult:
         """
         Specifies the Provisioned IOPS (I/O operations per second) value of the DB instance at the time of the snapshot.
         """
-        ...
+        return pulumi.get(self, "iops")
 
     @property
     @pulumi.getter(name="kmsKeyId")
@@ -185,7 +185,7 @@ class GetSnapshotResult:
         """
         The ARN for the KMS encryption key.
         """
-        ...
+        return pulumi.get(self, "kms_key_id")
 
     @property
     @pulumi.getter(name="licenseModel")
@@ -193,12 +193,12 @@ class GetSnapshotResult:
         """
         License model information for the restored DB instance.
         """
-        ...
+        return pulumi.get(self, "license_model")
 
     @property
     @pulumi.getter(name="mostRecent")
     def most_recent(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "most_recent")
 
     @property
     @pulumi.getter(name="optionGroupName")
@@ -206,12 +206,12 @@ class GetSnapshotResult:
         """
         Provides the option group name for the DB snapshot.
         """
-        ...
+        return pulumi.get(self, "option_group_name")
 
     @property
     @pulumi.getter
     def port(self) -> float:
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter(name="snapshotCreateTime")
@@ -219,12 +219,12 @@ class GetSnapshotResult:
         """
         Provides the time when the snapshot was taken, in Universal Coordinated Time (UTC).
         """
-        ...
+        return pulumi.get(self, "snapshot_create_time")
 
     @property
     @pulumi.getter(name="snapshotType")
     def snapshot_type(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "snapshot_type")
 
     @property
     @pulumi.getter(name="sourceDbSnapshotIdentifier")
@@ -232,7 +232,7 @@ class GetSnapshotResult:
         """
         The DB snapshot Arn that the DB snapshot was copied from. It only has value in case of cross customer or cross region copy.
         """
-        ...
+        return pulumi.get(self, "source_db_snapshot_identifier")
 
     @property
     @pulumi.getter(name="sourceRegion")
@@ -240,7 +240,7 @@ class GetSnapshotResult:
         """
         The region that the DB snapshot was created in or copied from.
         """
-        ...
+        return pulumi.get(self, "source_region")
 
     @property
     @pulumi.getter
@@ -248,7 +248,7 @@ class GetSnapshotResult:
         """
         Specifies the status of this DB snapshot.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter(name="storageType")
@@ -256,7 +256,7 @@ class GetSnapshotResult:
         """
         Specifies the storage type associated with DB snapshot.
         """
-        ...
+        return pulumi.get(self, "storage_type")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -264,7 +264,7 @@ class GetSnapshotResult:
         """
         Specifies the ID of the VPC associated with the DB snapshot.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
 
 

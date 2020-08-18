@@ -132,7 +132,7 @@ class EnvironmentEC2(pulumi.CustomResource):
         """
         The ARN of the environment.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="automaticStopTimeMinutes")
@@ -140,7 +140,7 @@ class EnvironmentEC2(pulumi.CustomResource):
         """
         The number of minutes until the running instance is shut down after the environment has last been used.
         """
-        ...
+        return pulumi.get(self, "automatic_stop_time_minutes")
 
     @property
     @pulumi.getter
@@ -148,7 +148,7 @@ class EnvironmentEC2(pulumi.CustomResource):
         """
         The description of the environment.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="instanceType")
@@ -156,7 +156,7 @@ class EnvironmentEC2(pulumi.CustomResource):
         """
         The type of instance to connect to the environment, e.g. `t2.micro`.
         """
-        ...
+        return pulumi.get(self, "instance_type")
 
     @property
     @pulumi.getter
@@ -164,7 +164,7 @@ class EnvironmentEC2(pulumi.CustomResource):
         """
         The name of the environment.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="ownerArn")
@@ -172,7 +172,7 @@ class EnvironmentEC2(pulumi.CustomResource):
         """
         The ARN of the environment owner. This can be ARN of any AWS IAM principal. Defaults to the environment's creator.
         """
-        ...
+        return pulumi.get(self, "owner_arn")
 
     @property
     @pulumi.getter(name="subnetId")
@@ -180,7 +180,7 @@ class EnvironmentEC2(pulumi.CustomResource):
         """
         The ID of the subnet in Amazon VPC that AWS Cloud9 will use to communicate with the Amazon EC2 instance.
         """
-        ...
+        return pulumi.get(self, "subnet_id")
 
     @property
     @pulumi.getter
@@ -188,7 +188,7 @@ class EnvironmentEC2(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -196,7 +196,7 @@ class EnvironmentEC2(pulumi.CustomResource):
         """
         The type of the environment (e.g. `ssh` or `ec2`)
         """
-        ...
+        return pulumi.get(self, "type")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

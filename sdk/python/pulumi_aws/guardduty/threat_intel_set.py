@@ -143,7 +143,7 @@ class ThreatIntelSet(pulumi.CustomResource):
         """
         Specifies whether GuardDuty is to start using the uploaded ThreatIntelSet.
         """
-        ...
+        return pulumi.get(self, "activate")
 
     @property
     @pulumi.getter
@@ -151,7 +151,7 @@ class ThreatIntelSet(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the GuardDuty ThreatIntelSet.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="detectorId")
@@ -159,7 +159,7 @@ class ThreatIntelSet(pulumi.CustomResource):
         """
         The detector ID of the GuardDuty.
         """
-        ...
+        return pulumi.get(self, "detector_id")
 
     @property
     @pulumi.getter
@@ -167,7 +167,7 @@ class ThreatIntelSet(pulumi.CustomResource):
         """
         The format of the file that contains the ThreatIntelSet. Valid values: `TXT` | `STIX` | `OTX_CSV` | `ALIEN_VAULT` | `PROOF_POINT` | `FIRE_EYE`
         """
-        ...
+        return pulumi.get(self, "format")
 
     @property
     @pulumi.getter
@@ -175,7 +175,7 @@ class ThreatIntelSet(pulumi.CustomResource):
         """
         The URI of the file that contains the ThreatIntelSet.
         """
-        ...
+        return pulumi.get(self, "location")
 
     @property
     @pulumi.getter
@@ -183,7 +183,7 @@ class ThreatIntelSet(pulumi.CustomResource):
         """
         The friendly name to identify the ThreatIntelSet.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -191,7 +191,7 @@ class ThreatIntelSet(pulumi.CustomResource):
         """
         Key-value map of resource tags.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

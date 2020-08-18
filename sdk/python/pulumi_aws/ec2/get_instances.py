@@ -49,7 +49,7 @@ class GetInstancesResult:
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetInstancesFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
@@ -57,7 +57,7 @@ class GetInstancesResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -65,17 +65,17 @@ class GetInstancesResult:
         """
         IDs of instances found through the filter
         """
-        ...
+        return pulumi.get(self, "ids")
 
     @property
     @pulumi.getter(name="instanceStateNames")
     def instance_state_names(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "instance_state_names")
 
     @property
     @pulumi.getter(name="instanceTags")
     def instance_tags(self) -> Mapping[str, str]:
-        ...
+        return pulumi.get(self, "instance_tags")
 
     @property
     @pulumi.getter(name="privateIps")
@@ -83,7 +83,7 @@ class GetInstancesResult:
         """
         Private IP addresses of instances found through the filter
         """
-        ...
+        return pulumi.get(self, "private_ips")
 
     @property
     @pulumi.getter(name="publicIps")
@@ -91,7 +91,7 @@ class GetInstancesResult:
         """
         Public IP addresses of instances found through the filter
         """
-        ...
+        return pulumi.get(self, "public_ips")
 
 
 

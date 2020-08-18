@@ -160,7 +160,7 @@ class EmailChannel(pulumi.CustomResource):
         """
         The application ID.
         """
-        ...
+        return pulumi.get(self, "application_id")
 
     @property
     @pulumi.getter
@@ -168,7 +168,7 @@ class EmailChannel(pulumi.CustomResource):
         """
         Whether the channel is enabled or disabled. Defaults to `true`.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="fromAddress")
@@ -176,7 +176,7 @@ class EmailChannel(pulumi.CustomResource):
         """
         The email address used to send emails from.
         """
-        ...
+        return pulumi.get(self, "from_address")
 
     @property
     @pulumi.getter
@@ -184,7 +184,7 @@ class EmailChannel(pulumi.CustomResource):
         """
         The ARN of an identity verified with SES.
         """
-        ...
+        return pulumi.get(self, "identity")
 
     @property
     @pulumi.getter(name="messagesPerSecond")
@@ -192,7 +192,7 @@ class EmailChannel(pulumi.CustomResource):
         """
         Messages per second that can be sent.
         """
-        ...
+        return pulumi.get(self, "messages_per_second")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -200,7 +200,7 @@ class EmailChannel(pulumi.CustomResource):
         """
         The ARN of an IAM Role used to submit events to Mobile Analytics' event ingestion service.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

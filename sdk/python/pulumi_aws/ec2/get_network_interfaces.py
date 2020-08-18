@@ -40,7 +40,7 @@ class GetNetworkInterfacesResult:
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetNetworkInterfacesFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
@@ -48,7 +48,7 @@ class GetNetworkInterfacesResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -56,12 +56,12 @@ class GetNetworkInterfacesResult:
         """
         A list of all the network interface ids found. This data source will fail if none are found.
         """
-        ...
+        return pulumi.get(self, "ids")
 
     @property
     @pulumi.getter
     def tags(self) -> Mapping[str, str]:
-        ...
+        return pulumi.get(self, "tags")
 
 
 

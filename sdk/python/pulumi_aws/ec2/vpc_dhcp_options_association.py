@@ -102,7 +102,7 @@ class VpcDhcpOptionsAssociation(pulumi.CustomResource):
         """
         The ID of the DHCP Options Set to associate to the VPC.
         """
-        ...
+        return pulumi.get(self, "dhcp_options_id")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -110,7 +110,7 @@ class VpcDhcpOptionsAssociation(pulumi.CustomResource):
         """
         The ID of the VPC to which we would like to associate a DHCP Options Set.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

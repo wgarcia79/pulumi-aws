@@ -30,7 +30,7 @@ class ChannelHlsIngest(dict):
         """
         A list of the ingest endpoints
         """
-        ...
+        return pulumi.get(self, "ingest_endpoints")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -60,7 +60,7 @@ class ChannelHlsIngestIngestEndpoint(dict):
         """
         The password
         """
-        ...
+        return pulumi.get(self, "password")
 
     @property
     @pulumi.getter
@@ -68,7 +68,7 @@ class ChannelHlsIngestIngestEndpoint(dict):
         """
         The URL
         """
-        ...
+        return pulumi.get(self, "url")
 
     @property
     @pulumi.getter
@@ -76,7 +76,7 @@ class ChannelHlsIngestIngestEndpoint(dict):
         """
         The username
         """
-        ...
+        return pulumi.get(self, "username")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

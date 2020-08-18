@@ -119,7 +119,7 @@ class SecurityGroup(pulumi.CustomResource):
         """
         The arn of the DB security group.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -127,7 +127,7 @@ class SecurityGroup(pulumi.CustomResource):
         """
         The description of the DB security group. Defaults to "Managed by Pulumi".
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -135,7 +135,7 @@ class SecurityGroup(pulumi.CustomResource):
         """
         A list of ingress rules.
         """
-        ...
+        return pulumi.get(self, "ingress")
 
     @property
     @pulumi.getter
@@ -143,7 +143,7 @@ class SecurityGroup(pulumi.CustomResource):
         """
         The name of the DB security group.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -151,7 +151,7 @@ class SecurityGroup(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

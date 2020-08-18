@@ -153,7 +153,7 @@ class Volume(pulumi.CustomResource):
         """
         The volume ARN (e.g. arn:aws:ec2:us-east-1:0123456789012:volume/vol-59fcb34e).
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="availabilityZone")
@@ -161,7 +161,7 @@ class Volume(pulumi.CustomResource):
         """
         The AZ where the EBS volume will exist.
         """
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter
@@ -169,7 +169,7 @@ class Volume(pulumi.CustomResource):
         """
         If true, the disk will be encrypted.
         """
-        ...
+        return pulumi.get(self, "encrypted")
 
     @property
     @pulumi.getter
@@ -177,7 +177,7 @@ class Volume(pulumi.CustomResource):
         """
         The amount of IOPS to provision for the disk.
         """
-        ...
+        return pulumi.get(self, "iops")
 
     @property
     @pulumi.getter(name="kmsKeyId")
@@ -185,7 +185,7 @@ class Volume(pulumi.CustomResource):
         """
         The ARN for the KMS encryption key. When specifying `kms_key_id`, `encrypted` needs to be set to true.
         """
-        ...
+        return pulumi.get(self, "kms_key_id")
 
     @property
     @pulumi.getter(name="multiAttachEnabled")
@@ -193,7 +193,7 @@ class Volume(pulumi.CustomResource):
         """
         Specifies whether to enable Amazon EBS Multi-Attach. Multi-Attach is supported exclusively on `io1` volumes.
         """
-        ...
+        return pulumi.get(self, "multi_attach_enabled")
 
     @property
     @pulumi.getter(name="outpostArn")
@@ -201,7 +201,7 @@ class Volume(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) of the Outpost.
         """
-        ...
+        return pulumi.get(self, "outpost_arn")
 
     @property
     @pulumi.getter
@@ -209,7 +209,7 @@ class Volume(pulumi.CustomResource):
         """
         The size of the drive in GiBs.
         """
-        ...
+        return pulumi.get(self, "size")
 
     @property
     @pulumi.getter(name="snapshotId")
@@ -217,7 +217,7 @@ class Volume(pulumi.CustomResource):
         """
         A snapshot to base the EBS volume off of.
         """
-        ...
+        return pulumi.get(self, "snapshot_id")
 
     @property
     @pulumi.getter
@@ -225,7 +225,7 @@ class Volume(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -233,7 +233,7 @@ class Volume(pulumi.CustomResource):
         """
         The type of EBS volume. Can be "standard", "gp2", "io1", "sc1" or "st1" (Default: "gp2").
         """
-        ...
+        return pulumi.get(self, "type")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

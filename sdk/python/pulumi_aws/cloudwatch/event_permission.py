@@ -128,7 +128,7 @@ class EventPermission(pulumi.CustomResource):
         """
         The action that you are enabling the other account to perform. Defaults to `events:PutEvents`.
         """
-        ...
+        return pulumi.get(self, "action")
 
     @property
     @pulumi.getter
@@ -136,7 +136,7 @@ class EventPermission(pulumi.CustomResource):
         """
         Configuration block to limit the event bus permissions you are granting to only accounts that fulfill the condition. Specified below.
         """
-        ...
+        return pulumi.get(self, "condition")
 
     @property
     @pulumi.getter
@@ -144,7 +144,7 @@ class EventPermission(pulumi.CustomResource):
         """
         The 12-digit AWS account ID that you are permitting to put events to your default event bus. Specify `*` to permit any account to put events to your default event bus, optionally limited by `condition`.
         """
-        ...
+        return pulumi.get(self, "principal")
 
     @property
     @pulumi.getter(name="statementId")
@@ -152,7 +152,7 @@ class EventPermission(pulumi.CustomResource):
         """
         An identifier string for the external account that you are granting permissions to.
         """
-        ...
+        return pulumi.get(self, "statement_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -120,7 +120,7 @@ class Attachment(pulumi.CustomResource):
         """
         The ARN of an ALB Target Group.
         """
-        ...
+        return pulumi.get(self, "alb_target_group_arn")
 
     @property
     @pulumi.getter(name="autoscalingGroupName")
@@ -128,7 +128,7 @@ class Attachment(pulumi.CustomResource):
         """
         Name of ASG to associate with the ELB.
         """
-        ...
+        return pulumi.get(self, "autoscaling_group_name")
 
     @property
     @pulumi.getter
@@ -136,7 +136,7 @@ class Attachment(pulumi.CustomResource):
         """
         The name of the ELB.
         """
-        ...
+        return pulumi.get(self, "elb")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -174,7 +174,7 @@ class Grant(pulumi.CustomResource):
         """
         A structure that you can use to allow certain operations in the grant only when the desired encryption context is present. For more information about encryption context, see [Encryption Context](http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html).
         """
-        ...
+        return pulumi.get(self, "constraints")
 
     @property
     @pulumi.getter(name="grantCreationTokens")
@@ -182,7 +182,7 @@ class Grant(pulumi.CustomResource):
         """
         A list of grant tokens to be used when creating the grant. See [Grant Tokens](http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token) for more information about grant tokens.
         """
-        ...
+        return pulumi.get(self, "grant_creation_tokens")
 
     @property
     @pulumi.getter(name="grantId")
@@ -190,7 +190,7 @@ class Grant(pulumi.CustomResource):
         """
         The unique identifier for the grant.
         """
-        ...
+        return pulumi.get(self, "grant_id")
 
     @property
     @pulumi.getter(name="grantToken")
@@ -198,7 +198,7 @@ class Grant(pulumi.CustomResource):
         """
         The grant token for the created grant. For more information, see [Grant Tokens](http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token).
         """
-        ...
+        return pulumi.get(self, "grant_token")
 
     @property
     @pulumi.getter(name="granteePrincipal")
@@ -206,7 +206,7 @@ class Grant(pulumi.CustomResource):
         """
         The principal that is given permission to perform the operations that the grant permits in ARN format. Note that due to eventual consistency issues around IAM principals, the state may not always be refreshed to reflect what is true in AWS.
         """
-        ...
+        return pulumi.get(self, "grantee_principal")
 
     @property
     @pulumi.getter(name="keyId")
@@ -214,7 +214,7 @@ class Grant(pulumi.CustomResource):
         """
         The unique identifier for the customer master key (CMK) that the grant applies to. Specify the key ID or the Amazon Resource Name (ARN) of the CMK. To specify a CMK in a different AWS account, you must use the key ARN.
         """
-        ...
+        return pulumi.get(self, "key_id")
 
     @property
     @pulumi.getter
@@ -222,7 +222,7 @@ class Grant(pulumi.CustomResource):
         """
         A friendly name for identifying the grant.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -230,7 +230,7 @@ class Grant(pulumi.CustomResource):
         """
         A list of operations that the grant permits. The permitted values are: `Decrypt, Encrypt, GenerateDataKey, GenerateDataKeyWithoutPlaintext, ReEncryptFrom, ReEncryptTo, CreateGrant, RetireGrant, DescribeKey`
         """
-        ...
+        return pulumi.get(self, "operations")
 
     @property
     @pulumi.getter(name="retireOnDelete")
@@ -239,7 +239,7 @@ class Grant(pulumi.CustomResource):
         -(Defaults to false, Forces new resources) If set to false (the default) the grants will be revoked upon deletion, and if set to true the grants will try to be retired upon deletion. Note that retiring grants requires special permissions, hence why we default to revoking grants.
         See [RetireGrant](https://docs.aws.amazon.com/kms/latest/APIReference/API_RetireGrant.html) for more information.
         """
-        ...
+        return pulumi.get(self, "retire_on_delete")
 
     @property
     @pulumi.getter(name="retiringPrincipal")
@@ -247,7 +247,7 @@ class Grant(pulumi.CustomResource):
         """
         The principal that is given permission to retire the grant by using RetireGrant operation in ARN format. Note that due to eventual consistency issues around IAM principals, the state may not always be refreshed to reflect what is true in AWS.
         """
-        ...
+        return pulumi.get(self, "retiring_principal")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

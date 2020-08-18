@@ -267,7 +267,7 @@ class Cluster(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the MSK Configuration to use in the cluster.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="bootstrapBrokers")
@@ -275,7 +275,7 @@ class Cluster(pulumi.CustomResource):
         """
         A comma separated list of one or more hostname:port pairs of kafka brokers suitable to boostrap connectivity to the kafka cluster. Only contains value if `client_broker` encryption in transit is set to `PLAINTEXT` or `TLS_PLAINTEXT`.
         """
-        ...
+        return pulumi.get(self, "bootstrap_brokers")
 
     @property
     @pulumi.getter(name="bootstrapBrokersTls")
@@ -283,7 +283,7 @@ class Cluster(pulumi.CustomResource):
         """
         A comma separated list of one or more DNS names (or IPs) and TLS port pairs kafka brokers suitable to boostrap connectivity to the kafka cluster. Only contains value if `client_broker` encryption in transit is set to `TLS_PLAINTEXT` or `TLS`.
         """
-        ...
+        return pulumi.get(self, "bootstrap_brokers_tls")
 
     @property
     @pulumi.getter(name="brokerNodeGroupInfo")
@@ -291,7 +291,7 @@ class Cluster(pulumi.CustomResource):
         """
         Configuration block for the broker nodes of the Kafka cluster.
         """
-        ...
+        return pulumi.get(self, "broker_node_group_info")
 
     @property
     @pulumi.getter(name="clientAuthentication")
@@ -299,7 +299,7 @@ class Cluster(pulumi.CustomResource):
         """
         Configuration block for specifying a client authentication. See below.
         """
-        ...
+        return pulumi.get(self, "client_authentication")
 
     @property
     @pulumi.getter(name="clusterName")
@@ -307,7 +307,7 @@ class Cluster(pulumi.CustomResource):
         """
         Name of the MSK cluster.
         """
-        ...
+        return pulumi.get(self, "cluster_name")
 
     @property
     @pulumi.getter(name="configurationInfo")
@@ -315,7 +315,7 @@ class Cluster(pulumi.CustomResource):
         """
         Configuration block for specifying a MSK Configuration to attach to Kafka brokers. See below.
         """
-        ...
+        return pulumi.get(self, "configuration_info")
 
     @property
     @pulumi.getter(name="currentVersion")
@@ -324,7 +324,7 @@ class Cluster(pulumi.CustomResource):
         Current version of the MSK Cluster used for updates, e.g. `K13V1IB3VIYZZH`
         * `encryption_info.0.encryption_at_rest_kms_key_arn` - The ARN of the KMS key used for encryption at rest of the broker data volumes.
         """
-        ...
+        return pulumi.get(self, "current_version")
 
     @property
     @pulumi.getter(name="encryptionInfo")
@@ -332,7 +332,7 @@ class Cluster(pulumi.CustomResource):
         """
         Configuration block for specifying encryption. See below.
         """
-        ...
+        return pulumi.get(self, "encryption_info")
 
     @property
     @pulumi.getter(name="enhancedMonitoring")
@@ -340,7 +340,7 @@ class Cluster(pulumi.CustomResource):
         """
         Specify the desired enhanced MSK CloudWatch monitoring level.  See [Monitoring Amazon MSK with Amazon CloudWatch](https://docs.aws.amazon.com/msk/latest/developerguide/monitoring.html)
         """
-        ...
+        return pulumi.get(self, "enhanced_monitoring")
 
     @property
     @pulumi.getter(name="kafkaVersion")
@@ -348,7 +348,7 @@ class Cluster(pulumi.CustomResource):
         """
         Specify the desired Kafka software version.
         """
-        ...
+        return pulumi.get(self, "kafka_version")
 
     @property
     @pulumi.getter(name="loggingInfo")
@@ -356,7 +356,7 @@ class Cluster(pulumi.CustomResource):
         """
         Configuration block for streaming broker logs to Cloudwatch/S3/Kinesis Firehose. See below.
         """
-        ...
+        return pulumi.get(self, "logging_info")
 
     @property
     @pulumi.getter(name="numberOfBrokerNodes")
@@ -364,7 +364,7 @@ class Cluster(pulumi.CustomResource):
         """
         The desired total number of broker nodes in the kafka cluster.  It must be a multiple of the number of specified client subnets.
         """
-        ...
+        return pulumi.get(self, "number_of_broker_nodes")
 
     @property
     @pulumi.getter(name="openMonitoring")
@@ -372,7 +372,7 @@ class Cluster(pulumi.CustomResource):
         """
         Configuration block for JMX and Node monitoring for the MSK cluster. See below.
         """
-        ...
+        return pulumi.get(self, "open_monitoring")
 
     @property
     @pulumi.getter
@@ -380,7 +380,7 @@ class Cluster(pulumi.CustomResource):
         """
         A map of tags to assign to the resource
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="zookeeperConnectString")
@@ -388,7 +388,7 @@ class Cluster(pulumi.CustomResource):
         """
         A comma separated list of one or more hostname:port pairs to use to connect to the Apache Zookeeper cluster.
         """
-        ...
+        return pulumi.get(self, "zookeeper_connect_string")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

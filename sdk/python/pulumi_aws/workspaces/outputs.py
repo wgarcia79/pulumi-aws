@@ -49,7 +49,7 @@ class DirectorySelfServicePermissions(dict):
         """
         Whether WorkSpaces directory users can change the compute type (bundle) for their workspace. Default `false`.
         """
-        ...
+        return pulumi.get(self, "change_compute_type")
 
     @property
     @pulumi.getter(name="increaseVolumeSize")
@@ -57,7 +57,7 @@ class DirectorySelfServicePermissions(dict):
         """
         Whether WorkSpaces directory users can increase the volume size of the drives on their workspace. Default `false`.
         """
-        ...
+        return pulumi.get(self, "increase_volume_size")
 
     @property
     @pulumi.getter(name="rebuildWorkspace")
@@ -65,7 +65,7 @@ class DirectorySelfServicePermissions(dict):
         """
         Whether WorkSpaces directory users can rebuild the operating system of a workspace to its original state. Default `false`.
         """
-        ...
+        return pulumi.get(self, "rebuild_workspace")
 
     @property
     @pulumi.getter(name="restartWorkspace")
@@ -73,7 +73,7 @@ class DirectorySelfServicePermissions(dict):
         """
         Whether WorkSpaces directory users can restart their workspace. Default `true`.
         """
-        ...
+        return pulumi.get(self, "restart_workspace")
 
     @property
     @pulumi.getter(name="switchRunningMode")
@@ -81,7 +81,7 @@ class DirectorySelfServicePermissions(dict):
         """
         Whether WorkSpaces directory users can switch the running mode of their workspace. Default `false`.
         """
-        ...
+        return pulumi.get(self, "switch_running_mode")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -106,7 +106,7 @@ class IpGroupRule(dict):
         """
         The IP address range, in CIDR notation, e.g. `10.0.0.0/16`
         """
-        ...
+        return pulumi.get(self, "source")
 
     @property
     @pulumi.getter
@@ -114,7 +114,7 @@ class IpGroupRule(dict):
         """
         The description.
         """
-        ...
+        return pulumi.get(self, "description")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -152,7 +152,7 @@ class WorkspaceWorkspaceProperties(dict):
         """
         The compute type. For more information, see [Amazon WorkSpaces Bundles](http://aws.amazon.com/workspaces/details/#Amazon_WorkSpaces_Bundles). Valid values are `VALUE`, `STANDARD`, `PERFORMANCE`, `POWER`, `GRAPHICS`, `POWERPRO` and `GRAPHICSPRO`.
         """
-        ...
+        return pulumi.get(self, "compute_type_name")
 
     @property
     @pulumi.getter(name="rootVolumeSizeGib")
@@ -160,7 +160,7 @@ class WorkspaceWorkspaceProperties(dict):
         """
         The size of the root volume.
         """
-        ...
+        return pulumi.get(self, "root_volume_size_gib")
 
     @property
     @pulumi.getter(name="runningMode")
@@ -168,7 +168,7 @@ class WorkspaceWorkspaceProperties(dict):
         """
         The running mode. For more information, see [Manage the WorkSpace Running Mode](https://docs.aws.amazon.com/workspaces/latest/adminguide/running-mode.html). Valid values are `AUTO_STOP` and `ALWAYS_ON`.
         """
-        ...
+        return pulumi.get(self, "running_mode")
 
     @property
     @pulumi.getter(name="runningModeAutoStopTimeoutInMinutes")
@@ -176,7 +176,7 @@ class WorkspaceWorkspaceProperties(dict):
         """
         The time after a user logs off when WorkSpaces are automatically stopped. Configured in 60-minute intervals.
         """
-        ...
+        return pulumi.get(self, "running_mode_auto_stop_timeout_in_minutes")
 
     @property
     @pulumi.getter(name="userVolumeSizeGib")
@@ -184,7 +184,7 @@ class WorkspaceWorkspaceProperties(dict):
         """
         The size of the user storage.
         """
-        ...
+        return pulumi.get(self, "user_volume_size_gib")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -205,7 +205,7 @@ class GetBundleComputeTypeResult(dict):
         """
         The name of the bundle. You cannot combine this parameter with `bundle_id`.
         """
-        ...
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type
@@ -223,7 +223,7 @@ class GetBundleRootStorageResult(dict):
         """
         The size of the user storage.
         """
-        ...
+        return pulumi.get(self, "capacity")
 
 
 @pulumi.output_type
@@ -241,6 +241,6 @@ class GetBundleUserStorageResult(dict):
         """
         The size of the user storage.
         """
-        ...
+        return pulumi.get(self, "capacity")
 
 

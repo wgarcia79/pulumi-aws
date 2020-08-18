@@ -69,7 +69,7 @@ class BudgetCostTypes(dict):
         """
         A boolean value whether to include credits in the cost budget. Defaults to `true`
         """
-        ...
+        return pulumi.get(self, "include_credit")
 
     @property
     @pulumi.getter(name="includeDiscount")
@@ -77,7 +77,7 @@ class BudgetCostTypes(dict):
         """
         Specifies whether a budget includes discounts. Defaults to `true`
         """
-        ...
+        return pulumi.get(self, "include_discount")
 
     @property
     @pulumi.getter(name="includeOtherSubscription")
@@ -85,7 +85,7 @@ class BudgetCostTypes(dict):
         """
         A boolean value whether to include other subscription costs in the cost budget. Defaults to `true`
         """
-        ...
+        return pulumi.get(self, "include_other_subscription")
 
     @property
     @pulumi.getter(name="includeRecurring")
@@ -93,7 +93,7 @@ class BudgetCostTypes(dict):
         """
         A boolean value whether to include recurring costs in the cost budget. Defaults to `true`
         """
-        ...
+        return pulumi.get(self, "include_recurring")
 
     @property
     @pulumi.getter(name="includeRefund")
@@ -101,7 +101,7 @@ class BudgetCostTypes(dict):
         """
         A boolean value whether to include refunds in the cost budget. Defaults to `true`
         """
-        ...
+        return pulumi.get(self, "include_refund")
 
     @property
     @pulumi.getter(name="includeSubscription")
@@ -109,7 +109,7 @@ class BudgetCostTypes(dict):
         """
         A boolean value whether to include subscriptions in the cost budget. Defaults to `true`
         """
-        ...
+        return pulumi.get(self, "include_subscription")
 
     @property
     @pulumi.getter(name="includeSupport")
@@ -117,7 +117,7 @@ class BudgetCostTypes(dict):
         """
         A boolean value whether to include support costs in the cost budget. Defaults to `true`
         """
-        ...
+        return pulumi.get(self, "include_support")
 
     @property
     @pulumi.getter(name="includeTax")
@@ -125,7 +125,7 @@ class BudgetCostTypes(dict):
         """
         A boolean value whether to include tax in the cost budget. Defaults to `true`
         """
-        ...
+        return pulumi.get(self, "include_tax")
 
     @property
     @pulumi.getter(name="includeUpfront")
@@ -133,7 +133,7 @@ class BudgetCostTypes(dict):
         """
         A boolean value whether to include upfront costs in the cost budget. Defaults to `true`
         """
-        ...
+        return pulumi.get(self, "include_upfront")
 
     @property
     @pulumi.getter(name="useAmortized")
@@ -141,7 +141,7 @@ class BudgetCostTypes(dict):
         """
         Specifies whether a budget uses the amortized rate. Defaults to `false`
         """
-        ...
+        return pulumi.get(self, "use_amortized")
 
     @property
     @pulumi.getter(name="useBlended")
@@ -149,7 +149,7 @@ class BudgetCostTypes(dict):
         """
         A boolean value whether to use blended costs in the cost budget. Defaults to `false`
         """
-        ...
+        return pulumi.get(self, "use_blended")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -187,7 +187,7 @@ class BudgetNotification(dict):
         """
         (Required) Comparison operator to use to evaluate the condition. Can be `LESS_THAN`, `EQUAL_TO` or `GREATER_THAN`.
         """
-        ...
+        return pulumi.get(self, "comparison_operator")
 
     @property
     @pulumi.getter(name="notificationType")
@@ -195,7 +195,7 @@ class BudgetNotification(dict):
         """
         (Required) What kind of budget value to notify on. Can be `ACTUAL` or `FORECASTED`
         """
-        ...
+        return pulumi.get(self, "notification_type")
 
     @property
     @pulumi.getter
@@ -203,7 +203,7 @@ class BudgetNotification(dict):
         """
         (Required) Threshold when the notification should be sent.
         """
-        ...
+        return pulumi.get(self, "threshold")
 
     @property
     @pulumi.getter(name="thresholdType")
@@ -211,7 +211,7 @@ class BudgetNotification(dict):
         """
         (Required) What kind of threshold is defined. Can be `PERCENTAGE` OR `ABSOLUTE_VALUE`.
         """
-        ...
+        return pulumi.get(self, "threshold_type")
 
     @property
     @pulumi.getter(name="subscriberEmailAddresses")
@@ -219,7 +219,7 @@ class BudgetNotification(dict):
         """
         (Optional) E-Mail addresses to notify. Either this or `subscriber_sns_topic_arns` is required.
         """
-        ...
+        return pulumi.get(self, "subscriber_email_addresses")
 
     @property
     @pulumi.getter(name="subscriberSnsTopicArns")
@@ -227,7 +227,7 @@ class BudgetNotification(dict):
         """
         (Optional) SNS topics to notify. Either this or `subscriber_email_addresses` is required.
         """
-        ...
+        return pulumi.get(self, "subscriber_sns_topic_arns")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

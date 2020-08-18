@@ -137,7 +137,7 @@ class Account(pulumi.CustomResource):
         See more [in AWS Docs](https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-stage-settings.html#how-to-stage-settings-console).
         Logging & monitoring can be enabled/disabled and otherwise tuned on the API Gateway Stage level.
         """
-        ...
+        return pulumi.get(self, "cloudwatch_role_arn")
 
     @property
     @pulumi.getter(name="throttleSettings")
@@ -145,7 +145,7 @@ class Account(pulumi.CustomResource):
         """
         Account-Level throttle settings. See exported fields below.
         """
-        ...
+        return pulumi.get(self, "throttle_settings")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

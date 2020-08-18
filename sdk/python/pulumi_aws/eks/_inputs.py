@@ -38,11 +38,11 @@ class ClusterCertificateAuthorityArgs:
         """
         The base64 encoded certificate data required to communicate with your cluster. Add this to the `certificate-authority-data` section of the `kubeconfig` file for your cluster.
         """
-        ...
+        return pulumi.get(self, "data")
 
     @data.setter
     def data(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "data", value)
 
 
 @pulumi.input_type
@@ -63,11 +63,11 @@ class ClusterEncryptionConfigArgs:
         """
         Configuration block with provider for encryption. Detailed below.
         """
-        ...
+        return pulumi.get(self, "provider")
 
     @provider.setter
     def provider(self, value: pulumi.Input['ClusterEncryptionConfigProviderArgs']):
-        ...
+        pulumi.set(self, "provider", value)
 
     @property
     @pulumi.getter
@@ -75,11 +75,11 @@ class ClusterEncryptionConfigArgs:
         """
         List of strings with resources to be encrypted. Valid values: `secrets`
         """
-        ...
+        return pulumi.get(self, "resources")
 
     @resources.setter
     def resources(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "resources", value)
 
 
 @pulumi.input_type
@@ -97,11 +97,11 @@ class ClusterEncryptionConfigProviderArgs:
         """
         Amazon Resource Name (ARN) of the Key Management Service (KMS) customer master key (CMK). The CMK must be symmetric, created in the same region as the cluster, and if the CMK was created in a different account, the user must have access to the CMK. For more information, see [Allowing Users in Other Accounts to Use a CMK in the AWS Key Management Service Developer Guide](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html).
         """
-        ...
+        return pulumi.get(self, "key_arn")
 
     @key_arn.setter
     def key_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "key_arn", value)
 
 
 @pulumi.input_type
@@ -120,11 +120,11 @@ class ClusterIdentityArgs:
         """
         Nested attribute containing [OpenID Connect](https://openid.net/connect/) identity provider information for the cluster.
         """
-        ...
+        return pulumi.get(self, "oidcs")
 
     @oidcs.setter
     def oidcs(self, value: Optional[pulumi.Input[List[pulumi.Input['ClusterIdentityOidcArgs']]]]):
-        ...
+        pulumi.set(self, "oidcs", value)
 
 
 @pulumi.input_type
@@ -143,11 +143,11 @@ class ClusterIdentityOidcArgs:
         """
         Issuer URL for the OpenID Connect identity provider.
         """
-        ...
+        return pulumi.get(self, "issuer")
 
     @issuer.setter
     def issuer(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "issuer", value)
 
 
 @pulumi.input_type
@@ -189,11 +189,11 @@ class ClusterVpcConfigArgs:
         """
         List of subnet IDs. Must be in at least two different availability zones. Amazon EKS creates cross-account elastic network interfaces in these subnets to allow communication between your worker nodes and the Kubernetes control plane.
         """
-        ...
+        return pulumi.get(self, "subnet_ids")
 
     @subnet_ids.setter
     def subnet_ids(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "subnet_ids", value)
 
     @property
     @pulumi.getter(name="clusterSecurityGroupId")
@@ -201,11 +201,11 @@ class ClusterVpcConfigArgs:
         """
         The cluster security group that was created by Amazon EKS for the cluster.
         """
-        ...
+        return pulumi.get(self, "cluster_security_group_id")
 
     @cluster_security_group_id.setter
     def cluster_security_group_id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "cluster_security_group_id", value)
 
     @property
     @pulumi.getter(name="endpointPrivateAccess")
@@ -213,11 +213,11 @@ class ClusterVpcConfigArgs:
         """
         Indicates whether or not the Amazon EKS private API server endpoint is enabled. Default is `false`.
         """
-        ...
+        return pulumi.get(self, "endpoint_private_access")
 
     @endpoint_private_access.setter
     def endpoint_private_access(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "endpoint_private_access", value)
 
     @property
     @pulumi.getter(name="endpointPublicAccess")
@@ -225,11 +225,11 @@ class ClusterVpcConfigArgs:
         """
         Indicates whether or not the Amazon EKS public API server endpoint is enabled. Default is `true`.
         """
-        ...
+        return pulumi.get(self, "endpoint_public_access")
 
     @endpoint_public_access.setter
     def endpoint_public_access(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "endpoint_public_access", value)
 
     @property
     @pulumi.getter(name="publicAccessCidrs")
@@ -237,11 +237,11 @@ class ClusterVpcConfigArgs:
         """
         List of CIDR blocks. Indicates which CIDR blocks can access the Amazon EKS public API server endpoint when enabled. EKS defaults this to a list with `0.0.0.0/0`. This provider will only perform drift detection of its value when present in a configuration.
         """
-        ...
+        return pulumi.get(self, "public_access_cidrs")
 
     @public_access_cidrs.setter
     def public_access_cidrs(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "public_access_cidrs", value)
 
     @property
     @pulumi.getter(name="securityGroupIds")
@@ -249,11 +249,11 @@ class ClusterVpcConfigArgs:
         """
         List of security group IDs for the cross-account elastic network interfaces that Amazon EKS creates to use to allow communication between your worker nodes and the Kubernetes control plane.
         """
-        ...
+        return pulumi.get(self, "security_group_ids")
 
     @security_group_ids.setter
     def security_group_ids(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "security_group_ids", value)
 
     @property
     @pulumi.getter(name="vpcId")
@@ -261,11 +261,11 @@ class ClusterVpcConfigArgs:
         """
         The VPC associated with your cluster.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     @vpc_id.setter
     def vpc_id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "vpc_id", value)
 
 
 @pulumi.input_type
@@ -287,11 +287,11 @@ class FargateProfileSelectorArgs:
         """
         Kubernetes namespace for selection.
         """
-        ...
+        return pulumi.get(self, "namespace")
 
     @namespace.setter
     def namespace(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -299,11 +299,11 @@ class FargateProfileSelectorArgs:
         """
         Key-value map of Kubernetes labels for selection.
         """
-        ...
+        return pulumi.get(self, "labels")
 
     @labels.setter
     def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "labels", value)
 
 
 @pulumi.input_type
@@ -326,11 +326,11 @@ class NodeGroupRemoteAccessArgs:
         """
         EC2 Key Pair name that provides access for SSH communication with the worker nodes in the EKS Node Group. If you specify this configuration, but do not specify `source_security_group_ids` when you create an EKS Node Group, port 22 on the worker nodes is opened to the Internet (0.0.0.0/0).
         """
-        ...
+        return pulumi.get(self, "ec2_ssh_key")
 
     @ec2_ssh_key.setter
     def ec2_ssh_key(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "ec2_ssh_key", value)
 
     @property
     @pulumi.getter(name="sourceSecurityGroupIds")
@@ -338,11 +338,11 @@ class NodeGroupRemoteAccessArgs:
         """
         Set of EC2 Security Group IDs to allow SSH access (port 22) from on the worker nodes. If you specify `ec2_ssh_key`, but do not specify this configuration when you create an EKS Node Group, port 22 on the worker nodes is opened to the Internet (0.0.0.0/0).
         """
-        ...
+        return pulumi.get(self, "source_security_group_ids")
 
     @source_security_group_ids.setter
     def source_security_group_ids(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "source_security_group_ids", value)
 
 
 @pulumi.input_type
@@ -365,11 +365,11 @@ class NodeGroupResourceArgs:
         """
         List of objects containing information about AutoScaling Groups.
         """
-        ...
+        return pulumi.get(self, "autoscaling_groups")
 
     @autoscaling_groups.setter
     def autoscaling_groups(self, value: Optional[pulumi.Input[List[pulumi.Input['NodeGroupResourceAutoscalingGroupArgs']]]]):
-        ...
+        pulumi.set(self, "autoscaling_groups", value)
 
     @property
     @pulumi.getter(name="remoteAccessSecurityGroupId")
@@ -377,11 +377,11 @@ class NodeGroupResourceArgs:
         """
         Identifier of the remote access EC2 Security Group.
         """
-        ...
+        return pulumi.get(self, "remote_access_security_group_id")
 
     @remote_access_security_group_id.setter
     def remote_access_security_group_id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "remote_access_security_group_id", value)
 
 
 @pulumi.input_type
@@ -400,11 +400,11 @@ class NodeGroupResourceAutoscalingGroupArgs:
         """
         Name of the AutoScaling Group.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
@@ -428,11 +428,11 @@ class NodeGroupScalingConfigArgs:
         """
         Desired number of worker nodes.
         """
-        ...
+        return pulumi.get(self, "desired_size")
 
     @desired_size.setter
     def desired_size(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "desired_size", value)
 
     @property
     @pulumi.getter(name="maxSize")
@@ -440,11 +440,11 @@ class NodeGroupScalingConfigArgs:
         """
         Maximum number of worker nodes.
         """
-        ...
+        return pulumi.get(self, "max_size")
 
     @max_size.setter
     def max_size(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "max_size", value)
 
     @property
     @pulumi.getter(name="minSize")
@@ -452,10 +452,10 @@ class NodeGroupScalingConfigArgs:
         """
         Minimum number of worker nodes.
         """
-        ...
+        return pulumi.get(self, "min_size")
 
     @min_size.setter
     def min_size(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "min_size", value)
 
 

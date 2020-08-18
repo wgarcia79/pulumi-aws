@@ -36,17 +36,17 @@ class ClusterNode(dict):
     @property
     @pulumi.getter
     def address(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "address")
 
     @property
     @pulumi.getter(name="availabilityZone")
     def availability_zone(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -54,7 +54,7 @@ class ClusterNode(dict):
         """
         The port used by the configuration endpoint
         """
-        ...
+        return pulumi.get(self, "port")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -76,7 +76,7 @@ class ClusterServerSideEncryption(dict):
         """
         Whether to enable encryption at rest. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -100,7 +100,7 @@ class ParameterGroupParameter(dict):
         """
         The name of the parameter.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -108,7 +108,7 @@ class ParameterGroupParameter(dict):
         """
         The value for the parameter.
         """
-        ...
+        return pulumi.get(self, "value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -35,7 +35,7 @@ class NotificationRuleTarget(dict):
         """
         The ARN of notification rule target. For example, a SNS Topic ARN.
         """
-        ...
+        return pulumi.get(self, "address")
 
     @property
     @pulumi.getter
@@ -43,7 +43,7 @@ class NotificationRuleTarget(dict):
         """
         The status of the notification rule. Possible values are `ENABLED` and `DISABLED`, default is `ENABLED`.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
@@ -51,7 +51,7 @@ class NotificationRuleTarget(dict):
         """
         The type of the notification target. Default value is `SNS`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

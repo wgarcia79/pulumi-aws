@@ -160,7 +160,7 @@ class Route(pulumi.CustomResource):
         """
         The API identifier.
         """
-        ...
+        return pulumi.get(self, "api_id")
 
     @property
     @pulumi.getter(name="apiKeyRequired")
@@ -168,7 +168,7 @@ class Route(pulumi.CustomResource):
         """
         Boolean whether an API key is required for the route. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "api_key_required")
 
     @property
     @pulumi.getter(name="authorizationScopes")
@@ -176,7 +176,7 @@ class Route(pulumi.CustomResource):
         """
         The authorization scopes supported by this route. The scopes are used with a JWT authorizer to authorize the method invocation.
         """
-        ...
+        return pulumi.get(self, "authorization_scopes")
 
     @property
     @pulumi.getter(name="authorizationType")
@@ -187,7 +187,7 @@ class Route(pulumi.CustomResource):
         For HTTP APIs, valid values are `NONE` for open access, or `JWT` for using JSON Web Tokens.
         Defaults to `NONE`.
         """
-        ...
+        return pulumi.get(self, "authorization_type")
 
     @property
     @pulumi.getter(name="authorizerId")
@@ -195,7 +195,7 @@ class Route(pulumi.CustomResource):
         """
         The identifier of the `apigatewayv2.Authorizer` resource to be associated with this route, if the authorizationType is `CUSTOM`.
         """
-        ...
+        return pulumi.get(self, "authorizer_id")
 
     @property
     @pulumi.getter(name="modelSelectionExpression")
@@ -203,7 +203,7 @@ class Route(pulumi.CustomResource):
         """
         The [model selection expression](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-model-selection-expressions) for the route.
         """
-        ...
+        return pulumi.get(self, "model_selection_expression")
 
     @property
     @pulumi.getter(name="operationName")
@@ -211,7 +211,7 @@ class Route(pulumi.CustomResource):
         """
         The operation name for the route.
         """
-        ...
+        return pulumi.get(self, "operation_name")
 
     @property
     @pulumi.getter(name="requestModels")
@@ -219,7 +219,7 @@ class Route(pulumi.CustomResource):
         """
         The request models for the route.
         """
-        ...
+        return pulumi.get(self, "request_models")
 
     @property
     @pulumi.getter(name="routeKey")
@@ -227,7 +227,7 @@ class Route(pulumi.CustomResource):
         """
         The route key for the route.
         """
-        ...
+        return pulumi.get(self, "route_key")
 
     @property
     @pulumi.getter(name="routeResponseSelectionExpression")
@@ -235,7 +235,7 @@ class Route(pulumi.CustomResource):
         """
         The [route response selection expression](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-route-response-selection-expressions) for the route.
         """
-        ...
+        return pulumi.get(self, "route_response_selection_expression")
 
     @property
     @pulumi.getter
@@ -243,7 +243,7 @@ class Route(pulumi.CustomResource):
         """
         The target for the route.
         """
-        ...
+        return pulumi.get(self, "target")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

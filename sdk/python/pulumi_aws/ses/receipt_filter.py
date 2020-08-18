@@ -108,7 +108,7 @@ class ReceiptFilter(pulumi.CustomResource):
         """
         The SES receipt filter ARN.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -116,7 +116,7 @@ class ReceiptFilter(pulumi.CustomResource):
         """
         The IP address or address range to filter, in CIDR notation
         """
-        ...
+        return pulumi.get(self, "cidr")
 
     @property
     @pulumi.getter
@@ -124,7 +124,7 @@ class ReceiptFilter(pulumi.CustomResource):
         """
         The name of the filter
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -132,7 +132,7 @@ class ReceiptFilter(pulumi.CustomResource):
         """
         Block or Allow
         """
-        ...
+        return pulumi.get(self, "policy")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

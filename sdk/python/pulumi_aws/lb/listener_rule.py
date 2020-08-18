@@ -238,7 +238,7 @@ class ListenerRule(pulumi.CustomResource):
         """
         An Action block. Action blocks are documented below.
         """
-        ...
+        return pulumi.get(self, "actions")
 
     @property
     @pulumi.getter
@@ -246,7 +246,7 @@ class ListenerRule(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) of the target group.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -254,7 +254,7 @@ class ListenerRule(pulumi.CustomResource):
         """
         A Condition block. Multiple condition blocks of different types can be set and all must be satisfied for the rule to match. Condition blocks are documented below.
         """
-        ...
+        return pulumi.get(self, "conditions")
 
     @property
     @pulumi.getter(name="listenerArn")
@@ -262,7 +262,7 @@ class ListenerRule(pulumi.CustomResource):
         """
         The ARN of the listener to which to attach the rule.
         """
-        ...
+        return pulumi.get(self, "listener_arn")
 
     @property
     @pulumi.getter
@@ -270,7 +270,7 @@ class ListenerRule(pulumi.CustomResource):
         """
         The priority for the rule between `1` and `50000`. Leaving it unset will automatically set the rule with next available priority after currently existing highest rule. A listener can't have multiple rules with the same priority.
         """
-        ...
+        return pulumi.get(self, "priority")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

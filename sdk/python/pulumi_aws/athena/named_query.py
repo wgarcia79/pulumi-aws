@@ -132,7 +132,7 @@ class NamedQuery(pulumi.CustomResource):
         """
         The database to which the query belongs.
         """
-        ...
+        return pulumi.get(self, "database")
 
     @property
     @pulumi.getter
@@ -140,7 +140,7 @@ class NamedQuery(pulumi.CustomResource):
         """
         A brief explanation of the query. Maximum length of 1024.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -148,7 +148,7 @@ class NamedQuery(pulumi.CustomResource):
         """
         The plain language name for the query. Maximum length of 128.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -156,7 +156,7 @@ class NamedQuery(pulumi.CustomResource):
         """
         The text of the query itself. In other words, all query statements. Maximum length of 262144.
         """
-        ...
+        return pulumi.get(self, "query")
 
     @property
     @pulumi.getter
@@ -164,7 +164,7 @@ class NamedQuery(pulumi.CustomResource):
         """
         The workgroup to which the query belongs. Defaults to `primary`
         """
-        ...
+        return pulumi.get(self, "workgroup")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

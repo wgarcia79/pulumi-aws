@@ -42,7 +42,7 @@ class AccessPointPosixUser(dict):
         """
         The POSIX group ID used for all file system operations using this access point.
         """
-        ...
+        return pulumi.get(self, "gid")
 
     @property
     @pulumi.getter
@@ -50,7 +50,7 @@ class AccessPointPosixUser(dict):
         """
         The POSIX user ID used for all file system operations using this access point.
         """
-        ...
+        return pulumi.get(self, "uid")
 
     @property
     @pulumi.getter(name="secondaryGids")
@@ -58,7 +58,7 @@ class AccessPointPosixUser(dict):
         """
         Secondary POSIX group IDs used for all file system operations using this access point.
         """
-        ...
+        return pulumi.get(self, "secondary_gids")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -84,7 +84,7 @@ class AccessPointRootDirectory(dict):
         """
         Specifies the POSIX IDs and permissions to apply to the access point's Root Directory. See Creation Info below.
         """
-        ...
+        return pulumi.get(self, "creation_info")
 
     @property
     @pulumi.getter
@@ -92,7 +92,7 @@ class AccessPointRootDirectory(dict):
         """
         Specifies the path on the EFS file system to expose as the root directory to NFS clients using the access point to access the EFS file system. A path can have up to four subdirectories. If the specified path does not exist, you are required to provide `creation_info`.
         """
-        ...
+        return pulumi.get(self, "path")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -119,7 +119,7 @@ class AccessPointRootDirectoryCreationInfo(dict):
         """
         Specifies the POSIX group ID to apply to the `root_directory`.
         """
-        ...
+        return pulumi.get(self, "owner_gid")
 
     @property
     @pulumi.getter(name="ownerUid")
@@ -127,7 +127,7 @@ class AccessPointRootDirectoryCreationInfo(dict):
         """
         Specifies the POSIX user ID to apply to the `root_directory`.
         """
-        ...
+        return pulumi.get(self, "owner_uid")
 
     @property
     @pulumi.getter
@@ -135,7 +135,7 @@ class AccessPointRootDirectoryCreationInfo(dict):
         """
         Specifies the POSIX permissions to apply to the RootDirectory, in the format of an octal number representing the file's mode bits.
         """
-        ...
+        return pulumi.get(self, "permissions")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -156,7 +156,7 @@ class FileSystemLifecyclePolicy(dict):
         """
         Indicates how long it takes to transition files to the IA storage class. Valid values: `AFTER_7_DAYS`, `AFTER_14_DAYS`, `AFTER_30_DAYS`, `AFTER_60_DAYS`, or `AFTER_90_DAYS`.
         """
-        ...
+        return pulumi.get(self, "transition_to_ia")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -184,7 +184,7 @@ class GetAccessPointPosixUserResult(dict):
         """
         Group ID
         """
-        ...
+        return pulumi.get(self, "gid")
 
     @property
     @pulumi.getter(name="secondaryGids")
@@ -192,7 +192,7 @@ class GetAccessPointPosixUserResult(dict):
         """
         Secondary group IDs
         """
-        ...
+        return pulumi.get(self, "secondary_gids")
 
     @property
     @pulumi.getter
@@ -201,7 +201,7 @@ class GetAccessPointPosixUserResult(dict):
         User Id
         * `root_directory`- Single element list containing information on the directory on the Amazon EFS file system that the access point provides access to.
         """
-        ...
+        return pulumi.get(self, "uid")
 
 
 @pulumi.output_type
@@ -222,7 +222,7 @@ class GetAccessPointRootDirectoryResult(dict):
         """
         Single element list containing information on the creation permissions of the directory
         """
-        ...
+        return pulumi.get(self, "creation_infos")
 
     @property
     @pulumi.getter
@@ -230,7 +230,7 @@ class GetAccessPointRootDirectoryResult(dict):
         """
         Path exposed as the root directory
         """
-        ...
+        return pulumi.get(self, "path")
 
 
 @pulumi.output_type
@@ -254,7 +254,7 @@ class GetAccessPointRootDirectoryCreationInfoResult(dict):
         """
         POSIX owner group ID
         """
-        ...
+        return pulumi.get(self, "owner_gid")
 
     @property
     @pulumi.getter(name="ownerUid")
@@ -262,7 +262,7 @@ class GetAccessPointRootDirectoryCreationInfoResult(dict):
         """
         POSIX owner user ID
         """
-        ...
+        return pulumi.get(self, "owner_uid")
 
     @property
     @pulumi.getter
@@ -270,7 +270,7 @@ class GetAccessPointRootDirectoryCreationInfoResult(dict):
         """
         POSIX permissions mode
         """
-        ...
+        return pulumi.get(self, "permissions")
 
 
 @pulumi.output_type
@@ -282,6 +282,6 @@ class GetFileSystemLifecyclePolicyResult(dict):
     @property
     @pulumi.getter(name="transitionToIa")
     def transition_to_ia(self) -> str:
-        ...
+        return pulumi.get(self, "transition_to_ia")
 
 

@@ -130,7 +130,7 @@ class GameSessionQueue(pulumi.CustomResource):
         """
         Game Session Queue ARN.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -138,7 +138,7 @@ class GameSessionQueue(pulumi.CustomResource):
         """
         List of fleet/alias ARNs used by session queue for placing game sessions.
         """
-        ...
+        return pulumi.get(self, "destinations")
 
     @property
     @pulumi.getter
@@ -146,7 +146,7 @@ class GameSessionQueue(pulumi.CustomResource):
         """
         Name of the session queue.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="playerLatencyPolicies")
@@ -154,7 +154,7 @@ class GameSessionQueue(pulumi.CustomResource):
         """
         One or more policies used to choose fleet based on player latency. See below.
         """
-        ...
+        return pulumi.get(self, "player_latency_policies")
 
     @property
     @pulumi.getter
@@ -162,7 +162,7 @@ class GameSessionQueue(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="timeoutInSeconds")
@@ -170,7 +170,7 @@ class GameSessionQueue(pulumi.CustomResource):
         """
         Maximum time a game session request can remain in the queue.
         """
-        ...
+        return pulumi.get(self, "timeout_in_seconds")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

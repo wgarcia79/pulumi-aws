@@ -170,7 +170,7 @@ class HostedPrivateVirtualInterface(pulumi.CustomResource):
         """
         The address family for the BGP peer. `ipv4 ` or `ipv6`.
         """
-        ...
+        return pulumi.get(self, "address_family")
 
     @property
     @pulumi.getter(name="amazonAddress")
@@ -178,12 +178,12 @@ class HostedPrivateVirtualInterface(pulumi.CustomResource):
         """
         The IPv4 CIDR address to use to send traffic to Amazon. Required for IPv4 BGP peers.
         """
-        ...
+        return pulumi.get(self, "amazon_address")
 
     @property
     @pulumi.getter(name="amazonSideAsn")
     def amazon_side_asn(self) -> str:
-        ...
+        return pulumi.get(self, "amazon_side_asn")
 
     @property
     @pulumi.getter
@@ -191,7 +191,7 @@ class HostedPrivateVirtualInterface(pulumi.CustomResource):
         """
         The ARN of the virtual interface.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="awsDevice")
@@ -199,7 +199,7 @@ class HostedPrivateVirtualInterface(pulumi.CustomResource):
         """
         The Direct Connect endpoint on which the virtual interface terminates.
         """
-        ...
+        return pulumi.get(self, "aws_device")
 
     @property
     @pulumi.getter(name="bgpAsn")
@@ -207,7 +207,7 @@ class HostedPrivateVirtualInterface(pulumi.CustomResource):
         """
         The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
         """
-        ...
+        return pulumi.get(self, "bgp_asn")
 
     @property
     @pulumi.getter(name="bgpAuthKey")
@@ -215,7 +215,7 @@ class HostedPrivateVirtualInterface(pulumi.CustomResource):
         """
         The authentication key for BGP configuration.
         """
-        ...
+        return pulumi.get(self, "bgp_auth_key")
 
     @property
     @pulumi.getter(name="connectionId")
@@ -223,7 +223,7 @@ class HostedPrivateVirtualInterface(pulumi.CustomResource):
         """
         The ID of the Direct Connect connection (or LAG) on which to create the virtual interface.
         """
-        ...
+        return pulumi.get(self, "connection_id")
 
     @property
     @pulumi.getter(name="customerAddress")
@@ -231,7 +231,7 @@ class HostedPrivateVirtualInterface(pulumi.CustomResource):
         """
         The IPv4 CIDR destination address to which Amazon should send traffic. Required for IPv4 BGP peers.
         """
-        ...
+        return pulumi.get(self, "customer_address")
 
     @property
     @pulumi.getter(name="jumboFrameCapable")
@@ -239,7 +239,7 @@ class HostedPrivateVirtualInterface(pulumi.CustomResource):
         """
         Indicates whether jumbo frames (9001 MTU) are supported.
         """
-        ...
+        return pulumi.get(self, "jumbo_frame_capable")
 
     @property
     @pulumi.getter
@@ -247,7 +247,7 @@ class HostedPrivateVirtualInterface(pulumi.CustomResource):
         """
         The maximum transmission unit (MTU) is the size, in bytes, of the largest permissible packet that can be passed over the connection. The MTU of a virtual private interface can be either `1500` or `9001` (jumbo frames). Default is `1500`.
         """
-        ...
+        return pulumi.get(self, "mtu")
 
     @property
     @pulumi.getter
@@ -255,7 +255,7 @@ class HostedPrivateVirtualInterface(pulumi.CustomResource):
         """
         The name for the virtual interface.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="ownerAccountId")
@@ -263,7 +263,7 @@ class HostedPrivateVirtualInterface(pulumi.CustomResource):
         """
         The AWS account that will own the new virtual interface.
         """
-        ...
+        return pulumi.get(self, "owner_account_id")
 
     @property
     @pulumi.getter
@@ -271,7 +271,7 @@ class HostedPrivateVirtualInterface(pulumi.CustomResource):
         """
         The VLAN ID.
         """
-        ...
+        return pulumi.get(self, "vlan")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

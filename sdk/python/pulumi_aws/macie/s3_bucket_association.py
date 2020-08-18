@@ -117,7 +117,7 @@ class S3BucketAssociation(pulumi.CustomResource):
         """
         The name of the S3 bucket that you want to associate with Amazon Macie.
         """
-        ...
+        return pulumi.get(self, "bucket_name")
 
     @property
     @pulumi.getter(name="classificationType")
@@ -125,7 +125,7 @@ class S3BucketAssociation(pulumi.CustomResource):
         """
         The configuration of how Amazon Macie classifies the S3 objects.
         """
-        ...
+        return pulumi.get(self, "classification_type")
 
     @property
     @pulumi.getter(name="memberAccountId")
@@ -133,7 +133,7 @@ class S3BucketAssociation(pulumi.CustomResource):
         """
         The ID of the Amazon Macie member account whose S3 resources you want to associate with Macie. If `member_account_id` isn't specified, the action associates specified S3 resources with Macie for the current master account.
         """
-        ...
+        return pulumi.get(self, "member_account_id")
 
     @property
     @pulumi.getter
@@ -141,7 +141,7 @@ class S3BucketAssociation(pulumi.CustomResource):
         """
         Object key prefix identifying one or more S3 objects to which the association applies.
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -31,7 +31,7 @@ class GroupResourceQuery(dict):
         """
         The resource query as a JSON string.
         """
-        ...
+        return pulumi.get(self, "query")
 
     @property
     @pulumi.getter
@@ -39,7 +39,7 @@ class GroupResourceQuery(dict):
         """
         The type of the resource query. Defaults to `TAG_FILTERS_1_0`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

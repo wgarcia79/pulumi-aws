@@ -87,7 +87,7 @@ class GetLaunchConfigurationResult:
         """
         The Amazon Resource Name of the launch configuration.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="associatePublicIpAddress")
@@ -95,7 +95,7 @@ class GetLaunchConfigurationResult:
         """
         Whether a Public IP address is associated with the instance.
         """
-        ...
+        return pulumi.get(self, "associate_public_ip_address")
 
     @property
     @pulumi.getter(name="ebsBlockDevices")
@@ -103,7 +103,7 @@ class GetLaunchConfigurationResult:
         """
         The EBS Block Devices attached to the instance.
         """
-        ...
+        return pulumi.get(self, "ebs_block_devices")
 
     @property
     @pulumi.getter(name="ebsOptimized")
@@ -111,7 +111,7 @@ class GetLaunchConfigurationResult:
         """
         Whether the launched EC2 instance will be EBS-optimized.
         """
-        ...
+        return pulumi.get(self, "ebs_optimized")
 
     @property
     @pulumi.getter(name="enableMonitoring")
@@ -119,7 +119,7 @@ class GetLaunchConfigurationResult:
         """
         Whether Detailed Monitoring is Enabled.
         """
-        ...
+        return pulumi.get(self, "enable_monitoring")
 
     @property
     @pulumi.getter(name="ephemeralBlockDevices")
@@ -127,7 +127,7 @@ class GetLaunchConfigurationResult:
         """
         The Ephemeral volumes on the instance.
         """
-        ...
+        return pulumi.get(self, "ephemeral_block_devices")
 
     @property
     @pulumi.getter(name="iamInstanceProfile")
@@ -135,7 +135,7 @@ class GetLaunchConfigurationResult:
         """
         The IAM Instance Profile to associate with launched instances.
         """
-        ...
+        return pulumi.get(self, "iam_instance_profile")
 
     @property
     @pulumi.getter
@@ -143,7 +143,7 @@ class GetLaunchConfigurationResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="imageId")
@@ -151,7 +151,7 @@ class GetLaunchConfigurationResult:
         """
         The EC2 Image ID of the instance.
         """
-        ...
+        return pulumi.get(self, "image_id")
 
     @property
     @pulumi.getter(name="instanceType")
@@ -159,7 +159,7 @@ class GetLaunchConfigurationResult:
         """
         The Instance Type of the instance to launch.
         """
-        ...
+        return pulumi.get(self, "instance_type")
 
     @property
     @pulumi.getter(name="keyName")
@@ -167,7 +167,7 @@ class GetLaunchConfigurationResult:
         """
         The Key Name that should be used for the instance.
         """
-        ...
+        return pulumi.get(self, "key_name")
 
     @property
     @pulumi.getter
@@ -175,7 +175,7 @@ class GetLaunchConfigurationResult:
         """
         The Name of the launch configuration.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="placementTenancy")
@@ -183,7 +183,7 @@ class GetLaunchConfigurationResult:
         """
         The Tenancy of the instance.
         """
-        ...
+        return pulumi.get(self, "placement_tenancy")
 
     @property
     @pulumi.getter(name="rootBlockDevices")
@@ -191,7 +191,7 @@ class GetLaunchConfigurationResult:
         """
         The Root Block Device of the instance.
         """
-        ...
+        return pulumi.get(self, "root_block_devices")
 
     @property
     @pulumi.getter(name="securityGroups")
@@ -199,7 +199,7 @@ class GetLaunchConfigurationResult:
         """
         A list of associated Security Group IDS.
         """
-        ...
+        return pulumi.get(self, "security_groups")
 
     @property
     @pulumi.getter(name="spotPrice")
@@ -207,7 +207,7 @@ class GetLaunchConfigurationResult:
         """
         The Price to use for reserving Spot instances.
         """
-        ...
+        return pulumi.get(self, "spot_price")
 
     @property
     @pulumi.getter(name="userData")
@@ -215,7 +215,7 @@ class GetLaunchConfigurationResult:
         """
         The User Data of the instance.
         """
-        ...
+        return pulumi.get(self, "user_data")
 
     @property
     @pulumi.getter(name="vpcClassicLinkId")
@@ -223,7 +223,7 @@ class GetLaunchConfigurationResult:
         """
         The ID of a ClassicLink-enabled VPC.
         """
-        ...
+        return pulumi.get(self, "vpc_classic_link_id")
 
     @property
     @pulumi.getter(name="vpcClassicLinkSecurityGroups")
@@ -231,7 +231,7 @@ class GetLaunchConfigurationResult:
         """
         The IDs of one or more Security Groups for the specified ClassicLink-enabled VPC.
         """
-        ...
+        return pulumi.get(self, "vpc_classic_link_security_groups")
 
 
 

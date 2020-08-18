@@ -111,7 +111,7 @@ class Database(pulumi.CustomResource):
         """
         Name of s3 bucket to save the results of the query execution.
         """
-        ...
+        return pulumi.get(self, "bucket")
 
     @property
     @pulumi.getter(name="encryptionConfiguration")
@@ -119,7 +119,7 @@ class Database(pulumi.CustomResource):
         """
         The encryption key block AWS Athena uses to decrypt the data in S3, such as an AWS Key Management Service (AWS KMS) key. An `encryption_configuration` block is documented below.
         """
-        ...
+        return pulumi.get(self, "encryption_configuration")
 
     @property
     @pulumi.getter(name="forceDestroy")
@@ -127,7 +127,7 @@ class Database(pulumi.CustomResource):
         """
         A boolean that indicates all tables should be deleted from the database so that the database can be destroyed without error. The tables are *not* recoverable.
         """
-        ...
+        return pulumi.get(self, "force_destroy")
 
     @property
     @pulumi.getter
@@ -135,7 +135,7 @@ class Database(pulumi.CustomResource):
         """
         Name of the database to create.
         """
-        ...
+        return pulumi.get(self, "name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

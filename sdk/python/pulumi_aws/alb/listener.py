@@ -244,7 +244,7 @@ class Listener(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) of the target group.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="certificateArn")
@@ -252,7 +252,7 @@ class Listener(pulumi.CustomResource):
         """
         The ARN of the default SSL server certificate. Exactly one certificate is required if the protocol is HTTPS. For adding additional SSL certificates, see the `lb.ListenerCertificate` resource.
         """
-        ...
+        return pulumi.get(self, "certificate_arn")
 
     @property
     @pulumi.getter(name="defaultActions")
@@ -260,7 +260,7 @@ class Listener(pulumi.CustomResource):
         """
         An Action block. Action blocks are documented below.
         """
-        ...
+        return pulumi.get(self, "default_actions")
 
     @property
     @pulumi.getter(name="loadBalancerArn")
@@ -268,7 +268,7 @@ class Listener(pulumi.CustomResource):
         """
         The ARN of the load balancer.
         """
-        ...
+        return pulumi.get(self, "load_balancer_arn")
 
     @property
     @pulumi.getter
@@ -276,7 +276,7 @@ class Listener(pulumi.CustomResource):
         """
         The port on which the load balancer is listening.
         """
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter
@@ -284,7 +284,7 @@ class Listener(pulumi.CustomResource):
         """
         The protocol for connections from clients to the load balancer. Valid values are `TCP`, `TLS`, `UDP`, `TCP_UDP`, `HTTP` and `HTTPS`. Defaults to `HTTP`.
         """
-        ...
+        return pulumi.get(self, "protocol")
 
     @property
     @pulumi.getter(name="sslPolicy")
@@ -292,7 +292,7 @@ class Listener(pulumi.CustomResource):
         """
         The name of the SSL Policy for the listener. Required if `protocol` is `HTTPS` or `TLS`.
         """
-        ...
+        return pulumi.get(self, "ssl_policy")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

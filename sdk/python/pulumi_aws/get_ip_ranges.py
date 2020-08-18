@@ -53,7 +53,7 @@ class GetIpRangesResult:
         """
         The lexically ordered list of CIDR blocks.
         """
-        ...
+        return pulumi.get(self, "cidr_blocks")
 
     @property
     @pulumi.getter(name="createDate")
@@ -61,7 +61,7 @@ class GetIpRangesResult:
         """
         The publication time of the IP ranges (e.g. `2016-08-03-23-46-05`).
         """
-        ...
+        return pulumi.get(self, "create_date")
 
     @property
     @pulumi.getter
@@ -69,7 +69,7 @@ class GetIpRangesResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="ipv6CidrBlocks")
@@ -77,17 +77,17 @@ class GetIpRangesResult:
         """
         The lexically ordered list of IPv6 CIDR blocks.
         """
-        ...
+        return pulumi.get(self, "ipv6_cidr_blocks")
 
     @property
     @pulumi.getter
     def regions(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "regions")
 
     @property
     @pulumi.getter
     def services(self) -> List[str]:
-        ...
+        return pulumi.get(self, "services")
 
     @property
     @pulumi.getter(name="syncToken")
@@ -96,12 +96,12 @@ class GetIpRangesResult:
         The publication time of the IP ranges, in Unix epoch time format
         (e.g. `1470267965`).
         """
-        ...
+        return pulumi.get(self, "sync_token")
 
     @property
     @pulumi.getter
     def url(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "url")
 
 
 

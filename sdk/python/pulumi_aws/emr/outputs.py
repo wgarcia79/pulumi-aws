@@ -46,7 +46,7 @@ class ClusterBootstrapAction(dict):
         """
         The name of the step.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -54,7 +54,7 @@ class ClusterBootstrapAction(dict):
         """
         Location of the script to run during a bootstrap action. Can be either a location in Amazon S3 or on a local file system
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter
@@ -62,7 +62,7 @@ class ClusterBootstrapAction(dict):
         """
         List of command line arguments passed to the JAR file's main function when executed.
         """
-        ...
+        return pulumi.get(self, "args")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -107,7 +107,7 @@ class ClusterCoreInstanceGroup(dict):
         """
         EC2 instance type for all instances in the instance group.
         """
-        ...
+        return pulumi.get(self, "instance_type")
 
     @property
     @pulumi.getter(name="autoscalingPolicy")
@@ -115,7 +115,7 @@ class ClusterCoreInstanceGroup(dict):
         """
         The autoscaling policy document. This is a JSON formatted string. See [EMR Auto Scaling](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-automatic-scaling.html)
         """
-        ...
+        return pulumi.get(self, "autoscaling_policy")
 
     @property
     @pulumi.getter(name="bidPrice")
@@ -123,7 +123,7 @@ class ClusterCoreInstanceGroup(dict):
         """
         Bid price for each EC2 instance in the instance group, expressed in USD. By setting this attribute, the instance group is being declared as a Spot Instance, and will implicitly create a Spot request. Leave this blank to use On-Demand Instances.
         """
-        ...
+        return pulumi.get(self, "bid_price")
 
     @property
     @pulumi.getter(name="ebsConfigs")
@@ -131,7 +131,7 @@ class ClusterCoreInstanceGroup(dict):
         """
         Configuration block(s) for EBS volumes attached to each instance in the instance group. Detailed below.
         """
-        ...
+        return pulumi.get(self, "ebs_configs")
 
     @property
     @pulumi.getter
@@ -139,7 +139,7 @@ class ClusterCoreInstanceGroup(dict):
         """
         The ID of the EMR Cluster
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="instanceCount")
@@ -147,7 +147,7 @@ class ClusterCoreInstanceGroup(dict):
         """
         Target number of instances for the instance group. Must be 1 or 3. Defaults to 1. Launching with multiple master nodes is only supported in EMR version 5.23.0+, and requires this resource's `core_instance_group` to be configured. Public (Internet accessible) instances must be created in VPC subnets that have `map public IP on launch` enabled. Termination protection is automatically enabled when launched with multiple master nodes and this provider must have the `termination_protection = false` configuration applied before destroying this resource.
         """
-        ...
+        return pulumi.get(self, "instance_count")
 
     @property
     @pulumi.getter
@@ -155,7 +155,7 @@ class ClusterCoreInstanceGroup(dict):
         """
         The name of the step.
         """
-        ...
+        return pulumi.get(self, "name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -187,7 +187,7 @@ class ClusterCoreInstanceGroupEbsConfig(dict):
         """
         The volume size, in gibibytes (GiB).
         """
-        ...
+        return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
@@ -195,7 +195,7 @@ class ClusterCoreInstanceGroupEbsConfig(dict):
         """
         The volume type. Valid options are `gp2`, `io1`, `standard` and `st1`. See [EBS Volume Types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html).
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -203,7 +203,7 @@ class ClusterCoreInstanceGroupEbsConfig(dict):
         """
         The number of I/O operations per second (IOPS) that the volume supports
         """
-        ...
+        return pulumi.get(self, "iops")
 
     @property
     @pulumi.getter(name="volumesPerInstance")
@@ -211,7 +211,7 @@ class ClusterCoreInstanceGroupEbsConfig(dict):
         """
         The number of EBS volumes with this configuration to attach to each EC2 instance in the instance group (default is 1)
         """
-        ...
+        return pulumi.get(self, "volumes_per_instance")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -260,7 +260,7 @@ class ClusterEc2Attributes(dict):
         """
         Instance Profile for EC2 instances of the cluster assume this role
         """
-        ...
+        return pulumi.get(self, "instance_profile")
 
     @property
     @pulumi.getter(name="additionalMasterSecurityGroups")
@@ -268,7 +268,7 @@ class ClusterEc2Attributes(dict):
         """
         String containing a comma separated list of additional Amazon EC2 security group IDs for the master node
         """
-        ...
+        return pulumi.get(self, "additional_master_security_groups")
 
     @property
     @pulumi.getter(name="additionalSlaveSecurityGroups")
@@ -276,7 +276,7 @@ class ClusterEc2Attributes(dict):
         """
         String containing a comma separated list of additional Amazon EC2 security group IDs for the slave nodes as a comma separated string
         """
-        ...
+        return pulumi.get(self, "additional_slave_security_groups")
 
     @property
     @pulumi.getter(name="emrManagedMasterSecurityGroup")
@@ -284,7 +284,7 @@ class ClusterEc2Attributes(dict):
         """
         Identifier of the Amazon EC2 EMR-Managed security group for the master node
         """
-        ...
+        return pulumi.get(self, "emr_managed_master_security_group")
 
     @property
     @pulumi.getter(name="emrManagedSlaveSecurityGroup")
@@ -292,7 +292,7 @@ class ClusterEc2Attributes(dict):
         """
         Identifier of the Amazon EC2 EMR-Managed security group for the slave nodes
         """
-        ...
+        return pulumi.get(self, "emr_managed_slave_security_group")
 
     @property
     @pulumi.getter(name="keyName")
@@ -300,7 +300,7 @@ class ClusterEc2Attributes(dict):
         """
         Amazon EC2 key pair that can be used to ssh to the master node as the user called `hadoop`
         """
-        ...
+        return pulumi.get(self, "key_name")
 
     @property
     @pulumi.getter(name="serviceAccessSecurityGroup")
@@ -308,7 +308,7 @@ class ClusterEc2Attributes(dict):
         """
         Identifier of the Amazon EC2 service-access security group - required when the cluster runs on a private subnet
         """
-        ...
+        return pulumi.get(self, "service_access_security_group")
 
     @property
     @pulumi.getter(name="subnetId")
@@ -316,7 +316,7 @@ class ClusterEc2Attributes(dict):
         """
         VPC subnet id where you want the job flow to launch. Cannot specify the `cc1.4xlarge` instance type for nodes of a job flow launched in a Amazon VPC
         """
-        ...
+        return pulumi.get(self, "subnet_id")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -364,7 +364,7 @@ class ClusterInstanceGroup(dict):
         """
         The role of the instance group in the cluster. Valid values are: `MASTER`, `CORE`, and `TASK`.
         """
-        ...
+        return pulumi.get(self, "instance_role")
 
     @property
     @pulumi.getter(name="instanceType")
@@ -372,7 +372,7 @@ class ClusterInstanceGroup(dict):
         """
         EC2 instance type for all instances in the instance group.
         """
-        ...
+        return pulumi.get(self, "instance_type")
 
     @property
     @pulumi.getter(name="autoscalingPolicy")
@@ -380,7 +380,7 @@ class ClusterInstanceGroup(dict):
         """
         The autoscaling policy document. This is a JSON formatted string. See [EMR Auto Scaling](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-automatic-scaling.html)
         """
-        ...
+        return pulumi.get(self, "autoscaling_policy")
 
     @property
     @pulumi.getter(name="bidPrice")
@@ -388,7 +388,7 @@ class ClusterInstanceGroup(dict):
         """
         Bid price for each EC2 instance in the instance group, expressed in USD. By setting this attribute, the instance group is being declared as a Spot Instance, and will implicitly create a Spot request. Leave this blank to use On-Demand Instances.
         """
-        ...
+        return pulumi.get(self, "bid_price")
 
     @property
     @pulumi.getter(name="ebsConfigs")
@@ -396,7 +396,7 @@ class ClusterInstanceGroup(dict):
         """
         Configuration block(s) for EBS volumes attached to each instance in the instance group. Detailed below.
         """
-        ...
+        return pulumi.get(self, "ebs_configs")
 
     @property
     @pulumi.getter
@@ -404,7 +404,7 @@ class ClusterInstanceGroup(dict):
         """
         The ID of the EMR Cluster
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="instanceCount")
@@ -412,7 +412,7 @@ class ClusterInstanceGroup(dict):
         """
         Target number of instances for the instance group. Must be 1 or 3. Defaults to 1. Launching with multiple master nodes is only supported in EMR version 5.23.0+, and requires this resource's `core_instance_group` to be configured. Public (Internet accessible) instances must be created in VPC subnets that have `map public IP on launch` enabled. Termination protection is automatically enabled when launched with multiple master nodes and this provider must have the `termination_protection = false` configuration applied before destroying this resource.
         """
-        ...
+        return pulumi.get(self, "instance_count")
 
     @property
     @pulumi.getter
@@ -420,7 +420,7 @@ class ClusterInstanceGroup(dict):
         """
         The name of the step.
         """
-        ...
+        return pulumi.get(self, "name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -452,7 +452,7 @@ class ClusterInstanceGroupEbsConfig(dict):
         """
         The volume size, in gibibytes (GiB).
         """
-        ...
+        return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
@@ -460,7 +460,7 @@ class ClusterInstanceGroupEbsConfig(dict):
         """
         The volume type. Valid options are `gp2`, `io1`, `standard` and `st1`. See [EBS Volume Types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html).
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -468,7 +468,7 @@ class ClusterInstanceGroupEbsConfig(dict):
         """
         The number of I/O operations per second (IOPS) that the volume supports
         """
-        ...
+        return pulumi.get(self, "iops")
 
     @property
     @pulumi.getter(name="volumesPerInstance")
@@ -476,7 +476,7 @@ class ClusterInstanceGroupEbsConfig(dict):
         """
         The number of EBS volumes with this configuration to attach to each EC2 instance in the instance group (default is 1)
         """
-        ...
+        return pulumi.get(self, "volumes_per_instance")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -512,7 +512,7 @@ class ClusterKerberosAttributes(dict):
         """
         The password used within the cluster for the kadmin service on the cluster-dedicated KDC, which maintains Kerberos principals, password policies, and keytabs for the cluster. This provider cannot perform drift detection of this configuration.
         """
-        ...
+        return pulumi.get(self, "kdc_admin_password")
 
     @property
     @pulumi.getter
@@ -520,7 +520,7 @@ class ClusterKerberosAttributes(dict):
         """
         The name of the Kerberos realm to which all nodes in a cluster belong. For example, `EC2.INTERNAL`
         """
-        ...
+        return pulumi.get(self, "realm")
 
     @property
     @pulumi.getter(name="adDomainJoinPassword")
@@ -528,7 +528,7 @@ class ClusterKerberosAttributes(dict):
         """
         The Active Directory password for `ad_domain_join_user`. This provider cannot perform drift detection of this configuration.
         """
-        ...
+        return pulumi.get(self, "ad_domain_join_password")
 
     @property
     @pulumi.getter(name="adDomainJoinUser")
@@ -536,7 +536,7 @@ class ClusterKerberosAttributes(dict):
         """
         Required only when establishing a cross-realm trust with an Active Directory domain. A user with sufficient privileges to join resources to the domain. This provider cannot perform drift detection of this configuration.
         """
-        ...
+        return pulumi.get(self, "ad_domain_join_user")
 
     @property
     @pulumi.getter(name="crossRealmTrustPrincipalPassword")
@@ -544,7 +544,7 @@ class ClusterKerberosAttributes(dict):
         """
         Required only when establishing a cross-realm trust with a KDC in a different realm. The cross-realm principal password, which must be identical across realms. This provider cannot perform drift detection of this configuration.
         """
-        ...
+        return pulumi.get(self, "cross_realm_trust_principal_password")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -585,7 +585,7 @@ class ClusterMasterInstanceGroup(dict):
         """
         EC2 instance type for all instances in the instance group.
         """
-        ...
+        return pulumi.get(self, "instance_type")
 
     @property
     @pulumi.getter(name="bidPrice")
@@ -593,7 +593,7 @@ class ClusterMasterInstanceGroup(dict):
         """
         Bid price for each EC2 instance in the instance group, expressed in USD. By setting this attribute, the instance group is being declared as a Spot Instance, and will implicitly create a Spot request. Leave this blank to use On-Demand Instances.
         """
-        ...
+        return pulumi.get(self, "bid_price")
 
     @property
     @pulumi.getter(name="ebsConfigs")
@@ -601,7 +601,7 @@ class ClusterMasterInstanceGroup(dict):
         """
         Configuration block(s) for EBS volumes attached to each instance in the instance group. Detailed below.
         """
-        ...
+        return pulumi.get(self, "ebs_configs")
 
     @property
     @pulumi.getter
@@ -609,7 +609,7 @@ class ClusterMasterInstanceGroup(dict):
         """
         The ID of the EMR Cluster
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="instanceCount")
@@ -617,7 +617,7 @@ class ClusterMasterInstanceGroup(dict):
         """
         Target number of instances for the instance group. Must be 1 or 3. Defaults to 1. Launching with multiple master nodes is only supported in EMR version 5.23.0+, and requires this resource's `core_instance_group` to be configured. Public (Internet accessible) instances must be created in VPC subnets that have `map public IP on launch` enabled. Termination protection is automatically enabled when launched with multiple master nodes and this provider must have the `termination_protection = false` configuration applied before destroying this resource.
         """
-        ...
+        return pulumi.get(self, "instance_count")
 
     @property
     @pulumi.getter
@@ -625,7 +625,7 @@ class ClusterMasterInstanceGroup(dict):
         """
         The name of the step.
         """
-        ...
+        return pulumi.get(self, "name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -657,7 +657,7 @@ class ClusterMasterInstanceGroupEbsConfig(dict):
         """
         The volume size, in gibibytes (GiB).
         """
-        ...
+        return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
@@ -665,7 +665,7 @@ class ClusterMasterInstanceGroupEbsConfig(dict):
         """
         The volume type. Valid options are `gp2`, `io1`, `standard` and `st1`. See [EBS Volume Types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html).
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -673,7 +673,7 @@ class ClusterMasterInstanceGroupEbsConfig(dict):
         """
         The number of I/O operations per second (IOPS) that the volume supports
         """
-        ...
+        return pulumi.get(self, "iops")
 
     @property
     @pulumi.getter(name="volumesPerInstance")
@@ -681,7 +681,7 @@ class ClusterMasterInstanceGroupEbsConfig(dict):
         """
         The number of EBS volumes with this configuration to attach to each EC2 instance in the instance group (default is 1)
         """
-        ...
+        return pulumi.get(self, "volumes_per_instance")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -708,7 +708,7 @@ class ClusterStep(dict):
         """
         The action to take if the step fails. Valid values: `TERMINATE_JOB_FLOW`, `TERMINATE_CLUSTER`, `CANCEL_AND_WAIT`, and `CONTINUE`
         """
-        ...
+        return pulumi.get(self, "action_on_failure")
 
     @property
     @pulumi.getter(name="hadoopJarStep")
@@ -716,7 +716,7 @@ class ClusterStep(dict):
         """
         The JAR file used for the step. Defined below.
         """
-        ...
+        return pulumi.get(self, "hadoop_jar_step")
 
     @property
     @pulumi.getter
@@ -724,7 +724,7 @@ class ClusterStep(dict):
         """
         The name of the step.
         """
-        ...
+        return pulumi.get(self, "name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -757,7 +757,7 @@ class ClusterStepHadoopJarStep(dict):
         """
         Path to a JAR file run during the step.
         """
-        ...
+        return pulumi.get(self, "jar")
 
     @property
     @pulumi.getter
@@ -765,7 +765,7 @@ class ClusterStepHadoopJarStep(dict):
         """
         List of command line arguments passed to the JAR file's main function when executed.
         """
-        ...
+        return pulumi.get(self, "args")
 
     @property
     @pulumi.getter(name="mainClass")
@@ -773,7 +773,7 @@ class ClusterStepHadoopJarStep(dict):
         """
         Name of the main class in the specified Java file. If not specified, the JAR file should specify a Main-Class in its manifest file.
         """
-        ...
+        return pulumi.get(self, "main_class")
 
     @property
     @pulumi.getter
@@ -781,7 +781,7 @@ class ClusterStepHadoopJarStep(dict):
         """
         Key-Value map of Java properties that are set when the step runs. You can use these properties to pass key value pairs to your main function.
         """
-        ...
+        return pulumi.get(self, "properties")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -813,7 +813,7 @@ class InstanceGroupEbsConfig(dict):
         """
         The volume size, in gibibytes (GiB). This can be a number from 1 - 1024. If the volume type is EBS-optimized, the minimum value is 10.
         """
-        ...
+        return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
@@ -821,7 +821,7 @@ class InstanceGroupEbsConfig(dict):
         """
         The volume type. Valid options are 'gp2', 'io1' and 'standard'.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -829,7 +829,7 @@ class InstanceGroupEbsConfig(dict):
         """
         The number of I/O operations per second (IOPS) that the volume supports.
         """
-        ...
+        return pulumi.get(self, "iops")
 
     @property
     @pulumi.getter(name="volumesPerInstance")
@@ -837,7 +837,7 @@ class InstanceGroupEbsConfig(dict):
         """
         The number of EBS Volumes to attach per instance.
         """
-        ...
+        return pulumi.get(self, "volumes_per_instance")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

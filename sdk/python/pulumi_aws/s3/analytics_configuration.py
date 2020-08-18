@@ -138,7 +138,7 @@ class AnalyticsConfiguration(pulumi.CustomResource):
         """
         The name of the bucket this analytics configuration is associated with.
         """
-        ...
+        return pulumi.get(self, "bucket")
 
     @property
     @pulumi.getter
@@ -146,7 +146,7 @@ class AnalyticsConfiguration(pulumi.CustomResource):
         """
         Object filtering that accepts a prefix, tags, or a logical AND of prefix and tags (documented below).
         """
-        ...
+        return pulumi.get(self, "filter")
 
     @property
     @pulumi.getter
@@ -154,7 +154,7 @@ class AnalyticsConfiguration(pulumi.CustomResource):
         """
         Unique identifier of the analytics configuration for the bucket.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="storageClassAnalysis")
@@ -162,7 +162,7 @@ class AnalyticsConfiguration(pulumi.CustomResource):
         """
         Configuration for the analytics data export (documented below).
         """
-        ...
+        return pulumi.get(self, "storage_class_analysis")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

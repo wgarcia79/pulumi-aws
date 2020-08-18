@@ -114,7 +114,7 @@ class Plan(pulumi.CustomResource):
         """
         The ARN of the backup plan.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -122,7 +122,7 @@ class Plan(pulumi.CustomResource):
         """
         The display name of a backup plan.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -130,7 +130,7 @@ class Plan(pulumi.CustomResource):
         """
         A rule object that specifies a scheduled task that is used to back up a selection of resources.
         """
-        ...
+        return pulumi.get(self, "rules")
 
     @property
     @pulumi.getter
@@ -138,7 +138,7 @@ class Plan(pulumi.CustomResource):
         """
         Metadata that you can assign to help organize the plans you create.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -146,7 +146,7 @@ class Plan(pulumi.CustomResource):
         """
         Unique, randomly generated, Unicode, UTF-8 encoded string that serves as the version ID of the backup plan.
         """
-        ...
+        return pulumi.get(self, "version")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

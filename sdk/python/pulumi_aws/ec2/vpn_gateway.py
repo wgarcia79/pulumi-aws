@@ -112,7 +112,7 @@ class VpnGateway(pulumi.CustomResource):
         """
         The Autonomous System Number (ASN) for the Amazon side of the gateway. If you don't specify an ASN, the virtual private gateway is created with the default ASN.
         """
-        ...
+        return pulumi.get(self, "amazon_side_asn")
 
     @property
     @pulumi.getter
@@ -120,7 +120,7 @@ class VpnGateway(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the VPN Gateway.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="availabilityZone")
@@ -128,7 +128,7 @@ class VpnGateway(pulumi.CustomResource):
         """
         The Availability Zone for the virtual private gateway.
         """
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter
@@ -136,7 +136,7 @@ class VpnGateway(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -144,7 +144,7 @@ class VpnGateway(pulumi.CustomResource):
         """
         The VPC ID to create in.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

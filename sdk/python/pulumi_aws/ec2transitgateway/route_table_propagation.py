@@ -106,7 +106,7 @@ class RouteTablePropagation(pulumi.CustomResource):
         """
         Identifier of the resource
         """
-        ...
+        return pulumi.get(self, "resource_id")
 
     @property
     @pulumi.getter(name="resourceType")
@@ -114,7 +114,7 @@ class RouteTablePropagation(pulumi.CustomResource):
         """
         Type of the resource
         """
-        ...
+        return pulumi.get(self, "resource_type")
 
     @property
     @pulumi.getter(name="transitGatewayAttachmentId")
@@ -122,7 +122,7 @@ class RouteTablePropagation(pulumi.CustomResource):
         """
         Identifier of EC2 Transit Gateway Attachment.
         """
-        ...
+        return pulumi.get(self, "transit_gateway_attachment_id")
 
     @property
     @pulumi.getter(name="transitGatewayRouteTableId")
@@ -130,7 +130,7 @@ class RouteTablePropagation(pulumi.CustomResource):
         """
         Identifier of EC2 Transit Gateway Route Table.
         """
-        ...
+        return pulumi.get(self, "transit_gateway_route_table_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

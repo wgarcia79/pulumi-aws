@@ -104,7 +104,7 @@ class ThingType(pulumi.CustomResource):
         """
         The ARN of the created AWS IoT Thing Type.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -112,7 +112,7 @@ class ThingType(pulumi.CustomResource):
         """
         Whether the thing type is deprecated. If true, no new things could be associated with this type.
         """
-        ...
+        return pulumi.get(self, "deprecated")
 
     @property
     @pulumi.getter
@@ -120,7 +120,7 @@ class ThingType(pulumi.CustomResource):
         """
         The name of the thing type.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -128,7 +128,7 @@ class ThingType(pulumi.CustomResource):
         """
         , Configuration block that can contain the following properties of the thing type:
         """
-        ...
+        return pulumi.get(self, "properties")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

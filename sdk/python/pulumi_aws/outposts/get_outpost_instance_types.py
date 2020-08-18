@@ -35,7 +35,7 @@ class GetOutpostInstanceTypesResult:
     @property
     @pulumi.getter
     def arn(self) -> str:
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -43,7 +43,7 @@ class GetOutpostInstanceTypesResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="instanceTypes")
@@ -51,7 +51,7 @@ class GetOutpostInstanceTypesResult:
         """
         Set of instance types.
         """
-        ...
+        return pulumi.get(self, "instance_types")
 
 
 

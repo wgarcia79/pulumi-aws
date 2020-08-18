@@ -216,7 +216,7 @@ class Document(pulumi.CustomResource):
     @property
     @pulumi.getter
     def arn(self) -> str:
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="attachmentsSources")
@@ -224,7 +224,7 @@ class Document(pulumi.CustomResource):
         """
         One or more configuration blocks describing attachments sources to a version of a document. Defined below.
         """
-        ...
+        return pulumi.get(self, "attachments_sources")
 
     @property
     @pulumi.getter
@@ -232,7 +232,7 @@ class Document(pulumi.CustomResource):
         """
         The JSON or YAML content of the document.
         """
-        ...
+        return pulumi.get(self, "content")
 
     @property
     @pulumi.getter(name="createdDate")
@@ -240,7 +240,7 @@ class Document(pulumi.CustomResource):
         """
         The date the document was created.
         """
-        ...
+        return pulumi.get(self, "created_date")
 
     @property
     @pulumi.getter(name="defaultVersion")
@@ -248,7 +248,7 @@ class Document(pulumi.CustomResource):
         """
         The default version of the document.
         """
-        ...
+        return pulumi.get(self, "default_version")
 
     @property
     @pulumi.getter
@@ -256,7 +256,7 @@ class Document(pulumi.CustomResource):
         """
         The description of the document.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="documentFormat")
@@ -264,7 +264,7 @@ class Document(pulumi.CustomResource):
         """
         The format of the document. Valid document types include: `JSON` and `YAML`
         """
-        ...
+        return pulumi.get(self, "document_format")
 
     @property
     @pulumi.getter(name="documentType")
@@ -272,7 +272,7 @@ class Document(pulumi.CustomResource):
         """
         The type of the document. Valid document types include: `Automation`, `Command`, `Package`, `Policy`, and `Session`
         """
-        ...
+        return pulumi.get(self, "document_type")
 
     @property
     @pulumi.getter(name="documentVersion")
@@ -280,7 +280,7 @@ class Document(pulumi.CustomResource):
         """
         The document version.
         """
-        ...
+        return pulumi.get(self, "document_version")
 
     @property
     @pulumi.getter
@@ -288,7 +288,7 @@ class Document(pulumi.CustomResource):
         """
         The sha1 or sha256 of the document content
         """
-        ...
+        return pulumi.get(self, "hash")
 
     @property
     @pulumi.getter(name="hashType")
@@ -296,7 +296,7 @@ class Document(pulumi.CustomResource):
         """
         "Sha1" "Sha256". The hashing algorithm used when hashing the content.
         """
-        ...
+        return pulumi.get(self, "hash_type")
 
     @property
     @pulumi.getter(name="latestVersion")
@@ -304,7 +304,7 @@ class Document(pulumi.CustomResource):
         """
         The latest version of the document.
         """
-        ...
+        return pulumi.get(self, "latest_version")
 
     @property
     @pulumi.getter
@@ -312,7 +312,7 @@ class Document(pulumi.CustomResource):
         """
         The name of the document.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -320,7 +320,7 @@ class Document(pulumi.CustomResource):
         """
         The AWS user account of the person who created the document.
         """
-        ...
+        return pulumi.get(self, "owner")
 
     @property
     @pulumi.getter
@@ -328,7 +328,7 @@ class Document(pulumi.CustomResource):
         """
         The parameters that are available to this document.
         """
-        ...
+        return pulumi.get(self, "parameters")
 
     @property
     @pulumi.getter
@@ -336,7 +336,7 @@ class Document(pulumi.CustomResource):
         """
         Additional Permissions to attach to the document. See Permissions below for details.
         """
-        ...
+        return pulumi.get(self, "permissions")
 
     @property
     @pulumi.getter(name="platformTypes")
@@ -344,7 +344,7 @@ class Document(pulumi.CustomResource):
         """
         A list of OS platforms compatible with this SSM document, either "Windows" or "Linux".
         """
-        ...
+        return pulumi.get(self, "platform_types")
 
     @property
     @pulumi.getter(name="schemaVersion")
@@ -352,7 +352,7 @@ class Document(pulumi.CustomResource):
         """
         The schema version of the document.
         """
-        ...
+        return pulumi.get(self, "schema_version")
 
     @property
     @pulumi.getter
@@ -360,7 +360,7 @@ class Document(pulumi.CustomResource):
         """
         "Creating", "Active" or "Deleting". The current status of the document.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
@@ -368,7 +368,7 @@ class Document(pulumi.CustomResource):
         """
         A map of tags to assign to the object.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="targetType")
@@ -376,7 +376,7 @@ class Document(pulumi.CustomResource):
         """
         The target type which defines the kinds of resources the document can run on. For example, /AWS::EC2::Instance. For a list of valid resource types, see AWS Resource Types Reference (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
         """
-        ...
+        return pulumi.get(self, "target_type")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

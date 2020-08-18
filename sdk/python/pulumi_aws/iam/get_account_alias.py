@@ -35,7 +35,7 @@ class GetAccountAliasResult:
         """
         The alias associated with the AWS account.
         """
-        ...
+        return pulumi.get(self, "account_alias")
 
     @property
     @pulumi.getter
@@ -43,7 +43,7 @@ class GetAccountAliasResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
 
 

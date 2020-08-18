@@ -230,7 +230,7 @@ class Pipeline(pulumi.CustomResource):
         """
         The codepipeline ARN.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="artifactStore")
@@ -238,7 +238,7 @@ class Pipeline(pulumi.CustomResource):
         """
         One or more artifact_store blocks. Artifact stores are documented below.
         """
-        ...
+        return pulumi.get(self, "artifact_store")
 
     @property
     @pulumi.getter
@@ -246,7 +246,7 @@ class Pipeline(pulumi.CustomResource):
         """
         The name of the pipeline.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -254,7 +254,7 @@ class Pipeline(pulumi.CustomResource):
         """
         A service role Amazon Resource Name (ARN) that grants AWS CodePipeline permission to make calls to AWS services on your behalf.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter
@@ -262,7 +262,7 @@ class Pipeline(pulumi.CustomResource):
         """
         A stage block. Stages are documented below.
         """
-        ...
+        return pulumi.get(self, "stages")
 
     @property
     @pulumi.getter
@@ -270,7 +270,7 @@ class Pipeline(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

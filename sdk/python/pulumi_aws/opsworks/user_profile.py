@@ -110,7 +110,7 @@ class UserProfile(pulumi.CustomResource):
         """
         Whether users can specify their own SSH public key through the My Settings page
         """
-        ...
+        return pulumi.get(self, "allow_self_management")
 
     @property
     @pulumi.getter(name="sshPublicKey")
@@ -118,7 +118,7 @@ class UserProfile(pulumi.CustomResource):
         """
         The users public key
         """
-        ...
+        return pulumi.get(self, "ssh_public_key")
 
     @property
     @pulumi.getter(name="sshUsername")
@@ -126,7 +126,7 @@ class UserProfile(pulumi.CustomResource):
         """
         The ssh username, with witch this user wants to log in
         """
-        ...
+        return pulumi.get(self, "ssh_username")
 
     @property
     @pulumi.getter(name="userArn")
@@ -134,7 +134,7 @@ class UserProfile(pulumi.CustomResource):
         """
         The user's IAM ARN
         """
-        ...
+        return pulumi.get(self, "user_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

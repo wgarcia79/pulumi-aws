@@ -58,12 +58,12 @@ class GetRouteTableResult:
     @property
     @pulumi.getter
     def associations(self) -> List['outputs.GetRouteTableAssociationResult']:
-        ...
+        return pulumi.get(self, "associations")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetRouteTableFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter(name="gatewayId")
@@ -71,7 +71,7 @@ class GetRouteTableResult:
         """
         The Gateway ID. Only set when associated with an Internet Gateway or Virtual Private Gateway.
         """
-        ...
+        return pulumi.get(self, "gateway_id")
 
     @property
     @pulumi.getter
@@ -79,7 +79,7 @@ class GetRouteTableResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="ownerId")
@@ -87,7 +87,7 @@ class GetRouteTableResult:
         """
         The ID of the AWS account that owns the route table
         """
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter(name="routeTableId")
@@ -95,12 +95,12 @@ class GetRouteTableResult:
         """
         The Route Table ID.
         """
-        ...
+        return pulumi.get(self, "route_table_id")
 
     @property
     @pulumi.getter
     def routes(self) -> List['outputs.GetRouteTableRouteResult']:
-        ...
+        return pulumi.get(self, "routes")
 
     @property
     @pulumi.getter(name="subnetId")
@@ -108,17 +108,17 @@ class GetRouteTableResult:
         """
         The Subnet ID. Only set when associated with a Subnet.
         """
-        ...
+        return pulumi.get(self, "subnet_id")
 
     @property
     @pulumi.getter
     def tags(self) -> Mapping[str, str]:
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> str:
-        ...
+        return pulumi.get(self, "vpc_id")
 
 
 

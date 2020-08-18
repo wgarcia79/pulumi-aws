@@ -207,7 +207,7 @@ class DefaultSecurityGroup(pulumi.CustomResource):
     @property
     @pulumi.getter
     def arn(self) -> str:
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -215,7 +215,7 @@ class DefaultSecurityGroup(pulumi.CustomResource):
         """
         The description of the security group
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -224,7 +224,7 @@ class DefaultSecurityGroup(pulumi.CustomResource):
         Can be specified multiple times for each
         egress rule. Each egress block supports fields documented below.
         """
-        ...
+        return pulumi.get(self, "egress")
 
     @property
     @pulumi.getter
@@ -233,7 +233,7 @@ class DefaultSecurityGroup(pulumi.CustomResource):
         Can be specified multiple times for each
         ingress rule. Each ingress block supports fields documented below.
         """
-        ...
+        return pulumi.get(self, "ingress")
 
     @property
     @pulumi.getter
@@ -241,7 +241,7 @@ class DefaultSecurityGroup(pulumi.CustomResource):
         """
         The name of the security group
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="ownerId")
@@ -249,12 +249,12 @@ class DefaultSecurityGroup(pulumi.CustomResource):
         """
         The owner ID.
         """
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter(name="revokeRulesOnDelete")
     def revoke_rules_on_delete(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "revoke_rules_on_delete")
 
     @property
     @pulumi.getter
@@ -262,7 +262,7 @@ class DefaultSecurityGroup(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -272,7 +272,7 @@ class DefaultSecurityGroup(pulumi.CustomResource):
         the `vpc_id` will _not_ restore any default security group rules that were
         modified, added, or removed.** It will be left in its current state
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

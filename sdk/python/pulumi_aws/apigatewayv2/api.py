@@ -187,7 +187,7 @@ class Api(pulumi.CustomResource):
         """
         The URI of the API, of the form `{api-id}.execute-api.{region}.amazonaws.com`.
         """
-        ...
+        return pulumi.get(self, "api_endpoint")
 
     @property
     @pulumi.getter(name="apiKeySelectionExpression")
@@ -197,7 +197,7 @@ class Api(pulumi.CustomResource):
         Valid values: `$context.authorizer.usageIdentifierKey`, `$request.header.x-api-key`. Defaults to `$request.header.x-api-key`.
         Applicable for WebSocket APIs.
         """
-        ...
+        return pulumi.get(self, "api_key_selection_expression")
 
     @property
     @pulumi.getter
@@ -205,7 +205,7 @@ class Api(pulumi.CustomResource):
         """
         The ARN of the API.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="corsConfiguration")
@@ -213,7 +213,7 @@ class Api(pulumi.CustomResource):
         """
         The cross-origin resource sharing (CORS) [configuration](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-cors.html). Applicable for HTTP APIs.
         """
-        ...
+        return pulumi.get(self, "cors_configuration")
 
     @property
     @pulumi.getter(name="credentialsArn")
@@ -221,7 +221,7 @@ class Api(pulumi.CustomResource):
         """
         Part of _quick create_. Specifies any credentials required for the integration. Applicable for HTTP APIs.
         """
-        ...
+        return pulumi.get(self, "credentials_arn")
 
     @property
     @pulumi.getter
@@ -229,7 +229,7 @@ class Api(pulumi.CustomResource):
         """
         The description of the API.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="executionArn")
@@ -239,7 +239,7 @@ class Api(pulumi.CustomResource):
         or in an `iam.Policy` to authorize access to the [`@connections` API](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-how-to-call-websocket-api-connections.html).
         See the [Amazon API Gateway Developer Guide](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-control-access-iam.html) for details.
         """
-        ...
+        return pulumi.get(self, "execution_arn")
 
     @property
     @pulumi.getter
@@ -247,7 +247,7 @@ class Api(pulumi.CustomResource):
         """
         The name of the API.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="protocolType")
@@ -255,7 +255,7 @@ class Api(pulumi.CustomResource):
         """
         The API protocol. Valid values: `HTTP`, `WEBSOCKET`.
         """
-        ...
+        return pulumi.get(self, "protocol_type")
 
     @property
     @pulumi.getter(name="routeKey")
@@ -263,7 +263,7 @@ class Api(pulumi.CustomResource):
         """
         Part of _quick create_. Specifies any [route key](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-routes.html). Applicable for HTTP APIs.
         """
-        ...
+        return pulumi.get(self, "route_key")
 
     @property
     @pulumi.getter(name="routeSelectionExpression")
@@ -272,7 +272,7 @@ class Api(pulumi.CustomResource):
         The [route selection expression](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-route-selection-expressions) for the API.
         Defaults to `$request.method $request.path`.
         """
-        ...
+        return pulumi.get(self, "route_selection_expression")
 
     @property
     @pulumi.getter
@@ -280,7 +280,7 @@ class Api(pulumi.CustomResource):
         """
         A map of tags to assign to the API.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -290,7 +290,7 @@ class Api(pulumi.CustomResource):
         For HTTP integrations, specify a fully qualified URL. For Lambda integrations, specify a function ARN.
         The type of the integration will be `HTTP_PROXY` or `AWS_PROXY`, respectively. Applicable for HTTP APIs.
         """
-        ...
+        return pulumi.get(self, "target")
 
     @property
     @pulumi.getter
@@ -298,7 +298,7 @@ class Api(pulumi.CustomResource):
         """
         A version identifier for the API.
         """
-        ...
+        return pulumi.get(self, "version")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

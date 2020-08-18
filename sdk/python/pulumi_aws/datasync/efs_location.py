@@ -124,7 +124,7 @@ class EfsLocation(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the DataSync Location.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="ec2Config")
@@ -132,7 +132,7 @@ class EfsLocation(pulumi.CustomResource):
         """
         Configuration block containing EC2 configurations for connecting to the EFS File System.
         """
-        ...
+        return pulumi.get(self, "ec2_config")
 
     @property
     @pulumi.getter(name="efsFileSystemArn")
@@ -140,7 +140,7 @@ class EfsLocation(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of EFS File System.
         """
-        ...
+        return pulumi.get(self, "efs_file_system_arn")
 
     @property
     @pulumi.getter
@@ -148,7 +148,7 @@ class EfsLocation(pulumi.CustomResource):
         """
         Subdirectory to perform actions as source or destination. Default `/`.
         """
-        ...
+        return pulumi.get(self, "subdirectory")
 
     @property
     @pulumi.getter
@@ -156,12 +156,12 @@ class EfsLocation(pulumi.CustomResource):
         """
         Key-value pairs of resource tags to assign to the DataSync Location.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
     def uri(self) -> str:
-        ...
+        return pulumi.get(self, "uri")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

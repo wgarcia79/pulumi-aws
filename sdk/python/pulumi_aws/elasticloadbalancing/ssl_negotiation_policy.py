@@ -162,7 +162,7 @@ class SslNegotiationPolicy(pulumi.CustomResource):
         """
         An SSL Negotiation policy attribute. Each has two properties:
         """
-        ...
+        return pulumi.get(self, "attributes")
 
     @property
     @pulumi.getter(name="lbPort")
@@ -172,7 +172,7 @@ class SslNegotiationPolicy(pulumi.CustomResource):
         should be applied. This must be an active listener on the load
         balancer.
         """
-        ...
+        return pulumi.get(self, "lb_port")
 
     @property
     @pulumi.getter(name="loadBalancer")
@@ -181,7 +181,7 @@ class SslNegotiationPolicy(pulumi.CustomResource):
         The load balancer to which the policy
         should be attached.
         """
-        ...
+        return pulumi.get(self, "load_balancer")
 
     @property
     @pulumi.getter
@@ -189,7 +189,7 @@ class SslNegotiationPolicy(pulumi.CustomResource):
         """
         The name of the attribute
         """
-        ...
+        return pulumi.get(self, "name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

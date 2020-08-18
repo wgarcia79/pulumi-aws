@@ -110,7 +110,7 @@ class SecurityGroup(pulumi.CustomResource):
         """
         description for the cache security group. Defaults to "Managed by Pulumi".
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -118,7 +118,7 @@ class SecurityGroup(pulumi.CustomResource):
         """
         Name for the cache security group. This value is stored as a lowercase string.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="securityGroupNames")
@@ -127,7 +127,7 @@ class SecurityGroup(pulumi.CustomResource):
         List of EC2 security group names to be
         authorized for ingress to the cache security group
         """
-        ...
+        return pulumi.get(self, "security_group_names")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

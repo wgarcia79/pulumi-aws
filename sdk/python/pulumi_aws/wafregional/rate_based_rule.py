@@ -141,7 +141,7 @@ class RateBasedRule(pulumi.CustomResource):
         """
         The ARN of the WAF Regional Rate Based Rule.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="metricName")
@@ -149,7 +149,7 @@ class RateBasedRule(pulumi.CustomResource):
         """
         The name or description for the Amazon CloudWatch metric of this rule.
         """
-        ...
+        return pulumi.get(self, "metric_name")
 
     @property
     @pulumi.getter
@@ -157,7 +157,7 @@ class RateBasedRule(pulumi.CustomResource):
         """
         The name or description of the rule.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -165,7 +165,7 @@ class RateBasedRule(pulumi.CustomResource):
         """
         The objects to include in a rule (documented below).
         """
-        ...
+        return pulumi.get(self, "predicates")
 
     @property
     @pulumi.getter(name="rateKey")
@@ -173,7 +173,7 @@ class RateBasedRule(pulumi.CustomResource):
         """
         Valid value is IP.
         """
-        ...
+        return pulumi.get(self, "rate_key")
 
     @property
     @pulumi.getter(name="rateLimit")
@@ -181,7 +181,7 @@ class RateBasedRule(pulumi.CustomResource):
         """
         The maximum number of requests, which have an identical value in the field specified by the RateKey, allowed in a five-minute period. Minimum value is 100.
         """
-        ...
+        return pulumi.get(self, "rate_limit")
 
     @property
     @pulumi.getter
@@ -189,7 +189,7 @@ class RateBasedRule(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -207,7 +207,7 @@ class Stage(pulumi.CustomResource):
         """
         Enables access logs for the API stage. Detailed below.
         """
-        ...
+        return pulumi.get(self, "access_log_settings")
 
     @property
     @pulumi.getter
@@ -215,7 +215,7 @@ class Stage(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN)
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="cacheClusterEnabled")
@@ -223,7 +223,7 @@ class Stage(pulumi.CustomResource):
         """
         Specifies whether a cache cluster is enabled for the stage
         """
-        ...
+        return pulumi.get(self, "cache_cluster_enabled")
 
     @property
     @pulumi.getter(name="cacheClusterSize")
@@ -232,7 +232,7 @@ class Stage(pulumi.CustomResource):
         The size of the cache cluster for the stage, if enabled.
         Allowed values include `0.5`, `1.6`, `6.1`, `13.5`, `28.4`, `58.2`, `118` and `237`.
         """
-        ...
+        return pulumi.get(self, "cache_cluster_size")
 
     @property
     @pulumi.getter(name="clientCertificateId")
@@ -240,7 +240,7 @@ class Stage(pulumi.CustomResource):
         """
         The identifier of a client certificate for the stage.
         """
-        ...
+        return pulumi.get(self, "client_certificate_id")
 
     @property
     @pulumi.getter
@@ -248,7 +248,7 @@ class Stage(pulumi.CustomResource):
         """
         The ID of the deployment that the stage points to
         """
-        ...
+        return pulumi.get(self, "deployment")
 
     @property
     @pulumi.getter
@@ -256,7 +256,7 @@ class Stage(pulumi.CustomResource):
         """
         The description of the stage
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="documentationVersion")
@@ -264,7 +264,7 @@ class Stage(pulumi.CustomResource):
         """
         The version of the associated API documentation
         """
-        ...
+        return pulumi.get(self, "documentation_version")
 
     @property
     @pulumi.getter(name="executionArn")
@@ -274,7 +274,7 @@ class Stage(pulumi.CustomResource):
         when allowing API Gateway to invoke a Lambda function,
         e.g. `arn:aws:execute-api:eu-west-2:123456789012:z4675bid1j/prod`
         """
-        ...
+        return pulumi.get(self, "execution_arn")
 
     @property
     @pulumi.getter(name="invokeUrl")
@@ -283,7 +283,7 @@ class Stage(pulumi.CustomResource):
         The URL to invoke the API pointing to the stage,
         e.g. `https://z4675bid1j.execute-api.eu-west-2.amazonaws.com/prod`
         """
-        ...
+        return pulumi.get(self, "invoke_url")
 
     @property
     @pulumi.getter(name="restApi")
@@ -291,7 +291,7 @@ class Stage(pulumi.CustomResource):
         """
         The ID of the associated REST API
         """
-        ...
+        return pulumi.get(self, "rest_api")
 
     @property
     @pulumi.getter(name="stageName")
@@ -299,7 +299,7 @@ class Stage(pulumi.CustomResource):
         """
         The name of the stage
         """
-        ...
+        return pulumi.get(self, "stage_name")
 
     @property
     @pulumi.getter
@@ -307,7 +307,7 @@ class Stage(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -315,7 +315,7 @@ class Stage(pulumi.CustomResource):
         """
         A map that defines the stage variables
         """
-        ...
+        return pulumi.get(self, "variables")
 
     @property
     @pulumi.getter(name="xrayTracingEnabled")
@@ -323,7 +323,7 @@ class Stage(pulumi.CustomResource):
         """
         Whether active tracing with X-ray is enabled. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "xray_tracing_enabled")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -144,7 +144,7 @@ class TransitGateway(pulumi.CustomResource):
         """
         Private Autonomous System Number (ASN) for the Amazon side of a BGP session. The range is `64512` to `65534` for 16-bit ASNs and `4200000000` to `4294967294` for 32-bit ASNs. Default value: `64512`.
         """
-        ...
+        return pulumi.get(self, "amazon_side_asn")
 
     @property
     @pulumi.getter
@@ -152,7 +152,7 @@ class TransitGateway(pulumi.CustomResource):
         """
         EC2 Transit Gateway Amazon Resource Name (ARN)
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="associationDefaultRouteTableId")
@@ -160,7 +160,7 @@ class TransitGateway(pulumi.CustomResource):
         """
         Identifier of the default association route table
         """
-        ...
+        return pulumi.get(self, "association_default_route_table_id")
 
     @property
     @pulumi.getter(name="autoAcceptSharedAttachments")
@@ -168,7 +168,7 @@ class TransitGateway(pulumi.CustomResource):
         """
         Whether resource attachment requests are automatically accepted. Valid values: `disable`, `enable`. Default value: `disable`.
         """
-        ...
+        return pulumi.get(self, "auto_accept_shared_attachments")
 
     @property
     @pulumi.getter(name="defaultRouteTableAssociation")
@@ -176,7 +176,7 @@ class TransitGateway(pulumi.CustomResource):
         """
         Whether resource attachments are automatically associated with the default association route table. Valid values: `disable`, `enable`. Default value: `enable`.
         """
-        ...
+        return pulumi.get(self, "default_route_table_association")
 
     @property
     @pulumi.getter(name="defaultRouteTablePropagation")
@@ -184,7 +184,7 @@ class TransitGateway(pulumi.CustomResource):
         """
         Whether resource attachments automatically propagate routes to the default propagation route table. Valid values: `disable`, `enable`. Default value: `enable`.
         """
-        ...
+        return pulumi.get(self, "default_route_table_propagation")
 
     @property
     @pulumi.getter
@@ -192,7 +192,7 @@ class TransitGateway(pulumi.CustomResource):
         """
         Description of the EC2 Transit Gateway.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="dnsSupport")
@@ -200,7 +200,7 @@ class TransitGateway(pulumi.CustomResource):
         """
         Whether DNS support is enabled. Valid values: `disable`, `enable`. Default value: `enable`.
         """
-        ...
+        return pulumi.get(self, "dns_support")
 
     @property
     @pulumi.getter(name="ownerId")
@@ -208,7 +208,7 @@ class TransitGateway(pulumi.CustomResource):
         """
         Identifier of the AWS account that owns the EC2 Transit Gateway
         """
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter(name="propagationDefaultRouteTableId")
@@ -216,7 +216,7 @@ class TransitGateway(pulumi.CustomResource):
         """
         Identifier of the default propagation route table
         """
-        ...
+        return pulumi.get(self, "propagation_default_route_table_id")
 
     @property
     @pulumi.getter
@@ -224,7 +224,7 @@ class TransitGateway(pulumi.CustomResource):
         """
         Key-value tags for the EC2 Transit Gateway.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpnEcmpSupport")
@@ -232,7 +232,7 @@ class TransitGateway(pulumi.CustomResource):
         """
         Whether VPN Equal Cost Multipath Protocol support is enabled. Valid values: `disable`, `enable`. Default value: `enable`.
         """
-        ...
+        return pulumi.get(self, "vpn_ecmp_support")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

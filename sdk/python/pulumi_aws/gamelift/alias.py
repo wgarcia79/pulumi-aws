@@ -117,7 +117,7 @@ class Alias(pulumi.CustomResource):
         """
         Alias ARN.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -125,7 +125,7 @@ class Alias(pulumi.CustomResource):
         """
         Description of the alias.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -133,7 +133,7 @@ class Alias(pulumi.CustomResource):
         """
         Name of the alias.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="routingStrategy")
@@ -141,7 +141,7 @@ class Alias(pulumi.CustomResource):
         """
         Specifies the fleet and/or routing type to use for the alias.
         """
-        ...
+        return pulumi.get(self, "routing_strategy")
 
     @property
     @pulumi.getter
@@ -149,7 +149,7 @@ class Alias(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

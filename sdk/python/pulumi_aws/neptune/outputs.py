@@ -35,7 +35,7 @@ class ClusterParameterGroupParameter(dict):
         """
         The name of the neptune parameter.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -43,7 +43,7 @@ class ClusterParameterGroupParameter(dict):
         """
         The value of the neptune parameter.
         """
-        ...
+        return pulumi.get(self, "value")
 
     @property
     @pulumi.getter(name="applyMethod")
@@ -51,7 +51,7 @@ class ClusterParameterGroupParameter(dict):
         """
         Valid values are `immediate` and `pending-reboot`. Defaults to `pending-reboot`.
         """
-        ...
+        return pulumi.get(self, "apply_method")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -79,7 +79,7 @@ class ParameterGroupParameter(dict):
         """
         The name of the Neptune parameter.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -87,7 +87,7 @@ class ParameterGroupParameter(dict):
         """
         The value of the Neptune parameter.
         """
-        ...
+        return pulumi.get(self, "value")
 
     @property
     @pulumi.getter(name="applyMethod")
@@ -95,7 +95,7 @@ class ParameterGroupParameter(dict):
         """
         The apply method of the Neptune parameter. Valid values are `immediate` and `pending-reboot`. Defaults to `pending-reboot`.
         """
-        ...
+        return pulumi.get(self, "apply_method")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

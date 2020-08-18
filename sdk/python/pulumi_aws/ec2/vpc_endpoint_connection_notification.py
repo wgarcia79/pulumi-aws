@@ -139,7 +139,7 @@ class VpcEndpointConnectionNotification(pulumi.CustomResource):
         """
         One or more endpoint [events](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVpcEndpointConnectionNotification.html#API_CreateVpcEndpointConnectionNotification_RequestParameters) for which to receive notifications.
         """
-        ...
+        return pulumi.get(self, "connection_events")
 
     @property
     @pulumi.getter(name="connectionNotificationArn")
@@ -147,7 +147,7 @@ class VpcEndpointConnectionNotification(pulumi.CustomResource):
         """
         The ARN of the SNS topic for the notifications.
         """
-        ...
+        return pulumi.get(self, "connection_notification_arn")
 
     @property
     @pulumi.getter(name="notificationType")
@@ -155,7 +155,7 @@ class VpcEndpointConnectionNotification(pulumi.CustomResource):
         """
         The type of notification.
         """
-        ...
+        return pulumi.get(self, "notification_type")
 
     @property
     @pulumi.getter
@@ -163,7 +163,7 @@ class VpcEndpointConnectionNotification(pulumi.CustomResource):
         """
         The state of the notification.
         """
-        ...
+        return pulumi.get(self, "state")
 
     @property
     @pulumi.getter(name="vpcEndpointId")
@@ -171,7 +171,7 @@ class VpcEndpointConnectionNotification(pulumi.CustomResource):
         """
         The ID of the VPC Endpoint to receive notifications for.
         """
-        ...
+        return pulumi.get(self, "vpc_endpoint_id")
 
     @property
     @pulumi.getter(name="vpcEndpointServiceId")
@@ -179,7 +179,7 @@ class VpcEndpointConnectionNotification(pulumi.CustomResource):
         """
         The ID of the VPC Endpoint Service to receive notifications for.
         """
-        ...
+        return pulumi.get(self, "vpc_endpoint_service_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

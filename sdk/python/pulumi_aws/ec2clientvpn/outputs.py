@@ -36,7 +36,7 @@ class EndpointAuthenticationOption(dict):
         """
         The type of client authentication to be used. Specify `certificate-authentication` to use certificate-based authentication, or `directory-service-authentication` to use Active Directory authentication.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="activeDirectoryId")
@@ -44,7 +44,7 @@ class EndpointAuthenticationOption(dict):
         """
         The ID of the Active Directory to be used for authentication if type is `directory-service-authentication`.
         """
-        ...
+        return pulumi.get(self, "active_directory_id")
 
     @property
     @pulumi.getter(name="rootCertificateChainArn")
@@ -52,7 +52,7 @@ class EndpointAuthenticationOption(dict):
         """
         The ARN of the client certificate. The certificate must be signed by a certificate authority (CA) and it must be provisioned in AWS Certificate Manager (ACM). Only necessary when type is set to `certificate-authentication`.
         """
-        ...
+        return pulumi.get(self, "root_certificate_chain_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -81,7 +81,7 @@ class EndpointConnectionLogOptions(dict):
         """
         Indicates whether connection logging is enabled.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="cloudwatchLogGroup")
@@ -89,7 +89,7 @@ class EndpointConnectionLogOptions(dict):
         """
         The name of the CloudWatch Logs log group.
         """
-        ...
+        return pulumi.get(self, "cloudwatch_log_group")
 
     @property
     @pulumi.getter(name="cloudwatchLogStream")
@@ -97,7 +97,7 @@ class EndpointConnectionLogOptions(dict):
         """
         The name of the CloudWatch Logs log stream to which the connection data is published.
         """
-        ...
+        return pulumi.get(self, "cloudwatch_log_stream")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -141,7 +141,7 @@ class Route(pulumi.CustomResource):
         """
         The ID of the Client VPN endpoint.
         """
-        ...
+        return pulumi.get(self, "client_vpn_endpoint_id")
 
     @property
     @pulumi.getter
@@ -149,7 +149,7 @@ class Route(pulumi.CustomResource):
         """
         A brief description of the authorization rule.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="destinationCidrBlock")
@@ -157,12 +157,12 @@ class Route(pulumi.CustomResource):
         """
         The IPv4 address range, in CIDR notation, of the route destination.
         """
-        ...
+        return pulumi.get(self, "destination_cidr_block")
 
     @property
     @pulumi.getter
     def origin(self) -> str:
-        ...
+        return pulumi.get(self, "origin")
 
     @property
     @pulumi.getter(name="targetVpcSubnetId")
@@ -170,12 +170,12 @@ class Route(pulumi.CustomResource):
         """
         The ID of the Subnet to route the traffic through. It must already be attached to the Client VPN.
         """
-        ...
+        return pulumi.get(self, "target_vpc_subnet_id")
 
     @property
     @pulumi.getter
     def type(self) -> str:
-        ...
+        return pulumi.get(self, "type")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -180,7 +180,7 @@ class TransitVirtualInterface(pulumi.CustomResource):
         """
         The address family for the BGP peer. `ipv4 ` or `ipv6`.
         """
-        ...
+        return pulumi.get(self, "address_family")
 
     @property
     @pulumi.getter(name="amazonAddress")
@@ -188,12 +188,12 @@ class TransitVirtualInterface(pulumi.CustomResource):
         """
         The IPv4 CIDR address to use to send traffic to Amazon. Required for IPv4 BGP peers.
         """
-        ...
+        return pulumi.get(self, "amazon_address")
 
     @property
     @pulumi.getter(name="amazonSideAsn")
     def amazon_side_asn(self) -> str:
-        ...
+        return pulumi.get(self, "amazon_side_asn")
 
     @property
     @pulumi.getter
@@ -201,7 +201,7 @@ class TransitVirtualInterface(pulumi.CustomResource):
         """
         The ARN of the virtual interface.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="awsDevice")
@@ -209,7 +209,7 @@ class TransitVirtualInterface(pulumi.CustomResource):
         """
         The Direct Connect endpoint on which the virtual interface terminates.
         """
-        ...
+        return pulumi.get(self, "aws_device")
 
     @property
     @pulumi.getter(name="bgpAsn")
@@ -217,7 +217,7 @@ class TransitVirtualInterface(pulumi.CustomResource):
         """
         The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
         """
-        ...
+        return pulumi.get(self, "bgp_asn")
 
     @property
     @pulumi.getter(name="bgpAuthKey")
@@ -225,7 +225,7 @@ class TransitVirtualInterface(pulumi.CustomResource):
         """
         The authentication key for BGP configuration.
         """
-        ...
+        return pulumi.get(self, "bgp_auth_key")
 
     @property
     @pulumi.getter(name="connectionId")
@@ -233,7 +233,7 @@ class TransitVirtualInterface(pulumi.CustomResource):
         """
         The ID of the Direct Connect connection (or LAG) on which to create the virtual interface.
         """
-        ...
+        return pulumi.get(self, "connection_id")
 
     @property
     @pulumi.getter(name="customerAddress")
@@ -241,7 +241,7 @@ class TransitVirtualInterface(pulumi.CustomResource):
         """
         The IPv4 CIDR destination address to which Amazon should send traffic. Required for IPv4 BGP peers.
         """
-        ...
+        return pulumi.get(self, "customer_address")
 
     @property
     @pulumi.getter(name="dxGatewayId")
@@ -249,7 +249,7 @@ class TransitVirtualInterface(pulumi.CustomResource):
         """
         The ID of the Direct Connect gateway to which to connect the virtual interface.
         """
-        ...
+        return pulumi.get(self, "dx_gateway_id")
 
     @property
     @pulumi.getter(name="jumboFrameCapable")
@@ -257,7 +257,7 @@ class TransitVirtualInterface(pulumi.CustomResource):
         """
         Indicates whether jumbo frames (8500 MTU) are supported.
         """
-        ...
+        return pulumi.get(self, "jumbo_frame_capable")
 
     @property
     @pulumi.getter
@@ -266,7 +266,7 @@ class TransitVirtualInterface(pulumi.CustomResource):
         The maximum transmission unit (MTU) is the size, in bytes, of the largest permissible packet that can be passed over the connection.
         The MTU of a virtual transit interface can be either `1500` or `8500` (jumbo frames). Default is `1500`.
         """
-        ...
+        return pulumi.get(self, "mtu")
 
     @property
     @pulumi.getter
@@ -274,7 +274,7 @@ class TransitVirtualInterface(pulumi.CustomResource):
         """
         The name for the virtual interface.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -282,7 +282,7 @@ class TransitVirtualInterface(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -290,7 +290,7 @@ class TransitVirtualInterface(pulumi.CustomResource):
         """
         The VLAN ID.
         """
-        ...
+        return pulumi.get(self, "vlan")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

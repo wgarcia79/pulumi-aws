@@ -123,7 +123,7 @@ class DomainName(pulumi.CustomResource):
         """
         The [API mapping selection expression](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-mapping-selection-expressions) for the domain name.
         """
-        ...
+        return pulumi.get(self, "api_mapping_selection_expression")
 
     @property
     @pulumi.getter
@@ -131,7 +131,7 @@ class DomainName(pulumi.CustomResource):
         """
         The ARN of the domain name.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="domainName")
@@ -139,7 +139,7 @@ class DomainName(pulumi.CustomResource):
         """
         The domain name.
         """
-        ...
+        return pulumi.get(self, "domain_name")
 
     @property
     @pulumi.getter(name="domainNameConfiguration")
@@ -147,7 +147,7 @@ class DomainName(pulumi.CustomResource):
         """
         The domain name configuration.
         """
-        ...
+        return pulumi.get(self, "domain_name_configuration")
 
     @property
     @pulumi.getter
@@ -155,7 +155,7 @@ class DomainName(pulumi.CustomResource):
         """
         A map of tags to assign to the domain name.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

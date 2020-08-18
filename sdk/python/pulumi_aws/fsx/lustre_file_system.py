@@ -155,7 +155,7 @@ class LustreFileSystem(pulumi.CustomResource):
         """
         Amazon Resource Name of the file system.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="dnsName")
@@ -163,7 +163,7 @@ class LustreFileSystem(pulumi.CustomResource):
         """
         DNS name for the file system, e.g. `fs-12345678.fsx.us-west-2.amazonaws.com`
         """
-        ...
+        return pulumi.get(self, "dns_name")
 
     @property
     @pulumi.getter(name="exportPath")
@@ -171,7 +171,7 @@ class LustreFileSystem(pulumi.CustomResource):
         """
         S3 URI (with optional prefix) where the root of your Amazon FSx file system is exported. Can only be specified with `import_path` argument and the path must use the same Amazon S3 bucket as specified in `import_path`. Set equal to `import_path` to overwrite files on export. Defaults to `s3://{IMPORT BUCKET}/FSxLustre{CREATION TIMESTAMP}`.
         """
-        ...
+        return pulumi.get(self, "export_path")
 
     @property
     @pulumi.getter(name="importPath")
@@ -179,7 +179,7 @@ class LustreFileSystem(pulumi.CustomResource):
         """
         S3 URI (with optional prefix) that you're using as the data repository for your FSx for Lustre file system. For example, `s3://example-bucket/optional-prefix/`.
         """
-        ...
+        return pulumi.get(self, "import_path")
 
     @property
     @pulumi.getter(name="importedFileChunkSize")
@@ -187,7 +187,7 @@ class LustreFileSystem(pulumi.CustomResource):
         """
         For files imported from a data repository, this value determines the stripe count and maximum amount of data per file (in MiB) stored on a single physical disk. Can only be specified with `import_path` argument. Defaults to `1024`. Minimum of `1` and maximum of `512000`.
         """
-        ...
+        return pulumi.get(self, "imported_file_chunk_size")
 
     @property
     @pulumi.getter(name="networkInterfaceIds")
@@ -195,7 +195,7 @@ class LustreFileSystem(pulumi.CustomResource):
         """
         Set of Elastic Network Interface identifiers from which the file system is accessible.
         """
-        ...
+        return pulumi.get(self, "network_interface_ids")
 
     @property
     @pulumi.getter(name="ownerId")
@@ -203,7 +203,7 @@ class LustreFileSystem(pulumi.CustomResource):
         """
         AWS account identifier that created the file system.
         """
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter(name="securityGroupIds")
@@ -211,7 +211,7 @@ class LustreFileSystem(pulumi.CustomResource):
         """
         A list of IDs for the security groups that apply to the specified network interfaces created for file system access. These security groups will apply to all network interfaces.
         """
-        ...
+        return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter(name="storageCapacity")
@@ -219,7 +219,7 @@ class LustreFileSystem(pulumi.CustomResource):
         """
         The storage capacity (GiB) of the file system. Minimum of `1200`. Storage capacity is provisioned in increments of 3,600 GiB.
         """
-        ...
+        return pulumi.get(self, "storage_capacity")
 
     @property
     @pulumi.getter(name="subnetIds")
@@ -227,7 +227,7 @@ class LustreFileSystem(pulumi.CustomResource):
         """
         A list of IDs for the subnets that the file system will be accessible from. File systems currently support only one subnet. The file server is also launched in that subnet's Availability Zone.
         """
-        ...
+        return pulumi.get(self, "subnet_ids")
 
     @property
     @pulumi.getter
@@ -235,7 +235,7 @@ class LustreFileSystem(pulumi.CustomResource):
         """
         A map of tags to assign to the file system.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -243,7 +243,7 @@ class LustreFileSystem(pulumi.CustomResource):
         """
         Identifier of the Virtual Private Cloud for the file system.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     @property
     @pulumi.getter(name="weeklyMaintenanceStartTime")
@@ -251,7 +251,7 @@ class LustreFileSystem(pulumi.CustomResource):
         """
         The preferred start time (in `d:HH:MM` format) to perform weekly maintenance, in the UTC time zone.
         """
-        ...
+        return pulumi.get(self, "weekly_maintenance_start_time")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

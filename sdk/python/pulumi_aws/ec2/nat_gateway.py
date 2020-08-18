@@ -130,7 +130,7 @@ class NatGateway(pulumi.CustomResource):
         """
         The Allocation ID of the Elastic IP address for the gateway.
         """
-        ...
+        return pulumi.get(self, "allocation_id")
 
     @property
     @pulumi.getter(name="networkInterfaceId")
@@ -138,7 +138,7 @@ class NatGateway(pulumi.CustomResource):
         """
         The ENI ID of the network interface created by the NAT gateway.
         """
-        ...
+        return pulumi.get(self, "network_interface_id")
 
     @property
     @pulumi.getter(name="privateIp")
@@ -146,7 +146,7 @@ class NatGateway(pulumi.CustomResource):
         """
         The private IP address of the NAT Gateway.
         """
-        ...
+        return pulumi.get(self, "private_ip")
 
     @property
     @pulumi.getter(name="publicIp")
@@ -154,7 +154,7 @@ class NatGateway(pulumi.CustomResource):
         """
         The public IP address of the NAT Gateway.
         """
-        ...
+        return pulumi.get(self, "public_ip")
 
     @property
     @pulumi.getter(name="subnetId")
@@ -162,7 +162,7 @@ class NatGateway(pulumi.CustomResource):
         """
         The Subnet ID of the subnet in which to place the gateway.
         """
-        ...
+        return pulumi.get(self, "subnet_id")
 
     @property
     @pulumi.getter
@@ -170,7 +170,7 @@ class NatGateway(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -56,7 +56,7 @@ class GetClusterResult:
         """
         Amazon Resource Name (ARN) of the MSK cluster.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="bootstrapBrokers")
@@ -64,7 +64,7 @@ class GetClusterResult:
         """
         A comma separated list of one or more hostname:port pairs of Kafka brokers suitable to boostrap connectivity to the Kafka cluster.
         """
-        ...
+        return pulumi.get(self, "bootstrap_brokers")
 
     @property
     @pulumi.getter(name="bootstrapBrokersTls")
@@ -72,12 +72,12 @@ class GetClusterResult:
         """
         A comma separated list of one or more DNS names (or IPs) and TLS port pairs kafka brokers suitable to boostrap connectivity to the kafka cluster.
         """
-        ...
+        return pulumi.get(self, "bootstrap_brokers_tls")
 
     @property
     @pulumi.getter(name="clusterName")
     def cluster_name(self) -> str:
-        ...
+        return pulumi.get(self, "cluster_name")
 
     @property
     @pulumi.getter
@@ -85,7 +85,7 @@ class GetClusterResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="kafkaVersion")
@@ -93,7 +93,7 @@ class GetClusterResult:
         """
         Apache Kafka version.
         """
-        ...
+        return pulumi.get(self, "kafka_version")
 
     @property
     @pulumi.getter(name="numberOfBrokerNodes")
@@ -101,7 +101,7 @@ class GetClusterResult:
         """
         Number of broker nodes in the cluster.
         """
-        ...
+        return pulumi.get(self, "number_of_broker_nodes")
 
     @property
     @pulumi.getter
@@ -109,7 +109,7 @@ class GetClusterResult:
         """
         Map of key-value pairs assigned to the cluster.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="zookeeperConnectString")
@@ -117,7 +117,7 @@ class GetClusterResult:
         """
         A comma separated list of one or more hostname:port pairs to use to connect to the Apache Zookeeper cluster.
         """
-        ...
+        return pulumi.get(self, "zookeeper_connect_string")
 
 
 

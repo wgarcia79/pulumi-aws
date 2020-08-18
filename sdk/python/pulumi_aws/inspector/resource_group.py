@@ -95,7 +95,7 @@ class ResourceGroup(pulumi.CustomResource):
         """
         The resource group ARN.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -103,7 +103,7 @@ class ResourceGroup(pulumi.CustomResource):
         """
         Key-value map of tags that are used to select the EC2 instances to be included in an `Amazon Inspector assessment target` resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

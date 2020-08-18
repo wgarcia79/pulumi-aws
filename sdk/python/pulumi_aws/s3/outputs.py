@@ -90,7 +90,7 @@ class AccessPointPublicAccessBlockConfiguration(dict):
         * PUT Object calls fail if the request includes a public ACL.
         * PUT Bucket calls fail if the request includes a public ACL.
         """
-        ...
+        return pulumi.get(self, "block_public_acls")
 
     @property
     @pulumi.getter(name="blockPublicPolicy")
@@ -99,7 +99,7 @@ class AccessPointPublicAccessBlockConfiguration(dict):
         Whether Amazon S3 should block public bucket policies for buckets in this account. Defaults to `true`. Enabling this setting does not affect existing bucket policies. When set to `true` causes Amazon S3 to:
         * Reject calls to PUT Bucket policy if the specified bucket policy allows public access.
         """
-        ...
+        return pulumi.get(self, "block_public_policy")
 
     @property
     @pulumi.getter(name="ignorePublicAcls")
@@ -108,7 +108,7 @@ class AccessPointPublicAccessBlockConfiguration(dict):
         Whether Amazon S3 should ignore public ACLs for buckets in this account. Defaults to `true`. Enabling this setting does not affect the persistence of any existing ACLs and doesn't prevent new public ACLs from being set. When set to `true` causes Amazon S3 to:
         * Ignore all public ACLs on buckets in this account and any objects that they contain.
         """
-        ...
+        return pulumi.get(self, "ignore_public_acls")
 
     @property
     @pulumi.getter(name="restrictPublicBuckets")
@@ -117,7 +117,7 @@ class AccessPointPublicAccessBlockConfiguration(dict):
         Whether Amazon S3 should restrict public bucket policies for buckets in this account. Defaults to `true`. Enabling this setting does not affect previously stored bucket policies, except that public and cross-account access within any public bucket policy, including non-public delegation to specific accounts, is blocked. When set to `true`:
         * Only the bucket owner and AWS Services can access buckets with public policies.
         """
-        ...
+        return pulumi.get(self, "restrict_public_buckets")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -138,7 +138,7 @@ class AccessPointVpcConfiguration(dict):
         """
         This access point will only allow connections from the specified VPC ID.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -164,7 +164,7 @@ class AnalyticsConfigurationFilter(dict):
         """
         Object prefix for filtering.
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     @property
     @pulumi.getter
@@ -172,7 +172,7 @@ class AnalyticsConfigurationFilter(dict):
         """
         Set of object tags for filtering.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -193,7 +193,7 @@ class AnalyticsConfigurationStorageClassAnalysis(dict):
         """
         Data export configuration (documented below).
         """
-        ...
+        return pulumi.get(self, "data_export")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -218,7 +218,7 @@ class AnalyticsConfigurationStorageClassAnalysisDataExport(dict):
         """
         Specifies the destination for the exported analytics data (documented below).
         """
-        ...
+        return pulumi.get(self, "destination")
 
     @property
     @pulumi.getter(name="outputSchemaVersion")
@@ -226,7 +226,7 @@ class AnalyticsConfigurationStorageClassAnalysisDataExport(dict):
         """
         The schema version of exported analytics data. Allowed values: `V_1`. Default value: `V_1`.
         """
-        ...
+        return pulumi.get(self, "output_schema_version")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -247,7 +247,7 @@ class AnalyticsConfigurationStorageClassAnalysisDataExportDestination(dict):
         """
         Analytics data export currently only supports an S3 bucket destination (documented below).
         """
-        ...
+        return pulumi.get(self, "s3_bucket_destination")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -280,7 +280,7 @@ class AnalyticsConfigurationStorageClassAnalysisDataExportDestinationS3BucketDes
         """
         The ARN of the destination bucket.
         """
-        ...
+        return pulumi.get(self, "bucket_arn")
 
     @property
     @pulumi.getter(name="bucketAccountId")
@@ -288,7 +288,7 @@ class AnalyticsConfigurationStorageClassAnalysisDataExportDestinationS3BucketDes
         """
         The account ID that owns the destination bucket.
         """
-        ...
+        return pulumi.get(self, "bucket_account_id")
 
     @property
     @pulumi.getter
@@ -296,7 +296,7 @@ class AnalyticsConfigurationStorageClassAnalysisDataExportDestinationS3BucketDes
         """
         The output format of exported analytics data. Allowed values: `CSV`. Default value: `CSV`.
         """
-        ...
+        return pulumi.get(self, "format")
 
     @property
     @pulumi.getter
@@ -304,7 +304,7 @@ class AnalyticsConfigurationStorageClassAnalysisDataExportDestinationS3BucketDes
         """
         Object prefix for filtering.
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -340,7 +340,7 @@ class BucketCorsRule(dict):
         """
         Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
         """
-        ...
+        return pulumi.get(self, "allowed_methods")
 
     @property
     @pulumi.getter(name="allowedOrigins")
@@ -348,7 +348,7 @@ class BucketCorsRule(dict):
         """
         Specifies which origins are allowed.
         """
-        ...
+        return pulumi.get(self, "allowed_origins")
 
     @property
     @pulumi.getter(name="allowedHeaders")
@@ -356,7 +356,7 @@ class BucketCorsRule(dict):
         """
         Specifies which headers are allowed.
         """
-        ...
+        return pulumi.get(self, "allowed_headers")
 
     @property
     @pulumi.getter(name="exposeHeaders")
@@ -364,7 +364,7 @@ class BucketCorsRule(dict):
         """
         Specifies expose header in the response.
         """
-        ...
+        return pulumi.get(self, "expose_headers")
 
     @property
     @pulumi.getter(name="maxAgeSeconds")
@@ -372,7 +372,7 @@ class BucketCorsRule(dict):
         """
         Specifies time in seconds that browser can cache the response for a preflight request.
         """
-        ...
+        return pulumi.get(self, "max_age_seconds")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -404,7 +404,7 @@ class BucketGrant(dict):
         """
         List of permissions to apply for grantee. Valid values are `READ`, `WRITE`, `READ_ACP`, `WRITE_ACP`, `FULL_CONTROL`.
         """
-        ...
+        return pulumi.get(self, "permissions")
 
     @property
     @pulumi.getter
@@ -412,7 +412,7 @@ class BucketGrant(dict):
         """
         - Type of grantee to apply for. Valid values are `CanonicalUser` and `Group`. `AmazonCustomerByEmail` is not supported.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -420,7 +420,7 @@ class BucketGrant(dict):
         """
         Canonical user id to grant for. Used only when `type` is `CanonicalUser`.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -428,7 +428,7 @@ class BucketGrant(dict):
         """
         Uri address to grant for. Used only when `type` is `Group`.
         """
-        ...
+        return pulumi.get(self, "uri")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -481,7 +481,7 @@ class BucketLifecycleRule(dict):
         """
         Specifies lifecycle rule status.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="abortIncompleteMultipartUploadDays")
@@ -489,7 +489,7 @@ class BucketLifecycleRule(dict):
         """
         Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
         """
-        ...
+        return pulumi.get(self, "abort_incomplete_multipart_upload_days")
 
     @property
     @pulumi.getter
@@ -497,7 +497,7 @@ class BucketLifecycleRule(dict):
         """
         Specifies a period in the object's expire (documented below).
         """
-        ...
+        return pulumi.get(self, "expiration")
 
     @property
     @pulumi.getter
@@ -505,7 +505,7 @@ class BucketLifecycleRule(dict):
         """
         Unique identifier for the rule.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="noncurrentVersionExpiration")
@@ -513,7 +513,7 @@ class BucketLifecycleRule(dict):
         """
         Specifies when noncurrent object versions expire (documented below).
         """
-        ...
+        return pulumi.get(self, "noncurrent_version_expiration")
 
     @property
     @pulumi.getter(name="noncurrentVersionTransitions")
@@ -521,7 +521,7 @@ class BucketLifecycleRule(dict):
         """
         Specifies when noncurrent object versions transitions (documented below).
         """
-        ...
+        return pulumi.get(self, "noncurrent_version_transitions")
 
     @property
     @pulumi.getter
@@ -529,7 +529,7 @@ class BucketLifecycleRule(dict):
         """
         Object key prefix identifying one or more objects to which the rule applies.
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     @property
     @pulumi.getter
@@ -537,7 +537,7 @@ class BucketLifecycleRule(dict):
         """
         Specifies object tags key and value.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -545,7 +545,7 @@ class BucketLifecycleRule(dict):
         """
         Specifies a period in the object's transitions (documented below).
         """
-        ...
+        return pulumi.get(self, "transitions")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -575,7 +575,7 @@ class BucketLifecycleRuleExpiration(dict):
         """
         Specifies the date after which you want the corresponding action to take effect.
         """
-        ...
+        return pulumi.get(self, "date")
 
     @property
     @pulumi.getter
@@ -583,7 +583,7 @@ class BucketLifecycleRuleExpiration(dict):
         """
         Specifies the number of days after object creation when the specific rule action takes effect.
         """
-        ...
+        return pulumi.get(self, "days")
 
     @property
     @pulumi.getter(name="expiredObjectDeleteMarker")
@@ -591,7 +591,7 @@ class BucketLifecycleRuleExpiration(dict):
         """
         On a versioned bucket (versioning-enabled or versioning-suspended bucket), you can add this element in the lifecycle configuration to direct Amazon S3 to delete expired object delete markers.
         """
-        ...
+        return pulumi.get(self, "expired_object_delete_marker")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -613,7 +613,7 @@ class BucketLifecycleRuleNoncurrentVersionExpiration(dict):
         """
         Specifies the number of days noncurrent object versions expire.
         """
-        ...
+        return pulumi.get(self, "days")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -638,7 +638,7 @@ class BucketLifecycleRuleNoncurrentVersionTransition(dict):
         """
         Specifies the Amazon S3 storage class to which you want the noncurrent object versions to transition. Can be `ONEZONE_IA`, `STANDARD_IA`, `INTELLIGENT_TIERING`, `GLACIER`, or `DEEP_ARCHIVE`.
         """
-        ...
+        return pulumi.get(self, "storage_class")
 
     @property
     @pulumi.getter
@@ -646,7 +646,7 @@ class BucketLifecycleRuleNoncurrentVersionTransition(dict):
         """
         Specifies the number of days noncurrent object versions transition.
         """
-        ...
+        return pulumi.get(self, "days")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -675,7 +675,7 @@ class BucketLifecycleRuleTransition(dict):
         """
         Specifies the Amazon S3 storage class to which you want the object to transition. Can be `ONEZONE_IA`, `STANDARD_IA`, `INTELLIGENT_TIERING`, `GLACIER`, or `DEEP_ARCHIVE`.
         """
-        ...
+        return pulumi.get(self, "storage_class")
 
     @property
     @pulumi.getter
@@ -683,7 +683,7 @@ class BucketLifecycleRuleTransition(dict):
         """
         Specifies the date after which you want the corresponding action to take effect.
         """
-        ...
+        return pulumi.get(self, "date")
 
     @property
     @pulumi.getter
@@ -691,7 +691,7 @@ class BucketLifecycleRuleTransition(dict):
         """
         Specifies the number of days after object creation when the specific rule action takes effect.
         """
-        ...
+        return pulumi.get(self, "days")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -716,7 +716,7 @@ class BucketLogging(dict):
         """
         The name of the bucket that will receive the log objects.
         """
-        ...
+        return pulumi.get(self, "target_bucket")
 
     @property
     @pulumi.getter(name="targetPrefix")
@@ -724,7 +724,7 @@ class BucketLogging(dict):
         """
         To specify a key prefix for log objects.
         """
-        ...
+        return pulumi.get(self, "target_prefix")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -750,7 +750,7 @@ class BucketMetricFilter(dict):
         """
         Object prefix for filtering (singular).
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     @property
     @pulumi.getter
@@ -758,7 +758,7 @@ class BucketMetricFilter(dict):
         """
         Object tags for filtering (up to 10).
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -795,7 +795,7 @@ class BucketNotificationLambdaFunction(dict):
         """
         Specifies [event](http://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html#notification-how-to-event-types-and-destinations) for which to send notifications.
         """
-        ...
+        return pulumi.get(self, "events")
 
     @property
     @pulumi.getter(name="filterPrefix")
@@ -803,7 +803,7 @@ class BucketNotificationLambdaFunction(dict):
         """
         Specifies object key name prefix.
         """
-        ...
+        return pulumi.get(self, "filter_prefix")
 
     @property
     @pulumi.getter(name="filterSuffix")
@@ -811,7 +811,7 @@ class BucketNotificationLambdaFunction(dict):
         """
         Specifies object key name suffix.
         """
-        ...
+        return pulumi.get(self, "filter_suffix")
 
     @property
     @pulumi.getter
@@ -819,7 +819,7 @@ class BucketNotificationLambdaFunction(dict):
         """
         Specifies unique identifier for each of the notification configurations.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="lambdaFunctionArn")
@@ -827,7 +827,7 @@ class BucketNotificationLambdaFunction(dict):
         """
         Specifies Amazon Lambda function ARN.
         """
-        ...
+        return pulumi.get(self, "lambda_function_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -863,7 +863,7 @@ class BucketNotificationQueue(dict):
         """
         Specifies [event](http://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html#notification-how-to-event-types-and-destinations) for which to send notifications.
         """
-        ...
+        return pulumi.get(self, "events")
 
     @property
     @pulumi.getter(name="queueArn")
@@ -871,7 +871,7 @@ class BucketNotificationQueue(dict):
         """
         Specifies Amazon SQS queue ARN.
         """
-        ...
+        return pulumi.get(self, "queue_arn")
 
     @property
     @pulumi.getter(name="filterPrefix")
@@ -879,7 +879,7 @@ class BucketNotificationQueue(dict):
         """
         Specifies object key name prefix.
         """
-        ...
+        return pulumi.get(self, "filter_prefix")
 
     @property
     @pulumi.getter(name="filterSuffix")
@@ -887,7 +887,7 @@ class BucketNotificationQueue(dict):
         """
         Specifies object key name suffix.
         """
-        ...
+        return pulumi.get(self, "filter_suffix")
 
     @property
     @pulumi.getter
@@ -895,7 +895,7 @@ class BucketNotificationQueue(dict):
         """
         Specifies unique identifier for each of the notification configurations.
         """
-        ...
+        return pulumi.get(self, "id")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -931,7 +931,7 @@ class BucketNotificationTopic(dict):
         """
         Specifies [event](http://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html#notification-how-to-event-types-and-destinations) for which to send notifications.
         """
-        ...
+        return pulumi.get(self, "events")
 
     @property
     @pulumi.getter(name="topicArn")
@@ -939,7 +939,7 @@ class BucketNotificationTopic(dict):
         """
         Specifies Amazon SNS topic ARN.
         """
-        ...
+        return pulumi.get(self, "topic_arn")
 
     @property
     @pulumi.getter(name="filterPrefix")
@@ -947,7 +947,7 @@ class BucketNotificationTopic(dict):
         """
         Specifies object key name prefix.
         """
-        ...
+        return pulumi.get(self, "filter_prefix")
 
     @property
     @pulumi.getter(name="filterSuffix")
@@ -955,7 +955,7 @@ class BucketNotificationTopic(dict):
         """
         Specifies object key name suffix.
         """
-        ...
+        return pulumi.get(self, "filter_suffix")
 
     @property
     @pulumi.getter
@@ -963,7 +963,7 @@ class BucketNotificationTopic(dict):
         """
         Specifies unique identifier for each of the notification configurations.
         """
-        ...
+        return pulumi.get(self, "id")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -988,7 +988,7 @@ class BucketObjectLockConfiguration(dict):
         """
         Indicates whether this bucket has an Object Lock configuration enabled. Valid value is `Enabled`.
         """
-        ...
+        return pulumi.get(self, "object_lock_enabled")
 
     @property
     @pulumi.getter
@@ -996,7 +996,7 @@ class BucketObjectLockConfiguration(dict):
         """
         The Object Lock rule in place for this bucket.
         """
-        ...
+        return pulumi.get(self, "rule")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1017,7 +1017,7 @@ class BucketObjectLockConfigurationRule(dict):
         """
         The default retention period that you want to apply to new objects placed in this bucket.
         """
-        ...
+        return pulumi.get(self, "default_retention")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1046,7 +1046,7 @@ class BucketObjectLockConfigurationRuleDefaultRetention(dict):
         """
         The default Object Lock retention mode you want to apply to new objects placed in this bucket. Valid values are `GOVERNANCE` and `COMPLIANCE`.
         """
-        ...
+        return pulumi.get(self, "mode")
 
     @property
     @pulumi.getter
@@ -1054,7 +1054,7 @@ class BucketObjectLockConfigurationRuleDefaultRetention(dict):
         """
         The number of days that you want to specify for the default retention period.
         """
-        ...
+        return pulumi.get(self, "days")
 
     @property
     @pulumi.getter
@@ -1062,7 +1062,7 @@ class BucketObjectLockConfigurationRuleDefaultRetention(dict):
         """
         The number of years that you want to specify for the default retention period.
         """
-        ...
+        return pulumi.get(self, "years")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1086,7 +1086,7 @@ class BucketReplicationConfiguration(dict):
         """
         The ARN of the IAM role for Amazon S3 to assume when replicating the objects.
         """
-        ...
+        return pulumi.get(self, "role")
 
     @property
     @pulumi.getter
@@ -1094,7 +1094,7 @@ class BucketReplicationConfiguration(dict):
         """
         Specifies the rules managing the replication (documented below).
         """
-        ...
+        return pulumi.get(self, "rules")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1138,7 +1138,7 @@ class BucketReplicationConfigurationRule(dict):
         """
         Specifies the destination for the rule (documented below).
         """
-        ...
+        return pulumi.get(self, "destination")
 
     @property
     @pulumi.getter
@@ -1146,7 +1146,7 @@ class BucketReplicationConfigurationRule(dict):
         """
         The status of the rule. Either `Enabled` or `Disabled`. The rule is ignored if status is not Enabled.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
@@ -1154,7 +1154,7 @@ class BucketReplicationConfigurationRule(dict):
         """
         Filter that identifies subset of objects to which the replication rule applies (documented below).
         """
-        ...
+        return pulumi.get(self, "filter")
 
     @property
     @pulumi.getter
@@ -1162,7 +1162,7 @@ class BucketReplicationConfigurationRule(dict):
         """
         Unique identifier for the rule.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -1170,7 +1170,7 @@ class BucketReplicationConfigurationRule(dict):
         """
         Object keyname prefix identifying one or more objects to which the rule applies.
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     @property
     @pulumi.getter
@@ -1178,7 +1178,7 @@ class BucketReplicationConfigurationRule(dict):
         """
         is optional (with a default value of `0`) but must be unique between multiple rules
         """
-        ...
+        return pulumi.get(self, "priority")
 
     @property
     @pulumi.getter(name="sourceSelectionCriteria")
@@ -1186,7 +1186,7 @@ class BucketReplicationConfigurationRule(dict):
         """
         Specifies special object selection criteria (documented below).
         """
-        ...
+        return pulumi.get(self, "source_selection_criteria")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1224,7 +1224,7 @@ class BucketReplicationConfigurationRuleDestination(dict):
         """
         The ARN of the S3 bucket where you want Amazon S3 to store replicas of the object identified by the rule.
         """
-        ...
+        return pulumi.get(self, "bucket")
 
     @property
     @pulumi.getter(name="accessControlTranslation")
@@ -1232,7 +1232,7 @@ class BucketReplicationConfigurationRuleDestination(dict):
         """
         Specifies the overrides to use for object owners on replication. Must be used in conjunction with `account_id` owner override configuration.
         """
-        ...
+        return pulumi.get(self, "access_control_translation")
 
     @property
     @pulumi.getter(name="accountId")
@@ -1240,7 +1240,7 @@ class BucketReplicationConfigurationRuleDestination(dict):
         """
         The Account ID to use for overriding the object owner on replication. Must be used in conjunction with `access_control_translation` override configuration.
         """
-        ...
+        return pulumi.get(self, "account_id")
 
     @property
     @pulumi.getter(name="replicaKmsKeyId")
@@ -1249,7 +1249,7 @@ class BucketReplicationConfigurationRuleDestination(dict):
         Destination KMS encryption key ARN for SSE-KMS replication. Must be used in conjunction with
         `sse_kms_encrypted_objects` source selection criteria.
         """
-        ...
+        return pulumi.get(self, "replica_kms_key_id")
 
     @property
     @pulumi.getter(name="storageClass")
@@ -1257,7 +1257,7 @@ class BucketReplicationConfigurationRuleDestination(dict):
         """
         The class of storage used to store the object. Can be `STANDARD`, `REDUCED_REDUNDANCY`, `STANDARD_IA`, `ONEZONE_IA`, `INTELLIGENT_TIERING`, `GLACIER`, or `DEEP_ARCHIVE`.
         """
-        ...
+        return pulumi.get(self, "storage_class")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1278,7 +1278,7 @@ class BucketReplicationConfigurationRuleDestinationAccessControlTranslation(dict
         """
         The override value for the owner on replicated objects. Currently only `Destination` is supported.
         """
-        ...
+        return pulumi.get(self, "owner")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1305,7 +1305,7 @@ class BucketReplicationConfigurationRuleFilter(dict):
         """
         Object keyname prefix that identifies subset of objects to which the rule applies.
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     @property
     @pulumi.getter
@@ -1314,7 +1314,7 @@ class BucketReplicationConfigurationRuleFilter(dict):
         A map of tags that identifies subset of objects to which the rule applies.
         The rule applies only to objects having all the tags in its tagset.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1338,7 +1338,7 @@ class BucketReplicationConfigurationRuleSourceSelectionCriteria(dict):
         Match SSE-KMS encrypted objects (documented below). If specified, `replica_kms_key_id`
         in `destination` must be specified as well.
         """
-        ...
+        return pulumi.get(self, "sse_kms_encrypted_objects")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1359,7 +1359,7 @@ class BucketReplicationConfigurationRuleSourceSelectionCriteriaSseKmsEncryptedOb
         """
         Boolean which indicates if this criteria is enabled.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1380,7 +1380,7 @@ class BucketServerSideEncryptionConfiguration(dict):
         """
         A single object for server-side encryption by default configuration. (documented below)
         """
-        ...
+        return pulumi.get(self, "rule")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1401,7 +1401,7 @@ class BucketServerSideEncryptionConfigurationRule(dict):
         """
         A single object for setting server-side encryption by default. (documented below)
         """
-        ...
+        return pulumi.get(self, "apply_server_side_encryption_by_default")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1426,7 +1426,7 @@ class BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefa
         """
         The server-side encryption algorithm to use. Valid values are `AES256` and `aws:kms`
         """
-        ...
+        return pulumi.get(self, "sse_algorithm")
 
     @property
     @pulumi.getter(name="kmsMasterKeyId")
@@ -1434,7 +1434,7 @@ class BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefa
         """
         The AWS KMS master key ID used for the SSE-KMS encryption. This can only be used when you set the value of `sse_algorithm` as `aws:kms`. The default `aws/s3` AWS KMS master key is used if this element is absent while the `sse_algorithm` is `aws:kms`.
         """
-        ...
+        return pulumi.get(self, "kms_master_key_id")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1460,7 +1460,7 @@ class BucketVersioning(dict):
         """
         Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="mfaDelete")
@@ -1468,7 +1468,7 @@ class BucketVersioning(dict):
         """
         Enable MFA delete for either `Change the versioning state of your bucket` or `Permanently delete an object version`. Default is `false`. This cannot be used to toggle this setting but is available to allow managed buckets to reflect the state in AWS
         """
-        ...
+        return pulumi.get(self, "mfa_delete")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1503,7 +1503,7 @@ class BucketWebsite(dict):
         """
         An absolute path to the document to return in case of a 4XX error.
         """
-        ...
+        return pulumi.get(self, "error_document")
 
     @property
     @pulumi.getter(name="indexDocument")
@@ -1511,7 +1511,7 @@ class BucketWebsite(dict):
         """
         Amazon S3 returns this index document when requests are made to the root domain or any of the subfolders.
         """
-        ...
+        return pulumi.get(self, "index_document")
 
     @property
     @pulumi.getter(name="redirectAllRequestsTo")
@@ -1519,7 +1519,7 @@ class BucketWebsite(dict):
         """
         A hostname to redirect all website requests for this bucket to. Hostname can optionally be prefixed with a protocol (`http://` or `https://`) to use when redirecting requests. The default is the protocol that is used in the original request.
         """
-        ...
+        return pulumi.get(self, "redirect_all_requests_to")
 
     @property
     @pulumi.getter(name="routingRules")
@@ -1528,7 +1528,7 @@ class BucketWebsite(dict):
         A json array containing [routing rules](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration-routingrules.html)
         describing redirect behavior and when redirects are applied.
         """
-        ...
+        return pulumi.get(self, "routing_rules")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1549,7 +1549,7 @@ class InventoryDestination(dict):
         """
         The S3 bucket configuration where inventory results are published (documented below).
         """
-        ...
+        return pulumi.get(self, "bucket")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1585,7 +1585,7 @@ class InventoryDestinationBucket(dict):
         """
         The Amazon S3 bucket ARN of the destination.
         """
-        ...
+        return pulumi.get(self, "bucket_arn")
 
     @property
     @pulumi.getter
@@ -1593,7 +1593,7 @@ class InventoryDestinationBucket(dict):
         """
         Specifies the output format of the inventory results. Can be `CSV`, [`ORC`](https://orc.apache.org/) or [`Parquet`](https://parquet.apache.org/).
         """
-        ...
+        return pulumi.get(self, "format")
 
     @property
     @pulumi.getter(name="accountId")
@@ -1601,7 +1601,7 @@ class InventoryDestinationBucket(dict):
         """
         The ID of the account that owns the destination bucket. Recommended to be set to prevent problems if the destination bucket ownership changes.
         """
-        ...
+        return pulumi.get(self, "account_id")
 
     @property
     @pulumi.getter
@@ -1609,7 +1609,7 @@ class InventoryDestinationBucket(dict):
         """
         Contains the type of server-side encryption to use to encrypt the inventory (documented below).
         """
-        ...
+        return pulumi.get(self, "encryption")
 
     @property
     @pulumi.getter
@@ -1617,7 +1617,7 @@ class InventoryDestinationBucket(dict):
         """
         The prefix that is prepended to all inventory results.
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1643,7 +1643,7 @@ class InventoryDestinationBucketEncryption(dict):
         """
         Specifies to use server-side encryption with AWS KMS-managed keys to encrypt the inventory file (documented below).
         """
-        ...
+        return pulumi.get(self, "sse_kms")
 
     @property
     @pulumi.getter(name="sseS3")
@@ -1651,7 +1651,7 @@ class InventoryDestinationBucketEncryption(dict):
         """
         Specifies to use server-side encryption with Amazon S3-managed keys (SSE-S3) to encrypt the inventory file.
         """
-        ...
+        return pulumi.get(self, "sse_s3")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1672,7 +1672,7 @@ class InventoryDestinationBucketEncryptionSseKms(dict):
         """
         The ARN of the KMS customer master key (CMK) used to encrypt the inventory file.
         """
-        ...
+        return pulumi.get(self, "key_id")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1703,7 +1703,7 @@ class InventoryFilter(dict):
         """
         The prefix that an object must have to be included in the inventory results.
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1724,7 +1724,7 @@ class InventorySchedule(dict):
         """
         Specifies how frequently inventory results are produced. Valid values: `Daily`, `Weekly`.
         """
-        ...
+        return pulumi.get(self, "frequency")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -40,7 +40,7 @@ class GetEbsVolumesResult:
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetEbsVolumesFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
@@ -48,7 +48,7 @@ class GetEbsVolumesResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -57,12 +57,12 @@ class GetEbsVolumesResult:
         A set of all the EBS Volume IDs found. This data source will fail if
         no volumes match the provided criteria.
         """
-        ...
+        return pulumi.get(self, "ids")
 
     @property
     @pulumi.getter
     def tags(self) -> Optional[Mapping[str, str]]:
-        ...
+        return pulumi.get(self, "tags")
 
 
 

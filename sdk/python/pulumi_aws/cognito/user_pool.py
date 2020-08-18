@@ -243,7 +243,7 @@ class UserPool(pulumi.CustomResource):
         """
         The configuration for AdminCreateUser requests.
         """
-        ...
+        return pulumi.get(self, "admin_create_user_config")
 
     @property
     @pulumi.getter(name="aliasAttributes")
@@ -251,7 +251,7 @@ class UserPool(pulumi.CustomResource):
         """
         Attributes supported as an alias for this user pool. Possible values: phone_number, email, or preferred_username. Conflicts with `username_attributes`.
         """
-        ...
+        return pulumi.get(self, "alias_attributes")
 
     @property
     @pulumi.getter
@@ -259,7 +259,7 @@ class UserPool(pulumi.CustomResource):
         """
         The ARN of the user pool.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="autoVerifiedAttributes")
@@ -267,7 +267,7 @@ class UserPool(pulumi.CustomResource):
         """
         The attributes to be auto-verified. Possible values: email, phone_number.
         """
-        ...
+        return pulumi.get(self, "auto_verified_attributes")
 
     @property
     @pulumi.getter(name="creationDate")
@@ -275,7 +275,7 @@ class UserPool(pulumi.CustomResource):
         """
         The date the user pool was created.
         """
-        ...
+        return pulumi.get(self, "creation_date")
 
     @property
     @pulumi.getter(name="deviceConfiguration")
@@ -283,7 +283,7 @@ class UserPool(pulumi.CustomResource):
         """
         The configuration for the user pool's device tracking.
         """
-        ...
+        return pulumi.get(self, "device_configuration")
 
     @property
     @pulumi.getter(name="emailConfiguration")
@@ -291,7 +291,7 @@ class UserPool(pulumi.CustomResource):
         """
         The Email Configuration.
         """
-        ...
+        return pulumi.get(self, "email_configuration")
 
     @property
     @pulumi.getter(name="emailVerificationMessage")
@@ -299,7 +299,7 @@ class UserPool(pulumi.CustomResource):
         """
         A string representing the email verification message. Conflicts with `verification_message_template` configuration block `email_message` argument.
         """
-        ...
+        return pulumi.get(self, "email_verification_message")
 
     @property
     @pulumi.getter(name="emailVerificationSubject")
@@ -307,7 +307,7 @@ class UserPool(pulumi.CustomResource):
         """
         A string representing the email verification subject. Conflicts with `verification_message_template` configuration block `email_subject` argument.
         """
-        ...
+        return pulumi.get(self, "email_verification_subject")
 
     @property
     @pulumi.getter
@@ -315,7 +315,7 @@ class UserPool(pulumi.CustomResource):
         """
         The endpoint name of the user pool. Example format: cognito-idp.REGION.amazonaws.com/xxxx_yyyyy
         """
-        ...
+        return pulumi.get(self, "endpoint")
 
     @property
     @pulumi.getter(name="lambdaConfig")
@@ -323,7 +323,7 @@ class UserPool(pulumi.CustomResource):
         """
         A container for the AWS Lambda triggers associated with the user pool.
         """
-        ...
+        return pulumi.get(self, "lambda_config")
 
     @property
     @pulumi.getter(name="lastModifiedDate")
@@ -331,7 +331,7 @@ class UserPool(pulumi.CustomResource):
         """
         The date the user pool was last modified.
         """
-        ...
+        return pulumi.get(self, "last_modified_date")
 
     @property
     @pulumi.getter(name="mfaConfiguration")
@@ -339,7 +339,7 @@ class UserPool(pulumi.CustomResource):
         """
         Multi-Factor Authentication (MFA) configuration for the User Pool. Defaults of `OFF`. Valid values:
         """
-        ...
+        return pulumi.get(self, "mfa_configuration")
 
     @property
     @pulumi.getter
@@ -347,7 +347,7 @@ class UserPool(pulumi.CustomResource):
         """
         The name of the attribute.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="passwordPolicy")
@@ -355,7 +355,7 @@ class UserPool(pulumi.CustomResource):
         """
         A container for information about the user pool password policy.
         """
-        ...
+        return pulumi.get(self, "password_policy")
 
     @property
     @pulumi.getter
@@ -363,7 +363,7 @@ class UserPool(pulumi.CustomResource):
         """
         A container with the schema attributes of a user pool. Schema attributes from the [standard attribute set](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html#cognito-user-pools-standard-attributes) only need to be specified if they are different from the default configuration. Maximum of 50 attributes.
         """
-        ...
+        return pulumi.get(self, "schemas")
 
     @property
     @pulumi.getter(name="smsAuthenticationMessage")
@@ -371,7 +371,7 @@ class UserPool(pulumi.CustomResource):
         """
         A string representing the SMS authentication message. The message must contain the `{####}` placeholder, which will be replaced with the code.
         """
-        ...
+        return pulumi.get(self, "sms_authentication_message")
 
     @property
     @pulumi.getter(name="smsConfiguration")
@@ -379,7 +379,7 @@ class UserPool(pulumi.CustomResource):
         """
         Configuration block for Short Message Service (SMS) settings. Detailed below. These settings apply to SMS user verification and SMS Multi-Factor Authentication (MFA). Due to Cognito API restrictions, the SMS configuration cannot be removed without recreating the Cognito User Pool. For user data safety, this resource will ignore the removal of this configuration by disabling drift detection. To force resource recreation after this configuration has been applied, see the [`up` command and use --replace](https://www.pulumi.com/docs/reference/cli/pulumi_up/).
         """
-        ...
+        return pulumi.get(self, "sms_configuration")
 
     @property
     @pulumi.getter(name="smsVerificationMessage")
@@ -387,7 +387,7 @@ class UserPool(pulumi.CustomResource):
         """
         A string representing the SMS verification message. Conflicts with `verification_message_template` configuration block `sms_message` argument.
         """
-        ...
+        return pulumi.get(self, "sms_verification_message")
 
     @property
     @pulumi.getter(name="softwareTokenMfaConfiguration")
@@ -395,7 +395,7 @@ class UserPool(pulumi.CustomResource):
         """
         Configuration block for software token Mult-Factor Authentication (MFA) settings. Detailed below.
         """
-        ...
+        return pulumi.get(self, "software_token_mfa_configuration")
 
     @property
     @pulumi.getter
@@ -403,7 +403,7 @@ class UserPool(pulumi.CustomResource):
         """
         A map of tags to assign to the User Pool.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="userPoolAddOns")
@@ -411,7 +411,7 @@ class UserPool(pulumi.CustomResource):
         """
         Configuration block for user pool add-ons to enable user pool advanced security mode features.
         """
-        ...
+        return pulumi.get(self, "user_pool_add_ons")
 
     @property
     @pulumi.getter(name="usernameAttributes")
@@ -419,7 +419,7 @@ class UserPool(pulumi.CustomResource):
         """
         Specifies whether email addresses or phone numbers can be specified as usernames when a user signs up. Conflicts with `alias_attributes`.
         """
-        ...
+        return pulumi.get(self, "username_attributes")
 
     @property
     @pulumi.getter(name="usernameConfiguration")
@@ -427,7 +427,7 @@ class UserPool(pulumi.CustomResource):
         """
         The Username Configuration.
         """
-        ...
+        return pulumi.get(self, "username_configuration")
 
     @property
     @pulumi.getter(name="verificationMessageTemplate")
@@ -435,7 +435,7 @@ class UserPool(pulumi.CustomResource):
         """
         The verification message templates configuration.
         """
-        ...
+        return pulumi.get(self, "verification_message_template")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

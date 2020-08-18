@@ -116,7 +116,7 @@ class BaiduChannel(pulumi.CustomResource):
         """
         Platform credential API key from Baidu.
         """
-        ...
+        return pulumi.get(self, "api_key")
 
     @property
     @pulumi.getter(name="applicationId")
@@ -124,7 +124,7 @@ class BaiduChannel(pulumi.CustomResource):
         """
         The application ID.
         """
-        ...
+        return pulumi.get(self, "application_id")
 
     @property
     @pulumi.getter
@@ -132,7 +132,7 @@ class BaiduChannel(pulumi.CustomResource):
         """
         Specifies whether to enable the channel. Defaults to `true`.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="secretKey")
@@ -140,7 +140,7 @@ class BaiduChannel(pulumi.CustomResource):
         """
         Platform credential Secret key from Baidu.
         """
-        ...
+        return pulumi.get(self, "secret_key")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

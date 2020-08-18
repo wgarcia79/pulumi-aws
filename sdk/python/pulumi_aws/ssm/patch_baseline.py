@@ -254,7 +254,7 @@ class PatchBaseline(pulumi.CustomResource):
         """
         A set of rules used to include patches in the baseline. up to 10 approval rules can be specified. Each approval_rule block requires the fields documented below.
         """
-        ...
+        return pulumi.get(self, "approval_rules")
 
     @property
     @pulumi.getter(name="approvedPatches")
@@ -262,7 +262,7 @@ class PatchBaseline(pulumi.CustomResource):
         """
         A list of explicitly approved patches for the baseline.
         """
-        ...
+        return pulumi.get(self, "approved_patches")
 
     @property
     @pulumi.getter(name="approvedPatchesComplianceLevel")
@@ -270,7 +270,7 @@ class PatchBaseline(pulumi.CustomResource):
         """
         Defines the compliance level for approved patches. This means that if an approved patch is reported as missing, this is the severity of the compliance violation. Valid compliance levels include the following: `CRITICAL`, `HIGH`, `MEDIUM`, `LOW`, `INFORMATIONAL`, `UNSPECIFIED`. The default value is `UNSPECIFIED`.
         """
-        ...
+        return pulumi.get(self, "approved_patches_compliance_level")
 
     @property
     @pulumi.getter
@@ -278,7 +278,7 @@ class PatchBaseline(pulumi.CustomResource):
         """
         The description of the patch baseline.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="globalFilters")
@@ -286,7 +286,7 @@ class PatchBaseline(pulumi.CustomResource):
         """
         A set of global filters used to exclude patches from the baseline. Up to 4 global filters can be specified using Key/Value pairs. Valid Keys are `PRODUCT | CLASSIFICATION | MSRC_SEVERITY | PATCH_ID`.
         """
-        ...
+        return pulumi.get(self, "global_filters")
 
     @property
     @pulumi.getter
@@ -294,7 +294,7 @@ class PatchBaseline(pulumi.CustomResource):
         """
         The name of the patch baseline.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="operatingSystem")
@@ -302,7 +302,7 @@ class PatchBaseline(pulumi.CustomResource):
         """
         Defines the operating system the patch baseline applies to. Supported operating systems include `WINDOWS`, `AMAZON_LINUX`, `AMAZON_LINUX_2`, `SUSE`, `UBUNTU`, `CENTOS`, and `REDHAT_ENTERPRISE_LINUX`. The Default value is `WINDOWS`.
         """
-        ...
+        return pulumi.get(self, "operating_system")
 
     @property
     @pulumi.getter(name="rejectedPatches")
@@ -310,7 +310,7 @@ class PatchBaseline(pulumi.CustomResource):
         """
         A list of rejected patches.
         """
-        ...
+        return pulumi.get(self, "rejected_patches")
 
     @property
     @pulumi.getter
@@ -318,7 +318,7 @@ class PatchBaseline(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

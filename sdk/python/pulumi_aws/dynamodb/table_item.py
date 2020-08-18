@@ -134,7 +134,7 @@ class TableItem(pulumi.CustomResource):
         """
         Hash key to use for lookups and identification of the item
         """
-        ...
+        return pulumi.get(self, "hash_key")
 
     @property
     @pulumi.getter
@@ -143,7 +143,7 @@ class TableItem(pulumi.CustomResource):
         JSON representation of a map of attribute name/value pairs, one for each attribute.
         Only the primary key attributes are required; you can optionally provide other attribute name-value pairs for the item.
         """
-        ...
+        return pulumi.get(self, "item")
 
     @property
     @pulumi.getter(name="rangeKey")
@@ -151,7 +151,7 @@ class TableItem(pulumi.CustomResource):
         """
         Range key to use for lookups and identification of the item. Required if there is range key defined in the table.
         """
-        ...
+        return pulumi.get(self, "range_key")
 
     @property
     @pulumi.getter(name="tableName")
@@ -159,7 +159,7 @@ class TableItem(pulumi.CustomResource):
         """
         The name of the table to contain the item.
         """
-        ...
+        return pulumi.get(self, "table_name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

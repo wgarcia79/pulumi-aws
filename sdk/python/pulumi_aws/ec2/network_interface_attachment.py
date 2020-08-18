@@ -115,7 +115,7 @@ class NetworkInterfaceAttachment(pulumi.CustomResource):
         """
         The ENI Attachment ID.
         """
-        ...
+        return pulumi.get(self, "attachment_id")
 
     @property
     @pulumi.getter(name="deviceIndex")
@@ -123,7 +123,7 @@ class NetworkInterfaceAttachment(pulumi.CustomResource):
         """
         Network interface index (int).
         """
-        ...
+        return pulumi.get(self, "device_index")
 
     @property
     @pulumi.getter(name="instanceId")
@@ -131,7 +131,7 @@ class NetworkInterfaceAttachment(pulumi.CustomResource):
         """
         Instance ID to attach.
         """
-        ...
+        return pulumi.get(self, "instance_id")
 
     @property
     @pulumi.getter(name="networkInterfaceId")
@@ -139,7 +139,7 @@ class NetworkInterfaceAttachment(pulumi.CustomResource):
         """
         ENI ID to attach.
         """
-        ...
+        return pulumi.get(self, "network_interface_id")
 
     @property
     @pulumi.getter
@@ -147,7 +147,7 @@ class NetworkInterfaceAttachment(pulumi.CustomResource):
         """
         The status of the Network Interface Attachment.
         """
-        ...
+        return pulumi.get(self, "status")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

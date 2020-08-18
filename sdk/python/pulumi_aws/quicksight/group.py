@@ -110,7 +110,7 @@ class Group(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of group
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="awsAccountId")
@@ -118,7 +118,7 @@ class Group(pulumi.CustomResource):
         """
         The ID for the AWS account that the group is in. Currently, you use the ID for the AWS account that contains your Amazon QuickSight account.
         """
-        ...
+        return pulumi.get(self, "aws_account_id")
 
     @property
     @pulumi.getter
@@ -126,7 +126,7 @@ class Group(pulumi.CustomResource):
         """
         A description for the group.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="groupName")
@@ -134,7 +134,7 @@ class Group(pulumi.CustomResource):
         """
         A name for the group.
         """
-        ...
+        return pulumi.get(self, "group_name")
 
     @property
     @pulumi.getter
@@ -142,7 +142,7 @@ class Group(pulumi.CustomResource):
         """
         The namespace. Currently, you should set this to `default`.
         """
-        ...
+        return pulumi.get(self, "namespace")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -52,7 +52,7 @@ class GetPolicyDocumentResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -60,32 +60,32 @@ class GetPolicyDocumentResult:
         """
         The above arguments serialized as a standard JSON policy document.
         """
-        ...
+        return pulumi.get(self, "json")
 
     @property
     @pulumi.getter(name="overrideJson")
     def override_json(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "override_json")
 
     @property
     @pulumi.getter(name="policyId")
     def policy_id(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "policy_id")
 
     @property
     @pulumi.getter(name="sourceJson")
     def source_json(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "source_json")
 
     @property
     @pulumi.getter
     def statements(self) -> Optional[List['outputs.GetPolicyDocumentStatementResult']]:
-        ...
+        return pulumi.get(self, "statements")
 
     @property
     @pulumi.getter
     def version(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "version")
 
 
 

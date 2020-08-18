@@ -121,7 +121,7 @@ class RuleGroup(pulumi.CustomResource):
         """
         A list of activated rules, see below
         """
-        ...
+        return pulumi.get(self, "activated_rules")
 
     @property
     @pulumi.getter
@@ -129,7 +129,7 @@ class RuleGroup(pulumi.CustomResource):
         """
         The ARN of the WAF rule group.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="metricName")
@@ -137,7 +137,7 @@ class RuleGroup(pulumi.CustomResource):
         """
         A friendly name for the metrics from the rule group
         """
-        ...
+        return pulumi.get(self, "metric_name")
 
     @property
     @pulumi.getter
@@ -145,7 +145,7 @@ class RuleGroup(pulumi.CustomResource):
         """
         A friendly name of the rule group
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -153,7 +153,7 @@ class RuleGroup(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

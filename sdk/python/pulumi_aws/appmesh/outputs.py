@@ -60,7 +60,7 @@ class MeshSpec(dict):
         """
         The egress filter rules for the service mesh.
         """
-        ...
+        return pulumi.get(self, "egress_filter")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -84,7 +84,7 @@ class MeshSpecEgressFilter(dict):
         The egress filter type. By default, the type is `DROP_ALL`.
         Valid values are `ALLOW_ALL` and `DROP_ALL`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -115,7 +115,7 @@ class RouteSpec(dict):
         """
         The HTTP routing information for the route.
         """
-        ...
+        return pulumi.get(self, "http_route")
 
     @property
     @pulumi.getter
@@ -124,7 +124,7 @@ class RouteSpec(dict):
         The priority for the route, between `0` and `1000`.
         Routes are matched based on the specified value, where `0` is the highest priority.
         """
-        ...
+        return pulumi.get(self, "priority")
 
     @property
     @pulumi.getter(name="tcpRoute")
@@ -132,7 +132,7 @@ class RouteSpec(dict):
         """
         The TCP routing information for the route.
         """
-        ...
+        return pulumi.get(self, "tcp_route")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -156,7 +156,7 @@ class RouteSpecHttpRoute(dict):
         """
         The action to take if a match is determined.
         """
-        ...
+        return pulumi.get(self, "action")
 
     @property
     @pulumi.getter
@@ -164,7 +164,7 @@ class RouteSpecHttpRoute(dict):
         """
         The criteria for determining an HTTP request match.
         """
-        ...
+        return pulumi.get(self, "match")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -187,7 +187,7 @@ class RouteSpecHttpRouteAction(dict):
         The targets that traffic is routed to when a request matches the route.
         You can specify one or more targets and their relative weights with which to distribute traffic.
         """
-        ...
+        return pulumi.get(self, "weighted_targets")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -211,7 +211,7 @@ class RouteSpecHttpRouteActionWeightedTarget(dict):
         """
         The virtual node to associate with the weighted target.
         """
-        ...
+        return pulumi.get(self, "virtual_node")
 
     @property
     @pulumi.getter
@@ -219,7 +219,7 @@ class RouteSpecHttpRouteActionWeightedTarget(dict):
         """
         The relative weight of the weighted target. An integer between 0 and 100.
         """
-        ...
+        return pulumi.get(self, "weight")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -254,7 +254,7 @@ class RouteSpecHttpRouteMatch(dict):
         Specifies the path with which to match requests.
         This parameter must always start with /, which by itself matches all requests to the virtual router service name.
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     @property
     @pulumi.getter
@@ -262,7 +262,7 @@ class RouteSpecHttpRouteMatch(dict):
         """
         The client request headers to match on.
         """
-        ...
+        return pulumi.get(self, "headers")
 
     @property
     @pulumi.getter
@@ -270,7 +270,7 @@ class RouteSpecHttpRouteMatch(dict):
         """
         The client request header method to match on. Valid values: `GET`, `HEAD`, `POST`, `PUT`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`, `PATCH`.
         """
-        ...
+        return pulumi.get(self, "method")
 
     @property
     @pulumi.getter
@@ -278,7 +278,7 @@ class RouteSpecHttpRouteMatch(dict):
         """
         The client request header scheme to match on. Valid values: `http`, `https`.
         """
-        ...
+        return pulumi.get(self, "scheme")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -307,7 +307,7 @@ class RouteSpecHttpRouteMatchHeader(dict):
         """
         A name for the HTTP header in the client request that will be matched on.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -315,7 +315,7 @@ class RouteSpecHttpRouteMatchHeader(dict):
         """
         If `true`, the match is on the opposite of the `match` method and value. Default is `false`.
         """
-        ...
+        return pulumi.get(self, "invert")
 
     @property
     @pulumi.getter
@@ -323,7 +323,7 @@ class RouteSpecHttpRouteMatchHeader(dict):
         """
         The method and value to match the header value sent with a request. Specify one match method.
         """
-        ...
+        return pulumi.get(self, "match")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -362,7 +362,7 @@ class RouteSpecHttpRouteMatchHeaderMatch(dict):
         """
         The header value sent by the client must match the specified value exactly.
         """
-        ...
+        return pulumi.get(self, "exact")
 
     @property
     @pulumi.getter
@@ -371,7 +371,7 @@ class RouteSpecHttpRouteMatchHeaderMatch(dict):
         Specifies the path with which to match requests.
         This parameter must always start with /, which by itself matches all requests to the virtual router service name.
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     @property
     @pulumi.getter
@@ -379,7 +379,7 @@ class RouteSpecHttpRouteMatchHeaderMatch(dict):
         """
         The object that specifies the range of numbers that the header value sent by the client must be included in.
         """
-        ...
+        return pulumi.get(self, "range")
 
     @property
     @pulumi.getter
@@ -387,7 +387,7 @@ class RouteSpecHttpRouteMatchHeaderMatch(dict):
         """
         The header value sent by the client must include the specified characters.
         """
-        ...
+        return pulumi.get(self, "regex")
 
     @property
     @pulumi.getter
@@ -395,7 +395,7 @@ class RouteSpecHttpRouteMatchHeaderMatch(dict):
         """
         The header value sent by the client must end with the specified characters.
         """
-        ...
+        return pulumi.get(self, "suffix")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -419,7 +419,7 @@ class RouteSpecHttpRouteMatchHeaderMatchRange(dict):
         """
         The end of the range.
         """
-        ...
+        return pulumi.get(self, "end")
 
     @property
     @pulumi.getter
@@ -427,7 +427,7 @@ class RouteSpecHttpRouteMatchHeaderMatchRange(dict):
         """
         The start of the range.
         """
-        ...
+        return pulumi.get(self, "start")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -448,7 +448,7 @@ class RouteSpecTcpRoute(dict):
         """
         The action to take if a match is determined.
         """
-        ...
+        return pulumi.get(self, "action")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -471,7 +471,7 @@ class RouteSpecTcpRouteAction(dict):
         The targets that traffic is routed to when a request matches the route.
         You can specify one or more targets and their relative weights with which to distribute traffic.
         """
-        ...
+        return pulumi.get(self, "weighted_targets")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -495,7 +495,7 @@ class RouteSpecTcpRouteActionWeightedTarget(dict):
         """
         The virtual node to associate with the weighted target.
         """
-        ...
+        return pulumi.get(self, "virtual_node")
 
     @property
     @pulumi.getter
@@ -503,7 +503,7 @@ class RouteSpecTcpRouteActionWeightedTarget(dict):
         """
         The relative weight of the weighted target. An integer between 0 and 100.
         """
-        ...
+        return pulumi.get(self, "weight")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -537,7 +537,7 @@ class VirtualNodeSpec(dict):
         """
         The backends to which the virtual node is expected to send outbound traffic.
         """
-        ...
+        return pulumi.get(self, "backends")
 
     @property
     @pulumi.getter
@@ -545,7 +545,7 @@ class VirtualNodeSpec(dict):
         """
         The listeners from which the virtual node is expected to receive inbound traffic.
         """
-        ...
+        return pulumi.get(self, "listener")
 
     @property
     @pulumi.getter
@@ -553,7 +553,7 @@ class VirtualNodeSpec(dict):
         """
         The inbound and outbound access logging information for the virtual node.
         """
-        ...
+        return pulumi.get(self, "logging")
 
     @property
     @pulumi.getter(name="serviceDiscovery")
@@ -561,7 +561,7 @@ class VirtualNodeSpec(dict):
         """
         The service discovery information for the virtual node.
         """
-        ...
+        return pulumi.get(self, "service_discovery")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -583,7 +583,7 @@ class VirtualNodeSpecBackend(dict):
         """
         Specifies a virtual service to use as a backend for a virtual node.
         """
-        ...
+        return pulumi.get(self, "virtual_service")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -604,7 +604,7 @@ class VirtualNodeSpecBackendVirtualService(dict):
         """
         The name of the virtual service that is acting as a virtual node backend.
         """
-        ...
+        return pulumi.get(self, "virtual_service_name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -629,7 +629,7 @@ class VirtualNodeSpecListener(dict):
         """
         The port mapping information for the listener.
         """
-        ...
+        return pulumi.get(self, "port_mapping")
 
     @property
     @pulumi.getter(name="healthCheck")
@@ -637,7 +637,7 @@ class VirtualNodeSpecListener(dict):
         """
         The health check information for the listener.
         """
-        ...
+        return pulumi.get(self, "health_check")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -678,7 +678,7 @@ class VirtualNodeSpecListenerHealthCheck(dict):
         """
         The number of consecutive successful health checks that must occur before declaring listener healthy.
         """
-        ...
+        return pulumi.get(self, "healthy_threshold")
 
     @property
     @pulumi.getter(name="intervalMillis")
@@ -686,7 +686,7 @@ class VirtualNodeSpecListenerHealthCheck(dict):
         """
         The time period in milliseconds between each health check execution.
         """
-        ...
+        return pulumi.get(self, "interval_millis")
 
     @property
     @pulumi.getter
@@ -694,7 +694,7 @@ class VirtualNodeSpecListenerHealthCheck(dict):
         """
         The protocol for the health check request. Valid values are `http` and `tcp`.
         """
-        ...
+        return pulumi.get(self, "protocol")
 
     @property
     @pulumi.getter(name="timeoutMillis")
@@ -702,7 +702,7 @@ class VirtualNodeSpecListenerHealthCheck(dict):
         """
         The amount of time to wait when receiving a response from the health check, in milliseconds.
         """
-        ...
+        return pulumi.get(self, "timeout_millis")
 
     @property
     @pulumi.getter(name="unhealthyThreshold")
@@ -710,7 +710,7 @@ class VirtualNodeSpecListenerHealthCheck(dict):
         """
         The number of consecutive failed health checks that must occur before declaring a virtual node unhealthy.
         """
-        ...
+        return pulumi.get(self, "unhealthy_threshold")
 
     @property
     @pulumi.getter
@@ -718,7 +718,7 @@ class VirtualNodeSpecListenerHealthCheck(dict):
         """
         The destination path for the health check request. This is only required if the specified protocol is `http`.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter
@@ -726,7 +726,7 @@ class VirtualNodeSpecListenerHealthCheck(dict):
         """
         The destination port for the health check request. This port must match the port defined in the `port_mapping` for the listener.
         """
-        ...
+        return pulumi.get(self, "port")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -750,7 +750,7 @@ class VirtualNodeSpecListenerPortMapping(dict):
         """
         The port used for the port mapping.
         """
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter
@@ -758,7 +758,7 @@ class VirtualNodeSpecListenerPortMapping(dict):
         """
         The protocol used for the port mapping. Valid values are `http` and `tcp`.
         """
-        ...
+        return pulumi.get(self, "protocol")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -780,7 +780,7 @@ class VirtualNodeSpecLogging(dict):
         """
         The access log configuration for a virtual node.
         """
-        ...
+        return pulumi.get(self, "access_log")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -802,7 +802,7 @@ class VirtualNodeSpecLoggingAccessLog(dict):
         """
         The file object to send virtual node access logs to.
         """
-        ...
+        return pulumi.get(self, "file")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -823,7 +823,7 @@ class VirtualNodeSpecLoggingAccessLogFile(dict):
         """
         The file path to write access logs to. You can use `/dev/stdout` to send access logs to standard out.
         """
-        ...
+        return pulumi.get(self, "path")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -849,7 +849,7 @@ class VirtualNodeSpecServiceDiscovery(dict):
         """
         Specifies any AWS Cloud Map information for the virtual node.
         """
-        ...
+        return pulumi.get(self, "aws_cloud_map")
 
     @property
     @pulumi.getter
@@ -857,7 +857,7 @@ class VirtualNodeSpecServiceDiscovery(dict):
         """
         Specifies the DNS service name for the virtual node.
         """
-        ...
+        return pulumi.get(self, "dns")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -887,7 +887,7 @@ class VirtualNodeSpecServiceDiscoveryAwsCloudMap(dict):
         The name of the AWS Cloud Map namespace to use.
         Use the `servicediscovery.HttpNamespace` resource to configure a Cloud Map namespace.
         """
-        ...
+        return pulumi.get(self, "namespace_name")
 
     @property
     @pulumi.getter(name="serviceName")
@@ -895,7 +895,7 @@ class VirtualNodeSpecServiceDiscoveryAwsCloudMap(dict):
         """
         The name of the AWS Cloud Map service to use. Use the `servicediscovery.Service` resource to configure a Cloud Map service.
         """
-        ...
+        return pulumi.get(self, "service_name")
 
     @property
     @pulumi.getter
@@ -903,7 +903,7 @@ class VirtualNodeSpecServiceDiscoveryAwsCloudMap(dict):
         """
         A string map that contains attributes with values that you can use to filter instances by any custom attribute that you specified when you registered the instance. Only instances that match all of the specified key/value pairs will be returned.
         """
-        ...
+        return pulumi.get(self, "attributes")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -924,7 +924,7 @@ class VirtualNodeSpecServiceDiscoveryDns(dict):
         """
         The DNS host name for your virtual node.
         """
-        ...
+        return pulumi.get(self, "hostname")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -947,7 +947,7 @@ class VirtualRouterSpec(dict):
         The listeners that the virtual router is expected to receive inbound traffic from.
         Currently only one listener is supported per virtual router.
         """
-        ...
+        return pulumi.get(self, "listener")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -968,7 +968,7 @@ class VirtualRouterSpecListener(dict):
         """
         The port mapping information for the listener.
         """
-        ...
+        return pulumi.get(self, "port_mapping")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -992,7 +992,7 @@ class VirtualRouterSpecListenerPortMapping(dict):
         """
         The port used for the port mapping.
         """
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter
@@ -1000,7 +1000,7 @@ class VirtualRouterSpecListenerPortMapping(dict):
         """
         The protocol used for the port mapping. Valid values are `http` and `tcp`.
         """
-        ...
+        return pulumi.get(self, "protocol")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1022,7 +1022,7 @@ class VirtualServiceSpec(dict):
         """
         The App Mesh object that is acting as the provider for a virtual service. You can specify a single virtual node or virtual router.
         """
-        ...
+        return pulumi.get(self, "provider")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1048,7 +1048,7 @@ class VirtualServiceSpecProvider(dict):
         """
         The virtual node associated with a virtual service.
         """
-        ...
+        return pulumi.get(self, "virtual_node")
 
     @property
     @pulumi.getter(name="virtualRouter")
@@ -1056,7 +1056,7 @@ class VirtualServiceSpecProvider(dict):
         """
         The virtual router associated with a virtual service.
         """
-        ...
+        return pulumi.get(self, "virtual_router")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1077,7 +1077,7 @@ class VirtualServiceSpecProviderVirtualNode(dict):
         """
         The name of the virtual node that is acting as a service provider.
         """
-        ...
+        return pulumi.get(self, "virtual_node_name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1098,7 +1098,7 @@ class VirtualServiceSpecProviderVirtualRouter(dict):
         """
         The name of the virtual router that is acting as a service provider.
         """
-        ...
+        return pulumi.get(self, "virtual_router_name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

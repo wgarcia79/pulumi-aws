@@ -655,7 +655,7 @@ class Cluster(pulumi.CustomResource):
         """
         A JSON string for selecting additional features such as adding proxy information. Note: Currently there is no API to retrieve the value of this argument after EMR cluster creation from provider, therefore this provider cannot detect drift from the actual EMR cluster if its value is changed outside this provider.
         """
-        ...
+        return pulumi.get(self, "additional_info")
 
     @property
     @pulumi.getter
@@ -663,12 +663,12 @@ class Cluster(pulumi.CustomResource):
         """
         A list of applications for the cluster. Valid values are: `Flink`, `Hadoop`, `Hive`, `Mahout`, `Pig`, `Spark`, and `JupyterHub` (as of EMR 5.14.0). Case insensitive
         """
-        ...
+        return pulumi.get(self, "applications")
 
     @property
     @pulumi.getter
     def arn(self) -> str:
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="autoscalingRole")
@@ -676,7 +676,7 @@ class Cluster(pulumi.CustomResource):
         """
         An IAM role for automatic scaling policies. The IAM role provides permissions that the automatic scaling feature requires to launch and terminate EC2 instances in an instance group.
         """
-        ...
+        return pulumi.get(self, "autoscaling_role")
 
     @property
     @pulumi.getter(name="bootstrapActions")
@@ -684,12 +684,12 @@ class Cluster(pulumi.CustomResource):
         """
         Ordered list of bootstrap actions that will be run before Hadoop is started on the cluster nodes. Defined below.
         """
-        ...
+        return pulumi.get(self, "bootstrap_actions")
 
     @property
     @pulumi.getter(name="clusterState")
     def cluster_state(self) -> str:
-        ...
+        return pulumi.get(self, "cluster_state")
 
     @property
     @pulumi.getter
@@ -697,7 +697,7 @@ class Cluster(pulumi.CustomResource):
         """
         List of configurations supplied for the EMR cluster you are creating
         """
-        ...
+        return pulumi.get(self, "configurations")
 
     @property
     @pulumi.getter(name="configurationsJson")
@@ -705,7 +705,7 @@ class Cluster(pulumi.CustomResource):
         """
         A JSON string for supplying list of configurations for the EMR cluster.
         """
-        ...
+        return pulumi.get(self, "configurations_json")
 
     @property
     @pulumi.getter(name="coreInstanceCount")
@@ -713,7 +713,7 @@ class Cluster(pulumi.CustomResource):
         """
         Use the `core_instance_group` configuration block `instance_count` argument instead. Number of Amazon EC2 instances used to execute the job flow. EMR will use one node as the cluster's master node and use the remainder of the nodes (`core_instance_count`-1) as core nodes. Cannot be specified if `core_instance_group` or `instance_group` configuration blocks are set. Default `1`
         """
-        ...
+        return pulumi.get(self, "core_instance_count")
 
     @property
     @pulumi.getter(name="coreInstanceGroup")
@@ -721,7 +721,7 @@ class Cluster(pulumi.CustomResource):
         """
         Configuration block to use an [Instance Group](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-instance-group-configuration.html#emr-plan-instance-groups) for the [core node type](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-master-core-task-nodes.html#emr-plan-core). Cannot be specified if `core_instance_count` argument, `core_instance_type` argument, or `instance_group` configuration blocks are set. Detailed below.
         """
-        ...
+        return pulumi.get(self, "core_instance_group")
 
     @property
     @pulumi.getter(name="coreInstanceType")
@@ -729,7 +729,7 @@ class Cluster(pulumi.CustomResource):
         """
         Use the `core_instance_group` configuration block `instance_type` argument instead. The EC2 instance type of the slave nodes. Cannot be specified if `core_instance_group` or `instance_group` configuration blocks are set.
         """
-        ...
+        return pulumi.get(self, "core_instance_type")
 
     @property
     @pulumi.getter(name="customAmiId")
@@ -737,7 +737,7 @@ class Cluster(pulumi.CustomResource):
         """
         A custom Amazon Linux AMI for the cluster (instead of an EMR-owned AMI). Available in Amazon EMR version 5.7.0 and later.
         """
-        ...
+        return pulumi.get(self, "custom_ami_id")
 
     @property
     @pulumi.getter(name="ebsRootVolumeSize")
@@ -745,7 +745,7 @@ class Cluster(pulumi.CustomResource):
         """
         Size in GiB of the EBS root device volume of the Linux AMI that is used for each EC2 instance. Available in Amazon EMR version 4.x and later.
         """
-        ...
+        return pulumi.get(self, "ebs_root_volume_size")
 
     @property
     @pulumi.getter(name="ec2Attributes")
@@ -753,7 +753,7 @@ class Cluster(pulumi.CustomResource):
         """
         Attributes for the EC2 instances running the job flow. Defined below
         """
-        ...
+        return pulumi.get(self, "ec2_attributes")
 
     @property
     @pulumi.getter(name="instanceGroups")
@@ -761,7 +761,7 @@ class Cluster(pulumi.CustomResource):
         """
         Use the `master_instance_group` configuration block, `core_instance_group` configuration block and `emr.InstanceGroup` resource(s) instead. A list of `instance_group` objects for each instance group in the cluster. Exactly one of `master_instance_type` and `instance_group` must be specified. If `instance_group` is set, then it must contain a configuration block for at least the `MASTER` instance group type (as well as any additional instance groups). Cannot be specified if `master_instance_group` or `core_instance_group` configuration blocks are set. Defined below
         """
-        ...
+        return pulumi.get(self, "instance_groups")
 
     @property
     @pulumi.getter(name="keepJobFlowAliveWhenNoSteps")
@@ -769,7 +769,7 @@ class Cluster(pulumi.CustomResource):
         """
         Switch on/off run cluster with no steps or when all steps are complete (default is on)
         """
-        ...
+        return pulumi.get(self, "keep_job_flow_alive_when_no_steps")
 
     @property
     @pulumi.getter(name="kerberosAttributes")
@@ -777,7 +777,7 @@ class Cluster(pulumi.CustomResource):
         """
         Kerberos configuration for the cluster. Defined below
         """
-        ...
+        return pulumi.get(self, "kerberos_attributes")
 
     @property
     @pulumi.getter(name="logUri")
@@ -785,7 +785,7 @@ class Cluster(pulumi.CustomResource):
         """
         S3 bucket to write the log files of the job flow. If a value is not provided, logs are not created
         """
-        ...
+        return pulumi.get(self, "log_uri")
 
     @property
     @pulumi.getter(name="masterInstanceGroup")
@@ -793,7 +793,7 @@ class Cluster(pulumi.CustomResource):
         """
         Configuration block to use an [Instance Group](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-instance-group-configuration.html#emr-plan-instance-groups) for the [master node type](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-master-core-task-nodes.html#emr-plan-master). Cannot be specified if `master_instance_type` argument or `instance_group` configuration blocks are set. Detailed below.
         """
-        ...
+        return pulumi.get(self, "master_instance_group")
 
     @property
     @pulumi.getter(name="masterInstanceType")
@@ -801,7 +801,7 @@ class Cluster(pulumi.CustomResource):
         """
         Use the `master_instance_group` configuration block `instance_type` argument instead. The EC2 instance type of the master node. Cannot be specified if `master_instance_group` or `instance_group` configuration blocks are set.
         """
-        ...
+        return pulumi.get(self, "master_instance_type")
 
     @property
     @pulumi.getter(name="masterPublicDns")
@@ -810,7 +810,7 @@ class Cluster(pulumi.CustomResource):
         The public DNS name of the master EC2 instance.
         * `core_instance_group.0.id` - Core node type Instance Group ID, if using Instance Group for this node type.
         """
-        ...
+        return pulumi.get(self, "master_public_dns")
 
     @property
     @pulumi.getter
@@ -818,7 +818,7 @@ class Cluster(pulumi.CustomResource):
         """
         The name of the step.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="releaseLabel")
@@ -826,7 +826,7 @@ class Cluster(pulumi.CustomResource):
         """
         The release label for the Amazon EMR release
         """
-        ...
+        return pulumi.get(self, "release_label")
 
     @property
     @pulumi.getter(name="scaleDownBehavior")
@@ -834,7 +834,7 @@ class Cluster(pulumi.CustomResource):
         """
         The way that individual Amazon EC2 instances terminate when an automatic scale-in activity occurs or an `instance group` is resized.
         """
-        ...
+        return pulumi.get(self, "scale_down_behavior")
 
     @property
     @pulumi.getter(name="securityConfiguration")
@@ -842,7 +842,7 @@ class Cluster(pulumi.CustomResource):
         """
         The security configuration name to attach to the EMR cluster. Only valid for EMR clusters with `release_label` 4.8.0 or greater
         """
-        ...
+        return pulumi.get(self, "security_configuration")
 
     @property
     @pulumi.getter(name="serviceRole")
@@ -850,7 +850,7 @@ class Cluster(pulumi.CustomResource):
         """
         IAM role that will be assumed by the Amazon EMR service to access AWS resources
         """
-        ...
+        return pulumi.get(self, "service_role")
 
     @property
     @pulumi.getter(name="stepConcurrencyLevel")
@@ -858,7 +858,7 @@ class Cluster(pulumi.CustomResource):
         """
         The number of steps that can be executed concurrently. You can specify a maximum of 256 steps. Only valid for EMR clusters with `release_label` 5.28.0 or greater. (default is 1)
         """
-        ...
+        return pulumi.get(self, "step_concurrency_level")
 
     @property
     @pulumi.getter
@@ -866,7 +866,7 @@ class Cluster(pulumi.CustomResource):
         """
         List of steps to run when creating the cluster. Defined below. It is highly recommended to utilize [`ignoreChanges`](https://www.pulumi.com/docs/intro/concepts/programming-model/#ignorechanges) if other steps are being managed outside of this provider.
         """
-        ...
+        return pulumi.get(self, "steps")
 
     @property
     @pulumi.getter
@@ -874,7 +874,7 @@ class Cluster(pulumi.CustomResource):
         """
         list of tags to apply to the EMR Cluster
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="terminationProtection")
@@ -882,7 +882,7 @@ class Cluster(pulumi.CustomResource):
         """
         Switch on/off termination protection (default is `false`, except when using multiple master nodes). Before attempting to destroy the resource when termination protection is enabled, this configuration must be applied with its value set to `false`.
         """
-        ...
+        return pulumi.get(self, "termination_protection")
 
     @property
     @pulumi.getter(name="visibleToAllUsers")
@@ -890,7 +890,7 @@ class Cluster(pulumi.CustomResource):
         """
         Whether the job flow is visible to all IAM users of the AWS account associated with the job flow. Default `true`
         """
-        ...
+        return pulumi.get(self, "visible_to_all_users")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

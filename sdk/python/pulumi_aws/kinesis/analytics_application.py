@@ -182,7 +182,7 @@ class AnalyticsApplication(pulumi.CustomResource):
         """
         The ARN of the Kinesis Analytics Appliation.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="cloudwatchLoggingOptions")
@@ -191,7 +191,7 @@ class AnalyticsApplication(pulumi.CustomResource):
         The CloudWatch log stream options to monitor application errors.
         See CloudWatch Logging Options below for more details.
         """
-        ...
+        return pulumi.get(self, "cloudwatch_logging_options")
 
     @property
     @pulumi.getter
@@ -199,7 +199,7 @@ class AnalyticsApplication(pulumi.CustomResource):
         """
         SQL Code to transform input data, and generate output.
         """
-        ...
+        return pulumi.get(self, "code")
 
     @property
     @pulumi.getter(name="createTimestamp")
@@ -207,7 +207,7 @@ class AnalyticsApplication(pulumi.CustomResource):
         """
         The Timestamp when the application version was created.
         """
-        ...
+        return pulumi.get(self, "create_timestamp")
 
     @property
     @pulumi.getter
@@ -215,7 +215,7 @@ class AnalyticsApplication(pulumi.CustomResource):
         """
         Description of the application.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -223,7 +223,7 @@ class AnalyticsApplication(pulumi.CustomResource):
         """
         Input configuration of the application. See Inputs below for more details.
         """
-        ...
+        return pulumi.get(self, "inputs")
 
     @property
     @pulumi.getter(name="lastUpdateTimestamp")
@@ -231,7 +231,7 @@ class AnalyticsApplication(pulumi.CustomResource):
         """
         The Timestamp when the application was last updated.
         """
-        ...
+        return pulumi.get(self, "last_update_timestamp")
 
     @property
     @pulumi.getter
@@ -239,7 +239,7 @@ class AnalyticsApplication(pulumi.CustomResource):
         """
         Name of the Kinesis Analytics Application.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -247,7 +247,7 @@ class AnalyticsApplication(pulumi.CustomResource):
         """
         Output destination configuration of the application. See Outputs below for more details.
         """
-        ...
+        return pulumi.get(self, "outputs")
 
     @property
     @pulumi.getter(name="referenceDataSources")
@@ -256,7 +256,7 @@ class AnalyticsApplication(pulumi.CustomResource):
         An S3 Reference Data Source for the application.
         See Reference Data Sources below for more details.
         """
-        ...
+        return pulumi.get(self, "reference_data_sources")
 
     @property
     @pulumi.getter
@@ -264,7 +264,7 @@ class AnalyticsApplication(pulumi.CustomResource):
         """
         The Status of the application.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
@@ -272,7 +272,7 @@ class AnalyticsApplication(pulumi.CustomResource):
         """
         Key-value map of tags for the Kinesis Analytics Application.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -280,7 +280,7 @@ class AnalyticsApplication(pulumi.CustomResource):
         """
         The Version of the application.
         """
-        ...
+        return pulumi.get(self, "version")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

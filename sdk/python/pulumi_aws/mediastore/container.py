@@ -100,7 +100,7 @@ class Container(pulumi.CustomResource):
         """
         The ARN of the container.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -108,7 +108,7 @@ class Container(pulumi.CustomResource):
         """
         The DNS endpoint of the container.
         """
-        ...
+        return pulumi.get(self, "endpoint")
 
     @property
     @pulumi.getter
@@ -116,7 +116,7 @@ class Container(pulumi.CustomResource):
         """
         The name of the container. Must contain alphanumeric characters or underscores.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -124,7 +124,7 @@ class Container(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

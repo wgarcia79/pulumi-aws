@@ -485,7 +485,7 @@ class Distribution(pulumi.CustomResource):
         each trusted signer, if the distribution is set up to serve private content
         with signed URLs.
         """
-        ...
+        return pulumi.get(self, "active_trusted_signers")
 
     @property
     @pulumi.getter
@@ -494,7 +494,7 @@ class Distribution(pulumi.CustomResource):
         Extra CNAMEs (alternate domain names), if any, for
         this distribution.
         """
-        ...
+        return pulumi.get(self, "aliases")
 
     @property
     @pulumi.getter
@@ -502,7 +502,7 @@ class Distribution(pulumi.CustomResource):
         """
         The ARN (Amazon Resource Name) for the distribution. For example: `arn:aws:cloudfront::123456789012:distribution/EDFDVBD632BHDS5`, where `123456789012` is your AWS account ID.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="callerReference")
@@ -511,7 +511,7 @@ class Distribution(pulumi.CustomResource):
         Internal value used by CloudFront to allow future
         updates to the distribution configuration.
         """
-        ...
+        return pulumi.get(self, "caller_reference")
 
     @property
     @pulumi.getter
@@ -520,7 +520,7 @@ class Distribution(pulumi.CustomResource):
         Any comments you want to include about the
         distribution.
         """
-        ...
+        return pulumi.get(self, "comment")
 
     @property
     @pulumi.getter(name="customErrorResponses")
@@ -528,7 +528,7 @@ class Distribution(pulumi.CustomResource):
         """
         One or more custom error response elements (multiples allowed).
         """
-        ...
+        return pulumi.get(self, "custom_error_responses")
 
     @property
     @pulumi.getter(name="defaultCacheBehavior")
@@ -537,7 +537,7 @@ class Distribution(pulumi.CustomResource):
         The default cache behavior for this distribution (maximum
         one).
         """
-        ...
+        return pulumi.get(self, "default_cache_behavior")
 
     @property
     @pulumi.getter(name="defaultRootObject")
@@ -546,7 +546,7 @@ class Distribution(pulumi.CustomResource):
         The object that you want CloudFront to
         return (for example, index.html) when an end user requests the root URL.
         """
-        ...
+        return pulumi.get(self, "default_root_object")
 
     @property
     @pulumi.getter(name="domainName")
@@ -555,7 +555,7 @@ class Distribution(pulumi.CustomResource):
         The DNS domain name of either the S3 bucket, or
         web site of your custom origin.
         """
-        ...
+        return pulumi.get(self, "domain_name")
 
     @property
     @pulumi.getter
@@ -564,7 +564,7 @@ class Distribution(pulumi.CustomResource):
         Whether the distribution is enabled to accept end
         user requests for content.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter
@@ -573,7 +573,7 @@ class Distribution(pulumi.CustomResource):
         The current version of the distribution's information. For example:
         `E2QWRUHAPOMQZL`.
         """
-        ...
+        return pulumi.get(self, "etag")
 
     @property
     @pulumi.getter(name="hostedZoneId")
@@ -583,7 +583,7 @@ class Distribution(pulumi.CustomResource):
         route an [Alias Resource Record Set](http://docs.aws.amazon.com/Route53/latest/APIReference/CreateAliasRRSAPI.html) to. This attribute is simply an
         alias for the zone ID `Z2FDTNDATAQYW2`.
         """
-        ...
+        return pulumi.get(self, "hosted_zone_id")
 
     @property
     @pulumi.getter(name="httpVersion")
@@ -593,7 +593,7 @@ class Distribution(pulumi.CustomResource):
         distribution. Allowed values are `http1.1` and `http2`. The default is
         `http2`.
         """
-        ...
+        return pulumi.get(self, "http_version")
 
     @property
     @pulumi.getter(name="inProgressValidationBatches")
@@ -602,7 +602,7 @@ class Distribution(pulumi.CustomResource):
         The number of invalidation batches
         currently in progress.
         """
-        ...
+        return pulumi.get(self, "in_progress_validation_batches")
 
     @property
     @pulumi.getter(name="isIpv6Enabled")
@@ -610,7 +610,7 @@ class Distribution(pulumi.CustomResource):
         """
         Whether the IPv6 is enabled for the distribution.
         """
-        ...
+        return pulumi.get(self, "is_ipv6_enabled")
 
     @property
     @pulumi.getter(name="lastModifiedTime")
@@ -618,7 +618,7 @@ class Distribution(pulumi.CustomResource):
         """
         The date and time the distribution was last modified.
         """
-        ...
+        return pulumi.get(self, "last_modified_time")
 
     @property
     @pulumi.getter(name="loggingConfig")
@@ -628,7 +628,7 @@ class Distribution(pulumi.CustomResource):
         configuration that controls how logs are written
         to your distribution (maximum one).
         """
-        ...
+        return pulumi.get(self, "logging_config")
 
     @property
     @pulumi.getter(name="orderedCacheBehaviors")
@@ -638,7 +638,7 @@ class Distribution(pulumi.CustomResource):
         resource for this distribution. List from top to bottom
         in order of precedence. The topmost cache behavior will have precedence 0.
         """
-        ...
+        return pulumi.get(self, "ordered_cache_behaviors")
 
     @property
     @pulumi.getter(name="originGroups")
@@ -647,7 +647,7 @@ class Distribution(pulumi.CustomResource):
         One or more origin_group for this
         distribution (multiples allowed).
         """
-        ...
+        return pulumi.get(self, "origin_groups")
 
     @property
     @pulumi.getter
@@ -656,7 +656,7 @@ class Distribution(pulumi.CustomResource):
         One or more origins for this
         distribution (multiples allowed).
         """
-        ...
+        return pulumi.get(self, "origins")
 
     @property
     @pulumi.getter(name="priceClass")
@@ -665,7 +665,7 @@ class Distribution(pulumi.CustomResource):
         The price class for this distribution. One of
         `PriceClass_All`, `PriceClass_200`, `PriceClass_100`
         """
-        ...
+        return pulumi.get(self, "price_class")
 
     @property
     @pulumi.getter
@@ -674,7 +674,7 @@ class Distribution(pulumi.CustomResource):
         The restriction
         configuration for this distribution (maximum one).
         """
-        ...
+        return pulumi.get(self, "restrictions")
 
     @property
     @pulumi.getter(name="retainOnDelete")
@@ -684,7 +684,7 @@ class Distribution(pulumi.CustomResource):
         deleting it when destroying the resource. If this is set,
         the distribution needs to be deleted manually afterwards. Default: `false`.
         """
-        ...
+        return pulumi.get(self, "retain_on_delete")
 
     @property
     @pulumi.getter
@@ -694,7 +694,7 @@ class Distribution(pulumi.CustomResource):
         distribution's information is fully propagated throughout the Amazon
         CloudFront system.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
@@ -702,7 +702,7 @@ class Distribution(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="viewerCertificate")
@@ -712,7 +712,7 @@ class Distribution(pulumi.CustomResource):
         configuration for this distribution (maximum
         one).
         """
-        ...
+        return pulumi.get(self, "viewer_certificate")
 
     @property
     @pulumi.getter(name="waitForDeployment")
@@ -722,7 +722,7 @@ class Distribution(pulumi.CustomResource):
         the distribution status to change from `InProgress` to `Deployed`. Setting
         this to`false` will skip the process. Default: `true`.
         """
-        ...
+        return pulumi.get(self, "wait_for_deployment")
 
     @property
     @pulumi.getter(name="webAclId")
@@ -734,7 +734,7 @@ class Distribution(pulumi.CustomResource):
         region and the credentials configuring this argument must have
         `waf:GetWebACL` permissions assigned. If using WAFv2, provide the ARN of the web ACL.
         """
-        ...
+        return pulumi.get(self, "web_acl_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -207,7 +207,7 @@ class CertificateAuthority(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the certificate authority.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -215,7 +215,7 @@ class CertificateAuthority(pulumi.CustomResource):
         """
         Base64-encoded certificate authority (CA) certificate. Only available after the certificate authority certificate has been imported.
         """
-        ...
+        return pulumi.get(self, "certificate")
 
     @property
     @pulumi.getter(name="certificateAuthorityConfiguration")
@@ -223,7 +223,7 @@ class CertificateAuthority(pulumi.CustomResource):
         """
         Nested argument containing algorithms and certificate subject information. Defined below.
         """
-        ...
+        return pulumi.get(self, "certificate_authority_configuration")
 
     @property
     @pulumi.getter(name="certificateChain")
@@ -231,7 +231,7 @@ class CertificateAuthority(pulumi.CustomResource):
         """
         Base64-encoded certificate chain that includes any intermediate certificates and chains up to root on-premises certificate that you used to sign your private CA certificate. The chain does not include your private CA certificate. Only available after the certificate authority certificate has been imported.
         """
-        ...
+        return pulumi.get(self, "certificate_chain")
 
     @property
     @pulumi.getter(name="certificateSigningRequest")
@@ -239,7 +239,7 @@ class CertificateAuthority(pulumi.CustomResource):
         """
         The base64 PEM-encoded certificate signing request (CSR) for your private CA certificate.
         """
-        ...
+        return pulumi.get(self, "certificate_signing_request")
 
     @property
     @pulumi.getter
@@ -247,7 +247,7 @@ class CertificateAuthority(pulumi.CustomResource):
         """
         Boolean value that specifies whether certificate revocation lists (CRLs) are enabled. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="notAfter")
@@ -255,7 +255,7 @@ class CertificateAuthority(pulumi.CustomResource):
         """
         Date and time after which the certificate authority is not valid. Only available after the certificate authority certificate has been imported.
         """
-        ...
+        return pulumi.get(self, "not_after")
 
     @property
     @pulumi.getter(name="notBefore")
@@ -263,7 +263,7 @@ class CertificateAuthority(pulumi.CustomResource):
         """
         Date and time before which the certificate authority is not valid. Only available after the certificate authority certificate has been imported.
         """
-        ...
+        return pulumi.get(self, "not_before")
 
     @property
     @pulumi.getter(name="permanentDeletionTimeInDays")
@@ -271,7 +271,7 @@ class CertificateAuthority(pulumi.CustomResource):
         """
         The number of days to make a CA restorable after it has been deleted, must be between 7 to 30 days, with default to 30 days.
         """
-        ...
+        return pulumi.get(self, "permanent_deletion_time_in_days")
 
     @property
     @pulumi.getter(name="revocationConfiguration")
@@ -279,7 +279,7 @@ class CertificateAuthority(pulumi.CustomResource):
         """
         Nested argument containing revocation configuration. Defined below.
         """
-        ...
+        return pulumi.get(self, "revocation_configuration")
 
     @property
     @pulumi.getter
@@ -287,7 +287,7 @@ class CertificateAuthority(pulumi.CustomResource):
         """
         Serial number of the certificate authority. Only available after the certificate authority certificate has been imported.
         """
-        ...
+        return pulumi.get(self, "serial")
 
     @property
     @pulumi.getter
@@ -295,7 +295,7 @@ class CertificateAuthority(pulumi.CustomResource):
         """
         Status of the certificate authority.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
@@ -303,7 +303,7 @@ class CertificateAuthority(pulumi.CustomResource):
         """
         Specifies a key-value map of user-defined tags that are attached to the certificate authority.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -311,7 +311,7 @@ class CertificateAuthority(pulumi.CustomResource):
         """
         The type of the certificate authority. Defaults to `SUBORDINATE`. Valid values: `ROOT` and `SUBORDINATE`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

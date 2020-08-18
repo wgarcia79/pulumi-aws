@@ -43,7 +43,7 @@ class ApplicationAppversionLifecycle(dict):
         """
         The ARN of an IAM service role under which the application version is deleted.  Elastic Beanstalk must have permission to assume this role.
         """
-        ...
+        return pulumi.get(self, "service_role")
 
     @property
     @pulumi.getter(name="deleteSourceFromS3")
@@ -51,7 +51,7 @@ class ApplicationAppversionLifecycle(dict):
         """
         Set to `true` to delete a version's source bundle from S3 when the application version is deleted.
         """
-        ...
+        return pulumi.get(self, "delete_source_from_s3")
 
     @property
     @pulumi.getter(name="maxAgeInDays")
@@ -59,7 +59,7 @@ class ApplicationAppversionLifecycle(dict):
         """
         The number of days to retain an application version ('max_age_in_days' and 'max_count' cannot be enabled simultaneously.).
         """
-        ...
+        return pulumi.get(self, "max_age_in_days")
 
     @property
     @pulumi.getter(name="maxCount")
@@ -67,7 +67,7 @@ class ApplicationAppversionLifecycle(dict):
         """
         The maximum number of application versions to retain ('max_age_in_days' and 'max_count' cannot be enabled simultaneously.).
         """
-        ...
+        return pulumi.get(self, "max_count")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -95,22 +95,22 @@ class ConfigurationTemplateSetting(dict):
         """
         A unique name for this Template.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def namespace(self) -> str:
-        ...
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter
     def value(self) -> str:
-        ...
+        return pulumi.get(self, "value")
 
     @property
     @pulumi.getter
     def resource(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "resource")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -140,22 +140,22 @@ class EnvironmentAllSetting(dict):
         A unique name for this Environment. This name is used
         in the application URL
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def namespace(self) -> str:
-        ...
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter
     def value(self) -> str:
-        ...
+        return pulumi.get(self, "value")
 
     @property
     @pulumi.getter
     def resource(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "resource")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -185,22 +185,22 @@ class EnvironmentSetting(dict):
         A unique name for this Environment. This name is used
         in the application URL
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def namespace(self) -> str:
-        ...
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter
     def value(self) -> str:
-        ...
+        return pulumi.get(self, "value")
 
     @property
     @pulumi.getter
     def resource(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "resource")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -230,7 +230,7 @@ class GetApplicationAppversionLifecycleResult(dict):
         """
         Specifies whether delete a version's source bundle from S3 when the application version is deleted.
         """
-        ...
+        return pulumi.get(self, "delete_source_from_s3")
 
     @property
     @pulumi.getter(name="maxAgeInDays")
@@ -238,7 +238,7 @@ class GetApplicationAppversionLifecycleResult(dict):
         """
         The number of days to retain an application version.
         """
-        ...
+        return pulumi.get(self, "max_age_in_days")
 
     @property
     @pulumi.getter(name="maxCount")
@@ -246,7 +246,7 @@ class GetApplicationAppversionLifecycleResult(dict):
         """
         The maximum number of application versions to retain.
         """
-        ...
+        return pulumi.get(self, "max_count")
 
     @property
     @pulumi.getter(name="serviceRole")
@@ -254,6 +254,6 @@ class GetApplicationAppversionLifecycleResult(dict):
         """
         The ARN of an IAM service role under which the application version is deleted.  Elastic Beanstalk must have permission to assume this role.
         """
-        ...
+        return pulumi.get(self, "service_role")
 
 

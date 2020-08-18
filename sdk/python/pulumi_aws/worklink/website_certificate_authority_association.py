@@ -107,7 +107,7 @@ class WebsiteCertificateAuthorityAssociation(pulumi.CustomResource):
         """
         The root certificate of the Certificate Authority.
         """
-        ...
+        return pulumi.get(self, "certificate")
 
     @property
     @pulumi.getter(name="displayName")
@@ -115,7 +115,7 @@ class WebsiteCertificateAuthorityAssociation(pulumi.CustomResource):
         """
         The certificate name to display.
         """
-        ...
+        return pulumi.get(self, "display_name")
 
     @property
     @pulumi.getter(name="fleetArn")
@@ -123,7 +123,7 @@ class WebsiteCertificateAuthorityAssociation(pulumi.CustomResource):
         """
         The ARN of the fleet.
         """
-        ...
+        return pulumi.get(self, "fleet_arn")
 
     @property
     @pulumi.getter(name="websiteCaId")
@@ -131,7 +131,7 @@ class WebsiteCertificateAuthorityAssociation(pulumi.CustomResource):
         """
         A unique identifier for the Certificate Authority.
         """
-        ...
+        return pulumi.get(self, "website_ca_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

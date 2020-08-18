@@ -74,47 +74,47 @@ class GetKeyResult:
     @property
     @pulumi.getter
     def arn(self) -> str:
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="awsAccountId")
     def aws_account_id(self) -> str:
-        ...
+        return pulumi.get(self, "aws_account_id")
 
     @property
     @pulumi.getter(name="creationDate")
     def creation_date(self) -> str:
-        ...
+        return pulumi.get(self, "creation_date")
 
     @property
     @pulumi.getter(name="customerMasterKeySpec")
     def customer_master_key_spec(self) -> str:
-        ...
+        return pulumi.get(self, "customer_master_key_spec")
 
     @property
     @pulumi.getter(name="deletionDate")
     def deletion_date(self) -> str:
-        ...
+        return pulumi.get(self, "deletion_date")
 
     @property
     @pulumi.getter
     def description(self) -> str:
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def enabled(self) -> bool:
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="expirationModel")
     def expiration_model(self) -> str:
-        ...
+        return pulumi.get(self, "expiration_model")
 
     @property
     @pulumi.getter(name="grantTokens")
     def grant_tokens(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "grant_tokens")
 
     @property
     @pulumi.getter
@@ -122,37 +122,37 @@ class GetKeyResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="keyId")
     def key_id(self) -> str:
-        ...
+        return pulumi.get(self, "key_id")
 
     @property
     @pulumi.getter(name="keyManager")
     def key_manager(self) -> str:
-        ...
+        return pulumi.get(self, "key_manager")
 
     @property
     @pulumi.getter(name="keyState")
     def key_state(self) -> str:
-        ...
+        return pulumi.get(self, "key_state")
 
     @property
     @pulumi.getter(name="keyUsage")
     def key_usage(self) -> str:
-        ...
+        return pulumi.get(self, "key_usage")
 
     @property
     @pulumi.getter
     def origin(self) -> str:
-        ...
+        return pulumi.get(self, "origin")
 
     @property
     @pulumi.getter(name="validTo")
     def valid_to(self) -> str:
-        ...
+        return pulumi.get(self, "valid_to")
 
 
 

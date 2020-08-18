@@ -30,7 +30,7 @@ class VaultNotification(dict):
         """
         You can configure a vault to publish a notification for `ArchiveRetrievalCompleted` and `InventoryRetrievalCompleted` events.
         """
-        ...
+        return pulumi.get(self, "events")
 
     @property
     @pulumi.getter(name="snsTopic")
@@ -38,7 +38,7 @@ class VaultNotification(dict):
         """
         The SNS Topic ARN.
         """
-        ...
+        return pulumi.get(self, "sns_topic")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

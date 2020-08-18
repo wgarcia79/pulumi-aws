@@ -40,11 +40,11 @@ class AccountThrottleSettingsArgs:
         """
         The absolute maximum number of times API Gateway allows the API to be called per second (RPS).
         """
-        ...
+        return pulumi.get(self, "burst_limit")
 
     @burst_limit.setter
     def burst_limit(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "burst_limit", value)
 
     @property
     @pulumi.getter(name="rateLimit")
@@ -52,11 +52,11 @@ class AccountThrottleSettingsArgs:
         """
         The number of times API Gateway allows the API to be called per second on average (RPS).
         """
-        ...
+        return pulumi.get(self, "rate_limit")
 
     @rate_limit.setter
     def rate_limit(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "rate_limit", value)
 
 
 @pulumi.input_type
@@ -90,11 +90,11 @@ class DocumentationPartLocationArgs:
         """
         The type of API entity to which the documentation content applies. e.g. `API`, `METHOD` or `REQUEST_BODY`
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter
@@ -102,11 +102,11 @@ class DocumentationPartLocationArgs:
         """
         The HTTP verb of a method. The default value is `*` for any method.
         """
-        ...
+        return pulumi.get(self, "method")
 
     @method.setter
     def method(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "method", value)
 
     @property
     @pulumi.getter
@@ -114,11 +114,11 @@ class DocumentationPartLocationArgs:
         """
         The name of the targeted API entity.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -126,11 +126,11 @@ class DocumentationPartLocationArgs:
         """
         The URL path of the target. The default value is `/` for the root resource.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @path.setter
     def path(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "path", value)
 
     @property
     @pulumi.getter(name="statusCode")
@@ -138,11 +138,11 @@ class DocumentationPartLocationArgs:
         """
         The HTTP status code of a response. The default value is `*` for any status code.
         """
-        ...
+        return pulumi.get(self, "status_code")
 
     @status_code.setter
     def status_code(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "status_code", value)
 
 
 @pulumi.input_type
@@ -160,11 +160,11 @@ class DomainNameEndpointConfigurationArgs:
         """
         A list of endpoint types. This resource currently only supports managing a single value. Valid values: `EDGE` or `REGIONAL`. If unspecified, defaults to `EDGE`. Must be declared as `REGIONAL` in non-Commercial partitions. Refer to the [documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/create-regional-api.html) for more information on the difference between edge-optimized and regional APIs.
         """
-        ...
+        return pulumi.get(self, "types")
 
     @types.setter
     def types(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "types", value)
 
 
 @pulumi.input_type
@@ -219,11 +219,11 @@ class MethodSettingsSettingsArgs:
         """
         Specifies whether the cached responses are encrypted.
         """
-        ...
+        return pulumi.get(self, "cache_data_encrypted")
 
     @cache_data_encrypted.setter
     def cache_data_encrypted(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "cache_data_encrypted", value)
 
     @property
     @pulumi.getter(name="cacheTtlInSeconds")
@@ -231,11 +231,11 @@ class MethodSettingsSettingsArgs:
         """
         Specifies the time to live (TTL), in seconds, for cached responses. The higher the TTL, the longer the response will be cached.
         """
-        ...
+        return pulumi.get(self, "cache_ttl_in_seconds")
 
     @cache_ttl_in_seconds.setter
     def cache_ttl_in_seconds(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "cache_ttl_in_seconds", value)
 
     @property
     @pulumi.getter(name="cachingEnabled")
@@ -243,11 +243,11 @@ class MethodSettingsSettingsArgs:
         """
         Specifies whether responses should be cached and returned for requests. A cache cluster must be enabled on the stage for responses to be cached.
         """
-        ...
+        return pulumi.get(self, "caching_enabled")
 
     @caching_enabled.setter
     def caching_enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "caching_enabled", value)
 
     @property
     @pulumi.getter(name="dataTraceEnabled")
@@ -255,11 +255,11 @@ class MethodSettingsSettingsArgs:
         """
         Specifies whether data trace logging is enabled for this method, which effects the log entries pushed to Amazon CloudWatch Logs.
         """
-        ...
+        return pulumi.get(self, "data_trace_enabled")
 
     @data_trace_enabled.setter
     def data_trace_enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "data_trace_enabled", value)
 
     @property
     @pulumi.getter(name="loggingLevel")
@@ -267,11 +267,11 @@ class MethodSettingsSettingsArgs:
         """
         Specifies the logging level for this method, which effects the log entries pushed to Amazon CloudWatch Logs. The available levels are `OFF`, `ERROR`, and `INFO`.
         """
-        ...
+        return pulumi.get(self, "logging_level")
 
     @logging_level.setter
     def logging_level(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "logging_level", value)
 
     @property
     @pulumi.getter(name="metricsEnabled")
@@ -279,11 +279,11 @@ class MethodSettingsSettingsArgs:
         """
         Specifies whether Amazon CloudWatch metrics are enabled for this method.
         """
-        ...
+        return pulumi.get(self, "metrics_enabled")
 
     @metrics_enabled.setter
     def metrics_enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "metrics_enabled", value)
 
     @property
     @pulumi.getter(name="requireAuthorizationForCacheControl")
@@ -291,11 +291,11 @@ class MethodSettingsSettingsArgs:
         """
         Specifies whether authorization is required for a cache invalidation request.
         """
-        ...
+        return pulumi.get(self, "require_authorization_for_cache_control")
 
     @require_authorization_for_cache_control.setter
     def require_authorization_for_cache_control(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "require_authorization_for_cache_control", value)
 
     @property
     @pulumi.getter(name="throttlingBurstLimit")
@@ -303,11 +303,11 @@ class MethodSettingsSettingsArgs:
         """
         Specifies the throttling burst limit.
         """
-        ...
+        return pulumi.get(self, "throttling_burst_limit")
 
     @throttling_burst_limit.setter
     def throttling_burst_limit(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "throttling_burst_limit", value)
 
     @property
     @pulumi.getter(name="throttlingRateLimit")
@@ -315,11 +315,11 @@ class MethodSettingsSettingsArgs:
         """
         Specifies the throttling rate limit.
         """
-        ...
+        return pulumi.get(self, "throttling_rate_limit")
 
     @throttling_rate_limit.setter
     def throttling_rate_limit(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "throttling_rate_limit", value)
 
     @property
     @pulumi.getter(name="unauthorizedCacheControlHeaderStrategy")
@@ -327,11 +327,11 @@ class MethodSettingsSettingsArgs:
         """
         Specifies how to handle unauthorized requests for cache invalidation. The available values are `FAIL_WITH_403`, `SUCCEED_WITH_RESPONSE_HEADER`, `SUCCEED_WITHOUT_RESPONSE_HEADER`.
         """
-        ...
+        return pulumi.get(self, "unauthorized_cache_control_header_strategy")
 
     @unauthorized_cache_control_header_strategy.setter
     def unauthorized_cache_control_header_strategy(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "unauthorized_cache_control_header_strategy", value)
 
 
 @pulumi.input_type
@@ -353,11 +353,11 @@ class RestApiEndpointConfigurationArgs:
         """
         A list of endpoint types. This resource currently only supports managing a single value. Valid values: `EDGE`, `REGIONAL` or `PRIVATE`. If unspecified, defaults to `EDGE`. Must be declared as `REGIONAL` in non-Commercial partitions. Refer to the [documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/create-regional-api.html) for more information on the difference between edge-optimized and regional APIs.
         """
-        ...
+        return pulumi.get(self, "types")
 
     @types.setter
     def types(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "types", value)
 
     @property
     @pulumi.getter(name="vpcEndpointIds")
@@ -365,11 +365,11 @@ class RestApiEndpointConfigurationArgs:
         """
         A list of VPC Endpoint Ids. It is only supported for PRIVATE endpoint type.
         """
-        ...
+        return pulumi.get(self, "vpc_endpoint_ids")
 
     @vpc_endpoint_ids.setter
     def vpc_endpoint_ids(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "vpc_endpoint_ids", value)
 
 
 @pulumi.input_type
@@ -391,11 +391,11 @@ class StageAccessLogSettingsArgs:
         """
         The Amazon Resource Name (ARN) of the CloudWatch Logs log group or Kinesis Data Firehose delivery stream to receive access logs. If you specify a Kinesis Data Firehose delivery stream, the stream name must begin with `amazon-apigateway-`. Automatically removes trailing `:*` if present.
         """
-        ...
+        return pulumi.get(self, "destination_arn")
 
     @destination_arn.setter
     def destination_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "destination_arn", value)
 
     @property
     @pulumi.getter
@@ -404,11 +404,11 @@ class StageAccessLogSettingsArgs:
         The formatting and values recorded in the logs. 
         For more information on configuring the log format rules visit the AWS [documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html)
         """
-        ...
+        return pulumi.get(self, "format")
 
     @format.setter
     def format(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "format", value)
 
 
 @pulumi.input_type
@@ -429,11 +429,11 @@ class UsagePlanApiStageArgs:
         """
         API Id of the associated API stage in a usage plan.
         """
-        ...
+        return pulumi.get(self, "api_id")
 
     @api_id.setter
     def api_id(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "api_id", value)
 
     @property
     @pulumi.getter
@@ -441,11 +441,11 @@ class UsagePlanApiStageArgs:
         """
         API stage name of the associated API stage in a usage plan.
         """
-        ...
+        return pulumi.get(self, "stage")
 
     @stage.setter
     def stage(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "stage", value)
 
 
 @pulumi.input_type
@@ -470,11 +470,11 @@ class UsagePlanQuotaSettingsArgs:
         """
         The maximum number of requests that can be made in a given time period.
         """
-        ...
+        return pulumi.get(self, "limit")
 
     @limit.setter
     def limit(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "limit", value)
 
     @property
     @pulumi.getter
@@ -482,11 +482,11 @@ class UsagePlanQuotaSettingsArgs:
         """
         The time period in which the limit applies. Valid values are "DAY", "WEEK" or "MONTH".
         """
-        ...
+        return pulumi.get(self, "period")
 
     @period.setter
     def period(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "period", value)
 
     @property
     @pulumi.getter
@@ -494,11 +494,11 @@ class UsagePlanQuotaSettingsArgs:
         """
         The number of requests subtracted from the given limit in the initial time period.
         """
-        ...
+        return pulumi.get(self, "offset")
 
     @offset.setter
     def offset(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "offset", value)
 
 
 @pulumi.input_type
@@ -521,11 +521,11 @@ class UsagePlanThrottleSettingsArgs:
         """
         The API request burst limit, the maximum rate limit over a time ranging from one to a few seconds, depending upon whether the underlying token bucket is at its full capacity.
         """
-        ...
+        return pulumi.get(self, "burst_limit")
 
     @burst_limit.setter
     def burst_limit(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "burst_limit", value)
 
     @property
     @pulumi.getter(name="rateLimit")
@@ -533,10 +533,10 @@ class UsagePlanThrottleSettingsArgs:
         """
         The API request steady-state rate limit.
         """
-        ...
+        return pulumi.get(self, "rate_limit")
 
     @rate_limit.setter
     def rate_limit(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "rate_limit", value)
 
 

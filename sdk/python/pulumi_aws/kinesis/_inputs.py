@@ -98,11 +98,11 @@ class AnalyticsApplicationCloudwatchLoggingOptionsArgs:
         """
         The ARN of the CloudWatch Log Stream.
         """
-        ...
+        return pulumi.get(self, "log_stream_arn")
 
     @log_stream_arn.setter
     def log_stream_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "log_stream_arn", value)
 
     @property
     @pulumi.getter(name="roleArn")
@@ -110,11 +110,11 @@ class AnalyticsApplicationCloudwatchLoggingOptionsArgs:
         """
         The ARN of the IAM Role used to send application messages.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @role_arn.setter
     def role_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "role_arn", value)
 
     @property
     @pulumi.getter
@@ -122,11 +122,11 @@ class AnalyticsApplicationCloudwatchLoggingOptionsArgs:
         """
         The ARN of the Kinesis Analytics Application.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @id.setter
     def id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "id", value)
 
 
 @pulumi.input_type
@@ -177,11 +177,11 @@ class AnalyticsApplicationInputsArgs:
         """
         The Name Prefix to use when creating an in-application stream.
         """
-        ...
+        return pulumi.get(self, "name_prefix")
 
     @name_prefix.setter
     def name_prefix(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "name_prefix", value)
 
     @property
     @pulumi.getter
@@ -189,11 +189,11 @@ class AnalyticsApplicationInputsArgs:
         """
         The Schema format of the data in the streaming source. See Source Schema below for more details.
         """
-        ...
+        return pulumi.get(self, "schema")
 
     @schema.setter
     def schema(self, value: pulumi.Input['AnalyticsApplicationInputsSchemaArgs']):
-        ...
+        pulumi.set(self, "schema", value)
 
     @property
     @pulumi.getter
@@ -201,11 +201,11 @@ class AnalyticsApplicationInputsArgs:
         """
         The ARN of the Kinesis Analytics Application.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @id.setter
     def id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter(name="kinesisFirehose")
@@ -214,11 +214,11 @@ class AnalyticsApplicationInputsArgs:
         The Kinesis Firehose configuration for the streaming source. Conflicts with `kinesis_stream`.
         See Kinesis Firehose below for more details.
         """
-        ...
+        return pulumi.get(self, "kinesis_firehose")
 
     @kinesis_firehose.setter
     def kinesis_firehose(self, value: Optional[pulumi.Input['AnalyticsApplicationInputsKinesisFirehoseArgs']]):
-        ...
+        pulumi.set(self, "kinesis_firehose", value)
 
     @property
     @pulumi.getter(name="kinesisStream")
@@ -227,11 +227,11 @@ class AnalyticsApplicationInputsArgs:
         The Kinesis Stream configuration for the streaming source. Conflicts with `kinesis_firehose`.
         See Kinesis Stream below for more details.
         """
-        ...
+        return pulumi.get(self, "kinesis_stream")
 
     @kinesis_stream.setter
     def kinesis_stream(self, value: Optional[pulumi.Input['AnalyticsApplicationInputsKinesisStreamArgs']]):
-        ...
+        pulumi.set(self, "kinesis_stream", value)
 
     @property
     @pulumi.getter
@@ -240,11 +240,11 @@ class AnalyticsApplicationInputsArgs:
         The number of Parallel in-application streams to create.
         See Parallelism below for more details.
         """
-        ...
+        return pulumi.get(self, "parallelism")
 
     @parallelism.setter
     def parallelism(self, value: Optional[pulumi.Input['AnalyticsApplicationInputsParallelismArgs']]):
-        ...
+        pulumi.set(self, "parallelism", value)
 
     @property
     @pulumi.getter(name="processingConfiguration")
@@ -253,29 +253,29 @@ class AnalyticsApplicationInputsArgs:
         The Processing Configuration to transform records as they are received from the stream.
         See Processing Configuration below for more details.
         """
-        ...
+        return pulumi.get(self, "processing_configuration")
 
     @processing_configuration.setter
     def processing_configuration(self, value: Optional[pulumi.Input['AnalyticsApplicationInputsProcessingConfigurationArgs']]):
-        ...
+        pulumi.set(self, "processing_configuration", value)
 
     @property
     @pulumi.getter(name="startingPositionConfigurations")
     def starting_position_configurations(self) -> Optional[pulumi.Input[List[pulumi.Input['AnalyticsApplicationInputsStartingPositionConfigurationArgs']]]]:
-        ...
+        return pulumi.get(self, "starting_position_configurations")
 
     @starting_position_configurations.setter
     def starting_position_configurations(self, value: Optional[pulumi.Input[List[pulumi.Input['AnalyticsApplicationInputsStartingPositionConfigurationArgs']]]]):
-        ...
+        pulumi.set(self, "starting_position_configurations", value)
 
     @property
     @pulumi.getter(name="streamNames")
     def stream_names(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
-        ...
+        return pulumi.get(self, "stream_names")
 
     @stream_names.setter
     def stream_names(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "stream_names", value)
 
 
 @pulumi.input_type
@@ -296,11 +296,11 @@ class AnalyticsApplicationInputsKinesisFirehoseArgs:
         """
         The ARN of the Kinesis Firehose delivery stream.
         """
-        ...
+        return pulumi.get(self, "resource_arn")
 
     @resource_arn.setter
     def resource_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "resource_arn", value)
 
     @property
     @pulumi.getter(name="roleArn")
@@ -308,11 +308,11 @@ class AnalyticsApplicationInputsKinesisFirehoseArgs:
         """
         The ARN of the IAM Role used to access the stream.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @role_arn.setter
     def role_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "role_arn", value)
 
 
 @pulumi.input_type
@@ -333,11 +333,11 @@ class AnalyticsApplicationInputsKinesisStreamArgs:
         """
         The ARN of the Kinesis Stream.
         """
-        ...
+        return pulumi.get(self, "resource_arn")
 
     @resource_arn.setter
     def resource_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "resource_arn", value)
 
     @property
     @pulumi.getter(name="roleArn")
@@ -345,11 +345,11 @@ class AnalyticsApplicationInputsKinesisStreamArgs:
         """
         The ARN of the IAM Role used to access the stream.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @role_arn.setter
     def role_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "role_arn", value)
 
 
 @pulumi.input_type
@@ -367,11 +367,11 @@ class AnalyticsApplicationInputsParallelismArgs:
         """
         The Count of streams.
         """
-        ...
+        return pulumi.get(self, "count")
 
     @count.setter
     def count(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "count", value)
 
 
 @pulumi.input_type
@@ -389,11 +389,11 @@ class AnalyticsApplicationInputsProcessingConfigurationArgs:
         """
         The Lambda function configuration. See Lambda below for more details.
         """
-        ...
+        return pulumi.get(self, "lambda_")
 
     @lambda_.setter
     def lambda_(self, value: pulumi.Input['AnalyticsApplicationInputsProcessingConfigurationLambdaArgs']):
-        ...
+        pulumi.set(self, "lambda_", value)
 
 
 @pulumi.input_type
@@ -414,11 +414,11 @@ class AnalyticsApplicationInputsProcessingConfigurationLambdaArgs:
         """
         The ARN of the Lambda function.
         """
-        ...
+        return pulumi.get(self, "resource_arn")
 
     @resource_arn.setter
     def resource_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "resource_arn", value)
 
     @property
     @pulumi.getter(name="roleArn")
@@ -426,11 +426,11 @@ class AnalyticsApplicationInputsProcessingConfigurationLambdaArgs:
         """
         The ARN of the IAM Role used to access the Lambda function.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @role_arn.setter
     def role_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "role_arn", value)
 
 
 @pulumi.input_type
@@ -458,11 +458,11 @@ class AnalyticsApplicationInputsSchemaArgs:
         The Record Column mapping for the streaming source data element.
         See Record Columns below for more details.
         """
-        ...
+        return pulumi.get(self, "record_columns")
 
     @record_columns.setter
     def record_columns(self, value: pulumi.Input[List[pulumi.Input['AnalyticsApplicationInputsSchemaRecordColumnArgs']]]):
-        ...
+        pulumi.set(self, "record_columns", value)
 
     @property
     @pulumi.getter(name="recordFormat")
@@ -471,11 +471,11 @@ class AnalyticsApplicationInputsSchemaArgs:
         The Record Format and mapping information to schematize a record.
         See Record Format below for more details.
         """
-        ...
+        return pulumi.get(self, "record_format")
 
     @record_format.setter
     def record_format(self, value: pulumi.Input['AnalyticsApplicationInputsSchemaRecordFormatArgs']):
-        ...
+        pulumi.set(self, "record_format", value)
 
     @property
     @pulumi.getter(name="recordEncoding")
@@ -483,11 +483,11 @@ class AnalyticsApplicationInputsSchemaArgs:
         """
         The Encoding of the record in the streaming source.
         """
-        ...
+        return pulumi.get(self, "record_encoding")
 
     @record_encoding.setter
     def record_encoding(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "record_encoding", value)
 
 
 @pulumi.input_type
@@ -512,11 +512,11 @@ class AnalyticsApplicationInputsSchemaRecordColumnArgs:
         """
         Name of the column.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter(name="sqlType")
@@ -524,11 +524,11 @@ class AnalyticsApplicationInputsSchemaRecordColumnArgs:
         """
         The SQL Type of the column.
         """
-        ...
+        return pulumi.get(self, "sql_type")
 
     @sql_type.setter
     def sql_type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "sql_type", value)
 
     @property
     @pulumi.getter
@@ -536,11 +536,11 @@ class AnalyticsApplicationInputsSchemaRecordColumnArgs:
         """
         The Mapping reference to the data element.
         """
-        ...
+        return pulumi.get(self, "mapping")
 
     @mapping.setter
     def mapping(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "mapping", value)
 
 
 @pulumi.input_type
@@ -565,11 +565,11 @@ class AnalyticsApplicationInputsSchemaRecordFormatArgs:
         The Mapping Information for the record format.
         See Mapping Parameters below for more details.
         """
-        ...
+        return pulumi.get(self, "mapping_parameters")
 
     @mapping_parameters.setter
     def mapping_parameters(self, value: Optional[pulumi.Input['AnalyticsApplicationInputsSchemaRecordFormatMappingParametersArgs']]):
-        ...
+        pulumi.set(self, "mapping_parameters", value)
 
     @property
     @pulumi.getter(name="recordFormatType")
@@ -577,11 +577,11 @@ class AnalyticsApplicationInputsSchemaRecordFormatArgs:
         """
         The type of Record Format. Can be `CSV` or `JSON`.
         """
-        ...
+        return pulumi.get(self, "record_format_type")
 
     @record_format_type.setter
     def record_format_type(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "record_format_type", value)
 
 
 @pulumi.input_type
@@ -607,11 +607,11 @@ class AnalyticsApplicationInputsSchemaRecordFormatMappingParametersArgs:
         Mapping information when the record format uses delimiters.
         See CSV Mapping Parameters below for more details.
         """
-        ...
+        return pulumi.get(self, "csv")
 
     @csv.setter
     def csv(self, value: Optional[pulumi.Input['AnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsvArgs']]):
-        ...
+        pulumi.set(self, "csv", value)
 
     @property
     @pulumi.getter
@@ -620,11 +620,11 @@ class AnalyticsApplicationInputsSchemaRecordFormatMappingParametersArgs:
         Mapping information when JSON is the record format on the streaming source.
         See JSON Mapping Parameters below for more details.
         """
-        ...
+        return pulumi.get(self, "json")
 
     @json.setter
     def json(self, value: Optional[pulumi.Input['AnalyticsApplicationInputsSchemaRecordFormatMappingParametersJsonArgs']]):
-        ...
+        pulumi.set(self, "json", value)
 
 
 @pulumi.input_type
@@ -645,11 +645,11 @@ class AnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsvArgs:
         """
         The Column Delimiter.
         """
-        ...
+        return pulumi.get(self, "record_column_delimiter")
 
     @record_column_delimiter.setter
     def record_column_delimiter(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "record_column_delimiter", value)
 
     @property
     @pulumi.getter(name="recordRowDelimiter")
@@ -657,11 +657,11 @@ class AnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsvArgs:
         """
         The Row Delimiter.
         """
-        ...
+        return pulumi.get(self, "record_row_delimiter")
 
     @record_row_delimiter.setter
     def record_row_delimiter(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "record_row_delimiter", value)
 
 
 @pulumi.input_type
@@ -679,11 +679,11 @@ class AnalyticsApplicationInputsSchemaRecordFormatMappingParametersJsonArgs:
         """
         Path to the top-level parent that contains the records.
         """
-        ...
+        return pulumi.get(self, "record_row_path")
 
     @record_row_path.setter
     def record_row_path(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "record_row_path", value)
 
 
 @pulumi.input_type
@@ -696,11 +696,11 @@ class AnalyticsApplicationInputsStartingPositionConfigurationArgs:
     @property
     @pulumi.getter(name="startingPosition")
     def starting_position(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "starting_position")
 
     @starting_position.setter
     def starting_position(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "starting_position", value)
 
 
 @pulumi.input_type
@@ -739,11 +739,11 @@ class AnalyticsApplicationOutputArgs:
         """
         The Name of the in-application stream.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -751,11 +751,11 @@ class AnalyticsApplicationOutputArgs:
         """
         The Schema format of the data written to the destination. See Destination Schema below for more details.
         """
-        ...
+        return pulumi.get(self, "schema")
 
     @schema.setter
     def schema(self, value: pulumi.Input['AnalyticsApplicationOutputSchemaArgs']):
-        ...
+        pulumi.set(self, "schema", value)
 
     @property
     @pulumi.getter
@@ -763,11 +763,11 @@ class AnalyticsApplicationOutputArgs:
         """
         The ARN of the Kinesis Analytics Application.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @id.setter
     def id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter(name="kinesisFirehose")
@@ -776,11 +776,11 @@ class AnalyticsApplicationOutputArgs:
         The Kinesis Firehose configuration for the destination stream. Conflicts with `kinesis_stream`.
         See Kinesis Firehose below for more details.
         """
-        ...
+        return pulumi.get(self, "kinesis_firehose")
 
     @kinesis_firehose.setter
     def kinesis_firehose(self, value: Optional[pulumi.Input['AnalyticsApplicationOutputKinesisFirehoseArgs']]):
-        ...
+        pulumi.set(self, "kinesis_firehose", value)
 
     @property
     @pulumi.getter(name="kinesisStream")
@@ -789,11 +789,11 @@ class AnalyticsApplicationOutputArgs:
         The Kinesis Stream configuration for the destination stream. Conflicts with `kinesis_firehose`.
         See Kinesis Stream below for more details.
         """
-        ...
+        return pulumi.get(self, "kinesis_stream")
 
     @kinesis_stream.setter
     def kinesis_stream(self, value: Optional[pulumi.Input['AnalyticsApplicationOutputKinesisStreamArgs']]):
-        ...
+        pulumi.set(self, "kinesis_stream", value)
 
     @property
     @pulumi.getter(name="lambda")
@@ -801,11 +801,11 @@ class AnalyticsApplicationOutputArgs:
         """
         The Lambda function destination. See Lambda below for more details.
         """
-        ...
+        return pulumi.get(self, "lambda_")
 
     @lambda_.setter
     def lambda_(self, value: Optional[pulumi.Input['AnalyticsApplicationOutputLambdaArgs']]):
-        ...
+        pulumi.set(self, "lambda_", value)
 
 
 @pulumi.input_type
@@ -826,11 +826,11 @@ class AnalyticsApplicationOutputKinesisFirehoseArgs:
         """
         The ARN of the Kinesis Firehose delivery stream.
         """
-        ...
+        return pulumi.get(self, "resource_arn")
 
     @resource_arn.setter
     def resource_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "resource_arn", value)
 
     @property
     @pulumi.getter(name="roleArn")
@@ -838,11 +838,11 @@ class AnalyticsApplicationOutputKinesisFirehoseArgs:
         """
         The ARN of the IAM Role used to access the stream.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @role_arn.setter
     def role_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "role_arn", value)
 
 
 @pulumi.input_type
@@ -863,11 +863,11 @@ class AnalyticsApplicationOutputKinesisStreamArgs:
         """
         The ARN of the Kinesis Stream.
         """
-        ...
+        return pulumi.get(self, "resource_arn")
 
     @resource_arn.setter
     def resource_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "resource_arn", value)
 
     @property
     @pulumi.getter(name="roleArn")
@@ -875,11 +875,11 @@ class AnalyticsApplicationOutputKinesisStreamArgs:
         """
         The ARN of the IAM Role used to access the stream.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @role_arn.setter
     def role_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "role_arn", value)
 
 
 @pulumi.input_type
@@ -900,11 +900,11 @@ class AnalyticsApplicationOutputLambdaArgs:
         """
         The ARN of the Lambda function.
         """
-        ...
+        return pulumi.get(self, "resource_arn")
 
     @resource_arn.setter
     def resource_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "resource_arn", value)
 
     @property
     @pulumi.getter(name="roleArn")
@@ -912,11 +912,11 @@ class AnalyticsApplicationOutputLambdaArgs:
         """
         The ARN of the IAM Role used to access the Lambda function.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @role_arn.setter
     def role_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "role_arn", value)
 
 
 @pulumi.input_type
@@ -935,11 +935,11 @@ class AnalyticsApplicationOutputSchemaArgs:
         """
         The Format Type of the records on the output stream. Can be `CSV` or `JSON`.
         """
-        ...
+        return pulumi.get(self, "record_format_type")
 
     @record_format_type.setter
     def record_format_type(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "record_format_type", value)
 
 
 @pulumi.input_type
@@ -967,11 +967,11 @@ class AnalyticsApplicationReferenceDataSourcesArgs:
         """
         The S3 configuration for the reference data source. See S3 Reference below for more details.
         """
-        ...
+        return pulumi.get(self, "s3")
 
     @s3.setter
     def s3(self, value: pulumi.Input['AnalyticsApplicationReferenceDataSourcesS3Args']):
-        ...
+        pulumi.set(self, "s3", value)
 
     @property
     @pulumi.getter
@@ -979,11 +979,11 @@ class AnalyticsApplicationReferenceDataSourcesArgs:
         """
         The Schema format of the data in the streaming source. See Source Schema below for more details.
         """
-        ...
+        return pulumi.get(self, "schema")
 
     @schema.setter
     def schema(self, value: pulumi.Input['AnalyticsApplicationReferenceDataSourcesSchemaArgs']):
-        ...
+        pulumi.set(self, "schema", value)
 
     @property
     @pulumi.getter(name="tableName")
@@ -991,11 +991,11 @@ class AnalyticsApplicationReferenceDataSourcesArgs:
         """
         The in-application Table Name.
         """
-        ...
+        return pulumi.get(self, "table_name")
 
     @table_name.setter
     def table_name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "table_name", value)
 
     @property
     @pulumi.getter
@@ -1003,11 +1003,11 @@ class AnalyticsApplicationReferenceDataSourcesArgs:
         """
         The ARN of the Kinesis Analytics Application.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @id.setter
     def id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "id", value)
 
 
 @pulumi.input_type
@@ -1031,11 +1031,11 @@ class AnalyticsApplicationReferenceDataSourcesS3Args:
         """
         The S3 Bucket ARN.
         """
-        ...
+        return pulumi.get(self, "bucket_arn")
 
     @bucket_arn.setter
     def bucket_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "bucket_arn", value)
 
     @property
     @pulumi.getter(name="fileKey")
@@ -1043,11 +1043,11 @@ class AnalyticsApplicationReferenceDataSourcesS3Args:
         """
         The File Key name containing reference data.
         """
-        ...
+        return pulumi.get(self, "file_key")
 
     @file_key.setter
     def file_key(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "file_key", value)
 
     @property
     @pulumi.getter(name="roleArn")
@@ -1055,11 +1055,11 @@ class AnalyticsApplicationReferenceDataSourcesS3Args:
         """
         The ARN of the IAM Role used to send application messages.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @role_arn.setter
     def role_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "role_arn", value)
 
 
 @pulumi.input_type
@@ -1087,11 +1087,11 @@ class AnalyticsApplicationReferenceDataSourcesSchemaArgs:
         The Record Column mapping for the streaming source data element.
         See Record Columns below for more details.
         """
-        ...
+        return pulumi.get(self, "record_columns")
 
     @record_columns.setter
     def record_columns(self, value: pulumi.Input[List[pulumi.Input['AnalyticsApplicationReferenceDataSourcesSchemaRecordColumnArgs']]]):
-        ...
+        pulumi.set(self, "record_columns", value)
 
     @property
     @pulumi.getter(name="recordFormat")
@@ -1100,11 +1100,11 @@ class AnalyticsApplicationReferenceDataSourcesSchemaArgs:
         The Record Format and mapping information to schematize a record.
         See Record Format below for more details.
         """
-        ...
+        return pulumi.get(self, "record_format")
 
     @record_format.setter
     def record_format(self, value: pulumi.Input['AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatArgs']):
-        ...
+        pulumi.set(self, "record_format", value)
 
     @property
     @pulumi.getter(name="recordEncoding")
@@ -1112,11 +1112,11 @@ class AnalyticsApplicationReferenceDataSourcesSchemaArgs:
         """
         The Encoding of the record in the streaming source.
         """
-        ...
+        return pulumi.get(self, "record_encoding")
 
     @record_encoding.setter
     def record_encoding(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "record_encoding", value)
 
 
 @pulumi.input_type
@@ -1141,11 +1141,11 @@ class AnalyticsApplicationReferenceDataSourcesSchemaRecordColumnArgs:
         """
         Name of the column.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter(name="sqlType")
@@ -1153,11 +1153,11 @@ class AnalyticsApplicationReferenceDataSourcesSchemaRecordColumnArgs:
         """
         The SQL Type of the column.
         """
-        ...
+        return pulumi.get(self, "sql_type")
 
     @sql_type.setter
     def sql_type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "sql_type", value)
 
     @property
     @pulumi.getter
@@ -1165,11 +1165,11 @@ class AnalyticsApplicationReferenceDataSourcesSchemaRecordColumnArgs:
         """
         The Mapping reference to the data element.
         """
-        ...
+        return pulumi.get(self, "mapping")
 
     @mapping.setter
     def mapping(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "mapping", value)
 
 
 @pulumi.input_type
@@ -1194,11 +1194,11 @@ class AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatArgs:
         The Mapping Information for the record format.
         See Mapping Parameters below for more details.
         """
-        ...
+        return pulumi.get(self, "mapping_parameters")
 
     @mapping_parameters.setter
     def mapping_parameters(self, value: Optional[pulumi.Input['AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersArgs']]):
-        ...
+        pulumi.set(self, "mapping_parameters", value)
 
     @property
     @pulumi.getter(name="recordFormatType")
@@ -1206,11 +1206,11 @@ class AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatArgs:
         """
         The type of Record Format. Can be `CSV` or `JSON`.
         """
-        ...
+        return pulumi.get(self, "record_format_type")
 
     @record_format_type.setter
     def record_format_type(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "record_format_type", value)
 
 
 @pulumi.input_type
@@ -1236,11 +1236,11 @@ class AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParameter
         Mapping information when the record format uses delimiters.
         See CSV Mapping Parameters below for more details.
         """
-        ...
+        return pulumi.get(self, "csv")
 
     @csv.setter
     def csv(self, value: Optional[pulumi.Input['AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsvArgs']]):
-        ...
+        pulumi.set(self, "csv", value)
 
     @property
     @pulumi.getter
@@ -1249,11 +1249,11 @@ class AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParameter
         Mapping information when JSON is the record format on the streaming source.
         See JSON Mapping Parameters below for more details.
         """
-        ...
+        return pulumi.get(self, "json")
 
     @json.setter
     def json(self, value: Optional[pulumi.Input['AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersJsonArgs']]):
-        ...
+        pulumi.set(self, "json", value)
 
 
 @pulumi.input_type
@@ -1274,11 +1274,11 @@ class AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParameter
         """
         The Column Delimiter.
         """
-        ...
+        return pulumi.get(self, "record_column_delimiter")
 
     @record_column_delimiter.setter
     def record_column_delimiter(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "record_column_delimiter", value)
 
     @property
     @pulumi.getter(name="recordRowDelimiter")
@@ -1286,11 +1286,11 @@ class AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParameter
         """
         The Row Delimiter.
         """
-        ...
+        return pulumi.get(self, "record_row_delimiter")
 
     @record_row_delimiter.setter
     def record_row_delimiter(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "record_row_delimiter", value)
 
 
 @pulumi.input_type
@@ -1308,11 +1308,11 @@ class AnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParameter
         """
         Path to the top-level parent that contains the records.
         """
-        ...
+        return pulumi.get(self, "record_row_path")
 
     @record_row_path.setter
     def record_row_path(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "record_row_path", value)
 
 
 @pulumi.input_type
@@ -1368,11 +1368,11 @@ class FirehoseDeliveryStreamElasticsearchConfigurationArgs:
         """
         The ARN of the Amazon ES domain.  The IAM role must have permission for `DescribeElasticsearchDomain`, `DescribeElasticsearchDomains`, and `DescribeElasticsearchDomainConfig` after assuming `RoleARN`.  The pattern needs to be `arn:.*`.
         """
-        ...
+        return pulumi.get(self, "domain_arn")
 
     @domain_arn.setter
     def domain_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "domain_arn", value)
 
     @property
     @pulumi.getter(name="indexName")
@@ -1380,11 +1380,11 @@ class FirehoseDeliveryStreamElasticsearchConfigurationArgs:
         """
         The Elasticsearch index name.
         """
-        ...
+        return pulumi.get(self, "index_name")
 
     @index_name.setter
     def index_name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "index_name", value)
 
     @property
     @pulumi.getter(name="roleArn")
@@ -1392,11 +1392,11 @@ class FirehoseDeliveryStreamElasticsearchConfigurationArgs:
         """
         The ARN of the IAM role to be assumed by Firehose for calling the Amazon ES Configuration API and for indexing documents.  The pattern needs to be `arn:.*`.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @role_arn.setter
     def role_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "role_arn", value)
 
     @property
     @pulumi.getter(name="bufferingInterval")
@@ -1404,11 +1404,11 @@ class FirehoseDeliveryStreamElasticsearchConfigurationArgs:
         """
         Buffer incoming data for the specified period of time, in seconds between 60 to 900, before delivering it to the destination.  The default value is 300s.
         """
-        ...
+        return pulumi.get(self, "buffering_interval")
 
     @buffering_interval.setter
     def buffering_interval(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "buffering_interval", value)
 
     @property
     @pulumi.getter(name="bufferingSize")
@@ -1416,11 +1416,11 @@ class FirehoseDeliveryStreamElasticsearchConfigurationArgs:
         """
         Buffer incoming data to the specified size, in MBs between 1 to 100, before delivering it to the destination.  The default value is 5MB.
         """
-        ...
+        return pulumi.get(self, "buffering_size")
 
     @buffering_size.setter
     def buffering_size(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "buffering_size", value)
 
     @property
     @pulumi.getter(name="cloudwatchLoggingOptions")
@@ -1428,11 +1428,11 @@ class FirehoseDeliveryStreamElasticsearchConfigurationArgs:
         """
         The CloudWatch Logging Options for the delivery stream. More details are given below
         """
-        ...
+        return pulumi.get(self, "cloudwatch_logging_options")
 
     @cloudwatch_logging_options.setter
     def cloudwatch_logging_options(self, value: Optional[pulumi.Input['FirehoseDeliveryStreamElasticsearchConfigurationCloudwatchLoggingOptionsArgs']]):
-        ...
+        pulumi.set(self, "cloudwatch_logging_options", value)
 
     @property
     @pulumi.getter(name="indexRotationPeriod")
@@ -1440,11 +1440,11 @@ class FirehoseDeliveryStreamElasticsearchConfigurationArgs:
         """
         The Elasticsearch index rotation period.  Index rotation appends a timestamp to the IndexName to facilitate expiration of old data.  Valid values are `NoRotation`, `OneHour`, `OneDay`, `OneWeek`, and `OneMonth`.  The default value is `OneDay`.
         """
-        ...
+        return pulumi.get(self, "index_rotation_period")
 
     @index_rotation_period.setter
     def index_rotation_period(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "index_rotation_period", value)
 
     @property
     @pulumi.getter(name="processingConfiguration")
@@ -1452,11 +1452,11 @@ class FirehoseDeliveryStreamElasticsearchConfigurationArgs:
         """
         The data processing configuration.  More details are given below.
         """
-        ...
+        return pulumi.get(self, "processing_configuration")
 
     @processing_configuration.setter
     def processing_configuration(self, value: Optional[pulumi.Input['FirehoseDeliveryStreamElasticsearchConfigurationProcessingConfigurationArgs']]):
-        ...
+        pulumi.set(self, "processing_configuration", value)
 
     @property
     @pulumi.getter(name="retryDuration")
@@ -1464,11 +1464,11 @@ class FirehoseDeliveryStreamElasticsearchConfigurationArgs:
         """
         After an initial failure to deliver to Amazon Elasticsearch, the total amount of time, in seconds between 0 to 7200, during which Firehose re-attempts delivery (including the first attempt).  After this time has elapsed, the failed documents are written to Amazon S3.  The default value is 300s.  There will be no retry if the value is 0.
         """
-        ...
+        return pulumi.get(self, "retry_duration")
 
     @retry_duration.setter
     def retry_duration(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "retry_duration", value)
 
     @property
     @pulumi.getter(name="s3BackupMode")
@@ -1476,11 +1476,11 @@ class FirehoseDeliveryStreamElasticsearchConfigurationArgs:
         """
         Defines how documents should be delivered to Amazon S3.  Valid values are `FailedDocumentsOnly` and `AllDocuments`.  Default value is `FailedDocumentsOnly`.
         """
-        ...
+        return pulumi.get(self, "s3_backup_mode")
 
     @s3_backup_mode.setter
     def s3_backup_mode(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "s3_backup_mode", value)
 
     @property
     @pulumi.getter(name="typeName")
@@ -1488,11 +1488,11 @@ class FirehoseDeliveryStreamElasticsearchConfigurationArgs:
         """
         The Elasticsearch type name with maximum length of 100 characters.
         """
-        ...
+        return pulumi.get(self, "type_name")
 
     @type_name.setter
     def type_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "type_name", value)
 
 
 @pulumi.input_type
@@ -1519,11 +1519,11 @@ class FirehoseDeliveryStreamElasticsearchConfigurationCloudwatchLoggingOptionsAr
         """
         Enables or disables the logging. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter(name="logGroupName")
@@ -1531,11 +1531,11 @@ class FirehoseDeliveryStreamElasticsearchConfigurationCloudwatchLoggingOptionsAr
         """
         The CloudWatch group name for logging. This value is required if `enabled` is true.
         """
-        ...
+        return pulumi.get(self, "log_group_name")
 
     @log_group_name.setter
     def log_group_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "log_group_name", value)
 
     @property
     @pulumi.getter(name="logStreamName")
@@ -1543,11 +1543,11 @@ class FirehoseDeliveryStreamElasticsearchConfigurationCloudwatchLoggingOptionsAr
         """
         The CloudWatch log stream name for logging. This value is required if `enabled` is true.
         """
-        ...
+        return pulumi.get(self, "log_stream_name")
 
     @log_stream_name.setter
     def log_stream_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "log_stream_name", value)
 
 
 @pulumi.input_type
@@ -1570,11 +1570,11 @@ class FirehoseDeliveryStreamElasticsearchConfigurationProcessingConfigurationArg
         """
         Enables or disables data processing.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter
@@ -1582,11 +1582,11 @@ class FirehoseDeliveryStreamElasticsearchConfigurationProcessingConfigurationArg
         """
         Array of data processors. More details are given below
         """
-        ...
+        return pulumi.get(self, "processors")
 
     @processors.setter
     def processors(self, value: Optional[pulumi.Input[List[pulumi.Input['FirehoseDeliveryStreamElasticsearchConfigurationProcessingConfigurationProcessorArgs']]]]):
-        ...
+        pulumi.set(self, "processors", value)
 
 
 @pulumi.input_type
@@ -1608,11 +1608,11 @@ class FirehoseDeliveryStreamElasticsearchConfigurationProcessingConfigurationPro
         """
         The type of processor. Valid Values: `Lambda`
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter
@@ -1620,11 +1620,11 @@ class FirehoseDeliveryStreamElasticsearchConfigurationProcessingConfigurationPro
         """
         Array of processor parameters. More details are given below
         """
-        ...
+        return pulumi.get(self, "parameters")
 
     @parameters.setter
     def parameters(self, value: Optional[pulumi.Input[List[pulumi.Input['FirehoseDeliveryStreamElasticsearchConfigurationProcessingConfigurationProcessorParameterArgs']]]]):
-        ...
+        pulumi.set(self, "parameters", value)
 
 
 @pulumi.input_type
@@ -1645,11 +1645,11 @@ class FirehoseDeliveryStreamElasticsearchConfigurationProcessingConfigurationPro
         """
         Parameter name. Valid Values: `LambdaArn`, `NumberOfRetries`, `RoleArn`, `BufferSizeInMBs`, `BufferIntervalInSeconds`
         """
-        ...
+        return pulumi.get(self, "parameter_name")
 
     @parameter_name.setter
     def parameter_name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "parameter_name", value)
 
     @property
     @pulumi.getter(name="parameterValue")
@@ -1657,11 +1657,11 @@ class FirehoseDeliveryStreamElasticsearchConfigurationProcessingConfigurationPro
         """
         Parameter value. Must be between 1 and 512 length (inclusive). When providing a Lambda ARN, you should specify the resource version as well.
         """
-        ...
+        return pulumi.get(self, "parameter_value")
 
     @parameter_value.setter
     def parameter_value(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "parameter_value", value)
 
 
 @pulumi.input_type
@@ -1728,11 +1728,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationArgs:
         """
         The ARN of the S3 bucket
         """
-        ...
+        return pulumi.get(self, "bucket_arn")
 
     @bucket_arn.setter
     def bucket_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "bucket_arn", value)
 
     @property
     @pulumi.getter(name="roleArn")
@@ -1740,11 +1740,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationArgs:
         """
         The role that Kinesis Data Firehose can use to access AWS Glue. This role must be in the same account you use for Kinesis Data Firehose. Cross-account roles aren't allowed.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @role_arn.setter
     def role_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "role_arn", value)
 
     @property
     @pulumi.getter(name="bufferInterval")
@@ -1752,11 +1752,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationArgs:
         """
         Buffer incoming data for the specified period of time, in seconds, before delivering it to the destination. The default value is 300.
         """
-        ...
+        return pulumi.get(self, "buffer_interval")
 
     @buffer_interval.setter
     def buffer_interval(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "buffer_interval", value)
 
     @property
     @pulumi.getter(name="bufferSize")
@@ -1765,11 +1765,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationArgs:
         Buffer incoming data to the specified size, in MBs, before delivering it to the destination. The default value is 5.
         We recommend setting SizeInMBs to a value greater than the amount of data you typically ingest into the delivery stream in 10 seconds. For example, if you typically ingest data at 1 MB/sec set SizeInMBs to be 10 MB or higher.
         """
-        ...
+        return pulumi.get(self, "buffer_size")
 
     @buffer_size.setter
     def buffer_size(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "buffer_size", value)
 
     @property
     @pulumi.getter(name="cloudwatchLoggingOptions")
@@ -1777,11 +1777,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationArgs:
         """
         The CloudWatch Logging Options for the delivery stream. More details are given below
         """
-        ...
+        return pulumi.get(self, "cloudwatch_logging_options")
 
     @cloudwatch_logging_options.setter
     def cloudwatch_logging_options(self, value: Optional[pulumi.Input['FirehoseDeliveryStreamExtendedS3ConfigurationCloudwatchLoggingOptionsArgs']]):
-        ...
+        pulumi.set(self, "cloudwatch_logging_options", value)
 
     @property
     @pulumi.getter(name="compressionFormat")
@@ -1789,11 +1789,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationArgs:
         """
         The compression format. If no value is specified, the default is UNCOMPRESSED. Other supported values are GZIP, ZIP & Snappy. If the destination is redshift you cannot use ZIP or Snappy.
         """
-        ...
+        return pulumi.get(self, "compression_format")
 
     @compression_format.setter
     def compression_format(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "compression_format", value)
 
     @property
     @pulumi.getter(name="dataFormatConversionConfiguration")
@@ -1801,11 +1801,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationArgs:
         """
         Nested argument for the serializer, deserializer, and schema for converting data from the JSON format to the Parquet or ORC format before writing it to Amazon S3. More details given below.
         """
-        ...
+        return pulumi.get(self, "data_format_conversion_configuration")
 
     @data_format_conversion_configuration.setter
     def data_format_conversion_configuration(self, value: Optional[pulumi.Input['FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationArgs']]):
-        ...
+        pulumi.set(self, "data_format_conversion_configuration", value)
 
     @property
     @pulumi.getter(name="errorOutputPrefix")
@@ -1813,11 +1813,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationArgs:
         """
         Prefix added to failed records before writing them to S3. This prefix appears immediately following the bucket name.
         """
-        ...
+        return pulumi.get(self, "error_output_prefix")
 
     @error_output_prefix.setter
     def error_output_prefix(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "error_output_prefix", value)
 
     @property
     @pulumi.getter(name="kmsKeyArn")
@@ -1826,11 +1826,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationArgs:
         Specifies the KMS key ARN the stream will use to encrypt data. If not set, no encryption will
         be used.
         """
-        ...
+        return pulumi.get(self, "kms_key_arn")
 
     @kms_key_arn.setter
     def kms_key_arn(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kms_key_arn", value)
 
     @property
     @pulumi.getter
@@ -1838,11 +1838,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationArgs:
         """
         The "YYYY/MM/DD/HH" time format prefix is automatically used for delivered S3 files. You can specify an extra prefix to be added in front of the time format prefix. Note that if the prefix ends with a slash, it appears as a folder in the S3 bucket
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     @prefix.setter
     def prefix(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "prefix", value)
 
     @property
     @pulumi.getter(name="processingConfiguration")
@@ -1850,11 +1850,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationArgs:
         """
         The data processing configuration.  More details are given below.
         """
-        ...
+        return pulumi.get(self, "processing_configuration")
 
     @processing_configuration.setter
     def processing_configuration(self, value: Optional[pulumi.Input['FirehoseDeliveryStreamExtendedS3ConfigurationProcessingConfigurationArgs']]):
-        ...
+        pulumi.set(self, "processing_configuration", value)
 
     @property
     @pulumi.getter(name="s3BackupConfiguration")
@@ -1862,11 +1862,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationArgs:
         """
         The configuration for backup in Amazon S3. Required if `s3_backup_mode` is `Enabled`. Supports the same fields as `s3_configuration` object.
         """
-        ...
+        return pulumi.get(self, "s3_backup_configuration")
 
     @s3_backup_configuration.setter
     def s3_backup_configuration(self, value: Optional[pulumi.Input['FirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfigurationArgs']]):
-        ...
+        pulumi.set(self, "s3_backup_configuration", value)
 
     @property
     @pulumi.getter(name="s3BackupMode")
@@ -1874,11 +1874,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationArgs:
         """
         The Amazon S3 backup mode.  Valid values are `Disabled` and `Enabled`.  Default value is `Disabled`.
         """
-        ...
+        return pulumi.get(self, "s3_backup_mode")
 
     @s3_backup_mode.setter
     def s3_backup_mode(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "s3_backup_mode", value)
 
 
 @pulumi.input_type
@@ -1905,11 +1905,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationCloudwatchLoggingOptionsArgs:
         """
         Enables or disables the logging. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter(name="logGroupName")
@@ -1917,11 +1917,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationCloudwatchLoggingOptionsArgs:
         """
         The CloudWatch group name for logging. This value is required if `enabled` is true.
         """
-        ...
+        return pulumi.get(self, "log_group_name")
 
     @log_group_name.setter
     def log_group_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "log_group_name", value)
 
     @property
     @pulumi.getter(name="logStreamName")
@@ -1929,11 +1929,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationCloudwatchLoggingOptionsArgs:
         """
         The CloudWatch log stream name for logging. This value is required if `enabled` is true.
         """
-        ...
+        return pulumi.get(self, "log_stream_name")
 
     @log_stream_name.setter
     def log_stream_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "log_stream_name", value)
 
 
 @pulumi.input_type
@@ -1961,11 +1961,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         Nested argument that specifies the deserializer that you want Kinesis Data Firehose to use to convert the format of your data from JSON. More details below.
         """
-        ...
+        return pulumi.get(self, "input_format_configuration")
 
     @input_format_configuration.setter
     def input_format_configuration(self, value: pulumi.Input['FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationArgs']):
-        ...
+        pulumi.set(self, "input_format_configuration", value)
 
     @property
     @pulumi.getter(name="outputFormatConfiguration")
@@ -1973,11 +1973,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         Nested argument that specifies the serializer that you want Kinesis Data Firehose to use to convert the format of your data to the Parquet or ORC format. More details below.
         """
-        ...
+        return pulumi.get(self, "output_format_configuration")
 
     @output_format_configuration.setter
     def output_format_configuration(self, value: pulumi.Input['FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationArgs']):
-        ...
+        pulumi.set(self, "output_format_configuration", value)
 
     @property
     @pulumi.getter(name="schemaConfiguration")
@@ -1985,11 +1985,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         Nested argument that specifies the AWS Glue Data Catalog table that contains the column information. More details below.
         """
-        ...
+        return pulumi.get(self, "schema_configuration")
 
     @schema_configuration.setter
     def schema_configuration(self, value: pulumi.Input['FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationSchemaConfigurationArgs']):
-        ...
+        pulumi.set(self, "schema_configuration", value)
 
     @property
     @pulumi.getter
@@ -1997,11 +1997,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         Defaults to `true`. Set it to `false` if you want to disable format conversion while preserving the configuration details.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "enabled", value)
 
 
 @pulumi.input_type
@@ -2019,11 +2019,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         Nested argument that specifies which deserializer to use. You can choose either the Apache Hive JSON SerDe or the OpenX JSON SerDe. More details below.
         """
-        ...
+        return pulumi.get(self, "deserializer")
 
     @deserializer.setter
     def deserializer(self, value: pulumi.Input['FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerArgs']):
-        ...
+        pulumi.set(self, "deserializer", value)
 
 
 @pulumi.input_type
@@ -2046,11 +2046,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         Nested argument that specifies the native Hive / HCatalog JsonSerDe. More details below.
         """
-        ...
+        return pulumi.get(self, "hive_json_ser_de")
 
     @hive_json_ser_de.setter
     def hive_json_ser_de(self, value: Optional[pulumi.Input['FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeArgs']]):
-        ...
+        pulumi.set(self, "hive_json_ser_de", value)
 
     @property
     @pulumi.getter(name="openXJsonSerDe")
@@ -2058,11 +2058,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         Nested argument that specifies the OpenX SerDe. More details below.
         """
-        ...
+        return pulumi.get(self, "open_xjson_ser_de")
 
     @open_xjson_ser_de.setter
     def open_xjson_ser_de(self, value: Optional[pulumi.Input['FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerOpenXJsonSerDeArgs']]):
-        ...
+        pulumi.set(self, "open_xjson_ser_de", value)
 
 
 @pulumi.input_type
@@ -2081,11 +2081,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         A list of how you want Kinesis Data Firehose to parse the date and time stamps that may be present in your input data JSON. To specify these format strings, follow the pattern syntax of JodaTime's DateTimeFormat format strings. For more information, see [Class DateTimeFormat](https://www.joda.org/joda-time/apidocs/org/joda/time/format/DateTimeFormat.html). You can also use the special value millis to parse time stamps in epoch milliseconds. If you don't specify a format, Kinesis Data Firehose uses java.sql.Timestamp::valueOf by default.
         """
-        ...
+        return pulumi.get(self, "timestamp_formats")
 
     @timestamp_formats.setter
     def timestamp_formats(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "timestamp_formats", value)
 
 
 @pulumi.input_type
@@ -2112,11 +2112,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         When set to true, which is the default, Kinesis Data Firehose converts JSON keys to lowercase before deserializing them.
         """
-        ...
+        return pulumi.get(self, "case_insensitive")
 
     @case_insensitive.setter
     def case_insensitive(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "case_insensitive", value)
 
     @property
     @pulumi.getter(name="columnToJsonKeyMappings")
@@ -2124,11 +2124,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         A map of column names to JSON keys that aren't identical to the column names. This is useful when the JSON contains keys that are Hive keywords. For example, timestamp is a Hive keyword. If you have a JSON key named timestamp, set this parameter to `{ ts = "timestamp" }` to map this key to a column named ts.
         """
-        ...
+        return pulumi.get(self, "column_to_json_key_mappings")
 
     @column_to_json_key_mappings.setter
     def column_to_json_key_mappings(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "column_to_json_key_mappings", value)
 
     @property
     @pulumi.getter(name="convertDotsInJsonKeysToUnderscores")
@@ -2136,11 +2136,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         When set to `true`, specifies that the names of the keys include dots and that you want Kinesis Data Firehose to replace them with underscores. This is useful because Apache Hive does not allow dots in column names. For example, if the JSON contains a key whose name is "a.b", you can define the column name to be "a_b" when using this option. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "convert_dots_in_json_keys_to_underscores")
 
     @convert_dots_in_json_keys_to_underscores.setter
     def convert_dots_in_json_keys_to_underscores(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "convert_dots_in_json_keys_to_underscores", value)
 
 
 @pulumi.input_type
@@ -2158,11 +2158,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         Nested argument that specifies which serializer to use. You can choose either the ORC SerDe or the Parquet SerDe. More details below.
         """
-        ...
+        return pulumi.get(self, "serializer")
 
     @serializer.setter
     def serializer(self, value: pulumi.Input['FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerArgs']):
-        ...
+        pulumi.set(self, "serializer", value)
 
 
 @pulumi.input_type
@@ -2185,11 +2185,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         Nested argument that specifies converting data to the ORC format before storing it in Amazon S3. For more information, see [Apache ORC](https://orc.apache.org/docs/). More details below.
         """
-        ...
+        return pulumi.get(self, "orc_ser_de")
 
     @orc_ser_de.setter
     def orc_ser_de(self, value: Optional[pulumi.Input['FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeArgs']]):
-        ...
+        pulumi.set(self, "orc_ser_de", value)
 
     @property
     @pulumi.getter(name="parquetSerDe")
@@ -2197,11 +2197,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         Nested argument that specifies converting data to the Parquet format before storing it in Amazon S3. For more information, see [Apache Parquet](https://parquet.apache.org/documentation/latest/). More details below.
         """
-        ...
+        return pulumi.get(self, "parquet_ser_de")
 
     @parquet_ser_de.setter
     def parquet_ser_de(self, value: Optional[pulumi.Input['FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerParquetSerDeArgs']]):
-        ...
+        pulumi.set(self, "parquet_ser_de", value)
 
 
 @pulumi.input_type
@@ -2256,11 +2256,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         The Hadoop Distributed File System (HDFS) block size. This is useful if you intend to copy the data from Amazon S3 to HDFS before querying. The default is 256 MiB and the minimum is 64 MiB. Kinesis Data Firehose uses this value for padding calculations.
         """
-        ...
+        return pulumi.get(self, "block_size_bytes")
 
     @block_size_bytes.setter
     def block_size_bytes(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "block_size_bytes", value)
 
     @property
     @pulumi.getter(name="bloomFilterColumns")
@@ -2268,11 +2268,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         A list of column names for which you want Kinesis Data Firehose to create bloom filters.
         """
-        ...
+        return pulumi.get(self, "bloom_filter_columns")
 
     @bloom_filter_columns.setter
     def bloom_filter_columns(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "bloom_filter_columns", value)
 
     @property
     @pulumi.getter(name="bloomFilterFalsePositiveProbability")
@@ -2280,11 +2280,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         The Bloom filter false positive probability (FPP). The lower the FPP, the bigger the Bloom filter. The default value is `0.05`, the minimum is `0`, and the maximum is `1`.
         """
-        ...
+        return pulumi.get(self, "bloom_filter_false_positive_probability")
 
     @bloom_filter_false_positive_probability.setter
     def bloom_filter_false_positive_probability(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "bloom_filter_false_positive_probability", value)
 
     @property
     @pulumi.getter
@@ -2292,11 +2292,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         The compression code to use over data blocks. The possible values are `UNCOMPRESSED`, `SNAPPY`, and `GZIP`, with the default being `SNAPPY`. Use `SNAPPY` for higher decompression speed. Use `GZIP` if the compression ratio is more important than speed.
         """
-        ...
+        return pulumi.get(self, "compression")
 
     @compression.setter
     def compression(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "compression", value)
 
     @property
     @pulumi.getter(name="dictionaryKeyThreshold")
@@ -2304,11 +2304,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         A float that represents the fraction of the total number of non-null rows. To turn off dictionary encoding, set this fraction to a number that is less than the number of distinct keys in a dictionary. To always use dictionary encoding, set this threshold to `1`.
         """
-        ...
+        return pulumi.get(self, "dictionary_key_threshold")
 
     @dictionary_key_threshold.setter
     def dictionary_key_threshold(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "dictionary_key_threshold", value)
 
     @property
     @pulumi.getter(name="enablePadding")
@@ -2316,11 +2316,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         Set this to `true` to indicate that you want stripes to be padded to the HDFS block boundaries. This is useful if you intend to copy the data from Amazon S3 to HDFS before querying. The default is `false`.
         """
-        ...
+        return pulumi.get(self, "enable_padding")
 
     @enable_padding.setter
     def enable_padding(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "enable_padding", value)
 
     @property
     @pulumi.getter(name="formatVersion")
@@ -2328,11 +2328,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         The version of the file to write. The possible values are `V0_11` and `V0_12`. The default is `V0_12`.
         """
-        ...
+        return pulumi.get(self, "format_version")
 
     @format_version.setter
     def format_version(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "format_version", value)
 
     @property
     @pulumi.getter(name="paddingTolerance")
@@ -2340,11 +2340,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         A float between 0 and 1 that defines the tolerance for block padding as a decimal fraction of stripe size. The default value is `0.05`, which means 5 percent of stripe size. For the default values of 64 MiB ORC stripes and 256 MiB HDFS blocks, the default block padding tolerance of 5 percent reserves a maximum of 3.2 MiB for padding within the 256 MiB block. In such a case, if the available size within the block is more than 3.2 MiB, a new, smaller stripe is inserted to fit within that space. This ensures that no stripe crosses block boundaries and causes remote reads within a node-local task. Kinesis Data Firehose ignores this parameter when `enable_padding` is `false`.
         """
-        ...
+        return pulumi.get(self, "padding_tolerance")
 
     @padding_tolerance.setter
     def padding_tolerance(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "padding_tolerance", value)
 
     @property
     @pulumi.getter(name="rowIndexStride")
@@ -2352,11 +2352,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         The number of rows between index entries. The default is `10000` and the minimum is `1000`.
         """
-        ...
+        return pulumi.get(self, "row_index_stride")
 
     @row_index_stride.setter
     def row_index_stride(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "row_index_stride", value)
 
     @property
     @pulumi.getter(name="stripeSizeBytes")
@@ -2364,11 +2364,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         The number of bytes in each stripe. The default is 64 MiB and the minimum is 8 MiB.
         """
-        ...
+        return pulumi.get(self, "stripe_size_bytes")
 
     @stripe_size_bytes.setter
     def stripe_size_bytes(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "stripe_size_bytes", value)
 
 
 @pulumi.input_type
@@ -2407,11 +2407,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         The Hadoop Distributed File System (HDFS) block size. This is useful if you intend to copy the data from Amazon S3 to HDFS before querying. The default is 256 MiB and the minimum is 64 MiB. Kinesis Data Firehose uses this value for padding calculations.
         """
-        ...
+        return pulumi.get(self, "block_size_bytes")
 
     @block_size_bytes.setter
     def block_size_bytes(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "block_size_bytes", value)
 
     @property
     @pulumi.getter
@@ -2419,11 +2419,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         The compression code to use over data blocks. The possible values are `UNCOMPRESSED`, `SNAPPY`, and `GZIP`, with the default being `SNAPPY`. Use `SNAPPY` for higher decompression speed. Use `GZIP` if the compression ratio is more important than speed.
         """
-        ...
+        return pulumi.get(self, "compression")
 
     @compression.setter
     def compression(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "compression", value)
 
     @property
     @pulumi.getter(name="enableDictionaryCompression")
@@ -2431,11 +2431,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         Indicates whether to enable dictionary compression.
         """
-        ...
+        return pulumi.get(self, "enable_dictionary_compression")
 
     @enable_dictionary_compression.setter
     def enable_dictionary_compression(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "enable_dictionary_compression", value)
 
     @property
     @pulumi.getter(name="maxPaddingBytes")
@@ -2443,11 +2443,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         The maximum amount of padding to apply. This is useful if you intend to copy the data from Amazon S3 to HDFS before querying. The default is `0`.
         """
-        ...
+        return pulumi.get(self, "max_padding_bytes")
 
     @max_padding_bytes.setter
     def max_padding_bytes(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "max_padding_bytes", value)
 
     @property
     @pulumi.getter(name="pageSizeBytes")
@@ -2455,11 +2455,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         The Parquet page size. Column chunks are divided into pages. A page is conceptually an indivisible unit (in terms of compression and encoding). The minimum value is 64 KiB and the default is 1 MiB.
         """
-        ...
+        return pulumi.get(self, "page_size_bytes")
 
     @page_size_bytes.setter
     def page_size_bytes(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "page_size_bytes", value)
 
     @property
     @pulumi.getter(name="writerVersion")
@@ -2467,11 +2467,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         Indicates the version of row format to output. The possible values are `V1` and `V2`. The default is `V1`.
         """
-        ...
+        return pulumi.get(self, "writer_version")
 
     @writer_version.setter
     def writer_version(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "writer_version", value)
 
 
 @pulumi.input_type
@@ -2507,11 +2507,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         Specifies the name of the AWS Glue database that contains the schema for the output data.
         """
-        ...
+        return pulumi.get(self, "database_name")
 
     @database_name.setter
     def database_name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "database_name", value)
 
     @property
     @pulumi.getter(name="roleArn")
@@ -2519,11 +2519,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         The role that Kinesis Data Firehose can use to access AWS Glue. This role must be in the same account you use for Kinesis Data Firehose. Cross-account roles aren't allowed.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @role_arn.setter
     def role_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "role_arn", value)
 
     @property
     @pulumi.getter(name="tableName")
@@ -2531,11 +2531,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         Specifies the AWS Glue table that contains the column information that constitutes your data schema.
         """
-        ...
+        return pulumi.get(self, "table_name")
 
     @table_name.setter
     def table_name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "table_name", value)
 
     @property
     @pulumi.getter(name="catalogId")
@@ -2543,11 +2543,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         The ID of the AWS Glue Data Catalog. If you don't supply this, the AWS account ID is used by default.
         """
-        ...
+        return pulumi.get(self, "catalog_id")
 
     @catalog_id.setter
     def catalog_id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "catalog_id", value)
 
     @property
     @pulumi.getter
@@ -2555,11 +2555,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         If you don't specify an AWS Region, the default is the current region.
         """
-        ...
+        return pulumi.get(self, "region")
 
     @region.setter
     def region(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "region", value)
 
     @property
     @pulumi.getter(name="versionId")
@@ -2567,11 +2567,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigura
         """
         Specifies the table version for the output data schema. Defaults to `LATEST`.
         """
-        ...
+        return pulumi.get(self, "version_id")
 
     @version_id.setter
     def version_id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "version_id", value)
 
 
 @pulumi.input_type
@@ -2594,11 +2594,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationProcessingConfigurationArgs:
         """
         Enables or disables data processing.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter
@@ -2606,11 +2606,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationProcessingConfigurationArgs:
         """
         Array of data processors. More details are given below
         """
-        ...
+        return pulumi.get(self, "processors")
 
     @processors.setter
     def processors(self, value: Optional[pulumi.Input[List[pulumi.Input['FirehoseDeliveryStreamExtendedS3ConfigurationProcessingConfigurationProcessorArgs']]]]):
-        ...
+        pulumi.set(self, "processors", value)
 
 
 @pulumi.input_type
@@ -2632,11 +2632,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationProcessingConfigurationProces
         """
         The type of processor. Valid Values: `Lambda`
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter
@@ -2644,11 +2644,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationProcessingConfigurationProces
         """
         Array of processor parameters. More details are given below
         """
-        ...
+        return pulumi.get(self, "parameters")
 
     @parameters.setter
     def parameters(self, value: Optional[pulumi.Input[List[pulumi.Input['FirehoseDeliveryStreamExtendedS3ConfigurationProcessingConfigurationProcessorParameterArgs']]]]):
-        ...
+        pulumi.set(self, "parameters", value)
 
 
 @pulumi.input_type
@@ -2669,11 +2669,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationProcessingConfigurationProces
         """
         Parameter name. Valid Values: `LambdaArn`, `NumberOfRetries`, `RoleArn`, `BufferSizeInMBs`, `BufferIntervalInSeconds`
         """
-        ...
+        return pulumi.get(self, "parameter_name")
 
     @parameter_name.setter
     def parameter_name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "parameter_name", value)
 
     @property
     @pulumi.getter(name="parameterValue")
@@ -2681,11 +2681,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationProcessingConfigurationProces
         """
         Parameter value. Must be between 1 and 512 length (inclusive). When providing a Lambda ARN, you should specify the resource version as well.
         """
-        ...
+        return pulumi.get(self, "parameter_value")
 
     @parameter_value.setter
     def parameter_value(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "parameter_value", value)
 
 
 @pulumi.input_type
@@ -2732,11 +2732,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfigurationArgs:
         """
         The ARN of the S3 bucket
         """
-        ...
+        return pulumi.get(self, "bucket_arn")
 
     @bucket_arn.setter
     def bucket_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "bucket_arn", value)
 
     @property
     @pulumi.getter(name="roleArn")
@@ -2744,11 +2744,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfigurationArgs:
         """
         The role that Kinesis Data Firehose can use to access AWS Glue. This role must be in the same account you use for Kinesis Data Firehose. Cross-account roles aren't allowed.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @role_arn.setter
     def role_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "role_arn", value)
 
     @property
     @pulumi.getter(name="bufferInterval")
@@ -2756,11 +2756,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfigurationArgs:
         """
         Buffer incoming data for the specified period of time, in seconds, before delivering it to the destination. The default value is 300.
         """
-        ...
+        return pulumi.get(self, "buffer_interval")
 
     @buffer_interval.setter
     def buffer_interval(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "buffer_interval", value)
 
     @property
     @pulumi.getter(name="bufferSize")
@@ -2769,11 +2769,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfigurationArgs:
         Buffer incoming data to the specified size, in MBs, before delivering it to the destination. The default value is 5.
         We recommend setting SizeInMBs to a value greater than the amount of data you typically ingest into the delivery stream in 10 seconds. For example, if you typically ingest data at 1 MB/sec set SizeInMBs to be 10 MB or higher.
         """
-        ...
+        return pulumi.get(self, "buffer_size")
 
     @buffer_size.setter
     def buffer_size(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "buffer_size", value)
 
     @property
     @pulumi.getter(name="cloudwatchLoggingOptions")
@@ -2781,11 +2781,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfigurationArgs:
         """
         The CloudWatch Logging Options for the delivery stream. More details are given below
         """
-        ...
+        return pulumi.get(self, "cloudwatch_logging_options")
 
     @cloudwatch_logging_options.setter
     def cloudwatch_logging_options(self, value: Optional[pulumi.Input['FirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfigurationCloudwatchLoggingOptionsArgs']]):
-        ...
+        pulumi.set(self, "cloudwatch_logging_options", value)
 
     @property
     @pulumi.getter(name="compressionFormat")
@@ -2793,11 +2793,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfigurationArgs:
         """
         The compression format. If no value is specified, the default is UNCOMPRESSED. Other supported values are GZIP, ZIP & Snappy. If the destination is redshift you cannot use ZIP or Snappy.
         """
-        ...
+        return pulumi.get(self, "compression_format")
 
     @compression_format.setter
     def compression_format(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "compression_format", value)
 
     @property
     @pulumi.getter(name="kmsKeyArn")
@@ -2806,11 +2806,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfigurationArgs:
         Specifies the KMS key ARN the stream will use to encrypt data. If not set, no encryption will
         be used.
         """
-        ...
+        return pulumi.get(self, "kms_key_arn")
 
     @kms_key_arn.setter
     def kms_key_arn(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kms_key_arn", value)
 
     @property
     @pulumi.getter
@@ -2818,11 +2818,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfigurationArgs:
         """
         The "YYYY/MM/DD/HH" time format prefix is automatically used for delivered S3 files. You can specify an extra prefix to be added in front of the time format prefix. Note that if the prefix ends with a slash, it appears as a folder in the S3 bucket
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     @prefix.setter
     def prefix(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "prefix", value)
 
 
 @pulumi.input_type
@@ -2849,11 +2849,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfigurationCloudwat
         """
         Enables or disables the logging. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter(name="logGroupName")
@@ -2861,11 +2861,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfigurationCloudwat
         """
         The CloudWatch group name for logging. This value is required if `enabled` is true.
         """
-        ...
+        return pulumi.get(self, "log_group_name")
 
     @log_group_name.setter
     def log_group_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "log_group_name", value)
 
     @property
     @pulumi.getter(name="logStreamName")
@@ -2873,11 +2873,11 @@ class FirehoseDeliveryStreamExtendedS3ConfigurationS3BackupConfigurationCloudwat
         """
         The CloudWatch log stream name for logging. This value is required if `enabled` is true.
         """
-        ...
+        return pulumi.get(self, "log_stream_name")
 
     @log_stream_name.setter
     def log_stream_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "log_stream_name", value)
 
 
 @pulumi.input_type
@@ -2898,11 +2898,11 @@ class FirehoseDeliveryStreamKinesisSourceConfigurationArgs:
         """
         The kinesis stream used as the source of the firehose delivery stream.
         """
-        ...
+        return pulumi.get(self, "kinesis_stream_arn")
 
     @kinesis_stream_arn.setter
     def kinesis_stream_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "kinesis_stream_arn", value)
 
     @property
     @pulumi.getter(name="roleArn")
@@ -2910,11 +2910,11 @@ class FirehoseDeliveryStreamKinesisSourceConfigurationArgs:
         """
         The ARN of the role that provides access to the source Kinesis stream.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @role_arn.setter
     def role_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "role_arn", value)
 
 
 @pulumi.input_type
@@ -2972,11 +2972,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationArgs:
         """
         The jdbcurl of the redshift cluster.
         """
-        ...
+        return pulumi.get(self, "cluster_jdbcurl")
 
     @cluster_jdbcurl.setter
     def cluster_jdbcurl(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "cluster_jdbcurl", value)
 
     @property
     @pulumi.getter(name="dataTableName")
@@ -2984,11 +2984,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationArgs:
         """
         The name of the table in the redshift cluster that the s3 bucket will copy to.
         """
-        ...
+        return pulumi.get(self, "data_table_name")
 
     @data_table_name.setter
     def data_table_name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "data_table_name", value)
 
     @property
     @pulumi.getter
@@ -2996,11 +2996,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationArgs:
         """
         The password for the username above.
         """
-        ...
+        return pulumi.get(self, "password")
 
     @password.setter
     def password(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "password", value)
 
     @property
     @pulumi.getter(name="roleArn")
@@ -3008,11 +3008,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationArgs:
         """
         The arn of the role the stream assumes.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @role_arn.setter
     def role_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "role_arn", value)
 
     @property
     @pulumi.getter
@@ -3020,11 +3020,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationArgs:
         """
         The username that the firehose delivery stream will assume. It is strongly recommended that the username and password provided is used exclusively for Amazon Kinesis Firehose purposes, and that the permissions for the account are restricted for Amazon Redshift INSERT permissions.
         """
-        ...
+        return pulumi.get(self, "username")
 
     @username.setter
     def username(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "username", value)
 
     @property
     @pulumi.getter(name="cloudwatchLoggingOptions")
@@ -3032,11 +3032,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationArgs:
         """
         The CloudWatch Logging Options for the delivery stream. More details are given below
         """
-        ...
+        return pulumi.get(self, "cloudwatch_logging_options")
 
     @cloudwatch_logging_options.setter
     def cloudwatch_logging_options(self, value: Optional[pulumi.Input['FirehoseDeliveryStreamRedshiftConfigurationCloudwatchLoggingOptionsArgs']]):
-        ...
+        pulumi.set(self, "cloudwatch_logging_options", value)
 
     @property
     @pulumi.getter(name="copyOptions")
@@ -3044,11 +3044,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationArgs:
         """
         Copy options for copying the data from the s3 intermediate bucket into redshift, for example to change the default delimiter. For valid values, see the [AWS documentation](http://docs.aws.amazon.com/firehose/latest/APIReference/API_CopyCommand.html)
         """
-        ...
+        return pulumi.get(self, "copy_options")
 
     @copy_options.setter
     def copy_options(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "copy_options", value)
 
     @property
     @pulumi.getter(name="dataTableColumns")
@@ -3056,11 +3056,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationArgs:
         """
         The data table columns that will be targeted by the copy command.
         """
-        ...
+        return pulumi.get(self, "data_table_columns")
 
     @data_table_columns.setter
     def data_table_columns(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "data_table_columns", value)
 
     @property
     @pulumi.getter(name="processingConfiguration")
@@ -3068,11 +3068,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationArgs:
         """
         The data processing configuration.  More details are given below.
         """
-        ...
+        return pulumi.get(self, "processing_configuration")
 
     @processing_configuration.setter
     def processing_configuration(self, value: Optional[pulumi.Input['FirehoseDeliveryStreamRedshiftConfigurationProcessingConfigurationArgs']]):
-        ...
+        pulumi.set(self, "processing_configuration", value)
 
     @property
     @pulumi.getter(name="retryDuration")
@@ -3080,11 +3080,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationArgs:
         """
         The length of time during which Firehose retries delivery after a failure, starting from the initial request and including the first attempt. The default value is 3600 seconds (60 minutes). Firehose does not retry if the value of DurationInSeconds is 0 (zero) or if the first delivery attempt takes longer than the current value.
         """
-        ...
+        return pulumi.get(self, "retry_duration")
 
     @retry_duration.setter
     def retry_duration(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "retry_duration", value)
 
     @property
     @pulumi.getter(name="s3BackupConfiguration")
@@ -3092,11 +3092,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationArgs:
         """
         The configuration for backup in Amazon S3. Required if `s3_backup_mode` is `Enabled`. Supports the same fields as `s3_configuration` object.
         """
-        ...
+        return pulumi.get(self, "s3_backup_configuration")
 
     @s3_backup_configuration.setter
     def s3_backup_configuration(self, value: Optional[pulumi.Input['FirehoseDeliveryStreamRedshiftConfigurationS3BackupConfigurationArgs']]):
-        ...
+        pulumi.set(self, "s3_backup_configuration", value)
 
     @property
     @pulumi.getter(name="s3BackupMode")
@@ -3104,11 +3104,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationArgs:
         """
         The Amazon S3 backup mode.  Valid values are `Disabled` and `Enabled`.  Default value is `Disabled`.
         """
-        ...
+        return pulumi.get(self, "s3_backup_mode")
 
     @s3_backup_mode.setter
     def s3_backup_mode(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "s3_backup_mode", value)
 
 
 @pulumi.input_type
@@ -3135,11 +3135,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationCloudwatchLoggingOptionsArgs:
         """
         Enables or disables the logging. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter(name="logGroupName")
@@ -3147,11 +3147,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationCloudwatchLoggingOptionsArgs:
         """
         The CloudWatch group name for logging. This value is required if `enabled` is true.
         """
-        ...
+        return pulumi.get(self, "log_group_name")
 
     @log_group_name.setter
     def log_group_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "log_group_name", value)
 
     @property
     @pulumi.getter(name="logStreamName")
@@ -3159,11 +3159,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationCloudwatchLoggingOptionsArgs:
         """
         The CloudWatch log stream name for logging. This value is required if `enabled` is true.
         """
-        ...
+        return pulumi.get(self, "log_stream_name")
 
     @log_stream_name.setter
     def log_stream_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "log_stream_name", value)
 
 
 @pulumi.input_type
@@ -3186,11 +3186,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationProcessingConfigurationArgs:
         """
         Enables or disables data processing.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter
@@ -3198,11 +3198,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationProcessingConfigurationArgs:
         """
         Array of data processors. More details are given below
         """
-        ...
+        return pulumi.get(self, "processors")
 
     @processors.setter
     def processors(self, value: Optional[pulumi.Input[List[pulumi.Input['FirehoseDeliveryStreamRedshiftConfigurationProcessingConfigurationProcessorArgs']]]]):
-        ...
+        pulumi.set(self, "processors", value)
 
 
 @pulumi.input_type
@@ -3224,11 +3224,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationProcessingConfigurationProcesso
         """
         The type of processor. Valid Values: `Lambda`
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter
@@ -3236,11 +3236,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationProcessingConfigurationProcesso
         """
         Array of processor parameters. More details are given below
         """
-        ...
+        return pulumi.get(self, "parameters")
 
     @parameters.setter
     def parameters(self, value: Optional[pulumi.Input[List[pulumi.Input['FirehoseDeliveryStreamRedshiftConfigurationProcessingConfigurationProcessorParameterArgs']]]]):
-        ...
+        pulumi.set(self, "parameters", value)
 
 
 @pulumi.input_type
@@ -3261,11 +3261,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationProcessingConfigurationProcesso
         """
         Parameter name. Valid Values: `LambdaArn`, `NumberOfRetries`, `RoleArn`, `BufferSizeInMBs`, `BufferIntervalInSeconds`
         """
-        ...
+        return pulumi.get(self, "parameter_name")
 
     @parameter_name.setter
     def parameter_name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "parameter_name", value)
 
     @property
     @pulumi.getter(name="parameterValue")
@@ -3273,11 +3273,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationProcessingConfigurationProcesso
         """
         Parameter value. Must be between 1 and 512 length (inclusive). When providing a Lambda ARN, you should specify the resource version as well.
         """
-        ...
+        return pulumi.get(self, "parameter_value")
 
     @parameter_value.setter
     def parameter_value(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "parameter_value", value)
 
 
 @pulumi.input_type
@@ -3324,11 +3324,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationS3BackupConfigurationArgs:
         """
         The ARN of the S3 bucket
         """
-        ...
+        return pulumi.get(self, "bucket_arn")
 
     @bucket_arn.setter
     def bucket_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "bucket_arn", value)
 
     @property
     @pulumi.getter(name="roleArn")
@@ -3336,11 +3336,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationS3BackupConfigurationArgs:
         """
         The role that Kinesis Data Firehose can use to access AWS Glue. This role must be in the same account you use for Kinesis Data Firehose. Cross-account roles aren't allowed.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @role_arn.setter
     def role_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "role_arn", value)
 
     @property
     @pulumi.getter(name="bufferInterval")
@@ -3348,11 +3348,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationS3BackupConfigurationArgs:
         """
         Buffer incoming data for the specified period of time, in seconds, before delivering it to the destination. The default value is 300.
         """
-        ...
+        return pulumi.get(self, "buffer_interval")
 
     @buffer_interval.setter
     def buffer_interval(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "buffer_interval", value)
 
     @property
     @pulumi.getter(name="bufferSize")
@@ -3361,11 +3361,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationS3BackupConfigurationArgs:
         Buffer incoming data to the specified size, in MBs, before delivering it to the destination. The default value is 5.
         We recommend setting SizeInMBs to a value greater than the amount of data you typically ingest into the delivery stream in 10 seconds. For example, if you typically ingest data at 1 MB/sec set SizeInMBs to be 10 MB or higher.
         """
-        ...
+        return pulumi.get(self, "buffer_size")
 
     @buffer_size.setter
     def buffer_size(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "buffer_size", value)
 
     @property
     @pulumi.getter(name="cloudwatchLoggingOptions")
@@ -3373,11 +3373,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationS3BackupConfigurationArgs:
         """
         The CloudWatch Logging Options for the delivery stream. More details are given below
         """
-        ...
+        return pulumi.get(self, "cloudwatch_logging_options")
 
     @cloudwatch_logging_options.setter
     def cloudwatch_logging_options(self, value: Optional[pulumi.Input['FirehoseDeliveryStreamRedshiftConfigurationS3BackupConfigurationCloudwatchLoggingOptionsArgs']]):
-        ...
+        pulumi.set(self, "cloudwatch_logging_options", value)
 
     @property
     @pulumi.getter(name="compressionFormat")
@@ -3385,11 +3385,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationS3BackupConfigurationArgs:
         """
         The compression format. If no value is specified, the default is UNCOMPRESSED. Other supported values are GZIP, ZIP & Snappy. If the destination is redshift you cannot use ZIP or Snappy.
         """
-        ...
+        return pulumi.get(self, "compression_format")
 
     @compression_format.setter
     def compression_format(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "compression_format", value)
 
     @property
     @pulumi.getter(name="kmsKeyArn")
@@ -3398,11 +3398,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationS3BackupConfigurationArgs:
         Specifies the KMS key ARN the stream will use to encrypt data. If not set, no encryption will
         be used.
         """
-        ...
+        return pulumi.get(self, "kms_key_arn")
 
     @kms_key_arn.setter
     def kms_key_arn(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kms_key_arn", value)
 
     @property
     @pulumi.getter
@@ -3410,11 +3410,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationS3BackupConfigurationArgs:
         """
         The "YYYY/MM/DD/HH" time format prefix is automatically used for delivered S3 files. You can specify an extra prefix to be added in front of the time format prefix. Note that if the prefix ends with a slash, it appears as a folder in the S3 bucket
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     @prefix.setter
     def prefix(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "prefix", value)
 
 
 @pulumi.input_type
@@ -3441,11 +3441,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationS3BackupConfigurationCloudwatch
         """
         Enables or disables the logging. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter(name="logGroupName")
@@ -3453,11 +3453,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationS3BackupConfigurationCloudwatch
         """
         The CloudWatch group name for logging. This value is required if `enabled` is true.
         """
-        ...
+        return pulumi.get(self, "log_group_name")
 
     @log_group_name.setter
     def log_group_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "log_group_name", value)
 
     @property
     @pulumi.getter(name="logStreamName")
@@ -3465,11 +3465,11 @@ class FirehoseDeliveryStreamRedshiftConfigurationS3BackupConfigurationCloudwatch
         """
         The CloudWatch log stream name for logging. This value is required if `enabled` is true.
         """
-        ...
+        return pulumi.get(self, "log_stream_name")
 
     @log_stream_name.setter
     def log_stream_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "log_stream_name", value)
 
 
 @pulumi.input_type
@@ -3516,11 +3516,11 @@ class FirehoseDeliveryStreamS3ConfigurationArgs:
         """
         The ARN of the S3 bucket
         """
-        ...
+        return pulumi.get(self, "bucket_arn")
 
     @bucket_arn.setter
     def bucket_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "bucket_arn", value)
 
     @property
     @pulumi.getter(name="roleArn")
@@ -3528,11 +3528,11 @@ class FirehoseDeliveryStreamS3ConfigurationArgs:
         """
         The role that Kinesis Data Firehose can use to access AWS Glue. This role must be in the same account you use for Kinesis Data Firehose. Cross-account roles aren't allowed.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @role_arn.setter
     def role_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "role_arn", value)
 
     @property
     @pulumi.getter(name="bufferInterval")
@@ -3540,11 +3540,11 @@ class FirehoseDeliveryStreamS3ConfigurationArgs:
         """
         Buffer incoming data for the specified period of time, in seconds, before delivering it to the destination. The default value is 300.
         """
-        ...
+        return pulumi.get(self, "buffer_interval")
 
     @buffer_interval.setter
     def buffer_interval(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "buffer_interval", value)
 
     @property
     @pulumi.getter(name="bufferSize")
@@ -3553,11 +3553,11 @@ class FirehoseDeliveryStreamS3ConfigurationArgs:
         Buffer incoming data to the specified size, in MBs, before delivering it to the destination. The default value is 5.
         We recommend setting SizeInMBs to a value greater than the amount of data you typically ingest into the delivery stream in 10 seconds. For example, if you typically ingest data at 1 MB/sec set SizeInMBs to be 10 MB or higher.
         """
-        ...
+        return pulumi.get(self, "buffer_size")
 
     @buffer_size.setter
     def buffer_size(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "buffer_size", value)
 
     @property
     @pulumi.getter(name="cloudwatchLoggingOptions")
@@ -3565,11 +3565,11 @@ class FirehoseDeliveryStreamS3ConfigurationArgs:
         """
         The CloudWatch Logging Options for the delivery stream. More details are given below
         """
-        ...
+        return pulumi.get(self, "cloudwatch_logging_options")
 
     @cloudwatch_logging_options.setter
     def cloudwatch_logging_options(self, value: Optional[pulumi.Input['FirehoseDeliveryStreamS3ConfigurationCloudwatchLoggingOptionsArgs']]):
-        ...
+        pulumi.set(self, "cloudwatch_logging_options", value)
 
     @property
     @pulumi.getter(name="compressionFormat")
@@ -3577,11 +3577,11 @@ class FirehoseDeliveryStreamS3ConfigurationArgs:
         """
         The compression format. If no value is specified, the default is UNCOMPRESSED. Other supported values are GZIP, ZIP & Snappy. If the destination is redshift you cannot use ZIP or Snappy.
         """
-        ...
+        return pulumi.get(self, "compression_format")
 
     @compression_format.setter
     def compression_format(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "compression_format", value)
 
     @property
     @pulumi.getter(name="kmsKeyArn")
@@ -3590,11 +3590,11 @@ class FirehoseDeliveryStreamS3ConfigurationArgs:
         Specifies the KMS key ARN the stream will use to encrypt data. If not set, no encryption will
         be used.
         """
-        ...
+        return pulumi.get(self, "kms_key_arn")
 
     @kms_key_arn.setter
     def kms_key_arn(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kms_key_arn", value)
 
     @property
     @pulumi.getter
@@ -3602,11 +3602,11 @@ class FirehoseDeliveryStreamS3ConfigurationArgs:
         """
         The "YYYY/MM/DD/HH" time format prefix is automatically used for delivered S3 files. You can specify an extra prefix to be added in front of the time format prefix. Note that if the prefix ends with a slash, it appears as a folder in the S3 bucket
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     @prefix.setter
     def prefix(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "prefix", value)
 
 
 @pulumi.input_type
@@ -3633,11 +3633,11 @@ class FirehoseDeliveryStreamS3ConfigurationCloudwatchLoggingOptionsArgs:
         """
         Enables or disables the logging. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter(name="logGroupName")
@@ -3645,11 +3645,11 @@ class FirehoseDeliveryStreamS3ConfigurationCloudwatchLoggingOptionsArgs:
         """
         The CloudWatch group name for logging. This value is required if `enabled` is true.
         """
-        ...
+        return pulumi.get(self, "log_group_name")
 
     @log_group_name.setter
     def log_group_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "log_group_name", value)
 
     @property
     @pulumi.getter(name="logStreamName")
@@ -3657,11 +3657,11 @@ class FirehoseDeliveryStreamS3ConfigurationCloudwatchLoggingOptionsArgs:
         """
         The CloudWatch log stream name for logging. This value is required if `enabled` is true.
         """
-        ...
+        return pulumi.get(self, "log_stream_name")
 
     @log_stream_name.setter
     def log_stream_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "log_stream_name", value)
 
 
 @pulumi.input_type
@@ -3680,11 +3680,11 @@ class FirehoseDeliveryStreamServerSideEncryptionArgs:
         """
         Whether to enable encryption at rest. Default is `false`.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "enabled", value)
 
 
 @pulumi.input_type
@@ -3729,11 +3729,11 @@ class FirehoseDeliveryStreamSplunkConfigurationArgs:
         """
         The HTTP Event Collector (HEC) endpoint to which Kinesis Firehose sends your data.
         """
-        ...
+        return pulumi.get(self, "hec_endpoint")
 
     @hec_endpoint.setter
     def hec_endpoint(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "hec_endpoint", value)
 
     @property
     @pulumi.getter(name="hecToken")
@@ -3741,11 +3741,11 @@ class FirehoseDeliveryStreamSplunkConfigurationArgs:
         """
         The GUID that you obtain from your Splunk cluster when you create a new HEC endpoint.
         """
-        ...
+        return pulumi.get(self, "hec_token")
 
     @hec_token.setter
     def hec_token(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "hec_token", value)
 
     @property
     @pulumi.getter(name="cloudwatchLoggingOptions")
@@ -3753,11 +3753,11 @@ class FirehoseDeliveryStreamSplunkConfigurationArgs:
         """
         The CloudWatch Logging Options for the delivery stream. More details are given below.
         """
-        ...
+        return pulumi.get(self, "cloudwatch_logging_options")
 
     @cloudwatch_logging_options.setter
     def cloudwatch_logging_options(self, value: Optional[pulumi.Input['FirehoseDeliveryStreamSplunkConfigurationCloudwatchLoggingOptionsArgs']]):
-        ...
+        pulumi.set(self, "cloudwatch_logging_options", value)
 
     @property
     @pulumi.getter(name="hecAcknowledgmentTimeout")
@@ -3765,11 +3765,11 @@ class FirehoseDeliveryStreamSplunkConfigurationArgs:
         """
         The amount of time, in seconds between 180 and 600, that Kinesis Firehose waits to receive an acknowledgment from Splunk after it sends it data.
         """
-        ...
+        return pulumi.get(self, "hec_acknowledgment_timeout")
 
     @hec_acknowledgment_timeout.setter
     def hec_acknowledgment_timeout(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "hec_acknowledgment_timeout", value)
 
     @property
     @pulumi.getter(name="hecEndpointType")
@@ -3777,11 +3777,11 @@ class FirehoseDeliveryStreamSplunkConfigurationArgs:
         """
         The HEC endpoint type. Valid values are `Raw` or `Event`. The default value is `Raw`.
         """
-        ...
+        return pulumi.get(self, "hec_endpoint_type")
 
     @hec_endpoint_type.setter
     def hec_endpoint_type(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "hec_endpoint_type", value)
 
     @property
     @pulumi.getter(name="processingConfiguration")
@@ -3789,11 +3789,11 @@ class FirehoseDeliveryStreamSplunkConfigurationArgs:
         """
         The data processing configuration.  More details are given below.
         """
-        ...
+        return pulumi.get(self, "processing_configuration")
 
     @processing_configuration.setter
     def processing_configuration(self, value: Optional[pulumi.Input['FirehoseDeliveryStreamSplunkConfigurationProcessingConfigurationArgs']]):
-        ...
+        pulumi.set(self, "processing_configuration", value)
 
     @property
     @pulumi.getter(name="retryDuration")
@@ -3801,11 +3801,11 @@ class FirehoseDeliveryStreamSplunkConfigurationArgs:
         """
         After an initial failure to deliver to Splunk, the total amount of time, in seconds between 0 to 7200, during which Firehose re-attempts delivery (including the first attempt).  After this time has elapsed, the failed documents are written to Amazon S3.  The default value is 300s.  There will be no retry if the value is 0.
         """
-        ...
+        return pulumi.get(self, "retry_duration")
 
     @retry_duration.setter
     def retry_duration(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "retry_duration", value)
 
     @property
     @pulumi.getter(name="s3BackupMode")
@@ -3813,11 +3813,11 @@ class FirehoseDeliveryStreamSplunkConfigurationArgs:
         """
         Defines how documents should be delivered to Amazon S3.  Valid values are `FailedEventsOnly` and `AllEvents`.  Default value is `FailedEventsOnly`.
         """
-        ...
+        return pulumi.get(self, "s3_backup_mode")
 
     @s3_backup_mode.setter
     def s3_backup_mode(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "s3_backup_mode", value)
 
 
 @pulumi.input_type
@@ -3844,11 +3844,11 @@ class FirehoseDeliveryStreamSplunkConfigurationCloudwatchLoggingOptionsArgs:
         """
         Enables or disables the logging. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter(name="logGroupName")
@@ -3856,11 +3856,11 @@ class FirehoseDeliveryStreamSplunkConfigurationCloudwatchLoggingOptionsArgs:
         """
         The CloudWatch group name for logging. This value is required if `enabled` is true.
         """
-        ...
+        return pulumi.get(self, "log_group_name")
 
     @log_group_name.setter
     def log_group_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "log_group_name", value)
 
     @property
     @pulumi.getter(name="logStreamName")
@@ -3868,11 +3868,11 @@ class FirehoseDeliveryStreamSplunkConfigurationCloudwatchLoggingOptionsArgs:
         """
         The CloudWatch log stream name for logging. This value is required if `enabled` is true.
         """
-        ...
+        return pulumi.get(self, "log_stream_name")
 
     @log_stream_name.setter
     def log_stream_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "log_stream_name", value)
 
 
 @pulumi.input_type
@@ -3895,11 +3895,11 @@ class FirehoseDeliveryStreamSplunkConfigurationProcessingConfigurationArgs:
         """
         Enables or disables data processing.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter
@@ -3907,11 +3907,11 @@ class FirehoseDeliveryStreamSplunkConfigurationProcessingConfigurationArgs:
         """
         Array of data processors. More details are given below
         """
-        ...
+        return pulumi.get(self, "processors")
 
     @processors.setter
     def processors(self, value: Optional[pulumi.Input[List[pulumi.Input['FirehoseDeliveryStreamSplunkConfigurationProcessingConfigurationProcessorArgs']]]]):
-        ...
+        pulumi.set(self, "processors", value)
 
 
 @pulumi.input_type
@@ -3933,11 +3933,11 @@ class FirehoseDeliveryStreamSplunkConfigurationProcessingConfigurationProcessorA
         """
         The type of processor. Valid Values: `Lambda`
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter
@@ -3945,11 +3945,11 @@ class FirehoseDeliveryStreamSplunkConfigurationProcessingConfigurationProcessorA
         """
         Array of processor parameters. More details are given below
         """
-        ...
+        return pulumi.get(self, "parameters")
 
     @parameters.setter
     def parameters(self, value: Optional[pulumi.Input[List[pulumi.Input['FirehoseDeliveryStreamSplunkConfigurationProcessingConfigurationProcessorParameterArgs']]]]):
-        ...
+        pulumi.set(self, "parameters", value)
 
 
 @pulumi.input_type
@@ -3970,11 +3970,11 @@ class FirehoseDeliveryStreamSplunkConfigurationProcessingConfigurationProcessorP
         """
         Parameter name. Valid Values: `LambdaArn`, `NumberOfRetries`, `RoleArn`, `BufferSizeInMBs`, `BufferIntervalInSeconds`
         """
-        ...
+        return pulumi.get(self, "parameter_name")
 
     @parameter_name.setter
     def parameter_name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "parameter_name", value)
 
     @property
     @pulumi.getter(name="parameterValue")
@@ -3982,10 +3982,10 @@ class FirehoseDeliveryStreamSplunkConfigurationProcessingConfigurationProcessorP
         """
         Parameter value. Must be between 1 and 512 length (inclusive). When providing a Lambda ARN, you should specify the resource version as well.
         """
-        ...
+        return pulumi.get(self, "parameter_value")
 
     @parameter_value.setter
     def parameter_value(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "parameter_value", value)
 
 

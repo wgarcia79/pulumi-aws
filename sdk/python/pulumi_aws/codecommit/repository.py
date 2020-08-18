@@ -124,7 +124,7 @@ class Repository(pulumi.CustomResource):
         """
         The ARN of the repository
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="cloneUrlHttp")
@@ -132,7 +132,7 @@ class Repository(pulumi.CustomResource):
         """
         The URL to use for cloning the repository over HTTPS.
         """
-        ...
+        return pulumi.get(self, "clone_url_http")
 
     @property
     @pulumi.getter(name="cloneUrlSsh")
@@ -140,7 +140,7 @@ class Repository(pulumi.CustomResource):
         """
         The URL to use for cloning the repository over SSH.
         """
-        ...
+        return pulumi.get(self, "clone_url_ssh")
 
     @property
     @pulumi.getter(name="defaultBranch")
@@ -148,7 +148,7 @@ class Repository(pulumi.CustomResource):
         """
         The default branch of the repository. The branch specified here needs to exist.
         """
-        ...
+        return pulumi.get(self, "default_branch")
 
     @property
     @pulumi.getter
@@ -156,7 +156,7 @@ class Repository(pulumi.CustomResource):
         """
         The description of the repository. This needs to be less than 1000 characters
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="repositoryId")
@@ -164,7 +164,7 @@ class Repository(pulumi.CustomResource):
         """
         The ID of the repository
         """
-        ...
+        return pulumi.get(self, "repository_id")
 
     @property
     @pulumi.getter(name="repositoryName")
@@ -172,7 +172,7 @@ class Repository(pulumi.CustomResource):
         """
         The name for the repository. This needs to be less than 100 characters.
         """
-        ...
+        return pulumi.get(self, "repository_name")
 
     @property
     @pulumi.getter
@@ -180,7 +180,7 @@ class Repository(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

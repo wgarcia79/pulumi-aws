@@ -122,7 +122,7 @@ class BasePathMapping(pulumi.CustomResource):
         """
         Path segment that must be prepended to the path when accessing the API via this mapping. If omitted, the API is exposed at the root of the given domain.
         """
-        ...
+        return pulumi.get(self, "base_path")
 
     @property
     @pulumi.getter(name="domainName")
@@ -130,7 +130,7 @@ class BasePathMapping(pulumi.CustomResource):
         """
         The already-registered domain name to connect the API to.
         """
-        ...
+        return pulumi.get(self, "domain_name")
 
     @property
     @pulumi.getter(name="restApi")
@@ -138,7 +138,7 @@ class BasePathMapping(pulumi.CustomResource):
         """
         The id of the API to connect.
         """
-        ...
+        return pulumi.get(self, "rest_api")
 
     @property
     @pulumi.getter(name="stageName")
@@ -146,7 +146,7 @@ class BasePathMapping(pulumi.CustomResource):
         """
         The name of a specific deployment stage to expose at the given path. If omitted, callers may select any stage by including its name as a path element after the base path.
         """
-        ...
+        return pulumi.get(self, "stage_name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -251,7 +251,7 @@ class Directory(pulumi.CustomResource):
         """
         The access URL for the directory, such as `http://alias.awsapps.com`.
         """
-        ...
+        return pulumi.get(self, "access_url")
 
     @property
     @pulumi.getter
@@ -259,7 +259,7 @@ class Directory(pulumi.CustomResource):
         """
         The alias for the directory (must be unique amongst all aliases in AWS). Required for `enable_sso`.
         """
-        ...
+        return pulumi.get(self, "alias")
 
     @property
     @pulumi.getter(name="connectSettings")
@@ -267,7 +267,7 @@ class Directory(pulumi.CustomResource):
         """
         Connector related information about the directory. Fields documented below.
         """
-        ...
+        return pulumi.get(self, "connect_settings")
 
     @property
     @pulumi.getter
@@ -275,7 +275,7 @@ class Directory(pulumi.CustomResource):
         """
         A textual description for the directory.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="dnsIpAddresses")
@@ -283,7 +283,7 @@ class Directory(pulumi.CustomResource):
         """
         A list of IP addresses of the DNS servers for the directory or connector.
         """
-        ...
+        return pulumi.get(self, "dns_ip_addresses")
 
     @property
     @pulumi.getter
@@ -291,7 +291,7 @@ class Directory(pulumi.CustomResource):
         """
         The MicrosoftAD edition (`Standard` or `Enterprise`). Defaults to `Enterprise` (applies to MicrosoftAD type only).
         """
-        ...
+        return pulumi.get(self, "edition")
 
     @property
     @pulumi.getter(name="enableSso")
@@ -299,7 +299,7 @@ class Directory(pulumi.CustomResource):
         """
         Whether to enable single-sign on for the directory. Requires `alias`. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "enable_sso")
 
     @property
     @pulumi.getter
@@ -307,7 +307,7 @@ class Directory(pulumi.CustomResource):
         """
         The fully qualified name for the directory, such as `corp.example.com`
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -315,7 +315,7 @@ class Directory(pulumi.CustomResource):
         """
         The password for the directory administrator or connector user.
         """
-        ...
+        return pulumi.get(self, "password")
 
     @property
     @pulumi.getter(name="securityGroupId")
@@ -323,7 +323,7 @@ class Directory(pulumi.CustomResource):
         """
         The ID of the security group created by the directory.
         """
-        ...
+        return pulumi.get(self, "security_group_id")
 
     @property
     @pulumi.getter(name="shortName")
@@ -331,7 +331,7 @@ class Directory(pulumi.CustomResource):
         """
         The short name of the directory, such as `CORP`.
         """
-        ...
+        return pulumi.get(self, "short_name")
 
     @property
     @pulumi.getter
@@ -339,7 +339,7 @@ class Directory(pulumi.CustomResource):
         """
         The size of the directory (`Small` or `Large` are accepted values).
         """
-        ...
+        return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
@@ -347,7 +347,7 @@ class Directory(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -355,7 +355,7 @@ class Directory(pulumi.CustomResource):
         """
         The directory type (`SimpleAD`, `ADConnector` or `MicrosoftAD` are accepted values). Defaults to `SimpleAD`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="vpcSettings")
@@ -363,7 +363,7 @@ class Directory(pulumi.CustomResource):
         """
         VPC related information about the directory. Fields documented below.
         """
-        ...
+        return pulumi.get(self, "vpc_settings")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

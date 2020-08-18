@@ -108,7 +108,7 @@ class Attachment(pulumi.CustomResource):
         """
         The name of the ELB.
         """
-        ...
+        return pulumi.get(self, "elb")
 
     @property
     @pulumi.getter
@@ -116,7 +116,7 @@ class Attachment(pulumi.CustomResource):
         """
         Instance ID to place in the ELB pool.
         """
-        ...
+        return pulumi.get(self, "instance")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

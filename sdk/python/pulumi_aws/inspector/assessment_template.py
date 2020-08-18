@@ -128,7 +128,7 @@ class AssessmentTemplate(pulumi.CustomResource):
         """
         The template assessment ARN.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -136,7 +136,7 @@ class AssessmentTemplate(pulumi.CustomResource):
         """
         The duration of the inspector run.
         """
-        ...
+        return pulumi.get(self, "duration")
 
     @property
     @pulumi.getter
@@ -144,7 +144,7 @@ class AssessmentTemplate(pulumi.CustomResource):
         """
         The name of the assessment template.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="rulesPackageArns")
@@ -152,7 +152,7 @@ class AssessmentTemplate(pulumi.CustomResource):
         """
         The rules to be used during the run.
         """
-        ...
+        return pulumi.get(self, "rules_package_arns")
 
     @property
     @pulumi.getter
@@ -160,7 +160,7 @@ class AssessmentTemplate(pulumi.CustomResource):
         """
         Key-value map of tags for the Inspector assessment template.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="targetArn")
@@ -168,7 +168,7 @@ class AssessmentTemplate(pulumi.CustomResource):
         """
         The assessment target ARN to attach the template to.
         """
-        ...
+        return pulumi.get(self, "target_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

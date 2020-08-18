@@ -130,7 +130,7 @@ class GatewayAssociationProposal(pulumi.CustomResource):
         """
         VPC prefixes (CIDRs) to advertise to the Direct Connect gateway. Defaults to the CIDR block of the VPC associated with the Virtual Gateway. To enable drift detection, must be configured.
         """
-        ...
+        return pulumi.get(self, "allowed_prefixes")
 
     @property
     @pulumi.getter(name="associatedGatewayId")
@@ -138,7 +138,7 @@ class GatewayAssociationProposal(pulumi.CustomResource):
         """
         The ID of the VGW or transit gateway with which to associate the Direct Connect gateway.
         """
-        ...
+        return pulumi.get(self, "associated_gateway_id")
 
     @property
     @pulumi.getter(name="associatedGatewayOwnerAccountId")
@@ -146,7 +146,7 @@ class GatewayAssociationProposal(pulumi.CustomResource):
         """
         The ID of the AWS account that owns the VGW or transit gateway with which to associate the Direct Connect gateway.
         """
-        ...
+        return pulumi.get(self, "associated_gateway_owner_account_id")
 
     @property
     @pulumi.getter(name="associatedGatewayType")
@@ -154,7 +154,7 @@ class GatewayAssociationProposal(pulumi.CustomResource):
         """
         The type of the associated gateway, `transitGateway` or `virtualPrivateGateway`.
         """
-        ...
+        return pulumi.get(self, "associated_gateway_type")
 
     @property
     @pulumi.getter(name="dxGatewayId")
@@ -162,7 +162,7 @@ class GatewayAssociationProposal(pulumi.CustomResource):
         """
         Direct Connect Gateway identifier.
         """
-        ...
+        return pulumi.get(self, "dx_gateway_id")
 
     @property
     @pulumi.getter(name="dxGatewayOwnerAccountId")
@@ -170,7 +170,7 @@ class GatewayAssociationProposal(pulumi.CustomResource):
         """
         AWS Account identifier of the Direct Connect Gateway's owner.
         """
-        ...
+        return pulumi.get(self, "dx_gateway_owner_account_id")
 
     @property
     @pulumi.getter(name="vpnGatewayId")
@@ -178,7 +178,7 @@ class GatewayAssociationProposal(pulumi.CustomResource):
         """
         *Deprecated:* Use `associated_gateway_id` instead. Virtual Gateway identifier to associate with the Direct Connect Gateway.
         """
-        ...
+        return pulumi.get(self, "vpn_gateway_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

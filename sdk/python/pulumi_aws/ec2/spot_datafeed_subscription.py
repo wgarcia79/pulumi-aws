@@ -100,7 +100,7 @@ class SpotDatafeedSubscription(pulumi.CustomResource):
         """
         The Amazon S3 bucket in which to store the Spot instance data feed.
         """
-        ...
+        return pulumi.get(self, "bucket")
 
     @property
     @pulumi.getter
@@ -108,7 +108,7 @@ class SpotDatafeedSubscription(pulumi.CustomResource):
         """
         Path of folder inside bucket to place spot pricing data.
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

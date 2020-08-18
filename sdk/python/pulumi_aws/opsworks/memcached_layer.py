@@ -210,7 +210,7 @@ class MemcachedLayer(pulumi.CustomResource):
         """
         Amount of memory to allocate for the cache on each instance, in megabytes. Defaults to 512MB.
         """
-        ...
+        return pulumi.get(self, "allocated_memory")
 
     @property
     @pulumi.getter
@@ -218,7 +218,7 @@ class MemcachedLayer(pulumi.CustomResource):
         """
         The Amazon Resource Name(ARN) of the layer.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="autoAssignElasticIps")
@@ -226,7 +226,7 @@ class MemcachedLayer(pulumi.CustomResource):
         """
         Whether to automatically assign an elastic IP address to the layer's instances.
         """
-        ...
+        return pulumi.get(self, "auto_assign_elastic_ips")
 
     @property
     @pulumi.getter(name="autoAssignPublicIps")
@@ -234,7 +234,7 @@ class MemcachedLayer(pulumi.CustomResource):
         """
         For stacks belonging to a VPC, whether to automatically assign a public IP address to each of the layer's instances.
         """
-        ...
+        return pulumi.get(self, "auto_assign_public_ips")
 
     @property
     @pulumi.getter(name="autoHealing")
@@ -242,17 +242,17 @@ class MemcachedLayer(pulumi.CustomResource):
         """
         Whether to enable auto-healing for the layer.
         """
-        ...
+        return pulumi.get(self, "auto_healing")
 
     @property
     @pulumi.getter(name="customConfigureRecipes")
     def custom_configure_recipes(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "custom_configure_recipes")
 
     @property
     @pulumi.getter(name="customDeployRecipes")
     def custom_deploy_recipes(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "custom_deploy_recipes")
 
     @property
     @pulumi.getter(name="customInstanceProfileArn")
@@ -260,7 +260,7 @@ class MemcachedLayer(pulumi.CustomResource):
         """
         The ARN of an IAM profile that will be used for the layer's instances.
         """
-        ...
+        return pulumi.get(self, "custom_instance_profile_arn")
 
     @property
     @pulumi.getter(name="customJson")
@@ -268,7 +268,7 @@ class MemcachedLayer(pulumi.CustomResource):
         """
         Custom JSON attributes to apply to the layer.
         """
-        ...
+        return pulumi.get(self, "custom_json")
 
     @property
     @pulumi.getter(name="customSecurityGroupIds")
@@ -276,22 +276,22 @@ class MemcachedLayer(pulumi.CustomResource):
         """
         Ids for a set of security groups to apply to the layer's instances.
         """
-        ...
+        return pulumi.get(self, "custom_security_group_ids")
 
     @property
     @pulumi.getter(name="customSetupRecipes")
     def custom_setup_recipes(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "custom_setup_recipes")
 
     @property
     @pulumi.getter(name="customShutdownRecipes")
     def custom_shutdown_recipes(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "custom_shutdown_recipes")
 
     @property
     @pulumi.getter(name="customUndeployRecipes")
     def custom_undeploy_recipes(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "custom_undeploy_recipes")
 
     @property
     @pulumi.getter(name="drainElbOnShutdown")
@@ -299,7 +299,7 @@ class MemcachedLayer(pulumi.CustomResource):
         """
         Whether to enable Elastic Load Balancing connection draining.
         """
-        ...
+        return pulumi.get(self, "drain_elb_on_shutdown")
 
     @property
     @pulumi.getter(name="ebsVolumes")
@@ -307,7 +307,7 @@ class MemcachedLayer(pulumi.CustomResource):
         """
         `ebs_volume` blocks, as described below, will each create an EBS volume and connect it to the layer's instances.
         """
-        ...
+        return pulumi.get(self, "ebs_volumes")
 
     @property
     @pulumi.getter(name="elasticLoadBalancer")
@@ -315,7 +315,7 @@ class MemcachedLayer(pulumi.CustomResource):
         """
         Name of an Elastic Load Balancer to attach to this layer
         """
-        ...
+        return pulumi.get(self, "elastic_load_balancer")
 
     @property
     @pulumi.getter(name="installUpdatesOnBoot")
@@ -323,7 +323,7 @@ class MemcachedLayer(pulumi.CustomResource):
         """
         Whether to install OS and package updates on each instance when it boots.
         """
-        ...
+        return pulumi.get(self, "install_updates_on_boot")
 
     @property
     @pulumi.getter(name="instanceShutdownTimeout")
@@ -331,7 +331,7 @@ class MemcachedLayer(pulumi.CustomResource):
         """
         The time, in seconds, that OpsWorks will wait for Chef to complete after triggering the Shutdown event.
         """
-        ...
+        return pulumi.get(self, "instance_shutdown_timeout")
 
     @property
     @pulumi.getter
@@ -339,7 +339,7 @@ class MemcachedLayer(pulumi.CustomResource):
         """
         A human-readable name for the layer.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="stackId")
@@ -347,7 +347,7 @@ class MemcachedLayer(pulumi.CustomResource):
         """
         The id of the stack the layer will belong to.
         """
-        ...
+        return pulumi.get(self, "stack_id")
 
     @property
     @pulumi.getter(name="systemPackages")
@@ -355,7 +355,7 @@ class MemcachedLayer(pulumi.CustomResource):
         """
         Names of a set of system packages to install on the layer's instances.
         """
-        ...
+        return pulumi.get(self, "system_packages")
 
     @property
     @pulumi.getter
@@ -363,7 +363,7 @@ class MemcachedLayer(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="useEbsOptimizedInstances")
@@ -371,7 +371,7 @@ class MemcachedLayer(pulumi.CustomResource):
         """
         Whether to use EBS-optimized instances.
         """
-        ...
+        return pulumi.get(self, "use_ebs_optimized_instances")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

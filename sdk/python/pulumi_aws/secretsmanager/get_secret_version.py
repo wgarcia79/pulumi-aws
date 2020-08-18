@@ -53,7 +53,7 @@ class GetSecretVersionResult:
         """
         The ARN of the secret.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -61,7 +61,7 @@ class GetSecretVersionResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="secretBinary")
@@ -69,12 +69,12 @@ class GetSecretVersionResult:
         """
         The decrypted part of the protected secret information that was originally provided as a binary. Base64 encoded.
         """
-        ...
+        return pulumi.get(self, "secret_binary")
 
     @property
     @pulumi.getter(name="secretId")
     def secret_id(self) -> str:
-        ...
+        return pulumi.get(self, "secret_id")
 
     @property
     @pulumi.getter(name="secretString")
@@ -82,7 +82,7 @@ class GetSecretVersionResult:
         """
         The decrypted part of the protected secret information that was originally provided as a string.
         """
-        ...
+        return pulumi.get(self, "secret_string")
 
     @property
     @pulumi.getter(name="versionId")
@@ -90,17 +90,17 @@ class GetSecretVersionResult:
         """
         The unique identifier of this version of the secret.
         """
-        ...
+        return pulumi.get(self, "version_id")
 
     @property
     @pulumi.getter(name="versionStage")
     def version_stage(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "version_stage")
 
     @property
     @pulumi.getter(name="versionStages")
     def version_stages(self) -> List[str]:
-        ...
+        return pulumi.get(self, "version_stages")
 
 
 

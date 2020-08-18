@@ -193,7 +193,7 @@ class WebAcl(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the WAF Regional WebACL.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="defaultAction")
@@ -201,7 +201,7 @@ class WebAcl(pulumi.CustomResource):
         """
         The action that you want AWS WAF Regional to take when a request doesn't match the criteria in any of the rules that are associated with the web ACL.
         """
-        ...
+        return pulumi.get(self, "default_action")
 
     @property
     @pulumi.getter(name="loggingConfiguration")
@@ -209,7 +209,7 @@ class WebAcl(pulumi.CustomResource):
         """
         Configuration block to enable WAF logging. Detailed below.
         """
-        ...
+        return pulumi.get(self, "logging_configuration")
 
     @property
     @pulumi.getter(name="metricName")
@@ -217,7 +217,7 @@ class WebAcl(pulumi.CustomResource):
         """
         The name or description for the Amazon CloudWatch metric of this web ACL.
         """
-        ...
+        return pulumi.get(self, "metric_name")
 
     @property
     @pulumi.getter
@@ -225,7 +225,7 @@ class WebAcl(pulumi.CustomResource):
         """
         The name or description of the web ACL.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -233,7 +233,7 @@ class WebAcl(pulumi.CustomResource):
         """
         Set of configuration blocks containing rules for the web ACL. Detailed below.
         """
-        ...
+        return pulumi.get(self, "rules")
 
     @property
     @pulumi.getter
@@ -241,7 +241,7 @@ class WebAcl(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

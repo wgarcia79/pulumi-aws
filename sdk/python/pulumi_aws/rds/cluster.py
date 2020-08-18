@@ -403,7 +403,7 @@ class Cluster(pulumi.CustomResource):
         """
         Specifies whether any cluster modifications are applied immediately, or during the next maintenance window. Default is `false`. See [Amazon RDS Documentation for more information.](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.DBInstance.Modifying.html)
         """
-        ...
+        return pulumi.get(self, "apply_immediately")
 
     @property
     @pulumi.getter
@@ -411,7 +411,7 @@ class Cluster(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of cluster
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="availabilityZones")
@@ -419,7 +419,7 @@ class Cluster(pulumi.CustomResource):
         """
         A list of EC2 Availability Zones for the DB cluster storage where DB cluster instances can be created. RDS automatically assigns 3 AZs if less than 3 AZs are configured, which will show as a difference requiring resource recreation next provider update. It is recommended to specify 3 AZs or use [the `ignoreChanges` argument](https://www.pulumi.com/docs/intro/concepts/programming-model/#ignorechanges) if necessary.
         """
-        ...
+        return pulumi.get(self, "availability_zones")
 
     @property
     @pulumi.getter(name="backtrackWindow")
@@ -427,7 +427,7 @@ class Cluster(pulumi.CustomResource):
         """
         The target backtrack window, in seconds. Only available for `aurora` engine currently. To disable backtracking, set this value to `0`. Defaults to `0`. Must be between `0` and `259200` (72 hours)
         """
-        ...
+        return pulumi.get(self, "backtrack_window")
 
     @property
     @pulumi.getter(name="backupRetentionPeriod")
@@ -435,7 +435,7 @@ class Cluster(pulumi.CustomResource):
         """
         The days to retain backups for. Default `1`
         """
-        ...
+        return pulumi.get(self, "backup_retention_period")
 
     @property
     @pulumi.getter(name="clusterIdentifier")
@@ -443,7 +443,7 @@ class Cluster(pulumi.CustomResource):
         """
         The cluster identifier. If omitted, this provider will assign a random, unique identifier.
         """
-        ...
+        return pulumi.get(self, "cluster_identifier")
 
     @property
     @pulumi.getter(name="clusterIdentifierPrefix")
@@ -451,7 +451,7 @@ class Cluster(pulumi.CustomResource):
         """
         Creates a unique cluster identifier beginning with the specified prefix. Conflicts with `cluster_identifier`.
         """
-        ...
+        return pulumi.get(self, "cluster_identifier_prefix")
 
     @property
     @pulumi.getter(name="clusterMembers")
@@ -459,7 +459,7 @@ class Cluster(pulumi.CustomResource):
         """
         List of RDS Instances that are a part of this cluster
         """
-        ...
+        return pulumi.get(self, "cluster_members")
 
     @property
     @pulumi.getter(name="clusterResourceId")
@@ -467,7 +467,7 @@ class Cluster(pulumi.CustomResource):
         """
         The RDS Cluster Resource ID
         """
-        ...
+        return pulumi.get(self, "cluster_resource_id")
 
     @property
     @pulumi.getter(name="copyTagsToSnapshot")
@@ -475,7 +475,7 @@ class Cluster(pulumi.CustomResource):
         """
         Copy all Cluster `tags` to snapshots. Default is `false`.
         """
-        ...
+        return pulumi.get(self, "copy_tags_to_snapshot")
 
     @property
     @pulumi.getter(name="databaseName")
@@ -483,7 +483,7 @@ class Cluster(pulumi.CustomResource):
         """
         Name for an automatically created database on cluster creation. There are different naming restrictions per database engine: [RDS Naming Constraints](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Limits.html#RDS_Limits.Constraints)
         """
-        ...
+        return pulumi.get(self, "database_name")
 
     @property
     @pulumi.getter(name="dbClusterParameterGroupName")
@@ -491,7 +491,7 @@ class Cluster(pulumi.CustomResource):
         """
         A cluster parameter group to associate with the cluster.
         """
-        ...
+        return pulumi.get(self, "db_cluster_parameter_group_name")
 
     @property
     @pulumi.getter(name="dbSubnetGroupName")
@@ -499,7 +499,7 @@ class Cluster(pulumi.CustomResource):
         """
         A DB subnet group to associate with this DB instance. **NOTE:** This must match the `db_subnet_group_name` specified on every `rds.ClusterInstance` in the cluster.
         """
-        ...
+        return pulumi.get(self, "db_subnet_group_name")
 
     @property
     @pulumi.getter(name="deletionProtection")
@@ -507,7 +507,7 @@ class Cluster(pulumi.CustomResource):
         """
         If the DB instance should have deletion protection enabled. The database can't be deleted when this value is set to `true`. The default is `false`.
         """
-        ...
+        return pulumi.get(self, "deletion_protection")
 
     @property
     @pulumi.getter(name="enableHttpEndpoint")
@@ -515,7 +515,7 @@ class Cluster(pulumi.CustomResource):
         """
         Enable HTTP endpoint (data API). Only valid when `engine_mode` is set to `serverless`.
         """
-        ...
+        return pulumi.get(self, "enable_http_endpoint")
 
     @property
     @pulumi.getter(name="enabledCloudwatchLogsExports")
@@ -523,7 +523,7 @@ class Cluster(pulumi.CustomResource):
         """
         List of log types to export to cloudwatch. If omitted, no logs will be exported. The following log types are supported: `audit`, `error`, `general`, `slowquery`, `postgresql` (PostgreSQL).
         """
-        ...
+        return pulumi.get(self, "enabled_cloudwatch_logs_exports")
 
     @property
     @pulumi.getter
@@ -531,7 +531,7 @@ class Cluster(pulumi.CustomResource):
         """
         The DNS address of the RDS instance
         """
-        ...
+        return pulumi.get(self, "endpoint")
 
     @property
     @pulumi.getter
@@ -539,7 +539,7 @@ class Cluster(pulumi.CustomResource):
         """
         The name of the database engine to be used for this DB cluster. Defaults to `aurora`. Valid Values: `aurora`, `aurora-mysql`, `aurora-postgresql`
         """
-        ...
+        return pulumi.get(self, "engine")
 
     @property
     @pulumi.getter(name="engineMode")
@@ -547,7 +547,7 @@ class Cluster(pulumi.CustomResource):
         """
         The database engine mode. Valid values: `global`, `multimaster`, `parallelquery`, `provisioned`, `serverless`. Defaults to: `provisioned`. See the [RDS User Guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/aurora-serverless.html) for limitations when using `serverless`.
         """
-        ...
+        return pulumi.get(self, "engine_mode")
 
     @property
     @pulumi.getter(name="engineVersion")
@@ -555,7 +555,7 @@ class Cluster(pulumi.CustomResource):
         """
         The database engine version. Updating this argument results in an outage. See the [Aurora MySQL](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Updates.html) and [Aurora Postgres](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraPostgreSQL.Updates.html) documentation for your configured engine to determine this value. For example with Aurora MySQL 2, a potential value for this argument is `5.7.mysql_aurora.2.03.2`.
         """
-        ...
+        return pulumi.get(self, "engine_version")
 
     @property
     @pulumi.getter(name="finalSnapshotIdentifier")
@@ -563,7 +563,7 @@ class Cluster(pulumi.CustomResource):
         """
         The name of your final DB snapshot when this DB cluster is deleted. If omitted, no final snapshot will be made.
         """
-        ...
+        return pulumi.get(self, "final_snapshot_identifier")
 
     @property
     @pulumi.getter(name="globalClusterIdentifier")
@@ -571,7 +571,7 @@ class Cluster(pulumi.CustomResource):
         """
         The global cluster identifier specified on `rds.GlobalCluster`.
         """
-        ...
+        return pulumi.get(self, "global_cluster_identifier")
 
     @property
     @pulumi.getter(name="hostedZoneId")
@@ -579,7 +579,7 @@ class Cluster(pulumi.CustomResource):
         """
         The Route53 Hosted Zone ID of the endpoint
         """
-        ...
+        return pulumi.get(self, "hosted_zone_id")
 
     @property
     @pulumi.getter(name="iamDatabaseAuthenticationEnabled")
@@ -587,7 +587,7 @@ class Cluster(pulumi.CustomResource):
         """
         Specifies whether or mappings of AWS Identity and Access Management (IAM) accounts to database accounts is enabled. Please see [AWS Documentation](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html) for availability and limitations.
         """
-        ...
+        return pulumi.get(self, "iam_database_authentication_enabled")
 
     @property
     @pulumi.getter(name="iamRoles")
@@ -595,7 +595,7 @@ class Cluster(pulumi.CustomResource):
         """
         A List of ARNs for the IAM roles to associate to the RDS Cluster.
         """
-        ...
+        return pulumi.get(self, "iam_roles")
 
     @property
     @pulumi.getter(name="kmsKeyId")
@@ -603,7 +603,7 @@ class Cluster(pulumi.CustomResource):
         """
         The ARN for the KMS encryption key. When specifying `kms_key_id`, `storage_encrypted` needs to be set to true.
         """
-        ...
+        return pulumi.get(self, "kms_key_id")
 
     @property
     @pulumi.getter(name="masterPassword")
@@ -611,7 +611,7 @@ class Cluster(pulumi.CustomResource):
         """
         Password for the master DB user. Note that this may show up in logs, and it will be stored in the state file. Please refer to the [RDS Naming Constraints](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Limits.html#RDS_Limits.Constraints)
         """
-        ...
+        return pulumi.get(self, "master_password")
 
     @property
     @pulumi.getter(name="masterUsername")
@@ -619,7 +619,7 @@ class Cluster(pulumi.CustomResource):
         """
         Username for the master DB user. Please refer to the [RDS Naming Constraints](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Limits.html#RDS_Limits.Constraints). This argument does not support in-place updates and cannot be changed during a restore from snapshot.
         """
-        ...
+        return pulumi.get(self, "master_username")
 
     @property
     @pulumi.getter
@@ -627,7 +627,7 @@ class Cluster(pulumi.CustomResource):
         """
         The port on which the DB accepts connections
         """
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter(name="preferredBackupWindow")
@@ -635,7 +635,7 @@ class Cluster(pulumi.CustomResource):
         """
         The daily time range during which automated backups are created if automated backups are enabled using the BackupRetentionPeriod parameter.Time in UTC. Default: A 30-minute window selected at random from an 8-hour block of time per region. e.g. 04:00-09:00
         """
-        ...
+        return pulumi.get(self, "preferred_backup_window")
 
     @property
     @pulumi.getter(name="preferredMaintenanceWindow")
@@ -643,7 +643,7 @@ class Cluster(pulumi.CustomResource):
         """
         The weekly time range during which system maintenance can occur, in (UTC) e.g. wed:04:00-wed:04:30
         """
-        ...
+        return pulumi.get(self, "preferred_maintenance_window")
 
     @property
     @pulumi.getter(name="readerEndpoint")
@@ -652,7 +652,7 @@ class Cluster(pulumi.CustomResource):
         A read-only endpoint for the Aurora cluster, automatically
         load-balanced across replicas
         """
-        ...
+        return pulumi.get(self, "reader_endpoint")
 
     @property
     @pulumi.getter(name="replicationSourceIdentifier")
@@ -660,12 +660,12 @@ class Cluster(pulumi.CustomResource):
         """
         ARN of a source DB cluster or DB instance if this DB cluster is to be created as a Read Replica.
         """
-        ...
+        return pulumi.get(self, "replication_source_identifier")
 
     @property
     @pulumi.getter(name="s3Import")
     def s3_import(self) -> Optional['outputs.ClusterS3Import']:
-        ...
+        return pulumi.get(self, "s3_import")
 
     @property
     @pulumi.getter(name="scalingConfiguration")
@@ -673,7 +673,7 @@ class Cluster(pulumi.CustomResource):
         """
         Nested attribute with scaling properties. Only valid when `engine_mode` is set to `serverless`. More details below.
         """
-        ...
+        return pulumi.get(self, "scaling_configuration")
 
     @property
     @pulumi.getter(name="skipFinalSnapshot")
@@ -681,7 +681,7 @@ class Cluster(pulumi.CustomResource):
         """
         Determines whether a final DB snapshot is created before the DB cluster is deleted. If true is specified, no DB snapshot is created. If false is specified, a DB snapshot is created before the DB cluster is deleted, using the value from `final_snapshot_identifier`. Default is `false`.
         """
-        ...
+        return pulumi.get(self, "skip_final_snapshot")
 
     @property
     @pulumi.getter(name="snapshotIdentifier")
@@ -689,7 +689,7 @@ class Cluster(pulumi.CustomResource):
         """
         Specifies whether or not to create this cluster from a snapshot. You can use either the name or ARN when specifying a DB cluster snapshot, or the ARN when specifying a DB snapshot.
         """
-        ...
+        return pulumi.get(self, "snapshot_identifier")
 
     @property
     @pulumi.getter(name="sourceRegion")
@@ -697,7 +697,7 @@ class Cluster(pulumi.CustomResource):
         """
         The source region for an encrypted replica DB cluster.
         """
-        ...
+        return pulumi.get(self, "source_region")
 
     @property
     @pulumi.getter(name="storageEncrypted")
@@ -705,7 +705,7 @@ class Cluster(pulumi.CustomResource):
         """
         Specifies whether the DB cluster is encrypted. The default is `false` for `provisioned` `engine_mode` and `true` for `serverless` `engine_mode`.
         """
-        ...
+        return pulumi.get(self, "storage_encrypted")
 
     @property
     @pulumi.getter
@@ -713,7 +713,7 @@ class Cluster(pulumi.CustomResource):
         """
         A map of tags to assign to the DB cluster.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcSecurityGroupIds")
@@ -721,7 +721,7 @@ class Cluster(pulumi.CustomResource):
         """
         List of VPC security groups to associate with the Cluster
         """
-        ...
+        return pulumi.get(self, "vpc_security_group_ids")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

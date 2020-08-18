@@ -180,7 +180,7 @@ class Parameter(pulumi.CustomResource):
         """
         A regular expression used to validate the parameter value.
         """
-        ...
+        return pulumi.get(self, "allowed_pattern")
 
     @property
     @pulumi.getter
@@ -188,7 +188,7 @@ class Parameter(pulumi.CustomResource):
         """
         The ARN of the parameter.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -196,7 +196,7 @@ class Parameter(pulumi.CustomResource):
         """
         The description of the parameter.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="keyId")
@@ -204,7 +204,7 @@ class Parameter(pulumi.CustomResource):
         """
         The KMS key id or arn for encrypting a SecureString.
         """
-        ...
+        return pulumi.get(self, "key_id")
 
     @property
     @pulumi.getter
@@ -212,7 +212,7 @@ class Parameter(pulumi.CustomResource):
         """
         The name of the parameter. If the name contains a path (e.g. any forward slashes (`/`)), it must be fully qualified with a leading forward slash (`/`). For additional requirements and constraints, see the [AWS SSM User Guide](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-parameter-name-constraints.html).
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -220,7 +220,7 @@ class Parameter(pulumi.CustomResource):
         """
         Overwrite an existing parameter. If not specified, will default to `false` if the resource has not been created by this provider to avoid overwrite of existing resource and will default to `true` otherwise (lifecycle rules should then be used to manage the update behavior).
         """
-        ...
+        return pulumi.get(self, "overwrite")
 
     @property
     @pulumi.getter
@@ -228,7 +228,7 @@ class Parameter(pulumi.CustomResource):
         """
         A map of tags to assign to the object.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -236,7 +236,7 @@ class Parameter(pulumi.CustomResource):
         """
         The tier of the parameter. If not specified, will default to `Standard`. Valid tiers are `Standard` and `Advanced`. For more information on parameter tiers, see the [AWS SSM Parameter tier comparison and guide](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-advanced-parameters.html).
         """
-        ...
+        return pulumi.get(self, "tier")
 
     @property
     @pulumi.getter
@@ -244,7 +244,7 @@ class Parameter(pulumi.CustomResource):
         """
         The type of the parameter. Valid types are `String`, `StringList` and `SecureString`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -252,7 +252,7 @@ class Parameter(pulumi.CustomResource):
         """
         The value of the parameter.
         """
-        ...
+        return pulumi.get(self, "value")
 
     @property
     @pulumi.getter
@@ -260,7 +260,7 @@ class Parameter(pulumi.CustomResource):
         """
         The version of the parameter.
         """
-        ...
+        return pulumi.get(self, "version")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

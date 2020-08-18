@@ -130,7 +130,7 @@ class HostedPrivateVirtualInterfaceAccepter(pulumi.CustomResource):
         """
         The ARN of the virtual interface.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="dxGatewayId")
@@ -138,7 +138,7 @@ class HostedPrivateVirtualInterfaceAccepter(pulumi.CustomResource):
         """
         The ID of the Direct Connect gateway to which to connect the virtual interface.
         """
-        ...
+        return pulumi.get(self, "dx_gateway_id")
 
     @property
     @pulumi.getter
@@ -146,7 +146,7 @@ class HostedPrivateVirtualInterfaceAccepter(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="virtualInterfaceId")
@@ -154,7 +154,7 @@ class HostedPrivateVirtualInterfaceAccepter(pulumi.CustomResource):
         """
         The ID of the Direct Connect virtual interface to accept.
         """
-        ...
+        return pulumi.get(self, "virtual_interface_id")
 
     @property
     @pulumi.getter(name="vpnGatewayId")
@@ -162,7 +162,7 @@ class HostedPrivateVirtualInterfaceAccepter(pulumi.CustomResource):
         """
         The ID of the virtual private gateway to which to connect the virtual interface.
         """
-        ...
+        return pulumi.get(self, "vpn_gateway_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

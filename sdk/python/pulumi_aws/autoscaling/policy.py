@@ -176,7 +176,7 @@ class Policy(pulumi.CustomResource):
         """
         Specifies whether the adjustment is an absolute number or a percentage of the current capacity. Valid values are `ChangeInCapacity`, `ExactCapacity`, and `PercentChangeInCapacity`.
         """
-        ...
+        return pulumi.get(self, "adjustment_type")
 
     @property
     @pulumi.getter
@@ -184,7 +184,7 @@ class Policy(pulumi.CustomResource):
         """
         The ARN assigned by AWS to the scaling policy.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="autoscalingGroupName")
@@ -192,7 +192,7 @@ class Policy(pulumi.CustomResource):
         """
         The name of the autoscaling group.
         """
-        ...
+        return pulumi.get(self, "autoscaling_group_name")
 
     @property
     @pulumi.getter
@@ -200,7 +200,7 @@ class Policy(pulumi.CustomResource):
         """
         The amount of time, in seconds, after a scaling activity completes and before the next scaling activity can start.
         """
-        ...
+        return pulumi.get(self, "cooldown")
 
     @property
     @pulumi.getter(name="estimatedInstanceWarmup")
@@ -208,7 +208,7 @@ class Policy(pulumi.CustomResource):
         """
         The estimated time, in seconds, until a newly launched instance will contribute CloudWatch metrics. Without a value, AWS will default to the group's specified cooldown period.
         """
-        ...
+        return pulumi.get(self, "estimated_instance_warmup")
 
     @property
     @pulumi.getter(name="metricAggregationType")
@@ -216,12 +216,12 @@ class Policy(pulumi.CustomResource):
         """
         The aggregation type for the policy's metrics. Valid values are "Minimum", "Maximum", and "Average". Without a value, AWS will treat the aggregation type as "Average".
         """
-        ...
+        return pulumi.get(self, "metric_aggregation_type")
 
     @property
     @pulumi.getter(name="minAdjustmentMagnitude")
     def min_adjustment_magnitude(self) -> Optional[float]:
-        ...
+        return pulumi.get(self, "min_adjustment_magnitude")
 
     @property
     @pulumi.getter
@@ -229,7 +229,7 @@ class Policy(pulumi.CustomResource):
         """
         The name of the dimension.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="policyType")
@@ -237,7 +237,7 @@ class Policy(pulumi.CustomResource):
         """
         The policy type, either "SimpleScaling", "StepScaling" or "TargetTrackingScaling". If this value isn't provided, AWS will default to "SimpleScaling."
         """
-        ...
+        return pulumi.get(self, "policy_type")
 
     @property
     @pulumi.getter(name="scalingAdjustment")
@@ -247,7 +247,7 @@ class Policy(pulumi.CustomResource):
         scale, when the adjustment bounds are breached. A positive value scales
         up. A negative value scales down.
         """
-        ...
+        return pulumi.get(self, "scaling_adjustment")
 
     @property
     @pulumi.getter(name="stepAdjustments")
@@ -256,7 +256,7 @@ class Policy(pulumi.CustomResource):
         A set of adjustments that manage
         group scaling. These have the following structure:
         """
-        ...
+        return pulumi.get(self, "step_adjustments")
 
     @property
     @pulumi.getter(name="targetTrackingConfiguration")
@@ -264,7 +264,7 @@ class Policy(pulumi.CustomResource):
         """
         A target tracking policy. These have the following structure:
         """
-        ...
+        return pulumi.get(self, "target_tracking_configuration")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

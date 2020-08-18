@@ -126,7 +126,7 @@ class NfsLocation(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the DataSync Location.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="onPremConfig")
@@ -134,7 +134,7 @@ class NfsLocation(pulumi.CustomResource):
         """
         Configuration block containing information for connecting to the NFS File System.
         """
-        ...
+        return pulumi.get(self, "on_prem_config")
 
     @property
     @pulumi.getter(name="serverHostname")
@@ -142,7 +142,7 @@ class NfsLocation(pulumi.CustomResource):
         """
         Specifies the IP address or DNS name of the NFS server. The DataSync Agent(s) use this to mount the NFS server.
         """
-        ...
+        return pulumi.get(self, "server_hostname")
 
     @property
     @pulumi.getter
@@ -150,7 +150,7 @@ class NfsLocation(pulumi.CustomResource):
         """
         Subdirectory to perform actions as source or destination. Should be exported by the NFS server.
         """
-        ...
+        return pulumi.get(self, "subdirectory")
 
     @property
     @pulumi.getter
@@ -158,12 +158,12 @@ class NfsLocation(pulumi.CustomResource):
         """
         Key-value pairs of resource tags to assign to the DataSync Location.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
     def uri(self) -> str:
-        ...
+        return pulumi.get(self, "uri")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

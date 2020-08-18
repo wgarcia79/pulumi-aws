@@ -50,7 +50,7 @@ class GetIpSetResult:
         """
         An array of strings that specify one or more IP addresses or blocks of IP addresses in Classless Inter-Domain Routing (CIDR) notation.
         """
-        ...
+        return pulumi.get(self, "addresses")
 
     @property
     @pulumi.getter
@@ -58,7 +58,7 @@ class GetIpSetResult:
         """
         The Amazon Resource Name (ARN) of the entity.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -66,7 +66,7 @@ class GetIpSetResult:
         """
         The description of the set that helps with identification.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -74,7 +74,7 @@ class GetIpSetResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="ipAddressVersion")
@@ -82,17 +82,17 @@ class GetIpSetResult:
         """
         The IP address version of the set.
         """
-        ...
+        return pulumi.get(self, "ip_address_version")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def scope(self) -> str:
-        ...
+        return pulumi.get(self, "scope")
 
 
 

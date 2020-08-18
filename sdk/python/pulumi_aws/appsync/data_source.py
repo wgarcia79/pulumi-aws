@@ -191,7 +191,7 @@ class DataSource(pulumi.CustomResource):
         """
         The API ID for the GraphQL API for the DataSource.
         """
-        ...
+        return pulumi.get(self, "api_id")
 
     @property
     @pulumi.getter
@@ -199,7 +199,7 @@ class DataSource(pulumi.CustomResource):
         """
         The ARN
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -207,7 +207,7 @@ class DataSource(pulumi.CustomResource):
         """
         A description of the DataSource.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="dynamodbConfig")
@@ -215,7 +215,7 @@ class DataSource(pulumi.CustomResource):
         """
         DynamoDB settings. See below
         """
-        ...
+        return pulumi.get(self, "dynamodb_config")
 
     @property
     @pulumi.getter(name="elasticsearchConfig")
@@ -223,7 +223,7 @@ class DataSource(pulumi.CustomResource):
         """
         Amazon Elasticsearch settings. See below
         """
-        ...
+        return pulumi.get(self, "elasticsearch_config")
 
     @property
     @pulumi.getter(name="httpConfig")
@@ -231,7 +231,7 @@ class DataSource(pulumi.CustomResource):
         """
         HTTP settings. See below
         """
-        ...
+        return pulumi.get(self, "http_config")
 
     @property
     @pulumi.getter(name="lambdaConfig")
@@ -239,7 +239,7 @@ class DataSource(pulumi.CustomResource):
         """
         AWS Lambda settings. See below
         """
-        ...
+        return pulumi.get(self, "lambda_config")
 
     @property
     @pulumi.getter
@@ -247,7 +247,7 @@ class DataSource(pulumi.CustomResource):
         """
         A user-supplied name for the DataSource.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="serviceRoleArn")
@@ -255,7 +255,7 @@ class DataSource(pulumi.CustomResource):
         """
         The IAM service role ARN for the data source.
         """
-        ...
+        return pulumi.get(self, "service_role_arn")
 
     @property
     @pulumi.getter
@@ -263,7 +263,7 @@ class DataSource(pulumi.CustomResource):
         """
         The type of the DataSource. Valid values: `AWS_LAMBDA`, `AMAZON_DYNAMODB`, `AMAZON_ELASTICSEARCH`, `HTTP`, `NONE`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

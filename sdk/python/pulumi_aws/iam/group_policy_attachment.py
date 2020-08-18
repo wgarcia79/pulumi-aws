@@ -105,7 +105,7 @@ class GroupPolicyAttachment(pulumi.CustomResource):
         """
         The group the policy should be applied to
         """
-        ...
+        return pulumi.get(self, "group")
 
     @property
     @pulumi.getter(name="policyArn")
@@ -113,7 +113,7 @@ class GroupPolicyAttachment(pulumi.CustomResource):
         """
         The ARN of the policy you want to apply
         """
-        ...
+        return pulumi.get(self, "policy_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

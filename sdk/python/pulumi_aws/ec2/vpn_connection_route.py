@@ -109,7 +109,7 @@ class VpnConnectionRoute(pulumi.CustomResource):
         """
         The CIDR block associated with the local subnet of the customer network.
         """
-        ...
+        return pulumi.get(self, "destination_cidr_block")
 
     @property
     @pulumi.getter(name="vpnConnectionId")
@@ -117,7 +117,7 @@ class VpnConnectionRoute(pulumi.CustomResource):
         """
         The ID of the VPN connection.
         """
-        ...
+        return pulumi.get(self, "vpn_connection_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

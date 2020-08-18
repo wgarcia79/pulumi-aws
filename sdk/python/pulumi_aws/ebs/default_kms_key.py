@@ -95,7 +95,7 @@ class DefaultKmsKey(pulumi.CustomResource):
         """
         The ARN of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use to encrypt the EBS volume.
         """
-        ...
+        return pulumi.get(self, "key_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -172,7 +172,7 @@ class LayerVersion(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) of the Lambda Layer with version.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -180,7 +180,7 @@ class LayerVersion(pulumi.CustomResource):
         """
         The path to the function's deployment package within the local filesystem. If defined, The `s3_`-prefixed options cannot be used.
         """
-        ...
+        return pulumi.get(self, "code")
 
     @property
     @pulumi.getter(name="compatibleRuntimes")
@@ -188,7 +188,7 @@ class LayerVersion(pulumi.CustomResource):
         """
         A list of [Runtimes](https://docs.aws.amazon.com/lambda/latest/dg/API_PublishLayerVersion.html#SSS-PublishLayerVersion-request-CompatibleRuntimes) this layer is compatible with. Up to 5 runtimes can be specified.
         """
-        ...
+        return pulumi.get(self, "compatible_runtimes")
 
     @property
     @pulumi.getter(name="createdDate")
@@ -196,7 +196,7 @@ class LayerVersion(pulumi.CustomResource):
         """
         The date this resource was created.
         """
-        ...
+        return pulumi.get(self, "created_date")
 
     @property
     @pulumi.getter
@@ -204,7 +204,7 @@ class LayerVersion(pulumi.CustomResource):
         """
         Description of what your Lambda Layer does.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="layerArn")
@@ -212,7 +212,7 @@ class LayerVersion(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) of the Lambda Layer without version.
         """
-        ...
+        return pulumi.get(self, "layer_arn")
 
     @property
     @pulumi.getter(name="layerName")
@@ -220,7 +220,7 @@ class LayerVersion(pulumi.CustomResource):
         """
         A unique name for your Lambda Layer
         """
-        ...
+        return pulumi.get(self, "layer_name")
 
     @property
     @pulumi.getter(name="licenseInfo")
@@ -228,7 +228,7 @@ class LayerVersion(pulumi.CustomResource):
         """
         License info for your Lambda Layer. See [License Info](https://docs.aws.amazon.com/lambda/latest/dg/API_PublishLayerVersion.html#SSS-PublishLayerVersion-request-LicenseInfo).
         """
-        ...
+        return pulumi.get(self, "license_info")
 
     @property
     @pulumi.getter(name="s3Bucket")
@@ -236,7 +236,7 @@ class LayerVersion(pulumi.CustomResource):
         """
         The S3 bucket location containing the function's deployment package. Conflicts with `filename`. This bucket must reside in the same AWS region where you are creating the Lambda function.
         """
-        ...
+        return pulumi.get(self, "s3_bucket")
 
     @property
     @pulumi.getter(name="s3Key")
@@ -244,7 +244,7 @@ class LayerVersion(pulumi.CustomResource):
         """
         The S3 key of an object containing the function's deployment package. Conflicts with `filename`.
         """
-        ...
+        return pulumi.get(self, "s3_key")
 
     @property
     @pulumi.getter(name="s3ObjectVersion")
@@ -252,7 +252,7 @@ class LayerVersion(pulumi.CustomResource):
         """
         The object version containing the function's deployment package. Conflicts with `filename`.
         """
-        ...
+        return pulumi.get(self, "s3_object_version")
 
     @property
     @pulumi.getter(name="sourceCodeHash")
@@ -260,7 +260,7 @@ class LayerVersion(pulumi.CustomResource):
         """
         Used to trigger updates. Must be set to a base64-encoded SHA256 hash of the package file specified with either `filename` or `s3_key`. The usual way to set this is `${filebase64sha256("file.zip")}` (this provider 0.11.12 or later) or `${base64sha256(file("file.zip"))}` (this provider 0.11.11 and earlier), where "file.zip" is the local filename of the lambda layer source archive.
         """
-        ...
+        return pulumi.get(self, "source_code_hash")
 
     @property
     @pulumi.getter(name="sourceCodeSize")
@@ -268,7 +268,7 @@ class LayerVersion(pulumi.CustomResource):
         """
         The size in bytes of the function .zip file.
         """
-        ...
+        return pulumi.get(self, "source_code_size")
 
     @property
     @pulumi.getter
@@ -276,7 +276,7 @@ class LayerVersion(pulumi.CustomResource):
         """
         This Lamba Layer version.
         """
-        ...
+        return pulumi.get(self, "version")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

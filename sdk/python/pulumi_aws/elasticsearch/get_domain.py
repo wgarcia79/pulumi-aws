@@ -96,7 +96,7 @@ class GetDomainResult:
         """
         The policy document attached to the domain.
         """
-        ...
+        return pulumi.get(self, "access_policies")
 
     @property
     @pulumi.getter(name="advancedOptions")
@@ -104,7 +104,7 @@ class GetDomainResult:
         """
         Key-value string pairs to specify advanced configuration options.
         """
-        ...
+        return pulumi.get(self, "advanced_options")
 
     @property
     @pulumi.getter(name="advancedSecurityOptions")
@@ -112,7 +112,7 @@ class GetDomainResult:
         """
         Status of the Elasticsearch domain's advanced security options. The block consists of the following attributes:
         """
-        ...
+        return pulumi.get(self, "advanced_security_options")
 
     @property
     @pulumi.getter
@@ -120,7 +120,7 @@ class GetDomainResult:
         """
         The Amazon Resource Name (ARN) of the domain.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="clusterConfigs")
@@ -128,7 +128,7 @@ class GetDomainResult:
         """
         Cluster configuration of the domain.
         """
-        ...
+        return pulumi.get(self, "cluster_configs")
 
     @property
     @pulumi.getter(name="cognitoOptions")
@@ -136,7 +136,7 @@ class GetDomainResult:
         """
         Domain Amazon Cognito Authentication options for Kibana.
         """
-        ...
+        return pulumi.get(self, "cognito_options")
 
     @property
     @pulumi.getter
@@ -144,7 +144,7 @@ class GetDomainResult:
         """
         Status of the creation of the domain.
         """
-        ...
+        return pulumi.get(self, "created")
 
     @property
     @pulumi.getter
@@ -152,7 +152,7 @@ class GetDomainResult:
         """
         Status of the deletion of the domain.
         """
-        ...
+        return pulumi.get(self, "deleted")
 
     @property
     @pulumi.getter(name="domainId")
@@ -160,12 +160,12 @@ class GetDomainResult:
         """
         Unique identifier for the domain.
         """
-        ...
+        return pulumi.get(self, "domain_id")
 
     @property
     @pulumi.getter(name="domainName")
     def domain_name(self) -> str:
-        ...
+        return pulumi.get(self, "domain_name")
 
     @property
     @pulumi.getter(name="ebsOptions")
@@ -173,7 +173,7 @@ class GetDomainResult:
         """
         EBS Options for the instances in the domain.
         """
-        ...
+        return pulumi.get(self, "ebs_options")
 
     @property
     @pulumi.getter(name="elasticsearchVersion")
@@ -181,7 +181,7 @@ class GetDomainResult:
         """
         ElasticSearch version for the domain.
         """
-        ...
+        return pulumi.get(self, "elasticsearch_version")
 
     @property
     @pulumi.getter(name="encryptionAtRests")
@@ -189,7 +189,7 @@ class GetDomainResult:
         """
         Domain encryption at rest related options.
         """
-        ...
+        return pulumi.get(self, "encryption_at_rests")
 
     @property
     @pulumi.getter
@@ -197,7 +197,7 @@ class GetDomainResult:
         """
         Domain-specific endpoint used to submit index, search, and data upload requests.
         """
-        ...
+        return pulumi.get(self, "endpoint")
 
     @property
     @pulumi.getter
@@ -205,7 +205,7 @@ class GetDomainResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="kibanaEndpoint")
@@ -213,7 +213,7 @@ class GetDomainResult:
         """
         Domain-specific endpoint used to access the Kibana application.
         """
-        ...
+        return pulumi.get(self, "kibana_endpoint")
 
     @property
     @pulumi.getter(name="logPublishingOptions")
@@ -221,7 +221,7 @@ class GetDomainResult:
         """
         Domain log publishing related options.
         """
-        ...
+        return pulumi.get(self, "log_publishing_options")
 
     @property
     @pulumi.getter(name="nodeToNodeEncryptions")
@@ -229,7 +229,7 @@ class GetDomainResult:
         """
         Domain in transit encryption related options.
         """
-        ...
+        return pulumi.get(self, "node_to_node_encryptions")
 
     @property
     @pulumi.getter
@@ -238,12 +238,12 @@ class GetDomainResult:
         Status of a configuration change in the domain.
         * `snapshot_options` – Domain snapshot related options.
         """
-        ...
+        return pulumi.get(self, "processing")
 
     @property
     @pulumi.getter(name="snapshotOptions")
     def snapshot_options(self) -> List['outputs.GetDomainSnapshotOptionResult']:
-        ...
+        return pulumi.get(self, "snapshot_options")
 
     @property
     @pulumi.getter
@@ -251,7 +251,7 @@ class GetDomainResult:
         """
         The tags assigned to the domain.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcOptions")
@@ -259,7 +259,7 @@ class GetDomainResult:
         """
         VPC Options for private Elasticsearch domains.
         """
-        ...
+        return pulumi.get(self, "vpc_options")
 
 
 

@@ -312,7 +312,7 @@ class DeploymentGroup(pulumi.CustomResource):
         """
         Configuration block of alarms associated with the deployment group (documented below).
         """
-        ...
+        return pulumi.get(self, "alarm_configuration")
 
     @property
     @pulumi.getter(name="appName")
@@ -320,7 +320,7 @@ class DeploymentGroup(pulumi.CustomResource):
         """
         The name of the application.
         """
-        ...
+        return pulumi.get(self, "app_name")
 
     @property
     @pulumi.getter(name="autoRollbackConfiguration")
@@ -328,7 +328,7 @@ class DeploymentGroup(pulumi.CustomResource):
         """
         Configuration block of the automatic rollback configuration associated with the deployment group (documented below).
         """
-        ...
+        return pulumi.get(self, "auto_rollback_configuration")
 
     @property
     @pulumi.getter(name="autoscalingGroups")
@@ -336,7 +336,7 @@ class DeploymentGroup(pulumi.CustomResource):
         """
         Autoscaling groups associated with the deployment group.
         """
-        ...
+        return pulumi.get(self, "autoscaling_groups")
 
     @property
     @pulumi.getter(name="blueGreenDeploymentConfig")
@@ -344,7 +344,7 @@ class DeploymentGroup(pulumi.CustomResource):
         """
         Configuration block of the blue/green deployment options for a deployment group (documented below).
         """
-        ...
+        return pulumi.get(self, "blue_green_deployment_config")
 
     @property
     @pulumi.getter(name="deploymentConfigName")
@@ -352,7 +352,7 @@ class DeploymentGroup(pulumi.CustomResource):
         """
         The name of the group's deployment config. The default is "CodeDeployDefault.OneAtATime".
         """
-        ...
+        return pulumi.get(self, "deployment_config_name")
 
     @property
     @pulumi.getter(name="deploymentGroupName")
@@ -360,7 +360,7 @@ class DeploymentGroup(pulumi.CustomResource):
         """
         The name of the deployment group.
         """
-        ...
+        return pulumi.get(self, "deployment_group_name")
 
     @property
     @pulumi.getter(name="deploymentStyle")
@@ -368,7 +368,7 @@ class DeploymentGroup(pulumi.CustomResource):
         """
         Configuration block of the type of deployment, either in-place or blue/green, you want to run and whether to route deployment traffic behind a load balancer (documented below).
         """
-        ...
+        return pulumi.get(self, "deployment_style")
 
     @property
     @pulumi.getter(name="ec2TagFilters")
@@ -376,7 +376,7 @@ class DeploymentGroup(pulumi.CustomResource):
         """
         Tag filters associated with the deployment group. See the AWS docs for details.
         """
-        ...
+        return pulumi.get(self, "ec2_tag_filters")
 
     @property
     @pulumi.getter(name="ec2TagSets")
@@ -384,7 +384,7 @@ class DeploymentGroup(pulumi.CustomResource):
         """
         Configuration block(s) of Tag filters associated with the deployment group, which are also referred to as tag groups (documented below). See the AWS docs for details.
         """
-        ...
+        return pulumi.get(self, "ec2_tag_sets")
 
     @property
     @pulumi.getter(name="ecsService")
@@ -392,7 +392,7 @@ class DeploymentGroup(pulumi.CustomResource):
         """
         Configuration block(s) of the ECS services for a deployment group (documented below).
         """
-        ...
+        return pulumi.get(self, "ecs_service")
 
     @property
     @pulumi.getter(name="loadBalancerInfo")
@@ -400,7 +400,7 @@ class DeploymentGroup(pulumi.CustomResource):
         """
         Single configuration block of the load balancer to use in a blue/green deployment (documented below).
         """
-        ...
+        return pulumi.get(self, "load_balancer_info")
 
     @property
     @pulumi.getter(name="onPremisesInstanceTagFilters")
@@ -408,7 +408,7 @@ class DeploymentGroup(pulumi.CustomResource):
         """
         On premise tag filters associated with the group. See the AWS docs for details.
         """
-        ...
+        return pulumi.get(self, "on_premises_instance_tag_filters")
 
     @property
     @pulumi.getter(name="serviceRoleArn")
@@ -416,7 +416,7 @@ class DeploymentGroup(pulumi.CustomResource):
         """
         The service role ARN that allows deployments.
         """
-        ...
+        return pulumi.get(self, "service_role_arn")
 
     @property
     @pulumi.getter(name="triggerConfigurations")
@@ -424,7 +424,7 @@ class DeploymentGroup(pulumi.CustomResource):
         """
         Configuration block(s) of the triggers for the deployment group (documented below).
         """
-        ...
+        return pulumi.get(self, "trigger_configurations")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

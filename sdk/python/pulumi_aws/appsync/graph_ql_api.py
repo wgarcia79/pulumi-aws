@@ -238,7 +238,7 @@ class GraphQLApi(pulumi.CustomResource):
         """
         One or more additional authentication providers for the GraphqlApi. Defined below.
         """
-        ...
+        return pulumi.get(self, "additional_authentication_providers")
 
     @property
     @pulumi.getter
@@ -246,7 +246,7 @@ class GraphQLApi(pulumi.CustomResource):
         """
         The ARN
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="authenticationType")
@@ -254,7 +254,7 @@ class GraphQLApi(pulumi.CustomResource):
         """
         The authentication type. Valid values: `API_KEY`, `AWS_IAM`, `AMAZON_COGNITO_USER_POOLS`, `OPENID_CONNECT`
         """
-        ...
+        return pulumi.get(self, "authentication_type")
 
     @property
     @pulumi.getter(name="logConfig")
@@ -262,7 +262,7 @@ class GraphQLApi(pulumi.CustomResource):
         """
         Nested argument containing logging configuration. Defined below.
         """
-        ...
+        return pulumi.get(self, "log_config")
 
     @property
     @pulumi.getter
@@ -270,7 +270,7 @@ class GraphQLApi(pulumi.CustomResource):
         """
         A user-supplied name for the GraphqlApi.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="openidConnectConfig")
@@ -278,7 +278,7 @@ class GraphQLApi(pulumi.CustomResource):
         """
         Nested argument containing OpenID Connect configuration. Defined below.
         """
-        ...
+        return pulumi.get(self, "openid_connect_config")
 
     @property
     @pulumi.getter
@@ -286,7 +286,7 @@ class GraphQLApi(pulumi.CustomResource):
         """
         The schema definition, in GraphQL schema language format. This provider cannot perform drift detection of this configuration.
         """
-        ...
+        return pulumi.get(self, "schema")
 
     @property
     @pulumi.getter
@@ -294,7 +294,7 @@ class GraphQLApi(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -302,7 +302,7 @@ class GraphQLApi(pulumi.CustomResource):
         """
         Map of URIs associated with the API. e.g. `uris["GRAPHQL"] = https://ID.appsync-api.REGION.amazonaws.com/graphql`
         """
-        ...
+        return pulumi.get(self, "uris")
 
     @property
     @pulumi.getter(name="userPoolConfig")
@@ -310,7 +310,7 @@ class GraphQLApi(pulumi.CustomResource):
         """
         The Amazon Cognito User Pool configuration. Defined below.
         """
-        ...
+        return pulumi.get(self, "user_pool_config")
 
     @property
     @pulumi.getter(name="xrayEnabled")
@@ -318,7 +318,7 @@ class GraphQLApi(pulumi.CustomResource):
         """
         Whether tracing with X-ray is enabled. Defaults to false.
         """
-        ...
+        return pulumi.get(self, "xray_enabled")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -171,7 +171,7 @@ class OrganizationCustomRule(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the rule
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -179,7 +179,7 @@ class OrganizationCustomRule(pulumi.CustomResource):
         """
         Description of the rule
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="excludedAccounts")
@@ -187,7 +187,7 @@ class OrganizationCustomRule(pulumi.CustomResource):
         """
         List of AWS account identifiers to exclude from the rule
         """
-        ...
+        return pulumi.get(self, "excluded_accounts")
 
     @property
     @pulumi.getter(name="inputParameters")
@@ -195,7 +195,7 @@ class OrganizationCustomRule(pulumi.CustomResource):
         """
         A string in JSON format that is passed to the AWS Config Rule Lambda Function
         """
-        ...
+        return pulumi.get(self, "input_parameters")
 
     @property
     @pulumi.getter(name="lambdaFunctionArn")
@@ -203,7 +203,7 @@ class OrganizationCustomRule(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the rule Lambda Function
         """
-        ...
+        return pulumi.get(self, "lambda_function_arn")
 
     @property
     @pulumi.getter(name="maximumExecutionFrequency")
@@ -211,7 +211,7 @@ class OrganizationCustomRule(pulumi.CustomResource):
         """
         The maximum frequency with which AWS Config runs evaluations for a rule, if the rule is triggered at a periodic frequency. Defaults to `TwentyFour_Hours` for periodic frequency triggered rules. Valid values: `One_Hour`, `Three_Hours`, `Six_Hours`, `Twelve_Hours`, or `TwentyFour_Hours`.
         """
-        ...
+        return pulumi.get(self, "maximum_execution_frequency")
 
     @property
     @pulumi.getter
@@ -219,7 +219,7 @@ class OrganizationCustomRule(pulumi.CustomResource):
         """
         The name of the rule
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="resourceIdScope")
@@ -227,7 +227,7 @@ class OrganizationCustomRule(pulumi.CustomResource):
         """
         Identifier of the AWS resource to evaluate
         """
-        ...
+        return pulumi.get(self, "resource_id_scope")
 
     @property
     @pulumi.getter(name="resourceTypesScopes")
@@ -235,7 +235,7 @@ class OrganizationCustomRule(pulumi.CustomResource):
         """
         List of types of AWS resources to evaluate
         """
-        ...
+        return pulumi.get(self, "resource_types_scopes")
 
     @property
     @pulumi.getter(name="tagKeyScope")
@@ -243,7 +243,7 @@ class OrganizationCustomRule(pulumi.CustomResource):
         """
         Tag key of AWS resources to evaluate
         """
-        ...
+        return pulumi.get(self, "tag_key_scope")
 
     @property
     @pulumi.getter(name="tagValueScope")
@@ -251,7 +251,7 @@ class OrganizationCustomRule(pulumi.CustomResource):
         """
         Tag value of AWS resources to evaluate
         """
-        ...
+        return pulumi.get(self, "tag_value_scope")
 
     @property
     @pulumi.getter(name="triggerTypes")
@@ -259,7 +259,7 @@ class OrganizationCustomRule(pulumi.CustomResource):
         """
         List of notification types that trigger AWS Config to run an evaluation for the rule. Valid values: `ConfigurationItemChangeNotification`, `OversizedConfigurationItemChangeNotification`, and `ScheduledNotification`
         """
-        ...
+        return pulumi.get(self, "trigger_types")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

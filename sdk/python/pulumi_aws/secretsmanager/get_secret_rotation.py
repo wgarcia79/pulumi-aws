@@ -45,7 +45,7 @@ class GetSecretRotationResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="rotationEnabled")
@@ -53,7 +53,7 @@ class GetSecretRotationResult:
         """
         The ARN of the secret.
         """
-        ...
+        return pulumi.get(self, "rotation_enabled")
 
     @property
     @pulumi.getter(name="rotationLambdaArn")
@@ -61,7 +61,7 @@ class GetSecretRotationResult:
         """
         The decrypted part of the protected secret information that was originally provided as a string.
         """
-        ...
+        return pulumi.get(self, "rotation_lambda_arn")
 
     @property
     @pulumi.getter(name="rotationRules")
@@ -69,12 +69,12 @@ class GetSecretRotationResult:
         """
         The decrypted part of the protected secret information that was originally provided as a binary. Base64 encoded.
         """
-        ...
+        return pulumi.get(self, "rotation_rules")
 
     @property
     @pulumi.getter(name="secretId")
     def secret_id(self) -> str:
-        ...
+        return pulumi.get(self, "secret_id")
 
 
 

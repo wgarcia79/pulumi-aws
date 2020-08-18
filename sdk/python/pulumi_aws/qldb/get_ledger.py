@@ -41,7 +41,7 @@ class GetLedgerResult:
         """
         Amazon Resource Name (ARN) of the ledger.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="deletionProtection")
@@ -49,7 +49,7 @@ class GetLedgerResult:
         """
         Deletion protection on the QLDB Ledger instance. Set to `true` by default.
         """
-        ...
+        return pulumi.get(self, "deletion_protection")
 
     @property
     @pulumi.getter
@@ -57,12 +57,12 @@ class GetLedgerResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
 
 

@@ -39,7 +39,7 @@ class GetOrganizationalUnitsResult:
         """
         List of child organizational units, which have the following attributes:
         """
-        ...
+        return pulumi.get(self, "childrens")
 
     @property
     @pulumi.getter
@@ -47,12 +47,12 @@ class GetOrganizationalUnitsResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="parentId")
     def parent_id(self) -> str:
-        ...
+        return pulumi.get(self, "parent_id")
 
 
 

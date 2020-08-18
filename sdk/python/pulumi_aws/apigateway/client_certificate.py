@@ -108,7 +108,7 @@ class ClientCertificate(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN)
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="createdDate")
@@ -116,7 +116,7 @@ class ClientCertificate(pulumi.CustomResource):
         """
         The date when the client certificate was created.
         """
-        ...
+        return pulumi.get(self, "created_date")
 
     @property
     @pulumi.getter
@@ -124,7 +124,7 @@ class ClientCertificate(pulumi.CustomResource):
         """
         The description of the client certificate.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="expirationDate")
@@ -132,7 +132,7 @@ class ClientCertificate(pulumi.CustomResource):
         """
         The date when the client certificate will expire.
         """
-        ...
+        return pulumi.get(self, "expiration_date")
 
     @property
     @pulumi.getter(name="pemEncodedCertificate")
@@ -140,7 +140,7 @@ class ClientCertificate(pulumi.CustomResource):
         """
         The PEM-encoded public key of the client certificate.
         """
-        ...
+        return pulumi.get(self, "pem_encoded_certificate")
 
     @property
     @pulumi.getter
@@ -148,7 +148,7 @@ class ClientCertificate(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

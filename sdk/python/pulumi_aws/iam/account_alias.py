@@ -90,7 +90,7 @@ class AccountAlias(pulumi.CustomResource):
         """
         The account alias
         """
-        ...
+        return pulumi.get(self, "account_alias")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

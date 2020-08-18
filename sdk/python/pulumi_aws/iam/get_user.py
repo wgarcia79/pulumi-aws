@@ -47,7 +47,7 @@ class GetUserResult:
         """
         The Amazon Resource Name (ARN) assigned by AWS for this user.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -55,7 +55,7 @@ class GetUserResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -63,7 +63,7 @@ class GetUserResult:
         """
         Path in which this user was created.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter(name="permissionsBoundary")
@@ -71,7 +71,7 @@ class GetUserResult:
         """
         The ARN of the policy that is used to set the permissions boundary for the user.
         """
-        ...
+        return pulumi.get(self, "permissions_boundary")
 
     @property
     @pulumi.getter(name="userId")
@@ -79,7 +79,7 @@ class GetUserResult:
         """
         The unique ID assigned by AWS for this user.
         """
-        ...
+        return pulumi.get(self, "user_id")
 
     @property
     @pulumi.getter(name="userName")
@@ -87,7 +87,7 @@ class GetUserResult:
         """
         The name associated to this User
         """
-        ...
+        return pulumi.get(self, "user_name")
 
 
 

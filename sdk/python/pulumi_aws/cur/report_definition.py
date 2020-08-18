@@ -163,7 +163,7 @@ class ReportDefinition(pulumi.CustomResource):
         """
         A list of additional artifacts. Valid values are: REDSHIFT, QUICKSIGHT.
         """
-        ...
+        return pulumi.get(self, "additional_artifacts")
 
     @property
     @pulumi.getter(name="additionalSchemaElements")
@@ -171,7 +171,7 @@ class ReportDefinition(pulumi.CustomResource):
         """
         A list of schema elements. Valid values are: RESOURCES.
         """
-        ...
+        return pulumi.get(self, "additional_schema_elements")
 
     @property
     @pulumi.getter
@@ -179,7 +179,7 @@ class ReportDefinition(pulumi.CustomResource):
         """
         Compression format for report. Valid values are: GZIP, ZIP.
         """
-        ...
+        return pulumi.get(self, "compression")
 
     @property
     @pulumi.getter
@@ -187,7 +187,7 @@ class ReportDefinition(pulumi.CustomResource):
         """
         Format for report. Valid values are: textORcsv.
         """
-        ...
+        return pulumi.get(self, "format")
 
     @property
     @pulumi.getter(name="reportName")
@@ -195,7 +195,7 @@ class ReportDefinition(pulumi.CustomResource):
         """
         Unique name for the report. Must start with a number/letter and is case sensitive. Limited to 256 characters.
         """
-        ...
+        return pulumi.get(self, "report_name")
 
     @property
     @pulumi.getter(name="s3Bucket")
@@ -203,7 +203,7 @@ class ReportDefinition(pulumi.CustomResource):
         """
         Name of the existing S3 bucket to hold generated reports.
         """
-        ...
+        return pulumi.get(self, "s3_bucket")
 
     @property
     @pulumi.getter(name="s3Prefix")
@@ -211,7 +211,7 @@ class ReportDefinition(pulumi.CustomResource):
         """
         Report path prefix. Limited to 256 characters.
         """
-        ...
+        return pulumi.get(self, "s3_prefix")
 
     @property
     @pulumi.getter(name="s3Region")
@@ -219,7 +219,7 @@ class ReportDefinition(pulumi.CustomResource):
         """
         Region of the existing S3 bucket to hold generated reports.
         """
-        ...
+        return pulumi.get(self, "s3_region")
 
     @property
     @pulumi.getter(name="timeUnit")
@@ -227,7 +227,7 @@ class ReportDefinition(pulumi.CustomResource):
         """
         The frequency on which report data are measured and displayed.  Valid values are: HOURLY, DAILY.
         """
-        ...
+        return pulumi.get(self, "time_unit")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

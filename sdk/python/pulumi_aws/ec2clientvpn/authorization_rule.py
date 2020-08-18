@@ -118,7 +118,7 @@ class AuthorizationRule(pulumi.CustomResource):
         """
         The ID of the group to which the authorization rule grants access. One of `access_group_id` or `authorize_all_groups` must be set.
         """
-        ...
+        return pulumi.get(self, "access_group_id")
 
     @property
     @pulumi.getter(name="authorizeAllGroups")
@@ -126,7 +126,7 @@ class AuthorizationRule(pulumi.CustomResource):
         """
         Indicates whether the authorization rule grants access to all clients. One of `access_group_id` or `authorize_all_groups` must be set.
         """
-        ...
+        return pulumi.get(self, "authorize_all_groups")
 
     @property
     @pulumi.getter(name="clientVpnEndpointId")
@@ -134,7 +134,7 @@ class AuthorizationRule(pulumi.CustomResource):
         """
         The ID of the Client VPN endpoint.
         """
-        ...
+        return pulumi.get(self, "client_vpn_endpoint_id")
 
     @property
     @pulumi.getter
@@ -142,7 +142,7 @@ class AuthorizationRule(pulumi.CustomResource):
         """
         A brief description of the authorization rule.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="targetNetworkCidr")
@@ -150,7 +150,7 @@ class AuthorizationRule(pulumi.CustomResource):
         """
         The IPv4 address range, in CIDR notation, of the network to which the authorization rule applies.
         """
-        ...
+        return pulumi.get(self, "target_network_cidr")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

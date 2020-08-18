@@ -147,7 +147,7 @@ class Vault(pulumi.CustomResource):
         The policy document. This is a JSON formatted string.
         The heredoc syntax or `file` function is helpful here. Use the [Glacier Developer Guide](https://docs.aws.amazon.com/amazonglacier/latest/dev/vault-access-policy.html) for more information on Glacier Vault Policy
         """
-        ...
+        return pulumi.get(self, "access_policy")
 
     @property
     @pulumi.getter
@@ -155,7 +155,7 @@ class Vault(pulumi.CustomResource):
         """
         The ARN of the vault.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -163,7 +163,7 @@ class Vault(pulumi.CustomResource):
         """
         The URI of the vault that was created.
         """
-        ...
+        return pulumi.get(self, "location")
 
     @property
     @pulumi.getter
@@ -171,7 +171,7 @@ class Vault(pulumi.CustomResource):
         """
         The name of the Vault. Names can be between 1 and 255 characters long and the valid characters are a-z, A-Z, 0-9, '_' (underscore), '-' (hyphen), and '.' (period).
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -179,7 +179,7 @@ class Vault(pulumi.CustomResource):
         """
         The notifications for the Vault. Fields documented below.
         """
-        ...
+        return pulumi.get(self, "notifications")
 
     @property
     @pulumi.getter
@@ -187,7 +187,7 @@ class Vault(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

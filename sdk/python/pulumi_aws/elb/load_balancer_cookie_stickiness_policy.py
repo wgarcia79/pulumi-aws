@@ -130,7 +130,7 @@ class LoadBalancerCookieStickinessPolicy(pulumi.CustomResource):
         The time period after which
         the session cookie should be considered stale, expressed in seconds.
         """
-        ...
+        return pulumi.get(self, "cookie_expiration_period")
 
     @property
     @pulumi.getter(name="lbPort")
@@ -140,7 +140,7 @@ class LoadBalancerCookieStickinessPolicy(pulumi.CustomResource):
         should be applied. This must be an active listener on the load
         balancer.
         """
-        ...
+        return pulumi.get(self, "lb_port")
 
     @property
     @pulumi.getter(name="loadBalancer")
@@ -149,7 +149,7 @@ class LoadBalancerCookieStickinessPolicy(pulumi.CustomResource):
         The load balancer to which the policy
         should be attached.
         """
-        ...
+        return pulumi.get(self, "load_balancer")
 
     @property
     @pulumi.getter
@@ -157,7 +157,7 @@ class LoadBalancerCookieStickinessPolicy(pulumi.CustomResource):
         """
         The name of the stickiness policy.
         """
-        ...
+        return pulumi.get(self, "name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

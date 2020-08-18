@@ -30,7 +30,7 @@ class SecretRotationRotationRules(dict):
         """
         Specifies the number of days between automatic scheduled rotations of the secret.
         """
-        ...
+        return pulumi.get(self, "automatically_after_days")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -51,7 +51,7 @@ class SecretRotationRules(dict):
         """
         Specifies the number of days between automatic scheduled rotations of the secret.
         """
-        ...
+        return pulumi.get(self, "automatically_after_days")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -66,7 +66,7 @@ class GetSecretRotationRotationRuleResult(dict):
     @property
     @pulumi.getter(name="automaticallyAfterDays")
     def automatically_after_days(self) -> float:
-        ...
+        return pulumi.get(self, "automatically_after_days")
 
 
 @pulumi.output_type
@@ -78,6 +78,6 @@ class GetSecretRotationRuleResult(dict):
     @property
     @pulumi.getter(name="automaticallyAfterDays")
     def automatically_after_days(self) -> float:
-        ...
+        return pulumi.get(self, "automatically_after_days")
 
 

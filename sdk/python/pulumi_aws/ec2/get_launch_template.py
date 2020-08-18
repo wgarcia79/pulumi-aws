@@ -121,7 +121,7 @@ class GetLaunchTemplateResult:
         """
         Amazon Resource Name (ARN) of the launch template.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="blockDeviceMappings")
@@ -129,7 +129,7 @@ class GetLaunchTemplateResult:
         """
         Specify volumes to attach to the instance besides the volumes specified by the AMI.
         """
-        ...
+        return pulumi.get(self, "block_device_mappings")
 
     @property
     @pulumi.getter(name="creditSpecifications")
@@ -138,7 +138,7 @@ class GetLaunchTemplateResult:
         Customize the credit specification of the instance. See Credit
         Specification below for more details.
         """
-        ...
+        return pulumi.get(self, "credit_specifications")
 
     @property
     @pulumi.getter(name="defaultVersion")
@@ -146,7 +146,7 @@ class GetLaunchTemplateResult:
         """
         The default version of the launch template.
         """
-        ...
+        return pulumi.get(self, "default_version")
 
     @property
     @pulumi.getter
@@ -154,7 +154,7 @@ class GetLaunchTemplateResult:
         """
         Description of the launch template.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="disableApiTermination")
@@ -163,7 +163,7 @@ class GetLaunchTemplateResult:
         If `true`, enables [EC2 Instance
         Termination Protection](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingDisableAPITermination)
         """
-        ...
+        return pulumi.get(self, "disable_api_termination")
 
     @property
     @pulumi.getter(name="ebsOptimized")
@@ -171,7 +171,7 @@ class GetLaunchTemplateResult:
         """
         If `true`, the launched EC2 instance will be EBS-optimized.
         """
-        ...
+        return pulumi.get(self, "ebs_optimized")
 
     @property
     @pulumi.getter(name="elasticGpuSpecifications")
@@ -180,12 +180,12 @@ class GetLaunchTemplateResult:
         The elastic GPU to attach to the instance. See Elastic GPU
         below for more details.
         """
-        ...
+        return pulumi.get(self, "elastic_gpu_specifications")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetLaunchTemplateFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter(name="hibernationOptions")
@@ -193,7 +193,7 @@ class GetLaunchTemplateResult:
         """
         The hibernation options for the instance.
         """
-        ...
+        return pulumi.get(self, "hibernation_options")
 
     @property
     @pulumi.getter(name="iamInstanceProfiles")
@@ -202,7 +202,7 @@ class GetLaunchTemplateResult:
         The IAM Instance Profile to launch the instance with. See Instance Profile
         below for more details.
         """
-        ...
+        return pulumi.get(self, "iam_instance_profiles")
 
     @property
     @pulumi.getter
@@ -210,7 +210,7 @@ class GetLaunchTemplateResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="imageId")
@@ -218,7 +218,7 @@ class GetLaunchTemplateResult:
         """
         The AMI from which to launch the instance.
         """
-        ...
+        return pulumi.get(self, "image_id")
 
     @property
     @pulumi.getter(name="instanceInitiatedShutdownBehavior")
@@ -227,7 +227,7 @@ class GetLaunchTemplateResult:
         Shutdown behavior for the instance. Can be `stop` or `terminate`.
         (Default: `stop`).
         """
-        ...
+        return pulumi.get(self, "instance_initiated_shutdown_behavior")
 
     @property
     @pulumi.getter(name="instanceMarketOptions")
@@ -236,7 +236,7 @@ class GetLaunchTemplateResult:
         The market (purchasing) option for the instance.
         below for details.
         """
-        ...
+        return pulumi.get(self, "instance_market_options")
 
     @property
     @pulumi.getter(name="instanceType")
@@ -244,7 +244,7 @@ class GetLaunchTemplateResult:
         """
         The type of the instance.
         """
-        ...
+        return pulumi.get(self, "instance_type")
 
     @property
     @pulumi.getter(name="kernelId")
@@ -252,7 +252,7 @@ class GetLaunchTemplateResult:
         """
         The kernel ID.
         """
-        ...
+        return pulumi.get(self, "kernel_id")
 
     @property
     @pulumi.getter(name="keyName")
@@ -260,7 +260,7 @@ class GetLaunchTemplateResult:
         """
         The key name to use for the instance.
         """
-        ...
+        return pulumi.get(self, "key_name")
 
     @property
     @pulumi.getter(name="latestVersion")
@@ -268,7 +268,7 @@ class GetLaunchTemplateResult:
         """
         The latest version of the launch template.
         """
-        ...
+        return pulumi.get(self, "latest_version")
 
     @property
     @pulumi.getter(name="metadataOptions")
@@ -276,7 +276,7 @@ class GetLaunchTemplateResult:
         """
         The metadata options for the instance.
         """
-        ...
+        return pulumi.get(self, "metadata_options")
 
     @property
     @pulumi.getter
@@ -284,12 +284,12 @@ class GetLaunchTemplateResult:
         """
         The monitoring option for the instance.
         """
-        ...
+        return pulumi.get(self, "monitorings")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="networkInterfaces")
@@ -298,7 +298,7 @@ class GetLaunchTemplateResult:
         Customize network interfaces to be attached at instance boot time. See Network
         Interfaces below for more details.
         """
-        ...
+        return pulumi.get(self, "network_interfaces")
 
     @property
     @pulumi.getter
@@ -306,7 +306,7 @@ class GetLaunchTemplateResult:
         """
         The placement of the instance.
         """
-        ...
+        return pulumi.get(self, "placements")
 
     @property
     @pulumi.getter(name="ramDiskId")
@@ -314,7 +314,7 @@ class GetLaunchTemplateResult:
         """
         The ID of the RAM disk.
         """
-        ...
+        return pulumi.get(self, "ram_disk_id")
 
     @property
     @pulumi.getter(name="securityGroupNames")
@@ -323,7 +323,7 @@ class GetLaunchTemplateResult:
         A list of security group names to associate with. If you are creating Instances in a VPC, use
         `vpc_security_group_ids` instead.
         """
-        ...
+        return pulumi.get(self, "security_group_names")
 
     @property
     @pulumi.getter(name="tagSpecifications")
@@ -331,7 +331,7 @@ class GetLaunchTemplateResult:
         """
         The tags to apply to the resources during launch.
         """
-        ...
+        return pulumi.get(self, "tag_specifications")
 
     @property
     @pulumi.getter
@@ -339,7 +339,7 @@ class GetLaunchTemplateResult:
         """
         (Optional) A map of tags to assign to the launch template.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="userData")
@@ -347,7 +347,7 @@ class GetLaunchTemplateResult:
         """
         The Base64-encoded user data to provide when launching the instance.
         """
-        ...
+        return pulumi.get(self, "user_data")
 
     @property
     @pulumi.getter(name="vpcSecurityGroupIds")
@@ -355,7 +355,7 @@ class GetLaunchTemplateResult:
         """
         A list of security group IDs to associate with.
         """
-        ...
+        return pulumi.get(self, "vpc_security_group_ids")
 
 
 

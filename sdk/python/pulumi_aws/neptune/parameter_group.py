@@ -123,7 +123,7 @@ class ParameterGroup(pulumi.CustomResource):
         """
         The Neptune parameter group Amazon Resource Name (ARN).
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -131,7 +131,7 @@ class ParameterGroup(pulumi.CustomResource):
         """
         The description of the Neptune parameter group. Defaults to "Managed by Pulumi".
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -139,7 +139,7 @@ class ParameterGroup(pulumi.CustomResource):
         """
         The family of the Neptune parameter group.
         """
-        ...
+        return pulumi.get(self, "family")
 
     @property
     @pulumi.getter
@@ -147,7 +147,7 @@ class ParameterGroup(pulumi.CustomResource):
         """
         The name of the Neptune parameter.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -155,7 +155,7 @@ class ParameterGroup(pulumi.CustomResource):
         """
         A list of Neptune parameters to apply.
         """
-        ...
+        return pulumi.get(self, "parameters")
 
     @property
     @pulumi.getter
@@ -163,7 +163,7 @@ class ParameterGroup(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -44,7 +44,7 @@ class PipelineArtifactStore(dict):
         """
         The location where AWS CodePipeline stores artifacts for a pipeline; currently only `S3` is supported.
         """
-        ...
+        return pulumi.get(self, "location")
 
     @property
     @pulumi.getter
@@ -52,7 +52,7 @@ class PipelineArtifactStore(dict):
         """
         The type of the artifact store, such as Amazon S3
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="encryptionKey")
@@ -60,7 +60,7 @@ class PipelineArtifactStore(dict):
         """
         The encryption key block AWS CodePipeline uses to encrypt the data in the artifact store, such as an AWS Key Management Service (AWS KMS) key. If you don't specify a key, AWS CodePipeline uses the default key for Amazon Simple Storage Service (Amazon S3). An `encryption_key` block is documented below.
         """
-        ...
+        return pulumi.get(self, "encryption_key")
 
     @property
     @pulumi.getter
@@ -68,7 +68,7 @@ class PipelineArtifactStore(dict):
         """
         The region where the artifact store is located. Required for a cross-region CodePipeline, do not provide for a single-region CodePipeline.
         """
-        ...
+        return pulumi.get(self, "region")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -92,7 +92,7 @@ class PipelineArtifactStoreEncryptionKey(dict):
         """
         The KMS key ARN or ID
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -100,7 +100,7 @@ class PipelineArtifactStoreEncryptionKey(dict):
         """
         The type of key; currently only `KMS` is supported
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -124,7 +124,7 @@ class PipelineStage(dict):
         """
         The action(s) to include in the stage. Defined as an `action` block below
         """
-        ...
+        return pulumi.get(self, "actions")
 
     @property
     @pulumi.getter
@@ -132,7 +132,7 @@ class PipelineStage(dict):
         """
         The name of the stage.
         """
-        ...
+        return pulumi.get(self, "name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -193,7 +193,7 @@ class PipelineStageAction(dict):
         """
         A category defines what kind of action can be taken in the stage, and constrains the provider type for the action. Possible values are `Approval`, `Build`, `Deploy`, `Invoke`, `Source` and `Test`.
         """
-        ...
+        return pulumi.get(self, "category")
 
     @property
     @pulumi.getter
@@ -201,7 +201,7 @@ class PipelineStageAction(dict):
         """
         The action declaration's name.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -209,7 +209,7 @@ class PipelineStageAction(dict):
         """
         The creator of the action being called. Possible values are `AWS`, `Custom` and `ThirdParty`.
         """
-        ...
+        return pulumi.get(self, "owner")
 
     @property
     @pulumi.getter
@@ -217,7 +217,7 @@ class PipelineStageAction(dict):
         """
         The provider of the service being called by the action. Valid providers are determined by the action category. For example, an action in the Deploy category type might have a provider of AWS CodeDeploy, which would be specified as CodeDeploy.
         """
-        ...
+        return pulumi.get(self, "provider")
 
     @property
     @pulumi.getter
@@ -225,7 +225,7 @@ class PipelineStageAction(dict):
         """
         A string that identifies the action type.
         """
-        ...
+        return pulumi.get(self, "version")
 
     @property
     @pulumi.getter
@@ -233,7 +233,7 @@ class PipelineStageAction(dict):
         """
         A Map of the action declaration's configuration. Find out more about configuring action configurations in the [Reference Pipeline Structure documentation](http://docs.aws.amazon.com/codepipeline/latest/userguide/reference-pipeline-structure.html#action-requirements).
         """
-        ...
+        return pulumi.get(self, "configuration")
 
     @property
     @pulumi.getter(name="inputArtifacts")
@@ -241,7 +241,7 @@ class PipelineStageAction(dict):
         """
         A list of artifact names to be worked on.
         """
-        ...
+        return pulumi.get(self, "input_artifacts")
 
     @property
     @pulumi.getter
@@ -249,7 +249,7 @@ class PipelineStageAction(dict):
         """
         The namespace all output variables will be accessed from.
         """
-        ...
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="outputArtifacts")
@@ -257,7 +257,7 @@ class PipelineStageAction(dict):
         """
         A list of artifact names to output. Output artifact names must be unique within a pipeline.
         """
-        ...
+        return pulumi.get(self, "output_artifacts")
 
     @property
     @pulumi.getter
@@ -265,7 +265,7 @@ class PipelineStageAction(dict):
         """
         The region in which to run the action.
         """
-        ...
+        return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -273,7 +273,7 @@ class PipelineStageAction(dict):
         """
         The ARN of the IAM service role that will perform the declared action. This is assumed through the roleArn for the pipeline.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="runOrder")
@@ -281,7 +281,7 @@ class PipelineStageAction(dict):
         """
         The order in which actions are run.
         """
-        ...
+        return pulumi.get(self, "run_order")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -307,7 +307,7 @@ class WebhookAuthenticationConfiguration(dict):
         """
         A valid CIDR block for `IP` filtering. Required for `IP`.
         """
-        ...
+        return pulumi.get(self, "allowed_ip_range")
 
     @property
     @pulumi.getter(name="secretToken")
@@ -315,7 +315,7 @@ class WebhookAuthenticationConfiguration(dict):
         """
         The shared secret for the GitHub repository webhook. Set this as `secret` in your `github_repository_webhook`'s `configuration` block. Required for `GITHUB_HMAC`.
         """
-        ...
+        return pulumi.get(self, "secret_token")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -339,7 +339,7 @@ class WebhookFilter(dict):
         """
         The [JSON path](https://github.com/json-path/JsonPath) to filter on.
         """
-        ...
+        return pulumi.get(self, "json_path")
 
     @property
     @pulumi.getter(name="matchEquals")
@@ -347,7 +347,7 @@ class WebhookFilter(dict):
         """
         The value to match on (e.g. `refs/heads/{Branch}`). See [AWS docs](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_WebhookFilterRule.html) for details.
         """
-        ...
+        return pulumi.get(self, "match_equals")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -47,7 +47,7 @@ class GetPatchBaselineResult:
     @property
     @pulumi.getter(name="defaultBaseline")
     def default_baseline(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "default_baseline")
 
     @property
     @pulumi.getter
@@ -55,7 +55,7 @@ class GetPatchBaselineResult:
         """
         The description of the baseline.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -63,7 +63,7 @@ class GetPatchBaselineResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -71,22 +71,22 @@ class GetPatchBaselineResult:
         """
         The name of the baseline.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="namePrefix")
     def name_prefix(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "name_prefix")
 
     @property
     @pulumi.getter(name="operatingSystem")
     def operating_system(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "operating_system")
 
     @property
     @pulumi.getter
     def owner(self) -> str:
-        ...
+        return pulumi.get(self, "owner")
 
 
 

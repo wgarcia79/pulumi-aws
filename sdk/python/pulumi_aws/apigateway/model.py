@@ -123,7 +123,7 @@ class Model(pulumi.CustomResource):
         """
         The content type of the model
         """
-        ...
+        return pulumi.get(self, "content_type")
 
     @property
     @pulumi.getter
@@ -131,7 +131,7 @@ class Model(pulumi.CustomResource):
         """
         The description of the model
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -139,7 +139,7 @@ class Model(pulumi.CustomResource):
         """
         The name of the model
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="restApi")
@@ -147,7 +147,7 @@ class Model(pulumi.CustomResource):
         """
         The ID of the associated REST API
         """
-        ...
+        return pulumi.get(self, "rest_api")
 
     @property
     @pulumi.getter
@@ -155,7 +155,7 @@ class Model(pulumi.CustomResource):
         """
         The schema of the model in a JSON form
         """
-        ...
+        return pulumi.get(self, "schema")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

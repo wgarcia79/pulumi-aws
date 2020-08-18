@@ -39,7 +39,7 @@ class CertificateAuthorityCertificateAuthorityConfiguration(dict):
         """
         Type of the public key algorithm and size, in bits, of the key pair that your key pair creates when it issues a certificate. Valid values can be found in the [ACM PCA Documentation](https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_CertificateAuthorityConfiguration.html).
         """
-        ...
+        return pulumi.get(self, "key_algorithm")
 
     @property
     @pulumi.getter(name="signingAlgorithm")
@@ -47,7 +47,7 @@ class CertificateAuthorityCertificateAuthorityConfiguration(dict):
         """
         Name of the algorithm your private CA uses to sign certificate requests. Valid values can be found in the [ACM PCA Documentation](https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_CertificateAuthorityConfiguration.html).
         """
-        ...
+        return pulumi.get(self, "signing_algorithm")
 
     @property
     @pulumi.getter
@@ -55,7 +55,7 @@ class CertificateAuthorityCertificateAuthorityConfiguration(dict):
         """
         Nested argument that contains X.500 distinguished name information. At least one nested attribute must be specified.
         """
-        ...
+        return pulumi.get(self, "subject")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -125,7 +125,7 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubject(dict):
         """
         Fully qualified domain name (FQDN) associated with the certificate subject.
         """
-        ...
+        return pulumi.get(self, "common_name")
 
     @property
     @pulumi.getter
@@ -133,7 +133,7 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubject(dict):
         """
         Two digit code that specifies the country in which the certificate subject located.
         """
-        ...
+        return pulumi.get(self, "country")
 
     @property
     @pulumi.getter(name="distinguishedNameQualifier")
@@ -141,7 +141,7 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubject(dict):
         """
         Disambiguating information for the certificate subject.
         """
-        ...
+        return pulumi.get(self, "distinguished_name_qualifier")
 
     @property
     @pulumi.getter(name="generationQualifier")
@@ -149,7 +149,7 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubject(dict):
         """
         Typically a qualifier appended to the name of an individual. Examples include Jr. for junior, Sr. for senior, and III for third.
         """
-        ...
+        return pulumi.get(self, "generation_qualifier")
 
     @property
     @pulumi.getter(name="givenName")
@@ -157,7 +157,7 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubject(dict):
         """
         First name.
         """
-        ...
+        return pulumi.get(self, "given_name")
 
     @property
     @pulumi.getter
@@ -165,7 +165,7 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubject(dict):
         """
         Concatenation that typically contains the first letter of the `given_name`, the first letter of the middle name if one exists, and the first letter of the `surname`.
         """
-        ...
+        return pulumi.get(self, "initials")
 
     @property
     @pulumi.getter
@@ -173,7 +173,7 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubject(dict):
         """
         The locality (such as a city or town) in which the certificate subject is located.
         """
-        ...
+        return pulumi.get(self, "locality")
 
     @property
     @pulumi.getter
@@ -181,7 +181,7 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubject(dict):
         """
         Legal name of the organization with which the certificate subject is affiliated.
         """
-        ...
+        return pulumi.get(self, "organization")
 
     @property
     @pulumi.getter(name="organizationalUnit")
@@ -189,7 +189,7 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubject(dict):
         """
         A subdivision or unit of the organization (such as sales or finance) with which the certificate subject is affiliated.
         """
-        ...
+        return pulumi.get(self, "organizational_unit")
 
     @property
     @pulumi.getter
@@ -197,7 +197,7 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubject(dict):
         """
         Typically a shortened version of a longer `given_name`. For example, Jonathan is often shortened to John. Elizabeth is often shortened to Beth, Liz, or Eliza.
         """
-        ...
+        return pulumi.get(self, "pseudonym")
 
     @property
     @pulumi.getter
@@ -205,7 +205,7 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubject(dict):
         """
         State in which the subject of the certificate is located.
         """
-        ...
+        return pulumi.get(self, "state")
 
     @property
     @pulumi.getter
@@ -213,7 +213,7 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubject(dict):
         """
         Family name. In the US and the UK for example, the surname of an individual is ordered last. In Asian cultures the surname is typically ordered first.
         """
-        ...
+        return pulumi.get(self, "surname")
 
     @property
     @pulumi.getter
@@ -221,7 +221,7 @@ class CertificateAuthorityCertificateAuthorityConfigurationSubject(dict):
         """
         A title such as Mr. or Ms. which is pre-pended to the name to refer formally to the certificate subject.
         """
-        ...
+        return pulumi.get(self, "title")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -243,7 +243,7 @@ class CertificateAuthorityRevocationConfiguration(dict):
         """
         Nested argument containing configuration of the certificate revocation list (CRL), if any, maintained by the certificate authority. Defined below.
         """
-        ...
+        return pulumi.get(self, "crl_configuration")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -276,7 +276,7 @@ class CertificateAuthorityRevocationConfigurationCrlConfiguration(dict):
         """
         Number of days until a certificate expires. Must be between 1 and 5000.
         """
-        ...
+        return pulumi.get(self, "expiration_in_days")
 
     @property
     @pulumi.getter(name="customCname")
@@ -284,7 +284,7 @@ class CertificateAuthorityRevocationConfigurationCrlConfiguration(dict):
         """
         Name inserted into the certificate CRL Distribution Points extension that enables the use of an alias for the CRL distribution point. Use this value if you don't want the name of your S3 bucket to be public.
         """
-        ...
+        return pulumi.get(self, "custom_cname")
 
     @property
     @pulumi.getter
@@ -292,7 +292,7 @@ class CertificateAuthorityRevocationConfigurationCrlConfiguration(dict):
         """
         Boolean value that specifies whether certificate revocation lists (CRLs) are enabled. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="s3BucketName")
@@ -300,7 +300,7 @@ class CertificateAuthorityRevocationConfigurationCrlConfiguration(dict):
         """
         Name of the S3 bucket that contains the CRL. If you do not provide a value for the `custom_cname` argument, the name of your S3 bucket is placed into the CRL Distribution Points extension of the issued certificate. You must specify a bucket policy that allows ACM PCA to write the CRL to your bucket.
         """
-        ...
+        return pulumi.get(self, "s3_bucket_name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -315,7 +315,7 @@ class GetCertificateAuthorityRevocationConfigurationResult(dict):
     @property
     @pulumi.getter(name="crlConfigurations")
     def crl_configurations(self) -> List['outputs.GetCertificateAuthorityRevocationConfigurationCrlConfigurationResult']:
-        ...
+        return pulumi.get(self, "crl_configurations")
 
 
 @pulumi.output_type
@@ -333,21 +333,21 @@ class GetCertificateAuthorityRevocationConfigurationCrlConfigurationResult(dict)
     @property
     @pulumi.getter(name="customCname")
     def custom_cname(self) -> str:
-        ...
+        return pulumi.get(self, "custom_cname")
 
     @property
     @pulumi.getter
     def enabled(self) -> bool:
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="expirationInDays")
     def expiration_in_days(self) -> float:
-        ...
+        return pulumi.get(self, "expiration_in_days")
 
     @property
     @pulumi.getter(name="s3BucketName")
     def s3_bucket_name(self) -> str:
-        ...
+        return pulumi.get(self, "s3_bucket_name")
 
 

@@ -263,7 +263,7 @@ class Service(pulumi.CustomResource):
         """
         The capacity provider strategy to use for the service. Can be one or more.  Defined below.
         """
-        ...
+        return pulumi.get(self, "capacity_provider_strategies")
 
     @property
     @pulumi.getter
@@ -271,7 +271,7 @@ class Service(pulumi.CustomResource):
         """
         ARN of an ECS cluster
         """
-        ...
+        return pulumi.get(self, "cluster")
 
     @property
     @pulumi.getter(name="deploymentController")
@@ -279,7 +279,7 @@ class Service(pulumi.CustomResource):
         """
         Configuration block containing deployment controller configuration. Defined below.
         """
-        ...
+        return pulumi.get(self, "deployment_controller")
 
     @property
     @pulumi.getter(name="deploymentMaximumPercent")
@@ -287,7 +287,7 @@ class Service(pulumi.CustomResource):
         """
         The upper limit (as a percentage of the service's desiredCount) of the number of running tasks that can be running in a service during a deployment. Not valid when using the `DAEMON` scheduling strategy.
         """
-        ...
+        return pulumi.get(self, "deployment_maximum_percent")
 
     @property
     @pulumi.getter(name="deploymentMinimumHealthyPercent")
@@ -295,7 +295,7 @@ class Service(pulumi.CustomResource):
         """
         The lower limit (as a percentage of the service's desiredCount) of the number of running tasks that must remain running and healthy in a service during a deployment.
         """
-        ...
+        return pulumi.get(self, "deployment_minimum_healthy_percent")
 
     @property
     @pulumi.getter(name="desiredCount")
@@ -303,7 +303,7 @@ class Service(pulumi.CustomResource):
         """
         The number of instances of the task definition to place and keep running. Defaults to 0. Do not specify if using the `DAEMON` scheduling strategy.
         """
-        ...
+        return pulumi.get(self, "desired_count")
 
     @property
     @pulumi.getter(name="enableEcsManagedTags")
@@ -311,7 +311,7 @@ class Service(pulumi.CustomResource):
         """
         Specifies whether to enable Amazon ECS managed tags for the tasks within the service.
         """
-        ...
+        return pulumi.get(self, "enable_ecs_managed_tags")
 
     @property
     @pulumi.getter(name="forceNewDeployment")
@@ -319,7 +319,7 @@ class Service(pulumi.CustomResource):
         """
         Enable to force a new task deployment of the service. This can be used to update tasks to use a newer Docker image with same image/tag combination (e.g. `myimage:latest`), roll Fargate tasks onto a newer platform version, or immediately deploy `ordered_placement_strategy` and `placement_constraints` updates.
         """
-        ...
+        return pulumi.get(self, "force_new_deployment")
 
     @property
     @pulumi.getter(name="healthCheckGracePeriodSeconds")
@@ -327,7 +327,7 @@ class Service(pulumi.CustomResource):
         """
         Seconds to ignore failing load balancer health checks on newly instantiated tasks to prevent premature shutdown, up to 2147483647. Only valid for services configured to use load balancers.
         """
-        ...
+        return pulumi.get(self, "health_check_grace_period_seconds")
 
     @property
     @pulumi.getter(name="iamRole")
@@ -335,7 +335,7 @@ class Service(pulumi.CustomResource):
         """
         ARN of the IAM role that allows Amazon ECS to make calls to your load balancer on your behalf. This parameter is required if you are using a load balancer with your service, but only if your task definition does not use the `awsvpc` network mode. If using `awsvpc` network mode, do not specify this role. If your account has already created the Amazon ECS service-linked role, that role is used by default for your service unless you specify a role here.
         """
-        ...
+        return pulumi.get(self, "iam_role")
 
     @property
     @pulumi.getter(name="launchType")
@@ -343,7 +343,7 @@ class Service(pulumi.CustomResource):
         """
         The launch type on which to run your service. The valid values are `EC2` and `FARGATE`. Defaults to `EC2`.
         """
-        ...
+        return pulumi.get(self, "launch_type")
 
     @property
     @pulumi.getter(name="loadBalancers")
@@ -351,7 +351,7 @@ class Service(pulumi.CustomResource):
         """
         A load balancer block. Load balancers documented below.
         """
-        ...
+        return pulumi.get(self, "load_balancers")
 
     @property
     @pulumi.getter
@@ -359,7 +359,7 @@ class Service(pulumi.CustomResource):
         """
         The name of the service (up to 255 letters, numbers, hyphens, and underscores)
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="networkConfiguration")
@@ -367,7 +367,7 @@ class Service(pulumi.CustomResource):
         """
         The network configuration for the service. This parameter is required for task definitions that use the `awsvpc` network mode to receive their own Elastic Network Interface, and it is not supported for other network modes.
         """
-        ...
+        return pulumi.get(self, "network_configuration")
 
     @property
     @pulumi.getter(name="orderedPlacementStrategies")
@@ -375,7 +375,7 @@ class Service(pulumi.CustomResource):
         """
         Service level strategy rules that are taken into consideration during task placement. List from top to bottom in order of precedence. Updates to this configuration will take effect next task deployment unless `force_new_deployment` is enabled. The maximum number of `ordered_placement_strategy` blocks is `5`. Defined below.
         """
-        ...
+        return pulumi.get(self, "ordered_placement_strategies")
 
     @property
     @pulumi.getter(name="placementConstraints")
@@ -383,7 +383,7 @@ class Service(pulumi.CustomResource):
         """
         rules that are taken into consideration during task placement. Updates to this configuration will take effect next task deployment unless `force_new_deployment` is enabled. Maximum number of `placement_constraints` is `10`. Defined below.
         """
-        ...
+        return pulumi.get(self, "placement_constraints")
 
     @property
     @pulumi.getter(name="platformVersion")
@@ -391,7 +391,7 @@ class Service(pulumi.CustomResource):
         """
         The platform version on which to run your service. Only applicable for `launch_type` set to `FARGATE`. Defaults to `LATEST`. More information about Fargate platform versions can be found in the [AWS ECS User Guide](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html).
         """
-        ...
+        return pulumi.get(self, "platform_version")
 
     @property
     @pulumi.getter(name="propagateTags")
@@ -399,7 +399,7 @@ class Service(pulumi.CustomResource):
         """
         Specifies whether to propagate the tags from the task definition or the service to the tasks. The valid values are `SERVICE` and `TASK_DEFINITION`.
         """
-        ...
+        return pulumi.get(self, "propagate_tags")
 
     @property
     @pulumi.getter(name="schedulingStrategy")
@@ -407,7 +407,7 @@ class Service(pulumi.CustomResource):
         """
         The scheduling strategy to use for the service. The valid values are `REPLICA` and `DAEMON`. Defaults to `REPLICA`. Note that [*Tasks using the Fargate launch type or the `CODE_DEPLOY` or `EXTERNAL` deployment controller types don't support the `DAEMON` scheduling strategy*](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html).
         """
-        ...
+        return pulumi.get(self, "scheduling_strategy")
 
     @property
     @pulumi.getter(name="serviceRegistries")
@@ -415,7 +415,7 @@ class Service(pulumi.CustomResource):
         """
         The service discovery registries for the service. The maximum number of `service_registries` blocks is `1`.
         """
-        ...
+        return pulumi.get(self, "service_registries")
 
     @property
     @pulumi.getter
@@ -423,7 +423,7 @@ class Service(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="taskDefinition")
@@ -431,12 +431,12 @@ class Service(pulumi.CustomResource):
         """
         The family and revision (`family:revision`) or full ARN of the task definition that you want to run in your service. Required unless using the `EXTERNAL` deployment controller. If a revision is not specified, the latest `ACTIVE` revision is used.
         """
-        ...
+        return pulumi.get(self, "task_definition")
 
     @property
     @pulumi.getter(name="waitForSteadyState")
     def wait_for_steady_state(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "wait_for_steady_state")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

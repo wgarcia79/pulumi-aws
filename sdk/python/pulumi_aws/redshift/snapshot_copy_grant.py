@@ -110,7 +110,7 @@ class SnapshotCopyGrant(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of snapshot copy grant
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="kmsKeyId")
@@ -118,7 +118,7 @@ class SnapshotCopyGrant(pulumi.CustomResource):
         """
         The unique identifier for the customer master key (CMK) that the grant applies to. Specify the key ID or the Amazon Resource Name (ARN) of the CMK. To specify a CMK in a different AWS account, you must use the key ARN. If not specified, the default key is used.
         """
-        ...
+        return pulumi.get(self, "kms_key_id")
 
     @property
     @pulumi.getter(name="snapshotCopyGrantName")
@@ -126,7 +126,7 @@ class SnapshotCopyGrant(pulumi.CustomResource):
         """
         A friendly name for identifying the grant.
         """
-        ...
+        return pulumi.get(self, "snapshot_copy_grant_name")
 
     @property
     @pulumi.getter
@@ -134,7 +134,7 @@ class SnapshotCopyGrant(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -124,7 +124,7 @@ class Response(pulumi.CustomResource):
         """
         A map specifying the parameters (paths, query strings and headers) of the Gateway Response.
         """
-        ...
+        return pulumi.get(self, "response_parameters")
 
     @property
     @pulumi.getter(name="responseTemplates")
@@ -132,7 +132,7 @@ class Response(pulumi.CustomResource):
         """
         A map specifying the templates used to transform the response body.
         """
-        ...
+        return pulumi.get(self, "response_templates")
 
     @property
     @pulumi.getter(name="responseType")
@@ -140,7 +140,7 @@ class Response(pulumi.CustomResource):
         """
         The response type of the associated GatewayResponse.
         """
-        ...
+        return pulumi.get(self, "response_type")
 
     @property
     @pulumi.getter(name="restApiId")
@@ -148,7 +148,7 @@ class Response(pulumi.CustomResource):
         """
         The string identifier of the associated REST API.
         """
-        ...
+        return pulumi.get(self, "rest_api_id")
 
     @property
     @pulumi.getter(name="statusCode")
@@ -156,7 +156,7 @@ class Response(pulumi.CustomResource):
         """
         The HTTP status code of the Gateway Response.
         """
-        ...
+        return pulumi.get(self, "status_code")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

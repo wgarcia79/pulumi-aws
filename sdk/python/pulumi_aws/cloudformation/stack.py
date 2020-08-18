@@ -198,7 +198,7 @@ class Stack(pulumi.CustomResource):
         A list of capabilities.
         Valid values: `CAPABILITY_IAM`, `CAPABILITY_NAMED_IAM`, or `CAPABILITY_AUTO_EXPAND`
         """
-        ...
+        return pulumi.get(self, "capabilities")
 
     @property
     @pulumi.getter(name="disableRollback")
@@ -207,7 +207,7 @@ class Stack(pulumi.CustomResource):
         Set to true to disable rollback of the stack if stack creation failed.
         Conflicts with `on_failure`.
         """
-        ...
+        return pulumi.get(self, "disable_rollback")
 
     @property
     @pulumi.getter(name="iamRoleArn")
@@ -215,7 +215,7 @@ class Stack(pulumi.CustomResource):
         """
         The ARN of an IAM role that AWS CloudFormation assumes to create the stack. If you don't specify a value, AWS CloudFormation uses the role that was previously associated with the stack. If no role is available, AWS CloudFormation uses a temporary session that is generated from your user credentials.
         """
-        ...
+        return pulumi.get(self, "iam_role_arn")
 
     @property
     @pulumi.getter
@@ -223,7 +223,7 @@ class Stack(pulumi.CustomResource):
         """
         Stack name.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="notificationArns")
@@ -231,7 +231,7 @@ class Stack(pulumi.CustomResource):
         """
         A list of SNS topic ARNs to publish stack related events.
         """
-        ...
+        return pulumi.get(self, "notification_arns")
 
     @property
     @pulumi.getter(name="onFailure")
@@ -240,7 +240,7 @@ class Stack(pulumi.CustomResource):
         Action to be taken if stack creation fails. This must be
         one of: `DO_NOTHING`, `ROLLBACK`, or `DELETE`. Conflicts with `disable_rollback`.
         """
-        ...
+        return pulumi.get(self, "on_failure")
 
     @property
     @pulumi.getter
@@ -248,7 +248,7 @@ class Stack(pulumi.CustomResource):
         """
         A map of outputs from the stack.
         """
-        ...
+        return pulumi.get(self, "outputs")
 
     @property
     @pulumi.getter
@@ -256,7 +256,7 @@ class Stack(pulumi.CustomResource):
         """
         A map of Parameter structures that specify input parameters for the stack.
         """
-        ...
+        return pulumi.get(self, "parameters")
 
     @property
     @pulumi.getter(name="policyBody")
@@ -265,7 +265,7 @@ class Stack(pulumi.CustomResource):
         Structure containing the stack policy body.
         Conflicts w/ `policy_url`.
         """
-        ...
+        return pulumi.get(self, "policy_body")
 
     @property
     @pulumi.getter(name="policyUrl")
@@ -274,7 +274,7 @@ class Stack(pulumi.CustomResource):
         Location of a file containing the stack policy.
         Conflicts w/ `policy_body`.
         """
-        ...
+        return pulumi.get(self, "policy_url")
 
     @property
     @pulumi.getter
@@ -282,7 +282,7 @@ class Stack(pulumi.CustomResource):
         """
         A list of tags to associate with this stack.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="templateBody")
@@ -290,7 +290,7 @@ class Stack(pulumi.CustomResource):
         """
         Structure containing the template body (max size: 51,200 bytes).
         """
-        ...
+        return pulumi.get(self, "template_body")
 
     @property
     @pulumi.getter(name="templateUrl")
@@ -298,7 +298,7 @@ class Stack(pulumi.CustomResource):
         """
         Location of a file containing the template body (max size: 460,800 bytes).
         """
-        ...
+        return pulumi.get(self, "template_url")
 
     @property
     @pulumi.getter(name="timeoutInMinutes")
@@ -306,7 +306,7 @@ class Stack(pulumi.CustomResource):
         """
         The amount of time that can pass before the stack status becomes `CREATE_FAILED`.
         """
-        ...
+        return pulumi.get(self, "timeout_in_minutes")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

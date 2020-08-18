@@ -64,7 +64,7 @@ class GetCertificateAuthorityResult:
     @property
     @pulumi.getter
     def arn(self) -> str:
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -72,7 +72,7 @@ class GetCertificateAuthorityResult:
         """
         Base64-encoded certificate authority (CA) certificate. Only available after the certificate authority certificate has been imported.
         """
-        ...
+        return pulumi.get(self, "certificate")
 
     @property
     @pulumi.getter(name="certificateChain")
@@ -80,7 +80,7 @@ class GetCertificateAuthorityResult:
         """
         Base64-encoded certificate chain that includes any intermediate certificates and chains up to root on-premises certificate that you used to sign your private CA certificate. The chain does not include your private CA certificate. Only available after the certificate authority certificate has been imported.
         """
-        ...
+        return pulumi.get(self, "certificate_chain")
 
     @property
     @pulumi.getter(name="certificateSigningRequest")
@@ -88,7 +88,7 @@ class GetCertificateAuthorityResult:
         """
         The base64 PEM-encoded certificate signing request (CSR) for your private CA certificate.
         """
-        ...
+        return pulumi.get(self, "certificate_signing_request")
 
     @property
     @pulumi.getter
@@ -96,7 +96,7 @@ class GetCertificateAuthorityResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="notAfter")
@@ -104,7 +104,7 @@ class GetCertificateAuthorityResult:
         """
         Date and time after which the certificate authority is not valid. Only available after the certificate authority certificate has been imported.
         """
-        ...
+        return pulumi.get(self, "not_after")
 
     @property
     @pulumi.getter(name="notBefore")
@@ -112,7 +112,7 @@ class GetCertificateAuthorityResult:
         """
         Date and time before which the certificate authority is not valid. Only available after the certificate authority certificate has been imported.
         """
-        ...
+        return pulumi.get(self, "not_before")
 
     @property
     @pulumi.getter(name="revocationConfigurations")
@@ -125,7 +125,7 @@ class GetCertificateAuthorityResult:
         * `revocation_configuration.0.crl_configuration.0.expiration_in_days` - Number of days until a certificate expires.
         * `revocation_configuration.0.crl_configuration.0.s3_bucket_name` - Name of the S3 bucket that contains the CRL.
         """
-        ...
+        return pulumi.get(self, "revocation_configurations")
 
     @property
     @pulumi.getter
@@ -133,7 +133,7 @@ class GetCertificateAuthorityResult:
         """
         Serial number of the certificate authority. Only available after the certificate authority certificate has been imported.
         """
-        ...
+        return pulumi.get(self, "serial")
 
     @property
     @pulumi.getter
@@ -141,7 +141,7 @@ class GetCertificateAuthorityResult:
         """
         Status of the certificate authority.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
@@ -149,7 +149,7 @@ class GetCertificateAuthorityResult:
         """
         Specifies a key-value map of user-defined tags that are attached to the certificate authority.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -157,7 +157,7 @@ class GetCertificateAuthorityResult:
         """
         The type of the certificate authority.
         """
-        ...
+        return pulumi.get(self, "type")
 
 
 

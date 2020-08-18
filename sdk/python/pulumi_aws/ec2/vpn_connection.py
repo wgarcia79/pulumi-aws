@@ -236,7 +236,7 @@ class VpnConnection(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the VPN Connection.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="customerGatewayConfiguration")
@@ -244,7 +244,7 @@ class VpnConnection(pulumi.CustomResource):
         """
         The configuration information for the VPN connection's customer gateway (in the native XML format).
         """
-        ...
+        return pulumi.get(self, "customer_gateway_configuration")
 
     @property
     @pulumi.getter(name="customerGatewayId")
@@ -252,12 +252,12 @@ class VpnConnection(pulumi.CustomResource):
         """
         The ID of the customer gateway.
         """
-        ...
+        return pulumi.get(self, "customer_gateway_id")
 
     @property
     @pulumi.getter
     def routes(self) -> List['outputs.VpnConnectionRoute']:
-        ...
+        return pulumi.get(self, "routes")
 
     @property
     @pulumi.getter(name="staticRoutesOnly")
@@ -265,7 +265,7 @@ class VpnConnection(pulumi.CustomResource):
         """
         Whether the VPN connection uses static routes exclusively. Static routes must be used for devices that don't support BGP.
         """
-        ...
+        return pulumi.get(self, "static_routes_only")
 
     @property
     @pulumi.getter
@@ -273,7 +273,7 @@ class VpnConnection(pulumi.CustomResource):
         """
         Tags to apply to the connection.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="transitGatewayAttachmentId")
@@ -281,7 +281,7 @@ class VpnConnection(pulumi.CustomResource):
         """
         When associated with an EC2 Transit Gateway (`transit_gateway_id` argument), the attachment ID.
         """
-        ...
+        return pulumi.get(self, "transit_gateway_attachment_id")
 
     @property
     @pulumi.getter(name="transitGatewayId")
@@ -289,7 +289,7 @@ class VpnConnection(pulumi.CustomResource):
         """
         The ID of the EC2 Transit Gateway.
         """
-        ...
+        return pulumi.get(self, "transit_gateway_id")
 
     @property
     @pulumi.getter(name="tunnel1Address")
@@ -297,7 +297,7 @@ class VpnConnection(pulumi.CustomResource):
         """
         The public IP address of the first VPN tunnel.
         """
-        ...
+        return pulumi.get(self, "tunnel1_address")
 
     @property
     @pulumi.getter(name="tunnel1BgpAsn")
@@ -305,7 +305,7 @@ class VpnConnection(pulumi.CustomResource):
         """
         The bgp asn number of the first VPN tunnel.
         """
-        ...
+        return pulumi.get(self, "tunnel1_bgp_asn")
 
     @property
     @pulumi.getter(name="tunnel1BgpHoldtime")
@@ -313,7 +313,7 @@ class VpnConnection(pulumi.CustomResource):
         """
         The bgp holdtime of the first VPN tunnel.
         """
-        ...
+        return pulumi.get(self, "tunnel1_bgp_holdtime")
 
     @property
     @pulumi.getter(name="tunnel1CgwInsideAddress")
@@ -321,7 +321,7 @@ class VpnConnection(pulumi.CustomResource):
         """
         The RFC 6890 link-local address of the first VPN tunnel (Customer Gateway Side).
         """
-        ...
+        return pulumi.get(self, "tunnel1_cgw_inside_address")
 
     @property
     @pulumi.getter(name="tunnel1InsideCidr")
@@ -329,7 +329,7 @@ class VpnConnection(pulumi.CustomResource):
         """
         The CIDR block of the inside IP addresses for the first VPN tunnel.
         """
-        ...
+        return pulumi.get(self, "tunnel1_inside_cidr")
 
     @property
     @pulumi.getter(name="tunnel1PresharedKey")
@@ -337,7 +337,7 @@ class VpnConnection(pulumi.CustomResource):
         """
         The preshared key of the first VPN tunnel.
         """
-        ...
+        return pulumi.get(self, "tunnel1_preshared_key")
 
     @property
     @pulumi.getter(name="tunnel1VgwInsideAddress")
@@ -345,7 +345,7 @@ class VpnConnection(pulumi.CustomResource):
         """
         The RFC 6890 link-local address of the first VPN tunnel (VPN Gateway Side).
         """
-        ...
+        return pulumi.get(self, "tunnel1_vgw_inside_address")
 
     @property
     @pulumi.getter(name="tunnel2Address")
@@ -353,7 +353,7 @@ class VpnConnection(pulumi.CustomResource):
         """
         The public IP address of the second VPN tunnel.
         """
-        ...
+        return pulumi.get(self, "tunnel2_address")
 
     @property
     @pulumi.getter(name="tunnel2BgpAsn")
@@ -361,7 +361,7 @@ class VpnConnection(pulumi.CustomResource):
         """
         The bgp asn number of the second VPN tunnel.
         """
-        ...
+        return pulumi.get(self, "tunnel2_bgp_asn")
 
     @property
     @pulumi.getter(name="tunnel2BgpHoldtime")
@@ -369,7 +369,7 @@ class VpnConnection(pulumi.CustomResource):
         """
         The bgp holdtime of the second VPN tunnel.
         """
-        ...
+        return pulumi.get(self, "tunnel2_bgp_holdtime")
 
     @property
     @pulumi.getter(name="tunnel2CgwInsideAddress")
@@ -377,7 +377,7 @@ class VpnConnection(pulumi.CustomResource):
         """
         The RFC 6890 link-local address of the second VPN tunnel (Customer Gateway Side).
         """
-        ...
+        return pulumi.get(self, "tunnel2_cgw_inside_address")
 
     @property
     @pulumi.getter(name="tunnel2InsideCidr")
@@ -385,7 +385,7 @@ class VpnConnection(pulumi.CustomResource):
         """
         The CIDR block of the inside IP addresses for the second VPN tunnel.
         """
-        ...
+        return pulumi.get(self, "tunnel2_inside_cidr")
 
     @property
     @pulumi.getter(name="tunnel2PresharedKey")
@@ -393,7 +393,7 @@ class VpnConnection(pulumi.CustomResource):
         """
         The preshared key of the second VPN tunnel.
         """
-        ...
+        return pulumi.get(self, "tunnel2_preshared_key")
 
     @property
     @pulumi.getter(name="tunnel2VgwInsideAddress")
@@ -401,7 +401,7 @@ class VpnConnection(pulumi.CustomResource):
         """
         The RFC 6890 link-local address of the second VPN tunnel (VPN Gateway Side).
         """
-        ...
+        return pulumi.get(self, "tunnel2_vgw_inside_address")
 
     @property
     @pulumi.getter
@@ -409,12 +409,12 @@ class VpnConnection(pulumi.CustomResource):
         """
         The type of VPN connection. The only type AWS supports at this time is "ipsec.1".
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="vgwTelemetries")
     def vgw_telemetries(self) -> List['outputs.VpnConnectionVgwTelemetry']:
-        ...
+        return pulumi.get(self, "vgw_telemetries")
 
     @property
     @pulumi.getter(name="vpnGatewayId")
@@ -422,7 +422,7 @@ class VpnConnection(pulumi.CustomResource):
         """
         The ID of the Virtual Private Gateway.
         """
-        ...
+        return pulumi.get(self, "vpn_gateway_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

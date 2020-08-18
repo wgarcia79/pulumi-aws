@@ -135,7 +135,7 @@ class ParameterGroup(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of parameter group
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -143,7 +143,7 @@ class ParameterGroup(pulumi.CustomResource):
         """
         The description of the Redshift parameter group. Defaults to "Managed by Pulumi".
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -151,7 +151,7 @@ class ParameterGroup(pulumi.CustomResource):
         """
         The family of the Redshift parameter group.
         """
-        ...
+        return pulumi.get(self, "family")
 
     @property
     @pulumi.getter
@@ -159,7 +159,7 @@ class ParameterGroup(pulumi.CustomResource):
         """
         The name of the Redshift parameter.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -167,7 +167,7 @@ class ParameterGroup(pulumi.CustomResource):
         """
         A list of Redshift parameters to apply.
         """
-        ...
+        return pulumi.get(self, "parameters")
 
     @property
     @pulumi.getter
@@ -175,7 +175,7 @@ class ParameterGroup(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

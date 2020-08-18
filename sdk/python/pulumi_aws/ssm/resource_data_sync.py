@@ -132,7 +132,7 @@ class ResourceDataSync(pulumi.CustomResource):
         """
         Name for the configuration.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="s3Destination")
@@ -140,7 +140,7 @@ class ResourceDataSync(pulumi.CustomResource):
         """
         Amazon S3 configuration details for the sync.
         """
-        ...
+        return pulumi.get(self, "s3_destination")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

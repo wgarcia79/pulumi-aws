@@ -47,7 +47,7 @@ class GetRepositoryResult:
         """
         Full ARN of the repository.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -55,12 +55,12 @@ class GetRepositoryResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="registryId")
@@ -68,7 +68,7 @@ class GetRepositoryResult:
         """
         The registry ID where the repository was created.
         """
-        ...
+        return pulumi.get(self, "registry_id")
 
     @property
     @pulumi.getter(name="repositoryUrl")
@@ -76,7 +76,7 @@ class GetRepositoryResult:
         """
         The URL of the repository (in the form `aws_account_id.dkr.ecr.region.amazonaws.com/repositoryName`).
         """
-        ...
+        return pulumi.get(self, "repository_url")
 
     @property
     @pulumi.getter
@@ -84,7 +84,7 @@ class GetRepositoryResult:
         """
         A map of tags assigned to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
 
 

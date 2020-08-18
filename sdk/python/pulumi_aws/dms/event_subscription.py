@@ -135,7 +135,7 @@ class EventSubscription(pulumi.CustomResource):
     @property
     @pulumi.getter
     def arn(self) -> str:
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -143,7 +143,7 @@ class EventSubscription(pulumi.CustomResource):
         """
         Whether the event subscription should be enabled.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="eventCategories")
@@ -151,7 +151,7 @@ class EventSubscription(pulumi.CustomResource):
         """
         List of event categories to listen for, see `DescribeEventCategories` for a canonical list.
         """
-        ...
+        return pulumi.get(self, "event_categories")
 
     @property
     @pulumi.getter
@@ -159,7 +159,7 @@ class EventSubscription(pulumi.CustomResource):
         """
         Name of event subscription.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="snsTopicArn")
@@ -167,7 +167,7 @@ class EventSubscription(pulumi.CustomResource):
         """
         SNS topic arn to send events on.
         """
-        ...
+        return pulumi.get(self, "sns_topic_arn")
 
     @property
     @pulumi.getter(name="sourceIds")
@@ -175,7 +175,7 @@ class EventSubscription(pulumi.CustomResource):
         """
         Ids of sources to listen to.
         """
-        ...
+        return pulumi.get(self, "source_ids")
 
     @property
     @pulumi.getter(name="sourceType")
@@ -183,12 +183,12 @@ class EventSubscription(pulumi.CustomResource):
         """
         Type of source for events. Valid values: `replication-instance` or `replication-task`
         """
-        ...
+        return pulumi.get(self, "source_type")
 
     @property
     @pulumi.getter
     def tags(self) -> Optional[Mapping[str, str]]:
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

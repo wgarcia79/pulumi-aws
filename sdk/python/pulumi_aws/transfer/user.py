@@ -163,7 +163,7 @@ class User(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of Transfer User
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="homeDirectory")
@@ -171,7 +171,7 @@ class User(pulumi.CustomResource):
         """
         The landing directory (folder) for a user when they log in to the server using their SFTP client.  It should begin with a `/`.  The first item in the path is the name of the home bucket (accessible as `${Transfer:HomeBucket}` in the policy) and the rest is the home directory (accessible as `${Transfer:HomeDirectory}` in the policy). For example, `/example-bucket-1234/username` would set the home bucket to `example-bucket-1234` and the home directory to `username`.
         """
-        ...
+        return pulumi.get(self, "home_directory")
 
     @property
     @pulumi.getter
@@ -179,7 +179,7 @@ class User(pulumi.CustomResource):
         """
         An IAM JSON policy document that scopes down user access to portions of their Amazon S3 bucket. IAM variables you can use inside this policy include `${Transfer:UserName}`, `${Transfer:HomeDirectory}`, and `${Transfer:HomeBucket}`. These are evaluated on-the-fly when navigating the bucket.
         """
-        ...
+        return pulumi.get(self, "policy")
 
     @property
     @pulumi.getter
@@ -187,7 +187,7 @@ class User(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of an IAM role that allows the service to controls your user’s access to your Amazon S3 bucket.
         """
-        ...
+        return pulumi.get(self, "role")
 
     @property
     @pulumi.getter(name="serverId")
@@ -195,7 +195,7 @@ class User(pulumi.CustomResource):
         """
         The Server ID of the Transfer Server (e.g. `s-12345678`)
         """
-        ...
+        return pulumi.get(self, "server_id")
 
     @property
     @pulumi.getter
@@ -203,7 +203,7 @@ class User(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="userName")
@@ -211,7 +211,7 @@ class User(pulumi.CustomResource):
         """
         The name used for log in to your SFTP server.
         """
-        ...
+        return pulumi.get(self, "user_name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

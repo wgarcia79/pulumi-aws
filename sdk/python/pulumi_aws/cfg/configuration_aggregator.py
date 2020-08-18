@@ -144,7 +144,7 @@ class ConfigurationAggregator(pulumi.CustomResource):
         """
         The account(s) to aggregate config data from as documented below.
         """
-        ...
+        return pulumi.get(self, "account_aggregation_source")
 
     @property
     @pulumi.getter
@@ -152,7 +152,7 @@ class ConfigurationAggregator(pulumi.CustomResource):
         """
         The ARN of the aggregator
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -160,7 +160,7 @@ class ConfigurationAggregator(pulumi.CustomResource):
         """
         The name of the configuration aggregator.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="organizationAggregationSource")
@@ -168,7 +168,7 @@ class ConfigurationAggregator(pulumi.CustomResource):
         """
         The organization to aggregate config data from as documented below.
         """
-        ...
+        return pulumi.get(self, "organization_aggregation_source")
 
     @property
     @pulumi.getter
@@ -176,7 +176,7 @@ class ConfigurationAggregator(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

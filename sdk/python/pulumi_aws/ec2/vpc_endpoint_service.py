@@ -163,7 +163,7 @@ class VpcEndpointService(pulumi.CustomResource):
         """
         Whether or not VPC endpoint connection requests to the service must be accepted by the service owner - `true` or `false`.
         """
-        ...
+        return pulumi.get(self, "acceptance_required")
 
     @property
     @pulumi.getter(name="allowedPrincipals")
@@ -171,7 +171,7 @@ class VpcEndpointService(pulumi.CustomResource):
         """
         The ARNs of one or more principals allowed to discover the endpoint service.
         """
-        ...
+        return pulumi.get(self, "allowed_principals")
 
     @property
     @pulumi.getter
@@ -179,7 +179,7 @@ class VpcEndpointService(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) of the VPC endpoint service.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="availabilityZones")
@@ -187,7 +187,7 @@ class VpcEndpointService(pulumi.CustomResource):
         """
         The Availability Zones in which the service is available.
         """
-        ...
+        return pulumi.get(self, "availability_zones")
 
     @property
     @pulumi.getter(name="baseEndpointDnsNames")
@@ -195,7 +195,7 @@ class VpcEndpointService(pulumi.CustomResource):
         """
         The DNS names for the service.
         """
-        ...
+        return pulumi.get(self, "base_endpoint_dns_names")
 
     @property
     @pulumi.getter(name="managesVpcEndpoints")
@@ -203,7 +203,7 @@ class VpcEndpointService(pulumi.CustomResource):
         """
         Whether or not the service manages its VPC endpoints - `true` or `false`.
         """
-        ...
+        return pulumi.get(self, "manages_vpc_endpoints")
 
     @property
     @pulumi.getter(name="networkLoadBalancerArns")
@@ -211,7 +211,7 @@ class VpcEndpointService(pulumi.CustomResource):
         """
         The ARNs of one or more Network Load Balancers for the endpoint service.
         """
-        ...
+        return pulumi.get(self, "network_load_balancer_arns")
 
     @property
     @pulumi.getter(name="privateDnsName")
@@ -219,7 +219,7 @@ class VpcEndpointService(pulumi.CustomResource):
         """
         The private DNS name for the service.
         """
-        ...
+        return pulumi.get(self, "private_dns_name")
 
     @property
     @pulumi.getter(name="serviceName")
@@ -227,7 +227,7 @@ class VpcEndpointService(pulumi.CustomResource):
         """
         The service name.
         """
-        ...
+        return pulumi.get(self, "service_name")
 
     @property
     @pulumi.getter(name="serviceType")
@@ -235,7 +235,7 @@ class VpcEndpointService(pulumi.CustomResource):
         """
         The service type, `Gateway` or `Interface`.
         """
-        ...
+        return pulumi.get(self, "service_type")
 
     @property
     @pulumi.getter
@@ -243,7 +243,7 @@ class VpcEndpointService(pulumi.CustomResource):
         """
         The state of the VPC endpoint service.
         """
-        ...
+        return pulumi.get(self, "state")
 
     @property
     @pulumi.getter
@@ -251,7 +251,7 @@ class VpcEndpointService(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

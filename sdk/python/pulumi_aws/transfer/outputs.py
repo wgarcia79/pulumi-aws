@@ -27,7 +27,7 @@ class ServerEndpointDetails(dict):
         """
         The ID of the VPC endpoint.
         """
-        ...
+        return pulumi.get(self, "vpc_endpoint_id")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -114,7 +114,7 @@ class DomainPolicy(pulumi.CustomResource):
         """
         IAM policy document specifying the access policies for the domain
         """
-        ...
+        return pulumi.get(self, "access_policies")
 
     @property
     @pulumi.getter(name="domainName")
@@ -122,7 +122,7 @@ class DomainPolicy(pulumi.CustomResource):
         """
         Name of the domain.
         """
-        ...
+        return pulumi.get(self, "domain_name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

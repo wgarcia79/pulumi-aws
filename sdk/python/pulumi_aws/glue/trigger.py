@@ -220,7 +220,7 @@ class Trigger(pulumi.CustomResource):
         """
         List of actions initiated by this trigger when it fires. Defined below.
         """
-        ...
+        return pulumi.get(self, "actions")
 
     @property
     @pulumi.getter
@@ -228,7 +228,7 @@ class Trigger(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of Glue Trigger
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -236,7 +236,7 @@ class Trigger(pulumi.CustomResource):
         """
         A description of the new trigger.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -244,7 +244,7 @@ class Trigger(pulumi.CustomResource):
         """
         Start the trigger. Defaults to `true`. Not valid to disable for `ON_DEMAND` type.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter
@@ -252,7 +252,7 @@ class Trigger(pulumi.CustomResource):
         """
         The name of the trigger.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -260,7 +260,7 @@ class Trigger(pulumi.CustomResource):
         """
         A predicate to specify when the new trigger should fire. Required when trigger type is `CONDITIONAL`. Defined below.
         """
-        ...
+        return pulumi.get(self, "predicate")
 
     @property
     @pulumi.getter
@@ -268,7 +268,7 @@ class Trigger(pulumi.CustomResource):
         """
         A cron expression used to specify the schedule. [Time-Based Schedules for Jobs and Crawlers](https://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html)
         """
-        ...
+        return pulumi.get(self, "schedule")
 
     @property
     @pulumi.getter
@@ -276,7 +276,7 @@ class Trigger(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -284,7 +284,7 @@ class Trigger(pulumi.CustomResource):
         """
         The type of trigger. Valid values are `CONDITIONAL`, `ON_DEMAND`, and `SCHEDULED`.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="workflowName")
@@ -292,7 +292,7 @@ class Trigger(pulumi.CustomResource):
         """
         A workflow to which the trigger should be associated to. Every workflow graph (DAG) needs a starting trigger (`ON_DEMAND` or `SCHEDULED` type) and can contain multiple additional `CONDITIONAL` triggers.
         """
-        ...
+        return pulumi.get(self, "workflow_name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

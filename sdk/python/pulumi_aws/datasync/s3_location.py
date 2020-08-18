@@ -124,7 +124,7 @@ class S3Location(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the DataSync Location.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="s3BucketArn")
@@ -132,7 +132,7 @@ class S3Location(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the S3 Bucket.
         """
-        ...
+        return pulumi.get(self, "s3_bucket_arn")
 
     @property
     @pulumi.getter(name="s3Config")
@@ -140,7 +140,7 @@ class S3Location(pulumi.CustomResource):
         """
         Configuration block containing information for connecting to S3.
         """
-        ...
+        return pulumi.get(self, "s3_config")
 
     @property
     @pulumi.getter
@@ -148,7 +148,7 @@ class S3Location(pulumi.CustomResource):
         """
         Prefix to perform actions as source or destination.
         """
-        ...
+        return pulumi.get(self, "subdirectory")
 
     @property
     @pulumi.getter
@@ -156,12 +156,12 @@ class S3Location(pulumi.CustomResource):
         """
         Key-value pairs of resource tags to assign to the DataSync Location.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
     def uri(self) -> str:
-        ...
+        return pulumi.get(self, "uri")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

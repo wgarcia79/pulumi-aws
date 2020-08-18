@@ -52,7 +52,7 @@ class GetSecurityGroupResult:
         """
         The computed ARN of the security group.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -60,32 +60,32 @@ class GetSecurityGroupResult:
         """
         The description of the security group.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetSecurityGroupFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
     def id(self) -> str:
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def tags(self) -> Mapping[str, str]:
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> str:
-        ...
+        return pulumi.get(self, "vpc_id")
 
 
 

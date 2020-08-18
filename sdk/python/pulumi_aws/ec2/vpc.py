@@ -195,7 +195,7 @@ class Vpc(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of VPC
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="assignGeneratedIpv6CidrBlock")
@@ -205,7 +205,7 @@ class Vpc(pulumi.CustomResource):
         block with a /56 prefix length for the VPC. You cannot specify the range of IP addresses, or
         the size of the CIDR block. Default is `false`.
         """
-        ...
+        return pulumi.get(self, "assign_generated_ipv6_cidr_block")
 
     @property
     @pulumi.getter(name="cidrBlock")
@@ -213,7 +213,7 @@ class Vpc(pulumi.CustomResource):
         """
         The CIDR block for the VPC.
         """
-        ...
+        return pulumi.get(self, "cidr_block")
 
     @property
     @pulumi.getter(name="defaultNetworkAclId")
@@ -221,7 +221,7 @@ class Vpc(pulumi.CustomResource):
         """
         The ID of the network ACL created by default on VPC creation
         """
-        ...
+        return pulumi.get(self, "default_network_acl_id")
 
     @property
     @pulumi.getter(name="defaultRouteTableId")
@@ -229,7 +229,7 @@ class Vpc(pulumi.CustomResource):
         """
         The ID of the route table created by default on VPC creation
         """
-        ...
+        return pulumi.get(self, "default_route_table_id")
 
     @property
     @pulumi.getter(name="defaultSecurityGroupId")
@@ -237,12 +237,12 @@ class Vpc(pulumi.CustomResource):
         """
         The ID of the security group created by default on VPC creation
         """
-        ...
+        return pulumi.get(self, "default_security_group_id")
 
     @property
     @pulumi.getter(name="dhcpOptionsId")
     def dhcp_options_id(self) -> str:
-        ...
+        return pulumi.get(self, "dhcp_options_id")
 
     @property
     @pulumi.getter(name="enableClassiclink")
@@ -252,7 +252,7 @@ class Vpc(pulumi.CustomResource):
         for the VPC. Only valid in regions and accounts that support EC2 Classic.
         See the [ClassicLink documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html) for more information. Defaults false.
         """
-        ...
+        return pulumi.get(self, "enable_classiclink")
 
     @property
     @pulumi.getter(name="enableClassiclinkDnsSupport")
@@ -261,7 +261,7 @@ class Vpc(pulumi.CustomResource):
         A boolean flag to enable/disable ClassicLink DNS Support for the VPC.
         Only valid in regions and accounts that support EC2 Classic.
         """
-        ...
+        return pulumi.get(self, "enable_classiclink_dns_support")
 
     @property
     @pulumi.getter(name="enableDnsHostnames")
@@ -269,7 +269,7 @@ class Vpc(pulumi.CustomResource):
         """
         A boolean flag to enable/disable DNS hostnames in the VPC. Defaults false.
         """
-        ...
+        return pulumi.get(self, "enable_dns_hostnames")
 
     @property
     @pulumi.getter(name="enableDnsSupport")
@@ -277,7 +277,7 @@ class Vpc(pulumi.CustomResource):
         """
         A boolean flag to enable/disable DNS support in the VPC. Defaults true.
         """
-        ...
+        return pulumi.get(self, "enable_dns_support")
 
     @property
     @pulumi.getter(name="instanceTenancy")
@@ -286,7 +286,7 @@ class Vpc(pulumi.CustomResource):
         A tenancy option for instances launched into the VPC. Default is `default`, which
         makes your instances shared on the host. Using either of the other options (`dedicated` or `host`) costs at least $2/hr.
         """
-        ...
+        return pulumi.get(self, "instance_tenancy")
 
     @property
     @pulumi.getter(name="ipv6AssociationId")
@@ -294,7 +294,7 @@ class Vpc(pulumi.CustomResource):
         """
         The association ID for the IPv6 CIDR block.
         """
-        ...
+        return pulumi.get(self, "ipv6_association_id")
 
     @property
     @pulumi.getter(name="ipv6CidrBlock")
@@ -302,7 +302,7 @@ class Vpc(pulumi.CustomResource):
         """
         The IPv6 CIDR block.
         """
-        ...
+        return pulumi.get(self, "ipv6_cidr_block")
 
     @property
     @pulumi.getter(name="mainRouteTableId")
@@ -312,7 +312,7 @@ class Vpc(pulumi.CustomResource):
         this VPC. Note that you can change a VPC's main route table by using an
         `ec2.MainRouteTableAssociation`.
         """
-        ...
+        return pulumi.get(self, "main_route_table_id")
 
     @property
     @pulumi.getter(name="ownerId")
@@ -320,7 +320,7 @@ class Vpc(pulumi.CustomResource):
         """
         The ID of the AWS account that owns the VPC.
         """
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter
@@ -328,7 +328,7 @@ class Vpc(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

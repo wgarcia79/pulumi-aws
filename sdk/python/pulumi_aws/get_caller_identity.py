@@ -41,7 +41,7 @@ class GetCallerIdentityResult:
         """
         The AWS Account ID number of the account that owns or contains the calling entity.
         """
-        ...
+        return pulumi.get(self, "account_id")
 
     @property
     @pulumi.getter
@@ -49,7 +49,7 @@ class GetCallerIdentityResult:
         """
         The AWS ARN associated with the calling entity.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -57,7 +57,7 @@ class GetCallerIdentityResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="userId")
@@ -65,7 +65,7 @@ class GetCallerIdentityResult:
         """
         The unique identifier of the calling entity.
         """
-        ...
+        return pulumi.get(self, "user_id")
 
 
 

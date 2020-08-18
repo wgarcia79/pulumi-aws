@@ -50,11 +50,11 @@ class PolicyStepScalingPolicyConfigurationArgs:
         """
         Specifies whether the adjustment is an absolute number or a percentage of the current capacity. Valid values are `ChangeInCapacity`, `ExactCapacity`, and `PercentChangeInCapacity`.
         """
-        ...
+        return pulumi.get(self, "adjustment_type")
 
     @adjustment_type.setter
     def adjustment_type(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "adjustment_type", value)
 
     @property
     @pulumi.getter
@@ -62,11 +62,11 @@ class PolicyStepScalingPolicyConfigurationArgs:
         """
         The amount of time, in seconds, after a scaling activity completes and before the next scaling activity can start.
         """
-        ...
+        return pulumi.get(self, "cooldown")
 
     @cooldown.setter
     def cooldown(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "cooldown", value)
 
     @property
     @pulumi.getter(name="metricAggregationType")
@@ -74,11 +74,11 @@ class PolicyStepScalingPolicyConfigurationArgs:
         """
         The aggregation type for the policy's metrics. Valid values are "Minimum", "Maximum", and "Average". Without a value, AWS will treat the aggregation type as "Average".
         """
-        ...
+        return pulumi.get(self, "metric_aggregation_type")
 
     @metric_aggregation_type.setter
     def metric_aggregation_type(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "metric_aggregation_type", value)
 
     @property
     @pulumi.getter(name="minAdjustmentMagnitude")
@@ -86,11 +86,11 @@ class PolicyStepScalingPolicyConfigurationArgs:
         """
         The minimum number to adjust your scalable dimension as a result of a scaling activity. If the adjustment type is PercentChangeInCapacity, the scaling policy changes the scalable dimension of the scalable target by this amount.
         """
-        ...
+        return pulumi.get(self, "min_adjustment_magnitude")
 
     @min_adjustment_magnitude.setter
     def min_adjustment_magnitude(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "min_adjustment_magnitude", value)
 
     @property
     @pulumi.getter(name="stepAdjustments")
@@ -98,11 +98,11 @@ class PolicyStepScalingPolicyConfigurationArgs:
         """
         A set of adjustments that manage scaling. These have the following structure:
         """
-        ...
+        return pulumi.get(self, "step_adjustments")
 
     @step_adjustments.setter
     def step_adjustments(self, value: Optional[pulumi.Input[List[pulumi.Input['PolicyStepScalingPolicyConfigurationStepAdjustmentArgs']]]]):
-        ...
+        pulumi.set(self, "step_adjustments", value)
 
 
 @pulumi.input_type
@@ -128,11 +128,11 @@ class PolicyStepScalingPolicyConfigurationStepAdjustmentArgs:
         """
         The number of members by which to scale, when the adjustment bounds are breached. A positive value scales up. A negative value scales down.
         """
-        ...
+        return pulumi.get(self, "scaling_adjustment")
 
     @scaling_adjustment.setter
     def scaling_adjustment(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "scaling_adjustment", value)
 
     @property
     @pulumi.getter(name="metricIntervalLowerBound")
@@ -140,11 +140,11 @@ class PolicyStepScalingPolicyConfigurationStepAdjustmentArgs:
         """
         The lower bound for the difference between the alarm threshold and the CloudWatch metric. Without a value, AWS will treat this bound as negative infinity.
         """
-        ...
+        return pulumi.get(self, "metric_interval_lower_bound")
 
     @metric_interval_lower_bound.setter
     def metric_interval_lower_bound(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "metric_interval_lower_bound", value)
 
     @property
     @pulumi.getter(name="metricIntervalUpperBound")
@@ -152,11 +152,11 @@ class PolicyStepScalingPolicyConfigurationStepAdjustmentArgs:
         """
         The upper bound for the difference between the alarm threshold and the CloudWatch metric. Without a value, AWS will treat this bound as infinity. The upper bound must be greater than the lower bound.
         """
-        ...
+        return pulumi.get(self, "metric_interval_upper_bound")
 
     @metric_interval_upper_bound.setter
     def metric_interval_upper_bound(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "metric_interval_upper_bound", value)
 
 
 @pulumi.input_type
@@ -194,11 +194,11 @@ class PolicyTargetTrackingScalingPolicyConfigurationArgs:
         """
         The target value for the metric.
         """
-        ...
+        return pulumi.get(self, "target_value")
 
     @target_value.setter
     def target_value(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "target_value", value)
 
     @property
     @pulumi.getter(name="customizedMetricSpecification")
@@ -206,11 +206,11 @@ class PolicyTargetTrackingScalingPolicyConfigurationArgs:
         """
         A custom CloudWatch metric. Documentation can be found  at: [AWS Customized Metric Specification](https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_CustomizedMetricSpecification.html). See supported fields below.
         """
-        ...
+        return pulumi.get(self, "customized_metric_specification")
 
     @customized_metric_specification.setter
     def customized_metric_specification(self, value: Optional[pulumi.Input['PolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationArgs']]):
-        ...
+        pulumi.set(self, "customized_metric_specification", value)
 
     @property
     @pulumi.getter(name="disableScaleIn")
@@ -218,11 +218,11 @@ class PolicyTargetTrackingScalingPolicyConfigurationArgs:
         """
         Indicates whether scale in by the target tracking policy is disabled. If the value is true, scale in is disabled and the target tracking policy won't remove capacity from the scalable resource. Otherwise, scale in is enabled and the target tracking policy can remove capacity from the scalable resource. The default value is `false`.
         """
-        ...
+        return pulumi.get(self, "disable_scale_in")
 
     @disable_scale_in.setter
     def disable_scale_in(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "disable_scale_in", value)
 
     @property
     @pulumi.getter(name="predefinedMetricSpecification")
@@ -230,11 +230,11 @@ class PolicyTargetTrackingScalingPolicyConfigurationArgs:
         """
         A predefined metric. See supported fields below.
         """
-        ...
+        return pulumi.get(self, "predefined_metric_specification")
 
     @predefined_metric_specification.setter
     def predefined_metric_specification(self, value: Optional[pulumi.Input['PolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecificationArgs']]):
-        ...
+        pulumi.set(self, "predefined_metric_specification", value)
 
     @property
     @pulumi.getter(name="scaleInCooldown")
@@ -242,11 +242,11 @@ class PolicyTargetTrackingScalingPolicyConfigurationArgs:
         """
         The amount of time, in seconds, after a scale in activity completes before another scale in activity can start.
         """
-        ...
+        return pulumi.get(self, "scale_in_cooldown")
 
     @scale_in_cooldown.setter
     def scale_in_cooldown(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "scale_in_cooldown", value)
 
     @property
     @pulumi.getter(name="scaleOutCooldown")
@@ -254,11 +254,11 @@ class PolicyTargetTrackingScalingPolicyConfigurationArgs:
         """
         The amount of time, in seconds, after a scale out activity completes before another scale out activity can start.
         """
-        ...
+        return pulumi.get(self, "scale_out_cooldown")
 
     @scale_out_cooldown.setter
     def scale_out_cooldown(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "scale_out_cooldown", value)
 
 
 @pulumi.input_type
@@ -290,11 +290,11 @@ class PolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificatio
         """
         The name of the metric.
         """
-        ...
+        return pulumi.get(self, "metric_name")
 
     @metric_name.setter
     def metric_name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "metric_name", value)
 
     @property
     @pulumi.getter
@@ -302,11 +302,11 @@ class PolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificatio
         """
         The namespace of the metric.
         """
-        ...
+        return pulumi.get(self, "namespace")
 
     @namespace.setter
     def namespace(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -314,11 +314,11 @@ class PolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificatio
         """
         The statistic of the metric. Valid values: `Average`, `Minimum`, `Maximum`, `SampleCount`, and `Sum`.
         """
-        ...
+        return pulumi.get(self, "statistic")
 
     @statistic.setter
     def statistic(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "statistic", value)
 
     @property
     @pulumi.getter
@@ -326,11 +326,11 @@ class PolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificatio
         """
         Configuration block(s) with the dimensions of the metric if the metric was published with dimensions. Detailed below.
         """
-        ...
+        return pulumi.get(self, "dimensions")
 
     @dimensions.setter
     def dimensions(self, value: Optional[pulumi.Input[List[pulumi.Input['PolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationDimensionArgs']]]]):
-        ...
+        pulumi.set(self, "dimensions", value)
 
     @property
     @pulumi.getter
@@ -338,11 +338,11 @@ class PolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificatio
         """
         The unit of the metric.
         """
-        ...
+        return pulumi.get(self, "unit")
 
     @unit.setter
     def unit(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "unit", value)
 
 
 @pulumi.input_type
@@ -363,11 +363,11 @@ class PolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificatio
         """
         The name of the policy.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -375,11 +375,11 @@ class PolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificatio
         """
         Value of the dimension.
         """
-        ...
+        return pulumi.get(self, "value")
 
     @value.setter
     def value(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type
@@ -401,11 +401,11 @@ class PolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecificatio
         """
         The metric type.
         """
-        ...
+        return pulumi.get(self, "predefined_metric_type")
 
     @predefined_metric_type.setter
     def predefined_metric_type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "predefined_metric_type", value)
 
     @property
     @pulumi.getter(name="resourceLabel")
@@ -413,11 +413,11 @@ class PolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecificatio
         """
         Reserved for future use.
         """
-        ...
+        return pulumi.get(self, "resource_label")
 
     @resource_label.setter
     def resource_label(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "resource_label", value)
 
 
 @pulumi.input_type
@@ -440,11 +440,11 @@ class ScheduledActionScalableTargetActionArgs:
         """
         The maximum capacity.
         """
-        ...
+        return pulumi.get(self, "max_capacity")
 
     @max_capacity.setter
     def max_capacity(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "max_capacity", value)
 
     @property
     @pulumi.getter(name="minCapacity")
@@ -452,10 +452,10 @@ class ScheduledActionScalableTargetActionArgs:
         """
         The minimum capacity.
         """
-        ...
+        return pulumi.get(self, "min_capacity")
 
     @min_capacity.setter
     def min_capacity(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "min_capacity", value)
 
 

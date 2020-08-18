@@ -40,7 +40,7 @@ class RecordAlias(dict):
         """
         Set to `true` if you want Route 53 to determine whether to respond to DNS queries using this resource record set by checking the health of the resource record set. Some resources have special requirements, see [related part of documentation](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-values.html#rrsets-values-alias-evaluate-target-health).
         """
-        ...
+        return pulumi.get(self, "evaluate_target_health")
 
     @property
     @pulumi.getter
@@ -48,7 +48,7 @@ class RecordAlias(dict):
         """
         DNS domain name for a CloudFront distribution, S3 bucket, ELB, or another resource record set in this hosted zone.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="zoneId")
@@ -56,7 +56,7 @@ class RecordAlias(dict):
         """
         Hosted zone ID for a CloudFront distribution, S3 bucket, ELB, or Route 53 hosted zone. See `resource_elb.zone_id` for example.
         """
-        ...
+        return pulumi.get(self, "zone_id")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -77,7 +77,7 @@ class RecordFailoverRoutingPolicy(dict):
         """
         `PRIMARY` or `SECONDARY`. A `PRIMARY` record will be served if its healthcheck is passing, otherwise the `SECONDARY` will be served. See http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-configuring-options.html#dns-failover-failover-rrsets
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -107,7 +107,7 @@ class RecordGeolocationRoutingPolicy(dict):
         """
         A two-letter continent code. See http://docs.aws.amazon.com/Route53/latest/APIReference/API_GetGeoLocation.html for code details. Either `continent` or `country` must be specified.
         """
-        ...
+        return pulumi.get(self, "continent")
 
     @property
     @pulumi.getter
@@ -115,7 +115,7 @@ class RecordGeolocationRoutingPolicy(dict):
         """
         A two-character country code or `*` to indicate a default resource record set.
         """
-        ...
+        return pulumi.get(self, "country")
 
     @property
     @pulumi.getter
@@ -123,7 +123,7 @@ class RecordGeolocationRoutingPolicy(dict):
         """
         A subdivision code for a country.
         """
-        ...
+        return pulumi.get(self, "subdivision")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -144,7 +144,7 @@ class RecordLatencyRoutingPolicy(dict):
         """
         An AWS region from which to measure latency. See http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy.html#routing-policy-latency
         """
-        ...
+        return pulumi.get(self, "region")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -165,7 +165,7 @@ class RecordWeightedRoutingPolicy(dict):
         """
         A numeric value indicating the relative weight of the record. See http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy.html#routing-policy-weighted.
         """
-        ...
+        return pulumi.get(self, "weight")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -193,7 +193,7 @@ class ResolverEndpointIpAddress(dict):
         """
         The ID of the subnet that contains the IP address.
         """
-        ...
+        return pulumi.get(self, "subnet_id")
 
     @property
     @pulumi.getter
@@ -201,12 +201,12 @@ class ResolverEndpointIpAddress(dict):
         """
         The IP address in the subnet that you want to use for DNS queries.
         """
-        ...
+        return pulumi.get(self, "ip")
 
     @property
     @pulumi.getter(name="ipId")
     def ip_id(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "ip_id")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -231,7 +231,7 @@ class ResolverRuleTargetIp(dict):
         """
         One IP address that you want to forward DNS queries to. You can specify only IPv4 addresses.
         """
-        ...
+        return pulumi.get(self, "ip")
 
     @property
     @pulumi.getter
@@ -239,7 +239,7 @@ class ResolverRuleTargetIp(dict):
         """
         The port at `ip` that you want to forward DNS queries to. Default value is `53`
         """
-        ...
+        return pulumi.get(self, "port")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -264,7 +264,7 @@ class ZoneVpc(dict):
         """
         ID of the VPC to associate.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     @property
     @pulumi.getter(name="vpcRegion")
@@ -272,7 +272,7 @@ class ZoneVpc(dict):
         """
         Region of the VPC to associate. Defaults to AWS provider region.
         """
-        ...
+        return pulumi.get(self, "vpc_region")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

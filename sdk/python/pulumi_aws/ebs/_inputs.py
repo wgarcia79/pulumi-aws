@@ -38,11 +38,11 @@ class GetEbsVolumesFilterArgs:
         [the underlying AWS API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVolumes.html).
         For example, if matching against the `size` filter, use:
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: str):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -51,11 +51,11 @@ class GetEbsVolumesFilterArgs:
         Set of values that are accepted for the given field.
         EBS Volume IDs will be selected if any one of the given values match.
         """
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: List[str]):
-        ...
+        pulumi.set(self, "values", value)
 
 
 @pulumi.input_type
@@ -69,20 +69,20 @@ class GetSnapshotFilterArgs:
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: str):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
     def values(self) -> List[str]:
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: List[str]):
-        ...
+        pulumi.set(self, "values", value)
 
 
 @pulumi.input_type
@@ -96,20 +96,20 @@ class GetSnapshotIdsFilterArgs:
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: str):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
     def values(self) -> List[str]:
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: List[str]):
-        ...
+        pulumi.set(self, "values", value)
 
 
 @pulumi.input_type
@@ -123,19 +123,19 @@ class GetVolumeFilterArgs:
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: str):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
     def values(self) -> List[str]:
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: List[str]):
-        ...
+        pulumi.set(self, "values", value)
 
 

@@ -144,7 +144,7 @@ class Model(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) assigned by AWS to this model.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -152,7 +152,7 @@ class Model(pulumi.CustomResource):
         """
         Specifies containers in the inference pipeline. If not specified, the `primary_container` argument is required. Fields are documented below.
         """
-        ...
+        return pulumi.get(self, "containers")
 
     @property
     @pulumi.getter(name="enableNetworkIsolation")
@@ -160,7 +160,7 @@ class Model(pulumi.CustomResource):
         """
         Isolates the model container. No inbound or outbound network calls can be made to or from the model container.
         """
-        ...
+        return pulumi.get(self, "enable_network_isolation")
 
     @property
     @pulumi.getter(name="executionRoleArn")
@@ -168,7 +168,7 @@ class Model(pulumi.CustomResource):
         """
         A role that SageMaker can assume to access model artifacts and docker images for deployment.
         """
-        ...
+        return pulumi.get(self, "execution_role_arn")
 
     @property
     @pulumi.getter
@@ -176,7 +176,7 @@ class Model(pulumi.CustomResource):
         """
         The name of the model (must be unique). If omitted, this provider will assign a random, unique name.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="primaryContainer")
@@ -184,7 +184,7 @@ class Model(pulumi.CustomResource):
         """
         The primary docker image containing inference code that is used when the model is deployed for predictions.  If not specified, the `container` argument is required. Fields are documented below.
         """
-        ...
+        return pulumi.get(self, "primary_container")
 
     @property
     @pulumi.getter
@@ -192,7 +192,7 @@ class Model(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcConfig")
@@ -200,7 +200,7 @@ class Model(pulumi.CustomResource):
         """
         Specifies the VPC that you want your model to connect to. VpcConfig is used in hosting services and in batch transform.
         """
-        ...
+        return pulumi.get(self, "vpc_config")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

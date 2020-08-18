@@ -43,7 +43,7 @@ class GetRouteTablesResult:
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetRouteTablesFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
@@ -51,7 +51,7 @@ class GetRouteTablesResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -59,17 +59,17 @@ class GetRouteTablesResult:
         """
         A set of all the route table ids found. This data source will fail if none are found.
         """
-        ...
+        return pulumi.get(self, "ids")
 
     @property
     @pulumi.getter
     def tags(self) -> Mapping[str, str]:
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "vpc_id")
 
 
 

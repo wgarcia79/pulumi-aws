@@ -38,11 +38,11 @@ class AliasRoutingConfigArgs:
         """
         A map that defines the proportion of events that should be sent to different versions of a lambda function.
         """
-        ...
+        return pulumi.get(self, "additional_version_weights")
 
     @additional_version_weights.setter
     def additional_version_weights(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[float]]]]):
-        ...
+        pulumi.set(self, "additional_version_weights", value)
 
 
 @pulumi.input_type
@@ -61,11 +61,11 @@ class EventSourceMappingDestinationConfigArgs:
         """
         The destination configuration for failed invocations. Detailed below.
         """
-        ...
+        return pulumi.get(self, "on_failure")
 
     @on_failure.setter
     def on_failure(self, value: Optional[pulumi.Input['EventSourceMappingDestinationConfigOnFailureArgs']]):
-        ...
+        pulumi.set(self, "on_failure", value)
 
 
 @pulumi.input_type
@@ -83,11 +83,11 @@ class EventSourceMappingDestinationConfigOnFailureArgs:
         """
         The Amazon Resource Name (ARN) of the destination resource.
         """
-        ...
+        return pulumi.get(self, "destination_arn")
 
     @destination_arn.setter
     def destination_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "destination_arn", value)
 
 
 @pulumi.input_type
@@ -111,11 +111,11 @@ class FunctionDeadLetterConfigArgs:
         which means allowing either the `sns:Publish` or `sqs:SendMessage` action on this ARN, depending on
         which service is targeted.
         """
-        ...
+        return pulumi.get(self, "target_arn")
 
     @target_arn.setter
     def target_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "target_arn", value)
 
 
 @pulumi.input_type
@@ -134,11 +134,11 @@ class FunctionEnvironmentArgs:
         """
         A map that defines environment variables for the Lambda function.
         """
-        ...
+        return pulumi.get(self, "variables")
 
     @variables.setter
     def variables(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "variables", value)
 
 
 @pulumi.input_type
@@ -161,11 +161,11 @@ class FunctionEventInvokeConfigDestinationConfigArgs:
         """
         Configuration block with destination configuration for failed asynchronous invocations. See below for details.
         """
-        ...
+        return pulumi.get(self, "on_failure")
 
     @on_failure.setter
     def on_failure(self, value: Optional[pulumi.Input['FunctionEventInvokeConfigDestinationConfigOnFailureArgs']]):
-        ...
+        pulumi.set(self, "on_failure", value)
 
     @property
     @pulumi.getter(name="onSuccess")
@@ -173,11 +173,11 @@ class FunctionEventInvokeConfigDestinationConfigArgs:
         """
         Configuration block with destination configuration for successful asynchronous invocations. See below for details.
         """
-        ...
+        return pulumi.get(self, "on_success")
 
     @on_success.setter
     def on_success(self, value: Optional[pulumi.Input['FunctionEventInvokeConfigDestinationConfigOnSuccessArgs']]):
-        ...
+        pulumi.set(self, "on_success", value)
 
 
 @pulumi.input_type
@@ -195,11 +195,11 @@ class FunctionEventInvokeConfigDestinationConfigOnFailureArgs:
         """
         Amazon Resource Name (ARN) of the destination resource. See the [Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations) for acceptable resource types and associated IAM permissions.
         """
-        ...
+        return pulumi.get(self, "destination")
 
     @destination.setter
     def destination(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "destination", value)
 
 
 @pulumi.input_type
@@ -217,11 +217,11 @@ class FunctionEventInvokeConfigDestinationConfigOnSuccessArgs:
         """
         Amazon Resource Name (ARN) of the destination resource. See the [Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations) for acceptable resource types and associated IAM permissions.
         """
-        ...
+        return pulumi.get(self, "destination")
 
     @destination.setter
     def destination(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "destination", value)
 
 
 @pulumi.input_type
@@ -242,11 +242,11 @@ class FunctionFileSystemConfigArgs:
         """
         The Amazon Resource Name (ARN) of the Amazon EFS Access Point that provides access to the file system.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @arn.setter
     def arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "arn", value)
 
     @property
     @pulumi.getter(name="localMountPath")
@@ -254,11 +254,11 @@ class FunctionFileSystemConfigArgs:
         """
         The path where the function can access the file system, starting with /mnt/.
         """
-        ...
+        return pulumi.get(self, "local_mount_path")
 
     @local_mount_path.setter
     def local_mount_path(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "local_mount_path", value)
 
 
 @pulumi.input_type
@@ -284,11 +284,11 @@ class FunctionTracingConfigArgs:
         from an upstream service. If no tracing header is received, Lambda will call
         X-Ray for a tracing decision.
         """
-        ...
+        return pulumi.get(self, "mode")
 
     @mode.setter
     def mode(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "mode", value)
 
 
 @pulumi.input_type
@@ -312,11 +312,11 @@ class FunctionVpcConfigArgs:
         """
         A list of security group IDs associated with the Lambda function.
         """
-        ...
+        return pulumi.get(self, "security_group_ids")
 
     @security_group_ids.setter
     def security_group_ids(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "security_group_ids", value)
 
     @property
     @pulumi.getter(name="subnetIds")
@@ -324,19 +324,19 @@ class FunctionVpcConfigArgs:
         """
         A list of subnet IDs associated with the Lambda function.
         """
-        ...
+        return pulumi.get(self, "subnet_ids")
 
     @subnet_ids.setter
     def subnet_ids(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "subnet_ids", value)
 
     @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "vpc_id")
 
     @vpc_id.setter
     def vpc_id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "vpc_id", value)
 
 

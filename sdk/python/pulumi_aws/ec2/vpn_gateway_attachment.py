@@ -111,7 +111,7 @@ class VpnGatewayAttachment(pulumi.CustomResource):
         """
         The ID of the VPC.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     @property
     @pulumi.getter(name="vpnGatewayId")
@@ -119,7 +119,7 @@ class VpnGatewayAttachment(pulumi.CustomResource):
         """
         The ID of the Virtual Private Gateway.
         """
-        ...
+        return pulumi.get(self, "vpn_gateway_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

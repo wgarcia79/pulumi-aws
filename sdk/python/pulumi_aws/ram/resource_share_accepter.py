@@ -133,7 +133,7 @@ class ResourceShareAccepter(pulumi.CustomResource):
         """
         The ARN of the resource share invitation.
         """
-        ...
+        return pulumi.get(self, "invitation_arn")
 
     @property
     @pulumi.getter(name="receiverAccountId")
@@ -141,7 +141,7 @@ class ResourceShareAccepter(pulumi.CustomResource):
         """
         The account ID of the receiver account which accepts the invitation.
         """
-        ...
+        return pulumi.get(self, "receiver_account_id")
 
     @property
     @pulumi.getter
@@ -149,7 +149,7 @@ class ResourceShareAccepter(pulumi.CustomResource):
         """
         A list of the resource ARNs shared via the resource share.
         """
-        ...
+        return pulumi.get(self, "resources")
 
     @property
     @pulumi.getter(name="senderAccountId")
@@ -157,7 +157,7 @@ class ResourceShareAccepter(pulumi.CustomResource):
         """
         The account ID of the sender account which submits the invitation.
         """
-        ...
+        return pulumi.get(self, "sender_account_id")
 
     @property
     @pulumi.getter(name="shareArn")
@@ -165,7 +165,7 @@ class ResourceShareAccepter(pulumi.CustomResource):
         """
         The ARN of the resource share.
         """
-        ...
+        return pulumi.get(self, "share_arn")
 
     @property
     @pulumi.getter(name="shareId")
@@ -173,7 +173,7 @@ class ResourceShareAccepter(pulumi.CustomResource):
         """
         The ID of the resource share as displayed in the console.
         """
-        ...
+        return pulumi.get(self, "share_id")
 
     @property
     @pulumi.getter(name="shareName")
@@ -181,7 +181,7 @@ class ResourceShareAccepter(pulumi.CustomResource):
         """
         The name of the resource share.
         """
-        ...
+        return pulumi.get(self, "share_name")
 
     @property
     @pulumi.getter
@@ -189,7 +189,7 @@ class ResourceShareAccepter(pulumi.CustomResource):
         """
         The status of the resource share (ACTIVE, PENDING, FAILED, DELETING, DELETED).
         """
-        ...
+        return pulumi.get(self, "status")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

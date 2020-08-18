@@ -239,7 +239,7 @@ class ClusterInstance(pulumi.CustomResource):
         Specifies whether any database modifications
         are applied immediately, or during the next maintenance window. Default is`false`.
         """
-        ...
+        return pulumi.get(self, "apply_immediately")
 
     @property
     @pulumi.getter
@@ -247,7 +247,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of cluster instance
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="autoMinorVersionUpgrade")
@@ -255,7 +255,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         Indicates that minor engine upgrades will be applied automatically to the DB instance during the maintenance window. Default `true`.
         """
-        ...
+        return pulumi.get(self, "auto_minor_version_upgrade")
 
     @property
     @pulumi.getter(name="availabilityZone")
@@ -263,7 +263,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         The EC2 Availability Zone that the DB instance is created in. See [docs](https://docs.aws.amazon.com/documentdb/latest/developerguide/API_CreateDBInstance.html) about the details.
         """
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter(name="caCertIdentifier")
@@ -271,7 +271,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         (Optional) The identifier of the CA certificate for the DB instance.
         """
-        ...
+        return pulumi.get(self, "ca_cert_identifier")
 
     @property
     @pulumi.getter(name="clusterIdentifier")
@@ -279,7 +279,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         The identifier of the `docdb.Cluster` in which to launch this instance.
         """
-        ...
+        return pulumi.get(self, "cluster_identifier")
 
     @property
     @pulumi.getter(name="dbSubnetGroupName")
@@ -287,7 +287,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         The DB subnet group to associate with this DB instance.
         """
-        ...
+        return pulumi.get(self, "db_subnet_group_name")
 
     @property
     @pulumi.getter(name="dbiResourceId")
@@ -295,7 +295,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         The region-unique, immutable identifier for the DB instance.
         """
-        ...
+        return pulumi.get(self, "dbi_resource_id")
 
     @property
     @pulumi.getter
@@ -303,7 +303,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         The DNS address for this instance. May not be writable
         """
-        ...
+        return pulumi.get(self, "endpoint")
 
     @property
     @pulumi.getter
@@ -311,7 +311,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         The name of the database engine to be used for the DocDB instance. Defaults to `docdb`. Valid Values: `docdb`.
         """
-        ...
+        return pulumi.get(self, "engine")
 
     @property
     @pulumi.getter(name="engineVersion")
@@ -319,7 +319,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         The database engine version
         """
-        ...
+        return pulumi.get(self, "engine_version")
 
     @property
     @pulumi.getter
@@ -327,7 +327,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         The indentifier for the DocDB instance, if omitted, this provider will assign a random, unique identifier.
         """
-        ...
+        return pulumi.get(self, "identifier")
 
     @property
     @pulumi.getter(name="identifierPrefix")
@@ -335,7 +335,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         Creates a unique identifier beginning with the specified prefix. Conflicts with `identifer`.
         """
-        ...
+        return pulumi.get(self, "identifier_prefix")
 
     @property
     @pulumi.getter(name="instanceClass")
@@ -350,7 +350,7 @@ class ClusterInstance(pulumi.CustomResource):
         - db.r4.8xlarge
         - db.r4.16xlarge
         """
-        ...
+        return pulumi.get(self, "instance_class")
 
     @property
     @pulumi.getter(name="kmsKeyId")
@@ -358,7 +358,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         The ARN for the KMS encryption key if one is set to the cluster.
         """
-        ...
+        return pulumi.get(self, "kms_key_id")
 
     @property
     @pulumi.getter
@@ -366,7 +366,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         The database port
         """
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter(name="preferredBackupWindow")
@@ -374,7 +374,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         The daily time range during which automated backups are created if automated backups are enabled.
         """
-        ...
+        return pulumi.get(self, "preferred_backup_window")
 
     @property
     @pulumi.getter(name="preferredMaintenanceWindow")
@@ -383,7 +383,7 @@ class ClusterInstance(pulumi.CustomResource):
         The window to perform maintenance in.
         Syntax: "ddd:hh24:mi-ddd:hh24:mi". Eg: "Mon:00:00-Mon:03:00".
         """
-        ...
+        return pulumi.get(self, "preferred_maintenance_window")
 
     @property
     @pulumi.getter(name="promotionTier")
@@ -391,12 +391,12 @@ class ClusterInstance(pulumi.CustomResource):
         """
         Default 0. Failover Priority setting on instance level. The reader who has lower tier has higher priority to get promoter to writer.
         """
-        ...
+        return pulumi.get(self, "promotion_tier")
 
     @property
     @pulumi.getter(name="publiclyAccessible")
     def publicly_accessible(self) -> bool:
-        ...
+        return pulumi.get(self, "publicly_accessible")
 
     @property
     @pulumi.getter(name="storageEncrypted")
@@ -404,7 +404,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         Specifies whether the DB cluster is encrypted.
         """
-        ...
+        return pulumi.get(self, "storage_encrypted")
 
     @property
     @pulumi.getter
@@ -412,7 +412,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         A map of tags to assign to the instance.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -420,7 +420,7 @@ class ClusterInstance(pulumi.CustomResource):
         """
         Boolean indicating if this instance is writable. `False` indicates this instance is a read replica.
         """
-        ...
+        return pulumi.get(self, "writer")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

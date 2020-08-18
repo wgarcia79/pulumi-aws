@@ -41,7 +41,7 @@ class CertificateDomainValidationOption(dict):
         """
         A domain name for which the certificate should be issued
         """
-        ...
+        return pulumi.get(self, "domain_name")
 
     @property
     @pulumi.getter(name="resourceRecordName")
@@ -49,7 +49,7 @@ class CertificateDomainValidationOption(dict):
         """
         The name of the DNS record to create to validate the certificate
         """
-        ...
+        return pulumi.get(self, "resource_record_name")
 
     @property
     @pulumi.getter(name="resourceRecordType")
@@ -57,7 +57,7 @@ class CertificateDomainValidationOption(dict):
         """
         The type of DNS record to create
         """
-        ...
+        return pulumi.get(self, "resource_record_type")
 
     @property
     @pulumi.getter(name="resourceRecordValue")
@@ -65,7 +65,7 @@ class CertificateDomainValidationOption(dict):
         """
         The value the DNS record needs to have
         """
-        ...
+        return pulumi.get(self, "resource_record_value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -87,7 +87,7 @@ class CertificateOptions(dict):
         """
         Specifies whether certificate details should be added to a certificate transparency log. Valid values are `ENABLED` or `DISABLED`. See https://docs.aws.amazon.com/acm/latest/userguide/acm-concepts.html#concept-transparency for more details.
         """
-        ...
+        return pulumi.get(self, "certificate_transparency_logging_preference")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

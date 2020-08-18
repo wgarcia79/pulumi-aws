@@ -93,7 +93,7 @@ class NotebookInstanceLifecycleConfiguration(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) assigned by AWS to this lifecycle configuration.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -101,7 +101,7 @@ class NotebookInstanceLifecycleConfiguration(pulumi.CustomResource):
         """
         The name of the lifecycle configuration (must be unique). If omitted, this provider will assign a random, unique name.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="onCreate")
@@ -109,7 +109,7 @@ class NotebookInstanceLifecycleConfiguration(pulumi.CustomResource):
         """
         A shell script (base64-encoded) that runs only once when the SageMaker Notebook Instance is created.
         """
-        ...
+        return pulumi.get(self, "on_create")
 
     @property
     @pulumi.getter(name="onStart")
@@ -117,7 +117,7 @@ class NotebookInstanceLifecycleConfiguration(pulumi.CustomResource):
         """
         A shell script (base64-encoded) that runs every time the SageMaker Notebook Instance is started including the time it's created.
         """
-        ...
+        return pulumi.get(self, "on_start")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

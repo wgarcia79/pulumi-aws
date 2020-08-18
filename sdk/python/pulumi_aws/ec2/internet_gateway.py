@@ -104,7 +104,7 @@ class InternetGateway(pulumi.CustomResource):
         """
         The ARN of the Internet Gateway.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="ownerId")
@@ -112,7 +112,7 @@ class InternetGateway(pulumi.CustomResource):
         """
         The ID of the AWS account that owns the internet gateway.
         """
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter
@@ -120,7 +120,7 @@ class InternetGateway(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -128,7 +128,7 @@ class InternetGateway(pulumi.CustomResource):
         """
         The VPC ID to create in.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

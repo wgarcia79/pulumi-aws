@@ -64,7 +64,7 @@ class CatalogTablePartitionKey(dict):
         """
         Name of the SerDe.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -72,7 +72,7 @@ class CatalogTablePartitionKey(dict):
         """
         Free-form text comment.
         """
-        ...
+        return pulumi.get(self, "comment")
 
     @property
     @pulumi.getter
@@ -80,7 +80,7 @@ class CatalogTablePartitionKey(dict):
         """
         The datatype of data in the Column.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -146,7 +146,7 @@ class CatalogTableStorageDescriptor(dict):
         """
         A list of reducer grouping columns, clustering columns, and bucketing columns in the table.
         """
-        ...
+        return pulumi.get(self, "bucket_columns")
 
     @property
     @pulumi.getter
@@ -154,7 +154,7 @@ class CatalogTableStorageDescriptor(dict):
         """
         A list of the Columns in the table.
         """
-        ...
+        return pulumi.get(self, "columns")
 
     @property
     @pulumi.getter
@@ -162,7 +162,7 @@ class CatalogTableStorageDescriptor(dict):
         """
         True if the data in the table is compressed, or False if not.
         """
-        ...
+        return pulumi.get(self, "compressed")
 
     @property
     @pulumi.getter(name="inputFormat")
@@ -170,7 +170,7 @@ class CatalogTableStorageDescriptor(dict):
         """
         The input format: SequenceFileInputFormat (binary), or TextInputFormat, or a custom format.
         """
-        ...
+        return pulumi.get(self, "input_format")
 
     @property
     @pulumi.getter
@@ -178,7 +178,7 @@ class CatalogTableStorageDescriptor(dict):
         """
         The physical location of the table. By default this takes the form of the warehouse location, followed by the database location in the warehouse, followed by the table name.
         """
-        ...
+        return pulumi.get(self, "location")
 
     @property
     @pulumi.getter(name="numberOfBuckets")
@@ -186,7 +186,7 @@ class CatalogTableStorageDescriptor(dict):
         """
         Must be specified if the table contains any dimension columns.
         """
-        ...
+        return pulumi.get(self, "number_of_buckets")
 
     @property
     @pulumi.getter(name="outputFormat")
@@ -194,7 +194,7 @@ class CatalogTableStorageDescriptor(dict):
         """
         The output format: SequenceFileOutputFormat (binary), or IgnoreKeyTextOutputFormat, or a custom format.
         """
-        ...
+        return pulumi.get(self, "output_format")
 
     @property
     @pulumi.getter
@@ -202,7 +202,7 @@ class CatalogTableStorageDescriptor(dict):
         """
         A map of initialization parameters for the SerDe, in key-value form.
         """
-        ...
+        return pulumi.get(self, "parameters")
 
     @property
     @pulumi.getter(name="serDeInfo")
@@ -210,7 +210,7 @@ class CatalogTableStorageDescriptor(dict):
         """
         Serialization/deserialization (SerDe) information.
         """
-        ...
+        return pulumi.get(self, "ser_de_info")
 
     @property
     @pulumi.getter(name="skewedInfo")
@@ -218,7 +218,7 @@ class CatalogTableStorageDescriptor(dict):
         """
         Information about values that appear very frequently in a column (skewed values).
         """
-        ...
+        return pulumi.get(self, "skewed_info")
 
     @property
     @pulumi.getter(name="sortColumns")
@@ -226,7 +226,7 @@ class CatalogTableStorageDescriptor(dict):
         """
         A list of Order objects specifying the sort order of each bucket in the table.
         """
-        ...
+        return pulumi.get(self, "sort_columns")
 
     @property
     @pulumi.getter(name="storedAsSubDirectories")
@@ -234,7 +234,7 @@ class CatalogTableStorageDescriptor(dict):
         """
         True if the table data is stored in subdirectories, or False if not.
         """
-        ...
+        return pulumi.get(self, "stored_as_sub_directories")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -263,7 +263,7 @@ class CatalogTableStorageDescriptorColumn(dict):
         """
         Name of the SerDe.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -271,7 +271,7 @@ class CatalogTableStorageDescriptorColumn(dict):
         """
         Free-form text comment.
         """
-        ...
+        return pulumi.get(self, "comment")
 
     @property
     @pulumi.getter
@@ -279,7 +279,7 @@ class CatalogTableStorageDescriptorColumn(dict):
         """
         The datatype of data in the Column.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -309,7 +309,7 @@ class CatalogTableStorageDescriptorSerDeInfo(dict):
         """
         Name of the SerDe.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -317,7 +317,7 @@ class CatalogTableStorageDescriptorSerDeInfo(dict):
         """
         A map of initialization parameters for the SerDe, in key-value form.
         """
-        ...
+        return pulumi.get(self, "parameters")
 
     @property
     @pulumi.getter(name="serializationLibrary")
@@ -325,7 +325,7 @@ class CatalogTableStorageDescriptorSerDeInfo(dict):
         """
         Usually the class that implements the SerDe. An example is: org.apache.hadoop.hive.serde2.columnar.ColumnarSerDe.
         """
-        ...
+        return pulumi.get(self, "serialization_library")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -355,7 +355,7 @@ class CatalogTableStorageDescriptorSkewedInfo(dict):
         """
         A list of names of columns that contain skewed values.
         """
-        ...
+        return pulumi.get(self, "skewed_column_names")
 
     @property
     @pulumi.getter(name="skewedColumnValueLocationMaps")
@@ -363,7 +363,7 @@ class CatalogTableStorageDescriptorSkewedInfo(dict):
         """
         A list of values that appear so frequently as to be considered skewed.
         """
-        ...
+        return pulumi.get(self, "skewed_column_value_location_maps")
 
     @property
     @pulumi.getter(name="skewedColumnValues")
@@ -371,7 +371,7 @@ class CatalogTableStorageDescriptorSkewedInfo(dict):
         """
         A map of skewed values to the columns that contain them.
         """
-        ...
+        return pulumi.get(self, "skewed_column_values")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -395,7 +395,7 @@ class CatalogTableStorageDescriptorSortColumn(dict):
         """
         The name of the column.
         """
-        ...
+        return pulumi.get(self, "column")
 
     @property
     @pulumi.getter(name="sortOrder")
@@ -403,7 +403,7 @@ class CatalogTableStorageDescriptorSortColumn(dict):
         """
         Indicates that the column is sorted in ascending order (== 1), or in descending order (==0).
         """
-        ...
+        return pulumi.get(self, "sort_order")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -445,7 +445,7 @@ class ClassifierCsvClassifier(dict):
         """
         Enables the processing of files that contain only one column.
         """
-        ...
+        return pulumi.get(self, "allow_single_column")
 
     @property
     @pulumi.getter(name="containsHeader")
@@ -453,7 +453,7 @@ class ClassifierCsvClassifier(dict):
         """
         Indicates whether the CSV file contains a header. This can be one of "ABSENT", "PRESENT", or "UNKNOWN".
         """
-        ...
+        return pulumi.get(self, "contains_header")
 
     @property
     @pulumi.getter
@@ -461,7 +461,7 @@ class ClassifierCsvClassifier(dict):
         """
         The delimiter used in the Csv to separate columns.
         """
-        ...
+        return pulumi.get(self, "delimiter")
 
     @property
     @pulumi.getter(name="disableValueTrimming")
@@ -469,7 +469,7 @@ class ClassifierCsvClassifier(dict):
         """
         Specifies whether to trim column values.
         """
-        ...
+        return pulumi.get(self, "disable_value_trimming")
 
     @property
     @pulumi.getter
@@ -477,7 +477,7 @@ class ClassifierCsvClassifier(dict):
         """
         A list of strings representing column names.
         """
-        ...
+        return pulumi.get(self, "headers")
 
     @property
     @pulumi.getter(name="quoteSymbol")
@@ -485,7 +485,7 @@ class ClassifierCsvClassifier(dict):
         """
         A custom symbol to denote what combines content into a single column value. It must be different from the column delimiter.
         """
-        ...
+        return pulumi.get(self, "quote_symbol")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -513,7 +513,7 @@ class ClassifierGrokClassifier(dict):
         """
         An identifier of the data format that the classifier matches.
         """
-        ...
+        return pulumi.get(self, "classification")
 
     @property
     @pulumi.getter(name="grokPattern")
@@ -521,7 +521,7 @@ class ClassifierGrokClassifier(dict):
         """
         The grok pattern used by this classifier.
         """
-        ...
+        return pulumi.get(self, "grok_pattern")
 
     @property
     @pulumi.getter(name="customPatterns")
@@ -529,7 +529,7 @@ class ClassifierGrokClassifier(dict):
         """
         Custom grok patterns used by this classifier.
         """
-        ...
+        return pulumi.get(self, "custom_patterns")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -550,7 +550,7 @@ class ClassifierJsonClassifier(dict):
         """
         A `JsonPath` string defining the JSON data for the classifier to classify. AWS Glue supports a subset of `JsonPath`, as described in [Writing JsonPath Custom Classifiers](https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-json).
         """
-        ...
+        return pulumi.get(self, "json_path")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -574,7 +574,7 @@ class ClassifierXmlClassifier(dict):
         """
         An identifier of the data format that the classifier matches.
         """
-        ...
+        return pulumi.get(self, "classification")
 
     @property
     @pulumi.getter(name="rowTag")
@@ -582,7 +582,7 @@ class ClassifierXmlClassifier(dict):
         """
         The XML tag designating the element that contains each record in an XML document being parsed. Note that this cannot identify a self-closing element (closed by `/>`). An empty row element that contains only attributes can be parsed as long as it ends with a closing tag (for example, `<row item_a="A" item_b="B"></row>` is okay, but `<row item_a="A" item_b="B" />` is not).
         """
-        ...
+        return pulumi.get(self, "row_tag")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -612,7 +612,7 @@ class ConnectionPhysicalConnectionRequirements(dict):
         """
         The availability zone of the connection. This field is redundant and implied by `subnet_id`, but is currently an api requirement.
         """
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter(name="securityGroupIdLists")
@@ -620,7 +620,7 @@ class ConnectionPhysicalConnectionRequirements(dict):
         """
         The security group ID list used by the connection.
         """
-        ...
+        return pulumi.get(self, "security_group_id_lists")
 
     @property
     @pulumi.getter(name="subnetId")
@@ -628,7 +628,7 @@ class ConnectionPhysicalConnectionRequirements(dict):
         """
         The subnet ID used by the connection.
         """
-        ...
+        return pulumi.get(self, "subnet_id")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -652,7 +652,7 @@ class CrawlerCatalogTarget(dict):
         """
         The name of the Glue database to be synchronized.
         """
-        ...
+        return pulumi.get(self, "database_name")
 
     @property
     @pulumi.getter
@@ -660,7 +660,7 @@ class CrawlerCatalogTarget(dict):
         """
         A list of catalog tables to be synchronized.
         """
-        ...
+        return pulumi.get(self, "tables")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -681,7 +681,7 @@ class CrawlerDynamodbTarget(dict):
         """
         The name of the DynamoDB table to crawl.
         """
-        ...
+        return pulumi.get(self, "path")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -709,7 +709,7 @@ class CrawlerJdbcTarget(dict):
         """
         The name of the connection to use to connect to the JDBC target.
         """
-        ...
+        return pulumi.get(self, "connection_name")
 
     @property
     @pulumi.getter
@@ -717,7 +717,7 @@ class CrawlerJdbcTarget(dict):
         """
         The path of the JDBC target.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter
@@ -725,7 +725,7 @@ class CrawlerJdbcTarget(dict):
         """
         A list of glob patterns used to exclude from the crawl.
         """
-        ...
+        return pulumi.get(self, "exclusions")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -750,7 +750,7 @@ class CrawlerS3Target(dict):
         """
         The name of the DynamoDB table to crawl.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter
@@ -758,7 +758,7 @@ class CrawlerS3Target(dict):
         """
         A list of glob patterns used to exclude from the crawl.
         """
-        ...
+        return pulumi.get(self, "exclusions")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -784,7 +784,7 @@ class CrawlerSchemaChangePolicy(dict):
         """
         The deletion behavior when the crawler finds a deleted object. Valid values: `LOG`, `DELETE_FROM_DATABASE`, or `DEPRECATE_IN_DATABASE`. Defaults to `DEPRECATE_IN_DATABASE`.
         """
-        ...
+        return pulumi.get(self, "delete_behavior")
 
     @property
     @pulumi.getter(name="updateBehavior")
@@ -792,7 +792,7 @@ class CrawlerSchemaChangePolicy(dict):
         """
         The update behavior when the crawler finds a changed schema. Valid values: `LOG` or `UPDATE_IN_DATABASE`. Defaults to `UPDATE_IN_DATABASE`.
         """
-        ...
+        return pulumi.get(self, "update_behavior")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -821,7 +821,7 @@ class JobCommand(dict):
         """
         Specifies the S3 path to a script that executes a job.
         """
-        ...
+        return pulumi.get(self, "script_location")
 
     @property
     @pulumi.getter
@@ -829,7 +829,7 @@ class JobCommand(dict):
         """
         The name of the job command. Defaults to `glueetl`. Use `pythonshell` for Python Shell Job Type, `max_capacity` needs to be set if `pythonshell` is chosen.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="pythonVersion")
@@ -837,7 +837,7 @@ class JobCommand(dict):
         """
         The Python version being used to execute a Python shell job. Allowed values are 2 or 3.
         """
-        ...
+        return pulumi.get(self, "python_version")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -859,7 +859,7 @@ class JobExecutionProperty(dict):
         """
         The maximum number of concurrent runs allowed for a job. The default is 1.
         """
-        ...
+        return pulumi.get(self, "max_concurrent_runs")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -881,7 +881,7 @@ class JobNotificationProperty(dict):
         """
         After a job run starts, the number of minutes to wait before sending a job run delay notification.
         """
-        ...
+        return pulumi.get(self, "notify_delay_after")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -903,12 +903,12 @@ class SecurityConfigurationEncryptionConfiguration(dict):
     @property
     @pulumi.getter(name="cloudwatchEncryption")
     def cloudwatch_encryption(self) -> 'outputs.SecurityConfigurationEncryptionConfigurationCloudwatchEncryption':
-        ...
+        return pulumi.get(self, "cloudwatch_encryption")
 
     @property
     @pulumi.getter(name="jobBookmarksEncryption")
     def job_bookmarks_encryption(self) -> 'outputs.SecurityConfigurationEncryptionConfigurationJobBookmarksEncryption':
-        ...
+        return pulumi.get(self, "job_bookmarks_encryption")
 
     @property
     @pulumi.getter(name="s3Encryption")
@@ -916,7 +916,7 @@ class SecurityConfigurationEncryptionConfiguration(dict):
         """
         A `s3_encryption ` block as described below, which contains encryption configuration for S3 data.
         """
-        ...
+        return pulumi.get(self, "s3_encryption")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -942,7 +942,7 @@ class SecurityConfigurationEncryptionConfigurationCloudwatchEncryption(dict):
         """
         Encryption mode to use for CloudWatch data. Valid values: `DISABLED`, `SSE-KMS`. Default value: `DISABLED`.
         """
-        ...
+        return pulumi.get(self, "cloudwatch_encryption_mode")
 
     @property
     @pulumi.getter(name="kmsKeyArn")
@@ -950,7 +950,7 @@ class SecurityConfigurationEncryptionConfigurationCloudwatchEncryption(dict):
         """
         Amazon Resource Name (ARN) of the KMS key to be used to encrypt the data.
         """
-        ...
+        return pulumi.get(self, "kms_key_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -976,7 +976,7 @@ class SecurityConfigurationEncryptionConfigurationJobBookmarksEncryption(dict):
         """
         Encryption mode to use for job bookmarks data. Valid values: `CSE-KMS`, `DISABLED`. Default value: `DISABLED`.
         """
-        ...
+        return pulumi.get(self, "job_bookmarks_encryption_mode")
 
     @property
     @pulumi.getter(name="kmsKeyArn")
@@ -984,7 +984,7 @@ class SecurityConfigurationEncryptionConfigurationJobBookmarksEncryption(dict):
         """
         Amazon Resource Name (ARN) of the KMS key to be used to encrypt the data.
         """
-        ...
+        return pulumi.get(self, "kms_key_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1010,7 +1010,7 @@ class SecurityConfigurationEncryptionConfigurationS3Encryption(dict):
         """
         Amazon Resource Name (ARN) of the KMS key to be used to encrypt the data.
         """
-        ...
+        return pulumi.get(self, "kms_key_arn")
 
     @property
     @pulumi.getter(name="s3EncryptionMode")
@@ -1018,7 +1018,7 @@ class SecurityConfigurationEncryptionConfigurationS3Encryption(dict):
         """
         Encryption mode to use for S3 data. Valid values: `DISABLED`, `SSE-KMS`, `SSE-S3`. Default value: `DISABLED`.
         """
-        ...
+        return pulumi.get(self, "s3_encryption_mode")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1052,7 +1052,7 @@ class TriggerAction(dict):
         """
         Arguments to be passed to the job. You can specify arguments here that your own job-execution script consumes, as well as arguments that AWS Glue itself consumes.
         """
-        ...
+        return pulumi.get(self, "arguments")
 
     @property
     @pulumi.getter(name="crawlerName")
@@ -1060,7 +1060,7 @@ class TriggerAction(dict):
         """
         The name of the crawler to be executed. Conflicts with `job_name`.
         """
-        ...
+        return pulumi.get(self, "crawler_name")
 
     @property
     @pulumi.getter(name="jobName")
@@ -1068,7 +1068,7 @@ class TriggerAction(dict):
         """
         The name of a job to be executed. Conflicts with `crawler_name`.
         """
-        ...
+        return pulumi.get(self, "job_name")
 
     @property
     @pulumi.getter
@@ -1076,7 +1076,7 @@ class TriggerAction(dict):
         """
         The job run timeout in minutes. It overrides the timeout value of the job.
         """
-        ...
+        return pulumi.get(self, "timeout")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1101,7 +1101,7 @@ class TriggerPredicate(dict):
         """
         A list of the conditions that determine when the trigger will fire. Defined below.
         """
-        ...
+        return pulumi.get(self, "conditions")
 
     @property
     @pulumi.getter
@@ -1109,7 +1109,7 @@ class TriggerPredicate(dict):
         """
         How to handle multiple conditions. Defaults to `AND`. Valid values are `AND` or `ANY`.
         """
-        ...
+        return pulumi.get(self, "logical")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1147,7 +1147,7 @@ class TriggerPredicateCondition(dict):
         """
         The condition crawl state. Currently, the values supported are `RUNNING`, `SUCCEEDED`, `CANCELLED`, and `FAILED`. If this is specified, `crawler_name` must also be specified. Conflicts with `state`.
         """
-        ...
+        return pulumi.get(self, "crawl_state")
 
     @property
     @pulumi.getter(name="crawlerName")
@@ -1155,7 +1155,7 @@ class TriggerPredicateCondition(dict):
         """
         The name of the crawler to watch. If this is specified, `crawl_state` must also be specified. Conflicts with `job_name`.
         """
-        ...
+        return pulumi.get(self, "crawler_name")
 
     @property
     @pulumi.getter(name="jobName")
@@ -1163,7 +1163,7 @@ class TriggerPredicateCondition(dict):
         """
         The name of the job to watch. If this is specified, `state` must also be specified. Conflicts with `crawler_name`.
         """
-        ...
+        return pulumi.get(self, "job_name")
 
     @property
     @pulumi.getter(name="logicalOperator")
@@ -1171,7 +1171,7 @@ class TriggerPredicateCondition(dict):
         """
         A logical operator. Defaults to `EQUALS`.
         """
-        ...
+        return pulumi.get(self, "logical_operator")
 
     @property
     @pulumi.getter
@@ -1179,7 +1179,7 @@ class TriggerPredicateCondition(dict):
         """
         The condition job state. Currently, the values supported are `SUCCEEDED`, `STOPPED`, `TIMEOUT` and `FAILED`. If this is specified, `job_name` must also be specified. Conflicts with `crawler_state`.
         """
-        ...
+        return pulumi.get(self, "state")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1207,7 +1207,7 @@ class GetScriptDagEdgeResult(dict):
         """
         The ID of the node at which the edge starts.
         """
-        ...
+        return pulumi.get(self, "source")
 
     @property
     @pulumi.getter
@@ -1215,7 +1215,7 @@ class GetScriptDagEdgeResult(dict):
         """
         The ID of the node at which the edge ends.
         """
-        ...
+        return pulumi.get(self, "target")
 
     @property
     @pulumi.getter(name="targetParameter")
@@ -1223,7 +1223,7 @@ class GetScriptDagEdgeResult(dict):
         """
         The target of the edge.
         """
-        ...
+        return pulumi.get(self, "target_parameter")
 
 
 @pulumi.output_type
@@ -1251,7 +1251,7 @@ class GetScriptDagNodeResult(dict):
         """
         Nested configuration an argument or property of a node. Defined below.
         """
-        ...
+        return pulumi.get(self, "args")
 
     @property
     @pulumi.getter
@@ -1259,7 +1259,7 @@ class GetScriptDagNodeResult(dict):
         """
         A node identifier that is unique within the node's graph.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="nodeType")
@@ -1267,7 +1267,7 @@ class GetScriptDagNodeResult(dict):
         """
         The type of node this is.
         """
-        ...
+        return pulumi.get(self, "node_type")
 
     @property
     @pulumi.getter(name="lineNumber")
@@ -1275,7 +1275,7 @@ class GetScriptDagNodeResult(dict):
         """
         The line number of the node.
         """
-        ...
+        return pulumi.get(self, "line_number")
 
 
 @pulumi.output_type
@@ -1300,7 +1300,7 @@ class GetScriptDagNodeArgResult(dict):
         """
         The name of the argument or property.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -1308,7 +1308,7 @@ class GetScriptDagNodeArgResult(dict):
         """
         The value of the argument or property.
         """
-        ...
+        return pulumi.get(self, "value")
 
     @property
     @pulumi.getter
@@ -1316,6 +1316,6 @@ class GetScriptDagNodeArgResult(dict):
         """
         Boolean if the value is used as a parameter. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "param")
 
 

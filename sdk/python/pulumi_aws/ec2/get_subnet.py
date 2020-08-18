@@ -79,57 +79,57 @@ class GetSubnetResult:
         """
         The ARN of the subnet.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="assignIpv6AddressOnCreation")
     def assign_ipv6_address_on_creation(self) -> bool:
-        ...
+        return pulumi.get(self, "assign_ipv6_address_on_creation")
 
     @property
     @pulumi.getter(name="availabilityZone")
     def availability_zone(self) -> str:
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter(name="availabilityZoneId")
     def availability_zone_id(self) -> str:
-        ...
+        return pulumi.get(self, "availability_zone_id")
 
     @property
     @pulumi.getter(name="cidrBlock")
     def cidr_block(self) -> str:
-        ...
+        return pulumi.get(self, "cidr_block")
 
     @property
     @pulumi.getter(name="defaultForAz")
     def default_for_az(self) -> bool:
-        ...
+        return pulumi.get(self, "default_for_az")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetSubnetFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
     def id(self) -> str:
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="ipv6CidrBlock")
     def ipv6_cidr_block(self) -> str:
-        ...
+        return pulumi.get(self, "ipv6_cidr_block")
 
     @property
     @pulumi.getter(name="ipv6CidrBlockAssociationId")
     def ipv6_cidr_block_association_id(self) -> str:
-        ...
+        return pulumi.get(self, "ipv6_cidr_block_association_id")
 
     @property
     @pulumi.getter(name="mapPublicIpOnLaunch")
     def map_public_ip_on_launch(self) -> bool:
-        ...
+        return pulumi.get(self, "map_public_ip_on_launch")
 
     @property
     @pulumi.getter(name="outpostArn")
@@ -137,7 +137,7 @@ class GetSubnetResult:
         """
         The Amazon Resource Name (ARN) of the Outpost.
         """
-        ...
+        return pulumi.get(self, "outpost_arn")
 
     @property
     @pulumi.getter(name="ownerId")
@@ -145,22 +145,22 @@ class GetSubnetResult:
         """
         The ID of the AWS account that owns the subnet.
         """
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter
     def state(self) -> str:
-        ...
+        return pulumi.get(self, "state")
 
     @property
     @pulumi.getter
     def tags(self) -> Mapping[str, str]:
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> str:
-        ...
+        return pulumi.get(self, "vpc_id")
 
 
 

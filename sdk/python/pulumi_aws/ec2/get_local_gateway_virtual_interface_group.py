@@ -43,17 +43,17 @@ class GetLocalGatewayVirtualInterfaceGroupResult:
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetLocalGatewayVirtualInterfaceGroupFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
     def id(self) -> str:
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="localGatewayId")
     def local_gateway_id(self) -> str:
-        ...
+        return pulumi.get(self, "local_gateway_id")
 
     @property
     @pulumi.getter(name="localGatewayVirtualInterfaceIds")
@@ -61,12 +61,12 @@ class GetLocalGatewayVirtualInterfaceGroupResult:
         """
         Set of EC2 Local Gateway Virtual Interface identifiers.
         """
-        ...
+        return pulumi.get(self, "local_gateway_virtual_interface_ids")
 
     @property
     @pulumi.getter
     def tags(self) -> Mapping[str, str]:
-        ...
+        return pulumi.get(self, "tags")
 
 
 

@@ -101,7 +101,7 @@ class OrganizationConfiguration(pulumi.CustomResource):
         """
         When this setting is enabled, all new accounts that are created in, or added to, the organization are added as a member accounts of the organization’s GuardDuty delegated administrator and GuardDuty is enabled in that AWS Region.
         """
-        ...
+        return pulumi.get(self, "auto_enable")
 
     @property
     @pulumi.getter(name="detectorId")
@@ -109,7 +109,7 @@ class OrganizationConfiguration(pulumi.CustomResource):
         """
         The detector ID of the GuardDuty account.
         """
-        ...
+        return pulumi.get(self, "detector_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -291,7 +291,7 @@ class LaunchTemplate(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) of the instance profile.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="blockDeviceMappings")
@@ -300,7 +300,7 @@ class LaunchTemplate(pulumi.CustomResource):
         Specify volumes to attach to the instance besides the volumes specified by the AMI.
         See Block Devices below for details.
         """
-        ...
+        return pulumi.get(self, "block_device_mappings")
 
     @property
     @pulumi.getter(name="capacityReservationSpecification")
@@ -308,7 +308,7 @@ class LaunchTemplate(pulumi.CustomResource):
         """
         Targeting for EC2 capacity reservations. See Capacity Reservation Specification below for more details.
         """
-        ...
+        return pulumi.get(self, "capacity_reservation_specification")
 
     @property
     @pulumi.getter(name="cpuOptions")
@@ -316,7 +316,7 @@ class LaunchTemplate(pulumi.CustomResource):
         """
         The CPU options for the instance. See CPU Options below for more details.
         """
-        ...
+        return pulumi.get(self, "cpu_options")
 
     @property
     @pulumi.getter(name="creditSpecification")
@@ -325,7 +325,7 @@ class LaunchTemplate(pulumi.CustomResource):
         Customize the credit specification of the instance. See Credit
         Specification below for more details.
         """
-        ...
+        return pulumi.get(self, "credit_specification")
 
     @property
     @pulumi.getter(name="defaultVersion")
@@ -333,7 +333,7 @@ class LaunchTemplate(pulumi.CustomResource):
         """
         Default Version of the launch template.
         """
-        ...
+        return pulumi.get(self, "default_version")
 
     @property
     @pulumi.getter
@@ -341,7 +341,7 @@ class LaunchTemplate(pulumi.CustomResource):
         """
         Description of the launch template.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="disableApiTermination")
@@ -350,7 +350,7 @@ class LaunchTemplate(pulumi.CustomResource):
         If `true`, enables [EC2 Instance
         Termination Protection](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingDisableAPITermination)
         """
-        ...
+        return pulumi.get(self, "disable_api_termination")
 
     @property
     @pulumi.getter(name="ebsOptimized")
@@ -358,7 +358,7 @@ class LaunchTemplate(pulumi.CustomResource):
         """
         If `true`, the launched EC2 instance will be EBS-optimized.
         """
-        ...
+        return pulumi.get(self, "ebs_optimized")
 
     @property
     @pulumi.getter(name="elasticGpuSpecifications")
@@ -367,7 +367,7 @@ class LaunchTemplate(pulumi.CustomResource):
         The elastic GPU to attach to the instance. See Elastic GPU
         below for more details.
         """
-        ...
+        return pulumi.get(self, "elastic_gpu_specifications")
 
     @property
     @pulumi.getter(name="elasticInferenceAccelerator")
@@ -375,7 +375,7 @@ class LaunchTemplate(pulumi.CustomResource):
         """
         Configuration block containing an Elastic Inference Accelerator to attach to the instance. See Elastic Inference Accelerator below for more details.
         """
-        ...
+        return pulumi.get(self, "elastic_inference_accelerator")
 
     @property
     @pulumi.getter(name="hibernationOptions")
@@ -383,7 +383,7 @@ class LaunchTemplate(pulumi.CustomResource):
         """
         The hibernation options for the instance. See Hibernation Options below for more details.
         """
-        ...
+        return pulumi.get(self, "hibernation_options")
 
     @property
     @pulumi.getter(name="iamInstanceProfile")
@@ -392,7 +392,7 @@ class LaunchTemplate(pulumi.CustomResource):
         The IAM Instance Profile to launch the instance with. See Instance Profile
         below for more details.
         """
-        ...
+        return pulumi.get(self, "iam_instance_profile")
 
     @property
     @pulumi.getter(name="imageId")
@@ -400,7 +400,7 @@ class LaunchTemplate(pulumi.CustomResource):
         """
         The AMI from which to launch the instance.
         """
-        ...
+        return pulumi.get(self, "image_id")
 
     @property
     @pulumi.getter(name="instanceInitiatedShutdownBehavior")
@@ -409,7 +409,7 @@ class LaunchTemplate(pulumi.CustomResource):
         Shutdown behavior for the instance. Can be `stop` or `terminate`.
         (Default: `stop`).
         """
-        ...
+        return pulumi.get(self, "instance_initiated_shutdown_behavior")
 
     @property
     @pulumi.getter(name="instanceMarketOptions")
@@ -418,7 +418,7 @@ class LaunchTemplate(pulumi.CustomResource):
         The market (purchasing) option for the instance. See Market Options
         below for details.
         """
-        ...
+        return pulumi.get(self, "instance_market_options")
 
     @property
     @pulumi.getter(name="instanceType")
@@ -426,7 +426,7 @@ class LaunchTemplate(pulumi.CustomResource):
         """
         The type of the instance.
         """
-        ...
+        return pulumi.get(self, "instance_type")
 
     @property
     @pulumi.getter(name="kernelId")
@@ -434,7 +434,7 @@ class LaunchTemplate(pulumi.CustomResource):
         """
         The kernel ID.
         """
-        ...
+        return pulumi.get(self, "kernel_id")
 
     @property
     @pulumi.getter(name="keyName")
@@ -442,7 +442,7 @@ class LaunchTemplate(pulumi.CustomResource):
         """
         The key name to use for the instance.
         """
-        ...
+        return pulumi.get(self, "key_name")
 
     @property
     @pulumi.getter(name="latestVersion")
@@ -450,7 +450,7 @@ class LaunchTemplate(pulumi.CustomResource):
         """
         The latest version of the launch template.
         """
-        ...
+        return pulumi.get(self, "latest_version")
 
     @property
     @pulumi.getter(name="licenseSpecifications")
@@ -458,7 +458,7 @@ class LaunchTemplate(pulumi.CustomResource):
         """
         A list of license specifications to associate with. See License Specification below for more details.
         """
-        ...
+        return pulumi.get(self, "license_specifications")
 
     @property
     @pulumi.getter(name="metadataOptions")
@@ -466,7 +466,7 @@ class LaunchTemplate(pulumi.CustomResource):
         """
         Customize the metadata options for the instance. See Metadata Options below for more details.
         """
-        ...
+        return pulumi.get(self, "metadata_options")
 
     @property
     @pulumi.getter
@@ -474,7 +474,7 @@ class LaunchTemplate(pulumi.CustomResource):
         """
         The monitoring option for the instance. See Monitoring below for more details.
         """
-        ...
+        return pulumi.get(self, "monitoring")
 
     @property
     @pulumi.getter
@@ -482,7 +482,7 @@ class LaunchTemplate(pulumi.CustomResource):
         """
         The name of the launch template. If you leave this blank, this provider will auto-generate a unique name.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="namePrefix")
@@ -490,7 +490,7 @@ class LaunchTemplate(pulumi.CustomResource):
         """
         Creates a unique name beginning with the specified prefix. Conflicts with `name`.
         """
-        ...
+        return pulumi.get(self, "name_prefix")
 
     @property
     @pulumi.getter(name="networkInterfaces")
@@ -499,7 +499,7 @@ class LaunchTemplate(pulumi.CustomResource):
         Customize network interfaces to be attached at instance boot time. See Network
         Interfaces below for more details.
         """
-        ...
+        return pulumi.get(self, "network_interfaces")
 
     @property
     @pulumi.getter
@@ -507,7 +507,7 @@ class LaunchTemplate(pulumi.CustomResource):
         """
         The placement of the instance. See Placement below for more details.
         """
-        ...
+        return pulumi.get(self, "placement")
 
     @property
     @pulumi.getter(name="ramDiskId")
@@ -515,7 +515,7 @@ class LaunchTemplate(pulumi.CustomResource):
         """
         The ID of the RAM disk.
         """
-        ...
+        return pulumi.get(self, "ram_disk_id")
 
     @property
     @pulumi.getter(name="securityGroupNames")
@@ -524,7 +524,7 @@ class LaunchTemplate(pulumi.CustomResource):
         A list of security group names to associate with. If you are creating Instances in a VPC, use
         `vpc_security_group_ids` instead.
         """
-        ...
+        return pulumi.get(self, "security_group_names")
 
     @property
     @pulumi.getter(name="tagSpecifications")
@@ -532,7 +532,7 @@ class LaunchTemplate(pulumi.CustomResource):
         """
         The tags to apply to the resources during launch. See Tag Specifications below for more details.
         """
-        ...
+        return pulumi.get(self, "tag_specifications")
 
     @property
     @pulumi.getter
@@ -540,7 +540,7 @@ class LaunchTemplate(pulumi.CustomResource):
         """
         A map of tags to assign to the launch template.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updateDefaultVersion")
@@ -548,7 +548,7 @@ class LaunchTemplate(pulumi.CustomResource):
         """
         Whether to update Default Version each update. Conflicts with `default_version`.
         """
-        ...
+        return pulumi.get(self, "update_default_version")
 
     @property
     @pulumi.getter(name="userData")
@@ -556,7 +556,7 @@ class LaunchTemplate(pulumi.CustomResource):
         """
         The Base64-encoded user data to provide when launching the instance.
         """
-        ...
+        return pulumi.get(self, "user_data")
 
     @property
     @pulumi.getter(name="vpcSecurityGroupIds")
@@ -564,7 +564,7 @@ class LaunchTemplate(pulumi.CustomResource):
         """
         A list of security group IDs to associate with.
         """
-        ...
+        return pulumi.get(self, "vpc_security_group_ids")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

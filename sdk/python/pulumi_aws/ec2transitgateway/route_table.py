@@ -102,7 +102,7 @@ class RouteTable(pulumi.CustomResource):
         """
         Boolean whether this is the default association route table for the EC2 Transit Gateway.
         """
-        ...
+        return pulumi.get(self, "default_association_route_table")
 
     @property
     @pulumi.getter(name="defaultPropagationRouteTable")
@@ -110,7 +110,7 @@ class RouteTable(pulumi.CustomResource):
         """
         Boolean whether this is the default propagation route table for the EC2 Transit Gateway.
         """
-        ...
+        return pulumi.get(self, "default_propagation_route_table")
 
     @property
     @pulumi.getter
@@ -118,7 +118,7 @@ class RouteTable(pulumi.CustomResource):
         """
         Key-value tags for the EC2 Transit Gateway Route Table.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="transitGatewayId")
@@ -126,7 +126,7 @@ class RouteTable(pulumi.CustomResource):
         """
         Identifier of EC2 Transit Gateway.
         """
-        ...
+        return pulumi.get(self, "transit_gateway_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

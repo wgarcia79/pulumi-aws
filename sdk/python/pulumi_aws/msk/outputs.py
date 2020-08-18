@@ -55,7 +55,7 @@ class ClusterBrokerNodeGroupInfo(dict):
         """
         A list of subnets to connect to in client VPC ([documentation](https://docs.aws.amazon.com/msk/1.0/apireference/clusters.html#clusters-prop-brokernodegroupinfo-clientsubnets)).
         """
-        ...
+        return pulumi.get(self, "client_subnets")
 
     @property
     @pulumi.getter(name="ebsVolumeSize")
@@ -63,7 +63,7 @@ class ClusterBrokerNodeGroupInfo(dict):
         """
         The size in GiB of the EBS volume for the data drive on each broker node.
         """
-        ...
+        return pulumi.get(self, "ebs_volume_size")
 
     @property
     @pulumi.getter(name="instanceType")
@@ -71,7 +71,7 @@ class ClusterBrokerNodeGroupInfo(dict):
         """
         Specify the instance type to use for the kafka brokers. e.g. kafka.m5.large. ([Pricing info](https://aws.amazon.com/msk/pricing/))
         """
-        ...
+        return pulumi.get(self, "instance_type")
 
     @property
     @pulumi.getter(name="securityGroups")
@@ -79,7 +79,7 @@ class ClusterBrokerNodeGroupInfo(dict):
         """
         A list of the security groups to associate with the elastic network interfaces to control who can communicate with the cluster.
         """
-        ...
+        return pulumi.get(self, "security_groups")
 
     @property
     @pulumi.getter(name="azDistribution")
@@ -87,7 +87,7 @@ class ClusterBrokerNodeGroupInfo(dict):
         """
         The distribution of broker nodes across availability zones ([documentation](https://docs.aws.amazon.com/msk/1.0/apireference/clusters.html#clusters-model-brokerazdistribution)). Currently the only valid value is `DEFAULT`.
         """
-        ...
+        return pulumi.get(self, "az_distribution")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -109,7 +109,7 @@ class ClusterClientAuthentication(dict):
         """
         Configuration block for specifying TLS client authentication. See below.
         """
-        ...
+        return pulumi.get(self, "tls")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -131,7 +131,7 @@ class ClusterClientAuthenticationTls(dict):
         """
         List of ACM Certificate Authority Amazon Resource Names (ARNs).
         """
-        ...
+        return pulumi.get(self, "certificate_authority_arns")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -155,7 +155,7 @@ class ClusterConfigurationInfo(dict):
         """
         Amazon Resource Name (ARN) of the MSK Configuration to use in the cluster.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -163,7 +163,7 @@ class ClusterConfigurationInfo(dict):
         """
         Revision of the MSK Configuration to use in the cluster.
         """
-        ...
+        return pulumi.get(self, "revision")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -189,7 +189,7 @@ class ClusterEncryptionInfo(dict):
         """
         You may specify a KMS key short ID or ARN (it will always output an ARN) to use for encrypting your data at rest.  If no key is specified, an AWS managed KMS ('aws/msk' managed service) key will be used for encrypting the data at rest.
         """
-        ...
+        return pulumi.get(self, "encryption_at_rest_kms_key_arn")
 
     @property
     @pulumi.getter(name="encryptionInTransit")
@@ -197,7 +197,7 @@ class ClusterEncryptionInfo(dict):
         """
         Configuration block to specify encryption in transit. See below.
         """
-        ...
+        return pulumi.get(self, "encryption_in_transit")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -223,7 +223,7 @@ class ClusterEncryptionInfoEncryptionInTransit(dict):
         """
         Encryption setting for data in transit between clients and brokers. Valid values: `TLS`, `TLS_PLAINTEXT`, and `PLAINTEXT`. Default value is `TLS_PLAINTEXT` when `encryption_in_transit` block defined, but `TLS` when `encryption_in_transit` block omitted.
         """
-        ...
+        return pulumi.get(self, "client_broker")
 
     @property
     @pulumi.getter(name="inCluster")
@@ -231,7 +231,7 @@ class ClusterEncryptionInfoEncryptionInTransit(dict):
         """
         Whether data communication among broker nodes is encrypted. Default value: `true`.
         """
-        ...
+        return pulumi.get(self, "in_cluster")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -252,7 +252,7 @@ class ClusterLoggingInfo(dict):
         """
         Configuration block for Broker Logs settings for logging info. See below.
         """
-        ...
+        return pulumi.get(self, "broker_logs")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -274,17 +274,17 @@ class ClusterLoggingInfoBrokerLogs(dict):
     @property
     @pulumi.getter(name="cloudwatchLogs")
     def cloudwatch_logs(self) -> Optional['outputs.ClusterLoggingInfoBrokerLogsCloudwatchLogs']:
-        ...
+        return pulumi.get(self, "cloudwatch_logs")
 
     @property
     @pulumi.getter
     def firehose(self) -> Optional['outputs.ClusterLoggingInfoBrokerLogsFirehose']:
-        ...
+        return pulumi.get(self, "firehose")
 
     @property
     @pulumi.getter
     def s3(self) -> Optional['outputs.ClusterLoggingInfoBrokerLogsS3']:
-        ...
+        return pulumi.get(self, "s3")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -309,7 +309,7 @@ class ClusterLoggingInfoBrokerLogsCloudwatchLogs(dict):
         """
         Indicates whether you want to enable or disable streaming broker logs to Cloudwatch Logs.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="logGroup")
@@ -317,7 +317,7 @@ class ClusterLoggingInfoBrokerLogsCloudwatchLogs(dict):
         """
         Name of the Cloudwatch Log Group to deliver logs to.
         """
-        ...
+        return pulumi.get(self, "log_group")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -342,7 +342,7 @@ class ClusterLoggingInfoBrokerLogsFirehose(dict):
         """
         Indicates whether you want to enable or disable streaming broker logs to Cloudwatch Logs.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="deliveryStream")
@@ -350,7 +350,7 @@ class ClusterLoggingInfoBrokerLogsFirehose(dict):
         """
         Name of the Kinesis Data Firehose delivery stream to deliver logs to.
         """
-        ...
+        return pulumi.get(self, "delivery_stream")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -379,7 +379,7 @@ class ClusterLoggingInfoBrokerLogsS3(dict):
         """
         Indicates whether you want to enable or disable streaming broker logs to Cloudwatch Logs.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter
@@ -387,7 +387,7 @@ class ClusterLoggingInfoBrokerLogsS3(dict):
         """
         Name of the S3 bucket to deliver logs to.
         """
-        ...
+        return pulumi.get(self, "bucket")
 
     @property
     @pulumi.getter
@@ -395,7 +395,7 @@ class ClusterLoggingInfoBrokerLogsS3(dict):
         """
         Prefix to append to the folder name.
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -416,7 +416,7 @@ class ClusterOpenMonitoring(dict):
         """
         Configuration block for Prometheus settings for open monitoring. See below.
         """
-        ...
+        return pulumi.get(self, "prometheus")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -442,7 +442,7 @@ class ClusterOpenMonitoringPrometheus(dict):
         """
         Configuration block for JMX Exporter. See below.
         """
-        ...
+        return pulumi.get(self, "jmx_exporter")
 
     @property
     @pulumi.getter(name="nodeExporter")
@@ -450,7 +450,7 @@ class ClusterOpenMonitoringPrometheus(dict):
         """
         Configuration block for Node Exporter. See below.
         """
-        ...
+        return pulumi.get(self, "node_exporter")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -471,7 +471,7 @@ class ClusterOpenMonitoringPrometheusJmxExporter(dict):
         """
         Indicates whether you want to enable or disable the JMX Exporter.
         """
-        ...
+        return pulumi.get(self, "enabled_in_broker")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -492,7 +492,7 @@ class ClusterOpenMonitoringPrometheusNodeExporter(dict):
         """
         Indicates whether you want to enable or disable the JMX Exporter.
         """
-        ...
+        return pulumi.get(self, "enabled_in_broker")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

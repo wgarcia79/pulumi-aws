@@ -361,7 +361,7 @@ class LaunchConfiguration(pulumi.CustomResource):
         """
         The Amazon Resource Name of the launch configuration.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="associatePublicIpAddress")
@@ -369,7 +369,7 @@ class LaunchConfiguration(pulumi.CustomResource):
         """
         Associate a public ip address with an instance in a VPC.
         """
-        ...
+        return pulumi.get(self, "associate_public_ip_address")
 
     @property
     @pulumi.getter(name="ebsBlockDevices")
@@ -378,7 +378,7 @@ class LaunchConfiguration(pulumi.CustomResource):
         Additional EBS block devices to attach to the
         instance.  See Block Devices below for details.
         """
-        ...
+        return pulumi.get(self, "ebs_block_devices")
 
     @property
     @pulumi.getter(name="ebsOptimized")
@@ -386,7 +386,7 @@ class LaunchConfiguration(pulumi.CustomResource):
         """
         If true, the launched EC2 instance will be EBS-optimized.
         """
-        ...
+        return pulumi.get(self, "ebs_optimized")
 
     @property
     @pulumi.getter(name="enableMonitoring")
@@ -394,7 +394,7 @@ class LaunchConfiguration(pulumi.CustomResource):
         """
         Enables/disables detailed monitoring. This is enabled by default.
         """
-        ...
+        return pulumi.get(self, "enable_monitoring")
 
     @property
     @pulumi.getter(name="ephemeralBlockDevices")
@@ -403,7 +403,7 @@ class LaunchConfiguration(pulumi.CustomResource):
         Customize Ephemeral (also known as
         "Instance Store") volumes on the instance. See Block Devices below for details.
         """
-        ...
+        return pulumi.get(self, "ephemeral_block_devices")
 
     @property
     @pulumi.getter(name="iamInstanceProfile")
@@ -412,7 +412,7 @@ class LaunchConfiguration(pulumi.CustomResource):
         The name attribute of the IAM instance profile to associate
         with launched instances.
         """
-        ...
+        return pulumi.get(self, "iam_instance_profile")
 
     @property
     @pulumi.getter(name="imageId")
@@ -420,7 +420,7 @@ class LaunchConfiguration(pulumi.CustomResource):
         """
         The EC2 image ID to launch.
         """
-        ...
+        return pulumi.get(self, "image_id")
 
     @property
     @pulumi.getter(name="instanceType")
@@ -428,7 +428,7 @@ class LaunchConfiguration(pulumi.CustomResource):
         """
         The size of instance to launch.
         """
-        ...
+        return pulumi.get(self, "instance_type")
 
     @property
     @pulumi.getter(name="keyName")
@@ -436,7 +436,7 @@ class LaunchConfiguration(pulumi.CustomResource):
         """
         The key name that should be used for the instance.
         """
-        ...
+        return pulumi.get(self, "key_name")
 
     @property
     @pulumi.getter
@@ -445,7 +445,7 @@ class LaunchConfiguration(pulumi.CustomResource):
         The name of the launch configuration. If you leave
         this blank, this provider will auto-generate a unique name.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="namePrefix")
@@ -454,7 +454,7 @@ class LaunchConfiguration(pulumi.CustomResource):
         Creates a unique name beginning with the specified
         prefix. Conflicts with `name`.
         """
-        ...
+        return pulumi.get(self, "name_prefix")
 
     @property
     @pulumi.getter(name="placementTenancy")
@@ -464,7 +464,7 @@ class LaunchConfiguration(pulumi.CustomResource):
         `"default"` or `"dedicated"`, see [AWS's Create Launch Configuration](http://docs.aws.amazon.com/AutoScaling/latest/APIReference/API_CreateLaunchConfiguration.html)
         for more details
         """
-        ...
+        return pulumi.get(self, "placement_tenancy")
 
     @property
     @pulumi.getter(name="rootBlockDevice")
@@ -473,7 +473,7 @@ class LaunchConfiguration(pulumi.CustomResource):
         Customize details about the root block
         device of the instance. See Block Devices below for details.
         """
-        ...
+        return pulumi.get(self, "root_block_device")
 
     @property
     @pulumi.getter(name="securityGroups")
@@ -481,7 +481,7 @@ class LaunchConfiguration(pulumi.CustomResource):
         """
         A list of associated security group IDS.
         """
-        ...
+        return pulumi.get(self, "security_groups")
 
     @property
     @pulumi.getter(name="spotPrice")
@@ -489,7 +489,7 @@ class LaunchConfiguration(pulumi.CustomResource):
         """
         The maximum price to use for reserving spot instances.
         """
-        ...
+        return pulumi.get(self, "spot_price")
 
     @property
     @pulumi.getter(name="userData")
@@ -497,7 +497,7 @@ class LaunchConfiguration(pulumi.CustomResource):
         """
         The user data to provide when launching the instance. Do not pass gzip-compressed data via this argument; see `user_data_base64` instead.
         """
-        ...
+        return pulumi.get(self, "user_data")
 
     @property
     @pulumi.getter(name="userDataBase64")
@@ -505,7 +505,7 @@ class LaunchConfiguration(pulumi.CustomResource):
         """
         Can be used instead of `user_data` to pass base64-encoded binary data directly. Use this instead of `user_data` whenever the value is not a valid UTF-8 string. For example, gzip-encoded user data must be base64-encoded and passed via this argument to avoid corruption.
         """
-        ...
+        return pulumi.get(self, "user_data_base64")
 
     @property
     @pulumi.getter(name="vpcClassicLinkId")
@@ -513,7 +513,7 @@ class LaunchConfiguration(pulumi.CustomResource):
         """
         The ID of a ClassicLink-enabled VPC. Only applies to EC2-Classic instances. (eg. `vpc-2730681a`)
         """
-        ...
+        return pulumi.get(self, "vpc_classic_link_id")
 
     @property
     @pulumi.getter(name="vpcClassicLinkSecurityGroups")
@@ -521,7 +521,7 @@ class LaunchConfiguration(pulumi.CustomResource):
         """
         The IDs of one or more security groups for the specified ClassicLink-enabled VPC (eg. `sg-46ae3d11`).
         """
-        ...
+        return pulumi.get(self, "vpc_classic_link_security_groups")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

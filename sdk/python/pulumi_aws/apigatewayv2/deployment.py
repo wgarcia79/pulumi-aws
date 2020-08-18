@@ -110,7 +110,7 @@ class Deployment(pulumi.CustomResource):
         """
         The API identifier.
         """
-        ...
+        return pulumi.get(self, "api_id")
 
     @property
     @pulumi.getter(name="autoDeployed")
@@ -118,7 +118,7 @@ class Deployment(pulumi.CustomResource):
         """
         Whether the deployment was automatically released.
         """
-        ...
+        return pulumi.get(self, "auto_deployed")
 
     @property
     @pulumi.getter
@@ -126,7 +126,7 @@ class Deployment(pulumi.CustomResource):
         """
         The description for the deployment resource.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -134,7 +134,7 @@ class Deployment(pulumi.CustomResource):
         """
         A map of arbitrary keys and values that, when changed, will trigger a redeployment.
         """
-        ...
+        return pulumi.get(self, "triggers")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

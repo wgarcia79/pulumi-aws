@@ -204,7 +204,7 @@ class SecurityGroup(pulumi.CustomResource):
         """
         The ARN of the security group
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -212,7 +212,7 @@ class SecurityGroup(pulumi.CustomResource):
         """
         Description of this egress rule.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -221,7 +221,7 @@ class SecurityGroup(pulumi.CustomResource):
         Can be specified multiple times for each
         egress rule. Each egress block supports fields documented below.
         """
-        ...
+        return pulumi.get(self, "egress")
 
     @property
     @pulumi.getter
@@ -230,7 +230,7 @@ class SecurityGroup(pulumi.CustomResource):
         Can be specified multiple times for each
         ingress rule. Each ingress block supports fields documented below.
         """
-        ...
+        return pulumi.get(self, "ingress")
 
     @property
     @pulumi.getter
@@ -239,7 +239,7 @@ class SecurityGroup(pulumi.CustomResource):
         The name of the security group. If omitted, this provider will
         assign a random, unique name
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="namePrefix")
@@ -248,7 +248,7 @@ class SecurityGroup(pulumi.CustomResource):
         Creates a unique name beginning with the specified
         prefix. Conflicts with `name`.
         """
-        ...
+        return pulumi.get(self, "name_prefix")
 
     @property
     @pulumi.getter(name="ownerId")
@@ -256,7 +256,7 @@ class SecurityGroup(pulumi.CustomResource):
         """
         The owner ID.
         """
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter(name="revokeRulesOnDelete")
@@ -270,7 +270,7 @@ class SecurityGroup(pulumi.CustomResource):
         the security groups from being destroyed without removing the dependency first.
         Default `false`
         """
-        ...
+        return pulumi.get(self, "revoke_rules_on_delete")
 
     @property
     @pulumi.getter
@@ -278,7 +278,7 @@ class SecurityGroup(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -286,7 +286,7 @@ class SecurityGroup(pulumi.CustomResource):
         """
         The VPC ID.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -40,7 +40,7 @@ class GetSecretsResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -48,12 +48,12 @@ class GetSecretsResult:
         """
         Map containing each `secret` `name` as the key with its decrypted plaintext value
         """
-        ...
+        return pulumi.get(self, "plaintext")
 
     @property
     @pulumi.getter
     def secrets(self) -> List['outputs.GetSecretsSecretResult']:
-        ...
+        return pulumi.get(self, "secrets")
 
 
 

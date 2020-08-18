@@ -35,27 +35,27 @@ class ClusterClusterCertificate(dict):
     @property
     @pulumi.getter(name="awsHardwareCertificate")
     def aws_hardware_certificate(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "aws_hardware_certificate")
 
     @property
     @pulumi.getter(name="clusterCertificate")
     def cluster_certificate(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "cluster_certificate")
 
     @property
     @pulumi.getter(name="clusterCsr")
     def cluster_csr(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "cluster_csr")
 
     @property
     @pulumi.getter(name="hsmCertificate")
     def hsm_certificate(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "hsm_certificate")
 
     @property
     @pulumi.getter(name="manufacturerHardwareCertificate")
     def manufacturer_hardware_certificate(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "manufacturer_hardware_certificate")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -78,26 +78,26 @@ class GetClusterClusterCertificatesResult(dict):
     @property
     @pulumi.getter(name="awsHardwareCertificate")
     def aws_hardware_certificate(self) -> str:
-        ...
+        return pulumi.get(self, "aws_hardware_certificate")
 
     @property
     @pulumi.getter(name="clusterCertificate")
     def cluster_certificate(self) -> str:
-        ...
+        return pulumi.get(self, "cluster_certificate")
 
     @property
     @pulumi.getter(name="clusterCsr")
     def cluster_csr(self) -> str:
-        ...
+        return pulumi.get(self, "cluster_csr")
 
     @property
     @pulumi.getter(name="hsmCertificate")
     def hsm_certificate(self) -> str:
-        ...
+        return pulumi.get(self, "hsm_certificate")
 
     @property
     @pulumi.getter(name="manufacturerHardwareCertificate")
     def manufacturer_hardware_certificate(self) -> str:
-        ...
+        return pulumi.get(self, "manufacturer_hardware_certificate")
 
 

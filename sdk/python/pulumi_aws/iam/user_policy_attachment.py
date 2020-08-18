@@ -105,7 +105,7 @@ class UserPolicyAttachment(pulumi.CustomResource):
         """
         The ARN of the policy you want to apply
         """
-        ...
+        return pulumi.get(self, "policy_arn")
 
     @property
     @pulumi.getter
@@ -113,7 +113,7 @@ class UserPolicyAttachment(pulumi.CustomResource):
         """
         The user the policy should be applied to
         """
-        ...
+        return pulumi.get(self, "user")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -99,7 +99,7 @@ class Domain(pulumi.CustomResource):
         """
         The ARN of the Lightsail domain
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="domainName")
@@ -107,7 +107,7 @@ class Domain(pulumi.CustomResource):
         """
         The name of the Lightsail domain to manage
         """
-        ...
+        return pulumi.get(self, "domain_name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

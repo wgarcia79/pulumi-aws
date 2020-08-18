@@ -119,7 +119,7 @@ class QueuePolicy(pulumi.CustomResource):
         """
         The JSON policy for the SQS queue.
         """
-        ...
+        return pulumi.get(self, "policy")
 
     @property
     @pulumi.getter(name="queueUrl")
@@ -127,7 +127,7 @@ class QueuePolicy(pulumi.CustomResource):
         """
         The URL of the SQS Queue to which to attach the policy
         """
-        ...
+        return pulumi.get(self, "queue_url")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

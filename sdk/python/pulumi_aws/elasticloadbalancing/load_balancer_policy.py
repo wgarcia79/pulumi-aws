@@ -182,7 +182,7 @@ class LoadBalancerPolicy(pulumi.CustomResource):
         """
         The load balancer on which the policy is defined.
         """
-        ...
+        return pulumi.get(self, "load_balancer_name")
 
     @property
     @pulumi.getter(name="policyAttributes")
@@ -190,7 +190,7 @@ class LoadBalancerPolicy(pulumi.CustomResource):
         """
         Policy attribute to apply to the policy.
         """
-        ...
+        return pulumi.get(self, "policy_attributes")
 
     @property
     @pulumi.getter(name="policyName")
@@ -198,7 +198,7 @@ class LoadBalancerPolicy(pulumi.CustomResource):
         """
         The name of the load balancer policy.
         """
-        ...
+        return pulumi.get(self, "policy_name")
 
     @property
     @pulumi.getter(name="policyTypeName")
@@ -206,7 +206,7 @@ class LoadBalancerPolicy(pulumi.CustomResource):
         """
         The policy type.
         """
-        ...
+        return pulumi.get(self, "policy_type_name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

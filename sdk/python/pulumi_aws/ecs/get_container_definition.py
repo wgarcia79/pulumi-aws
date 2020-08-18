@@ -59,7 +59,7 @@ class GetContainerDefinitionResult:
     @property
     @pulumi.getter(name="containerName")
     def container_name(self) -> str:
-        ...
+        return pulumi.get(self, "container_name")
 
     @property
     @pulumi.getter
@@ -67,7 +67,7 @@ class GetContainerDefinitionResult:
         """
         The CPU limit for this container definition
         """
-        ...
+        return pulumi.get(self, "cpu")
 
     @property
     @pulumi.getter(name="disableNetworking")
@@ -75,7 +75,7 @@ class GetContainerDefinitionResult:
         """
         Indicator if networking is disabled
         """
-        ...
+        return pulumi.get(self, "disable_networking")
 
     @property
     @pulumi.getter(name="dockerLabels")
@@ -83,7 +83,7 @@ class GetContainerDefinitionResult:
         """
         Set docker labels
         """
-        ...
+        return pulumi.get(self, "docker_labels")
 
     @property
     @pulumi.getter
@@ -91,7 +91,7 @@ class GetContainerDefinitionResult:
         """
         The environment in use
         """
-        ...
+        return pulumi.get(self, "environment")
 
     @property
     @pulumi.getter
@@ -99,7 +99,7 @@ class GetContainerDefinitionResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -107,7 +107,7 @@ class GetContainerDefinitionResult:
         """
         The docker image in use, including the digest
         """
-        ...
+        return pulumi.get(self, "image")
 
     @property
     @pulumi.getter(name="imageDigest")
@@ -115,7 +115,7 @@ class GetContainerDefinitionResult:
         """
         The digest of the docker image in use
         """
-        ...
+        return pulumi.get(self, "image_digest")
 
     @property
     @pulumi.getter
@@ -123,7 +123,7 @@ class GetContainerDefinitionResult:
         """
         The memory limit for this container definition
         """
-        ...
+        return pulumi.get(self, "memory")
 
     @property
     @pulumi.getter(name="memoryReservation")
@@ -131,12 +131,12 @@ class GetContainerDefinitionResult:
         """
         The soft limit (in MiB) of memory to reserve for the container. When system memory is under contention, Docker attempts to keep the container memory to this soft limit
         """
-        ...
+        return pulumi.get(self, "memory_reservation")
 
     @property
     @pulumi.getter(name="taskDefinition")
     def task_definition(self) -> str:
-        ...
+        return pulumi.get(self, "task_definition")
 
 
 

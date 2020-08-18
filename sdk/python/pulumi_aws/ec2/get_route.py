@@ -59,22 +59,22 @@ class GetRouteResult:
     @property
     @pulumi.getter(name="destinationCidrBlock")
     def destination_cidr_block(self) -> str:
-        ...
+        return pulumi.get(self, "destination_cidr_block")
 
     @property
     @pulumi.getter(name="destinationIpv6CidrBlock")
     def destination_ipv6_cidr_block(self) -> str:
-        ...
+        return pulumi.get(self, "destination_ipv6_cidr_block")
 
     @property
     @pulumi.getter(name="egressOnlyGatewayId")
     def egress_only_gateway_id(self) -> str:
-        ...
+        return pulumi.get(self, "egress_only_gateway_id")
 
     @property
     @pulumi.getter(name="gatewayId")
     def gateway_id(self) -> str:
-        ...
+        return pulumi.get(self, "gateway_id")
 
     @property
     @pulumi.getter
@@ -82,37 +82,37 @@ class GetRouteResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> str:
-        ...
+        return pulumi.get(self, "instance_id")
 
     @property
     @pulumi.getter(name="natGatewayId")
     def nat_gateway_id(self) -> str:
-        ...
+        return pulumi.get(self, "nat_gateway_id")
 
     @property
     @pulumi.getter(name="networkInterfaceId")
     def network_interface_id(self) -> str:
-        ...
+        return pulumi.get(self, "network_interface_id")
 
     @property
     @pulumi.getter(name="routeTableId")
     def route_table_id(self) -> str:
-        ...
+        return pulumi.get(self, "route_table_id")
 
     @property
     @pulumi.getter(name="transitGatewayId")
     def transit_gateway_id(self) -> str:
-        ...
+        return pulumi.get(self, "transit_gateway_id")
 
     @property
     @pulumi.getter(name="vpcPeeringConnectionId")
     def vpc_peering_connection_id(self) -> str:
-        ...
+        return pulumi.get(self, "vpc_peering_connection_id")
 
 
 

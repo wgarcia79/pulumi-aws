@@ -111,7 +111,7 @@ class NetworkAssociation(pulumi.CustomResource):
         """
         The ID of the Client VPN endpoint.
         """
-        ...
+        return pulumi.get(self, "client_vpn_endpoint_id")
 
     @property
     @pulumi.getter(name="securityGroups")
@@ -119,7 +119,7 @@ class NetworkAssociation(pulumi.CustomResource):
         """
         The IDs of the security groups applied to the target network association.
         """
-        ...
+        return pulumi.get(self, "security_groups")
 
     @property
     @pulumi.getter
@@ -127,7 +127,7 @@ class NetworkAssociation(pulumi.CustomResource):
         """
         The current state of the target network association.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter(name="subnetId")
@@ -135,7 +135,7 @@ class NetworkAssociation(pulumi.CustomResource):
         """
         The ID of the subnet to associate with the Client VPN endpoint.
         """
-        ...
+        return pulumi.get(self, "subnet_id")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -143,7 +143,7 @@ class NetworkAssociation(pulumi.CustomResource):
         """
         The ID of the VPC in which the target network (subnet) is located.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

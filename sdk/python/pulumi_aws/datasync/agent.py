@@ -110,7 +110,7 @@ class Agent(pulumi.CustomResource):
         """
         DataSync Agent activation key during resource creation. Conflicts with `ip_address`. If an `ip_address` is provided instead, the provider will retrieve the `activation_key` as part of the resource creation.
         """
-        ...
+        return pulumi.get(self, "activation_key")
 
     @property
     @pulumi.getter
@@ -118,7 +118,7 @@ class Agent(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the DataSync Agent.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="ipAddress")
@@ -126,7 +126,7 @@ class Agent(pulumi.CustomResource):
         """
         DataSync Agent IP address to retrieve activation key during resource creation. Conflicts with `activation_key`. DataSync Agent must be accessible on port 80 from where the provider is running.
         """
-        ...
+        return pulumi.get(self, "ip_address")
 
     @property
     @pulumi.getter
@@ -134,7 +134,7 @@ class Agent(pulumi.CustomResource):
         """
         Name of the DataSync Agent.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -142,7 +142,7 @@ class Agent(pulumi.CustomResource):
         """
         Key-value pairs of resource tags to assign to the DataSync Agent.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

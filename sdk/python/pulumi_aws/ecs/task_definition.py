@@ -208,7 +208,7 @@ class TaskDefinition(pulumi.CustomResource):
         """
         Full ARN of the Task Definition (including both `family` and `revision`).
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="containerDefinitions")
@@ -221,7 +221,7 @@ class TaskDefinition(pulumi.CustomResource):
         (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html) section from the
         official [Developer Guide](https://docs.aws.amazon.com/AmazonECS/latest/developerguide).
         """
-        ...
+        return pulumi.get(self, "container_definitions")
 
     @property
     @pulumi.getter
@@ -229,7 +229,7 @@ class TaskDefinition(pulumi.CustomResource):
         """
         The number of cpu units used by the task. If the `requires_compatibilities` is `FARGATE` this field is required.
         """
-        ...
+        return pulumi.get(self, "cpu")
 
     @property
     @pulumi.getter(name="executionRoleArn")
@@ -237,7 +237,7 @@ class TaskDefinition(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) of the task execution role that the Amazon ECS container agent and the Docker daemon can assume.
         """
-        ...
+        return pulumi.get(self, "execution_role_arn")
 
     @property
     @pulumi.getter
@@ -245,7 +245,7 @@ class TaskDefinition(pulumi.CustomResource):
         """
         A unique name for your task definition.
         """
-        ...
+        return pulumi.get(self, "family")
 
     @property
     @pulumi.getter(name="inferenceAccelerators")
@@ -253,7 +253,7 @@ class TaskDefinition(pulumi.CustomResource):
         """
         Configuration block(s) with Inference Accelerators settings. Detailed below.
         """
-        ...
+        return pulumi.get(self, "inference_accelerators")
 
     @property
     @pulumi.getter(name="ipcMode")
@@ -261,7 +261,7 @@ class TaskDefinition(pulumi.CustomResource):
         """
         The IPC resource namespace to be used for the containers in the task The valid values are `host`, `task`, and `none`.
         """
-        ...
+        return pulumi.get(self, "ipc_mode")
 
     @property
     @pulumi.getter
@@ -269,7 +269,7 @@ class TaskDefinition(pulumi.CustomResource):
         """
         The amount (in MiB) of memory used by the task. If the `requires_compatibilities` is `FARGATE` this field is required.
         """
-        ...
+        return pulumi.get(self, "memory")
 
     @property
     @pulumi.getter(name="networkMode")
@@ -277,7 +277,7 @@ class TaskDefinition(pulumi.CustomResource):
         """
         The Docker networking mode to use for the containers in the task. The valid values are `none`, `bridge`, `awsvpc`, and `host`.
         """
-        ...
+        return pulumi.get(self, "network_mode")
 
     @property
     @pulumi.getter(name="pidMode")
@@ -285,7 +285,7 @@ class TaskDefinition(pulumi.CustomResource):
         """
         The process namespace to use for the containers in the task. The valid values are `host` and `task`.
         """
-        ...
+        return pulumi.get(self, "pid_mode")
 
     @property
     @pulumi.getter(name="placementConstraints")
@@ -293,7 +293,7 @@ class TaskDefinition(pulumi.CustomResource):
         """
         A set of placement constraints rules that are taken into consideration during task placement. Maximum number of `placement_constraints` is `10`.
         """
-        ...
+        return pulumi.get(self, "placement_constraints")
 
     @property
     @pulumi.getter(name="proxyConfiguration")
@@ -301,7 +301,7 @@ class TaskDefinition(pulumi.CustomResource):
         """
         The proxy configuration details for the App Mesh proxy.
         """
-        ...
+        return pulumi.get(self, "proxy_configuration")
 
     @property
     @pulumi.getter(name="requiresCompatibilities")
@@ -309,7 +309,7 @@ class TaskDefinition(pulumi.CustomResource):
         """
         A set of launch types required by the task. The valid values are `EC2` and `FARGATE`.
         """
-        ...
+        return pulumi.get(self, "requires_compatibilities")
 
     @property
     @pulumi.getter
@@ -317,7 +317,7 @@ class TaskDefinition(pulumi.CustomResource):
         """
         The revision of the task in a particular family.
         """
-        ...
+        return pulumi.get(self, "revision")
 
     @property
     @pulumi.getter
@@ -325,7 +325,7 @@ class TaskDefinition(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="taskRoleArn")
@@ -333,7 +333,7 @@ class TaskDefinition(pulumi.CustomResource):
         """
         The ARN of IAM role that allows your Amazon ECS container task to make calls to other AWS services.
         """
-        ...
+        return pulumi.get(self, "task_role_arn")
 
     @property
     @pulumi.getter
@@ -341,7 +341,7 @@ class TaskDefinition(pulumi.CustomResource):
         """
         A set of volume blocks that containers in your task may use.
         """
-        ...
+        return pulumi.get(self, "volumes")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -88,7 +88,7 @@ class ReceiptRuleSet(pulumi.CustomResource):
         """
         The name of the rule set
         """
-        ...
+        return pulumi.get(self, "rule_set_name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -35,7 +35,7 @@ class DatabaseEncryptionConfiguration(dict):
         """
         The type of key; one of `SSE_S3`, `SSE_KMS`, `CSE_KMS`
         """
-        ...
+        return pulumi.get(self, "encryption_option")
 
     @property
     @pulumi.getter(name="kmsKey")
@@ -43,7 +43,7 @@ class DatabaseEncryptionConfiguration(dict):
         """
         The KMS key ARN or ID; required for key types `SSE_KMS` and `CSE_KMS`.
         """
-        ...
+        return pulumi.get(self, "kms_key")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -77,7 +77,7 @@ class WorkgroupConfiguration(dict):
         """
         Integer for the upper data usage limit (cutoff) for the amount of bytes a single query in a workgroup is allowed to scan. Must be at least `10485760`.
         """
-        ...
+        return pulumi.get(self, "bytes_scanned_cutoff_per_query")
 
     @property
     @pulumi.getter(name="enforceWorkgroupConfiguration")
@@ -85,7 +85,7 @@ class WorkgroupConfiguration(dict):
         """
         Boolean whether the settings for the workgroup override client-side settings. For more information, see [Workgroup Settings Override Client-Side Settings](https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html). Defaults to `true`.
         """
-        ...
+        return pulumi.get(self, "enforce_workgroup_configuration")
 
     @property
     @pulumi.getter(name="publishCloudwatchMetricsEnabled")
@@ -93,7 +93,7 @@ class WorkgroupConfiguration(dict):
         """
         Boolean whether Amazon CloudWatch metrics are enabled for the workgroup. Defaults to `true`.
         """
-        ...
+        return pulumi.get(self, "publish_cloudwatch_metrics_enabled")
 
     @property
     @pulumi.getter(name="resultConfiguration")
@@ -101,7 +101,7 @@ class WorkgroupConfiguration(dict):
         """
         Configuration block with result settings. Documented below.
         """
-        ...
+        return pulumi.get(self, "result_configuration")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -127,7 +127,7 @@ class WorkgroupConfigurationResultConfiguration(dict):
         """
         Configuration block with encryption settings. Documented below.
         """
-        ...
+        return pulumi.get(self, "encryption_configuration")
 
     @property
     @pulumi.getter(name="outputLocation")
@@ -135,7 +135,7 @@ class WorkgroupConfigurationResultConfiguration(dict):
         """
         The location in Amazon S3 where your query results are stored, such as `s3://path/to/query/bucket/`. For more information, see [Queries and Query Result Files](https://docs.aws.amazon.com/athena/latest/ug/querying.html).
         """
-        ...
+        return pulumi.get(self, "output_location")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -161,7 +161,7 @@ class WorkgroupConfigurationResultConfigurationEncryptionConfiguration(dict):
         """
         Indicates whether Amazon S3 server-side encryption with Amazon S3-managed keys (`SSE_S3`), server-side encryption with KMS-managed keys (`SSE_KMS`), or client-side encryption with KMS-managed keys (`CSE_KMS`) is used. If a query runs in a workgroup and the workgroup overrides client-side settings, then the workgroup's setting for encryption is used. It specifies whether query results must be encrypted, for all queries that run in this workgroup.
         """
-        ...
+        return pulumi.get(self, "encryption_option")
 
     @property
     @pulumi.getter(name="kmsKeyArn")
@@ -169,7 +169,7 @@ class WorkgroupConfigurationResultConfigurationEncryptionConfiguration(dict):
         """
         For `SSE_KMS` and `CSE_KMS`, this is the KMS key Amazon Resource Name (ARN).
         """
-        ...
+        return pulumi.get(self, "kms_key_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

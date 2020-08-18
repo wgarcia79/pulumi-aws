@@ -124,7 +124,7 @@ class LogMetricFilter(pulumi.CustomResource):
         """
         The name of the log group to associate the metric filter with.
         """
-        ...
+        return pulumi.get(self, "log_group_name")
 
     @property
     @pulumi.getter(name="metricTransformation")
@@ -133,7 +133,7 @@ class LogMetricFilter(pulumi.CustomResource):
         A block defining collection of information
         needed to define how metric data gets emitted. See below.
         """
-        ...
+        return pulumi.get(self, "metric_transformation")
 
     @property
     @pulumi.getter
@@ -141,7 +141,7 @@ class LogMetricFilter(pulumi.CustomResource):
         """
         A name for the metric filter.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -150,7 +150,7 @@ class LogMetricFilter(pulumi.CustomResource):
         A valid [CloudWatch Logs filter pattern](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/FilterAndPatternSyntax.html)
         for extracting metric data out of ingested log events.
         """
-        ...
+        return pulumi.get(self, "pattern")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -102,7 +102,7 @@ class SnapshotCreateVolumePermission(pulumi.CustomResource):
         """
         An AWS Account ID to add create volume permissions
         """
-        ...
+        return pulumi.get(self, "account_id")
 
     @property
     @pulumi.getter(name="snapshotId")
@@ -110,7 +110,7 @@ class SnapshotCreateVolumePermission(pulumi.CustomResource):
         """
         A snapshot ID
         """
-        ...
+        return pulumi.get(self, "snapshot_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

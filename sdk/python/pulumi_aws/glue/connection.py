@@ -155,7 +155,7 @@ class Connection(pulumi.CustomResource):
         """
         The ARN of the Glue Connection.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="catalogId")
@@ -163,7 +163,7 @@ class Connection(pulumi.CustomResource):
         """
         The ID of the Data Catalog in which to create the connection. If none is supplied, the AWS account ID is used by default.
         """
-        ...
+        return pulumi.get(self, "catalog_id")
 
     @property
     @pulumi.getter(name="connectionProperties")
@@ -171,7 +171,7 @@ class Connection(pulumi.CustomResource):
         """
         A map of key-value pairs used as parameters for this connection.
         """
-        ...
+        return pulumi.get(self, "connection_properties")
 
     @property
     @pulumi.getter(name="connectionType")
@@ -179,7 +179,7 @@ class Connection(pulumi.CustomResource):
         """
         The type of the connection. Supported are: `JDBC`, `MONGODB`, `KAFKA`. Defaults to `JBDC`.
         """
-        ...
+        return pulumi.get(self, "connection_type")
 
     @property
     @pulumi.getter
@@ -187,7 +187,7 @@ class Connection(pulumi.CustomResource):
         """
         Description of the connection.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="matchCriterias")
@@ -195,7 +195,7 @@ class Connection(pulumi.CustomResource):
         """
         A list of criteria that can be used in selecting this connection.
         """
-        ...
+        return pulumi.get(self, "match_criterias")
 
     @property
     @pulumi.getter
@@ -203,7 +203,7 @@ class Connection(pulumi.CustomResource):
         """
         The name of the connection.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="physicalConnectionRequirements")
@@ -211,7 +211,7 @@ class Connection(pulumi.CustomResource):
         """
         A map of physical connection requirements, such as VPC and SecurityGroup. Defined below.
         """
-        ...
+        return pulumi.get(self, "physical_connection_requirements")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

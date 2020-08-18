@@ -38,7 +38,7 @@ class ClusterCacheNode(dict):
     @property
     @pulumi.getter
     def address(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "address")
 
     @property
     @pulumi.getter(name="availabilityZone")
@@ -46,12 +46,12 @@ class ClusterCacheNode(dict):
         """
         The Availability Zone for the cache cluster. If you want to create cache nodes in multi-az, use `preferred_availability_zones` instead. Default: System chosen Availability Zone.
         """
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -59,7 +59,7 @@ class ClusterCacheNode(dict):
         """
         The port number on which each of the cache nodes will accept connections. For Memcache the default is 11211, and for Redis the default port is 6379. Cannot be provided with `replication_group_id`.
         """
-        ...
+        return pulumi.get(self, "port")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -83,7 +83,7 @@ class ParameterGroupParameter(dict):
         """
         The name of the ElastiCache parameter.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -91,7 +91,7 @@ class ParameterGroupParameter(dict):
         """
         The value of the ElastiCache parameter.
         """
-        ...
+        return pulumi.get(self, "value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -115,7 +115,7 @@ class ReplicationGroupClusterMode(dict):
         """
         Specify the number of node groups (shards) for this Redis replication group. Changing this number will trigger an online resizing operation before other settings modifications.
         """
-        ...
+        return pulumi.get(self, "num_node_groups")
 
     @property
     @pulumi.getter(name="replicasPerNodeGroup")
@@ -123,7 +123,7 @@ class ReplicationGroupClusterMode(dict):
         """
         Specify the number of replica nodes in each node group. Valid values are 0 to 5. Changing this number will force a new resource.
         """
-        ...
+        return pulumi.get(self, "replicas_per_node_group")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -149,7 +149,7 @@ class GetClusterCacheNodeResult(dict):
     @property
     @pulumi.getter
     def address(self) -> str:
-        ...
+        return pulumi.get(self, "address")
 
     @property
     @pulumi.getter(name="availabilityZone")
@@ -157,12 +157,12 @@ class GetClusterCacheNodeResult(dict):
         """
         The Availability Zone for the cache cluster.
         """
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter
     def id(self) -> str:
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -171,6 +171,6 @@ class GetClusterCacheNodeResult(dict):
         The port number on which each of the cache nodes will
         accept connections.
         """
-        ...
+        return pulumi.get(self, "port")
 
 

@@ -187,7 +187,7 @@ class Role(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) specifying the role.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="assumeRolePolicy")
@@ -195,7 +195,7 @@ class Role(pulumi.CustomResource):
         """
         The policy that grants an entity permission to assume the role.
         """
-        ...
+        return pulumi.get(self, "assume_role_policy")
 
     @property
     @pulumi.getter(name="createDate")
@@ -203,7 +203,7 @@ class Role(pulumi.CustomResource):
         """
         The creation date of the IAM role.
         """
-        ...
+        return pulumi.get(self, "create_date")
 
     @property
     @pulumi.getter
@@ -211,7 +211,7 @@ class Role(pulumi.CustomResource):
         """
         The description of the role.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="forceDetachPolicies")
@@ -219,7 +219,7 @@ class Role(pulumi.CustomResource):
         """
         Specifies to force detaching any policies the role has before destroying it. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "force_detach_policies")
 
     @property
     @pulumi.getter(name="maxSessionDuration")
@@ -227,7 +227,7 @@ class Role(pulumi.CustomResource):
         """
         The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours.
         """
-        ...
+        return pulumi.get(self, "max_session_duration")
 
     @property
     @pulumi.getter
@@ -235,7 +235,7 @@ class Role(pulumi.CustomResource):
         """
         The name of the role. If omitted, this provider will assign a random, unique name.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="namePrefix")
@@ -243,7 +243,7 @@ class Role(pulumi.CustomResource):
         """
         Creates a unique name beginning with the specified prefix. Conflicts with `name`.
         """
-        ...
+        return pulumi.get(self, "name_prefix")
 
     @property
     @pulumi.getter
@@ -252,7 +252,7 @@ class Role(pulumi.CustomResource):
         The path to the role.
         See [IAM Identifiers](https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html) for more information.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter(name="permissionsBoundary")
@@ -260,7 +260,7 @@ class Role(pulumi.CustomResource):
         """
         The ARN of the policy that is used to set the permissions boundary for the role.
         """
-        ...
+        return pulumi.get(self, "permissions_boundary")
 
     @property
     @pulumi.getter
@@ -268,7 +268,7 @@ class Role(pulumi.CustomResource):
         """
         Key-value map of tags for the IAM role
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="uniqueId")
@@ -276,7 +276,7 @@ class Role(pulumi.CustomResource):
         """
         The stable and unique string identifying the role.
         """
-        ...
+        return pulumi.get(self, "unique_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

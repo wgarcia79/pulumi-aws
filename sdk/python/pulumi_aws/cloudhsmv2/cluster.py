@@ -140,7 +140,7 @@ class Cluster(pulumi.CustomResource):
         * `cluster_certificates.0.hsm_certificate` - The HSM certificate issued (signed) by the HSM hardware.
         * `cluster_certificates.0.manufacturer_hardware_certificate` - The HSM hardware certificate issued (signed) by the hardware manufacturer.
         """
-        ...
+        return pulumi.get(self, "cluster_certificates")
 
     @property
     @pulumi.getter(name="clusterId")
@@ -148,7 +148,7 @@ class Cluster(pulumi.CustomResource):
         """
         The id of the CloudHSM cluster.
         """
-        ...
+        return pulumi.get(self, "cluster_id")
 
     @property
     @pulumi.getter(name="clusterState")
@@ -156,7 +156,7 @@ class Cluster(pulumi.CustomResource):
         """
         The state of the cluster.
         """
-        ...
+        return pulumi.get(self, "cluster_state")
 
     @property
     @pulumi.getter(name="hsmType")
@@ -164,7 +164,7 @@ class Cluster(pulumi.CustomResource):
         """
         The type of HSM module in the cluster. Currently, only hsm1.medium is supported.
         """
-        ...
+        return pulumi.get(self, "hsm_type")
 
     @property
     @pulumi.getter(name="securityGroupId")
@@ -172,7 +172,7 @@ class Cluster(pulumi.CustomResource):
         """
         The ID of the security group associated with the CloudHSM cluster.
         """
-        ...
+        return pulumi.get(self, "security_group_id")
 
     @property
     @pulumi.getter(name="sourceBackupIdentifier")
@@ -180,7 +180,7 @@ class Cluster(pulumi.CustomResource):
         """
         The id of Cloud HSM v2 cluster backup to be restored.
         """
-        ...
+        return pulumi.get(self, "source_backup_identifier")
 
     @property
     @pulumi.getter(name="subnetIds")
@@ -188,7 +188,7 @@ class Cluster(pulumi.CustomResource):
         """
         The IDs of subnets in which cluster will operate.
         """
-        ...
+        return pulumi.get(self, "subnet_ids")
 
     @property
     @pulumi.getter
@@ -196,7 +196,7 @@ class Cluster(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -204,7 +204,7 @@ class Cluster(pulumi.CustomResource):
         """
         The id of the VPC that the CloudHSM cluster resides in.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

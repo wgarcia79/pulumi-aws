@@ -57,7 +57,7 @@ class DomainAdvancedSecurityOptions(dict):
         """
         Specifies whether Amazon Cognito authentication with Kibana is enabled or not
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="internalUserDatabaseEnabled")
@@ -65,7 +65,7 @@ class DomainAdvancedSecurityOptions(dict):
         """
         Whether the internal user database is enabled. If not set, defaults to `false` by the AWS API.
         """
-        ...
+        return pulumi.get(self, "internal_user_database_enabled")
 
     @property
     @pulumi.getter(name="masterUserOptions")
@@ -73,7 +73,7 @@ class DomainAdvancedSecurityOptions(dict):
         """
         Credentials for the master user: username and password, or ARN
         """
-        ...
+        return pulumi.get(self, "master_user_options")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -103,7 +103,7 @@ class DomainAdvancedSecurityOptionsMasterUserOptions(dict):
         """
         ARN for the master user. Only specify if `internal_user_database_enabled` is not set or set to `false`)
         """
-        ...
+        return pulumi.get(self, "master_user_arn")
 
     @property
     @pulumi.getter(name="masterUserName")
@@ -111,7 +111,7 @@ class DomainAdvancedSecurityOptionsMasterUserOptions(dict):
         """
         The master user's username, which is stored in the Amazon Elasticsearch Service domain's internal database. Only specify if `internal_user_database_enabled` is set to `true`.
         """
-        ...
+        return pulumi.get(self, "master_user_name")
 
     @property
     @pulumi.getter(name="masterUserPassword")
@@ -119,7 +119,7 @@ class DomainAdvancedSecurityOptionsMasterUserOptions(dict):
         """
         The master user's password, which is stored in the Amazon Elasticsearch Service domain's internal database. Only specify if `internal_user_database_enabled` is set to `true`.
         """
-        ...
+        return pulumi.get(self, "master_user_password")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -177,7 +177,7 @@ class DomainClusterConfig(dict):
         """
         Number of dedicated master nodes in the cluster
         """
-        ...
+        return pulumi.get(self, "dedicated_master_count")
 
     @property
     @pulumi.getter(name="dedicatedMasterEnabled")
@@ -185,7 +185,7 @@ class DomainClusterConfig(dict):
         """
         Indicates whether dedicated master nodes are enabled for the cluster.
         """
-        ...
+        return pulumi.get(self, "dedicated_master_enabled")
 
     @property
     @pulumi.getter(name="dedicatedMasterType")
@@ -193,7 +193,7 @@ class DomainClusterConfig(dict):
         """
         Instance type of the dedicated master nodes in the cluster.
         """
-        ...
+        return pulumi.get(self, "dedicated_master_type")
 
     @property
     @pulumi.getter(name="instanceCount")
@@ -201,7 +201,7 @@ class DomainClusterConfig(dict):
         """
         Number of instances in the cluster.
         """
-        ...
+        return pulumi.get(self, "instance_count")
 
     @property
     @pulumi.getter(name="instanceType")
@@ -209,7 +209,7 @@ class DomainClusterConfig(dict):
         """
         Instance type of data nodes in the cluster.
         """
-        ...
+        return pulumi.get(self, "instance_type")
 
     @property
     @pulumi.getter(name="warmCount")
@@ -217,7 +217,7 @@ class DomainClusterConfig(dict):
         """
         The number of warm nodes in the cluster. Valid values are between `2` and `150`. `warm_count` can be only and must be set when `warm_enabled` is set to `true`.
         """
-        ...
+        return pulumi.get(self, "warm_count")
 
     @property
     @pulumi.getter(name="warmEnabled")
@@ -225,7 +225,7 @@ class DomainClusterConfig(dict):
         """
         Indicates whether to enable warm storage.
         """
-        ...
+        return pulumi.get(self, "warm_enabled")
 
     @property
     @pulumi.getter(name="warmType")
@@ -233,7 +233,7 @@ class DomainClusterConfig(dict):
         """
         The instance type for the Elasticsearch cluster's warm nodes. Valid values are `ultrawarm1.medium.elasticsearch`, `ultrawarm1.large.elasticsearch` and `ultrawarm1.xlarge.elasticsearch`. `warm_type` can be only and must be set when `warm_enabled` is set to `true`.
         """
-        ...
+        return pulumi.get(self, "warm_type")
 
     @property
     @pulumi.getter(name="zoneAwarenessConfig")
@@ -241,7 +241,7 @@ class DomainClusterConfig(dict):
         """
         Configuration block containing zone awareness settings. Documented below.
         """
-        ...
+        return pulumi.get(self, "zone_awareness_config")
 
     @property
     @pulumi.getter(name="zoneAwarenessEnabled")
@@ -249,7 +249,7 @@ class DomainClusterConfig(dict):
         """
         Indicates whether zone awareness is enabled, set to `true` for multi-az deployment. To enable awareness with three Availability Zones, the `availability_zone_count` within the `zone_awareness_config` must be set to `3`.
         """
-        ...
+        return pulumi.get(self, "zone_awareness_enabled")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -271,7 +271,7 @@ class DomainClusterConfigZoneAwarenessConfig(dict):
         """
         Number of Availability Zones for the domain to use with `zone_awareness_enabled`. Defaults to `2`. Valid values: `2` or `3`.
         """
-        ...
+        return pulumi.get(self, "availability_zone_count")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -302,7 +302,7 @@ class DomainCognitoOptions(dict):
         """
         ID of the Cognito Identity Pool to use
         """
-        ...
+        return pulumi.get(self, "identity_pool_id")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -310,7 +310,7 @@ class DomainCognitoOptions(dict):
         """
         ARN of the IAM role that has the AmazonESCognitoAccess policy attached
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="userPoolId")
@@ -318,7 +318,7 @@ class DomainCognitoOptions(dict):
         """
         ID of the Cognito User Pool to use
         """
-        ...
+        return pulumi.get(self, "user_pool_id")
 
     @property
     @pulumi.getter
@@ -326,7 +326,7 @@ class DomainCognitoOptions(dict):
         """
         Specifies whether Amazon Cognito authentication with Kibana is enabled or not
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -351,7 +351,7 @@ class DomainDomainEndpointOptions(dict):
         """
         Whether or not to require HTTPS
         """
-        ...
+        return pulumi.get(self, "enforce_https")
 
     @property
     @pulumi.getter(name="tlsSecurityPolicy")
@@ -359,7 +359,7 @@ class DomainDomainEndpointOptions(dict):
         """
         The name of the TLS security policy that needs to be applied to the HTTPS endpoint. Valid values:  `Policy-Min-TLS-1-0-2019-07` and `Policy-Min-TLS-1-2-2019-07`. This provider will only perform drift detection if a configuration value is provided.
         """
-        ...
+        return pulumi.get(self, "tls_security_policy")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -394,7 +394,7 @@ class DomainEbsOptions(dict):
         """
         Whether EBS volumes are attached to data nodes in the domain.
         """
-        ...
+        return pulumi.get(self, "ebs_enabled")
 
     @property
     @pulumi.getter
@@ -403,7 +403,7 @@ class DomainEbsOptions(dict):
         The baseline input/output (I/O) performance of EBS volumes
         attached to data nodes. Applicable only for the Provisioned IOPS EBS volume type.
         """
-        ...
+        return pulumi.get(self, "iops")
 
     @property
     @pulumi.getter(name="volumeSize")
@@ -412,7 +412,7 @@ class DomainEbsOptions(dict):
         The size of EBS volumes attached to data nodes (in GB).
         **Required** if `ebs_enabled` is set to `true`.
         """
-        ...
+        return pulumi.get(self, "volume_size")
 
     @property
     @pulumi.getter(name="volumeType")
@@ -420,7 +420,7 @@ class DomainEbsOptions(dict):
         """
         The type of EBS volumes attached to data nodes.
         """
-        ...
+        return pulumi.get(self, "volume_type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -445,7 +445,7 @@ class DomainEncryptAtRest(dict):
         """
         Specifies whether Amazon Cognito authentication with Kibana is enabled or not
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="kmsKeyId")
@@ -453,7 +453,7 @@ class DomainEncryptAtRest(dict):
         """
         The KMS key id to encrypt the Elasticsearch domain with. If not specified then it defaults to using the `aws/es` service KMS key.
         """
-        ...
+        return pulumi.get(self, "kms_key_id")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -481,7 +481,7 @@ class DomainLogPublishingOption(dict):
         """
         ARN of the Cloudwatch log group to which log needs to be published.
         """
-        ...
+        return pulumi.get(self, "cloudwatch_log_group_arn")
 
     @property
     @pulumi.getter(name="logType")
@@ -489,7 +489,7 @@ class DomainLogPublishingOption(dict):
         """
         A type of Elasticsearch log. Valid values: INDEX_SLOW_LOGS, SEARCH_SLOW_LOGS, ES_APPLICATION_LOGS
         """
-        ...
+        return pulumi.get(self, "log_type")
 
     @property
     @pulumi.getter
@@ -497,7 +497,7 @@ class DomainLogPublishingOption(dict):
         """
         Specifies whether Amazon Cognito authentication with Kibana is enabled or not
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -518,7 +518,7 @@ class DomainNodeToNodeEncryption(dict):
         """
         Specifies whether Amazon Cognito authentication with Kibana is enabled or not
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -541,7 +541,7 @@ class DomainSnapshotOptions(dict):
         Hour during which the service takes an automated daily
         snapshot of the indices in the domain.
         """
-        ...
+        return pulumi.get(self, "automated_snapshot_start_hour")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -570,7 +570,7 @@ class DomainVpcOptions(dict):
     @property
     @pulumi.getter(name="availabilityZones")
     def availability_zones(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "availability_zones")
 
     @property
     @pulumi.getter(name="securityGroupIds")
@@ -578,7 +578,7 @@ class DomainVpcOptions(dict):
         """
         List of VPC Security Group IDs to be applied to the Elasticsearch domain endpoints. If omitted, the default Security Group for the VPC will be used.
         """
-        ...
+        return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter(name="subnetIds")
@@ -586,12 +586,12 @@ class DomainVpcOptions(dict):
         """
         List of VPC Subnet IDs for the Elasticsearch domain endpoints to be created in.
         """
-        ...
+        return pulumi.get(self, "subnet_ids")
 
     @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "vpc_id")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -615,7 +615,7 @@ class GetDomainAdvancedSecurityOptionResult(dict):
         """
         Whether node to node encryption is enabled.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="internalUserDatabaseEnabled")
@@ -623,7 +623,7 @@ class GetDomainAdvancedSecurityOptionResult(dict):
         """
         Whether the internal user database is enabled.
         """
-        ...
+        return pulumi.get(self, "internal_user_database_enabled")
 
 
 @pulumi.output_type
@@ -669,7 +669,7 @@ class GetDomainClusterConfigResult(dict):
         """
         Number of dedicated master nodes in the cluster.
         """
-        ...
+        return pulumi.get(self, "dedicated_master_count")
 
     @property
     @pulumi.getter(name="dedicatedMasterEnabled")
@@ -677,7 +677,7 @@ class GetDomainClusterConfigResult(dict):
         """
         Indicates whether dedicated master nodes are enabled for the cluster.
         """
-        ...
+        return pulumi.get(self, "dedicated_master_enabled")
 
     @property
     @pulumi.getter(name="dedicatedMasterType")
@@ -685,7 +685,7 @@ class GetDomainClusterConfigResult(dict):
         """
         Instance type of the dedicated master nodes in the cluster.
         """
-        ...
+        return pulumi.get(self, "dedicated_master_type")
 
     @property
     @pulumi.getter(name="instanceCount")
@@ -693,7 +693,7 @@ class GetDomainClusterConfigResult(dict):
         """
         Number of instances in the cluster.
         """
-        ...
+        return pulumi.get(self, "instance_count")
 
     @property
     @pulumi.getter(name="instanceType")
@@ -701,7 +701,7 @@ class GetDomainClusterConfigResult(dict):
         """
         Instance type of data nodes in the cluster.
         """
-        ...
+        return pulumi.get(self, "instance_type")
 
     @property
     @pulumi.getter(name="warmCount")
@@ -709,7 +709,7 @@ class GetDomainClusterConfigResult(dict):
         """
         The number of warm nodes in the cluster.
         """
-        ...
+        return pulumi.get(self, "warm_count")
 
     @property
     @pulumi.getter(name="warmType")
@@ -717,7 +717,7 @@ class GetDomainClusterConfigResult(dict):
         """
         The instance type for the Elasticsearch cluster's warm nodes.
         """
-        ...
+        return pulumi.get(self, "warm_type")
 
     @property
     @pulumi.getter(name="zoneAwarenessConfigs")
@@ -725,7 +725,7 @@ class GetDomainClusterConfigResult(dict):
         """
         Configuration block containing zone awareness settings.
         """
-        ...
+        return pulumi.get(self, "zone_awareness_configs")
 
     @property
     @pulumi.getter(name="zoneAwarenessEnabled")
@@ -733,7 +733,7 @@ class GetDomainClusterConfigResult(dict):
         """
         Indicates whether zone awareness is enabled.
         """
-        ...
+        return pulumi.get(self, "zone_awareness_enabled")
 
     @property
     @pulumi.getter(name="warmEnabled")
@@ -741,7 +741,7 @@ class GetDomainClusterConfigResult(dict):
         """
         Indicates warm storage is enabled.
         """
-        ...
+        return pulumi.get(self, "warm_enabled")
 
 
 @pulumi.output_type
@@ -759,7 +759,7 @@ class GetDomainClusterConfigZoneAwarenessConfigResult(dict):
         """
         Number of availability zones used.
         """
-        ...
+        return pulumi.get(self, "availability_zone_count")
 
 
 @pulumi.output_type
@@ -786,7 +786,7 @@ class GetDomainCognitoOptionResult(dict):
         """
         Whether node to node encryption is enabled.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="identityPoolId")
@@ -794,7 +794,7 @@ class GetDomainCognitoOptionResult(dict):
         """
         The Cognito Identity pool used by the domain.
         """
-        ...
+        return pulumi.get(self, "identity_pool_id")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -802,7 +802,7 @@ class GetDomainCognitoOptionResult(dict):
         """
         The IAM Role with the AmazonESCognitoAccess policy attached.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="userPoolId")
@@ -810,7 +810,7 @@ class GetDomainCognitoOptionResult(dict):
         """
         The Cognito User pool used by the domain.
         """
-        ...
+        return pulumi.get(self, "user_pool_id")
 
 
 @pulumi.output_type
@@ -838,7 +838,7 @@ class GetDomainEbsOptionResult(dict):
         """
         Whether EBS volumes are attached to data nodes in the domain.
         """
-        ...
+        return pulumi.get(self, "ebs_enabled")
 
     @property
     @pulumi.getter
@@ -847,7 +847,7 @@ class GetDomainEbsOptionResult(dict):
         The baseline input/output (I/O) performance of EBS volumes
         attached to data nodes.
         """
-        ...
+        return pulumi.get(self, "iops")
 
     @property
     @pulumi.getter(name="volumeSize")
@@ -855,7 +855,7 @@ class GetDomainEbsOptionResult(dict):
         """
         The size of EBS volumes attached to data nodes (in GB).
         """
-        ...
+        return pulumi.get(self, "volume_size")
 
     @property
     @pulumi.getter(name="volumeType")
@@ -863,7 +863,7 @@ class GetDomainEbsOptionResult(dict):
         """
         The type of EBS volumes attached to data nodes.
         """
-        ...
+        return pulumi.get(self, "volume_type")
 
 
 @pulumi.output_type
@@ -884,7 +884,7 @@ class GetDomainEncryptionAtRestResult(dict):
         """
         Whether node to node encryption is enabled.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="kmsKeyId")
@@ -892,7 +892,7 @@ class GetDomainEncryptionAtRestResult(dict):
         """
         The KMS key id used to encrypt data at rest.
         """
-        ...
+        return pulumi.get(self, "kms_key_id")
 
 
 @pulumi.output_type
@@ -916,7 +916,7 @@ class GetDomainLogPublishingOptionResult(dict):
         """
         The CloudWatch Log Group where the logs are published.
         """
-        ...
+        return pulumi.get(self, "cloudwatch_log_group_arn")
 
     @property
     @pulumi.getter
@@ -924,7 +924,7 @@ class GetDomainLogPublishingOptionResult(dict):
         """
         Whether node to node encryption is enabled.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="logType")
@@ -932,7 +932,7 @@ class GetDomainLogPublishingOptionResult(dict):
         """
         The type of Elasticsearch log being published.
         """
-        ...
+        return pulumi.get(self, "log_type")
 
 
 @pulumi.output_type
@@ -950,7 +950,7 @@ class GetDomainNodeToNodeEncryptionResult(dict):
         """
         Whether node to node encryption is enabled.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
 
 @pulumi.output_type
@@ -970,7 +970,7 @@ class GetDomainSnapshotOptionResult(dict):
         Hour during which the service takes an automated daily
         snapshot of the indices in the domain.
         """
-        ...
+        return pulumi.get(self, "automated_snapshot_start_hour")
 
 
 @pulumi.output_type
@@ -997,7 +997,7 @@ class GetDomainVpcOptionResult(dict):
         """
         The availability zones used by the domain.
         """
-        ...
+        return pulumi.get(self, "availability_zones")
 
     @property
     @pulumi.getter(name="securityGroupIds")
@@ -1005,7 +1005,7 @@ class GetDomainVpcOptionResult(dict):
         """
         The security groups used by the domain.
         """
-        ...
+        return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter(name="subnetIds")
@@ -1013,7 +1013,7 @@ class GetDomainVpcOptionResult(dict):
         """
         The subnets used by the domain.
         """
-        ...
+        return pulumi.get(self, "subnet_ids")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -1021,6 +1021,6 @@ class GetDomainVpcOptionResult(dict):
         """
         The VPC used by the domain.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
 

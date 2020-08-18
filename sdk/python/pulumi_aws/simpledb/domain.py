@@ -86,7 +86,7 @@ class Domain(pulumi.CustomResource):
         """
         The name of the SimpleDB domain
         """
-        ...
+        return pulumi.get(self, "name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

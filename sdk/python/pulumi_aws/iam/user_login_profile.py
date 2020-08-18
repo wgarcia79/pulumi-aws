@@ -124,7 +124,7 @@ class UserLoginProfile(pulumi.CustomResource):
         """
         The encrypted password, base64 encoded. Only available if password was handled on this provider resource creation, not import.
         """
-        ...
+        return pulumi.get(self, "encrypted_password")
 
     @property
     @pulumi.getter(name="keyFingerprint")
@@ -132,7 +132,7 @@ class UserLoginProfile(pulumi.CustomResource):
         """
         The fingerprint of the PGP key used to encrypt the password. Only available if password was handled on this provider resource creation, not import.
         """
-        ...
+        return pulumi.get(self, "key_fingerprint")
 
     @property
     @pulumi.getter(name="passwordLength")
@@ -140,7 +140,7 @@ class UserLoginProfile(pulumi.CustomResource):
         """
         The length of the generated password on resource creation. Only applies on resource creation. Drift detection is not possible with this argument.
         """
-        ...
+        return pulumi.get(self, "password_length")
 
     @property
     @pulumi.getter(name="passwordResetRequired")
@@ -148,7 +148,7 @@ class UserLoginProfile(pulumi.CustomResource):
         """
         Whether the user should be forced to reset the generated password on resource creation. Only applies on resource creation. Drift detection is not possible with this argument.
         """
-        ...
+        return pulumi.get(self, "password_reset_required")
 
     @property
     @pulumi.getter(name="pgpKey")
@@ -156,7 +156,7 @@ class UserLoginProfile(pulumi.CustomResource):
         """
         Either a base-64 encoded PGP public key, or a keybase username in the form `keybase:username`. Only applies on resource creation. Drift detection is not possible with this argument.
         """
-        ...
+        return pulumi.get(self, "pgp_key")
 
     @property
     @pulumi.getter
@@ -164,7 +164,7 @@ class UserLoginProfile(pulumi.CustomResource):
         """
         The IAM user's name.
         """
-        ...
+        return pulumi.get(self, "user")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

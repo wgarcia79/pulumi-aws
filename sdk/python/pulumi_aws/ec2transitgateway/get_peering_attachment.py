@@ -49,12 +49,12 @@ class GetPeeringAttachmentResult:
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetPeeringAttachmentFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="peerAccountId")
@@ -62,7 +62,7 @@ class GetPeeringAttachmentResult:
         """
         Identifier of the peer AWS account
         """
-        ...
+        return pulumi.get(self, "peer_account_id")
 
     @property
     @pulumi.getter(name="peerRegion")
@@ -70,7 +70,7 @@ class GetPeeringAttachmentResult:
         """
         Identifier of the peer AWS region
         """
-        ...
+        return pulumi.get(self, "peer_region")
 
     @property
     @pulumi.getter(name="peerTransitGatewayId")
@@ -78,12 +78,12 @@ class GetPeeringAttachmentResult:
         """
         Identifier of the peer EC2 Transit Gateway
         """
-        ...
+        return pulumi.get(self, "peer_transit_gateway_id")
 
     @property
     @pulumi.getter
     def tags(self) -> Mapping[str, str]:
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="transitGatewayId")
@@ -91,7 +91,7 @@ class GetPeeringAttachmentResult:
         """
         Identifier of the local EC2 Transit Gateway
         """
-        ...
+        return pulumi.get(self, "transit_gateway_id")
 
 
 

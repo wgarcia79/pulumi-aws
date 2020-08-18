@@ -48,7 +48,7 @@ class GetGroupResult:
         """
         The Amazon Resource Name (ARN) specifying the iam user.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="groupId")
@@ -56,12 +56,12 @@ class GetGroupResult:
         """
         The stable and unique string identifying the group.
         """
-        ...
+        return pulumi.get(self, "group_id")
 
     @property
     @pulumi.getter(name="groupName")
     def group_name(self) -> str:
-        ...
+        return pulumi.get(self, "group_name")
 
     @property
     @pulumi.getter
@@ -69,7 +69,7 @@ class GetGroupResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -77,7 +77,7 @@ class GetGroupResult:
         """
         The path to the iam user.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter
@@ -85,7 +85,7 @@ class GetGroupResult:
         """
         List of objects containing group member information. See supported fields below.
         """
-        ...
+        return pulumi.get(self, "users")
 
 
 

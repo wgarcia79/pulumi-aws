@@ -109,7 +109,7 @@ class ParameterGroup(pulumi.CustomResource):
         """
         A description of the parameter group.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -117,7 +117,7 @@ class ParameterGroup(pulumi.CustomResource):
         """
         The name of the parameter group.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -125,7 +125,7 @@ class ParameterGroup(pulumi.CustomResource):
         """
         The parameters of the parameter group.
         """
-        ...
+        return pulumi.get(self, "parameters")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

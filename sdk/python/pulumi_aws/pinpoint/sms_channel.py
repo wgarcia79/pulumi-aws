@@ -115,7 +115,7 @@ class SmsChannel(pulumi.CustomResource):
         """
         The application ID.
         """
-        ...
+        return pulumi.get(self, "application_id")
 
     @property
     @pulumi.getter
@@ -123,7 +123,7 @@ class SmsChannel(pulumi.CustomResource):
         """
         Whether the channel is enabled or disabled. Defaults to `true`.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="promotionalMessagesPerSecond")
@@ -131,7 +131,7 @@ class SmsChannel(pulumi.CustomResource):
         """
         Promotional messages per second that can be sent.
         """
-        ...
+        return pulumi.get(self, "promotional_messages_per_second")
 
     @property
     @pulumi.getter(name="senderId")
@@ -139,7 +139,7 @@ class SmsChannel(pulumi.CustomResource):
         """
         Sender identifier of your messages.
         """
-        ...
+        return pulumi.get(self, "sender_id")
 
     @property
     @pulumi.getter(name="shortCode")
@@ -147,7 +147,7 @@ class SmsChannel(pulumi.CustomResource):
         """
         The Short Code registered with the phone provider.
         """
-        ...
+        return pulumi.get(self, "short_code")
 
     @property
     @pulumi.getter(name="transactionalMessagesPerSecond")
@@ -155,7 +155,7 @@ class SmsChannel(pulumi.CustomResource):
         """
         Transactional messages per second that can be sent.
         """
-        ...
+        return pulumi.get(self, "transactional_messages_per_second")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

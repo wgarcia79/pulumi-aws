@@ -154,7 +154,7 @@ class ApplicationVersion(pulumi.CustomResource):
         """
         Name of the Beanstalk Application the version is associated with.
         """
-        ...
+        return pulumi.get(self, "application")
 
     @property
     @pulumi.getter
@@ -162,7 +162,7 @@ class ApplicationVersion(pulumi.CustomResource):
         """
         The ARN assigned by AWS for this Elastic Beanstalk Application.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -170,7 +170,7 @@ class ApplicationVersion(pulumi.CustomResource):
         """
         S3 bucket that contains the Application Version source bundle.
         """
-        ...
+        return pulumi.get(self, "bucket")
 
     @property
     @pulumi.getter
@@ -178,7 +178,7 @@ class ApplicationVersion(pulumi.CustomResource):
         """
         Short description of the Application Version.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="forceDelete")
@@ -187,7 +187,7 @@ class ApplicationVersion(pulumi.CustomResource):
         On delete, force an Application Version to be deleted when it may be in use
         by multiple Elastic Beanstalk Environments.
         """
-        ...
+        return pulumi.get(self, "force_delete")
 
     @property
     @pulumi.getter
@@ -195,7 +195,7 @@ class ApplicationVersion(pulumi.CustomResource):
         """
         S3 object that is the Application Version source bundle.
         """
-        ...
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
@@ -203,7 +203,7 @@ class ApplicationVersion(pulumi.CustomResource):
         """
         A unique name for the this Application Version.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -211,7 +211,7 @@ class ApplicationVersion(pulumi.CustomResource):
         """
         Key-value map of tags for the Elastic Beanstalk Application Version.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

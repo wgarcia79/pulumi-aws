@@ -211,7 +211,7 @@ class DefaultNetworkAcl(pulumi.CustomResource):
         """
         The ARN of the Default Network ACL
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="defaultNetworkAclId")
@@ -220,7 +220,7 @@ class DefaultNetworkAcl(pulumi.CustomResource):
         The Network ACL ID to manage. This
         attribute is exported from `ec2.Vpc`, or manually found via the AWS Console.
         """
-        ...
+        return pulumi.get(self, "default_network_acl_id")
 
     @property
     @pulumi.getter
@@ -228,7 +228,7 @@ class DefaultNetworkAcl(pulumi.CustomResource):
         """
         Specifies an egress rule. Parameters defined below.
         """
-        ...
+        return pulumi.get(self, "egress")
 
     @property
     @pulumi.getter
@@ -236,7 +236,7 @@ class DefaultNetworkAcl(pulumi.CustomResource):
         """
         Specifies an ingress rule. Parameters defined below.
         """
-        ...
+        return pulumi.get(self, "ingress")
 
     @property
     @pulumi.getter(name="ownerId")
@@ -244,7 +244,7 @@ class DefaultNetworkAcl(pulumi.CustomResource):
         """
         The ID of the AWS account that owns the Default Network ACL
         """
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter(name="subnetIds")
@@ -253,7 +253,7 @@ class DefaultNetworkAcl(pulumi.CustomResource):
         A list of Subnet IDs to apply the ACL to. See the
         notes below on managing Subnets in the Default Network ACL
         """
-        ...
+        return pulumi.get(self, "subnet_ids")
 
     @property
     @pulumi.getter
@@ -261,7 +261,7 @@ class DefaultNetworkAcl(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -269,7 +269,7 @@ class DefaultNetworkAcl(pulumi.CustomResource):
         """
         The ID of the associated VPC
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

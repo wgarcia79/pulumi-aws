@@ -146,7 +146,7 @@ class LoadBalancerBackendServerPolicy(pulumi.CustomResource):
         """
         The instance port to apply the policy to.
         """
-        ...
+        return pulumi.get(self, "instance_port")
 
     @property
     @pulumi.getter(name="loadBalancerName")
@@ -154,7 +154,7 @@ class LoadBalancerBackendServerPolicy(pulumi.CustomResource):
         """
         The load balancer to attach the policy to.
         """
-        ...
+        return pulumi.get(self, "load_balancer_name")
 
     @property
     @pulumi.getter(name="policyNames")
@@ -162,7 +162,7 @@ class LoadBalancerBackendServerPolicy(pulumi.CustomResource):
         """
         List of Policy Names to apply to the backend server.
         """
-        ...
+        return pulumi.get(self, "policy_names")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

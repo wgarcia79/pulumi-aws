@@ -124,7 +124,7 @@ class GetAmiResult:
         """
         The OS architecture of the AMI (ie: `i386` or `x86_64`).
         """
-        ...
+        return pulumi.get(self, "architecture")
 
     @property
     @pulumi.getter
@@ -132,7 +132,7 @@ class GetAmiResult:
         """
         The ARN of the AMI.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="blockDeviceMappings")
@@ -154,7 +154,7 @@ class GetAmiResult:
         * `block_device_mappings.#.virtual_name` - The virtual device name (for
         instance stores).
         """
-        ...
+        return pulumi.get(self, "block_device_mappings")
 
     @property
     @pulumi.getter(name="creationDate")
@@ -162,7 +162,7 @@ class GetAmiResult:
         """
         The date and time the image was created.
         """
-        ...
+        return pulumi.get(self, "creation_date")
 
     @property
     @pulumi.getter
@@ -171,17 +171,17 @@ class GetAmiResult:
         The description of the AMI that was provided during image
         creation.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="executableUsers")
     def executable_users(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "executable_users")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetAmiFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
@@ -189,7 +189,7 @@ class GetAmiResult:
         """
         The hypervisor type of the image.
         """
-        ...
+        return pulumi.get(self, "hypervisor")
 
     @property
     @pulumi.getter
@@ -197,7 +197,7 @@ class GetAmiResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="imageId")
@@ -205,7 +205,7 @@ class GetAmiResult:
         """
         The ID of the AMI. Should be the same as the resource `id`.
         """
-        ...
+        return pulumi.get(self, "image_id")
 
     @property
     @pulumi.getter(name="imageLocation")
@@ -213,7 +213,7 @@ class GetAmiResult:
         """
         The location of the AMI.
         """
-        ...
+        return pulumi.get(self, "image_location")
 
     @property
     @pulumi.getter(name="imageOwnerAlias")
@@ -222,7 +222,7 @@ class GetAmiResult:
         The AWS account alias (for example, `amazon`, `self`) or
         the AWS account ID of the AMI owner.
         """
-        ...
+        return pulumi.get(self, "image_owner_alias")
 
     @property
     @pulumi.getter(name="imageType")
@@ -230,7 +230,7 @@ class GetAmiResult:
         """
         The type of image.
         """
-        ...
+        return pulumi.get(self, "image_type")
 
     @property
     @pulumi.getter(name="kernelId")
@@ -239,12 +239,12 @@ class GetAmiResult:
         The kernel associated with the image, if any. Only applicable
         for machine images.
         """
-        ...
+        return pulumi.get(self, "kernel_id")
 
     @property
     @pulumi.getter(name="mostRecent")
     def most_recent(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "most_recent")
 
     @property
     @pulumi.getter
@@ -252,12 +252,12 @@ class GetAmiResult:
         """
         The name of the AMI that was provided during image creation.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="nameRegex")
     def name_regex(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "name_regex")
 
     @property
     @pulumi.getter(name="ownerId")
@@ -265,12 +265,12 @@ class GetAmiResult:
         """
         The AWS account ID of the image owner.
         """
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter
     def owners(self) -> List[str]:
-        ...
+        return pulumi.get(self, "owners")
 
     @property
     @pulumi.getter
@@ -278,7 +278,7 @@ class GetAmiResult:
         """
         The value is Windows for `Windows` AMIs; otherwise blank.
         """
-        ...
+        return pulumi.get(self, "platform")
 
     @property
     @pulumi.getter(name="productCodes")
@@ -288,7 +288,7 @@ class GetAmiResult:
         * `product_codes.#.product_code_id` - The product code.
         * `product_codes.#.product_code_type` - The type of product code.
         """
-        ...
+        return pulumi.get(self, "product_codes")
 
     @property
     @pulumi.getter
@@ -296,7 +296,7 @@ class GetAmiResult:
         """
         `true` if the image has public launch permissions.
         """
-        ...
+        return pulumi.get(self, "public")
 
     @property
     @pulumi.getter(name="ramdiskId")
@@ -305,7 +305,7 @@ class GetAmiResult:
         The RAM disk associated with the image, if any. Only applicable
         for machine images.
         """
-        ...
+        return pulumi.get(self, "ramdisk_id")
 
     @property
     @pulumi.getter(name="rootDeviceName")
@@ -313,7 +313,7 @@ class GetAmiResult:
         """
         The device name of the root device.
         """
-        ...
+        return pulumi.get(self, "root_device_name")
 
     @property
     @pulumi.getter(name="rootDeviceType")
@@ -321,7 +321,7 @@ class GetAmiResult:
         """
         The type of root device (ie: `ebs` or `instance-store`).
         """
-        ...
+        return pulumi.get(self, "root_device_type")
 
     @property
     @pulumi.getter(name="rootSnapshotId")
@@ -330,7 +330,7 @@ class GetAmiResult:
         The snapshot id associated with the root device, if any
         (only applies to `ebs` root devices).
         """
-        ...
+        return pulumi.get(self, "root_snapshot_id")
 
     @property
     @pulumi.getter(name="sriovNetSupport")
@@ -338,7 +338,7 @@ class GetAmiResult:
         """
         Specifies whether enhanced networking is enabled.
         """
-        ...
+        return pulumi.get(self, "sriov_net_support")
 
     @property
     @pulumi.getter
@@ -347,7 +347,7 @@ class GetAmiResult:
         The current state of the AMI. If the state is `available`, the image
         is successfully registered and can be used to launch an instance.
         """
-        ...
+        return pulumi.get(self, "state")
 
     @property
     @pulumi.getter(name="stateReason")
@@ -357,7 +357,7 @@ class GetAmiResult:
         * `state_reason.code` - The reason code for the state change.
         * `state_reason.message` - The message for the state change.
         """
-        ...
+        return pulumi.get(self, "state_reason")
 
     @property
     @pulumi.getter
@@ -367,7 +367,7 @@ class GetAmiResult:
         * `tags.#.key` - The key name of the tag.
         * `tags.#.value` - The value of the tag.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="virtualizationType")
@@ -376,7 +376,7 @@ class GetAmiResult:
         The type of virtualization of the AMI (ie: `hvm` or
         `paravirtual`).
         """
-        ...
+        return pulumi.get(self, "virtualization_type")
 
 
 

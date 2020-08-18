@@ -285,7 +285,7 @@ class Trail(pulumi.CustomResource):
         """
         The Amazon Resource Name of the trail.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="cloudWatchLogsGroupArn")
@@ -294,7 +294,7 @@ class Trail(pulumi.CustomResource):
         Specifies a log group name using an Amazon Resource Name (ARN),
         that represents the log group to which CloudTrail logs will be delivered.
         """
-        ...
+        return pulumi.get(self, "cloud_watch_logs_group_arn")
 
     @property
     @pulumi.getter(name="cloudWatchLogsRoleArn")
@@ -303,7 +303,7 @@ class Trail(pulumi.CustomResource):
         Specifies the role for the CloudWatch Logs
         endpoint to assume to write to a user’s log group.
         """
-        ...
+        return pulumi.get(self, "cloud_watch_logs_role_arn")
 
     @property
     @pulumi.getter(name="enableLogFileValidation")
@@ -312,7 +312,7 @@ class Trail(pulumi.CustomResource):
         Specifies whether log file integrity validation is enabled.
         Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "enable_log_file_validation")
 
     @property
     @pulumi.getter(name="enableLogging")
@@ -321,7 +321,7 @@ class Trail(pulumi.CustomResource):
         Enables logging for the trail. Defaults to `true`.
         Setting this to `false` will pause logging.
         """
-        ...
+        return pulumi.get(self, "enable_logging")
 
     @property
     @pulumi.getter(name="eventSelectors")
@@ -329,7 +329,7 @@ class Trail(pulumi.CustomResource):
         """
         Specifies an event selector for enabling data event logging. Fields documented below. Please note the [CloudTrail limits](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/WhatIsCloudTrail-Limits.html) when configuring these.
         """
-        ...
+        return pulumi.get(self, "event_selectors")
 
     @property
     @pulumi.getter(name="homeRegion")
@@ -337,7 +337,7 @@ class Trail(pulumi.CustomResource):
         """
         The region in which the trail was created.
         """
-        ...
+        return pulumi.get(self, "home_region")
 
     @property
     @pulumi.getter(name="includeGlobalServiceEvents")
@@ -346,7 +346,7 @@ class Trail(pulumi.CustomResource):
         Specifies whether the trail is publishing events
         from global services such as IAM to the log files. Defaults to `true`.
         """
-        ...
+        return pulumi.get(self, "include_global_service_events")
 
     @property
     @pulumi.getter(name="isMultiRegionTrail")
@@ -355,7 +355,7 @@ class Trail(pulumi.CustomResource):
         Specifies whether the trail is created in the current
         region or in all regions. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "is_multi_region_trail")
 
     @property
     @pulumi.getter(name="isOrganizationTrail")
@@ -363,7 +363,7 @@ class Trail(pulumi.CustomResource):
         """
         Specifies whether the trail is an AWS Organizations trail. Organization trails log events for the master account and all member accounts. Can only be created in the organization master account. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "is_organization_trail")
 
     @property
     @pulumi.getter(name="kmsKeyId")
@@ -371,7 +371,7 @@ class Trail(pulumi.CustomResource):
         """
         Specifies the KMS key ARN to use to encrypt the logs delivered by CloudTrail.
         """
-        ...
+        return pulumi.get(self, "kms_key_id")
 
     @property
     @pulumi.getter
@@ -379,7 +379,7 @@ class Trail(pulumi.CustomResource):
         """
         Specifies the name of the trail.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="s3BucketName")
@@ -387,7 +387,7 @@ class Trail(pulumi.CustomResource):
         """
         Specifies the name of the S3 bucket designated for publishing log files.
         """
-        ...
+        return pulumi.get(self, "s3_bucket_name")
 
     @property
     @pulumi.getter(name="s3KeyPrefix")
@@ -396,7 +396,7 @@ class Trail(pulumi.CustomResource):
         Specifies the S3 key prefix that follows
         the name of the bucket you have designated for log file delivery.
         """
-        ...
+        return pulumi.get(self, "s3_key_prefix")
 
     @property
     @pulumi.getter(name="snsTopicName")
@@ -405,7 +405,7 @@ class Trail(pulumi.CustomResource):
         Specifies the name of the Amazon SNS topic
         defined for notification of log file delivery.
         """
-        ...
+        return pulumi.get(self, "sns_topic_name")
 
     @property
     @pulumi.getter
@@ -413,7 +413,7 @@ class Trail(pulumi.CustomResource):
         """
         A map of tags to assign to the trail
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -123,7 +123,7 @@ class Configuration(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the configuration.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -131,7 +131,7 @@ class Configuration(pulumi.CustomResource):
         """
         Description of the configuration.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="kafkaVersions")
@@ -139,7 +139,7 @@ class Configuration(pulumi.CustomResource):
         """
         List of Apache Kafka versions which can use this configuration.
         """
-        ...
+        return pulumi.get(self, "kafka_versions")
 
     @property
     @pulumi.getter(name="latestRevision")
@@ -147,7 +147,7 @@ class Configuration(pulumi.CustomResource):
         """
         Latest revision of the configuration.
         """
-        ...
+        return pulumi.get(self, "latest_revision")
 
     @property
     @pulumi.getter
@@ -155,7 +155,7 @@ class Configuration(pulumi.CustomResource):
         """
         Name of the configuration.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="serverProperties")
@@ -163,7 +163,7 @@ class Configuration(pulumi.CustomResource):
         """
         Contents of the server.properties file. Supported properties are documented in the [MSK Developer Guide](https://docs.aws.amazon.com/msk/latest/developerguide/msk-configuration-properties.html).
         """
-        ...
+        return pulumi.get(self, "server_properties")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

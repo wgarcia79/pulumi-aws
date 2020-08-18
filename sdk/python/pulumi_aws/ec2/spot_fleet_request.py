@@ -303,12 +303,12 @@ class SpotFleetRequest(pulumi.CustomResource):
         the Spot pools specified by the Spot fleet request. The default is
         `lowestPrice`.
         """
-        ...
+        return pulumi.get(self, "allocation_strategy")
 
     @property
     @pulumi.getter(name="clientToken")
     def client_token(self) -> str:
-        ...
+        return pulumi.get(self, "client_token")
 
     @property
     @pulumi.getter(name="excessCapacityTerminationPolicy")
@@ -318,7 +318,7 @@ class SpotFleetRequest(pulumi.CustomResource):
         instances should be terminated if the target capacity of the Spot fleet
         request is decreased below the current size of the Spot fleet.
         """
-        ...
+        return pulumi.get(self, "excess_capacity_termination_policy")
 
     @property
     @pulumi.getter(name="fleetType")
@@ -327,7 +327,7 @@ class SpotFleetRequest(pulumi.CustomResource):
         The type of fleet request. Indicates whether the Spot Fleet only requests the target
         capacity or also attempts to maintain it. Default is `maintain`.
         """
-        ...
+        return pulumi.get(self, "fleet_type")
 
     @property
     @pulumi.getter(name="iamFleetRole")
@@ -338,7 +338,7 @@ class SpotFleetRequest(pulumi.CustomResource):
         CancelSpotFleetRequests or when the Spot fleet request expires, if you set
         terminateInstancesWithExpiration.
         """
-        ...
+        return pulumi.get(self, "iam_fleet_role")
 
     @property
     @pulumi.getter(name="instanceInterruptionBehaviour")
@@ -348,7 +348,7 @@ class SpotFleetRequest(pulumi.CustomResource):
         instance stops or terminates when it is interrupted. Default is
         `terminate`.
         """
-        ...
+        return pulumi.get(self, "instance_interruption_behaviour")
 
     @property
     @pulumi.getter(name="instancePoolsToUseCount")
@@ -359,7 +359,7 @@ class SpotFleetRequest(pulumi.CustomResource):
         the cheapest Spot pools and evenly allocates your target Spot capacity across
         the number of Spot pools that you specify.
         """
-        ...
+        return pulumi.get(self, "instance_pools_to_use_count")
 
     @property
     @pulumi.getter(name="launchSpecifications")
@@ -369,7 +369,7 @@ class SpotFleetRequest(pulumi.CustomResource):
         spot-fleet request. Can be specified multiple times to define different bids
         across different markets and instance types. Conflicts with `launch_template_config`. At least one of `launch_specification` or `launch_template_config` is required.
         """
-        ...
+        return pulumi.get(self, "launch_specifications")
 
     @property
     @pulumi.getter(name="launchTemplateConfigs")
@@ -377,7 +377,7 @@ class SpotFleetRequest(pulumi.CustomResource):
         """
         Launch template configuration block. See Launch Template Configs below for more details. Conflicts with `launch_specification`. At least one of `launch_specification` or `launch_template_config` is required.
         """
-        ...
+        return pulumi.get(self, "launch_template_configs")
 
     @property
     @pulumi.getter(name="loadBalancers")
@@ -385,7 +385,7 @@ class SpotFleetRequest(pulumi.CustomResource):
         """
         A list of elastic load balancer names to add to the Spot fleet.
         """
-        ...
+        return pulumi.get(self, "load_balancers")
 
     @property
     @pulumi.getter(name="replaceUnhealthyInstances")
@@ -393,7 +393,7 @@ class SpotFleetRequest(pulumi.CustomResource):
         """
         Indicates whether Spot fleet should replace unhealthy instances. Default `false`.
         """
-        ...
+        return pulumi.get(self, "replace_unhealthy_instances")
 
     @property
     @pulumi.getter(name="spotPrice")
@@ -401,7 +401,7 @@ class SpotFleetRequest(pulumi.CustomResource):
         """
         The maximum spot bid for this override request.
         """
-        ...
+        return pulumi.get(self, "spot_price")
 
     @property
     @pulumi.getter(name="spotRequestState")
@@ -409,7 +409,7 @@ class SpotFleetRequest(pulumi.CustomResource):
         """
         The state of the Spot fleet request.
         """
-        ...
+        return pulumi.get(self, "spot_request_state")
 
     @property
     @pulumi.getter
@@ -417,7 +417,7 @@ class SpotFleetRequest(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="targetCapacity")
@@ -427,7 +427,7 @@ class SpotFleetRequest(pulumi.CustomResource):
         target capacity in terms of instances or a performance characteristic that is
         important to your application workload, such as vCPUs, memory, or I/O.
         """
-        ...
+        return pulumi.get(self, "target_capacity")
 
     @property
     @pulumi.getter(name="targetGroupArns")
@@ -435,7 +435,7 @@ class SpotFleetRequest(pulumi.CustomResource):
         """
         A list of `alb.TargetGroup` ARNs, for use with Application Load Balancing.
         """
-        ...
+        return pulumi.get(self, "target_group_arns")
 
     @property
     @pulumi.getter(name="terminateInstancesWithExpiration")
@@ -444,7 +444,7 @@ class SpotFleetRequest(pulumi.CustomResource):
         Indicates whether running Spot
         instances should be terminated when the Spot fleet request expires.
         """
-        ...
+        return pulumi.get(self, "terminate_instances_with_expiration")
 
     @property
     @pulumi.getter(name="validFrom")
@@ -452,7 +452,7 @@ class SpotFleetRequest(pulumi.CustomResource):
         """
         The start date and time of the request, in UTC [RFC3339](https://tools.ietf.org/html/rfc3339#section-5.8) format(for example, YYYY-MM-DDTHH:MM:SSZ). The default is to start fulfilling the request immediately.
         """
-        ...
+        return pulumi.get(self, "valid_from")
 
     @property
     @pulumi.getter(name="validUntil")
@@ -460,7 +460,7 @@ class SpotFleetRequest(pulumi.CustomResource):
         """
         The end date and time of the request, in UTC [RFC3339](https://tools.ietf.org/html/rfc3339#section-5.8) format(for example, YYYY-MM-DDTHH:MM:SSZ). At this point, no new Spot instance requests are placed or enabled to fulfill the request. Defaults to 24 hours.
         """
-        ...
+        return pulumi.get(self, "valid_until")
 
     @property
     @pulumi.getter(name="waitForFulfillment")
@@ -470,7 +470,7 @@ class SpotFleetRequest(pulumi.CustomResource):
         wait for the Spot Request to be fulfilled, and will throw an error if the
         timeout of 10m is reached.
         """
-        ...
+        return pulumi.get(self, "wait_for_fulfillment")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

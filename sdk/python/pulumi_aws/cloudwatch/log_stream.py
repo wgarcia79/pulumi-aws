@@ -99,7 +99,7 @@ class LogStream(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) specifying the log stream.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="logGroupName")
@@ -107,7 +107,7 @@ class LogStream(pulumi.CustomResource):
         """
         The name of the log group under which the log stream is to be created.
         """
-        ...
+        return pulumi.get(self, "log_group_name")
 
     @property
     @pulumi.getter
@@ -115,7 +115,7 @@ class LogStream(pulumi.CustomResource):
         """
         The name of the log stream. Must not be longer than 512 characters and must not contain `:`
         """
-        ...
+        return pulumi.get(self, "name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

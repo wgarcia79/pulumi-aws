@@ -137,7 +137,7 @@ class IdentityProvider(pulumi.CustomResource):
         """
         The map of attribute mapping of user pool attributes. [AttributeMapping in AWS API documentation](https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateIdentityProvider.html#CognitoUserPools-CreateIdentityProvider-request-AttributeMapping)
         """
-        ...
+        return pulumi.get(self, "attribute_mapping")
 
     @property
     @pulumi.getter(name="idpIdentifiers")
@@ -145,7 +145,7 @@ class IdentityProvider(pulumi.CustomResource):
         """
         The list of identity providers.
         """
-        ...
+        return pulumi.get(self, "idp_identifiers")
 
     @property
     @pulumi.getter(name="providerDetails")
@@ -153,7 +153,7 @@ class IdentityProvider(pulumi.CustomResource):
         """
         The map of identity details, such as access token
         """
-        ...
+        return pulumi.get(self, "provider_details")
 
     @property
     @pulumi.getter(name="providerName")
@@ -161,7 +161,7 @@ class IdentityProvider(pulumi.CustomResource):
         """
         The provider name
         """
-        ...
+        return pulumi.get(self, "provider_name")
 
     @property
     @pulumi.getter(name="providerType")
@@ -169,7 +169,7 @@ class IdentityProvider(pulumi.CustomResource):
         """
         The provider type.  [See AWS API for valid values](https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateIdentityProvider.html#CognitoUserPools-CreateIdentityProvider-request-ProviderType)
         """
-        ...
+        return pulumi.get(self, "provider_type")
 
     @property
     @pulumi.getter(name="userPoolId")
@@ -177,7 +177,7 @@ class IdentityProvider(pulumi.CustomResource):
         """
         The user pool id
         """
-        ...
+        return pulumi.get(self, "user_pool_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

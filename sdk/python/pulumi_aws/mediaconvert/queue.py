@@ -122,7 +122,7 @@ class Queue(pulumi.CustomResource):
         """
         The Arn of the queue
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -130,7 +130,7 @@ class Queue(pulumi.CustomResource):
         """
         A description of the queue
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -138,7 +138,7 @@ class Queue(pulumi.CustomResource):
         """
         A unique identifier describing the queue
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="pricingPlan")
@@ -146,7 +146,7 @@ class Queue(pulumi.CustomResource):
         """
         Specifies whether the pricing plan for the queue is on-demand or reserved. Valid values are `ON_DEMAND` or `RESERVED`. Default to `ON_DEMAND`.
         """
-        ...
+        return pulumi.get(self, "pricing_plan")
 
     @property
     @pulumi.getter(name="reservationPlanSettings")
@@ -154,7 +154,7 @@ class Queue(pulumi.CustomResource):
         """
         A detail pricing plan of the  reserved queue. See below.
         """
-        ...
+        return pulumi.get(self, "reservation_plan_settings")
 
     @property
     @pulumi.getter
@@ -162,7 +162,7 @@ class Queue(pulumi.CustomResource):
         """
         A status of the queue. Valid values are `ACTIVE` or `RESERVED`. Default to `PAUSED`.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
@@ -170,7 +170,7 @@ class Queue(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

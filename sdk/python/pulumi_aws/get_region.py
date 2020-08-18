@@ -41,7 +41,7 @@ class GetRegionResult:
         """
         The region's description in this format: "Location (Region name)".
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -49,7 +49,7 @@ class GetRegionResult:
         """
         The EC2 endpoint for the selected region.
         """
-        ...
+        return pulumi.get(self, "endpoint")
 
     @property
     @pulumi.getter
@@ -57,7 +57,7 @@ class GetRegionResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -65,7 +65,7 @@ class GetRegionResult:
         """
         The name of the selected region.
         """
-        ...
+        return pulumi.get(self, "name")
 
 
 

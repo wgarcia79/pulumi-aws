@@ -43,12 +43,12 @@ class GetDirectConnectGatewayAttachmentResult:
     @property
     @pulumi.getter(name="dxGatewayId")
     def dx_gateway_id(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "dx_gateway_id")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetDirectConnectGatewayAttachmentFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
@@ -56,7 +56,7 @@ class GetDirectConnectGatewayAttachmentResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -64,12 +64,12 @@ class GetDirectConnectGatewayAttachmentResult:
         """
         Key-value tags for the EC2 Transit Gateway Attachment
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="transitGatewayId")
     def transit_gateway_id(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "transit_gateway_id")
 
 
 

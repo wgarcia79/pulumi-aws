@@ -121,7 +121,7 @@ class BucketMetric(pulumi.CustomResource):
         """
         The name of the bucket to put metric configuration.
         """
-        ...
+        return pulumi.get(self, "bucket")
 
     @property
     @pulumi.getter
@@ -129,7 +129,7 @@ class BucketMetric(pulumi.CustomResource):
         """
         [Object filtering](http://docs.aws.amazon.com/AmazonS3/latest/dev/metrics-configurations.html#metrics-configurations-filter) that accepts a prefix, tags, or a logical AND of prefix and tags (documented below).
         """
-        ...
+        return pulumi.get(self, "filter")
 
     @property
     @pulumi.getter
@@ -137,7 +137,7 @@ class BucketMetric(pulumi.CustomResource):
         """
         Unique identifier of the metrics configuration for the bucket.
         """
-        ...
+        return pulumi.get(self, "name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

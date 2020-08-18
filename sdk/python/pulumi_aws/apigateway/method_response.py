@@ -147,7 +147,7 @@ class MethodResponse(pulumi.CustomResource):
         """
         The HTTP Method (`GET`, `POST`, `PUT`, `DELETE`, `HEAD`, `OPTIONS`, `ANY`)
         """
-        ...
+        return pulumi.get(self, "http_method")
 
     @property
     @pulumi.getter(name="resourceId")
@@ -155,7 +155,7 @@ class MethodResponse(pulumi.CustomResource):
         """
         The API resource ID
         """
-        ...
+        return pulumi.get(self, "resource_id")
 
     @property
     @pulumi.getter(name="responseModels")
@@ -163,7 +163,7 @@ class MethodResponse(pulumi.CustomResource):
         """
         A map of the API models used for the response's content type
         """
-        ...
+        return pulumi.get(self, "response_models")
 
     @property
     @pulumi.getter(name="responseParameters")
@@ -173,7 +173,7 @@ class MethodResponse(pulumi.CustomResource):
         For example: `response_parameters = { "method.response.header.X-Some-Header" = true }`
         would define that the header `X-Some-Header` can be provided on the response.
         """
-        ...
+        return pulumi.get(self, "response_parameters")
 
     @property
     @pulumi.getter(name="restApi")
@@ -181,7 +181,7 @@ class MethodResponse(pulumi.CustomResource):
         """
         The ID of the associated REST API
         """
-        ...
+        return pulumi.get(self, "rest_api")
 
     @property
     @pulumi.getter(name="statusCode")
@@ -189,7 +189,7 @@ class MethodResponse(pulumi.CustomResource):
         """
         The HTTP status code
         """
-        ...
+        return pulumi.get(self, "status_code")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

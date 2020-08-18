@@ -34,11 +34,11 @@ class GrantConstraintArgs:
         """
         A list of key-value pairs that must match the encryption context in subsequent cryptographic operation requests. The grant allows the operation only when the encryption context in the request is the same as the encryption context specified in this constraint. Conflicts with `encryption_context_subset`.
         """
-        ...
+        return pulumi.get(self, "encryption_context_equals")
 
     @encryption_context_equals.setter
     def encryption_context_equals(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "encryption_context_equals", value)
 
     @property
     @pulumi.getter(name="encryptionContextSubset")
@@ -46,11 +46,11 @@ class GrantConstraintArgs:
         """
         A list of key-value pairs that must be included in the encryption context of subsequent cryptographic operation requests. The grant allows the cryptographic operation only when the encryption context in the request includes the key-value pairs specified in this constraint, although it can include additional key-value pairs. Conflicts with `encryption_context_equals`.
         """
-        ...
+        return pulumi.get(self, "encryption_context_subset")
 
     @encryption_context_subset.setter
     def encryption_context_subset(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "encryption_context_subset", value)
 
 
 @pulumi.input_type
@@ -70,38 +70,38 @@ class GetSecretSecretArgs:
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: str):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
     def payload(self) -> str:
-        ...
+        return pulumi.get(self, "payload")
 
     @payload.setter
     def payload(self, value: str):
-        ...
+        pulumi.set(self, "payload", value)
 
     @property
     @pulumi.getter
     def context(self) -> Optional[Mapping[str, str]]:
-        ...
+        return pulumi.get(self, "context")
 
     @context.setter
     def context(self, value: Optional[Mapping[str, str]]):
-        ...
+        pulumi.set(self, "context", value)
 
     @property
     @pulumi.getter(name="grantTokens")
     def grant_tokens(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "grant_tokens")
 
     @grant_tokens.setter
     def grant_tokens(self, value: Optional[List[str]]):
-        ...
+        pulumi.set(self, "grant_tokens", value)
 
 
 @pulumi.input_type
@@ -130,11 +130,11 @@ class GetSecretsSecretArgs:
         """
         The name to export this secret under in the attributes.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: str):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -142,11 +142,11 @@ class GetSecretsSecretArgs:
         """
         Base64 encoded payload, as returned from a KMS encrypt operation.
         """
-        ...
+        return pulumi.get(self, "payload")
 
     @payload.setter
     def payload(self, value: str):
-        ...
+        pulumi.set(self, "payload", value)
 
     @property
     @pulumi.getter
@@ -154,11 +154,11 @@ class GetSecretsSecretArgs:
         """
         An optional mapping that makes up the Encryption Context for the secret.
         """
-        ...
+        return pulumi.get(self, "context")
 
     @context.setter
     def context(self, value: Optional[Mapping[str, str]]):
-        ...
+        pulumi.set(self, "context", value)
 
     @property
     @pulumi.getter(name="grantTokens")
@@ -166,10 +166,10 @@ class GetSecretsSecretArgs:
         """
         An optional list of Grant Tokens for the secret.
         """
-        ...
+        return pulumi.get(self, "grant_tokens")
 
     @grant_tokens.setter
     def grant_tokens(self, value: Optional[List[str]]):
-        ...
+        pulumi.set(self, "grant_tokens", value)
 
 

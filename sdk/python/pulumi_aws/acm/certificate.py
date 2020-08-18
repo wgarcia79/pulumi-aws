@@ -203,7 +203,7 @@ class Certificate(pulumi.CustomResource):
         """
         The ARN of the certificate
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="certificateAuthorityArn")
@@ -211,7 +211,7 @@ class Certificate(pulumi.CustomResource):
         """
         ARN of an ACMPCA
         """
-        ...
+        return pulumi.get(self, "certificate_authority_arn")
 
     @property
     @pulumi.getter(name="certificateBody")
@@ -219,7 +219,7 @@ class Certificate(pulumi.CustomResource):
         """
         The certificate's PEM-formatted public key
         """
-        ...
+        return pulumi.get(self, "certificate_body")
 
     @property
     @pulumi.getter(name="certificateChain")
@@ -228,7 +228,7 @@ class Certificate(pulumi.CustomResource):
         The certificate's PEM-formatted chain
         * Creating a private CA issued certificate
         """
-        ...
+        return pulumi.get(self, "certificate_chain")
 
     @property
     @pulumi.getter(name="domainName")
@@ -236,7 +236,7 @@ class Certificate(pulumi.CustomResource):
         """
         A domain name for which the certificate should be issued
         """
-        ...
+        return pulumi.get(self, "domain_name")
 
     @property
     @pulumi.getter(name="domainValidationOptions")
@@ -244,7 +244,7 @@ class Certificate(pulumi.CustomResource):
         """
         A list of attributes to feed into other resources to complete certificate validation. Can have more than one element, e.g. if SANs are defined. Only set if `DNS`-validation was used.
         """
-        ...
+        return pulumi.get(self, "domain_validation_options")
 
     @property
     @pulumi.getter
@@ -253,7 +253,7 @@ class Certificate(pulumi.CustomResource):
         Configuration block used to set certificate options. Detailed below.
         * Importing an existing certificate
         """
-        ...
+        return pulumi.get(self, "options")
 
     @property
     @pulumi.getter(name="privateKey")
@@ -261,7 +261,7 @@ class Certificate(pulumi.CustomResource):
         """
         The certificate's PEM-formatted private key
         """
-        ...
+        return pulumi.get(self, "private_key")
 
     @property
     @pulumi.getter
@@ -269,7 +269,7 @@ class Certificate(pulumi.CustomResource):
         """
         Status of the certificate.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter(name="subjectAlternativeNames")
@@ -277,7 +277,7 @@ class Certificate(pulumi.CustomResource):
         """
         A list of domains that should be SANs in the issued certificate. To remove all elements of a previously configured list, set this value equal to an empty list (`[]`) to trigger recreation.
         """
-        ...
+        return pulumi.get(self, "subject_alternative_names")
 
     @property
     @pulumi.getter
@@ -285,7 +285,7 @@ class Certificate(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="validationEmails")
@@ -293,7 +293,7 @@ class Certificate(pulumi.CustomResource):
         """
         A list of addresses that received a validation E-Mail. Only set if `EMAIL`-validation was used.
         """
-        ...
+        return pulumi.get(self, "validation_emails")
 
     @property
     @pulumi.getter(name="validationMethod")
@@ -301,7 +301,7 @@ class Certificate(pulumi.CustomResource):
         """
         Which method to use for validation. `DNS` or `EMAIL` are valid, `NONE` can be used for certificates that were imported into ACM and then into the provider.
         """
-        ...
+        return pulumi.get(self, "validation_method")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

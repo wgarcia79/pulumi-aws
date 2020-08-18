@@ -179,7 +179,7 @@ class Inventory(pulumi.CustomResource):
         """
         The name of the bucket where the inventory configuration will be stored.
         """
-        ...
+        return pulumi.get(self, "bucket")
 
     @property
     @pulumi.getter
@@ -187,7 +187,7 @@ class Inventory(pulumi.CustomResource):
         """
         Contains information about where to publish the inventory results (documented below).
         """
-        ...
+        return pulumi.get(self, "destination")
 
     @property
     @pulumi.getter
@@ -195,7 +195,7 @@ class Inventory(pulumi.CustomResource):
         """
         Specifies whether the inventory is enabled or disabled.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter
@@ -203,7 +203,7 @@ class Inventory(pulumi.CustomResource):
         """
         Specifies an inventory filter. The inventory only includes objects that meet the filter's criteria (documented below).
         """
-        ...
+        return pulumi.get(self, "filter")
 
     @property
     @pulumi.getter(name="includedObjectVersions")
@@ -211,7 +211,7 @@ class Inventory(pulumi.CustomResource):
         """
         Object versions to include in the inventory list. Valid values: `All`, `Current`.
         """
-        ...
+        return pulumi.get(self, "included_object_versions")
 
     @property
     @pulumi.getter
@@ -219,7 +219,7 @@ class Inventory(pulumi.CustomResource):
         """
         Unique identifier of the inventory configuration for the bucket.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="optionalFields")
@@ -228,7 +228,7 @@ class Inventory(pulumi.CustomResource):
         List of optional fields that are included in the inventory results.
         Valid values: `Size`, `LastModifiedDate`, `StorageClass`, `ETag`, `IsMultipartUploaded`, `ReplicationStatus`, `EncryptionStatus`, `ObjectLockRetainUntilDate`, `ObjectLockMode`, `ObjectLockLegalHoldStatus`, `IntelligentTieringAccessTier`.
         """
-        ...
+        return pulumi.get(self, "optional_fields")
 
     @property
     @pulumi.getter
@@ -236,7 +236,7 @@ class Inventory(pulumi.CustomResource):
         """
         Specifies the schedule for generating inventory results (documented below).
         """
-        ...
+        return pulumi.get(self, "schedule")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

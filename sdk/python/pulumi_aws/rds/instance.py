@@ -622,7 +622,7 @@ class Instance(pulumi.CustomResource):
         """
         The hostname of the RDS instance. See also `endpoint` and `port`.
         """
-        ...
+        return pulumi.get(self, "address")
 
     @property
     @pulumi.getter(name="allocatedStorage")
@@ -630,7 +630,7 @@ class Instance(pulumi.CustomResource):
         """
         The allocated storage in gibibytes. If `max_allocated_storage` is configured, this argument represents the initial storage allocation and differences from the configuration will be ignored automatically when Storage Autoscaling occurs.
         """
-        ...
+        return pulumi.get(self, "allocated_storage")
 
     @property
     @pulumi.getter(name="allowMajorVersionUpgrade")
@@ -640,7 +640,7 @@ class Instance(pulumi.CustomResource):
         upgrades are allowed. Changing this parameter does not result in an outage and
         the change is asynchronously applied as soon as possible.
         """
-        ...
+        return pulumi.get(self, "allow_major_version_upgrade")
 
     @property
     @pulumi.getter(name="applyImmediately")
@@ -651,7 +651,7 @@ class Instance(pulumi.CustomResource):
         `false`. See [Amazon RDS Documentation for more
         information.](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.DBInstance.Modifying.html)
         """
-        ...
+        return pulumi.get(self, "apply_immediately")
 
     @property
     @pulumi.getter
@@ -659,7 +659,7 @@ class Instance(pulumi.CustomResource):
         """
         The ARN of the RDS instance.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="autoMinorVersionUpgrade")
@@ -669,7 +669,7 @@ class Instance(pulumi.CustomResource):
         will be applied automatically to the DB instance during the maintenance window.
         Defaults to true.
         """
-        ...
+        return pulumi.get(self, "auto_minor_version_upgrade")
 
     @property
     @pulumi.getter(name="availabilityZone")
@@ -677,7 +677,7 @@ class Instance(pulumi.CustomResource):
         """
         The AZ for the RDS instance.
         """
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter(name="backupRetentionPeriod")
@@ -686,7 +686,7 @@ class Instance(pulumi.CustomResource):
         The days to retain backups for. Must be
         between `0` and `35`. Must be greater than `0` if the database is used as a source for a Read Replica. [See Read Replica][1].
         """
-        ...
+        return pulumi.get(self, "backup_retention_period")
 
     @property
     @pulumi.getter(name="backupWindow")
@@ -696,7 +696,7 @@ class Instance(pulumi.CustomResource):
         automated backups are created if they are enabled. Example: "09:46-10:16". Must
         not overlap with `maintenance_window`.
         """
-        ...
+        return pulumi.get(self, "backup_window")
 
     @property
     @pulumi.getter(name="caCertIdentifier")
@@ -704,7 +704,7 @@ class Instance(pulumi.CustomResource):
         """
         The identifier of the CA certificate for the DB instance.
         """
-        ...
+        return pulumi.get(self, "ca_cert_identifier")
 
     @property
     @pulumi.getter(name="characterSetName")
@@ -715,7 +715,7 @@ class Instance(pulumi.CustomResource):
         Supported in Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.OracleCharacterSets.html)
         or [Server-Level Collation for Microsoft SQL Server](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.SQLServer.CommonDBATasks.Collation.html) for more information.
         """
-        ...
+        return pulumi.get(self, "character_set_name")
 
     @property
     @pulumi.getter(name="copyTagsToSnapshot")
@@ -723,7 +723,7 @@ class Instance(pulumi.CustomResource):
         """
         Copy all Instance `tags` to snapshots. Default is `false`.
         """
-        ...
+        return pulumi.get(self, "copy_tags_to_snapshot")
 
     @property
     @pulumi.getter(name="dbSubnetGroupName")
@@ -737,7 +737,7 @@ class Instance(pulumi.CustomResource):
         action CreateDBInstanceReadReplica](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBInstanceReadReplica.html)
         for additional read replica contraints.
         """
-        ...
+        return pulumi.get(self, "db_subnet_group_name")
 
     @property
     @pulumi.getter(name="deleteAutomatedBackups")
@@ -745,7 +745,7 @@ class Instance(pulumi.CustomResource):
         """
         Specifies whether to remove automated backups immediately after the DB instance is deleted. Default is `true`.
         """
-        ...
+        return pulumi.get(self, "delete_automated_backups")
 
     @property
     @pulumi.getter(name="deletionProtection")
@@ -753,7 +753,7 @@ class Instance(pulumi.CustomResource):
         """
         If the DB instance should have deletion protection enabled. The database can't be deleted when this value is set to `true`. The default is `false`.
         """
-        ...
+        return pulumi.get(self, "deletion_protection")
 
     @property
     @pulumi.getter
@@ -761,7 +761,7 @@ class Instance(pulumi.CustomResource):
         """
         The ID of the Directory Service Active Directory domain to create the instance in.
         """
-        ...
+        return pulumi.get(self, "domain")
 
     @property
     @pulumi.getter(name="domainIamRoleName")
@@ -769,7 +769,7 @@ class Instance(pulumi.CustomResource):
         """
         The name of the IAM role to be used when making API calls to the Directory Service.
         """
-        ...
+        return pulumi.get(self, "domain_iam_role_name")
 
     @property
     @pulumi.getter(name="enabledCloudwatchLogsExports")
@@ -777,7 +777,7 @@ class Instance(pulumi.CustomResource):
         """
         List of log types to enable for exporting to CloudWatch logs. If omitted, no logs will be exported. Valid values (depending on `engine`). MySQL and MariaDB: `audit`, `error`, `general`, `slowquery`. PostgreSQL: `postgresql`, `upgrade`. MSSQL: `agent` , `error`. Oracle: `alert`, `audit`, `listener`, `trace`.
         """
-        ...
+        return pulumi.get(self, "enabled_cloudwatch_logs_exports")
 
     @property
     @pulumi.getter
@@ -785,7 +785,7 @@ class Instance(pulumi.CustomResource):
         """
         The connection endpoint in `address:port` format.
         """
-        ...
+        return pulumi.get(self, "endpoint")
 
     @property
     @pulumi.getter
@@ -798,7 +798,7 @@ class Instance(pulumi.CustomResource):
         see [Comparison between Aurora MySQL 1 and Aurora MySQL 2](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/AuroraMySQL.Updates.20180206.html)
         in the Amazon RDS User Guide.
         """
-        ...
+        return pulumi.get(self, "engine")
 
     @property
     @pulumi.getter(name="engineVersion")
@@ -810,7 +810,7 @@ class Instance(pulumi.CustomResource):
         For supported values, see the EngineVersion parameter in [API action CreateDBInstance](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBInstance.html).
         Note that for Amazon Aurora instances the engine version must match the `DB cluster`'s engine version'.
         """
-        ...
+        return pulumi.get(self, "engine_version")
 
     @property
     @pulumi.getter(name="finalSnapshotIdentifier")
@@ -820,7 +820,7 @@ class Instance(pulumi.CustomResource):
         when this DB instance is deleted. Must be provided if `skip_final_snapshot` is
         set to `false`.
         """
-        ...
+        return pulumi.get(self, "final_snapshot_identifier")
 
     @property
     @pulumi.getter(name="hostedZoneId")
@@ -829,7 +829,7 @@ class Instance(pulumi.CustomResource):
         The canonical hosted zone ID of the DB instance (to be used
         in a Route 53 Alias record).
         """
-        ...
+        return pulumi.get(self, "hosted_zone_id")
 
     @property
     @pulumi.getter(name="iamDatabaseAuthenticationEnabled")
@@ -839,7 +839,7 @@ class Instance(pulumi.CustomResource):
         mappings of AWS Identity and Access Management (IAM) accounts to database
         accounts is enabled.
         """
-        ...
+        return pulumi.get(self, "iam_database_authentication_enabled")
 
     @property
     @pulumi.getter
@@ -848,7 +848,7 @@ class Instance(pulumi.CustomResource):
         The name of the RDS instance,
         if omitted, this provider will assign a random, unique identifier.
         """
-        ...
+        return pulumi.get(self, "identifier")
 
     @property
     @pulumi.getter(name="identifierPrefix")
@@ -857,7 +857,7 @@ class Instance(pulumi.CustomResource):
         Creates a unique
         identifier beginning with the specified prefix. Conflicts with `identifier`.
         """
-        ...
+        return pulumi.get(self, "identifier_prefix")
 
     @property
     @pulumi.getter(name="instanceClass")
@@ -865,7 +865,7 @@ class Instance(pulumi.CustomResource):
         """
         The instance type of the RDS instance.
         """
-        ...
+        return pulumi.get(self, "instance_class")
 
     @property
     @pulumi.getter
@@ -874,7 +874,7 @@ class Instance(pulumi.CustomResource):
         The amount of provisioned IOPS. Setting this implies a
         storage_type of "io1".
         """
-        ...
+        return pulumi.get(self, "iops")
 
     @property
     @pulumi.getter(name="kmsKeyId")
@@ -883,7 +883,7 @@ class Instance(pulumi.CustomResource):
         The ARN for the KMS encryption key. If creating an
         encrypted replica, set this to the destination KMS ARN.
         """
-        ...
+        return pulumi.get(self, "kms_key_id")
 
     @property
     @pulumi.getter(name="licenseModel")
@@ -892,7 +892,7 @@ class Instance(pulumi.CustomResource):
         (Optional, but required for some DB engines, i.e. Oracle
         SE1) License model information for this DB instance.
         """
-        ...
+        return pulumi.get(self, "license_model")
 
     @property
     @pulumi.getter(name="maintenanceWindow")
@@ -904,7 +904,7 @@ class Instance(pulumi.CustomResource):
         docs](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html#AdjustingTheMaintenanceWindow)
         for more information.
         """
-        ...
+        return pulumi.get(self, "maintenance_window")
 
     @property
     @pulumi.getter(name="maxAllocatedStorage")
@@ -912,7 +912,7 @@ class Instance(pulumi.CustomResource):
         """
         When configured, the upper limit to which Amazon RDS can automatically scale the storage of the DB instance. Configuring this will automatically ignore differences to `allocated_storage`. Must be greater than or equal to `allocated_storage` or `0` to disable Storage Autoscaling.
         """
-        ...
+        return pulumi.get(self, "max_allocated_storage")
 
     @property
     @pulumi.getter(name="monitoringInterval")
@@ -923,7 +923,7 @@ class Instance(pulumi.CustomResource):
         collecting Enhanced Monitoring metrics, specify 0. The default is 0. Valid
         Values: 0, 1, 5, 10, 15, 30, 60.
         """
-        ...
+        return pulumi.get(self, "monitoring_interval")
 
     @property
     @pulumi.getter(name="monitoringRoleArn")
@@ -935,7 +935,7 @@ class Instance(pulumi.CustomResource):
         Documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.html)
         what IAM permissions are needed to allow Enhanced Monitoring for RDS Instances.
         """
-        ...
+        return pulumi.get(self, "monitoring_role_arn")
 
     @property
     @pulumi.getter(name="multiAz")
@@ -943,7 +943,7 @@ class Instance(pulumi.CustomResource):
         """
         Specifies if the RDS instance is multi-AZ
         """
-        ...
+        return pulumi.get(self, "multi_az")
 
     @property
     @pulumi.getter
@@ -951,7 +951,7 @@ class Instance(pulumi.CustomResource):
         """
         The name of the database to create when the DB instance is created. If this parameter is not specified, no database is created in the DB instance. Note that this does not apply for Oracle or SQL Server engines. See the [AWS documentation](http://docs.aws.amazon.com/cli/latest/reference/rds/create-db-instance.html) for more details on what applies for those engines.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="optionGroupName")
@@ -959,7 +959,7 @@ class Instance(pulumi.CustomResource):
         """
         Name of the DB option group to associate.
         """
-        ...
+        return pulumi.get(self, "option_group_name")
 
     @property
     @pulumi.getter(name="parameterGroupName")
@@ -968,7 +968,7 @@ class Instance(pulumi.CustomResource):
         Name of the DB parameter group to
         associate.
         """
-        ...
+        return pulumi.get(self, "parameter_group_name")
 
     @property
     @pulumi.getter
@@ -978,7 +978,7 @@ class Instance(pulumi.CustomResource):
         is provided) Password for the master DB user. Note that this may show up in
         logs, and it will be stored in the state file.
         """
-        ...
+        return pulumi.get(self, "password")
 
     @property
     @pulumi.getter(name="performanceInsightsEnabled")
@@ -986,7 +986,7 @@ class Instance(pulumi.CustomResource):
         """
         Specifies whether Performance Insights are enabled. Defaults to false.
         """
-        ...
+        return pulumi.get(self, "performance_insights_enabled")
 
     @property
     @pulumi.getter(name="performanceInsightsKmsKeyId")
@@ -994,7 +994,7 @@ class Instance(pulumi.CustomResource):
         """
         The ARN for the KMS key to encrypt Performance Insights data. When specifying `performance_insights_kms_key_id`, `performance_insights_enabled` needs to be set to true. Once KMS key is set, it can never be changed.
         """
-        ...
+        return pulumi.get(self, "performance_insights_kms_key_id")
 
     @property
     @pulumi.getter(name="performanceInsightsRetentionPeriod")
@@ -1002,7 +1002,7 @@ class Instance(pulumi.CustomResource):
         """
         The amount of time in days to retain Performance Insights data. Either 7 (7 days) or 731 (2 years). When specifying `performance_insights_retention_period`, `performance_insights_enabled` needs to be set to true. Defaults to '7'.
         """
-        ...
+        return pulumi.get(self, "performance_insights_retention_period")
 
     @property
     @pulumi.getter
@@ -1010,7 +1010,7 @@ class Instance(pulumi.CustomResource):
         """
         The port on which the DB accepts connections.
         """
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter(name="publiclyAccessible")
@@ -1019,12 +1019,12 @@ class Instance(pulumi.CustomResource):
         Bool to control if instance is publicly
         accessible. Default is `false`.
         """
-        ...
+        return pulumi.get(self, "publicly_accessible")
 
     @property
     @pulumi.getter
     def replicas(self) -> List[str]:
-        ...
+        return pulumi.get(self, "replicas")
 
     @property
     @pulumi.getter(name="replicateSourceDb")
@@ -1040,7 +1040,7 @@ class Instance(pulumi.CustomResource):
         PostgreSQL and MySQL Read Replicas](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html)
         for more information on using Replication.
         """
-        ...
+        return pulumi.get(self, "replicate_source_db")
 
     @property
     @pulumi.getter(name="resourceId")
@@ -1048,7 +1048,7 @@ class Instance(pulumi.CustomResource):
         """
         The RDS Resource ID of this instance.
         """
-        ...
+        return pulumi.get(self, "resource_id")
 
     @property
     @pulumi.getter(name="s3Import")
@@ -1056,7 +1056,7 @@ class Instance(pulumi.CustomResource):
         """
         Restore from a Percona Xtrabackup in S3.  See [Importing Data into an Amazon RDS MySQL DB Instance](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Procedural.Importing.html)
         """
-        ...
+        return pulumi.get(self, "s3_import")
 
     @property
     @pulumi.getter(name="securityGroupNames")
@@ -1066,7 +1066,7 @@ class Instance(pulumi.CustomResource):
         associate. Only used for [DB Instances on the _EC2-Classic_
         Platform](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.html#USER_VPC.FindDefaultVPC).
         """
-        ...
+        return pulumi.get(self, "security_group_names")
 
     @property
     @pulumi.getter(name="skipFinalSnapshot")
@@ -1078,7 +1078,7 @@ class Instance(pulumi.CustomResource):
         instance is deleted, using the value from `final_snapshot_identifier`. Default
         is `false`.
         """
-        ...
+        return pulumi.get(self, "skip_final_snapshot")
 
     @property
     @pulumi.getter(name="snapshotIdentifier")
@@ -1088,7 +1088,7 @@ class Instance(pulumi.CustomResource):
         database from a snapshot. This correlates to the snapshot ID you'd find in the
         RDS console, e.g: rds:production-2015-06-26-06-05.
         """
-        ...
+        return pulumi.get(self, "snapshot_identifier")
 
     @property
     @pulumi.getter
@@ -1096,7 +1096,7 @@ class Instance(pulumi.CustomResource):
         """
         The RDS instance status.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter(name="storageEncrypted")
@@ -1107,7 +1107,7 @@ class Instance(pulumi.CustomResource):
         is ignored and you should instead declare `kms_key_id` with a valid ARN. The
         default is `false` if not specified.
         """
-        ...
+        return pulumi.get(self, "storage_encrypted")
 
     @property
     @pulumi.getter(name="storageType")
@@ -1117,7 +1117,7 @@ class Instance(pulumi.CustomResource):
         purpose SSD), or "io1" (provisioned IOPS SSD). The default is "io1" if `iops` is
         specified, "gp2" if not.
         """
-        ...
+        return pulumi.get(self, "storage_type")
 
     @property
     @pulumi.getter
@@ -1125,7 +1125,7 @@ class Instance(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -1137,7 +1137,7 @@ class Instance(pulumi.CustomResource):
         Guide](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.TimeZone)
         for more information.
         """
-        ...
+        return pulumi.get(self, "timezone")
 
     @property
     @pulumi.getter
@@ -1146,7 +1146,7 @@ class Instance(pulumi.CustomResource):
         (Required unless a `snapshot_identifier` or `replicate_source_db`
         is provided) Username for the master DB user.
         """
-        ...
+        return pulumi.get(self, "username")
 
     @property
     @pulumi.getter(name="vpcSecurityGroupIds")
@@ -1155,7 +1155,7 @@ class Instance(pulumi.CustomResource):
         List of VPC security groups to
         associate.
         """
-        ...
+        return pulumi.get(self, "vpc_security_group_ids")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

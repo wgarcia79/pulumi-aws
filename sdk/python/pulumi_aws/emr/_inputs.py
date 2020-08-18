@@ -45,11 +45,11 @@ class ClusterBootstrapActionArgs:
         """
         The name of the step.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -57,11 +57,11 @@ class ClusterBootstrapActionArgs:
         """
         Location of the script to run during a bootstrap action. Can be either a location in Amazon S3 or on a local file system
         """
-        ...
+        return pulumi.get(self, "path")
 
     @path.setter
     def path(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "path", value)
 
     @property
     @pulumi.getter
@@ -69,11 +69,11 @@ class ClusterBootstrapActionArgs:
         """
         List of command line arguments passed to the JAR file's main function when executed.
         """
-        ...
+        return pulumi.get(self, "args")
 
     @args.setter
     def args(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "args", value)
 
 
 @pulumi.input_type
@@ -115,11 +115,11 @@ class ClusterCoreInstanceGroupArgs:
         """
         EC2 instance type for all instances in the instance group.
         """
-        ...
+        return pulumi.get(self, "instance_type")
 
     @instance_type.setter
     def instance_type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "instance_type", value)
 
     @property
     @pulumi.getter(name="autoscalingPolicy")
@@ -127,11 +127,11 @@ class ClusterCoreInstanceGroupArgs:
         """
         The autoscaling policy document. This is a JSON formatted string. See [EMR Auto Scaling](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-automatic-scaling.html)
         """
-        ...
+        return pulumi.get(self, "autoscaling_policy")
 
     @autoscaling_policy.setter
     def autoscaling_policy(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "autoscaling_policy", value)
 
     @property
     @pulumi.getter(name="bidPrice")
@@ -139,11 +139,11 @@ class ClusterCoreInstanceGroupArgs:
         """
         Bid price for each EC2 instance in the instance group, expressed in USD. By setting this attribute, the instance group is being declared as a Spot Instance, and will implicitly create a Spot request. Leave this blank to use On-Demand Instances.
         """
-        ...
+        return pulumi.get(self, "bid_price")
 
     @bid_price.setter
     def bid_price(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "bid_price", value)
 
     @property
     @pulumi.getter(name="ebsConfigs")
@@ -151,11 +151,11 @@ class ClusterCoreInstanceGroupArgs:
         """
         Configuration block(s) for EBS volumes attached to each instance in the instance group. Detailed below.
         """
-        ...
+        return pulumi.get(self, "ebs_configs")
 
     @ebs_configs.setter
     def ebs_configs(self, value: Optional[pulumi.Input[List[pulumi.Input['ClusterCoreInstanceGroupEbsConfigArgs']]]]):
-        ...
+        pulumi.set(self, "ebs_configs", value)
 
     @property
     @pulumi.getter
@@ -163,11 +163,11 @@ class ClusterCoreInstanceGroupArgs:
         """
         The ID of the EMR Cluster
         """
-        ...
+        return pulumi.get(self, "id")
 
     @id.setter
     def id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter(name="instanceCount")
@@ -175,11 +175,11 @@ class ClusterCoreInstanceGroupArgs:
         """
         Target number of instances for the instance group. Must be 1 or 3. Defaults to 1. Launching with multiple master nodes is only supported in EMR version 5.23.0+, and requires this resource's `core_instance_group` to be configured. Public (Internet accessible) instances must be created in VPC subnets that have `map public IP on launch` enabled. Termination protection is automatically enabled when launched with multiple master nodes and this provider must have the `termination_protection = false` configuration applied before destroying this resource.
         """
-        ...
+        return pulumi.get(self, "instance_count")
 
     @instance_count.setter
     def instance_count(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "instance_count", value)
 
     @property
     @pulumi.getter
@@ -187,11 +187,11 @@ class ClusterCoreInstanceGroupArgs:
         """
         The name of the step.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
@@ -220,11 +220,11 @@ class ClusterCoreInstanceGroupEbsConfigArgs:
         """
         The volume size, in gibibytes (GiB).
         """
-        ...
+        return pulumi.get(self, "size")
 
     @size.setter
     def size(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "size", value)
 
     @property
     @pulumi.getter
@@ -232,11 +232,11 @@ class ClusterCoreInstanceGroupEbsConfigArgs:
         """
         The volume type. Valid options are `gp2`, `io1`, `standard` and `st1`. See [EBS Volume Types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html).
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter
@@ -244,11 +244,11 @@ class ClusterCoreInstanceGroupEbsConfigArgs:
         """
         The number of I/O operations per second (IOPS) that the volume supports
         """
-        ...
+        return pulumi.get(self, "iops")
 
     @iops.setter
     def iops(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "iops", value)
 
     @property
     @pulumi.getter(name="volumesPerInstance")
@@ -256,11 +256,11 @@ class ClusterCoreInstanceGroupEbsConfigArgs:
         """
         The number of EBS volumes with this configuration to attach to each EC2 instance in the instance group (default is 1)
         """
-        ...
+        return pulumi.get(self, "volumes_per_instance")
 
     @volumes_per_instance.setter
     def volumes_per_instance(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "volumes_per_instance", value)
 
 
 @pulumi.input_type
@@ -306,11 +306,11 @@ class ClusterEc2AttributesArgs:
         """
         Instance Profile for EC2 instances of the cluster assume this role
         """
-        ...
+        return pulumi.get(self, "instance_profile")
 
     @instance_profile.setter
     def instance_profile(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "instance_profile", value)
 
     @property
     @pulumi.getter(name="additionalMasterSecurityGroups")
@@ -318,11 +318,11 @@ class ClusterEc2AttributesArgs:
         """
         String containing a comma separated list of additional Amazon EC2 security group IDs for the master node
         """
-        ...
+        return pulumi.get(self, "additional_master_security_groups")
 
     @additional_master_security_groups.setter
     def additional_master_security_groups(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "additional_master_security_groups", value)
 
     @property
     @pulumi.getter(name="additionalSlaveSecurityGroups")
@@ -330,11 +330,11 @@ class ClusterEc2AttributesArgs:
         """
         String containing a comma separated list of additional Amazon EC2 security group IDs for the slave nodes as a comma separated string
         """
-        ...
+        return pulumi.get(self, "additional_slave_security_groups")
 
     @additional_slave_security_groups.setter
     def additional_slave_security_groups(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "additional_slave_security_groups", value)
 
     @property
     @pulumi.getter(name="emrManagedMasterSecurityGroup")
@@ -342,11 +342,11 @@ class ClusterEc2AttributesArgs:
         """
         Identifier of the Amazon EC2 EMR-Managed security group for the master node
         """
-        ...
+        return pulumi.get(self, "emr_managed_master_security_group")
 
     @emr_managed_master_security_group.setter
     def emr_managed_master_security_group(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "emr_managed_master_security_group", value)
 
     @property
     @pulumi.getter(name="emrManagedSlaveSecurityGroup")
@@ -354,11 +354,11 @@ class ClusterEc2AttributesArgs:
         """
         Identifier of the Amazon EC2 EMR-Managed security group for the slave nodes
         """
-        ...
+        return pulumi.get(self, "emr_managed_slave_security_group")
 
     @emr_managed_slave_security_group.setter
     def emr_managed_slave_security_group(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "emr_managed_slave_security_group", value)
 
     @property
     @pulumi.getter(name="keyName")
@@ -366,11 +366,11 @@ class ClusterEc2AttributesArgs:
         """
         Amazon EC2 key pair that can be used to ssh to the master node as the user called `hadoop`
         """
-        ...
+        return pulumi.get(self, "key_name")
 
     @key_name.setter
     def key_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "key_name", value)
 
     @property
     @pulumi.getter(name="serviceAccessSecurityGroup")
@@ -378,11 +378,11 @@ class ClusterEc2AttributesArgs:
         """
         Identifier of the Amazon EC2 service-access security group - required when the cluster runs on a private subnet
         """
-        ...
+        return pulumi.get(self, "service_access_security_group")
 
     @service_access_security_group.setter
     def service_access_security_group(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "service_access_security_group", value)
 
     @property
     @pulumi.getter(name="subnetId")
@@ -390,11 +390,11 @@ class ClusterEc2AttributesArgs:
         """
         VPC subnet id where you want the job flow to launch. Cannot specify the `cc1.4xlarge` instance type for nodes of a job flow launched in a Amazon VPC
         """
-        ...
+        return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
     def subnet_id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "subnet_id", value)
 
 
 @pulumi.input_type
@@ -439,11 +439,11 @@ class ClusterInstanceGroupArgs:
         """
         The role of the instance group in the cluster. Valid values are: `MASTER`, `CORE`, and `TASK`.
         """
-        ...
+        return pulumi.get(self, "instance_role")
 
     @instance_role.setter
     def instance_role(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "instance_role", value)
 
     @property
     @pulumi.getter(name="instanceType")
@@ -451,11 +451,11 @@ class ClusterInstanceGroupArgs:
         """
         EC2 instance type for all instances in the instance group.
         """
-        ...
+        return pulumi.get(self, "instance_type")
 
     @instance_type.setter
     def instance_type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "instance_type", value)
 
     @property
     @pulumi.getter(name="autoscalingPolicy")
@@ -463,11 +463,11 @@ class ClusterInstanceGroupArgs:
         """
         The autoscaling policy document. This is a JSON formatted string. See [EMR Auto Scaling](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-automatic-scaling.html)
         """
-        ...
+        return pulumi.get(self, "autoscaling_policy")
 
     @autoscaling_policy.setter
     def autoscaling_policy(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "autoscaling_policy", value)
 
     @property
     @pulumi.getter(name="bidPrice")
@@ -475,11 +475,11 @@ class ClusterInstanceGroupArgs:
         """
         Bid price for each EC2 instance in the instance group, expressed in USD. By setting this attribute, the instance group is being declared as a Spot Instance, and will implicitly create a Spot request. Leave this blank to use On-Demand Instances.
         """
-        ...
+        return pulumi.get(self, "bid_price")
 
     @bid_price.setter
     def bid_price(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "bid_price", value)
 
     @property
     @pulumi.getter(name="ebsConfigs")
@@ -487,11 +487,11 @@ class ClusterInstanceGroupArgs:
         """
         Configuration block(s) for EBS volumes attached to each instance in the instance group. Detailed below.
         """
-        ...
+        return pulumi.get(self, "ebs_configs")
 
     @ebs_configs.setter
     def ebs_configs(self, value: Optional[pulumi.Input[List[pulumi.Input['ClusterInstanceGroupEbsConfigArgs']]]]):
-        ...
+        pulumi.set(self, "ebs_configs", value)
 
     @property
     @pulumi.getter
@@ -499,11 +499,11 @@ class ClusterInstanceGroupArgs:
         """
         The ID of the EMR Cluster
         """
-        ...
+        return pulumi.get(self, "id")
 
     @id.setter
     def id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter(name="instanceCount")
@@ -511,11 +511,11 @@ class ClusterInstanceGroupArgs:
         """
         Target number of instances for the instance group. Must be 1 or 3. Defaults to 1. Launching with multiple master nodes is only supported in EMR version 5.23.0+, and requires this resource's `core_instance_group` to be configured. Public (Internet accessible) instances must be created in VPC subnets that have `map public IP on launch` enabled. Termination protection is automatically enabled when launched with multiple master nodes and this provider must have the `termination_protection = false` configuration applied before destroying this resource.
         """
-        ...
+        return pulumi.get(self, "instance_count")
 
     @instance_count.setter
     def instance_count(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "instance_count", value)
 
     @property
     @pulumi.getter
@@ -523,11 +523,11 @@ class ClusterInstanceGroupArgs:
         """
         The name of the step.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
@@ -556,11 +556,11 @@ class ClusterInstanceGroupEbsConfigArgs:
         """
         The volume size, in gibibytes (GiB).
         """
-        ...
+        return pulumi.get(self, "size")
 
     @size.setter
     def size(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "size", value)
 
     @property
     @pulumi.getter
@@ -568,11 +568,11 @@ class ClusterInstanceGroupEbsConfigArgs:
         """
         The volume type. Valid options are `gp2`, `io1`, `standard` and `st1`. See [EBS Volume Types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html).
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter
@@ -580,11 +580,11 @@ class ClusterInstanceGroupEbsConfigArgs:
         """
         The number of I/O operations per second (IOPS) that the volume supports
         """
-        ...
+        return pulumi.get(self, "iops")
 
     @iops.setter
     def iops(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "iops", value)
 
     @property
     @pulumi.getter(name="volumesPerInstance")
@@ -592,11 +592,11 @@ class ClusterInstanceGroupEbsConfigArgs:
         """
         The number of EBS volumes with this configuration to attach to each EC2 instance in the instance group (default is 1)
         """
-        ...
+        return pulumi.get(self, "volumes_per_instance")
 
     @volumes_per_instance.setter
     def volumes_per_instance(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "volumes_per_instance", value)
 
 
 @pulumi.input_type
@@ -629,11 +629,11 @@ class ClusterKerberosAttributesArgs:
         """
         The password used within the cluster for the kadmin service on the cluster-dedicated KDC, which maintains Kerberos principals, password policies, and keytabs for the cluster. This provider cannot perform drift detection of this configuration.
         """
-        ...
+        return pulumi.get(self, "kdc_admin_password")
 
     @kdc_admin_password.setter
     def kdc_admin_password(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "kdc_admin_password", value)
 
     @property
     @pulumi.getter
@@ -641,11 +641,11 @@ class ClusterKerberosAttributesArgs:
         """
         The name of the Kerberos realm to which all nodes in a cluster belong. For example, `EC2.INTERNAL`
         """
-        ...
+        return pulumi.get(self, "realm")
 
     @realm.setter
     def realm(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "realm", value)
 
     @property
     @pulumi.getter(name="adDomainJoinPassword")
@@ -653,11 +653,11 @@ class ClusterKerberosAttributesArgs:
         """
         The Active Directory password for `ad_domain_join_user`. This provider cannot perform drift detection of this configuration.
         """
-        ...
+        return pulumi.get(self, "ad_domain_join_password")
 
     @ad_domain_join_password.setter
     def ad_domain_join_password(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "ad_domain_join_password", value)
 
     @property
     @pulumi.getter(name="adDomainJoinUser")
@@ -665,11 +665,11 @@ class ClusterKerberosAttributesArgs:
         """
         Required only when establishing a cross-realm trust with an Active Directory domain. A user with sufficient privileges to join resources to the domain. This provider cannot perform drift detection of this configuration.
         """
-        ...
+        return pulumi.get(self, "ad_domain_join_user")
 
     @ad_domain_join_user.setter
     def ad_domain_join_user(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "ad_domain_join_user", value)
 
     @property
     @pulumi.getter(name="crossRealmTrustPrincipalPassword")
@@ -677,11 +677,11 @@ class ClusterKerberosAttributesArgs:
         """
         Required only when establishing a cross-realm trust with a KDC in a different realm. The cross-realm principal password, which must be identical across realms. This provider cannot perform drift detection of this configuration.
         """
-        ...
+        return pulumi.get(self, "cross_realm_trust_principal_password")
 
     @cross_realm_trust_principal_password.setter
     def cross_realm_trust_principal_password(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "cross_realm_trust_principal_password", value)
 
 
 @pulumi.input_type
@@ -719,11 +719,11 @@ class ClusterMasterInstanceGroupArgs:
         """
         EC2 instance type for all instances in the instance group.
         """
-        ...
+        return pulumi.get(self, "instance_type")
 
     @instance_type.setter
     def instance_type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "instance_type", value)
 
     @property
     @pulumi.getter(name="bidPrice")
@@ -731,11 +731,11 @@ class ClusterMasterInstanceGroupArgs:
         """
         Bid price for each EC2 instance in the instance group, expressed in USD. By setting this attribute, the instance group is being declared as a Spot Instance, and will implicitly create a Spot request. Leave this blank to use On-Demand Instances.
         """
-        ...
+        return pulumi.get(self, "bid_price")
 
     @bid_price.setter
     def bid_price(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "bid_price", value)
 
     @property
     @pulumi.getter(name="ebsConfigs")
@@ -743,11 +743,11 @@ class ClusterMasterInstanceGroupArgs:
         """
         Configuration block(s) for EBS volumes attached to each instance in the instance group. Detailed below.
         """
-        ...
+        return pulumi.get(self, "ebs_configs")
 
     @ebs_configs.setter
     def ebs_configs(self, value: Optional[pulumi.Input[List[pulumi.Input['ClusterMasterInstanceGroupEbsConfigArgs']]]]):
-        ...
+        pulumi.set(self, "ebs_configs", value)
 
     @property
     @pulumi.getter
@@ -755,11 +755,11 @@ class ClusterMasterInstanceGroupArgs:
         """
         The ID of the EMR Cluster
         """
-        ...
+        return pulumi.get(self, "id")
 
     @id.setter
     def id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter(name="instanceCount")
@@ -767,11 +767,11 @@ class ClusterMasterInstanceGroupArgs:
         """
         Target number of instances for the instance group. Must be 1 or 3. Defaults to 1. Launching with multiple master nodes is only supported in EMR version 5.23.0+, and requires this resource's `core_instance_group` to be configured. Public (Internet accessible) instances must be created in VPC subnets that have `map public IP on launch` enabled. Termination protection is automatically enabled when launched with multiple master nodes and this provider must have the `termination_protection = false` configuration applied before destroying this resource.
         """
-        ...
+        return pulumi.get(self, "instance_count")
 
     @instance_count.setter
     def instance_count(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "instance_count", value)
 
     @property
     @pulumi.getter
@@ -779,11 +779,11 @@ class ClusterMasterInstanceGroupArgs:
         """
         The name of the step.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
@@ -812,11 +812,11 @@ class ClusterMasterInstanceGroupEbsConfigArgs:
         """
         The volume size, in gibibytes (GiB).
         """
-        ...
+        return pulumi.get(self, "size")
 
     @size.setter
     def size(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "size", value)
 
     @property
     @pulumi.getter
@@ -824,11 +824,11 @@ class ClusterMasterInstanceGroupEbsConfigArgs:
         """
         The volume type. Valid options are `gp2`, `io1`, `standard` and `st1`. See [EBS Volume Types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html).
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter
@@ -836,11 +836,11 @@ class ClusterMasterInstanceGroupEbsConfigArgs:
         """
         The number of I/O operations per second (IOPS) that the volume supports
         """
-        ...
+        return pulumi.get(self, "iops")
 
     @iops.setter
     def iops(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "iops", value)
 
     @property
     @pulumi.getter(name="volumesPerInstance")
@@ -848,11 +848,11 @@ class ClusterMasterInstanceGroupEbsConfigArgs:
         """
         The number of EBS volumes with this configuration to attach to each EC2 instance in the instance group (default is 1)
         """
-        ...
+        return pulumi.get(self, "volumes_per_instance")
 
     @volumes_per_instance.setter
     def volumes_per_instance(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "volumes_per_instance", value)
 
 
 @pulumi.input_type
@@ -876,11 +876,11 @@ class ClusterStepArgs:
         """
         The action to take if the step fails. Valid values: `TERMINATE_JOB_FLOW`, `TERMINATE_CLUSTER`, `CANCEL_AND_WAIT`, and `CONTINUE`
         """
-        ...
+        return pulumi.get(self, "action_on_failure")
 
     @action_on_failure.setter
     def action_on_failure(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "action_on_failure", value)
 
     @property
     @pulumi.getter(name="hadoopJarStep")
@@ -888,11 +888,11 @@ class ClusterStepArgs:
         """
         The JAR file used for the step. Defined below.
         """
-        ...
+        return pulumi.get(self, "hadoop_jar_step")
 
     @hadoop_jar_step.setter
     def hadoop_jar_step(self, value: pulumi.Input['ClusterStepHadoopJarStepArgs']):
-        ...
+        pulumi.set(self, "hadoop_jar_step", value)
 
     @property
     @pulumi.getter
@@ -900,11 +900,11 @@ class ClusterStepArgs:
         """
         The name of the step.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
@@ -934,11 +934,11 @@ class ClusterStepHadoopJarStepArgs:
         """
         Path to a JAR file run during the step.
         """
-        ...
+        return pulumi.get(self, "jar")
 
     @jar.setter
     def jar(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "jar", value)
 
     @property
     @pulumi.getter
@@ -946,11 +946,11 @@ class ClusterStepHadoopJarStepArgs:
         """
         List of command line arguments passed to the JAR file's main function when executed.
         """
-        ...
+        return pulumi.get(self, "args")
 
     @args.setter
     def args(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "args", value)
 
     @property
     @pulumi.getter(name="mainClass")
@@ -958,11 +958,11 @@ class ClusterStepHadoopJarStepArgs:
         """
         Name of the main class in the specified Java file. If not specified, the JAR file should specify a Main-Class in its manifest file.
         """
-        ...
+        return pulumi.get(self, "main_class")
 
     @main_class.setter
     def main_class(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "main_class", value)
 
     @property
     @pulumi.getter
@@ -970,11 +970,11 @@ class ClusterStepHadoopJarStepArgs:
         """
         Key-Value map of Java properties that are set when the step runs. You can use these properties to pass key value pairs to your main function.
         """
-        ...
+        return pulumi.get(self, "properties")
 
     @properties.setter
     def properties(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "properties", value)
 
 
 @pulumi.input_type
@@ -1003,11 +1003,11 @@ class InstanceGroupEbsConfigArgs:
         """
         The volume size, in gibibytes (GiB). This can be a number from 1 - 1024. If the volume type is EBS-optimized, the minimum value is 10.
         """
-        ...
+        return pulumi.get(self, "size")
 
     @size.setter
     def size(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "size", value)
 
     @property
     @pulumi.getter
@@ -1015,11 +1015,11 @@ class InstanceGroupEbsConfigArgs:
         """
         The volume type. Valid options are 'gp2', 'io1' and 'standard'.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter
@@ -1027,11 +1027,11 @@ class InstanceGroupEbsConfigArgs:
         """
         The number of I/O operations per second (IOPS) that the volume supports.
         """
-        ...
+        return pulumi.get(self, "iops")
 
     @iops.setter
     def iops(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "iops", value)
 
     @property
     @pulumi.getter(name="volumesPerInstance")
@@ -1039,10 +1039,10 @@ class InstanceGroupEbsConfigArgs:
         """
         The number of EBS Volumes to attach per instance.
         """
-        ...
+        return pulumi.get(self, "volumes_per_instance")
 
     @volumes_per_instance.setter
     def volumes_per_instance(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "volumes_per_instance", value)
 
 

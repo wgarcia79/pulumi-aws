@@ -72,7 +72,7 @@ class GetSecretResult:
         """
         The Amazon Resource Name (ARN) of the secret.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -80,7 +80,7 @@ class GetSecretResult:
         """
         A description of the secret.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -88,7 +88,7 @@ class GetSecretResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="kmsKeyId")
@@ -96,12 +96,12 @@ class GetSecretResult:
         """
         The Key Management Service (KMS) Customer Master Key (CMK) associated with the secret.
         """
-        ...
+        return pulumi.get(self, "kms_key_id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -109,7 +109,7 @@ class GetSecretResult:
         """
         The resource-based policy document that's attached to the secret.
         """
-        ...
+        return pulumi.get(self, "policy")
 
     @property
     @pulumi.getter(name="rotationEnabled")
@@ -117,7 +117,7 @@ class GetSecretResult:
         """
         Whether rotation is enabled or not.
         """
-        ...
+        return pulumi.get(self, "rotation_enabled")
 
     @property
     @pulumi.getter(name="rotationLambdaArn")
@@ -125,7 +125,7 @@ class GetSecretResult:
         """
         Rotation Lambda function Amazon Resource Name (ARN) if rotation is enabled.
         """
-        ...
+        return pulumi.get(self, "rotation_lambda_arn")
 
     @property
     @pulumi.getter(name="rotationRules")
@@ -133,7 +133,7 @@ class GetSecretResult:
         """
         Rotation rules if rotation is enabled.
         """
-        ...
+        return pulumi.get(self, "rotation_rules")
 
     @property
     @pulumi.getter
@@ -141,7 +141,7 @@ class GetSecretResult:
         """
         Tags of the secret.
         """
-        ...
+        return pulumi.get(self, "tags")
 
 
 

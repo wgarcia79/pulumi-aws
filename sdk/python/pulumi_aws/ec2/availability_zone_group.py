@@ -100,7 +100,7 @@ class AvailabilityZoneGroup(pulumi.CustomResource):
         """
         Name of the Availability Zone Group.
         """
-        ...
+        return pulumi.get(self, "group_name")
 
     @property
     @pulumi.getter(name="optInStatus")
@@ -108,7 +108,7 @@ class AvailabilityZoneGroup(pulumi.CustomResource):
         """
         Indicates whether to enable or disable Availability Zone Group. Valid values: `opted-in` or `not-opted-in`.
         """
-        ...
+        return pulumi.get(self, "opt_in_status")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

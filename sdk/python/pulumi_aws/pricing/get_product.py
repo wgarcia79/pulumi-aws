@@ -40,7 +40,7 @@ class GetProductResult:
     @property
     @pulumi.getter
     def filters(self) -> List['outputs.GetProductFilterResult']:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
@@ -48,7 +48,7 @@ class GetProductResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -56,12 +56,12 @@ class GetProductResult:
         """
         Set to the product returned from the API.
         """
-        ...
+        return pulumi.get(self, "result")
 
     @property
     @pulumi.getter(name="serviceCode")
     def service_code(self) -> str:
-        ...
+        return pulumi.get(self, "service_code")
 
 
 

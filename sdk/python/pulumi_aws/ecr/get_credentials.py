@@ -41,12 +41,12 @@ class GetCredentialsResult:
     @property
     @pulumi.getter(name="authorizationToken")
     def authorization_token(self) -> str:
-        ...
+        return pulumi.get(self, "authorization_token")
 
     @property
     @pulumi.getter(name="expiresAt")
     def expires_at(self) -> str:
-        ...
+        return pulumi.get(self, "expires_at")
 
     @property
     @pulumi.getter
@@ -54,17 +54,17 @@ class GetCredentialsResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="proxyEndpoint")
     def proxy_endpoint(self) -> str:
-        ...
+        return pulumi.get(self, "proxy_endpoint")
 
     @property
     @pulumi.getter(name="registryId")
     def registry_id(self) -> str:
-        ...
+        return pulumi.get(self, "registry_id")
 
 
 

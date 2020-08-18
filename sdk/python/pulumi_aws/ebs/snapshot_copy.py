@@ -161,7 +161,7 @@ class SnapshotCopy(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the EBS Snapshot.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="dataEncryptionKeyId")
@@ -171,7 +171,7 @@ class SnapshotCopy(pulumi.CustomResource):
         * `source_snapshot_id` The ARN of the copied snapshot.
         * `source_region` The region of the source snapshot.
         """
-        ...
+        return pulumi.get(self, "data_encryption_key_id")
 
     @property
     @pulumi.getter
@@ -179,7 +179,7 @@ class SnapshotCopy(pulumi.CustomResource):
         """
         A description of what the snapshot is.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -187,7 +187,7 @@ class SnapshotCopy(pulumi.CustomResource):
         """
         Whether the snapshot is encrypted.
         """
-        ...
+        return pulumi.get(self, "encrypted")
 
     @property
     @pulumi.getter(name="kmsKeyId")
@@ -195,7 +195,7 @@ class SnapshotCopy(pulumi.CustomResource):
         """
         The ARN for the KMS encryption key.
         """
-        ...
+        return pulumi.get(self, "kms_key_id")
 
     @property
     @pulumi.getter(name="ownerAlias")
@@ -203,7 +203,7 @@ class SnapshotCopy(pulumi.CustomResource):
         """
         Value from an Amazon-maintained list (`amazon`, `aws-marketplace`, `microsoft`) of snapshot owners.
         """
-        ...
+        return pulumi.get(self, "owner_alias")
 
     @property
     @pulumi.getter(name="ownerId")
@@ -211,7 +211,7 @@ class SnapshotCopy(pulumi.CustomResource):
         """
         The AWS account ID of the snapshot owner.
         """
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter(name="sourceRegion")
@@ -219,7 +219,7 @@ class SnapshotCopy(pulumi.CustomResource):
         """
         The region of the source snapshot.
         """
-        ...
+        return pulumi.get(self, "source_region")
 
     @property
     @pulumi.getter(name="sourceSnapshotId")
@@ -227,7 +227,7 @@ class SnapshotCopy(pulumi.CustomResource):
         """
         The ARN for the snapshot to be copied.
         """
-        ...
+        return pulumi.get(self, "source_snapshot_id")
 
     @property
     @pulumi.getter
@@ -235,12 +235,12 @@ class SnapshotCopy(pulumi.CustomResource):
         """
         A map of tags for the snapshot.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="volumeId")
     def volume_id(self) -> str:
-        ...
+        return pulumi.get(self, "volume_id")
 
     @property
     @pulumi.getter(name="volumeSize")
@@ -248,7 +248,7 @@ class SnapshotCopy(pulumi.CustomResource):
         """
         The size of the drive in GiBs.
         """
-        ...
+        return pulumi.get(self, "volume_size")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

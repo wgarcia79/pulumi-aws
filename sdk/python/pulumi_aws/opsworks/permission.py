@@ -117,7 +117,7 @@ class Permission(pulumi.CustomResource):
         """
         Whether the user is allowed to use SSH to communicate with the instance
         """
-        ...
+        return pulumi.get(self, "allow_ssh")
 
     @property
     @pulumi.getter(name="allowSudo")
@@ -125,7 +125,7 @@ class Permission(pulumi.CustomResource):
         """
         Whether the user is allowed to use sudo to elevate privileges
         """
-        ...
+        return pulumi.get(self, "allow_sudo")
 
     @property
     @pulumi.getter
@@ -133,7 +133,7 @@ class Permission(pulumi.CustomResource):
         """
         The users permission level. Mus be one of `deny`, `show`, `deploy`, `manage`, `iam_only`
         """
-        ...
+        return pulumi.get(self, "level")
 
     @property
     @pulumi.getter(name="stackId")
@@ -141,7 +141,7 @@ class Permission(pulumi.CustomResource):
         """
         The stack to set the permissions for
         """
-        ...
+        return pulumi.get(self, "stack_id")
 
     @property
     @pulumi.getter(name="userArn")
@@ -149,7 +149,7 @@ class Permission(pulumi.CustomResource):
         """
         The user's IAM ARN to set permissions for
         """
-        ...
+        return pulumi.get(self, "user_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

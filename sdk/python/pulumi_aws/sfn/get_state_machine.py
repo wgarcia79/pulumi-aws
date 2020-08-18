@@ -50,7 +50,7 @@ class GetStateMachineResult:
         """
         Set to the arn of the state function.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="creationDate")
@@ -58,7 +58,7 @@ class GetStateMachineResult:
         """
         The date the state machine was created.
         """
-        ...
+        return pulumi.get(self, "creation_date")
 
     @property
     @pulumi.getter
@@ -66,7 +66,7 @@ class GetStateMachineResult:
         """
         Set to the state machine definition.
         """
-        ...
+        return pulumi.get(self, "definition")
 
     @property
     @pulumi.getter
@@ -74,12 +74,12 @@ class GetStateMachineResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -87,7 +87,7 @@ class GetStateMachineResult:
         """
         Set to the role_arn used by the state function.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter
@@ -95,7 +95,7 @@ class GetStateMachineResult:
         """
         Set to the current status of the state machine.
         """
-        ...
+        return pulumi.get(self, "status")
 
 
 

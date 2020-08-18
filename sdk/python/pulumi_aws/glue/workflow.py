@@ -118,7 +118,7 @@ class Workflow(pulumi.CustomResource):
         """
         A map of default run properties for this workflow. These properties are passed to all jobs associated to the workflow.
         """
-        ...
+        return pulumi.get(self, "default_run_properties")
 
     @property
     @pulumi.getter
@@ -126,7 +126,7 @@ class Workflow(pulumi.CustomResource):
         """
         Description of the workflow.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -134,7 +134,7 @@ class Workflow(pulumi.CustomResource):
         """
         The name you assign to this workflow.
         """
-        ...
+        return pulumi.get(self, "name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

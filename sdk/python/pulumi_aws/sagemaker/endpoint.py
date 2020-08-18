@@ -110,7 +110,7 @@ class Endpoint(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) assigned by AWS to this endpoint.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="endpointConfigName")
@@ -118,7 +118,7 @@ class Endpoint(pulumi.CustomResource):
         """
         The name of the endpoint configuration to use.
         """
-        ...
+        return pulumi.get(self, "endpoint_config_name")
 
     @property
     @pulumi.getter
@@ -126,7 +126,7 @@ class Endpoint(pulumi.CustomResource):
         """
         The name of the endpoint. If omitted, this provider will assign a random, unique name.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -134,7 +134,7 @@ class Endpoint(pulumi.CustomResource):
         """
         A mapping of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

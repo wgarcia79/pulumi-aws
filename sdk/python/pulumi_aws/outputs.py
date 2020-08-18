@@ -39,22 +39,22 @@ class GetAmiBlockDeviceMappingResult(dict):
     @property
     @pulumi.getter(name="deviceName")
     def device_name(self) -> str:
-        ...
+        return pulumi.get(self, "device_name")
 
     @property
     @pulumi.getter
     def ebs(self) -> Mapping[str, str]:
-        ...
+        return pulumi.get(self, "ebs")
 
     @property
     @pulumi.getter(name="noDevice")
     def no_device(self) -> str:
-        ...
+        return pulumi.get(self, "no_device")
 
     @property
     @pulumi.getter(name="virtualName")
     def virtual_name(self) -> str:
-        ...
+        return pulumi.get(self, "virtual_name")
 
 
 @pulumi.output_type
@@ -74,12 +74,12 @@ class GetAmiFilterResult(dict):
         """
         The name of the AMI that was provided during image creation.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def values(self) -> List[str]:
-        ...
+        return pulumi.get(self, "values")
 
 
 @pulumi.output_type
@@ -93,12 +93,12 @@ class GetAmiIdsFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def values(self) -> List[str]:
-        ...
+        return pulumi.get(self, "values")
 
 
 @pulumi.output_type
@@ -112,12 +112,12 @@ class GetAmiProductCodeResult(dict):
     @property
     @pulumi.getter(name="productCodeId")
     def product_code_id(self) -> str:
-        ...
+        return pulumi.get(self, "product_code_id")
 
     @property
     @pulumi.getter(name="productCodeType")
     def product_code_type(self) -> str:
-        ...
+        return pulumi.get(self, "product_code_type")
 
 
 @pulumi.output_type
@@ -138,7 +138,7 @@ class GetAutoscalingGroupsFilterResult(dict):
         """
         The name of the filter. The valid values are: `auto-scaling-group`, `key`, `value`, and `propagate-at-launch`.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -146,7 +146,7 @@ class GetAutoscalingGroupsFilterResult(dict):
         """
         The value of the filter.
         """
-        ...
+        return pulumi.get(self, "values")
 
 
 @pulumi.output_type
@@ -167,7 +167,7 @@ class GetAvailabilityZoneFilterResult(dict):
         """
         The name of the filter field. Valid values can be found in the [EC2 DescribeAvailabilityZones API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html).
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -175,7 +175,7 @@ class GetAvailabilityZoneFilterResult(dict):
         """
         Set of values that are accepted for the given filter field. Results will be selected if any given value matches.
         """
-        ...
+        return pulumi.get(self, "values")
 
 
 @pulumi.output_type
@@ -196,7 +196,7 @@ class GetAvailabilityZonesFilterResult(dict):
         """
         The name of the filter field. Valid values can be found in the [EC2 DescribeAvailabilityZones API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html).
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -204,7 +204,7 @@ class GetAvailabilityZonesFilterResult(dict):
         """
         Set of values that are accepted for the given filter field. Results will be selected if any given value matches.
         """
-        ...
+        return pulumi.get(self, "values")
 
 
 @pulumi.output_type
@@ -218,12 +218,12 @@ class GetElasticIpFilterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def values(self) -> List[str]:
-        ...
+        return pulumi.get(self, "values")
 
 
 @pulumi.output_type
@@ -244,7 +244,7 @@ class GetPrefixListFilterResult(dict):
         """
         The name of the filter field. Valid values can be found in the [EC2 DescribePrefixLists API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribePrefixLists.html).
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -252,7 +252,7 @@ class GetPrefixListFilterResult(dict):
         """
         Set of values that are accepted for the given filter field. Results will be selected if any given value matches.
         """
-        ...
+        return pulumi.get(self, "values")
 
 
 @pulumi.output_type
@@ -273,7 +273,7 @@ class GetRegionsFilterResult(dict):
         """
         The name of the filter field. Valid values can be found in the [describe-regions AWS CLI Reference][1].
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -281,7 +281,7 @@ class GetRegionsFilterResult(dict):
         """
         Set of values that are accepted for the given filter field. Results will be selected if any given value matches.
         """
-        ...
+        return pulumi.get(self, "values")
 
 
 @pulumi.output_type
@@ -303,22 +303,22 @@ class ProviderAssumeRole(dict):
     @property
     @pulumi.getter(name="externalId")
     def external_id(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "external_id")
 
     @property
     @pulumi.getter
     def policy(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "policy")
 
     @property
     @pulumi.getter(name="roleArn")
     def role_arn(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="sessionName")
     def session_name(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "session_name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -754,707 +754,707 @@ class ProviderEndpoint(dict):
     @property
     @pulumi.getter
     def accessanalyzer(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "accessanalyzer")
 
     @property
     @pulumi.getter
     def acm(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "acm")
 
     @property
     @pulumi.getter
     def acmpca(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "acmpca")
 
     @property
     @pulumi.getter
     def amplify(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "amplify")
 
     @property
     @pulumi.getter
     def apigateway(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "apigateway")
 
     @property
     @pulumi.getter
     def applicationautoscaling(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "applicationautoscaling")
 
     @property
     @pulumi.getter
     def applicationinsights(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "applicationinsights")
 
     @property
     @pulumi.getter
     def appmesh(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "appmesh")
 
     @property
     @pulumi.getter
     def appstream(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "appstream")
 
     @property
     @pulumi.getter
     def appsync(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "appsync")
 
     @property
     @pulumi.getter
     def athena(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "athena")
 
     @property
     @pulumi.getter
     def autoscaling(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "autoscaling")
 
     @property
     @pulumi.getter
     def autoscalingplans(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "autoscalingplans")
 
     @property
     @pulumi.getter
     def backup(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "backup")
 
     @property
     @pulumi.getter
     def batch(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "batch")
 
     @property
     @pulumi.getter
     def budgets(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "budgets")
 
     @property
     @pulumi.getter
     def cloud9(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "cloud9")
 
     @property
     @pulumi.getter
     def cloudformation(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "cloudformation")
 
     @property
     @pulumi.getter
     def cloudfront(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "cloudfront")
 
     @property
     @pulumi.getter
     def cloudhsm(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "cloudhsm")
 
     @property
     @pulumi.getter
     def cloudsearch(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "cloudsearch")
 
     @property
     @pulumi.getter
     def cloudtrail(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "cloudtrail")
 
     @property
     @pulumi.getter
     def cloudwatch(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "cloudwatch")
 
     @property
     @pulumi.getter
     def cloudwatchevents(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "cloudwatchevents")
 
     @property
     @pulumi.getter
     def cloudwatchlogs(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "cloudwatchlogs")
 
     @property
     @pulumi.getter
     def codeartifact(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "codeartifact")
 
     @property
     @pulumi.getter
     def codebuild(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "codebuild")
 
     @property
     @pulumi.getter
     def codecommit(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "codecommit")
 
     @property
     @pulumi.getter
     def codedeploy(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "codedeploy")
 
     @property
     @pulumi.getter
     def codepipeline(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "codepipeline")
 
     @property
     @pulumi.getter
     def cognitoidentity(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "cognitoidentity")
 
     @property
     @pulumi.getter
     def cognitoidp(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "cognitoidp")
 
     @property
     @pulumi.getter
     def configservice(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "configservice")
 
     @property
     @pulumi.getter
     def cur(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "cur")
 
     @property
     @pulumi.getter
     def dataexchange(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "dataexchange")
 
     @property
     @pulumi.getter
     def datapipeline(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "datapipeline")
 
     @property
     @pulumi.getter
     def datasync(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "datasync")
 
     @property
     @pulumi.getter
     def dax(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "dax")
 
     @property
     @pulumi.getter
     def devicefarm(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "devicefarm")
 
     @property
     @pulumi.getter
     def directconnect(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "directconnect")
 
     @property
     @pulumi.getter
     def dlm(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "dlm")
 
     @property
     @pulumi.getter
     def dms(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "dms")
 
     @property
     @pulumi.getter
     def docdb(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "docdb")
 
     @property
     @pulumi.getter
     def ds(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "ds")
 
     @property
     @pulumi.getter
     def dynamodb(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "dynamodb")
 
     @property
     @pulumi.getter
     def ec2(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "ec2")
 
     @property
     @pulumi.getter
     def ecr(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "ecr")
 
     @property
     @pulumi.getter
     def ecs(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "ecs")
 
     @property
     @pulumi.getter
     def efs(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "efs")
 
     @property
     @pulumi.getter
     def eks(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "eks")
 
     @property
     @pulumi.getter
     def elasticache(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "elasticache")
 
     @property
     @pulumi.getter
     def elasticbeanstalk(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "elasticbeanstalk")
 
     @property
     @pulumi.getter
     def elastictranscoder(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "elastictranscoder")
 
     @property
     @pulumi.getter
     def elb(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "elb")
 
     @property
     @pulumi.getter
     def emr(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "emr")
 
     @property
     @pulumi.getter
     def es(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "es")
 
     @property
     @pulumi.getter
     def firehose(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "firehose")
 
     @property
     @pulumi.getter
     def fms(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "fms")
 
     @property
     @pulumi.getter
     def forecast(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "forecast")
 
     @property
     @pulumi.getter
     def fsx(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "fsx")
 
     @property
     @pulumi.getter
     def gamelift(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "gamelift")
 
     @property
     @pulumi.getter
     def glacier(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "glacier")
 
     @property
     @pulumi.getter
     def globalaccelerator(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "globalaccelerator")
 
     @property
     @pulumi.getter
     def glue(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "glue")
 
     @property
     @pulumi.getter
     def greengrass(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "greengrass")
 
     @property
     @pulumi.getter
     def guardduty(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "guardduty")
 
     @property
     @pulumi.getter
     def iam(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "iam")
 
     @property
     @pulumi.getter
     def imagebuilder(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "imagebuilder")
 
     @property
     @pulumi.getter
     def inspector(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "inspector")
 
     @property
     @pulumi.getter
     def iot(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "iot")
 
     @property
     @pulumi.getter
     def iotanalytics(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "iotanalytics")
 
     @property
     @pulumi.getter
     def iotevents(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "iotevents")
 
     @property
     @pulumi.getter
     def kafka(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "kafka")
 
     @property
     @pulumi.getter
     def kinesis(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "kinesis")
 
     @property
     @pulumi.getter(name="kinesisAnalytics")
     def kinesis_analytics(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "kinesis_analytics")
 
     @property
     @pulumi.getter
     def kinesisanalytics(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "kinesisanalytics")
 
     @property
     @pulumi.getter
     def kinesisanalyticsv2(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "kinesisanalyticsv2")
 
     @property
     @pulumi.getter
     def kinesisvideo(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "kinesisvideo")
 
     @property
     @pulumi.getter
     def kms(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "kms")
 
     @property
     @pulumi.getter
     def lakeformation(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "lakeformation")
 
     @property
     @pulumi.getter(name="lambda")
     def lambda_(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "lambda_")
 
     @property
     @pulumi.getter
     def lexmodels(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "lexmodels")
 
     @property
     @pulumi.getter
     def licensemanager(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "licensemanager")
 
     @property
     @pulumi.getter
     def lightsail(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "lightsail")
 
     @property
     @pulumi.getter
     def macie(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "macie")
 
     @property
     @pulumi.getter
     def managedblockchain(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "managedblockchain")
 
     @property
     @pulumi.getter
     def marketplacecatalog(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "marketplacecatalog")
 
     @property
     @pulumi.getter
     def mediaconnect(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "mediaconnect")
 
     @property
     @pulumi.getter
     def mediaconvert(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "mediaconvert")
 
     @property
     @pulumi.getter
     def medialive(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "medialive")
 
     @property
     @pulumi.getter
     def mediapackage(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "mediapackage")
 
     @property
     @pulumi.getter
     def mediastore(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "mediastore")
 
     @property
     @pulumi.getter
     def mediastoredata(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "mediastoredata")
 
     @property
     @pulumi.getter
     def mq(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "mq")
 
     @property
     @pulumi.getter
     def neptune(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "neptune")
 
     @property
     @pulumi.getter
     def networkmanager(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "networkmanager")
 
     @property
     @pulumi.getter
     def opsworks(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "opsworks")
 
     @property
     @pulumi.getter
     def organizations(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "organizations")
 
     @property
     @pulumi.getter
     def outposts(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "outposts")
 
     @property
     @pulumi.getter
     def personalize(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "personalize")
 
     @property
     @pulumi.getter
     def pinpoint(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "pinpoint")
 
     @property
     @pulumi.getter
     def pricing(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "pricing")
 
     @property
     @pulumi.getter
     def qldb(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "qldb")
 
     @property
     @pulumi.getter
     def quicksight(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "quicksight")
 
     @property
     @pulumi.getter
     def r53(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "r53")
 
     @property
     @pulumi.getter
     def ram(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "ram")
 
     @property
     @pulumi.getter
     def rds(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "rds")
 
     @property
     @pulumi.getter
     def redshift(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "redshift")
 
     @property
     @pulumi.getter
     def resourcegroups(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "resourcegroups")
 
     @property
     @pulumi.getter
     def resourcegroupstaggingapi(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "resourcegroupstaggingapi")
 
     @property
     @pulumi.getter
     def route53(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "route53")
 
     @property
     @pulumi.getter
     def route53domains(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "route53domains")
 
     @property
     @pulumi.getter
     def route53resolver(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "route53resolver")
 
     @property
     @pulumi.getter
     def s3(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "s3")
 
     @property
     @pulumi.getter
     def s3control(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "s3control")
 
     @property
     @pulumi.getter
     def sagemaker(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "sagemaker")
 
     @property
     @pulumi.getter
     def sdb(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "sdb")
 
     @property
     @pulumi.getter
     def secretsmanager(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "secretsmanager")
 
     @property
     @pulumi.getter
     def securityhub(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "securityhub")
 
     @property
     @pulumi.getter
     def serverlessrepo(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "serverlessrepo")
 
     @property
     @pulumi.getter
     def servicecatalog(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "servicecatalog")
 
     @property
     @pulumi.getter
     def servicediscovery(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "servicediscovery")
 
     @property
     @pulumi.getter
     def servicequotas(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "servicequotas")
 
     @property
     @pulumi.getter
     def ses(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "ses")
 
     @property
     @pulumi.getter
     def shield(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "shield")
 
     @property
     @pulumi.getter
     def sns(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "sns")
 
     @property
     @pulumi.getter
     def sqs(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "sqs")
 
     @property
     @pulumi.getter
     def ssm(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "ssm")
 
     @property
     @pulumi.getter
     def stepfunctions(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "stepfunctions")
 
     @property
     @pulumi.getter
     def storagegateway(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "storagegateway")
 
     @property
     @pulumi.getter
     def sts(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "sts")
 
     @property
     @pulumi.getter
     def swf(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "swf")
 
     @property
     @pulumi.getter
     def synthetics(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "synthetics")
 
     @property
     @pulumi.getter
     def transfer(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "transfer")
 
     @property
     @pulumi.getter
     def waf(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "waf")
 
     @property
     @pulumi.getter
     def wafregional(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "wafregional")
 
     @property
     @pulumi.getter
     def wafv2(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "wafv2")
 
     @property
     @pulumi.getter
     def worklink(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "worklink")
 
     @property
     @pulumi.getter
     def workmail(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "workmail")
 
     @property
     @pulumi.getter
     def workspaces(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "workspaces")
 
     @property
     @pulumi.getter
     def xray(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "xray")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1473,12 +1473,12 @@ class ProviderIgnoreTags(dict):
     @property
     @pulumi.getter(name="keyPrefixes")
     def key_prefixes(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "key_prefixes")
 
     @property
     @pulumi.getter
     def keys(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "keys")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

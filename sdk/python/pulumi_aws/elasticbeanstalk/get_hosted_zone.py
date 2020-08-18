@@ -35,7 +35,7 @@ class GetHostedZoneResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -43,7 +43,7 @@ class GetHostedZoneResult:
         """
         The region of the hosted zone.
         """
-        ...
+        return pulumi.get(self, "region")
 
 
 

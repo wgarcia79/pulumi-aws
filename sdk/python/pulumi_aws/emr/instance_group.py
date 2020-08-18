@@ -154,7 +154,7 @@ class InstanceGroup(pulumi.CustomResource):
         """
         The autoscaling policy document. This is a JSON formatted string. See [EMR Auto Scaling](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-automatic-scaling.html)
         """
-        ...
+        return pulumi.get(self, "autoscaling_policy")
 
     @property
     @pulumi.getter(name="bidPrice")
@@ -162,7 +162,7 @@ class InstanceGroup(pulumi.CustomResource):
         """
         If set, the bid price for each EC2 instance in the instance group, expressed in USD. By setting this attribute, the instance group is being declared as a Spot Instance, and will implicitly create a Spot request. Leave this blank to use On-Demand Instances.
         """
-        ...
+        return pulumi.get(self, "bid_price")
 
     @property
     @pulumi.getter(name="clusterId")
@@ -170,7 +170,7 @@ class InstanceGroup(pulumi.CustomResource):
         """
         ID of the EMR Cluster to attach to. Changing this forces a new resource to be created.
         """
-        ...
+        return pulumi.get(self, "cluster_id")
 
     @property
     @pulumi.getter(name="configurationsJson")
@@ -178,7 +178,7 @@ class InstanceGroup(pulumi.CustomResource):
         """
         A JSON string for supplying list of configurations specific to the EMR instance group. Note that this can only be changed when using EMR release 5.21 or later.
         """
-        ...
+        return pulumi.get(self, "configurations_json")
 
     @property
     @pulumi.getter(name="ebsConfigs")
@@ -186,7 +186,7 @@ class InstanceGroup(pulumi.CustomResource):
         """
         One or more `ebs_config` blocks as defined below. Changing this forces a new resource to be created.
         """
-        ...
+        return pulumi.get(self, "ebs_configs")
 
     @property
     @pulumi.getter(name="ebsOptimized")
@@ -194,7 +194,7 @@ class InstanceGroup(pulumi.CustomResource):
         """
         Indicates whether an Amazon EBS volume is EBS-optimized. Changing this forces a new resource to be created.
         """
-        ...
+        return pulumi.get(self, "ebs_optimized")
 
     @property
     @pulumi.getter(name="instanceCount")
@@ -202,7 +202,7 @@ class InstanceGroup(pulumi.CustomResource):
         """
         target number of instances for the instance group. defaults to 0.
         """
-        ...
+        return pulumi.get(self, "instance_count")
 
     @property
     @pulumi.getter(name="instanceType")
@@ -210,7 +210,7 @@ class InstanceGroup(pulumi.CustomResource):
         """
         The EC2 instance type for all instances in the instance group. Changing this forces a new resource to be created.
         """
-        ...
+        return pulumi.get(self, "instance_type")
 
     @property
     @pulumi.getter
@@ -218,17 +218,17 @@ class InstanceGroup(pulumi.CustomResource):
         """
         Human friendly name given to the instance group. Changing this forces a new resource to be created.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="runningInstanceCount")
     def running_instance_count(self) -> float:
-        ...
+        return pulumi.get(self, "running_instance_count")
 
     @property
     @pulumi.getter
     def status(self) -> str:
-        ...
+        return pulumi.get(self, "status")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

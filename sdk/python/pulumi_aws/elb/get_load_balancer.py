@@ -87,42 +87,42 @@ class GetLoadBalancerResult:
     @property
     @pulumi.getter(name="accessLogs")
     def access_logs(self) -> 'outputs.GetLoadBalancerAccessLogsResult':
-        ...
+        return pulumi.get(self, "access_logs")
 
     @property
     @pulumi.getter
     def arn(self) -> str:
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="availabilityZones")
     def availability_zones(self) -> List[str]:
-        ...
+        return pulumi.get(self, "availability_zones")
 
     @property
     @pulumi.getter(name="connectionDraining")
     def connection_draining(self) -> bool:
-        ...
+        return pulumi.get(self, "connection_draining")
 
     @property
     @pulumi.getter(name="connectionDrainingTimeout")
     def connection_draining_timeout(self) -> float:
-        ...
+        return pulumi.get(self, "connection_draining_timeout")
 
     @property
     @pulumi.getter(name="crossZoneLoadBalancing")
     def cross_zone_load_balancing(self) -> bool:
-        ...
+        return pulumi.get(self, "cross_zone_load_balancing")
 
     @property
     @pulumi.getter(name="dnsName")
     def dns_name(self) -> str:
-        ...
+        return pulumi.get(self, "dns_name")
 
     @property
     @pulumi.getter(name="healthCheck")
     def health_check(self) -> 'outputs.GetLoadBalancerHealthCheckResult':
-        ...
+        return pulumi.get(self, "health_check")
 
     @property
     @pulumi.getter
@@ -130,62 +130,62 @@ class GetLoadBalancerResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="idleTimeout")
     def idle_timeout(self) -> float:
-        ...
+        return pulumi.get(self, "idle_timeout")
 
     @property
     @pulumi.getter
     def instances(self) -> List[str]:
-        ...
+        return pulumi.get(self, "instances")
 
     @property
     @pulumi.getter
     def internal(self) -> bool:
-        ...
+        return pulumi.get(self, "internal")
 
     @property
     @pulumi.getter
     def listeners(self) -> List['outputs.GetLoadBalancerListenerResult']:
-        ...
+        return pulumi.get(self, "listeners")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="securityGroups")
     def security_groups(self) -> List[str]:
-        ...
+        return pulumi.get(self, "security_groups")
 
     @property
     @pulumi.getter(name="sourceSecurityGroup")
     def source_security_group(self) -> str:
-        ...
+        return pulumi.get(self, "source_security_group")
 
     @property
     @pulumi.getter(name="sourceSecurityGroupId")
     def source_security_group_id(self) -> str:
-        ...
+        return pulumi.get(self, "source_security_group_id")
 
     @property
     @pulumi.getter
     def subnets(self) -> List[str]:
-        ...
+        return pulumi.get(self, "subnets")
 
     @property
     @pulumi.getter
     def tags(self) -> Mapping[str, str]:
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="zoneId")
     def zone_id(self) -> str:
-        ...
+        return pulumi.get(self, "zone_id")
 
 
 

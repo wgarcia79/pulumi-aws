@@ -41,7 +41,7 @@ class GetSiteResult:
         """
         AWS Account identifier.
         """
-        ...
+        return pulumi.get(self, "account_id")
 
     @property
     @pulumi.getter
@@ -49,17 +49,17 @@ class GetSiteResult:
         """
         Description.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def id(self) -> str:
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
 
 

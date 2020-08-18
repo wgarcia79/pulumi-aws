@@ -59,7 +59,7 @@ class GetBucketObjectsResult:
     @property
     @pulumi.getter
     def bucket(self) -> str:
-        ...
+        return pulumi.get(self, "bucket")
 
     @property
     @pulumi.getter(name="commonPrefixes")
@@ -67,22 +67,22 @@ class GetBucketObjectsResult:
         """
         List of any keys between `prefix` and the next occurrence of `delimiter` (i.e., similar to subdirectories of the `prefix` "directory"); the list is only returned when you specify `delimiter`
         """
-        ...
+        return pulumi.get(self, "common_prefixes")
 
     @property
     @pulumi.getter
     def delimiter(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "delimiter")
 
     @property
     @pulumi.getter(name="encodingType")
     def encoding_type(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "encoding_type")
 
     @property
     @pulumi.getter(name="fetchOwner")
     def fetch_owner(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "fetch_owner")
 
     @property
     @pulumi.getter
@@ -90,7 +90,7 @@ class GetBucketObjectsResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -98,12 +98,12 @@ class GetBucketObjectsResult:
         """
         List of strings representing object keys
         """
-        ...
+        return pulumi.get(self, "keys")
 
     @property
     @pulumi.getter(name="maxKeys")
     def max_keys(self) -> Optional[float]:
-        ...
+        return pulumi.get(self, "max_keys")
 
     @property
     @pulumi.getter
@@ -111,17 +111,17 @@ class GetBucketObjectsResult:
         """
         List of strings representing object owner IDs (see `fetch_owner` above)
         """
-        ...
+        return pulumi.get(self, "owners")
 
     @property
     @pulumi.getter
     def prefix(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "prefix")
 
     @property
     @pulumi.getter(name="startAfter")
     def start_after(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "start_after")
 
 
 

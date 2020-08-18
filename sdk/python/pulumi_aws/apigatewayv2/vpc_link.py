@@ -120,7 +120,7 @@ class VpcLink(pulumi.CustomResource):
         """
         The VPC Link ARN.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -128,7 +128,7 @@ class VpcLink(pulumi.CustomResource):
         """
         The name of the VPC Link.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="securityGroupIds")
@@ -136,7 +136,7 @@ class VpcLink(pulumi.CustomResource):
         """
         Security group IDs for the VPC Link.
         """
-        ...
+        return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter(name="subnetIds")
@@ -144,7 +144,7 @@ class VpcLink(pulumi.CustomResource):
         """
         Subnet IDs for the VPC Link.
         """
-        ...
+        return pulumi.get(self, "subnet_ids")
 
     @property
     @pulumi.getter
@@ -152,7 +152,7 @@ class VpcLink(pulumi.CustomResource):
         """
         A map of tags to assign to the VPC Link.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

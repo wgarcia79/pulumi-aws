@@ -116,7 +116,7 @@ class TrafficMirrorTarget(pulumi.CustomResource):
         """
         The ARN of the traffic mirror target.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -124,7 +124,7 @@ class TrafficMirrorTarget(pulumi.CustomResource):
         """
         A description of the traffic mirror session.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="networkInterfaceId")
@@ -132,7 +132,7 @@ class TrafficMirrorTarget(pulumi.CustomResource):
         """
         The network interface ID that is associated with the target.
         """
-        ...
+        return pulumi.get(self, "network_interface_id")
 
     @property
     @pulumi.getter(name="networkLoadBalancerArn")
@@ -140,7 +140,7 @@ class TrafficMirrorTarget(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) of the Network Load Balancer that is associated with the target.
         """
-        ...
+        return pulumi.get(self, "network_load_balancer_arn")
 
     @property
     @pulumi.getter
@@ -148,7 +148,7 @@ class TrafficMirrorTarget(pulumi.CustomResource):
         """
         Key-value map of resource tags.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

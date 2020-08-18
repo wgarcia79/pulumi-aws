@@ -58,12 +58,12 @@ class GetLocalGatewayVirtualInterfaceResult:
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetLocalGatewayVirtualInterfaceFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
     def id(self) -> str:
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="localAddress")
@@ -71,7 +71,7 @@ class GetLocalGatewayVirtualInterfaceResult:
         """
         Local address.
         """
-        ...
+        return pulumi.get(self, "local_address")
 
     @property
     @pulumi.getter(name="localBgpAsn")
@@ -79,7 +79,7 @@ class GetLocalGatewayVirtualInterfaceResult:
         """
         Border Gateway Protocol (BGP) Autonomous System Number (ASN) of the EC2 Local Gateway.
         """
-        ...
+        return pulumi.get(self, "local_bgp_asn")
 
     @property
     @pulumi.getter(name="localGatewayId")
@@ -87,12 +87,12 @@ class GetLocalGatewayVirtualInterfaceResult:
         """
         Identifier of the EC2 Local Gateway.
         """
-        ...
+        return pulumi.get(self, "local_gateway_id")
 
     @property
     @pulumi.getter(name="localGatewayVirtualInterfaceIds")
     def local_gateway_virtual_interface_ids(self) -> List[str]:
-        ...
+        return pulumi.get(self, "local_gateway_virtual_interface_ids")
 
     @property
     @pulumi.getter(name="peerAddress")
@@ -100,7 +100,7 @@ class GetLocalGatewayVirtualInterfaceResult:
         """
         Peer address.
         """
-        ...
+        return pulumi.get(self, "peer_address")
 
     @property
     @pulumi.getter(name="peerBgpAsn")
@@ -108,12 +108,12 @@ class GetLocalGatewayVirtualInterfaceResult:
         """
         Border Gateway Protocol (BGP) Autonomous System Number (ASN) of the peer.
         """
-        ...
+        return pulumi.get(self, "peer_bgp_asn")
 
     @property
     @pulumi.getter
     def tags(self) -> Mapping[str, str]:
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -121,7 +121,7 @@ class GetLocalGatewayVirtualInterfaceResult:
         """
         Virtual Local Area Network.
         """
-        ...
+        return pulumi.get(self, "vlan")
 
 
 

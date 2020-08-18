@@ -122,7 +122,7 @@ class Repository(pulumi.CustomResource):
         """
         Full ARN of the repository.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="imageScanningConfiguration")
@@ -130,7 +130,7 @@ class Repository(pulumi.CustomResource):
         """
         Configuration block that defines image scanning configuration for the repository. By default, image scanning must be manually triggered. See the [ECR User Guide](https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning.html) for more information about image scanning.
         """
-        ...
+        return pulumi.get(self, "image_scanning_configuration")
 
     @property
     @pulumi.getter(name="imageTagMutability")
@@ -138,7 +138,7 @@ class Repository(pulumi.CustomResource):
         """
         The tag mutability setting for the repository. Must be one of: `MUTABLE` or `IMMUTABLE`. Defaults to `MUTABLE`.
         """
-        ...
+        return pulumi.get(self, "image_tag_mutability")
 
     @property
     @pulumi.getter
@@ -146,7 +146,7 @@ class Repository(pulumi.CustomResource):
         """
         Name of the repository.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="registryId")
@@ -154,7 +154,7 @@ class Repository(pulumi.CustomResource):
         """
         The registry ID where the repository was created.
         """
-        ...
+        return pulumi.get(self, "registry_id")
 
     @property
     @pulumi.getter(name="repositoryUrl")
@@ -162,7 +162,7 @@ class Repository(pulumi.CustomResource):
         """
         The URL of the repository (in the form `aws_account_id.dkr.ecr.region.amazonaws.com/repositoryName`).
         """
-        ...
+        return pulumi.get(self, "repository_url")
 
     @property
     @pulumi.getter
@@ -170,7 +170,7 @@ class Repository(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

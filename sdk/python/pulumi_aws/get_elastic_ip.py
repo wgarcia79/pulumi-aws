@@ -76,7 +76,7 @@ class GetElasticIpResult:
         """
         The ID representing the association of the address with an instance in a VPC.
         """
-        ...
+        return pulumi.get(self, "association_id")
 
     @property
     @pulumi.getter(name="customerOwnedIp")
@@ -84,7 +84,7 @@ class GetElasticIpResult:
         """
         Customer Owned IP.
         """
-        ...
+        return pulumi.get(self, "customer_owned_ip")
 
     @property
     @pulumi.getter(name="customerOwnedIpv4Pool")
@@ -92,7 +92,7 @@ class GetElasticIpResult:
         """
         The ID of a Customer Owned IP Pool. For more on customer owned IP addressed check out [Customer-owned IP addresses guide](https://docs.aws.amazon.com/outposts/latest/userguide/outposts-networking-components.html#ip-addressing)
         """
-        ...
+        return pulumi.get(self, "customer_owned_ipv4_pool")
 
     @property
     @pulumi.getter
@@ -100,12 +100,12 @@ class GetElasticIpResult:
         """
         Indicates whether the address is for use in EC2-Classic (standard) or in a VPC (vpc).
         """
-        ...
+        return pulumi.get(self, "domain")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetElasticIpFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
@@ -113,7 +113,7 @@ class GetElasticIpResult:
         """
         If VPC Elastic IP, the allocation identifier. If EC2-Classic Elastic IP, the public IP address.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="instanceId")
@@ -121,7 +121,7 @@ class GetElasticIpResult:
         """
         The ID of the instance that the address is associated with (if any).
         """
-        ...
+        return pulumi.get(self, "instance_id")
 
     @property
     @pulumi.getter(name="networkInterfaceId")
@@ -129,7 +129,7 @@ class GetElasticIpResult:
         """
         The ID of the network interface.
         """
-        ...
+        return pulumi.get(self, "network_interface_id")
 
     @property
     @pulumi.getter(name="networkInterfaceOwnerId")
@@ -137,7 +137,7 @@ class GetElasticIpResult:
         """
         The ID of the AWS account that owns the network interface.
         """
-        ...
+        return pulumi.get(self, "network_interface_owner_id")
 
     @property
     @pulumi.getter(name="privateDns")
@@ -145,7 +145,7 @@ class GetElasticIpResult:
         """
         The Private DNS associated with the Elastic IP address.
         """
-        ...
+        return pulumi.get(self, "private_dns")
 
     @property
     @pulumi.getter(name="privateIp")
@@ -153,7 +153,7 @@ class GetElasticIpResult:
         """
         The private IP address associated with the Elastic IP address.
         """
-        ...
+        return pulumi.get(self, "private_ip")
 
     @property
     @pulumi.getter(name="publicDns")
@@ -161,7 +161,7 @@ class GetElasticIpResult:
         """
         Public DNS associated with the Elastic IP address.
         """
-        ...
+        return pulumi.get(self, "public_dns")
 
     @property
     @pulumi.getter(name="publicIp")
@@ -169,7 +169,7 @@ class GetElasticIpResult:
         """
         Public IP address of Elastic IP.
         """
-        ...
+        return pulumi.get(self, "public_ip")
 
     @property
     @pulumi.getter(name="publicIpv4Pool")
@@ -177,7 +177,7 @@ class GetElasticIpResult:
         """
         The ID of an address pool.
         """
-        ...
+        return pulumi.get(self, "public_ipv4_pool")
 
     @property
     @pulumi.getter
@@ -185,7 +185,7 @@ class GetElasticIpResult:
         """
         Key-value map of tags associated with Elastic IP.
         """
-        ...
+        return pulumi.get(self, "tags")
 
 
 

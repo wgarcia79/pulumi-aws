@@ -35,11 +35,11 @@ class S3BucketAssociationClassificationTypeArgs:
         A string value indicating that Macie perform a one-time classification of all of the existing objects in the bucket.
         The only valid value is the default value, `FULL`.
         """
-        ...
+        return pulumi.get(self, "continuous")
 
     @continuous.setter
     def continuous(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "continuous", value)
 
     @property
     @pulumi.getter(name="oneTime")
@@ -48,10 +48,10 @@ class S3BucketAssociationClassificationTypeArgs:
         A string value indicating whether or not Macie performs a one-time classification of all of the existing objects in the bucket.
         Valid values are `NONE` and `FULL`. Defaults to `NONE` indicating that Macie only classifies objects that are added after the association was created.
         """
-        ...
+        return pulumi.get(self, "one_time")
 
     @one_time.setter
     def one_time(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "one_time", value)
 
 

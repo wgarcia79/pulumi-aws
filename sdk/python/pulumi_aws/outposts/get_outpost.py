@@ -53,7 +53,7 @@ class GetOutpostResult:
         """
         Amazon Resource Name (ARN).
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="availabilityZone")
@@ -61,7 +61,7 @@ class GetOutpostResult:
         """
         Availability Zone name.
         """
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter(name="availabilityZoneId")
@@ -69,7 +69,7 @@ class GetOutpostResult:
         """
         Availability Zone identifier.
         """
-        ...
+        return pulumi.get(self, "availability_zone_id")
 
     @property
     @pulumi.getter
@@ -77,17 +77,17 @@ class GetOutpostResult:
         """
         Description.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def id(self) -> str:
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="ownerId")
@@ -95,7 +95,7 @@ class GetOutpostResult:
         """
         AWS Account identifier of the Outpost owner.
         """
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter(name="siteId")
@@ -103,7 +103,7 @@ class GetOutpostResult:
         """
         Site identifier.
         """
-        ...
+        return pulumi.get(self, "site_id")
 
 
 

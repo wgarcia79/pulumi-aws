@@ -44,7 +44,7 @@ class ClusterParameterGroupParameter(dict):
         """
         The name of the DB parameter.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -52,7 +52,7 @@ class ClusterParameterGroupParameter(dict):
         """
         The value of the DB parameter.
         """
-        ...
+        return pulumi.get(self, "value")
 
     @property
     @pulumi.getter(name="applyMethod")
@@ -62,7 +62,7 @@ class ClusterParameterGroupParameter(dict):
         engines can't apply some parameters without a reboot, and you will need to
         specify "pending-reboot" here.
         """
-        ...
+        return pulumi.get(self, "apply_method")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -96,7 +96,7 @@ class ClusterS3Import(dict):
         """
         The bucket name where your backup is stored
         """
-        ...
+        return pulumi.get(self, "bucket_name")
 
     @property
     @pulumi.getter(name="ingestionRole")
@@ -104,7 +104,7 @@ class ClusterS3Import(dict):
         """
         Role applied to load the data.
         """
-        ...
+        return pulumi.get(self, "ingestion_role")
 
     @property
     @pulumi.getter(name="sourceEngine")
@@ -112,7 +112,7 @@ class ClusterS3Import(dict):
         """
         Source engine for the backup
         """
-        ...
+        return pulumi.get(self, "source_engine")
 
     @property
     @pulumi.getter(name="sourceEngineVersion")
@@ -120,7 +120,7 @@ class ClusterS3Import(dict):
         """
         Version of the source engine used to make the backup
         """
-        ...
+        return pulumi.get(self, "source_engine_version")
 
     @property
     @pulumi.getter(name="bucketPrefix")
@@ -128,7 +128,7 @@ class ClusterS3Import(dict):
         """
         Can be blank, but is the path to your backup
         """
-        ...
+        return pulumi.get(self, "bucket_prefix")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -166,7 +166,7 @@ class ClusterScalingConfiguration(dict):
         """
         Whether to enable automatic pause. A DB cluster can be paused only when it's idle (it has no connections). If a DB cluster is paused for more than seven days, the DB cluster might be backed up with a snapshot. In this case, the DB cluster is restored when there is a request to connect to it. Defaults to `true`.
         """
-        ...
+        return pulumi.get(self, "auto_pause")
 
     @property
     @pulumi.getter(name="maxCapacity")
@@ -174,7 +174,7 @@ class ClusterScalingConfiguration(dict):
         """
         The maximum capacity. The maximum capacity must be greater than or equal to the minimum capacity. Valid capacity values are `1`, `2`, `4`, `8`, `16`, `32`, `64`, `128`, and `256`. Defaults to `16`.
         """
-        ...
+        return pulumi.get(self, "max_capacity")
 
     @property
     @pulumi.getter(name="minCapacity")
@@ -182,7 +182,7 @@ class ClusterScalingConfiguration(dict):
         """
         The minimum capacity. The minimum capacity must be lesser than or equal to the maximum capacity. Valid capacity values are `1`, `2`, `4`, `8`, `16`, `32`, `64`, `128`, and `256`. Defaults to `2`.
         """
-        ...
+        return pulumi.get(self, "min_capacity")
 
     @property
     @pulumi.getter(name="secondsUntilAutoPause")
@@ -190,7 +190,7 @@ class ClusterScalingConfiguration(dict):
         """
         The time, in seconds, before an Aurora DB cluster in serverless mode is paused. Valid values are `300` through `86400`. Defaults to `300`.
         """
-        ...
+        return pulumi.get(self, "seconds_until_auto_pause")
 
     @property
     @pulumi.getter(name="timeoutAction")
@@ -198,7 +198,7 @@ class ClusterScalingConfiguration(dict):
         """
         The action to take when the timeout is reached. Valid values: `ForceApplyCapacityChange`, `RollbackCapacityChange`. Defaults to `RollbackCapacityChange`. See [documentation](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.how-it-works.html#aurora-serverless.how-it-works.timeout-action).
         """
-        ...
+        return pulumi.get(self, "timeout_action")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -232,7 +232,7 @@ class InstanceS3Import(dict):
         """
         The bucket name where your backup is stored
         """
-        ...
+        return pulumi.get(self, "bucket_name")
 
     @property
     @pulumi.getter(name="ingestionRole")
@@ -240,7 +240,7 @@ class InstanceS3Import(dict):
         """
         Role applied to load the data.
         """
-        ...
+        return pulumi.get(self, "ingestion_role")
 
     @property
     @pulumi.getter(name="sourceEngine")
@@ -248,7 +248,7 @@ class InstanceS3Import(dict):
         """
         Source engine for the backup
         """
-        ...
+        return pulumi.get(self, "source_engine")
 
     @property
     @pulumi.getter(name="sourceEngineVersion")
@@ -256,7 +256,7 @@ class InstanceS3Import(dict):
         """
         Version of the source engine used to make the backup
         """
-        ...
+        return pulumi.get(self, "source_engine_version")
 
     @property
     @pulumi.getter(name="bucketPrefix")
@@ -264,7 +264,7 @@ class InstanceS3Import(dict):
         """
         Can be blank, but is the path to your backup
         """
-        ...
+        return pulumi.get(self, "bucket_prefix")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -305,7 +305,7 @@ class OptionGroupOption(dict):
         """
         The Name of the Option (e.g. MEMCACHED).
         """
-        ...
+        return pulumi.get(self, "option_name")
 
     @property
     @pulumi.getter(name="dbSecurityGroupMemberships")
@@ -313,7 +313,7 @@ class OptionGroupOption(dict):
         """
         A list of DB Security Groups for which the option is enabled.
         """
-        ...
+        return pulumi.get(self, "db_security_group_memberships")
 
     @property
     @pulumi.getter(name="optionSettings")
@@ -321,7 +321,7 @@ class OptionGroupOption(dict):
         """
         A list of option settings to apply.
         """
-        ...
+        return pulumi.get(self, "option_settings")
 
     @property
     @pulumi.getter
@@ -329,7 +329,7 @@ class OptionGroupOption(dict):
         """
         The Port number when connecting to the Option (e.g. 11211).
         """
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter
@@ -337,7 +337,7 @@ class OptionGroupOption(dict):
         """
         The version of the option (e.g. 13.1.0.0).
         """
-        ...
+        return pulumi.get(self, "version")
 
     @property
     @pulumi.getter(name="vpcSecurityGroupMemberships")
@@ -345,7 +345,7 @@ class OptionGroupOption(dict):
         """
         A list of VPC Security Groups for which the option is enabled.
         """
-        ...
+        return pulumi.get(self, "vpc_security_group_memberships")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -369,7 +369,7 @@ class OptionGroupOptionOptionSetting(dict):
         """
         The Name of the setting.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -377,7 +377,7 @@ class OptionGroupOptionOptionSetting(dict):
         """
         The Value of the setting.
         """
-        ...
+        return pulumi.get(self, "value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -407,7 +407,7 @@ class ParameterGroupParameter(dict):
         """
         The name of the DB parameter.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -415,7 +415,7 @@ class ParameterGroupParameter(dict):
         """
         The value of the DB parameter.
         """
-        ...
+        return pulumi.get(self, "value")
 
     @property
     @pulumi.getter(name="applyMethod")
@@ -425,7 +425,7 @@ class ParameterGroupParameter(dict):
         engines can't apply some parameters without a reboot, and you will need to
         specify "pending-reboot" here.
         """
-        ...
+        return pulumi.get(self, "apply_method")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -460,7 +460,7 @@ class SecurityGroupIngress(dict):
         """
         The CIDR block to accept
         """
-        ...
+        return pulumi.get(self, "cidr")
 
     @property
     @pulumi.getter(name="securityGroupId")
@@ -468,7 +468,7 @@ class SecurityGroupIngress(dict):
         """
         The ID of the security group to authorize
         """
-        ...
+        return pulumi.get(self, "security_group_id")
 
     @property
     @pulumi.getter(name="securityGroupName")
@@ -476,7 +476,7 @@ class SecurityGroupIngress(dict):
         """
         The name of the security group to authorize
         """
-        ...
+        return pulumi.get(self, "security_group_name")
 
     @property
     @pulumi.getter(name="securityGroupOwnerId")
@@ -485,7 +485,7 @@ class SecurityGroupIngress(dict):
         The owner Id of the security group provided
         by `security_group_name`.
         """
-        ...
+        return pulumi.get(self, "security_group_owner_id")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

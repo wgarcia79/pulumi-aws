@@ -106,7 +106,7 @@ class ResourceShare(pulumi.CustomResource):
         """
         Indicates whether principals outside your organization can be associated with a resource share.
         """
-        ...
+        return pulumi.get(self, "allow_external_principals")
 
     @property
     @pulumi.getter
@@ -114,7 +114,7 @@ class ResourceShare(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) of the resource share.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -122,7 +122,7 @@ class ResourceShare(pulumi.CustomResource):
         """
         The name of the resource share.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -130,7 +130,7 @@ class ResourceShare(pulumi.CustomResource):
         """
         A map of tags to assign to the resource share.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

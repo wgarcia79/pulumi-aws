@@ -92,7 +92,7 @@ class EmailIdentity(pulumi.CustomResource):
         """
         The ARN of the email identity.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -100,7 +100,7 @@ class EmailIdentity(pulumi.CustomResource):
         """
         The email address to assign to SES
         """
-        ...
+        return pulumi.get(self, "email")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

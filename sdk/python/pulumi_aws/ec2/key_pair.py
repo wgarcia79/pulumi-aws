@@ -126,7 +126,7 @@ class KeyPair(pulumi.CustomResource):
         """
         The key pair ARN.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -134,7 +134,7 @@ class KeyPair(pulumi.CustomResource):
         """
         The MD5 public key fingerprint as specified in section 4 of RFC 4716.
         """
-        ...
+        return pulumi.get(self, "fingerprint")
 
     @property
     @pulumi.getter(name="keyName")
@@ -142,7 +142,7 @@ class KeyPair(pulumi.CustomResource):
         """
         The name for the key pair.
         """
-        ...
+        return pulumi.get(self, "key_name")
 
     @property
     @pulumi.getter(name="keyNamePrefix")
@@ -150,7 +150,7 @@ class KeyPair(pulumi.CustomResource):
         """
         Creates a unique name beginning with the specified prefix. Conflicts with `key_name`.
         """
-        ...
+        return pulumi.get(self, "key_name_prefix")
 
     @property
     @pulumi.getter(name="keyPairId")
@@ -158,7 +158,7 @@ class KeyPair(pulumi.CustomResource):
         """
         The key pair ID.
         """
-        ...
+        return pulumi.get(self, "key_pair_id")
 
     @property
     @pulumi.getter(name="publicKey")
@@ -166,7 +166,7 @@ class KeyPair(pulumi.CustomResource):
         """
         The public key material.
         """
-        ...
+        return pulumi.get(self, "public_key")
 
     @property
     @pulumi.getter
@@ -174,7 +174,7 @@ class KeyPair(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

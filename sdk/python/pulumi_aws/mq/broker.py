@@ -236,7 +236,7 @@ class Broker(pulumi.CustomResource):
         Specifies whether any broker modifications
         are applied immediately, or during the next maintenance window. Default is `false`.
         """
-        ...
+        return pulumi.get(self, "apply_immediately")
 
     @property
     @pulumi.getter
@@ -244,7 +244,7 @@ class Broker(pulumi.CustomResource):
         """
         The ARN of the broker.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="autoMinorVersionUpgrade")
@@ -252,7 +252,7 @@ class Broker(pulumi.CustomResource):
         """
         Enables automatic upgrades to new minor versions for brokers, as Apache releases the versions.
         """
-        ...
+        return pulumi.get(self, "auto_minor_version_upgrade")
 
     @property
     @pulumi.getter(name="brokerName")
@@ -260,7 +260,7 @@ class Broker(pulumi.CustomResource):
         """
         The name of the broker.
         """
-        ...
+        return pulumi.get(self, "broker_name")
 
     @property
     @pulumi.getter
@@ -268,7 +268,7 @@ class Broker(pulumi.CustomResource):
         """
         Configuration of the broker. See below.
         """
-        ...
+        return pulumi.get(self, "configuration")
 
     @property
     @pulumi.getter(name="deploymentMode")
@@ -276,7 +276,7 @@ class Broker(pulumi.CustomResource):
         """
         The deployment mode of the broker. Supported: `SINGLE_INSTANCE` and `ACTIVE_STANDBY_MULTI_AZ`. Defaults to `SINGLE_INSTANCE`.
         """
-        ...
+        return pulumi.get(self, "deployment_mode")
 
     @property
     @pulumi.getter(name="encryptionOptions")
@@ -284,7 +284,7 @@ class Broker(pulumi.CustomResource):
         """
         Configuration block containing encryption options. See below.
         """
-        ...
+        return pulumi.get(self, "encryption_options")
 
     @property
     @pulumi.getter(name="engineType")
@@ -292,7 +292,7 @@ class Broker(pulumi.CustomResource):
         """
         The type of broker engine. Currently, Amazon MQ supports only `ActiveMQ`.
         """
-        ...
+        return pulumi.get(self, "engine_type")
 
     @property
     @pulumi.getter(name="engineVersion")
@@ -300,7 +300,7 @@ class Broker(pulumi.CustomResource):
         """
         The version of the broker engine. See the [AmazonMQ Broker Engine docs](https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html) for supported versions.
         """
-        ...
+        return pulumi.get(self, "engine_version")
 
     @property
     @pulumi.getter(name="hostInstanceType")
@@ -308,7 +308,7 @@ class Broker(pulumi.CustomResource):
         """
         The broker's instance type. e.g. `mq.t2.micro` or `mq.m4.large`
         """
-        ...
+        return pulumi.get(self, "host_instance_type")
 
     @property
     @pulumi.getter
@@ -324,7 +324,7 @@ class Broker(pulumi.CustomResource):
         * `mqtt+ssl://broker-id.mq.us-west-2.amazonaws.com:8883`
         * `wss://broker-id.mq.us-west-2.amazonaws.com:61619`
         """
-        ...
+        return pulumi.get(self, "instances")
 
     @property
     @pulumi.getter
@@ -332,7 +332,7 @@ class Broker(pulumi.CustomResource):
         """
         Logging configuration of the broker. See below.
         """
-        ...
+        return pulumi.get(self, "logs")
 
     @property
     @pulumi.getter(name="maintenanceWindowStartTime")
@@ -340,7 +340,7 @@ class Broker(pulumi.CustomResource):
         """
         Maintenance window start time. See below.
         """
-        ...
+        return pulumi.get(self, "maintenance_window_start_time")
 
     @property
     @pulumi.getter(name="publiclyAccessible")
@@ -348,7 +348,7 @@ class Broker(pulumi.CustomResource):
         """
         Whether to enable connections from applications outside of the VPC that hosts the broker's subnets.
         """
-        ...
+        return pulumi.get(self, "publicly_accessible")
 
     @property
     @pulumi.getter(name="securityGroups")
@@ -356,7 +356,7 @@ class Broker(pulumi.CustomResource):
         """
         The list of security group IDs assigned to the broker.
         """
-        ...
+        return pulumi.get(self, "security_groups")
 
     @property
     @pulumi.getter(name="subnetIds")
@@ -364,7 +364,7 @@ class Broker(pulumi.CustomResource):
         """
         The list of subnet IDs in which to launch the broker. A `SINGLE_INSTANCE` deployment requires one subnet. An `ACTIVE_STANDBY_MULTI_AZ` deployment requires two subnets.
         """
-        ...
+        return pulumi.get(self, "subnet_ids")
 
     @property
     @pulumi.getter
@@ -372,7 +372,7 @@ class Broker(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -380,7 +380,7 @@ class Broker(pulumi.CustomResource):
         """
         The list of all ActiveMQ usernames for the specified broker. See below.
         """
-        ...
+        return pulumi.get(self, "users")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

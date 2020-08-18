@@ -108,7 +108,7 @@ class AggregateAuthorization(pulumi.CustomResource):
         """
         Account ID
         """
-        ...
+        return pulumi.get(self, "account_id")
 
     @property
     @pulumi.getter
@@ -116,7 +116,7 @@ class AggregateAuthorization(pulumi.CustomResource):
         """
         The ARN of the authorization
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -124,7 +124,7 @@ class AggregateAuthorization(pulumi.CustomResource):
         """
         Region
         """
-        ...
+        return pulumi.get(self, "region")
 
     @property
     @pulumi.getter
@@ -132,7 +132,7 @@ class AggregateAuthorization(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

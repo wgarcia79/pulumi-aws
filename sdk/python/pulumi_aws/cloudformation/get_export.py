@@ -41,7 +41,7 @@ class GetExportResult:
         """
         The exporting_stack_id (AWS ARNs) equivalent `ExportingStackId` from [list-exports](http://docs.aws.amazon.com/cli/latest/reference/cloudformation/list-exports.html)
         """
-        ...
+        return pulumi.get(self, "exporting_stack_id")
 
     @property
     @pulumi.getter
@@ -49,12 +49,12 @@ class GetExportResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -62,7 +62,7 @@ class GetExportResult:
         """
         The value from Cloudformation export identified by the export name found from [list-exports](http://docs.aws.amazon.com/cli/latest/reference/cloudformation/list-exports.html)
         """
-        ...
+        return pulumi.get(self, "value")
 
 
 

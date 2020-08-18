@@ -171,7 +171,7 @@ class DeploymentConfig(pulumi.CustomResource):
         """
         The compute platform can be `Server`, `Lambda`, or `ECS`. Default is `Server`.
         """
-        ...
+        return pulumi.get(self, "compute_platform")
 
     @property
     @pulumi.getter(name="deploymentConfigId")
@@ -179,7 +179,7 @@ class DeploymentConfig(pulumi.CustomResource):
         """
         The AWS Assigned deployment config id
         """
-        ...
+        return pulumi.get(self, "deployment_config_id")
 
     @property
     @pulumi.getter(name="deploymentConfigName")
@@ -187,7 +187,7 @@ class DeploymentConfig(pulumi.CustomResource):
         """
         The name of the deployment config.
         """
-        ...
+        return pulumi.get(self, "deployment_config_name")
 
     @property
     @pulumi.getter(name="minimumHealthyHosts")
@@ -195,7 +195,7 @@ class DeploymentConfig(pulumi.CustomResource):
         """
         A minimum_healthy_hosts block. Required for `Server` compute platform. Minimum Healthy Hosts are documented below.
         """
-        ...
+        return pulumi.get(self, "minimum_healthy_hosts")
 
     @property
     @pulumi.getter(name="trafficRoutingConfig")
@@ -203,7 +203,7 @@ class DeploymentConfig(pulumi.CustomResource):
         """
         A traffic_routing_config block. Traffic Routing Config is documented below.
         """
-        ...
+        return pulumi.get(self, "traffic_routing_config")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

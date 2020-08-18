@@ -59,12 +59,12 @@ class GetResolverRuleResult:
         """
         The ARN (Amazon Resource Name) for the resolver rule.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="domainName")
     def domain_name(self) -> str:
-        ...
+        return pulumi.get(self, "domain_name")
 
     @property
     @pulumi.getter
@@ -72,12 +72,12 @@ class GetResolverRuleResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="ownerId")
@@ -85,22 +85,22 @@ class GetResolverRuleResult:
         """
         When a rule is shared with another AWS account, the account ID of the account that the rule is shared with.
         """
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter(name="resolverEndpointId")
     def resolver_endpoint_id(self) -> str:
-        ...
+        return pulumi.get(self, "resolver_endpoint_id")
 
     @property
     @pulumi.getter(name="resolverRuleId")
     def resolver_rule_id(self) -> str:
-        ...
+        return pulumi.get(self, "resolver_rule_id")
 
     @property
     @pulumi.getter(name="ruleType")
     def rule_type(self) -> str:
-        ...
+        return pulumi.get(self, "rule_type")
 
     @property
     @pulumi.getter(name="shareStatus")
@@ -109,7 +109,7 @@ class GetResolverRuleResult:
         Whether the rules is shared and, if so, whether the current account is sharing the rule with another account, or another account is sharing the rule with the current account.
         Values are `NOT_SHARED`, `SHARED_BY_ME` or `SHARED_WITH_ME`
         """
-        ...
+        return pulumi.get(self, "share_status")
 
     @property
     @pulumi.getter
@@ -117,7 +117,7 @@ class GetResolverRuleResult:
         """
         A map of tags assigned to the resolver rule.
         """
-        ...
+        return pulumi.get(self, "tags")
 
 
 

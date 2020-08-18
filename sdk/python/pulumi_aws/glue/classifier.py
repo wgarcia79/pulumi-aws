@@ -157,7 +157,7 @@ class Classifier(pulumi.CustomResource):
         """
         A classifier for Csv content. Defined below.
         """
-        ...
+        return pulumi.get(self, "csv_classifier")
 
     @property
     @pulumi.getter(name="grokClassifier")
@@ -165,7 +165,7 @@ class Classifier(pulumi.CustomResource):
         """
         A classifier that uses grok patterns. Defined below.
         """
-        ...
+        return pulumi.get(self, "grok_classifier")
 
     @property
     @pulumi.getter(name="jsonClassifier")
@@ -173,7 +173,7 @@ class Classifier(pulumi.CustomResource):
         """
         A classifier for JSON content. Defined below.
         """
-        ...
+        return pulumi.get(self, "json_classifier")
 
     @property
     @pulumi.getter
@@ -181,7 +181,7 @@ class Classifier(pulumi.CustomResource):
         """
         The name of the classifier.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="xmlClassifier")
@@ -189,7 +189,7 @@ class Classifier(pulumi.CustomResource):
         """
         A classifier for XML content. Defined below.
         """
-        ...
+        return pulumi.get(self, "xml_classifier")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

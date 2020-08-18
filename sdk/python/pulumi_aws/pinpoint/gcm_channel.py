@@ -107,7 +107,7 @@ class GcmChannel(pulumi.CustomResource):
         """
         Platform credential API key from Google.
         """
-        ...
+        return pulumi.get(self, "api_key")
 
     @property
     @pulumi.getter(name="applicationId")
@@ -115,7 +115,7 @@ class GcmChannel(pulumi.CustomResource):
         """
         The application ID.
         """
-        ...
+        return pulumi.get(self, "application_id")
 
     @property
     @pulumi.getter
@@ -123,7 +123,7 @@ class GcmChannel(pulumi.CustomResource):
         """
         Whether the channel is enabled or disabled. Defaults to `true`.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

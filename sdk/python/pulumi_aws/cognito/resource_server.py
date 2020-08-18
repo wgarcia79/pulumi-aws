@@ -131,7 +131,7 @@ class ResourceServer(pulumi.CustomResource):
         """
         An identifier for the resource server.
         """
-        ...
+        return pulumi.get(self, "identifier")
 
     @property
     @pulumi.getter
@@ -139,7 +139,7 @@ class ResourceServer(pulumi.CustomResource):
         """
         A name for the resource server.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="scopeIdentifiers")
@@ -147,7 +147,7 @@ class ResourceServer(pulumi.CustomResource):
         """
         A list of all scopes configured for this resource server in the format identifier/scope_name.
         """
-        ...
+        return pulumi.get(self, "scope_identifiers")
 
     @property
     @pulumi.getter
@@ -155,12 +155,12 @@ class ResourceServer(pulumi.CustomResource):
         """
         A list of Authorization Scope.
         """
-        ...
+        return pulumi.get(self, "scopes")
 
     @property
     @pulumi.getter(name="userPoolId")
     def user_pool_id(self) -> str:
-        ...
+        return pulumi.get(self, "user_pool_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

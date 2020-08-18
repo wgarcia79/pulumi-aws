@@ -127,7 +127,7 @@ class Build(pulumi.CustomResource):
         """
         Gamelift Build ARN.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -135,7 +135,7 @@ class Build(pulumi.CustomResource):
         """
         Name of the build
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="operatingSystem")
@@ -143,7 +143,7 @@ class Build(pulumi.CustomResource):
         """
         Operating system that the game server binaries are built to run on. e.g. `WINDOWS_2012` or `AMAZON_LINUX`.
         """
-        ...
+        return pulumi.get(self, "operating_system")
 
     @property
     @pulumi.getter(name="storageLocation")
@@ -151,7 +151,7 @@ class Build(pulumi.CustomResource):
         """
         Information indicating where your game build files are stored. See below.
         """
-        ...
+        return pulumi.get(self, "storage_location")
 
     @property
     @pulumi.getter
@@ -159,7 +159,7 @@ class Build(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -167,7 +167,7 @@ class Build(pulumi.CustomResource):
         """
         Version that is associated with this build.
         """
-        ...
+        return pulumi.get(self, "version")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

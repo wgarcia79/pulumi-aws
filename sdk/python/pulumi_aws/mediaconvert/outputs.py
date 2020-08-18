@@ -33,7 +33,7 @@ class QueueReservationPlanSettings(dict):
         """
         The length of the term of your reserved queue pricing plan commitment. Valid value is `ONE_YEAR`.
         """
-        ...
+        return pulumi.get(self, "commitment")
 
     @property
     @pulumi.getter(name="renewalType")
@@ -41,7 +41,7 @@ class QueueReservationPlanSettings(dict):
         """
         Specifies whether the term of your reserved queue pricing plan. Valid values are `AUTO_RENEW` or `EXPIRE`.
         """
-        ...
+        return pulumi.get(self, "renewal_type")
 
     @property
     @pulumi.getter(name="reservedSlots")
@@ -49,7 +49,7 @@ class QueueReservationPlanSettings(dict):
         """
         Specifies the number of reserved transcode slots (RTS) for queue.
         """
-        ...
+        return pulumi.get(self, "reserved_slots")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

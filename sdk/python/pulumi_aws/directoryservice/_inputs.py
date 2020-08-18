@@ -44,11 +44,11 @@ class DirectoryConnectSettingsArgs:
         """
         The DNS IP addresses of the domain to connect to.
         """
-        ...
+        return pulumi.get(self, "customer_dns_ips")
 
     @customer_dns_ips.setter
     def customer_dns_ips(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "customer_dns_ips", value)
 
     @property
     @pulumi.getter(name="customerUsername")
@@ -56,11 +56,11 @@ class DirectoryConnectSettingsArgs:
         """
         The username corresponding to the password provided.
         """
-        ...
+        return pulumi.get(self, "customer_username")
 
     @customer_username.setter
     def customer_username(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "customer_username", value)
 
     @property
     @pulumi.getter(name="subnetIds")
@@ -68,11 +68,11 @@ class DirectoryConnectSettingsArgs:
         """
         The identifiers of the subnets for the directory servers (2 subnets in 2 different AZs).
         """
-        ...
+        return pulumi.get(self, "subnet_ids")
 
     @subnet_ids.setter
     def subnet_ids(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "subnet_ids", value)
 
     @property
     @pulumi.getter(name="vpcId")
@@ -80,20 +80,20 @@ class DirectoryConnectSettingsArgs:
         """
         The identifier of the VPC that the directory is in.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     @vpc_id.setter
     def vpc_id(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "vpc_id", value)
 
     @property
     @pulumi.getter(name="availabilityZones")
     def availability_zones(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
-        ...
+        return pulumi.get(self, "availability_zones")
 
     @availability_zones.setter
     def availability_zones(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "availability_zones", value)
 
     @property
     @pulumi.getter(name="connectIps")
@@ -101,11 +101,11 @@ class DirectoryConnectSettingsArgs:
         """
         The IP addresses of the AD Connector servers.
         """
-        ...
+        return pulumi.get(self, "connect_ips")
 
     @connect_ips.setter
     def connect_ips(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "connect_ips", value)
 
 
 @pulumi.input_type
@@ -129,11 +129,11 @@ class DirectoryVpcSettingsArgs:
         """
         The identifiers of the subnets for the directory servers (2 subnets in 2 different AZs).
         """
-        ...
+        return pulumi.get(self, "subnet_ids")
 
     @subnet_ids.setter
     def subnet_ids(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "subnet_ids", value)
 
     @property
     @pulumi.getter(name="vpcId")
@@ -141,19 +141,19 @@ class DirectoryVpcSettingsArgs:
         """
         The identifier of the VPC that the directory is in.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     @vpc_id.setter
     def vpc_id(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "vpc_id", value)
 
     @property
     @pulumi.getter(name="availabilityZones")
     def availability_zones(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
-        ...
+        return pulumi.get(self, "availability_zones")
 
     @availability_zones.setter
     def availability_zones(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "availability_zones", value)
 
 

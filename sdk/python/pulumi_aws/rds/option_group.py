@@ -163,7 +163,7 @@ class OptionGroup(pulumi.CustomResource):
         """
         The ARN of the db option group.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="engineName")
@@ -171,7 +171,7 @@ class OptionGroup(pulumi.CustomResource):
         """
         Specifies the name of the engine that this option group should be associated with.
         """
-        ...
+        return pulumi.get(self, "engine_name")
 
     @property
     @pulumi.getter(name="majorEngineVersion")
@@ -179,7 +179,7 @@ class OptionGroup(pulumi.CustomResource):
         """
         Specifies the major version of the engine that this option group should be associated with.
         """
-        ...
+        return pulumi.get(self, "major_engine_version")
 
     @property
     @pulumi.getter
@@ -187,7 +187,7 @@ class OptionGroup(pulumi.CustomResource):
         """
         The Name of the setting.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="namePrefix")
@@ -195,7 +195,7 @@ class OptionGroup(pulumi.CustomResource):
         """
         Creates a unique name beginning with the specified prefix. Conflicts with `name`. Must be lowercase, to match as it is stored in AWS.
         """
-        ...
+        return pulumi.get(self, "name_prefix")
 
     @property
     @pulumi.getter(name="optionGroupDescription")
@@ -203,7 +203,7 @@ class OptionGroup(pulumi.CustomResource):
         """
         The description of the option group. Defaults to "Managed by Pulumi".
         """
-        ...
+        return pulumi.get(self, "option_group_description")
 
     @property
     @pulumi.getter
@@ -211,7 +211,7 @@ class OptionGroup(pulumi.CustomResource):
         """
         A list of Options to apply.
         """
-        ...
+        return pulumi.get(self, "options")
 
     @property
     @pulumi.getter
@@ -219,7 +219,7 @@ class OptionGroup(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

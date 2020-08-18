@@ -206,7 +206,7 @@ class WebAclAssociation(pulumi.CustomResource):
         """
         ARN of the resource to associate with. For example, an Application Load Balancer or API Gateway Stage.
         """
-        ...
+        return pulumi.get(self, "resource_arn")
 
     @property
     @pulumi.getter(name="webAclId")
@@ -214,7 +214,7 @@ class WebAclAssociation(pulumi.CustomResource):
         """
         The ID of the WAF Regional WebACL to create an association.
         """
-        ...
+        return pulumi.get(self, "web_acl_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

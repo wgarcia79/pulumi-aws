@@ -76,22 +76,22 @@ class GetTargetGroupResult:
     @property
     @pulumi.getter
     def arn(self) -> str:
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="arnSuffix")
     def arn_suffix(self) -> str:
-        ...
+        return pulumi.get(self, "arn_suffix")
 
     @property
     @pulumi.getter(name="deregistrationDelay")
     def deregistration_delay(self) -> float:
-        ...
+        return pulumi.get(self, "deregistration_delay")
 
     @property
     @pulumi.getter(name="healthCheck")
     def health_check(self) -> 'outputs.GetTargetGroupHealthCheckResult':
-        ...
+        return pulumi.get(self, "health_check")
 
     @property
     @pulumi.getter
@@ -99,62 +99,62 @@ class GetTargetGroupResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="lambdaMultiValueHeadersEnabled")
     def lambda_multi_value_headers_enabled(self) -> bool:
-        ...
+        return pulumi.get(self, "lambda_multi_value_headers_enabled")
 
     @property
     @pulumi.getter(name="loadBalancingAlgorithmType")
     def load_balancing_algorithm_type(self) -> str:
-        ...
+        return pulumi.get(self, "load_balancing_algorithm_type")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def port(self) -> float:
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter
     def protocol(self) -> str:
-        ...
+        return pulumi.get(self, "protocol")
 
     @property
     @pulumi.getter(name="proxyProtocolV2")
     def proxy_protocol_v2(self) -> bool:
-        ...
+        return pulumi.get(self, "proxy_protocol_v2")
 
     @property
     @pulumi.getter(name="slowStart")
     def slow_start(self) -> float:
-        ...
+        return pulumi.get(self, "slow_start")
 
     @property
     @pulumi.getter
     def stickiness(self) -> 'outputs.GetTargetGroupStickinessResult':
-        ...
+        return pulumi.get(self, "stickiness")
 
     @property
     @pulumi.getter
     def tags(self) -> Mapping[str, str]:
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="targetType")
     def target_type(self) -> str:
-        ...
+        return pulumi.get(self, "target_type")
 
     @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> str:
-        ...
+        return pulumi.get(self, "vpc_id")
 
 
 

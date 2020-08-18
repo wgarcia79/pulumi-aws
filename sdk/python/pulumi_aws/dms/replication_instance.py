@@ -216,7 +216,7 @@ class ReplicationInstance(pulumi.CustomResource):
         """
         The amount of storage (in gigabytes) to be initially allocated for the replication instance.
         """
-        ...
+        return pulumi.get(self, "allocated_storage")
 
     @property
     @pulumi.getter(name="applyImmediately")
@@ -224,7 +224,7 @@ class ReplicationInstance(pulumi.CustomResource):
         """
         Indicates whether the changes should be applied immediately or during the next maintenance window. Only used when updating an existing resource.
         """
-        ...
+        return pulumi.get(self, "apply_immediately")
 
     @property
     @pulumi.getter(name="autoMinorVersionUpgrade")
@@ -232,7 +232,7 @@ class ReplicationInstance(pulumi.CustomResource):
         """
         Indicates that minor engine upgrades will be applied automatically to the replication instance during the maintenance window.
         """
-        ...
+        return pulumi.get(self, "auto_minor_version_upgrade")
 
     @property
     @pulumi.getter(name="availabilityZone")
@@ -240,7 +240,7 @@ class ReplicationInstance(pulumi.CustomResource):
         """
         The EC2 Availability Zone that the replication instance will be created in.
         """
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter(name="engineVersion")
@@ -248,7 +248,7 @@ class ReplicationInstance(pulumi.CustomResource):
         """
         The engine version number of the replication instance.
         """
-        ...
+        return pulumi.get(self, "engine_version")
 
     @property
     @pulumi.getter(name="kmsKeyArn")
@@ -256,7 +256,7 @@ class ReplicationInstance(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) for the KMS key that will be used to encrypt the connection parameters. If you do not specify a value for `kms_key_arn`, then AWS DMS will use your default encryption key. AWS KMS creates the default encryption key for your AWS account. Your AWS account has a different default encryption key for each AWS region.
         """
-        ...
+        return pulumi.get(self, "kms_key_arn")
 
     @property
     @pulumi.getter(name="multiAz")
@@ -264,7 +264,7 @@ class ReplicationInstance(pulumi.CustomResource):
         """
         Specifies if the replication instance is a multi-az deployment. You cannot set the `availability_zone` parameter if the `multi_az` parameter is set to `true`.
         """
-        ...
+        return pulumi.get(self, "multi_az")
 
     @property
     @pulumi.getter(name="preferredMaintenanceWindow")
@@ -272,7 +272,7 @@ class ReplicationInstance(pulumi.CustomResource):
         """
         The weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC).
         """
-        ...
+        return pulumi.get(self, "preferred_maintenance_window")
 
     @property
     @pulumi.getter(name="publiclyAccessible")
@@ -280,7 +280,7 @@ class ReplicationInstance(pulumi.CustomResource):
         """
         Specifies the accessibility options for the replication instance. A value of true represents an instance with a public IP address. A value of false represents an instance with a private IP address.
         """
-        ...
+        return pulumi.get(self, "publicly_accessible")
 
     @property
     @pulumi.getter(name="replicationInstanceArn")
@@ -288,7 +288,7 @@ class ReplicationInstance(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) of the replication instance.
         """
-        ...
+        return pulumi.get(self, "replication_instance_arn")
 
     @property
     @pulumi.getter(name="replicationInstanceClass")
@@ -296,7 +296,7 @@ class ReplicationInstance(pulumi.CustomResource):
         """
         The compute and memory capacity of the replication instance as specified by the replication instance class. Can be one of `dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large | dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge`
         """
-        ...
+        return pulumi.get(self, "replication_instance_class")
 
     @property
     @pulumi.getter(name="replicationInstanceId")
@@ -304,7 +304,7 @@ class ReplicationInstance(pulumi.CustomResource):
         """
         The replication instance identifier. This parameter is stored as a lowercase string.
         """
-        ...
+        return pulumi.get(self, "replication_instance_id")
 
     @property
     @pulumi.getter(name="replicationInstancePrivateIps")
@@ -312,7 +312,7 @@ class ReplicationInstance(pulumi.CustomResource):
         """
         A list of the private IP addresses of the replication instance.
         """
-        ...
+        return pulumi.get(self, "replication_instance_private_ips")
 
     @property
     @pulumi.getter(name="replicationInstancePublicIps")
@@ -320,7 +320,7 @@ class ReplicationInstance(pulumi.CustomResource):
         """
         A list of the public IP addresses of the replication instance.
         """
-        ...
+        return pulumi.get(self, "replication_instance_public_ips")
 
     @property
     @pulumi.getter(name="replicationSubnetGroupId")
@@ -328,7 +328,7 @@ class ReplicationInstance(pulumi.CustomResource):
         """
         A subnet group to associate with the replication instance.
         """
-        ...
+        return pulumi.get(self, "replication_subnet_group_id")
 
     @property
     @pulumi.getter
@@ -336,7 +336,7 @@ class ReplicationInstance(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcSecurityGroupIds")
@@ -344,7 +344,7 @@ class ReplicationInstance(pulumi.CustomResource):
         """
         A list of VPC security group IDs to be used with the replication instance. The VPC security groups must work with the VPC containing the replication instance.
         """
-        ...
+        return pulumi.get(self, "vpc_security_group_ids")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

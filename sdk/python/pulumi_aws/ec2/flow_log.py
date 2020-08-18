@@ -216,7 +216,7 @@ class FlowLog(pulumi.CustomResource):
         """
         The ARN of the Flow Log.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="eniId")
@@ -224,7 +224,7 @@ class FlowLog(pulumi.CustomResource):
         """
         Elastic Network Interface ID to attach to
         """
-        ...
+        return pulumi.get(self, "eni_id")
 
     @property
     @pulumi.getter(name="iamRoleArn")
@@ -232,7 +232,7 @@ class FlowLog(pulumi.CustomResource):
         """
         The ARN for the IAM role that's used to post flow logs to a CloudWatch Logs log group
         """
-        ...
+        return pulumi.get(self, "iam_role_arn")
 
     @property
     @pulumi.getter(name="logDestination")
@@ -240,7 +240,7 @@ class FlowLog(pulumi.CustomResource):
         """
         The ARN of the logging destination.
         """
-        ...
+        return pulumi.get(self, "log_destination")
 
     @property
     @pulumi.getter(name="logDestinationType")
@@ -248,7 +248,7 @@ class FlowLog(pulumi.CustomResource):
         """
         The type of the logging destination. Valid values: `cloud-watch-logs`, `s3`. Default: `cloud-watch-logs`.
         """
-        ...
+        return pulumi.get(self, "log_destination_type")
 
     @property
     @pulumi.getter(name="logFormat")
@@ -256,7 +256,7 @@ class FlowLog(pulumi.CustomResource):
         """
         The fields to include in the flow log record, in the order in which they should appear.
         """
-        ...
+        return pulumi.get(self, "log_format")
 
     @property
     @pulumi.getter(name="logGroupName")
@@ -264,7 +264,7 @@ class FlowLog(pulumi.CustomResource):
         """
         *Deprecated:* Use `log_destination` instead. The name of the CloudWatch log group.
         """
-        ...
+        return pulumi.get(self, "log_group_name")
 
     @property
     @pulumi.getter(name="maxAggregationInterval")
@@ -275,7 +275,7 @@ class FlowLog(pulumi.CustomResource):
         log record. Valid Values: `60` seconds (1 minute) or `600` seconds (10
         minutes). Default: `600`.
         """
-        ...
+        return pulumi.get(self, "max_aggregation_interval")
 
     @property
     @pulumi.getter(name="subnetId")
@@ -283,7 +283,7 @@ class FlowLog(pulumi.CustomResource):
         """
         Subnet ID to attach to
         """
-        ...
+        return pulumi.get(self, "subnet_id")
 
     @property
     @pulumi.getter
@@ -291,7 +291,7 @@ class FlowLog(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="trafficType")
@@ -299,7 +299,7 @@ class FlowLog(pulumi.CustomResource):
         """
         The type of traffic to capture. Valid values: `ACCEPT`,`REJECT`, `ALL`.
         """
-        ...
+        return pulumi.get(self, "traffic_type")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -307,7 +307,7 @@ class FlowLog(pulumi.CustomResource):
         """
         VPC ID to attach to
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

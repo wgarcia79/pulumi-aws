@@ -68,7 +68,7 @@ class GetReplicationGroupResult:
         """
         A flag that enables using an AuthToken (password) when issuing Redis commands.
         """
-        ...
+        return pulumi.get(self, "auth_token_enabled")
 
     @property
     @pulumi.getter(name="automaticFailoverEnabled")
@@ -76,7 +76,7 @@ class GetReplicationGroupResult:
         """
         A flag whether a read-only replica will be automatically promoted to read/write primary if the existing primary fails.
         """
-        ...
+        return pulumi.get(self, "automatic_failover_enabled")
 
     @property
     @pulumi.getter(name="configurationEndpointAddress")
@@ -84,7 +84,7 @@ class GetReplicationGroupResult:
         """
         The configuration endpoint address to allow host discovery.
         """
-        ...
+        return pulumi.get(self, "configuration_endpoint_address")
 
     @property
     @pulumi.getter
@@ -92,7 +92,7 @@ class GetReplicationGroupResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="memberClusters")
@@ -100,7 +100,7 @@ class GetReplicationGroupResult:
         """
         The identifiers of all the nodes that are part of this replication group.
         """
-        ...
+        return pulumi.get(self, "member_clusters")
 
     @property
     @pulumi.getter(name="nodeType")
@@ -108,7 +108,7 @@ class GetReplicationGroupResult:
         """
         The cluster node type.
         """
-        ...
+        return pulumi.get(self, "node_type")
 
     @property
     @pulumi.getter(name="numberCacheClusters")
@@ -116,7 +116,7 @@ class GetReplicationGroupResult:
         """
         The number of cache clusters that the replication group has.
         """
-        ...
+        return pulumi.get(self, "number_cache_clusters")
 
     @property
     @pulumi.getter
@@ -124,7 +124,7 @@ class GetReplicationGroupResult:
         """
         The port number on which the configuration endpoint will accept connections.
         """
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter(name="primaryEndpointAddress")
@@ -132,7 +132,7 @@ class GetReplicationGroupResult:
         """
         The endpoint of the primary node in this node group (shard).
         """
-        ...
+        return pulumi.get(self, "primary_endpoint_address")
 
     @property
     @pulumi.getter(name="replicationGroupDescription")
@@ -140,7 +140,7 @@ class GetReplicationGroupResult:
         """
         The description of the replication group.
         """
-        ...
+        return pulumi.get(self, "replication_group_description")
 
     @property
     @pulumi.getter(name="replicationGroupId")
@@ -148,7 +148,7 @@ class GetReplicationGroupResult:
         """
         The identifier for the replication group.
         """
-        ...
+        return pulumi.get(self, "replication_group_id")
 
     @property
     @pulumi.getter(name="snapshotRetentionLimit")
@@ -156,7 +156,7 @@ class GetReplicationGroupResult:
         """
         The number of days for which ElastiCache retains automatic cache cluster snapshots before deleting them.
         """
-        ...
+        return pulumi.get(self, "snapshot_retention_limit")
 
     @property
     @pulumi.getter(name="snapshotWindow")
@@ -164,7 +164,7 @@ class GetReplicationGroupResult:
         """
         The daily time range (in UTC) during which ElastiCache begins taking a daily snapshot of your node group (shard).
         """
-        ...
+        return pulumi.get(self, "snapshot_window")
 
 
 

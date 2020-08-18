@@ -114,7 +114,7 @@ class CatalogDatabase(pulumi.CustomResource):
         """
         The ARN of the Glue Catalog Database.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="catalogId")
@@ -122,7 +122,7 @@ class CatalogDatabase(pulumi.CustomResource):
         """
         ID of the Glue Catalog to create the database in. If omitted, this defaults to the AWS Account ID.
         """
-        ...
+        return pulumi.get(self, "catalog_id")
 
     @property
     @pulumi.getter
@@ -130,7 +130,7 @@ class CatalogDatabase(pulumi.CustomResource):
         """
         Description of the database.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="locationUri")
@@ -138,7 +138,7 @@ class CatalogDatabase(pulumi.CustomResource):
         """
         The location of the database (for example, an HDFS path).
         """
-        ...
+        return pulumi.get(self, "location_uri")
 
     @property
     @pulumi.getter
@@ -146,7 +146,7 @@ class CatalogDatabase(pulumi.CustomResource):
         """
         The name of the database.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -154,7 +154,7 @@ class CatalogDatabase(pulumi.CustomResource):
         """
         A list of key-value pairs that define parameters and properties of the database.
         """
-        ...
+        return pulumi.get(self, "parameters")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -27,10 +27,10 @@ class RegexPatternSetRegularExpressionArgs:
         """
         The string representing the regular expression, see the AWS WAF [documentation](https://docs.aws.amazon.com/waf/latest/developerguide/waf-regex-pattern-set-creating.html) for more information.
         """
-        ...
+        return pulumi.get(self, "regex_string")
 
     @regex_string.setter
     def regex_string(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "regex_string", value)
 
 

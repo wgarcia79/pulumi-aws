@@ -37,7 +37,7 @@ class LifecyclePolicyPolicyDetails(dict):
         """
         A list of resource types that should be targeted by the lifecycle policy. `VOLUME` is currently the only allowed value.
         """
-        ...
+        return pulumi.get(self, "resource_types")
 
     @property
     @pulumi.getter
@@ -45,7 +45,7 @@ class LifecyclePolicyPolicyDetails(dict):
         """
         See the `schedule` configuration block.
         """
-        ...
+        return pulumi.get(self, "schedules")
 
     @property
     @pulumi.getter(name="targetTags")
@@ -53,7 +53,7 @@ class LifecyclePolicyPolicyDetails(dict):
         """
         A map of tag keys and their values. Any resources that match the `resource_types` and are tagged with _any_ of these tags will be targeted.
         """
-        ...
+        return pulumi.get(self, "target_tags")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -88,7 +88,7 @@ class LifecyclePolicyPolicyDetailsSchedule(dict):
         """
         See the `create_rule` block. Max of 1 per schedule.
         """
-        ...
+        return pulumi.get(self, "create_rule")
 
     @property
     @pulumi.getter
@@ -96,7 +96,7 @@ class LifecyclePolicyPolicyDetailsSchedule(dict):
         """
         A name for the schedule.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="retainRule")
@@ -104,7 +104,7 @@ class LifecyclePolicyPolicyDetailsSchedule(dict):
         """
         See the `retain_rule` block. Max of 1 per schedule.
         """
-        ...
+        return pulumi.get(self, "retain_rule")
 
     @property
     @pulumi.getter(name="copyTags")
@@ -112,7 +112,7 @@ class LifecyclePolicyPolicyDetailsSchedule(dict):
         """
         Copy all user-defined tags on a source volume to snapshots of the volume created by this policy.
         """
-        ...
+        return pulumi.get(self, "copy_tags")
 
     @property
     @pulumi.getter(name="tagsToAdd")
@@ -120,7 +120,7 @@ class LifecyclePolicyPolicyDetailsSchedule(dict):
         """
         A map of tag keys and their values. DLM lifecycle policies will already tag the snapshot with the tags on the volume. This configuration adds extra tags on top of these.
         """
-        ...
+        return pulumi.get(self, "tags_to_add")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -149,7 +149,7 @@ class LifecyclePolicyPolicyDetailsScheduleCreateRule(dict):
         """
         How often this lifecycle policy should be evaluated. `1`, `2`,`3`,`4`,`6`,`8`,`12` or `24` are valid values.
         """
-        ...
+        return pulumi.get(self, "interval")
 
     @property
     @pulumi.getter(name="intervalUnit")
@@ -157,7 +157,7 @@ class LifecyclePolicyPolicyDetailsScheduleCreateRule(dict):
         """
         The unit for how often the lifecycle policy should be evaluated. `HOURS` is currently the only allowed value and also the default value.
         """
-        ...
+        return pulumi.get(self, "interval_unit")
 
     @property
     @pulumi.getter
@@ -165,7 +165,7 @@ class LifecyclePolicyPolicyDetailsScheduleCreateRule(dict):
         """
         A list of times in 24 hour clock format that sets when the lifecycle policy should be evaluated. Max of 1.
         """
-        ...
+        return pulumi.get(self, "times")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -186,7 +186,7 @@ class LifecyclePolicyPolicyDetailsScheduleRetainRule(dict):
         """
         How many snapshots to keep. Must be an integer between 1 and 1000.
         """
-        ...
+        return pulumi.get(self, "count")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

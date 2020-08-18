@@ -116,7 +116,7 @@ class SmsPreferences(pulumi.CustomResource):
         """
         A string, such as your business brand, that is displayed as the sender on the receiving device.
         """
-        ...
+        return pulumi.get(self, "default_sender_id")
 
     @property
     @pulumi.getter(name="defaultSmsType")
@@ -124,7 +124,7 @@ class SmsPreferences(pulumi.CustomResource):
         """
         The type of SMS message that you will send by default. Possible values are: Promotional, Transactional
         """
-        ...
+        return pulumi.get(self, "default_sms_type")
 
     @property
     @pulumi.getter(name="deliveryStatusIamRoleArn")
@@ -132,7 +132,7 @@ class SmsPreferences(pulumi.CustomResource):
         """
         The ARN of the IAM role that allows Amazon SNS to write logs about SMS deliveries in CloudWatch Logs.
         """
-        ...
+        return pulumi.get(self, "delivery_status_iam_role_arn")
 
     @property
     @pulumi.getter(name="deliveryStatusSuccessSamplingRate")
@@ -140,7 +140,7 @@ class SmsPreferences(pulumi.CustomResource):
         """
         The percentage of successful SMS deliveries for which Amazon SNS will write logs in CloudWatch Logs. The value must be between 0 and 100.
         """
-        ...
+        return pulumi.get(self, "delivery_status_success_sampling_rate")
 
     @property
     @pulumi.getter(name="monthlySpendLimit")
@@ -148,7 +148,7 @@ class SmsPreferences(pulumi.CustomResource):
         """
         The maximum amount in USD that you are willing to spend each month to send SMS messages.
         """
-        ...
+        return pulumi.get(self, "monthly_spend_limit")
 
     @property
     @pulumi.getter(name="usageReportS3Bucket")
@@ -156,7 +156,7 @@ class SmsPreferences(pulumi.CustomResource):
         """
         The name of the Amazon S3 bucket to receive daily SMS usage reports from Amazon SNS.
         """
-        ...
+        return pulumi.get(self, "usage_report_s3_bucket")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

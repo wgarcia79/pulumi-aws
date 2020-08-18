@@ -40,7 +40,7 @@ class GetInstanceTypeOfferingsResult:
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetInstanceTypeOfferingsFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
@@ -48,7 +48,7 @@ class GetInstanceTypeOfferingsResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="instanceTypes")
@@ -56,12 +56,12 @@ class GetInstanceTypeOfferingsResult:
         """
         Set of EC2 Instance Types.
         """
-        ...
+        return pulumi.get(self, "instance_types")
 
     @property
     @pulumi.getter(name="locationType")
     def location_type(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "location_type")
 
 
 

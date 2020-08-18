@@ -133,7 +133,7 @@ class Accelerator(pulumi.CustomResource):
         """
         The attributes of the accelerator. Fields documented below.
         """
-        ...
+        return pulumi.get(self, "attributes")
 
     @property
     @pulumi.getter(name="dnsName")
@@ -144,7 +144,7 @@ class Accelerator(pulumi.CustomResource):
         route an [Alias Resource Record Set](https://docs.aws.amazon.com/Route53/latest/APIReference/API_AliasTarget.html) to the Global Accelerator. This attribute
         is simply an alias for the zone ID `Z2BJ6XQ5FK7U4H`.
         """
-        ...
+        return pulumi.get(self, "dns_name")
 
     @property
     @pulumi.getter
@@ -152,12 +152,12 @@ class Accelerator(pulumi.CustomResource):
         """
         Indicates whether the accelerator is enabled. The value is true or false. The default value is true.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="hostedZoneId")
     def hosted_zone_id(self) -> str:
-        ...
+        return pulumi.get(self, "hosted_zone_id")
 
     @property
     @pulumi.getter(name="ipAddressType")
@@ -165,7 +165,7 @@ class Accelerator(pulumi.CustomResource):
         """
         The value for the address type must be `IPV4`.
         """
-        ...
+        return pulumi.get(self, "ip_address_type")
 
     @property
     @pulumi.getter(name="ipSets")
@@ -173,7 +173,7 @@ class Accelerator(pulumi.CustomResource):
         """
         IP address set associated with the accelerator.
         """
-        ...
+        return pulumi.get(self, "ip_sets")
 
     @property
     @pulumi.getter
@@ -181,7 +181,7 @@ class Accelerator(pulumi.CustomResource):
         """
         The name of the accelerator.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -189,7 +189,7 @@ class Accelerator(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

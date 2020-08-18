@@ -52,17 +52,17 @@ class GetListenerResult:
     @property
     @pulumi.getter
     def arn(self) -> str:
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="certificateArn")
     def certificate_arn(self) -> str:
-        ...
+        return pulumi.get(self, "certificate_arn")
 
     @property
     @pulumi.getter(name="defaultActions")
     def default_actions(self) -> List['outputs.GetListenerDefaultActionResult']:
-        ...
+        return pulumi.get(self, "default_actions")
 
     @property
     @pulumi.getter
@@ -70,27 +70,27 @@ class GetListenerResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="loadBalancerArn")
     def load_balancer_arn(self) -> str:
-        ...
+        return pulumi.get(self, "load_balancer_arn")
 
     @property
     @pulumi.getter
     def port(self) -> float:
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter
     def protocol(self) -> str:
-        ...
+        return pulumi.get(self, "protocol")
 
     @property
     @pulumi.getter(name="sslPolicy")
     def ssl_policy(self) -> str:
-        ...
+        return pulumi.get(self, "ssl_policy")
 
 
 

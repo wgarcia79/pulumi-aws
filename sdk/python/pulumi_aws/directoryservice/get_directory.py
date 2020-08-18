@@ -78,7 +78,7 @@ class GetDirectoryResult:
         """
         The access URL for the directory/connector, such as http://alias.awsapps.com.
         """
-        ...
+        return pulumi.get(self, "access_url")
 
     @property
     @pulumi.getter
@@ -86,12 +86,12 @@ class GetDirectoryResult:
         """
         The alias for the directory/connector, such as `d-991708b282.awsapps.com`.
         """
-        ...
+        return pulumi.get(self, "alias")
 
     @property
     @pulumi.getter(name="connectSettings")
     def connect_settings(self) -> List['outputs.GetDirectoryConnectSettingResult']:
-        ...
+        return pulumi.get(self, "connect_settings")
 
     @property
     @pulumi.getter
@@ -99,12 +99,12 @@ class GetDirectoryResult:
         """
         A textual description for the directory/connector.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="directoryId")
     def directory_id(self) -> str:
-        ...
+        return pulumi.get(self, "directory_id")
 
     @property
     @pulumi.getter(name="dnsIpAddresses")
@@ -112,7 +112,7 @@ class GetDirectoryResult:
         """
         A list of IP addresses of the DNS servers for the directory/connector.
         """
-        ...
+        return pulumi.get(self, "dns_ip_addresses")
 
     @property
     @pulumi.getter
@@ -120,7 +120,7 @@ class GetDirectoryResult:
         """
         (for `MicrosoftAD`) The Microsoft AD edition (`Standard` or `Enterprise`).
         """
-        ...
+        return pulumi.get(self, "edition")
 
     @property
     @pulumi.getter(name="enableSso")
@@ -128,7 +128,7 @@ class GetDirectoryResult:
         """
         The directory/connector single-sign on status.
         """
-        ...
+        return pulumi.get(self, "enable_sso")
 
     @property
     @pulumi.getter
@@ -136,7 +136,7 @@ class GetDirectoryResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -144,7 +144,7 @@ class GetDirectoryResult:
         """
         The fully qualified name for the directory/connector.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="securityGroupId")
@@ -152,7 +152,7 @@ class GetDirectoryResult:
         """
         The ID of the security group created by the directory/connector.
         """
-        ...
+        return pulumi.get(self, "security_group_id")
 
     @property
     @pulumi.getter(name="shortName")
@@ -160,7 +160,7 @@ class GetDirectoryResult:
         """
         The short name of the directory/connector, such as `CORP`.
         """
-        ...
+        return pulumi.get(self, "short_name")
 
     @property
     @pulumi.getter
@@ -168,7 +168,7 @@ class GetDirectoryResult:
         """
         (for `SimpleAD` and `ADConnector`) The size of the directory/connector (`Small` or `Large`).
         """
-        ...
+        return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
@@ -176,7 +176,7 @@ class GetDirectoryResult:
         """
         A map of tags assigned to the directory/connector.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -184,12 +184,12 @@ class GetDirectoryResult:
         """
         The directory type (`SimpleAD`, `ADConnector` or `MicrosoftAD`).
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="vpcSettings")
     def vpc_settings(self) -> List['outputs.GetDirectoryVpcSettingResult']:
-        ...
+        return pulumi.get(self, "vpc_settings")
 
 
 

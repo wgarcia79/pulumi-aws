@@ -123,7 +123,7 @@ class Route(pulumi.CustomResource):
         """
         Indicates whether to drop traffic that matches this route (default to `false`).
         """
-        ...
+        return pulumi.get(self, "blackhole")
 
     @property
     @pulumi.getter(name="destinationCidrBlock")
@@ -131,7 +131,7 @@ class Route(pulumi.CustomResource):
         """
         IPv4 CIDR range used for destination matches. Routing decisions are based on the most specific match.
         """
-        ...
+        return pulumi.get(self, "destination_cidr_block")
 
     @property
     @pulumi.getter(name="transitGatewayAttachmentId")
@@ -139,7 +139,7 @@ class Route(pulumi.CustomResource):
         """
         Identifier of EC2 Transit Gateway Attachment (required if `blackhole` is set to false).
         """
-        ...
+        return pulumi.get(self, "transit_gateway_attachment_id")
 
     @property
     @pulumi.getter(name="transitGatewayRouteTableId")
@@ -147,7 +147,7 @@ class Route(pulumi.CustomResource):
         """
         Identifier of EC2 Transit Gateway Route Table.
         """
-        ...
+        return pulumi.get(self, "transit_gateway_route_table_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

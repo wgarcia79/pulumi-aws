@@ -41,7 +41,7 @@ class TriggerTrigger(dict):
         """
         The ARN of the resource that is the target for a trigger. For example, the ARN of a topic in Amazon Simple Notification Service (SNS).
         """
-        ...
+        return pulumi.get(self, "destination_arn")
 
     @property
     @pulumi.getter
@@ -49,7 +49,7 @@ class TriggerTrigger(dict):
         """
         The repository events that will cause the trigger to run actions in another service, such as sending a notification through Amazon Simple Notification Service (SNS). If no events are specified, the trigger will run for all repository events. Event types include: `all`, `updateReference`, `createReference`, `deleteReference`.
         """
-        ...
+        return pulumi.get(self, "events")
 
     @property
     @pulumi.getter
@@ -57,7 +57,7 @@ class TriggerTrigger(dict):
         """
         The name of the trigger.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -65,7 +65,7 @@ class TriggerTrigger(dict):
         """
         The branches that will be included in the trigger configuration. If no branches are specified, the trigger will apply to all branches.
         """
-        ...
+        return pulumi.get(self, "branches")
 
     @property
     @pulumi.getter(name="customData")
@@ -73,7 +73,7 @@ class TriggerTrigger(dict):
         """
         Any custom data associated with the trigger that will be included in the information sent to the target of the trigger.
         """
-        ...
+        return pulumi.get(self, "custom_data")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -44,7 +44,7 @@ class GetResourceResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="parentId")
@@ -52,12 +52,12 @@ class GetResourceResult:
         """
         Set to the ID of the parent Resource.
         """
-        ...
+        return pulumi.get(self, "parent_id")
 
     @property
     @pulumi.getter
     def path(self) -> str:
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter(name="pathPart")
@@ -65,12 +65,12 @@ class GetResourceResult:
         """
         Set to the path relative to the parent Resource.
         """
-        ...
+        return pulumi.get(self, "path_part")
 
     @property
     @pulumi.getter(name="restApiId")
     def rest_api_id(self) -> str:
-        ...
+        return pulumi.get(self, "rest_api_id")
 
 
 

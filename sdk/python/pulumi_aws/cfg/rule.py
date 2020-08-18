@@ -201,7 +201,7 @@ class Rule(pulumi.CustomResource):
         """
         The ARN of the config rule
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -209,7 +209,7 @@ class Rule(pulumi.CustomResource):
         """
         Description of the rule
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="inputParameters")
@@ -217,7 +217,7 @@ class Rule(pulumi.CustomResource):
         """
         A string in JSON format that is passed to the AWS Config rule Lambda function.
         """
-        ...
+        return pulumi.get(self, "input_parameters")
 
     @property
     @pulumi.getter(name="maximumExecutionFrequency")
@@ -226,7 +226,7 @@ class Rule(pulumi.CustomResource):
         The frequency that you want AWS Config to run evaluations for a rule that
         is triggered periodically. If specified, requires `message_type` to be `ScheduledNotification`.
         """
-        ...
+        return pulumi.get(self, "maximum_execution_frequency")
 
     @property
     @pulumi.getter
@@ -234,7 +234,7 @@ class Rule(pulumi.CustomResource):
         """
         The name of the rule
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="ruleId")
@@ -242,7 +242,7 @@ class Rule(pulumi.CustomResource):
         """
         The ID of the config rule
         """
-        ...
+        return pulumi.get(self, "rule_id")
 
     @property
     @pulumi.getter
@@ -250,7 +250,7 @@ class Rule(pulumi.CustomResource):
         """
         Scope defines which resources can trigger an evaluation for the rule as documented below.
         """
-        ...
+        return pulumi.get(self, "scope")
 
     @property
     @pulumi.getter
@@ -259,7 +259,7 @@ class Rule(pulumi.CustomResource):
         Source specifies the rule owner, the rule identifier, and the notifications that cause
         the function to evaluate your AWS resources as documented below.
         """
-        ...
+        return pulumi.get(self, "source")
 
     @property
     @pulumi.getter
@@ -267,7 +267,7 @@ class Rule(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

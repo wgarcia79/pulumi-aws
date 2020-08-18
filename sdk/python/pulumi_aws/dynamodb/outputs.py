@@ -41,7 +41,7 @@ class GlobalTableReplica(dict):
         """
         AWS region name of replica DynamoDB Table. e.g. `us-east-1`
         """
-        ...
+        return pulumi.get(self, "region_name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -65,7 +65,7 @@ class TableAttribute(dict):
         """
         The name of the index
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -73,7 +73,7 @@ class TableAttribute(dict):
         """
         Attribute type, which must be a scalar type: `S`, `N`, or `B` for (S)tring, (N)umber or (B)inary data
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -124,7 +124,7 @@ class TableGlobalSecondaryIndex(dict):
         The name of the hash key in the index; must be
         defined as an attribute in the resource.
         """
-        ...
+        return pulumi.get(self, "hash_key")
 
     @property
     @pulumi.getter
@@ -132,7 +132,7 @@ class TableGlobalSecondaryIndex(dict):
         """
         The name of the index
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="projectionType")
@@ -144,7 +144,7 @@ class TableGlobalSecondaryIndex(dict):
         projects only the keys specified in the _non_key_attributes_
         parameter.
         """
-        ...
+        return pulumi.get(self, "projection_type")
 
     @property
     @pulumi.getter(name="nonKeyAttributes")
@@ -154,7 +154,7 @@ class TableGlobalSecondaryIndex(dict):
         projection type; a list of attributes to project into the index. These
         do not need to be defined as attributes on the table.
         """
-        ...
+        return pulumi.get(self, "non_key_attributes")
 
     @property
     @pulumi.getter(name="rangeKey")
@@ -162,7 +162,7 @@ class TableGlobalSecondaryIndex(dict):
         """
         The name of the range key; must be defined
         """
-        ...
+        return pulumi.get(self, "range_key")
 
     @property
     @pulumi.getter(name="readCapacity")
@@ -170,7 +170,7 @@ class TableGlobalSecondaryIndex(dict):
         """
         The number of read units for this index. Must be set if billing_mode is set to PROVISIONED.
         """
-        ...
+        return pulumi.get(self, "read_capacity")
 
     @property
     @pulumi.getter(name="writeCapacity")
@@ -178,7 +178,7 @@ class TableGlobalSecondaryIndex(dict):
         """
         The number of write units for this index. Must be set if billing_mode is set to PROVISIONED.
         """
-        ...
+        return pulumi.get(self, "write_capacity")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -215,7 +215,7 @@ class TableLocalSecondaryIndex(dict):
         """
         The name of the index
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="projectionType")
@@ -227,7 +227,7 @@ class TableLocalSecondaryIndex(dict):
         projects only the keys specified in the _non_key_attributes_
         parameter.
         """
-        ...
+        return pulumi.get(self, "projection_type")
 
     @property
     @pulumi.getter(name="rangeKey")
@@ -235,7 +235,7 @@ class TableLocalSecondaryIndex(dict):
         """
         The name of the range key; must be defined
         """
-        ...
+        return pulumi.get(self, "range_key")
 
     @property
     @pulumi.getter(name="nonKeyAttributes")
@@ -245,7 +245,7 @@ class TableLocalSecondaryIndex(dict):
         projection type; a list of attributes to project into the index. These
         do not need to be defined as attributes on the table.
         """
-        ...
+        return pulumi.get(self, "non_key_attributes")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -266,7 +266,7 @@ class TablePointInTimeRecovery(dict):
         """
         Indicates whether ttl is enabled (true) or disabled (false).
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -287,7 +287,7 @@ class TableReplica(dict):
         """
         Region name of the replica.
         """
-        ...
+        return pulumi.get(self, "region_name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -313,7 +313,7 @@ class TableServerSideEncryption(dict):
         """
         Indicates whether ttl is enabled (true) or disabled (false).
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="kmsKeyArn")
@@ -322,7 +322,7 @@ class TableServerSideEncryption(dict):
         The ARN of the CMK that should be used for the AWS KMS encryption.
         This attribute should only be specified if the key is different from the default DynamoDB CMK, `alias/aws/dynamodb`.
         """
-        ...
+        return pulumi.get(self, "kms_key_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -347,7 +347,7 @@ class TableTtl(dict):
         """
         The name of the table attribute to store the TTL timestamp in.
         """
-        ...
+        return pulumi.get(self, "attribute_name")
 
     @property
     @pulumi.getter
@@ -355,7 +355,7 @@ class TableTtl(dict):
         """
         Indicates whether ttl is enabled (true) or disabled (false).
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -378,12 +378,12 @@ class GetTableAttributeResult(dict):
         """
         The name of the DynamoDB table.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def type(self) -> str:
-        ...
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type
@@ -410,7 +410,7 @@ class GetTableGlobalSecondaryIndexResult(dict):
     @property
     @pulumi.getter(name="hashKey")
     def hash_key(self) -> str:
-        ...
+        return pulumi.get(self, "hash_key")
 
     @property
     @pulumi.getter
@@ -418,32 +418,32 @@ class GetTableGlobalSecondaryIndexResult(dict):
         """
         The name of the DynamoDB table.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="nonKeyAttributes")
     def non_key_attributes(self) -> List[str]:
-        ...
+        return pulumi.get(self, "non_key_attributes")
 
     @property
     @pulumi.getter(name="projectionType")
     def projection_type(self) -> str:
-        ...
+        return pulumi.get(self, "projection_type")
 
     @property
     @pulumi.getter(name="rangeKey")
     def range_key(self) -> str:
-        ...
+        return pulumi.get(self, "range_key")
 
     @property
     @pulumi.getter(name="readCapacity")
     def read_capacity(self) -> float:
-        ...
+        return pulumi.get(self, "read_capacity")
 
     @property
     @pulumi.getter(name="writeCapacity")
     def write_capacity(self) -> float:
-        ...
+        return pulumi.get(self, "write_capacity")
 
 
 @pulumi.output_type
@@ -467,22 +467,22 @@ class GetTableLocalSecondaryIndexResult(dict):
         """
         The name of the DynamoDB table.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="nonKeyAttributes")
     def non_key_attributes(self) -> List[str]:
-        ...
+        return pulumi.get(self, "non_key_attributes")
 
     @property
     @pulumi.getter(name="projectionType")
     def projection_type(self) -> str:
-        ...
+        return pulumi.get(self, "projection_type")
 
     @property
     @pulumi.getter(name="rangeKey")
     def range_key(self) -> str:
-        ...
+        return pulumi.get(self, "range_key")
 
 
 @pulumi.output_type
@@ -494,7 +494,7 @@ class GetTablePointInTimeRecoveryResult(dict):
     @property
     @pulumi.getter
     def enabled(self) -> bool:
-        ...
+        return pulumi.get(self, "enabled")
 
 
 @pulumi.output_type
@@ -506,7 +506,7 @@ class GetTableReplicaResult(dict):
     @property
     @pulumi.getter(name="regionName")
     def region_name(self) -> str:
-        ...
+        return pulumi.get(self, "region_name")
 
 
 @pulumi.output_type
@@ -520,12 +520,12 @@ class GetTableServerSideEncryptionResult(dict):
     @property
     @pulumi.getter
     def enabled(self) -> bool:
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="kmsKeyArn")
     def kms_key_arn(self) -> str:
-        ...
+        return pulumi.get(self, "kms_key_arn")
 
 
 @pulumi.output_type
@@ -539,11 +539,11 @@ class GetTableTtlResult(dict):
     @property
     @pulumi.getter(name="attributeName")
     def attribute_name(self) -> str:
-        ...
+        return pulumi.get(self, "attribute_name")
 
     @property
     @pulumi.getter
     def enabled(self) -> bool:
-        ...
+        return pulumi.get(self, "enabled")
 
 

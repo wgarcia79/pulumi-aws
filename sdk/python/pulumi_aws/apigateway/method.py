@@ -191,7 +191,7 @@ class Method(pulumi.CustomResource):
         """
         Specify if the method requires an API key
         """
-        ...
+        return pulumi.get(self, "api_key_required")
 
     @property
     @pulumi.getter
@@ -199,7 +199,7 @@ class Method(pulumi.CustomResource):
         """
         The type of authorization used for the method (`NONE`, `CUSTOM`, `AWS_IAM`, `COGNITO_USER_POOLS`)
         """
-        ...
+        return pulumi.get(self, "authorization")
 
     @property
     @pulumi.getter(name="authorizationScopes")
@@ -207,7 +207,7 @@ class Method(pulumi.CustomResource):
         """
         The authorization scopes used when the authorization is `COGNITO_USER_POOLS`
         """
-        ...
+        return pulumi.get(self, "authorization_scopes")
 
     @property
     @pulumi.getter(name="authorizerId")
@@ -215,7 +215,7 @@ class Method(pulumi.CustomResource):
         """
         The authorizer id to be used when the authorization is `CUSTOM` or `COGNITO_USER_POOLS`
         """
-        ...
+        return pulumi.get(self, "authorizer_id")
 
     @property
     @pulumi.getter(name="httpMethod")
@@ -223,7 +223,7 @@ class Method(pulumi.CustomResource):
         """
         The HTTP Method (`GET`, `POST`, `PUT`, `DELETE`, `HEAD`, `OPTIONS`, `ANY`)
         """
-        ...
+        return pulumi.get(self, "http_method")
 
     @property
     @pulumi.getter(name="requestModels")
@@ -233,7 +233,7 @@ class Method(pulumi.CustomResource):
         where key is the content type (e.g. `application/json`)
         and value is either `Error`, `Empty` (built-in models) or `apigateway.Model`'s `name`.
         """
-        ...
+        return pulumi.get(self, "request_models")
 
     @property
     @pulumi.getter(name="requestParameters")
@@ -242,7 +242,7 @@ class Method(pulumi.CustomResource):
         A map of request parameters (from the path, query string and headers) that should be passed to the integration. The boolean value indicates whether the parameter is required (`true`) or optional (`false`).
         For example: `request_parameters = {"method.request.header.X-Some-Header" = true "method.request.querystring.some-query-param" = true}` would define that the header `X-Some-Header` and the query string `some-query-param` must be provided in the request.
         """
-        ...
+        return pulumi.get(self, "request_parameters")
 
     @property
     @pulumi.getter(name="requestValidatorId")
@@ -250,7 +250,7 @@ class Method(pulumi.CustomResource):
         """
         The ID of a `apigateway.RequestValidator`
         """
-        ...
+        return pulumi.get(self, "request_validator_id")
 
     @property
     @pulumi.getter(name="resourceId")
@@ -258,7 +258,7 @@ class Method(pulumi.CustomResource):
         """
         The API resource ID
         """
-        ...
+        return pulumi.get(self, "resource_id")
 
     @property
     @pulumi.getter(name="restApi")
@@ -266,7 +266,7 @@ class Method(pulumi.CustomResource):
         """
         The ID of the associated REST API
         """
-        ...
+        return pulumi.get(self, "rest_api")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

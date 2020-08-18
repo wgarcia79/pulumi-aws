@@ -128,7 +128,7 @@ class JobQueue(pulumi.CustomResource):
         """
         The Amazon Resource Name of the job queue.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="computeEnvironments")
@@ -139,7 +139,7 @@ class JobQueue(pulumi.CustomResource):
         in the list will dictate the order. You can associate up to 3 compute environments
         with a job queue.
         """
-        ...
+        return pulumi.get(self, "compute_environments")
 
     @property
     @pulumi.getter
@@ -147,7 +147,7 @@ class JobQueue(pulumi.CustomResource):
         """
         Specifies the name of the job queue.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -156,7 +156,7 @@ class JobQueue(pulumi.CustomResource):
         The priority of the job queue. Job queues with a higher priority
         are evaluated first when associated with the same compute environment.
         """
-        ...
+        return pulumi.get(self, "priority")
 
     @property
     @pulumi.getter
@@ -164,7 +164,7 @@ class JobQueue(pulumi.CustomResource):
         """
         The state of the job queue. Must be one of: `ENABLED` or `DISABLED`
         """
-        ...
+        return pulumi.get(self, "state")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

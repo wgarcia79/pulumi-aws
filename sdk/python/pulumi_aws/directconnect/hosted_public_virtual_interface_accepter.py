@@ -121,7 +121,7 @@ class HostedPublicVirtualInterfaceAccepter(pulumi.CustomResource):
         """
         The ARN of the virtual interface.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -129,7 +129,7 @@ class HostedPublicVirtualInterfaceAccepter(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="virtualInterfaceId")
@@ -137,7 +137,7 @@ class HostedPublicVirtualInterfaceAccepter(pulumi.CustomResource):
         """
         The ID of the Direct Connect virtual interface to accept.
         """
-        ...
+        return pulumi.get(self, "virtual_interface_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

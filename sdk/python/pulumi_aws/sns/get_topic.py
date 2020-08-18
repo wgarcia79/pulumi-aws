@@ -38,7 +38,7 @@ class GetTopicResult:
         """
         Set to the ARN of the found topic, suitable for referencing in other resources that support SNS topics.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -46,12 +46,12 @@ class GetTopicResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
 
 

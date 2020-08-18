@@ -125,7 +125,7 @@ class UserPolicy(pulumi.CustomResource):
         """
         The name of the policy. If omitted, this provider will assign a random, unique name.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="namePrefix")
@@ -133,7 +133,7 @@ class UserPolicy(pulumi.CustomResource):
         """
         Creates a unique name beginning with the specified prefix. Conflicts with `name`.
         """
-        ...
+        return pulumi.get(self, "name_prefix")
 
     @property
     @pulumi.getter
@@ -141,7 +141,7 @@ class UserPolicy(pulumi.CustomResource):
         """
         The policy document. This is a JSON formatted string.
         """
-        ...
+        return pulumi.get(self, "policy")
 
     @property
     @pulumi.getter
@@ -149,7 +149,7 @@ class UserPolicy(pulumi.CustomResource):
         """
         IAM user to which to attach this policy.
         """
-        ...
+        return pulumi.get(self, "user")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

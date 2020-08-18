@@ -141,7 +141,7 @@ class GlobalTable(pulumi.CustomResource):
         """
         The ARN of the DynamoDB Global Table
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -149,7 +149,7 @@ class GlobalTable(pulumi.CustomResource):
         """
         The name of the global table. Must match underlying DynamoDB Table names in all regions.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -157,7 +157,7 @@ class GlobalTable(pulumi.CustomResource):
         """
         Underlying DynamoDB Table. At least 1 replica must be defined. See below.
         """
-        ...
+        return pulumi.get(self, "replicas")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

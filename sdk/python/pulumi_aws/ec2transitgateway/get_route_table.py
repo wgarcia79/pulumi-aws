@@ -49,7 +49,7 @@ class GetRouteTableResult:
         """
         Boolean whether this is the default association route table for the EC2 Transit Gateway
         """
-        ...
+        return pulumi.get(self, "default_association_route_table")
 
     @property
     @pulumi.getter(name="defaultPropagationRouteTable")
@@ -57,12 +57,12 @@ class GetRouteTableResult:
         """
         Boolean whether this is the default propagation route table for the EC2 Transit Gateway
         """
-        ...
+        return pulumi.get(self, "default_propagation_route_table")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetRouteTableFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
@@ -70,7 +70,7 @@ class GetRouteTableResult:
         """
         EC2 Transit Gateway Route Table identifier
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -78,7 +78,7 @@ class GetRouteTableResult:
         """
         Key-value tags for the EC2 Transit Gateway Route Table
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="transitGatewayId")
@@ -86,7 +86,7 @@ class GetRouteTableResult:
         """
         EC2 Transit Gateway identifier
         """
-        ...
+        return pulumi.get(self, "transit_gateway_id")
 
 
 

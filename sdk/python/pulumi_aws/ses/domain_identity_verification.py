@@ -106,7 +106,7 @@ class DomainIdentityVerification(pulumi.CustomResource):
         """
         The ARN of the domain identity.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -114,7 +114,7 @@ class DomainIdentityVerification(pulumi.CustomResource):
         """
         The domain name of the SES domain identity to verify.
         """
-        ...
+        return pulumi.get(self, "domain")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

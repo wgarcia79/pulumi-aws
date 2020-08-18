@@ -38,7 +38,7 @@ class AppCampaignHook(dict):
         """
         Lambda function name or ARN to be called for delivery. Conflicts with `web_url`
         """
-        ...
+        return pulumi.get(self, "lambda_function_name")
 
     @property
     @pulumi.getter
@@ -46,7 +46,7 @@ class AppCampaignHook(dict):
         """
         What mode Lambda should be invoked in. Valid values for this parameter are `DELIVERY`, `FILTER`.
         """
-        ...
+        return pulumi.get(self, "mode")
 
     @property
     @pulumi.getter(name="webUrl")
@@ -54,7 +54,7 @@ class AppCampaignHook(dict):
         """
         Web URL to call for hook. If the URL has authentication specified it will be added as authentication to the request. Conflicts with `lambda_function_name`
         """
-        ...
+        return pulumi.get(self, "web_url")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -88,7 +88,7 @@ class AppLimits(dict):
         """
         The maximum number of messages that the campaign can send daily.
         """
-        ...
+        return pulumi.get(self, "daily")
 
     @property
     @pulumi.getter(name="maximumDuration")
@@ -96,7 +96,7 @@ class AppLimits(dict):
         """
         The length of time (in seconds) that the campaign can run before it ends and message deliveries stop. This duration begins at the scheduled start time for the campaign. The minimum value is 60.
         """
-        ...
+        return pulumi.get(self, "maximum_duration")
 
     @property
     @pulumi.getter(name="messagesPerSecond")
@@ -104,7 +104,7 @@ class AppLimits(dict):
         """
         The number of messages that the campaign can send per second. The minimum value is 50, and the maximum is 20000.
         """
-        ...
+        return pulumi.get(self, "messages_per_second")
 
     @property
     @pulumi.getter
@@ -112,7 +112,7 @@ class AppLimits(dict):
         """
         The maximum total number of messages that the campaign can send.
         """
-        ...
+        return pulumi.get(self, "total")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -138,7 +138,7 @@ class AppQuietTime(dict):
         """
         The default end time for quiet time in ISO 8601 format. Required if `start` is set
         """
-        ...
+        return pulumi.get(self, "end")
 
     @property
     @pulumi.getter
@@ -146,7 +146,7 @@ class AppQuietTime(dict):
         """
         The default start time for quiet time in ISO 8601 format. Required if `end` is set
         """
-        ...
+        return pulumi.get(self, "start")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

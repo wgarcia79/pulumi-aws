@@ -345,7 +345,7 @@ class Function(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) of the Amazon EFS Access Point that provides access to the file system.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -353,7 +353,7 @@ class Function(pulumi.CustomResource):
         """
         The path to the function's deployment package within the local filesystem. If defined, The `s3_`-prefixed options cannot be used.
         """
-        ...
+        return pulumi.get(self, "code")
 
     @property
     @pulumi.getter(name="deadLetterConfig")
@@ -361,7 +361,7 @@ class Function(pulumi.CustomResource):
         """
         Nested block to configure the function's *dead letter queue*. See details below.
         """
-        ...
+        return pulumi.get(self, "dead_letter_config")
 
     @property
     @pulumi.getter
@@ -369,7 +369,7 @@ class Function(pulumi.CustomResource):
         """
         Description of what your Lambda Function does.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -377,7 +377,7 @@ class Function(pulumi.CustomResource):
         """
         The Lambda environment's configuration settings. Fields documented below.
         """
-        ...
+        return pulumi.get(self, "environment")
 
     @property
     @pulumi.getter(name="fileSystemConfig")
@@ -385,7 +385,7 @@ class Function(pulumi.CustomResource):
         """
         The connection settings for an EFS file system. Fields documented below. Before creating or updating Lambda functions with `file_system_config`, EFS mount targets much be in available lifecycle state. Use `depends_on` to explicitly declare this dependency. See [Using Amazon EFS with Lambda](https://docs.aws.amazon.com/lambda/latest/dg/services-efs.html).
         """
-        ...
+        return pulumi.get(self, "file_system_config")
 
     @property
     @pulumi.getter
@@ -393,7 +393,7 @@ class Function(pulumi.CustomResource):
         """
         The function [entrypoint](https://docs.aws.amazon.com/lambda/latest/dg/walkthrough-custom-events-create-test-function.html) in your code.
         """
-        ...
+        return pulumi.get(self, "handler")
 
     @property
     @pulumi.getter(name="invokeArn")
@@ -401,7 +401,7 @@ class Function(pulumi.CustomResource):
         """
         The ARN to be used for invoking Lambda Function from API Gateway - to be used in `apigateway.Integration`'s `uri`
         """
-        ...
+        return pulumi.get(self, "invoke_arn")
 
     @property
     @pulumi.getter(name="kmsKeyArn")
@@ -409,7 +409,7 @@ class Function(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the AWS Key Management Service (KMS) key that is used to encrypt environment variables. If this configuration is not provided when environment variables are in use, AWS Lambda uses a default service key. If this configuration is provided when environment variables are not in use, the AWS Lambda API does not save this configuration and this provider will show a perpetual difference of adding the key. To fix the perpetual difference, remove this configuration.
         """
-        ...
+        return pulumi.get(self, "kms_key_arn")
 
     @property
     @pulumi.getter(name="lastModified")
@@ -417,7 +417,7 @@ class Function(pulumi.CustomResource):
         """
         The date this resource was last modified.
         """
-        ...
+        return pulumi.get(self, "last_modified")
 
     @property
     @pulumi.getter
@@ -425,7 +425,7 @@ class Function(pulumi.CustomResource):
         """
         List of Lambda Layer Version ARNs (maximum of 5) to attach to your Lambda Function. See [Lambda Layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html)
         """
-        ...
+        return pulumi.get(self, "layers")
 
     @property
     @pulumi.getter(name="memorySize")
@@ -433,7 +433,7 @@ class Function(pulumi.CustomResource):
         """
         Amount of memory in MB your Lambda Function can use at runtime. Defaults to `128`. See [Limits](https://docs.aws.amazon.com/lambda/latest/dg/limits.html)
         """
-        ...
+        return pulumi.get(self, "memory_size")
 
     @property
     @pulumi.getter
@@ -441,7 +441,7 @@ class Function(pulumi.CustomResource):
         """
         A unique name for your Lambda Function.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -449,7 +449,7 @@ class Function(pulumi.CustomResource):
         """
         Whether to publish creation/change as new Lambda Function Version. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "publish")
 
     @property
     @pulumi.getter(name="qualifiedArn")
@@ -458,7 +458,7 @@ class Function(pulumi.CustomResource):
         The Amazon Resource Name (ARN) identifying your Lambda Function Version
         (if versioning is enabled via `publish = true`).
         """
-        ...
+        return pulumi.get(self, "qualified_arn")
 
     @property
     @pulumi.getter(name="reservedConcurrentExecutions")
@@ -466,7 +466,7 @@ class Function(pulumi.CustomResource):
         """
         The amount of reserved concurrent executions for this lambda function. A value of `0` disables lambda from being triggered and `-1` removes any concurrency limitations. Defaults to Unreserved Concurrency Limits `-1`. See [Managing Concurrency](https://docs.aws.amazon.com/lambda/latest/dg/concurrent-executions.html)
         """
-        ...
+        return pulumi.get(self, "reserved_concurrent_executions")
 
     @property
     @pulumi.getter
@@ -474,7 +474,7 @@ class Function(pulumi.CustomResource):
         """
         IAM role attached to the Lambda Function. This governs both who / what can invoke your Lambda Function, as well as what resources our Lambda Function has access to. See [Lambda Permission Model](https://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html) for more details.
         """
-        ...
+        return pulumi.get(self, "role")
 
     @property
     @pulumi.getter
@@ -482,7 +482,7 @@ class Function(pulumi.CustomResource):
         """
         See [Runtimes](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html#SSS-CreateFunction-request-Runtime) for valid values.
         """
-        ...
+        return pulumi.get(self, "runtime")
 
     @property
     @pulumi.getter(name="s3Bucket")
@@ -490,7 +490,7 @@ class Function(pulumi.CustomResource):
         """
         The S3 bucket location containing the function's deployment package. Conflicts with `filename`. This bucket must reside in the same AWS region where you are creating the Lambda function.
         """
-        ...
+        return pulumi.get(self, "s3_bucket")
 
     @property
     @pulumi.getter(name="s3Key")
@@ -498,7 +498,7 @@ class Function(pulumi.CustomResource):
         """
         The S3 key of an object containing the function's deployment package. Conflicts with `filename`.
         """
-        ...
+        return pulumi.get(self, "s3_key")
 
     @property
     @pulumi.getter(name="s3ObjectVersion")
@@ -506,7 +506,7 @@ class Function(pulumi.CustomResource):
         """
         The object version containing the function's deployment package. Conflicts with `filename`.
         """
-        ...
+        return pulumi.get(self, "s3_object_version")
 
     @property
     @pulumi.getter(name="sourceCodeHash")
@@ -514,7 +514,7 @@ class Function(pulumi.CustomResource):
         """
         Used to trigger updates. Must be set to a base64-encoded SHA256 hash of the package file specified with either `filename` or `s3_key`. The usual way to set this is `filebase64sha256("file.zip")` (this provider 0.11.12 and later) or `base64sha256(file("file.zip"))` (this provider 0.11.11 and earlier), where "file.zip" is the local filename of the lambda function source archive.
         """
-        ...
+        return pulumi.get(self, "source_code_hash")
 
     @property
     @pulumi.getter(name="sourceCodeSize")
@@ -522,7 +522,7 @@ class Function(pulumi.CustomResource):
         """
         The size in bytes of the function .zip file.
         """
-        ...
+        return pulumi.get(self, "source_code_size")
 
     @property
     @pulumi.getter
@@ -530,7 +530,7 @@ class Function(pulumi.CustomResource):
         """
         A mapping of tags to assign to the object.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -538,12 +538,12 @@ class Function(pulumi.CustomResource):
         """
         The amount of time your Lambda Function has to run in seconds. Defaults to `3`. See [Limits](https://docs.aws.amazon.com/lambda/latest/dg/limits.html)
         """
-        ...
+        return pulumi.get(self, "timeout")
 
     @property
     @pulumi.getter(name="tracingConfig")
     def tracing_config(self) -> 'outputs.FunctionTracingConfig':
-        ...
+        return pulumi.get(self, "tracing_config")
 
     @property
     @pulumi.getter
@@ -551,7 +551,7 @@ class Function(pulumi.CustomResource):
         """
         Latest published version of your Lambda Function.
         """
-        ...
+        return pulumi.get(self, "version")
 
     @property
     @pulumi.getter(name="vpcConfig")
@@ -559,7 +559,7 @@ class Function(pulumi.CustomResource):
         """
         Provide this to allow your function to access your VPC. Fields documented below. See [Lambda in VPC](http://docs.aws.amazon.com/lambda/latest/dg/vpc.html)
         """
-        ...
+        return pulumi.get(self, "vpc_config")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -95,7 +95,7 @@ class ProductSubscription(pulumi.CustomResource):
         """
         The ARN of a resource that represents your subscription to the product that generates the findings that you want to import into Security Hub.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="productArn")
@@ -103,7 +103,7 @@ class ProductSubscription(pulumi.CustomResource):
         """
         The ARN of the product that generates findings that you want to import into Security Hub - see below.
         """
-        ...
+        return pulumi.get(self, "product_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

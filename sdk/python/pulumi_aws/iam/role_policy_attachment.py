@@ -131,7 +131,7 @@ class RolePolicyAttachment(pulumi.CustomResource):
         """
         The ARN of the policy you want to apply
         """
-        ...
+        return pulumi.get(self, "policy_arn")
 
     @property
     @pulumi.getter
@@ -139,7 +139,7 @@ class RolePolicyAttachment(pulumi.CustomResource):
         """
         The role the policy should be applied to
         """
-        ...
+        return pulumi.get(self, "role")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

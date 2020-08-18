@@ -303,7 +303,7 @@ class BucketNotification(pulumi.CustomResource):
         """
         The name of the bucket to put notification configuration.
         """
-        ...
+        return pulumi.get(self, "bucket")
 
     @property
     @pulumi.getter(name="lambdaFunctions")
@@ -311,7 +311,7 @@ class BucketNotification(pulumi.CustomResource):
         """
         Used to configure notifications to a Lambda Function (documented below).
         """
-        ...
+        return pulumi.get(self, "lambda_functions")
 
     @property
     @pulumi.getter
@@ -319,7 +319,7 @@ class BucketNotification(pulumi.CustomResource):
         """
         The notification configuration to SQS Queue (documented below).
         """
-        ...
+        return pulumi.get(self, "queues")
 
     @property
     @pulumi.getter
@@ -327,7 +327,7 @@ class BucketNotification(pulumi.CustomResource):
         """
         The notification configuration to SNS Topic (documented below).
         """
-        ...
+        return pulumi.get(self, "topics")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

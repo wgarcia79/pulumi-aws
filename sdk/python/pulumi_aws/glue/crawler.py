@@ -236,12 +236,12 @@ class Crawler(pulumi.CustomResource):
         """
         The ARN of the crawler
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="catalogTargets")
     def catalog_targets(self) -> Optional[List['outputs.CrawlerCatalogTarget']]:
-        ...
+        return pulumi.get(self, "catalog_targets")
 
     @property
     @pulumi.getter
@@ -249,7 +249,7 @@ class Crawler(pulumi.CustomResource):
         """
         List of custom classifiers. By default, all AWS classifiers are included in a crawl, but these custom classifiers always override the default classifiers for a given classification.
         """
-        ...
+        return pulumi.get(self, "classifiers")
 
     @property
     @pulumi.getter
@@ -257,7 +257,7 @@ class Crawler(pulumi.CustomResource):
         """
         JSON string of configuration information.
         """
-        ...
+        return pulumi.get(self, "configuration")
 
     @property
     @pulumi.getter(name="databaseName")
@@ -265,7 +265,7 @@ class Crawler(pulumi.CustomResource):
         """
         Glue database where results are written.
         """
-        ...
+        return pulumi.get(self, "database_name")
 
     @property
     @pulumi.getter
@@ -273,7 +273,7 @@ class Crawler(pulumi.CustomResource):
         """
         Description of the crawler.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="dynamodbTargets")
@@ -281,7 +281,7 @@ class Crawler(pulumi.CustomResource):
         """
         List of nested DynamoDB target arguments. See below.
         """
-        ...
+        return pulumi.get(self, "dynamodb_targets")
 
     @property
     @pulumi.getter(name="jdbcTargets")
@@ -289,7 +289,7 @@ class Crawler(pulumi.CustomResource):
         """
         List of nested JBDC target arguments. See below.
         """
-        ...
+        return pulumi.get(self, "jdbc_targets")
 
     @property
     @pulumi.getter
@@ -297,7 +297,7 @@ class Crawler(pulumi.CustomResource):
         """
         Name of the crawler.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -305,7 +305,7 @@ class Crawler(pulumi.CustomResource):
         """
         The IAM role friendly name (including path without leading slash), or ARN of an IAM role, used by the crawler to access other resources.
         """
-        ...
+        return pulumi.get(self, "role")
 
     @property
     @pulumi.getter(name="s3Targets")
@@ -313,7 +313,7 @@ class Crawler(pulumi.CustomResource):
         """
         List nested Amazon S3 target arguments. See below.
         """
-        ...
+        return pulumi.get(self, "s3_targets")
 
     @property
     @pulumi.getter
@@ -321,7 +321,7 @@ class Crawler(pulumi.CustomResource):
         """
         A cron expression used to specify the schedule. For more information, see [Time-Based Schedules for Jobs and Crawlers](https://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html). For example, to run something every day at 12:15 UTC, you would specify: `cron(15 12 * * ? *)`.
         """
-        ...
+        return pulumi.get(self, "schedule")
 
     @property
     @pulumi.getter(name="schemaChangePolicy")
@@ -329,7 +329,7 @@ class Crawler(pulumi.CustomResource):
         """
         Policy for the crawler's update and deletion behavior.
         """
-        ...
+        return pulumi.get(self, "schema_change_policy")
 
     @property
     @pulumi.getter(name="securityConfiguration")
@@ -337,7 +337,7 @@ class Crawler(pulumi.CustomResource):
         """
         The name of Security Configuration to be used by the crawler
         """
-        ...
+        return pulumi.get(self, "security_configuration")
 
     @property
     @pulumi.getter(name="tablePrefix")
@@ -345,7 +345,7 @@ class Crawler(pulumi.CustomResource):
         """
         The table prefix used for catalog tables that are created.
         """
-        ...
+        return pulumi.get(self, "table_prefix")
 
     @property
     @pulumi.getter
@@ -353,7 +353,7 @@ class Crawler(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

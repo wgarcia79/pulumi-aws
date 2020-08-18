@@ -35,17 +35,17 @@ class GetDelegationSetResult:
     @property
     @pulumi.getter(name="callerReference")
     def caller_reference(self) -> str:
-        ...
+        return pulumi.get(self, "caller_reference")
 
     @property
     @pulumi.getter
     def id(self) -> str:
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="nameServers")
     def name_servers(self) -> List[str]:
-        ...
+        return pulumi.get(self, "name_servers")
 
 
 

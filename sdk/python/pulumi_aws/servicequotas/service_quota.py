@@ -133,7 +133,7 @@ class ServiceQuota(pulumi.CustomResource):
         """
         Whether the service quota can be increased.
         """
-        ...
+        return pulumi.get(self, "adjustable")
 
     @property
     @pulumi.getter
@@ -141,7 +141,7 @@ class ServiceQuota(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the service quota.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="defaultValue")
@@ -149,7 +149,7 @@ class ServiceQuota(pulumi.CustomResource):
         """
         Default value of the service quota.
         """
-        ...
+        return pulumi.get(self, "default_value")
 
     @property
     @pulumi.getter(name="quotaCode")
@@ -157,7 +157,7 @@ class ServiceQuota(pulumi.CustomResource):
         """
         Code of the service quota to track. For example: `L-F678F1CE`. Available values can be found with the [AWS CLI service-quotas list-service-quotas command](https://docs.aws.amazon.com/cli/latest/reference/service-quotas/list-service-quotas.html).
         """
-        ...
+        return pulumi.get(self, "quota_code")
 
     @property
     @pulumi.getter(name="quotaName")
@@ -165,17 +165,17 @@ class ServiceQuota(pulumi.CustomResource):
         """
         Name of the quota.
         """
-        ...
+        return pulumi.get(self, "quota_name")
 
     @property
     @pulumi.getter(name="requestId")
     def request_id(self) -> str:
-        ...
+        return pulumi.get(self, "request_id")
 
     @property
     @pulumi.getter(name="requestStatus")
     def request_status(self) -> str:
-        ...
+        return pulumi.get(self, "request_status")
 
     @property
     @pulumi.getter(name="serviceCode")
@@ -183,7 +183,7 @@ class ServiceQuota(pulumi.CustomResource):
         """
         Code of the service to track. For example: `vpc`. Available values can be found with the [AWS CLI service-quotas list-services command](https://docs.aws.amazon.com/cli/latest/reference/service-quotas/list-services.html).
         """
-        ...
+        return pulumi.get(self, "service_code")
 
     @property
     @pulumi.getter(name="serviceName")
@@ -191,7 +191,7 @@ class ServiceQuota(pulumi.CustomResource):
         """
         Name of the service.
         """
-        ...
+        return pulumi.get(self, "service_name")
 
     @property
     @pulumi.getter
@@ -199,7 +199,7 @@ class ServiceQuota(pulumi.CustomResource):
         """
         Float specifying the desired value for the service quota. If the desired value is higher than the current value, a quota increase request is submitted. When a known request is submitted and pending, the value reflects the desired value of the pending request.
         """
-        ...
+        return pulumi.get(self, "value")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -112,7 +112,7 @@ class Resource(pulumi.CustomResource):
         """
         The ID of the parent API resource
         """
-        ...
+        return pulumi.get(self, "parent_id")
 
     @property
     @pulumi.getter
@@ -120,7 +120,7 @@ class Resource(pulumi.CustomResource):
         """
         The complete path for this API resource, including all parent paths.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter(name="pathPart")
@@ -128,7 +128,7 @@ class Resource(pulumi.CustomResource):
         """
         The last path segment of this API resource.
         """
-        ...
+        return pulumi.get(self, "path_part")
 
     @property
     @pulumi.getter(name="restApi")
@@ -136,7 +136,7 @@ class Resource(pulumi.CustomResource):
         """
         The ID of the associated REST API
         """
-        ...
+        return pulumi.get(self, "rest_api")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

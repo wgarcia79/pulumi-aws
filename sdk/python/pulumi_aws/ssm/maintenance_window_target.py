@@ -160,7 +160,7 @@ class MaintenanceWindowTarget(pulumi.CustomResource):
         """
         The description of the maintenance window target.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -168,7 +168,7 @@ class MaintenanceWindowTarget(pulumi.CustomResource):
         """
         The name of the maintenance window target.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="ownerInformation")
@@ -176,7 +176,7 @@ class MaintenanceWindowTarget(pulumi.CustomResource):
         """
         User-provided value that will be included in any CloudWatch events raised while running tasks for these targets in this Maintenance Window.
         """
-        ...
+        return pulumi.get(self, "owner_information")
 
     @property
     @pulumi.getter(name="resourceType")
@@ -184,7 +184,7 @@ class MaintenanceWindowTarget(pulumi.CustomResource):
         """
         The type of target being registered with the Maintenance Window. Possible values are `INSTANCE` and `RESOURCE_GROUP`.
         """
-        ...
+        return pulumi.get(self, "resource_type")
 
     @property
     @pulumi.getter
@@ -193,7 +193,7 @@ class MaintenanceWindowTarget(pulumi.CustomResource):
         The targets to register with the maintenance window. In other words, the instances to run commands on when the maintenance window runs. You can specify targets using instance IDs, resource group names, or tags that have been applied to instances. For more information about these examples formats see
         (https://docs.aws.amazon.com/systems-manager/latest/userguide/mw-cli-tutorial-targets-examples.html)
         """
-        ...
+        return pulumi.get(self, "targets")
 
     @property
     @pulumi.getter(name="windowId")
@@ -201,7 +201,7 @@ class MaintenanceWindowTarget(pulumi.CustomResource):
         """
         The Id of the maintenance window to register the target with.
         """
-        ...
+        return pulumi.get(self, "window_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

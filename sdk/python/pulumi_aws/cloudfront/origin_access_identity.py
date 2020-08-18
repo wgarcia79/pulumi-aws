@@ -171,7 +171,7 @@ class OriginAccessIdentity(pulumi.CustomResource):
         Internal value used by CloudFront to allow future
         updates to the origin access identity.
         """
-        ...
+        return pulumi.get(self, "caller_reference")
 
     @property
     @pulumi.getter(name="cloudfrontAccessIdentityPath")
@@ -180,7 +180,7 @@ class OriginAccessIdentity(pulumi.CustomResource):
         A shortcut to the full path for the
         origin access identity to use in CloudFront, see below.
         """
-        ...
+        return pulumi.get(self, "cloudfront_access_identity_path")
 
     @property
     @pulumi.getter
@@ -188,7 +188,7 @@ class OriginAccessIdentity(pulumi.CustomResource):
         """
         An optional comment for the origin access identity.
         """
-        ...
+        return pulumi.get(self, "comment")
 
     @property
     @pulumi.getter
@@ -197,7 +197,7 @@ class OriginAccessIdentity(pulumi.CustomResource):
         The current version of the origin access identity's information.
         For example: `E2QWRUHAPOMQZL`.
         """
-        ...
+        return pulumi.get(self, "etag")
 
     @property
     @pulumi.getter(name="iamArn")
@@ -207,7 +207,7 @@ class OriginAccessIdentity(pulumi.CustomResource):
         Example: `arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity
         E2QWRUHAPOMQZL`.
         """
-        ...
+        return pulumi.get(self, "iam_arn")
 
     @property
     @pulumi.getter(name="s3CanonicalUserId")
@@ -217,7 +217,7 @@ class OriginAccessIdentity(pulumi.CustomResource):
         access identity, which you use when giving the origin access identity read
         permission to an object in Amazon S3.
         """
-        ...
+        return pulumi.get(self, "s3_canonical_user_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

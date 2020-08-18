@@ -117,7 +117,7 @@ class GroupMembership(pulumi.CustomResource):
         """
         The IAM Group name to attach the list of `users` to
         """
-        ...
+        return pulumi.get(self, "group")
 
     @property
     @pulumi.getter
@@ -125,7 +125,7 @@ class GroupMembership(pulumi.CustomResource):
         """
         The name to identify the Group Membership
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -133,7 +133,7 @@ class GroupMembership(pulumi.CustomResource):
         """
         A list of IAM User names to associate with the Group
         """
-        ...
+        return pulumi.get(self, "users")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -38,7 +38,7 @@ class GetEventCategoriesResult:
         """
         A list of the event categories.
         """
-        ...
+        return pulumi.get(self, "event_categories")
 
     @property
     @pulumi.getter
@@ -46,12 +46,12 @@ class GetEventCategoriesResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "source_type")
 
 
 

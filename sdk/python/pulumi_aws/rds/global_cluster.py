@@ -147,7 +147,7 @@ class GlobalCluster(pulumi.CustomResource):
         """
         RDS Global Cluster Amazon Resource Name (ARN)
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="databaseName")
@@ -155,7 +155,7 @@ class GlobalCluster(pulumi.CustomResource):
         """
         Name for an automatically created database on cluster creation.
         """
-        ...
+        return pulumi.get(self, "database_name")
 
     @property
     @pulumi.getter(name="deletionProtection")
@@ -163,7 +163,7 @@ class GlobalCluster(pulumi.CustomResource):
         """
         If the Global Cluster should have deletion protection enabled. The database can't be deleted when this value is set to `true`. The default is `false`.
         """
-        ...
+        return pulumi.get(self, "deletion_protection")
 
     @property
     @pulumi.getter
@@ -171,7 +171,7 @@ class GlobalCluster(pulumi.CustomResource):
         """
         Name of the database engine to be used for this DB cluster. Valid values: `aurora`, `aurora-mysql`, `aurora-postgresql`. Defaults to `aurora`.
         """
-        ...
+        return pulumi.get(self, "engine")
 
     @property
     @pulumi.getter(name="engineVersion")
@@ -180,7 +180,7 @@ class GlobalCluster(pulumi.CustomResource):
         Engine version of the Aurora global database.
         * **NOTE:** When the engine is set to `aurora-mysql`, an engine version compatible with global database is required. The earliest available version is `5.7.mysql_aurora.2.06.0`.
         """
-        ...
+        return pulumi.get(self, "engine_version")
 
     @property
     @pulumi.getter(name="globalClusterIdentifier")
@@ -188,7 +188,7 @@ class GlobalCluster(pulumi.CustomResource):
         """
         The global cluster identifier.
         """
-        ...
+        return pulumi.get(self, "global_cluster_identifier")
 
     @property
     @pulumi.getter(name="globalClusterResourceId")
@@ -196,7 +196,7 @@ class GlobalCluster(pulumi.CustomResource):
         """
         AWS Region-unique, immutable identifier for the global database cluster. This identifier is found in AWS CloudTrail log entries whenever the AWS KMS key for the DB cluster is accessed
         """
-        ...
+        return pulumi.get(self, "global_cluster_resource_id")
 
     @property
     @pulumi.getter(name="storageEncrypted")
@@ -204,7 +204,7 @@ class GlobalCluster(pulumi.CustomResource):
         """
         Specifies whether the DB cluster is encrypted. The default is `false`.
         """
-        ...
+        return pulumi.get(self, "storage_encrypted")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

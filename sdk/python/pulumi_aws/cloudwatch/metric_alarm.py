@@ -381,7 +381,7 @@ class MetricAlarm(pulumi.CustomResource):
         """
         Indicates whether or not actions should be executed during any changes to the alarm's state. Defaults to `true`.
         """
-        ...
+        return pulumi.get(self, "actions_enabled")
 
     @property
     @pulumi.getter(name="alarmActions")
@@ -389,7 +389,7 @@ class MetricAlarm(pulumi.CustomResource):
         """
         The list of actions to execute when this alarm transitions into an ALARM state from any other state. Each action is specified as an Amazon Resource Name (ARN).
         """
-        ...
+        return pulumi.get(self, "alarm_actions")
 
     @property
     @pulumi.getter(name="alarmDescription")
@@ -397,7 +397,7 @@ class MetricAlarm(pulumi.CustomResource):
         """
         The description for the alarm.
         """
-        ...
+        return pulumi.get(self, "alarm_description")
 
     @property
     @pulumi.getter
@@ -405,7 +405,7 @@ class MetricAlarm(pulumi.CustomResource):
         """
         The ARN of the cloudwatch metric alarm.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="comparisonOperator")
@@ -413,7 +413,7 @@ class MetricAlarm(pulumi.CustomResource):
         """
         The arithmetic operation to use when comparing the specified Statistic and Threshold. The specified Statistic value is used as the first operand. Either of the following is supported: `GreaterThanOrEqualToThreshold`, `GreaterThanThreshold`, `LessThanThreshold`, `LessThanOrEqualToThreshold`. Additionally, the values  `LessThanLowerOrGreaterThanUpperThreshold`, `LessThanLowerThreshold`, and `GreaterThanUpperThreshold` are used only for alarms based on anomaly detection models.
         """
-        ...
+        return pulumi.get(self, "comparison_operator")
 
     @property
     @pulumi.getter(name="datapointsToAlarm")
@@ -421,7 +421,7 @@ class MetricAlarm(pulumi.CustomResource):
         """
         The number of datapoints that must be breaching to trigger the alarm.
         """
-        ...
+        return pulumi.get(self, "datapoints_to_alarm")
 
     @property
     @pulumi.getter
@@ -429,7 +429,7 @@ class MetricAlarm(pulumi.CustomResource):
         """
         The dimensions for this metric.  For the list of available dimensions see the AWS documentation [here](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
         """
-        ...
+        return pulumi.get(self, "dimensions")
 
     @property
     @pulumi.getter(name="evaluateLowSampleCountPercentiles")
@@ -442,7 +442,7 @@ class MetricAlarm(pulumi.CustomResource):
         evaluated and possibly change state no matter how many data points are available.
         The following values are supported: `ignore`, and `evaluate`.
         """
-        ...
+        return pulumi.get(self, "evaluate_low_sample_count_percentiles")
 
     @property
     @pulumi.getter(name="evaluationPeriods")
@@ -450,7 +450,7 @@ class MetricAlarm(pulumi.CustomResource):
         """
         The number of periods over which data is compared to the specified threshold.
         """
-        ...
+        return pulumi.get(self, "evaluation_periods")
 
     @property
     @pulumi.getter(name="extendedStatistic")
@@ -458,7 +458,7 @@ class MetricAlarm(pulumi.CustomResource):
         """
         The percentile statistic for the metric associated with the alarm. Specify a value between p0.0 and p100.
         """
-        ...
+        return pulumi.get(self, "extended_statistic")
 
     @property
     @pulumi.getter(name="insufficientDataActions")
@@ -466,7 +466,7 @@ class MetricAlarm(pulumi.CustomResource):
         """
         The list of actions to execute when this alarm transitions into an INSUFFICIENT_DATA state from any other state. Each action is specified as an Amazon Resource Name (ARN).
         """
-        ...
+        return pulumi.get(self, "insufficient_data_actions")
 
     @property
     @pulumi.getter(name="metricName")
@@ -475,7 +475,7 @@ class MetricAlarm(pulumi.CustomResource):
         The name for this metric.
         See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
         """
-        ...
+        return pulumi.get(self, "metric_name")
 
     @property
     @pulumi.getter(name="metricQueries")
@@ -483,7 +483,7 @@ class MetricAlarm(pulumi.CustomResource):
         """
         Enables you to create an alarm based on a metric math expression. You may specify at most 20.
         """
-        ...
+        return pulumi.get(self, "metric_queries")
 
     @property
     @pulumi.getter
@@ -491,7 +491,7 @@ class MetricAlarm(pulumi.CustomResource):
         """
         The descriptive name for the alarm. This name must be unique within the user's AWS account
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -500,7 +500,7 @@ class MetricAlarm(pulumi.CustomResource):
         The namespace for this metric. See docs for the [list of namespaces](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/aws-namespaces.html).
         See docs for [supported metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
         """
-        ...
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="okActions")
@@ -508,7 +508,7 @@ class MetricAlarm(pulumi.CustomResource):
         """
         The list of actions to execute when this alarm transitions into an OK state from any other state. Each action is specified as an Amazon Resource Name (ARN).
         """
-        ...
+        return pulumi.get(self, "ok_actions")
 
     @property
     @pulumi.getter
@@ -516,7 +516,7 @@ class MetricAlarm(pulumi.CustomResource):
         """
         The period in seconds over which the specified `stat` is applied.
         """
-        ...
+        return pulumi.get(self, "period")
 
     @property
     @pulumi.getter
@@ -525,7 +525,7 @@ class MetricAlarm(pulumi.CustomResource):
         The statistic to apply to the alarm's associated metric.
         Either of the following is supported: `SampleCount`, `Average`, `Sum`, `Minimum`, `Maximum`
         """
-        ...
+        return pulumi.get(self, "statistic")
 
     @property
     @pulumi.getter
@@ -533,7 +533,7 @@ class MetricAlarm(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -541,7 +541,7 @@ class MetricAlarm(pulumi.CustomResource):
         """
         The value against which the specified statistic is compared. This parameter is required for alarms based on static thresholds, but should not be used for alarms based on anomaly detection models.
         """
-        ...
+        return pulumi.get(self, "threshold")
 
     @property
     @pulumi.getter(name="thresholdMetricId")
@@ -549,7 +549,7 @@ class MetricAlarm(pulumi.CustomResource):
         """
         If this is an alarm based on an anomaly detection model, make this value match the ID of the ANOMALY_DETECTION_BAND function.
         """
-        ...
+        return pulumi.get(self, "threshold_metric_id")
 
     @property
     @pulumi.getter(name="treatMissingData")
@@ -557,7 +557,7 @@ class MetricAlarm(pulumi.CustomResource):
         """
         Sets how this alarm is to handle missing data points. The following values are supported: `missing`, `ignore`, `breaching` and `notBreaching`. Defaults to `missing`.
         """
-        ...
+        return pulumi.get(self, "treat_missing_data")
 
     @property
     @pulumi.getter
@@ -565,7 +565,7 @@ class MetricAlarm(pulumi.CustomResource):
         """
         The unit for this metric.
         """
-        ...
+        return pulumi.get(self, "unit")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

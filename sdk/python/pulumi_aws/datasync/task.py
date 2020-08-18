@@ -131,7 +131,7 @@ class Task(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the DataSync Task.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="cloudwatchLogGroupArn")
@@ -139,7 +139,7 @@ class Task(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the CloudWatch Log Group that is used to monitor and log events in the sync task.
         """
-        ...
+        return pulumi.get(self, "cloudwatch_log_group_arn")
 
     @property
     @pulumi.getter(name="destinationLocationArn")
@@ -147,7 +147,7 @@ class Task(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of destination DataSync Location.
         """
-        ...
+        return pulumi.get(self, "destination_location_arn")
 
     @property
     @pulumi.getter
@@ -155,7 +155,7 @@ class Task(pulumi.CustomResource):
         """
         Name of the DataSync Task.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -163,7 +163,7 @@ class Task(pulumi.CustomResource):
         """
         Configuration block containing option that controls the default behavior when you start an execution of this DataSync Task. For each individual task execution, you can override these options by specifying an overriding configuration in those executions.
         """
-        ...
+        return pulumi.get(self, "options")
 
     @property
     @pulumi.getter(name="sourceLocationArn")
@@ -171,7 +171,7 @@ class Task(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of source DataSync Location.
         """
-        ...
+        return pulumi.get(self, "source_location_arn")
 
     @property
     @pulumi.getter
@@ -179,7 +179,7 @@ class Task(pulumi.CustomResource):
         """
         Key-value pairs of resource tags to assign to the DataSync Task.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -95,7 +95,7 @@ class RegexPatternSet(pulumi.CustomResource):
         """
         The name or description of the Regex Pattern Set.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="regexPatternStrings")
@@ -103,7 +103,7 @@ class RegexPatternSet(pulumi.CustomResource):
         """
         A list of regular expression (regex) patterns that you want AWS WAF to search for, such as `B[a@]dB[o0]t`.
         """
-        ...
+        return pulumi.get(self, "regex_pattern_strings")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

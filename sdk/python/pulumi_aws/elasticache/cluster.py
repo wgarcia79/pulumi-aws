@@ -326,12 +326,12 @@ class Cluster(pulumi.CustomResource):
         `false`. See [Amazon ElastiCache Documentation for more information.](https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_ModifyCacheCluster.html)
         (Available since v0.6.0)
         """
-        ...
+        return pulumi.get(self, "apply_immediately")
 
     @property
     @pulumi.getter
     def arn(self) -> str:
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="availabilityZone")
@@ -339,7 +339,7 @@ class Cluster(pulumi.CustomResource):
         """
         The Availability Zone for the cache cluster. If you want to create cache nodes in multi-az, use `preferred_availability_zones` instead. Default: System chosen Availability Zone.
         """
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter(name="azMode")
@@ -347,7 +347,7 @@ class Cluster(pulumi.CustomResource):
         """
         Specifies whether the nodes in this Memcached node group are created in a single Availability Zone or created across multiple Availability Zones in the cluster's region. Valid values for this parameter are `single-az` or `cross-az`, default is `single-az`. If you want to choose `cross-az`, `num_cache_nodes` must be greater than `1`
         """
-        ...
+        return pulumi.get(self, "az_mode")
 
     @property
     @pulumi.getter(name="cacheNodes")
@@ -356,7 +356,7 @@ class Cluster(pulumi.CustomResource):
         List of node objects including `id`, `address`, `port` and `availability_zone`.
         Referenceable e.g. as `${aws_elasticache_cluster.bar.cache_nodes.0.address}`
         """
-        ...
+        return pulumi.get(self, "cache_nodes")
 
     @property
     @pulumi.getter(name="clusterAddress")
@@ -364,7 +364,7 @@ class Cluster(pulumi.CustomResource):
         """
         (Memcached only) The DNS name of the cache cluster without the port appended.
         """
-        ...
+        return pulumi.get(self, "cluster_address")
 
     @property
     @pulumi.getter(name="clusterId")
@@ -373,7 +373,7 @@ class Cluster(pulumi.CustomResource):
         Group identifier. ElastiCache converts
         this name to lowercase
         """
-        ...
+        return pulumi.get(self, "cluster_id")
 
     @property
     @pulumi.getter(name="configurationEndpoint")
@@ -381,7 +381,7 @@ class Cluster(pulumi.CustomResource):
         """
         (Memcached only) The configuration endpoint to allow host discovery.
         """
-        ...
+        return pulumi.get(self, "configuration_endpoint")
 
     @property
     @pulumi.getter
@@ -390,7 +390,7 @@ class Cluster(pulumi.CustomResource):
         Name of the cache engine to be used for this cache cluster.
         Valid values for this parameter are `memcached` or `redis`
         """
-        ...
+        return pulumi.get(self, "engine")
 
     @property
     @pulumi.getter(name="engineVersion")
@@ -400,7 +400,7 @@ class Cluster(pulumi.CustomResource):
         See [Describe Cache Engine Versions](https://docs.aws.amazon.com/cli/latest/reference/elasticache/describe-cache-engine-versions.html)
         in the AWS Documentation center for supported versions
         """
-        ...
+        return pulumi.get(self, "engine_version")
 
     @property
     @pulumi.getter(name="maintenanceWindow")
@@ -410,7 +410,7 @@ class Cluster(pulumi.CustomResource):
         on the cache cluster is performed. The format is `ddd:hh24:mi-ddd:hh24:mi` (24H Clock UTC).
         The minimum maintenance window is a 60 minute period. Example: `sun:05:00-sun:09:00`
         """
-        ...
+        return pulumi.get(self, "maintenance_window")
 
     @property
     @pulumi.getter(name="nodeType")
@@ -420,7 +420,7 @@ class Cluster(pulumi.CustomResource):
         [Available Cache Node Types](https://aws.amazon.com/elasticache/details#Available_Cache_Node_Types) for
         supported node types
         """
-        ...
+        return pulumi.get(self, "node_type")
 
     @property
     @pulumi.getter(name="notificationTopicArn")
@@ -430,7 +430,7 @@ class Cluster(pulumi.CustomResource):
         SNS topic to send ElastiCache notifications to. Example:
         `arn:aws:sns:us-east-1:012345678999:my_sns_topic`
         """
-        ...
+        return pulumi.get(self, "notification_topic_arn")
 
     @property
     @pulumi.getter(name="numCacheNodes")
@@ -441,7 +441,7 @@ class Cluster(pulumi.CustomResource):
         value must be between 1 and 20. If this number is reduced on subsequent runs,
         the highest numbered nodes will be removed.
         """
-        ...
+        return pulumi.get(self, "num_cache_nodes")
 
     @property
     @pulumi.getter(name="parameterGroupName")
@@ -450,7 +450,7 @@ class Cluster(pulumi.CustomResource):
         Name of the parameter group to associate
         with this cache cluster
         """
-        ...
+        return pulumi.get(self, "parameter_group_name")
 
     @property
     @pulumi.getter
@@ -458,7 +458,7 @@ class Cluster(pulumi.CustomResource):
         """
         The port number on which each of the cache nodes will accept connections. For Memcache the default is 11211, and for Redis the default port is 6379. Cannot be provided with `replication_group_id`.
         """
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter(name="preferredAvailabilityZones")
@@ -466,7 +466,7 @@ class Cluster(pulumi.CustomResource):
         """
         A list of the Availability Zones in which cache nodes are created. If you are creating your cluster in an Amazon VPC you can only locate nodes in Availability Zones that are associated with the subnets in the selected subnet group. The number of Availability Zones listed must equal the value of `num_cache_nodes`. If you want all the nodes in the same Availability Zone, use `availability_zone` instead, or repeat the Availability Zone multiple times in the list. Default: System chosen Availability Zones. Detecting drift of existing node availability zone is not currently supported. Updating this argument by itself to migrate existing node availability zones is not currently supported and will show a perpetual difference.
         """
-        ...
+        return pulumi.get(self, "preferred_availability_zones")
 
     @property
     @pulumi.getter(name="replicationGroupId")
@@ -474,7 +474,7 @@ class Cluster(pulumi.CustomResource):
         """
         The ID of the replication group to which this cluster should belong. If this parameter is specified, the cluster is added to the specified replication group as a read replica; otherwise, the cluster is a standalone primary that is not part of any replication group.
         """
-        ...
+        return pulumi.get(self, "replication_group_id")
 
     @property
     @pulumi.getter(name="securityGroupIds")
@@ -483,7 +483,7 @@ class Cluster(pulumi.CustomResource):
         One or more VPC security groups associated
         with the cache cluster
         """
-        ...
+        return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter(name="securityGroupNames")
@@ -492,7 +492,7 @@ class Cluster(pulumi.CustomResource):
         List of security group
         names to associate with this cache cluster
         """
-        ...
+        return pulumi.get(self, "security_group_names")
 
     @property
     @pulumi.getter(name="snapshotArns")
@@ -502,7 +502,7 @@ class Cluster(pulumi.CustomResource):
         Amazon Resource Name (ARN) of a Redis RDB snapshot file stored in Amazon S3.
         Example: `arn:aws:s3:::my_bucket/snapshot1.rdb`
         """
-        ...
+        return pulumi.get(self, "snapshot_arns")
 
     @property
     @pulumi.getter(name="snapshotName")
@@ -510,7 +510,7 @@ class Cluster(pulumi.CustomResource):
         """
         The name of a snapshot from which to restore data into the new node group.  Changing the `snapshot_name` forces a new resource.
         """
-        ...
+        return pulumi.get(self, "snapshot_name")
 
     @property
     @pulumi.getter(name="snapshotRetentionLimit")
@@ -522,7 +522,7 @@ class Cluster(pulumi.CustomResource):
         before being deleted. If the value of SnapshotRetentionLimit is set to zero (0), backups are turned off.
         Please note that setting a `snapshot_retention_limit` is not supported on cache.t1.micro or cache.t2.* cache nodes
         """
-        ...
+        return pulumi.get(self, "snapshot_retention_limit")
 
     @property
     @pulumi.getter(name="snapshotWindow")
@@ -531,7 +531,7 @@ class Cluster(pulumi.CustomResource):
         The daily time range (in UTC) during which ElastiCache will
         begin taking a daily snapshot of your cache cluster. Example: 05:00-09:00
         """
-        ...
+        return pulumi.get(self, "snapshot_window")
 
     @property
     @pulumi.getter(name="subnetGroupName")
@@ -540,7 +540,7 @@ class Cluster(pulumi.CustomResource):
         Name of the subnet group to be used
         for the cache cluster.
         """
-        ...
+        return pulumi.get(self, "subnet_group_name")
 
     @property
     @pulumi.getter
@@ -548,7 +548,7 @@ class Cluster(pulumi.CustomResource):
         """
         A map of tags to assign to the resource
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

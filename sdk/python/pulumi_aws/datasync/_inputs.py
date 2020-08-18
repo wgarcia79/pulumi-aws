@@ -34,11 +34,11 @@ class EfsLocationEc2ConfigArgs:
         """
         List of Amazon Resource Names (ARNs) of the EC2 Security Groups that are associated with the EFS Mount Target.
         """
-        ...
+        return pulumi.get(self, "security_group_arns")
 
     @security_group_arns.setter
     def security_group_arns(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "security_group_arns", value)
 
     @property
     @pulumi.getter(name="subnetArn")
@@ -46,11 +46,11 @@ class EfsLocationEc2ConfigArgs:
         """
         Amazon Resource Name (ARN) of the EC2 Subnet that is associated with the EFS Mount Target.
         """
-        ...
+        return pulumi.get(self, "subnet_arn")
 
     @subnet_arn.setter
     def subnet_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "subnet_arn", value)
 
 
 @pulumi.input_type
@@ -69,11 +69,11 @@ class LocationSmbMountOptionsArgs:
         """
         The specific SMB version that you want DataSync to use for mounting your SMB share. Valid values: `AUTOMATIC`, `SMB2`, and `SMB3`. Default: `AUTOMATIC`
         """
-        ...
+        return pulumi.get(self, "version")
 
     @version.setter
     def version(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "version", value)
 
 
 @pulumi.input_type
@@ -91,11 +91,11 @@ class NfsLocationOnPremConfigArgs:
         """
         List of Amazon Resource Names (ARNs) of the DataSync Agents used to connect to the NFS server.
         """
-        ...
+        return pulumi.get(self, "agent_arns")
 
     @agent_arns.setter
     def agent_arns(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "agent_arns", value)
 
 
 @pulumi.input_type
@@ -113,11 +113,11 @@ class S3LocationS3ConfigArgs:
         """
         Amazon Resource Names (ARN) of the IAM Role used to connect to the S3 Bucket.
         """
-        ...
+        return pulumi.get(self, "bucket_access_role_arn")
 
     @bucket_access_role_arn.setter
     def bucket_access_role_arn(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "bucket_access_role_arn", value)
 
 
 @pulumi.input_type
@@ -168,11 +168,11 @@ class TaskOptionsArgs:
         """
         A file metadata that shows the last time a file was accessed (that is when the file was read or written to). If set to `BEST_EFFORT`, the DataSync Task attempts to preserve the original (that is, the version before sync `PREPARING` phase) `atime` attribute on all source files. Valid values: `BEST_EFFORT`, `NONE`. Default: `BEST_EFFORT`.
         """
-        ...
+        return pulumi.get(self, "atime")
 
     @atime.setter
     def atime(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "atime", value)
 
     @property
     @pulumi.getter(name="bytesPerSecond")
@@ -180,11 +180,11 @@ class TaskOptionsArgs:
         """
         Limits the bandwidth utilized. For example, to set a maximum of 1 MB, set this value to `1048576`. Value values: `-1` or greater. Default: `-1` (unlimited).
         """
-        ...
+        return pulumi.get(self, "bytes_per_second")
 
     @bytes_per_second.setter
     def bytes_per_second(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "bytes_per_second", value)
 
     @property
     @pulumi.getter
@@ -192,11 +192,11 @@ class TaskOptionsArgs:
         """
         Group identifier of the file's owners. Valid values: `BOTH`, `INT_VALUE`, `NAME`, `NONE`. Default: `INT_VALUE` (preserve integer value of the ID).
         """
-        ...
+        return pulumi.get(self, "gid")
 
     @gid.setter
     def gid(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "gid", value)
 
     @property
     @pulumi.getter
@@ -204,11 +204,11 @@ class TaskOptionsArgs:
         """
         A file metadata that indicates the last time a file was modified (written to) before the sync `PREPARING` phase. Value values: `NONE`, `PRESERVE`. Default: `PRESERVE`.
         """
-        ...
+        return pulumi.get(self, "mtime")
 
     @mtime.setter
     def mtime(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "mtime", value)
 
     @property
     @pulumi.getter(name="posixPermissions")
@@ -216,11 +216,11 @@ class TaskOptionsArgs:
         """
         Determines which users or groups can access a file for a specific purpose such as reading, writing, or execution of the file. Valid values: `NONE`, `PRESERVE`. Default: `PRESERVE`.
         """
-        ...
+        return pulumi.get(self, "posix_permissions")
 
     @posix_permissions.setter
     def posix_permissions(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "posix_permissions", value)
 
     @property
     @pulumi.getter(name="preserveDeletedFiles")
@@ -228,11 +228,11 @@ class TaskOptionsArgs:
         """
         Whether files deleted in the source should be removed or preserved in the destination file system. Valid values: `PRESERVE`, `REMOVE`. Default: `PRESERVE`.
         """
-        ...
+        return pulumi.get(self, "preserve_deleted_files")
 
     @preserve_deleted_files.setter
     def preserve_deleted_files(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "preserve_deleted_files", value)
 
     @property
     @pulumi.getter(name="preserveDevices")
@@ -240,11 +240,11 @@ class TaskOptionsArgs:
         """
         Whether the DataSync Task should preserve the metadata of block and character devices in the source files system, and recreate the files with that device name and metadata on the destination. The DataSync Task can’t sync the actual contents of such devices, because many of the devices are non-terminal and don’t return an end of file (EOF) marker. Valid values: `NONE`, `PRESERVE`. Default: `NONE` (ignore special devices).
         """
-        ...
+        return pulumi.get(self, "preserve_devices")
 
     @preserve_devices.setter
     def preserve_devices(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "preserve_devices", value)
 
     @property
     @pulumi.getter
@@ -252,11 +252,11 @@ class TaskOptionsArgs:
         """
         User identifier of the file's owners. Valid values: `BOTH`, `INT_VALUE`, `NAME`, `NONE`. Default: `INT_VALUE` (preserve integer value of the ID).
         """
-        ...
+        return pulumi.get(self, "uid")
 
     @uid.setter
     def uid(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "uid", value)
 
     @property
     @pulumi.getter(name="verifyMode")
@@ -264,10 +264,10 @@ class TaskOptionsArgs:
         """
         Whether a data integrity verification should be performed at the end of a task execution after all data and metadata have been transferred. Valid values: `NONE`, `POINT_IN_TIME_CONSISTENT`, `ONLY_FILES_TRANSFERRED`. Default: `POINT_IN_TIME_CONSISTENT`.
         """
-        ...
+        return pulumi.get(self, "verify_mode")
 
     @verify_mode.setter
     def verify_mode(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "verify_mode", value)
 
 

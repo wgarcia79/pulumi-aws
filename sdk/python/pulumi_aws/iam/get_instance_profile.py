@@ -53,7 +53,7 @@ class GetInstanceProfileResult:
         """
         The Amazon Resource Name (ARN) specifying the instance profile.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="createDate")
@@ -62,7 +62,7 @@ class GetInstanceProfileResult:
         The string representation of the date the instance profile
         was created.
         """
-        ...
+        return pulumi.get(self, "create_date")
 
     @property
     @pulumi.getter
@@ -70,12 +70,12 @@ class GetInstanceProfileResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -83,7 +83,7 @@ class GetInstanceProfileResult:
         """
         The path to the instance profile.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -91,7 +91,7 @@ class GetInstanceProfileResult:
         """
         The role arn associated with this instance profile.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="roleId")
@@ -99,7 +99,7 @@ class GetInstanceProfileResult:
         """
         The role id associated with this instance profile.
         """
-        ...
+        return pulumi.get(self, "role_id")
 
     @property
     @pulumi.getter(name="roleName")
@@ -107,7 +107,7 @@ class GetInstanceProfileResult:
         """
         The role name associated with this instance profile.
         """
-        ...
+        return pulumi.get(self, "role_name")
 
 
 

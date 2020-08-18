@@ -100,7 +100,7 @@ class ResourceAssociation(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the resource to associate with the RAM Resource Share.
         """
-        ...
+        return pulumi.get(self, "resource_arn")
 
     @property
     @pulumi.getter(name="resourceShareArn")
@@ -108,7 +108,7 @@ class ResourceAssociation(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the RAM Resource Share.
         """
-        ...
+        return pulumi.get(self, "resource_share_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -44,7 +44,7 @@ class AliasRoutingConfig(dict):
         """
         A map that defines the proportion of events that should be sent to different versions of a lambda function.
         """
-        ...
+        return pulumi.get(self, "additional_version_weights")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -66,7 +66,7 @@ class EventSourceMappingDestinationConfig(dict):
         """
         The destination configuration for failed invocations. Detailed below.
         """
-        ...
+        return pulumi.get(self, "on_failure")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -87,7 +87,7 @@ class EventSourceMappingDestinationConfigOnFailure(dict):
         """
         The Amazon Resource Name (ARN) of the destination resource.
         """
-        ...
+        return pulumi.get(self, "destination_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -114,7 +114,7 @@ class FunctionDeadLetterConfig(dict):
         which means allowing either the `sns:Publish` or `sqs:SendMessage` action on this ARN, depending on
         which service is targeted.
         """
-        ...
+        return pulumi.get(self, "target_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -136,7 +136,7 @@ class FunctionEnvironment(dict):
         """
         A map that defines environment variables for the Lambda function.
         """
-        ...
+        return pulumi.get(self, "variables")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -162,7 +162,7 @@ class FunctionEventInvokeConfigDestinationConfig(dict):
         """
         Configuration block with destination configuration for failed asynchronous invocations. See below for details.
         """
-        ...
+        return pulumi.get(self, "on_failure")
 
     @property
     @pulumi.getter(name="onSuccess")
@@ -170,7 +170,7 @@ class FunctionEventInvokeConfigDestinationConfig(dict):
         """
         Configuration block with destination configuration for successful asynchronous invocations. See below for details.
         """
-        ...
+        return pulumi.get(self, "on_success")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -191,7 +191,7 @@ class FunctionEventInvokeConfigDestinationConfigOnFailure(dict):
         """
         Amazon Resource Name (ARN) of the destination resource. See the [Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations) for acceptable resource types and associated IAM permissions.
         """
-        ...
+        return pulumi.get(self, "destination")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -212,7 +212,7 @@ class FunctionEventInvokeConfigDestinationConfigOnSuccess(dict):
         """
         Amazon Resource Name (ARN) of the destination resource. See the [Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations) for acceptable resource types and associated IAM permissions.
         """
-        ...
+        return pulumi.get(self, "destination")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -236,7 +236,7 @@ class FunctionFileSystemConfig(dict):
         """
         The Amazon Resource Name (ARN) of the Amazon EFS Access Point that provides access to the file system.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="localMountPath")
@@ -244,7 +244,7 @@ class FunctionFileSystemConfig(dict):
         """
         The path where the function can access the file system, starting with /mnt/.
         """
-        ...
+        return pulumi.get(self, "local_mount_path")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -273,7 +273,7 @@ class FunctionTracingConfig(dict):
         from an upstream service. If no tracing header is received, Lambda will call
         X-Ray for a tracing decision.
         """
-        ...
+        return pulumi.get(self, "mode")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -300,7 +300,7 @@ class FunctionVpcConfig(dict):
         """
         A list of security group IDs associated with the Lambda function.
         """
-        ...
+        return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter(name="subnetIds")
@@ -308,12 +308,12 @@ class FunctionVpcConfig(dict):
         """
         A list of subnet IDs associated with the Lambda function.
         """
-        ...
+        return pulumi.get(self, "subnet_ids")
 
     @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "vpc_id")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -328,7 +328,7 @@ class GetFunctionDeadLetterConfigResult(dict):
     @property
     @pulumi.getter(name="targetArn")
     def target_arn(self) -> str:
-        ...
+        return pulumi.get(self, "target_arn")
 
 
 @pulumi.output_type
@@ -340,7 +340,7 @@ class GetFunctionEnvironmentResult(dict):
     @property
     @pulumi.getter
     def variables(self) -> Mapping[str, str]:
-        ...
+        return pulumi.get(self, "variables")
 
 
 @pulumi.output_type
@@ -360,12 +360,12 @@ class GetFunctionFileSystemConfigResult(dict):
         """
         Unqualified (no `:QUALIFIER` or `:VERSION` suffix) Amazon Resource Name (ARN) identifying your Lambda Function. See also `qualified_arn`.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="localMountPath")
     def local_mount_path(self) -> str:
-        ...
+        return pulumi.get(self, "local_mount_path")
 
 
 @pulumi.output_type
@@ -377,7 +377,7 @@ class GetFunctionTracingConfigResult(dict):
     @property
     @pulumi.getter
     def mode(self) -> str:
-        ...
+        return pulumi.get(self, "mode")
 
 
 @pulumi.output_type
@@ -393,16 +393,16 @@ class GetFunctionVpcConfigResult(dict):
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> List[str]:
-        ...
+        return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter(name="subnetIds")
     def subnet_ids(self) -> List[str]:
-        ...
+        return pulumi.get(self, "subnet_ids")
 
     @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> str:
-        ...
+        return pulumi.get(self, "vpc_id")
 
 

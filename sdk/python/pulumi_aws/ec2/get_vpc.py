@@ -79,7 +79,7 @@ class GetVpcResult:
         """
         Amazon Resource Name (ARN) of VPC
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="cidrBlock")
@@ -87,22 +87,22 @@ class GetVpcResult:
         """
         The CIDR block for the association.
         """
-        ...
+        return pulumi.get(self, "cidr_block")
 
     @property
     @pulumi.getter(name="cidrBlockAssociations")
     def cidr_block_associations(self) -> List['outputs.GetVpcCidrBlockAssociationResult']:
-        ...
+        return pulumi.get(self, "cidr_block_associations")
 
     @property
     @pulumi.getter
     def default(self) -> bool:
-        ...
+        return pulumi.get(self, "default")
 
     @property
     @pulumi.getter(name="dhcpOptionsId")
     def dhcp_options_id(self) -> str:
-        ...
+        return pulumi.get(self, "dhcp_options_id")
 
     @property
     @pulumi.getter(name="enableDnsHostnames")
@@ -110,7 +110,7 @@ class GetVpcResult:
         """
         Whether or not the VPC has DNS hostname support
         """
-        ...
+        return pulumi.get(self, "enable_dns_hostnames")
 
     @property
     @pulumi.getter(name="enableDnsSupport")
@@ -118,17 +118,17 @@ class GetVpcResult:
         """
         Whether or not the VPC has DNS support
         """
-        ...
+        return pulumi.get(self, "enable_dns_support")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetVpcFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
     def id(self) -> str:
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="instanceTenancy")
@@ -137,7 +137,7 @@ class GetVpcResult:
         The allowed tenancy of instances launched into the
         selected VPC. May be any of `"default"`, `"dedicated"`, or `"host"`.
         """
-        ...
+        return pulumi.get(self, "instance_tenancy")
 
     @property
     @pulumi.getter(name="ipv6AssociationId")
@@ -145,7 +145,7 @@ class GetVpcResult:
         """
         The association ID for the IPv6 CIDR block.
         """
-        ...
+        return pulumi.get(self, "ipv6_association_id")
 
     @property
     @pulumi.getter(name="ipv6CidrBlock")
@@ -153,7 +153,7 @@ class GetVpcResult:
         """
         The IPv6 CIDR block.
         """
-        ...
+        return pulumi.get(self, "ipv6_cidr_block")
 
     @property
     @pulumi.getter(name="mainRouteTableId")
@@ -161,7 +161,7 @@ class GetVpcResult:
         """
         The ID of the main route table associated with this VPC.
         """
-        ...
+        return pulumi.get(self, "main_route_table_id")
 
     @property
     @pulumi.getter(name="ownerId")
@@ -169,7 +169,7 @@ class GetVpcResult:
         """
         The ID of the AWS account that owns the VPC.
         """
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter
@@ -177,12 +177,12 @@ class GetVpcResult:
         """
         The State of the association.
         """
-        ...
+        return pulumi.get(self, "state")
 
     @property
     @pulumi.getter
     def tags(self) -> Mapping[str, str]:
-        ...
+        return pulumi.get(self, "tags")
 
 
 

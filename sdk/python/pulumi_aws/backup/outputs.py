@@ -59,7 +59,7 @@ class PlanRule(dict):
         """
         An display name for a backup rule.
         """
-        ...
+        return pulumi.get(self, "rule_name")
 
     @property
     @pulumi.getter(name="targetVaultName")
@@ -67,7 +67,7 @@ class PlanRule(dict):
         """
         The name of a logical container where backups are stored.
         """
-        ...
+        return pulumi.get(self, "target_vault_name")
 
     @property
     @pulumi.getter(name="completionWindow")
@@ -75,7 +75,7 @@ class PlanRule(dict):
         """
         The amount of time AWS Backup attempts a backup before canceling the job and returning an error.
         """
-        ...
+        return pulumi.get(self, "completion_window")
 
     @property
     @pulumi.getter(name="copyActions")
@@ -83,7 +83,7 @@ class PlanRule(dict):
         """
         Configuration block(s) with copy operation settings. Detailed below.
         """
-        ...
+        return pulumi.get(self, "copy_actions")
 
     @property
     @pulumi.getter
@@ -91,7 +91,7 @@ class PlanRule(dict):
         """
         The lifecycle defines when a protected resource is copied over to a backup vault and when it expires.  Fields documented above.
         """
-        ...
+        return pulumi.get(self, "lifecycle")
 
     @property
     @pulumi.getter(name="recoveryPointTags")
@@ -99,7 +99,7 @@ class PlanRule(dict):
         """
         Metadata that you can assign to help organize the resources that you create.
         """
-        ...
+        return pulumi.get(self, "recovery_point_tags")
 
     @property
     @pulumi.getter
@@ -107,7 +107,7 @@ class PlanRule(dict):
         """
         A CRON expression specifying when AWS Backup initiates a backup job.
         """
-        ...
+        return pulumi.get(self, "schedule")
 
     @property
     @pulumi.getter(name="startWindow")
@@ -115,7 +115,7 @@ class PlanRule(dict):
         """
         The amount of time in minutes before beginning a backup.
         """
-        ...
+        return pulumi.get(self, "start_window")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -140,7 +140,7 @@ class PlanRuleCopyAction(dict):
         """
         An Amazon Resource Name (ARN) that uniquely identifies the destination backup vault for the copied backup.
         """
-        ...
+        return pulumi.get(self, "destination_vault_arn")
 
     @property
     @pulumi.getter
@@ -148,7 +148,7 @@ class PlanRuleCopyAction(dict):
         """
         The lifecycle defines when a protected resource is copied over to a backup vault and when it expires.  Fields documented above.
         """
-        ...
+        return pulumi.get(self, "lifecycle")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -174,7 +174,7 @@ class PlanRuleCopyActionLifecycle(dict):
         """
         Specifies the number of days after creation that a recovery point is moved to cold storage.
         """
-        ...
+        return pulumi.get(self, "cold_storage_after")
 
     @property
     @pulumi.getter(name="deleteAfter")
@@ -182,7 +182,7 @@ class PlanRuleCopyActionLifecycle(dict):
         """
         Specifies the number of days after creation that a recovery point is deleted. Must be 90 days greater than `cold_storage_after`.
         """
-        ...
+        return pulumi.get(self, "delete_after")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -208,7 +208,7 @@ class PlanRuleLifecycle(dict):
         """
         Specifies the number of days after creation that a recovery point is moved to cold storage.
         """
-        ...
+        return pulumi.get(self, "cold_storage_after")
 
     @property
     @pulumi.getter(name="deleteAfter")
@@ -216,7 +216,7 @@ class PlanRuleLifecycle(dict):
         """
         Specifies the number of days after creation that a recovery point is deleted. Must be 90 days greater than `cold_storage_after`.
         """
-        ...
+        return pulumi.get(self, "delete_after")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -243,7 +243,7 @@ class SelectionSelectionTag(dict):
         """
         The key in a key-value pair.
         """
-        ...
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
@@ -251,7 +251,7 @@ class SelectionSelectionTag(dict):
         """
         An operation, such as `StringEquals`, that is applied to a key-value pair used to filter resources in a selection.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -259,7 +259,7 @@ class SelectionSelectionTag(dict):
         """
         The value in a key-value pair.
         """
-        ...
+        return pulumi.get(self, "value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

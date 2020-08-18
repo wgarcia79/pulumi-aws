@@ -255,7 +255,7 @@ class LoadBalancer(pulumi.CustomResource):
         """
         An Access Logs block. Access Logs documented below.
         """
-        ...
+        return pulumi.get(self, "access_logs")
 
     @property
     @pulumi.getter
@@ -263,7 +263,7 @@ class LoadBalancer(pulumi.CustomResource):
         """
         The ARN of the load balancer (matches `id`).
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="arnSuffix")
@@ -271,7 +271,7 @@ class LoadBalancer(pulumi.CustomResource):
         """
         The ARN suffix for use with CloudWatch Metrics.
         """
-        ...
+        return pulumi.get(self, "arn_suffix")
 
     @property
     @pulumi.getter(name="dnsName")
@@ -279,7 +279,7 @@ class LoadBalancer(pulumi.CustomResource):
         """
         The DNS name of the load balancer.
         """
-        ...
+        return pulumi.get(self, "dns_name")
 
     @property
     @pulumi.getter(name="dropInvalidHeaderFields")
@@ -287,7 +287,7 @@ class LoadBalancer(pulumi.CustomResource):
         """
         Indicates whether HTTP headers with header fields that are not valid are removed by the load balancer (true) or routed to targets (false). The default is false. Elastic Load Balancing requires that message header names contain only alphanumeric characters and hyphens. Only valid for Load Balancers of type `application`.
         """
-        ...
+        return pulumi.get(self, "drop_invalid_header_fields")
 
     @property
     @pulumi.getter(name="enableCrossZoneLoadBalancing")
@@ -296,7 +296,7 @@ class LoadBalancer(pulumi.CustomResource):
         If true, cross-zone load balancing of the load balancer will be enabled.
         This is a `network` load balancer feature. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "enable_cross_zone_load_balancing")
 
     @property
     @pulumi.getter(name="enableDeletionProtection")
@@ -305,7 +305,7 @@ class LoadBalancer(pulumi.CustomResource):
         If true, deletion of the load balancer will be disabled via
         the AWS API. This will prevent this provider from deleting the load balancer. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "enable_deletion_protection")
 
     @property
     @pulumi.getter(name="enableHttp2")
@@ -313,7 +313,7 @@ class LoadBalancer(pulumi.CustomResource):
         """
         Indicates whether HTTP/2 is enabled in `application` load balancers. Defaults to `true`.
         """
-        ...
+        return pulumi.get(self, "enable_http2")
 
     @property
     @pulumi.getter(name="idleTimeout")
@@ -321,7 +321,7 @@ class LoadBalancer(pulumi.CustomResource):
         """
         The time in seconds that the connection is allowed to be idle. Only valid for Load Balancers of type `application`. Default: 60.
         """
-        ...
+        return pulumi.get(self, "idle_timeout")
 
     @property
     @pulumi.getter
@@ -329,7 +329,7 @@ class LoadBalancer(pulumi.CustomResource):
         """
         If true, the LB will be internal.
         """
-        ...
+        return pulumi.get(self, "internal")
 
     @property
     @pulumi.getter(name="ipAddressType")
@@ -337,7 +337,7 @@ class LoadBalancer(pulumi.CustomResource):
         """
         The type of IP addresses used by the subnets for your load balancer. The possible values are `ipv4` and `dualstack`
         """
-        ...
+        return pulumi.get(self, "ip_address_type")
 
     @property
     @pulumi.getter(name="loadBalancerType")
@@ -345,7 +345,7 @@ class LoadBalancer(pulumi.CustomResource):
         """
         The type of load balancer to create. Possible values are `application` or `network`. The default value is `application`.
         """
-        ...
+        return pulumi.get(self, "load_balancer_type")
 
     @property
     @pulumi.getter
@@ -355,7 +355,7 @@ class LoadBalancer(pulumi.CustomResource):
         must contain only alphanumeric characters or hyphens, and must not begin or end with a hyphen. If not specified,
         this provider will autogenerate a name beginning with `tf-lb`.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="namePrefix")
@@ -363,7 +363,7 @@ class LoadBalancer(pulumi.CustomResource):
         """
         Creates a unique name beginning with the specified prefix. Conflicts with `name`.
         """
-        ...
+        return pulumi.get(self, "name_prefix")
 
     @property
     @pulumi.getter(name="securityGroups")
@@ -371,7 +371,7 @@ class LoadBalancer(pulumi.CustomResource):
         """
         A list of security group IDs to assign to the LB. Only valid for Load Balancers of type `application`.
         """
-        ...
+        return pulumi.get(self, "security_groups")
 
     @property
     @pulumi.getter(name="subnetMappings")
@@ -379,7 +379,7 @@ class LoadBalancer(pulumi.CustomResource):
         """
         A subnet mapping block as documented below.
         """
-        ...
+        return pulumi.get(self, "subnet_mappings")
 
     @property
     @pulumi.getter
@@ -389,7 +389,7 @@ class LoadBalancer(pulumi.CustomResource):
         cannot be updated for Load Balancers of type `network`. Changing this value
         for load balancers of type `network` will force a recreation of the resource.
         """
-        ...
+        return pulumi.get(self, "subnets")
 
     @property
     @pulumi.getter
@@ -397,12 +397,12 @@ class LoadBalancer(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> str:
-        ...
+        return pulumi.get(self, "vpc_id")
 
     @property
     @pulumi.getter(name="zoneId")
@@ -410,7 +410,7 @@ class LoadBalancer(pulumi.CustomResource):
         """
         The canonical hosted zone ID of the load balancer (to be used in a Route 53 Alias record).
         """
-        ...
+        return pulumi.get(self, "zone_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

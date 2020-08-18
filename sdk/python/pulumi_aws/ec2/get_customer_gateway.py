@@ -52,7 +52,7 @@ class GetCustomerGatewayResult:
         """
         The ARN of the customer gateway.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="bgpAsn")
@@ -60,17 +60,17 @@ class GetCustomerGatewayResult:
         """
         (Optional) The gateway's Border Gateway Protocol (BGP) Autonomous System Number (ASN).
         """
-        ...
+        return pulumi.get(self, "bgp_asn")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetCustomerGatewayFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="ipAddress")
@@ -78,7 +78,7 @@ class GetCustomerGatewayResult:
         """
         (Optional) The IP address of the gateway's Internet-routable external interface.
         """
-        ...
+        return pulumi.get(self, "ip_address")
 
     @property
     @pulumi.getter
@@ -86,7 +86,7 @@ class GetCustomerGatewayResult:
         """
         Map of key-value pairs assigned to the gateway.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -94,7 +94,7 @@ class GetCustomerGatewayResult:
         """
         (Optional) The type of customer gateway. The only type AWS supports at this time is "ipsec.1".
         """
-        ...
+        return pulumi.get(self, "type")
 
 
 

@@ -69,37 +69,37 @@ class GetAvailabilityZonesResult:
     @property
     @pulumi.getter(name="allAvailabilityZones")
     def all_availability_zones(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "all_availability_zones")
 
     @property
     @pulumi.getter(name="blacklistedNames")
     def blacklisted_names(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "blacklisted_names")
 
     @property
     @pulumi.getter(name="blacklistedZoneIds")
     def blacklisted_zone_ids(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "blacklisted_zone_ids")
 
     @property
     @pulumi.getter(name="excludeNames")
     def exclude_names(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "exclude_names")
 
     @property
     @pulumi.getter(name="excludeZoneIds")
     def exclude_zone_ids(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "exclude_zone_ids")
 
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetAvailabilityZonesFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter(name="groupNames")
     def group_names(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "group_names")
 
     @property
     @pulumi.getter
@@ -107,7 +107,7 @@ class GetAvailabilityZonesResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -115,12 +115,12 @@ class GetAvailabilityZonesResult:
         """
         A list of the Availability Zone names available to the account.
         """
-        ...
+        return pulumi.get(self, "names")
 
     @property
     @pulumi.getter
     def state(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "state")
 
     @property
     @pulumi.getter(name="zoneIds")
@@ -128,7 +128,7 @@ class GetAvailabilityZonesResult:
         """
         A list of the Availability Zone IDs available to the account.
         """
-        ...
+        return pulumi.get(self, "zone_ids")
 
 
 

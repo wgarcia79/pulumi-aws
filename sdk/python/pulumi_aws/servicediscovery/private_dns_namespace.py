@@ -117,7 +117,7 @@ class PrivateDnsNamespace(pulumi.CustomResource):
         """
         The ARN that Amazon Route 53 assigns to the namespace when you create it.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -125,7 +125,7 @@ class PrivateDnsNamespace(pulumi.CustomResource):
         """
         The description that you specify for the namespace when you create it.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="hostedZone")
@@ -133,7 +133,7 @@ class PrivateDnsNamespace(pulumi.CustomResource):
         """
         The ID for the hosted zone that Amazon Route 53 creates when you create a namespace.
         """
-        ...
+        return pulumi.get(self, "hosted_zone")
 
     @property
     @pulumi.getter
@@ -141,7 +141,7 @@ class PrivateDnsNamespace(pulumi.CustomResource):
         """
         The name of the namespace.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -149,7 +149,7 @@ class PrivateDnsNamespace(pulumi.CustomResource):
         """
         A map of tags to assign to the namespace.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -157,7 +157,7 @@ class PrivateDnsNamespace(pulumi.CustomResource):
         """
         The ID of VPC that you want to associate the namespace with.
         """
-        ...
+        return pulumi.get(self, "vpc")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

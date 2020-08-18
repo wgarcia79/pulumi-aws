@@ -36,11 +36,11 @@ class EndpointAuthenticationOptionArgs:
         """
         The type of client authentication to be used. Specify `certificate-authentication` to use certificate-based authentication, or `directory-service-authentication` to use Active Directory authentication.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter(name="activeDirectoryId")
@@ -48,11 +48,11 @@ class EndpointAuthenticationOptionArgs:
         """
         The ID of the Active Directory to be used for authentication if type is `directory-service-authentication`.
         """
-        ...
+        return pulumi.get(self, "active_directory_id")
 
     @active_directory_id.setter
     def active_directory_id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "active_directory_id", value)
 
     @property
     @pulumi.getter(name="rootCertificateChainArn")
@@ -60,11 +60,11 @@ class EndpointAuthenticationOptionArgs:
         """
         The ARN of the client certificate. The certificate must be signed by a certificate authority (CA) and it must be provisioned in AWS Certificate Manager (ACM). Only necessary when type is set to `certificate-authentication`.
         """
-        ...
+        return pulumi.get(self, "root_certificate_chain_arn")
 
     @root_certificate_chain_arn.setter
     def root_certificate_chain_arn(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "root_certificate_chain_arn", value)
 
 
 @pulumi.input_type
@@ -90,11 +90,11 @@ class EndpointConnectionLogOptionsArgs:
         """
         Indicates whether connection logging is enabled.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: pulumi.Input[bool]):
-        ...
+        pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter(name="cloudwatchLogGroup")
@@ -102,11 +102,11 @@ class EndpointConnectionLogOptionsArgs:
         """
         The name of the CloudWatch Logs log group.
         """
-        ...
+        return pulumi.get(self, "cloudwatch_log_group")
 
     @cloudwatch_log_group.setter
     def cloudwatch_log_group(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "cloudwatch_log_group", value)
 
     @property
     @pulumi.getter(name="cloudwatchLogStream")
@@ -114,10 +114,10 @@ class EndpointConnectionLogOptionsArgs:
         """
         The name of the CloudWatch Logs log stream to which the connection data is published.
         """
-        ...
+        return pulumi.get(self, "cloudwatch_log_stream")
 
     @cloudwatch_log_stream.setter
     def cloudwatch_log_stream(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "cloudwatch_log_stream", value)
 
 

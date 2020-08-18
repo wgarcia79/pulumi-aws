@@ -184,7 +184,7 @@ class TrafficMirrorFilterRule(pulumi.CustomResource):
         """
         A description of the traffic mirror filter rule.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="destinationCidrBlock")
@@ -192,7 +192,7 @@ class TrafficMirrorFilterRule(pulumi.CustomResource):
         """
         The destination CIDR block to assign to the Traffic Mirror rule.
         """
-        ...
+        return pulumi.get(self, "destination_cidr_block")
 
     @property
     @pulumi.getter(name="destinationPortRange")
@@ -200,7 +200,7 @@ class TrafficMirrorFilterRule(pulumi.CustomResource):
         """
         The destination port range. Supported only when the protocol is set to TCP(6) or UDP(17). See Traffic mirror port range documented below
         """
-        ...
+        return pulumi.get(self, "destination_port_range")
 
     @property
     @pulumi.getter
@@ -208,7 +208,7 @@ class TrafficMirrorFilterRule(pulumi.CustomResource):
         """
         The protocol number, for example 17 (UDP), to assign to the Traffic Mirror rule. For information about the protocol value, see [Protocol Numbers](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml) on the Internet Assigned Numbers Authority (IANA) website.
         """
-        ...
+        return pulumi.get(self, "protocol")
 
     @property
     @pulumi.getter(name="ruleAction")
@@ -216,7 +216,7 @@ class TrafficMirrorFilterRule(pulumi.CustomResource):
         """
         The action to take (accept | reject) on the filtered traffic. Valid values are `accept` and `reject`
         """
-        ...
+        return pulumi.get(self, "rule_action")
 
     @property
     @pulumi.getter(name="ruleNumber")
@@ -224,7 +224,7 @@ class TrafficMirrorFilterRule(pulumi.CustomResource):
         """
         The number of the Traffic Mirror rule. This number must be unique for each Traffic Mirror rule in a given direction. The rules are processed in ascending order by rule number.
         """
-        ...
+        return pulumi.get(self, "rule_number")
 
     @property
     @pulumi.getter(name="sourceCidrBlock")
@@ -232,7 +232,7 @@ class TrafficMirrorFilterRule(pulumi.CustomResource):
         """
         The source CIDR block to assign to the Traffic Mirror rule.
         """
-        ...
+        return pulumi.get(self, "source_cidr_block")
 
     @property
     @pulumi.getter(name="sourcePortRange")
@@ -240,7 +240,7 @@ class TrafficMirrorFilterRule(pulumi.CustomResource):
         """
         The source port range. Supported only when the protocol is set to TCP(6) or UDP(17). See Traffic mirror port range documented below
         """
-        ...
+        return pulumi.get(self, "source_port_range")
 
     @property
     @pulumi.getter(name="trafficDirection")
@@ -248,7 +248,7 @@ class TrafficMirrorFilterRule(pulumi.CustomResource):
         """
         The direction of traffic to be captured. Valid values are `ingress` and `egress`
         """
-        ...
+        return pulumi.get(self, "traffic_direction")
 
     @property
     @pulumi.getter(name="trafficMirrorFilterId")
@@ -256,7 +256,7 @@ class TrafficMirrorFilterRule(pulumi.CustomResource):
         """
         ID of the traffic mirror filter to which this rule should be added
         """
-        ...
+        return pulumi.get(self, "traffic_mirror_filter_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

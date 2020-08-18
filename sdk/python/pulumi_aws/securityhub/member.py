@@ -115,7 +115,7 @@ class Member(pulumi.CustomResource):
         """
         The ID of the member AWS account.
         """
-        ...
+        return pulumi.get(self, "account_id")
 
     @property
     @pulumi.getter
@@ -123,7 +123,7 @@ class Member(pulumi.CustomResource):
         """
         The email of the member AWS account.
         """
-        ...
+        return pulumi.get(self, "email")
 
     @property
     @pulumi.getter
@@ -131,7 +131,7 @@ class Member(pulumi.CustomResource):
         """
         Boolean whether to invite the account to Security Hub as a member. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "invite")
 
     @property
     @pulumi.getter(name="masterId")
@@ -139,7 +139,7 @@ class Member(pulumi.CustomResource):
         """
         The ID of the master Security Hub AWS account.
         """
-        ...
+        return pulumi.get(self, "master_id")
 
     @property
     @pulumi.getter(name="memberStatus")
@@ -147,7 +147,7 @@ class Member(pulumi.CustomResource):
         """
         The status of the member account relationship.
         """
-        ...
+        return pulumi.get(self, "member_status")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

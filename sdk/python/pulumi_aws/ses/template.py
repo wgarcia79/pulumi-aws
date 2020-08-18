@@ -109,7 +109,7 @@ class Template(pulumi.CustomResource):
         """
         The HTML body of the email. Must be less than 500KB in size, including both the text and HTML parts.
         """
-        ...
+        return pulumi.get(self, "html")
 
     @property
     @pulumi.getter
@@ -117,7 +117,7 @@ class Template(pulumi.CustomResource):
         """
         The name of the template. Cannot exceed 64 characters. You will refer to this name when you send email.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -125,7 +125,7 @@ class Template(pulumi.CustomResource):
         """
         The subject line of the email.
         """
-        ...
+        return pulumi.get(self, "subject")
 
     @property
     @pulumi.getter
@@ -133,7 +133,7 @@ class Template(pulumi.CustomResource):
         """
         The email body that will be visible to recipients whose email clients do not display HTML. Must be less than 500KB in size, including both the text and HTML parts.
         """
-        ...
+        return pulumi.get(self, "text")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -112,7 +112,7 @@ class Thing(pulumi.CustomResource):
         """
         The ARN of the thing.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -120,7 +120,7 @@ class Thing(pulumi.CustomResource):
         """
         Map of attributes of the thing.
         """
-        ...
+        return pulumi.get(self, "attributes")
 
     @property
     @pulumi.getter(name="defaultClientId")
@@ -128,7 +128,7 @@ class Thing(pulumi.CustomResource):
         """
         The default client ID.
         """
-        ...
+        return pulumi.get(self, "default_client_id")
 
     @property
     @pulumi.getter
@@ -136,7 +136,7 @@ class Thing(pulumi.CustomResource):
         """
         The name of the thing.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="thingTypeName")
@@ -144,7 +144,7 @@ class Thing(pulumi.CustomResource):
         """
         The thing type name.
         """
-        ...
+        return pulumi.get(self, "thing_type_name")
 
     @property
     @pulumi.getter
@@ -152,7 +152,7 @@ class Thing(pulumi.CustomResource):
         """
         The current version of the thing record in the registry.
         """
-        ...
+        return pulumi.get(self, "version")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

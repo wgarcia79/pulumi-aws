@@ -59,7 +59,7 @@ class GetServiceQuotaResult:
         """
         Whether the service quota is adjustable.
         """
-        ...
+        return pulumi.get(self, "adjustable")
 
     @property
     @pulumi.getter
@@ -67,7 +67,7 @@ class GetServiceQuotaResult:
         """
         Amazon Resource Name (ARN) of the service quota.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="defaultValue")
@@ -75,7 +75,7 @@ class GetServiceQuotaResult:
         """
         Default value of the service quota.
         """
-        ...
+        return pulumi.get(self, "default_value")
 
     @property
     @pulumi.getter(name="globalQuota")
@@ -83,7 +83,7 @@ class GetServiceQuotaResult:
         """
         Whether the service quota is global for the AWS account.
         """
-        ...
+        return pulumi.get(self, "global_quota")
 
     @property
     @pulumi.getter
@@ -91,22 +91,22 @@ class GetServiceQuotaResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="quotaCode")
     def quota_code(self) -> str:
-        ...
+        return pulumi.get(self, "quota_code")
 
     @property
     @pulumi.getter(name="quotaName")
     def quota_name(self) -> str:
-        ...
+        return pulumi.get(self, "quota_name")
 
     @property
     @pulumi.getter(name="serviceCode")
     def service_code(self) -> str:
-        ...
+        return pulumi.get(self, "service_code")
 
     @property
     @pulumi.getter(name="serviceName")
@@ -114,7 +114,7 @@ class GetServiceQuotaResult:
         """
         Name of the service.
         """
-        ...
+        return pulumi.get(self, "service_name")
 
     @property
     @pulumi.getter
@@ -122,7 +122,7 @@ class GetServiceQuotaResult:
         """
         Current value of the service quota.
         """
-        ...
+        return pulumi.get(self, "value")
 
 
 

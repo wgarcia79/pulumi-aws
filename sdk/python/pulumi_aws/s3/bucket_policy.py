@@ -117,7 +117,7 @@ class BucketPolicy(pulumi.CustomResource):
         """
         The name of the bucket to which to apply the policy.
         """
-        ...
+        return pulumi.get(self, "bucket")
 
     @property
     @pulumi.getter
@@ -125,7 +125,7 @@ class BucketPolicy(pulumi.CustomResource):
         """
         The text of the policy.
         """
-        ...
+        return pulumi.get(self, "policy")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

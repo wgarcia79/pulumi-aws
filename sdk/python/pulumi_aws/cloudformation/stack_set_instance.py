@@ -151,7 +151,7 @@ class StackSetInstance(pulumi.CustomResource):
         """
         Target AWS Account ID to create a Stack based on the StackSet. Defaults to current account.
         """
-        ...
+        return pulumi.get(self, "account_id")
 
     @property
     @pulumi.getter(name="parameterOverrides")
@@ -159,7 +159,7 @@ class StackSetInstance(pulumi.CustomResource):
         """
         Key-value map of input parameters to override from the StackSet for this Instance.
         """
-        ...
+        return pulumi.get(self, "parameter_overrides")
 
     @property
     @pulumi.getter
@@ -167,7 +167,7 @@ class StackSetInstance(pulumi.CustomResource):
         """
         Target AWS Region to create a Stack based on the StackSet. Defaults to current region.
         """
-        ...
+        return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="retainStack")
@@ -175,7 +175,7 @@ class StackSetInstance(pulumi.CustomResource):
         """
         During resource destroy, remove Instance from StackSet while keeping the Stack and its associated resources. Must be enabled in the state _before_ destroy operation to take effect. You cannot reassociate a retained Stack or add an existing, saved Stack to a new StackSet. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "retain_stack")
 
     @property
     @pulumi.getter(name="stackId")
@@ -183,7 +183,7 @@ class StackSetInstance(pulumi.CustomResource):
         """
         Stack identifier
         """
-        ...
+        return pulumi.get(self, "stack_id")
 
     @property
     @pulumi.getter(name="stackSetName")
@@ -191,7 +191,7 @@ class StackSetInstance(pulumi.CustomResource):
         """
         Name of the StackSet.
         """
-        ...
+        return pulumi.get(self, "stack_set_name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

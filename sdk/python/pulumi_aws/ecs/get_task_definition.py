@@ -50,7 +50,7 @@ class GetTaskDefinitionResult:
         """
         The family of this task definition
         """
-        ...
+        return pulumi.get(self, "family")
 
     @property
     @pulumi.getter
@@ -58,7 +58,7 @@ class GetTaskDefinitionResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="networkMode")
@@ -66,7 +66,7 @@ class GetTaskDefinitionResult:
         """
         The Docker networking mode to use for the containers in this task.
         """
-        ...
+        return pulumi.get(self, "network_mode")
 
     @property
     @pulumi.getter
@@ -74,7 +74,7 @@ class GetTaskDefinitionResult:
         """
         The revision of this task definition
         """
-        ...
+        return pulumi.get(self, "revision")
 
     @property
     @pulumi.getter
@@ -82,12 +82,12 @@ class GetTaskDefinitionResult:
         """
         The status of this task definition
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter(name="taskDefinition")
     def task_definition(self) -> str:
-        ...
+        return pulumi.get(self, "task_definition")
 
     @property
     @pulumi.getter(name="taskRoleArn")
@@ -95,7 +95,7 @@ class GetTaskDefinitionResult:
         """
         The ARN of the IAM role that containers in this task can assume
         """
-        ...
+        return pulumi.get(self, "task_role_arn")
 
 
 

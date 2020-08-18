@@ -29,11 +29,11 @@ class ChannelHlsIngestArgs:
         """
         A list of the ingest endpoints
         """
-        ...
+        return pulumi.get(self, "ingest_endpoints")
 
     @ingest_endpoints.setter
     def ingest_endpoints(self, value: Optional[pulumi.Input[List[pulumi.Input['ChannelHlsIngestIngestEndpointArgs']]]]):
-        ...
+        pulumi.set(self, "ingest_endpoints", value)
 
 
 @pulumi.input_type
@@ -60,11 +60,11 @@ class ChannelHlsIngestIngestEndpointArgs:
         """
         The password
         """
-        ...
+        return pulumi.get(self, "password")
 
     @password.setter
     def password(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "password", value)
 
     @property
     @pulumi.getter
@@ -72,11 +72,11 @@ class ChannelHlsIngestIngestEndpointArgs:
         """
         The URL
         """
-        ...
+        return pulumi.get(self, "url")
 
     @url.setter
     def url(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "url", value)
 
     @property
     @pulumi.getter
@@ -84,10 +84,10 @@ class ChannelHlsIngestIngestEndpointArgs:
         """
         The username
         """
-        ...
+        return pulumi.get(self, "username")
 
     @username.setter
     def username(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "username", value)
 
 

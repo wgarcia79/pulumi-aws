@@ -41,7 +41,7 @@ class AccountThrottleSettings(dict):
         """
         The absolute maximum number of times API Gateway allows the API to be called per second (RPS).
         """
-        ...
+        return pulumi.get(self, "burst_limit")
 
     @property
     @pulumi.getter(name="rateLimit")
@@ -49,7 +49,7 @@ class AccountThrottleSettings(dict):
         """
         The number of times API Gateway allows the API to be called per second on average (RPS).
         """
-        ...
+        return pulumi.get(self, "rate_limit")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -86,7 +86,7 @@ class DocumentationPartLocation(dict):
         """
         The type of API entity to which the documentation content applies. e.g. `API`, `METHOD` or `REQUEST_BODY`
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -94,7 +94,7 @@ class DocumentationPartLocation(dict):
         """
         The HTTP verb of a method. The default value is `*` for any method.
         """
-        ...
+        return pulumi.get(self, "method")
 
     @property
     @pulumi.getter
@@ -102,7 +102,7 @@ class DocumentationPartLocation(dict):
         """
         The name of the targeted API entity.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -110,7 +110,7 @@ class DocumentationPartLocation(dict):
         """
         The URL path of the target. The default value is `/` for the root resource.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter(name="statusCode")
@@ -118,7 +118,7 @@ class DocumentationPartLocation(dict):
         """
         The HTTP status code of a response. The default value is `*` for any status code.
         """
-        ...
+        return pulumi.get(self, "status_code")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -139,7 +139,7 @@ class DomainNameEndpointConfiguration(dict):
         """
         A list of endpoint types. This resource currently only supports managing a single value. Valid values: `EDGE` or `REGIONAL`. If unspecified, defaults to `EDGE`. Must be declared as `REGIONAL` in non-Commercial partitions. Refer to the [documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/create-regional-api.html) for more information on the difference between edge-optimized and regional APIs.
         """
-        ...
+        return pulumi.get(self, "types")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -197,7 +197,7 @@ class MethodSettingsSettings(dict):
         """
         Specifies whether the cached responses are encrypted.
         """
-        ...
+        return pulumi.get(self, "cache_data_encrypted")
 
     @property
     @pulumi.getter(name="cacheTtlInSeconds")
@@ -205,7 +205,7 @@ class MethodSettingsSettings(dict):
         """
         Specifies the time to live (TTL), in seconds, for cached responses. The higher the TTL, the longer the response will be cached.
         """
-        ...
+        return pulumi.get(self, "cache_ttl_in_seconds")
 
     @property
     @pulumi.getter(name="cachingEnabled")
@@ -213,7 +213,7 @@ class MethodSettingsSettings(dict):
         """
         Specifies whether responses should be cached and returned for requests. A cache cluster must be enabled on the stage for responses to be cached.
         """
-        ...
+        return pulumi.get(self, "caching_enabled")
 
     @property
     @pulumi.getter(name="dataTraceEnabled")
@@ -221,7 +221,7 @@ class MethodSettingsSettings(dict):
         """
         Specifies whether data trace logging is enabled for this method, which effects the log entries pushed to Amazon CloudWatch Logs.
         """
-        ...
+        return pulumi.get(self, "data_trace_enabled")
 
     @property
     @pulumi.getter(name="loggingLevel")
@@ -229,7 +229,7 @@ class MethodSettingsSettings(dict):
         """
         Specifies the logging level for this method, which effects the log entries pushed to Amazon CloudWatch Logs. The available levels are `OFF`, `ERROR`, and `INFO`.
         """
-        ...
+        return pulumi.get(self, "logging_level")
 
     @property
     @pulumi.getter(name="metricsEnabled")
@@ -237,7 +237,7 @@ class MethodSettingsSettings(dict):
         """
         Specifies whether Amazon CloudWatch metrics are enabled for this method.
         """
-        ...
+        return pulumi.get(self, "metrics_enabled")
 
     @property
     @pulumi.getter(name="requireAuthorizationForCacheControl")
@@ -245,7 +245,7 @@ class MethodSettingsSettings(dict):
         """
         Specifies whether authorization is required for a cache invalidation request.
         """
-        ...
+        return pulumi.get(self, "require_authorization_for_cache_control")
 
     @property
     @pulumi.getter(name="throttlingBurstLimit")
@@ -253,7 +253,7 @@ class MethodSettingsSettings(dict):
         """
         Specifies the throttling burst limit.
         """
-        ...
+        return pulumi.get(self, "throttling_burst_limit")
 
     @property
     @pulumi.getter(name="throttlingRateLimit")
@@ -261,7 +261,7 @@ class MethodSettingsSettings(dict):
         """
         Specifies the throttling rate limit.
         """
-        ...
+        return pulumi.get(self, "throttling_rate_limit")
 
     @property
     @pulumi.getter(name="unauthorizedCacheControlHeaderStrategy")
@@ -269,7 +269,7 @@ class MethodSettingsSettings(dict):
         """
         Specifies how to handle unauthorized requests for cache invalidation. The available values are `FAIL_WITH_403`, `SUCCEED_WITH_RESPONSE_HEADER`, `SUCCEED_WITHOUT_RESPONSE_HEADER`.
         """
-        ...
+        return pulumi.get(self, "unauthorized_cache_control_header_strategy")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -294,7 +294,7 @@ class RestApiEndpointConfiguration(dict):
         """
         A list of endpoint types. This resource currently only supports managing a single value. Valid values: `EDGE`, `REGIONAL` or `PRIVATE`. If unspecified, defaults to `EDGE`. Must be declared as `REGIONAL` in non-Commercial partitions. Refer to the [documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/create-regional-api.html) for more information on the difference between edge-optimized and regional APIs.
         """
-        ...
+        return pulumi.get(self, "types")
 
     @property
     @pulumi.getter(name="vpcEndpointIds")
@@ -302,7 +302,7 @@ class RestApiEndpointConfiguration(dict):
         """
         A list of VPC Endpoint Ids. It is only supported for PRIVATE endpoint type.
         """
-        ...
+        return pulumi.get(self, "vpc_endpoint_ids")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -327,7 +327,7 @@ class StageAccessLogSettings(dict):
         """
         The Amazon Resource Name (ARN) of the CloudWatch Logs log group or Kinesis Data Firehose delivery stream to receive access logs. If you specify a Kinesis Data Firehose delivery stream, the stream name must begin with `amazon-apigateway-`. Automatically removes trailing `:*` if present.
         """
-        ...
+        return pulumi.get(self, "destination_arn")
 
     @property
     @pulumi.getter
@@ -336,7 +336,7 @@ class StageAccessLogSettings(dict):
         The formatting and values recorded in the logs. 
         For more information on configuring the log format rules visit the AWS [documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html)
         """
-        ...
+        return pulumi.get(self, "format")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -360,7 +360,7 @@ class UsagePlanApiStage(dict):
         """
         API Id of the associated API stage in a usage plan.
         """
-        ...
+        return pulumi.get(self, "api_id")
 
     @property
     @pulumi.getter
@@ -368,7 +368,7 @@ class UsagePlanApiStage(dict):
         """
         API stage name of the associated API stage in a usage plan.
         """
-        ...
+        return pulumi.get(self, "stage")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -396,7 +396,7 @@ class UsagePlanQuotaSettings(dict):
         """
         The maximum number of requests that can be made in a given time period.
         """
-        ...
+        return pulumi.get(self, "limit")
 
     @property
     @pulumi.getter
@@ -404,7 +404,7 @@ class UsagePlanQuotaSettings(dict):
         """
         The time period in which the limit applies. Valid values are "DAY", "WEEK" or "MONTH".
         """
-        ...
+        return pulumi.get(self, "period")
 
     @property
     @pulumi.getter
@@ -412,7 +412,7 @@ class UsagePlanQuotaSettings(dict):
         """
         The number of requests subtracted from the given limit in the initial time period.
         """
-        ...
+        return pulumi.get(self, "offset")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -438,7 +438,7 @@ class UsagePlanThrottleSettings(dict):
         """
         The API request burst limit, the maximum rate limit over a time ranging from one to a few seconds, depending upon whether the underlying token bucket is at its full capacity.
         """
-        ...
+        return pulumi.get(self, "burst_limit")
 
     @property
     @pulumi.getter(name="rateLimit")
@@ -446,7 +446,7 @@ class UsagePlanThrottleSettings(dict):
         """
         The API request steady-state rate limit.
         """
-        ...
+        return pulumi.get(self, "rate_limit")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -463,11 +463,11 @@ class GetRestApiEndpointConfigurationResult(dict):
     @property
     @pulumi.getter
     def types(self) -> List[str]:
-        ...
+        return pulumi.get(self, "types")
 
     @property
     @pulumi.getter(name="vpcEndpointIds")
     def vpc_endpoint_ids(self) -> List[str]:
-        ...
+        return pulumi.get(self, "vpc_endpoint_ids")
 
 

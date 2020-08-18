@@ -185,7 +185,7 @@ class PeeringConnectionOptions(pulumi.CustomResource):
         (https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) options to be set for the VPC that accepts
         the peering connection (a maximum of one).
         """
-        ...
+        return pulumi.get(self, "accepter")
 
     @property
     @pulumi.getter
@@ -195,7 +195,7 @@ class PeeringConnectionOptions(pulumi.CustomResource):
         (https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) options to be set for the VPC that requests
         the peering connection (a maximum of one).
         """
-        ...
+        return pulumi.get(self, "requester")
 
     @property
     @pulumi.getter(name="vpcPeeringConnectionId")
@@ -203,7 +203,7 @@ class PeeringConnectionOptions(pulumi.CustomResource):
         """
         The ID of the requester VPC peering connection.
         """
-        ...
+        return pulumi.get(self, "vpc_peering_connection_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

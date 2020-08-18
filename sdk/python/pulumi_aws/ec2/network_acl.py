@@ -149,7 +149,7 @@ class NetworkAcl(pulumi.CustomResource):
         """
         The ARN of the network ACL
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -157,7 +157,7 @@ class NetworkAcl(pulumi.CustomResource):
         """
         Specifies an egress rule. Parameters defined below.
         """
-        ...
+        return pulumi.get(self, "egress")
 
     @property
     @pulumi.getter
@@ -165,7 +165,7 @@ class NetworkAcl(pulumi.CustomResource):
         """
         Specifies an ingress rule. Parameters defined below.
         """
-        ...
+        return pulumi.get(self, "ingress")
 
     @property
     @pulumi.getter(name="ownerId")
@@ -173,7 +173,7 @@ class NetworkAcl(pulumi.CustomResource):
         """
         The ID of the AWS account that owns the network ACL.
         """
-        ...
+        return pulumi.get(self, "owner_id")
 
     @property
     @pulumi.getter(name="subnetIds")
@@ -181,7 +181,7 @@ class NetworkAcl(pulumi.CustomResource):
         """
         A list of Subnet IDs to apply the ACL to
         """
-        ...
+        return pulumi.get(self, "subnet_ids")
 
     @property
     @pulumi.getter
@@ -189,7 +189,7 @@ class NetworkAcl(pulumi.CustomResource):
         """
         A mapping of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcId")
@@ -197,7 +197,7 @@ class NetworkAcl(pulumi.CustomResource):
         """
         The ID of the associated VPC.
         """
-        ...
+        return pulumi.get(self, "vpc_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

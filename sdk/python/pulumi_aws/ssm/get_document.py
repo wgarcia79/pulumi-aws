@@ -50,7 +50,7 @@ class GetDocumentResult:
         """
         The ARN of the document.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -58,12 +58,12 @@ class GetDocumentResult:
         """
         The contents of the document.
         """
-        ...
+        return pulumi.get(self, "content")
 
     @property
     @pulumi.getter(name="documentFormat")
     def document_format(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "document_format")
 
     @property
     @pulumi.getter(name="documentType")
@@ -71,12 +71,12 @@ class GetDocumentResult:
         """
         The type of the document.
         """
-        ...
+        return pulumi.get(self, "document_type")
 
     @property
     @pulumi.getter(name="documentVersion")
     def document_version(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "document_version")
 
     @property
     @pulumi.getter
@@ -84,12 +84,12 @@ class GetDocumentResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
 
 

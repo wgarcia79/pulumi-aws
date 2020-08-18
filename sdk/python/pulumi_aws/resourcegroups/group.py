@@ -126,7 +126,7 @@ class Group(pulumi.CustomResource):
         """
         The ARN assigned by AWS for this resource group.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -134,7 +134,7 @@ class Group(pulumi.CustomResource):
         """
         A description of the resource group.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -142,7 +142,7 @@ class Group(pulumi.CustomResource):
         """
         The resource group's name. A resource group name can have a maximum of 127 characters, including letters, numbers, hyphens, dots, and underscores. The name cannot start with `AWS` or `aws`.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="resourceQuery")
@@ -150,7 +150,7 @@ class Group(pulumi.CustomResource):
         """
         A `resource_query` block. Resource queries are documented below.
         """
-        ...
+        return pulumi.get(self, "resource_query")
 
     @property
     @pulumi.getter
@@ -158,7 +158,7 @@ class Group(pulumi.CustomResource):
         """
         Key-value map of resource tags
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

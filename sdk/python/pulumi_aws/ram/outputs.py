@@ -30,7 +30,7 @@ class GetResourceShareFilterResult(dict):
         """
         The name of the tag key to filter on.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -38,6 +38,6 @@ class GetResourceShareFilterResult(dict):
         """
         The value of the tag key.
         """
-        ...
+        return pulumi.get(self, "values")
 
 

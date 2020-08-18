@@ -42,7 +42,7 @@ class GetApplicationResult:
     @property
     @pulumi.getter(name="appversionLifecycle")
     def appversion_lifecycle(self) -> 'outputs.GetApplicationAppversionLifecycleResult':
-        ...
+        return pulumi.get(self, "appversion_lifecycle")
 
     @property
     @pulumi.getter
@@ -50,7 +50,7 @@ class GetApplicationResult:
         """
         The Amazon Resource Name (ARN) of the application.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -58,7 +58,7 @@ class GetApplicationResult:
         """
         Short description of the application
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -66,12 +66,12 @@ class GetApplicationResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
 
 

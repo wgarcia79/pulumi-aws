@@ -107,7 +107,7 @@ class IpSet(pulumi.CustomResource):
         """
         The ARN of the WAF IPSet.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="ipSetDescriptors")
@@ -115,7 +115,7 @@ class IpSet(pulumi.CustomResource):
         """
         One or more pairs specifying the IP address type (IPV4 or IPV6) and the IP address range (in CIDR format) from which web requests originate.
         """
-        ...
+        return pulumi.get(self, "ip_set_descriptors")
 
     @property
     @pulumi.getter
@@ -123,7 +123,7 @@ class IpSet(pulumi.CustomResource):
         """
         The name or description of the IPSet.
         """
-        ...
+        return pulumi.get(self, "name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

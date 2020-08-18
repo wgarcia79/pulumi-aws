@@ -138,7 +138,7 @@ class TargetGroupAttachment(pulumi.CustomResource):
         """
         The Availability Zone where the IP address of the target is to be registered. If the private ip address is outside of the VPC scope, this value must be set to 'all'.
         """
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter
@@ -146,7 +146,7 @@ class TargetGroupAttachment(pulumi.CustomResource):
         """
         The port on which targets receive traffic.
         """
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter(name="targetGroupArn")
@@ -154,7 +154,7 @@ class TargetGroupAttachment(pulumi.CustomResource):
         """
         The ARN of the target group with which to register targets
         """
-        ...
+        return pulumi.get(self, "target_group_arn")
 
     @property
     @pulumi.getter(name="targetId")
@@ -162,7 +162,7 @@ class TargetGroupAttachment(pulumi.CustomResource):
         """
         The ID of the target. This is the Instance ID for an instance, or the container ID for an ECS container. If the target type is ip, specify an IP address. If the target type is lambda, specify the arn of lambda.
         """
-        ...
+        return pulumi.get(self, "target_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -145,7 +145,7 @@ class LicenseConfiguration(pulumi.CustomResource):
         """
         Description of the license configuration.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="licenseCount")
@@ -153,7 +153,7 @@ class LicenseConfiguration(pulumi.CustomResource):
         """
         Number of licenses managed by the license configuration.
         """
-        ...
+        return pulumi.get(self, "license_count")
 
     @property
     @pulumi.getter(name="licenseCountHardLimit")
@@ -161,7 +161,7 @@ class LicenseConfiguration(pulumi.CustomResource):
         """
         Sets the number of available licenses as a hard limit.
         """
-        ...
+        return pulumi.get(self, "license_count_hard_limit")
 
     @property
     @pulumi.getter(name="licenseCountingType")
@@ -169,7 +169,7 @@ class LicenseConfiguration(pulumi.CustomResource):
         """
         Dimension to use to track license inventory. Specify either `vCPU`, `Instance`, `Core` or `Socket`.
         """
-        ...
+        return pulumi.get(self, "license_counting_type")
 
     @property
     @pulumi.getter(name="licenseRules")
@@ -177,7 +177,7 @@ class LicenseConfiguration(pulumi.CustomResource):
         """
         Array of configured License Manager rules.
         """
-        ...
+        return pulumi.get(self, "license_rules")
 
     @property
     @pulumi.getter
@@ -185,7 +185,7 @@ class LicenseConfiguration(pulumi.CustomResource):
         """
         Name of the license configuration.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -193,7 +193,7 @@ class LicenseConfiguration(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

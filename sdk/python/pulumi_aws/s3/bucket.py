@@ -493,7 +493,7 @@ class Bucket(pulumi.CustomResource):
         """
         Sets the accelerate configuration of an existing bucket. Can be `Enabled` or `Suspended`.
         """
-        ...
+        return pulumi.get(self, "acceleration_status")
 
     @property
     @pulumi.getter
@@ -501,7 +501,7 @@ class Bucket(pulumi.CustomResource):
         """
         The [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl) to apply. Defaults to "private".  Conflicts with `grant`.
         """
-        ...
+        return pulumi.get(self, "acl")
 
     @property
     @pulumi.getter
@@ -509,7 +509,7 @@ class Bucket(pulumi.CustomResource):
         """
         The ARN of the bucket. Will be of format `arn:aws:s3:::bucketname`.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -517,7 +517,7 @@ class Bucket(pulumi.CustomResource):
         """
         The name of the bucket. If omitted, this provider will assign a random, unique name.
         """
-        ...
+        return pulumi.get(self, "bucket")
 
     @property
     @pulumi.getter(name="bucketDomainName")
@@ -525,7 +525,7 @@ class Bucket(pulumi.CustomResource):
         """
         The bucket domain name. Will be of format `bucketname.s3.amazonaws.com`.
         """
-        ...
+        return pulumi.get(self, "bucket_domain_name")
 
     @property
     @pulumi.getter(name="bucketPrefix")
@@ -533,7 +533,7 @@ class Bucket(pulumi.CustomResource):
         """
         Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
         """
-        ...
+        return pulumi.get(self, "bucket_prefix")
 
     @property
     @pulumi.getter(name="bucketRegionalDomainName")
@@ -541,7 +541,7 @@ class Bucket(pulumi.CustomResource):
         """
         The bucket region-specific domain name. The bucket domain name including the region name, please refer [here](https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region) for format. Note: The AWS CloudFront allows specifying S3 region-specific endpoint when creating S3 origin, it will prevent [redirect issues](https://forums.aws.amazon.com/thread.jspa?threadID=216814) from CloudFront to S3 Origin URL.
         """
-        ...
+        return pulumi.get(self, "bucket_regional_domain_name")
 
     @property
     @pulumi.getter(name="corsRules")
@@ -549,7 +549,7 @@ class Bucket(pulumi.CustomResource):
         """
         A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
         """
-        ...
+        return pulumi.get(self, "cors_rules")
 
     @property
     @pulumi.getter(name="forceDestroy")
@@ -557,7 +557,7 @@ class Bucket(pulumi.CustomResource):
         """
         A boolean that indicates all objects (including any [locked objects](https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock-overview.html)) should be deleted from the bucket so that the bucket can be destroyed without error. These objects are *not* recoverable.
         """
-        ...
+        return pulumi.get(self, "force_destroy")
 
     @property
     @pulumi.getter
@@ -565,7 +565,7 @@ class Bucket(pulumi.CustomResource):
         """
         An [ACL policy grant](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#sample-acl) (documented below). Conflicts with `acl`.
         """
-        ...
+        return pulumi.get(self, "grants")
 
     @property
     @pulumi.getter(name="hostedZoneId")
@@ -573,7 +573,7 @@ class Bucket(pulumi.CustomResource):
         """
         The [Route 53 Hosted Zone ID](https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_website_region_endpoints) for this bucket's region.
         """
-        ...
+        return pulumi.get(self, "hosted_zone_id")
 
     @property
     @pulumi.getter(name="lifecycleRules")
@@ -581,7 +581,7 @@ class Bucket(pulumi.CustomResource):
         """
         A configuration of [object lifecycle management](http://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html) (documented below).
         """
-        ...
+        return pulumi.get(self, "lifecycle_rules")
 
     @property
     @pulumi.getter
@@ -589,7 +589,7 @@ class Bucket(pulumi.CustomResource):
         """
         A settings of [bucket logging](https://docs.aws.amazon.com/AmazonS3/latest/UG/ManagingBucketLogging.html) (documented below).
         """
-        ...
+        return pulumi.get(self, "loggings")
 
     @property
     @pulumi.getter(name="objectLockConfiguration")
@@ -597,7 +597,7 @@ class Bucket(pulumi.CustomResource):
         """
         A configuration of [S3 object locking](https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html) (documented below)
         """
-        ...
+        return pulumi.get(self, "object_lock_configuration")
 
     @property
     @pulumi.getter
@@ -605,7 +605,7 @@ class Bucket(pulumi.CustomResource):
         """
         A valid [bucket policy](https://docs.aws.amazon.com/AmazonS3/latest/dev/example-bucket-policies.html) JSON document. Note that if the policy document is not specific enough (but still valid), the provider may view the policy as constantly changing in a `pulumi up / preview / update`. In this case, please make sure you use the verbose/specific version of the policy.
         """
-        ...
+        return pulumi.get(self, "policy")
 
     @property
     @pulumi.getter
@@ -613,7 +613,7 @@ class Bucket(pulumi.CustomResource):
         """
         If specified, the AWS region this bucket should reside in. Otherwise, the region used by the callee.
         """
-        ...
+        return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="replicationConfiguration")
@@ -621,7 +621,7 @@ class Bucket(pulumi.CustomResource):
         """
         A configuration of [replication configuration](http://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html) (documented below).
         """
-        ...
+        return pulumi.get(self, "replication_configuration")
 
     @property
     @pulumi.getter(name="requestPayer")
@@ -632,7 +632,7 @@ class Bucket(pulumi.CustomResource):
         the costs of any data transfer. See [Requester Pays Buckets](http://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html)
         developer guide for more information.
         """
-        ...
+        return pulumi.get(self, "request_payer")
 
     @property
     @pulumi.getter(name="serverSideEncryptionConfiguration")
@@ -640,7 +640,7 @@ class Bucket(pulumi.CustomResource):
         """
         A configuration of [server-side encryption configuration](http://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-encryption.html) (documented below)
         """
-        ...
+        return pulumi.get(self, "server_side_encryption_configuration")
 
     @property
     @pulumi.getter
@@ -648,7 +648,7 @@ class Bucket(pulumi.CustomResource):
         """
         A mapping of tags to assign to the bucket.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -656,7 +656,7 @@ class Bucket(pulumi.CustomResource):
         """
         A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
         """
-        ...
+        return pulumi.get(self, "versioning")
 
     @property
     @pulumi.getter
@@ -664,7 +664,7 @@ class Bucket(pulumi.CustomResource):
         """
         A website object (documented below).
         """
-        ...
+        return pulumi.get(self, "website")
 
     @property
     @pulumi.getter(name="websiteDomain")
@@ -672,7 +672,7 @@ class Bucket(pulumi.CustomResource):
         """
         The domain of the website endpoint, if the bucket is configured with a website. If not, this will be an empty string. This is used to create Route 53 alias records.
         """
-        ...
+        return pulumi.get(self, "website_domain")
 
     @property
     @pulumi.getter(name="websiteEndpoint")
@@ -680,7 +680,7 @@ class Bucket(pulumi.CustomResource):
         """
         The website endpoint, if the bucket is configured with a website. If not, this will be an empty string.
         """
-        ...
+        return pulumi.get(self, "website_endpoint")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

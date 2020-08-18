@@ -94,7 +94,7 @@ class Tag(pulumi.CustomResource):
         """
         The tag name.
         """
-        ...
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter(name="resourceId")
@@ -102,7 +102,7 @@ class Tag(pulumi.CustomResource):
         """
         The ID of the EC2 resource to manage the tag for.
         """
-        ...
+        return pulumi.get(self, "resource_id")
 
     @property
     @pulumi.getter
@@ -110,7 +110,7 @@ class Tag(pulumi.CustomResource):
         """
         The value of the tag.
         """
-        ...
+        return pulumi.get(self, "value")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

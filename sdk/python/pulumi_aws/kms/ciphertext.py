@@ -121,7 +121,7 @@ class Ciphertext(pulumi.CustomResource):
         """
         Base64 encoded ciphertext
         """
-        ...
+        return pulumi.get(self, "ciphertext_blob")
 
     @property
     @pulumi.getter
@@ -129,7 +129,7 @@ class Ciphertext(pulumi.CustomResource):
         """
         An optional mapping that makes up the encryption context.
         """
-        ...
+        return pulumi.get(self, "context")
 
     @property
     @pulumi.getter(name="keyId")
@@ -137,7 +137,7 @@ class Ciphertext(pulumi.CustomResource):
         """
         Globally unique key ID for the customer master key.
         """
-        ...
+        return pulumi.get(self, "key_id")
 
     @property
     @pulumi.getter
@@ -145,7 +145,7 @@ class Ciphertext(pulumi.CustomResource):
         """
         Data to be encrypted. Note that this may show up in logs, and it will be stored in the state file.
         """
-        ...
+        return pulumi.get(self, "plaintext")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

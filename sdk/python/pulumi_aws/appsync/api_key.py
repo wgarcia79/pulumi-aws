@@ -109,7 +109,7 @@ class ApiKey(pulumi.CustomResource):
         """
         The ID of the associated AppSync API
         """
-        ...
+        return pulumi.get(self, "api_id")
 
     @property
     @pulumi.getter
@@ -117,7 +117,7 @@ class ApiKey(pulumi.CustomResource):
         """
         The API key description. Defaults to "Managed by Pulumi".
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -125,7 +125,7 @@ class ApiKey(pulumi.CustomResource):
         """
         RFC3339 string representation of the expiry date. Rounded down to nearest hour. By default, it is 7 days from the date of creation.
         """
-        ...
+        return pulumi.get(self, "expires")
 
     @property
     @pulumi.getter
@@ -133,7 +133,7 @@ class ApiKey(pulumi.CustomResource):
         """
         The API key
         """
-        ...
+        return pulumi.get(self, "key")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

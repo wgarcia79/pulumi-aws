@@ -35,11 +35,11 @@ class GlobalTableReplicaArgs:
         """
         AWS region name of replica DynamoDB Table. e.g. `us-east-1`
         """
-        ...
+        return pulumi.get(self, "region_name")
 
     @region_name.setter
     def region_name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "region_name", value)
 
 
 @pulumi.input_type
@@ -60,11 +60,11 @@ class TableAttributeArgs:
         """
         The name of the index
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -72,11 +72,11 @@ class TableAttributeArgs:
         """
         Attribute type, which must be a scalar type: `S`, `N`, or `B` for (S)tring, (N)umber or (B)inary data
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "type", value)
 
 
 @pulumi.input_type
@@ -124,11 +124,11 @@ class TableGlobalSecondaryIndexArgs:
         The name of the hash key in the index; must be
         defined as an attribute in the resource.
         """
-        ...
+        return pulumi.get(self, "hash_key")
 
     @hash_key.setter
     def hash_key(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "hash_key", value)
 
     @property
     @pulumi.getter
@@ -136,11 +136,11 @@ class TableGlobalSecondaryIndexArgs:
         """
         The name of the index
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter(name="projectionType")
@@ -152,11 +152,11 @@ class TableGlobalSecondaryIndexArgs:
         projects only the keys specified in the _non_key_attributes_
         parameter.
         """
-        ...
+        return pulumi.get(self, "projection_type")
 
     @projection_type.setter
     def projection_type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "projection_type", value)
 
     @property
     @pulumi.getter(name="nonKeyAttributes")
@@ -166,11 +166,11 @@ class TableGlobalSecondaryIndexArgs:
         projection type; a list of attributes to project into the index. These
         do not need to be defined as attributes on the table.
         """
-        ...
+        return pulumi.get(self, "non_key_attributes")
 
     @non_key_attributes.setter
     def non_key_attributes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "non_key_attributes", value)
 
     @property
     @pulumi.getter(name="rangeKey")
@@ -178,11 +178,11 @@ class TableGlobalSecondaryIndexArgs:
         """
         The name of the range key; must be defined
         """
-        ...
+        return pulumi.get(self, "range_key")
 
     @range_key.setter
     def range_key(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "range_key", value)
 
     @property
     @pulumi.getter(name="readCapacity")
@@ -190,11 +190,11 @@ class TableGlobalSecondaryIndexArgs:
         """
         The number of read units for this index. Must be set if billing_mode is set to PROVISIONED.
         """
-        ...
+        return pulumi.get(self, "read_capacity")
 
     @read_capacity.setter
     def read_capacity(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "read_capacity", value)
 
     @property
     @pulumi.getter(name="writeCapacity")
@@ -202,11 +202,11 @@ class TableGlobalSecondaryIndexArgs:
         """
         The number of write units for this index. Must be set if billing_mode is set to PROVISIONED.
         """
-        ...
+        return pulumi.get(self, "write_capacity")
 
     @write_capacity.setter
     def write_capacity(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "write_capacity", value)
 
 
 @pulumi.input_type
@@ -240,11 +240,11 @@ class TableLocalSecondaryIndexArgs:
         """
         The name of the index
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter(name="projectionType")
@@ -256,11 +256,11 @@ class TableLocalSecondaryIndexArgs:
         projects only the keys specified in the _non_key_attributes_
         parameter.
         """
-        ...
+        return pulumi.get(self, "projection_type")
 
     @projection_type.setter
     def projection_type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "projection_type", value)
 
     @property
     @pulumi.getter(name="rangeKey")
@@ -268,11 +268,11 @@ class TableLocalSecondaryIndexArgs:
         """
         The name of the range key; must be defined
         """
-        ...
+        return pulumi.get(self, "range_key")
 
     @range_key.setter
     def range_key(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "range_key", value)
 
     @property
     @pulumi.getter(name="nonKeyAttributes")
@@ -282,11 +282,11 @@ class TableLocalSecondaryIndexArgs:
         projection type; a list of attributes to project into the index. These
         do not need to be defined as attributes on the table.
         """
-        ...
+        return pulumi.get(self, "non_key_attributes")
 
     @non_key_attributes.setter
     def non_key_attributes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "non_key_attributes", value)
 
 
 @pulumi.input_type
@@ -304,11 +304,11 @@ class TablePointInTimeRecoveryArgs:
         """
         Indicates whether ttl is enabled (true) or disabled (false).
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: pulumi.Input[bool]):
-        ...
+        pulumi.set(self, "enabled", value)
 
 
 @pulumi.input_type
@@ -326,11 +326,11 @@ class TableReplicaArgs:
         """
         Region name of the replica.
         """
-        ...
+        return pulumi.get(self, "region_name")
 
     @region_name.setter
     def region_name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "region_name", value)
 
 
 @pulumi.input_type
@@ -353,11 +353,11 @@ class TableServerSideEncryptionArgs:
         """
         Indicates whether ttl is enabled (true) or disabled (false).
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: pulumi.Input[bool]):
-        ...
+        pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter(name="kmsKeyArn")
@@ -366,11 +366,11 @@ class TableServerSideEncryptionArgs:
         The ARN of the CMK that should be used for the AWS KMS encryption.
         This attribute should only be specified if the key is different from the default DynamoDB CMK, `alias/aws/dynamodb`.
         """
-        ...
+        return pulumi.get(self, "kms_key_arn")
 
     @kms_key_arn.setter
     def kms_key_arn(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kms_key_arn", value)
 
 
 @pulumi.input_type
@@ -392,11 +392,11 @@ class TableTtlArgs:
         """
         The name of the table attribute to store the TTL timestamp in.
         """
-        ...
+        return pulumi.get(self, "attribute_name")
 
     @attribute_name.setter
     def attribute_name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "attribute_name", value)
 
     @property
     @pulumi.getter
@@ -404,11 +404,11 @@ class TableTtlArgs:
         """
         Indicates whether ttl is enabled (true) or disabled (false).
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "enabled", value)
 
 
 @pulumi.input_type
@@ -422,19 +422,19 @@ class GetTableServerSideEncryptionArgs:
     @property
     @pulumi.getter
     def enabled(self) -> bool:
-        ...
+        return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: bool):
-        ...
+        pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter(name="kmsKeyArn")
     def kms_key_arn(self) -> str:
-        ...
+        return pulumi.get(self, "kms_key_arn")
 
     @kms_key_arn.setter
     def kms_key_arn(self, value: str):
-        ...
+        pulumi.set(self, "kms_key_arn", value)
 
 

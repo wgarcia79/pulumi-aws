@@ -147,7 +147,7 @@ class Activation(pulumi.CustomResource):
         """
         The code the system generates when it processes the activation.
         """
-        ...
+        return pulumi.get(self, "activation_code")
 
     @property
     @pulumi.getter
@@ -155,7 +155,7 @@ class Activation(pulumi.CustomResource):
         """
         The description of the resource that you want to register.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="expirationDate")
@@ -163,7 +163,7 @@ class Activation(pulumi.CustomResource):
         """
         UTC timestamp in [RFC3339 format](https://tools.ietf.org/html/rfc3339#section-5.8) by which this activation request should expire. The default value is 24 hours from resource creation time. This provider will only perform drift detection of its value when present in a configuration.
         """
-        ...
+        return pulumi.get(self, "expiration_date")
 
     @property
     @pulumi.getter
@@ -171,7 +171,7 @@ class Activation(pulumi.CustomResource):
         """
         If the current activation has expired.
         """
-        ...
+        return pulumi.get(self, "expired")
 
     @property
     @pulumi.getter(name="iamRole")
@@ -179,7 +179,7 @@ class Activation(pulumi.CustomResource):
         """
         The IAM Role to attach to the managed instance.
         """
-        ...
+        return pulumi.get(self, "iam_role")
 
     @property
     @pulumi.getter
@@ -187,7 +187,7 @@ class Activation(pulumi.CustomResource):
         """
         The default name of the registered managed instance.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="registrationCount")
@@ -195,7 +195,7 @@ class Activation(pulumi.CustomResource):
         """
         The number of managed instances that are currently registered using this activation.
         """
-        ...
+        return pulumi.get(self, "registration_count")
 
     @property
     @pulumi.getter(name="registrationLimit")
@@ -203,7 +203,7 @@ class Activation(pulumi.CustomResource):
         """
         The maximum number of managed instances you want to register. The default value is 1 instance.
         """
-        ...
+        return pulumi.get(self, "registration_limit")
 
     @property
     @pulumi.getter
@@ -211,7 +211,7 @@ class Activation(pulumi.CustomResource):
         """
         A map of tags to assign to the object.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

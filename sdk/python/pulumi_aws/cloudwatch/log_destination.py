@@ -108,7 +108,7 @@ class LogDestination(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) specifying the log destination.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -116,7 +116,7 @@ class LogDestination(pulumi.CustomResource):
         """
         A name for the log destination
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -124,7 +124,7 @@ class LogDestination(pulumi.CustomResource):
         """
         The ARN of an IAM role that grants Amazon CloudWatch Logs permissions to put data into the target
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="targetArn")
@@ -132,7 +132,7 @@ class LogDestination(pulumi.CustomResource):
         """
         The ARN of the target Amazon Kinesis stream resource for the destination
         """
-        ...
+        return pulumi.get(self, "target_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

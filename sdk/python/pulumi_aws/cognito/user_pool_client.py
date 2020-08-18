@@ -248,7 +248,7 @@ class UserPoolClient(pulumi.CustomResource):
         """
         List of allowed OAuth flows (code, implicit, client_credentials).
         """
-        ...
+        return pulumi.get(self, "allowed_oauth_flows")
 
     @property
     @pulumi.getter(name="allowedOauthFlowsUserPoolClient")
@@ -256,7 +256,7 @@ class UserPoolClient(pulumi.CustomResource):
         """
         Whether the client is allowed to follow the OAuth protocol when interacting with Cognito user pools.
         """
-        ...
+        return pulumi.get(self, "allowed_oauth_flows_user_pool_client")
 
     @property
     @pulumi.getter(name="allowedOauthScopes")
@@ -264,7 +264,7 @@ class UserPoolClient(pulumi.CustomResource):
         """
         List of allowed OAuth scopes (phone, email, openid, profile, and aws.cognito.signin.user.admin).
         """
-        ...
+        return pulumi.get(self, "allowed_oauth_scopes")
 
     @property
     @pulumi.getter(name="analyticsConfiguration")
@@ -272,7 +272,7 @@ class UserPoolClient(pulumi.CustomResource):
         """
         The Amazon Pinpoint analytics configuration for collecting metrics for this user pool.
         """
-        ...
+        return pulumi.get(self, "analytics_configuration")
 
     @property
     @pulumi.getter(name="callbackUrls")
@@ -280,7 +280,7 @@ class UserPoolClient(pulumi.CustomResource):
         """
         List of allowed callback URLs for the identity providers.
         """
-        ...
+        return pulumi.get(self, "callback_urls")
 
     @property
     @pulumi.getter(name="clientSecret")
@@ -288,7 +288,7 @@ class UserPoolClient(pulumi.CustomResource):
         """
         The client secret of the user pool client.
         """
-        ...
+        return pulumi.get(self, "client_secret")
 
     @property
     @pulumi.getter(name="defaultRedirectUri")
@@ -296,7 +296,7 @@ class UserPoolClient(pulumi.CustomResource):
         """
         The default redirect URI. Must be in the list of callback URLs.
         """
-        ...
+        return pulumi.get(self, "default_redirect_uri")
 
     @property
     @pulumi.getter(name="explicitAuthFlows")
@@ -304,7 +304,7 @@ class UserPoolClient(pulumi.CustomResource):
         """
         List of authentication flows (ADMIN_NO_SRP_AUTH, CUSTOM_AUTH_FLOW_ONLY,  USER_PASSWORD_AUTH, ALLOW_ADMIN_USER_PASSWORD_AUTH, ALLOW_CUSTOM_AUTH, ALLOW_USER_PASSWORD_AUTH, ALLOW_USER_SRP_AUTH, ALLOW_REFRESH_TOKEN_AUTH).
         """
-        ...
+        return pulumi.get(self, "explicit_auth_flows")
 
     @property
     @pulumi.getter(name="generateSecret")
@@ -312,7 +312,7 @@ class UserPoolClient(pulumi.CustomResource):
         """
         Should an application secret be generated.
         """
-        ...
+        return pulumi.get(self, "generate_secret")
 
     @property
     @pulumi.getter(name="logoutUrls")
@@ -320,7 +320,7 @@ class UserPoolClient(pulumi.CustomResource):
         """
         List of allowed logout URLs for the identity providers.
         """
-        ...
+        return pulumi.get(self, "logout_urls")
 
     @property
     @pulumi.getter
@@ -328,7 +328,7 @@ class UserPoolClient(pulumi.CustomResource):
         """
         The name of the application client.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="preventUserExistenceErrors")
@@ -336,7 +336,7 @@ class UserPoolClient(pulumi.CustomResource):
         """
         Choose which errors and responses are returned by Cognito APIs during authentication, account confirmation, and password recovery when the user does not exist in the user pool. When set to `ENABLED` and the user does not exist, authentication returns an error indicating either the username or password was incorrect, and account confirmation and password recovery return a response indicating a code was sent to a simulated destination. When set to `LEGACY`, those APIs will return a `UserNotFoundException` exception if the user does not exist in the user pool.
         """
-        ...
+        return pulumi.get(self, "prevent_user_existence_errors")
 
     @property
     @pulumi.getter(name="readAttributes")
@@ -344,7 +344,7 @@ class UserPoolClient(pulumi.CustomResource):
         """
         List of user pool attributes the application client can read from.
         """
-        ...
+        return pulumi.get(self, "read_attributes")
 
     @property
     @pulumi.getter(name="refreshTokenValidity")
@@ -352,7 +352,7 @@ class UserPoolClient(pulumi.CustomResource):
         """
         The time limit in days refresh tokens are valid for.
         """
-        ...
+        return pulumi.get(self, "refresh_token_validity")
 
     @property
     @pulumi.getter(name="supportedIdentityProviders")
@@ -360,7 +360,7 @@ class UserPoolClient(pulumi.CustomResource):
         """
         List of provider names for the identity providers that are supported on this client.
         """
-        ...
+        return pulumi.get(self, "supported_identity_providers")
 
     @property
     @pulumi.getter(name="userPoolId")
@@ -368,7 +368,7 @@ class UserPoolClient(pulumi.CustomResource):
         """
         The user pool the client belongs to.
         """
-        ...
+        return pulumi.get(self, "user_pool_id")
 
     @property
     @pulumi.getter(name="writeAttributes")
@@ -376,7 +376,7 @@ class UserPoolClient(pulumi.CustomResource):
         """
         List of user pool attributes the application client can write to.
         """
-        ...
+        return pulumi.get(self, "write_attributes")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

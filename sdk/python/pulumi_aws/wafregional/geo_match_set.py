@@ -103,7 +103,7 @@ class GeoMatchSet(pulumi.CustomResource):
         """
         The Geo Match Constraint objects which contain the country that you want AWS WAF to search for.
         """
-        ...
+        return pulumi.get(self, "geo_match_constraints")
 
     @property
     @pulumi.getter
@@ -111,7 +111,7 @@ class GeoMatchSet(pulumi.CustomResource):
         """
         The name or description of the Geo Match Set.
         """
-        ...
+        return pulumi.get(self, "name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

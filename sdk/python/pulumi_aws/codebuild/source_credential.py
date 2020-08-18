@@ -129,7 +129,7 @@ class SourceCredential(pulumi.CustomResource):
         """
         The ARN of Source Credential.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="authType")
@@ -137,7 +137,7 @@ class SourceCredential(pulumi.CustomResource):
         """
         The type of authentication used to connect to a GitHub, GitHub Enterprise, or Bitbucket repository. An OAUTH connection is not supported by the API.
         """
-        ...
+        return pulumi.get(self, "auth_type")
 
     @property
     @pulumi.getter(name="serverType")
@@ -145,7 +145,7 @@ class SourceCredential(pulumi.CustomResource):
         """
         The source provider used for this project.
         """
-        ...
+        return pulumi.get(self, "server_type")
 
     @property
     @pulumi.getter
@@ -153,7 +153,7 @@ class SourceCredential(pulumi.CustomResource):
         """
         For `GitHub` or `GitHub Enterprise`, this is the personal access token. For `Bitbucket`, this is the app password.
         """
-        ...
+        return pulumi.get(self, "token")
 
     @property
     @pulumi.getter(name="userName")
@@ -161,7 +161,7 @@ class SourceCredential(pulumi.CustomResource):
         """
         The Bitbucket username when the authType is `BASIC_AUTH`. This parameter is not valid for other types of source providers or connections.
         """
-        ...
+        return pulumi.get(self, "user_name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

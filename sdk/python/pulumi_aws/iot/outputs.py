@@ -66,7 +66,7 @@ class ThingTypeProperties(dict):
         """
         The description of the thing type.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="searchableAttributes")
@@ -74,7 +74,7 @@ class ThingTypeProperties(dict):
         """
         A list of searchable thing attribute names.
         """
-        ...
+        return pulumi.get(self, "searchable_attributes")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -104,7 +104,7 @@ class TopicRuleCloudwatchAlarm(dict):
         """
         The CloudWatch alarm name.
         """
-        ...
+        return pulumi.get(self, "alarm_name")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -112,7 +112,7 @@ class TopicRuleCloudwatchAlarm(dict):
         """
         The IAM role ARN that allows access to the CloudWatch alarm.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="stateReason")
@@ -120,7 +120,7 @@ class TopicRuleCloudwatchAlarm(dict):
         """
         The reason for the alarm change.
         """
-        ...
+        return pulumi.get(self, "state_reason")
 
     @property
     @pulumi.getter(name="stateValue")
@@ -128,7 +128,7 @@ class TopicRuleCloudwatchAlarm(dict):
         """
         The value of the alarm state. Acceptable values are: OK, ALARM, INSUFFICIENT_DATA.
         """
-        ...
+        return pulumi.get(self, "state_value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -165,7 +165,7 @@ class TopicRuleCloudwatchMetric(dict):
         """
         The CloudWatch metric name.
         """
-        ...
+        return pulumi.get(self, "metric_name")
 
     @property
     @pulumi.getter(name="metricNamespace")
@@ -173,7 +173,7 @@ class TopicRuleCloudwatchMetric(dict):
         """
         The CloudWatch metric namespace name.
         """
-        ...
+        return pulumi.get(self, "metric_namespace")
 
     @property
     @pulumi.getter(name="metricUnit")
@@ -181,7 +181,7 @@ class TopicRuleCloudwatchMetric(dict):
         """
         The metric unit (supported units can be found here: http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit)
         """
-        ...
+        return pulumi.get(self, "metric_unit")
 
     @property
     @pulumi.getter(name="metricValue")
@@ -189,7 +189,7 @@ class TopicRuleCloudwatchMetric(dict):
         """
         The CloudWatch metric value.
         """
-        ...
+        return pulumi.get(self, "metric_value")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -197,7 +197,7 @@ class TopicRuleCloudwatchMetric(dict):
         """
         The IAM role ARN that allows access to the CloudWatch metric.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="metricTimestamp")
@@ -205,7 +205,7 @@ class TopicRuleCloudwatchMetric(dict):
         """
         An optional Unix timestamp (http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp).
         """
-        ...
+        return pulumi.get(self, "metric_timestamp")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -259,7 +259,7 @@ class TopicRuleDynamodb(dict):
         """
         The hash key name.
         """
-        ...
+        return pulumi.get(self, "hash_key_field")
 
     @property
     @pulumi.getter(name="hashKeyValue")
@@ -267,7 +267,7 @@ class TopicRuleDynamodb(dict):
         """
         The hash key value.
         """
-        ...
+        return pulumi.get(self, "hash_key_value")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -275,7 +275,7 @@ class TopicRuleDynamodb(dict):
         """
         The ARN of the IAM role that grants access to the DynamoDB table.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="tableName")
@@ -283,7 +283,7 @@ class TopicRuleDynamodb(dict):
         """
         The name of the DynamoDB table.
         """
-        ...
+        return pulumi.get(self, "table_name")
 
     @property
     @pulumi.getter(name="hashKeyType")
@@ -291,7 +291,7 @@ class TopicRuleDynamodb(dict):
         """
         The hash key type. Valid values are "STRING" or "NUMBER".
         """
-        ...
+        return pulumi.get(self, "hash_key_type")
 
     @property
     @pulumi.getter
@@ -299,7 +299,7 @@ class TopicRuleDynamodb(dict):
         """
         The operation. Valid values are "INSERT", "UPDATE", or "DELETE".
         """
-        ...
+        return pulumi.get(self, "operation")
 
     @property
     @pulumi.getter(name="payloadField")
@@ -307,7 +307,7 @@ class TopicRuleDynamodb(dict):
         """
         The action payload.
         """
-        ...
+        return pulumi.get(self, "payload_field")
 
     @property
     @pulumi.getter(name="rangeKeyField")
@@ -315,7 +315,7 @@ class TopicRuleDynamodb(dict):
         """
         The range key name.
         """
-        ...
+        return pulumi.get(self, "range_key_field")
 
     @property
     @pulumi.getter(name="rangeKeyType")
@@ -323,7 +323,7 @@ class TopicRuleDynamodb(dict):
         """
         The range key type. Valid values are "STRING" or "NUMBER".
         """
-        ...
+        return pulumi.get(self, "range_key_type")
 
     @property
     @pulumi.getter(name="rangeKeyValue")
@@ -331,7 +331,7 @@ class TopicRuleDynamodb(dict):
         """
         The range key value.
         """
-        ...
+        return pulumi.get(self, "range_key_value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -356,7 +356,7 @@ class TopicRuleDynamodbv2(dict):
         """
         The IAM role ARN that allows access to the CloudWatch alarm.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="putItem")
@@ -364,7 +364,7 @@ class TopicRuleDynamodbv2(dict):
         """
         Configuration block with DynamoDB Table to which the message will be written. Nested arguments below.
         """
-        ...
+        return pulumi.get(self, "put_item")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -385,7 +385,7 @@ class TopicRuleDynamodbv2PutItem(dict):
         """
         The name of the DynamoDB table.
         """
-        ...
+        return pulumi.get(self, "table_name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -418,7 +418,7 @@ class TopicRuleElasticsearch(dict):
         """
         The endpoint of your Elasticsearch domain.
         """
-        ...
+        return pulumi.get(self, "endpoint")
 
     @property
     @pulumi.getter
@@ -426,7 +426,7 @@ class TopicRuleElasticsearch(dict):
         """
         The unique identifier for the document you are storing.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -434,7 +434,7 @@ class TopicRuleElasticsearch(dict):
         """
         The Elasticsearch index where you want to store your data.
         """
-        ...
+        return pulumi.get(self, "index")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -442,7 +442,7 @@ class TopicRuleElasticsearch(dict):
         """
         The IAM role ARN that has access to Elasticsearch.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter
@@ -450,7 +450,7 @@ class TopicRuleElasticsearch(dict):
         """
         The type of document you are storing.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -508,77 +508,77 @@ class TopicRuleErrorAction(dict):
     @property
     @pulumi.getter(name="cloudwatchAlarm")
     def cloudwatch_alarm(self) -> Optional['outputs.TopicRuleErrorActionCloudwatchAlarm']:
-        ...
+        return pulumi.get(self, "cloudwatch_alarm")
 
     @property
     @pulumi.getter(name="cloudwatchMetric")
     def cloudwatch_metric(self) -> Optional['outputs.TopicRuleErrorActionCloudwatchMetric']:
-        ...
+        return pulumi.get(self, "cloudwatch_metric")
 
     @property
     @pulumi.getter
     def dynamodb(self) -> Optional['outputs.TopicRuleErrorActionDynamodb']:
-        ...
+        return pulumi.get(self, "dynamodb")
 
     @property
     @pulumi.getter
     def dynamodbv2(self) -> Optional['outputs.TopicRuleErrorActionDynamodbv2']:
-        ...
+        return pulumi.get(self, "dynamodbv2")
 
     @property
     @pulumi.getter
     def elasticsearch(self) -> Optional['outputs.TopicRuleErrorActionElasticsearch']:
-        ...
+        return pulumi.get(self, "elasticsearch")
 
     @property
     @pulumi.getter
     def firehose(self) -> Optional['outputs.TopicRuleErrorActionFirehose']:
-        ...
+        return pulumi.get(self, "firehose")
 
     @property
     @pulumi.getter(name="iotAnalytics")
     def iot_analytics(self) -> Optional['outputs.TopicRuleErrorActionIotAnalytics']:
-        ...
+        return pulumi.get(self, "iot_analytics")
 
     @property
     @pulumi.getter(name="iotEvents")
     def iot_events(self) -> Optional['outputs.TopicRuleErrorActionIotEvents']:
-        ...
+        return pulumi.get(self, "iot_events")
 
     @property
     @pulumi.getter
     def kinesis(self) -> Optional['outputs.TopicRuleErrorActionKinesis']:
-        ...
+        return pulumi.get(self, "kinesis")
 
     @property
     @pulumi.getter(name="lambda")
     def lambda_(self) -> Optional['outputs.TopicRuleErrorActionLambda']:
-        ...
+        return pulumi.get(self, "lambda_")
 
     @property
     @pulumi.getter
     def republish(self) -> Optional['outputs.TopicRuleErrorActionRepublish']:
-        ...
+        return pulumi.get(self, "republish")
 
     @property
     @pulumi.getter
     def s3(self) -> Optional['outputs.TopicRuleErrorActionS3']:
-        ...
+        return pulumi.get(self, "s3")
 
     @property
     @pulumi.getter
     def sns(self) -> Optional['outputs.TopicRuleErrorActionSns']:
-        ...
+        return pulumi.get(self, "sns")
 
     @property
     @pulumi.getter
     def sqs(self) -> Optional['outputs.TopicRuleErrorActionSqs']:
-        ...
+        return pulumi.get(self, "sqs")
 
     @property
     @pulumi.getter(name="stepFunctions")
     def step_functions(self) -> Optional['outputs.TopicRuleErrorActionStepFunctions']:
-        ...
+        return pulumi.get(self, "step_functions")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -608,7 +608,7 @@ class TopicRuleErrorActionCloudwatchAlarm(dict):
         """
         The CloudWatch alarm name.
         """
-        ...
+        return pulumi.get(self, "alarm_name")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -616,7 +616,7 @@ class TopicRuleErrorActionCloudwatchAlarm(dict):
         """
         The IAM role ARN that allows access to the CloudWatch alarm.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="stateReason")
@@ -624,7 +624,7 @@ class TopicRuleErrorActionCloudwatchAlarm(dict):
         """
         The reason for the alarm change.
         """
-        ...
+        return pulumi.get(self, "state_reason")
 
     @property
     @pulumi.getter(name="stateValue")
@@ -632,7 +632,7 @@ class TopicRuleErrorActionCloudwatchAlarm(dict):
         """
         The value of the alarm state. Acceptable values are: OK, ALARM, INSUFFICIENT_DATA.
         """
-        ...
+        return pulumi.get(self, "state_value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -669,7 +669,7 @@ class TopicRuleErrorActionCloudwatchMetric(dict):
         """
         The CloudWatch metric name.
         """
-        ...
+        return pulumi.get(self, "metric_name")
 
     @property
     @pulumi.getter(name="metricNamespace")
@@ -677,7 +677,7 @@ class TopicRuleErrorActionCloudwatchMetric(dict):
         """
         The CloudWatch metric namespace name.
         """
-        ...
+        return pulumi.get(self, "metric_namespace")
 
     @property
     @pulumi.getter(name="metricUnit")
@@ -685,7 +685,7 @@ class TopicRuleErrorActionCloudwatchMetric(dict):
         """
         The metric unit (supported units can be found here: http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit)
         """
-        ...
+        return pulumi.get(self, "metric_unit")
 
     @property
     @pulumi.getter(name="metricValue")
@@ -693,7 +693,7 @@ class TopicRuleErrorActionCloudwatchMetric(dict):
         """
         The CloudWatch metric value.
         """
-        ...
+        return pulumi.get(self, "metric_value")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -701,7 +701,7 @@ class TopicRuleErrorActionCloudwatchMetric(dict):
         """
         The IAM role ARN that allows access to the CloudWatch metric.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="metricTimestamp")
@@ -709,7 +709,7 @@ class TopicRuleErrorActionCloudwatchMetric(dict):
         """
         An optional Unix timestamp (http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp).
         """
-        ...
+        return pulumi.get(self, "metric_timestamp")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -763,7 +763,7 @@ class TopicRuleErrorActionDynamodb(dict):
         """
         The hash key name.
         """
-        ...
+        return pulumi.get(self, "hash_key_field")
 
     @property
     @pulumi.getter(name="hashKeyValue")
@@ -771,7 +771,7 @@ class TopicRuleErrorActionDynamodb(dict):
         """
         The hash key value.
         """
-        ...
+        return pulumi.get(self, "hash_key_value")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -779,7 +779,7 @@ class TopicRuleErrorActionDynamodb(dict):
         """
         The ARN of the IAM role that grants access to the DynamoDB table.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="tableName")
@@ -787,7 +787,7 @@ class TopicRuleErrorActionDynamodb(dict):
         """
         The name of the DynamoDB table.
         """
-        ...
+        return pulumi.get(self, "table_name")
 
     @property
     @pulumi.getter(name="hashKeyType")
@@ -795,7 +795,7 @@ class TopicRuleErrorActionDynamodb(dict):
         """
         The hash key type. Valid values are "STRING" or "NUMBER".
         """
-        ...
+        return pulumi.get(self, "hash_key_type")
 
     @property
     @pulumi.getter
@@ -803,7 +803,7 @@ class TopicRuleErrorActionDynamodb(dict):
         """
         The operation. Valid values are "INSERT", "UPDATE", or "DELETE".
         """
-        ...
+        return pulumi.get(self, "operation")
 
     @property
     @pulumi.getter(name="payloadField")
@@ -811,7 +811,7 @@ class TopicRuleErrorActionDynamodb(dict):
         """
         The action payload.
         """
-        ...
+        return pulumi.get(self, "payload_field")
 
     @property
     @pulumi.getter(name="rangeKeyField")
@@ -819,7 +819,7 @@ class TopicRuleErrorActionDynamodb(dict):
         """
         The range key name.
         """
-        ...
+        return pulumi.get(self, "range_key_field")
 
     @property
     @pulumi.getter(name="rangeKeyType")
@@ -827,7 +827,7 @@ class TopicRuleErrorActionDynamodb(dict):
         """
         The range key type. Valid values are "STRING" or "NUMBER".
         """
-        ...
+        return pulumi.get(self, "range_key_type")
 
     @property
     @pulumi.getter(name="rangeKeyValue")
@@ -835,7 +835,7 @@ class TopicRuleErrorActionDynamodb(dict):
         """
         The range key value.
         """
-        ...
+        return pulumi.get(self, "range_key_value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -860,7 +860,7 @@ class TopicRuleErrorActionDynamodbv2(dict):
         """
         The IAM role ARN that allows access to the CloudWatch alarm.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="putItem")
@@ -868,7 +868,7 @@ class TopicRuleErrorActionDynamodbv2(dict):
         """
         Configuration block with DynamoDB Table to which the message will be written. Nested arguments below.
         """
-        ...
+        return pulumi.get(self, "put_item")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -889,7 +889,7 @@ class TopicRuleErrorActionDynamodbv2PutItem(dict):
         """
         The name of the DynamoDB table.
         """
-        ...
+        return pulumi.get(self, "table_name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -922,7 +922,7 @@ class TopicRuleErrorActionElasticsearch(dict):
         """
         The endpoint of your Elasticsearch domain.
         """
-        ...
+        return pulumi.get(self, "endpoint")
 
     @property
     @pulumi.getter
@@ -930,7 +930,7 @@ class TopicRuleErrorActionElasticsearch(dict):
         """
         The unique identifier for the document you are storing.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -938,7 +938,7 @@ class TopicRuleErrorActionElasticsearch(dict):
         """
         The Elasticsearch index where you want to store your data.
         """
-        ...
+        return pulumi.get(self, "index")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -946,7 +946,7 @@ class TopicRuleErrorActionElasticsearch(dict):
         """
         The IAM role ARN that has access to Elasticsearch.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter
@@ -954,7 +954,7 @@ class TopicRuleErrorActionElasticsearch(dict):
         """
         The type of document you are storing.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -982,7 +982,7 @@ class TopicRuleErrorActionFirehose(dict):
         """
         The delivery stream name.
         """
-        ...
+        return pulumi.get(self, "delivery_stream_name")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -990,7 +990,7 @@ class TopicRuleErrorActionFirehose(dict):
         """
         The IAM role ARN that grants access to the Amazon Kinesis Firehose stream.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter
@@ -998,7 +998,7 @@ class TopicRuleErrorActionFirehose(dict):
         """
         A character separator that is used to separate records written to the Firehose stream. Valid values are: '\n' (newline), '\t' (tab), '\r\n' (Windows newline), ',' (comma).
         """
-        ...
+        return pulumi.get(self, "separator")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1022,7 +1022,7 @@ class TopicRuleErrorActionIotAnalytics(dict):
         """
         Name of AWS IOT Analytics channel.
         """
-        ...
+        return pulumi.get(self, "channel_name")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -1030,7 +1030,7 @@ class TopicRuleErrorActionIotAnalytics(dict):
         """
         The ARN of the IAM role that grants access.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1058,7 +1058,7 @@ class TopicRuleErrorActionIotEvents(dict):
         """
         The name of the AWS IoT Events input.
         """
-        ...
+        return pulumi.get(self, "input_name")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -1066,7 +1066,7 @@ class TopicRuleErrorActionIotEvents(dict):
         """
         The ARN of the IAM role that grants access.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="messageId")
@@ -1074,7 +1074,7 @@ class TopicRuleErrorActionIotEvents(dict):
         """
         Use this to ensure that only one input (message) with a given messageId is processed by an AWS IoT Events detector.
         """
-        ...
+        return pulumi.get(self, "message_id")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1102,7 +1102,7 @@ class TopicRuleErrorActionKinesis(dict):
         """
         The ARN of the IAM role that grants access to the Amazon Kinesis stream.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="streamName")
@@ -1110,7 +1110,7 @@ class TopicRuleErrorActionKinesis(dict):
         """
         The name of the Amazon Kinesis stream.
         """
-        ...
+        return pulumi.get(self, "stream_name")
 
     @property
     @pulumi.getter(name="partitionKey")
@@ -1118,7 +1118,7 @@ class TopicRuleErrorActionKinesis(dict):
         """
         The partition key.
         """
-        ...
+        return pulumi.get(self, "partition_key")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1139,7 +1139,7 @@ class TopicRuleErrorActionLambda(dict):
         """
         The ARN of the Lambda function.
         """
-        ...
+        return pulumi.get(self, "function_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1167,7 +1167,7 @@ class TopicRuleErrorActionRepublish(dict):
         """
         The ARN of the IAM role that grants access.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter
@@ -1175,7 +1175,7 @@ class TopicRuleErrorActionRepublish(dict):
         """
         The name of the MQTT topic the message should be republished to.
         """
-        ...
+        return pulumi.get(self, "topic")
 
     @property
     @pulumi.getter
@@ -1183,7 +1183,7 @@ class TopicRuleErrorActionRepublish(dict):
         """
         The Quality of Service (QoS) level to use when republishing messages. Valid values are 0 or 1. The default value is 0.
         """
-        ...
+        return pulumi.get(self, "qos")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1210,7 +1210,7 @@ class TopicRuleErrorActionS3(dict):
         """
         The Amazon S3 bucket name.
         """
-        ...
+        return pulumi.get(self, "bucket_name")
 
     @property
     @pulumi.getter
@@ -1218,7 +1218,7 @@ class TopicRuleErrorActionS3(dict):
         """
         The object key.
         """
-        ...
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -1226,7 +1226,7 @@ class TopicRuleErrorActionS3(dict):
         """
         The IAM role ARN that allows access to the CloudWatch alarm.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1254,7 +1254,7 @@ class TopicRuleErrorActionSns(dict):
         """
         The ARN of the IAM role that grants access.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="targetArn")
@@ -1262,7 +1262,7 @@ class TopicRuleErrorActionSns(dict):
         """
         The ARN of the SNS topic.
         """
-        ...
+        return pulumi.get(self, "target_arn")
 
     @property
     @pulumi.getter(name="messageFormat")
@@ -1270,7 +1270,7 @@ class TopicRuleErrorActionSns(dict):
         """
         The message format of the message to publish. Accepted values are "JSON" and "RAW".
         """
-        ...
+        return pulumi.get(self, "message_format")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1297,7 +1297,7 @@ class TopicRuleErrorActionSqs(dict):
         """
         The URL of the Amazon SQS queue.
         """
-        ...
+        return pulumi.get(self, "queue_url")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -1305,7 +1305,7 @@ class TopicRuleErrorActionSqs(dict):
         """
         The ARN of the IAM role that grants access.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="useBase64")
@@ -1313,7 +1313,7 @@ class TopicRuleErrorActionSqs(dict):
         """
         Specifies whether to use Base64 encoding.
         """
-        ...
+        return pulumi.get(self, "use_base64")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1341,7 +1341,7 @@ class TopicRuleErrorActionStepFunctions(dict):
         """
         The ARN of the IAM role that grants access to start execution of the state machine.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="stateMachineName")
@@ -1349,7 +1349,7 @@ class TopicRuleErrorActionStepFunctions(dict):
         """
         The name of the Step Functions state machine whose execution will be started.
         """
-        ...
+        return pulumi.get(self, "state_machine_name")
 
     @property
     @pulumi.getter(name="executionNamePrefix")
@@ -1357,7 +1357,7 @@ class TopicRuleErrorActionStepFunctions(dict):
         """
         The prefix used to generate, along with a UUID, the unique state machine execution name.
         """
-        ...
+        return pulumi.get(self, "execution_name_prefix")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1385,7 +1385,7 @@ class TopicRuleFirehose(dict):
         """
         The delivery stream name.
         """
-        ...
+        return pulumi.get(self, "delivery_stream_name")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -1393,7 +1393,7 @@ class TopicRuleFirehose(dict):
         """
         The IAM role ARN that grants access to the Amazon Kinesis Firehose stream.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter
@@ -1401,7 +1401,7 @@ class TopicRuleFirehose(dict):
         """
         A character separator that is used to separate records written to the Firehose stream. Valid values are: '\n' (newline), '\t' (tab), '\r\n' (Windows newline), ',' (comma).
         """
-        ...
+        return pulumi.get(self, "separator")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1425,7 +1425,7 @@ class TopicRuleIotAnalytic(dict):
         """
         Name of AWS IOT Analytics channel.
         """
-        ...
+        return pulumi.get(self, "channel_name")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -1433,7 +1433,7 @@ class TopicRuleIotAnalytic(dict):
         """
         The ARN of the IAM role that grants access.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1461,7 +1461,7 @@ class TopicRuleIotEvent(dict):
         """
         The name of the AWS IoT Events input.
         """
-        ...
+        return pulumi.get(self, "input_name")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -1469,7 +1469,7 @@ class TopicRuleIotEvent(dict):
         """
         The ARN of the IAM role that grants access.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="messageId")
@@ -1477,7 +1477,7 @@ class TopicRuleIotEvent(dict):
         """
         Use this to ensure that only one input (message) with a given messageId is processed by an AWS IoT Events detector.
         """
-        ...
+        return pulumi.get(self, "message_id")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1505,7 +1505,7 @@ class TopicRuleKinesis(dict):
         """
         The ARN of the IAM role that grants access to the Amazon Kinesis stream.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="streamName")
@@ -1513,7 +1513,7 @@ class TopicRuleKinesis(dict):
         """
         The name of the Amazon Kinesis stream.
         """
-        ...
+        return pulumi.get(self, "stream_name")
 
     @property
     @pulumi.getter(name="partitionKey")
@@ -1521,7 +1521,7 @@ class TopicRuleKinesis(dict):
         """
         The partition key.
         """
-        ...
+        return pulumi.get(self, "partition_key")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1542,7 +1542,7 @@ class TopicRuleLambda(dict):
         """
         The ARN of the Lambda function.
         """
-        ...
+        return pulumi.get(self, "function_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1570,7 +1570,7 @@ class TopicRuleRepublish(dict):
         """
         The ARN of the IAM role that grants access.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter
@@ -1578,7 +1578,7 @@ class TopicRuleRepublish(dict):
         """
         The name of the MQTT topic the message should be republished to.
         """
-        ...
+        return pulumi.get(self, "topic")
 
     @property
     @pulumi.getter
@@ -1586,7 +1586,7 @@ class TopicRuleRepublish(dict):
         """
         The Quality of Service (QoS) level to use when republishing messages. Valid values are 0 or 1. The default value is 0.
         """
-        ...
+        return pulumi.get(self, "qos")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1613,7 +1613,7 @@ class TopicRuleS3(dict):
         """
         The Amazon S3 bucket name.
         """
-        ...
+        return pulumi.get(self, "bucket_name")
 
     @property
     @pulumi.getter
@@ -1621,7 +1621,7 @@ class TopicRuleS3(dict):
         """
         The object key.
         """
-        ...
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -1629,7 +1629,7 @@ class TopicRuleS3(dict):
         """
         The IAM role ARN that allows access to the CloudWatch alarm.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1657,7 +1657,7 @@ class TopicRuleSns(dict):
         """
         The ARN of the IAM role that grants access.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="targetArn")
@@ -1665,7 +1665,7 @@ class TopicRuleSns(dict):
         """
         The ARN of the SNS topic.
         """
-        ...
+        return pulumi.get(self, "target_arn")
 
     @property
     @pulumi.getter(name="messageFormat")
@@ -1673,7 +1673,7 @@ class TopicRuleSns(dict):
         """
         The message format of the message to publish. Accepted values are "JSON" and "RAW".
         """
-        ...
+        return pulumi.get(self, "message_format")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1700,7 +1700,7 @@ class TopicRuleSqs(dict):
         """
         The URL of the Amazon SQS queue.
         """
-        ...
+        return pulumi.get(self, "queue_url")
 
     @property
     @pulumi.getter(name="roleArn")
@@ -1708,7 +1708,7 @@ class TopicRuleSqs(dict):
         """
         The ARN of the IAM role that grants access.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="useBase64")
@@ -1716,7 +1716,7 @@ class TopicRuleSqs(dict):
         """
         Specifies whether to use Base64 encoding.
         """
-        ...
+        return pulumi.get(self, "use_base64")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1744,7 +1744,7 @@ class TopicRuleStepFunction(dict):
         """
         The ARN of the IAM role that grants access to start execution of the state machine.
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="stateMachineName")
@@ -1752,7 +1752,7 @@ class TopicRuleStepFunction(dict):
         """
         The name of the Step Functions state machine whose execution will be started.
         """
-        ...
+        return pulumi.get(self, "state_machine_name")
 
     @property
     @pulumi.getter(name="executionNamePrefix")
@@ -1760,7 +1760,7 @@ class TopicRuleStepFunction(dict):
         """
         The prefix used to generate, along with a UUID, the unique state machine execution name.
         """
-        ...
+        return pulumi.get(self, "execution_name_prefix")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

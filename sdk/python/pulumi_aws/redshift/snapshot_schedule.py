@@ -120,7 +120,7 @@ class SnapshotSchedule(pulumi.CustomResource):
     @property
     @pulumi.getter
     def arn(self) -> str:
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -128,7 +128,7 @@ class SnapshotSchedule(pulumi.CustomResource):
         """
         The definition of the snapshot schedule. The definition is made up of schedule expressions, for example `cron(30 12 *)` or `rate(12 hours)`.
         """
-        ...
+        return pulumi.get(self, "definitions")
 
     @property
     @pulumi.getter
@@ -136,7 +136,7 @@ class SnapshotSchedule(pulumi.CustomResource):
         """
         The description of the snapshot schedule.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="forceDestroy")
@@ -144,7 +144,7 @@ class SnapshotSchedule(pulumi.CustomResource):
         """
         Whether to destroy all associated clusters with this snapshot schedule on deletion. Must be enabled and applied before attempting deletion.
         """
-        ...
+        return pulumi.get(self, "force_destroy")
 
     @property
     @pulumi.getter
@@ -152,7 +152,7 @@ class SnapshotSchedule(pulumi.CustomResource):
         """
         The snapshot schedule identifier. If omitted, this provider will assign a random, unique identifier.
         """
-        ...
+        return pulumi.get(self, "identifier")
 
     @property
     @pulumi.getter(name="identifierPrefix")
@@ -161,7 +161,7 @@ class SnapshotSchedule(pulumi.CustomResource):
         Creates a unique
         identifier beginning with the specified prefix. Conflicts with `identifier`.
         """
-        ...
+        return pulumi.get(self, "identifier_prefix")
 
     @property
     @pulumi.getter
@@ -169,7 +169,7 @@ class SnapshotSchedule(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

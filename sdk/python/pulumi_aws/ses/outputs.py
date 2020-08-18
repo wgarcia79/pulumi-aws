@@ -42,7 +42,7 @@ class EventDestinationCloudwatchDestination(dict):
         """
         The default value for the event
         """
-        ...
+        return pulumi.get(self, "default_value")
 
     @property
     @pulumi.getter(name="dimensionName")
@@ -50,7 +50,7 @@ class EventDestinationCloudwatchDestination(dict):
         """
         The name for the dimension
         """
-        ...
+        return pulumi.get(self, "dimension_name")
 
     @property
     @pulumi.getter(name="valueSource")
@@ -58,7 +58,7 @@ class EventDestinationCloudwatchDestination(dict):
         """
         The source for the value. It can be either `"messageTag"` or `"emailHeader"`
         """
-        ...
+        return pulumi.get(self, "value_source")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -82,7 +82,7 @@ class EventDestinationKinesisDestination(dict):
         """
         The ARN of the role that has permissions to access the Kinesis Stream
         """
-        ...
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="streamArn")
@@ -90,7 +90,7 @@ class EventDestinationKinesisDestination(dict):
         """
         The ARN of the Kinesis Stream
         """
-        ...
+        return pulumi.get(self, "stream_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -111,7 +111,7 @@ class EventDestinationSnsDestination(dict):
         """
         The ARN of the SNS topic
         """
-        ...
+        return pulumi.get(self, "topic_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -138,7 +138,7 @@ class ReceiptRuleAddHeaderAction(dict):
         """
         The name of the header to add
         """
-        ...
+        return pulumi.get(self, "header_name")
 
     @property
     @pulumi.getter(name="headerValue")
@@ -146,7 +146,7 @@ class ReceiptRuleAddHeaderAction(dict):
         """
         The value of the header to add
         """
-        ...
+        return pulumi.get(self, "header_value")
 
     @property
     @pulumi.getter
@@ -154,7 +154,7 @@ class ReceiptRuleAddHeaderAction(dict):
         """
         The position of the action in the receipt rule
         """
-        ...
+        return pulumi.get(self, "position")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -192,7 +192,7 @@ class ReceiptRuleBounceAction(dict):
         """
         The message to send
         """
-        ...
+        return pulumi.get(self, "message")
 
     @property
     @pulumi.getter
@@ -200,7 +200,7 @@ class ReceiptRuleBounceAction(dict):
         """
         The position of the action in the receipt rule
         """
-        ...
+        return pulumi.get(self, "position")
 
     @property
     @pulumi.getter
@@ -208,7 +208,7 @@ class ReceiptRuleBounceAction(dict):
         """
         The email address of the sender
         """
-        ...
+        return pulumi.get(self, "sender")
 
     @property
     @pulumi.getter(name="smtpReplyCode")
@@ -216,7 +216,7 @@ class ReceiptRuleBounceAction(dict):
         """
         The RFC 5321 SMTP reply code
         """
-        ...
+        return pulumi.get(self, "smtp_reply_code")
 
     @property
     @pulumi.getter(name="statusCode")
@@ -224,7 +224,7 @@ class ReceiptRuleBounceAction(dict):
         """
         The RFC 3463 SMTP enhanced status code
         """
-        ...
+        return pulumi.get(self, "status_code")
 
     @property
     @pulumi.getter(name="topicArn")
@@ -232,7 +232,7 @@ class ReceiptRuleBounceAction(dict):
         """
         The ARN of an SNS topic to notify
         """
-        ...
+        return pulumi.get(self, "topic_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -264,7 +264,7 @@ class ReceiptRuleLambdaAction(dict):
         """
         The ARN of the Lambda function to invoke
         """
-        ...
+        return pulumi.get(self, "function_arn")
 
     @property
     @pulumi.getter
@@ -272,7 +272,7 @@ class ReceiptRuleLambdaAction(dict):
         """
         The position of the action in the receipt rule
         """
-        ...
+        return pulumi.get(self, "position")
 
     @property
     @pulumi.getter(name="invocationType")
@@ -280,7 +280,7 @@ class ReceiptRuleLambdaAction(dict):
         """
         Event or RequestResponse
         """
-        ...
+        return pulumi.get(self, "invocation_type")
 
     @property
     @pulumi.getter(name="topicArn")
@@ -288,7 +288,7 @@ class ReceiptRuleLambdaAction(dict):
         """
         The ARN of an SNS topic to notify
         """
-        ...
+        return pulumi.get(self, "topic_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -324,7 +324,7 @@ class ReceiptRuleS3Action(dict):
         """
         The name of the S3 bucket
         """
-        ...
+        return pulumi.get(self, "bucket_name")
 
     @property
     @pulumi.getter
@@ -332,7 +332,7 @@ class ReceiptRuleS3Action(dict):
         """
         The position of the action in the receipt rule
         """
-        ...
+        return pulumi.get(self, "position")
 
     @property
     @pulumi.getter(name="kmsKeyArn")
@@ -340,7 +340,7 @@ class ReceiptRuleS3Action(dict):
         """
         The ARN of the KMS key
         """
-        ...
+        return pulumi.get(self, "kms_key_arn")
 
     @property
     @pulumi.getter(name="objectKeyPrefix")
@@ -348,7 +348,7 @@ class ReceiptRuleS3Action(dict):
         """
         The key prefix of the S3 bucket
         """
-        ...
+        return pulumi.get(self, "object_key_prefix")
 
     @property
     @pulumi.getter(name="topicArn")
@@ -356,7 +356,7 @@ class ReceiptRuleS3Action(dict):
         """
         The ARN of an SNS topic to notify
         """
-        ...
+        return pulumi.get(self, "topic_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -380,7 +380,7 @@ class ReceiptRuleSnsAction(dict):
         """
         The position of the action in the receipt rule
         """
-        ...
+        return pulumi.get(self, "position")
 
     @property
     @pulumi.getter(name="topicArn")
@@ -388,7 +388,7 @@ class ReceiptRuleSnsAction(dict):
         """
         The ARN of an SNS topic to notify
         """
-        ...
+        return pulumi.get(self, "topic_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -416,7 +416,7 @@ class ReceiptRuleStopAction(dict):
         """
         The position of the action in the receipt rule
         """
-        ...
+        return pulumi.get(self, "position")
 
     @property
     @pulumi.getter
@@ -424,7 +424,7 @@ class ReceiptRuleStopAction(dict):
         """
         The scope to apply
         """
-        ...
+        return pulumi.get(self, "scope")
 
     @property
     @pulumi.getter(name="topicArn")
@@ -432,7 +432,7 @@ class ReceiptRuleStopAction(dict):
         """
         The ARN of an SNS topic to notify
         """
-        ...
+        return pulumi.get(self, "topic_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -460,7 +460,7 @@ class ReceiptRuleWorkmailAction(dict):
         """
         The ARN of the WorkMail organization
         """
-        ...
+        return pulumi.get(self, "organization_arn")
 
     @property
     @pulumi.getter
@@ -468,7 +468,7 @@ class ReceiptRuleWorkmailAction(dict):
         """
         The position of the action in the receipt rule
         """
-        ...
+        return pulumi.get(self, "position")
 
     @property
     @pulumi.getter(name="topicArn")
@@ -476,7 +476,7 @@ class ReceiptRuleWorkmailAction(dict):
         """
         The ARN of an SNS topic to notify
         """
-        ...
+        return pulumi.get(self, "topic_arn")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

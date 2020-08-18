@@ -166,7 +166,7 @@ class Service(pulumi.CustomResource):
         """
         The ARN of the service.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -174,7 +174,7 @@ class Service(pulumi.CustomResource):
         """
         The description of the service.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="dnsConfig")
@@ -182,7 +182,7 @@ class Service(pulumi.CustomResource):
         """
         A complex type that contains information about the resource record sets that you want Amazon Route 53 to create when you register an instance.
         """
-        ...
+        return pulumi.get(self, "dns_config")
 
     @property
     @pulumi.getter(name="healthCheckConfig")
@@ -190,7 +190,7 @@ class Service(pulumi.CustomResource):
         """
         A complex type that contains settings for an optional health check. Only for Public DNS namespaces.
         """
-        ...
+        return pulumi.get(self, "health_check_config")
 
     @property
     @pulumi.getter(name="healthCheckCustomConfig")
@@ -198,7 +198,7 @@ class Service(pulumi.CustomResource):
         """
         A complex type that contains settings for ECS managed health checks.
         """
-        ...
+        return pulumi.get(self, "health_check_custom_config")
 
     @property
     @pulumi.getter
@@ -206,7 +206,7 @@ class Service(pulumi.CustomResource):
         """
         The name of the service.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="namespaceId")
@@ -214,7 +214,7 @@ class Service(pulumi.CustomResource):
         """
         The ID of the namespace to use for DNS configuration.
         """
-        ...
+        return pulumi.get(self, "namespace_id")
 
     @property
     @pulumi.getter
@@ -222,7 +222,7 @@ class Service(pulumi.CustomResource):
         """
         A map of tags to assign to the service.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

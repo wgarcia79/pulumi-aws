@@ -43,7 +43,7 @@ class GetSecurityGroupsResult:
     @property
     @pulumi.getter
     def filters(self) -> Optional[List['outputs.GetSecurityGroupsFilterResult']]:
-        ...
+        return pulumi.get(self, "filters")
 
     @property
     @pulumi.getter
@@ -51,7 +51,7 @@ class GetSecurityGroupsResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -59,12 +59,12 @@ class GetSecurityGroupsResult:
         """
         IDs of the matches security groups.
         """
-        ...
+        return pulumi.get(self, "ids")
 
     @property
     @pulumi.getter
     def tags(self) -> Mapping[str, str]:
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcIds")
@@ -73,7 +73,7 @@ class GetSecurityGroupsResult:
         The VPC IDs of the matched security groups. The data source's tag or filter *will span VPCs*
         unless the `vpc-id` filter is also used.
         """
-        ...
+        return pulumi.get(self, "vpc_ids")
 
 
 

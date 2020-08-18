@@ -141,7 +141,7 @@ class RolePolicy(pulumi.CustomResource):
         The name of the role policy. If omitted, this provider will
         assign a random, unique name.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="namePrefix")
@@ -150,7 +150,7 @@ class RolePolicy(pulumi.CustomResource):
         Creates a unique name beginning with the specified
         prefix. Conflicts with `name`.
         """
-        ...
+        return pulumi.get(self, "name_prefix")
 
     @property
     @pulumi.getter
@@ -158,7 +158,7 @@ class RolePolicy(pulumi.CustomResource):
         """
         The policy document. This is a JSON formatted string.
         """
-        ...
+        return pulumi.get(self, "policy")
 
     @property
     @pulumi.getter
@@ -166,7 +166,7 @@ class RolePolicy(pulumi.CustomResource):
         """
         The IAM role to attach to the policy.
         """
-        ...
+        return pulumi.get(self, "role")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

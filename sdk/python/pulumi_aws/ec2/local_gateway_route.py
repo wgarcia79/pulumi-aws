@@ -107,7 +107,7 @@ class LocalGatewayRoute(pulumi.CustomResource):
         """
         IPv4 CIDR range used for destination matches. Routing decisions are based on the most specific match.
         """
-        ...
+        return pulumi.get(self, "destination_cidr_block")
 
     @property
     @pulumi.getter(name="localGatewayRouteTableId")
@@ -115,7 +115,7 @@ class LocalGatewayRoute(pulumi.CustomResource):
         """
         Identifier of EC2 Local Gateway Route Table.
         """
-        ...
+        return pulumi.get(self, "local_gateway_route_table_id")
 
     @property
     @pulumi.getter(name="localGatewayVirtualInterfaceGroupId")
@@ -123,7 +123,7 @@ class LocalGatewayRoute(pulumi.CustomResource):
         """
         Identifier of EC2 Local Gateway Virtual Interface Group.
         """
-        ...
+        return pulumi.get(self, "local_gateway_virtual_interface_group_id")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

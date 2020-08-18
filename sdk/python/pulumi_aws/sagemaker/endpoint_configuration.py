@@ -123,7 +123,7 @@ class EndpointConfiguration(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) assigned by AWS to this endpoint configuration.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="kmsKeyArn")
@@ -131,7 +131,7 @@ class EndpointConfiguration(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of a AWS Key Management Service key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance that hosts the endpoint.
         """
-        ...
+        return pulumi.get(self, "kms_key_arn")
 
     @property
     @pulumi.getter
@@ -139,7 +139,7 @@ class EndpointConfiguration(pulumi.CustomResource):
         """
         The name of the endpoint configuration. If omitted, this provider will assign a random, unique name.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="productionVariants")
@@ -147,7 +147,7 @@ class EndpointConfiguration(pulumi.CustomResource):
         """
         Fields are documented below.
         """
-        ...
+        return pulumi.get(self, "production_variants")
 
     @property
     @pulumi.getter
@@ -155,7 +155,7 @@ class EndpointConfiguration(pulumi.CustomResource):
         """
         A mapping of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

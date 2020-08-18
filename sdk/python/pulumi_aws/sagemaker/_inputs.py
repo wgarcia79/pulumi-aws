@@ -48,11 +48,11 @@ class EndpointConfigurationProductionVariantArgs:
         """
         Initial number of instances used for auto-scaling.
         """
-        ...
+        return pulumi.get(self, "initial_instance_count")
 
     @initial_instance_count.setter
     def initial_instance_count(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "initial_instance_count", value)
 
     @property
     @pulumi.getter(name="instanceType")
@@ -60,11 +60,11 @@ class EndpointConfigurationProductionVariantArgs:
         """
         The type of instance to start.
         """
-        ...
+        return pulumi.get(self, "instance_type")
 
     @instance_type.setter
     def instance_type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "instance_type", value)
 
     @property
     @pulumi.getter(name="modelName")
@@ -72,11 +72,11 @@ class EndpointConfigurationProductionVariantArgs:
         """
         The name of the model to use.
         """
-        ...
+        return pulumi.get(self, "model_name")
 
     @model_name.setter
     def model_name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "model_name", value)
 
     @property
     @pulumi.getter(name="acceleratorType")
@@ -84,11 +84,11 @@ class EndpointConfigurationProductionVariantArgs:
         """
         The size of the Elastic Inference (EI) instance to use for the production variant.
         """
-        ...
+        return pulumi.get(self, "accelerator_type")
 
     @accelerator_type.setter
     def accelerator_type(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "accelerator_type", value)
 
     @property
     @pulumi.getter(name="initialVariantWeight")
@@ -96,11 +96,11 @@ class EndpointConfigurationProductionVariantArgs:
         """
         Determines initial traffic distribution among all of the models that you specify in the endpoint configuration. If unspecified, it defaults to 1.0.
         """
-        ...
+        return pulumi.get(self, "initial_variant_weight")
 
     @initial_variant_weight.setter
     def initial_variant_weight(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "initial_variant_weight", value)
 
     @property
     @pulumi.getter(name="variantName")
@@ -108,11 +108,11 @@ class EndpointConfigurationProductionVariantArgs:
         """
         The name of the variant. If omitted, this provider will assign a random, unique name.
         """
-        ...
+        return pulumi.get(self, "variant_name")
 
     @variant_name.setter
     def variant_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "variant_name", value)
 
 
 @pulumi.input_type
@@ -143,11 +143,11 @@ class ModelContainerArgs:
         """
         The registry path where the inference code image is stored in Amazon ECR.
         """
-        ...
+        return pulumi.get(self, "image")
 
     @image.setter
     def image(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "image", value)
 
     @property
     @pulumi.getter(name="containerHostname")
@@ -155,11 +155,11 @@ class ModelContainerArgs:
         """
         The DNS host name for the container.
         """
-        ...
+        return pulumi.get(self, "container_hostname")
 
     @container_hostname.setter
     def container_hostname(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "container_hostname", value)
 
     @property
     @pulumi.getter
@@ -168,11 +168,11 @@ class ModelContainerArgs:
         Environment variables for the Docker container.
         A list of key value pairs.
         """
-        ...
+        return pulumi.get(self, "environment")
 
     @environment.setter
     def environment(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "environment", value)
 
     @property
     @pulumi.getter(name="modelDataUrl")
@@ -180,11 +180,11 @@ class ModelContainerArgs:
         """
         The URL for the S3 location where model artifacts are stored.
         """
-        ...
+        return pulumi.get(self, "model_data_url")
 
     @model_data_url.setter
     def model_data_url(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "model_data_url", value)
 
 
 @pulumi.input_type
@@ -215,11 +215,11 @@ class ModelPrimaryContainerArgs:
         """
         The registry path where the inference code image is stored in Amazon ECR.
         """
-        ...
+        return pulumi.get(self, "image")
 
     @image.setter
     def image(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "image", value)
 
     @property
     @pulumi.getter(name="containerHostname")
@@ -227,11 +227,11 @@ class ModelPrimaryContainerArgs:
         """
         The DNS host name for the container.
         """
-        ...
+        return pulumi.get(self, "container_hostname")
 
     @container_hostname.setter
     def container_hostname(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "container_hostname", value)
 
     @property
     @pulumi.getter
@@ -240,11 +240,11 @@ class ModelPrimaryContainerArgs:
         Environment variables for the Docker container.
         A list of key value pairs.
         """
-        ...
+        return pulumi.get(self, "environment")
 
     @environment.setter
     def environment(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "environment", value)
 
     @property
     @pulumi.getter(name="modelDataUrl")
@@ -252,11 +252,11 @@ class ModelPrimaryContainerArgs:
         """
         The URL for the S3 location where model artifacts are stored.
         """
-        ...
+        return pulumi.get(self, "model_data_url")
 
     @model_data_url.setter
     def model_data_url(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "model_data_url", value)
 
 
 @pulumi.input_type
@@ -270,19 +270,19 @@ class ModelVpcConfigArgs:
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> pulumi.Input[List[pulumi.Input[str]]]:
-        ...
+        return pulumi.get(self, "security_group_ids")
 
     @security_group_ids.setter
     def security_group_ids(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "security_group_ids", value)
 
     @property
     @pulumi.getter
     def subnets(self) -> pulumi.Input[List[pulumi.Input[str]]]:
-        ...
+        return pulumi.get(self, "subnets")
 
     @subnets.setter
     def subnets(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "subnets", value)
 
 

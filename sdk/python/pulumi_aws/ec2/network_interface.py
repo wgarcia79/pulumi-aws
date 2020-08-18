@@ -154,7 +154,7 @@ class NetworkInterface(pulumi.CustomResource):
         """
         Block to define the attachment of the ENI. Documented below.
         """
-        ...
+        return pulumi.get(self, "attachments")
 
     @property
     @pulumi.getter
@@ -162,7 +162,7 @@ class NetworkInterface(pulumi.CustomResource):
         """
         A description for the network interface.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="macAddress")
@@ -170,12 +170,12 @@ class NetworkInterface(pulumi.CustomResource):
         """
         The MAC address of the network interface.
         """
-        ...
+        return pulumi.get(self, "mac_address")
 
     @property
     @pulumi.getter(name="outpostArn")
     def outpost_arn(self) -> str:
-        ...
+        return pulumi.get(self, "outpost_arn")
 
     @property
     @pulumi.getter(name="privateDnsName")
@@ -183,12 +183,12 @@ class NetworkInterface(pulumi.CustomResource):
         """
         The private DNS name of the network interface (IPv4).
         """
-        ...
+        return pulumi.get(self, "private_dns_name")
 
     @property
     @pulumi.getter(name="privateIp")
     def private_ip(self) -> str:
-        ...
+        return pulumi.get(self, "private_ip")
 
     @property
     @pulumi.getter(name="privateIps")
@@ -196,7 +196,7 @@ class NetworkInterface(pulumi.CustomResource):
         """
         List of private IPs to assign to the ENI.
         """
-        ...
+        return pulumi.get(self, "private_ips")
 
     @property
     @pulumi.getter(name="privateIpsCount")
@@ -204,7 +204,7 @@ class NetworkInterface(pulumi.CustomResource):
         """
         Number of secondary private IPs to assign to the ENI. The total number of private IPs will be 1 + private_ips_count, as a primary private IP will be assiged to an ENI by default.
         """
-        ...
+        return pulumi.get(self, "private_ips_count")
 
     @property
     @pulumi.getter(name="securityGroups")
@@ -212,7 +212,7 @@ class NetworkInterface(pulumi.CustomResource):
         """
         List of security group IDs to assign to the ENI.
         """
-        ...
+        return pulumi.get(self, "security_groups")
 
     @property
     @pulumi.getter(name="sourceDestCheck")
@@ -220,7 +220,7 @@ class NetworkInterface(pulumi.CustomResource):
         """
         Whether to enable source destination checking for the ENI. Default true.
         """
-        ...
+        return pulumi.get(self, "source_dest_check")
 
     @property
     @pulumi.getter(name="subnetId")
@@ -228,7 +228,7 @@ class NetworkInterface(pulumi.CustomResource):
         """
         Subnet ID to create the ENI in.
         """
-        ...
+        return pulumi.get(self, "subnet_id")
 
     @property
     @pulumi.getter
@@ -236,7 +236,7 @@ class NetworkInterface(pulumi.CustomResource):
         """
         A map of tags to assign to the resource.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

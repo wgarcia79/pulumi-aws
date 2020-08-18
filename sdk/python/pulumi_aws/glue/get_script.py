@@ -46,12 +46,12 @@ class GetScriptResult:
     @property
     @pulumi.getter(name="dagEdges")
     def dag_edges(self) -> List['outputs.GetScriptDagEdgeResult']:
-        ...
+        return pulumi.get(self, "dag_edges")
 
     @property
     @pulumi.getter(name="dagNodes")
     def dag_nodes(self) -> List['outputs.GetScriptDagNodeResult']:
-        ...
+        return pulumi.get(self, "dag_nodes")
 
     @property
     @pulumi.getter
@@ -59,12 +59,12 @@ class GetScriptResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def language(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "language")
 
     @property
     @pulumi.getter(name="pythonScript")
@@ -72,7 +72,7 @@ class GetScriptResult:
         """
         The Python script generated from the DAG when the `language` argument is set to `PYTHON`.
         """
-        ...
+        return pulumi.get(self, "python_script")
 
     @property
     @pulumi.getter(name="scalaCode")
@@ -80,7 +80,7 @@ class GetScriptResult:
         """
         The Scala code generated from the DAG when the `language` argument is set to `SCALA`.
         """
-        ...
+        return pulumi.get(self, "scala_code")
 
 
 

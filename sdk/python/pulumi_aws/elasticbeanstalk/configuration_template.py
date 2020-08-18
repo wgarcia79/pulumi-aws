@@ -139,7 +139,7 @@ class ConfigurationTemplate(pulumi.CustomResource):
         """
         name of the application to associate with this configuration template
         """
-        ...
+        return pulumi.get(self, "application")
 
     @property
     @pulumi.getter
@@ -147,7 +147,7 @@ class ConfigurationTemplate(pulumi.CustomResource):
         """
         Short description of the Template
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="environmentId")
@@ -155,7 +155,7 @@ class ConfigurationTemplate(pulumi.CustomResource):
         """
         The ID of the environment used with this configuration template
         """
-        ...
+        return pulumi.get(self, "environment_id")
 
     @property
     @pulumi.getter
@@ -163,7 +163,7 @@ class ConfigurationTemplate(pulumi.CustomResource):
         """
         A unique name for this Template.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -173,7 +173,7 @@ class ConfigurationTemplate(pulumi.CustomResource):
         override specific values that are set as defaults. The format is detailed
         below in Option Settings
         """
-        ...
+        return pulumi.get(self, "settings")
 
     @property
     @pulumi.getter(name="solutionStackName")
@@ -182,7 +182,7 @@ class ConfigurationTemplate(pulumi.CustomResource):
         A solution stack to base your Template
         off of. Example stacks can be found in the [Amazon API documentation](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.platforms.html)
         """
-        ...
+        return pulumi.get(self, "solution_stack_name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

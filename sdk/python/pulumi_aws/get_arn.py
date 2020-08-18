@@ -50,12 +50,12 @@ class GetArnResult:
         """
         The [ID](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html) of the AWS account that owns the resource, without the hyphens.
         """
-        ...
+        return pulumi.get(self, "account")
 
     @property
     @pulumi.getter
     def arn(self) -> str:
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -63,7 +63,7 @@ class GetArnResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -71,7 +71,7 @@ class GetArnResult:
         """
         The partition that the resource is in.
         """
-        ...
+        return pulumi.get(self, "partition")
 
     @property
     @pulumi.getter
@@ -80,7 +80,7 @@ class GetArnResult:
         The region the resource resides in.
         Note that the ARNs for some resources do not require a region, so this component might be omitted.
         """
-        ...
+        return pulumi.get(self, "region")
 
     @property
     @pulumi.getter
@@ -89,7 +89,7 @@ class GetArnResult:
         The content of this part of the ARN varies by service.
         It often includes an indicator of the type of resource—for example, an IAM user or Amazon RDS database —followed by a slash (/) or a colon (:), followed by the resource name itself.
         """
-        ...
+        return pulumi.get(self, "resource")
 
     @property
     @pulumi.getter
@@ -97,7 +97,7 @@ class GetArnResult:
         """
         The [service namespace](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#genref-aws-service-namespaces) that identifies the AWS product.
         """
-        ...
+        return pulumi.get(self, "service")
 
 
 

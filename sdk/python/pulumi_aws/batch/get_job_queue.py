@@ -54,7 +54,7 @@ class GetJobQueueResult:
         """
         The ARN of the job queue.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter(name="computeEnvironmentOrders")
@@ -65,7 +65,7 @@ class GetJobQueueResult:
         * `compute_environment_order.#.order` - The order of the compute environment.
         * `compute_environment_order.#.compute_environment` - The ARN of the compute environment.
         """
-        ...
+        return pulumi.get(self, "compute_environment_orders")
 
     @property
     @pulumi.getter
@@ -73,12 +73,12 @@ class GetJobQueueResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -87,7 +87,7 @@ class GetJobQueueResult:
         The priority of the job queue. Job queues with a higher priority are evaluated first when
         associated with the same compute environment.
         """
-        ...
+        return pulumi.get(self, "priority")
 
     @property
     @pulumi.getter
@@ -95,7 +95,7 @@ class GetJobQueueResult:
         """
         Describes the ability of the queue to accept new jobs (for example, `ENABLED` or `DISABLED`).
         """
-        ...
+        return pulumi.get(self, "state")
 
     @property
     @pulumi.getter
@@ -103,7 +103,7 @@ class GetJobQueueResult:
         """
         The current status of the job queue (for example, `CREATING` or `VALID`).
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter(name="statusReason")
@@ -112,7 +112,7 @@ class GetJobQueueResult:
         A short, human-readable string to provide additional details about the current status
         of the job queue.
         """
-        ...
+        return pulumi.get(self, "status_reason")
 
 
 

@@ -63,11 +63,11 @@ class CatalogTablePartitionKeyArgs:
         """
         Name of the SerDe.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -75,11 +75,11 @@ class CatalogTablePartitionKeyArgs:
         """
         Free-form text comment.
         """
-        ...
+        return pulumi.get(self, "comment")
 
     @comment.setter
     def comment(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "comment", value)
 
     @property
     @pulumi.getter
@@ -87,11 +87,11 @@ class CatalogTablePartitionKeyArgs:
         """
         The datatype of data in the Column.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "type", value)
 
 
 @pulumi.input_type
@@ -154,11 +154,11 @@ class CatalogTableStorageDescriptorArgs:
         """
         A list of reducer grouping columns, clustering columns, and bucketing columns in the table.
         """
-        ...
+        return pulumi.get(self, "bucket_columns")
 
     @bucket_columns.setter
     def bucket_columns(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "bucket_columns", value)
 
     @property
     @pulumi.getter
@@ -166,11 +166,11 @@ class CatalogTableStorageDescriptorArgs:
         """
         A list of the Columns in the table.
         """
-        ...
+        return pulumi.get(self, "columns")
 
     @columns.setter
     def columns(self, value: Optional[pulumi.Input[List[pulumi.Input['CatalogTableStorageDescriptorColumnArgs']]]]):
-        ...
+        pulumi.set(self, "columns", value)
 
     @property
     @pulumi.getter
@@ -178,11 +178,11 @@ class CatalogTableStorageDescriptorArgs:
         """
         True if the data in the table is compressed, or False if not.
         """
-        ...
+        return pulumi.get(self, "compressed")
 
     @compressed.setter
     def compressed(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "compressed", value)
 
     @property
     @pulumi.getter(name="inputFormat")
@@ -190,11 +190,11 @@ class CatalogTableStorageDescriptorArgs:
         """
         The input format: SequenceFileInputFormat (binary), or TextInputFormat, or a custom format.
         """
-        ...
+        return pulumi.get(self, "input_format")
 
     @input_format.setter
     def input_format(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "input_format", value)
 
     @property
     @pulumi.getter
@@ -202,11 +202,11 @@ class CatalogTableStorageDescriptorArgs:
         """
         The physical location of the table. By default this takes the form of the warehouse location, followed by the database location in the warehouse, followed by the table name.
         """
-        ...
+        return pulumi.get(self, "location")
 
     @location.setter
     def location(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "location", value)
 
     @property
     @pulumi.getter(name="numberOfBuckets")
@@ -214,11 +214,11 @@ class CatalogTableStorageDescriptorArgs:
         """
         Must be specified if the table contains any dimension columns.
         """
-        ...
+        return pulumi.get(self, "number_of_buckets")
 
     @number_of_buckets.setter
     def number_of_buckets(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "number_of_buckets", value)
 
     @property
     @pulumi.getter(name="outputFormat")
@@ -226,11 +226,11 @@ class CatalogTableStorageDescriptorArgs:
         """
         The output format: SequenceFileOutputFormat (binary), or IgnoreKeyTextOutputFormat, or a custom format.
         """
-        ...
+        return pulumi.get(self, "output_format")
 
     @output_format.setter
     def output_format(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "output_format", value)
 
     @property
     @pulumi.getter
@@ -238,11 +238,11 @@ class CatalogTableStorageDescriptorArgs:
         """
         A map of initialization parameters for the SerDe, in key-value form.
         """
-        ...
+        return pulumi.get(self, "parameters")
 
     @parameters.setter
     def parameters(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "parameters", value)
 
     @property
     @pulumi.getter(name="serDeInfo")
@@ -250,11 +250,11 @@ class CatalogTableStorageDescriptorArgs:
         """
         Serialization/deserialization (SerDe) information.
         """
-        ...
+        return pulumi.get(self, "ser_de_info")
 
     @ser_de_info.setter
     def ser_de_info(self, value: Optional[pulumi.Input['CatalogTableStorageDescriptorSerDeInfoArgs']]):
-        ...
+        pulumi.set(self, "ser_de_info", value)
 
     @property
     @pulumi.getter(name="skewedInfo")
@@ -262,11 +262,11 @@ class CatalogTableStorageDescriptorArgs:
         """
         Information about values that appear very frequently in a column (skewed values).
         """
-        ...
+        return pulumi.get(self, "skewed_info")
 
     @skewed_info.setter
     def skewed_info(self, value: Optional[pulumi.Input['CatalogTableStorageDescriptorSkewedInfoArgs']]):
-        ...
+        pulumi.set(self, "skewed_info", value)
 
     @property
     @pulumi.getter(name="sortColumns")
@@ -274,11 +274,11 @@ class CatalogTableStorageDescriptorArgs:
         """
         A list of Order objects specifying the sort order of each bucket in the table.
         """
-        ...
+        return pulumi.get(self, "sort_columns")
 
     @sort_columns.setter
     def sort_columns(self, value: Optional[pulumi.Input[List[pulumi.Input['CatalogTableStorageDescriptorSortColumnArgs']]]]):
-        ...
+        pulumi.set(self, "sort_columns", value)
 
     @property
     @pulumi.getter(name="storedAsSubDirectories")
@@ -286,11 +286,11 @@ class CatalogTableStorageDescriptorArgs:
         """
         True if the table data is stored in subdirectories, or False if not.
         """
-        ...
+        return pulumi.get(self, "stored_as_sub_directories")
 
     @stored_as_sub_directories.setter
     def stored_as_sub_directories(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "stored_as_sub_directories", value)
 
 
 @pulumi.input_type
@@ -316,11 +316,11 @@ class CatalogTableStorageDescriptorColumnArgs:
         """
         Name of the SerDe.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -328,11 +328,11 @@ class CatalogTableStorageDescriptorColumnArgs:
         """
         Free-form text comment.
         """
-        ...
+        return pulumi.get(self, "comment")
 
     @comment.setter
     def comment(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "comment", value)
 
     @property
     @pulumi.getter
@@ -340,11 +340,11 @@ class CatalogTableStorageDescriptorColumnArgs:
         """
         The datatype of data in the Column.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "type", value)
 
 
 @pulumi.input_type
@@ -371,11 +371,11 @@ class CatalogTableStorageDescriptorSerDeInfoArgs:
         """
         Name of the SerDe.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -383,11 +383,11 @@ class CatalogTableStorageDescriptorSerDeInfoArgs:
         """
         A map of initialization parameters for the SerDe, in key-value form.
         """
-        ...
+        return pulumi.get(self, "parameters")
 
     @parameters.setter
     def parameters(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "parameters", value)
 
     @property
     @pulumi.getter(name="serializationLibrary")
@@ -395,11 +395,11 @@ class CatalogTableStorageDescriptorSerDeInfoArgs:
         """
         Usually the class that implements the SerDe. An example is: org.apache.hadoop.hive.serde2.columnar.ColumnarSerDe.
         """
-        ...
+        return pulumi.get(self, "serialization_library")
 
     @serialization_library.setter
     def serialization_library(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "serialization_library", value)
 
 
 @pulumi.input_type
@@ -426,11 +426,11 @@ class CatalogTableStorageDescriptorSkewedInfoArgs:
         """
         A list of names of columns that contain skewed values.
         """
-        ...
+        return pulumi.get(self, "skewed_column_names")
 
     @skewed_column_names.setter
     def skewed_column_names(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "skewed_column_names", value)
 
     @property
     @pulumi.getter(name="skewedColumnValueLocationMaps")
@@ -438,11 +438,11 @@ class CatalogTableStorageDescriptorSkewedInfoArgs:
         """
         A list of values that appear so frequently as to be considered skewed.
         """
-        ...
+        return pulumi.get(self, "skewed_column_value_location_maps")
 
     @skewed_column_value_location_maps.setter
     def skewed_column_value_location_maps(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "skewed_column_value_location_maps", value)
 
     @property
     @pulumi.getter(name="skewedColumnValues")
@@ -450,11 +450,11 @@ class CatalogTableStorageDescriptorSkewedInfoArgs:
         """
         A map of skewed values to the columns that contain them.
         """
-        ...
+        return pulumi.get(self, "skewed_column_values")
 
     @skewed_column_values.setter
     def skewed_column_values(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "skewed_column_values", value)
 
 
 @pulumi.input_type
@@ -475,11 +475,11 @@ class CatalogTableStorageDescriptorSortColumnArgs:
         """
         The name of the column.
         """
-        ...
+        return pulumi.get(self, "column")
 
     @column.setter
     def column(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "column", value)
 
     @property
     @pulumi.getter(name="sortOrder")
@@ -487,11 +487,11 @@ class CatalogTableStorageDescriptorSortColumnArgs:
         """
         Indicates that the column is sorted in ascending order (== 1), or in descending order (==0).
         """
-        ...
+        return pulumi.get(self, "sort_order")
 
     @sort_order.setter
     def sort_order(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "sort_order", value)
 
 
 @pulumi.input_type
@@ -530,11 +530,11 @@ class ClassifierCsvClassifierArgs:
         """
         Enables the processing of files that contain only one column.
         """
-        ...
+        return pulumi.get(self, "allow_single_column")
 
     @allow_single_column.setter
     def allow_single_column(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "allow_single_column", value)
 
     @property
     @pulumi.getter(name="containsHeader")
@@ -542,11 +542,11 @@ class ClassifierCsvClassifierArgs:
         """
         Indicates whether the CSV file contains a header. This can be one of "ABSENT", "PRESENT", or "UNKNOWN".
         """
-        ...
+        return pulumi.get(self, "contains_header")
 
     @contains_header.setter
     def contains_header(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "contains_header", value)
 
     @property
     @pulumi.getter
@@ -554,11 +554,11 @@ class ClassifierCsvClassifierArgs:
         """
         The delimiter used in the Csv to separate columns.
         """
-        ...
+        return pulumi.get(self, "delimiter")
 
     @delimiter.setter
     def delimiter(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "delimiter", value)
 
     @property
     @pulumi.getter(name="disableValueTrimming")
@@ -566,11 +566,11 @@ class ClassifierCsvClassifierArgs:
         """
         Specifies whether to trim column values.
         """
-        ...
+        return pulumi.get(self, "disable_value_trimming")
 
     @disable_value_trimming.setter
     def disable_value_trimming(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "disable_value_trimming", value)
 
     @property
     @pulumi.getter
@@ -578,11 +578,11 @@ class ClassifierCsvClassifierArgs:
         """
         A list of strings representing column names.
         """
-        ...
+        return pulumi.get(self, "headers")
 
     @headers.setter
     def headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "headers", value)
 
     @property
     @pulumi.getter(name="quoteSymbol")
@@ -590,11 +590,11 @@ class ClassifierCsvClassifierArgs:
         """
         A custom symbol to denote what combines content into a single column value. It must be different from the column delimiter.
         """
-        ...
+        return pulumi.get(self, "quote_symbol")
 
     @quote_symbol.setter
     def quote_symbol(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "quote_symbol", value)
 
 
 @pulumi.input_type
@@ -619,11 +619,11 @@ class ClassifierGrokClassifierArgs:
         """
         An identifier of the data format that the classifier matches.
         """
-        ...
+        return pulumi.get(self, "classification")
 
     @classification.setter
     def classification(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "classification", value)
 
     @property
     @pulumi.getter(name="grokPattern")
@@ -631,11 +631,11 @@ class ClassifierGrokClassifierArgs:
         """
         The grok pattern used by this classifier.
         """
-        ...
+        return pulumi.get(self, "grok_pattern")
 
     @grok_pattern.setter
     def grok_pattern(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "grok_pattern", value)
 
     @property
     @pulumi.getter(name="customPatterns")
@@ -643,11 +643,11 @@ class ClassifierGrokClassifierArgs:
         """
         Custom grok patterns used by this classifier.
         """
-        ...
+        return pulumi.get(self, "custom_patterns")
 
     @custom_patterns.setter
     def custom_patterns(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "custom_patterns", value)
 
 
 @pulumi.input_type
@@ -665,11 +665,11 @@ class ClassifierJsonClassifierArgs:
         """
         A `JsonPath` string defining the JSON data for the classifier to classify. AWS Glue supports a subset of `JsonPath`, as described in [Writing JsonPath Custom Classifiers](https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-json).
         """
-        ...
+        return pulumi.get(self, "json_path")
 
     @json_path.setter
     def json_path(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "json_path", value)
 
 
 @pulumi.input_type
@@ -690,11 +690,11 @@ class ClassifierXmlClassifierArgs:
         """
         An identifier of the data format that the classifier matches.
         """
-        ...
+        return pulumi.get(self, "classification")
 
     @classification.setter
     def classification(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "classification", value)
 
     @property
     @pulumi.getter(name="rowTag")
@@ -702,11 +702,11 @@ class ClassifierXmlClassifierArgs:
         """
         The XML tag designating the element that contains each record in an XML document being parsed. Note that this cannot identify a self-closing element (closed by `/>`). An empty row element that contains only attributes can be parsed as long as it ends with a closing tag (for example, `<row item_a="A" item_b="B"></row>` is okay, but `<row item_a="A" item_b="B" />` is not).
         """
-        ...
+        return pulumi.get(self, "row_tag")
 
     @row_tag.setter
     def row_tag(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "row_tag", value)
 
 
 @pulumi.input_type
@@ -733,11 +733,11 @@ class ConnectionPhysicalConnectionRequirementsArgs:
         """
         The availability zone of the connection. This field is redundant and implied by `subnet_id`, but is currently an api requirement.
         """
-        ...
+        return pulumi.get(self, "availability_zone")
 
     @availability_zone.setter
     def availability_zone(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "availability_zone", value)
 
     @property
     @pulumi.getter(name="securityGroupIdLists")
@@ -745,11 +745,11 @@ class ConnectionPhysicalConnectionRequirementsArgs:
         """
         The security group ID list used by the connection.
         """
-        ...
+        return pulumi.get(self, "security_group_id_lists")
 
     @security_group_id_lists.setter
     def security_group_id_lists(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "security_group_id_lists", value)
 
     @property
     @pulumi.getter(name="subnetId")
@@ -757,11 +757,11 @@ class ConnectionPhysicalConnectionRequirementsArgs:
         """
         The subnet ID used by the connection.
         """
-        ...
+        return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
     def subnet_id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "subnet_id", value)
 
 
 @pulumi.input_type
@@ -782,11 +782,11 @@ class CrawlerCatalogTargetArgs:
         """
         The name of the Glue database to be synchronized.
         """
-        ...
+        return pulumi.get(self, "database_name")
 
     @database_name.setter
     def database_name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "database_name", value)
 
     @property
     @pulumi.getter
@@ -794,11 +794,11 @@ class CrawlerCatalogTargetArgs:
         """
         A list of catalog tables to be synchronized.
         """
-        ...
+        return pulumi.get(self, "tables")
 
     @tables.setter
     def tables(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "tables", value)
 
 
 @pulumi.input_type
@@ -816,11 +816,11 @@ class CrawlerDynamodbTargetArgs:
         """
         The name of the DynamoDB table to crawl.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @path.setter
     def path(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "path", value)
 
 
 @pulumi.input_type
@@ -845,11 +845,11 @@ class CrawlerJdbcTargetArgs:
         """
         The name of the connection to use to connect to the JDBC target.
         """
-        ...
+        return pulumi.get(self, "connection_name")
 
     @connection_name.setter
     def connection_name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "connection_name", value)
 
     @property
     @pulumi.getter
@@ -857,11 +857,11 @@ class CrawlerJdbcTargetArgs:
         """
         The path of the JDBC target.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @path.setter
     def path(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "path", value)
 
     @property
     @pulumi.getter
@@ -869,11 +869,11 @@ class CrawlerJdbcTargetArgs:
         """
         A list of glob patterns used to exclude from the crawl.
         """
-        ...
+        return pulumi.get(self, "exclusions")
 
     @exclusions.setter
     def exclusions(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "exclusions", value)
 
 
 @pulumi.input_type
@@ -895,11 +895,11 @@ class CrawlerS3TargetArgs:
         """
         The name of the DynamoDB table to crawl.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @path.setter
     def path(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "path", value)
 
     @property
     @pulumi.getter
@@ -907,11 +907,11 @@ class CrawlerS3TargetArgs:
         """
         A list of glob patterns used to exclude from the crawl.
         """
-        ...
+        return pulumi.get(self, "exclusions")
 
     @exclusions.setter
     def exclusions(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "exclusions", value)
 
 
 @pulumi.input_type
@@ -934,11 +934,11 @@ class CrawlerSchemaChangePolicyArgs:
         """
         The deletion behavior when the crawler finds a deleted object. Valid values: `LOG`, `DELETE_FROM_DATABASE`, or `DEPRECATE_IN_DATABASE`. Defaults to `DEPRECATE_IN_DATABASE`.
         """
-        ...
+        return pulumi.get(self, "delete_behavior")
 
     @delete_behavior.setter
     def delete_behavior(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "delete_behavior", value)
 
     @property
     @pulumi.getter(name="updateBehavior")
@@ -946,11 +946,11 @@ class CrawlerSchemaChangePolicyArgs:
         """
         The update behavior when the crawler finds a changed schema. Valid values: `LOG` or `UPDATE_IN_DATABASE`. Defaults to `UPDATE_IN_DATABASE`.
         """
-        ...
+        return pulumi.get(self, "update_behavior")
 
     @update_behavior.setter
     def update_behavior(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "update_behavior", value)
 
 
 @pulumi.input_type
@@ -976,11 +976,11 @@ class JobCommandArgs:
         """
         Specifies the S3 path to a script that executes a job.
         """
-        ...
+        return pulumi.get(self, "script_location")
 
     @script_location.setter
     def script_location(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "script_location", value)
 
     @property
     @pulumi.getter
@@ -988,11 +988,11 @@ class JobCommandArgs:
         """
         The name of the job command. Defaults to `glueetl`. Use `pythonshell` for Python Shell Job Type, `max_capacity` needs to be set if `pythonshell` is chosen.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter(name="pythonVersion")
@@ -1000,11 +1000,11 @@ class JobCommandArgs:
         """
         The Python version being used to execute a Python shell job. Allowed values are 2 or 3.
         """
-        ...
+        return pulumi.get(self, "python_version")
 
     @python_version.setter
     def python_version(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "python_version", value)
 
 
 @pulumi.input_type
@@ -1023,11 +1023,11 @@ class JobExecutionPropertyArgs:
         """
         The maximum number of concurrent runs allowed for a job. The default is 1.
         """
-        ...
+        return pulumi.get(self, "max_concurrent_runs")
 
     @max_concurrent_runs.setter
     def max_concurrent_runs(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "max_concurrent_runs", value)
 
 
 @pulumi.input_type
@@ -1046,11 +1046,11 @@ class JobNotificationPropertyArgs:
         """
         After a job run starts, the number of minutes to wait before sending a job run delay notification.
         """
-        ...
+        return pulumi.get(self, "notify_delay_after")
 
     @notify_delay_after.setter
     def notify_delay_after(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "notify_delay_after", value)
 
 
 @pulumi.input_type
@@ -1069,20 +1069,20 @@ class SecurityConfigurationEncryptionConfigurationArgs:
     @property
     @pulumi.getter(name="cloudwatchEncryption")
     def cloudwatch_encryption(self) -> pulumi.Input['SecurityConfigurationEncryptionConfigurationCloudwatchEncryptionArgs']:
-        ...
+        return pulumi.get(self, "cloudwatch_encryption")
 
     @cloudwatch_encryption.setter
     def cloudwatch_encryption(self, value: pulumi.Input['SecurityConfigurationEncryptionConfigurationCloudwatchEncryptionArgs']):
-        ...
+        pulumi.set(self, "cloudwatch_encryption", value)
 
     @property
     @pulumi.getter(name="jobBookmarksEncryption")
     def job_bookmarks_encryption(self) -> pulumi.Input['SecurityConfigurationEncryptionConfigurationJobBookmarksEncryptionArgs']:
-        ...
+        return pulumi.get(self, "job_bookmarks_encryption")
 
     @job_bookmarks_encryption.setter
     def job_bookmarks_encryption(self, value: pulumi.Input['SecurityConfigurationEncryptionConfigurationJobBookmarksEncryptionArgs']):
-        ...
+        pulumi.set(self, "job_bookmarks_encryption", value)
 
     @property
     @pulumi.getter(name="s3Encryption")
@@ -1090,11 +1090,11 @@ class SecurityConfigurationEncryptionConfigurationArgs:
         """
         A `s3_encryption ` block as described below, which contains encryption configuration for S3 data.
         """
-        ...
+        return pulumi.get(self, "s3_encryption")
 
     @s3_encryption.setter
     def s3_encryption(self, value: pulumi.Input['SecurityConfigurationEncryptionConfigurationS3EncryptionArgs']):
-        ...
+        pulumi.set(self, "s3_encryption", value)
 
 
 @pulumi.input_type
@@ -1117,11 +1117,11 @@ class SecurityConfigurationEncryptionConfigurationCloudwatchEncryptionArgs:
         """
         Encryption mode to use for CloudWatch data. Valid values: `DISABLED`, `SSE-KMS`. Default value: `DISABLED`.
         """
-        ...
+        return pulumi.get(self, "cloudwatch_encryption_mode")
 
     @cloudwatch_encryption_mode.setter
     def cloudwatch_encryption_mode(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "cloudwatch_encryption_mode", value)
 
     @property
     @pulumi.getter(name="kmsKeyArn")
@@ -1129,11 +1129,11 @@ class SecurityConfigurationEncryptionConfigurationCloudwatchEncryptionArgs:
         """
         Amazon Resource Name (ARN) of the KMS key to be used to encrypt the data.
         """
-        ...
+        return pulumi.get(self, "kms_key_arn")
 
     @kms_key_arn.setter
     def kms_key_arn(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kms_key_arn", value)
 
 
 @pulumi.input_type
@@ -1156,11 +1156,11 @@ class SecurityConfigurationEncryptionConfigurationJobBookmarksEncryptionArgs:
         """
         Encryption mode to use for job bookmarks data. Valid values: `CSE-KMS`, `DISABLED`. Default value: `DISABLED`.
         """
-        ...
+        return pulumi.get(self, "job_bookmarks_encryption_mode")
 
     @job_bookmarks_encryption_mode.setter
     def job_bookmarks_encryption_mode(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "job_bookmarks_encryption_mode", value)
 
     @property
     @pulumi.getter(name="kmsKeyArn")
@@ -1168,11 +1168,11 @@ class SecurityConfigurationEncryptionConfigurationJobBookmarksEncryptionArgs:
         """
         Amazon Resource Name (ARN) of the KMS key to be used to encrypt the data.
         """
-        ...
+        return pulumi.get(self, "kms_key_arn")
 
     @kms_key_arn.setter
     def kms_key_arn(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kms_key_arn", value)
 
 
 @pulumi.input_type
@@ -1195,11 +1195,11 @@ class SecurityConfigurationEncryptionConfigurationS3EncryptionArgs:
         """
         Amazon Resource Name (ARN) of the KMS key to be used to encrypt the data.
         """
-        ...
+        return pulumi.get(self, "kms_key_arn")
 
     @kms_key_arn.setter
     def kms_key_arn(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kms_key_arn", value)
 
     @property
     @pulumi.getter(name="s3EncryptionMode")
@@ -1207,11 +1207,11 @@ class SecurityConfigurationEncryptionConfigurationS3EncryptionArgs:
         """
         Encryption mode to use for S3 data. Valid values: `DISABLED`, `SSE-KMS`, `SSE-S3`. Default value: `DISABLED`.
         """
-        ...
+        return pulumi.get(self, "s3_encryption_mode")
 
     @s3_encryption_mode.setter
     def s3_encryption_mode(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "s3_encryption_mode", value)
 
 
 @pulumi.input_type
@@ -1242,11 +1242,11 @@ class TriggerActionArgs:
         """
         Arguments to be passed to the job. You can specify arguments here that your own job-execution script consumes, as well as arguments that AWS Glue itself consumes.
         """
-        ...
+        return pulumi.get(self, "arguments")
 
     @arguments.setter
     def arguments(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "arguments", value)
 
     @property
     @pulumi.getter(name="crawlerName")
@@ -1254,11 +1254,11 @@ class TriggerActionArgs:
         """
         The name of the crawler to be executed. Conflicts with `job_name`.
         """
-        ...
+        return pulumi.get(self, "crawler_name")
 
     @crawler_name.setter
     def crawler_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "crawler_name", value)
 
     @property
     @pulumi.getter(name="jobName")
@@ -1266,11 +1266,11 @@ class TriggerActionArgs:
         """
         The name of a job to be executed. Conflicts with `crawler_name`.
         """
-        ...
+        return pulumi.get(self, "job_name")
 
     @job_name.setter
     def job_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "job_name", value)
 
     @property
     @pulumi.getter
@@ -1278,11 +1278,11 @@ class TriggerActionArgs:
         """
         The job run timeout in minutes. It overrides the timeout value of the job.
         """
-        ...
+        return pulumi.get(self, "timeout")
 
     @timeout.setter
     def timeout(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "timeout", value)
 
 
 @pulumi.input_type
@@ -1304,11 +1304,11 @@ class TriggerPredicateArgs:
         """
         A list of the conditions that determine when the trigger will fire. Defined below.
         """
-        ...
+        return pulumi.get(self, "conditions")
 
     @conditions.setter
     def conditions(self, value: pulumi.Input[List[pulumi.Input['TriggerPredicateConditionArgs']]]):
-        ...
+        pulumi.set(self, "conditions", value)
 
     @property
     @pulumi.getter
@@ -1316,11 +1316,11 @@ class TriggerPredicateArgs:
         """
         How to handle multiple conditions. Defaults to `AND`. Valid values are `AND` or `ANY`.
         """
-        ...
+        return pulumi.get(self, "logical")
 
     @logical.setter
     def logical(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "logical", value)
 
 
 @pulumi.input_type
@@ -1355,11 +1355,11 @@ class TriggerPredicateConditionArgs:
         """
         The condition crawl state. Currently, the values supported are `RUNNING`, `SUCCEEDED`, `CANCELLED`, and `FAILED`. If this is specified, `crawler_name` must also be specified. Conflicts with `state`.
         """
-        ...
+        return pulumi.get(self, "crawl_state")
 
     @crawl_state.setter
     def crawl_state(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "crawl_state", value)
 
     @property
     @pulumi.getter(name="crawlerName")
@@ -1367,11 +1367,11 @@ class TriggerPredicateConditionArgs:
         """
         The name of the crawler to watch. If this is specified, `crawl_state` must also be specified. Conflicts with `job_name`.
         """
-        ...
+        return pulumi.get(self, "crawler_name")
 
     @crawler_name.setter
     def crawler_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "crawler_name", value)
 
     @property
     @pulumi.getter(name="jobName")
@@ -1379,11 +1379,11 @@ class TriggerPredicateConditionArgs:
         """
         The name of the job to watch. If this is specified, `state` must also be specified. Conflicts with `crawler_name`.
         """
-        ...
+        return pulumi.get(self, "job_name")
 
     @job_name.setter
     def job_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "job_name", value)
 
     @property
     @pulumi.getter(name="logicalOperator")
@@ -1391,11 +1391,11 @@ class TriggerPredicateConditionArgs:
         """
         A logical operator. Defaults to `EQUALS`.
         """
-        ...
+        return pulumi.get(self, "logical_operator")
 
     @logical_operator.setter
     def logical_operator(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "logical_operator", value)
 
     @property
     @pulumi.getter
@@ -1403,11 +1403,11 @@ class TriggerPredicateConditionArgs:
         """
         The condition job state. Currently, the values supported are `SUCCEEDED`, `STOPPED`, `TIMEOUT` and `FAILED`. If this is specified, `job_name` must also be specified. Conflicts with `crawler_state`.
         """
-        ...
+        return pulumi.get(self, "state")
 
     @state.setter
     def state(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "state", value)
 
 
 @pulumi.input_type
@@ -1432,11 +1432,11 @@ class GetScriptDagEdgeArgs:
         """
         The ID of the node at which the edge starts.
         """
-        ...
+        return pulumi.get(self, "source")
 
     @source.setter
     def source(self, value: str):
-        ...
+        pulumi.set(self, "source", value)
 
     @property
     @pulumi.getter
@@ -1444,11 +1444,11 @@ class GetScriptDagEdgeArgs:
         """
         The ID of the node at which the edge ends.
         """
-        ...
+        return pulumi.get(self, "target")
 
     @target.setter
     def target(self, value: str):
-        ...
+        pulumi.set(self, "target", value)
 
     @property
     @pulumi.getter(name="targetParameter")
@@ -1456,11 +1456,11 @@ class GetScriptDagEdgeArgs:
         """
         The target of the edge.
         """
-        ...
+        return pulumi.get(self, "target_parameter")
 
     @target_parameter.setter
     def target_parameter(self, value: Optional[str]):
-        ...
+        pulumi.set(self, "target_parameter", value)
 
 
 @pulumi.input_type
@@ -1488,11 +1488,11 @@ class GetScriptDagNodeArgs:
         """
         Nested configuration an argument or property of a node. Defined below.
         """
-        ...
+        return pulumi.get(self, "args")
 
     @args.setter
     def args(self, value: List['GetScriptDagNodeArgArgs']):
-        ...
+        pulumi.set(self, "args", value)
 
     @property
     @pulumi.getter
@@ -1500,11 +1500,11 @@ class GetScriptDagNodeArgs:
         """
         A node identifier that is unique within the node's graph.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @id.setter
     def id(self, value: str):
-        ...
+        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter(name="nodeType")
@@ -1512,11 +1512,11 @@ class GetScriptDagNodeArgs:
         """
         The type of node this is.
         """
-        ...
+        return pulumi.get(self, "node_type")
 
     @node_type.setter
     def node_type(self, value: str):
-        ...
+        pulumi.set(self, "node_type", value)
 
     @property
     @pulumi.getter(name="lineNumber")
@@ -1524,11 +1524,11 @@ class GetScriptDagNodeArgs:
         """
         The line number of the node.
         """
-        ...
+        return pulumi.get(self, "line_number")
 
     @line_number.setter
     def line_number(self, value: Optional[float]):
-        ...
+        pulumi.set(self, "line_number", value)
 
 
 @pulumi.input_type
@@ -1553,11 +1553,11 @@ class GetScriptDagNodeArgArgs:
         """
         The name of the argument or property.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: str):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -1565,11 +1565,11 @@ class GetScriptDagNodeArgArgs:
         """
         The value of the argument or property.
         """
-        ...
+        return pulumi.get(self, "value")
 
     @value.setter
     def value(self, value: str):
-        ...
+        pulumi.set(self, "value", value)
 
     @property
     @pulumi.getter
@@ -1577,10 +1577,10 @@ class GetScriptDagNodeArgArgs:
         """
         Boolean if the value is used as a parameter. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "param")
 
     @param.setter
     def param(self, value: Optional[bool]):
-        ...
+        pulumi.set(self, "param", value)
 
 

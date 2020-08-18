@@ -124,7 +124,7 @@ class Notification(pulumi.CustomResource):
         """
         A list of AutoScaling Group Names
         """
-        ...
+        return pulumi.get(self, "group_names")
 
     @property
     @pulumi.getter
@@ -133,7 +133,7 @@ class Notification(pulumi.CustomResource):
         A list of Notification Types that trigger
         notifications. Acceptable values are documented [in the AWS documentation here](https://docs.aws.amazon.com/AutoScaling/latest/APIReference/API_NotificationConfiguration.html)
         """
-        ...
+        return pulumi.get(self, "notifications")
 
     @property
     @pulumi.getter(name="topicArn")
@@ -141,7 +141,7 @@ class Notification(pulumi.CustomResource):
         """
         The Topic ARN for notifications to be sent through
         """
-        ...
+        return pulumi.get(self, "topic_arn")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -88,27 +88,27 @@ class GetTableResult:
     @property
     @pulumi.getter
     def arn(self) -> str:
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
     def attributes(self) -> List['outputs.GetTableAttributeResult']:
-        ...
+        return pulumi.get(self, "attributes")
 
     @property
     @pulumi.getter(name="billingMode")
     def billing_mode(self) -> str:
-        ...
+        return pulumi.get(self, "billing_mode")
 
     @property
     @pulumi.getter(name="globalSecondaryIndexes")
     def global_secondary_indexes(self) -> List['outputs.GetTableGlobalSecondaryIndexResult']:
-        ...
+        return pulumi.get(self, "global_secondary_indexes")
 
     @property
     @pulumi.getter(name="hashKey")
     def hash_key(self) -> str:
-        ...
+        return pulumi.get(self, "hash_key")
 
     @property
     @pulumi.getter
@@ -116,77 +116,77 @@ class GetTableResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="localSecondaryIndexes")
     def local_secondary_indexes(self) -> List['outputs.GetTableLocalSecondaryIndexResult']:
-        ...
+        return pulumi.get(self, "local_secondary_indexes")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="pointInTimeRecovery")
     def point_in_time_recovery(self) -> 'outputs.GetTablePointInTimeRecoveryResult':
-        ...
+        return pulumi.get(self, "point_in_time_recovery")
 
     @property
     @pulumi.getter(name="rangeKey")
     def range_key(self) -> str:
-        ...
+        return pulumi.get(self, "range_key")
 
     @property
     @pulumi.getter(name="readCapacity")
     def read_capacity(self) -> float:
-        ...
+        return pulumi.get(self, "read_capacity")
 
     @property
     @pulumi.getter
     def replicas(self) -> List['outputs.GetTableReplicaResult']:
-        ...
+        return pulumi.get(self, "replicas")
 
     @property
     @pulumi.getter(name="serverSideEncryption")
     def server_side_encryption(self) -> 'outputs.GetTableServerSideEncryptionResult':
-        ...
+        return pulumi.get(self, "server_side_encryption")
 
     @property
     @pulumi.getter(name="streamArn")
     def stream_arn(self) -> str:
-        ...
+        return pulumi.get(self, "stream_arn")
 
     @property
     @pulumi.getter(name="streamEnabled")
     def stream_enabled(self) -> bool:
-        ...
+        return pulumi.get(self, "stream_enabled")
 
     @property
     @pulumi.getter(name="streamLabel")
     def stream_label(self) -> str:
-        ...
+        return pulumi.get(self, "stream_label")
 
     @property
     @pulumi.getter(name="streamViewType")
     def stream_view_type(self) -> str:
-        ...
+        return pulumi.get(self, "stream_view_type")
 
     @property
     @pulumi.getter
     def tags(self) -> Mapping[str, str]:
-        ...
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
     def ttl(self) -> 'outputs.GetTableTtlResult':
-        ...
+        return pulumi.get(self, "ttl")
 
     @property
     @pulumi.getter(name="writeCapacity")
     def write_capacity(self) -> float:
-        ...
+        return pulumi.get(self, "write_capacity")
 
 
 

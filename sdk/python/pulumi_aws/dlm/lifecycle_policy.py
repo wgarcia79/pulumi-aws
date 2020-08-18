@@ -187,7 +187,7 @@ class LifecyclePolicy(pulumi.CustomResource):
         """
         Amazon Resource Name (ARN) of the DLM Lifecycle Policy.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -195,7 +195,7 @@ class LifecyclePolicy(pulumi.CustomResource):
         """
         A description for the DLM lifecycle policy.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="executionRoleArn")
@@ -203,7 +203,7 @@ class LifecyclePolicy(pulumi.CustomResource):
         """
         The ARN of an IAM role that is able to be assumed by the DLM service.
         """
-        ...
+        return pulumi.get(self, "execution_role_arn")
 
     @property
     @pulumi.getter(name="policyDetails")
@@ -211,7 +211,7 @@ class LifecyclePolicy(pulumi.CustomResource):
         """
         See the `policy_details` configuration block. Max of 1.
         """
-        ...
+        return pulumi.get(self, "policy_details")
 
     @property
     @pulumi.getter
@@ -219,7 +219,7 @@ class LifecyclePolicy(pulumi.CustomResource):
         """
         Whether the lifecycle policy should be enabled or disabled. `ENABLED` or `DISABLED` are valid values. Defaults to `ENABLED`.
         """
-        ...
+        return pulumi.get(self, "state")
 
     @property
     @pulumi.getter
@@ -227,7 +227,7 @@ class LifecyclePolicy(pulumi.CustomResource):
         """
         Key-value map of resource tags.
         """
-        ...
+        return pulumi.get(self, "tags")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

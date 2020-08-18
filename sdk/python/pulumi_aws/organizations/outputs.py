@@ -54,7 +54,7 @@ class OrganizationAccount(dict):
         """
         ARN of the root
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -62,7 +62,7 @@ class OrganizationAccount(dict):
         """
         Email of the account
         """
-        ...
+        return pulumi.get(self, "email")
 
     @property
     @pulumi.getter
@@ -70,7 +70,7 @@ class OrganizationAccount(dict):
         """
         Identifier of the root
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -78,7 +78,7 @@ class OrganizationAccount(dict):
         """
         The name of the policy type
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -86,7 +86,7 @@ class OrganizationAccount(dict):
         """
         The status of the policy type as it relates to the associated root
         """
-        ...
+        return pulumi.get(self, "status")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -124,7 +124,7 @@ class OrganizationNonMasterAccount(dict):
         """
         ARN of the root
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -132,7 +132,7 @@ class OrganizationNonMasterAccount(dict):
         """
         Email of the account
         """
-        ...
+        return pulumi.get(self, "email")
 
     @property
     @pulumi.getter
@@ -140,7 +140,7 @@ class OrganizationNonMasterAccount(dict):
         """
         Identifier of the root
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -148,7 +148,7 @@ class OrganizationNonMasterAccount(dict):
         """
         The name of the policy type
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -156,7 +156,7 @@ class OrganizationNonMasterAccount(dict):
         """
         The status of the policy type as it relates to the associated root
         """
-        ...
+        return pulumi.get(self, "status")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -190,7 +190,7 @@ class OrganizationRoot(dict):
         """
         ARN of the root
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -198,7 +198,7 @@ class OrganizationRoot(dict):
         """
         Identifier of the root
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -206,7 +206,7 @@ class OrganizationRoot(dict):
         """
         The name of the policy type
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="policyTypes")
@@ -214,7 +214,7 @@ class OrganizationRoot(dict):
         """
         List of policy types enabled for this root. All elements have these attributes:
         """
-        ...
+        return pulumi.get(self, "policy_types")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -239,12 +239,12 @@ class OrganizationRootPolicyType(dict):
         """
         The status of the policy type as it relates to the associated root
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def type(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -278,7 +278,7 @@ class OrganizationalUnitAccount(dict):
         """
         ARN of the organizational unit
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -286,7 +286,7 @@ class OrganizationalUnitAccount(dict):
         """
         Email of the account
         """
-        ...
+        return pulumi.get(self, "email")
 
     @property
     @pulumi.getter
@@ -294,7 +294,7 @@ class OrganizationalUnitAccount(dict):
         """
         Identifier of the organization unit
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -302,7 +302,7 @@ class OrganizationalUnitAccount(dict):
         """
         The name for the organizational unit
         """
-        ...
+        return pulumi.get(self, "name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -335,7 +335,7 @@ class GetOrganizationAccountResult(dict):
         """
         ARN of the root
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -343,7 +343,7 @@ class GetOrganizationAccountResult(dict):
         """
         Email of the account
         """
-        ...
+        return pulumi.get(self, "email")
 
     @property
     @pulumi.getter
@@ -351,7 +351,7 @@ class GetOrganizationAccountResult(dict):
         """
         Identifier of the root
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -359,7 +359,7 @@ class GetOrganizationAccountResult(dict):
         """
         The name of the policy type
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -367,7 +367,7 @@ class GetOrganizationAccountResult(dict):
         """
         The status of the policy type as it relates to the associated root
         """
-        ...
+        return pulumi.get(self, "status")
 
 
 @pulumi.output_type
@@ -397,7 +397,7 @@ class GetOrganizationNonMasterAccountResult(dict):
         """
         ARN of the root
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -405,7 +405,7 @@ class GetOrganizationNonMasterAccountResult(dict):
         """
         Email of the account
         """
-        ...
+        return pulumi.get(self, "email")
 
     @property
     @pulumi.getter
@@ -413,7 +413,7 @@ class GetOrganizationNonMasterAccountResult(dict):
         """
         Identifier of the root
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -421,7 +421,7 @@ class GetOrganizationNonMasterAccountResult(dict):
         """
         The name of the policy type
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -429,7 +429,7 @@ class GetOrganizationNonMasterAccountResult(dict):
         """
         The status of the policy type as it relates to the associated root
         """
-        ...
+        return pulumi.get(self, "status")
 
 
 @pulumi.output_type
@@ -456,7 +456,7 @@ class GetOrganizationRootResult(dict):
         """
         ARN of the root
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -464,7 +464,7 @@ class GetOrganizationRootResult(dict):
         """
         Identifier of the root
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -472,7 +472,7 @@ class GetOrganizationRootResult(dict):
         """
         The name of the policy type
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="policyTypes")
@@ -480,7 +480,7 @@ class GetOrganizationRootResult(dict):
         """
         List of policy types enabled for this root. All elements have these attributes:
         """
-        ...
+        return pulumi.get(self, "policy_types")
 
 
 @pulumi.output_type
@@ -500,12 +500,12 @@ class GetOrganizationRootPolicyTypeResult(dict):
         """
         The status of the policy type as it relates to the associated root
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def type(self) -> str:
-        ...
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type
@@ -529,7 +529,7 @@ class GetOrganizationalUnitsChildrenResult(dict):
         """
         ARN of the organizational unit
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -537,7 +537,7 @@ class GetOrganizationalUnitsChildrenResult(dict):
         """
         ID of the organizational unit
         """
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -545,6 +545,6 @@ class GetOrganizationalUnitsChildrenResult(dict):
         """
         Name of the organizational unit
         """
-        ...
+        return pulumi.get(self, "name")
 
 

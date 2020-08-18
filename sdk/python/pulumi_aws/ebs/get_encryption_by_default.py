@@ -35,7 +35,7 @@ class GetEncryptionByDefaultResult:
         """
         Whether or not default EBS encryption is enabled. Returns as `true` or `false`.
         """
-        ...
+        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter
@@ -43,7 +43,7 @@ class GetEncryptionByDefaultResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        ...
+        return pulumi.get(self, "id")
 
 
 

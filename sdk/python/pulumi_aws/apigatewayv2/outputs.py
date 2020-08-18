@@ -53,7 +53,7 @@ class ApiCorsConfiguration(dict):
         """
         Whether credentials are included in the CORS request.
         """
-        ...
+        return pulumi.get(self, "allow_credentials")
 
     @property
     @pulumi.getter(name="allowHeaders")
@@ -61,7 +61,7 @@ class ApiCorsConfiguration(dict):
         """
         The set of allowed HTTP headers.
         """
-        ...
+        return pulumi.get(self, "allow_headers")
 
     @property
     @pulumi.getter(name="allowMethods")
@@ -69,7 +69,7 @@ class ApiCorsConfiguration(dict):
         """
         The set of allowed HTTP methods.
         """
-        ...
+        return pulumi.get(self, "allow_methods")
 
     @property
     @pulumi.getter(name="allowOrigins")
@@ -77,7 +77,7 @@ class ApiCorsConfiguration(dict):
         """
         The set of allowed origins.
         """
-        ...
+        return pulumi.get(self, "allow_origins")
 
     @property
     @pulumi.getter(name="exposeHeaders")
@@ -85,7 +85,7 @@ class ApiCorsConfiguration(dict):
         """
         The set of exposed HTTP headers.
         """
-        ...
+        return pulumi.get(self, "expose_headers")
 
     @property
     @pulumi.getter(name="maxAge")
@@ -93,7 +93,7 @@ class ApiCorsConfiguration(dict):
         """
         The number of seconds that the browser should cache preflight request results.
         """
-        ...
+        return pulumi.get(self, "max_age")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -119,7 +119,7 @@ class AuthorizerJwtConfiguration(dict):
         """
         A list of the intended recipients of the JWT. A valid JWT must provide an aud that matches at least one entry in this list.
         """
-        ...
+        return pulumi.get(self, "audiences")
 
     @property
     @pulumi.getter
@@ -127,7 +127,7 @@ class AuthorizerJwtConfiguration(dict):
         """
         The base domain of the identity provider that issues JSON Web Tokens, such as the `endpoint` attribute of the `cognito.UserPool` resource.
         """
-        ...
+        return pulumi.get(self, "issuer")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -164,7 +164,7 @@ class DomainNameDomainNameConfiguration(dict):
         The ARN of an AWS-managed certificate that will be used by the endpoint for the domain name. AWS Certificate Manager is the only supported source.
         Use the `acm.Certificate` resource to configure an ACM certificate.
         """
-        ...
+        return pulumi.get(self, "certificate_arn")
 
     @property
     @pulumi.getter(name="endpointType")
@@ -172,7 +172,7 @@ class DomainNameDomainNameConfiguration(dict):
         """
         The endpoint type. Valid values: `REGIONAL`.
         """
-        ...
+        return pulumi.get(self, "endpoint_type")
 
     @property
     @pulumi.getter(name="securityPolicy")
@@ -180,7 +180,7 @@ class DomainNameDomainNameConfiguration(dict):
         """
         The Transport Layer Security (TLS) version of the [security policy](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-custom-domain-tls-version.html) for the domain name. Valid values: `TLS_1_2`.
         """
-        ...
+        return pulumi.get(self, "security_policy")
 
     @property
     @pulumi.getter(name="hostedZoneId")
@@ -188,7 +188,7 @@ class DomainNameDomainNameConfiguration(dict):
         """
         The Amazon Route 53 Hosted Zone ID of the endpoint.
         """
-        ...
+        return pulumi.get(self, "hosted_zone_id")
 
     @property
     @pulumi.getter(name="targetDomainName")
@@ -196,7 +196,7 @@ class DomainNameDomainNameConfiguration(dict):
         """
         The target domain name.
         """
-        ...
+        return pulumi.get(self, "target_domain_name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -220,7 +220,7 @@ class StageAccessLogSettings(dict):
         """
         The ARN of the CloudWatch Logs log group to receive access logs. Any trailing `:*` is trimmed from the ARN.
         """
-        ...
+        return pulumi.get(self, "destination_arn")
 
     @property
     @pulumi.getter
@@ -228,7 +228,7 @@ class StageAccessLogSettings(dict):
         """
         A single line [format](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html#apigateway-cloudwatch-log-formats) of the access logs of data, as specified by [selected $context variables](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-logging.html).
         """
-        ...
+        return pulumi.get(self, "format")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -269,7 +269,7 @@ class StageDefaultRouteSettings(dict):
         Whether data trace logging is enabled for the default route. Affects the log entries pushed to Amazon CloudWatch Logs.
         Defaults to `false`. Supported only for WebSocket APIs.
         """
-        ...
+        return pulumi.get(self, "data_trace_enabled")
 
     @property
     @pulumi.getter(name="detailedMetricsEnabled")
@@ -277,7 +277,7 @@ class StageDefaultRouteSettings(dict):
         """
         Whether detailed metrics are enabled for the default route. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "detailed_metrics_enabled")
 
     @property
     @pulumi.getter(name="loggingLevel")
@@ -286,7 +286,7 @@ class StageDefaultRouteSettings(dict):
         The logging level for the default route. Affects the log entries pushed to Amazon CloudWatch Logs.
         Valid values: `ERROR`, `INFO`, `OFF`. Defaults to `OFF`. Supported only for WebSocket APIs.
         """
-        ...
+        return pulumi.get(self, "logging_level")
 
     @property
     @pulumi.getter(name="throttlingBurstLimit")
@@ -294,7 +294,7 @@ class StageDefaultRouteSettings(dict):
         """
         The throttling burst limit for the default route.
         """
-        ...
+        return pulumi.get(self, "throttling_burst_limit")
 
     @property
     @pulumi.getter(name="throttlingRateLimit")
@@ -302,7 +302,7 @@ class StageDefaultRouteSettings(dict):
         """
         The throttling rate limit for the default route.
         """
-        ...
+        return pulumi.get(self, "throttling_rate_limit")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -345,7 +345,7 @@ class StageRouteSetting(dict):
         """
         Route key.
         """
-        ...
+        return pulumi.get(self, "route_key")
 
     @property
     @pulumi.getter(name="dataTraceEnabled")
@@ -354,7 +354,7 @@ class StageRouteSetting(dict):
         Whether data trace logging is enabled for the route. Affects the log entries pushed to Amazon CloudWatch Logs.
         Defaults to `false`. Supported only for WebSocket APIs.
         """
-        ...
+        return pulumi.get(self, "data_trace_enabled")
 
     @property
     @pulumi.getter(name="detailedMetricsEnabled")
@@ -362,7 +362,7 @@ class StageRouteSetting(dict):
         """
         Whether detailed metrics are enabled for the route. Defaults to `false`.
         """
-        ...
+        return pulumi.get(self, "detailed_metrics_enabled")
 
     @property
     @pulumi.getter(name="loggingLevel")
@@ -371,7 +371,7 @@ class StageRouteSetting(dict):
         The logging level for the route. Affects the log entries pushed to Amazon CloudWatch Logs.
         Valid values: `ERROR`, `INFO`, `OFF`. Defaults to `OFF`. Supported only for WebSocket APIs.
         """
-        ...
+        return pulumi.get(self, "logging_level")
 
     @property
     @pulumi.getter(name="throttlingBurstLimit")
@@ -379,7 +379,7 @@ class StageRouteSetting(dict):
         """
         The throttling burst limit for the route.
         """
-        ...
+        return pulumi.get(self, "throttling_burst_limit")
 
     @property
     @pulumi.getter(name="throttlingRateLimit")
@@ -387,7 +387,7 @@ class StageRouteSetting(dict):
         """
         The throttling rate limit for the route.
         """
-        ...
+        return pulumi.get(self, "throttling_rate_limit")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

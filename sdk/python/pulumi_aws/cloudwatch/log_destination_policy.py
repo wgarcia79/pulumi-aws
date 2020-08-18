@@ -110,7 +110,7 @@ class LogDestinationPolicy(pulumi.CustomResource):
         """
         The policy document. This is a JSON formatted string.
         """
-        ...
+        return pulumi.get(self, "access_policy")
 
     @property
     @pulumi.getter(name="destinationName")
@@ -118,7 +118,7 @@ class LogDestinationPolicy(pulumi.CustomResource):
         """
         A name for the subscription filter
         """
-        ...
+        return pulumi.get(self, "destination_name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

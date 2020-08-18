@@ -135,7 +135,7 @@ class Alias(pulumi.CustomResource):
         """
         The Amazon Resource Name (ARN) identifying your Lambda function alias.
         """
-        ...
+        return pulumi.get(self, "arn")
 
     @property
     @pulumi.getter
@@ -143,7 +143,7 @@ class Alias(pulumi.CustomResource):
         """
         Description of the alias.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="functionName")
@@ -151,7 +151,7 @@ class Alias(pulumi.CustomResource):
         """
         The function ARN of the Lambda function for which you want to create an alias.
         """
-        ...
+        return pulumi.get(self, "function_name")
 
     @property
     @pulumi.getter(name="functionVersion")
@@ -159,7 +159,7 @@ class Alias(pulumi.CustomResource):
         """
         Lambda function version for which you are creating the alias. Pattern: `(\$LATEST|[0-9]+)`.
         """
-        ...
+        return pulumi.get(self, "function_version")
 
     @property
     @pulumi.getter(name="invokeArn")
@@ -167,7 +167,7 @@ class Alias(pulumi.CustomResource):
         """
         The ARN to be used for invoking Lambda Function from API Gateway - to be used in `apigateway.Integration`'s `uri`
         """
-        ...
+        return pulumi.get(self, "invoke_arn")
 
     @property
     @pulumi.getter
@@ -175,7 +175,7 @@ class Alias(pulumi.CustomResource):
         """
         Name for the alias you are creating. Pattern: `(?!^[0-9]+$)([a-zA-Z0-9-_]+)`
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="routingConfig")
@@ -183,7 +183,7 @@ class Alias(pulumi.CustomResource):
         """
         The Lambda alias' route configuration settings. Fields documented below
         """
-        ...
+        return pulumi.get(self, "routing_config")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

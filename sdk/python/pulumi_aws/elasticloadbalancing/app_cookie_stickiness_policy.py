@@ -132,7 +132,7 @@ class AppCookieStickinessPolicy(pulumi.CustomResource):
         """
         The application cookie whose lifetime the ELB's cookie should follow.
         """
-        ...
+        return pulumi.get(self, "cookie_name")
 
     @property
     @pulumi.getter(name="lbPort")
@@ -142,7 +142,7 @@ class AppCookieStickinessPolicy(pulumi.CustomResource):
         should be applied. This must be an active listener on the load
         balancer.
         """
-        ...
+        return pulumi.get(self, "lb_port")
 
     @property
     @pulumi.getter(name="loadBalancer")
@@ -151,7 +151,7 @@ class AppCookieStickinessPolicy(pulumi.CustomResource):
         The name of load balancer to which the policy
         should be attached.
         """
-        ...
+        return pulumi.get(self, "load_balancer")
 
     @property
     @pulumi.getter
@@ -159,7 +159,7 @@ class AppCookieStickinessPolicy(pulumi.CustomResource):
         """
         The name of the stickiness policy.
         """
-        ...
+        return pulumi.get(self, "name")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

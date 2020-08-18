@@ -39,20 +39,20 @@ class GetAmiFilterArgs:
         """
         The name of the AMI that was provided during image creation.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: str):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
     def values(self) -> List[str]:
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: List[str]):
-        ...
+        pulumi.set(self, "values", value)
 
 
 @pulumi.input_type
@@ -66,20 +66,20 @@ class GetAmiIdsFilterArgs:
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: str):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
     def values(self) -> List[str]:
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: List[str]):
-        ...
+        pulumi.set(self, "values", value)
 
 
 @pulumi.input_type
@@ -100,11 +100,11 @@ class GetAutoscalingGroupsFilterArgs:
         """
         The name of the filter. The valid values are: `auto-scaling-group`, `key`, `value`, and `propagate-at-launch`.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: str):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -112,11 +112,11 @@ class GetAutoscalingGroupsFilterArgs:
         """
         The value of the filter.
         """
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: List[str]):
-        ...
+        pulumi.set(self, "values", value)
 
 
 @pulumi.input_type
@@ -137,11 +137,11 @@ class GetAvailabilityZoneFilterArgs:
         """
         The name of the filter field. Valid values can be found in the [EC2 DescribeAvailabilityZones API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html).
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: str):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -149,11 +149,11 @@ class GetAvailabilityZoneFilterArgs:
         """
         Set of values that are accepted for the given filter field. Results will be selected if any given value matches.
         """
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: List[str]):
-        ...
+        pulumi.set(self, "values", value)
 
 
 @pulumi.input_type
@@ -174,11 +174,11 @@ class GetAvailabilityZonesFilterArgs:
         """
         The name of the filter field. Valid values can be found in the [EC2 DescribeAvailabilityZones API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html).
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: str):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -186,11 +186,11 @@ class GetAvailabilityZonesFilterArgs:
         """
         Set of values that are accepted for the given filter field. Results will be selected if any given value matches.
         """
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: List[str]):
-        ...
+        pulumi.set(self, "values", value)
 
 
 @pulumi.input_type
@@ -204,20 +204,20 @@ class GetElasticIpFilterArgs:
     @property
     @pulumi.getter
     def name(self) -> str:
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: str):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
     def values(self) -> List[str]:
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: List[str]):
-        ...
+        pulumi.set(self, "values", value)
 
 
 @pulumi.input_type
@@ -238,11 +238,11 @@ class GetPrefixListFilterArgs:
         """
         The name of the filter field. Valid values can be found in the [EC2 DescribePrefixLists API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribePrefixLists.html).
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: str):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -250,11 +250,11 @@ class GetPrefixListFilterArgs:
         """
         Set of values that are accepted for the given filter field. Results will be selected if any given value matches.
         """
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: List[str]):
-        ...
+        pulumi.set(self, "values", value)
 
 
 @pulumi.input_type
@@ -275,11 +275,11 @@ class GetRegionsFilterArgs:
         """
         The name of the filter field. Valid values can be found in the [describe-regions AWS CLI Reference][1].
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: str):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -287,11 +287,11 @@ class GetRegionsFilterArgs:
         """
         Set of values that are accepted for the given filter field. Results will be selected if any given value matches.
         """
-        ...
+        return pulumi.get(self, "values")
 
     @values.setter
     def values(self, value: List[str]):
-        ...
+        pulumi.set(self, "values", value)
 
 
 @pulumi.input_type
@@ -313,38 +313,38 @@ class ProviderAssumeRoleArgs:
     @property
     @pulumi.getter(name="externalId")
     def external_id(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "external_id")
 
     @external_id.setter
     def external_id(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "external_id", value)
 
     @property
     @pulumi.getter
     def policy(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "policy")
 
     @policy.setter
     def policy(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "policy", value)
 
     @property
     @pulumi.getter(name="roleArn")
     def role_arn(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "role_arn")
 
     @role_arn.setter
     def role_arn(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "role_arn", value)
 
     @property
     @pulumi.getter(name="sessionName")
     def session_name(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "session_name")
 
     @session_name.setter
     def session_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "session_name", value)
 
 
 @pulumi.input_type
@@ -783,1271 +783,1271 @@ class ProviderEndpointArgs:
     @property
     @pulumi.getter
     def accessanalyzer(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "accessanalyzer")
 
     @accessanalyzer.setter
     def accessanalyzer(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "accessanalyzer", value)
 
     @property
     @pulumi.getter
     def acm(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "acm")
 
     @acm.setter
     def acm(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "acm", value)
 
     @property
     @pulumi.getter
     def acmpca(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "acmpca")
 
     @acmpca.setter
     def acmpca(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "acmpca", value)
 
     @property
     @pulumi.getter
     def amplify(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "amplify")
 
     @amplify.setter
     def amplify(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "amplify", value)
 
     @property
     @pulumi.getter
     def apigateway(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "apigateway")
 
     @apigateway.setter
     def apigateway(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "apigateway", value)
 
     @property
     @pulumi.getter
     def applicationautoscaling(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "applicationautoscaling")
 
     @applicationautoscaling.setter
     def applicationautoscaling(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "applicationautoscaling", value)
 
     @property
     @pulumi.getter
     def applicationinsights(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "applicationinsights")
 
     @applicationinsights.setter
     def applicationinsights(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "applicationinsights", value)
 
     @property
     @pulumi.getter
     def appmesh(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "appmesh")
 
     @appmesh.setter
     def appmesh(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "appmesh", value)
 
     @property
     @pulumi.getter
     def appstream(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "appstream")
 
     @appstream.setter
     def appstream(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "appstream", value)
 
     @property
     @pulumi.getter
     def appsync(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "appsync")
 
     @appsync.setter
     def appsync(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "appsync", value)
 
     @property
     @pulumi.getter
     def athena(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "athena")
 
     @athena.setter
     def athena(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "athena", value)
 
     @property
     @pulumi.getter
     def autoscaling(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "autoscaling")
 
     @autoscaling.setter
     def autoscaling(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "autoscaling", value)
 
     @property
     @pulumi.getter
     def autoscalingplans(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "autoscalingplans")
 
     @autoscalingplans.setter
     def autoscalingplans(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "autoscalingplans", value)
 
     @property
     @pulumi.getter
     def backup(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "backup")
 
     @backup.setter
     def backup(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "backup", value)
 
     @property
     @pulumi.getter
     def batch(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "batch")
 
     @batch.setter
     def batch(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "batch", value)
 
     @property
     @pulumi.getter
     def budgets(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "budgets")
 
     @budgets.setter
     def budgets(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "budgets", value)
 
     @property
     @pulumi.getter
     def cloud9(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "cloud9")
 
     @cloud9.setter
     def cloud9(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "cloud9", value)
 
     @property
     @pulumi.getter
     def cloudformation(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "cloudformation")
 
     @cloudformation.setter
     def cloudformation(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "cloudformation", value)
 
     @property
     @pulumi.getter
     def cloudfront(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "cloudfront")
 
     @cloudfront.setter
     def cloudfront(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "cloudfront", value)
 
     @property
     @pulumi.getter
     def cloudhsm(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "cloudhsm")
 
     @cloudhsm.setter
     def cloudhsm(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "cloudhsm", value)
 
     @property
     @pulumi.getter
     def cloudsearch(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "cloudsearch")
 
     @cloudsearch.setter
     def cloudsearch(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "cloudsearch", value)
 
     @property
     @pulumi.getter
     def cloudtrail(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "cloudtrail")
 
     @cloudtrail.setter
     def cloudtrail(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "cloudtrail", value)
 
     @property
     @pulumi.getter
     def cloudwatch(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "cloudwatch")
 
     @cloudwatch.setter
     def cloudwatch(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "cloudwatch", value)
 
     @property
     @pulumi.getter
     def cloudwatchevents(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "cloudwatchevents")
 
     @cloudwatchevents.setter
     def cloudwatchevents(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "cloudwatchevents", value)
 
     @property
     @pulumi.getter
     def cloudwatchlogs(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "cloudwatchlogs")
 
     @cloudwatchlogs.setter
     def cloudwatchlogs(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "cloudwatchlogs", value)
 
     @property
     @pulumi.getter
     def codeartifact(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "codeartifact")
 
     @codeartifact.setter
     def codeartifact(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "codeartifact", value)
 
     @property
     @pulumi.getter
     def codebuild(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "codebuild")
 
     @codebuild.setter
     def codebuild(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "codebuild", value)
 
     @property
     @pulumi.getter
     def codecommit(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "codecommit")
 
     @codecommit.setter
     def codecommit(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "codecommit", value)
 
     @property
     @pulumi.getter
     def codedeploy(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "codedeploy")
 
     @codedeploy.setter
     def codedeploy(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "codedeploy", value)
 
     @property
     @pulumi.getter
     def codepipeline(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "codepipeline")
 
     @codepipeline.setter
     def codepipeline(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "codepipeline", value)
 
     @property
     @pulumi.getter
     def cognitoidentity(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "cognitoidentity")
 
     @cognitoidentity.setter
     def cognitoidentity(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "cognitoidentity", value)
 
     @property
     @pulumi.getter
     def cognitoidp(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "cognitoidp")
 
     @cognitoidp.setter
     def cognitoidp(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "cognitoidp", value)
 
     @property
     @pulumi.getter
     def configservice(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "configservice")
 
     @configservice.setter
     def configservice(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "configservice", value)
 
     @property
     @pulumi.getter
     def cur(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "cur")
 
     @cur.setter
     def cur(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "cur", value)
 
     @property
     @pulumi.getter
     def dataexchange(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "dataexchange")
 
     @dataexchange.setter
     def dataexchange(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "dataexchange", value)
 
     @property
     @pulumi.getter
     def datapipeline(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "datapipeline")
 
     @datapipeline.setter
     def datapipeline(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "datapipeline", value)
 
     @property
     @pulumi.getter
     def datasync(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "datasync")
 
     @datasync.setter
     def datasync(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "datasync", value)
 
     @property
     @pulumi.getter
     def dax(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "dax")
 
     @dax.setter
     def dax(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "dax", value)
 
     @property
     @pulumi.getter
     def devicefarm(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "devicefarm")
 
     @devicefarm.setter
     def devicefarm(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "devicefarm", value)
 
     @property
     @pulumi.getter
     def directconnect(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "directconnect")
 
     @directconnect.setter
     def directconnect(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "directconnect", value)
 
     @property
     @pulumi.getter
     def dlm(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "dlm")
 
     @dlm.setter
     def dlm(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "dlm", value)
 
     @property
     @pulumi.getter
     def dms(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "dms")
 
     @dms.setter
     def dms(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "dms", value)
 
     @property
     @pulumi.getter
     def docdb(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "docdb")
 
     @docdb.setter
     def docdb(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "docdb", value)
 
     @property
     @pulumi.getter
     def ds(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "ds")
 
     @ds.setter
     def ds(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "ds", value)
 
     @property
     @pulumi.getter
     def dynamodb(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "dynamodb")
 
     @dynamodb.setter
     def dynamodb(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "dynamodb", value)
 
     @property
     @pulumi.getter
     def ec2(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "ec2")
 
     @ec2.setter
     def ec2(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "ec2", value)
 
     @property
     @pulumi.getter
     def ecr(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "ecr")
 
     @ecr.setter
     def ecr(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "ecr", value)
 
     @property
     @pulumi.getter
     def ecs(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "ecs")
 
     @ecs.setter
     def ecs(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "ecs", value)
 
     @property
     @pulumi.getter
     def efs(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "efs")
 
     @efs.setter
     def efs(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "efs", value)
 
     @property
     @pulumi.getter
     def eks(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "eks")
 
     @eks.setter
     def eks(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "eks", value)
 
     @property
     @pulumi.getter
     def elasticache(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "elasticache")
 
     @elasticache.setter
     def elasticache(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "elasticache", value)
 
     @property
     @pulumi.getter
     def elasticbeanstalk(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "elasticbeanstalk")
 
     @elasticbeanstalk.setter
     def elasticbeanstalk(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "elasticbeanstalk", value)
 
     @property
     @pulumi.getter
     def elastictranscoder(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "elastictranscoder")
 
     @elastictranscoder.setter
     def elastictranscoder(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "elastictranscoder", value)
 
     @property
     @pulumi.getter
     def elb(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "elb")
 
     @elb.setter
     def elb(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "elb", value)
 
     @property
     @pulumi.getter
     def emr(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "emr")
 
     @emr.setter
     def emr(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "emr", value)
 
     @property
     @pulumi.getter
     def es(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "es")
 
     @es.setter
     def es(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "es", value)
 
     @property
     @pulumi.getter
     def firehose(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "firehose")
 
     @firehose.setter
     def firehose(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "firehose", value)
 
     @property
     @pulumi.getter
     def fms(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "fms")
 
     @fms.setter
     def fms(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "fms", value)
 
     @property
     @pulumi.getter
     def forecast(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "forecast")
 
     @forecast.setter
     def forecast(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "forecast", value)
 
     @property
     @pulumi.getter
     def fsx(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "fsx")
 
     @fsx.setter
     def fsx(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "fsx", value)
 
     @property
     @pulumi.getter
     def gamelift(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "gamelift")
 
     @gamelift.setter
     def gamelift(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "gamelift", value)
 
     @property
     @pulumi.getter
     def glacier(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "glacier")
 
     @glacier.setter
     def glacier(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "glacier", value)
 
     @property
     @pulumi.getter
     def globalaccelerator(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "globalaccelerator")
 
     @globalaccelerator.setter
     def globalaccelerator(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "globalaccelerator", value)
 
     @property
     @pulumi.getter
     def glue(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "glue")
 
     @glue.setter
     def glue(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "glue", value)
 
     @property
     @pulumi.getter
     def greengrass(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "greengrass")
 
     @greengrass.setter
     def greengrass(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "greengrass", value)
 
     @property
     @pulumi.getter
     def guardduty(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "guardduty")
 
     @guardduty.setter
     def guardduty(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "guardduty", value)
 
     @property
     @pulumi.getter
     def iam(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "iam")
 
     @iam.setter
     def iam(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "iam", value)
 
     @property
     @pulumi.getter
     def imagebuilder(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "imagebuilder")
 
     @imagebuilder.setter
     def imagebuilder(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "imagebuilder", value)
 
     @property
     @pulumi.getter
     def inspector(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "inspector")
 
     @inspector.setter
     def inspector(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "inspector", value)
 
     @property
     @pulumi.getter
     def iot(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "iot")
 
     @iot.setter
     def iot(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "iot", value)
 
     @property
     @pulumi.getter
     def iotanalytics(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "iotanalytics")
 
     @iotanalytics.setter
     def iotanalytics(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "iotanalytics", value)
 
     @property
     @pulumi.getter
     def iotevents(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "iotevents")
 
     @iotevents.setter
     def iotevents(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "iotevents", value)
 
     @property
     @pulumi.getter
     def kafka(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "kafka")
 
     @kafka.setter
     def kafka(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kafka", value)
 
     @property
     @pulumi.getter
     def kinesis(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "kinesis")
 
     @kinesis.setter
     def kinesis(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kinesis", value)
 
     @property
     @pulumi.getter(name="kinesisAnalytics")
     def kinesis_analytics(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "kinesis_analytics")
 
     @kinesis_analytics.setter
     def kinesis_analytics(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kinesis_analytics", value)
 
     @property
     @pulumi.getter
     def kinesisanalytics(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "kinesisanalytics")
 
     @kinesisanalytics.setter
     def kinesisanalytics(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kinesisanalytics", value)
 
     @property
     @pulumi.getter
     def kinesisanalyticsv2(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "kinesisanalyticsv2")
 
     @kinesisanalyticsv2.setter
     def kinesisanalyticsv2(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kinesisanalyticsv2", value)
 
     @property
     @pulumi.getter
     def kinesisvideo(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "kinesisvideo")
 
     @kinesisvideo.setter
     def kinesisvideo(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kinesisvideo", value)
 
     @property
     @pulumi.getter
     def kms(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "kms")
 
     @kms.setter
     def kms(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kms", value)
 
     @property
     @pulumi.getter
     def lakeformation(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "lakeformation")
 
     @lakeformation.setter
     def lakeformation(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "lakeformation", value)
 
     @property
     @pulumi.getter(name="lambda")
     def lambda_(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "lambda_")
 
     @lambda_.setter
     def lambda_(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "lambda_", value)
 
     @property
     @pulumi.getter
     def lexmodels(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "lexmodels")
 
     @lexmodels.setter
     def lexmodels(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "lexmodels", value)
 
     @property
     @pulumi.getter
     def licensemanager(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "licensemanager")
 
     @licensemanager.setter
     def licensemanager(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "licensemanager", value)
 
     @property
     @pulumi.getter
     def lightsail(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "lightsail")
 
     @lightsail.setter
     def lightsail(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "lightsail", value)
 
     @property
     @pulumi.getter
     def macie(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "macie")
 
     @macie.setter
     def macie(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "macie", value)
 
     @property
     @pulumi.getter
     def managedblockchain(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "managedblockchain")
 
     @managedblockchain.setter
     def managedblockchain(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "managedblockchain", value)
 
     @property
     @pulumi.getter
     def marketplacecatalog(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "marketplacecatalog")
 
     @marketplacecatalog.setter
     def marketplacecatalog(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "marketplacecatalog", value)
 
     @property
     @pulumi.getter
     def mediaconnect(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "mediaconnect")
 
     @mediaconnect.setter
     def mediaconnect(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "mediaconnect", value)
 
     @property
     @pulumi.getter
     def mediaconvert(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "mediaconvert")
 
     @mediaconvert.setter
     def mediaconvert(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "mediaconvert", value)
 
     @property
     @pulumi.getter
     def medialive(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "medialive")
 
     @medialive.setter
     def medialive(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "medialive", value)
 
     @property
     @pulumi.getter
     def mediapackage(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "mediapackage")
 
     @mediapackage.setter
     def mediapackage(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "mediapackage", value)
 
     @property
     @pulumi.getter
     def mediastore(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "mediastore")
 
     @mediastore.setter
     def mediastore(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "mediastore", value)
 
     @property
     @pulumi.getter
     def mediastoredata(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "mediastoredata")
 
     @mediastoredata.setter
     def mediastoredata(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "mediastoredata", value)
 
     @property
     @pulumi.getter
     def mq(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "mq")
 
     @mq.setter
     def mq(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "mq", value)
 
     @property
     @pulumi.getter
     def neptune(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "neptune")
 
     @neptune.setter
     def neptune(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "neptune", value)
 
     @property
     @pulumi.getter
     def networkmanager(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "networkmanager")
 
     @networkmanager.setter
     def networkmanager(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "networkmanager", value)
 
     @property
     @pulumi.getter
     def opsworks(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "opsworks")
 
     @opsworks.setter
     def opsworks(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "opsworks", value)
 
     @property
     @pulumi.getter
     def organizations(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "organizations")
 
     @organizations.setter
     def organizations(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "organizations", value)
 
     @property
     @pulumi.getter
     def outposts(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "outposts")
 
     @outposts.setter
     def outposts(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "outposts", value)
 
     @property
     @pulumi.getter
     def personalize(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "personalize")
 
     @personalize.setter
     def personalize(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "personalize", value)
 
     @property
     @pulumi.getter
     def pinpoint(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "pinpoint")
 
     @pinpoint.setter
     def pinpoint(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "pinpoint", value)
 
     @property
     @pulumi.getter
     def pricing(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "pricing")
 
     @pricing.setter
     def pricing(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "pricing", value)
 
     @property
     @pulumi.getter
     def qldb(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "qldb")
 
     @qldb.setter
     def qldb(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "qldb", value)
 
     @property
     @pulumi.getter
     def quicksight(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "quicksight")
 
     @quicksight.setter
     def quicksight(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "quicksight", value)
 
     @property
     @pulumi.getter
     def r53(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "r53")
 
     @r53.setter
     def r53(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "r53", value)
 
     @property
     @pulumi.getter
     def ram(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "ram")
 
     @ram.setter
     def ram(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "ram", value)
 
     @property
     @pulumi.getter
     def rds(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "rds")
 
     @rds.setter
     def rds(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "rds", value)
 
     @property
     @pulumi.getter
     def redshift(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "redshift")
 
     @redshift.setter
     def redshift(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "redshift", value)
 
     @property
     @pulumi.getter
     def resourcegroups(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "resourcegroups")
 
     @resourcegroups.setter
     def resourcegroups(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "resourcegroups", value)
 
     @property
     @pulumi.getter
     def resourcegroupstaggingapi(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "resourcegroupstaggingapi")
 
     @resourcegroupstaggingapi.setter
     def resourcegroupstaggingapi(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "resourcegroupstaggingapi", value)
 
     @property
     @pulumi.getter
     def route53(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "route53")
 
     @route53.setter
     def route53(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "route53", value)
 
     @property
     @pulumi.getter
     def route53domains(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "route53domains")
 
     @route53domains.setter
     def route53domains(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "route53domains", value)
 
     @property
     @pulumi.getter
     def route53resolver(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "route53resolver")
 
     @route53resolver.setter
     def route53resolver(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "route53resolver", value)
 
     @property
     @pulumi.getter
     def s3(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "s3")
 
     @s3.setter
     def s3(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "s3", value)
 
     @property
     @pulumi.getter
     def s3control(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "s3control")
 
     @s3control.setter
     def s3control(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "s3control", value)
 
     @property
     @pulumi.getter
     def sagemaker(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "sagemaker")
 
     @sagemaker.setter
     def sagemaker(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "sagemaker", value)
 
     @property
     @pulumi.getter
     def sdb(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "sdb")
 
     @sdb.setter
     def sdb(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "sdb", value)
 
     @property
     @pulumi.getter
     def secretsmanager(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "secretsmanager")
 
     @secretsmanager.setter
     def secretsmanager(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "secretsmanager", value)
 
     @property
     @pulumi.getter
     def securityhub(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "securityhub")
 
     @securityhub.setter
     def securityhub(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "securityhub", value)
 
     @property
     @pulumi.getter
     def serverlessrepo(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "serverlessrepo")
 
     @serverlessrepo.setter
     def serverlessrepo(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "serverlessrepo", value)
 
     @property
     @pulumi.getter
     def servicecatalog(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "servicecatalog")
 
     @servicecatalog.setter
     def servicecatalog(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "servicecatalog", value)
 
     @property
     @pulumi.getter
     def servicediscovery(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "servicediscovery")
 
     @servicediscovery.setter
     def servicediscovery(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "servicediscovery", value)
 
     @property
     @pulumi.getter
     def servicequotas(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "servicequotas")
 
     @servicequotas.setter
     def servicequotas(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "servicequotas", value)
 
     @property
     @pulumi.getter
     def ses(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "ses")
 
     @ses.setter
     def ses(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "ses", value)
 
     @property
     @pulumi.getter
     def shield(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "shield")
 
     @shield.setter
     def shield(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "shield", value)
 
     @property
     @pulumi.getter
     def sns(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "sns")
 
     @sns.setter
     def sns(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "sns", value)
 
     @property
     @pulumi.getter
     def sqs(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "sqs")
 
     @sqs.setter
     def sqs(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "sqs", value)
 
     @property
     @pulumi.getter
     def ssm(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "ssm")
 
     @ssm.setter
     def ssm(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "ssm", value)
 
     @property
     @pulumi.getter
     def stepfunctions(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "stepfunctions")
 
     @stepfunctions.setter
     def stepfunctions(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "stepfunctions", value)
 
     @property
     @pulumi.getter
     def storagegateway(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "storagegateway")
 
     @storagegateway.setter
     def storagegateway(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "storagegateway", value)
 
     @property
     @pulumi.getter
     def sts(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "sts")
 
     @sts.setter
     def sts(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "sts", value)
 
     @property
     @pulumi.getter
     def swf(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "swf")
 
     @swf.setter
     def swf(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "swf", value)
 
     @property
     @pulumi.getter
     def synthetics(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "synthetics")
 
     @synthetics.setter
     def synthetics(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "synthetics", value)
 
     @property
     @pulumi.getter
     def transfer(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "transfer")
 
     @transfer.setter
     def transfer(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "transfer", value)
 
     @property
     @pulumi.getter
     def waf(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "waf")
 
     @waf.setter
     def waf(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "waf", value)
 
     @property
     @pulumi.getter
     def wafregional(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "wafregional")
 
     @wafregional.setter
     def wafregional(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "wafregional", value)
 
     @property
     @pulumi.getter
     def wafv2(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "wafv2")
 
     @wafv2.setter
     def wafv2(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "wafv2", value)
 
     @property
     @pulumi.getter
     def worklink(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "worklink")
 
     @worklink.setter
     def worklink(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "worklink", value)
 
     @property
     @pulumi.getter
     def workmail(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "workmail")
 
     @workmail.setter
     def workmail(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "workmail", value)
 
     @property
     @pulumi.getter
     def workspaces(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "workspaces")
 
     @workspaces.setter
     def workspaces(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "workspaces", value)
 
     @property
     @pulumi.getter
     def xray(self) -> Optional[pulumi.Input[str]]:
-        ...
+        return pulumi.get(self, "xray")
 
     @xray.setter
     def xray(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "xray", value)
 
 
 @pulumi.input_type
@@ -2063,19 +2063,19 @@ class ProviderIgnoreTagsArgs:
     @property
     @pulumi.getter(name="keyPrefixes")
     def key_prefixes(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
-        ...
+        return pulumi.get(self, "key_prefixes")
 
     @key_prefixes.setter
     def key_prefixes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "key_prefixes", value)
 
     @property
     @pulumi.getter
     def keys(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
-        ...
+        return pulumi.get(self, "keys")
 
     @keys.setter
     def keys(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "keys", value)
 
 
