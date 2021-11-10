@@ -455,8 +455,7 @@ jobs:
 name: master
 "on":
   push:
-    branches:
-    - master
+    branches: [ "master", "feature/**", "feature-**" ]
     paths-ignore:
     - CHANGELOG.md
     tags-ignore:
